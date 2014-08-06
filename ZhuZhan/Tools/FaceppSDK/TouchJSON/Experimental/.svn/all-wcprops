@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/ZpzChinaApp/!svn/ver/2/trunk/ZpzChinaApp/Tool/FaceppSDK/TouchJSON/Experimental
+END
+CFilteringJSONSerializer.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/ZpzChinaApp/!svn/ver/2/trunk/ZpzChinaApp/Tool/FaceppSDK/TouchJSON/Experimental/CFilteringJSONSerializer.h
+END
+CJSONSerialization.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/ZpzChinaApp/!svn/ver/2/trunk/ZpzChinaApp/Tool/FaceppSDK/TouchJSON/Experimental/CJSONSerialization.h
+END
+CJSONDeserializer_BlocksExtensions.h
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/ZpzChinaApp/!svn/ver/2/trunk/ZpzChinaApp/Tool/FaceppSDK/TouchJSON/Experimental/CJSONDeserializer_BlocksExtensions.h
+END
+CFilteringJSONSerializer.m
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/ZpzChinaApp/!svn/ver/2/trunk/ZpzChinaApp/Tool/FaceppSDK/TouchJSON/Experimental/CFilteringJSONSerializer.m
+END
+CJSONSerialization.m
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/ZpzChinaApp/!svn/ver/23/trunk/ZpzChinaApp/Tool/FaceppSDK/TouchJSON/Experimental/CJSONSerialization.m
+END
+CJSONDeserializer_BlocksExtensions.m
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/ZpzChinaApp/!svn/ver/2/trunk/ZpzChinaApp/Tool/FaceppSDK/TouchJSON/Experimental/CJSONDeserializer_BlocksExtensions.m
+END
+CJSONSerializedData.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/ZpzChinaApp/!svn/ver/2/trunk/ZpzChinaApp/Tool/FaceppSDK/TouchJSON/Experimental/CJSONSerializedData.h
+END
+CJSONSerializedData.m
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/ZpzChinaApp/!svn/ver/2/trunk/ZpzChinaApp/Tool/FaceppSDK/TouchJSON/Experimental/CJSONSerializedData.m
+END

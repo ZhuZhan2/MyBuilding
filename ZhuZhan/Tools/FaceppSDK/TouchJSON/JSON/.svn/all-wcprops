@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/ZpzChinaApp/!svn/ver/2/trunk/ZpzChinaApp/Tool/FaceppSDK/TouchJSON/JSON
+END
+CJSONScanner.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/ZpzChinaApp/!svn/ver/24/trunk/ZpzChinaApp/Tool/FaceppSDK/TouchJSON/JSON/CJSONScanner.m
+END
+CJSONSerializer.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/ZpzChinaApp/!svn/ver/24/trunk/ZpzChinaApp/Tool/FaceppSDK/TouchJSON/JSON/CJSONSerializer.m
+END
+JSONRepresentation.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/ZpzChinaApp/!svn/ver/2/trunk/ZpzChinaApp/Tool/FaceppSDK/TouchJSON/JSON/JSONRepresentation.h
+END
+CJSONDeserializer.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/ZpzChinaApp/!svn/ver/2/trunk/ZpzChinaApp/Tool/FaceppSDK/TouchJSON/JSON/CJSONDeserializer.h
+END
+CJSONDeserializer.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/ZpzChinaApp/!svn/ver/2/trunk/ZpzChinaApp/Tool/FaceppSDK/TouchJSON/JSON/CJSONDeserializer.m
+END
+CJSONScanner.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/ZpzChinaApp/!svn/ver/2/trunk/ZpzChinaApp/Tool/FaceppSDK/TouchJSON/JSON/CJSONScanner.h
+END
+CJSONSerializer.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/ZpzChinaApp/!svn/ver/2/trunk/ZpzChinaApp/Tool/FaceppSDK/TouchJSON/JSON/CJSONSerializer.h
+END

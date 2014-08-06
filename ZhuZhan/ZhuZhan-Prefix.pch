@@ -11,6 +11,20 @@
 #endif
 
 #ifdef __OBJC__
-    #import <UIKit/UIKit.h>
-    #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
+#import "AFNetworking.h"
 #endif
+
+
+
+#define  kScreenWidth  [[UIScreen mainScreen] bounds].size.width
+#define  kScreenHeight [[UIScreen mainScreen] bounds].size.height
+#define  kContentHeight [[UIScreen mainScreen] bounds].size.height-64.5
+#define  serverAddress "http://192.168.0.78:801/zpzserver/ZPZChina.svc"
+
+#define  BlueColor [UIColor colorWithRed:(40/255.0)  green:(134/255.0)  blue:(247/255.0)  alpha:1.0]
+#define  GrayColor [UIColor colorWithRed:(105/255.0)  green:(105/255.0)  blue:(105/255.0)  alpha:1.0]
+//RGB的宏
+#define RGBCOLOR(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
