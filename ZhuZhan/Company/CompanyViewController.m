@@ -11,7 +11,7 @@
 @interface CompanyViewController ()<UIScrollViewDelegate>
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @end
-
+//test
 @implementation CompanyViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
