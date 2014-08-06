@@ -27,8 +27,6 @@
 {
     [super viewDidLoad];
 
-    [self addtittle:@"我的公司"];
-    self.view.backgroundColor = [UIColor yellowColor];
 }
 
 - (void)didReceiveMemoryWarning
