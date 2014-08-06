@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 zpzchina. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface CompanyViewController : BaseViewController
+@interface CompanyViewController : UIViewController
 
 @end

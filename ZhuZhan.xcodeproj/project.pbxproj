@@ -1577,12 +1577,12 @@
 		0426C20519922D5A00CD8822 /* Trade */ = {
 			isa = PBXGroup;
 			children = (
-				5B656CEE19923111007D79A8 /* TradeDetailViewController.h */,
-				5B656CEF19923111007D79A8 /* TradeDetailViewController.m */,
-				0426C20619922D5A00CD8822 /* TradeCollectionViewCell.h */,
-				0426C20719922D5A00CD8822 /* TradeCollectionViewCell.m */,
 				0426C20819922D5A00CD8822 /* TradeViewController.h */,
 				0426C20919922D5A00CD8822 /* TradeViewController.m */,
+				0426C20619922D5A00CD8822 /* TradeCollectionViewCell.h */,
+				0426C20719922D5A00CD8822 /* TradeCollectionViewCell.m */,
+				5B656CEE19923111007D79A8 /* TradeDetailViewController.h */,
+				5B656CEF19923111007D79A8 /* TradeDetailViewController.m */,
 			);
 			path = Trade;
 			sourceTree = "<group>";

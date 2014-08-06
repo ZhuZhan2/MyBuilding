@@ -125,7 +125,6 @@
             companyview = [[CompanyViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:companyview];
             [nav.view setFrame:contentView.frame];
-            nav.navigationBarHidden = YES;
             [contentView addSubview:nav.view];
             break;
         case 4:
