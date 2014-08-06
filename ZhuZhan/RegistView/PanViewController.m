@@ -103,6 +103,7 @@ UIImage *defaultImg = [UIImage imageNamed:@"扫描页面_03"];
 }
 
 
+
 -(void)addImage:(UIImage *)image{//采集照片时想获取到的带有人脸的照片添加到数组中
     NSLog(@"%d",j);
     [faceVC.view removeFromSuperview];

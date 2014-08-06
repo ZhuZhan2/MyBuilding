@@ -19,6 +19,7 @@
 -(void)addImage:(UIImage *)image;
 
 @end
+
 @interface FaceViewController : UIViewController<AVCaptureVideoDataOutputSampleBufferDelegate>{
     AVCaptureSession *_session;
     AVCaptureDeviceInput *_captureInput;

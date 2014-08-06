@@ -222,7 +222,6 @@ static bool FirstLogin = NO;
     
 }
 
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
         NSLog(@"mlmlmll %ld",(long)alertView.tag);
     if(alertView.tag ==20140731){ //此时进行登录的跳转

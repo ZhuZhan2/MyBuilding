@@ -13,7 +13,6 @@
 @synthesize faceIDArray;
 static int chanceToLoginByFace =3;
 
-
 //照片转正
 - (UIImage *)fixOrientation:(UIImage *)aImage {
     

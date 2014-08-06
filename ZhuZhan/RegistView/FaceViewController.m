@@ -282,6 +282,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 }
 
 
+
 -(void)recognizeSuccess   //脸部注册成功开始执行登录的跳转
 {
     [indicator stopAnimating];

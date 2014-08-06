@@ -29,7 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:self.view.frame];
     [bgImgView setImage:[UIImage imageNamed:@"面部识别登录.png"]];
     bgImgView.userInteractionEnabled =YES;

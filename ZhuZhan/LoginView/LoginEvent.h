@@ -12,7 +12,6 @@
 @interface LoginEvent : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate>
 {
     
-    
     NSString *person_id;
 
 }

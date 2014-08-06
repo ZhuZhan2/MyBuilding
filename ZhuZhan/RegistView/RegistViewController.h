@@ -13,7 +13,7 @@
     UITextField *_yzmTextField;
     UITextField *passWordField;
     UITextField *verifyPassWordField;
-        
+    
 }
 
 @end
