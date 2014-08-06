@@ -17,7 +17,6 @@
 @protocol FaceViewDelegate <NSObject>
 
 -(void)addImage:(UIImage *)image;
--(void)beginToRecognize:(UIImage *)image;
 
 @end
 @interface FaceViewController : UIViewController<AVCaptureVideoDataOutputSampleBufferDelegate>{
@@ -32,9 +31,8 @@
 id<FaceViewDelegate>delegate;
         TFIndicatorView *indicator;
     
-//    NSMutableArray *faceArray;
 }
-//@property (nonatomic)BOOL isFaceRegister;
+
 @property (retain, nonatomic) UIView *cameraView;
 @property (retain, nonatomic) UIImageView *imageView;
 @property (nonatomic, retain) CALayer *customLayer;

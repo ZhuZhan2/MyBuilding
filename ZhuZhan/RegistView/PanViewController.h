@@ -19,5 +19,7 @@
     UIImageView *nowIMageView;
     TFIndicatorView *indicator;
     UILabel *textlabel;
+    UIImageView *defaultImageView;
+//    UIImage *defaultImg;
 }
 @end

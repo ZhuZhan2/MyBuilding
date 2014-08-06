@@ -35,14 +35,16 @@ static int count =5;
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.hidden = YES;
     
-   
-
-
-    
     nowIMageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 320, 426)];
     nowIMageView.center = self.view.center;
     [self.view addSubview:nowIMageView];
     
+UIImage *defaultImg = [UIImage imageNamed:@"扫描页面_03"];
+    defaultImageView =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, defaultImg.size.width/3, defaultImg.size.height/3)];
+    NSLog(@"宽度%f   高度%f",defaultImg.size.width,defaultImg.size.height);
+    defaultImageView.center = self.view.center;
+    defaultImageView.image = defaultImg;
+    [self.view addSubview:defaultImageView];
     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     leftBtn.frame = CGRectMake(20, self.view.frame.size.height-50, 60, 40);
     [leftBtn setTitle:@"照片采集" forState:UIControlStateNormal];
@@ -55,41 +57,36 @@ static int count =5;
     [rightBtn addTarget:self action:@selector(jumpToLogin) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:rightBtn];
     
-   
     event = [[LoginEvent alloc] init];
     event.faceIDArray = [[NSMutableArray alloc] init];
-    
     imgArr = [[NSMutableArray alloc] init];
-    
     textlabel = [[UILabel alloc] initWithFrame:CGRectMake(80,35, 160, 30)];
     textlabel.text = @"还需要采集5张照片";
+    textlabel.textColor =BlueColor;
     [self.view addSubview:textlabel];
+
 }
 
-
-
+#pragma mark 采集照片－－－－－－－－－－
 -(void)addmMoreImage//采集照片
 {
-    
         j= 0;
+    [defaultImageView removeFromSuperview];
         if(imgArr.count < 5){
             faceVC = [[FaceViewController alloc] init];
             faceVC.delegate = self;
             [self.view addSubview:faceVC.view];
             
         }
-   
-
     
 }
 
 
+#pragma mark 跳过－－－－－－－－－－
 -(void)jumpToLogin      // 返回到登录的界面
 {
     
     HomePageViewController *homepage = [[HomePageViewController alloc] init];
-    
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
     [UIView beginAnimations:nil context:context];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
@@ -100,9 +97,6 @@ static int count =5;
     [self.view exchangeSubviewAtIndex:tview2 withSubviewAtIndex:tview1];
     [UIView setAnimationDelegate:self];
     [UIView commitAnimations];
-    
-    
-    
     [[AppDelegate instance] window].rootViewController = homepage;
     [[[AppDelegate instance] window] makeKeyAndVisible];
     
@@ -117,7 +111,7 @@ static int count =5;
         [imgArr addObject:image];
         nowIMageView.image = image;
         NSLog(@"%@",imgArr);
-        textlabel.text =[NSString stringWithFormat:@"还需要采集%lu张照片",(count-imgArr.count)];
+        textlabel.text =[NSString stringWithFormat:@"还需要采集%d张照片",(count-imgArr.count)];
         count=5;
         if(imgArr.count == 5){
             NSLog(@"%@",textlabel);
@@ -175,27 +169,29 @@ static int count =5;
     [alert show];
     
     j=0;
-
     [imgArr removeAllObjects];
     [faceVC.view removeFromSuperview];
     faceVC = nil;
+    
 
-    textlabel.text =[NSString stringWithFormat:@"还需要采集%lu张照片",(5-imgArr.count)];
+    textlabel.text =[NSString stringWithFormat:@"还需要采集%d张照片",(5-imgArr.count)];
 }
 
 
 -(void)viewDidAppear:(BOOL)animated{   //添加观察者
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToFormerVC) name:@"registerFace" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToFormerVC) name:@"registerFace" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recognizeSuccess) name:@"faceLogin" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failToRegister) name:@"failRegister" object:nil];
-    
     
 }
 
 -(void)viewDidDisappear:(BOOL)animated{    //移除观察者
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"registerFace" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"faceLogin" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"failRegister" object:nil];
+    
 }
 
 -(void)backToFormerVC{         //返回到PanViewController
@@ -203,7 +199,7 @@ static int count =5;
     [faceVC.view removeFromSuperview];
     [imgArr removeAllObjects];
     faceVC = nil;
-    textlabel.text =[NSString stringWithFormat:@"还需要采集%lu张照片",(5-imgArr.count)];
+    textlabel.text =[NSString stringWithFormat:@"还需要采集%d张照片",(5-imgArr.count)];
 }
 
 
@@ -212,17 +208,5 @@ static int count =5;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
