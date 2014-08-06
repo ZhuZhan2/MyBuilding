@@ -33,12 +33,20 @@
     cell.layer.shadowOpacity=.5;//阴影的alpha
     
     
-    NSArray* ary=dic[@"cellText"];
+    NSArray* labelArray=dic[@"cellLabel"];
+    NSArray* imageArray=dic[@"cellImage"];
     if (cell.myLabel) {
-        cell.myLabel.text=ary[indexPath.row];
+        cell.myLabel.text=labelArray[indexPath.row];
+        cell.myImageView.image=imageArray[indexPath.row];
     }else{
-        cell.myLabel=[[UILabel alloc]initWithFrame:CGRectMake(50, 50, 50, 50)];
-        cell.myLabel.text=ary[indexPath.row];
+        //cell大小CGSizeMake(148, 250);
+        cell.myImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 148, 125)];
+        cell.myImageView.image=imageArray[indexPath.row];
+        [cell.contentView addSubview:cell.myImageView];
+        
+        cell.myLabel=[[UILabel alloc]initWithFrame:CGRectMake(0 , 125, 148, 125)];
+        cell.myLabel.numberOfLines=0;
+        cell.myLabel.text=labelArray[indexPath.row];
         [cell.contentView addSubview:cell.myLabel];
     }
     

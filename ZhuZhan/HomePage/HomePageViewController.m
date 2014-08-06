@@ -133,7 +133,6 @@
             tradeview = [[TradeViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:tradeview];
             [nav.view setFrame:contentView.frame];
-            nav.navigationBarHidden = YES;
             [contentView addSubview:nav.view];
             break;
         default:
