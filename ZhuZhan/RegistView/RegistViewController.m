@@ -12,12 +12,7 @@
 #import "HomePageViewController.h"
 #import "LoginViewController.h"
 #import "FaceViewController.h"
-//#import "LoginSqlite.h"
-
 #import "PanViewController.h"
-
-//#import "ContactModel.h"
-
 
 @interface RegistViewController ()
 
@@ -117,16 +112,10 @@
     [cancelBtn addTarget:self action:@selector(cancelRegister) forControlEvents:UIControlEventTouchUpInside];
     [panView addSubview:cancelBtn];
     
-
-
-
-    
-
-    
 }
 
 
-#pragma UITextFieldDelegate
+#pragma mark UITextFieldDelegate
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -148,7 +137,7 @@
     [textField resignFirstResponder];
     return YES;
 }
-#pragma UIResponder
+#pragma mark UIResponder
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     
@@ -192,13 +181,12 @@
     NSLog(@"取消注册");
 }
 
+#pragma mark  开始注册－－－－－－－－－－
 -(void)beginToCollect//点击注册按钮触发的事件
 {
     
     [self commomRegister];
     
-
-
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -207,8 +195,6 @@
     if (buttonIndex==0) {
 
             [self faceCollect];//开始采集照片
-
-
 
     }
     else if (buttonIndex==1){//直接登录
@@ -222,11 +208,7 @@
 {
 
     PanViewController *panVC = [[PanViewController alloc] init];
-
     [self.navigationController pushViewController:panVC animated:NO];
-
-    
-    
 
 }
 
@@ -246,15 +228,11 @@
         return;
     }
     
+    
     //通过网络请求判断验证码是否正确
     //*****************************
-    
-    
-    
-    //******************************
-    
-    
-    
+
+
        //进行注册
     //**********************************
 
@@ -266,7 +244,6 @@
     AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     op.responseSerializer = [AFJSONResponseSerializer serializer];
     [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"register＊＊＊＊＊＊＊＊********JSON: %@", responseObject);
         
         NSNumber *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
        if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"200"])
@@ -278,55 +255,39 @@
                 [[NSUserDefaults standardUserDefaults]setObject:_phoneNumberTextField.text forKey:@"userName"];
                 [[NSUserDefaults standardUserDefaults]setObject:passWordField.text forKey:@"passWord"];
                 [[NSUserDefaults standardUserDefaults]setObject:[item objectForKey:@"userToken"] forKey:@"UserToken"];
-
                 NSString *isFaceRegisted = [item objectForKey:@"isFaceRegisted"];
                 [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@",isFaceRegisted]forKey:@"isFaceRegisted"];
-                //                NSLog(@"nininininimmmmm*************%@",item);
                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"faceCount"] forKey:@"currentFaceCount"];
                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"userID"] forKey:@"userID"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
-                
-                
 
-//                [LoginSqlite insertData:[item objectForKey:@"userToken"] datakey:@"UserToken"];
-//                [LoginSqlite insertData:_phoneNumberTextField.text datakey:@"userName"];
-//                [LoginSqlite insertData:passWordField.text datakey:@"passWord"];
 
             }
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册成功，是否进行脸部识别的注册" delegate:self cancelButtonTitle:@"是" otherButtonTitles:@"否", nil];
             [alert show];
-
-            
             
         }
         else{
-            
             
             NSLog(@"账号密码注册失败");
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败，账号已存在" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil];
             [alert show];
             
         }
-        
 
     }
    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"账号密码注册Error: %@", error);
     }];
-
     
      [[NSOperationQueue mainQueue] addOperation:op];
 }
 
 
 
-
-
-
 -(void)recognizeSuccess//开始进行登录跳转
 {
     HomePageViewController *homepage = [[HomePageViewController alloc] init];
-    
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     [UIView beginAnimations:nil context:context];
@@ -338,8 +299,6 @@
     [self.view exchangeSubviewAtIndex:tview2 withSubviewAtIndex:tview1];
     [UIView setAnimationDelegate:self];
     [UIView commitAnimations];
-    
-    
     
     [[AppDelegate instance] window].rootViewController = homepage;
     [[[AppDelegate instance] window] makeKeyAndVisible];

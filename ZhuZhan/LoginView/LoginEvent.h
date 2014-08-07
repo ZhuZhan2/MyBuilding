@@ -12,15 +12,11 @@
 @interface LoginEvent : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate>
 {
     
-    
     NSString *person_id;
-    NSString *groupName;
 
 }
 
 @property (nonatomic,strong)NSMutableArray *faceIDArray;
-@property (nonatomic,strong)UIImagePickerController *imagePicker;
-
 
 
 -(void)beginToRegisterFace;

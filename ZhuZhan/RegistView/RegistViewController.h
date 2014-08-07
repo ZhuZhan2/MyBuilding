@@ -8,18 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-
-
 @interface RegistViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate>{
     UITextField *_phoneNumberTextField;
     UITextField *_yzmTextField;
     UITextField *passWordField;
     UITextField *verifyPassWordField;
-        
-
-
-            }
-
-
+    
+}
 
 @end

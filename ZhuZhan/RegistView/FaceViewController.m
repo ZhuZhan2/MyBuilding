@@ -52,14 +52,8 @@ static int People =0;
 
     [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(playIndicator) userInfo:nil repeats:NO];
     event = [[LoginEvent alloc] init];
-
-    event.imagePicker = [[UIImagePickerController alloc] init];
-   
-    
+       
     [self initialize];
-    
-
-
     
 }
 
@@ -185,17 +179,12 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     
     CGImageRelease(newImage);
     
-//    image = [image fixOrientation];//图像反转
     image = [event fixOrientation:image]; //图像反转
     
     [self performSelectorOnMainThread:@selector(detectForFacesInUIImage:)
                            withObject: (id) image waitUntilDone:NO];
     
-    
     CVPixelBufferUnlockBaseAddress(imageBuffer,0);
-    
- 
-    
     
 }
 
@@ -206,9 +195,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     
     CIDetector* detector = [CIDetector detectorOfType:CIDetectorTypeFace
                                               context:nil options:[NSDictionary dictionaryWithObject:CIDetectorAccuracyLow forKey:CIDetectorAccuracy]];
-    
     NSArray* features = [detector featuresInImage:image];
-
     for(int j=0;m_highlitView[j]!=nil;j++)
     {
         m_highlitView[j].hidden = YES;
@@ -256,27 +243,22 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     m_highlitView[_index].transform = transform;
     
     m_highlitView[_index].hidden = NO;
-    if (m_highlitView[_index].center.x>80&&m_highlitView[_index].center.x<240&&m_highlitView[_index].center.y>self.view.center.y-100&&m_highlitView[_index].center.x<self.view.frame.size.height-100&&m_highlitView[_index].frame.size.width>60&&m_highlitView[_index].frame.size.width<280&&m_highlitView[_index].frame.size.height>80&&m_highlitView[_index].frame.size.height<440) {
-        
-        
-        isBeginToCutFace =YES;
-        [self performSelector:@selector(delayTojudge:) withObject:image afterDelay:1.0];
-       
-        
-    }
     
+    //判定截图的条件
+    if (m_highlitView[_index].center.x>80&&m_highlitView[_index].center.x<240&&m_highlitView[_index].center.y>self.view.center.y-100&&m_highlitView[_index].center.x<self.view.frame.size.height-100&&m_highlitView[_index].frame.size.width>60&&m_highlitView[_index].frame.size.width<280&&m_highlitView[_index].frame.size.height>80&&m_highlitView[_index].frame.size.height<440) {
+        isBeginToCutFace =YES;//截图的bool值为YES，开始执行截图函数
+        [self performSelector:@selector(delayTojudge:) withObject:image afterDelay:1.0];
+    }
     
 }
 
 
 - (void)delayTojudge:(UIImage *)image
 {
-    People++;
-    //NSLog(@"*****************People%d",People);
+    People++;//传入的image的数量
     if (isBeginToCutFace ==YES) {
         NSLog(@"asdfdsaf");
         isBeginToCutFace =NO;
-
         [_session stopRunning];
         _session = nil;
         _captureInput = nil;
@@ -285,34 +267,26 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         _device = nil;
         _imageView.image = image;
         
-        
-                    NSLog(@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegisted"]);
-
         if([[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegisted"] isEqualToString:@"1"]){//识别登录
-
                 [event detectWithImage:image With:People];
-
-            
             
         }else{
-                        if([delegate respondsToSelector:@selector(addImage:)]){//未注册时进行
-                [delegate addImage:image];
-                
-
+            if([delegate respondsToSelector:@selector(addImage:)]){//未注册时进行
+            [delegate addImage:image];
 
             }
         }
 
     }
+    
 }
 
 
--(void)recognizeSuccess
+
+-(void)recognizeSuccess   //脸部注册成功开始执行登录的跳转
 {
     [indicator stopAnimating];
     HomePageViewController *homepage = [[HomePageViewController alloc] init];
-    
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
     [UIView beginAnimations:nil context:context];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
@@ -323,8 +297,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     [self.view exchangeSubviewAtIndex:tview2 withSubviewAtIndex:tview1];
     [UIView setAnimationDelegate:self];
     [UIView commitAnimations];
-    
-    
     
     [[AppDelegate instance] window].rootViewController = homepage;
     [[[AppDelegate instance] window] makeKeyAndVisible];
@@ -343,8 +315,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     }
     return nil;
 }
-
-
 
 - (void)viewDidDisappear:(BOOL)animated
 {
