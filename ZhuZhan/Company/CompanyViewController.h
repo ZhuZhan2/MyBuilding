@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CompanyViewController : UIViewController
+@protocol companyViewDelegate <NSObject>
 
+-(void)companyDidNext;
+-(void)companyWillBack;
+@end
+@interface CompanyViewController : UIViewController
+@property(nonatomic,strong)id<companyViewDelegate>delegate;
 @end

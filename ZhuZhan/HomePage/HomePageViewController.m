@@ -27,6 +27,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
+    contactview = [[ContactViewController alloc] init];
+    nav = [[UINavigationController alloc] initWithRootViewController:contactview];
+    [nav.view setFrame:contentView.frame];
+    [contentView addSubview:nav.view];
+    [self.view addSubview:contentView];
+    
     toolView = [[UIView alloc] initWithFrame:CGRectMake(0, 513, 320, 55)];
     [toolView setBackgroundColor:RGBCOLOR(68, 101, 175)];
     
@@ -63,12 +71,7 @@
     [toolView addSubview:tradeBtn];
     [self.view addSubview:toolView];
     
-    contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 513)];
-    contactview = [[ContactViewController alloc] init];
-    nav = [[UINavigationController alloc] initWithRootViewController:contactview];
-    [nav.view setFrame:contentView.frame];
-    [contentView addSubview:nav.view];
-    [self.view addSubview:contentView];
+    
     
     UIImage *storyMenuItemImage = [UIImage imageNamed:@"bg-menuitem.png"];
     UIImage *storyMenuItemImagePressed = [UIImage imageNamed:@"bg-menuitem-highlighted.png"];
@@ -101,7 +104,7 @@
     
     NSArray *menus = [NSArray arrayWithObjects:cameraMenuItem, peopleMenuItem, placeMenuItem, musicMenuItem, thoughtMenuItem, nil];
     
-    QuadCurveMenu *menu = [[QuadCurveMenu alloc] initWithFrame:self.view.bounds menus:menus];
+    menu = [[QuadCurveMenu alloc] initWithFrame:self.view.bounds menus:menus];
     //menu.center = self.window.center;
     menu.delegate = self;
     [self.view addSubview:menu];
@@ -124,6 +127,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+-(void)companyDidNext{
+    toolView.hidden=YES;
+    menu.hidden=YES;
+}
+
+-(void)companyWillBack{
+    toolView.hidden=NO;
+    menu.hidden=NO;
+}
+
 -(void)BtnClick:(UIButton *)button{
     for(int i=0;i<contentView.subviews.count;i++) {
         [((UIView*)[contentView.subviews objectAtIndex:i]) removeFromSuperview];
@@ -149,6 +162,7 @@
         case 3:
             NSLog(@"公司");
             companyview = [[CompanyViewController alloc] init];
+            companyview.delegate=self;
             nav = [[UINavigationController alloc] initWithRootViewController:companyview];
             [nav.view setFrame:contentView.frame];
             [contentView addSubview:nav.view];

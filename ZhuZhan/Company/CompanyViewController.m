@@ -7,13 +7,14 @@
 //
 
 #import "CompanyViewController.h"
-
+#import "CompanyMemberViewController.h"
 @interface CompanyViewController ()<UIScrollViewDelegate>
 @property(nonatomic,strong)UIScrollView* myScrollView;
+@property(nonatomic)NSInteger memberNumber;
 @end
 
 @implementation CompanyViewController
-
+@synthesize delegate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -37,6 +38,11 @@
     UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 180)];
     imageView.image=[UIImage imageNamed:@"首页_16.png"];
     [self.myScrollView addSubview:imageView];
+    
+    UIImageView* roundImageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"面部识别登录1_03.png"]];
+    roundImageView.bounds=CGRectMake(0, 0, 150, 150);
+    roundImageView.center=imageView.center;
+    [self.myScrollView addSubview:roundImageView];
 }
 
 -(void)initMemberView{
@@ -46,8 +52,8 @@
     
     //公司员工人数label
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 20)];
-    int num=134;
-    label.text=[NSString stringWithFormat:@"公司员工    %d",num];
+    self.memberNumber=14;
+    label.text=[NSString stringWithFormat:@"公司员工    %ld",self.memberNumber];
     label.textColor=[UIColor grayColor];
     [view addSubview:label];
     
@@ -138,7 +144,17 @@
 }
 
 -(void)next{
-    NSLog(@"用户选择了右箭头");
+    CompanyMemberViewController* memberVC=[[CompanyMemberViewController alloc]initWithMemberNumber:self.memberNumber];
+    [self.navigationController pushViewController:memberVC animated:YES];
+    if([delegate respondsToSelector:@selector(companyDidNext)]){
+        [self.delegate companyDidNext];
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    if([delegate respondsToSelector:@selector(companyWillBack)]){
+        [self.delegate companyWillBack];
+    }
 }
 
 -(void)more{
