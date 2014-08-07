@@ -2126,6 +2126,7 @@
 				0426C01519922CE400CD8822 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0426C01619922CE400CD8822 /* Build configuration list for PBXNativeTarget "ZhuZhanTests" */ = {
 			isa = XCConfigurationList;
@@ -2134,6 +2135,7 @@
 				0426C01819922CE400CD8822 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
