@@ -38,6 +38,10 @@
     imageView.image=[UIImage imageNamed:@"首页_16.png"];
     [self.myScrollView addSubview:imageView];
     
+    UIImageView* roundImageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"面部识别登录1_03.png"]];
+    roundImageView.bounds=CGRectMake(0, 0, 150, 150);
+    roundImageView.center=imageView.center;
+    [self.myScrollView addSubview:roundImageView];
 }
 
 -(void)initMemberView{
