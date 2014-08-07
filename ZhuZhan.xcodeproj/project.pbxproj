@@ -283,6 +283,7 @@
 		0426C31919922E8800CD8822 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0426C31819922E8800CD8822 /* CoreVideo.framework */; };
 		0426C31B19922E9000CD8822 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0426C31A19922E9000CD8822 /* CoreImage.framework */; };
 		0426C31D19922E9C00CD8822 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0426C31C19922E9C00CD8822 /* ImageIO.framework */; };
+		5B656CF019923111007D79A8 /* TradeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CEF19923111007D79A8 /* TradeDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -797,6 +798,8 @@
 		0426C31819922E8800CD8822 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		0426C31A19922E9000CD8822 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		0426C31C19922E9C00CD8822 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		5B656CEE19923111007D79A8 /* TradeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeDetailViewController.h; sourceTree = "<group>"; };
+		5B656CEF19923111007D79A8 /* TradeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -883,7 +886,6 @@
 				0426C01919922D5900CD8822 /* Company */,
 				0426C01C19922D5900CD8822 /* Contact */,
 				0426C01F19922D5900CD8822 /* HomePage */,
-				0426C02219922D5900CD8822 /* Images */,
 				0426C04419922D5900CD8822 /* LoginView */,
 				0426C04B19922D5900CD8822 /* Project */,
 				0426C04E19922D5900CD8822 /* RegistView */,
@@ -900,6 +902,7 @@
 		0426BFF119922CE400CD8822 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0426C02219922D5900CD8822 /* Images */,
 				0426BFF219922CE400CD8822 /* ZhuZhan-Info.plist */,
 				0426BFF319922CE400CD8822 /* InfoPlist.strings */,
 				0426BFF619922CE400CD8822 /* main.m */,
@@ -1574,10 +1577,12 @@
 		0426C20519922D5A00CD8822 /* Trade */ = {
 			isa = PBXGroup;
 			children = (
-				0426C20619922D5A00CD8822 /* TradeCollectionViewCell.h */,
-				0426C20719922D5A00CD8822 /* TradeCollectionViewCell.m */,
 				0426C20819922D5A00CD8822 /* TradeViewController.h */,
 				0426C20919922D5A00CD8822 /* TradeViewController.m */,
+				0426C20619922D5A00CD8822 /* TradeCollectionViewCell.h */,
+				0426C20719922D5A00CD8822 /* TradeCollectionViewCell.m */,
+				5B656CEE19923111007D79A8 /* TradeDetailViewController.h */,
+				5B656CEF19923111007D79A8 /* TradeDetailViewController.m */,
 			);
 			path = Trade;
 			sourceTree = "<group>";
@@ -1753,6 +1758,7 @@
 				0426C2C319922D5A00CD8822 /* GPUImageSwirlFilter.m in Sources */,
 				0426C2C119922D5A00CD8822 /* GPUImageStretchDistortionFilter.m in Sources */,
 				0426C2B619922D5A00CD8822 /* GPUImageSingleComponentFastBlurFilter.m in Sources */,
+				5B656CF019923111007D79A8 /* TradeDetailViewController.m in Sources */,
 				0426C2DE19922D5A00CD8822 /* GPUImageView.m in Sources */,
 				0426C25A19922D5A00CD8822 /* GPUImageCropFilter.m in Sources */,
 				0426C27819922D5A00CD8822 /* GPUImageHighlightShadowFilter.m in Sources */,
