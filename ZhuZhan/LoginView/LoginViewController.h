@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "LoginEvent.h"
 
 @interface LoginViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate>{
     UITextField *_userNameTextField;
