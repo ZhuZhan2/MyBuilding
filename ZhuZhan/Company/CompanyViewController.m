@@ -7,9 +7,10 @@
 //
 
 #import "CompanyViewController.h"
-
+#import "CompanyMemberViewController.h"
 @interface CompanyViewController ()<UIScrollViewDelegate>
 @property(nonatomic,strong)UIScrollView* myScrollView;
+@property(nonatomic)NSInteger memberNumber;
 @end
 
 @implementation CompanyViewController
@@ -51,8 +52,8 @@
     
     //公司员工人数label
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 20)];
-    int num=134;
-    label.text=[NSString stringWithFormat:@"公司员工    %d",num];
+    self.memberNumber=15;
+    label.text=[NSString stringWithFormat:@"公司员工    %ld",self.memberNumber];
     label.textColor=[UIColor grayColor];
     [view addSubview:label];
     
@@ -143,7 +144,8 @@
 }
 
 -(void)next{
-    NSLog(@"用户选择了右箭头");
+    CompanyMemberViewController* memberVC=[[CompanyMemberViewController alloc]initWithMemberNumber:self.memberNumber];
+    [self.navigationController pushViewController:memberVC animated:YES];
 }
 
 -(void)more{

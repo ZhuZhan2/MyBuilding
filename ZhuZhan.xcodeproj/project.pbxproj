@@ -284,6 +284,7 @@
 		0426C31B19922E9000CD8822 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0426C31A19922E9000CD8822 /* CoreImage.framework */; };
 		0426C31D19922E9C00CD8822 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0426C31C19922E9C00CD8822 /* ImageIO.framework */; };
 		5B656CF019923111007D79A8 /* TradeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CEF19923111007D79A8 /* TradeDetailViewController.m */; };
+		5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -800,6 +801,8 @@
 		0426C31C19922E9C00CD8822 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		5B656CEE19923111007D79A8 /* TradeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeDetailViewController.h; sourceTree = "<group>"; };
 		5B656CEF19923111007D79A8 /* TradeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeDetailViewController.m; sourceTree = "<group>"; };
+		5B656CF419931275007D79A8 /* CompanyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMemberViewController.h; sourceTree = "<group>"; };
+		5B656CF519931275007D79A8 /* CompanyMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyMemberViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -934,6 +937,8 @@
 			children = (
 				0426C01A19922D5900CD8822 /* CompanyViewController.h */,
 				0426C01B19922D5900CD8822 /* CompanyViewController.m */,
+				5B656CF419931275007D79A8 /* CompanyMemberViewController.h */,
+				5B656CF519931275007D79A8 /* CompanyMemberViewController.m */,
 			);
 			path = Company;
 			sourceTree = "<group>";
@@ -1819,6 +1824,7 @@
 				0426C28519922D5A00CD8822 /* GPUImageLevelsFilter.m in Sources */,
 				0426C23619922D5A00CD8822 /* AFHTTPRequestOperation.m in Sources */,
 				0426C2B519922D5A00CD8822 /* GPUImageShiTomasiFeatureDetectionFilter.m in Sources */,
+				5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */,
 				0426C2B219922D5A00CD8822 /* GPUImageScreenBlendFilter.m in Sources */,
 				0426C2B419922D5A00CD8822 /* GPUImageSharpenFilter.m in Sources */,
 				0426C2FB19922D5A00CD8822 /* AFNetworkActivityIndicatorManager.m in Sources */,
