@@ -917,6 +917,7 @@
 		0426BFF019922CE400CD8822 /* ZhuZhan */ = {
 			isa = PBXGroup;
 			children = (
+				D3EACDEA199337750058FC9D /* Message */,
 				0426C01919922D5900CD8822 /* Company */,
 				0426C01C19922D5900CD8822 /* Contact */,
 				0426C01F19922D5900CD8822 /* HomePage */,
@@ -1645,6 +1646,13 @@
 				D3EACDE7199327820058FC9D /* QuadCurveMenuItem.m */,
 			);
 			path = QuadCurveMenu;
+			sourceTree = "<group>";
+		};
+		D3EACDEA199337750058FC9D /* Message */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
