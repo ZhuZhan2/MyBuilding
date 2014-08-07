@@ -7,12 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@protocol companyViewDelegate <NSObject>
-
--(void)companyDidNext;
--(void)companyWillBack;
-@end
-@interface CompanyViewController : UIViewController
-@property(nonatomic,strong)id<companyViewDelegate>delegate;
+#import "HidePage.h"
+@interface CompanyViewController : UIViewController{
+    id<HidePage>hideDelegate;
+}
+@property(nonatomic,strong)id<HidePage>hideDelegate;
 @end

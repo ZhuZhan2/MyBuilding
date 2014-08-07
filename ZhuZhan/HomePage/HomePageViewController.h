@@ -12,7 +12,7 @@
 #import "CompanyViewController.h"
 #import "TradeViewController.h"
 #import "QuadCurveMenu.h"
-@interface HomePageViewController : UIViewController<QuadCurveMenuDelegate,companyViewDelegate>{
+@interface HomePageViewController : UIViewController<QuadCurveMenuDelegate,HidePage>{
     UIButton *contactBtn;
     UIButton *projectBtn;
     UIButton *companyBtn;

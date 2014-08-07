@@ -14,7 +14,7 @@
 @end
 
 @implementation CompanyViewController
-@synthesize delegate;
+@synthesize hideDelegate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -146,14 +146,14 @@
 -(void)next{
     CompanyMemberViewController* memberVC=[[CompanyMemberViewController alloc]initWithMemberNumber:self.memberNumber];
     [self.navigationController pushViewController:memberVC animated:YES];
-    if([delegate respondsToSelector:@selector(companyDidNext)]){
-        [self.delegate companyDidNext];
+    if([hideDelegate respondsToSelector:@selector(homePageDidNext)]){
+        [hideDelegate homePageDidNext];
     }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    if([delegate respondsToSelector:@selector(companyWillBack)]){
-        [self.delegate companyWillBack];
+    if([hideDelegate respondsToSelector:@selector(homePageWillBack)]){
+        [hideDelegate homePageWillBack];
     }
 }
 

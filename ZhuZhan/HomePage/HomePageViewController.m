@@ -30,8 +30,9 @@
     
     contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
     contactview = [[ContactViewController alloc] init];
+    contactview.hideDelegate = self;
     nav = [[UINavigationController alloc] initWithRootViewController:contactview];
-    [nav.view setFrame:contentView.frame];
+    [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
     [contentView addSubview:nav.view];
     [self.view addSubview:contentView];
     
@@ -127,12 +128,14 @@
     // Pass the selected object to the new view controller.
 }
 */
--(void)companyDidNext{
+-(void)homePageDidNext{
+    [nav.view setFrame:CGRectMake(0, 0, 320, 568)];
     toolView.hidden=YES;
     menu.hidden=YES;
 }
 
--(void)companyWillBack{
+-(void)homePageWillBack{
+    [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
     toolView.hidden=NO;
     menu.hidden=NO;
 }
@@ -145,15 +148,16 @@
         case 0:
             NSLog(@"人脉");
             contactview = [[ContactViewController alloc] init];
+            contactview.hideDelegate = self;
             nav = [[UINavigationController alloc] initWithRootViewController:contactview];
-            [nav.view setFrame:contentView.frame];
+            [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
             [contentView addSubview:nav.view];
             break;
         case 1:
             NSLog(@"项目");
             projectview = [[ProjectViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:projectview];
-            [nav.view setFrame:contentView.frame];
+            [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
             [contentView addSubview:nav.view];
             break;
         case 2:
@@ -162,16 +166,16 @@
         case 3:
             NSLog(@"公司");
             companyview = [[CompanyViewController alloc] init];
-            companyview.delegate=self;
+            companyview.hideDelegate=self;
             nav = [[UINavigationController alloc] initWithRootViewController:companyview];
-            [nav.view setFrame:contentView.frame];
+            [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
             [contentView addSubview:nav.view];
             break;
         case 4:
             NSLog(@"交易");
             tradeview = [[TradeViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:tradeview];
-            [nav.view setFrame:contentView.frame];
+            [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
             [contentView addSubview:nav.view];
             break;
         default:

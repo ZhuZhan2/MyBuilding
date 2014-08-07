@@ -837,6 +837,7 @@
 		5B656D0819932E8A007D79A8 /* icon-plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-plus@2x.png"; sourceTree = "<group>"; };
 		5B656D0919932E8A007D79A8 /* icon-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-star.png"; sourceTree = "<group>"; };
 		5B656D0A19932E8A007D79A8 /* icon-star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-star@2x.png"; sourceTree = "<group>"; };
+		D3EACDEE19934D0E0058FC9D /* HidePage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HidePage.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -992,6 +993,7 @@
 			children = (
 				0426C02019922D5900CD8822 /* HomePageViewController.h */,
 				0426C02119922D5900CD8822 /* HomePageViewController.m */,
+				D3EACDEE19934D0E0058FC9D /* HidePage.h */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
