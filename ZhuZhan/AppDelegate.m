@@ -31,67 +31,53 @@
     // turn on the debug mode
     [FaceppAPI setDebugMode:TRUE];
     
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
-        NSLog(@"第一次启动");
-        LoginViewController *loginview = [[LoginViewController alloc] init];
-        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
-        
-        [self.window setRootViewController:naVC];
-        self.window.backgroundColor = [UIColor whiteColor];
-        [self.window makeKeyAndVisible];
-    }else{
-        NSLog(@"已经不是第一次启动了");
-        NSLog(@"==>%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"UserToken"]);
-        if (![[NSUserDefaults standardUserDefaults]objectForKey:@"UserToken"]) {
-            LoginViewController *loginview = [[LoginViewController alloc] init];
-            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
-            [self.window setRootViewController:naVC];
-            self.window.backgroundColor = [UIColor whiteColor];
-            [self.window makeKeyAndVisible];
-        }else{
-            //            UIViewController * leftViewController = [[HomePageLeftViewController alloc] init];
-            //            UIViewController * centerViewController = [[HomePageCenterViewController alloc] init];
-            //            UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:centerViewController];
-            //            navigationController.navigationBarHidden = YES;
-            //            drawerController = [[MMDrawerController alloc]
-            //                                                     initWithCenterViewController:navigationController
-            //                                                     leftDrawerViewController:leftViewController
-            //                                                     rightDrawerViewController:nil];
-            //            [drawerController setMaximumRightDrawerWidth:320-62];
-            //            [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
-            //            [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
-            //            [self.window setRootViewController:drawerController];
-            //            self.window.backgroundColor = [UIColor whiteColor];
-            //            [self.window makeKeyAndVisible];
-            NSLog(@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegisted"]);
-            if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegisted"] isEqualToString:@"0"]) {
-                
-                
-                LoginViewController *loginview = [[LoginViewController alloc] init];
-                UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
-                
-                [self.window setRootViewController:naVC];
-                self.window.backgroundColor = [UIColor whiteColor];
-                [self.window makeKeyAndVisible];
-            }else{
-                FaceLoginViewController *faceVC = [[FaceLoginViewController alloc] init];
-                UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:faceVC];
-                [self.window setRootViewController:naVC];
-                self.window.backgroundColor = [UIColor whiteColor];
-                [self.window makeKeyAndVisible];
-                
-                
-            }
-            
-        }
-    }
-    
-    return YES;
-//    HomePageViewController *homeVC = [[HomePageViewController alloc] init];
-//    self.window.rootViewController = homeVC;
-//    [self.window makeKeyAndVisible];
+//    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+//        NSLog(@"第一次启动");
+//        LoginViewController *loginview = [[LoginViewController alloc] init];
+//        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
+//        
+//        [self.window setRootViewController:naVC];
+//        self.window.backgroundColor = [UIColor whiteColor];
+//        [self.window makeKeyAndVisible];
+//    }else{
+//        NSLog(@"已经不是第一次启动了");
+//        NSLog(@"==>%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"UserToken"]);
+//        if (![[NSUserDefaults standardUserDefaults]objectForKey:@"UserToken"]) {
+//            LoginViewController *loginview = [[LoginViewController alloc] init];
+//            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
+//            [self.window setRootViewController:naVC];
+//            self.window.backgroundColor = [UIColor whiteColor];
+//            [self.window makeKeyAndVisible];
+//        }else{
+//            NSLog(@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegisted"]);
+//            if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegisted"] isEqualToString:@"0"]) {
+//                
+//                
+//                LoginViewController *loginview = [[LoginViewController alloc] init];
+//                UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
+//                
+//                [self.window setRootViewController:naVC];
+//                self.window.backgroundColor = [UIColor whiteColor];
+//                [self.window makeKeyAndVisible];
+//            }else{
+//                FaceLoginViewController *faceVC = [[FaceLoginViewController alloc] init];
+//                UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:faceVC];
+//                [self.window setRootViewController:naVC];
+//                self.window.backgroundColor = [UIColor whiteColor];
+//                [self.window makeKeyAndVisible];
+//                
+//                
+//            }
+//            
+//        }
+//    }
+//    
 //    return YES;
+    HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+    self.window.rootViewController = homeVC;
+    [self.window makeKeyAndVisible];
+    return YES;
 }
 
 

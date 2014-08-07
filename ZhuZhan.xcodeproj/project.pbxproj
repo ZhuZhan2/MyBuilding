@@ -284,6 +284,22 @@
 		0426C31B19922E9000CD8822 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0426C31A19922E9000CD8822 /* CoreImage.framework */; };
 		0426C31D19922E9C00CD8822 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0426C31C19922E9C00CD8822 /* ImageIO.framework */; };
 		5B656CF019923111007D79A8 /* TradeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CEF19923111007D79A8 /* TradeDetailViewController.m */; };
+		D3EACDD5199327510058FC9D /* bg-addbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EACDC7199327510058FC9D /* bg-addbutton.png */; };
+		D3EACDD6199327510058FC9D /* bg-addbutton-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EACDC8199327510058FC9D /* bg-addbutton-highlighted.png */; };
+		D3EACDD7199327510058FC9D /* bg-addbutton-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EACDC9199327510058FC9D /* bg-addbutton-highlighted@2x.png */; };
+		D3EACDD8199327510058FC9D /* bg-addbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EACDCA199327510058FC9D /* bg-addbutton@2x.png */; };
+		D3EACDD9199327510058FC9D /* icon-star.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EACDCB199327510058FC9D /* icon-star.png */; };
+		D3EACDDA199327510058FC9D /* icon-star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EACDCC199327510058FC9D /* icon-star@2x.png */; };
+		D3EACDDB199327510058FC9D /* bg-menuitem-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EACDCD199327510058FC9D /* bg-menuitem-highlighted.png */; };
+		D3EACDDC199327510058FC9D /* bg-menuitem.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EACDCE199327510058FC9D /* bg-menuitem.png */; };
+		D3EACDDD199327510058FC9D /* bg-menuitem-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EACDCF199327510058FC9D /* bg-menuitem-highlighted@2x.png */; };
+		D3EACDDE199327510058FC9D /* bg-menuitem@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EACDD0199327510058FC9D /* bg-menuitem@2x.png */; };
+		D3EACDDF199327510058FC9D /* icon-plus.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EACDD1199327510058FC9D /* icon-plus.png */; };
+		D3EACDE0199327510058FC9D /* icon-plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EACDD2199327510058FC9D /* icon-plus@2x.png */; };
+		D3EACDE1199327510058FC9D /* icon-plus-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EACDD3199327510058FC9D /* icon-plus-highlighted.png */; };
+		D3EACDE2199327510058FC9D /* icon-plus-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EACDD4199327510058FC9D /* icon-plus-highlighted@2x.png */; };
+		D3EACDE8199327820058FC9D /* QuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EACDE5199327820058FC9D /* QuadCurveMenu.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D3EACDE9199327820058FC9D /* QuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EACDE7199327820058FC9D /* QuadCurveMenuItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -800,6 +816,24 @@
 		0426C31C19922E9C00CD8822 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		5B656CEE19923111007D79A8 /* TradeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeDetailViewController.h; sourceTree = "<group>"; };
 		5B656CEF19923111007D79A8 /* TradeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeDetailViewController.m; sourceTree = "<group>"; };
+		D3EACDC7199327510058FC9D /* bg-addbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton.png"; sourceTree = "<group>"; };
+		D3EACDC8199327510058FC9D /* bg-addbutton-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton-highlighted.png"; sourceTree = "<group>"; };
+		D3EACDC9199327510058FC9D /* bg-addbutton-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton-highlighted@2x.png"; sourceTree = "<group>"; };
+		D3EACDCA199327510058FC9D /* bg-addbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton@2x.png"; sourceTree = "<group>"; };
+		D3EACDCB199327510058FC9D /* icon-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-star.png"; sourceTree = "<group>"; };
+		D3EACDCC199327510058FC9D /* icon-star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-star@2x.png"; sourceTree = "<group>"; };
+		D3EACDCD199327510058FC9D /* bg-menuitem-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-menuitem-highlighted.png"; sourceTree = "<group>"; };
+		D3EACDCE199327510058FC9D /* bg-menuitem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-menuitem.png"; sourceTree = "<group>"; };
+		D3EACDCF199327510058FC9D /* bg-menuitem-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-menuitem-highlighted@2x.png"; sourceTree = "<group>"; };
+		D3EACDD0199327510058FC9D /* bg-menuitem@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-menuitem@2x.png"; sourceTree = "<group>"; };
+		D3EACDD1199327510058FC9D /* icon-plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-plus.png"; sourceTree = "<group>"; };
+		D3EACDD2199327510058FC9D /* icon-plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-plus@2x.png"; sourceTree = "<group>"; };
+		D3EACDD3199327510058FC9D /* icon-plus-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-plus-highlighted.png"; sourceTree = "<group>"; };
+		D3EACDD4199327510058FC9D /* icon-plus-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-plus-highlighted@2x.png"; sourceTree = "<group>"; };
+		D3EACDE4199327820058FC9D /* QuadCurveMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadCurveMenu.h; sourceTree = "<group>"; };
+		D3EACDE5199327820058FC9D /* QuadCurveMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadCurveMenu.m; sourceTree = "<group>"; };
+		D3EACDE6199327820058FC9D /* QuadCurveMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadCurveMenuItem.h; sourceTree = "<group>"; };
+		D3EACDE7199327820058FC9D /* QuadCurveMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadCurveMenuItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -959,6 +993,20 @@
 		0426C02219922D5900CD8822 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3EACDC7199327510058FC9D /* bg-addbutton.png */,
+				D3EACDC8199327510058FC9D /* bg-addbutton-highlighted.png */,
+				D3EACDC9199327510058FC9D /* bg-addbutton-highlighted@2x.png */,
+				D3EACDCA199327510058FC9D /* bg-addbutton@2x.png */,
+				D3EACDCB199327510058FC9D /* icon-star.png */,
+				D3EACDCC199327510058FC9D /* icon-star@2x.png */,
+				D3EACDCD199327510058FC9D /* bg-menuitem-highlighted.png */,
+				D3EACDCE199327510058FC9D /* bg-menuitem.png */,
+				D3EACDCF199327510058FC9D /* bg-menuitem-highlighted@2x.png */,
+				D3EACDD0199327510058FC9D /* bg-menuitem@2x.png */,
+				D3EACDD1199327510058FC9D /* icon-plus.png */,
+				D3EACDD2199327510058FC9D /* icon-plus@2x.png */,
+				D3EACDD3199327510058FC9D /* icon-plus-highlighted.png */,
+				D3EACDD4199327510058FC9D /* icon-plus-highlighted@2x.png */,
 				0426C02319922D5900CD8822 /* circle.png */,
 				0426C02419922D5900CD8822 /* circle@2x.png */,
 				0426C02519922D5900CD8822 /* icon.png */,
@@ -1034,6 +1082,7 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3EACDE3199327780058FC9D /* QuadCurveMenu */,
 				0426C05619922D5900CD8822 /* ACTimeScroller */,
 				0426C05919922D5900CD8822 /* AFNetworking */,
 				0426C06D19922D5900CD8822 /* BaseView */,
@@ -1587,6 +1636,17 @@
 			path = Trade;
 			sourceTree = "<group>";
 		};
+		D3EACDE3199327780058FC9D /* QuadCurveMenu */ = {
+			isa = PBXGroup;
+			children = (
+				D3EACDE4199327820058FC9D /* QuadCurveMenu.h */,
+				D3EACDE5199327820058FC9D /* QuadCurveMenu.m */,
+				D3EACDE6199327820058FC9D /* QuadCurveMenuItem.h */,
+				D3EACDE7199327820058FC9D /* QuadCurveMenuItem.m */,
+			);
+			path = QuadCurveMenu;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1662,17 +1722,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				0426C22519922D5A00CD8822 /* 面部识别登录1_03.png in Resources */,
+				D3EACDD8199327510058FC9D /* bg-addbutton@2x.png in Resources */,
+				D3EACDDC199327510058FC9D /* bg-menuitem.png in Resources */,
+				D3EACDE0199327510058FC9D /* icon-plus@2x.png in Resources */,
 				0426C2E319922D5A00CD8822 /* FaceppClient.m.r22 in Resources */,
+				D3EACDE2199327510058FC9D /* icon-plus-highlighted@2x.png in Resources */,
 				0426C22C19922D5A00CD8822 /* 首页_16.png in Resources */,
 				0426C21919922D5A00CD8822 /* 扫描页面_03.png in Resources */,
 				0426C2E119922D5A00CD8822 /* FaceppClient.m.mine in Resources */,
 				0426C21219922D5A00CD8822 /* timescroll_hourhand.png in Resources */,
 				0426C20E19922D5A00CD8822 /* circle@2x.png in Resources */,
 				0426C21B19922D5A00CD8822 /* 注册_03.png in Resources */,
+				D3EACDDA199327510058FC9D /* icon-star@2x.png in Resources */,
+				D3EACDDD199327510058FC9D /* bg-menuitem-highlighted@2x.png in Resources */,
 				0426C21419922D5A00CD8822 /* timescroll_minutehand.png in Resources */,
+				D3EACDD9199327510058FC9D /* icon-star.png in Resources */,
+				D3EACDDF199327510058FC9D /* icon-plus.png in Resources */,
 				0426C21319922D5A00CD8822 /* timescroll_hourhand@2x.png in Resources */,
 				0426C20F19922D5A00CD8822 /* icon.png in Resources */,
 				0426C2E219922D5A00CD8822 /* FaceppClient.m.r17 in Resources */,
+				D3EACDDB199327510058FC9D /* bg-menuitem-highlighted.png in Resources */,
 				0426C21119922D5A00CD8822 /* pullrefresh.aif in Resources */,
 				0426C21819922D5A00CD8822 /* 地图搜索_01.png in Resources */,
 				0426C20D19922D5A00CD8822 /* circle.png in Resources */,
@@ -1685,6 +1754,7 @@
 				0426C22219922D5A00CD8822 /* 登录_11.png in Resources */,
 				0426C21E19922D5A00CD8822 /* 登录1_03.png in Resources */,
 				0426C22D19922D5A00CD8822 /* 首页侧拉栏_03.png in Resources */,
+				D3EACDD6199327510058FC9D /* bg-addbutton-highlighted.png in Resources */,
 				0426C22B19922D5A00CD8822 /* 面部采集_12.png in Resources */,
 				0426C22919922D5A00CD8822 /* 面部采集_06.png in Resources */,
 				0426C21519922D5A00CD8822 /* timescroll_minutehand@2x.png in Resources */,
@@ -1695,10 +1765,14 @@
 				0426C21A19922D5A00CD8822 /* 注册.png in Resources */,
 				0426C21F19922D5A00CD8822 /* 登录1_07.png in Resources */,
 				0426C22419922D5A00CD8822 /* 面部识别登录.png in Resources */,
+				D3EACDDE199327510058FC9D /* bg-menuitem@2x.png in Resources */,
 				0426C21019922D5A00CD8822 /* icon_04.png in Resources */,
+				D3EACDD5199327510058FC9D /* bg-addbutton.png in Resources */,
 				0426C22A19922D5A00CD8822 /* 面部采集_09.png in Resources */,
+				D3EACDD7199327510058FC9D /* bg-addbutton-highlighted@2x.png in Resources */,
 				0426BFFD19922CE400CD8822 /* Images.xcassets in Resources */,
 				0426C22319922D5A00CD8822 /* 登录_15.png in Resources */,
+				D3EACDE1199327510058FC9D /* icon-plus-highlighted.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1736,6 +1810,7 @@
 				0426C28919922D5A00CD8822 /* GPUImageLocalBinaryPatternFilter.m in Sources */,
 				0426C25519922D5A00CD8822 /* GPUImageColorDodgeBlendFilter.m in Sources */,
 				0426C23419922D5A00CD8822 /* RegistViewController.m in Sources */,
+				D3EACDE8199327820058FC9D /* QuadCurveMenu.m in Sources */,
 				0426C25B19922D5A00CD8822 /* GPUImageCrosshairGenerator.m in Sources */,
 				0426C2CE19922D5A00CD8822 /* GPUImageTwoInputCrossTextureSamplingFilter.m in Sources */,
 				0426C2CA19922D5A00CD8822 /* GPUImageTiltShiftFilter.m in Sources */,
@@ -1911,6 +1986,7 @@
 				0426C2E619922D5A00CD8822 /* FaceppGroup.m in Sources */,
 				0426C2DF19922D5A00CD8822 /* FaceppAPI.m in Sources */,
 				0426C30319922D5A00CD8822 /* TFIndicatorView.m in Sources */,
+				D3EACDE9199327820058FC9D /* QuadCurveMenuItem.m in Sources */,
 				0426C27C19922D5A00CD8822 /* GPUImageHoughTransformLineDetector.m in Sources */,
 				0426C28419922D5A00CD8822 /* GPUImageLaplacianFilter.m in Sources */,
 				0426BFF719922CE400CD8822 /* main.m in Sources */,

@@ -46,14 +46,6 @@
     [projectBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:projectBtn];
     
-    moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [moreBtn setFrame:CGRectMake(135, 10, 40, 35)];
-    [moreBtn setBackgroundColor:[UIColor redColor]];
-    [moreBtn setTitle:@"更多" forState:UIControlStateNormal];
-    moreBtn.tag = 2;
-    [moreBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [toolView addSubview:moreBtn];
-    
     companyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [companyBtn setFrame:CGRectMake(190, 10, 40, 35)];
     [companyBtn setBackgroundColor:[UIColor redColor]];
@@ -77,6 +69,43 @@
     [nav.view setFrame:contentView.frame];
     [contentView addSubview:nav.view];
     [self.view addSubview:contentView];
+    
+    UIImage *storyMenuItemImage = [UIImage imageNamed:@"bg-menuitem.png"];
+    UIImage *storyMenuItemImagePressed = [UIImage imageNamed:@"bg-menuitem-highlighted.png"];
+    
+    // Camera MenuItem.
+    QuadCurveMenuItem *cameraMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
+                                                                highlightedImage:storyMenuItemImagePressed
+                                                                    ContentImage:[UIImage imageNamed:@"icon-star.png"]
+                                                         highlightedContentImage:nil];
+    // People MenuItem.
+    QuadCurveMenuItem *peopleMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
+                                                                highlightedImage:storyMenuItemImagePressed
+                                                                    ContentImage:[UIImage imageNamed:@"icon-star.png"]
+                                                         highlightedContentImage:nil];
+    // Place MenuItem.
+    QuadCurveMenuItem *placeMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
+                                                               highlightedImage:storyMenuItemImagePressed
+                                                                   ContentImage:[UIImage imageNamed:@"icon-star.png"]
+                                                        highlightedContentImage:nil];
+    // Music MenuItem.
+    QuadCurveMenuItem *musicMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
+                                                               highlightedImage:storyMenuItemImagePressed
+                                                                   ContentImage:[UIImage imageNamed:@"icon-star.png"]
+                                                        highlightedContentImage:nil];
+    // Thought MenuItem.
+    QuadCurveMenuItem *thoughtMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
+                                                                 highlightedImage:storyMenuItemImagePressed
+                                                                     ContentImage:[UIImage imageNamed:@"icon-star.png"]
+                                                          highlightedContentImage:nil];
+    
+    NSArray *menus = [NSArray arrayWithObjects:cameraMenuItem, peopleMenuItem, placeMenuItem, musicMenuItem, thoughtMenuItem, nil];
+    
+    QuadCurveMenu *menu = [[QuadCurveMenu alloc] initWithFrame:self.view.bounds menus:menus];
+    //menu.center = self.window.center;
+    menu.delegate = self;
+    [self.view addSubview:menu];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -134,5 +163,10 @@
         default:
             break;
     }
+}
+
+- (void)quadCurveMenu:(QuadCurveMenu *)menu didSelectIndex:(NSInteger)idx
+{
+    NSLog(@"Select the index : %ld",(long)idx);
 }
 @end
