@@ -11,7 +11,7 @@
 @interface CompanyViewController ()<UIScrollViewDelegate>
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @end
-//test
+
 @implementation CompanyViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,6 +37,7 @@
     UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 180)];
     imageView.image=[UIImage imageNamed:@"首页_16.png"];
     [self.myScrollView addSubview:imageView];
+    
 }
 
 -(void)initMemberView{
