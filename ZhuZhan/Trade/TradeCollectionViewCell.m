@@ -27,11 +27,13 @@
     
     cell.contentView.backgroundColor=[UIColor whiteColor];
     cell.contentView.layer.cornerRadius=7;
-
+    
+    
     cell.layer.shadowColor=[[UIColor grayColor]CGColor];
     cell.layer.shadowOffset=CGSizeMake(0, .1);//使阴影均匀
     cell.layer.shadowOpacity=.5;//阴影的alpha
     
+    cell.contentView.layer.masksToBounds=YES;//只显示bounds内的部分，subviews超出bounds部分不显示
     
     NSArray* labelArray=dic[@"cellLabel"];
     NSArray* imageArray=dic[@"cellImage"];
@@ -42,6 +44,7 @@
         //cell大小CGSizeMake(148, 250);
         cell.myImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 148, 125)];
         cell.myImageView.image=imageArray[indexPath.row];
+        
         [cell.contentView addSubview:cell.myImageView];
         
         cell.myLabel=[[UILabel alloc]initWithFrame:CGRectMake(0 , 125, 148, 125)];
