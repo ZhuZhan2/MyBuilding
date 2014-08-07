@@ -75,7 +75,6 @@
     contactview = [[ContactViewController alloc] init];
     nav = [[UINavigationController alloc] initWithRootViewController:contactview];
     [nav.view setFrame:contentView.frame];
-    nav.navigationBarHidden = YES;
     [contentView addSubview:nav.view];
     [self.view addSubview:contentView];
 }
@@ -106,7 +105,6 @@
             contactview = [[ContactViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:contactview];
             [nav.view setFrame:contentView.frame];
-            nav.navigationBarHidden = YES;
             [contentView addSubview:nav.view];
             break;
         case 1:
@@ -114,7 +112,6 @@
             projectview = [[ProjectViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:projectview];
             [nav.view setFrame:contentView.frame];
-            nav.navigationBarHidden = YES;
             [contentView addSubview:nav.view];
             break;
         case 2:
@@ -125,7 +122,6 @@
             companyview = [[CompanyViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:companyview];
             [nav.view setFrame:contentView.frame];
-            nav.navigationBarHidden = YES;
             [contentView addSubview:nav.view];
             break;
         case 4:
