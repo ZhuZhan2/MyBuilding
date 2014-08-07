@@ -10,8 +10,8 @@
 
 @protocol companyViewDelegate <NSObject>
 
--(void)companyDidNext;
--(void)companyWillBack;
+-(void)companyVCWillNext;
+-(void)companyVCDidBack;
 @end
 @interface CompanyViewController : UIViewController
 @property(nonatomic,strong)id<companyViewDelegate>delegate;

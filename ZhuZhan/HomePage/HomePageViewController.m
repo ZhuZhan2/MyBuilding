@@ -127,12 +127,12 @@
     // Pass the selected object to the new view controller.
 }
 */
--(void)companyDidNext{
+-(void)companyVCWillNext{
     toolView.hidden=YES;
     menu.hidden=YES;
 }
 
--(void)companyWillBack{
+-(void)companyVCDidBack{
     toolView.hidden=NO;
     menu.hidden=NO;
 }

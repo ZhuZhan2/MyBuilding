@@ -146,14 +146,14 @@
 -(void)next{
     CompanyMemberViewController* memberVC=[[CompanyMemberViewController alloc]initWithMemberNumber:self.memberNumber];
     [self.navigationController pushViewController:memberVC animated:YES];
-    if([delegate respondsToSelector:@selector(companyDidNext)]){
-        [self.delegate companyDidNext];
+    if([delegate respondsToSelector:@selector(companyVCWillNext)]){
+        [self.delegate companyVCWillNext];
     }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    if([delegate respondsToSelector:@selector(companyWillBack)]){
-        [self.delegate companyWillBack];
+    if([delegate respondsToSelector:@selector(companyVCDidBack)]){
+        [self.delegate companyVCDidBack];
     }
 }
 
