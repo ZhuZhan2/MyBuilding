@@ -8,8 +8,7 @@
 
 #import "CompanyMemberViewController.h"
 
-@interface CompanyMemberViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property(nonatomic,strong)UITableView* myTableView;
+@interface CompanyMemberViewController ()
 @property(nonatomic)NSInteger memberNumber;
 @end
 
@@ -27,7 +26,7 @@
 -(id)initWithMemberNumber:(NSInteger)number{
     if ([self init]) {
         self.memberNumber=number;
-        self.view.backgroundColor=[UIColor whiteColor];
+        //self.tableView.backgroundColor=[UIColor whiteColor];
     }
     return self;
 }
@@ -35,50 +34,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initMyTableView];
-    // Do any additional setup after loading the view.
+    [self initMyTableViewAndNavi];
+        // Do any additional setup after loading the view.
 }
 
--(void)initMyTableView{
-    CGRect tableViewFrame=self.view.frame;
-    tableViewFrame.origin.x+=10;
-    tableViewFrame.origin.y+=10;
-    tableViewFrame.size.width-=20;
-    tableViewFrame.size.height-=55+10;
+-(void)initMyTableViewAndNavi{
+    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    self.tableView.allowsSelection=NO;
     
-    CGRect shadowView=tableViewFrame;
-    shadowView.size.height=self.memberNumber*50;
-    UIView* view=[[UIView alloc]initWithFrame:shadowView];
-    view.backgroundColor=[UIColor whiteColor];
-    view.layer.shadowColor=[[UIColor grayColor]CGColor];
-    view.layer.shadowOpacity=1;
-    view.layer.shadowOffset=CGSizeMake(0, .1);
-    [self.view addSubview:view];
+    self.title = @"公司员工";
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"地图搜索_01.png"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
     
     
-    //NSLog(@"%f",self.myTableView.contentSize.height);
-    self.myTableView=[[UITableView alloc]initWithFrame:tableViewFrame style:UITableViewStylePlain];
-    
-    self.myTableView.backgroundColor=[UIColor redColor];
-    
-    
-//    self.myTableView.layer.shadowColor=[[UIColor blackColor]CGColor];
-//    self.myTableView.layer.shadowOpacity=1;
-//    
-//    self.myTableView.layer.shadowOffset=CGSizeMake(0, .1);
-    
-    self.myTableView.delegate=self;
-    self.myTableView.dataSource=self;
-    
-    
-    self.myTableView.separatorInset=UIEdgeInsetsMake(20, 20, 20, 20);
-    self.myTableView.allowsSelection=NO;
-    
-    [self.view addSubview:self.myTableView];
-    
-//    frame=self.view.frame;
-//    frame.size.height-=160;
-//    self.view.frame=frame;
+    //左back button
+    UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
+    [button setImage:[UIImage imageNamed:@"bg-addbutton@2x.png"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
+}
+
+-(void)back{
+    [self.navigationController popViewControllerAnimated:YES];
+     
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -86,7 +64,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.memberNumber;
+    return 1;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -95,13 +73,46 @@
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
         
     }
-
+    CGRect shadowView=CGRectMake(10, 10, 300, self.memberNumber*70);
+    UIView* view=[[UIView alloc]initWithFrame:shadowView];
+    view.backgroundColor=[UIColor whiteColor];
+    view.layer.shadowColor=[[UIColor grayColor]CGColor];
+    view.layer.shadowOpacity=1;
+    view.layer.shadowOffset=CGSizeMake(0, .1);
+    
+    [cell.contentView addSubview:view];
+    [self addViewWithContentView:view];
+    
     cell.contentView.backgroundColor=[UIColor whiteColor];
+    
+    
     return cell;
 }
 
+-(void)addViewWithContentView:(UIView*)contentView{
+    for (int i=0; i<self.memberNumber; i++) {
+        UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, i*70, 70, 70)];
+        imageView.image=[UIImage imageNamed:@"面部识别登录1_03.png"];
+        [contentView addSubview:imageView];
+        
+        UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(90, 15+i*70, 200, 30)];
+        label.text=@"用户名显示";
+        [contentView addSubview:label];
+        
+        UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(250, 15+i*70, 50, 30)];
+        button.frame=CGRectMake(250, 15+i*70, 50, 30);
+        [button setImage:[UIImage imageNamed:@"bg-addbutton.png"] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(changeButtonImage:) forControlEvents:UIControlEventTouchUpInside];
+        [contentView addSubview:button];
+    }
+}
+
+-(void)changeButtonImage:(UIButton*)button{
+    [button setImage:[UIImage imageNamed:@"bg-addbutton-highlighted"] forState:UIControlStateNormal];
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
+    return 70*self.memberNumber+40;
 }
 
 - (void)didReceiveMemoryWarning

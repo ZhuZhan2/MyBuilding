@@ -14,7 +14,7 @@
 @end
 
 @implementation CompanyViewController
-
+@synthesize delegate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -52,7 +52,7 @@
     
     //公司员工人数label
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 20)];
-    self.memberNumber=15;
+    self.memberNumber=14;
     label.text=[NSString stringWithFormat:@"公司员工    %ld",self.memberNumber];
     label.textColor=[UIColor grayColor];
     [view addSubview:label];
@@ -146,6 +146,15 @@
 -(void)next{
     CompanyMemberViewController* memberVC=[[CompanyMemberViewController alloc]initWithMemberNumber:self.memberNumber];
     [self.navigationController pushViewController:memberVC animated:YES];
+    if([delegate respondsToSelector:@selector(companyDidNext)]){
+        [self.delegate companyDidNext];
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    if([delegate respondsToSelector:@selector(companyWillBack)]){
+        [self.delegate companyWillBack];
+    }
 }
 
 -(void)more{
