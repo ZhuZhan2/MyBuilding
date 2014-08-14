@@ -7,13 +7,14 @@
 //
 
 #import "ContactViewController.h"
+#import "CompanyMemberViewController.h"
 NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
 @end
 
 @implementation ContactViewController
-
+@synthesize hideDelegate;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -52,6 +53,12 @@ NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    if([hideDelegate respondsToSelector:@selector(homePageWillBack)]){
+        [hideDelegate homePageWillBack];
+    }
 }
 
 /*
@@ -163,6 +170,14 @@ NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
         return 44;
     }
     return 260;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    CompanyMemberViewController* memberVC=[[CompanyMemberViewController alloc]initWithMemberNumber:14];
+    [self.navigationController pushViewController:memberVC animated:YES];
+    if([hideDelegate respondsToSelector:@selector(homePageDidNext)]){
+        [hideDelegate homePageDidNext];
+    }
 }
 
 //时间标签

@@ -27,6 +27,15 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
+    contactview = [[ContactViewController alloc] init];
+    contactview.hideDelegate = self;
+    nav = [[UINavigationController alloc] initWithRootViewController:contactview];
+    [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
+    [contentView addSubview:nav.view];
+    [self.view addSubview:contentView];
+    
     toolView = [[UIView alloc] initWithFrame:CGRectMake(0, 513, 320, 55)];
     [toolView setBackgroundColor:RGBCOLOR(68, 101, 175)];
     
@@ -46,14 +55,6 @@
     [projectBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:projectBtn];
     
-    moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [moreBtn setFrame:CGRectMake(135, 10, 40, 35)];
-    [moreBtn setBackgroundColor:[UIColor redColor]];
-    [moreBtn setTitle:@"更多" forState:UIControlStateNormal];
-    moreBtn.tag = 2;
-    [moreBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [toolView addSubview:moreBtn];
-    
     companyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [companyBtn setFrame:CGRectMake(190, 10, 40, 35)];
     [companyBtn setBackgroundColor:[UIColor redColor]];
@@ -71,13 +72,44 @@
     [toolView addSubview:tradeBtn];
     [self.view addSubview:toolView];
     
-    contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 513)];
-    contactview = [[ContactViewController alloc] init];
-    nav = [[UINavigationController alloc] initWithRootViewController:contactview];
-    [nav.view setFrame:contentView.frame];
-    nav.navigationBarHidden = YES;
-    [contentView addSubview:nav.view];
-    [self.view addSubview:contentView];
+    
+    
+    UIImage *storyMenuItemImage = [UIImage imageNamed:@"bg-menuitem.png"];
+    UIImage *storyMenuItemImagePressed = [UIImage imageNamed:@"bg-menuitem-highlighted.png"];
+    
+    // Camera MenuItem.
+    QuadCurveMenuItem *cameraMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
+                                                                highlightedImage:storyMenuItemImagePressed
+                                                                    ContentImage:[UIImage imageNamed:@"icon-star.png"]
+                                                         highlightedContentImage:nil];
+    // People MenuItem.
+    QuadCurveMenuItem *peopleMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
+                                                                highlightedImage:storyMenuItemImagePressed
+                                                                    ContentImage:[UIImage imageNamed:@"icon-star.png"]
+                                                         highlightedContentImage:nil];
+    // Place MenuItem.
+    QuadCurveMenuItem *placeMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
+                                                               highlightedImage:storyMenuItemImagePressed
+                                                                   ContentImage:[UIImage imageNamed:@"icon-star.png"]
+                                                        highlightedContentImage:nil];
+    // Music MenuItem.
+    QuadCurveMenuItem *musicMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
+                                                               highlightedImage:storyMenuItemImagePressed
+                                                                   ContentImage:[UIImage imageNamed:@"icon-star.png"]
+                                                        highlightedContentImage:nil];
+    // Thought MenuItem.
+    QuadCurveMenuItem *thoughtMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
+                                                                 highlightedImage:storyMenuItemImagePressed
+                                                                     ContentImage:[UIImage imageNamed:@"icon-star.png"]
+                                                          highlightedContentImage:nil];
+    
+    NSArray *menus = [NSArray arrayWithObjects:cameraMenuItem, peopleMenuItem, placeMenuItem, musicMenuItem, thoughtMenuItem, nil];
+    
+    menu = [[QuadCurveMenu alloc] initWithFrame:self.view.bounds menus:menus];
+    //menu.center = self.window.center;
+    menu.delegate = self;
+    [self.view addSubview:menu];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,6 +128,18 @@
     // Pass the selected object to the new view controller.
 }
 */
+-(void)homePageDidNext{
+    [nav.view setFrame:CGRectMake(0, 0, 320, 568)];
+    toolView.hidden=YES;
+    menu.hidden=YES;
+}
+
+-(void)homePageWillBack{
+    [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
+    toolView.hidden=NO;
+    menu.hidden=NO;
+}
+
 -(void)BtnClick:(UIButton *)button{
     for(int i=0;i<contentView.subviews.count;i++) {
         [((UIView*)[contentView.subviews objectAtIndex:i]) removeFromSuperview];
@@ -104,17 +148,16 @@
         case 0:
             NSLog(@"人脉");
             contactview = [[ContactViewController alloc] init];
+            contactview.hideDelegate = self;
             nav = [[UINavigationController alloc] initWithRootViewController:contactview];
-            [nav.view setFrame:contentView.frame];
-            nav.navigationBarHidden = YES;
+            [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
             [contentView addSubview:nav.view];
             break;
         case 1:
             NSLog(@"项目");
             projectview = [[ProjectViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:projectview];
-            [nav.view setFrame:contentView.frame];
-            nav.navigationBarHidden = YES;
+            [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
             [contentView addSubview:nav.view];
             break;
         case 2:
@@ -123,19 +166,25 @@
         case 3:
             NSLog(@"公司");
             companyview = [[CompanyViewController alloc] init];
+            companyview.hideDelegate=self;
             nav = [[UINavigationController alloc] initWithRootViewController:companyview];
-            [nav.view setFrame:contentView.frame];
+            [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
             [contentView addSubview:nav.view];
             break;
         case 4:
             NSLog(@"交易");
             tradeview = [[TradeViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:tradeview];
-            [nav.view setFrame:contentView.frame];
+            [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
             [contentView addSubview:nav.view];
             break;
         default:
             break;
     }
+}
+
+- (void)quadCurveMenu:(QuadCurveMenu *)menu didSelectIndex:(NSInteger)idx
+{
+    NSLog(@"Select the index : %ld",(long)idx);
 }
 @end

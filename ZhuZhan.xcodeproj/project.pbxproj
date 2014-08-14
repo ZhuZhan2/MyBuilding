@@ -286,6 +286,23 @@
 		0426C327199334EB00CD8822 /* 面部采集_07.png in Resources */ = {isa = PBXBuildFile; fileRef = 0426C325199334EB00CD8822 /* 面部采集_07.png */; };
 		0426C328199334EB00CD8822 /* 面部采集_11.png in Resources */ = {isa = PBXBuildFile; fileRef = 0426C326199334EB00CD8822 /* 面部采集_11.png */; };
 		5B656CF019923111007D79A8 /* TradeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CEF19923111007D79A8 /* TradeDetailViewController.m */; };
+		5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
+		5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF819932E36007D79A8 /* QuadCurveMenu.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5B656CFC19932E36007D79A8 /* QuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CFA19932E36007D79A8 /* QuadCurveMenuItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5B656D0B19932E8A007D79A8 /* bg-addbutton-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B656CFD19932E8A007D79A8 /* bg-addbutton-highlighted.png */; };
+		5B656D0C19932E8A007D79A8 /* bg-addbutton-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B656CFE19932E8A007D79A8 /* bg-addbutton-highlighted@2x.png */; };
+		5B656D0D19932E8A007D79A8 /* bg-addbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B656CFF19932E8A007D79A8 /* bg-addbutton.png */; };
+		5B656D0E19932E8A007D79A8 /* bg-addbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B656D0019932E8A007D79A8 /* bg-addbutton@2x.png */; };
+		5B656D0F19932E8A007D79A8 /* bg-menuitem-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B656D0119932E8A007D79A8 /* bg-menuitem-highlighted.png */; };
+		5B656D1019932E8A007D79A8 /* bg-menuitem-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B656D0219932E8A007D79A8 /* bg-menuitem-highlighted@2x.png */; };
+		5B656D1119932E8A007D79A8 /* bg-menuitem.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B656D0319932E8A007D79A8 /* bg-menuitem.png */; };
+		5B656D1219932E8A007D79A8 /* bg-menuitem@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B656D0419932E8A007D79A8 /* bg-menuitem@2x.png */; };
+		5B656D1319932E8A007D79A8 /* icon-plus-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B656D0519932E8A007D79A8 /* icon-plus-highlighted.png */; };
+		5B656D1419932E8A007D79A8 /* icon-plus-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B656D0619932E8A007D79A8 /* icon-plus-highlighted@2x.png */; };
+		5B656D1519932E8A007D79A8 /* icon-plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B656D0719932E8A007D79A8 /* icon-plus.png */; };
+		5B656D1619932E8A007D79A8 /* icon-plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B656D0819932E8A007D79A8 /* icon-plus@2x.png */; };
+		5B656D1719932E8A007D79A8 /* icon-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B656D0919932E8A007D79A8 /* icon-star.png */; };
+		5B656D1819932E8A007D79A8 /* icon-star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B656D0A19932E8A007D79A8 /* icon-star@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -804,6 +821,27 @@
 		0426C326199334EB00CD8822 /* 面部采集_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "面部采集_11.png"; sourceTree = "<group>"; };
 		5B656CEE19923111007D79A8 /* TradeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeDetailViewController.h; sourceTree = "<group>"; };
 		5B656CEF19923111007D79A8 /* TradeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeDetailViewController.m; sourceTree = "<group>"; };
+		5B656CF419931275007D79A8 /* CompanyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMemberViewController.h; sourceTree = "<group>"; };
+		5B656CF519931275007D79A8 /* CompanyMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyMemberViewController.m; sourceTree = "<group>"; };
+		5B656CF719932E36007D79A8 /* QuadCurveMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadCurveMenu.h; sourceTree = "<group>"; };
+		5B656CF819932E36007D79A8 /* QuadCurveMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadCurveMenu.m; sourceTree = "<group>"; };
+		5B656CF919932E36007D79A8 /* QuadCurveMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadCurveMenuItem.h; sourceTree = "<group>"; };
+		5B656CFA19932E36007D79A8 /* QuadCurveMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadCurveMenuItem.m; sourceTree = "<group>"; };
+		5B656CFD19932E8A007D79A8 /* bg-addbutton-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton-highlighted.png"; sourceTree = "<group>"; };
+		5B656CFE19932E8A007D79A8 /* bg-addbutton-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton-highlighted@2x.png"; sourceTree = "<group>"; };
+		5B656CFF19932E8A007D79A8 /* bg-addbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton.png"; sourceTree = "<group>"; };
+		5B656D0019932E8A007D79A8 /* bg-addbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton@2x.png"; sourceTree = "<group>"; };
+		5B656D0119932E8A007D79A8 /* bg-menuitem-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-menuitem-highlighted.png"; sourceTree = "<group>"; };
+		5B656D0219932E8A007D79A8 /* bg-menuitem-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-menuitem-highlighted@2x.png"; sourceTree = "<group>"; };
+		5B656D0319932E8A007D79A8 /* bg-menuitem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-menuitem.png"; sourceTree = "<group>"; };
+		5B656D0419932E8A007D79A8 /* bg-menuitem@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-menuitem@2x.png"; sourceTree = "<group>"; };
+		5B656D0519932E8A007D79A8 /* icon-plus-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-plus-highlighted.png"; sourceTree = "<group>"; };
+		5B656D0619932E8A007D79A8 /* icon-plus-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-plus-highlighted@2x.png"; sourceTree = "<group>"; };
+		5B656D0719932E8A007D79A8 /* icon-plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-plus.png"; sourceTree = "<group>"; };
+		5B656D0819932E8A007D79A8 /* icon-plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-plus@2x.png"; sourceTree = "<group>"; };
+		5B656D0919932E8A007D79A8 /* icon-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-star.png"; sourceTree = "<group>"; };
+		5B656D0A19932E8A007D79A8 /* icon-star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-star@2x.png"; sourceTree = "<group>"; };
+		D3EACDEE19934D0E0058FC9D /* HidePage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HidePage.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -887,6 +925,7 @@
 		0426BFF019922CE400CD8822 /* ZhuZhan */ = {
 			isa = PBXGroup;
 			children = (
+				D3EACDEA199337750058FC9D /* Message */,
 				0426C01919922D5900CD8822 /* Company */,
 				0426C01C19922D5900CD8822 /* Contact */,
 				0426C01F19922D5900CD8822 /* HomePage */,
@@ -938,6 +977,8 @@
 			children = (
 				0426C01A19922D5900CD8822 /* CompanyViewController.h */,
 				0426C01B19922D5900CD8822 /* CompanyViewController.m */,
+				5B656CF419931275007D79A8 /* CompanyMemberViewController.h */,
+				5B656CF519931275007D79A8 /* CompanyMemberViewController.m */,
 			);
 			path = Company;
 			sourceTree = "<group>";
@@ -956,6 +997,7 @@
 			children = (
 				0426C02019922D5900CD8822 /* HomePageViewController.h */,
 				0426C02119922D5900CD8822 /* HomePageViewController.m */,
+				D3EACDEE19934D0E0058FC9D /* HidePage.h */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -1040,6 +1082,7 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3EACDE3199327780058FC9D /* QuadCurveMenu */,
 				0426C05619922D5900CD8822 /* ACTimeScroller */,
 				0426C05919922D5900CD8822 /* AFNetworking */,
 				0426C06D19922D5900CD8822 /* BaseView */,
@@ -1593,6 +1636,24 @@
 			path = Trade;
 			sourceTree = "<group>";
 		};
+		D3EACDE3199327780058FC9D /* QuadCurveMenu */ = {
+			isa = PBXGroup;
+			children = (
+				5B656CF719932E36007D79A8 /* QuadCurveMenu.h */,
+				5B656CF819932E36007D79A8 /* QuadCurveMenu.m */,
+				5B656CF919932E36007D79A8 /* QuadCurveMenuItem.h */,
+				5B656CFA19932E36007D79A8 /* QuadCurveMenuItem.m */,
+			);
+			path = QuadCurveMenu;
+			sourceTree = "<group>";
+		};
+		D3EACDEA199337750058FC9D /* Message */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1668,21 +1729,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				0426C22519922D5A00CD8822 /* 面部识别登录1_03.png in Resources */,
+				5B656D0E19932E8A007D79A8 /* bg-addbutton@2x.png in Resources */,
 				0426C2E319922D5A00CD8822 /* FaceppClient.m.r22 in Resources */,
+				5B656D1619932E8A007D79A8 /* icon-plus@2x.png in Resources */,
 				0426C22C19922D5A00CD8822 /* 首页_16.png in Resources */,
+				5B656D1819932E8A007D79A8 /* icon-star@2x.png in Resources */,
 				0426C21919922D5A00CD8822 /* 扫描页面_03.png in Resources */,
 				0426C2E119922D5A00CD8822 /* FaceppClient.m.mine in Resources */,
+				5B656D0C19932E8A007D79A8 /* bg-addbutton-highlighted@2x.png in Resources */,
+				5B656D1019932E8A007D79A8 /* bg-menuitem-highlighted@2x.png in Resources */,
 				0426C21219922D5A00CD8822 /* timescroll_hourhand.png in Resources */,
 				0426C20E19922D5A00CD8822 /* circle@2x.png in Resources */,
 				0426C327199334EB00CD8822 /* 面部采集_07.png in Resources */,
 				0426C21B19922D5A00CD8822 /* 注册_03.png in Resources */,
 				0426C21419922D5A00CD8822 /* timescroll_minutehand.png in Resources */,
 				0426C21319922D5A00CD8822 /* timescroll_hourhand@2x.png in Resources */,
+				5B656D1519932E8A007D79A8 /* icon-plus.png in Resources */,
+				5B656D1319932E8A007D79A8 /* icon-plus-highlighted.png in Resources */,
 				0426C20F19922D5A00CD8822 /* icon.png in Resources */,
 				0426C2E219922D5A00CD8822 /* FaceppClient.m.r17 in Resources */,
 				0426C21119922D5A00CD8822 /* pullrefresh.aif in Resources */,
 				0426C21819922D5A00CD8822 /* 地图搜索_01.png in Resources */,
 				0426C20D19922D5A00CD8822 /* circle.png in Resources */,
+				5B656D1219932E8A007D79A8 /* bg-menuitem@2x.png in Resources */,
+				5B656D0B19932E8A007D79A8 /* bg-addbutton-highlighted.png in Resources */,
 				0426C21C19922D5A00CD8822 /* 注册_07.png in Resources */,
 				0426C21619922D5A00CD8822 /* timescroll_pointer.png in Resources */,
 				0426C22819922D5A00CD8822 /* 面部采集_03.png in Resources */,
@@ -1694,14 +1764,17 @@
 				0426C22D19922D5A00CD8822 /* 首页侧拉栏_03.png in Resources */,
 				0426C22B19922D5A00CD8822 /* 面部采集_12.png in Resources */,
 				0426C22919922D5A00CD8822 /* 面部采集_06.png in Resources */,
+				5B656D1419932E8A007D79A8 /* icon-plus-highlighted@2x.png in Resources */,
 				0426C21519922D5A00CD8822 /* timescroll_minutehand@2x.png in Resources */,
 				0426C21D19922D5A00CD8822 /* 注册_09.png in Resources */,
 				0426C21719922D5A00CD8822 /* timescroll_pointer@2x.png in Resources */,
 				0426C22119922D5A00CD8822 /* 登录_07.png in Resources */,
 				0426BFF519922CE400CD8822 /* InfoPlist.strings in Resources */,
 				0426C21A19922D5A00CD8822 /* 注册.png in Resources */,
+				5B656D0F19932E8A007D79A8 /* bg-menuitem-highlighted.png in Resources */,
 				0426C21F19922D5A00CD8822 /* 登录1_07.png in Resources */,
 				0426C22419922D5A00CD8822 /* 面部识别登录.png in Resources */,
+				5B656D1119932E8A007D79A8 /* bg-menuitem.png in Resources */,
 				0426C21019922D5A00CD8822 /* icon_04.png in Resources */,
 				0426C22A19922D5A00CD8822 /* 面部采集_09.png in Resources */,
 				0426BFFD19922CE400CD8822 /* Images.xcassets in Resources */,
@@ -1810,6 +1883,7 @@
 				0426C27019922D5A00CD8822 /* GPUImageGaussianBlurPositionFilter.m in Sources */,
 				0426C28219922D5A00CD8822 /* GPUImageKuwaharaRadius3Filter.m in Sources */,
 				0426C2B819922D5A00CD8822 /* GPUImageSketchFilter.m in Sources */,
+				5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */,
 				0426C23819922D5A00CD8822 /* AFHTTPSessionManager.m in Sources */,
 				0426C25019922D5A00CD8822 /* GPUImageChromaKeyBlendFilter.m in Sources */,
 				0426C2F819922D5A00CD8822 /* XHPathCover.m in Sources */,
@@ -1827,6 +1901,7 @@
 				0426C28519922D5A00CD8822 /* GPUImageLevelsFilter.m in Sources */,
 				0426C23619922D5A00CD8822 /* AFHTTPRequestOperation.m in Sources */,
 				0426C2B519922D5A00CD8822 /* GPUImageShiTomasiFeatureDetectionFilter.m in Sources */,
+				5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */,
 				0426C2B219922D5A00CD8822 /* GPUImageScreenBlendFilter.m in Sources */,
 				0426C2B419922D5A00CD8822 /* GPUImageSharpenFilter.m in Sources */,
 				0426C2FB19922D5A00CD8822 /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -1855,6 +1930,7 @@
 				0426C2D019922D5A00CD8822 /* GPUImageTwoPassFilter.m in Sources */,
 				0426C27B19922D5A00CD8822 /* GPUImageHistogramGenerator.m in Sources */,
 				0426C22E19922D5A00CD8822 /* FaceLoginViewController.m in Sources */,
+				5B656CFC19932E36007D79A8 /* QuadCurveMenuItem.m in Sources */,
 				0426C27A19922D5A00CD8822 /* GPUImageHistogramFilter.m in Sources */,
 				0426C23A19922D5A00CD8822 /* AFSecurityPolicy.m in Sources */,
 				0426C20B19922D5A00CD8822 /* ContactViewController.m in Sources */,
