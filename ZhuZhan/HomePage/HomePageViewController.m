@@ -73,7 +73,7 @@
     [self.view addSubview:toolView];
     
     
-    
+    //更多按钮的实现
     UIImage *storyMenuItemImage = [UIImage imageNamed:@"bg-menuitem.png"];
     UIImage *storyMenuItemImagePressed = [UIImage imageNamed:@"bg-menuitem-highlighted.png"];
     
@@ -106,7 +106,6 @@
     NSArray *menus = [NSArray arrayWithObjects:cameraMenuItem, peopleMenuItem, placeMenuItem, musicMenuItem, thoughtMenuItem, nil];
     
     menu = [[QuadCurveMenu alloc] initWithFrame:self.view.bounds menus:menus];
-    //menu.center = self.window.center;
     menu.delegate = self;
     [self.view addSubview:menu];
     
@@ -183,6 +182,8 @@
     }
 }
 
+
+//更多按钮的委托方法
 - (void)quadCurveMenu:(QuadCurveMenu *)menu didSelectIndex:(NSInteger)idx
 {
     NSLog(@"Select the index : %ld",(long)idx);
