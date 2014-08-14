@@ -23,7 +23,7 @@
 
 @implementation LoginViewController
 @synthesize userToken;
-static bool FirstLogin = NO;
+//static bool FirstLogin = NO;
 //static int j =0;
 //static int alertShowCount = 0;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -106,7 +106,7 @@ static bool FirstLogin = NO;
     [self.view addSubview:rememberView];
     
     UIButton *registBtn =  [UIButton buttonWithType:UIButtonTypeCustom];
-    registBtn.frame = CGRectMake(70, 500, 200, 36);
+    registBtn.frame = CGRectMake(70, 420, 200, 36);//y为500
     [registBtn setTitle:@"没有账户，去注册！" forState:UIControlStateNormal];
     registBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:17];
     [registBtn addTarget:self action:@selector(registBtnClick) forControlEvents:UIControlEventTouchUpInside];
@@ -158,15 +158,15 @@ static bool FirstLogin = NO;
     //测试账号:zm 密码:123
     //登录接口
     
-    NSDictionary *parameters = [[NSDictionary alloc] initWithObjectsAndKeys:_userNameTextField.text,@"userName",_passWordTextField.text,@"password" ,@"ios",@"deviceType",nil];
+    NSDictionary *parameters = [[NSDictionary alloc] initWithObjectsAndKeys:_userNameTextField.text,@"cellPhone",_passWordTextField.text,@"password" ,@"ios",@"deviceType",nil];
     NSLog(@"%@",parameters);
-    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"%s/Users/login",serverAddress] parameters:parameters error:nil];
+    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"%s/api/account/login",kAPIAdress] parameters:parameters error:nil];
     AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     op.responseSerializer = [AFJSONResponseSerializer serializer];
     [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         NSNumber *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
-        if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"200"]){
+        if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]){
             NSArray *a = [[responseObject objectForKey:@"d"] objectForKey:@"data"];
             for(NSDictionary *item in a){
                 self.userToken = [item objectForKey:@"userToken"];
@@ -176,10 +176,11 @@ static bool FirstLogin = NO;
                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"faceCount"] forKey:@"currentFaceCount"];
                 [[NSUserDefaults standardUserDefaults] setObject:_userNameTextField.text forKey:@"userName"];
                 [[NSUserDefaults standardUserDefaults] setObject:self.userToken forKey:@"UserToken"];
-                [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"userID"] forKey:@"userID"];
+                [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"userId"] forKey:@"userId"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
 
-                if([[NSUserDefaults standardUserDefaults] objectForKey:@"firstPassWordLogin"]==nil&&[[NSString stringWithFormat:@"%@",isFaceRegisted] isEqualToString:@"0"]){//判断用户是否是第一次登陆并判断用户脸部识别的状态
+                NSLog(@",l,ll,l,l,l%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"firstPassWordLogin"]);
+                if([[NSUserDefaults standardUserDefaults] objectForKey:@"firstPassWordLogin"]==nil&&![[NSString stringWithFormat:@"%@",isFaceRegisted] isEqualToString:@"1"]){//判断用户是否是第一次登陆并判断用户脸部识别的状态
                     [[NSUserDefaults standardUserDefaults] setObject:@"firstLogin" forKey:@"firstPassWordLogin"];
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否要进行脸部识别的注册" delegate:self cancelButtonTitle:@"是" otherButtonTitles:@"否", nil];
                     

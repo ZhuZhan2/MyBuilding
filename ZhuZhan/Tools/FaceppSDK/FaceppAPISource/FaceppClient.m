@@ -102,7 +102,7 @@ static NSString *SERVER_ADDRESS = CN_SERVER_ADDRESS;
     statusCode = urlResponse.statusCode;
     
     [request release];
-    return [FaceppClient generateResultWithResponseData:responseData error:error httpStatusCode:statusCode];
+    return [FaceppClient generateResultWithResponseData:responseData error:error httpStatusCode:(int)statusCode];
 }
 
 +(FaceppResult*) requestWithMethod: (NSString*)method image: (NSData*) imageData params: (NSArray*)params {

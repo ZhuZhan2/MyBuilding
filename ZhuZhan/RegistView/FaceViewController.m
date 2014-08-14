@@ -257,7 +257,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 {
     People++;//传入的image的数量
     if (isBeginToCutFace ==YES) {
-        NSLog(@"asdfdsaf");
+        NSLog(@"asdf12323233dsaf");
         isBeginToCutFace =NO;
         [_session stopRunning];
         _session = nil;
@@ -267,7 +267,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         _device = nil;
         _imageView.image = image;
         
-        if([[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegisted"] isEqualToString:@"1"]){//识别登录
+        if([[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegistered"] isEqualToString:@"1"]){//识别登录
                 [event detectWithImage:image With:People];
             
         }else{
@@ -279,27 +279,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
     }
     
-}
-
-
-
--(void)recognizeSuccess   //脸部注册成功开始执行登录的跳转
-{
-    [indicator stopAnimating];
-    HomePageViewController *homepage = [[HomePageViewController alloc] init];
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    [UIView beginAnimations:nil context:context];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:0.7];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[AppDelegate instance] window] cache:YES];
-    NSUInteger tview1 = [[self.view subviews] indexOfObject:[[AppDelegate instance] window]];
-    NSUInteger tview2 = [[self.view subviews] indexOfObject:homepage.view];
-    [self.view exchangeSubviewAtIndex:tview2 withSubviewAtIndex:tview1];
-    [UIView setAnimationDelegate:self];
-    [UIView commitAnimations];
-    
-    [[AppDelegate instance] window].rootViewController = homepage;
-    [[[AppDelegate instance] window] makeKeyAndVisible];
 }
 
 
@@ -316,10 +295,5 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     return nil;
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [indicator stopAnimating];
-
-}
 
 @end

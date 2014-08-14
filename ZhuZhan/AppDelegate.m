@@ -10,7 +10,8 @@
 #import "LoginViewController.h"
 #import "FaceppAPI.h"
 #import "FaceLoginViewController.h"
-#import "HomePageViewController.h"
+//#import "HomePageViewController.h"
+
 
 @implementation AppDelegate
 
@@ -64,8 +65,8 @@
             //            [self.window setRootViewController:drawerController];
             //            self.window.backgroundColor = [UIColor whiteColor];
             //            [self.window makeKeyAndVisible];
-            NSLog(@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegisted"]);
-            if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegisted"] isEqualToString:@"0"]) {
+            NSLog(@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegistered"]);
+            if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegistered"] isEqualToString:@"0"]) {
                 
                 
                 LoginViewController *loginview = [[LoginViewController alloc] init];

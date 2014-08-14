@@ -283,6 +283,8 @@
 		0426C31919922E8800CD8822 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0426C31819922E8800CD8822 /* CoreVideo.framework */; };
 		0426C31B19922E9000CD8822 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0426C31A19922E9000CD8822 /* CoreImage.framework */; };
 		0426C31D19922E9C00CD8822 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0426C31C19922E9C00CD8822 /* ImageIO.framework */; };
+		0426C327199334EB00CD8822 /* 面部采集_07.png in Resources */ = {isa = PBXBuildFile; fileRef = 0426C325199334EB00CD8822 /* 面部采集_07.png */; };
+		0426C328199334EB00CD8822 /* 面部采集_11.png in Resources */ = {isa = PBXBuildFile; fileRef = 0426C326199334EB00CD8822 /* 面部采集_11.png */; };
 		5B656CF019923111007D79A8 /* TradeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CEF19923111007D79A8 /* TradeDetailViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -798,6 +800,8 @@
 		0426C31819922E8800CD8822 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		0426C31A19922E9000CD8822 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		0426C31C19922E9C00CD8822 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		0426C325199334EB00CD8822 /* 面部采集_07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "面部采集_07.png"; sourceTree = "<group>"; };
+		0426C326199334EB00CD8822 /* 面部采集_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "面部采集_11.png"; sourceTree = "<group>"; };
 		5B656CEE19923111007D79A8 /* TradeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeDetailViewController.h; sourceTree = "<group>"; };
 		5B656CEF19923111007D79A8 /* TradeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -959,6 +963,8 @@
 		0426C02219922D5900CD8822 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0426C325199334EB00CD8822 /* 面部采集_07.png */,
+				0426C326199334EB00CD8822 /* 面部采集_11.png */,
 				0426C02319922D5900CD8822 /* circle.png */,
 				0426C02419922D5900CD8822 /* circle@2x.png */,
 				0426C02519922D5900CD8822 /* icon.png */,
@@ -1668,6 +1674,7 @@
 				0426C2E119922D5A00CD8822 /* FaceppClient.m.mine in Resources */,
 				0426C21219922D5A00CD8822 /* timescroll_hourhand.png in Resources */,
 				0426C20E19922D5A00CD8822 /* circle@2x.png in Resources */,
+				0426C327199334EB00CD8822 /* 面部采集_07.png in Resources */,
 				0426C21B19922D5A00CD8822 /* 注册_03.png in Resources */,
 				0426C21419922D5A00CD8822 /* timescroll_minutehand.png in Resources */,
 				0426C21319922D5A00CD8822 /* timescroll_hourhand@2x.png in Resources */,
@@ -1698,6 +1705,7 @@
 				0426C21019922D5A00CD8822 /* icon_04.png in Resources */,
 				0426C22A19922D5A00CD8822 /* 面部采集_09.png in Resources */,
 				0426BFFD19922CE400CD8822 /* Images.xcassets in Resources */,
+				0426C328199334EB00CD8822 /* 面部采集_11.png in Resources */,
 				0426C22319922D5A00CD8822 /* 登录_15.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

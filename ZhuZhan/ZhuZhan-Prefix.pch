@@ -22,6 +22,7 @@
 #define  kScreenWidth  [[UIScreen mainScreen] bounds].size.width
 #define  kScreenHeight [[UIScreen mainScreen] bounds].size.height
 #define  kContentHeight [[UIScreen mainScreen] bounds].size.height-64.5
+#define   kAPIAdress    "http://192.168.0.78:802"
 #define  serverAddress "http://192.168.0.78:801/zpzserver/ZPZChina.svc"
 
 #define  BlueColor [UIColor colorWithRed:(40/255.0)  green:(134/255.0)  blue:(247/255.0)  alpha:1.0]
