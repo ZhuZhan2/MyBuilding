@@ -89,14 +89,6 @@
     }
     
     return YES;
-//    HomePageViewController *homeVC = [[HomePageViewController alloc] init];
-//    self.window.rootViewController = homeVC;
-//    [self.window makeKeyAndVisible];
-//    return YES;
-    HomePageViewController *homeVC = [[HomePageViewController alloc] init];
-    self.window.rootViewController = homeVC;
-    [self.window makeKeyAndVisible];
-    return YES;
 }
 
 
