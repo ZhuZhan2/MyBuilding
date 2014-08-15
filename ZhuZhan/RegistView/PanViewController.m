@@ -74,13 +74,13 @@ static int j =0;
     
     UIButton *jumpBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     jumpBtn.frame = CGRectMake(0, 0, 100, 40);
-    jumpBtn.center = CGPointMake(150, kScreenHeight-30);
+    jumpBtn.center = CGPointMake(155, kScreenHeight-30);
     jumpBtn.titleLabel.font = [UIFont systemFontOfSize:18.0];
     [jumpBtn setTitle:@"跳过" forState:UIControlStateNormal];
     [jumpBtn addTarget:self action:@selector(jumpToLogin) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:jumpBtn];
     UIImageView *tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 12, 12)];
-    tempImgView.center = CGPointMake(180, kScreenHeight-30);
+    tempImgView.center = CGPointMake(185, kScreenHeight-30);
     tempImgView.image = [UIImage imageNamed:@"面部采集_11"];
     [self.view addSubview:tempImgView];
     
