@@ -156,7 +156,7 @@ static int chanceToLoginByFace =3;
 - (void)learnToAddFaceWith:(NSMutableDictionary *)parameters WithFaceID:(NSString *)str      //   登录判断
 {
 
-    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"%s/api/Account/PostFaceLogin",kAPIAdress] parameters:parameters error:nil];
+    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"http://192.168.222.95:801/users/FaceLogin"] parameters:parameters error:nil];
     AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     op.responseSerializer = [AFJSONResponseSerializer serializer];
     [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -312,8 +312,11 @@ static int chanceToLoginByFace =3;
     NSLog(@"%d,%@,%d",isFaceRegisted,tempPerson_id,faceNumber);
        
     
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:tempPerson_id,@"userId",[NSString stringWithFormat:@"%d",isFaceRegisted],@"isFaceRegisted",[NSString stringWithFormat:@"%d",faceNumber],@"faceCount",nil];
-    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"%s/api/account/PostFaceRegister",kAPIAdress] parameters:parameters error:nil];
+    NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:tempPerson_id,@"userID",[NSString stringWithFormat:@"%d",isFaceRegisted],@"isFaceRegisted",[NSString stringWithFormat:@"%d",faceNumber],@"faceCount",nil];
+    NSMutableDictionary *parameters =[[NSMutableDictionary alloc] init];
+    [parameters setObject:data forKey:@"data"];
+    NSLog(@"nininiiinmmmmmmmmmmmm%@",parameters);
+    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"http://192.168.222.95:801/Users/FaceRegister"] parameters:parameters error:nil];
     AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     op.responseSerializer = [AFJSONResponseSerializer serializer];
     [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {

@@ -277,7 +277,7 @@ static bool IsVerify =NO;
     NSLog(@"nininiiinmmmmmmmmmmmm%@",parameters);
 
     
-    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"%s/api/account/register",kAPIAdress] parameters:parameters error:nil];
+    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"http://192.168.222.95:801/Users/Register"] parameters:parameters error:nil];
     AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     op.responseSerializer = [AFJSONResponseSerializer serializer];
     [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
