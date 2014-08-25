@@ -9,13 +9,10 @@
 #import "LoginViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "AppDelegate.h"
-//#import "HomePageCenterViewController.h"
-//#import "HomePageLeftViewController.h"
-//#import "LoginSqlite.h"
-
 #import "RegistViewController.h"
 #import "PanViewController.h"
 #import "HomePageViewController.h"
+#import "LoginModel.h"
 
 @interface LoginViewController ()
 
@@ -158,13 +155,11 @@
     //测试账号:zm 密码:123
     //登录接口
     
-    NSDictionary *parameters = [[NSDictionary alloc] initWithObjectsAndKeys:_userNameTextField.text,@"cellPhone",_passWordTextField.text,@"password" ,@"ios",@"deviceType",nil];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:_userNameTextField.text,@"userName",_passWordTextField.text,@"password" ,@"ios",@"deviceType",nil];
     NSLog(@"%@",parameters);
-    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"http://192.168.222.95:801/Users/login"] parameters:parameters error:nil];
-    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    op.responseSerializer = [AFJSONResponseSerializer serializer];
-    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+    [LoginModel LoginWithBlock:^(NSMutableArray *posts, NSError *error) {
+        NSLog(@"JSON: %@", posts);
+        NSDictionary *responseObject = [posts objectAtIndex:0];
         NSNumber *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
         if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]){
             NSArray *a = [[responseObject objectForKey:@"d"] objectForKey:@"data"];
@@ -178,7 +173,7 @@
                 [[NSUserDefaults standardUserDefaults] setObject:self.userToken forKey:@"UserToken"];
                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"userId"] forKey:@"userId"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
-
+                
                 NSLog(@",l,ll,l,l,l%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"firstPassWordLogin"]);
                 if([[NSUserDefaults standardUserDefaults] objectForKey:@"firstPassWordLogin"]==nil&&![[NSString stringWithFormat:@"%@",isFaceRegisted] isEqualToString:@"1"]){//判断用户是否是第一次登陆并判断用户脸部识别的状态
                     [[NSUserDefaults standardUserDefaults] setObject:@"firstLogin" forKey:@"firstPassWordLogin"];
@@ -196,11 +191,49 @@
             alert.tag = 1;
             [alert show];
         }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-    [[NSOperationQueue mainQueue] addOperation:op];
+
+    } dic:parameters];
+//    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"http://192.168.222.95:801/Users/login"] parameters:parameters error:nil];
+//    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    op.responseSerializer = [AFJSONResponseSerializer serializer];
+//    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"JSON: %@", responseObject);
+//        NSNumber *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
+//        if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]){
+//            NSArray *a = [[responseObject objectForKey:@"d"] objectForKey:@"data"];
+//            for(NSDictionary *item in a){
+//                self.userToken = [item objectForKey:@"userToken"];
+//                NSString *isFaceRegisted = [item objectForKey:@"isFaceRegisted"];
+//                
+//                [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@",isFaceRegisted]forKey:@"isFaceRegisted"];
+//                [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"faceCount"] forKey:@"currentFaceCount"];
+//                [[NSUserDefaults standardUserDefaults] setObject:_userNameTextField.text forKey:@"userName"];
+//                [[NSUserDefaults standardUserDefaults] setObject:self.userToken forKey:@"UserToken"];
+//                [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"userId"] forKey:@"userId"];
+//                [[NSUserDefaults standardUserDefaults] synchronize];
+//
+//                NSLog(@",l,ll,l,l,l%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"firstPassWordLogin"]);
+//                if([[NSUserDefaults standardUserDefaults] objectForKey:@"firstPassWordLogin"]==nil&&![[NSString stringWithFormat:@"%@",isFaceRegisted] isEqualToString:@"1"]){//判断用户是否是第一次登陆并判断用户脸部识别的状态
+//                    [[NSUserDefaults standardUserDefaults] setObject:@"firstLogin" forKey:@"firstPassWordLogin"];
+//                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否要进行脸部识别的注册" delegate:self cancelButtonTitle:@"是" otherButtonTitles:@"否", nil];
+//                    
+//                    [alert show];
+//                }else{
+//                    NSLog(@"登录成功！");
+//                    [self loginSuccess];
+//                }
+//            }
+//        }else{
+//            NSLog(@"登录失败！");
+//            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"登录失败！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//            alert.tag = 1;
+//            [alert show];
+//        }
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error: %@", error);
+//    }];
+//    [[NSOperationQueue mainQueue] addOperation:op];
 }
 
 -(void)loginSuccess{//登录成功后进行的跳转

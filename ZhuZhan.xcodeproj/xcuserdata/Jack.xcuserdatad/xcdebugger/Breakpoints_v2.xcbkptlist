@@ -22,15 +22,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZhuZhan/LoginView/LoginViewController.m"
-            timestampString = "429522543.335585"
+            timestampString = "430629638.510082"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
             landmarkName = "-loginBtnClick"
             landmarkType = "5">
          </BreakpointContent>
