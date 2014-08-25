@@ -27,22 +27,18 @@
 @property (nonatomic,copy) NSString *a_plotRatio;
 //地块用途
 @property (nonatomic,copy) NSString *a_usage;
-//拍卖单位
-@property (nonatomic,copy) NSString *a_auctionUnit;
 //项目名称
 @property (nonatomic,copy) NSString *a_projectName;
 //项目描述
 @property (nonatomic,copy) NSString *a_description;
-//业主单位
-@property (nonatomic,copy) NSString *a_owner;
 //预计开工时间
-@property (nonatomic,copy) NSString *a_expectedStartTime;
+@property (nonatomic,copy) NSString *a_exceptStartTime;
 //预计竣工时间
-@property (nonatomic,copy) NSString *a_expectedFinishTime;
+@property (nonatomic,copy) NSString *a_exceptFinishTime;
 //投资额
 @property (nonatomic,copy) NSString *a_investment;
 //建筑面积
-@property (nonatomic,copy) NSString *a_areaOfStructure;
+@property (nonatomic,copy) NSString *a_storeyArea;
 //建筑层高
 @property (nonatomic,copy) NSString *a_storeyHeight;
 //外资参与
@@ -53,7 +49,31 @@
 @property (nonatomic,copy) NSString *a_longitude;
 //纬度
 @property (nonatomic,copy) NSString *a_latitude;
+//主体设计阶段
+@property (nonatomic,strong) NSString *a_mainDesignStage;
+//电梯
+@property (nonatomic,strong) NSString *a_elevator;
+//空调
+@property (nonatomic,strong) NSString *a_airCondition;
+//供暖
+@property (nonatomic,strong) NSString *a_heating;
+//外墙材料
+@property (nonatomic,strong) NSString *a_externalWallMeterial;
+//钢结构
+@property (nonatomic,strong) NSString *a_stealStructure;
+//实际开工时间
+@property (nonatomic,strong) NSString *a_actureStartTime;
+//消防
+@property (nonatomic,strong) NSString *a_fireControl;
+//景观绿化
+@property (nonatomic,strong) NSString *a_green;
+//弱电安装
+@property (nonatomic,strong) NSString *a_electorWeakInstallation;
+//装修情况
+@property (nonatomic,strong) NSString *a_decorationSituation;
+//装修进度
+@property (nonatomic,strong) NSString *a_decorationProcess;
 
 @property (nonatomic, copy) NSDictionary *dict;
-+ (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block;
+
 @end

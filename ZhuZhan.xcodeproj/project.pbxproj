@@ -254,6 +254,7 @@
 		D3311CA819AAD357003B2682 /* projectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3311CA719AAD357003B2682 /* projectModel.m */; };
 		D3311CAB19AAD3D3003B2682 /* AFAppDotNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D3311CAA19AAD3D3003B2682 /* AFAppDotNetAPIClient.m */; };
 		D3311CAF19AADB41003B2682 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3311CAE19AADB41003B2682 /* LoginModel.m */; };
+		D3311CB219AB03F3003B2682 /* ProjectApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3311CB119AB03F3003B2682 /* ProjectApi.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -749,6 +750,8 @@
 		D3311CAA19AAD3D3003B2682 /* AFAppDotNetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAppDotNetAPIClient.m; sourceTree = "<group>"; };
 		D3311CAD19AADB41003B2682 /* LoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
 		D3311CAE19AADB41003B2682 /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
+		D3311CB019AB03F3003B2682 /* ProjectApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectApi.h; sourceTree = "<group>"; };
+		D3311CB119AB03F3003B2682 /* ProjectApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectApi.m; sourceTree = "<group>"; };
 		D3EACDEE19934D0E0058FC9D /* HidePage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HidePage.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1510,6 +1513,8 @@
 				D3311CAA19AAD3D3003B2682 /* AFAppDotNetAPIClient.m */,
 				D3311CA619AAD357003B2682 /* projectModel.h */,
 				D3311CA719AAD357003B2682 /* projectModel.m */,
+				D3311CB019AB03F3003B2682 /* ProjectApi.h */,
+				D3311CB119AB03F3003B2682 /* ProjectApi.m */,
 			);
 			path = ProjectModel;
 			sourceTree = "<group>";
@@ -1759,6 +1764,7 @@
 				0426C25D19922D5A00CD8822 /* GPUImageDarkenBlendFilter.m in Sources */,
 				0426C2FD19922D5A00CD8822 /* UIAlertView+AFNetworking.m in Sources */,
 				0426C26619922D5A00CD8822 /* GPUImageExclusionBlendFilter.m in Sources */,
+				D3311CB219AB03F3003B2682 /* ProjectApi.m in Sources */,
 				0426C2E419922D5A00CD8822 /* FaceppDetection.m in Sources */,
 				0426C24719922D5A00CD8822 /* GPUImageAverageColor.m in Sources */,
 				0426C2C919922D5A00CD8822 /* GPUImageThresholdSketchFilter.m in Sources */,

@@ -223,4 +223,105 @@
         }
     }];
 }
+
+//POST:
+//{
+//    "userId": ":userId" 必填
+//      "company":"公司信息"
+//      "industry":"行业"
+//      "position":"职位"
+//      "locationProvince":"所在省份"
+//      "locationCity":"所在城市"
+//      "introduction":"个人简介"
+//}
+//
+//RESPONSE:
+//{
+//    "d": {
+//        "status": {
+//            "statusCode": 1300
+//        }
+//    }
+//}
++ (NSURLSessionDataTask *)PostInformationImprovedWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
+    NSString *urlStr = [NSString stringWithFormat:@"api/Account/PostLogOut"];
+    return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            //[mutablePosts addObject:JSON[@"result"]];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+
+//POST:
+//{
+//    "userId": ":userId" 必填
+//      "companyName":"公司名称" 必填
+//      "inDate":"入职时间" 必填
+//      "outDate":"离职时间" 必填
+//      "isIn": "true/false" 是否在职
+//      "infomation":"人才资料" 必填
+//}
+//
+//RESPONSE:
+//{
+//    "d": {
+//        "status": {
+//            "statusCode": 1300
+//        }
+//    }
+//}
++ (NSURLSessionDataTask *)AddparticularsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
+    NSString *urlStr = [NSString stringWithFormat:@"api/Account/PostLogOut"];
+    return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            //[mutablePosts addObject:JSON[@"result"]];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+
+
++ (NSURLSessionDataTask *)RegisterFaceWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/postfaceregister"];
+    return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSLog(@"JSON===>%@",responseObject);
+        NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+        [mutablePosts addObject:responseObject];
+        if (block) {
+            block([NSMutableArray arrayWithArray:mutablePosts], nil);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+        
+    }];
+}
 @end
