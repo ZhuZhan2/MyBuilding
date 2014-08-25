@@ -301,6 +301,9 @@
 		5B656D1619932E8A007D79A8 /* icon-plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B656D0819932E8A007D79A8 /* icon-plus@2x.png */; };
 		5B656D1719932E8A007D79A8 /* icon-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B656D0919932E8A007D79A8 /* icon-star.png */; };
 		5B656D1819932E8A007D79A8 /* icon-star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B656D0A19932E8A007D79A8 /* icon-star@2x.png */; };
+		D3311CA819AAD357003B2682 /* projectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3311CA719AAD357003B2682 /* projectModel.m */; };
+		D3311CAB19AAD3D3003B2682 /* AFAppDotNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D3311CAA19AAD3D3003B2682 /* AFAppDotNetAPIClient.m */; };
+		D3311CAF19AADB41003B2682 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3311CAE19AADB41003B2682 /* LoginModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -837,6 +840,12 @@
 		5B656D0819932E8A007D79A8 /* icon-plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-plus@2x.png"; sourceTree = "<group>"; };
 		5B656D0919932E8A007D79A8 /* icon-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-star.png"; sourceTree = "<group>"; };
 		5B656D0A19932E8A007D79A8 /* icon-star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-star@2x.png"; sourceTree = "<group>"; };
+		D3311CA619AAD357003B2682 /* projectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = projectModel.h; sourceTree = "<group>"; };
+		D3311CA719AAD357003B2682 /* projectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = projectModel.m; sourceTree = "<group>"; };
+		D3311CA919AAD3D3003B2682 /* AFAppDotNetAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAppDotNetAPIClient.h; sourceTree = "<group>"; };
+		D3311CAA19AAD3D3003B2682 /* AFAppDotNetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAppDotNetAPIClient.m; sourceTree = "<group>"; };
+		D3311CAD19AADB41003B2682 /* LoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
+		D3311CAE19AADB41003B2682 /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
 		D3EACDEE19934D0E0058FC9D /* HidePage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HidePage.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -921,6 +930,8 @@
 		0426BFF019922CE400CD8822 /* ZhuZhan */ = {
 			isa = PBXGroup;
 			children = (
+				D3311CAC19AADB34003B2682 /* LoginModel */,
+				D3311CA519AAD342003B2682 /* ProjectModel */,
 				D3EACDEA199337750058FC9D /* Message */,
 				0426C01919922D5900CD8822 /* Company */,
 				0426C01C19922D5900CD8822 /* Contact */,
@@ -1644,6 +1655,26 @@
 			path = Trade;
 			sourceTree = "<group>";
 		};
+		D3311CA519AAD342003B2682 /* ProjectModel */ = {
+			isa = PBXGroup;
+			children = (
+				D3311CA919AAD3D3003B2682 /* AFAppDotNetAPIClient.h */,
+				D3311CAA19AAD3D3003B2682 /* AFAppDotNetAPIClient.m */,
+				D3311CA619AAD357003B2682 /* projectModel.h */,
+				D3311CA719AAD357003B2682 /* projectModel.m */,
+			);
+			path = ProjectModel;
+			sourceTree = "<group>";
+		};
+		D3311CAC19AADB34003B2682 /* LoginModel */ = {
+			isa = PBXGroup;
+			children = (
+				D3311CAD19AADB41003B2682 /* LoginModel.h */,
+				D3311CAE19AADB41003B2682 /* LoginModel.m */,
+			);
+			path = LoginModel;
+			sourceTree = "<group>";
+		};
 		D3EACDE3199327780058FC9D /* QuadCurveMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -1880,6 +1911,7 @@
 				0426C2A319922D5A00CD8822 /* GPUImagePixellatePositionFilter.m in Sources */,
 				0426C26B19922D5A00CD8822 /* GPUImageFilter.m in Sources */,
 				0426C27F19922D5A00CD8822 /* GPUImageHueFilter.m in Sources */,
+				D3311CAF19AADB41003B2682 /* LoginModel.m in Sources */,
 				0426C29F19922D5A00CD8822 /* GPUImageParallelCoordinateLineTransformFilter.m in Sources */,
 				0426C29619922D5A00CD8822 /* GPUImageMovie.m in Sources */,
 				0426C2FA19922D5A00CD8822 /* XHWaterDropRefresh.m in Sources */,
@@ -1966,6 +1998,7 @@
 				0426C2A219922D5A00CD8822 /* GPUImagePixellateFilter.m in Sources */,
 				0426C2BD19922D5A00CD8822 /* GPUImageSolidColorGenerator.m in Sources */,
 				0426C30519922D5A00CD8822 /* TradeViewController.m in Sources */,
+				D3311CAB19AAD3D3003B2682 /* AFAppDotNetAPIClient.m in Sources */,
 				0426C24D19922D5A00CD8822 /* GPUImageBulgeDistortionFilter.m in Sources */,
 				0426C24C19922D5A00CD8822 /* GPUImageBuffer.m in Sources */,
 				0426C24019922D5A00CD8822 /* GLProgram.m in Sources */,
@@ -1977,6 +2010,7 @@
 				0426C23219922D5A00CD8822 /* FaceViewController.m in Sources */,
 				0426C25F19922D5A00CD8822 /* GPUImageDilationFilter.m in Sources */,
 				0426C2A019922D5A00CD8822 /* GPUImagePerlinNoiseFilter.m in Sources */,
+				D3311CA819AAD357003B2682 /* projectModel.m in Sources */,
 				0426C2DA19922D5A00CD8822 /* GPUImageZoomBlurFilter.m in Sources */,
 				0426C23119922D5A00CD8822 /* ProjectViewController.m in Sources */,
 				0426C28A19922D5A00CD8822 /* GPUImageLookupFilter.m in Sources */,

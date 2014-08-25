@@ -7,7 +7,7 @@
 //
 
 #import "ProjectViewController.h"
-
+#import "projectModel.h"
 @interface ProjectViewController ()
 
 @end
@@ -27,7 +27,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self addtittle:@"项目"];
+    [projectModel GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning

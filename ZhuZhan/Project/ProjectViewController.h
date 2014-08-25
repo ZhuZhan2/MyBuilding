@@ -6,8 +6,7 @@
 //  Copyright (c) 2014年 zpzchina. All rights reserved.
 //
 
-#import "BaseViewController.h"
-
-@interface ProjectViewController : BaseViewController
+#import <UIKit/UIKit.h>
+@interface ProjectViewController : UIViewController
 
 @end
