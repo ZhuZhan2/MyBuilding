@@ -97,8 +97,9 @@ static int chanceToLoginByFace =3;
 
     if (count==1)
     {//判断image的张数
+        person_id = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+        NSLog(@"personId%@",person_id);
         
-              person_id = [[NSUserDefaults standardUserDefaults] objectForKey:@"userID"];
              NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
     
              FaceppResult *result = [[FaceppAPI detection] detectWithURL:nil orImageData:imageData mode:FaceppDetectionModeNormal attribute:FaceppDetectionAttributeNone];
@@ -128,9 +129,7 @@ static int chanceToLoginByFace =3;
                         if (![[item objectForKey:@"face_id"] isEqualToString:@""])//如果能够在image上识别出脸
                         {
                             NSString * str =[item objectForKey:@"face_id"];
-                            NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:person_id,@"userID",str,@"faceID",nil];
-                            NSMutableDictionary *parameters =[[NSMutableDictionary alloc] init];
-                            [parameters setObject:data forKey:@"data"];
+                            NSMutableDictionary *parameters =[[NSMutableDictionary alloc] initWithObjectsAndKeys:person_id,@"userId",str,@"faceId",nil];
                             [self learnToAddFaceWith:parameters WithFaceID:str];//登录判断
                         }
                     
@@ -163,7 +162,7 @@ static int chanceToLoginByFace =3;
     [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSNumber *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
-         if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"200"])
+         if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"])
          {
              NSLog(@"登陆成功");
              
@@ -223,7 +222,7 @@ static int chanceToLoginByFace =3;
 -(void)detectWithImageArray:(NSMutableArray *)faceArray//没有进行脸部注册时候获取faceID
 {
     NSLog(@"detectWithImageArray");
-     person_id = [[NSUserDefaults standardUserDefaults] objectForKey:@"userID"];
+     person_id = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
     
     for (int i =0; i<faceArray.count; i++) {
         UIImage *image = [faceArray objectAtIndex:i];
@@ -324,15 +323,15 @@ static int chanceToLoginByFace =3;
         NSLog(@"JSON: %@", responseObject);
         NSLog(@"==>%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"UserToken"]);
         NSNumber *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
-        if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"200"])
+        if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"])
         {
-            [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"isFaceRegisted"];//保存用户脸部识别注册的状态
-            
+            [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"isFaceRegistered"];//保存用户脸部识别注册的状态
+            [[NSUserDefaults standardUserDefaults] synchronize];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"faceLogin" object:nil];//登录
         }else{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"faceRegister" object:nil];//返回前一个VC
         }
-        [[NSUserDefaults standardUserDefaults] synchronize];
+
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];

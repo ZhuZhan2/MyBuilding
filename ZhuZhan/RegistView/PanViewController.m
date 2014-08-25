@@ -18,7 +18,7 @@
 @implementation PanViewController
 
 static int j =0;
-static int count =5;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,35 +35,59 @@ static int count =5;
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.hidden = YES;
     
-    nowIMageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 320, 426)];
-    nowIMageView.center = self.view.center;
+    UIImageView *naBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
+    naBar.image = [UIImage imageNamed:@"地图搜索_01"];
+    [self.view addSubview:naBar];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, 320, 40)];
+    textlabel.center =naBar.center;
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.text = @"面部采集";
+    titleLabel.font = [UIFont systemFontOfSize:22.0];
+    [self.view addSubview:titleLabel];
+    
+    UILabel *numLabel = [[UILabel alloc] initWithFrame:CGRectMake(80,80, 320, 30)];
+    numLabel.text = @"还需要采集  张照片";
+    numLabel.alpha =0.6;
+    [self.view addSubview:numLabel];
+    
+    textlabel = [[UILabel alloc] initWithFrame:CGRectMake(165,80, 30, 30)];
+    textlabel.text = @"5";
+    textlabel.textColor =BlueColor;
+    [self.view addSubview:textlabel];
+    
+    nowIMageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 453/2, 603/2)];
+    nowIMageView.center = CGPointMake(160, kScreenHeight/2-10);
+    UIImage *defaultImg =[UIImage imageNamed:@"扫描页面_03"];
+    nowIMageView.image = defaultImg;
     [self.view addSubview:nowIMageView];
     
-UIImage *defaultImg = [UIImage imageNamed:@"扫描页面_03"];
-    defaultImageView =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, defaultImg.size.width/3, defaultImg.size.height/3)];
-    NSLog(@"宽度%f   高度%f",defaultImg.size.width,defaultImg.size.height);
-    defaultImageView.center = self.view.center;
-    defaultImageView.image = defaultImg;
-    [self.view addSubview:defaultImageView];
-    UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    leftBtn.frame = CGRectMake(20, self.view.frame.size.height-50, 60, 40);
-    [leftBtn setTitle:@"照片采集" forState:UIControlStateNormal];
-    [leftBtn addTarget:self action:@selector(addmMoreImage) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:leftBtn];
+    UIButton *collectBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    collectBtn.frame = CGRectMake(0, 0, 100, 40);
+    collectBtn.center = CGPointMake(160, kScreenHeight-100);
+    collectBtn.titleLabel.font = [UIFont systemFontOfSize:18.0];
+    [collectBtn setTitle:@"照片采集" forState:UIControlStateNormal];
+    [collectBtn setBackgroundImage:[UIImage imageNamed:@"面部采集_07"] forState:UIControlStateNormal];
+    [collectBtn addTarget:self action:@selector(addmMoreImage) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:collectBtn];
     
-    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    rightBtn.frame = CGRectMake(240, self.view.frame.size.height-50, 60, 40);
-    [rightBtn setTitle:@"跳过" forState:UIControlStateNormal];
-    [rightBtn addTarget:self action:@selector(jumpToLogin) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:rightBtn];
+    UIButton *jumpBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    jumpBtn.frame = CGRectMake(0, 0, 100, 40);
+    jumpBtn.center = CGPointMake(155, kScreenHeight-30);
+    jumpBtn.titleLabel.font = [UIFont systemFontOfSize:18.0];
+    [jumpBtn setTitle:@"跳过" forState:UIControlStateNormal];
+    [jumpBtn addTarget:self action:@selector(jumpToLogin) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:jumpBtn];
+    UIImageView *tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 12, 12)];
+    tempImgView.center = CGPointMake(185, kScreenHeight-30);
+    tempImgView.image = [UIImage imageNamed:@"面部采集_11"];
+    [self.view addSubview:tempImgView];
     
     event = [[LoginEvent alloc] init];
     event.faceIDArray = [[NSMutableArray alloc] init];
     imgArr = [[NSMutableArray alloc] init];
-    textlabel = [[UILabel alloc] initWithFrame:CGRectMake(80,35, 160, 30)];
-    textlabel.text = @"还需要采集5张照片";
-    textlabel.textColor =BlueColor;
-    [self.view addSubview:textlabel];
+    
 
 }
 
@@ -71,7 +95,7 @@ UIImage *defaultImg = [UIImage imageNamed:@"扫描页面_03"];
 -(void)addmMoreImage//采集照片
 {
         j= 0;
-    [defaultImageView removeFromSuperview];
+    
         if(imgArr.count < 5){
             faceVC = [[FaceViewController alloc] init];
             faceVC.delegate = self;
@@ -112,8 +136,8 @@ UIImage *defaultImg = [UIImage imageNamed:@"扫描页面_03"];
         [imgArr addObject:image];
         nowIMageView.image = image;
         NSLog(@"%@",imgArr);
-        textlabel.text =[NSString stringWithFormat:@"还需要采集%d张照片",(count-imgArr.count)];
-        count=5;
+        textlabel.text =[NSString stringWithFormat:@"%d",(5-(int)imgArr.count)];
+        
         if(imgArr.count == 5){
             NSLog(@"%@",textlabel);
             indicator = [[TFIndicatorView alloc]initWithFrame:CGRectMake(135, 280, 50, 50)];
@@ -131,7 +155,7 @@ UIImage *defaultImg = [UIImage imageNamed:@"扫描页面_03"];
 
 -(void)recognizeSuccess   //开始跳转到主页
 {
-    NSLog(@"asdfasdfasdfasdf");
+    NSLog(@"asdfasdfa4546456456sdfasdf");
     HomePageViewController *homepage = [[HomePageViewController alloc] init];
     
     
@@ -175,7 +199,7 @@ UIImage *defaultImg = [UIImage imageNamed:@"扫描页面_03"];
     faceVC = nil;
     
 
-    textlabel.text =[NSString stringWithFormat:@"还需要采集%d张照片",(5-imgArr.count)];
+    textlabel.text =[NSString stringWithFormat:@"%d",(5-(int)imgArr.count)];
 }
 
 
@@ -200,7 +224,7 @@ UIImage *defaultImg = [UIImage imageNamed:@"扫描页面_03"];
     [faceVC.view removeFromSuperview];
     [imgArr removeAllObjects];
     faceVC = nil;
-    textlabel.text =[NSString stringWithFormat:@"还需要采集%d张照片",(5-imgArr.count)];
+    textlabel.text =[NSString stringWithFormat:@"%d",(5-(int)imgArr.count)];
 }
 
 
