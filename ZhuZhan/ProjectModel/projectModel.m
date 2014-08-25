@@ -10,37 +10,40 @@
 
 @implementation projectModel
 - (void)setDict:(NSDictionary *)dict{
-    /*_dict = dict;
+    _dict = dict;
     self.a_id = dict[@"id"];
     self.a_landName = dict[@"landName"];
     self.a_district = dict[@"landDistrict"];
-    self.a_ = [NSString stringWithFormat:@"%@",dict[@"likes"]];
-    self.youlikeit = [NSString stringWithFormat:@"%@",dict[@"youlikeit"]];
-    self.created = dict[@"created"];
-    self.createdby = dict[@"createdby"];
-    self.comments = dict[@"comments"];*/
+    self.a_province = dict[@"landProvince"];
+    self.a_city = dict[@"landCity"];
+    self.a_landAddress = dict[@"landAddress"];
+    self.a_area = dict[@"landArea"];
+    self.a_plotRatio = dict[@"landPlotRatio"];
+    self.a_usage = dict[@"landUsages"];
+    self.a_projectName = dict[@"projectName"];
+    self.a_description = dict[@"projectDescription"];
+    self.a_exceptStartTime = dict[@"exceptStartTime"];
+    self.a_exceptFinishTime = dict[@"exceptFinishTime"];
+    self.a_investment = dict[@"investment"];
+    self.a_storeyArea = dict[@"storeyArea"];
+    self.a_storeyHeight = dict[@"storeyHeight"];
+    self.a_foreignInvestment = dict[@"foreignInvestment"];
+    self.a_ownerType = dict[@"ownerType"];
+    self.a_longitude = dict[@"longitude"];
+    self.a_latitude = dict[@"latitude"];
+    self.a_mainDesignStage = dict[@"mainDesignStage"];
+    self.a_elevator = dict[@"elevator"];
+    self.a_airCondition = dict[@"airCondition"];
+    self.a_heating = dict[@"heating"];
+    self.a_externalWallMeterial = dict[@"externalWallMeterial"];
+    self.a_stealStructure = dict[@"stealStructure"];
+    self.a_actureStartTime = dict[@"actualStartTime"];
+    self.a_fireControl = dict[@"fireControl"];
+    self.a_green = dict[@"green"];
+    self.a_electorWeakInstallation = dict[@"electorWeakInstallation"];
+    self.a_decorationSituation = dict[@"decorationSituation"];
+    self.a_decorationProcess = dict[@"decorationProcess"];
 }
 
 
-+ (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/AllProjects?pageSize=10&index=1"];
-    return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"1300"]){
-            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            //[mutablePosts addObject:JSON[@"result"]];
-            if (block) {
-                block([NSMutableArray arrayWithArray:mutablePosts], nil);
-            }
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"text"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
-        }
-    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        NSLog(@"error ==> %@",error);
-        if (block) {
-            block([NSMutableArray array], error);
-        }
-    }];
-}
 @end

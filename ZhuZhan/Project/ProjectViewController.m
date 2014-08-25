@@ -7,8 +7,8 @@
 //
 
 #import "ProjectViewController.h"
+#import "ProjectApi.h"
 #import "projectModel.h"
-#import "LoginModel.h"
 @interface ProjectViewController ()
 
 @end
@@ -28,11 +28,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    /*[projectModel GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+    [ProjectApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            
+            for(int i=0;i<posts.count;i++){
+                projectModel *model = posts[i];
+                NSLog(@"==>%@",model.a_area);
+            }
         }
-    }];*/
+    } startIndex:0];
 }
 
 - (void)didReceiveMemoryWarning
