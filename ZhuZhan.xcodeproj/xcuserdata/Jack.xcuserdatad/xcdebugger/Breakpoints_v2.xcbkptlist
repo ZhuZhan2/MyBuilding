@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ZhuZhan/LoginView/LoginViewController.m"
-            timestampString = "430629638.510082"
+            filePath = "ZhuZhan/LoginModel/LoginModel.m"
+            timestampString = "430630028.903148"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "-loginBtnClick"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "+LoginWithBlock:dic:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
