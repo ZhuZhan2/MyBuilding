@@ -267,7 +267,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         _device = nil;
         _imageView.image = image;
         
-        if([[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegistered"] isEqualToString:@"1"]){//识别登录
+        if([[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"] isEqualToString:@"1"]){//识别登录
                 [event detectWithImage:image With:People];
             
         }else{

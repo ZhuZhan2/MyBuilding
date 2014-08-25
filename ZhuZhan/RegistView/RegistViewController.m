@@ -13,7 +13,7 @@
 #import "LoginViewController.h"
 #import "FaceViewController.h"
 #import "PanViewController.h"
-
+#import "LoginModel.h"
 @interface RegistViewController ()
 
 @end
@@ -276,15 +276,10 @@ static bool IsVerify =NO;
     NSMutableDictionary *parameters =[[NSMutableDictionary alloc] initWithObjectsAndKeys:_phoneNumberTextField.text,@"cellPhone",passWordField.text,@"password",@"mobile",@"deviceType",_yzmTextField.text,@"barCode",nil];
     NSLog(@"nininiiinmmmmmmmmmmmm%@",parameters);
 
-    
-    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"http://192.168.222.95:801/Users/Register"] parameters:parameters error:nil];
-    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    op.responseSerializer = [AFJSONResponseSerializer serializer];
-    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON格式   %@",responseObject);
-        
+    [LoginModel RegisterWithBlock:^(NSMutableArray *posts, NSError *error) {
+        NSDictionary *responseObject = [posts objectAtIndex:0];
         NSNumber *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
-       if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"])
+        if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"])
         {
             NSLog(@"账号密码注册成功");
             
@@ -293,48 +288,31 @@ static bool IsVerify =NO;
             for(NSDictionary *item in a){
                 [[NSUserDefaults standardUserDefaults]setObject:_phoneNumberTextField.text forKey:@"cellPhone"];
                 [[NSUserDefaults standardUserDefaults]setObject:[item objectForKey:@"userToken"] forKey:@"UserToken"];
-                bool isFaceRegisted = [item objectForKey:@"isFaceRegistered"];
-                NSLog(@"isFaceRegisted---000--%@",[NSString stringWithFormat:@"%u",isFaceRegisted]);
-                [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%u",isFaceRegisted]forKey:@"isFaceRegistered"];
+                NSString *isFaceRegister = [NSString stringWithFormat:@"%@",[item objectForKey:@"isFaceRegister"]];
+                NSLog(@"ssssssssss  %@",isFaceRegister);
+                [[NSUserDefaults standardUserDefaults] setObject:isFaceRegister forKey:@"isFaceRegister"];
                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"faceCount"] forKey:@"currentFaceCount"];
                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"userId"] forKey:@"userId"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
-         
-                NSLog(@"isFaceRegisted--123---%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"isFaceRegistered"]);
-
+                
             }
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册成功，是否进行脸部识别的注册" delegate:self cancelButtonTitle:@"是" otherButtonTitles:@"否", nil];
             [alert show];
             
-        }
-        
-        else if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1308"]){
-            NSLog(@"账号已存在");
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败，账号已存在" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil];
+        }else if([[NSString stringWithFormat:@"%@",statusCode]isEqualToString:@"1308"]){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"手机号码已存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
-
-        }
-        else if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1310"]){
-            NSLog(@"账号已存在");
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"手机验证码无效" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil];
+        }else if([[NSString stringWithFormat:@"%@",statusCode]isEqualToString:@"1310"]){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"激活码无效" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
-            
         }
-
         else{
-            
-            NSLog(@"账号密码注册失败");
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:responseObject[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
-            
         }
 
-    }
-   failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"账号密码注册Error: %@", error);
-    }];
-    
-     [[NSOperationQueue mainQueue] addOperation:op];
+    } dic:parameters];
+
 }
 
 
