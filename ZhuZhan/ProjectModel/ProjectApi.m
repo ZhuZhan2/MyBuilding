@@ -330,7 +330,7 @@
 //[dic setObject:@"" forKey:@"createBy"]; 创建人
 + (NSURLSessionDataTask *)GetSearchConditionsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
     NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/GetSearchConditions?distict=%@&createBy=%@",dic[@"distict"],dic[@"createBy"]];
-    return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
+    return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
@@ -349,5 +349,26 @@
         }
     }];
 }
- 
+
++ (NSURLSessionDataTask *)GetPiProjectSeachWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex keywords:(NSString *)keywords{
+    NSString *urlStr = [NSString stringWithFormat:@"api/PiProject/GetPiProjectSeach?pageSize=5&index=%d&keywords=%@",startIndex,keywords];
+    return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            //[mutablePosts addObject:JSON[@"d"][@"data"]];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
 @end

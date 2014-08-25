@@ -255,6 +255,7 @@
 		D3311CAB19AAD3D3003B2682 /* AFAppDotNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D3311CAA19AAD3D3003B2682 /* AFAppDotNetAPIClient.m */; };
 		D3311CAF19AADB41003B2682 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3311CAE19AADB41003B2682 /* LoginModel.m */; };
 		D3311CB219AB03F3003B2682 /* ProjectApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3311CB119AB03F3003B2682 /* ProjectApi.m */; };
+		D3AD600119AB3AD6001FD483 /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD600019AB3AD6001FD483 /* ContactModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -752,6 +753,8 @@
 		D3311CAE19AADB41003B2682 /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
 		D3311CB019AB03F3003B2682 /* ProjectApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectApi.h; sourceTree = "<group>"; };
 		D3311CB119AB03F3003B2682 /* ProjectApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectApi.m; sourceTree = "<group>"; };
+		D3AD5FFF19AB3AD6001FD483 /* ContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactModel.h; sourceTree = "<group>"; };
+		D3AD600019AB3AD6001FD483 /* ContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
 		D3EACDEE19934D0E0058FC9D /* HidePage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HidePage.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -836,6 +839,7 @@
 		0426BFF019922CE400CD8822 /* ZhuZhan */ = {
 			isa = PBXGroup;
 			children = (
+				D3AD5FFE19AB3AC2001FD483 /* ContactModel */,
 				D3311CAC19AADB34003B2682 /* LoginModel */,
 				D3311CA519AAD342003B2682 /* ProjectModel */,
 				D3EACDEA199337750058FC9D /* Message */,
@@ -1528,6 +1532,15 @@
 			path = LoginModel;
 			sourceTree = "<group>";
 		};
+		D3AD5FFE19AB3AC2001FD483 /* ContactModel */ = {
+			isa = PBXGroup;
+			children = (
+				D3AD5FFF19AB3AD6001FD483 /* ContactModel.h */,
+				D3AD600019AB3AD6001FD483 /* ContactModel.m */,
+			);
+			path = ContactModel;
+			sourceTree = "<group>";
+		};
 		D3EACDE3199327780058FC9D /* QuadCurveMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -1688,6 +1701,7 @@
 				0426C2D619922D5A00CD8822 /* GPUImageVoronoiConsumerFilter.m in Sources */,
 				0426C20A19922D5A00CD8822 /* CompanyViewController.m in Sources */,
 				0426C26C19922D5A00CD8822 /* GPUImageFilterGroup.m in Sources */,
+				D3AD600119AB3AD6001FD483 /* ContactModel.m in Sources */,
 				0426C27119922D5A00CD8822 /* GPUImageGaussianSelectiveBlurFilter.m in Sources */,
 				0426C29B19922D5A00CD8822 /* GPUImageOpacityFilter.m in Sources */,
 				0426C25719922D5A00CD8822 /* GPUImageColorMatrixFilter.m in Sources */,
