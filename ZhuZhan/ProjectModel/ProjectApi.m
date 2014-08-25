@@ -270,4 +270,84 @@
         }
     }];
 }
+
+//POST:
+//{
+//    "SearchName":"ownertype",
+//    "CreateBy":"wmj",
+//    "SearchConditions":"是够大方司法局"
+//}
++ (NSURLSessionDataTask *)SearchConditionWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
+    NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/SearchConditionr"];
+    return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            //[mutablePosts addObject:JSON[@"d"][@"data"]];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+
+//POST:
+//{
+//    "id":"搜索条件Id",
+//}
++ (NSURLSessionDataTask *)SearchCountAddWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
+    NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/SearchCountAdd"];
+    return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            //[mutablePosts addObject:JSON[@"d"][@"data"]];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+
+//NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+//[dic setObject:@"" forKey:@"distict"]; 所在区域
+//[dic setObject:@"" forKey:@"createBy"]; 创建人
++ (NSURLSessionDataTask *)GetSearchConditionsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
+    NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/GetSearchConditions?distict=%@&createBy=%@",dic[@"distict"],dic[@"createBy"]];
+    return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            //[mutablePosts addObject:JSON[@"d"][@"data"]];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+ 
 @end
