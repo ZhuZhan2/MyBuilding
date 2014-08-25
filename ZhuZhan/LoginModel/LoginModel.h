@@ -18,6 +18,10 @@
 
 @property (nonatomic,copy) NSDictionary *dict;
 
+
+//生成验证码
++ (NSURLSessionDataTask *)GenerateWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic;
+
 //注册
 + (NSURLSessionDataTask *)RegisterWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic;
 
