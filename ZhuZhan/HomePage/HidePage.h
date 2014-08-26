@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @protocol HidePage <NSObject>
--(void)homePageDidNext;
--(void)homePageWillBack; 
+-(void)homePageTabBarHide;
+-(void)homePageTabBarRestore;
 @end

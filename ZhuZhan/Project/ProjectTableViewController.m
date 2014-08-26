@@ -15,6 +15,7 @@
 #import "MJRefresh.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
+#import "ProgramDetailViewController.h"
 @interface ProjectTableViewController ()
 
 @end
@@ -143,6 +144,12 @@
     return showArr.count;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ProgramDetailViewController* vc=[[ProgramDetailViewController alloc]init];
+//    projectModel *model = showArr[indexPath.row];
+//    vc.ID=model.a_id;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

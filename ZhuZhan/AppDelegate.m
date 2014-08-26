@@ -33,52 +33,58 @@
     // turn on the debug mode
     [FaceppAPI setDebugMode:TRUE];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
-        NSLog(@"第一次启动");
-        LoginViewController *loginview = [[LoginViewController alloc] init];
-        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
-        
-        [self.window setRootViewController:naVC];
-        self.window.backgroundColor = [UIColor whiteColor];
-        [self.window makeKeyAndVisible];
-    }else{
-        NSLog(@"已经不是第一次启动了");
-        NSLog(@"==>%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"UserToken"]);
-        if (![[NSUserDefaults standardUserDefaults]objectForKey:@"UserToken"]) {
-            LoginViewController *loginview = [[LoginViewController alloc] init];
-            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
-            [self.window setRootViewController:naVC];
-            self.window.backgroundColor = [UIColor whiteColor];
-            [self.window makeKeyAndVisible];
-        }else{
-//            HomePageViewController *homeVC = [[HomePageViewController alloc] init];
-//            self.window.rootViewController = homeVC;
-//            [self.window makeKeyAndVisible];
-//                        [self.window makeKeyAndVisible];
-            
-            NSLog(@"mimiimimimimamama%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"]);
-            if (![[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"] isEqualToString:@"1"]) {
-                
-                
-                LoginViewController *loginview = [[LoginViewController alloc] init];
-                UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
-                
-                [self.window setRootViewController:naVC];
-                self.window.backgroundColor = [UIColor whiteColor];
-                [self.window makeKeyAndVisible];
-            }else{
-                FaceLoginViewController *faceVC = [[FaceLoginViewController alloc] init];
-                UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:faceVC];
-                [self.window setRootViewController:naVC];
-                self.window.backgroundColor = [UIColor whiteColor];
-                [self.window makeKeyAndVisible];
-                
-                
-            }
-            
-        }
-    }
+    //    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
+    //        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+    //        NSLog(@"第一次启动");
+    //        LoginViewController *loginview = [[LoginViewController alloc] init];
+    //        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
+    //
+    //        [self.window setRootViewController:naVC];
+    //        self.window.backgroundColor = [UIColor whiteColor];
+    //        [self.window makeKeyAndVisible];
+    //    }else{
+    //        NSLog(@"已经不是第一次启动了");
+    //        NSLog(@"==>%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"UserToken"]);
+    //        if (![[NSUserDefaults standardUserDefaults]objectForKey:@"UserToken"]) {
+    //            LoginViewController *loginview = [[LoginViewController alloc] init];
+    //            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
+    //            [self.window setRootViewController:naVC];
+    //            self.window.backgroundColor = [UIColor whiteColor];
+    //            [self.window makeKeyAndVisible];
+    //        }else{
+    ////            HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+    ////            self.window.rootViewController = homeVC;
+    ////            [self.window makeKeyAndVisible];
+    ////                        [self.window makeKeyAndVisible];
+    //
+    //            NSLog(@"mimiimimimimamama%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"]);
+    //            if (![[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"] isEqualToString:@"1"]) {
+    //
+    //
+    //                LoginViewController *loginview = [[LoginViewController alloc] init];
+    //                UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
+    //
+    //                [self.window setRootViewController:naVC];
+    //                self.window.backgroundColor = [UIColor whiteColor];
+    //                [self.window makeKeyAndVisible];
+    //            }else{
+    //                FaceLoginViewController *faceVC = [[FaceLoginViewController alloc] init];
+    //                UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:faceVC];
+    //                [self.window setRootViewController:naVC];
+    //                self.window.backgroundColor = [UIColor whiteColor];
+    //                [self.window makeKeyAndVisible];
+    //
+    //
+    //            }
+    //
+    //        }
+    //    }
+    
+    
+    HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+    self.window.rootViewController = homeVC;
+    [self.window makeKeyAndVisible];
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
@@ -92,7 +98,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 

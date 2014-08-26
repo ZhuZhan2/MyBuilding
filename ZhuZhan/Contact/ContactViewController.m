@@ -56,8 +56,8 @@ NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    if([hideDelegate respondsToSelector:@selector(homePageWillBack)]){
-        [hideDelegate homePageWillBack];
+    if([hideDelegate respondsToSelector:@selector(homePageTabBarRestore)]){
+        [hideDelegate homePageTabBarRestore];
     }
 }
 
@@ -175,8 +175,8 @@ NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     CompanyMemberViewController* memberVC=[[CompanyMemberViewController alloc]initWithMemberNumber:14];
     [self.navigationController pushViewController:memberVC animated:YES];
-    if([hideDelegate respondsToSelector:@selector(homePageDidNext)]){
-        [hideDelegate homePageDidNext];
+    if([hideDelegate respondsToSelector:@selector(homePageTabBarHide)]){
+        [hideDelegate homePageTabBarHide];
     }
 }
 
