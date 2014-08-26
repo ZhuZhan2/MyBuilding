@@ -144,11 +144,19 @@
     return showArr.count;
 }
 
+//push去展示页前将tabbar隐藏
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ProgramDetailViewController* vc=[[ProgramDetailViewController alloc]init];
     projectModel *model = showArr[indexPath.row];
     vc.ID=model.a_id;
+    [self.delegate homePageTabBarHide];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+//从展示页回来时显示tabbar
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.delegate homePageTabBarRestore];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

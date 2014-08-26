@@ -6,8 +6,8 @@
 //
 //
 
-#import "BaseViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface ProgramDetailViewController : BaseViewController
+@interface ProgramDetailViewController : UIViewController
 @property(nonatomic,copy)NSString* ID;
 @end

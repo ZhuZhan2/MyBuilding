@@ -12,5 +12,5 @@
     NSMutableArray *showArr;
     int startIndex;
 }
-
+@property(nonatomic,strong)id<HidePage>delegate;
 @end

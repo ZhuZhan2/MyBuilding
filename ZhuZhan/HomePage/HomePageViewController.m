@@ -241,13 +241,13 @@
     // Pass the selected object to the new view controller.
 }
 */
--(void)homePageDidNext{
+-(void)homePageTabBarHide{
     [nav.view setFrame:CGRectMake(0, 0, 320, 568)];
     toolView.hidden=YES;
     menu.hidden=YES;
 }
 
--(void)homePageWillBack{
+-(void)homePageTabBarRestore{
     [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
     toolView.hidden=NO;
     menu.hidden=NO;
@@ -269,6 +269,7 @@
         case 1:
             NSLog(@"项目");
             projectview = [[ProjectTableViewController alloc] init];
+            projectview.delegate=self;
             nav = [[UINavigationController alloc] initWithRootViewController:projectview];
             [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
             [contentView addSubview:nav.view];

@@ -8,8 +8,10 @@
 
 #import "ProgramDetailViewController.h"
 #import "ProjectApi.h"
-@interface ProgramDetailViewController ()
-
+@interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+@property(nonatomic,strong)UIButton* backButton;
+@property(nonatomic,strong)UITableView* contentTableView;
+@property(nonatomic,strong)UITableView* selectTableView;
 @end
 
 @implementation ProgramDetailViewController
@@ -26,64 +28,51 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //[self initNaviAndScrollView];
+    self.view.backgroundColor=[UIColor whiteColor];
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             NSLog(@"==========%@",posts[0]);
+            [self loadSelf];
         }else{
-        
+            
         }
     } projectId:self.ID];
     // Do any additional setup after loading the view.
 }
 
--(void)initNaviAndScrollView{
-    [self addBackButton];
-//    CGRect frame=CGRectMake(285,30,25.5,22.5);
-//    UIButton* modificationButton=[UIButton buttonWithType:UIButtonTypeCustom];
-//    modificationButton.frame=frame;
-//    [modificationButton setImage:[UIImage imageNamed:@"XiangMuXiangQing/more_01@2x.png"] forState:UIControlStateNormal];
-//    [modificationButton addTarget:self action:@selector(gotoModificationVC) forControlEvents:UIControlEventTouchUpInside];
-//    [self.topView addSubview:modificationButton];
-    
-    
-//    //scrollView初始
-//    NSLog(@"============%f",self.contentView.frame.size.height);
-//    self.myScrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, self.contentView.frame.size.height)];
-//    self.myScrollView.backgroundColor=RGBCOLOR(229, 229, 229);
-//    self.myScrollView.showsVerticalScrollIndicator=NO;
-//    [self.contentView addSubview:self.myScrollView];
-//    
-//    CGSize size=self.myScrollView.bounds.size;
-//    //预留下方动画高度
-//    size.height=50+56;//50是上导航的位置,56是下方动画的预留位置
-//    self.myScrollView.contentSize=size;
-//    
-//    //动画view控制初始
-//    self.animationView=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-//    self.animationView.color=[UIColor blackColor];
-//    
-//    //用来在加载新页面时,下方开始圈圈动画的时候,页面无法点击 该view初始
-//    self.spaceView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 568-64.5)];
-//    self.spaceView.backgroundColor=[UIColor clearColor];
+-(void)loadSelf{
+    [self initNavi];
+    [self initTableView];
 }
+
+-(void)initTableView{
+    self.contentTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 64+10, 320, 568-64-20) style:UITableViewStylePlain];
+    self.contentTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    self.contentTableView.backgroundColor=[UIColor redColor];
+    [self.view addSubview:self.contentTableView];
+}
+
+-(void)back{
+    [self.backButton removeFromSuperview];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)initNavi{
+    self.backButton=[[UIButton alloc]initWithFrame:CGRectMake(0,5,29,28.5)];
+    [self.backButton setImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [self.backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.navigationController.navigationBar addSubview:self.backButton];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 5;
+}
+
 
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end
