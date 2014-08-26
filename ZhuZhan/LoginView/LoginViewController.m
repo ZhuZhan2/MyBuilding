@@ -163,6 +163,7 @@
         NSNumber *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
         if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]){
             NSArray *a = [[responseObject objectForKey:@"d"] objectForKey:@"data"];
+            NSLog(@"bdsfdfdggggyrt  %@",a);
             for(NSDictionary *item in a){
                 self.userToken = [item objectForKey:@"userToken"];
                 NSString *isFaceRegister = [item objectForKey:@"isFaceRegister"];
@@ -172,6 +173,7 @@
                 [[NSUserDefaults standardUserDefaults] setObject:_userNameTextField.text forKey:@"userName"];
                 [[NSUserDefaults standardUserDefaults] setObject:self.userToken forKey:@"UserToken"];
                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"userId"] forKey:@"userId"];
+//                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"deviceToken"] forKey:@"deviceToken"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
                 NSLog(@",l,ll,l,l,l%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"firstPassWordLogin"]);

@@ -286,13 +286,16 @@ static bool IsVerify =NO;
             IsVerify =NO;
             NSArray *a = [[responseObject objectForKey:@"d"] objectForKey:@"data"];
             for(NSDictionary *item in a){
-                [[NSUserDefaults standardUserDefaults]setObject:_phoneNumberTextField.text forKey:@"cellPhone"];
+                [[NSUserDefaults standardUserDefaults]setObject:_phoneNumberTextField.text forKey:@"userName"];
                 [[NSUserDefaults standardUserDefaults]setObject:[item objectForKey:@"userToken"] forKey:@"UserToken"];
                 NSString *isFaceRegister = [NSString stringWithFormat:@"%@",[item objectForKey:@"isFaceRegister"]];
                 NSLog(@"ssssssssss  %@",isFaceRegister);
                 [[NSUserDefaults standardUserDefaults] setObject:isFaceRegister forKey:@"isFaceRegister"];
                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"faceCount"] forKey:@"currentFaceCount"];
                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"userId"] forKey:@"userId"];
+                NSLog(@"mmmmm    %@",[item objectForKey:@"userId"]);
+                 NSLog(@"mmmmm    %@",[item objectForKey:@"userToken"]);
+                [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"deviceToken"] forKey:@"deviceToken"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
             }

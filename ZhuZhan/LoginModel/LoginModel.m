@@ -119,13 +119,10 @@
 //}
 + (NSURLSessionDataTask *)LoginWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
     NSString *urlStr = [NSString stringWithFormat:@"api/account/login"];
+    NSLog(@"dic===>%@",dic);
     return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
-       
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-//            LoginModel *model = [[LoginModel alloc] init];
-//            [model setDict:JSON[@"d"][@"data"][0]];
-//            NSLog(@"%@",model);
             [mutablePosts addObject:JSON];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
@@ -197,7 +194,7 @@
         NSLog(@"JSON===>%@",JSON);
 
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            //[mutablePosts addObject:JSON[@"result"]];
+            [mutablePosts addObject:JSON];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
@@ -213,11 +210,11 @@
 
 + (NSURLSessionDataTask *)RegisterFaceWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
 NSString *urlStr = [NSString stringWithFormat:@"api/account/postfaceregister"];
-    return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+    return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
        
-        NSLog(@"JSON===>%@",responseObject);
+        NSLog(@"JSON===>%@",JSON);
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:responseObject];
+            [mutablePosts addObject:JSON];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
@@ -227,6 +224,50 @@ NSString *urlStr = [NSString stringWithFormat:@"api/account/postfaceregister"];
             block([NSMutableArray array], error);
         }
 
+    }];
+}
+
+
+//完善用户信息
++ (NSURLSessionDataTask *)PostInformationImprovedWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic
+{
+NSString *urlStr = [NSString stringWithFormat:@"api/account/PostInformationImproved"];
+    return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+        [mutablePosts addObject:JSON];
+        if (block) {
+            block([NSMutableArray arrayWithArray:mutablePosts], nil);
+        }
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+
+    }];
+
+}
+
+//增加履历
++ (NSURLSessionDataTask *)AddparticularsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic
+{
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/addparticulars"];
+    return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+        [mutablePosts addObject:JSON];
+        if (block) {
+            block([NSMutableArray arrayWithArray:mutablePosts], nil);
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+        
     }];
 }
 @end
