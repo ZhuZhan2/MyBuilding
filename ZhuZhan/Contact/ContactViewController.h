@@ -10,7 +10,7 @@
 #import "XHPathCover.h"
 #import "ACTimeScroller.h"
 #import "HidePage.h"
-@interface ContactViewController : UITableViewController<ACTimeScrollerDelegate>{
+@interface ContactViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate>{
     NSMutableArray *_datasource;
     ACTimeScroller *_timeScroller;
     id<HidePage>hideDelegate;

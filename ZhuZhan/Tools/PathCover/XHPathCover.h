@@ -12,8 +12,14 @@
 extern NSString *const XHUserNameKey;
 extern NSString *const XHBirthdayKey;
 
-@interface XHPathCover : UIView
+@protocol XHPathCoverDelegate <NSObject>
 
+-(void)gotoMyCenter;
+
+@end
+
+@interface XHPathCover : UIView
+@property (nonatomic, weak) id<XHPathCoverDelegate>delegate;
 // parallax background
 @property (nonatomic, strong) UIImageView *bannerImageView;
 @property (nonatomic, strong) UIImageView *bannerImageViewWithImageEffects;

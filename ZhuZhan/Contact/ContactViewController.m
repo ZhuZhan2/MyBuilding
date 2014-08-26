@@ -35,6 +35,7 @@ NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
                                                                      nil]];
     //上拉刷新界面
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 150)];
+    _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
     [_pathCover setAvatarImage:[UIImage imageNamed:@"首页侧拉栏_03.png"]];
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"用户名", XHUserNameKey, @"公司名字显示在这里     职位", XHBirthdayKey, nil]];
@@ -190,5 +191,10 @@ NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 {
     NSIndexPath *indexPath = [[self tableView] indexPathForCell:cell];
     return _datasource[[indexPath row]];
+}
+
+//点击自己头像去个人中心
+-(void)gotoMyCenter{
+    NSLog(@"gotoMyCenter");
 }
 @end
