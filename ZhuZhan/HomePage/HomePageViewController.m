@@ -154,7 +154,7 @@
             break;
         case 1:
             NSLog(@"项目");
-            projectview = [[ProjectViewController alloc] init];
+            projectview = [[ProjectTableViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:projectview];
             [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
             [contentView addSubview:nav.view];
