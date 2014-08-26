@@ -328,7 +328,7 @@
 		D3AD60A119AC574A001FD483 /* networkConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD609D19AC574A001FD483 /* networkConnect.m */; };
 		D3AD60A219AC574A001FD483 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD609F19AC574A001FD483 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D3AD60A619AC5769001FD483 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60A519AC5769001FD483 /* MBProgressHUD.m */; };
-		D3AD60A919AC7692001FD483 /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60A819AC7692001FD483 /* ContactModel.m */; };
+		D3AD60A919AC7692001FD483 /* ProjectContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60A819AC7692001FD483 /* ProjectContactModel.m */; };
 		D3AD60DB19AC7BD1001FD483 /* DecorationProject.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60C919AC7BD1001FD483 /* DecorationProject.m */; };
 		D3AD60DC19AC7BD1001FD483 /* LandInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60CB19AC7BD1001FD483 /* LandInfo.m */; };
 		D3AD60DD19AC7BD1001FD483 /* MainBuild.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60CD19AC7BD1001FD483 /* MainBuild.m */; };
@@ -338,13 +338,13 @@
 		D3AD60E119AC7BD1001FD483 /* ProgramDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60D519AC7BD1001FD483 /* ProgramDetailViewController.m */; };
 		D3AD60E219AC7BD1001FD483 /* ProgramSelectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60D719AC7BD1001FD483 /* ProgramSelectViewCell.m */; };
 		D3AD60E319AC7BD1001FD483 /* ScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60D919AC7BD1001FD483 /* ScrollViewController.m */; };
-		D3AD60E919AC7C0B001FD483 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60E619AC7C0B001FD483 /* CycleScrollView.m */; };
-		D3AD60EA19AC7C0B001FD483 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60E819AC7C0B001FD483 /* ViewController.m */; };
+		D3AD60E919AC7C0B001FD483 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60E619AC7C0B001FD483 /* CycleScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D3AD60EA19AC7C0B001FD483 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60E819AC7C0B001FD483 /* ViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D3AD60ED19AC7CA2001FD483 /* ProjectImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60EC19AC7CA2001FD483 /* ProjectImageModel.m */; };
-		D3AD60F919AC7CC5001FD483 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F119AC7CC5001FD483 /* EGOCache.m */; };
-		D3AD60FA19AC7CC5001FD483 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F419AC7CC5001FD483 /* EGOImageLoadConnection.m */; };
-		D3AD60FB19AC7CC5001FD483 /* EGOImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F619AC7CC5001FD483 /* EGOImageLoader.m */; };
-		D3AD60FC19AC7CC5001FD483 /* EGOImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F819AC7CC5001FD483 /* EGOImageView.m */; };
+		D3AD60F919AC7CC5001FD483 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F119AC7CC5001FD483 /* EGOCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D3AD60FA19AC7CC5001FD483 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F419AC7CC5001FD483 /* EGOImageLoadConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D3AD60FB19AC7CC5001FD483 /* EGOImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F619AC7CC5001FD483 /* EGOImageLoader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D3AD60FC19AC7CC5001FD483 /* EGOImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F819AC7CC5001FD483 /* EGOImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -930,8 +930,8 @@
 		D3AD609F19AC574A001FD483 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D3AD60A419AC5769001FD483 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		D3AD60A519AC5769001FD483 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		D3AD60A719AC7692001FD483 /* ContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactModel.h; sourceTree = "<group>"; };
-		D3AD60A819AC7692001FD483 /* ContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
+		D3AD60A719AC7692001FD483 /* ProjectContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectContactModel.h; sourceTree = "<group>"; };
+		D3AD60A819AC7692001FD483 /* ProjectContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectContactModel.m; sourceTree = "<group>"; };
 		D3AD60C819AC7BD1001FD483 /* DecorationProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecorationProject.h; sourceTree = "<group>"; };
 		D3AD60C919AC7BD1001FD483 /* DecorationProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecorationProject.m; sourceTree = "<group>"; };
 		D3AD60CA19AC7BD1001FD483 /* LandInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandInfo.h; sourceTree = "<group>"; };
@@ -1740,8 +1740,8 @@
 				D3311CB119AB03F3003B2682 /* ProjectApi.m */,
 				D3AD600219AC3E62001FD483 /* ProjectStage.h */,
 				D3AD600319AC3E62001FD483 /* ProjectStage.m */,
-				D3AD60A719AC7692001FD483 /* ContactModel.h */,
-				D3AD60A819AC7692001FD483 /* ContactModel.m */,
+				D3AD60A719AC7692001FD483 /* ProjectContactModel.h */,
+				D3AD60A819AC7692001FD483 /* ProjectContactModel.m */,
 				D3AD60EB19AC7CA2001FD483 /* ProjectImageModel.h */,
 				D3AD60EC19AC7CA2001FD483 /* ProjectImageModel.m */,
 			);
@@ -2363,7 +2363,7 @@
 				0426C29719922D5A00CD8822 /* GPUImageMultiplyBlendFilter.m in Sources */,
 				0426C26519922D5A00CD8822 /* GPUImageErosionFilter.m in Sources */,
 				0426C2D219922D5A00CD8822 /* GPUImageUIElement.m in Sources */,
-				D3AD60A919AC7692001FD483 /* ContactModel.m in Sources */,
+				D3AD60A919AC7692001FD483 /* ProjectContactModel.m in Sources */,
 				0426C23F19922D5A00CD8822 /* BaseViewController.m in Sources */,
 				0426C26919922D5A00CD8822 /* GPUImageFastBlurFilter.m in Sources */,
 				0426C29019922D5A00CD8822 /* GPUImageMedianFilter.m in Sources */,

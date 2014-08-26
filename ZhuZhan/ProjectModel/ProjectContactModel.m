@@ -6,9 +6,9 @@
 //
 //
 
-#import "ContactModel.h"
+#import "ProjectContactModel.h"
 #import "ProjectStage.h"
-@implementation ContactModel
+@implementation ProjectContactModel
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
     self.a_id = [ProjectStage ProjectStrStage:dict[@"id"]];
