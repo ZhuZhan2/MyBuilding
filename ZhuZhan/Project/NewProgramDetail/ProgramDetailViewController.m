@@ -27,13 +27,13 @@
 {
     [super viewDidLoad];
     //[self initNaviAndScrollView];
-//    [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
-//        if (!error) {
-//            NSLog(@"==========%@",posts[0]);
-//        }else{
-//        
-//        }
-//    } projectId:self.ID];
+    [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            NSLog(@"==========%@",posts[0]);
+        }else{
+        
+        }
+    } projectId:self.ID];
     // Do any additional setup after loading the view.
 }
 

@@ -113,24 +113,6 @@
     menu.delegate = self;
     [self.view addSubview:menu];
     
-    
-    UIButton *LoginOutBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    LoginOutBtn.frame = CGRectMake(20, 20, 40, 30);
-    [LoginOutBtn setTitle:@"退出" forState:UIControlStateNormal];
-    [LoginOutBtn addTarget:self action:@selector(loginOut) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:LoginOutBtn];
-    
-    UIButton *perfectBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    perfectBtn.frame = CGRectMake(70, 20, 40, 30);
-    [perfectBtn setTitle:@"完善" forState:UIControlStateNormal];
-    [perfectBtn addTarget:self action:@selector(perfect) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:perfectBtn];
-
-    UIButton *addExperienceBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    addExperienceBtn.frame = CGRectMake(200, 20, 60, 30);
-    [addExperienceBtn setTitle:@"增加履历" forState:UIControlStateNormal];
-    [addExperienceBtn addTarget:self action:@selector(addExperience) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:addExperienceBtn];
 }
 
 -(NSString *)timeConversion:(NSString *)time

@@ -146,8 +146,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ProgramDetailViewController* vc=[[ProgramDetailViewController alloc]init];
-//    projectModel *model = showArr[indexPath.row];
-//    vc.ID=model.a_id;
+    projectModel *model = showArr[indexPath.row];
+    vc.ID=model.a_id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -182,7 +182,7 @@
         countLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
         countLabel.textColor = GrayColor;
         countLabel.textAlignment = NSTextAlignmentCenter;
-        countLabel.text = [NSString stringWithFormat:@"共计%d条",showArr.count];
+        countLabel.text = [NSString stringWithFormat:@"共计%ld条",showArr.count];
         [bgView addSubview:countLabel];
         return bgView;
     }
