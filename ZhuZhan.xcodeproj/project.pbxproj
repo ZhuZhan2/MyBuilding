@@ -338,13 +338,13 @@
 		D3AD60E119AC7BD1001FD483 /* ProgramDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60D519AC7BD1001FD483 /* ProgramDetailViewController.m */; };
 		D3AD60E219AC7BD1001FD483 /* ProgramSelectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60D719AC7BD1001FD483 /* ProgramSelectViewCell.m */; };
 		D3AD60E319AC7BD1001FD483 /* ScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60D919AC7BD1001FD483 /* ScrollViewController.m */; };
-		D3AD60E919AC7C0B001FD483 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60E619AC7C0B001FD483 /* CycleScrollView.m */; };
-		D3AD60EA19AC7C0B001FD483 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60E819AC7C0B001FD483 /* ViewController.m */; };
+		D3AD60E919AC7C0B001FD483 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60E619AC7C0B001FD483 /* CycleScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D3AD60EA19AC7C0B001FD483 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60E819AC7C0B001FD483 /* ViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D3AD60ED19AC7CA2001FD483 /* ProjectImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60EC19AC7CA2001FD483 /* ProjectImageModel.m */; };
 		D3AD60F919AC7CC5001FD483 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F119AC7CC5001FD483 /* EGOCache.m */; };
-		D3AD60FA19AC7CC5001FD483 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F419AC7CC5001FD483 /* EGOImageLoadConnection.m */; };
-		D3AD60FB19AC7CC5001FD483 /* EGOImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F619AC7CC5001FD483 /* EGOImageLoader.m */; };
-		D3AD60FC19AC7CC5001FD483 /* EGOImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F819AC7CC5001FD483 /* EGOImageView.m */; };
+		D3AD60FA19AC7CC5001FD483 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F419AC7CC5001FD483 /* EGOImageLoadConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D3AD60FB19AC7CC5001FD483 /* EGOImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F619AC7CC5001FD483 /* EGOImageLoader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D3AD60FC19AC7CC5001FD483 /* EGOImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F819AC7CC5001FD483 /* EGOImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
