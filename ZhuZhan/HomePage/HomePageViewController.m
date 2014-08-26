@@ -7,6 +7,10 @@
 //
 
 #import "HomePageViewController.h"
+#import "LoginModel.h"
+
+#import "AppDelegate.h"
+#import "HomePageViewController.h"
 
 @interface HomePageViewController ()
 
@@ -37,7 +41,7 @@
     [self.view addSubview:contentView];
     
     toolView = [[UIView alloc] initWithFrame:CGRectMake(0, 513, 320, 55)];
-    [toolView setBackgroundColor:RGBCOLOR(68, 101, 175)];
+   [toolView setBackgroundColor:RGBCOLOR(68, 101, 175)];
     
     contactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [contactBtn setFrame:CGRectMake(20, 10, 40, 35)];
@@ -108,6 +112,134 @@
     menu = [[QuadCurveMenu alloc] initWithFrame:self.view.bounds menus:menus];
     menu.delegate = self;
     [self.view addSubview:menu];
+    
+    
+    UIButton *LoginOutBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    LoginOutBtn.frame = CGRectMake(20, 20, 40, 30);
+    [LoginOutBtn setTitle:@"退出" forState:UIControlStateNormal];
+    [LoginOutBtn addTarget:self action:@selector(loginOut) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:LoginOutBtn];
+    
+    UIButton *perfectBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    perfectBtn.frame = CGRectMake(70, 20, 40, 30);
+    [perfectBtn setTitle:@"完善" forState:UIControlStateNormal];
+    [perfectBtn addTarget:self action:@selector(perfect) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:perfectBtn];
+
+    UIButton *addExperienceBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    addExperienceBtn.frame = CGRectMake(200, 20, 60, 30);
+    [addExperienceBtn setTitle:@"增加履历" forState:UIControlStateNormal];
+    [addExperienceBtn addTarget:self action:@selector(addExperience) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:addExperienceBtn];
+}
+
+-(NSString *)timeConversion:(NSString *)time
+{
+    NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
+    [inputFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
+    [inputFormatter setDateFormat:@"yyyyMMdd"];
+    NSDate* inputDate = [inputFormatter dateFromString:time];
+    NSLog(@"date = %@", inputDate);
+    
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *confromTimespStr = [formatter stringFromDate:inputDate];
+
+    return confromTimespStr;
+}
+
+- (void)addExperience
+{
+     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+    
+    NSString *inDate = [self timeConversion:@"20100801"];
+    NSString *outDate = [self timeConversion:@"20130901"];
+    NSLog(@"time   %@",inDate);
+    NSLog(@"time   %@",outDate);
+    
+    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userId,@"userId",@"companyName",@"companyName",inDate,@"inDate",outDate,@"outDate",@"true",@"isIn",@"汉韩海qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq龙",@"information",nil];
+    NSLog(@"mmmdddfdfd    %@",parameter);
+    
+    [LoginModel AddparticularsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        NSDictionary *responseObject = [posts objectAtIndex:0];
+        NSString *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
+
+        if ([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"添加成功" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"添加失败" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+            [alert show];
+        }
+
+    } dic:parameter];
+    
+}
+
+- (void)perfect
+{
+         NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+ NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userId,@"userId",@"company",@"company",@"industry",@"industry",@"position",@"position",@"locationProvince",@"locationProvince",@"locationCity",@"locationCity",@"introduction",@"introduction",nil];
+    [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
+        NSDictionary *responseObject = [posts objectAtIndex:0];
+        NSString *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
+        if ([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"更新成功" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"更新失败" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+            [alert show];
+        }
+
+    } dic:parameter];
+    
+}
+
+-(void)loginOut
+{
+
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+    NSString *deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
+
+    
+    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userId,@"userId",userToken,@"userToken",deviceToken,@"deviceToken",@"mobile",@"deviceType",nil];
+    [LoginModel PostLogOutWithBlock:^(NSMutableArray *posts, NSError *error) {
+        NSDictionary *responseObject = [posts objectAtIndex:0];
+        NSString *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
+        if ([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]) {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注销成功" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+//            [alert show];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userName"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UserToken"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"isFaceRegister"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"currentFaceCount"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userId"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"deviceToken"];
+            
+            HomePageViewController *homepage = [[HomePageViewController alloc] init];
+            
+            CGContextRef context = UIGraphicsGetCurrentContext();
+            [UIView beginAnimations:nil context:context];
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+            [UIView setAnimationDuration:0.7];
+            [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[AppDelegate instance] window] cache:YES];
+            NSUInteger tview1 = [[self.view subviews] indexOfObject:[[AppDelegate instance] window]];
+            NSUInteger tview2 = [[self.view subviews] indexOfObject:homepage.view];
+            [self.view exchangeSubviewAtIndex:tview2 withSubviewAtIndex:tview1];
+            [UIView setAnimationDelegate:self];
+            [UIView commitAnimations];
+            
+            [[AppDelegate instance] window].rootViewController = homepage;
+            [[[AppDelegate instance] window] makeKeyAndVisible];
+
+
+            
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注销失败" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+            [alert show];
+        }
+    } dic:parameter];
     
 }
 
