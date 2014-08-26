@@ -340,6 +340,11 @@
 		D3AD60E319AC7BD1001FD483 /* ScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60D919AC7BD1001FD483 /* ScrollViewController.m */; };
 		D3AD60E919AC7C0B001FD483 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60E619AC7C0B001FD483 /* CycleScrollView.m */; };
 		D3AD60EA19AC7C0B001FD483 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60E819AC7C0B001FD483 /* ViewController.m */; };
+		D3AD60ED19AC7CA2001FD483 /* ProjectImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60EC19AC7CA2001FD483 /* ProjectImageModel.m */; };
+		D3AD60F919AC7CC5001FD483 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F119AC7CC5001FD483 /* EGOCache.m */; };
+		D3AD60FA19AC7CC5001FD483 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F419AC7CC5001FD483 /* EGOImageLoadConnection.m */; };
+		D3AD60FB19AC7CC5001FD483 /* EGOImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F619AC7CC5001FD483 /* EGOImageLoader.m */; };
+		D3AD60FC19AC7CC5001FD483 /* EGOImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F819AC7CC5001FD483 /* EGOImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -950,6 +955,16 @@
 		D3AD60E619AC7C0B001FD483 /* CycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleScrollView.m; sourceTree = "<group>"; };
 		D3AD60E719AC7C0B001FD483 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		D3AD60E819AC7C0B001FD483 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D3AD60EB19AC7CA2001FD483 /* ProjectImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectImageModel.h; sourceTree = "<group>"; };
+		D3AD60EC19AC7CA2001FD483 /* ProjectImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectImageModel.m; sourceTree = "<group>"; };
+		D3AD60F019AC7CC5001FD483 /* EGOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOCache.h; sourceTree = "<group>"; };
+		D3AD60F119AC7CC5001FD483 /* EGOCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOCache.m; sourceTree = "<group>"; };
+		D3AD60F319AC7CC5001FD483 /* EGOImageLoadConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageLoadConnection.h; sourceTree = "<group>"; };
+		D3AD60F419AC7CC5001FD483 /* EGOImageLoadConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageLoadConnection.m; sourceTree = "<group>"; };
+		D3AD60F519AC7CC5001FD483 /* EGOImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageLoader.h; sourceTree = "<group>"; };
+		D3AD60F619AC7CC5001FD483 /* EGOImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageLoader.m; sourceTree = "<group>"; };
+		D3AD60F719AC7CC5001FD483 /* EGOImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageView.h; sourceTree = "<group>"; };
+		D3AD60F819AC7CC5001FD483 /* EGOImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageView.m; sourceTree = "<group>"; };
 		D3EACDEE19934D0E0058FC9D /* HidePage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HidePage.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1155,6 +1170,7 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3AD60EE19AC7CC5001FD483 /* EGOImageView */,
 				D3AD60E419AC7C0B001FD483 /* Code4appScrollView */,
 				D3AD60A319AC5769001FD483 /* MBProgressHUD */,
 				D3AD609919AC574A001FD483 /* Connection */,
@@ -1726,6 +1742,8 @@
 				D3AD600319AC3E62001FD483 /* ProjectStage.m */,
 				D3AD60A719AC7692001FD483 /* ContactModel.h */,
 				D3AD60A819AC7692001FD483 /* ContactModel.m */,
+				D3AD60EB19AC7CA2001FD483 /* ProjectImageModel.h */,
+				D3AD60EC19AC7CA2001FD483 /* ProjectImageModel.m */,
 			);
 			path = ProjectModel;
 			sourceTree = "<group>";
@@ -1893,6 +1911,37 @@
 				D3AD60E819AC7C0B001FD483 /* ViewController.m */,
 			);
 			path = Code4appScrollView;
+			sourceTree = "<group>";
+		};
+		D3AD60EE19AC7CC5001FD483 /* EGOImageView */ = {
+			isa = PBXGroup;
+			children = (
+				D3AD60EF19AC7CC5001FD483 /* EGOCache */,
+				D3AD60F219AC7CC5001FD483 /* EGOImageLoader */,
+				D3AD60F719AC7CC5001FD483 /* EGOImageView.h */,
+				D3AD60F819AC7CC5001FD483 /* EGOImageView.m */,
+			);
+			path = EGOImageView;
+			sourceTree = "<group>";
+		};
+		D3AD60EF19AC7CC5001FD483 /* EGOCache */ = {
+			isa = PBXGroup;
+			children = (
+				D3AD60F019AC7CC5001FD483 /* EGOCache.h */,
+				D3AD60F119AC7CC5001FD483 /* EGOCache.m */,
+			);
+			path = EGOCache;
+			sourceTree = "<group>";
+		};
+		D3AD60F219AC7CC5001FD483 /* EGOImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				D3AD60F319AC7CC5001FD483 /* EGOImageLoadConnection.h */,
+				D3AD60F419AC7CC5001FD483 /* EGOImageLoadConnection.m */,
+				D3AD60F519AC7CC5001FD483 /* EGOImageLoader.h */,
+				D3AD60F619AC7CC5001FD483 /* EGOImageLoader.m */,
+			);
+			path = EGOImageLoader;
 			sourceTree = "<group>";
 		};
 		D3EACDE3199327780058FC9D /* QuadCurveMenu */ = {
@@ -2080,6 +2129,7 @@
 				0426C28B19922D5A00CD8822 /* GPUImageLowPassFilter.m in Sources */,
 				0426C23719922D5A00CD8822 /* AFHTTPRequestOperationManager.m in Sources */,
 				0426C27D19922D5A00CD8822 /* GPUImageHSBFilter.m in Sources */,
+				D3AD60FA19AC7CC5001FD483 /* EGOImageLoadConnection.m in Sources */,
 				0426C2DC19922D5A00CD8822 /* GPUImageMovieWriter.m in Sources */,
 				0426C24619922D5A00CD8822 /* GPUImageAmatorkaFilter.m in Sources */,
 				0426C2EB19922D5A00CD8822 /* FaceppTrainer.m in Sources */,
@@ -2126,6 +2176,7 @@
 				D3AD60E219AC7BD1001FD483 /* ProgramSelectViewCell.m in Sources */,
 				0426C27319922D5A00CD8822 /* GPUImageGrayscaleFilter.m in Sources */,
 				0426C2C419922D5A00CD8822 /* GPUImageTextureInput.m in Sources */,
+				D3AD60F919AC7CC5001FD483 /* EGOCache.m in Sources */,
 				0426C2DB19922D5A00CD8822 /* GPUImageContext.m in Sources */,
 				0426C26A19922D5A00CD8822 /* GPUImageFASTCornerDetectionFilter.m in Sources */,
 				0426C24E19922D5A00CD8822 /* GPUImageCannyEdgeDetectionFilter.m in Sources */,
@@ -2135,6 +2186,7 @@
 				0426C26419922D5A00CD8822 /* GPUImageEmbossFilter.m in Sources */,
 				0426C29E19922D5A00CD8822 /* GPUImageOverlayBlendFilter.m in Sources */,
 				0426C2B119922D5A00CD8822 /* GPUImageSaturationFilter.m in Sources */,
+				D3AD60ED19AC7CA2001FD483 /* ProjectImageModel.m in Sources */,
 				0426C2BE19922D5A00CD8822 /* GPUImageSourceOverBlendFilter.m in Sources */,
 				0426C2B719922D5A00CD8822 /* GPUImageSingleComponentGaussianBlurFilter.m in Sources */,
 				0426C29D19922D5A00CD8822 /* GPUImageOutput.m in Sources */,
@@ -2255,6 +2307,7 @@
 				0426C2B919922D5A00CD8822 /* GPUImageSmoothToonFilter.m in Sources */,
 				0426C30019922D5A00CD8822 /* UIProgressView+AFNetworking.m in Sources */,
 				0426C26019922D5A00CD8822 /* GPUImageDirectionalNonMaximumSuppressionFilter.m in Sources */,
+				D3AD60FB19AC7CC5001FD483 /* EGOImageLoader.m in Sources */,
 				0426C2CB19922D5A00CD8822 /* GPUImageToneCurveFilter.m in Sources */,
 				0426C23219922D5A00CD8822 /* FaceViewController.m in Sources */,
 				0426C25F19922D5A00CD8822 /* GPUImageDilationFilter.m in Sources */,
@@ -2297,6 +2350,7 @@
 				0426C2C619922D5A00CD8822 /* GPUImageThreeInputFilter.m in Sources */,
 				0426C2CC19922D5A00CD8822 /* GPUImageToonFilter.m in Sources */,
 				0426C29419922D5A00CD8822 /* GPUImageMotionBlurFilter.m in Sources */,
+				D3AD60FC19AC7CC5001FD483 /* EGOImageView.m in Sources */,
 				0426C2BA19922D5A00CD8822 /* GPUImageSobelEdgeDetectionFilter.m in Sources */,
 				0426C29119922D5A00CD8822 /* GPUImageMissEtikateFilter.m in Sources */,
 				0426C26F19922D5A00CD8822 /* GPUImageGaussianBlurFilter.m in Sources */,
