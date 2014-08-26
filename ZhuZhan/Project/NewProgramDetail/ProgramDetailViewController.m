@@ -8,6 +8,8 @@
 
 #import "ProgramDetailViewController.h"
 #import "ProjectApi.h"
+#import "ProjectImageModel.h"
+#import "ProjectContactModel.h"
 @interface ProgramDetailViewController ()
 
 @end
@@ -29,7 +31,17 @@
     //[self initNaviAndScrollView];
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            NSLog(@"==========%@",posts[0]);
+            NSLog(@"==========%@",posts);
+            //posts下标0是联系人数组 下标1是图片数组
+            for(int i=0;i<[posts[0] count];i++){
+                ProjectContactModel *contactModel = posts[0][i];
+                NSLog(@"%@",contactModel.a_category);
+            }
+            
+            for(int i=0;i<[posts[1] count];i++){
+                ProjectImageModel *imageModel = posts[1][i];
+                NSLog(@"%@",imageModel.a_imageCategory);
+            }
         }else{
         
         }

@@ -12,13 +12,13 @@
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
     self.a_id = [ProjectStage ProjectStrStage:dict[@"id"]];
-    self.a_contactName = [ProjectStage ProjectStrStage:dict[@"landName"]];
-    self.a_mobilePhone = [ProjectStage ProjectStrStage:dict[@"landDistrict"]];
-    self.a_accountName = [ProjectStage ProjectStrStage:dict[@"landProvince"]];
-    self.a_accountAddress = [ProjectStage ProjectStrStage:dict[@"landCity"]];
-    self.a_projectId = [ProjectStage ProjectStrStage:dict[@"landAddress"]];
-    self.a_projectName = [ProjectStage ProjectStrStage:dict[@"landArea"]];
-    self.a_duties = [ProjectStage ProjectStrStage:dict[@"landPlotRatio"]];
-    self.a_category = [ProjectStage ProjectStrStage:dict[@"landUsages"]];
+    self.a_contactName = [ProjectStage ProjectStrStage:dict[@"contactName"]];
+    self.a_mobilePhone = [ProjectStage ProjectStrStage:dict[@"contactCellphone"]];
+    self.a_accountName = [ProjectStage ProjectStrStage:dict[@"contactCompany"]];
+    self.a_accountAddress = [ProjectStage ProjectStrStage:dict[@"contactCompanyAddress"]];
+    self.a_projectId = [ProjectStage ProjectStrStage:dict[@"contactProjectId"]];
+    self.a_projectName = [ProjectStage ProjectStrStage:dict[@"contactProjectName"]];
+    self.a_duties = [ProjectStage ProjectStrStage:dict[@"contactDuties"]];
+    self.a_category = [ProjectStage ProjectStrStage:dict[@"contactCategory"]];
 }
 @end
