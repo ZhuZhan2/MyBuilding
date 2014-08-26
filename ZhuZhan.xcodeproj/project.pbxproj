@@ -329,15 +329,17 @@
 		D3AD60A219AC574A001FD483 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD609F19AC574A001FD483 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D3AD60A619AC5769001FD483 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60A519AC5769001FD483 /* MBProgressHUD.m */; };
 		D3AD60A919AC7692001FD483 /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60A819AC7692001FD483 /* ContactModel.m */; };
-		D3AD60BE19AC7B92001FD483 /* DecorationProject.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60AC19AC7B92001FD483 /* DecorationProject.m */; };
-		D3AD60BF19AC7B92001FD483 /* LandInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60AE19AC7B92001FD483 /* LandInfo.m */; };
-		D3AD60C019AC7B92001FD483 /* MainBuild.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60B019AC7B92001FD483 /* MainBuild.m */; };
-		D3AD60C119AC7B92001FD483 /* MainDesign.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60B219AC7B92001FD483 /* MainDesign.m */; };
-		D3AD60C219AC7B92001FD483 /* MyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60B419AC7B92001FD483 /* MyFactory.m */; };
-		D3AD60C319AC7B92001FD483 /* MyIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60B619AC7B92001FD483 /* MyIndexPath.m */; };
-		D3AD60C419AC7B92001FD483 /* ProgramDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60B819AC7B92001FD483 /* ProgramDetailViewController.m */; };
-		D3AD60C519AC7B92001FD483 /* ProgramSelectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60BA19AC7B92001FD483 /* ProgramSelectViewCell.m */; };
-		D3AD60C619AC7B92001FD483 /* ScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60BC19AC7B92001FD483 /* ScrollViewController.m */; };
+		D3AD60DB19AC7BD1001FD483 /* DecorationProject.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60C919AC7BD1001FD483 /* DecorationProject.m */; };
+		D3AD60DC19AC7BD1001FD483 /* LandInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60CB19AC7BD1001FD483 /* LandInfo.m */; };
+		D3AD60DD19AC7BD1001FD483 /* MainBuild.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60CD19AC7BD1001FD483 /* MainBuild.m */; };
+		D3AD60DE19AC7BD1001FD483 /* MainDesign.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60CF19AC7BD1001FD483 /* MainDesign.m */; };
+		D3AD60DF19AC7BD1001FD483 /* MyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60D119AC7BD1001FD483 /* MyFactory.m */; };
+		D3AD60E019AC7BD1001FD483 /* MyIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60D319AC7BD1001FD483 /* MyIndexPath.m */; };
+		D3AD60E119AC7BD1001FD483 /* ProgramDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60D519AC7BD1001FD483 /* ProgramDetailViewController.m */; };
+		D3AD60E219AC7BD1001FD483 /* ProgramSelectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60D719AC7BD1001FD483 /* ProgramSelectViewCell.m */; };
+		D3AD60E319AC7BD1001FD483 /* ScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60D919AC7BD1001FD483 /* ScrollViewController.m */; };
+		D3AD60E919AC7C0B001FD483 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60E619AC7C0B001FD483 /* CycleScrollView.m */; };
+		D3AD60EA19AC7C0B001FD483 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60E819AC7C0B001FD483 /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -925,25 +927,29 @@
 		D3AD60A519AC5769001FD483 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		D3AD60A719AC7692001FD483 /* ContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactModel.h; sourceTree = "<group>"; };
 		D3AD60A819AC7692001FD483 /* ContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
-		D3AD60AB19AC7B92001FD483 /* DecorationProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecorationProject.h; sourceTree = "<group>"; };
-		D3AD60AC19AC7B92001FD483 /* DecorationProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecorationProject.m; sourceTree = "<group>"; };
-		D3AD60AD19AC7B92001FD483 /* LandInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandInfo.h; sourceTree = "<group>"; };
-		D3AD60AE19AC7B92001FD483 /* LandInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandInfo.m; sourceTree = "<group>"; };
-		D3AD60AF19AC7B92001FD483 /* MainBuild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainBuild.h; sourceTree = "<group>"; };
-		D3AD60B019AC7B92001FD483 /* MainBuild.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainBuild.m; sourceTree = "<group>"; };
-		D3AD60B119AC7B92001FD483 /* MainDesign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainDesign.h; sourceTree = "<group>"; };
-		D3AD60B219AC7B92001FD483 /* MainDesign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainDesign.m; sourceTree = "<group>"; };
-		D3AD60B319AC7B92001FD483 /* MyFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFactory.h; sourceTree = "<group>"; };
-		D3AD60B419AC7B92001FD483 /* MyFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFactory.m; sourceTree = "<group>"; };
-		D3AD60B519AC7B92001FD483 /* MyIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyIndexPath.h; sourceTree = "<group>"; };
-		D3AD60B619AC7B92001FD483 /* MyIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyIndexPath.m; sourceTree = "<group>"; };
-		D3AD60B719AC7B92001FD483 /* ProgramDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramDetailViewController.h; sourceTree = "<group>"; };
-		D3AD60B819AC7B92001FD483 /* ProgramDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramDetailViewController.m; sourceTree = "<group>"; };
-		D3AD60B919AC7B92001FD483 /* ProgramSelectViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramSelectViewCell.h; sourceTree = "<group>"; };
-		D3AD60BA19AC7B92001FD483 /* ProgramSelectViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramSelectViewCell.m; sourceTree = "<group>"; };
-		D3AD60BB19AC7B92001FD483 /* ScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewController.h; sourceTree = "<group>"; };
-		D3AD60BC19AC7B92001FD483 /* ScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewController.m; sourceTree = "<group>"; };
-		D3AD60BD19AC7B92001FD483 /* ShowPageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPageDelegate.h; sourceTree = "<group>"; };
+		D3AD60C819AC7BD1001FD483 /* DecorationProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecorationProject.h; sourceTree = "<group>"; };
+		D3AD60C919AC7BD1001FD483 /* DecorationProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecorationProject.m; sourceTree = "<group>"; };
+		D3AD60CA19AC7BD1001FD483 /* LandInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandInfo.h; sourceTree = "<group>"; };
+		D3AD60CB19AC7BD1001FD483 /* LandInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandInfo.m; sourceTree = "<group>"; };
+		D3AD60CC19AC7BD1001FD483 /* MainBuild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainBuild.h; sourceTree = "<group>"; };
+		D3AD60CD19AC7BD1001FD483 /* MainBuild.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainBuild.m; sourceTree = "<group>"; };
+		D3AD60CE19AC7BD1001FD483 /* MainDesign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainDesign.h; sourceTree = "<group>"; };
+		D3AD60CF19AC7BD1001FD483 /* MainDesign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainDesign.m; sourceTree = "<group>"; };
+		D3AD60D019AC7BD1001FD483 /* MyFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFactory.h; sourceTree = "<group>"; };
+		D3AD60D119AC7BD1001FD483 /* MyFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFactory.m; sourceTree = "<group>"; };
+		D3AD60D219AC7BD1001FD483 /* MyIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyIndexPath.h; sourceTree = "<group>"; };
+		D3AD60D319AC7BD1001FD483 /* MyIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyIndexPath.m; sourceTree = "<group>"; };
+		D3AD60D419AC7BD1001FD483 /* ProgramDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramDetailViewController.h; sourceTree = "<group>"; };
+		D3AD60D519AC7BD1001FD483 /* ProgramDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramDetailViewController.m; sourceTree = "<group>"; };
+		D3AD60D619AC7BD1001FD483 /* ProgramSelectViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramSelectViewCell.h; sourceTree = "<group>"; };
+		D3AD60D719AC7BD1001FD483 /* ProgramSelectViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramSelectViewCell.m; sourceTree = "<group>"; };
+		D3AD60D819AC7BD1001FD483 /* ScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewController.h; sourceTree = "<group>"; };
+		D3AD60D919AC7BD1001FD483 /* ScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewController.m; sourceTree = "<group>"; };
+		D3AD60DA19AC7BD1001FD483 /* ShowPageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPageDelegate.h; sourceTree = "<group>"; };
+		D3AD60E519AC7C0B001FD483 /* CycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleScrollView.h; sourceTree = "<group>"; };
+		D3AD60E619AC7C0B001FD483 /* CycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleScrollView.m; sourceTree = "<group>"; };
+		D3AD60E719AC7C0B001FD483 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D3AD60E819AC7C0B001FD483 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D3EACDEE19934D0E0058FC9D /* HidePage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HidePage.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1124,6 +1130,7 @@
 		0426C04B19922D5900CD8822 /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				D3AD60C719AC7BD1001FD483 /* NewProgramDetail */,
 				D3AD600519AC48DD001FD483 /* ProjectTableViewController.h */,
 				D3AD600619AC48DD001FD483 /* ProjectTableViewController.m */,
 				D3AD600819AC4AF8001FD483 /* ProjectTableViewCell.h */,
@@ -1148,6 +1155,7 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3AD60E419AC7C0B001FD483 /* Code4appScrollView */,
 				D3AD60A319AC5769001FD483 /* MBProgressHUD */,
 				D3AD609919AC574A001FD483 /* Connection */,
 				D3AD608019AC56CB001FD483 /* MJRefresh */,
@@ -1708,7 +1716,6 @@
 		D3311CA519AAD342003B2682 /* ProjectModel */ = {
 			isa = PBXGroup;
 			children = (
-				D3AD60AA19AC7B92001FD483 /* NewProgramDetail */,
 				D3311CA919AAD3D3003B2682 /* AFAppDotNetAPIClient.h */,
 				D3311CAA19AAD3D3003B2682 /* AFAppDotNetAPIClient.m */,
 				D3311CA619AAD357003B2682 /* projectModel.h */,
@@ -1851,30 +1858,41 @@
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
-		D3AD60AA19AC7B92001FD483 /* NewProgramDetail */ = {
+		D3AD60C719AC7BD1001FD483 /* NewProgramDetail */ = {
 			isa = PBXGroup;
 			children = (
-				D3AD60AB19AC7B92001FD483 /* DecorationProject.h */,
-				D3AD60AC19AC7B92001FD483 /* DecorationProject.m */,
-				D3AD60AD19AC7B92001FD483 /* LandInfo.h */,
-				D3AD60AE19AC7B92001FD483 /* LandInfo.m */,
-				D3AD60AF19AC7B92001FD483 /* MainBuild.h */,
-				D3AD60B019AC7B92001FD483 /* MainBuild.m */,
-				D3AD60B119AC7B92001FD483 /* MainDesign.h */,
-				D3AD60B219AC7B92001FD483 /* MainDesign.m */,
-				D3AD60B319AC7B92001FD483 /* MyFactory.h */,
-				D3AD60B419AC7B92001FD483 /* MyFactory.m */,
-				D3AD60B519AC7B92001FD483 /* MyIndexPath.h */,
-				D3AD60B619AC7B92001FD483 /* MyIndexPath.m */,
-				D3AD60B719AC7B92001FD483 /* ProgramDetailViewController.h */,
-				D3AD60B819AC7B92001FD483 /* ProgramDetailViewController.m */,
-				D3AD60B919AC7B92001FD483 /* ProgramSelectViewCell.h */,
-				D3AD60BA19AC7B92001FD483 /* ProgramSelectViewCell.m */,
-				D3AD60BB19AC7B92001FD483 /* ScrollViewController.h */,
-				D3AD60BC19AC7B92001FD483 /* ScrollViewController.m */,
-				D3AD60BD19AC7B92001FD483 /* ShowPageDelegate.h */,
+				D3AD60C819AC7BD1001FD483 /* DecorationProject.h */,
+				D3AD60C919AC7BD1001FD483 /* DecorationProject.m */,
+				D3AD60CA19AC7BD1001FD483 /* LandInfo.h */,
+				D3AD60CB19AC7BD1001FD483 /* LandInfo.m */,
+				D3AD60CC19AC7BD1001FD483 /* MainBuild.h */,
+				D3AD60CD19AC7BD1001FD483 /* MainBuild.m */,
+				D3AD60CE19AC7BD1001FD483 /* MainDesign.h */,
+				D3AD60CF19AC7BD1001FD483 /* MainDesign.m */,
+				D3AD60D019AC7BD1001FD483 /* MyFactory.h */,
+				D3AD60D119AC7BD1001FD483 /* MyFactory.m */,
+				D3AD60D219AC7BD1001FD483 /* MyIndexPath.h */,
+				D3AD60D319AC7BD1001FD483 /* MyIndexPath.m */,
+				D3AD60D419AC7BD1001FD483 /* ProgramDetailViewController.h */,
+				D3AD60D519AC7BD1001FD483 /* ProgramDetailViewController.m */,
+				D3AD60D619AC7BD1001FD483 /* ProgramSelectViewCell.h */,
+				D3AD60D719AC7BD1001FD483 /* ProgramSelectViewCell.m */,
+				D3AD60D819AC7BD1001FD483 /* ScrollViewController.h */,
+				D3AD60D919AC7BD1001FD483 /* ScrollViewController.m */,
+				D3AD60DA19AC7BD1001FD483 /* ShowPageDelegate.h */,
 			);
 			path = NewProgramDetail;
+			sourceTree = "<group>";
+		};
+		D3AD60E419AC7C0B001FD483 /* Code4appScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				D3AD60E519AC7C0B001FD483 /* CycleScrollView.h */,
+				D3AD60E619AC7C0B001FD483 /* CycleScrollView.m */,
+				D3AD60E719AC7C0B001FD483 /* ViewController.h */,
+				D3AD60E819AC7C0B001FD483 /* ViewController.m */,
+			);
+			path = Code4appScrollView;
 			sourceTree = "<group>";
 		};
 		D3EACDE3199327780058FC9D /* QuadCurveMenu */ = {
@@ -2050,7 +2068,7 @@
 			files = (
 				0426C23319922D5A00CD8822 /* PanViewController.m in Sources */,
 				0426C28E19922D5A00CD8822 /* GPUImageLuminosityBlendFilter.m in Sources */,
-				D3AD60C419AC7B92001FD483 /* ProgramDetailViewController.m in Sources */,
+				D3AD60E119AC7BD1001FD483 /* ProgramDetailViewController.m in Sources */,
 				0426C23019922D5A00CD8822 /* LoginViewController.m in Sources */,
 				0426C2F719922D5A00CD8822 /* CJSONSerializer.m in Sources */,
 				0426C24419922D5A00CD8822 /* GPUImageAddBlendFilter.m in Sources */,
@@ -2105,7 +2123,7 @@
 				0426C27119922D5A00CD8822 /* GPUImageGaussianSelectiveBlurFilter.m in Sources */,
 				0426C29B19922D5A00CD8822 /* GPUImageOpacityFilter.m in Sources */,
 				0426C25719922D5A00CD8822 /* GPUImageColorMatrixFilter.m in Sources */,
-				D3AD60C519AC7B92001FD483 /* ProgramSelectViewCell.m in Sources */,
+				D3AD60E219AC7BD1001FD483 /* ProgramSelectViewCell.m in Sources */,
 				0426C27319922D5A00CD8822 /* GPUImageGrayscaleFilter.m in Sources */,
 				0426C2C419922D5A00CD8822 /* GPUImageTextureInput.m in Sources */,
 				0426C2DB19922D5A00CD8822 /* GPUImageContext.m in Sources */,
@@ -2141,12 +2159,12 @@
 				0426C2D919922D5A00CD8822 /* GPUImageXYDerivativeFilter.m in Sources */,
 				0426C27019922D5A00CD8822 /* GPUImageGaussianBlurPositionFilter.m in Sources */,
 				0426C28219922D5A00CD8822 /* GPUImageKuwaharaRadius3Filter.m in Sources */,
-				D3AD60C319AC7B92001FD483 /* MyIndexPath.m in Sources */,
+				D3AD60E019AC7BD1001FD483 /* MyIndexPath.m in Sources */,
 				0426C2B819922D5A00CD8822 /* GPUImageSketchFilter.m in Sources */,
 				5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */,
 				0426C23819922D5A00CD8822 /* AFHTTPSessionManager.m in Sources */,
 				0426C25019922D5A00CD8822 /* GPUImageChromaKeyBlendFilter.m in Sources */,
-				D3AD60C019AC7B92001FD483 /* MainBuild.m in Sources */,
+				D3AD60DD19AC7BD1001FD483 /* MainBuild.m in Sources */,
 				0426C2F819922D5A00CD8822 /* XHPathCover.m in Sources */,
 				D3AD609619AC56CB001FD483 /* UIScrollView+Extension.m in Sources */,
 				0426C2F019922D5A00CD8822 /* CJSONDeserializer_BlocksExtensions.m in Sources */,
@@ -2174,6 +2192,7 @@
 				0426C28C19922D5A00CD8822 /* GPUImageLuminanceThresholdFilter.m in Sources */,
 				0426C27719922D5A00CD8822 /* GPUImageHazeFilter.m in Sources */,
 				0426C27919922D5A00CD8822 /* GPUImageHighPassFilter.m in Sources */,
+				D3AD60EA19AC7C0B001FD483 /* ViewController.m in Sources */,
 				0426C2E919922D5A00CD8822 /* FaceppPerson.m in Sources */,
 				0426C26119922D5A00CD8822 /* GPUimageDirectionalSobelEdgeDetectionFilter.m in Sources */,
 				0426C2F519922D5A00CD8822 /* CJSONDeserializer.m in Sources */,
@@ -2183,7 +2202,7 @@
 				0426C28119922D5A00CD8822 /* GPUImageKuwaharaFilter.m in Sources */,
 				0426C25D19922D5A00CD8822 /* GPUImageDarkenBlendFilter.m in Sources */,
 				0426C2FD19922D5A00CD8822 /* UIAlertView+AFNetworking.m in Sources */,
-				D3AD60C619AC7B92001FD483 /* ScrollViewController.m in Sources */,
+				D3AD60E319AC7BD1001FD483 /* ScrollViewController.m in Sources */,
 				0426C26619922D5A00CD8822 /* GPUImageExclusionBlendFilter.m in Sources */,
 				D3311CB219AB03F3003B2682 /* ProjectApi.m in Sources */,
 				0426C2E419922D5A00CD8822 /* FaceppDetection.m in Sources */,
@@ -2192,13 +2211,14 @@
 				0426C27419922D5A00CD8822 /* GPUImageHalftoneFilter.m in Sources */,
 				0426C2F319922D5A00CD8822 /* CDataScanner_Extensions.m in Sources */,
 				0426C28D19922D5A00CD8822 /* GPUImageLuminosity.m in Sources */,
+				D3AD60E919AC7C0B001FD483 /* CycleScrollView.m in Sources */,
 				0426C2D019922D5A00CD8822 /* GPUImageTwoPassFilter.m in Sources */,
 				0426C27B19922D5A00CD8822 /* GPUImageHistogramGenerator.m in Sources */,
 				0426C22E19922D5A00CD8822 /* FaceLoginViewController.m in Sources */,
 				5B656CFC19932E36007D79A8 /* QuadCurveMenuItem.m in Sources */,
 				0426C27A19922D5A00CD8822 /* GPUImageHistogramFilter.m in Sources */,
 				0426C23A19922D5A00CD8822 /* AFSecurityPolicy.m in Sources */,
-				D3AD60BF19AC7B92001FD483 /* LandInfo.m in Sources */,
+				D3AD60DC19AC7BD1001FD483 /* LandInfo.m in Sources */,
 				0426C20B19922D5A00CD8822 /* ContactViewController.m in Sources */,
 				0426C2A719922D5A00CD8822 /* GPUImagePosterizeFilter.m in Sources */,
 				0426C2FE19922D5A00CD8822 /* UIButton+AFNetworking.m in Sources */,
@@ -2244,13 +2264,13 @@
 				0426C28A19922D5A00CD8822 /* GPUImageLookupFilter.m in Sources */,
 				0426C24119922D5A00CD8822 /* GPUImage3x3ConvolutionFilter.m in Sources */,
 				D3AD600419AC3E62001FD483 /* ProjectStage.m in Sources */,
-				D3AD60C219AC7B92001FD483 /* MyFactory.m in Sources */,
+				D3AD60DF19AC7BD1001FD483 /* MyFactory.m in Sources */,
 				0426C24919922D5A00CD8822 /* GPUImageBilateralFilter.m in Sources */,
 				0426C2EA19922D5A00CD8822 /* FaceppRecognition.m in Sources */,
 				0426C26219922D5A00CD8822 /* GPUImageDissolveBlendFilter.m in Sources */,
-				D3AD60BE19AC7B92001FD483 /* DecorationProject.m in Sources */,
+				D3AD60DB19AC7BD1001FD483 /* DecorationProject.m in Sources */,
 				0426C24F19922D5A00CD8822 /* GPUImageCGAColorspaceFilter.m in Sources */,
-				D3AD60C119AC7B92001FD483 /* MainDesign.m in Sources */,
+				D3AD60DE19AC7BD1001FD483 /* MainDesign.m in Sources */,
 				0426C2A819922D5A00CD8822 /* GPUImagePrewittEdgeDetectionFilter.m in Sources */,
 				0426C26D19922D5A00CD8822 /* GPUImageFilterPipeline.m in Sources */,
 				0426C2A519922D5A00CD8822 /* GPUImagePolarPixellateFilter.m in Sources */,
