@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ContactModel : NSObject
+@interface ProjectContactModel : NSObject
 @property (nonatomic,strong) NSString *a_id;
 //联系人
 @property (nonatomic,strong) NSString *a_contactName;
