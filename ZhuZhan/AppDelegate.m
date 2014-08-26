@@ -32,7 +32,7 @@
     
     // turn on the debug mode
     [FaceppAPI setDebugMode:TRUE];
-    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
         NSLog(@"第一次启动");
