@@ -377,6 +377,7 @@
 		D3AD617D19ADC51C001FD483 /* ResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD617C19ADC51C001FD483 /* ResultsTableViewController.m */; };
 		D3AD618319ADCCC0001FD483 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD618219ADCCC0001FD483 /* MapKit.framework */; };
 		D3AD618619ADCCD8001FD483 /* BaiDuMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD618519ADCCD8001FD483 /* BaiDuMapViewController.m */; };
+		D3AD618A19ADF629001FD483 /* MyCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD618919ADF629001FD483 /* MyCenterModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1101,7 +1102,8 @@
 		D3AD618219ADCCC0001FD483 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D3AD618419ADCCD8001FD483 /* BaiDuMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiDuMapViewController.h; sourceTree = "<group>"; };
 		D3AD618519ADCCD8001FD483 /* BaiDuMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiDuMapViewController.m; sourceTree = "<group>"; };
-		D3EACDEE19934D0E0058FC9D /* HidePage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HidePage.h; sourceTree = "<group>"; };
+		D3AD618819ADF629001FD483 /* MyCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterModel.h; sourceTree = "<group>"; };
+		D3AD618919ADF629001FD483 /* MyCenterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1195,6 +1197,7 @@
 		0426BFF019922CE400CD8822 /* ZhuZhan */ = {
 			isa = PBXGroup;
 			children = (
+				D3AD618719ADF619001FD483 /* MyCenterModel */,
 				D3AD610419AD7311001FD483 /* TopicsModel */,
 				D3AD5FFE19AB3AC2001FD483 /* ContactModel */,
 				D3311CAC19AADB34003B2682 /* LoginModel */,
@@ -2269,6 +2272,15 @@
 			path = BaiDuMapView;
 			sourceTree = "<group>";
 		};
+		D3AD618719ADF619001FD483 /* MyCenterModel */ = {
+			isa = PBXGroup;
+			children = (
+				D3AD618819ADF629001FD483 /* MyCenterModel.h */,
+				D3AD618919ADF629001FD483 /* MyCenterModel.m */,
+			);
+			path = MyCenterModel;
+			sourceTree = "<group>";
+		};
 		D3EACDE3199327780058FC9D /* QuadCurveMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -2682,6 +2694,7 @@
 				0426C2D519922D5A00CD8822 /* GPUImageVignetteFilter.m in Sources */,
 				0426C23D19922D5A00CD8822 /* AFURLResponseSerialization.m in Sources */,
 				0426C25119922D5A00CD8822 /* GPUImageChromaKeyFilter.m in Sources */,
+				D3AD618A19ADF629001FD483 /* MyCenterModel.m in Sources */,
 				0426C24519922D5A00CD8822 /* GPUImageAlphaBlendFilter.m in Sources */,
 				0426C2C219922D5A00CD8822 /* GPUImageSubtractBlendFilter.m in Sources */,
 				0426C27E19922D5A00CD8822 /* GPUImageHueBlendFilter.m in Sources */,
