@@ -40,10 +40,11 @@
     
     headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"首页_16"]];
     [headImageView setFrame:CGRectMake(0, 0, 320, 202)];
+    headImageView.imageURL = [NSURL URLWithString:model.a_image];
     [bgView addSubview:headImageView];
     
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 212, 320, 30)];
-    titleLabel.text = @"超级公寓在深山老林里面";
+    titleLabel.text = model.a_title;
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.font = [UIFont systemFontOfSize:15];
     [bgView addSubview:titleLabel];
@@ -54,7 +55,7 @@
     
     contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 253, 288, 80)];
     contentLabel.numberOfLines = 5;
-    contentLabel.text = @"超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面";
+    contentLabel.text = model.a_content;
     contentLabel.font = [UIFont systemFontOfSize:13];
     [bgView addSubview:contentLabel];
 }
