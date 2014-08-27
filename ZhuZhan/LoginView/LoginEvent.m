@@ -181,7 +181,7 @@ static int chanceToLoginByFace =3;
                     
                     if (result1.success) {
                         int faceNumber = [[result1 content][@"added_face"] intValue];
-                        [self aloneAddFace:person_id With:YES With:faceNumber];//把当前脸的数量发给后台服务器
+                        [self aloneAddFace:person_id With:faceNumber];//把当前脸的数量发给后台服务器
                     }
                     
                 }
@@ -210,63 +210,7 @@ static int chanceToLoginByFace =3;
 
     } dic:parameters];
     
-//    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"http://192.168.222.95:801/users/FaceLogin"] parameters:parameters error:nil];
-//    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//    op.responseSerializer = [AFJSONResponseSerializer serializer];
-//    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-//     {
-//         NSNumber *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
-//         if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"])
-//         {
-//             NSLog(@"登陆成功");
-//             
-//             NSArray *a = [[responseObject objectForKey:@"d"] objectForKey:@"data"];
-//             for(NSDictionary *item in a){
-//                 [[NSUserDefaults standardUserDefaults]setObject:[item objectForKey:@"userToken"] forKey:@"UserToken"];
-//                 [[NSUserDefaults standardUserDefaults]synchronize];
-//                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"faceCount"] forKey:@"currentFaceCount"]; //  保存用户名下脸的张数，以便自学习是进行判断
-//                 [[NSUserDefaults standardUserDefaults] synchronize];
-//
-//                 //自学习，每次登录成功后继续注册脸，直到脸的张数为15
-//                 if([[item objectForKey:@"faceCount"] intValue] <15){
-//                     
-//                     //继续添加脸
-//                     FaceppResult *result1=[[FaceppAPI person] addFaceWithPersonName:person_id orPersonId:nil andFaceId:[NSArray arrayWithObject:str]];
-//                     
-//                     if (result1.success) {
-//                         int faceNumber = [[result1 content][@"added_face"] intValue];
-//                         [self aloneAddFace:person_id With:YES With:faceNumber];//把当前脸的数量发给后台服务器
-//                     }
-//                     
-//                 }
-//             }
-//             [[NSNotificationCenter defaultCenter] postNotificationName:@"faceLogin" object:nil];//执行登录的方法
-//         }
-//         else
-//         {
-//             chanceToLoginByFace--;
-//             
-//             //脸部识别三次都失败时，就跳转到密码登录界面
-//             if (chanceToLoginByFace ==0) {
-//                 [[NSNotificationCenter defaultCenter] postNotificationName:@"Login" object:nil];
-//             }
-//             
-//             
-//             [[NSNotificationCenter defaultCenter] postNotificationName:@"face" object:nil];
-//             
-//             NSString *str = [NSString stringWithFormat:@"您还有%d次机会！",chanceToLoginByFace];
-//             str = [@"登录失败，" stringByAppendingString:str];
-//             NSLog(@"登陆失败！");
-//             UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:str delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//             [alert show];
-//             
-//         }
-//     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-//     {
-//         NSLog(@"Error: %@", error);
-//     }];
-//    
-// [[NSOperationQueue mainQueue] addOperation:op];
+
 
 }
 
@@ -348,8 +292,8 @@ static int chanceToLoginByFace =3;
     if ([[result.content objectForKey:@"person_name"] isEqualToString:person_id]&&[[result.content objectForKey:@"added_face"] intValue]>0) {
         [[FaceppAPI train] trainAsynchronouslyWithId:nil orName:person_id andType:FaceppTrainVerify];
         NSLog(@"注册成功");
-        bool isFaceRegisted = YES;   //此时用户脸部识别注册状态为YES
-        [self aloneAddFace:person_id With:isFaceRegisted With:faceNumber];
+           //此时用户脸部识别注册状态为YES
+        [self aloneAddFace:person_id With:faceNumber];
         
     }
     else{
@@ -361,12 +305,12 @@ static int chanceToLoginByFace =3;
 
 //给后台发送注册成功的信息
 
-- (void)aloneAddFace:(NSString *)tempPerson_id With:(BOOL)isFaceRegisted With:(int)faceNumber
+- (void)aloneAddFace:(NSString *)tempPerson_id With:(int)faceNumber
 {
-    NSLog(@"%d,%@,%d",isFaceRegisted,tempPerson_id,faceNumber);
+    NSLog(@"%@,%d",tempPerson_id,faceNumber);
        
     
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:tempPerson_id,@"userId",[NSString stringWithFormat:@"%u",isFaceRegisted],@"isFaceRegister",[NSString stringWithFormat:@"%d",faceNumber],@"faceCount",nil];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:tempPerson_id,@"userId",@"true",@"isFaceRegister",[NSString stringWithFormat:@"%d",faceNumber],@"faceCount",nil];
 
     NSLog(@"nininiiinmmmmmmmmmmmm%@",parameters);
     

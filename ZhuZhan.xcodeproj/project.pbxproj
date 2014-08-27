@@ -20,7 +20,6 @@
 		0426C00E19922CE400CD8822 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0426C00C19922CE400CD8822 /* InfoPlist.strings */; };
 		0426C01019922CE400CD8822 /* ZhuZhanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C00F19922CE400CD8822 /* ZhuZhanTests.m */; };
 		0426C20A19922D5A00CD8822 /* CompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C01B19922D5900CD8822 /* CompanyViewController.m */; };
-		0426C20B19922D5A00CD8822 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C01E19922D5900CD8822 /* ContactViewController.m */; };
 		0426C20C19922D5A00CD8822 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C02119922D5900CD8822 /* HomePageViewController.m */; };
 		0426C22E19922D5A00CD8822 /* FaceLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C04619922D5900CD8822 /* FaceLoginViewController.m */; };
 		0426C22F19922D5A00CD8822 /* LoginEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C04819922D5900CD8822 /* LoginEvent.m */; };
@@ -246,6 +245,29 @@
 		0426C31919922E8800CD8822 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0426C31819922E8800CD8822 /* CoreVideo.framework */; };
 		0426C31B19922E9000CD8822 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0426C31A19922E9000CD8822 /* CoreImage.framework */; };
 		0426C31D19922E9C00CD8822 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0426C31C19922E9C00CD8822 /* ImageIO.framework */; };
+		04D10BD519AE016A0097C0C6 /* Cell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BAB19AE01690097C0C6 /* Cell1.m */; };
+		04D10BD619AE016A0097C0C6 /* CommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BAD19AE01690097C0C6 /* CommentsCell.m */; };
+		04D10BD719AE016A0097C0C6 /* CompanyPublishedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BAF19AE01690097C0C6 /* CompanyPublishedCell.m */; };
+		04D10BD819AE016A0097C0C6 /* concern.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BB019AE01690097C0C6 /* concern.png */; };
+		04D10BD919AE016A0097C0C6 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BB219AE016A0097C0C6 /* ContactViewController.m */; };
+		04D10BDA19AE016A0097C0C6 /* Pan.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BB419AE016A0097C0C6 /* Pan.m */; };
+		04D10BDB19AE016A0097C0C6 /* visit.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BB519AE016A0097C0C6 /* visit.png */; };
+		04D10BDC19AE016A0097C0C6 /* AccountImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BB819AE016A0097C0C6 /* AccountImgCell.m */; };
+		04D10BDD19AE016A0097C0C6 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BBA19AE016A0097C0C6 /* AccountViewController.m */; };
+		04D10BDE19AE016A0097C0C6 /* CommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BBC19AE016A0097C0C6 /* CommonCell.m */; };
+		04D10BDF19AE016A0097C0C6 /* ImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BBE19AE016A0097C0C6 /* ImgCell.m */; };
+		04D10BE019AE016A0097C0C6 /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BC019AE016A0097C0C6 /* PersonalCenterViewController.m */; };
+		04D10BE119AE016A0097C0C6 /* RadioButton-Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BC119AE016A0097C0C6 /* RadioButton-Selected.png */; };
+		04D10BE219AE016A0097C0C6 /* RadioButton-Unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BC219AE016A0097C0C6 /* RadioButton-Unselected.png */; };
+		04D10BE319AE016A0097C0C6 /* RadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BC419AE016A0097C0C6 /* RadioButton.m */; };
+		04D10BE419AE016A0097C0C6 /* message.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BC619AE016A0097C0C6 /* message.png */; };
+		04D10BE519AE016A0097C0C6 /* PersonalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BC819AE016A0097C0C6 /* PersonalDetailViewController.m */; };
+		04D10BE619AE016A0097C0C6 /* PImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BCA19AE016A0097C0C6 /* PImgCell.m */; };
+		04D10BE719AE016A0097C0C6 /* read.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BCB19AE016A0097C0C6 /* read.png */; };
+		04D10BE819AE016A0097C0C6 /* telephone.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BCC19AE016A0097C0C6 /* telephone.png */; };
+		04D10BE919AE016A0097C0C6 /* photoBtnIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BCE19AE016A0097C0C6 /* photoBtnIcon.png */; };
+		04D10BEA19AE016A0097C0C6 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BD019AE016A0097C0C6 /* PublishViewController.m */; };
+		04D10BEB19AE016A0097C0C6 /* textBtnIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BD119AE016A0097C0C6 /* textBtnIcon.png */; };
 		5B031C3019ACA6C100573071 /* XiangMuJieDuan in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2819ACA6C100573071 /* XiangMuJieDuan */; };
 		5B031C3119ACA6C100573071 /* XiangMuXiangQing in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2919ACA6C100573071 /* XiangMuXiangQing */; };
 		5B031C3219ACA6C100573071 /* XiangMuXiangQing_1 in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2A19ACA6C100573071 /* XiangMuXiangQing_1 */; };
@@ -409,8 +431,6 @@
 		0426C00F19922CE400CD8822 /* ZhuZhanTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhuZhanTests.m; sourceTree = "<group>"; };
 		0426C01A19922D5900CD8822 /* CompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyViewController.h; sourceTree = "<group>"; };
 		0426C01B19922D5900CD8822 /* CompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyViewController.m; sourceTree = "<group>"; };
-		0426C01D19922D5900CD8822 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
-		0426C01E19922D5900CD8822 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		0426C02019922D5900CD8822 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
 		0426C02119922D5900CD8822 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
 		0426C04519922D5900CD8822 /* FaceLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceLoginViewController.h; sourceTree = "<group>"; };
@@ -857,6 +877,43 @@
 		0426C31819922E8800CD8822 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		0426C31A19922E9000CD8822 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		0426C31C19922E9C00CD8822 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		04D10BAA19AE01690097C0C6 /* Cell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell1.h; sourceTree = "<group>"; };
+		04D10BAB19AE01690097C0C6 /* Cell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell1.m; sourceTree = "<group>"; };
+		04D10BAC19AE01690097C0C6 /* CommentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsCell.h; sourceTree = "<group>"; };
+		04D10BAD19AE01690097C0C6 /* CommentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsCell.m; sourceTree = "<group>"; };
+		04D10BAE19AE01690097C0C6 /* CompanyPublishedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyPublishedCell.h; sourceTree = "<group>"; };
+		04D10BAF19AE01690097C0C6 /* CompanyPublishedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyPublishedCell.m; sourceTree = "<group>"; };
+		04D10BB019AE01690097C0C6 /* concern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = concern.png; sourceTree = "<group>"; };
+		04D10BB119AE01690097C0C6 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
+		04D10BB219AE016A0097C0C6 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
+		04D10BB319AE016A0097C0C6 /* Pan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pan.h; sourceTree = "<group>"; };
+		04D10BB419AE016A0097C0C6 /* Pan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pan.m; sourceTree = "<group>"; };
+		04D10BB519AE016A0097C0C6 /* visit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = visit.png; sourceTree = "<group>"; };
+		04D10BB719AE016A0097C0C6 /* AccountImgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountImgCell.h; sourceTree = "<group>"; };
+		04D10BB819AE016A0097C0C6 /* AccountImgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountImgCell.m; sourceTree = "<group>"; };
+		04D10BB919AE016A0097C0C6 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
+		04D10BBA19AE016A0097C0C6 /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
+		04D10BBB19AE016A0097C0C6 /* CommonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCell.h; sourceTree = "<group>"; };
+		04D10BBC19AE016A0097C0C6 /* CommonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonCell.m; sourceTree = "<group>"; };
+		04D10BBD19AE016A0097C0C6 /* ImgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgCell.h; sourceTree = "<group>"; };
+		04D10BBE19AE016A0097C0C6 /* ImgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgCell.m; sourceTree = "<group>"; };
+		04D10BBF19AE016A0097C0C6 /* PersonalCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterViewController.h; sourceTree = "<group>"; };
+		04D10BC019AE016A0097C0C6 /* PersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterViewController.m; sourceTree = "<group>"; };
+		04D10BC119AE016A0097C0C6 /* RadioButton-Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RadioButton-Selected.png"; sourceTree = "<group>"; };
+		04D10BC219AE016A0097C0C6 /* RadioButton-Unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RadioButton-Unselected.png"; sourceTree = "<group>"; };
+		04D10BC319AE016A0097C0C6 /* RadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioButton.h; sourceTree = "<group>"; };
+		04D10BC419AE016A0097C0C6 /* RadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioButton.m; sourceTree = "<group>"; };
+		04D10BC619AE016A0097C0C6 /* message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message.png; sourceTree = "<group>"; };
+		04D10BC719AE016A0097C0C6 /* PersonalDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalDetailViewController.h; sourceTree = "<group>"; };
+		04D10BC819AE016A0097C0C6 /* PersonalDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalDetailViewController.m; sourceTree = "<group>"; };
+		04D10BC919AE016A0097C0C6 /* PImgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PImgCell.h; sourceTree = "<group>"; };
+		04D10BCA19AE016A0097C0C6 /* PImgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PImgCell.m; sourceTree = "<group>"; };
+		04D10BCB19AE016A0097C0C6 /* read.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = read.png; sourceTree = "<group>"; };
+		04D10BCC19AE016A0097C0C6 /* telephone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = telephone.png; sourceTree = "<group>"; };
+		04D10BCE19AE016A0097C0C6 /* photoBtnIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photoBtnIcon.png; sourceTree = "<group>"; };
+		04D10BCF19AE016A0097C0C6 /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
+		04D10BD019AE016A0097C0C6 /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
+		04D10BD119AE016A0097C0C6 /* textBtnIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textBtnIcon.png; sourceTree = "<group>"; };
 		5B031C2819ACA6C100573071 /* XiangMuJieDuan */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuJieDuan; sourceTree = "<group>"; };
 		5B031C2919ACA6C100573071 /* XiangMuXiangQing */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuXiangQing; sourceTree = "<group>"; };
 		5B031C2A19ACA6C100573071 /* XiangMuXiangQing_1 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuXiangQing_1; sourceTree = "<group>"; };
@@ -1197,6 +1254,7 @@
 		0426BFF019922CE400CD8822 /* ZhuZhan */ = {
 			isa = PBXGroup;
 			children = (
+				04D10BA819AE01690097C0C6 /* Contact */,
 				D3AD618719ADF619001FD483 /* MyCenterModel */,
 				D3AD610419AD7311001FD483 /* TopicsModel */,
 				D3AD5FFE19AB3AC2001FD483 /* ContactModel */,
@@ -1204,7 +1262,6 @@
 				D3311CA519AAD342003B2682 /* ProjectModel */,
 				D3EACDEA199337750058FC9D /* Message */,
 				0426C01919922D5900CD8822 /* Company */,
-				0426C01C19922D5900CD8822 /* Contact */,
 				0426C01F19922D5900CD8822 /* HomePage */,
 				0426C04419922D5900CD8822 /* LoginView */,
 				0426C04B19922D5900CD8822 /* Project */,
@@ -1260,15 +1317,6 @@
 				5B656CF519931275007D79A8 /* CompanyMemberViewController.m */,
 			);
 			path = Company;
-			sourceTree = "<group>";
-		};
-		0426C01C19922D5900CD8822 /* Contact */ = {
-			isa = PBXGroup;
-			children = (
-				0426C01D19922D5900CD8822 /* ContactViewController.h */,
-				0426C01E19922D5900CD8822 /* ContactViewController.m */,
-			);
-			path = Contact;
 			sourceTree = "<group>";
 		};
 		0426C01F19922D5900CD8822 /* HomePage */ = {
@@ -1885,6 +1933,82 @@
 			path = Trade;
 			sourceTree = "<group>";
 		};
+		04D10BA819AE01690097C0C6 /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				04D10BA919AE01690097C0C6 /* contactView */,
+				04D10BB619AE016A0097C0C6 /* personalCenter */,
+				04D10BC519AE016A0097C0C6 /* personalDetail */,
+				04D10BCD19AE016A0097C0C6 /* publish */,
+			);
+			path = Contact;
+			sourceTree = "<group>";
+		};
+		04D10BA919AE01690097C0C6 /* contactView */ = {
+			isa = PBXGroup;
+			children = (
+				04D10BAA19AE01690097C0C6 /* Cell1.h */,
+				04D10BAB19AE01690097C0C6 /* Cell1.m */,
+				04D10BAC19AE01690097C0C6 /* CommentsCell.h */,
+				04D10BAD19AE01690097C0C6 /* CommentsCell.m */,
+				04D10BAE19AE01690097C0C6 /* CompanyPublishedCell.h */,
+				04D10BAF19AE01690097C0C6 /* CompanyPublishedCell.m */,
+				04D10BB019AE01690097C0C6 /* concern.png */,
+				04D10BB119AE01690097C0C6 /* ContactViewController.h */,
+				04D10BB219AE016A0097C0C6 /* ContactViewController.m */,
+				04D10BB319AE016A0097C0C6 /* Pan.h */,
+				04D10BB419AE016A0097C0C6 /* Pan.m */,
+				04D10BB519AE016A0097C0C6 /* visit.png */,
+			);
+			path = contactView;
+			sourceTree = "<group>";
+		};
+		04D10BB619AE016A0097C0C6 /* personalCenter */ = {
+			isa = PBXGroup;
+			children = (
+				04D10BB719AE016A0097C0C6 /* AccountImgCell.h */,
+				04D10BB819AE016A0097C0C6 /* AccountImgCell.m */,
+				04D10BB919AE016A0097C0C6 /* AccountViewController.h */,
+				04D10BBA19AE016A0097C0C6 /* AccountViewController.m */,
+				04D10BBB19AE016A0097C0C6 /* CommonCell.h */,
+				04D10BBC19AE016A0097C0C6 /* CommonCell.m */,
+				04D10BBD19AE016A0097C0C6 /* ImgCell.h */,
+				04D10BBE19AE016A0097C0C6 /* ImgCell.m */,
+				04D10BBF19AE016A0097C0C6 /* PersonalCenterViewController.h */,
+				04D10BC019AE016A0097C0C6 /* PersonalCenterViewController.m */,
+				04D10BC119AE016A0097C0C6 /* RadioButton-Selected.png */,
+				04D10BC219AE016A0097C0C6 /* RadioButton-Unselected.png */,
+				04D10BC319AE016A0097C0C6 /* RadioButton.h */,
+				04D10BC419AE016A0097C0C6 /* RadioButton.m */,
+			);
+			path = personalCenter;
+			sourceTree = "<group>";
+		};
+		04D10BC519AE016A0097C0C6 /* personalDetail */ = {
+			isa = PBXGroup;
+			children = (
+				04D10BC619AE016A0097C0C6 /* message.png */,
+				04D10BC719AE016A0097C0C6 /* PersonalDetailViewController.h */,
+				04D10BC819AE016A0097C0C6 /* PersonalDetailViewController.m */,
+				04D10BC919AE016A0097C0C6 /* PImgCell.h */,
+				04D10BCA19AE016A0097C0C6 /* PImgCell.m */,
+				04D10BCB19AE016A0097C0C6 /* read.png */,
+				04D10BCC19AE016A0097C0C6 /* telephone.png */,
+			);
+			path = personalDetail;
+			sourceTree = "<group>";
+		};
+		04D10BCD19AE016A0097C0C6 /* publish */ = {
+			isa = PBXGroup;
+			children = (
+				04D10BCE19AE016A0097C0C6 /* photoBtnIcon.png */,
+				04D10BCF19AE016A0097C0C6 /* PublishViewController.h */,
+				04D10BD019AE016A0097C0C6 /* PublishViewController.m */,
+				04D10BD119AE016A0097C0C6 /* textBtnIcon.png */,
+			);
+			path = publish;
+			sourceTree = "<group>";
+		};
 		D3311CA519AAD342003B2682 /* ProjectModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -2380,6 +2504,7 @@
 				D3AD606B19AC4DC1001FD483 /* 面部采集_12.png in Resources */,
 				D3AD605419AC4DC1001FD483 /* timescroll_pointer.png in Resources */,
 				5B031C3019ACA6C100573071 /* XiangMuJieDuan in Resources */,
+				04D10BE919AE016A0097C0C6 /* photoBtnIcon.png in Resources */,
 				D3AD604019AC4DC1001FD483 /* bg-addbutton@2x.png in Resources */,
 				D3AD606619AC4DC1001FD483 /* 面部采集_03.png in Resources */,
 				5B031C3519ACA6C100573071 /* XiangMuXiangQing_ShaiXuan in Resources */,
@@ -2402,18 +2527,23 @@
 				D3AD606419AC4DC1001FD483 /* 面部识别登录_03.png in Resources */,
 				D3AD607E19AC4E09001FD483 /* 全部项目_17.png in Resources */,
 				D3AD617619ADC25C001FD483 /* 搜索_07.png in Resources */,
+				04D10BEB19AE016A0097C0C6 /* textBtnIcon.png in Resources */,
 				D3AD604719AC4DC1001FD483 /* icon-plus-highlighted.png in Resources */,
 				D3AD604E19AC4DC1001FD483 /* icon_04.png in Resources */,
 				D3AD605919AC4DC1001FD483 /* 注册_03.png in Resources */,
 				D3AD606519AC4DC1001FD483 /* 面部识别登录_07.png in Resources */,
+				04D10BE419AE016A0097C0C6 /* message.png in Resources */,
 				D3AD604619AC4DC1001FD483 /* circle@2x.png in Resources */,
 				D3AD605019AC4DC1001FD483 /* timescroll_hourhand.png in Resources */,
 				D3AD617719ADC25C001FD483 /* 搜索_10.png in Resources */,
 				D3AD606A19AC4DC1001FD483 /* 面部采集_11.png in Resources */,
 				D3AD606119AC4DC1001FD483 /* 登录_15.png in Resources */,
+				04D10BE819AE016A0097C0C6 /* telephone.png in Resources */,
+				04D10BDB19AE016A0097C0C6 /* visit.png in Resources */,
 				D3AD604C19AC4DC1001FD483 /* icon-star@2x.png in Resources */,
 				D3AD604F19AC4DC1001FD483 /* pullrefresh.aif in Resources */,
 				D3AD604A19AC4DC1001FD483 /* icon-plus@2x.png in Resources */,
+				04D10BD819AE016A0097C0C6 /* concern.png in Resources */,
 				D3AD606719AC4DC1001FD483 /* 面部采集_06.png in Resources */,
 				5B031C3219ACA6C100573071 /* XiangMuXiangQing_1 in Resources */,
 				D3AD606C19AC4DC1001FD483 /* 首页_16.png in Resources */,
@@ -2425,6 +2555,7 @@
 				5B031C3419ACA6C100573071 /* XiangMuXiangQing_3 in Resources */,
 				D3AD604319AC4DC1001FD483 /* bg-menuitem.png in Resources */,
 				D3AD605E19AC4DC1001FD483 /* 登录_03.png in Resources */,
+				04D10BE219AE016A0097C0C6 /* RadioButton-Unselected.png in Resources */,
 				D3AD605C19AC4DC1001FD483 /* 登录1_03.png in Resources */,
 				D3AD605A19AC4DC1001FD483 /* 注册_07.png in Resources */,
 				D3AD604419AC4DC1001FD483 /* bg-menuitem@2x.png in Resources */,
@@ -2443,8 +2574,10 @@
 				D3AD607919AC4DF8001FD483 /* 全部项目_21.png in Resources */,
 				D3AD607719AC4DF1001FD483 /* 全部项目_14.png in Resources */,
 				D3AD607519AC4DE7001FD483 /* 全部项目_16.png in Resources */,
+				04D10BE719AE016A0097C0C6 /* read.png in Resources */,
 				D3AD605D19AC4DC1001FD483 /* 登录1_07.png in Resources */,
 				D3AD605B19AC4DC1001FD483 /* 注册_09.png in Resources */,
+				04D10BE119AE016A0097C0C6 /* RadioButton-Selected.png in Resources */,
 				5B031C3119ACA6C100573071 /* XiangMuXiangQing in Resources */,
 				0426BFFD19922CE400CD8822 /* Images.xcassets in Resources */,
 				D3AD606D19AC4DC1001FD483 /* 首页侧拉栏_03.png in Resources */,
@@ -2488,6 +2621,7 @@
 				0426C2EB19922D5A00CD8822 /* FaceppTrainer.m in Sources */,
 				0426C28919922D5A00CD8822 /* GPUImageLocalBinaryPatternFilter.m in Sources */,
 				0426C25519922D5A00CD8822 /* GPUImageColorDodgeBlendFilter.m in Sources */,
+				04D10BD919AE016A0097C0C6 /* ContactViewController.m in Sources */,
 				0426C23419922D5A00CD8822 /* RegistViewController.m in Sources */,
 				D3AD60A219AC574A001FD483 /* Reachability.m in Sources */,
 				0426C25B19922D5A00CD8822 /* GPUImageCrosshairGenerator.m in Sources */,
@@ -2503,6 +2637,7 @@
 				0426C2B319922D5A00CD8822 /* GPUImageSepiaFilter.m in Sources */,
 				0426C2BC19922D5A00CD8822 /* GPUImageSoftLightBlendFilter.m in Sources */,
 				0426C2AB19922D5A00CD8822 /* GPUImageRGBClosingFilter.m in Sources */,
+				04D10BDD19AE016A0097C0C6 /* AccountViewController.m in Sources */,
 				0426C2E519922D5A00CD8822 /* FaceppFaceset.m in Sources */,
 				0426C2AE19922D5A00CD8822 /* GPUImageRGBFilter.m in Sources */,
 				0426C2A419922D5A00CD8822 /* GPUImagePoissonBlendFilter.m in Sources */,
@@ -2551,6 +2686,7 @@
 				0426C2D319922D5A00CD8822 /* GPUImageUnsharpMaskFilter.m in Sources */,
 				0426C2EC19922D5A00CD8822 /* FaceppError.m in Sources */,
 				0426C26819922D5A00CD8822 /* GPUImageFalseColorFilter.m in Sources */,
+				04D10BD519AE016A0097C0C6 /* Cell1.m in Sources */,
 				0426C2A319922D5A00CD8822 /* GPUImagePixellatePositionFilter.m in Sources */,
 				0426C26B19922D5A00CD8822 /* GPUImageFilter.m in Sources */,
 				0426C27F19922D5A00CD8822 /* GPUImageHueFilter.m in Sources */,
@@ -2577,6 +2713,7 @@
 				0426C2F019922D5A00CD8822 /* CJSONDeserializer_BlocksExtensions.m in Sources */,
 				0426C24B19922D5A00CD8822 /* GPUImageBrightnessFilter.m in Sources */,
 				0426C2A119922D5A00CD8822 /* GPUImagePinchDistortionFilter.m in Sources */,
+				04D10BDA19AE016A0097C0C6 /* Pan.m in Sources */,
 				0426C29819922D5A00CD8822 /* GPUImageNobleCornerDetectionFilter.m in Sources */,
 				0426C27219922D5A00CD8822 /* GPUImageGlassSphereFilter.m in Sources */,
 				0426C28619922D5A00CD8822 /* GPUImageLightenBlendFilter.m in Sources */,
@@ -2585,9 +2722,12 @@
 				0426C25319922D5A00CD8822 /* GPUImageColorBlendFilter.m in Sources */,
 				0426C24319922D5A00CD8822 /* GPUImageAdaptiveThresholdFilter.m in Sources */,
 				0426C2AD19922D5A00CD8822 /* GPUImageRGBErosionFilter.m in Sources */,
+				04D10BD619AE016A0097C0C6 /* CommentsCell.m in Sources */,
 				0426C28519922D5A00CD8822 /* GPUImageLevelsFilter.m in Sources */,
 				0426C23619922D5A00CD8822 /* AFHTTPRequestOperation.m in Sources */,
+				04D10BDE19AE016A0097C0C6 /* CommonCell.m in Sources */,
 				0426C2B519922D5A00CD8822 /* GPUImageShiTomasiFeatureDetectionFilter.m in Sources */,
+				04D10BE619AE016A0097C0C6 /* PImgCell.m in Sources */,
 				D3AD610319AD6AC4001FD483 /* TopicsTableViewCell.m in Sources */,
 				5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */,
 				0426C2B219922D5A00CD8822 /* GPUImageScreenBlendFilter.m in Sources */,
@@ -2605,6 +2745,7 @@
 				D3AD610F19AD7B0E001FD483 /* TopicsDetailTableViewCell.m in Sources */,
 				0426C27919922D5A00CD8822 /* GPUImageHighPassFilter.m in Sources */,
 				D3AD60EA19AC7C0B001FD483 /* ViewController.m in Sources */,
+				04D10BE319AE016A0097C0C6 /* RadioButton.m in Sources */,
 				0426C2E919922D5A00CD8822 /* FaceppPerson.m in Sources */,
 				0426C26119922D5A00CD8822 /* GPUimageDirectionalSobelEdgeDetectionFilter.m in Sources */,
 				D3AD616019ADA4CA001FD483 /* RootViewController.mm in Sources */,
@@ -2632,7 +2773,6 @@
 				0426C27A19922D5A00CD8822 /* GPUImageHistogramFilter.m in Sources */,
 				0426C23A19922D5A00CD8822 /* AFSecurityPolicy.m in Sources */,
 				D3AD60DC19AC7BD1001FD483 /* LandInfo.m in Sources */,
-				0426C20B19922D5A00CD8822 /* ContactViewController.m in Sources */,
 				0426C2A719922D5A00CD8822 /* GPUImagePosterizeFilter.m in Sources */,
 				0426C2FE19922D5A00CD8822 /* UIButton+AFNetworking.m in Sources */,
 				0426C26E19922D5A00CD8822 /* GPUImageGammaFilter.m in Sources */,
@@ -2640,6 +2780,7 @@
 				0426C2C019922D5A00CD8822 /* GPUImageStillCamera.m in Sources */,
 				0426C29A19922D5A00CD8822 /* GPUImageNormalBlendFilter.m in Sources */,
 				0426C2BF19922D5A00CD8822 /* GPUImageSphereRefractionFilter.m in Sources */,
+				04D10BDC19AE016A0097C0C6 /* AccountImgCell.m in Sources */,
 				0426C24219922D5A00CD8822 /* GPUImage3x3TextureSamplingFilter.m in Sources */,
 				0426C25419922D5A00CD8822 /* GPUImageColorBurnBlendFilter.m in Sources */,
 				0426C2F919922D5A00CD8822 /* XHSoundManager.m in Sources */,
@@ -2647,6 +2788,7 @@
 				D3AD600A19AC4AF8001FD483 /* ProjectTableViewCell.m in Sources */,
 				0426C23919922D5A00CD8822 /* AFNetworkReachabilityManager.m in Sources */,
 				0426C23E19922D5A00CD8822 /* AFURLSessionManager.m in Sources */,
+				04D10BE019AE016A0097C0C6 /* PersonalCenterViewController.m in Sources */,
 				0426C2AF19922D5A00CD8822 /* GPUImageRGBOpeningFilter.m in Sources */,
 				0426C2ED19922D5A00CD8822 /* FaceppResult.m in Sources */,
 				0426C20C19922D5A00CD8822 /* HomePageViewController.m in Sources */,
@@ -2686,10 +2828,12 @@
 				0426C26219922D5A00CD8822 /* GPUImageDissolveBlendFilter.m in Sources */,
 				D3AD60DB19AC7BD1001FD483 /* DecorationProject.m in Sources */,
 				0426C24F19922D5A00CD8822 /* GPUImageCGAColorspaceFilter.m in Sources */,
+				04D10BDF19AE016A0097C0C6 /* ImgCell.m in Sources */,
 				D3AD60DE19AC7BD1001FD483 /* MainDesign.m in Sources */,
 				0426C2A819922D5A00CD8822 /* GPUImagePrewittEdgeDetectionFilter.m in Sources */,
 				0426C26D19922D5A00CD8822 /* GPUImageFilterPipeline.m in Sources */,
 				0426C2A519922D5A00CD8822 /* GPUImagePolarPixellateFilter.m in Sources */,
+				04D10BEA19AE016A0097C0C6 /* PublishViewController.m in Sources */,
 				D3AD60A119AC574A001FD483 /* networkConnect.m in Sources */,
 				0426C2D519922D5A00CD8822 /* GPUImageVignetteFilter.m in Sources */,
 				0426C23D19922D5A00CD8822 /* AFURLResponseSerialization.m in Sources */,
@@ -2697,6 +2841,7 @@
 				D3AD618A19ADF629001FD483 /* MyCenterModel.m in Sources */,
 				0426C24519922D5A00CD8822 /* GPUImageAlphaBlendFilter.m in Sources */,
 				0426C2C219922D5A00CD8822 /* GPUImageSubtractBlendFilter.m in Sources */,
+				04D10BE519AE016A0097C0C6 /* PersonalDetailViewController.m in Sources */,
 				0426C27E19922D5A00CD8822 /* GPUImageHueBlendFilter.m in Sources */,
 				0426C2F219922D5A00CD8822 /* CJSONSerializedData.m in Sources */,
 				D3AD617D19ADC51C001FD483 /* ResultsTableViewController.m in Sources */,
@@ -2736,6 +2881,7 @@
 				0426C2BB19922D5A00CD8822 /* GPUImageSoftEleganceFilter.m in Sources */,
 				0426C2F419922D5A00CD8822 /* NSDictionary_JSONExtensions.m in Sources */,
 				0426C26719922D5A00CD8822 /* GPUImageExposureFilter.m in Sources */,
+				04D10BD719AE016A0097C0C6 /* CompanyPublishedCell.m in Sources */,
 				0426C2E719922D5A00CD8822 /* FaceppGrouping.m in Sources */,
 				0426C2A619922D5A00CD8822 /* GPUImagePolkaDotFilter.m in Sources */,
 				0426C28019922D5A00CD8822 /* GPUImageJFAVoronoiFilter.m in Sources */,

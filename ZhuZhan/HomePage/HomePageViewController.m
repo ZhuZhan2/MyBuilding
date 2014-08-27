@@ -110,7 +110,20 @@
     menu.delegate = self;
     [self.view addSubview:menu];
     
-}
+    [self.navigationController.navigationBar removeFromSuperview];
+    UIButton *LoginOutBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    LoginOutBtn.frame = CGRectMake(70, 20, 40, 30);
+    [LoginOutBtn setTitle:@"退出" forState:UIControlStateNormal];
+    [LoginOutBtn addTarget:self action:@selector(loginOut) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:LoginOutBtn];
+//
+//    UIButton *perfectBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    perfectBtn.frame = CGRectMake(70, 20, 40, 30);
+//    [perfectBtn setTitle:@"完善" forState:UIControlStateNormal];
+//    [perfectBtn addTarget:self action:@selector(perfect) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:perfectBtn];
+
+    }
 
 -(NSString *)timeConversion:(NSString *)time
 {
@@ -126,7 +139,6 @@
 
     return confromTimespStr;
 }
-
 
 
 - (void)perfect
@@ -152,11 +164,11 @@
 {
 
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+//    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
     NSString *deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
 
     
-    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userId,@"userId",userToken,@"userToken",deviceToken,@"deviceToken",@"mobile",@"deviceType",nil];
+    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userId,@"userId",deviceToken,@"deviceToken",@"mobile",@"deviceType",nil];
     [LoginModel PostLogOutWithBlock:^(NSMutableArray *posts, NSError *error) {
         NSDictionary *responseObject = [posts objectAtIndex:0];
         NSString *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
@@ -164,12 +176,11 @@
 //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注销成功" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
 //            [alert show];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userName"];
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UserToken"];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"isFaceRegister"];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"currentFaceCount"];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userId"];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"deviceToken"];
-            
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"firstPassWordLogin"];
             HomePageViewController *homepage = [[HomePageViewController alloc] init];
             
             CGContextRef context = UIGraphicsGetCurrentContext();

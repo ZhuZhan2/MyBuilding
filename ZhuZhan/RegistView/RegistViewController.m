@@ -287,7 +287,6 @@ static bool IsVerify =NO;
             NSArray *a = [[responseObject objectForKey:@"d"] objectForKey:@"data"];
             for(NSDictionary *item in a){
                 [[NSUserDefaults standardUserDefaults]setObject:_phoneNumberTextField.text forKey:@"userName"];
-                [[NSUserDefaults standardUserDefaults]setObject:[item objectForKey:@"userToken"] forKey:@"UserToken"];
                 NSString *isFaceRegister = [NSString stringWithFormat:@"%@",[item objectForKey:@"isFaceRegister"]];
                 NSLog(@"ssssssssss  %@",isFaceRegister);
                 [[NSUserDefaults standardUserDefaults] setObject:isFaceRegister forKey:@"isFaceRegister"];
