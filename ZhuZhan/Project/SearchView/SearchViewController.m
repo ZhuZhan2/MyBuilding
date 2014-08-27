@@ -191,6 +191,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     RecordModel *model = [showArr objectAtIndex:indexPath.row];
     _searchBar.text = model.a_name;
+    resultView = [[ResultsTableViewController alloc] init];
+    resultView.searchStr = model.a_name;
+    [self.navigationController pushViewController:resultView animated:YES];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
@@ -201,5 +204,21 @@
     [dic setValue:_searchBar.text forKey:@"name"];
     [dic setValue:time forKey:@"time"];
     [RecordSqlite InsertData:dic];
+}
+
+-(void)gotoView:(NSInteger)index{
+    switch (index) {
+        case 0:
+            
+            break;
+        case 1:
+            
+            break;
+        case 2:
+            
+            break;
+        default:
+            break;
+    }
 }
 @end

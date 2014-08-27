@@ -374,6 +374,9 @@
 		D3AD617519ADC25C001FD483 /* 搜索_05.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD617119ADC25C001FD483 /* 搜索_05.png */; };
 		D3AD617619ADC25C001FD483 /* 搜索_07.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD617219ADC25C001FD483 /* 搜索_07.png */; };
 		D3AD617719ADC25C001FD483 /* 搜索_10.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD617319ADC25C001FD483 /* 搜索_10.png */; };
+		D3AD617D19ADC51C001FD483 /* ResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD617C19ADC51C001FD483 /* ResultsTableViewController.m */; };
+		D3AD618319ADCCC0001FD483 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD618219ADCCC0001FD483 /* MapKit.framework */; };
+		D3AD618619ADCCD8001FD483 /* BaiDuMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD618519ADCCD8001FD483 /* BaiDuMapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1093,6 +1096,11 @@
 		D3AD617119ADC25C001FD483 /* 搜索_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索_05.png"; sourceTree = "<group>"; };
 		D3AD617219ADC25C001FD483 /* 搜索_07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索_07.png"; sourceTree = "<group>"; };
 		D3AD617319ADC25C001FD483 /* 搜索_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索_10.png"; sourceTree = "<group>"; };
+		D3AD617B19ADC51C001FD483 /* ResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsTableViewController.h; sourceTree = "<group>"; };
+		D3AD617C19ADC51C001FD483 /* ResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsTableViewController.m; sourceTree = "<group>"; };
+		D3AD618219ADCCC0001FD483 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D3AD618419ADCCD8001FD483 /* BaiDuMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiDuMapViewController.h; sourceTree = "<group>"; };
+		D3AD618519ADCCD8001FD483 /* BaiDuMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiDuMapViewController.m; sourceTree = "<group>"; };
 		D3EACDEE19934D0E0058FC9D /* HidePage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HidePage.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1101,6 +1109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3AD618319ADCCC0001FD483 /* MapKit.framework in Frameworks */,
 				D3AD616619ADB981001FD483 /* libsqlite3.0.dylib in Frameworks */,
 				D3AD615D19ADA4A4001FD483 /* Security.framework in Frameworks */,
 				D3AD615B19ADA487001FD483 /* CoreLocation.framework in Frameworks */,
@@ -1159,6 +1168,7 @@
 		0426BFE919922CE400CD8822 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3AD618219ADCCC0001FD483 /* MapKit.framework */,
 				D3AD616519ADB981001FD483 /* libsqlite3.0.dylib */,
 				D3AD615C19ADA4A4001FD483 /* Security.framework */,
 				D3AD615A19ADA487001FD483 /* CoreLocation.framework */,
@@ -1284,6 +1294,7 @@
 		0426C04B19922D5900CD8822 /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				D3AD617E19ADCC03001FD483 /* BaiDuMapView */,
 				D3AD615619ADA432001FD483 /* SearchView */,
 				D3AD60FD19AD6A3C001FD483 /* Topics */,
 				D3AD60C719AC7BD1001FD483 /* NewProgramDetail */,
@@ -2231,6 +2242,8 @@
 				D3AD616E19ADBD9D001FD483 /* toolBarView.m */,
 				D3AD615719ADA45F001FD483 /* SearchViewController.h */,
 				D3AD615819ADA45F001FD483 /* SearchViewController.m */,
+				D3AD617B19ADC51C001FD483 /* ResultsTableViewController.h */,
+				D3AD617C19ADC51C001FD483 /* ResultsTableViewController.m */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";
@@ -2246,6 +2259,15 @@
 				D3AD616319ADB918001FD483 /* SqliteHelper.m */,
 			);
 			path = Sqlite3;
+			sourceTree = "<group>";
+		};
+		D3AD617E19ADCC03001FD483 /* BaiDuMapView */ = {
+			isa = PBXGroup;
+			children = (
+				D3AD618419ADCCD8001FD483 /* BaiDuMapViewController.h */,
+				D3AD618519ADCCD8001FD483 /* BaiDuMapViewController.m */,
+			);
+			path = BaiDuMapView;
 			sourceTree = "<group>";
 		};
 		D3EACDE3199327780058FC9D /* QuadCurveMenu */ = {
@@ -2610,6 +2632,7 @@
 				0426C24219922D5A00CD8822 /* GPUImage3x3TextureSamplingFilter.m in Sources */,
 				0426C25419922D5A00CD8822 /* GPUImageColorBurnBlendFilter.m in Sources */,
 				0426C2F919922D5A00CD8822 /* XHSoundManager.m in Sources */,
+				D3AD618619ADCCD8001FD483 /* BaiDuMapViewController.m in Sources */,
 				D3AD600A19AC4AF8001FD483 /* ProjectTableViewCell.m in Sources */,
 				0426C23919922D5A00CD8822 /* AFNetworkReachabilityManager.m in Sources */,
 				0426C23E19922D5A00CD8822 /* AFURLSessionManager.m in Sources */,
@@ -2664,6 +2687,7 @@
 				0426C2C219922D5A00CD8822 /* GPUImageSubtractBlendFilter.m in Sources */,
 				0426C27E19922D5A00CD8822 /* GPUImageHueBlendFilter.m in Sources */,
 				0426C2F219922D5A00CD8822 /* CJSONSerializedData.m in Sources */,
+				D3AD617D19ADC51C001FD483 /* ResultsTableViewController.m in Sources */,
 				0426C29C19922D5A00CD8822 /* GPUImageOpeningFilter.m in Sources */,
 				D3AD610719AD7323001FD483 /* TopicsModel.m in Sources */,
 				0426C2C819922D5A00CD8822 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
