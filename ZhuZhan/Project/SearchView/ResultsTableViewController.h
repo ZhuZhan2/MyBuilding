@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HidePage.h"
-@interface ResultsTableViewController : UITableViewController<HidePage>{
+@interface ResultsTableViewController : UITableViewController{
     NSMutableArray *showArr;
     int startIndex;
 }
 @property(nonatomic,retain)NSString *searchStr;
-@property(nonatomic,weak)id<HidePage>delegate;
 @end

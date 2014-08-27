@@ -114,7 +114,6 @@
     ProgramDetailViewController* vc=[[ProgramDetailViewController alloc]init];
     projectModel *model = showArr[indexPath.row];
     vc.model=model;
-    [self.delegate homePageTabBarHide];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
