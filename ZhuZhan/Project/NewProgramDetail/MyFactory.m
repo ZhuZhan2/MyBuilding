@@ -134,7 +134,7 @@
     
     //图片数量label
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 160, 70, 30)];
-    label.text=[NSString stringWithFormat:@"%d张",count];
+    label.text=[NSString stringWithFormat:@"%ld张",count];
     label.textAlignment=NSTextAlignmentCenter;
     label.textColor=[UIColor whiteColor];
     label.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:.7];

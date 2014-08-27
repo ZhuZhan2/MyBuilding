@@ -13,5 +13,5 @@
     int startIndex;
     TopicsTableViewController *topicsview;
 }
-
+@property(nonatomic,strong)id<HidePage>delegate;
 @end
