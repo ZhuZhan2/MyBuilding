@@ -8,6 +8,8 @@
 
 #import "projectModel.h"
 #import "ProjectStage.h"
+#import "ProjectContactModel.h"
+#import "ProjectImageModel.h"
 @implementation projectModel
 - (void)setDict:(NSDictionary *)dict{
     _dict = dict;
@@ -45,5 +47,38 @@
     self.a_decorationProcess = [ProjectStage ProjectStrStage:dict[@"decorationProcess"]];
 }
 
+-(void)getContacts:(NSArray *)contacts{
+    //对应原contactAry 对应json键auctionUnitContacts
+    self.auctionContacts=[[NSMutableArray alloc]init];
+    //对应原ownerAry 对应json键ownerUnitContacts
+    self.ownerContacts=[[NSMutableArray alloc]init];
+    //对应原explorationAry 对应json键explorationUnitContacts
+    self.explorationContacts=[[NSMutableArray alloc]init];
+    //对应原designAry 对应json键contractorUnitContacts
+    self.designContacts=[[NSMutableArray alloc]init];
+    //对应原horizonAry 对应json键designInstituteContacts
+    self.constructionContacts=[[NSMutableArray alloc]init];
+    //对应原pileAry 对应json键pileFoundationUnitContacts
+    self.pileContacts=[[NSMutableArray alloc]init];
+    
+    NSArray* array=@[self.auctionContacts,self.ownerContacts,self.explorationContacts,self.designContacts,self.constructionContacts,self.pileContacts];
+    NSArray* categorys=@[@"auctionUnitContacts",@"ownerUnitContacts",@"explorationUnitContacts",@"contractorUnitContacts",@"designInstituteContacts",@"pileFoundationUnitContacts"];
+    
+    for(int i=0;i<contacts.count;i++){
+        ProjectContactModel* contactModel = contacts[i];
+        NSInteger index=0;
+        for (int i=0; i<array.count; i++) {
+            if ([contactModel.a_category isEqualToString:categorys[i]]) {
+                index=i;
+                break;
+            }
+        }
+        NSArray* tempAry=@[contactModel.a_contactName,contactModel.a_duties,contactModel.a_accountName,contactModel.a_accountAddress,contactModel.a_mobilePhone];
+        [array[index] addObject:tempAry];
+    }
+}
 
+-(void)getImages:(NSArray *)images{
+
+}
 @end

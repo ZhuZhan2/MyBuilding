@@ -15,6 +15,7 @@
 #import "MyIndexPath.h"
 #import "ProjectImageModel.h"
 #import "ProjectContactModel.h"
+//#import "EGOImageView.h"
 
 @interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate>
 @property(nonatomic,strong)UIButton* backButton;
@@ -51,10 +52,8 @@
             //NSLog(@"==========%@",posts);
             //posts下标0是联系人数组 下标1是图片数组
             NSLog(@"%ld",[posts[0] count]);
-            for(int i=0;i<[posts[0] count];i++){
-                ProjectContactModel *contactModel = posts[0][i];
-                //NSLog(@"%@",contactModel.a_category);
-            }
+            
+            [self.model getContacts:posts[0]];
             
             for(int i=0;i<[posts[1] count];i++){
                 ProjectImageModel *imageModel = posts[1][i];
@@ -74,7 +73,14 @@
     [self initTableView];
     [self initThemeView];
     [self initAnimationView];
-    
+//    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(50, 150, 200, 100)];
+//    view.backgroundColor=[UIColor redColor];
+//    [self.view addSubview:view];
+//    
+//    
+//    EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:nil];
+//    imageView.imageURL=[NSURL URLWithString:@"http://www.baidu.com/img/bdlogo.png"];
+//    [view addSubview:imageView];
 }
 
 -(void)initLoadingView{
@@ -274,13 +280,25 @@
 
 //联系人view
 -(NSArray*)getThreeContactsViewThreeTypesFiveStrsWithIndexPath:(MyIndexPath*)indexPath{
-//    if (indexPath.part==0) {
-//        if (indexPath.section==0) {
-//            return @[];
-//        }
-//    }
-    
-    return @[@[@"111",@"111",@"111",@"111",@"111"],@[@"111",@"111",@"111",@"111",@"111"],@[@"111",@"111",@"111",@"111",@"111"]];
+    if (indexPath.part==0) {
+        NSArray* array=@[self.model.auctionContacts,self.model.ownerContacts];
+        return [self loadContacts:array[indexPath.section]];
+    }else if (indexPath.part==1){
+        NSArray* array=@[self.model.explorationContacts,self.model.designContacts,self.model.ownerContacts];
+        return [self loadContacts:array[indexPath.section]];
+    }else{
+        NSArray* array=@[self.model.constructionContacts,self.model.pileContacts];
+        return [self loadContacts:array[indexPath.section]];
+    }
+}
+
+-(NSArray*)loadContacts:(NSMutableArray*)contacts{
+    NSMutableArray* array=[NSMutableArray arrayWithArray:contacts];
+    for (int i=0; i<3-contacts.count; i++) {
+        NSArray* tempAry=@[@"联系人",@"职位",@"单位名称",@"单位地址",@""];
+        [array addObject:tempAry];
+    }
+    return array;
 }
 
 //program大块 二行

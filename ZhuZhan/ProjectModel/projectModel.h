@@ -74,6 +74,33 @@
 //装修进度
 @property (nonatomic,strong) NSString *a_decorationProcess;
 
-@property (nonatomic, copy) NSDictionary *dict;
+//土地信息 土地规划/拍卖 阶段 拍卖单位联系人
+@property(nonatomic,strong)NSMutableArray* auctionContacts;
+//土地信息 项目立项 阶段 业主单位联系人 //主体设计 出图 阶段 业主单位联系人
+@property(nonatomic,strong)NSMutableArray* ownerContacts;
+//主体设计 地勘 阶段 地勘公司联系人
+@property(nonatomic,strong)NSMutableArray* explorationContacts;
+//主体设计 设计 阶段 设计院联系人
+@property(nonatomic,strong)NSMutableArray* designContacts;
+//主体施工 地平 阶段 施工总承包单位联系人
+@property(nonatomic,strong)NSMutableArray* constructionContacts;
+//主体施工 桩基基坑 阶段 桩基分包单位联系人
+@property(nonatomic,strong)NSMutableArray* pileContacts;
 
+//土地信息 土地规划/拍卖 阶段 图片
+@property(nonatomic,strong)NSMutableArray* auctionImages;
+//主体设计 地勘 阶段 图片
+@property(nonatomic,strong)NSMutableArray* explorationImages;
+//主体施工 地平 阶段 图片
+@property(nonatomic,strong)NSMutableArray* constructionImages;
+//主体施工 桩基基坑 阶段 图片
+@property(nonatomic,strong)NSMutableArray* pileImages;
+//主体施工 主体施工 阶段 图片
+@property(nonatomic,strong)NSMutableArray* mainBulidImages;
+//装修 阶段 图片
+@property(nonatomic,strong)NSMutableArray* decorationImages;
+
+@property (nonatomic, copy) NSDictionary *dict;
+-(void)getContacts:(NSArray*)contacts;
+-(void)getImages:(NSArray*)images;
 @end
