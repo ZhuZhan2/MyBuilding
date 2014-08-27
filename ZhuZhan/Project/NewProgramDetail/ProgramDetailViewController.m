@@ -272,9 +272,11 @@
 //第一行蓝，第二行黑的view
 -(NSArray*)getBlueTwoLinesWithStrsWithIndexPath:(MyIndexPath*)indexPath{
     if (indexPath.section==0) {
-        return @[@"111",@"111",@"111"];
+        NSLog(@"%@,%@,%@",[self.model.a_area class],[self.model.a_plotRatio class],[self.model.a_usage class]);
+        return @[@"",@"",@""];
+        return @[self.model.a_area,self.model.a_plotRatio,self.model.a_usage];
     }else{
-        return @[@"111",@"111",@"111",@"111",@"111",@"111"];
+        return @[self.model.a_exceptStartTime,[self.model.a_storeyHeight stringByAppendingString:@"M"],self.model.a_foreignInvestment,self.model.a_exceptFinishTime,self.model.a_investment,[self.model.a_storeyArea stringByAppendingString:@"㎡"]];
     }
 }
 
