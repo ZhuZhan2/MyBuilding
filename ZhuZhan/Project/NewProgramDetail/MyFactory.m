@@ -232,7 +232,7 @@
 
 //第一行黑，第二行灰的view
 +(UIView*)getBlackTwoLinesWithFirstStr:(NSArray*)firstStrs secondStr:(NSArray*)secondStrs{
-    NSInteger count=firstStrs.count>=secondStrs.count?firstStrs.count:secondStrs.count;
+    NSInteger count=firstStrs.count;
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 70)];
     view.backgroundColor=[UIColor whiteColor];
     

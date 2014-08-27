@@ -13,7 +13,10 @@
 #import "MainBuild.h"
 #import "DecorationProject.h"
 #import "MyIndexPath.h"
-@interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate>
+#import "ProjectImageModel.h"
+#import "ProjectContactModel.h"
+
+@interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate>
 @property(nonatomic,strong)UIButton* backButton;
 @property(nonatomic,strong)UITableView* contentTableView;
 @property(nonatomic,strong)UITableView* selectTableView;
@@ -28,6 +31,13 @@
 @property(nonatomic,strong)UIImageView* bigStageImageView;//上导航中大阶段图片
 
 @property(nonatomic,strong)NSMutableArray* contents;
+
+@property(nonatomic,strong)UIActivityIndicatorView* animationView;//加载新view时的菊花动画
+@property(nonatomic,strong)UIView* loadingView;
+@property(nonatomic)BOOL isNeedAnimation;
+
+@property(nonatomic)CGFloat loadNewViewStandardY;//判断是否需要加载新大阶段view的标准线
+
 @end
 
 @implementation ProgramDetailViewController
@@ -38,7 +48,18 @@
     self.view.backgroundColor=[UIColor whiteColor];
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            NSLog(@"==========%@",posts[0]);
+            //            NSLog(@"==========%@",posts);
+            //            //posts下标0是联系人数组 下标1是图片数组
+            //            for(int i=0;i<[posts[0] count];i++){
+            //                ProjectContactModel *contactModel = posts[0][i];
+            //                NSLog(@"%@",contactModel.a_category);
+            //            }
+            //
+            //            for(int i=0;i<[posts[1] count];i++){
+            //                ProjectImageModel *imageModel = posts[1][i];
+            //                NSLog(@"%@",imageModel.a_imageCategory);
+            //            }
+            //NSLog(@"==========%@",posts[0]);
             [self loadSelf];
         }else{
             
@@ -48,23 +69,44 @@
 
 -(void)loadSelf{
     [self initNavi];
+    [self initLoadingView];
     [self initTableView];
     [self initThemeView];
+    [self initAnimationView];
+    
+}
+
+-(void)initLoadingView{
+    self.loadingView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 56)];
+    self.loadingView.backgroundColor=RGBCOLOR(229, 229, 229);
+    UIImageView* shadow=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 3.5)];
+    shadow.image=[UIImage imageNamed:@"XiangMuXiangQing/Shadow-bottom.png"];
+    [self.loadingView addSubview:shadow];
+}
+
+-(void)initAnimationView{
+    //动画view控制初始
+    self.animationView=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    self.animationView.color=[UIColor blackColor];
+    [self.contentTableView addSubview:self.animationView];
+    
+    //是否需要动画初始
+    self.isNeedAnimation=YES;
 }
 
 -(void)initTableView{
     self.landInfo=[LandInfo getLandInfoWithDelegate:self part:0];
     [[[self.landInfo.firstView.subviews[0] subviews][0]subviews][0] removeFromSuperview];
     
-    self.contents=[NSMutableArray arrayWithObjects:self.landInfo.firstView,self.landInfo.secondView, nil];
+    self.contents=[NSMutableArray arrayWithObjects:self.landInfo.firstView,self.landInfo.secondView, self.loadingView,nil];
     
-    NSLog(@"%@",self.contents);
+    //NSLog(@"%@",self.contents);
     
     self.contentTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 64+50, 320, 568-64-50) style:UITableViewStylePlain];
     self.contentTableView.delegate=self;
     self.contentTableView.dataSource=self;
     self.contentTableView.backgroundColor=RGBCOLOR(229, 229, 229);
-
+    
     self.contentTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.contentTableView];
 }
@@ -130,8 +172,67 @@
     NSLog(@"用户选择了筛选");
 }
 
+-(CGFloat)loadNewViewStandardY{
+    if (!self.mainDesign) {
+        return self.mainDesign.frame.size.height;
+    }else if (!self.mainBuild){
+        return self.mainBuild.frame.size.height+self.mainDesign.frame.size.height;
+    }else if (!self.decorationProject){
+        return  self.decorationProject.frame.size.height+self.mainBuild.frame.size.height+self.mainDesign.frame.size.height;
+    }else{
+        return CGFLOAT_MAX;
+    }
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentOffset.y+568-64-50>=scrollView.contentSize.height) {
+        NSLog(@"0");
+        if (!self.mainDesign) {
+            NSLog(@"1");
+            self.mainDesign=[MainDesign getMainDesignWithDelegate:self part:1];
+            [self contentsAddObject:self.mainDesign scrollView:scrollView];
+        }else if (!self.mainBuild){
+            NSLog(@"2");
+            self.mainBuild=[MainBuild getMainBuildWithDelegate:self part:2];
+            [self contentsAddObject:self.mainBuild scrollView:scrollView];
+        }else if(!self.decorationProject){
+            NSLog(@"3");
+            self.decorationProject=[DecorationProject getDecorationProjectWithDelegate:self part:3];
+            [self contentsAddObject:self.decorationProject scrollView:scrollView];
+        }
+    }
+}
+
+-(void)contentsAddObject:(UIView*)view scrollView:(UIScrollView*)scrollView{
+    //将内容添加进cell的内容数组
+    [self.contents removeLastObject];
+    for (int i=0; i<view.subviews.count; i++) {
+        [self.contents addObject:view.subviews[i]];
+    }
+    [self.contents addObject:self.loadingView];
+    
+    //根据是否需要动画情况进行加载
+    if (self.isNeedAnimation) {
+        self.animationView.center=CGPointMake(160, scrollView.contentSize.height-25);
+        if (!self.animationView.isAnimating) {
+            [self.animationView startAnimating];
+        }
+        [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(add) userInfo:nil repeats:NO];
+    }else{
+        [self.contentTableView reloadData];
+    }
+    
+}
+
+-(void)add{
+    if (self.animationView.isAnimating) {
+        [self.animationView stopAnimating];
+    }
+    [self.contentTableView reloadData];
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return self.contents.count;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -148,13 +249,13 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGRect frame=[self.contents[indexPath.row] frame];
-    return frame.size.height;
+        CGRect frame=[self.contents[indexPath.row] frame];
+        return frame.size.height;
 }
 
 //program大块 三行
 -(NSArray*)getThreeLinesTitleViewWithThreeStrsWithIndexPath:(MyIndexPath*)indexPath{
-    return @[@"",@"",@""];
+    return @[@"111",@"111",@"111"];
 }
 //图加图的数量
 -(NSArray*)getImageViewWithImageAndCountWithIndexPath:(MyIndexPath*)indexPath{
@@ -163,17 +264,21 @@
 
 //第一行蓝，第二行黑的view
 -(NSArray*)getBlueTwoLinesWithStrsWithIndexPath:(MyIndexPath*)indexPath{
-    return @[@"",@"",@""];
+    if (indexPath.section==0) {
+        return @[@"111",@"111",@"111"];
+    }else{
+        return @[@"111",@"111",@"111",@"111",@"111",@"111"];
+    }
 }
 
 //联系人view
 -(NSArray*)getThreeContactsViewThreeTypesFiveStrsWithIndexPath:(MyIndexPath*)indexPath{
-    return @[@[@"",@"",@"",@"",@""],@[@"",@"",@"",@"",@""],@[@"",@"",@"",@"",@""]];
+    return @[@[@"111",@"111",@"111",@"111",@"111"],@[@"111",@"111",@"111",@"111",@"111"],@[@"111",@"111",@"111",@"111",@"111"]];
 }
 
 //program大块 二行
 -(NSArray*)getTwoLinesTitleViewFirstStrsAndSecondStrsWithIndexPath:(MyIndexPath*)indexPath{
-    return @[@"",@""];
+    return @[@"111",@"111"];
 }
 
 //硬件设备以及yes和no
@@ -183,7 +288,7 @@
 
 //第一行黑，第二行灰的view
 -(NSArray*)getBlackTwoLinesWithStrsWithIndexPath:(MyIndexPath*)indexPath{
-    return  @[@"",@"",@""];
+    return  @[@"111",@"111",@"111"];
 }
 
 -(NSArray*)getOwnerTypeViewWithImageAndOwnersWithIndexPath:(MyIndexPath*)indexPath{
