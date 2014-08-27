@@ -103,9 +103,9 @@
         NSArray* tempAry=@[self.firstView,self.secondView];
         CGFloat height=0;
         for (int i=0; i<tempAry.count; i++) {
-            CGRect frame=[tempAry[i] frame];
-            frame.origin.y=height;
-            [tempAry[i] setFrame:frame];
+            //CGRect frame=[tempAry[i] frame];
+            //frame.origin.y=height;
+            //[tempAry[i] setFrame:frame];
             [self addSubview:tempAry[i]];
             height+=[tempAry[i] frame].size.height;
         }
