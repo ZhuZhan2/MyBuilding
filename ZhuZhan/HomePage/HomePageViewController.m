@@ -8,9 +8,7 @@
 
 #import "HomePageViewController.h"
 #import "LoginModel.h"
-
 #import "AppDelegate.h"
-#import "HomePageViewController.h"
 
 @interface HomePageViewController ()
 
@@ -34,7 +32,6 @@
     
     contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
     contactview = [[ContactViewController alloc] init];
-    contactview.hideDelegate = self;
     nav = [[UINavigationController alloc] initWithRootViewController:contactview];
     [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
     [contentView addSubview:nav.view];
@@ -235,7 +232,6 @@
         case 0:
             NSLog(@"人脉");
             contactview = [[ContactViewController alloc] init];
-            contactview.hideDelegate = self;
             nav = [[UINavigationController alloc] initWithRootViewController:contactview];
             [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
             [contentView addSubview:nav.view];
@@ -243,7 +239,6 @@
         case 1:
             NSLog(@"项目");
             projectview = [[ProjectTableViewController alloc] init];
-            projectview.delegate=self;
             nav = [[UINavigationController alloc] initWithRootViewController:projectview];
             [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
             [contentView addSubview:nav.view];
@@ -254,7 +249,6 @@
         case 3:
             NSLog(@"公司");
             companyview = [[CompanyViewController alloc] init];
-            companyview.hideDelegate=self;
             nav = [[UINavigationController alloc] initWithRootViewController:companyview];
             [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
             [contentView addSubview:nav.view];

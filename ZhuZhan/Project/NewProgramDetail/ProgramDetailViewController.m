@@ -15,7 +15,9 @@
 #import "MyIndexPath.h"
 #import "ProjectImageModel.h"
 #import "ProjectContactModel.h"
-
+#import "EGOImageView.h"
+#import "AppDelegate.h"
+#import "HomePageViewController.h"
 @interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate>
 @property(nonatomic,strong)UIButton* backButton;
 @property(nonatomic,strong)UITableView* contentTableView;
@@ -37,33 +39,64 @@
 @property(nonatomic)BOOL isNeedAnimation;
 
 @property(nonatomic)CGFloat loadNewViewStandardY;//判断是否需要加载新大阶段view的标准线
-
 @end
 
 @implementation ProgramDetailViewController
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //恢复tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //隐藏tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarHide];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    
     self.view.backgroundColor=[UIColor whiteColor];
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             //NSLog(@"==========%@",posts);
             //posts下标0是联系人数组 下标1是图片数组
-            NSLog(@"%ld",[posts[0] count]);
-            for(int i=0;i<[posts[0] count];i++){
-                ProjectContactModel *contactModel = posts[0][i];
-                //NSLog(@"%@",contactModel.a_category);
-            }
             
-            for(int i=0;i<[posts[1] count];i++){
-                ProjectImageModel *imageModel = posts[1][i];
-               // NSLog(@"%@",imageModel.a_imageCategory);
-            }
+            [self.model getContacts:posts[0]];
+            
+            //for(int i=0;i<[posts[1] count];i++){
+//                ProjectImageModel *imageModel = posts[1][0];
+//                
+//                
+//                NSLog(@"%@",imageModel.a_imageOriginalLocation);
+                // NSLog(@"%@",imageModel.a_imageCategory);
+            //}
+            
+            
             //NSLog(@"==========%@",posts[0]);
             [self loadSelf];
-        }else{
             
+            
+//                UIView* view=[[UIView alloc]initWithFrame:CGRectMake(50, 150, 200, 100)];
+//                view.backgroundColor=[UIColor redColor];
+//                [self.view addSubview:view];
+//            
+//            
+//                EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:nil];
+//                imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,imageModel.a_imageOriginalLocation]];
+//                [view addSubview:imageView];
+
+        }else{
+
         }
     } projectId:self.model.a_id];
 }
@@ -74,7 +107,6 @@
     [self initTableView];
     [self initThemeView];
     [self initAnimationView];
-    
 }
 
 -(void)initLoadingView{
@@ -189,41 +221,48 @@
     if (scrollView.contentOffset.y+568-64-50>=self.loadNewViewStandardY) {
         if (!self.mainDesign) {
             self.mainDesign=[MainDesign getMainDesignWithDelegate:self part:1];
-            [self contentsAddObject:self.mainDesign scrollView:scrollView];
+            [self addNewView:self.mainDesign scrollView:scrollView];
         }else if (!self.mainBuild){
             self.mainBuild=[MainBuild getMainBuildWithDelegate:self part:2];
-            [self contentsAddObject:self.mainBuild scrollView:scrollView];
+            [self addNewView:self.mainBuild scrollView:scrollView];
         }else if(!self.decorationProject){
             self.decorationProject=[DecorationProject getDecorationProjectWithDelegate:self part:3];
-            [self contentsAddObject:self.decorationProject scrollView:scrollView];
+            [self addNewView:self.decorationProject scrollView:scrollView];
         }
     }
 }
 
--(void)contentsAddObject:(UIView*)view scrollView:(UIScrollView*)scrollView{
-    //将内容添加进cell的内容数组
-    [self.contents removeLastObject];
-    for (int i=0; i<view.subviews.count; i++) {
-        [self.contents addObject:view.subviews[i]];
-    }
-    [self.contents addObject:self.loadingView];
-    
+-(void)addNewView:(UIView*)view scrollView:(UIScrollView*)scrollView{
     //根据是否需要动画情况进行加载
     if (self.isNeedAnimation) {
         self.animationView.center=CGPointMake(160, scrollView.contentSize.height-25);
         if (!self.animationView.isAnimating) {
             [self.animationView startAnimating];
         }
-        [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(add) userInfo:nil repeats:NO];
+        
+        CGRect frame=self.animationView.frame;
+        frame.size.height+=.000001;
+        [UIView animateWithDuration:2 animations:^{
+            self.animationView.frame=frame;
+        } completion:^(BOOL finished) {
+            if (self.animationView.isAnimating) {
+                [self.animationView stopAnimating];
+            }
+            [self contentsAddObject:view];
+        }];
     }else{
-        [self.contentTableView reloadData];
+        //将内容添加进cell的内容数组
+        [self contentsAddObject:view];
     }
-    
 }
 
--(void)add{
-    if (self.animationView.isAnimating) {
-        [self.animationView stopAnimating];
+-(void)contentsAddObject:(UIView*)view{
+    [self.contents removeLastObject];
+    for (int i=0; i<view.subviews.count; i++) {
+        [self.contents addObject:view.subviews[i]];
+    }
+    if (view!=self.decorationProject) {
+        [self.contents addObject:self.loadingView];
     }
     [self.contentTableView reloadData];
 }
@@ -266,41 +305,64 @@
 //第一行蓝，第二行黑的view
 -(NSArray*)getBlueTwoLinesWithStrsWithIndexPath:(MyIndexPath*)indexPath{
     if (indexPath.section==0) {
-        return @[@"111",@"111",@"111"];
+        return @[[self.model.a_area stringByAppendingString:@"㎡"],[self.model.a_plotRatio stringByAppendingString:@"%"],self.model.a_usage];
     }else{
-        return @[@"111",@"111",@"111",@"111",@"111",@"111"];
+        return @[self.model.a_exceptStartTime,[self.model.a_storeyHeight stringByAppendingString:@"M"],self.model.a_foreignInvestment,self.model.a_exceptFinishTime,self.model.a_investment,[self.model.a_storeyArea stringByAppendingString:@"㎡"]];
     }
 }
 
 //联系人view
 -(NSArray*)getThreeContactsViewThreeTypesFiveStrsWithIndexPath:(MyIndexPath*)indexPath{
-//    if (indexPath.part==0) {
-//        if (indexPath.section==0) {
-//            return @[];
-//        }
-//    }
-    
-    return @[@[@"111",@"111",@"111",@"111",@"111"],@[@"111",@"111",@"111",@"111",@"111"],@[@"111",@"111",@"111",@"111",@"111"]];
+    if (indexPath.part==0) {
+        NSArray* array=@[self.model.auctionContacts,self.model.ownerContacts];
+        return [self loadContacts:array[indexPath.section]];
+    }else if (indexPath.part==1){
+        NSArray* array=@[self.model.explorationContacts,self.model.designContacts,self.model.ownerContacts];
+        return [self loadContacts:array[indexPath.section]];
+    }else{
+        NSArray* array=@[self.model.constructionContacts,self.model.pileContacts];
+        return [self loadContacts:array[indexPath.section]];
+    }
+}
+
+//处理model中的联系人,如果不满3个则补默认格式的联系人过去显示
+-(NSArray*)loadContacts:(NSMutableArray*)contacts{
+    NSMutableArray* array=[NSMutableArray arrayWithArray:contacts];
+    for (int i=0; i<3-contacts.count; i++) {
+        NSArray* tempAry=@[@"联系人",@"职位",@"单位名称",@"单位地址",@""];
+        [array addObject:tempAry];
+    }
+    return array;
 }
 
 //program大块 二行
 -(NSArray*)getTwoLinesTitleViewFirstStrsAndSecondStrsWithIndexPath:(MyIndexPath*)indexPath{
-    return @[@"111",@"111"];
+    if (indexPath.part==1) {
+        NSArray* array=@[@[self.model.a_mainDesignStage],@[self.model.a_exceptStartTime,self.model.a_exceptFinishTime]];
+        return array[indexPath.section-1];
+    }else{
+        NSArray* array=@[self.model.a_actureStartTime];
+        return array;
+    }
 }
 
 //硬件设备以及yes和no
 -(NSArray*)getDeviceAndBoolWithDevicesAndBoolStrsWithIndexPath:(MyIndexPath*)indexPath{
-    return @[@"Yes",@"No",@"Yes",@"Yes",@"Yes"];
+    return @[self.model.a_elevator,self.model.a_airCondition,self.model.a_heating,self.model.a_externalWallMeterial,self.model.a_stealStructure];
 }
 
 //第一行黑，第二行灰的view
 -(NSArray*)getBlackTwoLinesWithStrsWithIndexPath:(MyIndexPath*)indexPath{
-    return  @[@"111",@"111",@"111"];
+    if (indexPath.part==2) {
+        return @[self.model.a_fireControl,self.model.a_green];
+    }else{
+        return @[self.model.a_electorWeakInstallation,self.model.a_decorationSituation,self.model.a_decorationProcess];
+    }
 }
 
 //业主类型内容
 -(NSArray*)getOwnerTypeViewWithImageAndOwnersWithIndexPath:(MyIndexPath*)indexPath{
-    return nil;
+    return [self.model.a_ownerType componentsSeparatedByString:@","];
 }
 
 - (void)didReceiveMemoryWarning

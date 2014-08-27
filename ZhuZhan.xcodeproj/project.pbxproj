@@ -1273,7 +1273,6 @@
 			children = (
 				0426C02019922D5900CD8822 /* HomePageViewController.h */,
 				0426C02119922D5900CD8822 /* HomePageViewController.m */,
-				D3EACDEE19934D0E0058FC9D /* HidePage.h */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";

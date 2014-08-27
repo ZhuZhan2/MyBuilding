@@ -15,5 +15,4 @@
     TopicsTableViewController *topicsview;
     SearchViewController *searchView;
 }
-@property(nonatomic,strong)id<HidePage>delegate;
 @end
