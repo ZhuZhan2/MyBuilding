@@ -39,7 +39,4 @@
 
 //完善用户信息
 + (NSURLSessionDataTask *)PostInformationImprovedWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic;
-
-//增加履历
-+ (NSURLSessionDataTask *)AddparticularsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic;
 @end

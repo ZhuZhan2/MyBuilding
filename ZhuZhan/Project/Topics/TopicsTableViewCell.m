@@ -40,7 +40,10 @@
     [self.contentView addSubview:bgView];
     
     headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"首页_16"]];
+    headImageView.delegate = self;
     [headImageView setFrame:CGRectMake(0, 0, 132, 105)];
+    headImageView.showActivityIndicator = YES;
+    NSLog(@"%@",model.a_image);
     headImageView.imageURL = [NSURL URLWithString:model.a_image];
     [bgView addSubview:headImageView];
     

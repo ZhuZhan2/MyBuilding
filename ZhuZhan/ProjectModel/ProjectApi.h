@@ -48,6 +48,6 @@
 //获取专题
 + (NSURLSessionDataTask *)GetPiProjectSeminarWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block;
 
-//获取专题详情
-+ (NSURLSessionDataTask *)SinglePiProjectSeminarWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block Id:(NSString *)Id;
+//获取获取专题项目
++ (NSURLSessionDataTask *)GetSeminarProjectsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block Id:(NSString *)Id;
 @end

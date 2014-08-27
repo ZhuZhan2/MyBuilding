@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BMapKit.h"
 #define KAPI_KEY @"7057bbc57c1f842fa8f8355cab2941c3"
 #define KAPI_SECRET @"R-6gNM2XsmWENxtDQjm87jm_JzWNH74X"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate>{
+    BMKMapManager* _mapManager;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

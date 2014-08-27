@@ -130,33 +130,7 @@
     return confromTimespStr;
 }
 
-- (void)addExperience
-{
-     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-    
-    NSString *inDate = [self timeConversion:@"20100801"];
-    NSString *outDate = [self timeConversion:@"20130901"];
-    NSLog(@"time   %@",inDate);
-    NSLog(@"time   %@",outDate);
-    
-    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userId,@"userId",@"companyName",@"companyName",inDate,@"inDate",outDate,@"outDate",@"true",@"isIn",@"汉韩海qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq龙",@"information",nil];
-    NSLog(@"mmmdddfdfd    %@",parameter);
-    
-    [LoginModel AddparticularsWithBlock:^(NSMutableArray *posts, NSError *error) {
-        NSDictionary *responseObject = [posts objectAtIndex:0];
-        NSString *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
 
-        if ([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"添加成功" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
-            [alert show];
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"添加失败" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
-            [alert show];
-        }
-
-    } dic:parameter];
-    
-}
 
 - (void)perfect
 {

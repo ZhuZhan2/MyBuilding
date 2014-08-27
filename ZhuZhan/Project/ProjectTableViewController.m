@@ -53,6 +53,16 @@
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
     
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
+    [bgView setBackgroundColor:[UIColor clearColor]];
+    UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [searchBtn setFrame:CGRectMake(0, 0, 200, 30)];
+    [searchBtn setBackgroundColor:[UIColor whiteColor]];
+    [searchBtn addTarget:self action:@selector(serachClick) forControlEvents:UIControlEventTouchUpInside];
+    [bgView addSubview:searchBtn];
+    
+    self.navigationItem.titleView = bgView;
+    
     startIndex = 0;
     showArr = [[NSMutableArray alloc] init];
     [ProjectApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -72,6 +82,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)serachClick{
+    searchView = [[SearchViewController alloc] init];
+    [self.navigationController pushViewController:searchView animated:YES];
 }
 
 /**

@@ -38,12 +38,11 @@
     self.navigationItem.leftBarButtonItem = leftButtonItem;
     
     self.title = @"专题详情";
-    [ProjectApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+    [ProjectApi GetSeminarProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             showArr = posts;
-            [self.tableView reloadData];
         }
-    } startIndex:0];
+    } Id:self.model.a_id];
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     self.tableView.separatorStyle = NO;
 }
