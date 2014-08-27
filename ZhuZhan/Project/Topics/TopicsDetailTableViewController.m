@@ -101,7 +101,7 @@
         [cell.contentView setBackgroundColor:[UIColor grayColor]];
         cell.selectionStyle = NO;
         UILabel *projectCount = [[UILabel alloc] initWithFrame:CGRectMake(0, 3, 320, 20)];
-        projectCount.text = @"12";
+        projectCount.text = self.model.a_projectCount;
         projectCount.textColor = [UIColor blueColor];
         projectCount.font = [UIFont systemFontOfSize:17];
         projectCount.textAlignment = NSTextAlignmentCenter;

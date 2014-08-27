@@ -41,17 +41,18 @@
     
     headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"首页_16"]];
     [headImageView setFrame:CGRectMake(0, 0, 132, 105)];
+    headImageView.imageURL = [NSURL URLWithString:model.a_image];
     [bgView addSubview:headImageView];
     
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(142, 8, 157, 30)];
-    titleLabel.text = @"超级公寓在深山老林里面";
+    titleLabel.text = model.a_title;
     titleLabel.font = [UIFont systemFontOfSize:15];
     titleLabel.textColor = [UIColor blueColor];
     [bgView addSubview:titleLabel];
     
     contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(142, 28, 157, 50)];
     contentLabel.numberOfLines = 2;
-    contentLabel.text = @"超级公寓在深山老林里面超级公寓在深山老林里面超级公寓在深山老林里面";
+    contentLabel.text = model.a_content;
     contentLabel.font = [UIFont systemFontOfSize:12];
     [bgView addSubview:contentLabel];
     
@@ -64,13 +65,13 @@
     [bgView addSubview:countImage];
     
     projectCount = [[UILabel alloc] initWithFrame:CGRectMake(167, 80, 100, 20)];
-    projectCount.text = @"133";
+    projectCount.text = model.a_projectCount;
     projectCount.font = [UIFont systemFontOfSize:14];
     projectCount.textColor = [UIColor redColor];
     [bgView addSubview:projectCount];
     
     dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(225, 80, 100, 20)];
-    dateLabel.text = @"2014-08-02";
+    dateLabel.text = model.a_publishTime;
     dateLabel.font = [UIFont systemFontOfSize:14];
     dateLabel.textColor = [UIColor grayColor];
     [bgView addSubview:dateLabel];

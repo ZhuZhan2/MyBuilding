@@ -196,5 +196,24 @@ NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 //点击自己头像去个人中心
 -(void)gotoMyCenter{
     NSLog(@"gotoMyCenter");
+    UIView *bgview = [[UIView alloc] initWithFrame:self.tableView.frame];
+    [bgview setBackgroundColor:[UIColor blackColor]];
+    [self.tableView.superview addSubview:bgview];
+    bgview.alpha = 0.5;
+    
+    UIView *newview = [[UIView alloc] initWithFrame:CGRectMake(50, 100, 200, 300)];
+    [newview setBackgroundColor:[UIColor whiteColor]];
+    [self.tableView.superview addSubview:newview];
+    
+    UIButton *leftBtn =  [UIButton buttonWithType:UIButtonTypeCustom];
+    leftBtn.frame = CGRectMake(20, 28, 50, 14.5);
+    [leftBtn setTitle:@"asdfasdf" forState:UIControlStateNormal];
+    [leftBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [leftBtn addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [newview addSubview:leftBtn];
+}
+
+-(void)leftBtnClick{
+    NSLog(@"leftBtnClick");
 }
 @end

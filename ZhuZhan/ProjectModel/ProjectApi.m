@@ -10,6 +10,7 @@
 #import "projectModel.h"
 #import "ProjectContactModel.h"
 #import "ProjectImageModel.h"
+#import "TopicsModel.h"
 @implementation ProjectApi
 //RESPONSE:
 //{
@@ -389,12 +390,16 @@
 }
 
 + (NSURLSessionDataTask *)GetPiProjectSeminarWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProject/GetPiProjectSemina"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/PiProject/GetSeminars?SeminarName=&SeminarId=&SeminarDescription="];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            //[mutablePosts addObject:JSON[@"d"][@"data"]];
+            for(NSDictionary *item in JSON[@"d"][@"data"]){
+                TopicsModel *model = [[TopicsModel alloc] init];
+                [model setDict:item];
+                [mutablePosts addObject:model];
+            }
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }

@@ -7,7 +7,15 @@
 //
 
 #import "TopicsModel.h"
-
+#import "ProjectStage.h"
 @implementation TopicsModel
-
+-(void)setDict:(NSDictionary *)dict{
+    _dict = dict;
+    self.a_id = [ProjectStage ProjectStrStage:dict[@"id"]];
+    self.a_title = [ProjectStage ProjectStrStage:dict[@"seminarName"]];
+    self.a_content = [ProjectStage ProjectStrStage:dict[@"seminarDescription"]];
+    self.a_image = [ProjectStage ProjectStrStage:dict[@"seminarPictureLocation"]];
+    self.a_projectCount = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"recordCount"]]];
+    self.a_publishTime = [ProjectStage ProjectStrStage:dict[@"publishTime"]];
+}
 @end

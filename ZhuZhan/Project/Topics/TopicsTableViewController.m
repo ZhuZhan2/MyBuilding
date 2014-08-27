@@ -41,7 +41,8 @@
     self.tableView.separatorStyle = NO;
     [ProjectApi GetPiProjectSeminarWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-        
+            showArr = posts;
+            [self.tableView reloadData];
         }
     }];
 }
@@ -67,7 +68,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 5;
+    return showArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
