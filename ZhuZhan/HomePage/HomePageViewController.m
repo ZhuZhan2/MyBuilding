@@ -111,11 +111,11 @@
     [self.view addSubview:menu];
     
     [self.navigationController.navigationBar removeFromSuperview];
-    UIButton *LoginOutBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    LoginOutBtn.frame = CGRectMake(70, 20, 40, 30);
-    [LoginOutBtn setTitle:@"退出" forState:UIControlStateNormal];
-    [LoginOutBtn addTarget:self action:@selector(loginOut) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:LoginOutBtn];
+//    UIButton *LoginOutBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    LoginOutBtn.frame = CGRectMake(70, 20, 40, 30);
+//    [LoginOutBtn setTitle:@"退出" forState:UIControlStateNormal];
+//    [LoginOutBtn addTarget:self action:@selector(loginOut) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:LoginOutBtn];
 //
 //    UIButton *perfectBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 //    perfectBtn.frame = CGRectMake(70, 20, 40, 30);

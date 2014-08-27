@@ -248,17 +248,13 @@
 		04D10BD519AE016A0097C0C6 /* Cell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BAB19AE01690097C0C6 /* Cell1.m */; };
 		04D10BD619AE016A0097C0C6 /* CommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BAD19AE01690097C0C6 /* CommentsCell.m */; };
 		04D10BD719AE016A0097C0C6 /* CompanyPublishedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BAF19AE01690097C0C6 /* CompanyPublishedCell.m */; };
-		04D10BD819AE016A0097C0C6 /* concern.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BB019AE01690097C0C6 /* concern.png */; };
 		04D10BD919AE016A0097C0C6 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BB219AE016A0097C0C6 /* ContactViewController.m */; };
 		04D10BDA19AE016A0097C0C6 /* Pan.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BB419AE016A0097C0C6 /* Pan.m */; };
-		04D10BDB19AE016A0097C0C6 /* visit.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BB519AE016A0097C0C6 /* visit.png */; };
 		04D10BDC19AE016A0097C0C6 /* AccountImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BB819AE016A0097C0C6 /* AccountImgCell.m */; };
 		04D10BDD19AE016A0097C0C6 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BBA19AE016A0097C0C6 /* AccountViewController.m */; };
 		04D10BDE19AE016A0097C0C6 /* CommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BBC19AE016A0097C0C6 /* CommonCell.m */; };
 		04D10BDF19AE016A0097C0C6 /* ImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BBE19AE016A0097C0C6 /* ImgCell.m */; };
 		04D10BE019AE016A0097C0C6 /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BC019AE016A0097C0C6 /* PersonalCenterViewController.m */; };
-		04D10BE119AE016A0097C0C6 /* RadioButton-Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BC119AE016A0097C0C6 /* RadioButton-Selected.png */; };
-		04D10BE219AE016A0097C0C6 /* RadioButton-Unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BC219AE016A0097C0C6 /* RadioButton-Unselected.png */; };
 		04D10BE319AE016A0097C0C6 /* RadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BC419AE016A0097C0C6 /* RadioButton.m */; };
 		04D10BE419AE016A0097C0C6 /* message.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BC619AE016A0097C0C6 /* message.png */; };
 		04D10BE519AE016A0097C0C6 /* PersonalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BC819AE016A0097C0C6 /* PersonalDetailViewController.m */; };
@@ -268,6 +264,14 @@
 		04D10BE919AE016A0097C0C6 /* photoBtnIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BCE19AE016A0097C0C6 /* photoBtnIcon.png */; };
 		04D10BEA19AE016A0097C0C6 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BD019AE016A0097C0C6 /* PublishViewController.m */; };
 		04D10BEB19AE016A0097C0C6 /* textBtnIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BD119AE016A0097C0C6 /* textBtnIcon.png */; };
+		04D10BF219AE059E0097C0C6 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BEF19AE059E0097C0C6 /* 1.png */; };
+		04D10BF319AE059E0097C0C6 /* 123.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BF019AE059E0097C0C6 /* 123.png */; };
+		04D10BF419AE059E0097C0C6 /* back_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BF119AE059E0097C0C6 /* back_icon.png */; };
+		04D10BFA19AE06AF0097C0C6 /* concern.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BF519AE06AE0097C0C6 /* concern.png */; };
+		04D10BFB19AE06AF0097C0C6 /* RadioButton-Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BF619AE06AF0097C0C6 /* RadioButton-Selected.png */; };
+		04D10BFC19AE06AF0097C0C6 /* RadioButton-Unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BF719AE06AF0097C0C6 /* RadioButton-Unselected.png */; };
+		04D10BFD19AE06AF0097C0C6 /* tabbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BF819AE06AF0097C0C6 /* tabbar.png */; };
+		04D10BFE19AE06AF0097C0C6 /* visit.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BF919AE06AF0097C0C6 /* visit.png */; };
 		5B031C3019ACA6C100573071 /* XiangMuJieDuan in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2819ACA6C100573071 /* XiangMuJieDuan */; };
 		5B031C3119ACA6C100573071 /* XiangMuXiangQing in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2919ACA6C100573071 /* XiangMuXiangQing */; };
 		5B031C3219ACA6C100573071 /* XiangMuXiangQing_1 in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2A19ACA6C100573071 /* XiangMuXiangQing_1 */; };
@@ -883,12 +887,10 @@
 		04D10BAD19AE01690097C0C6 /* CommentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsCell.m; sourceTree = "<group>"; };
 		04D10BAE19AE01690097C0C6 /* CompanyPublishedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyPublishedCell.h; sourceTree = "<group>"; };
 		04D10BAF19AE01690097C0C6 /* CompanyPublishedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyPublishedCell.m; sourceTree = "<group>"; };
-		04D10BB019AE01690097C0C6 /* concern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = concern.png; sourceTree = "<group>"; };
 		04D10BB119AE01690097C0C6 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
 		04D10BB219AE016A0097C0C6 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		04D10BB319AE016A0097C0C6 /* Pan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pan.h; sourceTree = "<group>"; };
 		04D10BB419AE016A0097C0C6 /* Pan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pan.m; sourceTree = "<group>"; };
-		04D10BB519AE016A0097C0C6 /* visit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = visit.png; sourceTree = "<group>"; };
 		04D10BB719AE016A0097C0C6 /* AccountImgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountImgCell.h; sourceTree = "<group>"; };
 		04D10BB819AE016A0097C0C6 /* AccountImgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountImgCell.m; sourceTree = "<group>"; };
 		04D10BB919AE016A0097C0C6 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
@@ -899,8 +901,6 @@
 		04D10BBE19AE016A0097C0C6 /* ImgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgCell.m; sourceTree = "<group>"; };
 		04D10BBF19AE016A0097C0C6 /* PersonalCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterViewController.h; sourceTree = "<group>"; };
 		04D10BC019AE016A0097C0C6 /* PersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterViewController.m; sourceTree = "<group>"; };
-		04D10BC119AE016A0097C0C6 /* RadioButton-Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RadioButton-Selected.png"; sourceTree = "<group>"; };
-		04D10BC219AE016A0097C0C6 /* RadioButton-Unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RadioButton-Unselected.png"; sourceTree = "<group>"; };
 		04D10BC319AE016A0097C0C6 /* RadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioButton.h; sourceTree = "<group>"; };
 		04D10BC419AE016A0097C0C6 /* RadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioButton.m; sourceTree = "<group>"; };
 		04D10BC619AE016A0097C0C6 /* message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message.png; sourceTree = "<group>"; };
@@ -914,6 +914,14 @@
 		04D10BCF19AE016A0097C0C6 /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
 		04D10BD019AE016A0097C0C6 /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
 		04D10BD119AE016A0097C0C6 /* textBtnIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textBtnIcon.png; sourceTree = "<group>"; };
+		04D10BEF19AE059E0097C0C6 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		04D10BF019AE059E0097C0C6 /* 123.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 123.png; sourceTree = "<group>"; };
+		04D10BF119AE059E0097C0C6 /* back_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_icon.png; sourceTree = "<group>"; };
+		04D10BF519AE06AE0097C0C6 /* concern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = concern.png; sourceTree = "<group>"; };
+		04D10BF619AE06AF0097C0C6 /* RadioButton-Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RadioButton-Selected.png"; sourceTree = "<group>"; };
+		04D10BF719AE06AF0097C0C6 /* RadioButton-Unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RadioButton-Unselected.png"; sourceTree = "<group>"; };
+		04D10BF819AE06AF0097C0C6 /* tabbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar.png; sourceTree = "<group>"; };
+		04D10BF919AE06AF0097C0C6 /* visit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = visit.png; sourceTree = "<group>"; };
 		5B031C2819ACA6C100573071 /* XiangMuJieDuan */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuJieDuan; sourceTree = "<group>"; };
 		5B031C2919ACA6C100573071 /* XiangMuXiangQing */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuXiangQing; sourceTree = "<group>"; };
 		5B031C2A19ACA6C100573071 /* XiangMuXiangQing_1 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuXiangQing_1; sourceTree = "<group>"; };
@@ -1953,12 +1961,10 @@
 				04D10BAD19AE01690097C0C6 /* CommentsCell.m */,
 				04D10BAE19AE01690097C0C6 /* CompanyPublishedCell.h */,
 				04D10BAF19AE01690097C0C6 /* CompanyPublishedCell.m */,
-				04D10BB019AE01690097C0C6 /* concern.png */,
 				04D10BB119AE01690097C0C6 /* ContactViewController.h */,
 				04D10BB219AE016A0097C0C6 /* ContactViewController.m */,
 				04D10BB319AE016A0097C0C6 /* Pan.h */,
 				04D10BB419AE016A0097C0C6 /* Pan.m */,
-				04D10BB519AE016A0097C0C6 /* visit.png */,
 			);
 			path = contactView;
 			sourceTree = "<group>";
@@ -1976,8 +1982,6 @@
 				04D10BBE19AE016A0097C0C6 /* ImgCell.m */,
 				04D10BBF19AE016A0097C0C6 /* PersonalCenterViewController.h */,
 				04D10BC019AE016A0097C0C6 /* PersonalCenterViewController.m */,
-				04D10BC119AE016A0097C0C6 /* RadioButton-Selected.png */,
-				04D10BC219AE016A0097C0C6 /* RadioButton-Unselected.png */,
 				04D10BC319AE016A0097C0C6 /* RadioButton.h */,
 				04D10BC419AE016A0097C0C6 /* RadioButton.m */,
 			);
@@ -2049,6 +2053,14 @@
 		D3AD600B19AC4DC1001FD483 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				04D10BF519AE06AE0097C0C6 /* concern.png */,
+				04D10BF619AE06AF0097C0C6 /* RadioButton-Selected.png */,
+				04D10BF719AE06AF0097C0C6 /* RadioButton-Unselected.png */,
+				04D10BF819AE06AF0097C0C6 /* tabbar.png */,
+				04D10BF919AE06AF0097C0C6 /* visit.png */,
+				04D10BEF19AE059E0097C0C6 /* 1.png */,
+				04D10BF019AE059E0097C0C6 /* 123.png */,
+				04D10BF119AE059E0097C0C6 /* back_icon.png */,
 				D3AD617019ADC25C001FD483 /* 搜索_03.png */,
 				D3AD617119ADC25C001FD483 /* 搜索_05.png */,
 				D3AD617219ADC25C001FD483 /* 搜索_07.png */,
@@ -2500,10 +2512,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D10BF319AE059E0097C0C6 /* 123.png in Resources */,
 				D3AD603F19AC4DC1001FD483 /* bg-addbutton.png in Resources */,
 				D3AD606B19AC4DC1001FD483 /* 面部采集_12.png in Resources */,
 				D3AD605419AC4DC1001FD483 /* timescroll_pointer.png in Resources */,
 				5B031C3019ACA6C100573071 /* XiangMuJieDuan in Resources */,
+				04D10BFD19AE06AF0097C0C6 /* tabbar.png in Resources */,
 				04D10BE919AE016A0097C0C6 /* photoBtnIcon.png in Resources */,
 				D3AD604019AC4DC1001FD483 /* bg-addbutton@2x.png in Resources */,
 				D3AD606619AC4DC1001FD483 /* 面部采集_03.png in Resources */,
@@ -2524,6 +2538,7 @@
 				D3AD604919AC4DC1001FD483 /* icon-plus.png in Resources */,
 				D3AD605619AC4DC1001FD483 /* 地图搜索_01.png in Resources */,
 				D3AD605119AC4DC1001FD483 /* timescroll_hourhand@2x.png in Resources */,
+				04D10BFC19AE06AF0097C0C6 /* RadioButton-Unselected.png in Resources */,
 				D3AD606419AC4DC1001FD483 /* 面部识别登录_03.png in Resources */,
 				D3AD607E19AC4E09001FD483 /* 全部项目_17.png in Resources */,
 				D3AD617619ADC25C001FD483 /* 搜索_07.png in Resources */,
@@ -2531,19 +2546,20 @@
 				D3AD604719AC4DC1001FD483 /* icon-plus-highlighted.png in Resources */,
 				D3AD604E19AC4DC1001FD483 /* icon_04.png in Resources */,
 				D3AD605919AC4DC1001FD483 /* 注册_03.png in Resources */,
+				04D10BFE19AE06AF0097C0C6 /* visit.png in Resources */,
+				04D10BFA19AE06AF0097C0C6 /* concern.png in Resources */,
 				D3AD606519AC4DC1001FD483 /* 面部识别登录_07.png in Resources */,
 				04D10BE419AE016A0097C0C6 /* message.png in Resources */,
 				D3AD604619AC4DC1001FD483 /* circle@2x.png in Resources */,
+				04D10BFB19AE06AF0097C0C6 /* RadioButton-Selected.png in Resources */,
 				D3AD605019AC4DC1001FD483 /* timescroll_hourhand.png in Resources */,
 				D3AD617719ADC25C001FD483 /* 搜索_10.png in Resources */,
 				D3AD606A19AC4DC1001FD483 /* 面部采集_11.png in Resources */,
 				D3AD606119AC4DC1001FD483 /* 登录_15.png in Resources */,
 				04D10BE819AE016A0097C0C6 /* telephone.png in Resources */,
-				04D10BDB19AE016A0097C0C6 /* visit.png in Resources */,
 				D3AD604C19AC4DC1001FD483 /* icon-star@2x.png in Resources */,
 				D3AD604F19AC4DC1001FD483 /* pullrefresh.aif in Resources */,
 				D3AD604A19AC4DC1001FD483 /* icon-plus@2x.png in Resources */,
-				04D10BD819AE016A0097C0C6 /* concern.png in Resources */,
 				D3AD606719AC4DC1001FD483 /* 面部采集_06.png in Resources */,
 				5B031C3219ACA6C100573071 /* XiangMuXiangQing_1 in Resources */,
 				D3AD606C19AC4DC1001FD483 /* 首页_16.png in Resources */,
@@ -2551,11 +2567,11 @@
 				D3AD605219AC4DC1001FD483 /* timescroll_minutehand.png in Resources */,
 				D3AD606919AC4DC1001FD483 /* 面部采集_09.png in Resources */,
 				D3AD615519ADA1A9001FD483 /* mapapi.bundle in Resources */,
+				04D10BF419AE059E0097C0C6 /* back_icon.png in Resources */,
 				D3AD605319AC4DC1001FD483 /* timescroll_minutehand@2x.png in Resources */,
 				5B031C3419ACA6C100573071 /* XiangMuXiangQing_3 in Resources */,
 				D3AD604319AC4DC1001FD483 /* bg-menuitem.png in Resources */,
 				D3AD605E19AC4DC1001FD483 /* 登录_03.png in Resources */,
-				04D10BE219AE016A0097C0C6 /* RadioButton-Unselected.png in Resources */,
 				D3AD605C19AC4DC1001FD483 /* 登录1_03.png in Resources */,
 				D3AD605A19AC4DC1001FD483 /* 注册_07.png in Resources */,
 				D3AD604419AC4DC1001FD483 /* bg-menuitem@2x.png in Resources */,
@@ -2568,6 +2584,7 @@
 				D3AD607F19AC4E09001FD483 /* 全部项目_19.png in Resources */,
 				D3AD607319AC4DE7001FD483 /* 全部项目_13.png in Resources */,
 				D3AD603D19AC4DC1001FD483 /* bg-addbutton-highlighted.png in Resources */,
+				04D10BF219AE059E0097C0C6 /* 1.png in Resources */,
 				D3AD603E19AC4DC1001FD483 /* bg-addbutton-highlighted@2x.png in Resources */,
 				0426BFF519922CE400CD8822 /* InfoPlist.strings in Resources */,
 				D3AD605519AC4DC1001FD483 /* timescroll_pointer@2x.png in Resources */,
@@ -2577,7 +2594,6 @@
 				04D10BE719AE016A0097C0C6 /* read.png in Resources */,
 				D3AD605D19AC4DC1001FD483 /* 登录1_07.png in Resources */,
 				D3AD605B19AC4DC1001FD483 /* 注册_09.png in Resources */,
-				04D10BE119AE016A0097C0C6 /* RadioButton-Selected.png in Resources */,
 				5B031C3119ACA6C100573071 /* XiangMuXiangQing in Resources */,
 				0426BFFD19922CE400CD8822 /* Images.xcassets in Resources */,
 				D3AD606D19AC4DC1001FD483 /* 首页侧拉栏_03.png in Resources */,
