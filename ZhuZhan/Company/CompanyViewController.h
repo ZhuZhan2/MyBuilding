@@ -7,9 +7,5 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HidePage.h"
-@interface CompanyViewController : UIViewController{
-    id<HidePage>hideDelegate;
-}
-@property(nonatomic,strong)id<HidePage>hideDelegate;
+@interface CompanyViewController : UIViewController
 @end

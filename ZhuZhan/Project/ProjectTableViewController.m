@@ -178,14 +178,9 @@
     ProgramDetailViewController* vc=[[ProgramDetailViewController alloc]init];
     projectModel *model = showArr[indexPath.row];
     vc.model=model;
-    [self.delegate homePageTabBarHide];
-    [self.navigationController pushViewController:vc animated:YES];
-}
 
-//从展示页回来时显示tabbar
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.delegate homePageTabBarRestore];
+    //[self.delegate homePageTabBarHide];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

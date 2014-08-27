@@ -14,7 +14,6 @@ NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @end
 
 @implementation ContactViewController
-@synthesize hideDelegate;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -57,9 +56,7 @@ NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    if([hideDelegate respondsToSelector:@selector(homePageTabBarRestore)]){
-        [hideDelegate homePageTabBarRestore];
-    }
+    [super viewWillAppear:animated];
 }
 
 /*
@@ -176,9 +173,6 @@ NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     CompanyMemberViewController* memberVC=[[CompanyMemberViewController alloc]initWithMemberNumber:14];
     [self.navigationController pushViewController:memberVC animated:YES];
-    if([hideDelegate respondsToSelector:@selector(homePageTabBarHide)]){
-        [hideDelegate homePageTabBarHide];
-    }
 }
 
 //时间标签

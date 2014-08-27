@@ -14,7 +14,6 @@
 @end
 
 @implementation CompanyViewController
-@synthesize hideDelegate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -146,15 +145,11 @@
 -(void)next{
     CompanyMemberViewController* memberVC=[[CompanyMemberViewController alloc]initWithMemberNumber:self.memberNumber];
     [self.navigationController pushViewController:memberVC animated:YES];
-    if([hideDelegate respondsToSelector:@selector(homePageTabBarHide)]){
-        [hideDelegate homePageTabBarHide];
-    }
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    if([hideDelegate respondsToSelector:@selector(homePageTabBarRestore)]){
-        [hideDelegate homePageTabBarRestore];
-    }
+
 }
 
 -(void)more{

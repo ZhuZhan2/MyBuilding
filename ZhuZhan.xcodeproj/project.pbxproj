@@ -1093,7 +1093,6 @@
 		D3AD617119ADC25C001FD483 /* 搜索_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索_05.png"; sourceTree = "<group>"; };
 		D3AD617219ADC25C001FD483 /* 搜索_07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索_07.png"; sourceTree = "<group>"; };
 		D3AD617319ADC25C001FD483 /* 搜索_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索_10.png"; sourceTree = "<group>"; };
-		D3EACDEE19934D0E0058FC9D /* HidePage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HidePage.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1263,7 +1262,6 @@
 			children = (
 				0426C02019922D5900CD8822 /* HomePageViewController.h */,
 				0426C02119922D5900CD8822 /* HomePageViewController.m */,
-				D3EACDEE19934D0E0058FC9D /* HidePage.h */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";

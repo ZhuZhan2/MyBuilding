@@ -12,7 +12,7 @@
 #import "CompanyViewController.h"
 #import "TradeViewController.h"
 #import "QuadCurveMenu.h"
-@interface HomePageViewController : UIViewController<QuadCurveMenuDelegate,HidePage>{
+@interface HomePageViewController : UIViewController<QuadCurveMenuDelegate>{
     UIButton *contactBtn;
     UIButton *projectBtn;
     UIButton *companyBtn;
@@ -27,5 +27,6 @@
     UINavigationController *nav;
     QuadCurveMenu *menu;
 }
-
+-(void)homePageTabBarHide;
+-(void)homePageTabBarRestore;
 @end
