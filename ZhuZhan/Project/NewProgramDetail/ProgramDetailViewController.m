@@ -48,23 +48,24 @@
     self.view.backgroundColor=[UIColor whiteColor];
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            //            NSLog(@"==========%@",posts);
-            //            //posts下标0是联系人数组 下标1是图片数组
-            //            for(int i=0;i<[posts[0] count];i++){
-            //                ProjectContactModel *contactModel = posts[0][i];
-            //                NSLog(@"%@",contactModel.a_category);
-            //            }
-            //
-            //            for(int i=0;i<[posts[1] count];i++){
-            //                ProjectImageModel *imageModel = posts[1][i];
-            //                NSLog(@"%@",imageModel.a_imageCategory);
-            //            }
+            //NSLog(@"==========%@",posts);
+            //posts下标0是联系人数组 下标1是图片数组
+            NSLog(@"%ld",[posts[0] count]);
+            for(int i=0;i<[posts[0] count];i++){
+                ProjectContactModel *contactModel = posts[0][i];
+                //NSLog(@"%@",contactModel.a_category);
+            }
+            
+            for(int i=0;i<[posts[1] count];i++){
+                ProjectImageModel *imageModel = posts[1][i];
+               // NSLog(@"%@",imageModel.a_imageCategory);
+            }
             //NSLog(@"==========%@",posts[0]);
             [self loadSelf];
         }else{
             
         }
-    } projectId:self.ID];
+    } projectId:self.model.a_id];
 }
 
 -(void)loadSelf{
@@ -174,29 +175,25 @@
 
 -(CGFloat)loadNewViewStandardY{
     if (!self.mainDesign) {
-        return self.mainDesign.frame.size.height;
+        return self.landInfo.frame.size.height+56;
     }else if (!self.mainBuild){
-        return self.mainBuild.frame.size.height+self.mainDesign.frame.size.height;
+        return self.landInfo.frame.size.height+self.mainDesign.frame.size.height+56;
     }else if (!self.decorationProject){
-        return  self.decorationProject.frame.size.height+self.mainBuild.frame.size.height+self.mainDesign.frame.size.height;
+        return  self.landInfo.frame.size.height+self.mainDesign.frame.size.height+self.mainBuild.frame.size.height+56;
     }else{
         return CGFLOAT_MAX;
     }
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (scrollView.contentOffset.y+568-64-50>=scrollView.contentSize.height) {
-        NSLog(@"0");
+    if (scrollView.contentOffset.y+568-64-50>=self.loadNewViewStandardY) {
         if (!self.mainDesign) {
-            NSLog(@"1");
             self.mainDesign=[MainDesign getMainDesignWithDelegate:self part:1];
             [self contentsAddObject:self.mainDesign scrollView:scrollView];
         }else if (!self.mainBuild){
-            NSLog(@"2");
             self.mainBuild=[MainBuild getMainBuildWithDelegate:self part:2];
             [self contentsAddObject:self.mainBuild scrollView:scrollView];
         }else if(!self.decorationProject){
-            NSLog(@"3");
             self.decorationProject=[DecorationProject getDecorationProjectWithDelegate:self part:3];
             [self contentsAddObject:self.decorationProject scrollView:scrollView];
         }
@@ -249,13 +246,17 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-        CGRect frame=[self.contents[indexPath.row] frame];
-        return frame.size.height;
+    CGRect frame=[self.contents[indexPath.row] frame];
+    return frame.size.height;
 }
 
 //program大块 三行
 -(NSArray*)getThreeLinesTitleViewWithThreeStrsWithIndexPath:(MyIndexPath*)indexPath{
-    return @[@"111",@"111",@"111"];
+    if (indexPath.section==0) {
+        return @[self.model.a_landName,[NSString stringWithFormat:@"%@ %@ %@",self.model.a_province,self.model.a_city,self.model.a_district],self.model.a_landAddress];
+    }else{
+        return @[self.model.a_projectName,[NSString stringWithFormat:@"%@ %@ %@",self.model.a_city,self.model.a_district,self.model.a_landAddress],self.model.a_description];
+    }
 }
 //图加图的数量
 -(NSArray*)getImageViewWithImageAndCountWithIndexPath:(MyIndexPath*)indexPath{
@@ -273,6 +274,12 @@
 
 //联系人view
 -(NSArray*)getThreeContactsViewThreeTypesFiveStrsWithIndexPath:(MyIndexPath*)indexPath{
+//    if (indexPath.part==0) {
+//        if (indexPath.section==0) {
+//            return @[];
+//        }
+//    }
+    
     return @[@[@"111",@"111",@"111",@"111",@"111"],@[@"111",@"111",@"111",@"111",@"111"],@[@"111",@"111",@"111",@"111",@"111"]];
 }
 
@@ -291,6 +298,7 @@
     return  @[@"111",@"111",@"111"];
 }
 
+//业主类型内容
 -(NSArray*)getOwnerTypeViewWithImageAndOwnersWithIndexPath:(MyIndexPath*)indexPath{
     return nil;
 }
