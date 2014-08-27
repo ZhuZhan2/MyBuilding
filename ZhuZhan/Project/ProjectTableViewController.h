@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "TopicsTableViewController.h"
+#import "SearchViewController.h"
 @interface ProjectTableViewController : UITableViewController{
     NSMutableArray *showArr;
     int startIndex;
     TopicsTableViewController *topicsview;
+    SearchViewController *searchView;
 }
 @property(nonatomic,strong)id<HidePage>delegate;
 @end

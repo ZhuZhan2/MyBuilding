@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TopicsModel.h"
 #import "EGOImageView.h"
-@interface TopicsTableViewCell : UITableViewCell{
+@interface TopicsTableViewCell : UITableViewCell<EGOImageViewDelegate>{
     EGOImageView *headImageView;
     UILabel *titleLabel;
     UILabel *contentLabel;
