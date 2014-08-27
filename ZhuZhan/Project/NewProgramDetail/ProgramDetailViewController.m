@@ -18,7 +18,8 @@
 #import "EGOImageView.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
-@interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate>
+#import "ProgramSelectViewCell.h"
+@interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate>
 @property(nonatomic,strong)UIButton* backButton;
 @property(nonatomic,strong)UITableView* contentTableView;
 @property(nonatomic,strong)UITableView* selectTableView;
@@ -39,6 +40,9 @@
 @property(nonatomic)BOOL isNeedAnimation;
 
 @property(nonatomic)CGFloat loadNewViewStandardY;//判断是否需要加载新大阶段view的标准线
+
+//以下4属性用于sectionHeader被点击时所需要传参数时用的东西
+@property(nonatomic,strong)NSMutableArray* sectionButtonArray;
 @end
 
 @implementation ProgramDetailViewController
@@ -62,39 +66,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
-    
+
     self.view.backgroundColor=[UIColor whiteColor];
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            //NSLog(@"==========%@",posts);
-            //posts下标0是联系人数组 下标1是图片数组
-            
             [self.model getContacts:posts[0]];
-            
-            //for(int i=0;i<[posts[1] count];i++){
-//                ProjectImageModel *imageModel = posts[1][0];
-//                
-//                
-//                NSLog(@"%@",imageModel.a_imageOriginalLocation);
-                // NSLog(@"%@",imageModel.a_imageCategory);
-            //}
-            
-            
-            //NSLog(@"==========%@",posts[0]);
             [self loadSelf];
             
-            
-//                UIView* view=[[UIView alloc]initWithFrame:CGRectMake(50, 150, 200, 100)];
-//                view.backgroundColor=[UIColor redColor];
-//                [self.view addSubview:view];
-//            
-//            
-//                EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:nil];
-//                imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,imageModel.a_imageOriginalLocation]];
-//                [view addSubview:imageView];
-
+//            ProjectImageModel *imageModel = posts[1][0];
+//            NSLog(@"%@",imageModel.a_imageOriginalLocation);
+//            NSLog(@"%@",imageModel.a_imageCategory);
+//            UIView* view=[[UIView alloc]initWithFrame:CGRectMake(50, 150, 200, 100)];
+//            view.backgroundColor=[UIColor whiteColor];
+//            [self.view addSubview:view];
+//            EGOImageView* imageView=[[EGOImageView alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+//            imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,imageModel.a_imageOriginalLocation]];
+//            [view addSubview:imageView];
         }else{
 
         }
@@ -104,9 +91,10 @@
 -(void)loadSelf{
     [self initNavi];
     [self initLoadingView];
-    [self initTableView];
+    [self initContentTableView];
     [self initThemeView];
     [self initAnimationView];
+    [self initSelectTableView];
 }
 
 -(void)initLoadingView{
@@ -127,13 +115,11 @@
     self.isNeedAnimation=YES;
 }
 
--(void)initTableView{
+-(void)initContentTableView{
     self.landInfo=[LandInfo getLandInfoWithDelegate:self part:0];
     [[[self.landInfo.firstView.subviews[0] subviews][0]subviews][0] removeFromSuperview];
     
     self.contents=[NSMutableArray arrayWithObjects:self.landInfo.firstView,self.landInfo.secondView, self.loadingView,nil];
-    
-    //NSLog(@"%@",self.contents);
     
     self.contentTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 64+50, 320, 568-64-50) style:UITableViewStylePlain];
     self.contentTableView.delegate=self;
@@ -201,8 +187,30 @@
     [themeView addSubview:button];
 }
 
+-(void)initSelectTableView{
+    self.selectTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568-64) style:UITableViewStylePlain];
+    self.selectTableView.delegate=self;
+    self.selectTableView.dataSource=self;
+    self.selectTableView.center=CGPointMake(160, -(568-64)*.5);
+    [self.selectTableView registerClass:[ProgramSelectViewCell class] forCellReuseIdentifier:@"Cell"];
+    self.selectTableView.showsVerticalScrollIndicator=NO;
+    self.selectTableView.scrollEnabled=NO;
+    self.selectTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    self.selectTableView.backgroundColor=[UIColor colorWithWhite:1 alpha:.95];
+    
+    [self.view addSubview:self.selectTableView];
+    //用于存放使sectionHeader可以被点击的button的array
+    self.sectionButtonArray=[NSMutableArray array];
+}
+
 -(void)change{
     NSLog(@"用户选择了筛选");
+    self.isNeedAnimation=NO;
+    //暂时移除观察者,避免加新view时有动画
+    [self.view addSubview:self.selectTableView];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.selectTableView.center=CGPointMake(160, (568-64.5)*.5+64.5);
+    }];
 }
 
 -(CGFloat)loadNewViewStandardY{
@@ -230,6 +238,13 @@
             [self addNewView:self.decorationProject scrollView:scrollView];
         }
     }
+    
+    
+    
+//    NSMutableArray* heights=[NSMutableArray array];
+//    for (int i=0; i<self.contents.count; i++) {
+//        <#statements#>
+//    }
 }
 
 -(void)addNewView:(UIView*)view scrollView:(UIScrollView*)scrollView{
@@ -267,27 +282,203 @@
     [self.contentTableView reloadData];
 }
 
+//筛选界面拉回去
+-(void)selectCancel{
+    self.isNeedAnimation=YES;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.selectTableView.center=CGPointMake(160, -(568-64)*.5);
+    } completion:^(BOOL finished){
+        [self.selectTableView removeFromSuperview];
+    }];
+}
+
+//**************************************************
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView==self.contentTableView) {
+    }else{
+        //为了让sectionHeader可以被点击,所以将cell被点击之后实现的跳转加载功能封装到其他方法
+        [self didchangeStageSection:indexPath.section row:indexPath.row];
+    }
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    NSArray* path=@[@"XiangMuXiangQing_ShaiXuan/map@2x.png",@"XiangMuXiangQing_ShaiXuan/pen_01@2x.png",@"XiangMuXiangQing_2/Subject_01@2x.png",@"XiangMuXiangQing_3/paint_01@2x.png"];
+    
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 37.5)];
+    
+    UIImage* image=[UIImage imageNamed:path[section]];
+    CGRect frame=CGRectMake(0, 0, image.size.width*.5, image.size.height*.5);
+    UIImageView* imageView=[[UIImageView alloc]initWithFrame:frame];
+    imageView.center=CGPointMake(23.5, 37.5*.5);
+    imageView.image=image;
+    [view addSubview:imageView];
+    
+    UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(47, 12, 200, 16)];
+    NSArray* ary=@[@"土地信息阶段",@"主体设计阶段",@"主体施工阶段",@"装修阶段"];
+    label.text=ary[section];
+    label.font=[UIFont systemFontOfSize:16];
+    [view addSubview:label];
+    
+    UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(47, 36.5, 273, 1)];
+    separatorLine.backgroundColor=RGBCOLOR(96, 96, 96);
+    [view addSubview:separatorLine];
+    
+    //使该sectionHeader可以被点击
+    UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 320, 37.5)];
+    [button addTarget:self action:@selector(selectSection:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:button];
+    [self.sectionButtonArray addObject:button];
+    
+    return view;
+}
+
+//判断用户点击的是哪个sectionHeader,然后将section传过去
+-(void)selectSection:(id)button{
+    NSLog(@"%d",[self.sectionButtonArray indexOfObject:button]);
+    [self didchangeStageSection:[self.sectionButtonArray indexOfObject:button] row:0];
+}
+
+-(void)didchangeStageSection:(NSInteger)section row:(NSInteger)row{
+
+    NSLog(@"%f",self.contentTableView.contentOffset.y);
+    for (int i=1; i<=section; i++) {//土地信息阶段必存在，不用判断和操作
+        if (!self.mainDesign&&i==1) {
+            //加载主体设计
+            self.mainDesign=[MainDesign getMainDesignWithDelegate:self part:1];
+            [self addNewView:self.mainDesign scrollView:self.contentTableView];
+            
+        }else if(!self.mainBuild&&i==2){
+            //加载主体施工
+            self.mainBuild=[MainBuild getMainBuildWithDelegate:self part:2];
+            [self addNewView:self.mainBuild scrollView:self.contentTableView];
+        }else if(!self.decorationProject&&i==3){
+            //加载装修
+            self.decorationProject=[DecorationProject getDecorationProjectWithDelegate:self part:3];
+            [self addNewView:self.decorationProject scrollView:self.contentTableView];
+        }
+    }
+    //如果导致装修的界面需要被动画加载出来，则进行无动画加载装修view
+    if (!self.decorationProject&&section==2&&row==3) {//计算坐标比较复杂，直接从结果中判断是否需要加载装修页面,判断下来,当用户点击第三大阶段第四小阶段时,需要无动画加载装修
+        self.decorationProject=[DecorationProject getDecorationProjectWithDelegate:self part:3];
+        [self addNewView:self.decorationProject scrollView:self.contentTableView];
+    }
+    
+    NSInteger count[4]={0,2,5,9};
+    CGFloat height=0;
+    NSInteger sum=count[section]+row;
+    for (int i=0; i<sum; i++) {
+        height+=[self.contents[i] frame].size.height;
+    }
+    [self.contentTableView setContentOffset:CGPointMake(0, height) animated:YES];
+    [self selectCancel];
+}
+
+-(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView==self.contentTableView) {
+        return NO;
+    }else{
+        if (indexPath.section==3) {
+            return NO;
+        }else{
+            return YES;
+        }
+    }
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if (tableView==self.contentTableView) {
+        return 1;
+    }else{
+        return 4;
+    }
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.contents.count;
+    if (tableView==self.contentTableView) {
+        return self.contents.count;
+    }else{
+        NSInteger count[4]={2,3,4,1};
+        return count[section];
+    }
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (!cell) {
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    if (tableView==self.contentTableView) {
+        UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+        if (!cell) {
+            cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        }
+        if (cell.contentView.subviews.count) {
+            [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        }
+        [cell.contentView addSubview:self.contents[indexPath.row]];
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        return cell;
+    }else{
+        BOOL first,second;
+        if (indexPath.section==0) {
+            if (indexPath.row==0) {
+                first=self.model.auctionContacts.count?YES:NO;
+                //second=self.planImageArr.count?YES:NO;
+            }else{
+                first=self.model.ownerContacts.count?YES:NO;
+                second=NO;
+            }
+        }else if (indexPath.section==1){
+            if (indexPath.row==0) {
+                first=self.model.explorationContacts.count?YES:NO;
+                //second=self.explorationImageArr.count?YES:NO;
+            }else if (indexPath.row==1){
+                first=self.model.designContacts.count?YES:NO;
+                second=NO;
+            }else{
+                first=self.model.ownerContacts.count?YES:NO;
+                second=NO;
+            }
+        }else{
+            if (indexPath.row==0){
+                first=self.model.constructionContacts.count?YES:NO;
+                //second=self.horizonImageArr.count?YES:NO;
+            }else if (indexPath.row==1){
+                first=self.model.pileContacts.count?YES:NO;
+                //second=self.pilePitImageArr.count?YES:NO;
+            }else if (indexPath.row==2){
+                first=NO;
+                //second=self.mainConstructionImageArr.count?YES:NO;
+            }else{
+                first=NO;
+                second=NO;
+            }
+        }
+        
+        ProgramSelectViewCell* cell=[ProgramSelectViewCell dequeueReusableCellWithTabelView:tableView identifier:@"Cell" indexPath:indexPath firstIcon:first secondIcon:second];
+        cell.delegate=self;
+        return cell;
     }
-    if (cell.contentView.subviews.count) {
-        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    }
-    [cell.contentView addSubview:self.contents[indexPath.row]];
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    return cell;
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGRect frame=[self.contents[indexPath.row] frame];
-    return frame.size.height;
+    if (tableView==self.contentTableView) {
+        CGRect frame=[self.contents[indexPath.row] frame];
+        return frame.size.height;
+    }else{
+        if (indexPath.section==3) {
+            return 40;
+        }else{
+            return 34;
+        }
+    }
 }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (tableView==self.contentTableView) {
+        return 0;
+    }else{
+        return 37.5;
+    }
+}
+//**************************************************
 
 //program大块 三行
 -(NSArray*)getThreeLinesTitleViewWithThreeStrsWithIndexPath:(MyIndexPath*)indexPath{
@@ -297,6 +488,7 @@
         return @[self.model.a_projectName,[NSString stringWithFormat:@"%@ %@ %@",self.model.a_city,self.model.a_district,self.model.a_landAddress],self.model.a_description];
     }
 }
+
 //图加图的数量
 -(NSArray*)getImageViewWithImageAndCountWithIndexPath:(MyIndexPath*)indexPath{
     return @[0?@1:[UIImage imageNamed:@"首页_16.png"],[NSNumber numberWithInt:0]];
