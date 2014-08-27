@@ -89,7 +89,11 @@
 }
 
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    detailView = [[TopicsDetailTableViewController alloc] init];
+    detailView.model = showArr[indexPath.row];
+    [self.navigationController pushViewController:detailView animated:YES];
+}
 
 
 @end
