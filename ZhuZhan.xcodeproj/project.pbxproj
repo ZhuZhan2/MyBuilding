@@ -347,6 +347,7 @@
 		D3AD60FC19AC7CC5001FD483 /* EGOImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F819AC7CC5001FD483 /* EGOImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D3AD610019AD6A9B001FD483 /* TopicsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60FF19AD6A9B001FD483 /* TopicsTableViewController.m */; };
 		D3AD610319AD6AC4001FD483 /* TopicsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD610219AD6AC4001FD483 /* TopicsTableViewCell.m */; };
+		D3AD610719AD7323001FD483 /* TopicsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD610619AD7323001FD483 /* TopicsModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -971,6 +972,8 @@
 		D3AD60FF19AD6A9B001FD483 /* TopicsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicsTableViewController.m; sourceTree = "<group>"; };
 		D3AD610119AD6AC4001FD483 /* TopicsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicsTableViewCell.h; sourceTree = "<group>"; };
 		D3AD610219AD6AC4001FD483 /* TopicsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicsTableViewCell.m; sourceTree = "<group>"; };
+		D3AD610519AD7323001FD483 /* TopicsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicsModel.h; sourceTree = "<group>"; };
+		D3AD610619AD7323001FD483 /* TopicsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicsModel.m; sourceTree = "<group>"; };
 		D3EACDEE19934D0E0058FC9D /* HidePage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HidePage.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1055,6 +1058,7 @@
 		0426BFF019922CE400CD8822 /* ZhuZhan */ = {
 			isa = PBXGroup;
 			children = (
+				D3AD610419AD7311001FD483 /* TopicsModel */,
 				D3AD5FFE19AB3AC2001FD483 /* ContactModel */,
 				D3311CAC19AADB34003B2682 /* LoginModel */,
 				D3311CA519AAD342003B2682 /* ProjectModel */,
@@ -1962,6 +1966,15 @@
 			path = Topics;
 			sourceTree = "<group>";
 		};
+		D3AD610419AD7311001FD483 /* TopicsModel */ = {
+			isa = PBXGroup;
+			children = (
+				D3AD610519AD7323001FD483 /* TopicsModel.h */,
+				D3AD610619AD7323001FD483 /* TopicsModel.m */,
+			);
+			path = TopicsModel;
+			sourceTree = "<group>";
+		};
 		D3EACDE3199327780058FC9D /* QuadCurveMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -2359,6 +2372,7 @@
 				0426C27E19922D5A00CD8822 /* GPUImageHueBlendFilter.m in Sources */,
 				0426C2F219922D5A00CD8822 /* CJSONSerializedData.m in Sources */,
 				0426C29C19922D5A00CD8822 /* GPUImageOpeningFilter.m in Sources */,
+				D3AD610719AD7323001FD483 /* TopicsModel.m in Sources */,
 				0426C2C819922D5A00CD8822 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
 				0426C2FC19922D5A00CD8822 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				0426C24819922D5A00CD8822 /* GPUImageAverageLuminanceThresholdFilter.m in Sources */,

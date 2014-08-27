@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface TopicsTableViewCell : UITableViewCell
-
+#import "TopicsModel.h"
+#import "EGOImageView.h"
+@interface TopicsTableViewCell : UITableViewCell{
+    EGOImageView *headImageView;
+    UILabel *titleLabel;
+    UILabel *contentLabel;
+    UILabel *projectCount;
+    UILabel *dateLabel;
+}
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(TopicsModel *)model;
 @end
