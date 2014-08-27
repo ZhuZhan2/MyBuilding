@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "projectModel.h"
 @interface ProgramDetailViewController : UIViewController
-@property(nonatomic,copy)NSString* ID;
+@property(nonatomic,strong)projectModel* model;
 @end
