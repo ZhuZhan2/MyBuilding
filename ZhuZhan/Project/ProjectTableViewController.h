@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TopicsTableViewController.h"
 @interface ProjectTableViewController : UITableViewController{
     NSMutableArray *showArr;
     int startIndex;
+    TopicsTableViewController *topicsview;
 }
 
 @end

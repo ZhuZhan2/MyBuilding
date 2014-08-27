@@ -345,6 +345,8 @@
 		D3AD60FA19AC7CC5001FD483 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F419AC7CC5001FD483 /* EGOImageLoadConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D3AD60FB19AC7CC5001FD483 /* EGOImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F619AC7CC5001FD483 /* EGOImageLoader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D3AD60FC19AC7CC5001FD483 /* EGOImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F819AC7CC5001FD483 /* EGOImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D3AD610019AD6A9B001FD483 /* TopicsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60FF19AD6A9B001FD483 /* TopicsTableViewController.m */; };
+		D3AD610319AD6AC4001FD483 /* TopicsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD610219AD6AC4001FD483 /* TopicsTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -965,6 +967,10 @@
 		D3AD60F619AC7CC5001FD483 /* EGOImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageLoader.m; sourceTree = "<group>"; };
 		D3AD60F719AC7CC5001FD483 /* EGOImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageView.h; sourceTree = "<group>"; };
 		D3AD60F819AC7CC5001FD483 /* EGOImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageView.m; sourceTree = "<group>"; };
+		D3AD60FE19AD6A9B001FD483 /* TopicsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicsTableViewController.h; sourceTree = "<group>"; };
+		D3AD60FF19AD6A9B001FD483 /* TopicsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicsTableViewController.m; sourceTree = "<group>"; };
+		D3AD610119AD6AC4001FD483 /* TopicsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicsTableViewCell.h; sourceTree = "<group>"; };
+		D3AD610219AD6AC4001FD483 /* TopicsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicsTableViewCell.m; sourceTree = "<group>"; };
 		D3EACDEE19934D0E0058FC9D /* HidePage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HidePage.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1145,6 +1151,7 @@
 		0426C04B19922D5900CD8822 /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				D3AD60FD19AD6A3C001FD483 /* Topics */,
 				D3AD60C719AC7BD1001FD483 /* NewProgramDetail */,
 				D3AD600519AC48DD001FD483 /* ProjectTableViewController.h */,
 				D3AD600619AC48DD001FD483 /* ProjectTableViewController.m */,
@@ -1944,6 +1951,17 @@
 			path = EGOImageLoader;
 			sourceTree = "<group>";
 		};
+		D3AD60FD19AD6A3C001FD483 /* Topics */ = {
+			isa = PBXGroup;
+			children = (
+				D3AD60FE19AD6A9B001FD483 /* TopicsTableViewController.h */,
+				D3AD60FF19AD6A9B001FD483 /* TopicsTableViewController.m */,
+				D3AD610119AD6AC4001FD483 /* TopicsTableViewCell.h */,
+				D3AD610219AD6AC4001FD483 /* TopicsTableViewCell.m */,
+			);
+			path = Topics;
+			sourceTree = "<group>";
+		};
 		D3EACDE3199327780058FC9D /* QuadCurveMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -2236,6 +2254,7 @@
 				0426C28519922D5A00CD8822 /* GPUImageLevelsFilter.m in Sources */,
 				0426C23619922D5A00CD8822 /* AFHTTPRequestOperation.m in Sources */,
 				0426C2B519922D5A00CD8822 /* GPUImageShiTomasiFeatureDetectionFilter.m in Sources */,
+				D3AD610319AD6AC4001FD483 /* TopicsTableViewCell.m in Sources */,
 				5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */,
 				0426C2B219922D5A00CD8822 /* GPUImageScreenBlendFilter.m in Sources */,
 				0426C2B419922D5A00CD8822 /* GPUImageSharpenFilter.m in Sources */,
@@ -2317,6 +2336,7 @@
 				0426C2A019922D5A00CD8822 /* GPUImagePerlinNoiseFilter.m in Sources */,
 				D3311CA819AAD357003B2682 /* projectModel.m in Sources */,
 				0426C2DA19922D5A00CD8822 /* GPUImageZoomBlurFilter.m in Sources */,
+				D3AD610019AD6A9B001FD483 /* TopicsTableViewController.m in Sources */,
 				0426C28A19922D5A00CD8822 /* GPUImageLookupFilter.m in Sources */,
 				0426C24119922D5A00CD8822 /* GPUImage3x3ConvolutionFilter.m in Sources */,
 				D3AD600419AC3E62001FD483 /* ProjectStage.m in Sources */,

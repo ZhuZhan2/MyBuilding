@@ -43,5 +43,11 @@
 + (NSURLSessionDataTask *)GetSearchConditionsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic;
 
 //项目普通搜索
-+ (NSURLSessionDataTask *)GetPiProjectSeachWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex keywords:(NSString *)keywords; 
++ (NSURLSessionDataTask *)GetPiProjectSeachWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex keywords:(NSString *)keywords;
+
+//获取专题
++ (NSURLSessionDataTask *)GetPiProjectSeminarWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block;
+
+//获取专题详情
++ (NSURLSessionDataTask *)SinglePiProjectSeminarWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block Id:(NSString *)Id;
 @end
