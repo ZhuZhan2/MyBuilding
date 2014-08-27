@@ -20,7 +20,7 @@
     self.a_city = [ProjectStage ProjectStrStage:dict[@"landCity"]];
     self.a_landAddress = [ProjectStage ProjectStrStage:dict[@"landAddress"]];
     self.a_area = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"landArea"]]];
-    self.a_plotRatio = [ProjectStage ProjectStrStage:dict[@"landPlotRatio"]];
+    self.a_plotRatio = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"landPlotRatio"]]];
     self.a_usage = [ProjectStage ProjectStrStage:dict[@"landUsages"]];
     self.a_projectName = [ProjectStage ProjectStrStage:dict[@"projectName"]];
     self.a_description = [ProjectStage ProjectStrStage:dict[@"projectDescription"]];

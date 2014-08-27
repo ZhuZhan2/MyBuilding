@@ -370,6 +370,10 @@
 		D3AD616B19ADB9F7001FD483 /* RecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD616819ADB9F7001FD483 /* RecordModel.m */; };
 		D3AD616C19ADB9F7001FD483 /* RecordSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD616A19ADB9F7001FD483 /* RecordSqlite.m */; };
 		D3AD616F19ADBD9D001FD483 /* toolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD616E19ADBD9D001FD483 /* toolBarView.m */; };
+		D3AD617419ADC25C001FD483 /* 搜索_03.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD617019ADC25C001FD483 /* 搜索_03.png */; };
+		D3AD617519ADC25C001FD483 /* 搜索_05.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD617119ADC25C001FD483 /* 搜索_05.png */; };
+		D3AD617619ADC25C001FD483 /* 搜索_07.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD617219ADC25C001FD483 /* 搜索_07.png */; };
+		D3AD617719ADC25C001FD483 /* 搜索_10.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD617319ADC25C001FD483 /* 搜索_10.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1085,6 +1089,10 @@
 		D3AD616A19ADB9F7001FD483 /* RecordSqlite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordSqlite.m; sourceTree = "<group>"; };
 		D3AD616D19ADBD9D001FD483 /* toolBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = toolBarView.h; sourceTree = "<group>"; };
 		D3AD616E19ADBD9D001FD483 /* toolBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = toolBarView.m; sourceTree = "<group>"; };
+		D3AD617019ADC25C001FD483 /* 搜索_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索_03.png"; sourceTree = "<group>"; };
+		D3AD617119ADC25C001FD483 /* 搜索_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索_05.png"; sourceTree = "<group>"; };
+		D3AD617219ADC25C001FD483 /* 搜索_07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索_07.png"; sourceTree = "<group>"; };
+		D3AD617319ADC25C001FD483 /* 搜索_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索_10.png"; sourceTree = "<group>"; };
 		D3EACDEE19934D0E0058FC9D /* HidePage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HidePage.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1904,6 +1912,10 @@
 		D3AD600B19AC4DC1001FD483 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3AD617019ADC25C001FD483 /* 搜索_03.png */,
+				D3AD617119ADC25C001FD483 /* 搜索_05.png */,
+				D3AD617219ADC25C001FD483 /* 搜索_07.png */,
+				D3AD617319ADC25C001FD483 /* 搜索_10.png */,
 				5B031C2819ACA6C100573071 /* XiangMuJieDuan */,
 				5B031C2919ACA6C100573071 /* XiangMuXiangQing */,
 				5B031C2A19ACA6C100573071 /* XiangMuXiangQing_1 */,
@@ -2346,6 +2358,7 @@
 				D3AD606319AC4DC1001FD483 /* 面部识别登录1_03.png in Resources */,
 				D3AD605819AC4DC1001FD483 /* 注册.png in Resources */,
 				D3AD604219AC4DC1001FD483 /* bg-menuitem-highlighted@2x.png in Resources */,
+				D3AD617419ADC25C001FD483 /* 搜索_03.png in Resources */,
 				D3AD606019AC4DC1001FD483 /* 登录_11.png in Resources */,
 				D3AD606219AC4DC1001FD483 /* 面部识别登录.png in Resources */,
 				5B031C3619ACA6C100573071 /* XiangMuXiangQing_TanKuang in Resources */,
@@ -2355,12 +2368,14 @@
 				D3AD605119AC4DC1001FD483 /* timescroll_hourhand@2x.png in Resources */,
 				D3AD606419AC4DC1001FD483 /* 面部识别登录_03.png in Resources */,
 				D3AD607E19AC4E09001FD483 /* 全部项目_17.png in Resources */,
+				D3AD617619ADC25C001FD483 /* 搜索_07.png in Resources */,
 				D3AD604719AC4DC1001FD483 /* icon-plus-highlighted.png in Resources */,
 				D3AD604E19AC4DC1001FD483 /* icon_04.png in Resources */,
 				D3AD605919AC4DC1001FD483 /* 注册_03.png in Resources */,
 				D3AD606519AC4DC1001FD483 /* 面部识别登录_07.png in Resources */,
 				D3AD604619AC4DC1001FD483 /* circle@2x.png in Resources */,
 				D3AD605019AC4DC1001FD483 /* timescroll_hourhand.png in Resources */,
+				D3AD617719ADC25C001FD483 /* 搜索_10.png in Resources */,
 				D3AD606A19AC4DC1001FD483 /* 面部采集_11.png in Resources */,
 				D3AD606119AC4DC1001FD483 /* 登录_15.png in Resources */,
 				D3AD604C19AC4DC1001FD483 /* icon-star@2x.png in Resources */,
@@ -2384,6 +2399,7 @@
 				D3AD604D19AC4DC1001FD483 /* icon.png in Resources */,
 				D3AD609119AC56CB001FD483 /* MJRefresh.bundle in Resources */,
 				D3AD604819AC4DC1001FD483 /* icon-plus-highlighted@2x.png in Resources */,
+				D3AD617519ADC25C001FD483 /* 搜索_05.png in Resources */,
 				D3AD604B19AC4DC1001FD483 /* icon-star.png in Resources */,
 				D3AD607F19AC4E09001FD483 /* 全部项目_19.png in Resources */,
 				D3AD607319AC4DE7001FD483 /* 全部项目_13.png in Resources */,
