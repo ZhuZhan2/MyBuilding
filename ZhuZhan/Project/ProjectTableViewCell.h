@@ -19,6 +19,7 @@
     UILabel *startdateLabel;
     UILabel *enddateLabel;
     UILabel *addressLabel;
+    int flag;
 }
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(projectModel *)model;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(projectModel *)model fromView:(NSString *)fromView;
 @end

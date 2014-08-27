@@ -179,7 +179,7 @@
     ProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     projectModel *model = showArr[indexPath.row];
     if(!cell){
-        cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:model];
+        cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:model fromView:@"project"];
     }
     cell.selectionStyle = NO;
     return cell;
