@@ -8,6 +8,8 @@
 
 #import "ProjectApi.h"
 #import "projectModel.h"
+#import "ProjectContactModel.h"
+#import "ProjectImageModel.h"
 @implementation ProjectApi
 //RESPONSE:
 //{
@@ -97,10 +99,24 @@
 + (NSURLSessionDataTask *)SingleProjectWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block projectId:(NSString *)projectId{
     NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/Projects?projectId=%@",projectId];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        //NSLog(@"JSON===>%@",JSON);
+        //NSLog(@"JSON===>%@",JSON[@"d"][@"data"]);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON[@"d"][@"data"]];
+            NSMutableArray *contactArr = [[NSMutableArray alloc] init];
+            NSMutableArray *imageArr = [[NSMutableArray alloc] init];
+            for(NSDictionary *item in JSON[@"d"][@"data"][@"projectBaseContacts"]){
+                ProjectContactModel *model = [[ProjectContactModel alloc] init];
+                [model setDict:item];
+                [contactArr addObject:model];
+            }
+            
+            for(NSDictionary *item in JSON[@"d"][@"data"][@"projectImages"]){
+                ProjectImageModel *model = [[ProjectImageModel alloc] init];
+                [model setDict:item];
+                [imageArr addObject:model];
+            }
+            [mutablePosts addObject:contactArr];
+            [mutablePosts addObject:imageArr];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
@@ -352,6 +368,50 @@
 
 + (NSURLSessionDataTask *)GetPiProjectSeachWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex keywords:(NSString *)keywords{
     NSString *urlStr = [NSString stringWithFormat:@"api/PiProject/GetPiProjectSeach?pageSize=5&index=%d&keywords=%@",startIndex,keywords];
+    return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            //[mutablePosts addObject:JSON[@"d"][@"data"]];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)GetPiProjectSeminarWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block{
+    NSString *urlStr = [NSString stringWithFormat:@"api/PiProject/GetPiProjectSemina"];
+    return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            //[mutablePosts addObject:JSON[@"d"][@"data"]];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)SinglePiProjectSeminarWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block Id:(NSString *)Id{
+    NSString *urlStr = [NSString stringWithFormat:@"api/PiProject/GetPiProjectSemina/Id=%@",Id];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){

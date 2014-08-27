@@ -44,6 +44,15 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"地图搜索_01.png"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,
                                                                      nil]];
+    
+    //LeftButton设置属性
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftButton setFrame:CGRectMake(0, 0, 12.5, 21.5)];
+    [leftButton setBackgroundImage:[UIImage imageNamed:@"icon-plus.png"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = leftButtonItem;
+    
     startIndex = 0;
     showArr = [[NSMutableArray alloc] init];
     [ProjectApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -128,6 +137,11 @@
             }
         }startIndex:startIndex];
     }
+}
+
+-(void)leftBtnClick{
+    topicsview = [[TopicsTableViewController alloc] init];
+    [self.navigationController pushViewController:topicsview animated:YES];
 }
 
 #pragma mark - Table view data source
