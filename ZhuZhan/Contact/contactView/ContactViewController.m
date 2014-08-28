@@ -16,13 +16,14 @@
 #import "LoginModel.h"
 #import "PublishViewController.h"
 
+
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
 @end
 
 @implementation ContactViewController
-@synthesize comments,pan,transparent;
+@synthesize comments,panVC;
 
 static int rowNum =0;
 - (id)initWithStyle:(UITableViewStyle)style
@@ -76,6 +77,8 @@ static int rowNum =0;
         [wself _refreshing];
     }];
 }
+
+
 
 -(void)publish
 {
@@ -174,6 +177,8 @@ static int rowNum =0;
 //}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
+
     rowNum =(int)[comments count]+3;
     
     return rowNum;
@@ -186,6 +191,8 @@ static int rowNum =0;
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
     if (indexPath.row%rowNum==0 ||indexPath.row%rowNum==1) {
         
         
@@ -238,6 +245,8 @@ static int rowNum =0;
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
     if (indexPath.row%rowNum==0 ||indexPath.row%rowNum==1) {
         return 50;
     }
@@ -248,6 +257,8 @@ static int rowNum =0;
 }
 
 //- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//
 //    CompanyMemberViewController* memberVC=[[CompanyMemberViewController alloc]initWithMemberNumber:14];
 //    [self.navigationController pushViewController:memberVC animated:YES];
 //    if([hideDelegate respondsToSelector:@selector(homePageTabBarHide)]){
@@ -275,33 +286,30 @@ static int rowNum =0;
 }
 
 -(void)ShowUserPanView:(UIButton *)button{
-    transparent = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-    transparent.backgroundColor = [UIColor blackColor];
-    transparent.alpha = 0.4;
-    [self.tableView.superview addSubview:transparent];
+    panVC = [[ShowViewController alloc] init];
+    panVC.delegate =self;
+    [self.tableView.superview addSubview:panVC.view];
+
+
     
-    pan = [[Pan alloc] initWithFrame:CGRectMake(30, 150, 260, 300)];
-    pan.backgroundColor = [UIColor whiteColor];
-    pan.userInteractionEnabled = YES;
-    pan.delegate = self;
-    pan.layer.cornerRadius = 0;
-    [self.tableView.superview addSubview:pan];
 }
 
-- (void)goToDetail
+
+
+- (void)jumpToGoToDetail
 {
+        NSLog(@"访问个人详情");
     
-    [pan removeFromSuperview];
-    [transparent removeFromSuperview];
+    [panVC.view removeFromSuperview];
     PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
     [self.navigationController pushViewController:personalVC animated:NO];
 }
 
-- (void)gotoConcern
+- (void)jumpToGotoConcern
 {
-    [pan removeFromSuperview];
-    [transparent removeFromSuperview];
-    
+
+        NSLog(@"关注好友");
+        [panVC.view removeFromSuperview];
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
        NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithObjectsAndKeys:userId,@"userId",@"bfc78202-8ac9-447a-a99d-783606d25668",@"focusId", nil];
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -321,6 +329,15 @@ static int rowNum =0;
         }
         
     } dic:parameter];
+}
+
+-(void)jumpToGetRecommend:(int)num
+{
+    NSLog(@"获得推荐");
+}
+-(void)cellSelectedToJump{
+    
+    NSLog(@"从pan进行跳转");
 }
 
 @end
