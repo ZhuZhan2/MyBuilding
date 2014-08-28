@@ -35,8 +35,10 @@
 }
 
 -(void)addContent:(TopicsModel *)model{
-    UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(5.5, 5, 309, 105)];
-    [bgView setImage:[UIImage imageNamed:@"全部项目_10"]];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(5.5, 5, 309, 105)];
+    UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 309, 105)];
+    [bgImage setImage:[UIImage imageNamed:@"全部项目_10"]];
+    [bgView addSubview:bgImage];
     [self.contentView addSubview:bgView];
     
     headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"首页_16"]];

@@ -79,6 +79,33 @@
 }
 
 -(void)getImages:(NSArray *)images{
-
+    //土地信息 土地规划/拍卖 阶段 图片  planImageArr @"plan"
+    self.auctionImages=[[NSMutableArray alloc]init];
+    //主体设计 地勘 阶段 图片 self.explorationImageArr @"exploration"
+    self.explorationImages=[[NSMutableArray alloc]init];
+    //主体施工 地平 阶段 图片 self.horizonImageArr @"horizon"
+    self.constructionImages=[[NSMutableArray alloc]init];
+    //主体施工 桩基基坑 阶段 图片 pilePitImageArr @"pileFoundation"
+    self.pileImages=[[NSMutableArray alloc]init];
+    //主体施工 主体施工 阶段 图片 mainConstructionImageArr @"mainPart"
+    self.mainBulidImages=[[NSMutableArray alloc]init];
+    //装修 阶段 图片 electroweakImageArr @"electroweak"
+    self.decorationImages=[[NSMutableArray alloc]init];
+    
+    
+    NSArray* array=@[self.auctionImages,self.explorationImages,self.constructionImages,self.pileImages,self.mainBulidImages,self.decorationImages];
+    NSArray* categorys=@[@"plan",@"exploration",@"horizon",@"pileFoundation",@"mainPart",@"electroweak"];
+    
+    for(int i=0;i<images.count;i++){
+        ProjectImageModel* imageModel = images[i];
+        NSInteger index=0;
+        for (int i=0; i<array.count; i++) {
+            if ([imageModel.a_imageCategory isEqualToString:categorys[i]]) {
+                index=i;
+                break;
+            }
+        }
+        [array[index] addObject:imageModel.a_imageOriginalLocation];
+    }
 }
 @end

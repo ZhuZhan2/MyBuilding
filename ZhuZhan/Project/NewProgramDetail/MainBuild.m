@@ -23,6 +23,16 @@
     return self;
 }
 
+-(void)chooseImageView:(UIButton*)button{
+    if (button.tag==0) {
+        [self.delegate chooseImageViewWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
+    }else if(button.tag==1){
+        [self.delegate chooseImageViewWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
+    }else{
+        [self.delegate chooseImageViewWithIndexPath:[MyIndexPath getIndexPart:self.part section:2]];
+    }
+}
+
 -(void)getFirstView{
     ////地平阶段
     self.firstView=[[UIView alloc]initWithFrame:CGRectZero];
@@ -31,8 +41,13 @@
     UIView* view0=[MyFactory getTwoLinesTitleViewWithTitle:@"地平阶段" titleImage:[UIImage imageNamed:@"XiangMuXiangQing_2/Subject_02@2x.png"] firstStrs:@[@"实际开工时间"] secondStrs:secondStrs];
     
     NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
-    UIView* view1=[MyFactory getImageViewWithImage:images[0] count:[images[1] integerValue]];
-    
+    UIView* view1=[MyFactory getImageViewWithImageUrl:images.count?images[0]:@"No" count:images.count];
+    if (images.count) {
+        view1.tag=0;
+        [MyFactory addButtonToView:view1 target:self action:@selector(chooseImageView:) forControlEvents:UIControlEventTouchUpInside];
+    }
+
+
     NSArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     UIView* view2=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];
     
@@ -54,7 +69,12 @@
     UIView* view0=[MyFactory getNoLineTitleViewWithTitle:@"桩基基坑" titleImage:[UIImage imageNamed:@"XiangMuXiangQing_2/Subject_02@2x.png"]];
     
     NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
-    UIView* view1=[MyFactory getImageViewWithImage:images[0] count:[images[1] integerValue]];
+    UIView* view1=[MyFactory getImageViewWithImageUrl:images.count?images[0]:@"No" count:images.count];
+    if (images.count) {
+        view1.tag=1;
+        [MyFactory addButtonToView:view1 target:self action:@selector(chooseImageView:) forControlEvents:UIControlEventTouchUpInside];
+    }
+
     
     NSArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
     UIView* view2=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];
@@ -77,7 +97,12 @@
     UIView* view0=[MyFactory getNoLineTitleViewWithTitle:@"主体施工" titleImage:[UIImage imageNamed:@"XiangMuXiangQing_2/Subject_02@2x.png"]];
     
     NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:2]];
-    UIView* view1=[MyFactory getImageViewWithImage:images[0] count:[images[1] integerValue]];
+    UIView* view1=[MyFactory getImageViewWithImageUrl:images.count?images[0]:@"No" count:images.count];
+    if (images.count) {
+        view1.tag=2;
+        [MyFactory addButtonToView:view1 target:self action:@selector(chooseImageView:) forControlEvents:UIControlEventTouchUpInside];
+    }
+
     
     NSArray* tempAry=@[view0,view1];
     CGFloat height=0;

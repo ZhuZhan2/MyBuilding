@@ -88,4 +88,57 @@
     }
     return stage;
 }
+
++(NSArray*)JudgmentProjectDetailStage{
+    /*
+    //土地规划/拍卖
+    NSArray* auctionStage;
+    @[self.model.a_landName,[NSString stringWithFormat:@"%@ %@ %@",self.model.a_province,self.model.a_city,self.model.a_district],self.model.a_landAddress];;
+    @[[self.model.a_area stringByAppendingString:@"㎡"],[self.model.a_plotRatio stringByAppendingString:@"%"],self.model.a_usage];
+    self.model.auctionContacts
+    
+    //项目立项
+    NSArray* approvalStage;
+    @[self.model.a_projectName,[NSString stringWithFormat:@"%@ %@ %@",self.model.a_city,self.model.a_district,self.model.a_landAddress],self.model.a_description];
+    @[self.model.a_exceptStartTime,[self.model.a_storeyHeight stringByAppendingString:@"M"],self.model.a_foreignInvestment,self.model.a_exceptFinishTime,self.model.a_investment,[self.model.a_storeyArea stringByAppendingString:@"㎡"]];
+    self.model.ownerContacts
+    self.model.a_ownerType componentsSeparatedByString:@","
+    
+    //地勘阶段
+    NSArray* explorationStage;
+    self.model.explorationContacts
+    
+    //设计阶段
+    NSArray* designStage;
+    self.model.designContacts
+    
+    //出图阶段
+    NSArray* pictureStage;
+    self.model.ownerContacts
+    @[self.model.a_mainDesignStage],@[self.model.a_exceptStartTime,self.model.a_exceptFinishTime]
+    self.model.a_elevator,self.model.a_airCondition,self.model.a_heating,self.model.a_externalWallMeterial,self.model.a_stealStructure
+    
+    //地平阶段
+    NSArray* constructionStage;
+    self.model.constructionContacts
+    self.model.a_actureStartTime
+    
+    //桩基基坑
+    NSArray* pileStage;
+    self.model.pileContacts
+    
+    //主体施工
+    NSArray* mainBulidStage;
+    
+    //消防/景观绿化
+    NSArray* fireGreenStage;
+    @[self.model.a_fireControl,self.model.a_green]
+    
+    //装修阶段
+    NSArray* decorationStage;
+    @[self.model.a_electorWeakInstallation,self.model.a_decorationSituation,self.model.a_decorationProcess]
+    */
+    return nil;
+}
+
 @end

@@ -41,14 +41,13 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"地图搜索_01.png"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,
                                                                      nil]];
     
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftButton setFrame:CGRectMake(0, 0, 12.5, 21.5)];
-    [leftButton setBackgroundImage:[UIImage imageNamed:@"icon-plus.png"] forState:UIControlStateNormal];
+    [leftButton setFrame:CGRectMake(0, 0, 41, 36.5)];
+    [leftButton setBackgroundImage:[UIImage imageNamed:@"项目-首页_03a.png"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
@@ -56,11 +55,16 @@
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
     [bgView setBackgroundColor:[UIColor clearColor]];
     UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [searchBtn setFrame:CGRectMake(0, 0, 200, 30)];
-    [searchBtn setBackgroundColor:[UIColor whiteColor]];
+    [searchBtn setFrame:CGRectMake(15, 0, 169, 31)];
+    [searchBtn setBackgroundImage:[UIImage imageNamed:@"项目-首页_08a.png"] forState:UIControlStateNormal];
     [searchBtn addTarget:self action:@selector(serachClick) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:searchBtn];
     
+    UIImageView *searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(30, 8, 15, 15)];
+    [searchImage setImage:[UIImage imageNamed:@"搜索结果_09a.png"]];
+    [bgView addSubview:searchImage];
+    
+   // UILabel *la
     self.navigationItem.titleView = bgView;
     
     startIndex = 0;
@@ -214,7 +218,7 @@
         countLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
         countLabel.textColor = GrayColor;
         countLabel.textAlignment = NSTextAlignmentCenter;
-        countLabel.text = [NSString stringWithFormat:@"共计%ld条",showArr.count];
+        countLabel.text = [NSString stringWithFormat:@"共计%d条",showArr.count];
         [bgView addSubview:countLabel];
         return bgView;
     }

@@ -24,14 +24,10 @@
     return self;
 }
 
+-(void)chooseImageView:(UIButton*)button{
+    [self.delegate chooseImageViewWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
+}
 
-//-(NSArray*)getThreeLinesTitleViewWithThreeStrsWithIndexPath:(MyIndexPath*)indexPath;//program大块 三行
-//-(NSArray*)getImageViewWithImageAndCountWithIndexPath:(MyIndexPath*)indexPath;//图加图的数量
-//-(NSArray*)getBlueTwoLinesWithStrsWithIndexPath:(MyIndexPath*)indexPath;//第一行蓝，第二行黑的view
-//-(NSArray*)getThreeContactsViewThreeTypesFiveStrsWithIndexPath:(MyIndexPath*)indexPath;//联系人view
-//-(NSArray*)getTwoLinesTitleViewFirstStrsAndSecondStrsWithIndexPath:(MyIndexPath*)indexPath;//program大块 二行
-//-(NSArray*)getDeviceAndBoolWithDevicesAndBoolStrsWithIndexPath:(MyIndexPath*)indexPath;//硬件设备以及yes和no
-//-(NSArray*)getBlackTwoLinesWithStrsWithIndexPath:(MyIndexPath*)indexPath;//第一行黑，第二行灰的view
 -(void)getFirstView{
     //土地规划/拍卖
     self.firstView=[[UIView alloc]initWithFrame:CGRectZero];
@@ -40,7 +36,11 @@
     UIView* view0=[MyFactory getThreeLinesTitleViewWithTitle:@"土地规划/拍卖" titleImage:[UIImage imageNamed:@"XiangMuXiangQing/map_01.png"] dataThreeStrs:dataThreeStrs];
     
     NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
-    UIView* view1=[MyFactory getImageViewWithImage:images[0] count:[images[1] integerValue]];
+    UIView* view1=[MyFactory getImageViewWithImageUrl:images.count?images[0]:@"No" count:images.count];
+    if (images.count) {
+        view1.tag=0;
+        [MyFactory addButtonToView:view1 target:self action:@selector(chooseImageView:) forControlEvents:UIControlEventTouchUpInside];
+    }
     
     NSArray* secondStrs=[self.delegate getBlueTwoLinesWithStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     UIView* view2=[MyFactory getBlueThreeTypesTwoLinesWithFirstStr:@[@"土地面积",@"土地容积率",@"地块用途"] secondStr:secondStrs];

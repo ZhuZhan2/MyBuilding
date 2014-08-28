@@ -25,12 +25,21 @@
     return self;
 }
 
+-(void)chooseImageView:(UIButton*)button{
+    [self.delegate chooseImageViewWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
+}
+
 -(void)getFirstView{
     //地勘阶段
     self.firstView=[[UIView alloc]initWithFrame:CGRectZero];
     
     NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
-    UIView* view0=[MyFactory getImageViewWithImage:images[0] count:[images[1] integerValue]];
+    UIView* view0=[MyFactory getImageViewWithImageUrl:images.count?images[0]:@"No" count:images.count];
+    if (images.count) {
+        view0.tag=0;
+        [MyFactory addButtonToView:view0 target:self action:@selector(chooseImageView:) forControlEvents:UIControlEventTouchUpInside];
+    }
+
     
     NSArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     UIView* view1=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];
