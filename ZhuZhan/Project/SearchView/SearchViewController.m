@@ -212,7 +212,8 @@
             
             break;
         case 1:
-            
+            advancedSearchView = [[AdvancedSearchTableViewController alloc] init];
+            [self.navigationController pushViewController:advancedSearchView animated:YES];
             break;
         case 2:
             

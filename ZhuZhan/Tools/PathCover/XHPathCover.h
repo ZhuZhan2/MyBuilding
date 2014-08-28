@@ -57,6 +57,14 @@ extern NSString *const XHBirthdayKey;
 // custom set url for subClass， There is not work
 - (void)setAvatarUrlString:(NSString *)avatarUrlString;
 
+//删除点
+-(void)hidewaterDropRefresh;
+//设置头像位置
+-(void)setHeadFrame:(CGRect)newFrame;
+
+//设置名字位置
+-(void)setNameFrame:(CGRect)newFrame font:(UIFont *)font;
+
 // set info, Example : NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:@"Jack", @"userName", @"1990-10-19", @"birthday", nil];
 - (void)setInfo:(NSDictionary *)info;
 

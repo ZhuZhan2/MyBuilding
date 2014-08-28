@@ -171,9 +171,8 @@
                 [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@",isFaceRegister]forKey:@"isFaceRegister"];
                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"faceCount"] forKey:@"currentFaceCount"];
                 [[NSUserDefaults standardUserDefaults] setObject:_userNameTextField.text forKey:@"userName"];
-                [[NSUserDefaults standardUserDefaults] setObject:self.userToken forKey:@"UserToken"];
                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"userId"] forKey:@"userId"];
-//                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"deviceToken"] forKey:@"deviceToken"];
+                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"deviceToken"] forKey:@"deviceToken"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
                 NSLog(@",l,ll,l,l,l%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"firstPassWordLogin"]);
@@ -202,7 +201,7 @@
     NSLog(@"sid === > %@",self.userToken);
     [[NSUserDefaults standardUserDefaults]setObject:_userNameTextField.text forKey:@"userName"];
     [[NSUserDefaults standardUserDefaults]setObject:_passWordTextField.text forKey:@"passWord"];
-    [[NSUserDefaults standardUserDefaults]setObject:self.userToken forKey:@"UserToken"];
+//    [[NSUserDefaults standardUserDefaults]setObject:self.userToken forKey:@"UserToken"];
     [[NSUserDefaults standardUserDefaults]synchronize];
     
     UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"登录成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
