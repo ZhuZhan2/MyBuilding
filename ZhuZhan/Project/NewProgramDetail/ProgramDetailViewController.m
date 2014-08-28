@@ -562,8 +562,8 @@
 //    NSData* data=[NSData dataWithContentsOfURL:url];
 //    UIImage* image=[UIImage imageWithData:data];
     ViewController* vc=[[ViewController alloc]init];
-    for (int i=0; i<self.model.auctionImages.count; i++) {
-        NSURL* url=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.model.auctionImages[i]]];
+    for (int i=0; i<[array[indexPath.part][indexPath.section] count]; i++) {
+        NSURL* url=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,array[indexPath.part][indexPath.section][i]]];
         [vc.imagesArray addObject:url];
     }
     [self presentViewController:vc animated:NO completion:nil];
