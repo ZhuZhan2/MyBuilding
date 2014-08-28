@@ -421,6 +421,20 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     [self addSubview:self.showView];
 }
 
+-(void)hidewaterDropRefresh{
+    [self.waterDropRefresh removeFromSuperview];
+    self.waterDropRefresh = nil;
+}
+
+-(void)setHeadFrame:(CGRect)newFrame{
+    [_avatarButton setFrame:newFrame];
+}
+
+-(void)setNameFrame:(CGRect)newFrame font:(UIFont *)font{
+    [_userNameLabel setFrame:newFrame];
+    _userNameLabel.font = font;
+}
+
 - (void)dealloc {
     self.bannerImageView = nil;
     self.bannerImageViewWithImageEffects = nil;

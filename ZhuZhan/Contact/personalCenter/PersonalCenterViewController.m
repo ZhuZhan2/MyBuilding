@@ -56,8 +56,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
     [_pathCover setAvatarImage:[UIImage imageNamed:@"首页侧拉栏_03.png"]];
-    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"用户名", XHUserNameKey, @"公司名字显示在这里     职位", XHBirthdayKey, nil]];
+    [_pathCover hidewaterDropRefresh];
+    [_pathCover setHeadFrame:CGRectMake(120, 0, 70, 70)];
+    [_pathCover setNameFrame:CGRectMake(120, 70, 100, 20) font:[UIFont systemFontOfSize:14]];
+    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
+    
     //时间标签
     _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
     [[self tableView] registerClass:[UITableViewCell class] forCellReuseIdentifier:PSTableViewCellIdentifier];
