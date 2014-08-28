@@ -22,7 +22,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 @end
 
 @implementation ContactViewController
-@synthesize comments,personalArray,pan,transparent;
+@synthesize comments,pan,transparent;
 
 static int rowNum =0;
 - (id)initWithStyle:(UITableViewStyle)style
@@ -54,6 +54,8 @@ static int rowNum =0;
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
     self.title = @"人脉";
+    
+    comments =@[@"评论内容",@"评论内容",@"评论内容",@"评论内容",@"评论内容"];//平路内容的数组
     
     //上拉刷新界面
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 150)];
@@ -89,22 +91,7 @@ static int rowNum =0;
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewWillAppear:(BOOL)animated{
-//    if([hideDelegate respondsToSelector:@selector(homePageTabBarRestore)]){
-//        [hideDelegate homePageTabBarRestore];
-//    }
-}
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 //设置时间
 - (void)setupDatasource
@@ -212,7 +199,7 @@ static int rowNum =0;
         [cell2.userIcon setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
         [cell2.userIcon addTarget:self action:@selector(ShowUserPanView:) forControlEvents:UIControlEventTouchUpInside];
         cell2.userIcon.tag = indexPath.row;
-        cell2.contentLabel.text = [personalArray objectAtIndex:indexPath.row];
+        cell2.contentLabel.text = @"显示文字";
         return cell2;
         
         
@@ -304,14 +291,17 @@ static int rowNum =0;
 - (void)goToDetail
 {
     
-    transparent = nil;
-    pan = nil;
+    [pan removeFromSuperview];
+    [transparent removeFromSuperview];
     PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
     [self.navigationController pushViewController:personalVC animated:NO];
 }
 
 - (void)gotoConcern
 {
+    [pan removeFromSuperview];
+    [transparent removeFromSuperview];
+    
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
        NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithObjectsAndKeys:userId,@"userId",@"bfc78202-8ac9-447a-a99d-783606d25668",@"focusId", nil];
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {

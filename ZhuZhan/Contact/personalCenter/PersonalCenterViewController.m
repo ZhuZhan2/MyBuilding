@@ -55,7 +55,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     personalArray = [NSMutableArray arrayWithArray:array];
     
-    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 150)];
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 200)];
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
     [_pathCover setAvatarImage:[UIImage imageNamed:@"首页侧拉栏_03.png"]];
