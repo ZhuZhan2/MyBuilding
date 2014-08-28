@@ -404,8 +404,18 @@
 		D3AD618319ADCCC0001FD483 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD618219ADCCC0001FD483 /* MapKit.framework */; };
 		D3AD618619ADCCD8001FD483 /* BaiDuMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD618519ADCCD8001FD483 /* BaiDuMapViewController.m */; };
 		D3AD618A19ADF629001FD483 /* MyCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD618919ADF629001FD483 /* MyCenterModel.m */; };
-		D3AD618D19AEC78D001FD483 /* AdvancedSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD618C19AEC78D001FD483 /* AdvancedSearchTableViewController.m */; };
 		D3AD619019AEC7C8001FD483 /* AdvancedSearchConditionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD618F19AEC7C8001FD483 /* AdvancedSearchConditionsTableViewCell.m */; };
+		D3AD619319AEE544001FD483 /* AdvancedSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD619219AEE544001FD483 /* AdvancedSearchViewController.m */; };
+		D3AD619B19AEEE30001FD483 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD619619AEEE30001FD483 /* DatePickerView.m */; };
+		D3AD619C19AEEE30001FD483 /* LocateView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD619819AEEE30001FD483 /* LocateView.m */; };
+		D3AD619D19AEEE30001FD483 /* SinglePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD619A19AEEE30001FD483 /* SinglePickerView.m */; };
+		D3AD61A319AEF0A2001FD483 /* MChoiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61A019AEF0A2001FD483 /* MChoiceTableViewCell.m */; };
+		D3AD61A419AEF0A2001FD483 /* MultipleChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61A219AEF0A2001FD483 /* MultipleChoiceViewController.m */; };
+		D3AD61AC19AEF80B001FD483 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61A719AEF80B001FD483 /* MJPopupBackgroundView.m */; };
+		D3AD61AD19AEF80B001FD483 /* NIDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61A919AEF80B001FD483 /* NIDropDown.m */; };
+		D3AD61AE19AEF80B001FD483 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61AB19AEF80B001FD483 /* UIViewController+MJPopupViewController.m */; };
+		D3AD61B119AF010D001FD483 /* Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD61AF19AF010D001FD483 /* Selected.png */; };
+		D3AD61B219AF010D001FD483 /* Unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD61B019AF010D001FD483 /* Unselected.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1171,10 +1181,28 @@
 		D3AD618519ADCCD8001FD483 /* BaiDuMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiDuMapViewController.m; sourceTree = "<group>"; };
 		D3AD618819ADF629001FD483 /* MyCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterModel.h; sourceTree = "<group>"; };
 		D3AD618919ADF629001FD483 /* MyCenterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterModel.m; sourceTree = "<group>"; };
-		D3AD618B19AEC78D001FD483 /* AdvancedSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedSearchTableViewController.h; sourceTree = "<group>"; };
-		D3AD618C19AEC78D001FD483 /* AdvancedSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedSearchTableViewController.m; sourceTree = "<group>"; };
 		D3AD618E19AEC7C8001FD483 /* AdvancedSearchConditionsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedSearchConditionsTableViewCell.h; sourceTree = "<group>"; };
 		D3AD618F19AEC7C8001FD483 /* AdvancedSearchConditionsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedSearchConditionsTableViewCell.m; sourceTree = "<group>"; };
+		D3AD619119AEE544001FD483 /* AdvancedSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedSearchViewController.h; sourceTree = "<group>"; };
+		D3AD619219AEE544001FD483 /* AdvancedSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedSearchViewController.m; sourceTree = "<group>"; };
+		D3AD619519AEEE30001FD483 /* DatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerView.h; sourceTree = "<group>"; };
+		D3AD619619AEEE30001FD483 /* DatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerView.m; sourceTree = "<group>"; };
+		D3AD619719AEEE30001FD483 /* LocateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocateView.h; sourceTree = "<group>"; };
+		D3AD619819AEEE30001FD483 /* LocateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocateView.m; sourceTree = "<group>"; };
+		D3AD619919AEEE30001FD483 /* SinglePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePickerView.h; sourceTree = "<group>"; };
+		D3AD619A19AEEE30001FD483 /* SinglePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePickerView.m; sourceTree = "<group>"; };
+		D3AD619F19AEF0A2001FD483 /* MChoiceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MChoiceTableViewCell.h; sourceTree = "<group>"; };
+		D3AD61A019AEF0A2001FD483 /* MChoiceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MChoiceTableViewCell.m; sourceTree = "<group>"; };
+		D3AD61A119AEF0A2001FD483 /* MultipleChoiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleChoiceViewController.h; sourceTree = "<group>"; };
+		D3AD61A219AEF0A2001FD483 /* MultipleChoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleChoiceViewController.m; sourceTree = "<group>"; };
+		D3AD61A619AEF80B001FD483 /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPopupBackgroundView.h; sourceTree = "<group>"; };
+		D3AD61A719AEF80B001FD483 /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupBackgroundView.m; sourceTree = "<group>"; };
+		D3AD61A819AEF80B001FD483 /* NIDropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIDropDown.h; sourceTree = "<group>"; };
+		D3AD61A919AEF80B001FD483 /* NIDropDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIDropDown.m; sourceTree = "<group>"; };
+		D3AD61AA19AEF80B001FD483 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
+		D3AD61AB19AEF80B001FD483 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
+		D3AD61AF19AF010D001FD483 /* Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Selected.png; sourceTree = "<group>"; };
+		D3AD61B019AF010D001FD483 /* Unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Unselected.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1386,6 +1414,9 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3AD61A519AEF80B001FD483 /* PopView */,
+				D3AD619E19AEF0A2001FD483 /* MChoice */,
+				D3AD619419AEEE30001FD483 /* PickerView */,
 				D3AD616119ADB918001FD483 /* Sqlite3 */,
 				D3AD611019ADA105001FD483 /* BaiduMap */,
 				D3AD60EE19AC7CC5001FD483 /* EGOImageView */,
@@ -2059,6 +2090,8 @@
 		D3AD600B19AC4DC1001FD483 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3AD61AF19AF010D001FD483 /* Selected.png */,
+				D3AD61B019AF010D001FD483 /* Unselected.png */,
 				04D10BF519AE06AE0097C0C6 /* concern.png */,
 				04D10BF619AE06AF0097C0C6 /* RadioButton-Selected.png */,
 				04D10BF719AE06AF0097C0C6 /* RadioButton-Unselected.png */,
@@ -2388,10 +2421,10 @@
 				D3AD615819ADA45F001FD483 /* SearchViewController.m */,
 				D3AD617B19ADC51C001FD483 /* ResultsTableViewController.h */,
 				D3AD617C19ADC51C001FD483 /* ResultsTableViewController.m */,
-				D3AD618B19AEC78D001FD483 /* AdvancedSearchTableViewController.h */,
-				D3AD618C19AEC78D001FD483 /* AdvancedSearchTableViewController.m */,
 				D3AD618E19AEC7C8001FD483 /* AdvancedSearchConditionsTableViewCell.h */,
 				D3AD618F19AEC7C8001FD483 /* AdvancedSearchConditionsTableViewCell.m */,
+				D3AD619119AEE544001FD483 /* AdvancedSearchViewController.h */,
+				D3AD619219AEE544001FD483 /* AdvancedSearchViewController.m */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";
@@ -2425,6 +2458,43 @@
 				D3AD618919ADF629001FD483 /* MyCenterModel.m */,
 			);
 			path = MyCenterModel;
+			sourceTree = "<group>";
+		};
+		D3AD619419AEEE30001FD483 /* PickerView */ = {
+			isa = PBXGroup;
+			children = (
+				D3AD619519AEEE30001FD483 /* DatePickerView.h */,
+				D3AD619619AEEE30001FD483 /* DatePickerView.m */,
+				D3AD619719AEEE30001FD483 /* LocateView.h */,
+				D3AD619819AEEE30001FD483 /* LocateView.m */,
+				D3AD619919AEEE30001FD483 /* SinglePickerView.h */,
+				D3AD619A19AEEE30001FD483 /* SinglePickerView.m */,
+			);
+			path = PickerView;
+			sourceTree = "<group>";
+		};
+		D3AD619E19AEF0A2001FD483 /* MChoice */ = {
+			isa = PBXGroup;
+			children = (
+				D3AD619F19AEF0A2001FD483 /* MChoiceTableViewCell.h */,
+				D3AD61A019AEF0A2001FD483 /* MChoiceTableViewCell.m */,
+				D3AD61A119AEF0A2001FD483 /* MultipleChoiceViewController.h */,
+				D3AD61A219AEF0A2001FD483 /* MultipleChoiceViewController.m */,
+			);
+			path = MChoice;
+			sourceTree = "<group>";
+		};
+		D3AD61A519AEF80B001FD483 /* PopView */ = {
+			isa = PBXGroup;
+			children = (
+				D3AD61A619AEF80B001FD483 /* MJPopupBackgroundView.h */,
+				D3AD61A719AEF80B001FD483 /* MJPopupBackgroundView.m */,
+				D3AD61A819AEF80B001FD483 /* NIDropDown.h */,
+				D3AD61A919AEF80B001FD483 /* NIDropDown.m */,
+				D3AD61AA19AEF80B001FD483 /* UIViewController+MJPopupViewController.h */,
+				D3AD61AB19AEF80B001FD483 /* UIViewController+MJPopupViewController.m */,
+			);
+			path = PopView;
 			sourceTree = "<group>";
 		};
 		D3EACDE3199327780058FC9D /* QuadCurveMenu */ = {
@@ -2522,6 +2592,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3AD61B119AF010D001FD483 /* Selected.png in Resources */,
 				04D10BF319AE059E0097C0C6 /* 123.png in Resources */,
 				D3AD603F19AC4DC1001FD483 /* bg-addbutton.png in Resources */,
 				D3AD606B19AC4DC1001FD483 /* 面部采集_12.png in Resources */,
@@ -2608,6 +2679,7 @@
 				0426BFFD19922CE400CD8822 /* Images.xcassets in Resources */,
 				D3AD606D19AC4DC1001FD483 /* 首页侧拉栏_03.png in Resources */,
 				5B031C3319ACA6C100573071 /* XiangMuXiangQing_2 in Resources */,
+				D3AD61B219AF010D001FD483 /* Unselected.png in Resources */,
 				D3AD605F19AC4DC1001FD483 /* 登录_07.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2634,6 +2706,7 @@
 				0426C2F719922D5A00CD8822 /* CJSONSerializer.m in Sources */,
 				0426C24419922D5A00CD8822 /* GPUImageAddBlendFilter.m in Sources */,
 				0426C28319922D5A00CD8822 /* GPUImageLanczosResamplingFilter.m in Sources */,
+				D3AD619B19AEEE30001FD483 /* DatePickerView.m in Sources */,
 				0426C24A19922D5A00CD8822 /* GPUImageBoxBlurFilter.m in Sources */,
 				0426C2B019922D5A00CD8822 /* GPUImageSaturationBlendFilter.m in Sources */,
 				0426C2D419922D5A00CD8822 /* GPUImageVideoCamera.m in Sources */,
@@ -2699,6 +2772,8 @@
 				0426C25C19922D5A00CD8822 /* GPUImageCrosshatchFilter.m in Sources */,
 				0426C23C19922D5A00CD8822 /* AFURLRequestSerialization.m in Sources */,
 				0426C26419922D5A00CD8822 /* GPUImageEmbossFilter.m in Sources */,
+				D3AD619319AEE544001FD483 /* AdvancedSearchViewController.m in Sources */,
+				D3AD61AD19AEF80B001FD483 /* NIDropDown.m in Sources */,
 				0426C29E19922D5A00CD8822 /* GPUImageOverlayBlendFilter.m in Sources */,
 				0426C2B119922D5A00CD8822 /* GPUImageSaturationFilter.m in Sources */,
 				D3AD60ED19AC7CA2001FD483 /* ProjectImageModel.m in Sources */,
@@ -2729,6 +2804,7 @@
 				0426C27019922D5A00CD8822 /* GPUImageGaussianBlurPositionFilter.m in Sources */,
 				0426C28219922D5A00CD8822 /* GPUImageKuwaharaRadius3Filter.m in Sources */,
 				D3AD60E019AC7BD1001FD483 /* MyIndexPath.m in Sources */,
+				D3AD61A419AEF0A2001FD483 /* MultipleChoiceViewController.m in Sources */,
 				0426C2B819922D5A00CD8822 /* GPUImageSketchFilter.m in Sources */,
 				5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */,
 				0426C23819922D5A00CD8822 /* AFHTTPSessionManager.m in Sources */,
@@ -2763,6 +2839,7 @@
 				0426C2C519922D5A00CD8822 /* GPUImageTextureOutput.m in Sources */,
 				0426C2D719922D5A00CD8822 /* GPUImageWeakPixelInclusionFilter.m in Sources */,
 				D3AD616419ADB918001FD483 /* SqliteHelper.m in Sources */,
+				D3AD61A319AEF0A2001FD483 /* MChoiceTableViewCell.m in Sources */,
 				0426C25219922D5A00CD8822 /* GPUImageClosingFilter.m in Sources */,
 				0426C28C19922D5A00CD8822 /* GPUImageLuminanceThresholdFilter.m in Sources */,
 				0426C27719922D5A00CD8822 /* GPUImageHazeFilter.m in Sources */,
@@ -2811,6 +2888,7 @@
 				0426C24219922D5A00CD8822 /* GPUImage3x3TextureSamplingFilter.m in Sources */,
 				0426C25419922D5A00CD8822 /* GPUImageColorBurnBlendFilter.m in Sources */,
 				0426C2F919922D5A00CD8822 /* XHSoundManager.m in Sources */,
+				D3AD619C19AEEE30001FD483 /* LocateView.m in Sources */,
 				D3AD618619ADCCD8001FD483 /* BaiDuMapViewController.m in Sources */,
 				D3AD600A19AC4AF8001FD483 /* ProjectTableViewCell.m in Sources */,
 				0426C23919922D5A00CD8822 /* AFNetworkReachabilityManager.m in Sources */,
@@ -2848,6 +2926,7 @@
 				D3AD610019AD6A9B001FD483 /* TopicsTableViewController.m in Sources */,
 				0426C28A19922D5A00CD8822 /* GPUImageLookupFilter.m in Sources */,
 				0426C24119922D5A00CD8822 /* GPUImage3x3ConvolutionFilter.m in Sources */,
+				D3AD61AE19AEF80B001FD483 /* UIViewController+MJPopupViewController.m in Sources */,
 				D3AD600419AC3E62001FD483 /* ProjectStage.m in Sources */,
 				D3AD60DF19AC7BD1001FD483 /* MyFactory.m in Sources */,
 				0426C24919922D5A00CD8822 /* GPUImageBilateralFilter.m in Sources */,
@@ -2877,7 +2956,6 @@
 				0426C2C819922D5A00CD8822 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
 				0426C2FC19922D5A00CD8822 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				0426C24819922D5A00CD8822 /* GPUImageAverageLuminanceThresholdFilter.m in Sources */,
-				D3AD618D19AEC78D001FD483 /* AdvancedSearchTableViewController.m in Sources */,
 				0426C2C719922D5A00CD8822 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
 				0426C2E619922D5A00CD8822 /* FaceppGroup.m in Sources */,
 				0426C2DF19922D5A00CD8822 /* FaceppAPI.m in Sources */,
@@ -2891,9 +2969,11 @@
 				0426C2CC19922D5A00CD8822 /* GPUImageToonFilter.m in Sources */,
 				0426C29419922D5A00CD8822 /* GPUImageMotionBlurFilter.m in Sources */,
 				D3AD60FC19AC7CC5001FD483 /* EGOImageView.m in Sources */,
+				D3AD619D19AEEE30001FD483 /* SinglePickerView.m in Sources */,
 				0426C2BA19922D5A00CD8822 /* GPUImageSobelEdgeDetectionFilter.m in Sources */,
 				0426C29119922D5A00CD8822 /* GPUImageMissEtikateFilter.m in Sources */,
 				0426C26F19922D5A00CD8822 /* GPUImageGaussianBlurFilter.m in Sources */,
+				D3AD61AC19AEF80B001FD483 /* MJPopupBackgroundView.m in Sources */,
 				0426C25619922D5A00CD8822 /* GPUImageColorInvertFilter.m in Sources */,
 				0426C2CF19922D5A00CD8822 /* GPUImageTwoInputFilter.m in Sources */,
 				0426C2DD19922D5A00CD8822 /* GPUImagePicture.m in Sources */,
