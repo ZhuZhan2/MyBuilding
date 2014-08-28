@@ -40,37 +40,12 @@ static int rowNum =0;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-
-    self.navigationController.navigationBar.alpha=0;
-    UINavigationBar *tabBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, -20, 320, 64.5)];
-    [tabBar setBackgroundImage:[UIImage imageNamed:@"地图搜索_01.png"] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar addSubview:tabBar];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"地图搜索_01.png"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,
+                                                                     nil]];
     
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
-    titleLabel.center =CGPointMake(160, 40);
-    titleLabel.text = @"人脉";
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:19];
-    [tabBar addSubview:titleLabel];
+    self.title = @"人脉";
     
-    UIButton *publishBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-    [publishBtn setTitle:@"发布" forState:UIControlStateNormal];
-    publishBtn.titleLabel.textColor = [UIColor whiteColor];
-    publishBtn.titleLabel.font = [UIFont systemFontOfSize:18];
-    publishBtn.frame = CGRectMake(250, 20, 60, 40);
-    [publishBtn addTarget:self action:@selector(publish) forControlEvents:UIControlEventTouchUpInside];
-    [tabBar addSubview:publishBtn];
-    
-
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64.5, 320, kContentHeight)];
-    self.tableView.delegate =self;
-    self.tableView.dataSource = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    NSArray *array = @[@"项目名称显示在这里",@"用户名添加了联系人"];
-    personalArray = [NSMutableArray arrayWithArray:array];
-    comments = @[@"hhhhhhhsdfdf",@"mkmiojvjivv",@"lkkp[pfgjireglffdjgo"];
     //上拉刷新界面
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 150)];
     _pathCover.delegate = self;
@@ -81,6 +56,8 @@ static int rowNum =0;
     //时间标签
     _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
     [[self tableView] registerClass:[UITableViewCell class] forCellReuseIdentifier:PSTableViewCellIdentifier];
+    
+    self.tableView.separatorStyle = NO;
     
     __weak ContactViewController *wself = self;
     [_pathCover setHandleRefreshEvent:^{
@@ -322,6 +299,7 @@ static int rowNum =0;
     PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
     [self.navigationController pushViewController:personalVC animated:NO];
 }
+
 - (void)gotoConcern
 {
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];

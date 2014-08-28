@@ -31,37 +31,28 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.navigationController.navigationBar.alpha =0;
-    UIImageView *tabBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 64.5)];
-    tabBar.image = [UIImage imageNamed:@"tabbar"];
-    tabBar.userInteractionEnabled = YES;
-    [self.view addSubview:tabBar];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"地图搜索_01.png"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,
+                                                                     nil]];
     
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
-    titleLabel.center =CGPointMake(160, 40);
-    titleLabel.text = @"账户";
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.font = [UIFont systemFontOfSize:20];
-    [tabBar addSubview:titleLabel];
+    //LeftButton设置属性
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftButton setFrame:CGRectMake(0, 5, 29, 28.5)];
+    [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = leftButtonItem;
     
-    UIButton *completeBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-    [completeBtn setTitle:@"完成" forState:UIControlStateNormal];
-    completeBtn.titleLabel.textColor = [UIColor whiteColor];
-    completeBtn.titleLabel.font = [UIFont systemFontOfSize:18];
-    completeBtn.frame = CGRectMake(250, 20, 60, 40);
-    [completeBtn addTarget:self action:@selector(complete) forControlEvents:UIControlEventTouchUpInside];
-    [tabBar addSubview:completeBtn];
-
-
+    //RightButton设置属性
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setFrame:CGRectMake(0, 0, 80, 19.5)];
+    [rightButton setTitle:@"帐户设置" forState:UIControlStateNormal];
+    rightButton.titleLabel.textColor = [UIColor whiteColor];
+    [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
     
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    backBtn.frame = CGRectMake(0, 20, 40, 40);
-    [backBtn setBackgroundImage:[UIImage imageNamed:@"back_icon"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(backToFormerVC) forControlEvents:UIControlEventTouchUpInside];
-    [tabBar addSubview:backBtn];
-    
-    accountTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64.5, 320, kContentHeight)];
+    accountTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, kContentHeight)];
     accountTableView.dataSource =self;
     accountTableView.delegate = self;
     accountTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -84,17 +75,13 @@
    } userId:userId];
 }
 
--(void)backToFormerVC
-{
-
-    [self.navigationController popViewControllerAnimated:NO];
+-(void)leftBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)complete
-{
-
+-(void)rightBtnClick{
+    
 }
-
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
