@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PersonalCenterViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+#import "XHPathCover.h"
+#import "ACTimeScroller.h"
+@interface PersonalCenterViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate>
+{
+    NSMutableArray *_datasource;
+    ACTimeScroller *_timeScroller;
 
+}
+@property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong)UITableView *personaltableView;
 @property (nonatomic,strong)NSMutableArray *personalArray;
 @end

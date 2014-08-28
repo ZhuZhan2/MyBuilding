@@ -7,7 +7,6 @@
 //
 
 #import "PersonalCenterViewController.h"
-#import "ImgCell.h"
 #import "CommonCell.h"
 #import "AccountViewController.h"
 @interface PersonalCenterViewController ()
@@ -17,11 +16,13 @@
 @implementation PersonalCenterViewController
 
 @synthesize personaltableView,personalArray;
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    self = [super initWithStyle:style];
+    if (self)
+    {
+        [self setupDatasource];
     }
     return self;
 }
@@ -48,14 +49,24 @@
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
-    personaltableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, kContentHeight)];
-    personaltableView.dataSource =self;
-    personaltableView.delegate = self;
-    
-    [self.view addSubview:personaltableView];
-    
     NSArray *array = @[@"项目名称显示在这里",@"用户名添加联系人赵钱孙李 职位",@"我发布的动态",@"我发布的动态"];
     personalArray = [NSMutableArray arrayWithArray:array];
+    
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 150)];
+    _pathCover.delegate = self;
+    [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
+    [_pathCover setAvatarImage:[UIImage imageNamed:@"首页侧拉栏_03.png"]];
+    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"用户名", XHUserNameKey, @"公司名字显示在这里     职位", XHBirthdayKey, nil]];
+    self.tableView.tableHeaderView = self.pathCover;
+    //时间标签
+    _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
+    [[self tableView] registerClass:[UITableViewCell class] forCellReuseIdentifier:PSTableViewCellIdentifier];
+    
+    __weak PersonalCenterViewController *wself = self;
+    [_pathCover setHandleRefreshEvent:^{
+        [wself _refreshing];
+    }];
+
 }
 
 
@@ -69,6 +80,68 @@
 }
 
 
+//设置时间
+- (void)setupDatasource
+{
+    _datasource = [NSMutableArray new];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    NSDate *today = [NSDate date];
+    NSDateComponents *todayComponents = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:today];
+    
+    for (NSInteger i = [todayComponents day]; i >= -15; i--)
+    {
+        [components setYear:[todayComponents year]];
+        [components setMonth:[todayComponents month]];
+        [components setDay:i];
+        [components setHour:arc4random() % 23];
+        [components setMinute:arc4random() % 59];
+        
+        NSDate *date = [calendar dateFromComponents:components];
+        [_datasource addObject:date];
+    }
+    
+    /*for(int i=0;i<30;i++){
+     [_datasource addObject:[NSDate date]];
+     }*/
+}
+
+- (void)_refreshing {
+    // refresh your data sources
+    NSLog(@"asdfasdfasdf");
+    __weak PersonalCenterViewController *wself = self;
+    double delayInSeconds = 4.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [wself.pathCover stopRefresh];
+    });
+}
+
+/******************************************************************************************************************/
+//滚动是触发的事件
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [_pathCover scrollViewDidScroll:scrollView];
+    [_timeScroller scrollViewDidScroll];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [_pathCover scrollViewDidEndDecelerating:scrollView];
+    [_timeScroller scrollViewDidEndDecelerating];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [_pathCover scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [_pathCover scrollViewWillBeginDragging:scrollView];
+    [_timeScroller scrollViewWillBeginDragging];
+}
+/******************************************************************************************************************/
+
+
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 
@@ -76,26 +149,12 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [personalArray count]+1;
+    return [personalArray count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row ==0) {
-      static  NSString *identifier1 = @"ImgCell";
-        ImgCell * cell1 = (ImgCell *)[tableView dequeueReusableCellWithIdentifier:identifier1];
-        if (!cell1) {
-            cell1 = [[ImgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier1];
-        }
-        
-        cell1.bgImgview.image = [UIImage imageNamed:@"首页_16"];
-        cell1.userIcon.image = [UIImage imageNamed:@"面部采集_12"];
-        cell1.userLabel.text = @"张三";
-        cell1.companyLabel.text = @"上海深集科技有限公司";
-        cell1.positionLabel.text = @"销售经理";
-        
-        return cell1;
-    }
+
     static NSString *identifier2 = @"commonCell";
         CommonCell *cell2 = (CommonCell*)[tableView dequeueReusableCellWithIdentifier:identifier2];
         if (!cell2) {
@@ -103,18 +162,36 @@
         }
    
     cell2.userIcon.image = [UIImage imageNamed:@"面部采集_12"];
-    cell2.contentLabel.text = [personalArray objectAtIndex:indexPath.row-1];
+    cell2.contentLabel.text = [personalArray objectAtIndex:indexPath.row];
     
     return cell2;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row==0) {
-        return 250;
-    }
+
     
     return 50;
 }
+
+//时间标签
+- (UITableView *)tableViewForTimeScroller:(ACTimeScroller *)timeScroller
+{
+    return [self tableView];
+}
+//传入时间标签的date
+- (NSDate *)timeScroller:(ACTimeScroller *)timeScroller dateForCell:(UITableViewCell *)cell
+{
+    NSIndexPath *indexPath = [[self tableView] indexPathForCell:cell];
+    return _datasource[[indexPath row]];
+}
+
+//点击自己头像去个人中心
+-(void)gotoMyCenter{
+    NSLog(@"gotoMyCenter");
+    PersonalCenterViewController *personalVC = [[PersonalCenterViewController alloc] init];
+    [self.navigationController pushViewController:personalVC animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
