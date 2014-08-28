@@ -7,7 +7,7 @@
 //
 
 #import "CycleScrollView.h"
-
+#import "EGOImageView.h"
 @implementation CycleScrollView
 @synthesize delegate;
 
@@ -21,7 +21,10 @@
         totalPage = pictureArray.count;
         curPage = 1;                                    // 显示的是图片数组里的第一张图片
         curImages = [[NSMutableArray alloc] init];
+        
+        /////////////********************************
         imagesArray = [[NSArray alloc] initWithArray:pictureArray];
+        pictureArray=nil;
         
         scrollView = [[UIScrollView alloc] initWithFrame:frame];
         scrollView.backgroundColor = [UIColor blackColor];
@@ -29,7 +32,6 @@
         scrollView.showsVerticalScrollIndicator = NO;
         scrollView.pagingEnabled = YES;
         scrollView.delegate = self;
-        [self addSubview:scrollView];
         
         // 在水平方向滚动
         if(scrollDirection == CycleDirectionLandscape) {
@@ -51,17 +53,21 @@
 
 - (void)refreshScrollView {
     
-    NSArray *subViews = [scrollView subviews];
-    if([subViews count] != 0) {
-        [subViews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    }
+//    NSArray *subViews = [scrollView subviews];
+//    if([subViews count] != 0) {
+//        [subViews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+//    }
     
     [self getDisplayImagesWithCurpage:curPage];
     
+    NSLog(@"%d",curImages.count);
     for (int i = 0; i < 3; i++) {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:scrollFrame];
+        NSLog(@"%d",i);
+        
+        
+        EGOImageView *imageView = [[EGOImageView alloc] initWithFrame:scrollFrame];
         imageView.userInteractionEnabled = YES;
-        imageView.image = [curImages objectAtIndex:i];
+        imageView.imageURL = [curImages objectAtIndex:i];
         
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                     action:@selector(handleTap:)];
@@ -79,6 +85,7 @@
         
         
         [scrollView addSubview:imageView];
+        imageView=nil;
     }
     if (scrollDirection == CycleDirectionLandscape) {
         [scrollView setContentOffset:CGPointMake(scrollFrame.size.width, 0)];
