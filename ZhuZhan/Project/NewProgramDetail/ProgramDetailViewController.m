@@ -252,7 +252,6 @@
     NSArray* bigStageImageNames=@[@"XiangMuXiangQing/map@2x.png",@"XiangMuXiangQing_1/pen_01@2x.png",@"XiangMuXiangQing_2/Subject_01@2x.png",@"XiangMuXiangQing_3/paint_01@2x.png"];
     
     for (int i=0; i<self.bigStageStandardY.count; i++) {
-        NSLog(@"bigStage=%d",i);
         if (scrollView.contentOffset.y+568-64-50<[self.bigStageStandardY[i] floatValue]) {
             //大阶段名称
             self.bigStageLabel.text=bigTitles[i];
@@ -272,7 +271,6 @@
     for (int i=0; i<self.smallStageStandardY.count; i++) {
         //小阶段名称
         if (scrollView.contentOffset.y+568-64-50<[self.smallStageStandardY[i] floatValue]) {
-            NSLog(@"2222");
             self.smallStageLabel.text=smallTitles[i];
             break;
         }
@@ -340,11 +338,12 @@
     }
     
     height=0;
-    for (int i=0; i<self.bigStageStandardY.count; i++) {
-        height+=[self.bigStageStandardY[i] floatValue];
-    }
-    height+=view.frame.size.height;
-    [self.bigStageStandardY addObject:[NSNumber numberWithFloat:height]];
+//    for (int i=0; i<self.bigStageStandardY.count; i++) {
+//        height+=[self.bigStageStandardY[i] floatValue];
+//    }
+//    height=self.bigStageStandardY.count?[self.bigStageStandardY.lastObject]
+//    height+=view.frame.size.height;
+//    [self.bigStageStandardY addObject:[NSNumber numberWithFloat:height]];
 
     
     if (self.contents.count) {
