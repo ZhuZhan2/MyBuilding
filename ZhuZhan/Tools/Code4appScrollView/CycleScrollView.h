@@ -28,10 +28,9 @@ typedef enum {
     NSArray *imagesArray;               // 存放所有需要滚动的图片 UIImage
     NSMutableArray *curImages;          // 存放当前滚动的三张图片
     
-    id delegate;
 }
 
-@property (nonatomic, assign) id delegate;
+@property (nonatomic, assign) id<CycleScrollViewDelegate> delegate;
 
 - (int)validPageValue:(NSInteger)value;
 - (id)initWithFrame:(CGRect)frame cycleDirection:(CycleDirection)direction pictures:(NSArray *)pictureArray;

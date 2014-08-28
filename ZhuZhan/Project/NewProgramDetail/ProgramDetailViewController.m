@@ -19,8 +19,8 @@
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
 #import "ProgramSelectViewCell.h"
-#import "ViewController.h"
-@interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate>
+#import "CycleScrollView.h"
+@interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate,CycleScrollViewDelegate>
 @property(nonatomic,strong)UIButton* backButton;
 @property(nonatomic,strong)UITableView* contentTableView;
 @property(nonatomic,strong)UITableView* selectTableView;
@@ -48,6 +48,8 @@
 @property(nonatomic,strong)NSMutableArray* bigStageStandardY;
 @property(nonatomic,strong)NSMutableArray* smallStageStandardY;
 
+@property(nonatomic,strong)UIView* scrollViewBackground;
+
 @end
 
 @implementation ProgramDetailViewController
@@ -70,6 +72,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [self.model getContacts:posts[0]];
@@ -205,6 +208,10 @@
 //**********************************************************************
 
 -(void)change{
+     NSLog(@"%f",self.contentTableView.frame.origin.y);
+    NSLog(@"height==%f",self.contentTableView.frame.size.height);
+    NSLog(@"content  %f",self.contentTableView.contentSize.height);
+
     NSLog(@"用户选择了筛选");
     self.isNeedAnimation=NO;
     //暂时移除观察者,避免加新view时有动画
@@ -555,18 +562,41 @@
     NSArray* part2=@[self.model.constructionImages,self.model.pileImages,self.model.mainBulidImages];
     NSArray* part3=@[self.model.decorationImages];
     NSArray* array=@[part0,part1,part2,part3];
-    
-     //array[indexPath.part][indexPath.section];
-//    NSLog(@"%d,%d",indexPath.part,indexPath.section);
-    
-//    NSData* data=[NSData dataWithContentsOfURL:url];
-//    UIImage* image=[UIImage imageWithData:data];
-    ViewController* vc=[[ViewController alloc]init];
+
+    NSMutableArray* imageUrls=[[NSMutableArray alloc]init];
     for (int i=0; i<[array[indexPath.part][indexPath.section] count]; i++) {
         NSURL* url=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,array[indexPath.part][indexPath.section][i]]];
-        [vc.imagesArray addObject:url];
+        [imageUrls addObject:url];
     }
-    [self presentViewController:vc animated:NO completion:nil];
+    [self addScrollViewWithUrls:imageUrls];
+}
+
+-(void)addScrollViewWithUrls:(NSMutableArray*)urls{
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+
+    self.scrollViewBackground=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 568)];
+    
+    UIButton* button=[[UIButton alloc]initWithFrame:self.scrollViewBackground.frame];
+    [button addTarget:self action:@selector(backToProgram) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollViewBackground addSubview:button];
+    
+    self.scrollViewBackground.backgroundColor=[UIColor blackColor];
+    CycleScrollView* scrollView =[[CycleScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 320) cycleDirection:CycleDirectionLandscape pictures:urls];
+    scrollView.delegate=self;
+    scrollView.center=CGPointMake(160, 250);
+    [self.scrollViewBackground addSubview:scrollView];
+    
+    AppDelegate* app=[AppDelegate instance];
+    [app.window.rootViewController.view addSubview:self.scrollViewBackground];
+}
+
+-(void)cycleScrollViewDelegate:(CycleScrollView *)cycleScrollView didSelectImageView:(int)index{
+    [self backToProgram];
+}
+
+-(void)backToProgram{
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [self.scrollViewBackground removeFromSuperview];
 }
 
 //**********************************************************************
@@ -657,5 +687,9 @@
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
+}
+
+-(void)dealloc{
+    NSLog(@"ProgramDetailViewControllerDealloc");
 }
 @end
