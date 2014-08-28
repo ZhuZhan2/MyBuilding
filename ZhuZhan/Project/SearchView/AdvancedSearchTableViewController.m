@@ -29,7 +29,7 @@
     
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftButton setFrame:CGRectMake(0, 5, 29, 28.5)];
+    [leftButton setFrame:CGRectMake(0, 0, 29, 28.5)];
     [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
@@ -81,6 +81,19 @@
             cell = [[AdvancedSearchConditionsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.selectionStyle = NO;
+        return cell;
+    }else if (indexPath.row == 1){
+        NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = NO;
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 7, 100, 30)];
+        label.text = @"个人搜索条件";
+        label.font = [UIFont systemFontOfSize:14];
+        [cell.contentView setBackgroundColor:[UIColor grayColor]];
+        [cell.contentView addSubview:label];
         return cell;
     }
     
