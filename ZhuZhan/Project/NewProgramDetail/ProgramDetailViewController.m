@@ -147,6 +147,8 @@
     [self.backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:self.backButton];//[[UIBarButtonItem alloc]initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
     //[self.navigationController.navigationBar addSubview:self.backButton];
+    
+    self.navigationItem.title=@"项目详情";
 }
 
 -(void)initThemeView{
@@ -338,12 +340,9 @@
     }
     
     height=0;
-//    for (int i=0; i<self.bigStageStandardY.count; i++) {
-//        height+=[self.bigStageStandardY[i] floatValue];
-//    }
-//    height=self.bigStageStandardY.count?[self.bigStageStandardY.lastObject]
-//    height+=view.frame.size.height;
-//    [self.bigStageStandardY addObject:[NSNumber numberWithFloat:height]];
+    height=self.bigStageStandardY.count?[self.bigStageStandardY.lastObject floatValue]:0;
+    height+=view.frame.size.height;
+    [self.bigStageStandardY addObject:[NSNumber numberWithFloat:height]];
 
     
     if (self.contents.count) {
