@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XHPathCover.h"
+@interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate>
 
-@interface PersonalDetailViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
-
-@property (nonatomic,strong) UITableView *myTableView;
 @property (nonatomic,strong) NSArray *KindIndex;
 @property (nonatomic,strong) NSArray *kImgArr;
+@property (nonatomic, strong) XHPathCover *pathCover;
+
 @end

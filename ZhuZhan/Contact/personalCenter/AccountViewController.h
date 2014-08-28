@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AccountViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+#import "XHPathCover.h"
 
-@property (nonatomic,strong) UITableView *accountTableView;
+
+@interface AccountViewController : UITableViewController<XHPathCoverDelegate>
+{
+
+
+}
 @property (nonatomic,strong) NSMutableDictionary *userDic;
+@property (nonatomic, strong) XHPathCover *pathCover;
+@property (nonatomic,strong) NSArray *KindIndex;
+
 @end

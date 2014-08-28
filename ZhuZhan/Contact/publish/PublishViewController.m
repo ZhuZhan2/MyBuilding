@@ -27,47 +27,55 @@
 {
     [super viewDidLoad];
 
-    self.navigationController.navigationBar.alpha =0;
-    UINavigationBar *tabBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 64.5)];
-    [tabBar setBackgroundImage:[UIImage imageNamed:@"地图搜索_01.png"] forBarMetrics:UIBarMetricsDefault];
-    [self.view addSubview:tabBar];
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftButton setFrame:CGRectMake(0, 5, 29, 28.5)];
+    [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = leftButtonItem;
     
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
-    titleLabel.center =CGPointMake(160, 40);
-    titleLabel.text = @"发布动态";
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:19];
-    [tabBar addSubview:titleLabel];
+    //RightButton设置属性
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setFrame:CGRectMake(0, 0, 50, 19.5)];
+    [rightButton setTitle:@"清空" forState:UIControlStateNormal];
+    rightButton.titleLabel.textColor = [UIColor whiteColor];
+    [rightButton addTarget:self action:@selector(clearAll) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
     
-    
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    backBtn.frame = CGRectMake(0, 20, 40, 40);
-    [backBtn setBackgroundImage:[UIImage imageNamed:@"back_icon"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(backToFormerVC) forControlEvents:UIControlEventTouchUpInside];
-    [tabBar addSubview:backBtn];
-    
-    UIButton *publishBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-    [publishBtn setTitle:@"清空" forState:UIControlStateNormal];
-    publishBtn.titleLabel.textColor = [UIColor whiteColor];
-    publishBtn.titleLabel.font = [UIFont systemFontOfSize:18];
-    publishBtn.frame = CGRectMake(250, 20, 60, 40);
-    [publishBtn addTarget:self action:@selector(publish) forControlEvents:UIControlEventTouchUpInside];
-    [tabBar addSubview:publishBtn];
+    self.title = @"发布";
+
 
     
     
-    inputView =[[UITextView alloc] initWithFrame:CGRectMake(0, 64.5, 320, 200)];
+    inputView =[[UITextView alloc] initWithFrame:CGRectZero];
     inputView.delegate = self;
     inputView.backgroundColor = [UIColor greenColor];
     
     [self.view addSubview:inputView];
     
+    toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+    [self.view addSubview:toolBar];
+    toolBar.backgroundColor = [UIColor redColor];
+    
+    UIButton *textBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    textBtn.frame = CGRectMake(0, 0, 160, 40);
+    [textBtn setBackgroundImage:[UIImage imageNamed:@"textBtnIcon"] forState:UIControlStateNormal];
+    [textBtn addTarget:self action:@selector(publshText) forControlEvents:UIControlEventTouchUpInside];
+    [toolBar addSubview:textBtn];
+    
+    UIButton *photoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    photoBtn.frame = CGRectMake(160, 0, 160, 40);
+    [photoBtn setBackgroundImage:[UIImage imageNamed:@"photoBtnIcon"] forState:UIControlStateNormal];
+    [photoBtn addTarget:self action:@selector(publshPhoto) forControlEvents:UIControlEventTouchUpInside];
+    [toolBar addSubview:photoBtn];
+
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:UIKeyboardWillShowNotification object:nil];
     
     [inputView becomeFirstResponder];
     
-    
+
     
 
 }
@@ -90,21 +98,11 @@
     CGRect keyboardRect = [aValue CGRectValue];
     int height = keyboardRect.size.height;
     NSLog(@"%d",height);
-    toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-height-40, 320, 40)];
-    [self.view addSubview:toolBar];
+    toolBar.frame =CGRectMake(0, kScreenHeight-height-40, 320, 40);
+    toolBar.backgroundColor = [UIColor redColor];
+    inputView.frame =CGRectMake(0, 0, 320, kContentHeight-height);
     
-    UIButton *textBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    textBtn.frame = CGRectMake(0, 0, 160, 40);
-    [textBtn setBackgroundImage:[UIImage imageNamed:@"textBtnIcon"] forState:UIControlStateNormal];
-    [textBtn addTarget:self action:@selector(publshText) forControlEvents:UIControlEventTouchUpInside];
-    [toolBar addSubview:textBtn];
     
-    UIButton *photoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    photoBtn.frame = CGRectMake(160, 0, 160, 40);
-    [photoBtn setBackgroundImage:[UIImage imageNamed:@"photoBtnIcon"] forState:UIControlStateNormal];
-    [photoBtn addTarget:self action:@selector(publshPhoto) forControlEvents:UIControlEventTouchUpInside];
-    [toolBar addSubview:photoBtn];
-
 
     
 }
@@ -119,11 +117,15 @@
   NSLog(@"发布图片信息");
 }
 
--(void)backToFormerVC
-{
-    self.navigationController.navigationBar.alpha =1;
-    [self.navigationController popViewControllerAnimated:NO];
+-(void)leftBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
 }
+
+-(void)clearAll
+{
+
+}
+
 
 - (void)didReceiveMemoryWarning
 {

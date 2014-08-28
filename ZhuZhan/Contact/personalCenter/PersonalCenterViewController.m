@@ -15,7 +15,7 @@
 
 @implementation PersonalCenterViewController
 
-@synthesize personaltableView,personalArray;
+@synthesize personalArray;
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -49,16 +49,19 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
-    NSArray *array = @[@"项目名称显示在这里",@"用户名添加联系人赵钱孙李 职位",@"我发布的动态",@"我发布的动态"];
+    self.title = @"个人中心";
+
+    NSArray *array = @[@"上海中技桩业公司",@"XXX更新了项目名称",@"XXX与XXX成为了好友",@"XXX更新了的头像"];
+    
     personalArray = [NSMutableArray arrayWithArray:array];
     
-    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 150)];
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 200)];
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
     [_pathCover setAvatarImage:[UIImage imageNamed:@"首页侧拉栏_03.png"]];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadFrame:CGRectMake(120, 0, 70, 70)];
-    [_pathCover setNameFrame:CGRectMake(120, 70, 100, 20) font:[UIFont systemFontOfSize:14]];
+    [_pathCover setNameFrame:CGRectMake(145, 70, 100, 20) font:[UIFont systemFontOfSize:14]];
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
     
@@ -189,12 +192,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     return _datasource[[indexPath row]];
 }
 
-//点击自己头像去个人中心
--(void)gotoMyCenter{
-    NSLog(@"gotoMyCenter");
-    PersonalCenterViewController *personalVC = [[PersonalCenterViewController alloc] init];
-    [self.navigationController pushViewController:personalVC animated:YES];
-}
+////点击自己头像去个人中心
+//-(void)gotoMyCenter{
+//    NSLog(@"gotoMyCenter");
+//    PersonalCenterViewController *personalVC = [[PersonalCenterViewController alloc] init];
+//    [self.navigationController pushViewController:personalVC animated:YES];
+//}
 
 
 - (void)didReceiveMemoryWarning

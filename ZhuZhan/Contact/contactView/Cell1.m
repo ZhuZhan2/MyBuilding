@@ -22,7 +22,7 @@
         verticalLine.image = [UIImage imageNamed:@"搜索_10"];
         [self addSubview:verticalLine];
         
-        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(5, 50, 310, 2)];
+        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(5, 49, 310, 2)];
         line.image = [UIImage imageNamed:@"我的任务_05"];
         [self addSubview:line];
         

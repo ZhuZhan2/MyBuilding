@@ -20,7 +20,7 @@
         verticalLine.image = [UIImage imageNamed:@"搜索_10"];
         [self addSubview:verticalLine];
         
-        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(74, 50, 310, 2)];
+        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(74, 49, 310, 2)];
         line.image = [UIImage imageNamed:@"我的任务_05"];
         [self addSubview:line];
         
@@ -28,7 +28,7 @@
         userIcon.frame = CGRectMake(84, 5, 40, 40);
         [self addSubview:userIcon];
         
-        commentsView = [[UITextView alloc] initWithFrame:CGRectMake(130, 0, 320, 60)];
+        commentsView = [[UITextView alloc] initWithFrame:CGRectMake(130, 1, 180, 48)];
         commentsView.editable =NO;
         [self addSubview:commentsView];
         userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];

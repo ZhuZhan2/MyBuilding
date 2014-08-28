@@ -17,6 +17,5 @@
 
 }
 @property (nonatomic, strong) XHPathCover *pathCover;
-@property (nonatomic,strong)UITableView *personaltableView;
 @property (nonatomic,strong)NSMutableArray *personalArray;
 @end
