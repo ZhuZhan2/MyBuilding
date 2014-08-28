@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ViewController : UIViewController
+#import "CycleScrollView.h"
+@interface ViewController : UIViewController<CycleScrollViewDelegate>
 @property(nonatomic,strong)NSMutableArray* imagesArray;
 @end

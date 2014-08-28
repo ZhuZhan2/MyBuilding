@@ -566,7 +566,8 @@
         NSURL* url=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,array[indexPath.part][indexPath.section][i]]];
         [vc.imagesArray addObject:url];
     }
-    [self presentViewController:vc animated:NO completion:nil];
+    [self.view addSubview:vc.view];
+    //[self presentViewController:vc animated:NO completion:nil];
 }
 
 //**********************************************************************

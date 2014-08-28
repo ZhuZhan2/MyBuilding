@@ -16,6 +16,7 @@
     self = [super initWithFrame:frame];
     if(self)
     {
+        NSLog(@"====>%@",delegate);
         scrollFrame = frame;
         scrollDirection = direction;
         totalPage = pictureArray.count;
@@ -52,7 +53,6 @@
 }
 
 - (void)refreshScrollView {
-    
 //    NSArray *subViews = [scrollView subviews];
 //    if([subViews count] != 0) {
 //        [subViews makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -93,6 +93,7 @@
     if (scrollDirection == CycleDirectionPortait) {
         [scrollView setContentOffset:CGPointMake(0, scrollFrame.size.height)];
     }
+    
 }
 
 - (NSArray *)getDisplayImagesWithCurpage:(int)page {
@@ -169,7 +170,7 @@
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)tap {
-    
+    NSLog(@"====>%@",delegate);
     if ([delegate respondsToSelector:@selector(cycleScrollViewDelegate:didSelectImageView:)]) {
         [delegate cycleScrollViewDelegate:self didSelectImageView:curPage];
     }
