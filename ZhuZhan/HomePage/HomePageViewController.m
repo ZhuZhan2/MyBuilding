@@ -34,6 +34,7 @@
     contactview = [[ContactViewController alloc] init];
     nav = [[UINavigationController alloc] initWithRootViewController:contactview];
     [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
+    nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
     [contentView addSubview:nav.view];
     [self.view addSubview:contentView];
     
@@ -109,21 +110,7 @@
     menu = [[QuadCurveMenu alloc] initWithFrame:self.view.bounds menus:menus];
     menu.delegate = self;
     [self.view addSubview:menu];
-    
-    [self.navigationController.navigationBar removeFromSuperview];
-//    UIButton *LoginOutBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    LoginOutBtn.frame = CGRectMake(70, 20, 40, 30);
-//    [LoginOutBtn setTitle:@"退出" forState:UIControlStateNormal];
-//    [LoginOutBtn addTarget:self action:@selector(loginOut) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:LoginOutBtn];
-//
-//    UIButton *perfectBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    perfectBtn.frame = CGRectMake(70, 20, 40, 30);
-//    [perfectBtn setTitle:@"完善" forState:UIControlStateNormal];
-//    [perfectBtn addTarget:self action:@selector(perfect) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:perfectBtn];
-
-    }
+}
 
 -(NSString *)timeConversion:(NSString *)time
 {
@@ -245,6 +232,7 @@
             contactview = [[ContactViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:contactview];
             [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
+            nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
             break;
         case 1:
@@ -252,6 +240,7 @@
             projectview = [[ProjectTableViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:projectview];
             [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
+            nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
             break;
         case 2:
@@ -262,6 +251,7 @@
             companyview = [[CompanyViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:companyview];
             [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
+            nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
             break;
         case 4:
@@ -269,6 +259,7 @@
             tradeview = [[TradeViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:tradeview];
             [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
+            nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
             break;
         default:
