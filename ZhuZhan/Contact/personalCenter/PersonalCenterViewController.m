@@ -15,7 +15,7 @@
 
 @implementation PersonalCenterViewController
 
-@synthesize personaltableView,personalArray;
+@synthesize personalArray;
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -49,7 +49,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
-    NSArray *array = @[@"项目名称显示在这里",@"用户名添加联系人赵钱孙李 职位",@"我发布的动态",@"我发布的动态"];
+    self.title = @"个人中心";
+
+    NSArray *array = @[@"上海中技桩业公司",@"XXX更新了项目名称",@"XXX与XXX成为了好友",@"XXX更新了的头像"];
+    
     personalArray = [NSMutableArray arrayWithArray:array];
     
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 150)];

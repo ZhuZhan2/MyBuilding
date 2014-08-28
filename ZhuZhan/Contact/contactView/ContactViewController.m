@@ -44,6 +44,15 @@ static int rowNum =0;
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,
                                                                      nil]];
     
+    //RightButton设置属性
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setFrame:CGRectMake(0, 0, 50, 19.5)];
+    [rightButton setTitle:@"发布" forState:UIControlStateNormal];
+    rightButton.titleLabel.textColor = [UIColor whiteColor];
+    [rightButton addTarget:self action:@selector(publish) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
+    
     self.title = @"人脉";
     
     //上拉刷新界面
