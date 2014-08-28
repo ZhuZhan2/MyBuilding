@@ -30,10 +30,10 @@
 {
     [super viewDidLoad];
     
-    self.title = [NSString stringWithFormat:@"第%d张", 1];
+    //self.title = [NSString stringWithFormat:@"第%d张", 1];
     
 	// Do any additional setup after loading the view, typically from a nib.
-    NSMutableArray *picArray =self.imagesArray;
+    //NSMutableArray *picArray =self.imagesArray;
     //[[NSMutableArray alloc] init];
     //[picArray addObject:[UIImage imageNamed:@"0.JPG"]];
     //[picArray addObject:[UIImage imageNamed:@"1.JPG"]];
@@ -47,7 +47,7 @@
     
     CycleScrollView *cycle = [[CycleScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)
                                                      cycleDirection:CycleDirectionLandscape
-                                                           pictures:picArray];
+                                                           pictures:self.imagesArray];
     cycle.center=CGPointMake(160, 250);
     cycle.delegate = self;
     
@@ -59,7 +59,6 @@
     
     [cycle release];
     
-    [picArray release];
 }
 
 #pragma mark - CycleScrollViewDelegate

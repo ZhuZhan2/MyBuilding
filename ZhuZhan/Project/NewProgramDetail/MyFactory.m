@@ -128,7 +128,7 @@
 }
 
 //图加图的数量
-+(UIImageView*)getImageViewWithImageUrl:(NSString*)imageUrl count:(NSInteger)count{
++(UIView*)getImageViewWithImageUrl:(NSString*)imageUrl count:(NSInteger)count{
     EGOImageView* imageView=[[EGOImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 215.5)];
     imageView.showActivityIndicator=YES;
 
@@ -146,7 +146,16 @@
     label.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:.7];
     [imageView addSubview:label];
     
-    return imageView;
+    UIView* view=[[UIView alloc]initWithFrame:imageView.frame];
+    [view addSubview:imageView];
+    return view;
+}
+
++(void)addButtonToView:(UIView*)view target:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents{
+    UIButton* button=[[UIButton alloc]initWithFrame:view.frame];
+    button.tag=view.tag;
+    [button addTarget:target action:action forControlEvents:controlEvents];
+    [view addSubview:button];
 }
 
 +(UIView*)getOwnerTypeViewWithImage:(UIImage*)image owners:(NSArray*)owners{

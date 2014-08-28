@@ -19,6 +19,7 @@
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
 #import "ProgramSelectViewCell.h"
+#import "ViewController.h"
 @interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate>
 @property(nonatomic,strong)UIButton* backButton;
 @property(nonatomic,strong)UITableView* contentTableView;
@@ -67,40 +68,13 @@
     [homeVC homePageTabBarHide];
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
-
-    self.view.backgroundColor=[UIColor whiteColor];
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [self.model getContacts:posts[0]];
             [self.model getImages:posts[1]];
             [self loadSelf];
-            
-            UIImage* image;
-            if (self.model.auctionImages.count) {
-                NSURL* url=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.model.auctionImages[0]]];
-                //NSData* data=[NSData dataWithContentsOfURL:url];
-//                image=[[UIImage alloc]initWithData:data];
-                
-                //EGOImageView* imageView=[[EGOImageView alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
-                //imageView.imageURL=url;
-            }
-            
-            //            imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,imageModel.a_imageOriginalLocation]];
-            //            [view addSubview:imageView];
-
-            NSLog(@"%@,%@,%@,%@,%@,%@",self.model.auctionImages,self.model.explorationImages,self.model.constructionImages,self.model.pileImages,self.model.mainBulidImages,self.model.decorationImages);
-//            ProjectImageModel *imageModel = posts[1][0];
-//            NSLog(@"%@",imageModel.a_imageOriginalLocation);
-//            NSLog(@"%@",imageModel.a_imageCategory);
-//            UIView* view=[[UIView alloc]initWithFrame:CGRectMake(50, 150, 200, 100)];
-//            view.backgroundColor=[UIColor whiteColor];
-//            [self.view addSubview:view];
-//            EGOImageView* imageView=[[EGOImageView alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
-//            imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,imageModel.a_imageOriginalLocation]];
-//            [view addSubview:imageView];
         }else{
 
         }
@@ -436,7 +410,6 @@
 }
 
 -(void)didchangeStageSection:(NSInteger)section row:(NSInteger)row{
-
     NSLog(@"%f",self.contentTableView.contentOffset.y);
     for (int i=1; i<=section; i++) {//土地信息阶段必存在，不用判断和操作
         if (!self.mainDesign&&i==1) {
@@ -576,6 +549,26 @@
     }
 }
 
+-(void)chooseImageViewWithIndexPath:(MyIndexPath *)indexPath{
+    NSArray* part0=@[self.model.auctionImages];
+    NSArray* part1=@[self.model.explorationImages];
+    NSArray* part2=@[self.model.constructionImages,self.model.pileImages,self.model.mainBulidImages];
+    NSArray* part3=@[self.model.decorationImages];
+    NSArray* array=@[part0,part1,part2,part3];
+    
+     //array[indexPath.part][indexPath.section];
+//    NSLog(@"%d,%d",indexPath.part,indexPath.section);
+    
+//    NSData* data=[NSData dataWithContentsOfURL:url];
+//    UIImage* image=[UIImage imageWithData:data];
+    ViewController* vc=[[ViewController alloc]init];
+    for (int i=0; i<self.model.auctionImages.count; i++) {
+        NSURL* url=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.model.auctionImages[i]]];
+        [vc.imagesArray addObject:url];
+    }
+    [self presentViewController:vc animated:NO completion:nil];
+}
+
 //**********************************************************************
 //**********************************************************************
 //**********************************************************************
@@ -662,8 +655,7 @@
     return [self.model.a_ownerType componentsSeparatedByString:@","];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
 }
 @end

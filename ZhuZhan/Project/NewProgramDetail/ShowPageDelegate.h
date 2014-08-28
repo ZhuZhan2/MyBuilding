@@ -17,4 +17,6 @@
 -(NSArray*)getDeviceAndBoolWithDevicesAndBoolStrsWithIndexPath:(MyIndexPath*)indexPath;//硬件设备以及yes和no
 -(NSArray*)getBlackTwoLinesWithStrsWithIndexPath:(MyIndexPath*)indexPath;//第一行黑，第二行灰的view
 -(NSArray*)getOwnerTypeViewWithImageAndOwnersWithIndexPath:(MyIndexPath*)indexPath;
+
+-(void)chooseImageViewWithIndexPath:(MyIndexPath*)indexPath;
 @end
