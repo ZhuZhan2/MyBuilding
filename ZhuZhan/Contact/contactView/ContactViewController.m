@@ -60,6 +60,7 @@ static int rowNum =0;
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
     [_pathCover setAvatarImage:[UIImage imageNamed:@"首页侧拉栏_03.png"]];
+    [_pathCover setHeadTaget];
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"用户名", XHUserNameKey, @"公司名字显示在这里     职位", XHBirthdayKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
     //时间标签

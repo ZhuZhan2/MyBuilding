@@ -61,7 +61,8 @@ extern NSString *const XHBirthdayKey;
 -(void)hidewaterDropRefresh;
 //设置头像位置
 -(void)setHeadFrame:(CGRect)newFrame;
-
+//设置头像点击时间
+-(void)setHeadTaget;
 //设置名字位置
 -(void)setNameFrame:(CGRect)newFrame font:(UIFont *)font;
 
