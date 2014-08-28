@@ -404,6 +404,8 @@
 		D3AD618319ADCCC0001FD483 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD618219ADCCC0001FD483 /* MapKit.framework */; };
 		D3AD618619ADCCD8001FD483 /* BaiDuMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD618519ADCCD8001FD483 /* BaiDuMapViewController.m */; };
 		D3AD618A19ADF629001FD483 /* MyCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD618919ADF629001FD483 /* MyCenterModel.m */; };
+		D3AD618D19AEC78D001FD483 /* AdvancedSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD618C19AEC78D001FD483 /* AdvancedSearchTableViewController.m */; };
+		D3AD619019AEC7C8001FD483 /* AdvancedSearchConditionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD618F19AEC7C8001FD483 /* AdvancedSearchConditionsTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1169,6 +1171,10 @@
 		D3AD618519ADCCD8001FD483 /* BaiDuMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiDuMapViewController.m; sourceTree = "<group>"; };
 		D3AD618819ADF629001FD483 /* MyCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterModel.h; sourceTree = "<group>"; };
 		D3AD618919ADF629001FD483 /* MyCenterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterModel.m; sourceTree = "<group>"; };
+		D3AD618B19AEC78D001FD483 /* AdvancedSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedSearchTableViewController.h; sourceTree = "<group>"; };
+		D3AD618C19AEC78D001FD483 /* AdvancedSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedSearchTableViewController.m; sourceTree = "<group>"; };
+		D3AD618E19AEC7C8001FD483 /* AdvancedSearchConditionsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedSearchConditionsTableViewCell.h; sourceTree = "<group>"; };
+		D3AD618F19AEC7C8001FD483 /* AdvancedSearchConditionsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedSearchConditionsTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2382,6 +2388,10 @@
 				D3AD615819ADA45F001FD483 /* SearchViewController.m */,
 				D3AD617B19ADC51C001FD483 /* ResultsTableViewController.h */,
 				D3AD617C19ADC51C001FD483 /* ResultsTableViewController.m */,
+				D3AD618B19AEC78D001FD483 /* AdvancedSearchTableViewController.h */,
+				D3AD618C19AEC78D001FD483 /* AdvancedSearchTableViewController.m */,
+				D3AD618E19AEC7C8001FD483 /* AdvancedSearchConditionsTableViewCell.h */,
+				D3AD618F19AEC7C8001FD483 /* AdvancedSearchConditionsTableViewCell.m */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";
@@ -2772,6 +2782,7 @@
 				0426C28119922D5A00CD8822 /* GPUImageKuwaharaFilter.m in Sources */,
 				0426C25D19922D5A00CD8822 /* GPUImageDarkenBlendFilter.m in Sources */,
 				0426C2FD19922D5A00CD8822 /* UIAlertView+AFNetworking.m in Sources */,
+				D3AD619019AEC7C8001FD483 /* AdvancedSearchConditionsTableViewCell.m in Sources */,
 				D3AD60E319AC7BD1001FD483 /* ScrollViewController.m in Sources */,
 				0426C26619922D5A00CD8822 /* GPUImageExclusionBlendFilter.m in Sources */,
 				D3311CB219AB03F3003B2682 /* ProjectApi.m in Sources */,
@@ -2866,6 +2877,7 @@
 				0426C2C819922D5A00CD8822 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
 				0426C2FC19922D5A00CD8822 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				0426C24819922D5A00CD8822 /* GPUImageAverageLuminanceThresholdFilter.m in Sources */,
+				D3AD618D19AEC78D001FD483 /* AdvancedSearchTableViewController.m in Sources */,
 				0426C2C719922D5A00CD8822 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
 				0426C2E619922D5A00CD8822 /* FaceppGroup.m in Sources */,
 				0426C2DF19922D5A00CD8822 /* FaceppAPI.m in Sources */,

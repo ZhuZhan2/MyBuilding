@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "toolBarView.h"
 #import "ResultsTableViewController.h"
+#import "AdvancedSearchTableViewController.h"
 @interface SearchViewController : UIViewController<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,toolBarViewDelegate>{
     UISearchBar *_searchBar;
     UITableView *_tableView;
     NSMutableArray *showArr;
     toolBarView *toolbarView;
     ResultsTableViewController *resultView;
+    AdvancedSearchTableViewController *advancedSearchView;
 }
 
 @end
