@@ -41,10 +41,10 @@ static int rowNum =0;
     // Do any additional setup after loading the view.
     
 
-    self.navigationController.navigationBar.alpha=0;
+    /*self.navigationController.navigationBar.alpha=0;
     UINavigationBar *tabBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, -20, 320, 64.5)];
     [tabBar setBackgroundImage:[UIImage imageNamed:@"地图搜索_01.png"] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar addSubview:tabBar];
+    //[self.navigationController.navigationBar addSubview:tabBar];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
     titleLabel.center =CGPointMake(160, 40);
@@ -70,7 +70,14 @@ static int rowNum =0;
     
     NSArray *array = @[@"项目名称显示在这里",@"用户名添加了联系人"];
     personalArray = [NSMutableArray arrayWithArray:array];
-    comments = @[@"hhhhhhhsdfdf",@"mkmiojvjivv",@"lkkp[pfgjireglffdjgo"];
+    comments = @[@"hhhhhhhsdfdf",@"mkmiojvjivv",@"lkkp[pfgjireglffdjgo"];*/
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"地图搜索_01.png"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,
+                                                                     nil]];
+    
+    self.title = @"人脉";
+    
     //上拉刷新界面
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 150)];
     _pathCover.delegate = self;

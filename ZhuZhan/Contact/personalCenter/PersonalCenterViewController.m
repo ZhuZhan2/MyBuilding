@@ -30,36 +30,25 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
-//    [self.navigationController.navigationBar removeFromSuperview];
-    self.navigationController.navigationBar.alpha =0;
-    UINavigationBar *tabBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 64.5)];
-    [tabBar setBackgroundImage:[UIImage imageNamed:@"地图搜索_01.png"] forBarMetrics:UIBarMetricsDefault];
-    [self.view addSubview:tabBar];
     
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
-    titleLabel.center =CGPointMake(160, 40);
-    titleLabel.text = @"个人中心";
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.font = [UIFont systemFontOfSize:20];
-    [tabBar addSubview:titleLabel];
+    //LeftButton设置属性
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftButton setFrame:CGRectMake(0, 5, 29, 28.5)];
+    [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = leftButtonItem;
     
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    backBtn.frame = CGRectMake(0, 20, 40, 40);
-    [backBtn setBackgroundImage:[UIImage imageNamed:@"back_icon"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(backToFormerVC) forControlEvents:UIControlEventTouchUpInside];
-    [tabBar addSubview:backBtn];
+    //RightButton设置属性
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setFrame:CGRectMake(0, 0, 50, 19.5)];
+    [rightButton setTitle:@"帐户" forState:UIControlStateNormal];
+    rightButton.titleLabel.textColor = [UIColor whiteColor];
+    [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
     
-    UIButton *accountBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-    [accountBtn setTitle:@"帐户" forState:UIControlStateNormal];
-    accountBtn.titleLabel.textColor = [UIColor whiteColor];
-    accountBtn.titleLabel.font = [UIFont systemFontOfSize:18];
-    accountBtn.frame = CGRectMake(250, 20, 60, 40);
-    [accountBtn addTarget:self action:@selector(account) forControlEvents:UIControlEventTouchUpInside];
-    [tabBar addSubview:accountBtn];
-    
-    personaltableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64.5, 320, kContentHeight)];
+    personaltableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, kContentHeight)];
     personaltableView.dataSource =self;
     personaltableView.delegate = self;
     
@@ -69,20 +58,15 @@
     personalArray = [NSMutableArray arrayWithArray:array];
 }
 
--(void)backToFormerVC
-{
-    self.navigationController.navigationBar.alpha =1;
-    [self.navigationController popViewControllerAnimated:NO];
+
+-(void)leftBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-
--(void)account{//账户
+-(void)rightBtnClick{
     AccountViewController *accountVC = [[AccountViewController alloc] init];
-    [self.navigationController pushViewController:accountVC animated:NO];
-    
+    [self.navigationController pushViewController:accountVC animated:YES];
 }
-
 
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
