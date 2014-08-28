@@ -43,6 +43,10 @@
 
 //以下4属性用于sectionHeader被点击时所需要传参数时用的东西
 @property(nonatomic,strong)NSMutableArray* sectionButtonArray;
+
+@property(nonatomic,strong)NSMutableArray* bigStageStandardY;
+@property(nonatomic,strong)NSMutableArray* smallStageStandardY;
+
 @end
 
 @implementation ProgramDetailViewController
@@ -118,8 +122,9 @@
 -(void)initContentTableView{
     self.landInfo=[LandInfo getLandInfoWithDelegate:self part:0];
     [[[self.landInfo.firstView.subviews[0] subviews][0]subviews][0] removeFromSuperview];
-    
-    self.contents=[NSMutableArray arrayWithObjects:self.landInfo.firstView,self.landInfo.secondView, self.loadingView,nil];
+//    self.contents=[NSMutableArray arrayWithObjects:self.landInfo.firstView,self.landInfo.secondView, self.loadingView,nil];
+    self.contents=[[NSMutableArray alloc]init];
+    [self contentsAddObject:self.landInfo];
     
     self.contentTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 64+50, 320, 568-64-50) style:UITableViewStylePlain];
     self.contentTableView.delegate=self;
@@ -127,11 +132,12 @@
     self.contentTableView.backgroundColor=RGBCOLOR(229, 229, 229);
     
     self.contentTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    self.contentTableView.showsVerticalScrollIndicator=NO;
     [self.view addSubview:self.contentTableView];
 }
 
 -(void)back{
-    [self.backButton removeFromSuperview];
+    //[self.backButton removeFromSuperview];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -139,8 +145,8 @@
     self.backButton=[[UIButton alloc]initWithFrame:CGRectMake(0,5,29,28.5)];
     [self.backButton setImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
     [self.backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [self.navigationController.navigationBar addSubview:self.backButton];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:self.backButton];//[[UIBarButtonItem alloc]initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
+    //[self.navigationController.navigationBar addSubview:self.backButton];
 }
 
 -(void)initThemeView{
@@ -239,22 +245,68 @@
         }
     }
     
+    NSArray* smallTitles=@[@"土地规划/拍卖",@"项目立项",@"地勘阶段",@"设计阶段",@"出图阶段",@"地平",@"桩基基坑",@"主体施工",@"消防/景观绿化",@""];
+    NSArray* bigTitles=@[@"土地信息",@"主体设计阶段",@"主体施工阶段",@"装修阶段"];
+//    NSArray* smallStages=[self.contents subarrayWithRange:NSMakeRange(0, self.contents.count-1)];
+//    NSArray* bigStages=[NSArray arrayWithObjects:self.landInfo,self.mainDesign,self.mainBuild,self.decorationProject, nil];
+    NSArray* bigStageImageNames=@[@"XiangMuXiangQing/map@2x.png",@"XiangMuXiangQing_1/pen_01@2x.png",@"XiangMuXiangQing_2/Subject_01@2x.png",@"XiangMuXiangQing_3/paint_01@2x.png"];
     
+    for (int i=0; i<self.bigStageStandardY.count; i++) {
+        NSLog(@"bigStage=%d",i);
+        if (scrollView.contentOffset.y+568-64-50<[self.bigStageStandardY[i] floatValue]) {
+            //大阶段名称
+            self.bigStageLabel.text=bigTitles[i];
+            
+            //大阶段左边图标
+            UIImage* image=[UIImage imageNamed:bigStageImageNames[i]];
+            CGPoint center=self.bigStageImageView.center;
+            CGRect frame=CGRectMake(0, 0, image.size.width*.5, image.size.height*.5);
+            self.bigStageImageView.frame=frame;
+            self.bigStageImageView.image=image;
+            self.bigStageImageView.center=center;
+            
+            break;
+        }
+    }
     
-//    NSMutableArray* heights=[NSMutableArray array];
-//    for (int i=0; i<self.contents.count; i++) {
-//        <#statements#>
-//    }
+    for (int i=0; i<self.smallStageStandardY.count; i++) {
+        //小阶段名称
+        if (scrollView.contentOffset.y+568-64-50<[self.smallStageStandardY[i] floatValue]) {
+            NSLog(@"2222");
+            self.smallStageLabel.text=smallTitles[i];
+            break;
+        }
+    }
 }
 
 -(void)addNewView:(UIView*)view scrollView:(UIScrollView*)scrollView{
     //根据是否需要动画情况进行加载
     if (self.isNeedAnimation) {
-        self.animationView.center=CGPointMake(160, scrollView.contentSize.height-25);
+        self.animationView.center=CGPointMake(160, scrollView.contentSize.height-40);
         if (!self.animationView.isAnimating) {
             [self.animationView startAnimating];
         }
         
+        //动画区域显示正在加载哪个view的label
+        UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 20)];
+        NSString* tempStr;
+        if (view==self.mainDesign) {
+            tempStr=@"主体设计";
+        }else if(view==self.mainBuild){
+            tempStr=@"主体施工";
+        }else{
+            tempStr=@"装修";
+        }
+        tempStr=[NSString stringWithFormat:@"正在加载 %@ 阶段",tempStr];
+        NSMutableAttributedString* attStr=[[NSMutableAttributedString alloc]initWithString:tempStr];
+        [attStr addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(82, 125, 237) range:NSMakeRange(4, tempStr.length-6)];
+        label.attributedText=[attStr copy];
+        label.font=[UIFont systemFontOfSize:15];
+        label.textAlignment=NSTextAlignmentCenter;
+        label.center=CGPointMake(160, self.contentTableView.contentSize.height-20);
+        [self.contentTableView addSubview:label];
+
+
         CGRect frame=self.animationView.frame;
         frame.size.height+=.000001;
         [UIView animateWithDuration:2 animations:^{
@@ -263,6 +315,7 @@
             if (self.animationView.isAnimating) {
                 [self.animationView stopAnimating];
             }
+            [label removeFromSuperview];
             [self contentsAddObject:view];
         }];
     }else{
@@ -272,14 +325,40 @@
 }
 
 -(void)contentsAddObject:(UIView*)view{
-    [self.contents removeLastObject];
+    //用于判断现在是哪个大阶段和小阶段的标准线
+    if (!self.bigStageStandardY) {
+        self.bigStageStandardY=[[NSMutableArray alloc]init];
+        self.smallStageStandardY=[[NSMutableArray alloc]init];
+    }
+    
+    CGFloat height=0;
+    for (int i=0; i<view.subviews.count; i++) {
+        height+=[view.subviews[i] frame].size.height;
+        CGFloat tempHeight=self.bigStageStandardY.count>0?[self.bigStageStandardY.lastObject floatValue]:0;
+        
+        [self.smallStageStandardY addObject:[NSNumber numberWithFloat:(tempHeight+height)]];
+    }
+    
+    height=0;
+    for (int i=0; i<self.bigStageStandardY.count; i++) {
+        height+=[self.bigStageStandardY[i] floatValue];
+    }
+    height+=view.frame.size.height;
+    [self.bigStageStandardY addObject:[NSNumber numberWithFloat:height]];
+
+    
+    if (self.contents.count) {
+        [self.contents removeLastObject];
+    }
     for (int i=0; i<view.subviews.count; i++) {
         [self.contents addObject:view.subviews[i]];
     }
     if (view!=self.decorationProject) {
         [self.contents addObject:self.loadingView];
     }
-    [self.contentTableView reloadData];
+    if (view!=self.landInfo) {
+        [self.contentTableView reloadData];
+    }
 }
 
 //筛选界面拉回去
