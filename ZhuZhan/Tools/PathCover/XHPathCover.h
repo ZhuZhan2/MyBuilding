@@ -68,6 +68,10 @@ extern NSString *const XHBirthdayKey;
 // set info, Example : NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:@"Jack", @"userName", @"1990-10-19", @"birthday", nil];
 - (void)setInfo:(NSDictionary *)info;
 
+//设置button的位置
+- (void)setButton:(UIButton *)button WithFrame:(CGRect)frame WithBackgroundImage:(UIImage *)image AddTarget:(id)target WithAction:(SEL)selector;
+
+
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;

@@ -61,7 +61,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setAvatarImage:[UIImage imageNamed:@"首页侧拉栏_03.png"]];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadFrame:CGRectMake(120, 0, 70, 70)];
-    [_pathCover setNameFrame:CGRectMake(120, 70, 100, 20) font:[UIFont systemFontOfSize:14]];
+    [_pathCover setNameFrame:CGRectMake(145, 70, 100, 20) font:[UIFont systemFontOfSize:14]];
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
     
@@ -192,12 +192,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     return _datasource[[indexPath row]];
 }
 
-//点击自己头像去个人中心
--(void)gotoMyCenter{
-    NSLog(@"gotoMyCenter");
-    PersonalCenterViewController *personalVC = [[PersonalCenterViewController alloc] init];
-    [self.navigationController pushViewController:personalVC animated:YES];
-}
+////点击自己头像去个人中心
+//-(void)gotoMyCenter{
+//    NSLog(@"gotoMyCenter");
+//    PersonalCenterViewController *personalVC = [[PersonalCenterViewController alloc] init];
+//    [self.navigationController pushViewController:personalVC animated:YES];
+//}
 
 
 - (void)didReceiveMemoryWarning

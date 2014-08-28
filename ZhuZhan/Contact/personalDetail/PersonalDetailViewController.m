@@ -14,53 +14,118 @@
 
 @implementation PersonalDetailViewController
 
-@synthesize myTableView,KindIndex,kImgArr;
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@synthesize KindIndex,kImgArr;
+static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
+
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    self = [super initWithStyle:style];
+    if (self)
+    {
+        
     }
     return self;
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.navigationBar.alpha =0;
-    UINavigationBar *tabBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 64.5)];
-    [tabBar setBackgroundImage:[UIImage imageNamed:@"地图搜索_01.png"] forBarMetrics:UIBarMetricsDefault];
-    [self.view addSubview:tabBar];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"地图搜索_01.png"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,
+                                                                     nil]];
     
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
-    titleLabel.center =CGPointMake(160, 40);
-    titleLabel.text = @"人的详情";
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.font = [UIFont systemFontOfSize:20];
-    [tabBar addSubview:titleLabel];
+    self.title = @"帐户";
     
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    backBtn.frame = CGRectMake(0, 20, 40, 40);
-    [backBtn setBackgroundImage:[UIImage imageNamed:@"back_icon"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(backToFormerVC) forControlEvents:UIControlEventTouchUpInside];
-    [tabBar addSubview:backBtn];
+    //LeftButton设置属性
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftButton setFrame:CGRectMake(0, 5, 29, 28.5)];
+    [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = leftButtonItem;
     
-    myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,64.5, 320, kContentHeight) style:UITableViewStyleGrouped];
-    myTableView.delegate = self;
-    myTableView.dataSource = self;
-    myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:myTableView];
+
     
     KindIndex = @[@"联系方式",@"个人背景",@"关联项目"];
     kImgArr = @[@"message",@"telephone"];
     
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 200)];
+    _pathCover.delegate = self;
+    [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
+    [_pathCover setAvatarImage:[UIImage imageNamed:@"首页侧拉栏_03.png"]];
+    [_pathCover hidewaterDropRefresh];
+    [_pathCover setHeadFrame:CGRectMake(120, -50, 70, 70)];
+    [_pathCover setNameFrame:CGRectMake(145, 20, 100, 20) font:[UIFont systemFontOfSize:14]];
+    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
+    UIButton *interviewBtn =nil;
+    UIButton *addFriendBtn =nil;
+    UIButton *ShowProjectNumBtn =nil;
+    [_pathCover setButton:interviewBtn WithFrame:CGRectMake(30, 160, 60, 30) WithBackgroundImage:[UIImage imageNamed:@"interview"] AddTarget:self WithAction:@selector(beginToInterview)];
+    [_pathCover setButton:addFriendBtn WithFrame:CGRectMake(130, 160, 60, 30) WithBackgroundImage:[UIImage imageNamed:@"addFriend"] AddTarget:self WithAction:@selector(beginToAddFriend)];
+    [_pathCover setButton:ShowProjectNumBtn WithFrame:CGRectMake(230, 160, 60, 30) WithBackgroundImage:[UIImage imageNamed:@"project"] AddTarget:self WithAction:@selector(beginToShowProjectNum)];
+    
+    self.tableView.tableHeaderView = self.pathCover;
+
+    
+    __weak PersonalDetailViewController *wself = self;
+    [_pathCover setHandleRefreshEvent:^{
+        [wself _refreshing];
+    }];
+    
 }
 
--(void)backToFormerVC
+- (void)_refreshing {
+    // refresh your data sources
+    NSLog(@"asdfasdfasdf");
+    __weak PersonalDetailViewController *wself = self;
+    double delayInSeconds = 4.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [wself.pathCover stopRefresh];
+    });
+}
+
+//**************************************************************************************************************
+
+-(void)beginToInterview//开始会话
 {
-    self.navigationController.navigationBar.alpha =1;
-    [self.navigationController popViewControllerAnimated:NO];
+    NSLog(@"开始进行会话");
+}
+
+-(void)beginToAddFriend//开始添加好友
+{
+    NSLog(@"开始添加好友");
+}
+
+-(void)beginToShowProjectNum//开始显示项目数量
+{
+    NSLog(@"开始显示项目数量");
+}
+
+/******************************************************************************************************************/
+//滚动是触发的事件
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [_pathCover scrollViewDidScroll:scrollView];
+    
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [_pathCover scrollViewDidEndDecelerating:scrollView];
+    
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [_pathCover scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [_pathCover scrollViewWillBeginDragging:scrollView];
+    
+}
+/******************************************************************************************************************/
+
+-(void)leftBtnClick
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -71,11 +136,11 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section==0||section==1) {
-        return 2;
-    }
-    if (section ==2) {
+    if (section==0||section==2) {
         return 1;
+    }
+    if (section ==1) {
+        return 2;
     }
     return 3;
     
@@ -87,20 +152,7 @@
 
     
     if (indexPath.section==0) {
-        if (indexPath.row==0) {
-            static  NSString *identifier3 = @"PImgCell";
-            PImgCell * cell1 = (PImgCell *)[tableView dequeueReusableCellWithIdentifier:identifier3];
-            if (!cell1) {
-                cell1 = [[PImgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier3];
-            }
-            cell1.bgImgview.image = [UIImage imageNamed:@"123"];
-            cell1.userIcon.image = [UIImage imageNamed:@"1"];
-            cell1.userLabel.text = @"Jack";
-            cell1.companyLabel.text =@"miminfhiufdiu";
-            cell1.positionLabel.text = @"ihihuuhuhuhu";
-            return cell1;
-
-        }if (indexPath.row==1) {
+     
             static NSString *identifier = @"Cell";
             UITableViewCell *cell2 =[tableView dequeueReusableCellWithIdentifier:identifier];
             if (!cell2) {
@@ -122,7 +174,6 @@
             [cell2 addSubview:positionLabel];
             return cell2;
 
-        }
     }
     if (indexPath.section ==1) {
         static NSString *identifier = @"Cell1";
@@ -199,13 +250,7 @@
     
 }
 
--(void)isSelected
-{
-//    notifyVC = [[NotificationViewController alloc] init];
-//    notifyVC.delegate = self;
-//    [self.navigationController pushViewController:notifyVC animated:NO];
-    
-}
+
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -217,48 +262,33 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section==0) {
-        return 0.001;
+        return 0;
     }
-    return 30;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
     
-    return 10;
+    return 40;
 }
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;
 {
     if (section==0) {
-        UIView *view = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 0)];
-        
+         UIView *view = [[UILabel alloc]initWithFrame:CGRectZero];
         return view;
     }
     UIView *view = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
-    view.backgroundColor = [UIColor clearColor];
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, -7, 80, 30)];
-    label.center = CGPointMake(160, 11.5);
+    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"grayColor"]];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 80, 30)];
+    label.center = CGPointMake(160, 20);
     label.backgroundColor = [UIColor clearColor];
     label.text = [KindIndex objectAtIndex:section-1];
+    label.textColor = BlueColor;
     label.textAlignment = NSTextAlignmentCenter;
     [view addSubview:label];
     return view;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if (indexPath.section==0) {
-        if (indexPath.row==0) {
-            return 250;
-        }
-        else{
-            return 50;
-        }
-    }
-    if (indexPath.section==1) {
-        return 50;
-    }
+
     if (indexPath.section==2) {
         return 150;
     }
@@ -272,15 +302,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

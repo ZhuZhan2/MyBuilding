@@ -16,7 +16,7 @@
 #import "LoginModel.h"
 #import "PublishViewController.h"
 
-NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
+static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
 @end

@@ -39,7 +39,7 @@
     [rightButton setFrame:CGRectMake(0, 0, 50, 19.5)];
     [rightButton setTitle:@"清空" forState:UIControlStateNormal];
     rightButton.titleLabel.textColor = [UIColor whiteColor];
-    [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [rightButton addTarget:self action:@selector(clearAll) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
@@ -54,11 +54,28 @@
     
     [self.view addSubview:inputView];
     
+    toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+    [self.view addSubview:toolBar];
+    toolBar.backgroundColor = [UIColor redColor];
+    
+    UIButton *textBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    textBtn.frame = CGRectMake(0, 0, 160, 40);
+    [textBtn setBackgroundImage:[UIImage imageNamed:@"textBtnIcon"] forState:UIControlStateNormal];
+    [textBtn addTarget:self action:@selector(publshText) forControlEvents:UIControlEventTouchUpInside];
+    [toolBar addSubview:textBtn];
+    
+    UIButton *photoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    photoBtn.frame = CGRectMake(160, 0, 160, 40);
+    [photoBtn setBackgroundImage:[UIImage imageNamed:@"photoBtnIcon"] forState:UIControlStateNormal];
+    [photoBtn addTarget:self action:@selector(publshPhoto) forControlEvents:UIControlEventTouchUpInside];
+    [toolBar addSubview:photoBtn];
+
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:UIKeyboardWillShowNotification object:nil];
     
     [inputView becomeFirstResponder];
     
-    
+
     
 
 }
@@ -81,23 +98,11 @@
     CGRect keyboardRect = [aValue CGRectValue];
     int height = keyboardRect.size.height;
     NSLog(@"%d",height);
-//    toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-height-40, 320, 40)];
-//    [self.view addSubview:toolBar];
-//    toolBar.backgroundColor = [UIColor redColor];
+    toolBar.frame =CGRectMake(0, kScreenHeight-height-40, 320, 40);
+    toolBar.backgroundColor = [UIColor redColor];
     inputView.frame =CGRectMake(0, 0, 320, kContentHeight-height);
     
-//    UIButton *textBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    textBtn.frame = CGRectMake(0, 0, 160, 40);
-//    [textBtn setBackgroundImage:[UIImage imageNamed:@"textBtnIcon"] forState:UIControlStateNormal];
-//    [textBtn addTarget:self action:@selector(publshText) forControlEvents:UIControlEventTouchUpInside];
-//    [toolBar addSubview:textBtn];
-//    
-//    UIButton *photoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    photoBtn.frame = CGRectMake(160, 0, 160, 40);
-//    [photoBtn setBackgroundImage:[UIImage imageNamed:@"photoBtnIcon"] forState:UIControlStateNormal];
-//    [photoBtn addTarget:self action:@selector(publshPhoto) forControlEvents:UIControlEventTouchUpInside];
-//    [toolBar addSubview:photoBtn];
-
+    
 
     
 }
@@ -114,6 +119,11 @@
 
 -(void)leftBtnClick{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)clearAll
+{
+
 }
 
 

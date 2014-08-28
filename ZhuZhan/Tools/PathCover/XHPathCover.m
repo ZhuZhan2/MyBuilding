@@ -491,4 +491,14 @@ NSString *const XHBirthdayKey = @"XHBirthday";
         [self.delegate gotoMyCenter];
     }
 }
+
+- (void)setButton:(UIButton *)button WithFrame:(CGRect)frame WithBackgroundImage:(UIImage *)image AddTarget:(id)target WithAction:(SEL)selector
+{
+    button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setFrame:frame];
+    [button setBackgroundImage:image forState:UIControlStateNormal];
+    [button addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:button];
+    
+}
 @end
