@@ -43,6 +43,10 @@
 
 //以下4属性用于sectionHeader被点击时所需要传参数时用的东西
 @property(nonatomic,strong)NSMutableArray* sectionButtonArray;
+
+@property(nonatomic,strong)NSMutableArray* bigStageStandardY;
+@property(nonatomic,strong)NSMutableArray* smallStageStandardY;
+
 @end
 
 @implementation ProgramDetailViewController
@@ -71,8 +75,23 @@
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [self.model getContacts:posts[0]];
+            [self.model getImages:posts[1]];
             [self loadSelf];
             
+            UIImage* image;
+            if (self.model.auctionImages.count) {
+                NSURL* url=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.model.auctionImages[0]]];
+                //NSData* data=[NSData dataWithContentsOfURL:url];
+//                image=[[UIImage alloc]initWithData:data];
+                
+                //EGOImageView* imageView=[[EGOImageView alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+                //imageView.imageURL=url;
+            }
+            
+            //            imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,imageModel.a_imageOriginalLocation]];
+            //            [view addSubview:imageView];
+
+            NSLog(@"%@,%@,%@,%@,%@,%@",self.model.auctionImages,self.model.explorationImages,self.model.constructionImages,self.model.pileImages,self.model.mainBulidImages,self.model.decorationImages);
 //            ProjectImageModel *imageModel = posts[1][0];
 //            NSLog(@"%@",imageModel.a_imageOriginalLocation);
 //            NSLog(@"%@",imageModel.a_imageCategory);
@@ -118,8 +137,9 @@
 -(void)initContentTableView{
     self.landInfo=[LandInfo getLandInfoWithDelegate:self part:0];
     [[[self.landInfo.firstView.subviews[0] subviews][0]subviews][0] removeFromSuperview];
-    
-    self.contents=[NSMutableArray arrayWithObjects:self.landInfo.firstView,self.landInfo.secondView, self.loadingView,nil];
+//    self.contents=[NSMutableArray arrayWithObjects:self.landInfo.firstView,self.landInfo.secondView, self.loadingView,nil];
+    self.contents=[[NSMutableArray alloc]init];
+    [self contentsAddObject:self.landInfo];
     
     self.contentTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 64+50, 320, 568-64-50) style:UITableViewStylePlain];
     self.contentTableView.delegate=self;
@@ -127,11 +147,12 @@
     self.contentTableView.backgroundColor=RGBCOLOR(229, 229, 229);
     
     self.contentTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    self.contentTableView.showsVerticalScrollIndicator=NO;
     [self.view addSubview:self.contentTableView];
 }
 
 -(void)back{
-    [self.backButton removeFromSuperview];
+    //[self.backButton removeFromSuperview];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -139,8 +160,10 @@
     self.backButton=[[UIButton alloc]initWithFrame:CGRectMake(0,5,29,28.5)];
     [self.backButton setImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
     [self.backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [self.navigationController.navigationBar addSubview:self.backButton];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:self.backButton];//[[UIBarButtonItem alloc]initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
+    //[self.navigationController.navigationBar addSubview:self.backButton];
+    
+    self.navigationItem.title=@"项目详情";
 }
 
 -(void)initThemeView{
@@ -203,6 +226,10 @@
     self.sectionButtonArray=[NSMutableArray array];
 }
 
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
+
 -(void)change{
     NSLog(@"用户选择了筛选");
     self.isNeedAnimation=NO;
@@ -239,22 +266,64 @@
         }
     }
     
+    NSArray* smallTitles=@[@"土地规划/拍卖",@"项目立项",@"地勘阶段",@"设计阶段",@"出图阶段",@"地平",@"桩基基坑",@"主体施工",@"消防/景观绿化",@""];
+    NSArray* bigTitles=@[@"土地信息",@"主体设计阶段",@"主体施工阶段",@"装修阶段"];
+    NSArray* bigStageImageNames=@[@"XiangMuXiangQing/map@2x.png",@"XiangMuXiangQing_1/pen_01@2x.png",@"XiangMuXiangQing_2/Subject_01@2x.png",@"XiangMuXiangQing_3/paint_01@2x.png"];
     
+    for (int i=0; i<self.bigStageStandardY.count; i++) {
+        if (scrollView.contentOffset.y+568-64-50<[self.bigStageStandardY[i] floatValue]) {
+            //大阶段名称
+            self.bigStageLabel.text=bigTitles[i];
+            
+            //大阶段左边图标
+            UIImage* image=[UIImage imageNamed:bigStageImageNames[i]];
+            CGPoint center=self.bigStageImageView.center;
+            CGRect frame=CGRectMake(0, 0, image.size.width*.5, image.size.height*.5);
+            self.bigStageImageView.frame=frame;
+            self.bigStageImageView.image=image;
+            self.bigStageImageView.center=center;
+            
+            break;
+        }
+    }
     
-//    NSMutableArray* heights=[NSMutableArray array];
-//    for (int i=0; i<self.contents.count; i++) {
-//        <#statements#>
-//    }
+    for (int i=0; i<self.smallStageStandardY.count; i++) {
+        //小阶段名称
+        if (scrollView.contentOffset.y+568-64-50<[self.smallStageStandardY[i] floatValue]) {
+            self.smallStageLabel.text=smallTitles[i];
+            break;
+        }
+    }
 }
 
 -(void)addNewView:(UIView*)view scrollView:(UIScrollView*)scrollView{
     //根据是否需要动画情况进行加载
     if (self.isNeedAnimation) {
-        self.animationView.center=CGPointMake(160, scrollView.contentSize.height-25);
+        self.animationView.center=CGPointMake(160, scrollView.contentSize.height-40);
         if (!self.animationView.isAnimating) {
             [self.animationView startAnimating];
         }
         
+        //动画区域显示正在加载哪个view的label
+        UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 20)];
+        NSString* tempStr;
+        if (view==self.mainDesign) {
+            tempStr=@"主体设计";
+        }else if(view==self.mainBuild){
+            tempStr=@"主体施工";
+        }else{
+            tempStr=@"装修";
+        }
+        tempStr=[NSString stringWithFormat:@"正在加载 %@ 阶段",tempStr];
+        NSMutableAttributedString* attStr=[[NSMutableAttributedString alloc]initWithString:tempStr];
+        [attStr addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(82, 125, 237) range:NSMakeRange(4, tempStr.length-6)];
+        label.attributedText=[attStr copy];
+        label.font=[UIFont systemFontOfSize:15];
+        label.textAlignment=NSTextAlignmentCenter;
+        label.center=CGPointMake(160, self.contentTableView.contentSize.height-20);
+        [self.contentTableView addSubview:label];
+
+
         CGRect frame=self.animationView.frame;
         frame.size.height+=.000001;
         [UIView animateWithDuration:2 animations:^{
@@ -263,6 +332,7 @@
             if (self.animationView.isAnimating) {
                 [self.animationView stopAnimating];
             }
+            [label removeFromSuperview];
             [self contentsAddObject:view];
         }];
     }else{
@@ -272,14 +342,38 @@
 }
 
 -(void)contentsAddObject:(UIView*)view{
-    [self.contents removeLastObject];
+    //用于判断现在是哪个大阶段和小阶段的标准线
+    if (!self.bigStageStandardY) {
+        self.bigStageStandardY=[[NSMutableArray alloc]init];
+        self.smallStageStandardY=[[NSMutableArray alloc]init];
+    }
+    
+    CGFloat height=0;
+    for (int i=0; i<view.subviews.count; i++) {
+        height+=[view.subviews[i] frame].size.height;
+        CGFloat tempHeight=self.bigStageStandardY.count>0?[self.bigStageStandardY.lastObject floatValue]:0;
+        
+        [self.smallStageStandardY addObject:[NSNumber numberWithFloat:(tempHeight+height)]];
+    }
+    
+    height=0;
+    height=self.bigStageStandardY.count?[self.bigStageStandardY.lastObject floatValue]:0;
+    height+=view.frame.size.height;
+    [self.bigStageStandardY addObject:[NSNumber numberWithFloat:height]];
+
+    
+    if (self.contents.count) {
+        [self.contents removeLastObject];
+    }
     for (int i=0; i<view.subviews.count; i++) {
         [self.contents addObject:view.subviews[i]];
     }
     if (view!=self.decorationProject) {
         [self.contents addObject:self.loadingView];
     }
-    [self.contentTableView reloadData];
+    if (view!=self.landInfo) {
+        [self.contentTableView reloadData];
+    }
 }
 
 //筛选界面拉回去
@@ -292,7 +386,10 @@
     }];
 }
 
-//**************************************************
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView==self.contentTableView) {
     }else{
@@ -419,7 +516,7 @@
         if (indexPath.section==0) {
             if (indexPath.row==0) {
                 first=self.model.auctionContacts.count?YES:NO;
-                //second=self.planImageArr.count?YES:NO;
+                second=self.model.auctionImages.count?YES:NO;
             }else{
                 first=self.model.ownerContacts.count?YES:NO;
                 second=NO;
@@ -427,7 +524,7 @@
         }else if (indexPath.section==1){
             if (indexPath.row==0) {
                 first=self.model.explorationContacts.count?YES:NO;
-                //second=self.explorationImageArr.count?YES:NO;
+                second=self.model.explorationImages.count?YES:NO;
             }else if (indexPath.row==1){
                 first=self.model.designContacts.count?YES:NO;
                 second=NO;
@@ -438,13 +535,13 @@
         }else{
             if (indexPath.row==0){
                 first=self.model.constructionContacts.count?YES:NO;
-                //second=self.horizonImageArr.count?YES:NO;
+                second=self.model.constructionImages.count?YES:NO;
             }else if (indexPath.row==1){
                 first=self.model.pileContacts.count?YES:NO;
-                //second=self.pilePitImageArr.count?YES:NO;
+                second=self.model.pileImages.count?YES:NO;
             }else if (indexPath.row==2){
                 first=NO;
-                //second=self.mainConstructionImageArr.count?YES:NO;
+                second=self.model.mainBulidImages.count?YES:NO;
             }else{
                 first=NO;
                 second=NO;
@@ -478,7 +575,10 @@
         return 37.5;
     }
 }
-//**************************************************
+
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
 
 //program大块 三行
 -(NSArray*)getThreeLinesTitleViewWithThreeStrsWithIndexPath:(MyIndexPath*)indexPath{
@@ -491,7 +591,12 @@
 
 //图加图的数量
 -(NSArray*)getImageViewWithImageAndCountWithIndexPath:(MyIndexPath*)indexPath{
-    return @[0?@1:[UIImage imageNamed:@"首页_16.png"],[NSNumber numberWithInt:0]];
+    NSArray* part0=@[self.model.auctionImages];
+    NSArray* part1=@[self.model.explorationImages];
+    NSArray* part2=@[self.model.constructionImages,self.model.pileImages,self.model.mainBulidImages];
+    NSArray* part3=@[self.model.decorationImages];
+    NSArray* array=@[part0,part1,part2,part3];
+    return array[indexPath.part][indexPath.section];
 }
 
 //第一行蓝，第二行黑的view

@@ -7,7 +7,7 @@
 //
 
 #import "MyFactory.h"
-
+#import "EGOImageView.h"
 @implementation MyFactory
 
 //program大块 三行
@@ -128,13 +128,19 @@
 }
 
 //图加图的数量
-+(UIImageView*)getImageViewWithImage:(UIImage*)image count:(NSInteger)count{
-    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 215.5)];
-    imageView.image=image;
-    
++(UIImageView*)getImageViewWithImageUrl:(NSString*)imageUrl count:(NSInteger)count{
+    EGOImageView* imageView=[[EGOImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 215.5)];
+    imageView.showActivityIndicator=YES;
+
+    //判断如果是image则无图
+    if ([imageUrl isEqualToString:@"No"]) {
+        imageView.image=[UIImage imageNamed:@"首页_16.png"];
+    }else{
+        imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,imageUrl]];
+    }
     //图片数量label
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 160, 70, 30)];
-    label.text=[NSString stringWithFormat:@"%ld张",count];
+    label.text=[NSString stringWithFormat:@"%d张",count];
     label.textAlignment=NSTextAlignmentCenter;
     label.textColor=[UIColor whiteColor];
     label.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:.7];
@@ -146,7 +152,7 @@
 +(UIView*)getOwnerTypeViewWithImage:(UIImage*)image owners:(NSArray*)owners{
     UIView* view=[[UIView alloc]initWithFrame:CGRectZero];
     view.backgroundColor=[UIColor whiteColor];
-
+    
     UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(15, 0, 21, 21)];//CGRectMake(15, height+5, 21, 21)];
     imageView.image=image;
     [view addSubview:imageView];
@@ -261,7 +267,7 @@
 +(UIView*)getThreeContactsViewThreeTypesFiveStrs:(NSArray*)datas{
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, datas.count*120)];
     view.backgroundColor=[UIColor whiteColor];
-
+    
     for (int i=0; i<datas.count; i++) {
         NSArray* array=datas[i];
         
@@ -323,7 +329,7 @@
 +(UIView*)getDeviceAndBoolWithDevic:(NSArray*)devices boolStrs:(NSArray*)boolStrs{
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, devices.count*30)];
     view.backgroundColor=[UIColor whiteColor];
-
+    
     //电梯,空调,供暖方式,外墙材料,钢结构 的label
     for (int i=0; i<devices.count; i++) {
         UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(20, 5+i*30, 150, 20)];

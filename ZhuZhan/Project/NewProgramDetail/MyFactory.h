@@ -10,7 +10,7 @@
 
 @interface MyFactory : NSObject
 +(UIView*)getThreeLinesTitleViewWithTitle:(NSString*)title titleImage:(UIImage*)titleImage dataThreeStrs:(NSArray*)datas;//program大块 三行
-+(UIImageView*)getImageViewWithImage:(UIImage*)image count:(NSInteger)count;//图加图的数量
++(UIImageView*)getImageViewWithImageUrl:(NSString*)imageUrl count:(NSInteger)count;//图加图的数量
 +(UIView*)getBlueTwoLinesWithFirstStr:(NSArray*)firstStrs secondStr:(NSArray*)secondStrs;//第一行蓝，第二行黑的view
 +(UIView*)getThreeContactsViewThreeTypesFiveStrs:(NSArray*)datas;//联系人view
 +(UIView*)getTwoLinesTitleViewWithTitle:(NSString*)title titleImage:(UIImage*)titleImage firstStrs:(NSArray*)firstStrs secondStrs:(NSArray*)secondStrs;//program大块 二行

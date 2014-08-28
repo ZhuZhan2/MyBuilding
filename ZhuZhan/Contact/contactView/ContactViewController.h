@@ -17,8 +17,6 @@
     
 }
 @property (nonatomic, strong) XHPathCover *pathCover;
-
-@property (nonatomic,strong) NSMutableArray *personalArray;
 @property (nonatomic,strong) NSArray *comments;
 @property (nonatomic,strong) Pan *pan;
 @property (nonatomic,strong) UIView *transparent;

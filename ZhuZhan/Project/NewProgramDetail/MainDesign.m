@@ -30,7 +30,7 @@
     self.firstView=[[UIView alloc]initWithFrame:CGRectZero];
     
     NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
-    UIView* view0=[MyFactory getImageViewWithImage:images[0] count:[images[1] integerValue]];
+    UIView* view0=[MyFactory getImageViewWithImageUrl:images.count==0?@"No":images[0] count:images.count];
     
     NSArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     UIView* view1=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];

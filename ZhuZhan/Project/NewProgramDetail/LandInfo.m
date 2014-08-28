@@ -40,7 +40,7 @@
     UIView* view0=[MyFactory getThreeLinesTitleViewWithTitle:@"土地规划/拍卖" titleImage:[UIImage imageNamed:@"XiangMuXiangQing/map_01.png"] dataThreeStrs:dataThreeStrs];
     
     NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
-    UIView* view1=[MyFactory getImageViewWithImage:images[0] count:[images[1] integerValue]];
+    UIView* view1=[MyFactory getImageViewWithImageUrl:images.count==0?@"No":images[0] count:images.count];
     
     NSArray* secondStrs=[self.delegate getBlueTwoLinesWithStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     UIView* view2=[MyFactory getBlueThreeTypesTwoLinesWithFirstStr:@[@"土地面积",@"土地容积率",@"地块用途"] secondStr:secondStrs];
