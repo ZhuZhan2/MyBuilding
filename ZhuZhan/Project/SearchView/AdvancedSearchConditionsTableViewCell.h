@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AdvancedSearchConditionsTableViewCell : UITableViewCell
+@interface AdvancedSearchConditionsTableViewCell : UITableViewCell<UITextFieldDelegate>{
+    UITextField *keyWord;
+    UITextField *companyName;
+}
 
 @end
