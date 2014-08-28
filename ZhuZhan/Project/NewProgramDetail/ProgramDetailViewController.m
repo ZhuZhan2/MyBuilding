@@ -75,8 +75,23 @@
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [self.model getContacts:posts[0]];
+            [self.model getImages:posts[1]];
             [self loadSelf];
             
+            UIImage* image;
+            if (self.model.auctionImages.count) {
+                NSURL* url=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.model.auctionImages[0]]];
+                //NSData* data=[NSData dataWithContentsOfURL:url];
+//                image=[[UIImage alloc]initWithData:data];
+                
+                //EGOImageView* imageView=[[EGOImageView alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+                //imageView.imageURL=url;
+            }
+            
+            //            imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,imageModel.a_imageOriginalLocation]];
+            //            [view addSubview:imageView];
+
+            NSLog(@"%@,%@,%@,%@,%@,%@",self.model.auctionImages,self.model.explorationImages,self.model.constructionImages,self.model.pileImages,self.model.mainBulidImages,self.model.decorationImages);
 //            ProjectImageModel *imageModel = posts[1][0];
 //            NSLog(@"%@",imageModel.a_imageOriginalLocation);
 //            NSLog(@"%@",imageModel.a_imageCategory);
@@ -211,6 +226,10 @@
     self.sectionButtonArray=[NSMutableArray array];
 }
 
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
+
 -(void)change{
     NSLog(@"用户选择了筛选");
     self.isNeedAnimation=NO;
@@ -249,8 +268,6 @@
     
     NSArray* smallTitles=@[@"土地规划/拍卖",@"项目立项",@"地勘阶段",@"设计阶段",@"出图阶段",@"地平",@"桩基基坑",@"主体施工",@"消防/景观绿化",@""];
     NSArray* bigTitles=@[@"土地信息",@"主体设计阶段",@"主体施工阶段",@"装修阶段"];
-//    NSArray* smallStages=[self.contents subarrayWithRange:NSMakeRange(0, self.contents.count-1)];
-//    NSArray* bigStages=[NSArray arrayWithObjects:self.landInfo,self.mainDesign,self.mainBuild,self.decorationProject, nil];
     NSArray* bigStageImageNames=@[@"XiangMuXiangQing/map@2x.png",@"XiangMuXiangQing_1/pen_01@2x.png",@"XiangMuXiangQing_2/Subject_01@2x.png",@"XiangMuXiangQing_3/paint_01@2x.png"];
     
     for (int i=0; i<self.bigStageStandardY.count; i++) {
@@ -369,7 +386,10 @@
     }];
 }
 
-//**************************************************
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView==self.contentTableView) {
     }else{
@@ -496,7 +516,7 @@
         if (indexPath.section==0) {
             if (indexPath.row==0) {
                 first=self.model.auctionContacts.count?YES:NO;
-                //second=self.planImageArr.count?YES:NO;
+                second=self.model.auctionImages.count?YES:NO;
             }else{
                 first=self.model.ownerContacts.count?YES:NO;
                 second=NO;
@@ -504,7 +524,7 @@
         }else if (indexPath.section==1){
             if (indexPath.row==0) {
                 first=self.model.explorationContacts.count?YES:NO;
-                //second=self.explorationImageArr.count?YES:NO;
+                second=self.model.explorationImages.count?YES:NO;
             }else if (indexPath.row==1){
                 first=self.model.designContacts.count?YES:NO;
                 second=NO;
@@ -515,13 +535,13 @@
         }else{
             if (indexPath.row==0){
                 first=self.model.constructionContacts.count?YES:NO;
-                //second=self.horizonImageArr.count?YES:NO;
+                second=self.model.constructionImages.count?YES:NO;
             }else if (indexPath.row==1){
                 first=self.model.pileContacts.count?YES:NO;
-                //second=self.pilePitImageArr.count?YES:NO;
+                second=self.model.pileImages.count?YES:NO;
             }else if (indexPath.row==2){
                 first=NO;
-                //second=self.mainConstructionImageArr.count?YES:NO;
+                second=self.model.mainBulidImages.count?YES:NO;
             }else{
                 first=NO;
                 second=NO;
@@ -555,7 +575,10 @@
         return 37.5;
     }
 }
-//**************************************************
+
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
 
 //program大块 三行
 -(NSArray*)getThreeLinesTitleViewWithThreeStrsWithIndexPath:(MyIndexPath*)indexPath{
@@ -568,7 +591,12 @@
 
 //图加图的数量
 -(NSArray*)getImageViewWithImageAndCountWithIndexPath:(MyIndexPath*)indexPath{
-    return @[0?@1:[UIImage imageNamed:@"首页_16.png"],[NSNumber numberWithInt:0]];
+    NSArray* part0=@[self.model.auctionImages];
+    NSArray* part1=@[self.model.explorationImages];
+    NSArray* part2=@[self.model.constructionImages,self.model.pileImages,self.model.mainBulidImages];
+    NSArray* part3=@[self.model.decorationImages];
+    NSArray* array=@[part0,part1,part2,part3];
+    return array[indexPath.part][indexPath.section];
 }
 
 //第一行蓝，第二行黑的view

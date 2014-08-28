@@ -29,7 +29,7 @@
     self.firstView=[[UIView alloc]initWithFrame:CGRectZero];
     
     NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
-    UIView* view0=[MyFactory getImageViewWithImage:images[0] count:[images[1] integerValue]];
+    UIView* view0=[MyFactory getImageViewWithImageUrl:images.count==0?@"No":images[0] count:images.count];
     
     NSArray* secondStrs=[self.delegate getBlackTwoLinesWithStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     UIView* view1=[MyFactory getBlackTwoLinesWithFirstStr:@[@"弱电安装",@"装修情况",@"装修进度"] secondStr:secondStrs];

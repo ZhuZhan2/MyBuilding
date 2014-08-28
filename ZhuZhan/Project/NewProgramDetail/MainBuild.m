@@ -31,7 +31,7 @@
     UIView* view0=[MyFactory getTwoLinesTitleViewWithTitle:@"地平阶段" titleImage:[UIImage imageNamed:@"XiangMuXiangQing_2/Subject_02@2x.png"] firstStrs:@[@"实际开工时间"] secondStrs:secondStrs];
     
     NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
-    UIView* view1=[MyFactory getImageViewWithImage:images[0] count:[images[1] integerValue]];
+    UIView* view1=[MyFactory getImageViewWithImageUrl:images.count==0?@"No":images[0] count:images.count];
     
     NSArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     UIView* view2=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];
@@ -54,7 +54,7 @@
     UIView* view0=[MyFactory getNoLineTitleViewWithTitle:@"桩基基坑" titleImage:[UIImage imageNamed:@"XiangMuXiangQing_2/Subject_02@2x.png"]];
     
     NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
-    UIView* view1=[MyFactory getImageViewWithImage:images[0] count:[images[1] integerValue]];
+    UIView* view1=[MyFactory getImageViewWithImageUrl:images.count==0?@"No":images[0] count:images.count];
     
     NSArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
     UIView* view2=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];
@@ -77,7 +77,7 @@
     UIView* view0=[MyFactory getNoLineTitleViewWithTitle:@"主体施工" titleImage:[UIImage imageNamed:@"XiangMuXiangQing_2/Subject_02@2x.png"]];
     
     NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:2]];
-    UIView* view1=[MyFactory getImageViewWithImage:images[0] count:[images[1] integerValue]];
+    UIView* view1=[MyFactory getImageViewWithImageUrl:images.count==0?@"No":images[0] count:images.count];
     
     NSArray* tempAry=@[view0,view1];
     CGFloat height=0;
