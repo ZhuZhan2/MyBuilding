@@ -394,7 +394,6 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     _showView.backgroundColor = [UIColor clearColor];
     
     _avatarButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 0, avatarButtonHeight, avatarButtonHeight)];
-    [_avatarButton addTarget:self action:@selector(avatarClick) forControlEvents:UIControlEventTouchUpInside];
     [_avatarButton.layer setMasksToBounds:YES];
     [_avatarButton.layer setCornerRadius:30];
     
@@ -428,6 +427,10 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 
 -(void)setHeadFrame:(CGRect)newFrame{
     [_avatarButton setFrame:newFrame];
+}
+
+-(void)setHeadTaget{
+    [_avatarButton addTarget:self action:@selector(avatarClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)setNameFrame:(CGRect)newFrame font:(UIFont *)font{
