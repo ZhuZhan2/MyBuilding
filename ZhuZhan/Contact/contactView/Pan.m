@@ -17,6 +17,10 @@
     if (self) {
         UIImageView  *tempImageView= [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 260, 240)];
         tempImageView.image = [UIImage imageNamed:@"首页_16.png"];
+        
+//        tempImageView.layer.cornerRadius = 10;//设置那个圆角的有多圆
+//        tempImageView.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
+        
         tempImageView.userInteractionEnabled = YES;
         [self addSubview:tempImageView];
         
@@ -39,13 +43,13 @@
 
 -(void)visitUserDetail:(UIButton *)buton
 {
-    NSLog(@"访问个人详情");
+
     [delegate goToDetail];
 }
 
 - (void)concernUser:(UIButton *)button
 {
-    NSLog(@"关注好友");
+
     [delegate gotoConcern];
 }
 

@@ -9,15 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "XHPathCover.h"
 #import "ACTimeScroller.h"
-#import "Pan.h"
-@interface ContactViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate,PanDelegate>{
+#import "ShowViewController.h"
+
+
+@interface ContactViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate>{
     NSMutableArray *_datasource;
     ACTimeScroller *_timeScroller;
-
+     NSMutableArray *chooseArray ;
     
 }
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong) NSArray *comments;
-@property (nonatomic,strong) Pan *pan;
-@property (nonatomic,strong) UIView *transparent;
+@property (nonatomic,strong) ShowViewController *panVC;
+
 @end
