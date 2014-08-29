@@ -234,6 +234,7 @@
             [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
+            contactview = nil;
             break;
         case 1:
             NSLog(@"项目");
@@ -242,6 +243,7 @@
             [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
+            projectview = nil;
             break;
         case 2:
             NSLog(@"更多");
@@ -253,6 +255,7 @@
             [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
+            companyview = nil;
             break;
         case 4:
             NSLog(@"交易");
@@ -261,6 +264,7 @@
             [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
+            tradeview = nil;
             break;
         default:
             break;

@@ -89,7 +89,7 @@
 }
 
 -(void)serachClick{
-    searchView = [[SearchViewController alloc] init];
+     SearchViewController *searchView = [[SearchViewController alloc] init];
     [self.navigationController pushViewController:searchView animated:YES];
 }
 
@@ -159,7 +159,7 @@
 }
 
 -(void)leftBtnClick{
-    topicsview = [[TopicsTableViewController alloc] init];
+    TopicsTableViewController *topicsview = [[TopicsTableViewController alloc] init];
     [self.navigationController pushViewController:topicsview animated:YES];
 }
 

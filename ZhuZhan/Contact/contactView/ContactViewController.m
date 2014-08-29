@@ -25,7 +25,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 @implementation ContactViewController
 @synthesize comments,showVC,transparent;
 
-static int rowNum =0;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -99,24 +98,6 @@ static int rowNum =0;
 - (void)setupDatasource
 {
     _datasource = [NSMutableArray new];
-    
-//    NSCalendar *calendar = [NSCalendar currentCalendar];
-//    NSDateComponents *components = [[NSDateComponents alloc] init];
-//    NSDate *today = [NSDate date];
-//    NSDateComponents *todayComponents = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:today];
-//    
-//    for (NSInteger i = [todayComponents day]; i >= -15; i--)
-//    {
-//        [components setYear:[todayComponents year]];
-//        [components setMonth:[todayComponents month]];
-//        [components setDay:i];
-//        [components setHour:arc4random() % 23];
-//        [components setMinute:arc4random() % 59];
-//        
-//        NSDate *date = [calendar dateFromComponents:components];
-//        [_datasource addObject:date];
-//    }
-    
     for(int i=0;i<30;i++){
         [_datasource addObject:[NSDate date]];
     }
@@ -175,86 +156,6 @@ static int rowNum =0;
     return [_datasource count];
 }
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    
-//
-//    rowNum =(int)[comments count]+3;
-//    
-//    return rowNum;
-//}
-//
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    return 1;
-//}
-//
-//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    
-//    
-//    if (indexPath.row%rowNum==0 ||indexPath.row%rowNum==1) {
-//        
-//        
-//        static  NSString *identifier2 = @"Cell1";
-//        Cell1 * cell2 = (Cell1 *)[tableView dequeueReusableCellWithIdentifier:identifier2];
-//        if (!cell2) {
-//            cell2 = [[Cell1 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier2];
-//        }
-//        
-//        cell2.cellIcon.image = [UIImage imageNamed:@"面部采集_12"];
-//        [cell2.userIcon setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
-//        [cell2.userIcon addTarget:self action:@selector(ShowUserPanView:) forControlEvents:UIControlEventTouchUpInside];
-//        cell2.userIcon.tag = indexPath.row;
-//        cell2.contentLabel.text = @"显示文字";
-//        return cell2;
-//        
-//        
-//        
-//    }
-//    if (indexPath.row%rowNum==2){
-//        static  NSString *identifier3 = @"CompanyPublishedCell";
-//        CompanyPublishedCell * cell3 = (CompanyPublishedCell *)[tableView dequeueReusableCellWithIdentifier:identifier3];
-//        if (!cell3) {
-//            cell3 = [[CompanyPublishedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier3];
-//        }
-//        cell3.bigImgView.image = [UIImage imageNamed:@"123"];
-//        NSString *tempStr = @"           ";
-//        cell3.publishView.text =[tempStr stringByAppendingString:@"实现水平方向滑动的UIPicker。自定义UIPicker。如果你厌倦了iOS自带的UIPicker，那么你可以试试这个不一样的UIPicker。不仅仅可以用作选择器，也可以用作菜单"];
-//        cell3.userNameLabel.text = @"Jack:";
-//        cell3.userNameLabel.textColor = [UIColor blueColor];
-//        return cell3;
-//    }
-//    
-//    static  NSString *identifier4 = @"CommentsCell";
-//    CommentsCell * cell4 = (CommentsCell *)[tableView dequeueReusableCellWithIdentifier:identifier4];
-//    if (!cell4) {
-//        
-//        cell4 = [[CommentsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier4];
-//    }
-//    [cell4.userIcon setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
-//    [cell4.userIcon addTarget:self action:@selector(ShowUserPanView:) forControlEvents:UIControlEventTouchUpInside];
-//    cell4.userIcon.tag = indexPath.row;
-//    NSString *tempStr = @"           ";
-//    cell4.commentsView.text =[tempStr stringByAppendingString:@"实现水平方向滑动的UIPicker。"];
-//    cell4.userNameLabel.text = @"Lisa:";
-//    cell4.commentsView.textColor = [UIColor blueColor];
-//    return cell4;
-//    
-//}
-//
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    
-//    
-//    if (indexPath.row%rowNum==0 ||indexPath.row%rowNum==1) {
-//        return 50;
-//    }
-//    if(indexPath.row%rowNum == 2){
-//        return 280;
-//    }
-//    return 50;
-//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -267,90 +168,7 @@ static int rowNum =0;
     }
     return 50;
 }
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    rowNum =(int)[comments count]+3;
-//    
-//    return rowNum;
-//}
-//
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    return 1;
-//}
-//
-//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (indexPath.row%rowNum==0 ||indexPath.row%rowNum==1) {
-//        
-//        
-//        static  NSString *identifier2 = @"Cell1";
-//        Cell1 * cell2 = (Cell1 *)[tableView dequeueReusableCellWithIdentifier:identifier2];
-//        if (!cell2) {
-//            cell2 = [[Cell1 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier2];
-//        }
-//        
-//        cell2.cellIcon.image = [UIImage imageNamed:@"面部采集_12"];
-//        [cell2.userIcon setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
-//        [cell2.userIcon addTarget:self action:@selector(ShowUserPanView:) forControlEvents:UIControlEventTouchUpInside];
-//        cell2.userIcon.tag = indexPath.row;
-//        cell2.contentLabel.text = @"显示文字";
-//        return cell2;
-//        
-//        
-//        
-//    }
-//    if (indexPath.row%rowNum==2){
-//        static  NSString *identifier3 = @"CompanyPublishedCell";
-//        CompanyPublishedCell * cell3 = (CompanyPublishedCell *)[tableView dequeueReusableCellWithIdentifier:identifier3];
-//        if (!cell3) {
-//            cell3 = [[CompanyPublishedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier3];
-//        }
-//        cell3.bigImgView.image = [UIImage imageNamed:@"123"];
-//        NSString *tempStr = @"           ";
-//        cell3.publishView.text =[tempStr stringByAppendingString:@"实现水平方向滑动的UIPicker。自定义UIPicker。如果你厌倦了iOS自带的UIPicker，那么你可以试试这个不一样的UIPicker。不仅仅可以用作选择器，也可以用作菜单"];
-//        cell3.userNameLabel.text = @"Jack:";
-//        cell3.userNameLabel.textColor = [UIColor blueColor];
-//        return cell3;
-//    }
-//    
-//    static  NSString *identifier4 = @"CommentsCell";
-//    CommentsCell * cell4 = (CommentsCell *)[tableView dequeueReusableCellWithIdentifier:identifier4];
-//    if (!cell4) {
-//        
-//        cell4 = [[CommentsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier4];
-//    }
-//    [cell4.userIcon setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
-//    [cell4.userIcon addTarget:self action:@selector(ShowUserPanView:) forControlEvents:UIControlEventTouchUpInside];
-//    cell4.userIcon.tag = indexPath.row;
-//    NSString *tempStr = @"           ";
-//    cell4.commentsView.text =[tempStr stringByAppendingString:@"实现水平方向滑动的UIPicker。"];
-//    cell4.userNameLabel.text = @"Lisa:";
-//    cell4.commentsView.textColor = [UIColor blueColor];
-//    return cell4;
-//    
-//}
-//
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (indexPath.row%rowNum==0 ||indexPath.row%rowNum==1) {
-//        return 50;
-//    }
-//    if(indexPath.row%rowNum == 2){
-//        return 280;
-//    }
-//    return 50;
-//}
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    
-//
-//    CompanyMemberViewController* memberVC=[[CompanyMemberViewController alloc]initWithMemberNumber:14];
-//    [self.navigationController pushViewController:memberVC animated:YES];
-//    if([hideDelegate respondsToSelector:@selector(homePageTabBarHide)]){
-//        [hideDelegate homePageTabBarHide];
-//    }
-//}
 
 //时间标签
 - (UITableView *)tableViewForTimeScroller:(ACTimeScroller *)timeScroller
