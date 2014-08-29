@@ -28,36 +28,25 @@
 {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor clearColor];
-
-    
-    self.view = [[UIView alloc] initWithFrame:CGRectMake(30, 100, 260, 360)];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
     self.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
-
+    
     
     UIImageView  *tempImageView= [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 260, 240)];
     tempImageView.image = [UIImage imageNamed:@"首页_16.png"];
     tempImageView.userInteractionEnabled = YES;
     [self.view addSubview:tempImageView];
     
-    UIButton *visitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    visitBtn.frame = CGRectMake(40, 200, 70, 25);
-    [visitBtn setBackgroundImage:[UIImage imageNamed:@"visit"] forState:UIControlStateNormal];
-    [visitBtn addTarget:self action:@selector(goToDetail) forControlEvents:UIControlEventTouchUpInside];
-    [tempImageView addSubview:visitBtn];
-    
-    UIButton *concernBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    concernBtn.frame = CGRectMake(150, 200, 70, 25);
-    [concernBtn setBackgroundImage:[UIImage imageNamed:@"concern"] forState:UIControlStateNormal];
-    [concernBtn addTarget:self action:@selector(gotoConcern) forControlEvents:UIControlEventTouchUpInside];
-    [tempImageView addSubview:concernBtn];
-    
-    conFriendTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 240, 260, 120)];
+    conFriendTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 200, 260, 100)];
     conFriendTableView.delegate =self;
     conFriendTableView.dataSource =self;
     [conFriendTableView setSeparatorInset:UIEdgeInsetsZero];//设置tableViewcell下划线的位置没有偏移
-    [self.view addSubview:conFriendTableView];
+    
+    
+//    UIImageView *image = [[UIImageView alloc] initWithFrame:self.view.frame];
+//    [image setImage:[UIImage imageNamed:@"首页_16.png"]];
+//    [self.view addSubview:image];
 
 }
 
