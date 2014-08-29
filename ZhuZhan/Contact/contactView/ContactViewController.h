@@ -12,7 +12,7 @@
 #import "ShowViewController.h"
 
 
-@interface ContactViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate>{
+@interface ContactViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate,showControllerDelegate>{
     NSMutableArray *_datasource;
     ACTimeScroller *_timeScroller;
      NSMutableArray *chooseArray ;
@@ -20,6 +20,7 @@
 }
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong) NSArray *comments;
-@property (nonatomic,strong) ShowViewController *panVC;
+@property (nonatomic,strong) ShowViewController *showVC;
+@property (nonatomic,strong) UIView *transparent;
 
 @end

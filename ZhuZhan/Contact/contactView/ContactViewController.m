@@ -15,7 +15,7 @@
 #import "PersonalDetailViewController.h"
 #import "LoginModel.h"
 #import "PublishViewController.h"
-
+#import "UIViewController+MJPopupViewController.h"
 
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
@@ -23,7 +23,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 @end
 
 @implementation ContactViewController
-@synthesize comments,panVC;
+@synthesize comments,showVC,transparent;
 
 static int rowNum =0;
 - (id)initWithStyle:(UITableViewStyle)style
@@ -192,8 +192,8 @@ static int rowNum =0;
 {
     
     
-    if (indexPath.row%rowNum==0 ||indexPath.row%rowNum==1) {
-        
+    if (indexPath.row==0 ||indexPath.row==1) {
+    
         
         static  NSString *identifier2 = @"Cell1";
         Cell1 * cell2 = (Cell1 *)[tableView dequeueReusableCellWithIdentifier:identifier2];
@@ -206,12 +206,13 @@ static int rowNum =0;
         [cell2.userIcon addTarget:self action:@selector(ShowUserPanView:) forControlEvents:UIControlEventTouchUpInside];
         cell2.userIcon.tag = indexPath.row;
         cell2.contentLabel.text = @"显示文字";
+        cell2.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell2;
         
         
         
     }
-    if (indexPath.row%rowNum==2){
+    if (indexPath.row==2){
         static  NSString *identifier3 = @"CompanyPublishedCell";
         CompanyPublishedCell * cell3 = (CompanyPublishedCell *)[tableView dequeueReusableCellWithIdentifier:identifier3];
         if (!cell3) {
@@ -222,6 +223,7 @@ static int rowNum =0;
         cell3.publishView.text =[tempStr stringByAppendingString:@"实现水平方向滑动的UIPicker。自定义UIPicker。如果你厌倦了iOS自带的UIPicker，那么你可以试试这个不一样的UIPicker。不仅仅可以用作选择器，也可以用作菜单"];
         cell3.userNameLabel.text = @"Jack:";
         cell3.userNameLabel.textColor = [UIColor blueColor];
+        cell3.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell3;
     }
     
@@ -238,6 +240,7 @@ static int rowNum =0;
     cell4.commentsView.text =[tempStr stringByAppendingString:@"实现水平方向滑动的UIPicker。"];
     cell4.userNameLabel.text = @"Lisa:";
     cell4.commentsView.textColor = [UIColor blueColor];
+    cell4.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell4;
     
 }
@@ -246,10 +249,10 @@ static int rowNum =0;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    if (indexPath.row%rowNum==0 ||indexPath.row%rowNum==1) {
+    if (indexPath.row==0 ||indexPath.row==1) {
         return 50;
     }
-    if(indexPath.row%rowNum == 2){
+    if(indexPath.row == 2){
         return 280;
     }
     return 50;
@@ -285,10 +288,13 @@ static int rowNum =0;
 }
 
 -(void)ShowUserPanView:(UIButton *)button{
-    panVC = [[ShowViewController alloc] init];
-    panVC.delegate =self;
-    [self.tableView.superview addSubview:panVC.view];
 
+    showVC = [[ShowViewController alloc] init];
+    showVC.delegate =self;
+
+    showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
+    showVC.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
+    [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade];
 
     
 }
@@ -299,7 +305,7 @@ static int rowNum =0;
 {
         NSLog(@"访问个人详情");
     
-    [panVC.view removeFromSuperview];
+    [showVC dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
     [self.navigationController pushViewController:personalVC animated:NO];
 }
@@ -308,7 +314,7 @@ static int rowNum =0;
 {
 
         NSLog(@"关注好友");
-        [panVC.view removeFromSuperview];
+       [showVC dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
        NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithObjectsAndKeys:userId,@"userId",@"bfc78202-8ac9-447a-a99d-783606d25668",@"focusId", nil];
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
