@@ -10,7 +10,7 @@
 
 @implementation ProgramSelectViewCell
 
-+(ProgramSelectViewCell*)dequeueReusableCellWithTabelView:(UITableView*)tableView identifier:(NSString*)identifier indexPath:(NSIndexPath*)indexPath firstIcon:(BOOL)firstIcon secondIcon:(BOOL)secondIcon thirdIcon:(BOOL)thirdIcon{
++(ProgramSelectViewCell*)dequeueReusableCellWithTabelView:(UITableView*)tableView identifier:(NSString*)identifier indexPath:(NSIndexPath*)indexPath firstIcon:(BOOL)firstIcon secondIcon:(BOOL)secondIcon thirdIcon:(BOOL)thirdIcon heightStage:(BOOL)heightStage{
     
     ProgramSelectViewCell* cell=[tableView dequeueReusableCellWithIdentifier:identifier];
     cell.backgroundColor=[UIColor clearColor];
@@ -37,15 +37,19 @@
         cell.stageLabel=[[UILabel alloc]initWithFrame:CGRectMake(47, 4, 150, 20)];
         cell.stageLabel.text=arrayTotal[indexPath.section][indexPath.row];
         cell.stageLabel.font=[UIFont systemFontOfSize:14];
+        cell.stageLabel.textColor=thirdIcon?[UIColor blackColor]:RGBCOLOR(197, 197, 197);
         [cell.contentView addSubview:cell.stageLabel];
         
-//        //右边三个小icon的最右边那个，必显示，但是图不同
-//        UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(270, 4, 20, 20)];
-//        imageView.image=[UIImage imageNamed:thirdIcon?@"XiangMuXiangQing_ShaiXuan/right@2x.png":@"XiangMuXiangQing_ShaiXuan/right@2x.png"];//1则是勾的图，0则是没勾的图
-//        [cell.contentView addSubview:imageView];
+//        if () {
+//            <#statements#>
+//        }
+        //右边三个小icon的最右边那个，必显示，但是图不同
+        UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(270, 4, 20, 20)];
+        imageView.image=[UIImage imageNamed:thirdIcon?@"XiangMuXiangQing_ShaiXuan/right@2x.png":@"XiangMuXiangQing_ShaiXuan/right@2x.png"];//1则是勾的图，0则是没勾的图
+        [cell.contentView addSubview:imageView];
         
         //右边三个小icon的左边2个，选择性显示，图同
-        CGFloat tempX=270;
+        CGFloat tempX=220;
         if (secondIcon) {
             UIImageView* tempImageView=[[UIImageView alloc]initWithFrame:CGRectMake(tempX, 4, 20, 20)];
             tempImageView.image=[UIImage imageNamed:@"XiangMuXiangQing_ShaiXuan/Gallery@2x.png"];

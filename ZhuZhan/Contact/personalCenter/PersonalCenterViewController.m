@@ -92,31 +92,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 {
     _datasource = [NSMutableArray new];
     
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [[NSDateComponents alloc] init];
-    NSDate *today = [NSDate date];
-    NSDateComponents *todayComponents = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:today];
     
-    for (NSInteger i = [todayComponents day]; i >= -15; i--)
-    {
-        [components setYear:[todayComponents year]];
-        [components setMonth:[todayComponents month]];
-        [components setDay:i];
-        [components setHour:arc4random() % 23];
-        [components setMinute:arc4random() % 59];
-        
-        NSDate *date = [calendar dateFromComponents:components];
-        [_datasource addObject:date];
+    for(int i=0;i<30;i++){
+        [_datasource addObject:[NSDate date]];
     }
-    
-    /*for(int i=0;i<30;i++){
-     [_datasource addObject:[NSDate date]];
-     }*/
 }
 
 - (void)_refreshing {
     // refresh your data sources
-    NSLog(@"asdfasdfasdf");
     __weak PersonalCenterViewController *wself = self;
     double delayInSeconds = 4.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -156,7 +139,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [personalArray count];
+    return [_datasource count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -169,7 +152,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }
    
     cell2.userIcon.image = [UIImage imageNamed:@"面部采集_12"];
-    cell2.contentLabel.text = [personalArray objectAtIndex:indexPath.row];
+    cell2.contentLabel.text = [NSString stringWithFormat:@"%@",[_datasource objectAtIndex:indexPath.row]];
     
     return cell2;
 }

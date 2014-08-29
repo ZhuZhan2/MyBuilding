@@ -13,8 +13,8 @@
 
 @interface AccountViewController : UITableViewController<XHPathCoverDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
-
-
+    
+    
 }
 @property (nonatomic,strong) NSMutableDictionary *userDic;
 @property (nonatomic, strong) XHPathCover *pathCover;
