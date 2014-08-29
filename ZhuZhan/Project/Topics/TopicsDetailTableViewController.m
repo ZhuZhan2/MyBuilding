@@ -10,6 +10,8 @@
 #import "TopicsDetailTableViewCell.h"
 #import "ProjectTableViewCell.h"
 #import "ProjectApi.h"
+#import "AppDelegate.h"
+#import "HomePageViewController.h"
 @interface TopicsDetailTableViewController ()
 
 @end
@@ -51,6 +53,22 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //恢复tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //隐藏tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarHide];
 }
 
 -(void)leftBtnClick{

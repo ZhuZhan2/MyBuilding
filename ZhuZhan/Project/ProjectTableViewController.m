@@ -60,9 +60,15 @@
     [searchBtn addTarget:self action:@selector(serachClick) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:searchBtn];
     
-    UIImageView *searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(30, 8, 15, 15)];
+    UIImageView *searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(35, 8, 15, 15)];
     [searchImage setImage:[UIImage imageNamed:@"搜索结果_09a.png"]];
     [bgView addSubview:searchImage];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(55, 0, 120, 30)];
+    label.textColor = [UIColor whiteColor];
+    label.text = @"寻找项目，发现机会";
+    label.font = [UIFont systemFontOfSize:12];
+    [bgView addSubview:label];
     
    // UILabel *la
     self.navigationItem.titleView = bgView;
