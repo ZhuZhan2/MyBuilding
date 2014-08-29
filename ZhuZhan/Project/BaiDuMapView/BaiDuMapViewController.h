@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "BMapKit.h"
-@interface BaiDuMapViewController : UIViewController<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeocodeSearchDelegate>{
+@interface BaiDuMapViewController : UIViewController<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>{
     BMKMapView* _mapView;
     BMKLocationService* _locService;
-    BMKGeocodeSearch* _geocodesearch;
+    BMKGeoCodeSearch* _geocodesearch;
     BMKAnnotationView* newAnnotation;
     BMKPointAnnotation* annotationPoint;
     UIImageView *imageView;//绘画层

@@ -12,7 +12,6 @@
 @interface AdvancedSearchViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,AdvancedSearchConditionsDelegate>{
     UITableView *_tableView;
     NSMutableDictionary *dataDic;
-    MultipleChoiceViewController *multipleChoseView;
 }
 
 @end

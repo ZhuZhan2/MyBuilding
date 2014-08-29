@@ -12,7 +12,7 @@
 #define NEARRADIUS 100.0f
 #define ENDRADIUS 110.0f
 #define FARRADIUS 160.0f
-#define STARTPOINT CGPointMake(155, 540)
+#define STARTPOINT CGPointMake(160, 544)
 #define TIMEOFFSET 0.026f
 
 
@@ -48,27 +48,27 @@
             if(i == 0){
                 //最终停留的坐标
                 
-                item.endPoint = CGPointMake(STARTPOINT.x + ENDRADIUS * cosf(i * 3.125 / (count - 1))-10, STARTPOINT.y - ENDRADIUS * sinf(i * 3.125 / (count - 1))-30);
+                item.endPoint = CGPointMake(STARTPOINT.x + ENDRADIUS * cosf(i * 3.125 / (count - 1))-15, STARTPOINT.y - ENDRADIUS * sinf(i * 3.125 / (count - 1))-50);
                 
                 //靠近停留坐标的位置
                 
-                item.nearPoint = CGPointMake(STARTPOINT.x + NEARRADIUS * cosf(i * 3.125 / (count - 1))-10, STARTPOINT.y - NEARRADIUS * sinf(i * 3.125 / (count - 1))-30);
+                item.nearPoint = CGPointMake(STARTPOINT.x + NEARRADIUS * cosf(i * 3.125 / (count - 1))-15, STARTPOINT.y - NEARRADIUS * sinf(i * 3.125 / (count - 1))-50);
                 
                 //超过 停留坐标的位置   这些坐标用来做 物体 惯性的  使得动画看起来更自然也更美观
                 
-                item.farPoint = CGPointMake(STARTPOINT.x + FARRADIUS * cosf(i * 3.125 / (count - 1))-10, STARTPOINT.y - FARRADIUS * sinf(i * 3.125 / (count - 1))-10);
+                item.farPoint = CGPointMake(STARTPOINT.x + FARRADIUS * cosf(i * 3.125 / (count - 1))-15, STARTPOINT.y - FARRADIUS * sinf(i * 3.125 / (count - 1))-30);
             }else if (i == 1){
                 //最终停留的坐标
                 
-                item.endPoint = CGPointMake(STARTPOINT.x + ENDRADIUS * cosf(i * 3.125 / (count - 1))-10, STARTPOINT.y - ENDRADIUS * sinf(i * 3.125 / (count - 1))-10);
+                item.endPoint = CGPointMake(STARTPOINT.x + ENDRADIUS * cosf(i * 3.125 / (count - 1))-20, STARTPOINT.y - ENDRADIUS * sinf(i * 3.125 / (count - 1))-10);
                 
                 //靠近停留坐标的位置
                 
-                item.nearPoint = CGPointMake(STARTPOINT.x + NEARRADIUS * cosf(i * 3.125 / (count - 1))-10, STARTPOINT.y - NEARRADIUS * sinf(i * 3.125 / (count - 1))-10);
+                item.nearPoint = CGPointMake(STARTPOINT.x + NEARRADIUS * cosf(i * 3.125 / (count - 1))-20, STARTPOINT.y - NEARRADIUS * sinf(i * 3.125 / (count - 1))-10);
                 
                 //超过 停留坐标的位置   这些坐标用来做 物体 惯性的  使得动画看起来更自然也更美观
                 
-                item.farPoint = CGPointMake(STARTPOINT.x + FARRADIUS * cosf(i * 3.125 / (count - 1))-10, STARTPOINT.y - FARRADIUS * sinf(i * 3.125 / (count - 1))-10);
+                item.farPoint = CGPointMake(STARTPOINT.x + FARRADIUS * cosf(i * 3.125 / (count - 1))-20, STARTPOINT.y - FARRADIUS * sinf(i * 3.125 / (count - 1))-10);
             }else if (i == 2){
                 //最终停留的坐标
                 
@@ -84,27 +84,27 @@
             }else if(i == 3){
                 //最终停留的坐标
                 
-                item.endPoint = CGPointMake(STARTPOINT.x + ENDRADIUS * cosf(i * 3.125 / (count - 1))+10, STARTPOINT.y - ENDRADIUS * sinf(i * 3.125 / (count - 1))-10);
+                item.endPoint = CGPointMake(STARTPOINT.x + ENDRADIUS * cosf(i * 3.125 / (count - 1))+20, STARTPOINT.y - ENDRADIUS * sinf(i * 3.125 / (count - 1))-10);
                 
                 //靠近停留坐标的位置
                 
-                item.nearPoint = CGPointMake(STARTPOINT.x + NEARRADIUS * cosf(i * 3.125 / (count - 1)), STARTPOINT.y - NEARRADIUS * sinf(i * 3.125 / (count - 1))-10);
+                item.nearPoint = CGPointMake(STARTPOINT.x + NEARRADIUS * cosf(i * 3.125 / (count - 1))+20, STARTPOINT.y - NEARRADIUS * sinf(i * 3.125 / (count - 1))-10);
                 
                 //超过 停留坐标的位置   这些坐标用来做 物体 惯性的  使得动画看起来更自然也更美观
                 
-                item.farPoint = CGPointMake(STARTPOINT.x + FARRADIUS * cosf(i * 3.125 / (count - 1))+10, STARTPOINT.y - FARRADIUS * sinf(i * 3.125 / (count - 1))-10);
+                item.farPoint = CGPointMake(STARTPOINT.x + FARRADIUS * cosf(i * 3.125 / (count - 1))+20, STARTPOINT.y - FARRADIUS * sinf(i * 3.125 / (count - 1))-10);
             }else if (i == 4){
                 //最终停留的坐标
                 
-                item.endPoint = CGPointMake(STARTPOINT.x + ENDRADIUS * cosf(i * 3.125 / (count - 1))+10, STARTPOINT.y - ENDRADIUS * sinf(i * 3.125 / (count - 1))-30);
+                item.endPoint = CGPointMake(STARTPOINT.x + ENDRADIUS * cosf(i * 3.125 / (count - 1))+15, STARTPOINT.y - ENDRADIUS * sinf(i * 3.125 / (count - 1))-50);
                 
                 //靠近停留坐标的位置
                 
-                item.nearPoint = CGPointMake(STARTPOINT.x + NEARRADIUS * cosf(i * 3.125 / (count - 1)), STARTPOINT.y - NEARRADIUS * sinf(i * 3.125 / (count - 1))-30);
+                item.nearPoint = CGPointMake(STARTPOINT.x + NEARRADIUS * cosf(i * 3.125 / (count - 1))+15, STARTPOINT.y - NEARRADIUS * sinf(i * 3.125 / (count - 1))-50);
                 
                 //超过 停留坐标的位置   这些坐标用来做 物体 惯性的  使得动画看起来更自然也更美观
                 
-                item.farPoint = CGPointMake(STARTPOINT.x + FARRADIUS * cosf(i * 3.125 / (count - 1))+10, STARTPOINT.y - FARRADIUS * sinf(i * 3.125 / (count - 1))-30);
+                item.farPoint = CGPointMake(STARTPOINT.x + FARRADIUS * cosf(i * 3.125 / (count - 1))+15, STARTPOINT.y - FARRADIUS * sinf(i * 3.125 / (count - 1))-50);
             }
             
             
@@ -121,10 +121,10 @@
         }
         
         // add the "Add" Button.
-        _addButton = [[QuadCurveMenuItem alloc] initWithImage:[UIImage imageNamed:@"bg-addbutton.png"]
-                                       highlightedImage:[UIImage imageNamed:@"bg-addbutton-highlighted.png"] 
-                                           ContentImage:[UIImage imageNamed:@"icon-plus.png"] 
-                                highlightedContentImage:[UIImage imageNamed:@"icon-plus-highlighted.png"]];
+        _addButton = [[QuadCurveMenuItem alloc] initWithImage:[UIImage imageNamed:@"项目－项目专题_11a.png"]
+                                       highlightedImage:nil
+                                           ContentImage:nil
+                                highlightedContentImage:nil flag:1];
         _addButton.delegate = self;
         _addButton.center = STARTPOINT;
         [self addSubview:_addButton];

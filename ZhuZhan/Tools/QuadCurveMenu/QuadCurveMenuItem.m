@@ -20,7 +20,7 @@ static inline CGRect ScaleRect(CGRect rect, float n) {return CGRectMake((rect.si
 - (id)initWithImage:(UIImage *)img 
    highlightedImage:(UIImage *)himg
        ContentImage:(UIImage *)cimg
-highlightedContentImage:(UIImage *)hcimg;
+highlightedContentImage:(UIImage *)hcimg flag:(int)flag;
 {
     if (self = [super init]) 
     {
@@ -29,6 +29,17 @@ highlightedContentImage:(UIImage *)hcimg;
         self.userInteractionEnabled = YES;
         _contentImageView = [[UIImageView alloc] initWithImage:cimg];
         _contentImageView.highlightedImage = hcimg;
+        
+        if(flag == 1){
+            self.bounds = CGRectMake(0, 0, self.image.size.width/2, self.image.size.height/2);
+        }else{
+            self.bounds = CGRectMake(0, 0, self.image.size.width, self.image.size.height);
+        }
+        
+        float width = _contentImageView.image.size.width;
+        float height = _contentImageView.image.size.height;
+        _contentImageView.frame = CGRectMake(self.bounds.size.width/2 - width/2, self.bounds.size.height/2 - height/2, width, height);
+        
         [self addSubview:_contentImageView];
     }
     return self;
@@ -40,16 +51,16 @@ highlightedContentImage:(UIImage *)hcimg;
     [super dealloc];
 }
 #pragma mark - UIView's methods
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    
-    self.bounds = CGRectMake(0, 0, self.image.size.width, self.image.size.height);
-    
-    float width = _contentImageView.image.size.width;
-    float height = _contentImageView.image.size.height;
-    _contentImageView.frame = CGRectMake(self.bounds.size.width/2 - width/2, self.bounds.size.height/2 - height/2, width, height);
-}
+//- (void)layoutSubviews
+//{
+//    [super layoutSubviews];
+//    
+//    self.bounds = CGRectMake(0, 0, self.image.size.width, self.image.size.height);
+//    
+//    float width = _contentImageView.image.size.width;
+//    float height = _contentImageView.image.size.height;
+//    _contentImageView.frame = CGRectMake(self.bounds.size.width/2 - width/2, self.bounds.size.height/2 - height/2, width, height);
+//}
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {

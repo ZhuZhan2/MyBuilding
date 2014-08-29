@@ -52,7 +52,7 @@
     //公司员工人数label
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 20)];
     self.memberNumber=14;
-    label.text=[NSString stringWithFormat:@"公司员工    %ld",self.memberNumber];
+    label.text=[NSString stringWithFormat:@"公司员工    %d",self.memberNumber];
     label.textColor=[UIColor grayColor];
     [view addSubview:label];
     

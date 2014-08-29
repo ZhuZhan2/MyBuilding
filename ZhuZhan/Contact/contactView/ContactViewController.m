@@ -26,7 +26,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 @implementation ContactViewController
 @synthesize comments,showVC,transparent;
 
-static int rowNum =0;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -102,7 +101,7 @@ static int rowNum =0;
     
     /*for(int i=0;i<30;i++){
         [_datasource addObject:[NSDate date]];
-    }*/
+    }
 }
 
 - (void)_refreshing {
@@ -195,6 +194,11 @@ static int rowNum =0;
     
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [_datasource count];
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -250,6 +254,10 @@ static int rowNum =0;
 }
 
 -(void)ShowUserPanView:(UIButton *)button{
+    showVC = [[ShowViewController alloc] init];
+    showVC.delegate =self;
+    [showVC.view setFrame:CGRectMake(20, 70, 260, 300)];
+    [self.tableView.superview addSubview:showVC.view];
 
     showVC = [[ShowViewController alloc] init];
     showVC.delegate =self;

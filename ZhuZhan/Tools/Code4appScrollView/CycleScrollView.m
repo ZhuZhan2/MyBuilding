@@ -56,7 +56,6 @@
         //[scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         for (UIView* view in scrollView.subviews) {
             [view removeFromSuperview];
-            view=nil;
         }
     }
     
@@ -64,7 +63,7 @@
     
     NSLog(@"%d",curImages.count);
     for (int i = 0; i < 3; i++) {
-        NSLog(@"%d",i);
+        //NSLog(@"%d",i);
 
         EGOImageView *imageView = [[EGOImageView alloc] initWithFrame:scrollFrame];
         imageView.userInteractionEnabled = YES;
@@ -73,7 +72,6 @@
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                     action:@selector(handleTap:)];
         [imageView addGestureRecognizer:singleTap];
-        [singleTap release];
         
         // 水平滚动
         if(scrollDirection == CycleDirectionLandscape) {
@@ -86,7 +84,6 @@
         
         
         [scrollView addSubview:imageView];
-        imageView=nil;
     }
     if (scrollDirection == CycleDirectionLandscape) {
         [scrollView setContentOffset:CGPointMake(scrollFrame.size.width, 0)];
@@ -94,6 +91,7 @@
     if (scrollDirection == CycleDirectionPortait) {
         [scrollView setContentOffset:CGPointMake(0, scrollFrame.size.height)];
     }
+    
 }
 
 - (NSArray *)getDisplayImagesWithCurpage:(int)page {
@@ -164,7 +162,7 @@
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)tap {
-    
+    NSLog(@"====>%@",self.delegate);
     if ([self.delegate respondsToSelector:@selector(cycleScrollViewDelegate:didSelectImageView:)]) {
         [self.delegate cycleScrollViewDelegate:self didSelectImageView:curPage];
     }
@@ -173,13 +171,6 @@
 - (void)dealloc
 {
     NSLog(@"cycleScrollViewDealloc");
-    
-
-    curImageView=nil;
-    [imagesArray release];
-    [curImages release];
-    [scrollView release];
-    [super dealloc];
 }
 
 @end

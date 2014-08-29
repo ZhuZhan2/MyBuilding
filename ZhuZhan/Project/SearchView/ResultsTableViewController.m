@@ -102,7 +102,7 @@
         countLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
         countLabel.textColor = GrayColor;
         countLabel.textAlignment = NSTextAlignmentCenter;
-        countLabel.text = [NSString stringWithFormat:@"共计%ld条",showArr.count];
+        countLabel.text = [NSString stringWithFormat:@"共计%d条",showArr.count];
         [bgView addSubview:countLabel];
         return bgView;
     }

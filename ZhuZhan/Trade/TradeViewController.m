@@ -102,7 +102,7 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%ld",indexPath.row);
+    NSLog(@"%ld",(long)indexPath.row);
     NSDictionary* dic=[NSDictionary dictionaryWithObjectsAndKeys:self.cellInfo[@"cellImage"][indexPath.row],@"cellImage",self.cellInfo[@"cellLabel"][indexPath.row],@"cellLabel", nil];
     TradeDetailViewController* detailView=[[TradeDetailViewController alloc]initWithInfo:dic];
     [self.navigationController pushViewController:detailView animated:YES];
