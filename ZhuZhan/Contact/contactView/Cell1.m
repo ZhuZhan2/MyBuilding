@@ -18,13 +18,18 @@
         
 
         
-        UIImageView *verticalLine = [[UIImageView alloc] initWithFrame:CGRectMake(74, 0, 3, 50)];
-        verticalLine.image = [UIImage imageNamed:@"搜索_10"];
-        [self addSubview:verticalLine];
-        
-        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(5, 49, 310, 2)];
+        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(5, 48, 310, 2)];
         line.image = [UIImage imageNamed:@"我的任务_05"];
         [self addSubview:line];
+        
+//        UIImageView *verticalLine = [[UIImageView alloc] initWithFrame:CGRectMake(74, 0, 3, 50)];
+//        verticalLine.image = [UIImage imageNamed:@"搜索_10"];
+//        [self addSubview:verticalLine];
+        
+        UIView *verticalLine = [[UIView alloc] initWithFrame:CGRectMake(74, 0, 3, 50)];
+        verticalLine.backgroundColor = [UIColor blackColor];
+        verticalLine.alpha=0.2;
+        [self addSubview:verticalLine];
         
         userIcon =[UIButton buttonWithType:UIButtonTypeCustom];
         userIcon.frame = CGRectMake(10, 5, 40, 40);

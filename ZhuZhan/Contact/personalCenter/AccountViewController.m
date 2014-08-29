@@ -52,7 +52,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setFrame:CGRectMake(0, 0, 80, 19.5)];
-    [rightButton setTitle:@"帐户设置" forState:UIControlStateNormal];
+    [rightButton setTitle:@"完成" forState:UIControlStateNormal];
     rightButton.titleLabel.textColor = [UIColor whiteColor];
     [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
@@ -143,7 +143,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         AppDelegate* app=[AppDelegate instance];
         HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
         [homeVC homePageTabBarHide];
-        [self presentViewController:imagePicker animated:YES completion:nil];
+        
+                [self.view.window.rootViewController presentViewController:imagePicker animated:YES completion:nil];
+        
+//        [self presentViewController:imagePicker animated:YES completion:nil];
 
         
     }
@@ -162,7 +165,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         AppDelegate* app=[AppDelegate instance];
         HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
         [homeVC homePageTabBarHide];
-        [self presentViewController:imagePicker animated:YES completion:nil];
+        [self.view.window.rootViewController presentViewController:imagePicker animated:YES completion:nil];
+//        [self presentViewController:imagePicker animated:YES completion:nil];
 
         
     }
@@ -255,58 +259,58 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             }
     
-            UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 70, 30)];
+            UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 70, 30)];
             label1.textAlignment = NSTextAlignmentLeft;
             label1.text = @"邮箱地址";
             label1.font = [UIFont systemFontOfSize:14];
             [cell2 addSubview:label1];
-            UILabel *emailLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 5, 180, 30)];
+            UILabel *emailLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 5, 180, 30)];
             emailLabel.textAlignment = NSTextAlignmentLeft;
             emailLabel.text = @"222222233445@qq.com";
             emailLabel.font = [UIFont systemFontOfSize:14];
             [cell2 addSubview:emailLabel];
     
-            UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(10, 45, 70, 30)];
+            UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(20, 45, 70, 30)];
             label2.textAlignment = NSTextAlignmentLeft;
             label2.text = @"电      话";
             label2.font = [UIFont systemFontOfSize:14];
             [cell2 addSubview:label2];
-            UILabel *cellPhoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 45, 180, 30)];
+            UILabel *cellPhoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 45, 180, 30)];
             cellPhoneLabel.textAlignment = NSTextAlignmentLeft;
             cellPhoneLabel.text = @"123434556657";
             cellPhoneLabel.font = [UIFont systemFontOfSize:14];
             [cell2 addSubview:cellPhoneLabel];
     
-            UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(10, 85, 70, 30)];
+            UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(20, 85, 70, 30)];
             label3.textAlignment = NSTextAlignmentLeft;
             label3.text = @"在职公司";
             label3.font = [UIFont systemFontOfSize:14];
             [cell2 addSubview:label3];
-            UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 85, 180, 30)];
+            UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 85, 180, 30)];
             companyLabel.textAlignment = NSTextAlignmentLeft;
             companyLabel.text = @"巴拉巴拉公司";
             companyLabel.font = [UIFont systemFontOfSize:14];
             [cell2 addSubview:companyLabel];
     
-            UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(10, 125, 70, 30)];
+            UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(20, 125, 70, 30)];
             label4.textAlignment = NSTextAlignmentLeft;
             label4.text = @"职      位";
             label4.font = [UIFont systemFontOfSize:14];
             [cell2 addSubview:label4];
-            UILabel *positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 125, 180, 30)];
+            UILabel *positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 125, 180, 30)];
             positionLabel.textAlignment = NSTextAlignmentLeft;
             positionLabel.text = @"总监";
             positionLabel.font = [UIFont systemFontOfSize:14];
             [cell2 addSubview:positionLabel];
     
     for (int i=0; i<3; i++) {
-        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(5, 39+40*i, 310, 2)];
+        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(10, 39+40*i, 300, 2)];
         line.image = [UIImage imageNamed:@"我的任务_05"];
         [cell2 addSubview:line];
     }
     
     
-
+    cell2.selectionStyle = UITableViewCellSeparatorStyleNone;
             return cell2;
     
     
@@ -320,13 +324,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
 }
 
-
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    
-    
-}
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

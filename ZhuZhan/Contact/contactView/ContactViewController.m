@@ -26,6 +26,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 @implementation ContactViewController
 @synthesize comments,showVC,transparent;
 
+static NSInteger rowNum=0;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -101,7 +102,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     /*for(int i=0;i<30;i++){
         [_datasource addObject:[NSDate date]];
-    }
+    }*/
 }
 
 - (void)_refreshing {
@@ -194,10 +195,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [_datasource count];
-}
+
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -213,7 +211,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    rowNum =(int)[comments count]+3;
+    rowNum =[comments count]+3;
     
     return rowNum;
 }
@@ -254,17 +252,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)ShowUserPanView:(UIButton *)button{
-    showVC = [[ShowViewController alloc] init];
-    showVC.delegate =self;
-    [showVC.view setFrame:CGRectMake(20, 70, 260, 300)];
-    [self.tableView.superview addSubview:showVC.view];
 
     showVC = [[ShowViewController alloc] init];
     showVC.delegate =self;
-
-//    showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
-//    showVC.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
-    [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade];
+    [showVC.view setFrame:CGRectMake(40, 70, 260, 330)];
+    showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
+    showVC.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
+    
+   [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade];
 
     
 }
@@ -313,9 +308,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     RecommendLetterViewController *recommendLetterVC = [[RecommendLetterViewController alloc] init];
     [self.navigationController pushViewController:recommendLetterVC animated:YES];//跳转到推荐信页面
 }
-//-(void)cellSelectedToJump{
-//    
-//    NSLog(@"从pan进行跳转");
-//}
+
 
 @end

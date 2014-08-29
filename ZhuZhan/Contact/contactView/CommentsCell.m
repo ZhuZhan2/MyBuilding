@@ -16,13 +16,14 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(74, 48, 310, 2)];
+        line.image = [UIImage imageNamed:@"我的任务_05"];
+        [self addSubview:line];
         UIImageView *verticalLine = [[UIImageView alloc] initWithFrame:CGRectMake(74, 0, 3, 50)];
         verticalLine.image = [UIImage imageNamed:@"搜索_10"];
         [self addSubview:verticalLine];
         
-        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(74, 49, 310, 2)];
-        line.image = [UIImage imageNamed:@"我的任务_05"];
-        [self addSubview:line];
+
         
         userIcon =[UIButton buttonWithType:UIButtonTypeCustom];
         userIcon.frame = CGRectMake(84, 5, 40, 40);

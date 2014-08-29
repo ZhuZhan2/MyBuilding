@@ -35,14 +35,14 @@
     [FaceppAPI setDebugMode:TRUE];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-//    // 要使用百度地图，请先启动BaiduMapManager
-//	_mapManager = [[BMKMapManager alloc]init];
-//	BOOL ret = [_mapManager start:@"wcW9gbkFNFjS8s3DGogfE6ch" generalDelegate:self];
-//	if (!ret) {
-//		NSLog(@"manager start failed!");
-//	}
-//    
-//    [RecordSqlite opensql];
+    // 要使用百度地图，请先启动BaiduMapManager
+	_mapManager = [[BMKMapManager alloc]init];
+	BOOL ret = [_mapManager start:@"wcW9gbkFNFjS8s3DGogfE6ch" generalDelegate:self];
+	if (!ret) {
+		NSLog(@"manager start failed!");
+	}
+    
+    [RecordSqlite opensql];
     
        if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
