@@ -266,7 +266,7 @@
 		04D10C0719AEDFC80097C0C6 /* ImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10C0519AEDFC80097C0C6 /* ImgCell.m */; };
 		04D10C0919AEE7FA0097C0C6 /* grayColor.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10C0819AEE7FA0097C0C6 /* grayColor.png */; };
 		04D10C3019AF3C120097C0C6 /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10C2F19AF3C120097C0C6 /* ShowViewController.m */; };
-		04D10C3519B045260097C0C6 /* RecommendLetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10C3419B045260097C0C6 /* RecommendLetterViewController.m */; };
+		04D10C7719B074C70097C0C6 /* RecommendLetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10C7619B074C70097C0C6 /* RecommendLetterViewController.m */; };
 		5B031C3019ACA6C100573071 /* XiangMuJieDuan in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2819ACA6C100573071 /* XiangMuJieDuan */; };
 		5B031C3119ACA6C100573071 /* XiangMuXiangQing in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2919ACA6C100573071 /* XiangMuXiangQing */; };
 		5B031C3219ACA6C100573071 /* XiangMuXiangQing_1 in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2A19ACA6C100573071 /* XiangMuXiangQing_1 */; };
@@ -951,8 +951,10 @@
 		04D10C0819AEE7FA0097C0C6 /* grayColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayColor.png; sourceTree = "<group>"; };
 		04D10C2E19AF3C120097C0C6 /* ShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowViewController.h; sourceTree = "<group>"; };
 		04D10C2F19AF3C120097C0C6 /* ShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowViewController.m; sourceTree = "<group>"; };
-		04D10C3319B045260097C0C6 /* RecommendLetterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendLetterViewController.h; sourceTree = "<group>"; };
-		04D10C3419B045260097C0C6 /* RecommendLetterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendLetterViewController.m; sourceTree = "<group>"; };
+		04D10C7519B074C70097C0C6 /* RecommendLetterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendLetterViewController.h; sourceTree = "<group>"; };
+		04D10C7619B074C70097C0C6 /* RecommendLetterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendLetterViewController.m; sourceTree = "<group>"; };
+		04D10C7819B07BD50097C0C6 /* BMKGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BMKGradient.h; path = inc/BMKGradient.h; sourceTree = "<group>"; };
+		04D10C7919B07BD50097C0C6 /* BMKHeatMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BMKHeatMap.h; path = inc/BMKHeatMap.h; sourceTree = "<group>"; };
 		5B031C2819ACA6C100573071 /* XiangMuJieDuan */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuJieDuan; sourceTree = "<group>"; };
 		5B031C2919ACA6C100573071 /* XiangMuXiangQing */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuXiangQing; sourceTree = "<group>"; };
 		5B031C2A19ACA6C100573071 /* XiangMuXiangQing_1 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuXiangQing_1; sourceTree = "<group>"; };
@@ -2031,7 +2033,7 @@
 		04D10BA819AE01690097C0C6 /* Contact */ = {
 			isa = PBXGroup;
 			children = (
-				04D10C3219B0450D0097C0C6 /* recommendletter */,
+				04D10C7419B074C70097C0C6 /* recommendletter */,
 				04D10BA919AE01690097C0C6 /* contactView */,
 				04D10BB619AE016A0097C0C6 /* personalCenter */,
 				04D10BC519AE016A0097C0C6 /* personalDetail */,
@@ -2092,13 +2094,79 @@
 			path = publish;
 			sourceTree = "<group>";
 		};
-		04D10C3219B0450D0097C0C6 /* recommendletter */ = {
+		04D10C7419B074C70097C0C6 /* recommendletter */ = {
 			isa = PBXGroup;
 			children = (
-				04D10C3319B045260097C0C6 /* RecommendLetterViewController.h */,
-				04D10C3419B045260097C0C6 /* RecommendLetterViewController.m */,
+				04D10C7519B074C70097C0C6 /* RecommendLetterViewController.h */,
+				04D10C7619B074C70097C0C6 /* RecommendLetterViewController.m */,
 			);
 			path = recommendletter;
+			sourceTree = "<group>";
+		};
+		5B0D03A619B0553C00518D5E /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				5B0D03A719B0553C00518D5E /* BMapKit.h */,
+				5B0D03A819B0553C00518D5E /* BMKActionPaopaoView.h */,
+				5B0D03A919B0553C00518D5E /* BMKAnnotation.h */,
+				5B0D03AA19B0553C00518D5E /* BMKAnnotationView.h */,
+				5B0D03AB19B0553C00518D5E /* BMKArcline.h */,
+				5B0D03AC19B0553C00518D5E /* BMKArclineView.h */,
+				5B0D03AD19B0553C00518D5E /* BMKBaseComponent.h */,
+				5B0D03AE19B0553C00518D5E /* BMKBusLineSearch.h */,
+				5B0D03AF19B0553C00518D5E /* BMKBusLineSearchOption.h */,
+				5B0D03B019B0553C00518D5E /* BMKCircle.h */,
+				5B0D03B119B0553C00518D5E /* BMKCircleView.h */,
+				5B0D03B219B0553C00518D5E /* BMKCloudPOIList.h */,
+				5B0D03B319B0553C00518D5E /* BMKCloudSearch.h */,
+				5B0D03B419B0553C00518D5E /* BMKCloudSearchComponent.h */,
+				5B0D03B519B0553C00518D5E /* BMKCloudSearchInfo.h */,
+				5B0D03B619B0553C00518D5E /* BMKGeneralDelegate.h */,
+				5B0D03B719B0553C00518D5E /* BMKGeocodeSearch.h */,
+				5B0D03B819B0553C00518D5E /* BMKGeocodeSearchOption.h */,
+				5B0D03B919B0553C00518D5E /* BMKGeocodeType.h */,
+				5B0D03BA19B0553C00518D5E /* BMKGeometry.h */,
+				5B0D03BB19B0553C00518D5E /* BMKGroundOverlay.h */,
+				5B0D03BC19B0553C00518D5E /* BMKGroundOverlayView.h */,
+				5B0D03BD19B0553C00518D5E /* BMKLocationComponent.h */,
+				5B0D03BE19B0553C00518D5E /* BMKLocationService.h */,
+				5B0D03BF19B0553C00518D5E /* BMKLocationViewDisplayParam.h */,
+				5B0D03C019B0553C00518D5E /* BMKMapComponent.h */,
+				5B0D03C119B0553C00518D5E /* BMKMapManager.h */,
+				5B0D03C219B0553C00518D5E /* BMKMapStatus.h */,
+				5B0D03C319B0553C00518D5E /* BMKMapView.h */,
+				5B0D03C419B0553C00518D5E /* BMKMultiPoint.h */,
+				5B0D03C519B0553C00518D5E /* BMKNavigation.h */,
+				5B0D03C619B0553C00518D5E /* BMKOfflineMap.h */,
+				5B0D03C719B0553C00518D5E /* BMKOfflineMapType.h */,
+				5B0D03C819B0553C00518D5E /* BMKOverlay.h */,
+				5B0D03C919B0553C00518D5E /* BMKOverlayGLBasicView.h */,
+				5B0D03CA19B0553C00518D5E /* BMKOverlayPathView.h */,
+				5B0D03CB19B0553C00518D5E /* BMKOverlayView.h */,
+				5B0D03CC19B0553C00518D5E /* BMKPinAnnotationView.h */,
+				5B0D03CD19B0553C00518D5E /* BMKPointAnnotation.h */,
+				5B0D03CE19B0553C00518D5E /* BMKPoiSearch.h */,
+				5B0D03CF19B0553C00518D5E /* BMKPoiSearchOption.h */,
+				5B0D03D019B0553C00518D5E /* BMKPoiSearchType.h */,
+				5B0D03D119B0553C00518D5E /* BMKPolygon.h */,
+				5B0D03D219B0553C00518D5E /* BMKPolygonView.h */,
+				5B0D03D319B0553C00518D5E /* BMKPolyline.h */,
+				5B0D03D419B0553C00518D5E /* BMKPolylineView.h */,
+				5B0D03D519B0553C00518D5E /* BMKRouteSearch.h */,
+				5B0D03D619B0553C00518D5E /* BMKRouteSearchOption.h */,
+				5B0D03D719B0553C00518D5E /* BMKRouteSearchType.h */,
+				5B0D03D819B0553C00518D5E /* BMKSearchComponent.h */,
+				5B0D03D919B0553C00518D5E /* BMKShape.h */,
+				5B0D03DA19B0553C00518D5E /* BMKShareURLSearch.h */,
+				5B0D03DB19B0553C00518D5E /* BMKShareUrlSearchOption.h */,
+				5B0D03DC19B0553C00518D5E /* BMKSuggestionSearch.h */,
+				5B0D03DD19B0553C00518D5E /* BMKSuggestionSearchOption.h */,
+				5B0D03DE19B0553C00518D5E /* BMKTypes.h */,
+				5B0D03DF19B0553C00518D5E /* BMKUserLocation.h */,
+				5B0D03E019B0553C00518D5E /* BMKUtilsComponent.h */,
+				5B0D03E119B0553C00518D5E /* BMKVersion.h */,
+			);
+			path = inc;
 			sourceTree = "<group>";
 		};
 		D3311CA519AAD342003B2682 /* ProjectModel */ = {
@@ -2395,7 +2463,8 @@
 		D3AD611019ADA105001FD483 /* BaiduMap */ = {
 			isa = PBXGroup;
 			children = (
-				D3AD622419B07BB5001FD483 /* inc */,
+				04D10C7819B07BD50097C0C6 /* BMKGradient.h */,
+				04D10C7919B07BD50097C0C6 /* BMKHeatMap.h */,
 				5B0D03E219B0554400518D5E /* mapapi.bundle */,
 				D3AD614D19ADA1A9001FD483 /* libs */,
 			);
@@ -3082,7 +3151,7 @@
 				0426C26F19922D5A00CD8822 /* GPUImageGaussianBlurFilter.m in Sources */,
 				D3AD61AC19AEF80B001FD483 /* MJPopupBackgroundView.m in Sources */,
 				0426C25619922D5A00CD8822 /* GPUImageColorInvertFilter.m in Sources */,
-				04D10C3519B045260097C0C6 /* RecommendLetterViewController.m in Sources */,
+				04D10C7719B074C70097C0C6 /* RecommendLetterViewController.m in Sources */,
 				0426C2CF19922D5A00CD8822 /* GPUImageTwoInputFilter.m in Sources */,
 				0426C2DD19922D5A00CD8822 /* GPUImagePicture.m in Sources */,
 				0426C29719922D5A00CD8822 /* GPUImageMultiplyBlendFilter.m in Sources */,

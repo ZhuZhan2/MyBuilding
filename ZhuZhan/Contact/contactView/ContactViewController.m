@@ -25,7 +25,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 @implementation ContactViewController
 @synthesize comments,showVC,transparent;
-int rowNum;
+
+static NSInteger rowNum=0;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -268,17 +269,14 @@ int rowNum;
 }
 
 -(void)ShowUserPanView:(UIButton *)button{
-    showVC = [[ShowViewController alloc] init];
-    showVC.delegate =self;
-    [showVC.view setFrame:CGRectMake(20, 70, 260, 300)];
-    [self.tableView.superview addSubview:showVC.view];
 
     showVC = [[ShowViewController alloc] init];
     showVC.delegate =self;
-
-//    showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
-//    showVC.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
-    [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade];
+    [showVC.view setFrame:CGRectMake(40, 70, 260, 330)];
+    showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
+    showVC.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
+    
+   [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade];
 
     
 }
@@ -327,9 +325,6 @@ int rowNum;
     RecommendLetterViewController *recommendLetterVC = [[RecommendLetterViewController alloc] init];
     [self.navigationController pushViewController:recommendLetterVC animated:YES];//跳转到推荐信页面
 }
-//-(void)cellSelectedToJump{
-//    
-//    NSLog(@"从pan进行跳转");
-//}
+
 
 @end
