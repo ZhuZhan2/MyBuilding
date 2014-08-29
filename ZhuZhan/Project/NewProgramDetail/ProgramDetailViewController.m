@@ -22,7 +22,6 @@
 #import "CycleScrollView.h"
 #import "ProjectStage.h"
 @interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate,CycleScrollViewDelegate>
-@property(nonatomic,strong)UIButton* backButton;
 @property(nonatomic,strong)UITableView* contentTableView;
 @property(nonatomic,strong)UITableView* selectTableView;
 
@@ -81,7 +80,6 @@
             [self.model getImages:posts[1]];
             [self loadSelf];
             self.stages=[ProjectStage JudgmentProjectDetailStage:self.model];
-            NSLog(@"%@",self.stages);
         }else{
 
         }
@@ -118,7 +116,7 @@
 -(void)initContentTableView{
     self.landInfo=[LandInfo getLandInfoWithDelegate:self part:0];
     [[[self.landInfo.firstView.subviews[0] subviews][0]subviews][0] removeFromSuperview];
-//    self.contents=[NSMutableArray arrayWithObjects:self.landInfo.firstView,self.landInfo.secondView, self.loadingView,nil];
+
     self.contents=[[NSMutableArray alloc]init];
     [self contentsAddObject:self.landInfo];
     
@@ -133,17 +131,14 @@
 }
 
 -(void)back{
-    //[self.backButton removeFromSuperview];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)initNavi{
-    self.backButton=[[UIButton alloc]initWithFrame:CGRectMake(0,5,29,28.5)];
-    [self.backButton setImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
-    [self.backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:self.backButton];//[[UIBarButtonItem alloc]initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
-    //[self.navigationController.navigationBar addSubview:self.backButton];
-    
+    UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,5,29,28.5)];
+    [button setImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.title=@"项目详情";
 }
 
@@ -492,48 +487,53 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }else{
-        BOOL first,second;
-//        if (indexPath.section!=3) {
-//            NSLog(@"%@",array[indexPath.row]);
-//        }else{
-//            NSLog(@"%@",array[9]);
-//        }
+        BOOL first,second,third;
+        int temp[4]={0,2,5,9};
         if (indexPath.section==0) {
             if (indexPath.row==0) {
                 first=self.model.auctionContacts.count?YES:NO;
                 second=self.model.auctionImages.count?YES:NO;
+                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }else{
                 first=self.model.ownerContacts.count?YES:NO;
                 second=NO;
+                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }
         }else if (indexPath.section==1){
             if (indexPath.row==0) {
                 first=self.model.explorationContacts.count?YES:NO;
                 second=self.model.explorationImages.count?YES:NO;
+                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }else if (indexPath.row==1){
                 first=self.model.designContacts.count?YES:NO;
                 second=NO;
+                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }else{
                 first=self.model.ownerContacts.count?YES:NO;
                 second=NO;
+                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }
         }else{
             if (indexPath.row==0){
                 first=self.model.constructionContacts.count?YES:NO;
                 second=self.model.constructionImages.count?YES:NO;
+                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }else if (indexPath.row==1){
                 first=self.model.pileContacts.count?YES:NO;
                 second=self.model.pileImages.count?YES:NO;
+                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }else if (indexPath.row==2){
                 first=NO;
                 second=self.model.mainBulidImages.count?YES:NO;
+                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }else{
                 first=NO;
                 second=NO;
+                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }
         }
         
-        ProgramSelectViewCell* cell=[ProgramSelectViewCell dequeueReusableCellWithTabelView:tableView identifier:@"Cell" indexPath:indexPath firstIcon:first secondIcon:second];
+        ProgramSelectViewCell* cell=[ProgramSelectViewCell dequeueReusableCellWithTabelView:tableView identifier:@"Cell" indexPath:indexPath firstIcon:first secondIcon:second thirdIcon:third];
         cell.delegate=self;
         return cell;
     }

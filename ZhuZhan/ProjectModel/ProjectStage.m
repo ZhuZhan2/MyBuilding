@@ -117,8 +117,6 @@
     if (images) {
         count++;
     }
-    //NSLog(@"%d",contacts.count);
-   // NSInteger contactsCount=contacts?contacts.count:0;
     NSInteger imagesCount=images?images.count:0;
     
     NSString* temp=[self JudgmentContentIsPartOfAll:[detailStage subarrayWithRange:NSMakeRange(0, detailStage.count-count)]];
@@ -127,7 +125,6 @@
         if (contacts.count<=2) {
             tempContect=@"part";
         }else{
-            //tempContect=[self JudgmentContentIsPartOfAll:contacts];
             for (NSArray* ary in contacts) {
                 for (NSString* str in ary) {
                     if ([str isEqualToString:@""]) {
