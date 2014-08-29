@@ -8,7 +8,8 @@
 
 #import "ViewController.h"
 #import "CycleScrollView.h"
-
+#import "AppDelegate.h"
+#import "HomePageViewController.h"
 @interface ViewController ()
 
 @end
@@ -30,16 +31,6 @@
 {
     [super viewDidLoad];
     
-    //self.title = [NSString stringWithFormat:@"第%d张", 1];
-    
-	// Do any additional setup after loading the view, typically from a nib.
-    //NSMutableArray *picArray =self.imagesArray;
-    //[[NSMutableArray alloc] init];
-    //[picArray addObject:[UIImage imageNamed:@"0.JPG"]];
-    //[picArray addObject:[UIImage imageNamed:@"1.JPG"]];
-    //[picArray addObject:[UIImage imageNamed:@"2.JPG"]];
-   // [picArray addObject:[UIImage imageNamed:@"3.JPG"]];
-    
     UIButton* button=[[UIButton alloc]initWithFrame:self.view.frame];
     button.backgroundColor=[UIColor clearColor];
     [button addTarget:self action:@selector(cycleScrollViewDelegate:didSelectImageView:) forControlEvents:UIControlEventTouchUpInside];
@@ -54,16 +45,15 @@
     self.view.backgroundColor=[UIColor blackColor];
     
     [self.view addSubview:cycle];
-    
-    
-    
     [cycle release];
     
 }
 
 #pragma mark - CycleScrollViewDelegate
 - (void)cycleScrollViewDelegate:(CycleScrollView *)cycleScrollView didSelectImageView:(int)index {
-    
+    //[self.navigationController popViewControllerAnimated:NO];
+    //[self.view removeFromSuperview];
+    //self.view.alpha=0;
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 

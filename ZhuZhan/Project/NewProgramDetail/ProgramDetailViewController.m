@@ -19,8 +19,8 @@
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
 #import "ProgramSelectViewCell.h"
-#import "ViewController.h"
-@interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate>
+#import "CycleScrollView.h"
+@interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate,CycleScrollViewDelegate>
 @property(nonatomic,strong)UIButton* backButton;
 @property(nonatomic,strong)UITableView* contentTableView;
 @property(nonatomic,strong)UITableView* selectTableView;
@@ -48,6 +48,8 @@
 @property(nonatomic,strong)NSMutableArray* bigStageStandardY;
 @property(nonatomic,strong)NSMutableArray* smallStageStandardY;
 
+@property(nonatomic,strong)UIView* scrollViewBackground;
+
 @end
 
 @implementation ProgramDetailViewController
@@ -70,6 +72,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [self.model getContacts:posts[0]];
@@ -205,6 +208,10 @@
 //**********************************************************************
 
 -(void)change{
+     NSLog(@"%f",self.contentTableView.frame.origin.y);
+    NSLog(@"height==%f",self.contentTableView.frame.size.height);
+    NSLog(@"content  %f",self.contentTableView.contentSize.height);
+
     NSLog(@"用户选择了筛选");
     self.isNeedAnimation=NO;
     //暂时移除观察者,避免加新view时有动画
@@ -555,16 +562,11 @@
     NSArray* part2=@[self.model.constructionImages,self.model.pileImages,self.model.mainBulidImages];
     NSArray* part3=@[self.model.decorationImages];
     NSArray* array=@[part0,part1,part2,part3];
-    
-     //array[indexPath.part][indexPath.section];
-//    NSLog(@"%d,%d",indexPath.part,indexPath.section);
-    
-//    NSData* data=[NSData dataWithContentsOfURL:url];
-//    UIImage* image=[UIImage imageWithData:data];
-    ViewController* vc=[[ViewController alloc]init];
+
+    NSMutableArray* imageUrls=[[NSMutableArray alloc]init];
     for (int i=0; i<[array[indexPath.part][indexPath.section] count]; i++) {
         NSURL* url=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,array[indexPath.part][indexPath.section][i]]];
-        [vc.imagesArray addObject:url];
+        [imageUrls addObject:url];
     }
     [self.view addSubview:vc.view];
     //[self presentViewController:vc animated:NO completion:nil];
@@ -658,5 +660,9 @@
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
+}
+
+-(void)dealloc{
+    NSLog(@"ProgramDetailViewControllerDealloc");
 }
 @end

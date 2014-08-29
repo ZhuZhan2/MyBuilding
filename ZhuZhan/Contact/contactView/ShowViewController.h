@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Pan.h"
+
 
 @protocol showControllerDelegate <NSObject>
 
@@ -17,10 +17,8 @@
 
 @end
 
-@interface ShowViewController : UIViewController<PanDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface ShowViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,showControllerDelegate>
 
-@property (nonatomic,strong) Pan *pan;
-@property (nonatomic,strong) UIView *transparent;
 @property (nonatomic,strong) UITableView *conFriendTableView;
 @property (nonatomic,strong) id<showControllerDelegate>  delegate;
 

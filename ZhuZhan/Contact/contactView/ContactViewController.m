@@ -15,7 +15,7 @@
 #import "PersonalDetailViewController.h"
 #import "LoginModel.h"
 #import "PublishViewController.h"
-
+#import "UIViewController+MJPopupViewController.h"
 
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
@@ -23,7 +23,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 @end
 
 @implementation ContactViewController
-@synthesize comments,panVC;
+@synthesize comments,showVC,transparent;
 
 static int rowNum =0;
 - (id)initWithStyle:(UITableViewStyle)style
@@ -291,6 +291,12 @@ static int rowNum =0;
     [panVC.view setFrame:CGRectMake(20, 70, 260, 300)];
     [self.tableView.superview addSubview:panVC.view];
 
+    showVC = [[ShowViewController alloc] init];
+    showVC.delegate =self;
+
+    showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
+    showVC.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
+    [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade];
 
     
 }
@@ -301,7 +307,7 @@ static int rowNum =0;
 {
         NSLog(@"访问个人详情");
     
-    [panVC.view removeFromSuperview];
+    [showVC dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
     [self.navigationController pushViewController:personalVC animated:NO];
 }
@@ -310,7 +316,7 @@ static int rowNum =0;
 {
 
         NSLog(@"关注好友");
-        [panVC.view removeFromSuperview];
+       [showVC dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
        NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithObjectsAndKeys:userId,@"userId",@"bfc78202-8ac9-447a-a99d-783606d25668",@"focusId", nil];
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {

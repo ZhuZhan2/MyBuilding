@@ -9,7 +9,6 @@
 #import "CycleScrollView.h"
 #import "EGOImageView.h"
 @implementation CycleScrollView
-@synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame cycleDirection:(CycleDirection)direction pictures:(NSArray *)pictureArray
 {
@@ -63,8 +62,7 @@
     NSLog(@"%d",curImages.count);
     for (int i = 0; i < 3; i++) {
         NSLog(@"%d",i);
-        
-        
+
         EGOImageView *imageView = [[EGOImageView alloc] initWithFrame:scrollFrame];
         imageView.userInteractionEnabled = YES;
         imageView.imageURL = [curImages objectAtIndex:i];
@@ -149,18 +147,12 @@
         }
     }
     
-    if ([delegate respondsToSelector:@selector(cycleScrollViewDelegate:didScrollImageView:)]) {
-        [delegate cycleScrollViewDelegate:self didScrollImageView:curPage];
+    if ([self.delegate respondsToSelector:@selector(cycleScrollViewDelegate:didScrollImageView:)]) {
+        [self.delegate cycleScrollViewDelegate:self didScrollImageView:curPage];
     }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)aScrollView {
-    
-    int x = aScrollView.contentOffset.x;
-    int y = aScrollView.contentOffset.y;
-    
-    //NSLog(@"--end  x=%d  y=%d", x, y);
-    
     if (scrollDirection == CycleDirectionLandscape) {
             [scrollView setContentOffset:CGPointMake(scrollFrame.size.width, 0) animated:YES];
     }
@@ -176,13 +168,15 @@
     }
 }
 
-
 - (void)dealloc
 {
     NSLog(@"cycleScrollViewDealloc");
+    
+
+    curImageView=nil;
     [imagesArray release];
     [curImages release];
-    
+    [scrollView release];
     [super dealloc];
 }
 
