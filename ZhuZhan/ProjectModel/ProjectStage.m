@@ -31,9 +31,10 @@
 }
 
 +(NSString *)ProjectBoolStage:(NSString *)str{
+    NSLog(@"%@",str);
     NSString *string = [[NSString alloc] init];
     if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@" "]){
-        string = @"No";
+        string = @"";
     }else{
         if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"0"]){
             string = @"No";
@@ -89,56 +90,102 @@
     return stage;
 }
 
++(NSString*)JudgmentContentIsPartOfAll:(NSArray*)contents{
+    BOOL part=NO;
+    BOOL none=NO;
+    for (NSString* str in contents) {
+        if (!part&&![str isEqualToString:@""]) {
+            part=YES;
+            if (none) {
+                return @"part";
+            }
+        }else if(!none&&[str isEqualToString:@""]){
+            none=YES;
+            if (part) {
+                return @"part";
+            }
+        }
+    }
+    return part?@"all":@"none";
+}
+
++(NSString*)getPart:(NSArray*)detailStage contacts:(NSMutableArray*)contacts images:(NSMutableArray*)images{
+    NSInteger count=0;
+    if (contacts) {
+        count++;
+    }
+    if (images) {
+        count++;
+    }
+    NSLog(@"%d",contacts.count);
+    NSInteger contactsCount=contacts?contacts.count:0;
+    NSInteger imagesCount=images?images.count:0;
+    NSString* temp=[self JudgmentContentIsPartOfAll:[detailStage subarrayWithRange:NSMakeRange(0, detailStage.count-count)]];
+    if ([temp isEqualToString:@"all"]&&contactsCount&&imagesCount) {
+        return @"all";
+    }else if ([temp isEqualToString:@"none"]&&!contactsCount&&!imagesCount){
+        return @"part";
+    }else{
+        return @"none";
+    }
+}
+
+
 +(NSArray*)JudgmentProjectDetailStage:(projectModel*)model{
     
+    NSMutableArray* array=[[NSMutableArray alloc]init];
+    
     //土地规划/拍卖
-    NSArray* auctionStage=@[model.a_landName,model.a_province,model.a_city,model.a_district,model.a_landAddress,model.a_area,model.a_plotRatio,model.a_usage,model.auctionContacts];
-    //@[self.model.a_landName,[NSString stringWithFormat:@"%@ %@ %@",self.model.a_province,self.model.a_city,self.model.a_district],self.model.a_landAddress];;
-//    @[[self.model.a_area stringByAppendingString:@"㎡"],[self.model.a_plotRatio stringByAppendingString:@"%"],self.model.a_usage];
-//    self.model.auctionContacts
+    NSArray* auctionStage=@[model.a_landName,model.a_province,model.a_city,model.a_district,model.a_landAddress,model.a_area,model.a_plotRatio,model.a_usage,model.auctionContacts,model.auctionImages];
+    //model.a_landName,model.a_province,model.a_city,model.a_district,model.a_landAddress,model.a_area ,model.a_plotRatio,model.a_usage,model.auctionContacts
+    [array addObject:[self getPart:auctionStage contacts:model.auctionContacts images:model.auctionImages] ];
     
     //项目立项
-    NSArray* approvalStage=@[model.a_projectName,model.a_city,model.a_district,model.a_landAddress,model.a_description,model.a_exceptStartTime,model.a_storeyHeight,model.a_foreignInvestment,model.a_exceptFinishTime,model.a_investment,model.a_storeyArea,model.ownerContacts];
-//    @[self.model.a_projectName,[NSString stringWithFormat:@"%@ %@ %@",self.model.a_city,self.model.a_district,self.model.a_landAddress],self.model.a_description];
-//    @[self.model.a_exceptStartTime,[self.model.a_storeyHeight stringByAppendingString:@"M"],self.model.a_foreignInvestment,self.model.a_exceptFinishTime,self.model.a_investment,[self.model.a_storeyArea stringByAppendingString:@"㎡"]];
-//    self.model.ownerContacts
-//    self.model.a_ownerType componentsSeparatedByString:@","
+    NSArray* approvalStage=@[model.a_projectName,model.a_city,model.a_district,model.a_landAddress,model.a_description,model.a_exceptStartTime,model.a_storeyHeight,model.a_foreignInvestment,model.a_exceptFinishTime,model.a_investment,model.a_storeyArea,model.a_ownerType,model.ownerContacts];
+    //model.a_projectName,model.a_city,model.a_district,model.a_landAddress,model.a_description,model.a_exceptStartTime,model.a_storeyHeight,model.a_foreignInvestment,model.a_exceptFinishTime,model.a_investment,model.a_storeyArea,model.a_ownerType,model.ownerContacts
+    [array addObject:[self getPart:approvalStage contacts:model.ownerContacts images:nil]];
     
     //地勘阶段
-    NSArray* explorationStage=@[model.explorationContacts];
-    //self.model.explorationContacts
+    NSArray* explorationStage=@[model.explorationContacts,model.explorationImages];
+    //model.explorationContacts,model.explorationImages
+    [array addObject:[self getPart:explorationStage contacts:model.explorationContacts images:model.explorationImages]];
     
     //设计阶段
     NSArray* designStage=@[model.designContacts];
-    //self.model.designContacts
+    //model.designContacts
+    [array addObject:[self getPart:designStage contacts:model.designContacts images:nil]];
     
     //出图阶段
-    NSArray* pictureStage=@[model.ownerContacts,model.a_mainDesignStage,model.a_exceptStartTime,model.a_exceptFinishTime,model.a_elevator,model.a_airCondition,model.a_heating,model.a_externalWallMeterial,model.a_stealStructure];
-    //self.model.ownerContacts
-//    @[self.model.a_mainDesignStage],@[self.model.a_exceptStartTime,self.model.a_exceptFinishTime]
-//    self.model.a_elevator,self.model.a_airCondition,self.model.a_heating,self.model.a_externalWallMeterial,self.model.a_stealStructure
-    
+    NSArray* pictureStage=@[model.a_mainDesignStage,model.a_exceptStartTime,model.a_exceptFinishTime,model.a_elevator,model.a_airCondition,model.a_heating,model.a_externalWallMeterial,model.a_stealStructure,model.ownerContacts];
+    //model.ownerContacts,model.a_mainDesignStage,model.a_exceptStartTime,model.a_exceptFinishTime,model.a_elevator,model.a_airCondition,model.a_heating,model.a_externalWallMeterial,model.a_stealStructure
+    [array addObject:[self getPart:pictureStage contacts:model.ownerContacts images:nil]];
+   
     //地平阶段
-    NSArray* constructionStage=@[model.constructionContacts,model.a_actureStartTime];
-//    self.model.constructionContacts
-//    self.model.a_actureStartTime
-    
+    NSArray* constructionStage=@[model.a_actureStartTime,model.constructionContacts,model.constructionImages];
+//    model.constructionContacts,model.a_actureStartTime,model.constructionImages
+    [array addObject:[self getPart:constructionStage contacts:model.constructionContacts images:model.constructionImages]];
+   
     //桩基基坑
-    NSArray* pileStage=@[model.pileContacts];
-    //self.model.pileContacts
+    NSArray* pileStage=@[model.pileContacts,model.pileImages];
+    //model.pileContacts,model.pileImages
+    [array addObject:[self getPart:pileStage contacts:model.pileContacts images:model.pileImages]];
     
     //主体施工
-    NSArray* mainBulidStage;
+    NSArray* mainBulidStage=@[model.mainBulidImages];
+    //model.mainBulidImages
+    [array addObject:[self getPart:mainBulidStage contacts:nil images:model.mainBulidImages]];
     
     //消防/景观绿化
     NSArray* fireGreenStage=@[model.a_fireControl,model.a_green];
-    //@[self.model.a_fireControl,self.model.a_green]
+    //model.a_fireControl,model.a_green
+    [array addObject:[self getPart:fireGreenStage contacts:nil images:nil]];
     
     //装修阶段
-    NSArray* decorationStage=@[model.a_electorWeakInstallation,model.a_decorationSituation,model.a_decorationProcess];
-    //@[self.model.a_electorWeakInstallation,self.model.a_decorationSituation,self.model.a_decorationProcess]
+    NSArray* decorationStage=@[model.a_electorWeakInstallation,model.a_decorationSituation,model.a_decorationProcess,model.decorationImages];
+    //model.a_electorWeakInstallation,model.a_decorationSituation,model.a_decorationProcess,model.decorationImages
+    [array addObject:[self getPart:decorationStage contacts:nil images:model.decorationImages]];
     
-    return nil;
+    return array;
 }
 
 @end

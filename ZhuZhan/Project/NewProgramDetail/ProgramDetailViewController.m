@@ -20,6 +20,7 @@
 #import "HomePageViewController.h"
 #import "ProgramSelectViewCell.h"
 #import "CycleScrollView.h"
+#import "ProjectStage.h"
 @interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate,CycleScrollViewDelegate>
 @property(nonatomic,strong)UIButton* backButton;
 @property(nonatomic,strong)UITableView* contentTableView;
@@ -493,6 +494,12 @@
         return cell;
     }else{
         BOOL first,second;
+        NSArray* array=[ProjectStage JudgmentProjectDetailStage:self.model];
+        if (indexPath.section!=3) {
+            NSLog(@"%@",array[indexPath.row]);
+        }else{
+            NSLog(@"%@",array[9]);
+        }
         if (indexPath.section==0) {
             if (indexPath.row==0) {
                 first=self.model.auctionContacts.count?YES:NO;
@@ -635,27 +642,29 @@
 
 //联系人view
 -(NSArray*)getThreeContactsViewThreeTypesFiveStrsWithIndexPath:(MyIndexPath*)indexPath{
+    NSArray* array;
     if (indexPath.part==0) {
-        NSArray* array=@[self.model.auctionContacts,self.model.ownerContacts];
-        return [self loadContacts:array[indexPath.section]];
+        array=@[self.model.auctionContacts,self.model.ownerContacts];
+        //return [self loadContacts:array[indexPath.section]];
     }else if (indexPath.part==1){
-        NSArray* array=@[self.model.explorationContacts,self.model.designContacts,self.model.ownerContacts];
-        return [self loadContacts:array[indexPath.section]];
+        array=@[self.model.explorationContacts,self.model.designContacts,self.model.ownerContacts];
+        //return [self loadContacts:array[indexPath.section]];
     }else{
-        NSArray* array=@[self.model.constructionContacts,self.model.pileContacts];
-        return [self loadContacts:array[indexPath.section]];
+        array=@[self.model.constructionContacts,self.model.pileContacts];
+        //return [self loadContacts:array[indexPath.section]];
     }
+    return array[indexPath.section];
 }
 
-//处理model中的联系人,如果不满3个则补默认格式的联系人过去显示
--(NSArray*)loadContacts:(NSMutableArray*)contacts{
-    NSMutableArray* array=[NSMutableArray arrayWithArray:contacts];
-    for (int i=0; i<3-contacts.count; i++) {
-        NSArray* tempAry=@[@"联系人",@"职位",@"单位名称",@"单位地址",@""];
-        [array addObject:tempAry];
-    }
-    return array;
-}
+////处理model中的联系人,如果不满3个则补默认格式的联系人过去显示
+//-(NSArray*)loadContacts:(NSMutableArray*)contacts{
+//    NSMutableArray* array=[NSMutableArray arrayWithArray:contacts];
+//    for (int i=0; i<3-contacts.count; i++) {
+//        NSArray* tempAry=@[@"联系人",@"职位",@"单位名称",@"单位地址",@""];
+//        [array addObject:tempAry];
+//    }
+//    return array;
+//}
 
 //program大块 二行
 -(NSArray*)getTwoLinesTitleViewFirstStrsAndSecondStrsWithIndexPath:(MyIndexPath*)indexPath{

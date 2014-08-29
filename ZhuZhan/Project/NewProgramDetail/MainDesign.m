@@ -41,7 +41,7 @@
     }
 
     
-    NSArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
+    NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     UIView* view1=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];
     
     NSArray* tempAry=@[view0,view1];
@@ -65,7 +65,7 @@
     NSArray* secondStrs=[self.delegate getTwoLinesTitleViewFirstStrsAndSecondStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
     UIView* view0=[MyFactory getTwoLinesTitleViewWithTitle:@"设计阶段" titleImage:[UIImage imageNamed:@"XiangMuXiangQing_1/pen_02@2x.png"] firstStrs:@[@"主体设计阶段"] secondStrs:secondStrs];
     
-    NSArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
+    NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
     UIView* view1=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];
     
     
@@ -89,7 +89,7 @@
     NSArray* secondStrs=[self.delegate getTwoLinesTitleViewFirstStrsAndSecondStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:2]];
     UIView* view0=[MyFactory getTwoLinesTitleViewWithTitle:@"出图阶段" titleImage:[UIImage imageNamed:@"XiangMuXiangQing_1/pen_02@2x.png"] firstStrs:@[@"预计施工时间",@"预计竣工时间"] secondStrs:secondStrs];
     
-    NSArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:2]];
+    NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:2]];
     UIView* view1=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];
 
     NSArray* boolStrs=[self.delegate getDeviceAndBoolWithDevicesAndBoolStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:2]];

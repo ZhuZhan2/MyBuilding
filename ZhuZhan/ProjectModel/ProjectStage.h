@@ -20,4 +20,7 @@
 
 //判断项目阶段
 +(NSString *)JudgmentProjectStage:(projectModel *)model;
+
+//判断项目详细阶段,给展示页用
++(NSArray*)JudgmentProjectDetailStage:(projectModel*)model;
 @end
