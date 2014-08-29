@@ -15,7 +15,7 @@
     self = [super initWithFrame:frame];
     if(self)
     {
-        NSLog(@"====>%@",delegate);
+        NSLog(@"====>%@",self.delegate);
         scrollFrame = frame;
         scrollDirection = direction;
         totalPage = pictureArray.count;
@@ -52,10 +52,14 @@
 }
 
 - (void)refreshScrollView {
-//    NSArray *subViews = [scrollView subviews];
-//    if([subViews count] != 0) {
-//        [subViews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-//    }
+    
+    if(scrollView.subviews.count != 0) {
+        //[scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        for (UIView* view in scrollView.subviews) {
+            [view removeFromSuperview];
+            view=nil;
+        }
+    }
     
     [self getDisplayImagesWithCurpage:curPage];
     
@@ -162,9 +166,9 @@
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)tap {
-    NSLog(@"====>%@",delegate);
-    if ([delegate respondsToSelector:@selector(cycleScrollViewDelegate:didSelectImageView:)]) {
-        [delegate cycleScrollViewDelegate:self didSelectImageView:curPage];
+    NSLog(@"====>%@",self.delegate);
+    if ([self.delegate respondsToSelector:@selector(cycleScrollViewDelegate:didSelectImageView:)]) {
+        [self.delegate cycleScrollViewDelegate:self didSelectImageView:curPage];
     }
 }
 

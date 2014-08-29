@@ -568,8 +568,35 @@
         NSURL* url=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,array[indexPath.part][indexPath.section][i]]];
         [imageUrls addObject:url];
     }
-    [self.view addSubview:vc.view];
-    //[self presentViewController:vc animated:NO completion:nil];
+    [self addScrollViewWithUrls:imageUrls];
+}
+
+-(void)addScrollViewWithUrls:(NSMutableArray*)urls{
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+
+    self.scrollViewBackground=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 568)];
+    
+    UIButton* button=[[UIButton alloc]initWithFrame:self.scrollViewBackground.frame];
+    [button addTarget:self action:@selector(backToProgram) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollViewBackground addSubview:button];
+    
+    self.scrollViewBackground.backgroundColor=[UIColor blackColor];
+    CycleScrollView* scrollView =[[CycleScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 320) cycleDirection:CycleDirectionLandscape pictures:urls];
+    scrollView.delegate=self;
+    scrollView.center=CGPointMake(160, 250);
+    [self.scrollViewBackground addSubview:scrollView];
+    
+    AppDelegate* app=[AppDelegate instance];
+    [app.window.rootViewController.view addSubview:self.scrollViewBackground];
+}
+
+-(void)cycleScrollViewDelegate:(CycleScrollView *)cycleScrollView didSelectImageView:(int)index{
+    [self backToProgram];
+}
+
+-(void)backToProgram{
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [self.scrollViewBackground removeFromSuperview];
 }
 
 //**********************************************************************
