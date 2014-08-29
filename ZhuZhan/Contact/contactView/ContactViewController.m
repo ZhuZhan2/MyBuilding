@@ -25,7 +25,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 @implementation ContactViewController
 @synthesize comments,showVC,transparent;
-
+int rowNum;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -101,7 +101,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     /*for(int i=0;i<30;i++){
         [_datasource addObject:[NSDate date]];
-    }
+    }*/
 }
 
 - (void)_refreshing {
@@ -194,10 +194,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [_datasource count];
-}
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return [_datasource count];
+//}
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -211,6 +211,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
     return 50;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     rowNum =(int)[comments count]+3;
