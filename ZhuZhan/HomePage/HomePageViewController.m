@@ -38,37 +38,33 @@
     [contentView addSubview:nav.view];
     [self.view addSubview:contentView];
     
-    toolView = [[UIView alloc] initWithFrame:CGRectMake(0, 513, 320, 55)];
-   [toolView setBackgroundColor:RGBCOLOR(68, 101, 175)];
+    toolView = [[UIView alloc] initWithFrame:CGRectMake(0, 519, 320, 49)];
+   [toolView setBackgroundColor:RGBCOLOR(229, 229, 229)];
     
     contactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [contactBtn setFrame:CGRectMake(20, 10, 40, 35)];
-    [contactBtn setBackgroundColor:[UIColor redColor]];
-    [contactBtn setTitle:@"人脉" forState:UIControlStateNormal];
+    [contactBtn setFrame:CGRectMake(25, 10, 25, 36)];
+    [contactBtn setBackgroundImage:[UIImage imageNamed:@"项目－项目专题_11a-20"] forState:UIControlStateNormal];
     contactBtn.tag = 0;
     [contactBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:contactBtn];
     
     projectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [projectBtn setFrame:CGRectMake(80, 10, 40, 35)];
-    [projectBtn setBackgroundColor:[UIColor redColor]];
-    [projectBtn setTitle:@"项目" forState:UIControlStateNormal];
+    [projectBtn setFrame:CGRectMake(82, 10, 25, 36)];
+    [projectBtn setBackgroundImage:[UIImage imageNamed:@"项目－项目专题_14a"] forState:UIControlStateNormal];
     projectBtn.tag = 1;
     [projectBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:projectBtn];
     
     companyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [companyBtn setFrame:CGRectMake(190, 10, 40, 35)];
-    [companyBtn setBackgroundColor:[UIColor redColor]];
-    [companyBtn setTitle:@"公司" forState:UIControlStateNormal];
+    [companyBtn setFrame:CGRectMake(210, 10, 25, 36)];
+    [companyBtn setBackgroundImage:[UIImage imageNamed:@"项目－项目专题_17a"] forState:UIControlStateNormal];
     companyBtn.tag = 3;
     [companyBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:companyBtn];
     
     tradeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [tradeBtn setFrame:CGRectMake(245, 10, 40, 35)];
-    [tradeBtn setBackgroundColor:[UIColor redColor]];
-    [tradeBtn setTitle:@"交易" forState:UIControlStateNormal];
+    [tradeBtn setFrame:CGRectMake(270, 10, 25, 36)];
+    [tradeBtn setBackgroundImage:[UIImage imageNamed:@"项目－项目专题_23a"] forState:UIControlStateNormal];
     tradeBtn.tag = 4;
     [tradeBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:tradeBtn];
@@ -83,27 +79,27 @@
     QuadCurveMenuItem *cameraMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
                                                                 highlightedImage:storyMenuItemImagePressed
                                                                     ContentImage:[UIImage imageNamed:@"icon-star.png"]
-                                                         highlightedContentImage:nil];
+                                                         highlightedContentImage:nil flag:0];
     // People MenuItem.
     QuadCurveMenuItem *peopleMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
                                                                 highlightedImage:storyMenuItemImagePressed
                                                                     ContentImage:[UIImage imageNamed:@"icon-star.png"]
-                                                         highlightedContentImage:nil];
+                                                         highlightedContentImage:nil flag:0];
     // Place MenuItem.
     QuadCurveMenuItem *placeMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
                                                                highlightedImage:storyMenuItemImagePressed
                                                                    ContentImage:[UIImage imageNamed:@"icon-star.png"]
-                                                        highlightedContentImage:nil];
+                                                        highlightedContentImage:nil flag:0];
     // Music MenuItem.
     QuadCurveMenuItem *musicMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
                                                                highlightedImage:storyMenuItemImagePressed
                                                                    ContentImage:[UIImage imageNamed:@"icon-star.png"]
-                                                        highlightedContentImage:nil];
+                                                        highlightedContentImage:nil flag:0];
     // Thought MenuItem.
     QuadCurveMenuItem *thoughtMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
                                                                  highlightedImage:storyMenuItemImagePressed
                                                                      ContentImage:[UIImage imageNamed:@"icon-star.png"]
-                                                          highlightedContentImage:nil];
+                                                          highlightedContentImage:nil flag:0];
     
     NSArray *menus = [NSArray arrayWithObjects:cameraMenuItem, peopleMenuItem, placeMenuItem, musicMenuItem, thoughtMenuItem, nil];
     
