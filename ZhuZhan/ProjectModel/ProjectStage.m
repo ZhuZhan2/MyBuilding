@@ -117,19 +117,43 @@
     if (images) {
         count++;
     }
-    NSLog(@"%d",contacts.count);
-    NSInteger contactsCount=contacts?contacts.count:0;
+    //NSLog(@"%d",contacts.count);
+   // NSInteger contactsCount=contacts?contacts.count:0;
     NSInteger imagesCount=images?images.count:0;
+    
     NSString* temp=[self JudgmentContentIsPartOfAll:[detailStage subarrayWithRange:NSMakeRange(0, detailStage.count-count)]];
-    if ([temp isEqualToString:@"all"]&&contactsCount&&imagesCount) {
-        return @"all";
-    }else if ([temp isEqualToString:@"none"]&&!contactsCount&&!imagesCount){
-        return @"part";
+    NSString* tempContect=@"none";
+    if (contacts.count) {
+        if (contacts.count<=2) {
+            tempContect=@"part";
+        }else{
+            //tempContect=[self JudgmentContentIsPartOfAll:contacts];
+            for (NSArray* ary in contacts) {
+                for (NSString* str in ary) {
+                    if ([str isEqualToString:@""]) {
+                        tempContect=@"part";
+                        break;
+                    }
+                }
+                if ([tempContect isEqualToString:@"part"]) {
+                    break;
+                }else{
+                    tempContect=@"all";
+                }
+            }
+        }
     }else{
+        tempContect=@"none";
+    }
+    
+    if ([temp isEqualToString:@"all"]&&(contacts?[tempContect isEqualToString:@"all"]:1)&&(images?imagesCount:1)) {
+        return @"all";
+    }else if ([temp isEqualToString:@"none"]&&(contacts?[tempContect isEqualToString:@"none"]:1)&&(images?(!imagesCount):1)){
         return @"none";
+    }else{
+        return @"part";
     }
 }
-
 
 +(NSArray*)JudgmentProjectDetailStage:(projectModel*)model{
     
@@ -151,12 +175,12 @@
     [array addObject:[self getPart:explorationStage contacts:model.explorationContacts images:model.explorationImages]];
     
     //设计阶段
-    NSArray* designStage=@[model.designContacts];
+    NSArray* designStage=@[model.a_mainDesignStage,model.designContacts];
     //model.designContacts
     [array addObject:[self getPart:designStage contacts:model.designContacts images:nil]];
     
     //出图阶段
-    NSArray* pictureStage=@[model.a_mainDesignStage,model.a_exceptStartTime,model.a_exceptFinishTime,model.a_elevator,model.a_airCondition,model.a_heating,model.a_externalWallMeterial,model.a_stealStructure,model.ownerContacts];
+    NSArray* pictureStage=@[model.a_exceptStartTime,model.a_exceptFinishTime,model.a_elevator,model.a_airCondition,model.a_heating,model.a_externalWallMeterial,model.a_stealStructure,model.ownerContacts];
     //model.ownerContacts,model.a_mainDesignStage,model.a_exceptStartTime,model.a_exceptFinishTime,model.a_elevator,model.a_airCondition,model.a_heating,model.a_externalWallMeterial,model.a_stealStructure
     [array addObject:[self getPart:pictureStage contacts:model.ownerContacts images:nil]];
    

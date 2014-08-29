@@ -51,6 +51,7 @@
 
 @property(nonatomic,strong)UIView* scrollViewBackground;
 
+@property(nonatomic,strong)NSArray* stages;//判断阶段的数组
 @end
 
 @implementation ProgramDetailViewController
@@ -79,6 +80,8 @@
             [self.model getContacts:posts[0]];
             [self.model getImages:posts[1]];
             [self loadSelf];
+            self.stages=[ProjectStage JudgmentProjectDetailStage:self.model];
+            NSLog(@"%@",self.stages);
         }else{
 
         }
@@ -209,10 +212,6 @@
 //**********************************************************************
 
 -(void)change{
-     NSLog(@"%f",self.contentTableView.frame.origin.y);
-    NSLog(@"height==%f",self.contentTableView.frame.size.height);
-    NSLog(@"content  %f",self.contentTableView.contentSize.height);
-
     NSLog(@"用户选择了筛选");
     self.isNeedAnimation=NO;
     //暂时移除观察者,避免加新view时有动画
@@ -494,12 +493,11 @@
         return cell;
     }else{
         BOOL first,second;
-        NSArray* array=[ProjectStage JudgmentProjectDetailStage:self.model];
-        if (indexPath.section!=3) {
-            NSLog(@"%@",array[indexPath.row]);
-        }else{
-            NSLog(@"%@",array[9]);
-        }
+//        if (indexPath.section!=3) {
+//            NSLog(@"%@",array[indexPath.row]);
+//        }else{
+//            NSLog(@"%@",array[9]);
+//        }
         if (indexPath.section==0) {
             if (indexPath.row==0) {
                 first=self.model.auctionContacts.count?YES:NO;
