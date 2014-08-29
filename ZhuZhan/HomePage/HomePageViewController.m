@@ -30,7 +30,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
+    contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 519)];
     contactview = [[ContactViewController alloc] init];
     nav = [[UINavigationController alloc] initWithRootViewController:contactview];
     [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
@@ -227,7 +227,7 @@
             NSLog(@"人脉");
             contactview = [[ContactViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:contactview];
-            [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
+            [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
             contactview = nil;
@@ -236,7 +236,7 @@
             NSLog(@"项目");
             projectview = [[ProjectTableViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:projectview];
-            [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
+            [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
             projectview = nil;
@@ -248,7 +248,7 @@
             NSLog(@"公司");
             companyview = [[CompanyViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:companyview];
-            [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
+            [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
             companyview = nil;
@@ -257,7 +257,7 @@
             NSLog(@"交易");
             tradeview = [[TradeViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:tradeview];
-            [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
+            [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
             tradeview = nil;
