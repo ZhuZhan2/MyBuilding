@@ -72,7 +72,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
+    self.view.backgroundColor=[UIColor whiteColor];
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [self.model getContacts:posts[0]];
