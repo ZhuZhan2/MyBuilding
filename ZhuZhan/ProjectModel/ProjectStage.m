@@ -119,24 +119,24 @@
 //    self.model.a_elevator,self.model.a_airCondition,self.model.a_heating,self.model.a_externalWallMeterial,self.model.a_stealStructure
     
     //地平阶段
-//    NSArray* constructionStage;
+    NSArray* constructionStage=@[model.constructionContacts,model.a_actureStartTime];
 //    self.model.constructionContacts
 //    self.model.a_actureStartTime
-//    
-//    //桩基基坑
-//    NSArray* pileStage;
-//    self.model.pileContacts
-//    
-//    //主体施工
-//    NSArray* mainBulidStage;
-//    
-//    //消防/景观绿化
-//    NSArray* fireGreenStage;
-//    @[self.model.a_fireControl,self.model.a_green]
-//    
-//    //装修阶段
-//    NSArray* decorationStage;
-//    @[self.model.a_electorWeakInstallation,self.model.a_decorationSituation,self.model.a_decorationProcess]
+    
+    //桩基基坑
+    NSArray* pileStage=@[model.pileContacts];
+    //self.model.pileContacts
+    
+    //主体施工
+    NSArray* mainBulidStage;
+    
+    //消防/景观绿化
+    NSArray* fireGreenStage=@[model.a_fireControl,model.a_green];
+    //@[self.model.a_fireControl,self.model.a_green]
+    
+    //装修阶段
+    NSArray* decorationStage=@[model.a_electorWeakInstallation,model.a_decorationSituation,model.a_decorationProcess];
+    //@[self.model.a_electorWeakInstallation,self.model.a_decorationSituation,self.model.a_decorationProcess]
     
     return nil;
 }

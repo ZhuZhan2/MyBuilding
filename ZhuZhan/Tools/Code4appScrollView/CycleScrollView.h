@@ -30,7 +30,7 @@ typedef enum {
     
 }
 
-@property (nonatomic, assign) id<CycleScrollViewDelegate> delegate;
+@property (nonatomic, weak) id<CycleScrollViewDelegate> delegate;
 
 - (int)validPageValue:(NSInteger)value;
 - (id)initWithFrame:(CGRect)frame cycleDirection:(CycleDirection)direction pictures:(NSArray *)pictureArray;

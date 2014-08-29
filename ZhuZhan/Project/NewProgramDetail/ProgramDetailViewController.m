@@ -563,6 +563,7 @@
     NSArray* part3=@[self.model.decorationImages];
     NSArray* array=@[part0,part1,part2,part3];
 
+    NSLog(@"%@",array);
     NSMutableArray* imageUrls=[[NSMutableArray alloc]init];
     for (int i=0; i<[array[indexPath.part][indexPath.section] count]; i++) {
         NSURL* url=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,array[indexPath.part][indexPath.section][i]]];
@@ -597,6 +598,7 @@
 -(void)backToProgram{
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [self.scrollViewBackground removeFromSuperview];
+    self.scrollViewBackground=nil;
 }
 
 //**********************************************************************

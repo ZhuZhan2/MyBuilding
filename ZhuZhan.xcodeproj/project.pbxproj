@@ -366,8 +366,7 @@
 		D3AD60E119AC7BD1001FD483 /* ProgramDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60D519AC7BD1001FD483 /* ProgramDetailViewController.m */; };
 		D3AD60E219AC7BD1001FD483 /* ProgramSelectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60D719AC7BD1001FD483 /* ProgramSelectViewCell.m */; };
 		D3AD60E319AC7BD1001FD483 /* ScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60D919AC7BD1001FD483 /* ScrollViewController.m */; };
-		D3AD60E919AC7C0B001FD483 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60E619AC7C0B001FD483 /* CycleScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		D3AD60EA19AC7C0B001FD483 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60E819AC7C0B001FD483 /* ViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D3AD60E919AC7C0B001FD483 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60E619AC7C0B001FD483 /* CycleScrollView.m */; };
 		D3AD60ED19AC7CA2001FD483 /* ProjectImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60EC19AC7CA2001FD483 /* ProjectImageModel.m */; };
 		D3AD60F919AC7CC5001FD483 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F119AC7CC5001FD483 /* EGOCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D3AD60FA19AC7CC5001FD483 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD60F419AC7CC5001FD483 /* EGOImageLoadConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1074,8 +1073,6 @@
 		D3AD60DA19AC7BD1001FD483 /* ShowPageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPageDelegate.h; sourceTree = "<group>"; };
 		D3AD60E519AC7C0B001FD483 /* CycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleScrollView.h; sourceTree = "<group>"; };
 		D3AD60E619AC7C0B001FD483 /* CycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleScrollView.m; sourceTree = "<group>"; };
-		D3AD60E719AC7C0B001FD483 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		D3AD60E819AC7C0B001FD483 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D3AD60EB19AC7CA2001FD483 /* ProjectImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectImageModel.h; sourceTree = "<group>"; };
 		D3AD60EC19AC7CA2001FD483 /* ProjectImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectImageModel.m; sourceTree = "<group>"; };
 		D3AD60F019AC7CC5001FD483 /* EGOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOCache.h; sourceTree = "<group>"; };
@@ -2279,8 +2276,6 @@
 			children = (
 				D3AD60E519AC7C0B001FD483 /* CycleScrollView.h */,
 				D3AD60E619AC7C0B001FD483 /* CycleScrollView.m */,
-				D3AD60E719AC7C0B001FD483 /* ViewController.h */,
-				D3AD60E819AC7C0B001FD483 /* ViewController.m */,
 			);
 			path = Code4appScrollView;
 			sourceTree = "<group>";
@@ -2890,7 +2885,6 @@
 				D3AD616B19ADB9F7001FD483 /* RecordModel.m in Sources */,
 				D3AD610F19AD7B0E001FD483 /* TopicsDetailTableViewCell.m in Sources */,
 				0426C27919922D5A00CD8822 /* GPUImageHighPassFilter.m in Sources */,
-				D3AD60EA19AC7C0B001FD483 /* ViewController.m in Sources */,
 				0426C2E919922D5A00CD8822 /* FaceppPerson.m in Sources */,
 				0426C26119922D5A00CD8822 /* GPUimageDirectionalSobelEdgeDetectionFilter.m in Sources */,
 				D3AD616019ADA4CA001FD483 /* RootViewController.mm in Sources */,
