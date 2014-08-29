@@ -209,6 +209,7 @@ static NSInteger rowNum=0;
     }
     return 50;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     rowNum =[comments count]+3;

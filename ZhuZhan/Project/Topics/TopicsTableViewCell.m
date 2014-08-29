@@ -35,46 +35,42 @@
 }
 
 -(void)addContent:(TopicsModel *)model{
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(5.5, 5, 309, 105)];
-    UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 309, 105)];
-    [bgImage setImage:[UIImage imageNamed:@"全部项目_10"]];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(2, 5, 316, 111)];
+    UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 316, 111)];
+    [bgImage setImage:[UIImage imageNamed:@"项目－项目专题_02a"]];
     [bgView addSubview:bgImage];
     [self.contentView addSubview:bgView];
     
     headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"首页_16"]];
-    [headImageView setFrame:CGRectMake(0, 0, 132, 105)];
+    [headImageView setFrame:CGRectMake(3, 2, 132, 106)];
     headImageView.showActivityIndicator = YES;
     NSLog(@"%@",model.a_image);
     headImageView.imageURL = [NSURL URLWithString:model.a_image];
     [bgView addSubview:headImageView];
     
-    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(142, 8, 157, 30)];
+    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(147, 8, 157, 30)];
     titleLabel.text = model.a_title;
     titleLabel.font = [UIFont systemFontOfSize:15];
     titleLabel.textColor = [UIColor blueColor];
     [bgView addSubview:titleLabel];
     
-    contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(142, 28, 157, 50)];
+    contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(147, 28, 157, 50)];
     contentLabel.numberOfLines = 2;
     contentLabel.text = model.a_content;
     contentLabel.font = [UIFont systemFontOfSize:12];
     [bgView addSubview:contentLabel];
     
-    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(142, 75, 157, 1)];
-    [lineImage setBackgroundColor:[UIColor grayColor]];
-    [bgView addSubview:lineImage];
-    
-    UIImageView *countImage = [[UIImageView alloc] initWithFrame:CGRectMake(142, 80, 20, 20)];
-    [countImage setBackgroundColor:[UIColor greenColor]];
+    UIImageView *countImage = [[UIImageView alloc] initWithFrame:CGRectMake(147, 88, 17, 12)];
+    [countImage setImage:[UIImage imageNamed:@"项目－项目专题_03a"]];
     [bgView addSubview:countImage];
     
-    projectCount = [[UILabel alloc] initWithFrame:CGRectMake(167, 80, 100, 20)];
+    projectCount = [[UILabel alloc] initWithFrame:CGRectMake(170, 83, 100, 20)];
     projectCount.text = model.a_projectCount;
     projectCount.font = [UIFont systemFontOfSize:14];
     projectCount.textColor = [UIColor redColor];
     [bgView addSubview:projectCount];
     
-    dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(225, 80, 100, 20)];
+    dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(225, 83, 100, 20)];
     dateLabel.text = model.a_publishTime;
     dateLabel.font = [UIFont systemFontOfSize:14];
     dateLabel.textColor = [UIColor grayColor];

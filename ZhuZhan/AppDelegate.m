@@ -55,18 +55,22 @@
             [self.window makeKeyAndVisible];
         }else{
             NSLog(@"已经不是第一次启动了");
+            HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+            self.window.rootViewController = homeVC;
+            [self.window makeKeyAndVisible];
+            [self.window makeKeyAndVisible];
             NSLog(@"==>%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"deviceToken"]);
-            if (![[NSUserDefaults standardUserDefaults]objectForKey:@"deviceToken"]) {
-                LoginViewController *loginview = [[LoginViewController alloc] init];
-                UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
-                [self.window setRootViewController:naVC];
-                self.window.backgroundColor = [UIColor whiteColor];
-                [self.window makeKeyAndVisible];
-            }else{
-                HomePageViewController *homeVC = [[HomePageViewController alloc] init];
-                self.window.rootViewController = homeVC;
-                [self.window makeKeyAndVisible];
-                            [self.window makeKeyAndVisible];
+//            if (![[NSUserDefaults standardUserDefaults]objectForKey:@"deviceToken"]) {
+//                LoginViewController *loginview = [[LoginViewController alloc] init];
+//                UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
+//                [self.window setRootViewController:naVC];
+//                self.window.backgroundColor = [UIColor whiteColor];
+//                [self.window makeKeyAndVisible];
+//            }else{
+//                HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+//                self.window.rootViewController = homeVC;
+//                [self.window makeKeyAndVisible];
+//                            [self.window makeKeyAndVisible];
     
 //                NSLog(@"mimiimimimimamama%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"]);
 //                if (![[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"] isEqualToString:@"1"]) {
@@ -88,7 +92,7 @@
 //    
 //                }
     
-            }
+            //}
         }
     
     
