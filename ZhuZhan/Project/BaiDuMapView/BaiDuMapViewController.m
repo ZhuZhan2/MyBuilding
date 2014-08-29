@@ -29,12 +29,7 @@ int j;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //适配ios7
-    if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0))
-    {
-        //        self.edgesForExtendedLayout=UIRectEdgeNone;
-        self.navigationController.navigationBar.translucent = NO;
-    }
+    
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 0, 29, 28.5)];
@@ -52,8 +47,6 @@ int j;
     coordinates = [[NSMutableArray alloc] init];
    
     _mapView = [[BMKMapView alloc] initWithFrame:self.view.frame];
-    //[_mapView setShowsUserLocation:YES];//显示定位的蓝点儿
-    //_mapView.showsUserLocation = YES;//可以显示用户当前位置
     _mapView.zoomEnabled = YES;//允许Zoom
     _mapView.scrollEnabled = YES;//允许Scroll
     _mapView.mapType = BMKMapTypeStandard;//地图类型为标准，可以为卫星，可以开启或关闭交通
@@ -61,9 +54,7 @@ int j;
     [self.view addSubview:_mapView];
     _locService = [[BMKLocationService alloc]init];
     [_locService startUserLocationService];
-    //_mapView.showsUserLocation = NO;//先关闭显示的定位图层
-    //_mapView.userTrackingMode = BMKUserTrackingModeNone;//设置定位的状态
-    //_mapView.showsUserLocation = YES;//显示定位图层
+    
     _geocodesearch = [[BMKGeoCodeSearch alloc]init];
     _geocodesearch.delegate = self;
     CLLocationCoordinate2D coor;
@@ -94,14 +85,14 @@ int j;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    //[_mapView viewWillAppear];
+    [_mapView viewWillAppear];
     _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
     _locService.delegate = self;
     _geocodesearch.delegate = self;
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
-    //[_mapView viewWillDisappear];
+    [_mapView viewWillDisappear];
     _mapView.delegate = nil; // 不用时，置nil
     _locService.delegate = nil;
     _geocodesearch.delegate = nil;
