@@ -12,7 +12,7 @@
 #define NEARRADIUS 100.0f
 #define ENDRADIUS 110.0f
 #define FARRADIUS 160.0f
-#define STARTPOINT CGPointMake(155, 540)
+#define STARTPOINT CGPointMake(160, 544)
 #define TIMEOFFSET 0.026f
 
 
@@ -121,10 +121,10 @@
         }
         
         // add the "Add" Button.
-        _addButton = [[QuadCurveMenuItem alloc] initWithImage:[UIImage imageNamed:@"bg-addbutton.png"]
-                                       highlightedImage:[UIImage imageNamed:@"bg-addbutton-highlighted.png"] 
-                                           ContentImage:[UIImage imageNamed:@"icon-plus.png"] 
-                                highlightedContentImage:[UIImage imageNamed:@"icon-plus-highlighted.png"]];
+        _addButton = [[QuadCurveMenuItem alloc] initWithImage:[UIImage imageNamed:@"项目－项目专题_11a.png"]
+                                       highlightedImage:nil
+                                           ContentImage:nil
+                                highlightedContentImage:nil flag:1];
         _addButton.delegate = self;
         _addButton.center = STARTPOINT;
         [self addSubview:_addButton];
