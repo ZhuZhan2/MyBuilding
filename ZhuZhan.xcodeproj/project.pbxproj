@@ -1222,6 +1222,8 @@
 		D3AD61FC19AF31D7001FD483 /* 项目-首页_08a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目-首页_08a.png"; sourceTree = "<group>"; };
 		D3AD61FE19AF32D7001FD483 /* 搜索结果_09a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索结果_09a.png"; sourceTree = "<group>"; };
 		D3AD620219B02C25001FD483 /* 地图搜索1_09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图搜索1_09.png"; sourceTree = "<group>"; };
+		D3AD620619B0559D001FD483 /* BMKGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKGradient.h; sourceTree = "<group>"; };
+		D3AD620719B0559D001FD483 /* BMKHeatMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKHeatMap.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
