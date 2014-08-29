@@ -81,7 +81,7 @@
             [self loadSelf];
             self.stages=[ProjectStage JudgmentProjectDetailStage:self.model];
         }else{
-
+            
         }
     } projectId:self.model.a_id];
 }
@@ -116,7 +116,7 @@
 -(void)initContentTableView{
     self.landInfo=[LandInfo getLandInfoWithDelegate:self part:0];
     [[[self.landInfo.firstView.subviews[0] subviews][0]subviews][0] removeFromSuperview];
-
+    
     self.contents=[[NSMutableArray alloc]init];
     [self contentsAddObject:self.landInfo];
     
@@ -298,8 +298,8 @@
         label.textAlignment=NSTextAlignmentCenter;
         label.center=CGPointMake(160, self.contentTableView.contentSize.height-20);
         [self.contentTableView addSubview:label];
-
-
+        
+        
         CGRect frame=self.animationView.frame;
         frame.size.height+=.000001;
         [UIView animateWithDuration:2 animations:^{
@@ -336,7 +336,7 @@
     height=self.bigStageStandardY.count?[self.bigStageStandardY.lastObject floatValue]:0;
     height+=view.frame.size.height;
     [self.bigStageStandardY addObject:[NSNumber numberWithFloat:height]];
-
+    
     
     if (self.contents.count) {
         [self.contents removeLastObject];
@@ -488,7 +488,17 @@
         return cell;
     }else{
         BOOL first,second,third;
+        int stagesCount[4]={2,3,4,1};
+        BOOL stageHeight=NO;
         int temp[4]={0,2,5,9};
+        
+        for (NSString* str in [self.stages subarrayWithRange:NSMakeRange(temp[indexPath.section], stagesCount[indexPath.section])]) {
+            if (![str isEqualToString:@"none"]) {
+                stageHeight=YES;
+                break;
+            }
+        }
+        
         if (indexPath.section==0) {
             if (indexPath.row==0) {
                 first=self.model.auctionContacts.count?YES:NO;
@@ -533,7 +543,7 @@
             }
         }
         
-        ProgramSelectViewCell* cell=[ProgramSelectViewCell dequeueReusableCellWithTabelView:tableView identifier:@"Cell" indexPath:indexPath firstIcon:first secondIcon:second thirdIcon:third];
+        ProgramSelectViewCell* cell=[ProgramSelectViewCell dequeueReusableCellWithTabelView:tableView identifier:@"Cell" indexPath:indexPath firstIcon:first secondIcon:second thirdIcon:third heightStage:stageHeight];
         cell.delegate=self;
         return cell;
     }
@@ -567,7 +577,7 @@
     NSArray* part2=@[self.model.constructionImages,self.model.pileImages,self.model.mainBulidImages];
     NSArray* part3=@[self.model.decorationImages];
     NSArray* array=@[part0,part1,part2,part3];
-
+    
     NSLog(@"%@",array);
     NSMutableArray* imageUrls=[[NSMutableArray alloc]init];
     for (int i=0; i<[array[indexPath.part][indexPath.section] count]; i++) {
@@ -579,7 +589,7 @@
 
 -(void)addScrollViewWithUrls:(NSMutableArray*)urls{
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-
+    
     self.scrollViewBackground=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 568)];
     
     UIButton* button=[[UIButton alloc]initWithFrame:self.scrollViewBackground.frame];

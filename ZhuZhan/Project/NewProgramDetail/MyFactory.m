@@ -344,8 +344,6 @@
     return view;
 }
 
-
-
 //硬件设备以及yes和no  电梯,空调,供暖方式,外墙材料,钢结构,yes or no的几个view
 +(UIView*)getDeviceAndBoolWithDevic:(NSArray*)devices boolStrs:(NSArray*)boolStrs{
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, devices.count*30)];
@@ -376,6 +374,4 @@
     
     return view;
 }
-
-
 @end
