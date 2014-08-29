@@ -11,7 +11,7 @@
 #import "XHPathCover.h"
 
 
-@interface AccountViewController : UITableViewController<XHPathCoverDelegate>
+@interface AccountViewController : UITableViewController<XHPathCoverDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
 
 

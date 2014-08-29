@@ -92,7 +92,6 @@
     //装修 阶段 图片 electroweakImageArr @"electroweak"
     self.decorationImages=[[NSMutableArray alloc]init];
     
-    
     NSArray* array=@[self.auctionImages,self.explorationImages,self.constructionImages,self.pileImages,self.mainBulidImages,self.decorationImages];
     NSArray* categorys=@[@"plan",@"exploration",@"horizon",@"pileFoundation",@"mainPart",@"electroweak"];
     

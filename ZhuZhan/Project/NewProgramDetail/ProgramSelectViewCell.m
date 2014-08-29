@@ -10,7 +10,7 @@
 
 @implementation ProgramSelectViewCell
 
-+(ProgramSelectViewCell*)dequeueReusableCellWithTabelView:(UITableView*)tableView identifier:(NSString*)identifier indexPath:(NSIndexPath*)indexPath firstIcon:(BOOL)firstIcon secondIcon:(BOOL)secondIcon{
++(ProgramSelectViewCell*)dequeueReusableCellWithTabelView:(UITableView*)tableView identifier:(NSString*)identifier indexPath:(NSIndexPath*)indexPath firstIcon:(BOOL)firstIcon secondIcon:(BOOL)secondIcon thirdIcon:(BOOL)thirdIcon{
     
     ProgramSelectViewCell* cell=[tableView dequeueReusableCellWithIdentifier:identifier];
     cell.backgroundColor=[UIColor clearColor];

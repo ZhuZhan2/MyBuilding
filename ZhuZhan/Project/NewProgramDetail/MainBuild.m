@@ -48,7 +48,7 @@
     }
 
 
-    NSArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
+    NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     UIView* view2=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];
     
     NSArray* tempAry=@[view0,view1,view2];
@@ -76,7 +76,7 @@
     }
 
     
-    NSArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
+    NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
     UIView* view2=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];
     
     NSArray* tempAry=@[view0,view1,view2];
