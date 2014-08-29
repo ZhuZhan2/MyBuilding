@@ -213,7 +213,7 @@
 }
 
 -(void)homePageTabBarRestore{
-    [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
+    [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
     toolView.hidden=NO;
     menu.hidden=NO;
 }
@@ -271,6 +271,16 @@
 //更多按钮的委托方法
 - (void)quadCurveMenu:(QuadCurveMenu *)menu didSelectIndex:(NSInteger)idx
 {
-    NSLog(@"Select the index : %ld",(long)idx);
+    if(idx == 0){
+        NSLog(@"推荐信");
+    }else if(idx == 1){
+        NSLog(@"添加好友");
+    }else if(idx == 2){
+        NSLog(@"拓展人脉");
+    }else if (idx == 3){
+        NSLog(@"聊天");
+    }else{
+        NSLog(@"通讯录");
+    }
 }
 @end

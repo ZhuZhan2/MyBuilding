@@ -437,6 +437,9 @@
 		D3AD621B19B068F5001FD483 /* +项目-首页_23a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD621719B068F5001FD483 /* +项目-首页_23a.png */; };
 		D3AD621C19B068F5001FD483 /* +项目-首页_25a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD621819B068F5001FD483 /* +项目-首页_25a.png */; };
 		D3AD621D19B068F5001FD483 /* +项目-首页_27a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD621919B068F5001FD483 /* +项目-首页_27a.png */; };
+		D3AD621F19B0751C001FD483 /* +项目详情-3_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD621E19B0751C001FD483 /* +项目详情-3_03a.png */; };
+		D3AD622219B077D6001FD483 /* 项目－项目专题_02a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD622019B077D6001FD483 /* 项目－项目专题_02a.png */; };
+		D3AD622319B077D6001FD483 /* 项目－项目专题_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD622119B077D6001FD483 /* 项目－项目专题_03a.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1244,6 +1247,9 @@
 		D3AD621719B068F5001FD483 /* +项目-首页_23a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+项目-首页_23a.png"; sourceTree = "<group>"; };
 		D3AD621819B068F5001FD483 /* +项目-首页_25a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+项目-首页_25a.png"; sourceTree = "<group>"; };
 		D3AD621919B068F5001FD483 /* +项目-首页_27a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+项目-首页_27a.png"; sourceTree = "<group>"; };
+		D3AD621E19B0751C001FD483 /* +项目详情-3_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+项目详情-3_03a.png"; sourceTree = "<group>"; };
+		D3AD622019B077D6001FD483 /* 项目－项目专题_02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目－项目专题_02a.png"; sourceTree = "<group>"; };
+		D3AD622119B077D6001FD483 /* 项目－项目专题_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目－项目专题_03a.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2122,6 +2128,9 @@
 		D3AD600B19AC4DC1001FD483 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3AD622019B077D6001FD483 /* 项目－项目专题_02a.png */,
+				D3AD622119B077D6001FD483 /* 项目－项目专题_03a.png */,
+				D3AD621E19B0751C001FD483 /* +项目详情-3_03a.png */,
 				D3AD621619B068F5001FD483 /* +项目-首页_21a.png */,
 				D3AD621719B068F5001FD483 /* +项目-首页_23a.png */,
 				D3AD621819B068F5001FD483 /* +项目-首页_25a.png */,
@@ -2654,6 +2663,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3AD61B119AF010D001FD483 /* Selected.png in Resources */,
+				D3AD622219B077D6001FD483 /* 项目－项目专题_02a.png in Resources */,
 				04D10BF319AE059E0097C0C6 /* 123.png in Resources */,
 				D3AD603F19AC4DC1001FD483 /* bg-addbutton.png in Resources */,
 				D3AD606B19AC4DC1001FD483 /* 面部采集_12.png in Resources */,
@@ -2701,6 +2711,7 @@
 				04D10BFB19AE06AF0097C0C6 /* RadioButton-Selected.png in Resources */,
 				D3AD605019AC4DC1001FD483 /* timescroll_hourhand.png in Resources */,
 				D3AD621119B05AF8001FD483 /* 项目－项目专题_23a.png in Resources */,
+				D3AD621F19B0751C001FD483 /* +项目详情-3_03a.png in Resources */,
 				D3AD617719ADC25C001FD483 /* 搜索_10.png in Resources */,
 				04D10C0919AEE7FA0097C0C6 /* grayColor.png in Resources */,
 				D3AD606A19AC4DC1001FD483 /* 面部采集_11.png in Resources */,
@@ -2722,6 +2733,7 @@
 				04D10BF419AE059E0097C0C6 /* back_icon.png in Resources */,
 				D3AD605319AC4DC1001FD483 /* timescroll_minutehand@2x.png in Resources */,
 				5B031C3419ACA6C100573071 /* XiangMuXiangQing_3 in Resources */,
+				D3AD622319B077D6001FD483 /* 项目－项目专题_03a.png in Resources */,
 				D3AD621D19B068F5001FD483 /* +项目-首页_27a.png in Resources */,
 				D3AD61F019AF225A001FD483 /* setBg.png in Resources */,
 				D3AD604319AC4DC1001FD483 /* bg-menuitem.png in Resources */,

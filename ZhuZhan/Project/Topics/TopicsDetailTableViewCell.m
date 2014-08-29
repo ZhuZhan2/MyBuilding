@@ -36,7 +36,7 @@
 -(void)addContent:(TopicsModel *)model{
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 358)];
     UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 358)];
-    [bgImage setImage:[UIImage imageNamed:@"全部项目_10"]];
+    [bgImage setBackgroundColor:[UIColor whiteColor]];
     [bgView addSubview:bgImage];
     [self.contentView addSubview:bgView];
     

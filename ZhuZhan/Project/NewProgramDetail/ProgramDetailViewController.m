@@ -141,6 +141,14 @@
     //[self.navigationController.navigationBar addSubview:self.backButton];
     
     self.navigationItem.title=@"项目详情";
+    
+    //RightButton设置属性
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setFrame:CGRectMake(0, 0, 21, 20)];
+    [rightButton setBackgroundImage:[UIImage imageNamed:@"+项目详情-3_03a"] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
 }
 
 -(void)initThemeView{
@@ -693,5 +701,10 @@
 
 -(void)dealloc{
     NSLog(@"ProgramDetailViewControllerDealloc");
+}
+
+//去评论项目
+-(void)rightBtnClick{
+    NSLog(@"rightBtnClick");
 }
 @end
