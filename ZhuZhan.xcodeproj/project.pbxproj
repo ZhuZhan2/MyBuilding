@@ -248,7 +248,6 @@
 		04D10BD619AE016A0097C0C6 /* CommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BAD19AE01690097C0C6 /* CommentsCell.m */; };
 		04D10BD719AE016A0097C0C6 /* CompanyPublishedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BAF19AE01690097C0C6 /* CompanyPublishedCell.m */; };
 		04D10BD919AE016A0097C0C6 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BB219AE016A0097C0C6 /* ContactViewController.m */; };
-		04D10BDA19AE016A0097C0C6 /* Pan.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BB419AE016A0097C0C6 /* Pan.m */; };
 		04D10BDD19AE016A0097C0C6 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BBA19AE016A0097C0C6 /* AccountViewController.m */; };
 		04D10BDE19AE016A0097C0C6 /* CommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BBC19AE016A0097C0C6 /* CommonCell.m */; };
 		04D10BE019AE016A0097C0C6 /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BC019AE016A0097C0C6 /* PersonalCenterViewController.m */; };
@@ -266,17 +265,6 @@
 		04D10C0119AEDE970097C0C6 /* Cell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10C0019AEDE970097C0C6 /* Cell1.m */; };
 		04D10C0719AEDFC80097C0C6 /* ImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10C0519AEDFC80097C0C6 /* ImgCell.m */; };
 		04D10C0919AEE7FA0097C0C6 /* grayColor.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10C0819AEE7FA0097C0C6 /* grayColor.png */; };
-		04D10C0D19AEE83B0097C0C6 /* message.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10C0A19AEE83B0097C0C6 /* message.png */; };
-		04D10C0E19AEE83B0097C0C6 /* read.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10C0B19AEE83B0097C0C6 /* read.png */; };
-		04D10C0F19AEE83B0097C0C6 /* telephone.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10C0C19AEE83B0097C0C6 /* telephone.png */; };
-		04D10C1319AEE8CA0097C0C6 /* 我的任务_05.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10C1019AEE8CA0097C0C6 /* 我的任务_05.png */; };
-		04D10C1419AEE8CA0097C0C6 /* photoBtnIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10C1119AEE8CA0097C0C6 /* photoBtnIcon.png */; };
-		04D10C1519AEE8CA0097C0C6 /* textBtnIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10C1219AEE8CA0097C0C6 /* textBtnIcon.png */; };
-		04D10C1819AEFB7E0097C0C6 /* setBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10C1619AEFB7E0097C0C6 /* setBg.png */; };
-		04D10C1919AEFB7E0097C0C6 /* setIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10C1719AEFB7E0097C0C6 /* setIcon.png */; };
-		04D10C1D19AF01D40097C0C6 /* addFriend.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10C1A19AF01D40097C0C6 /* addFriend.png */; };
-		04D10C1E19AF01D40097C0C6 /* interview.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10C1B19AF01D40097C0C6 /* interview.png */; };
-		04D10C1F19AF01D40097C0C6 /* project.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10C1C19AF01D40097C0C6 /* project.png */; };
 		04D10C3019AF3C120097C0C6 /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10C2F19AF3C120097C0C6 /* ShowViewController.m */; };
 		5B031C3019ACA6C100573071 /* XiangMuJieDuan in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2819ACA6C100573071 /* XiangMuJieDuan */; };
 		5B031C3119ACA6C100573071 /* XiangMuXiangQing in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2919ACA6C100573071 /* XiangMuXiangQing */; };
@@ -922,8 +910,6 @@
 		04D10BAF19AE01690097C0C6 /* CompanyPublishedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyPublishedCell.m; sourceTree = "<group>"; };
 		04D10BB119AE01690097C0C6 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
 		04D10BB219AE016A0097C0C6 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
-		04D10BB319AE016A0097C0C6 /* Pan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pan.h; sourceTree = "<group>"; };
-		04D10BB419AE016A0097C0C6 /* Pan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pan.m; sourceTree = "<group>"; };
 		04D10BB919AE016A0097C0C6 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
 		04D10BBA19AE016A0097C0C6 /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
 		04D10BBB19AE016A0097C0C6 /* CommonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCell.h; sourceTree = "<group>"; };
@@ -949,17 +935,6 @@
 		04D10C0419AEDFC80097C0C6 /* ImgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgCell.h; sourceTree = "<group>"; };
 		04D10C0519AEDFC80097C0C6 /* ImgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgCell.m; sourceTree = "<group>"; };
 		04D10C0819AEE7FA0097C0C6 /* grayColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayColor.png; sourceTree = "<group>"; };
-		04D10C0A19AEE83B0097C0C6 /* message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message.png; sourceTree = "<group>"; };
-		04D10C0B19AEE83B0097C0C6 /* read.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = read.png; sourceTree = "<group>"; };
-		04D10C0C19AEE83B0097C0C6 /* telephone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = telephone.png; sourceTree = "<group>"; };
-		04D10C1019AEE8CA0097C0C6 /* 我的任务_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的任务_05.png"; sourceTree = "<group>"; };
-		04D10C1119AEE8CA0097C0C6 /* photoBtnIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photoBtnIcon.png; sourceTree = "<group>"; };
-		04D10C1219AEE8CA0097C0C6 /* textBtnIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textBtnIcon.png; sourceTree = "<group>"; };
-		04D10C1619AEFB7E0097C0C6 /* setBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setBg.png; sourceTree = "<group>"; };
-		04D10C1719AEFB7E0097C0C6 /* setIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setIcon.png; sourceTree = "<group>"; };
-		04D10C1A19AF01D40097C0C6 /* addFriend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addFriend.png; sourceTree = "<group>"; };
-		04D10C1B19AF01D40097C0C6 /* interview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = interview.png; sourceTree = "<group>"; };
-		04D10C1C19AF01D40097C0C6 /* project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = project.png; sourceTree = "<group>"; };
 		04D10C2E19AF3C120097C0C6 /* ShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowViewController.h; sourceTree = "<group>"; };
 		04D10C2F19AF3C120097C0C6 /* ShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowViewController.m; sourceTree = "<group>"; };
 		5B031C2819ACA6C100573071 /* XiangMuJieDuan */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuJieDuan; sourceTree = "<group>"; };
@@ -2047,8 +2022,6 @@
 				04D10BB219AE016A0097C0C6 /* ContactViewController.m */,
 				04D10C2E19AF3C120097C0C6 /* ShowViewController.h */,
 				04D10C2F19AF3C120097C0C6 /* ShowViewController.m */,
-				04D10BB319AE016A0097C0C6 /* Pan.h */,
-				04D10BB419AE016A0097C0C6 /* Pan.m */,
 			);
 			path = contactView;
 			sourceTree = "<group>";
@@ -2885,7 +2858,6 @@
 				0426C2F019922D5A00CD8822 /* CJSONDeserializer_BlocksExtensions.m in Sources */,
 				0426C24B19922D5A00CD8822 /* GPUImageBrightnessFilter.m in Sources */,
 				0426C2A119922D5A00CD8822 /* GPUImagePinchDistortionFilter.m in Sources */,
-				04D10BDA19AE016A0097C0C6 /* Pan.m in Sources */,
 				0426C29819922D5A00CD8822 /* GPUImageNobleCornerDetectionFilter.m in Sources */,
 				0426C27219922D5A00CD8822 /* GPUImageGlassSphereFilter.m in Sources */,
 				0426C28619922D5A00CD8822 /* GPUImageLightenBlendFilter.m in Sources */,
