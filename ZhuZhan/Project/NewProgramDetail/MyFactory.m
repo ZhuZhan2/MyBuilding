@@ -272,8 +272,20 @@
     return view;
 }
 
+//处理model中的联系人,如果不满3个则补默认格式的联系人过去显示
++(NSArray*)loadContacts:(NSMutableArray*)contacts{
+    NSMutableArray* array=[NSMutableArray arrayWithArray:contacts];
+    for (int i=0; i<3-contacts.count; i++) {
+        NSArray* tempAry=@[@"联系人",@"职位",@"单位名称",@"单位地址",@""];
+        [array addObject:tempAry];
+    }
+    return array;
+}
+
 //联系人view
-+(UIView*)getThreeContactsViewThreeTypesFiveStrs:(NSArray*)datas{
++(UIView*)getThreeContactsViewThreeTypesFiveStrs:(NSMutableArray*)dataAry{
+    NSArray* datas=[[self loadContacts:dataAry] copy];
+    
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, datas.count*120)];
     view.backgroundColor=[UIColor whiteColor];
     

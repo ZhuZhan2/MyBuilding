@@ -20,8 +20,8 @@
 #import "HomePageViewController.h"
 #import "ProgramSelectViewCell.h"
 #import "CycleScrollView.h"
+#import "ProjectStage.h"
 @interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate,CycleScrollViewDelegate>
-@property(nonatomic,strong)UIButton* backButton;
 @property(nonatomic,strong)UITableView* contentTableView;
 @property(nonatomic,strong)UITableView* selectTableView;
 
@@ -50,6 +50,7 @@
 
 @property(nonatomic,strong)UIView* scrollViewBackground;
 
+@property(nonatomic,strong)NSArray* stages;//判断阶段的数组
 @end
 
 @implementation ProgramDetailViewController
@@ -78,6 +79,7 @@
             [self.model getContacts:posts[0]];
             [self.model getImages:posts[1]];
             [self loadSelf];
+            self.stages=[ProjectStage JudgmentProjectDetailStage:self.model];
         }else{
 
         }
@@ -114,7 +116,7 @@
 -(void)initContentTableView{
     self.landInfo=[LandInfo getLandInfoWithDelegate:self part:0];
     [[[self.landInfo.firstView.subviews[0] subviews][0]subviews][0] removeFromSuperview];
-//    self.contents=[NSMutableArray arrayWithObjects:self.landInfo.firstView,self.landInfo.secondView, self.loadingView,nil];
+
     self.contents=[[NSMutableArray alloc]init];
     [self contentsAddObject:self.landInfo];
     
@@ -129,17 +131,14 @@
 }
 
 -(void)back{
-    //[self.backButton removeFromSuperview];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)initNavi{
-    self.backButton=[[UIButton alloc]initWithFrame:CGRectMake(0,5,29,28.5)];
-    [self.backButton setImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
-    [self.backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:self.backButton];//[[UIBarButtonItem alloc]initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
-    //[self.navigationController.navigationBar addSubview:self.backButton];
-    
+    UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,5,29,28.5)];
+    [button setImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.title=@"项目详情";
 }
 
@@ -208,10 +207,6 @@
 //**********************************************************************
 
 -(void)change{
-     NSLog(@"%f",self.contentTableView.frame.origin.y);
-    NSLog(@"height==%f",self.contentTableView.frame.size.height);
-    NSLog(@"content  %f",self.contentTableView.contentSize.height);
-
     NSLog(@"用户选择了筛选");
     self.isNeedAnimation=NO;
     //暂时移除观察者,避免加新view时有动画
@@ -492,43 +487,53 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }else{
-        BOOL first,second;
+        BOOL first,second,third;
+        int temp[4]={0,2,5,9};
         if (indexPath.section==0) {
             if (indexPath.row==0) {
                 first=self.model.auctionContacts.count?YES:NO;
                 second=self.model.auctionImages.count?YES:NO;
+                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }else{
                 first=self.model.ownerContacts.count?YES:NO;
                 second=NO;
+                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }
         }else if (indexPath.section==1){
             if (indexPath.row==0) {
                 first=self.model.explorationContacts.count?YES:NO;
                 second=self.model.explorationImages.count?YES:NO;
+                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }else if (indexPath.row==1){
                 first=self.model.designContacts.count?YES:NO;
                 second=NO;
+                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }else{
                 first=self.model.ownerContacts.count?YES:NO;
                 second=NO;
+                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }
         }else{
             if (indexPath.row==0){
                 first=self.model.constructionContacts.count?YES:NO;
                 second=self.model.constructionImages.count?YES:NO;
+                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }else if (indexPath.row==1){
                 first=self.model.pileContacts.count?YES:NO;
                 second=self.model.pileImages.count?YES:NO;
+                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }else if (indexPath.row==2){
                 first=NO;
                 second=self.model.mainBulidImages.count?YES:NO;
+                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }else{
                 first=NO;
                 second=NO;
+                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }
         }
         
-        ProgramSelectViewCell* cell=[ProgramSelectViewCell dequeueReusableCellWithTabelView:tableView identifier:@"Cell" indexPath:indexPath firstIcon:first secondIcon:second];
+        ProgramSelectViewCell* cell=[ProgramSelectViewCell dequeueReusableCellWithTabelView:tableView identifier:@"Cell" indexPath:indexPath firstIcon:first secondIcon:second thirdIcon:third];
         cell.delegate=self;
         return cell;
     }
@@ -635,27 +640,29 @@
 
 //联系人view
 -(NSArray*)getThreeContactsViewThreeTypesFiveStrsWithIndexPath:(MyIndexPath*)indexPath{
+    NSArray* array;
     if (indexPath.part==0) {
-        NSArray* array=@[self.model.auctionContacts,self.model.ownerContacts];
-        return [self loadContacts:array[indexPath.section]];
+        array=@[self.model.auctionContacts,self.model.ownerContacts];
+        //return [self loadContacts:array[indexPath.section]];
     }else if (indexPath.part==1){
-        NSArray* array=@[self.model.explorationContacts,self.model.designContacts,self.model.ownerContacts];
-        return [self loadContacts:array[indexPath.section]];
+        array=@[self.model.explorationContacts,self.model.designContacts,self.model.ownerContacts];
+        //return [self loadContacts:array[indexPath.section]];
     }else{
-        NSArray* array=@[self.model.constructionContacts,self.model.pileContacts];
-        return [self loadContacts:array[indexPath.section]];
+        array=@[self.model.constructionContacts,self.model.pileContacts];
+        //return [self loadContacts:array[indexPath.section]];
     }
+    return array[indexPath.section];
 }
 
-//处理model中的联系人,如果不满3个则补默认格式的联系人过去显示
--(NSArray*)loadContacts:(NSMutableArray*)contacts{
-    NSMutableArray* array=[NSMutableArray arrayWithArray:contacts];
-    for (int i=0; i<3-contacts.count; i++) {
-        NSArray* tempAry=@[@"联系人",@"职位",@"单位名称",@"单位地址",@""];
-        [array addObject:tempAry];
-    }
-    return array;
-}
+////处理model中的联系人,如果不满3个则补默认格式的联系人过去显示
+//-(NSArray*)loadContacts:(NSMutableArray*)contacts{
+//    NSMutableArray* array=[NSMutableArray arrayWithArray:contacts];
+//    for (int i=0; i<3-contacts.count; i++) {
+//        NSArray* tempAry=@[@"联系人",@"职位",@"单位名称",@"单位地址",@""];
+//        [array addObject:tempAry];
+//    }
+//    return array;
+//}
 
 //program大块 二行
 -(NSArray*)getTwoLinesTitleViewFirstStrsAndSecondStrsWithIndexPath:(MyIndexPath*)indexPath{
