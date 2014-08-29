@@ -44,6 +44,11 @@
     
     [RecordSqlite opensql];
     
+    HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+    self.window.rootViewController = homeVC;
+    [self.window makeKeyAndVisible];
+
+/*
        if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
             NSLog(@"第一次启动");
@@ -60,6 +65,7 @@
             [self.window makeKeyAndVisible];
             [self.window makeKeyAndVisible];
             NSLog(@"==>%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"deviceToken"]);
+ */
 //            if (![[NSUserDefaults standardUserDefaults]objectForKey:@"deviceToken"]) {
 //                LoginViewController *loginview = [[LoginViewController alloc] init];
 //                UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
@@ -93,7 +99,7 @@
 //                }
     
             //}
-        }
+       // }
     
     
 

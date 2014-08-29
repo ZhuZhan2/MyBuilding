@@ -11,7 +11,9 @@
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
 
-@interface AccountViewController ()
+@interface AccountViewController (){
+    UIImagePickerController* imagePicker;
+}
 
 @end
 
@@ -35,6 +37,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //UIImagePickerController *
+            imagePicker = [[UIImagePickerController alloc]init];
+            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            imagePicker.allowsEditing=YES;
+            imagePicker.delegate = self;
+    
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarHide];
+    
     
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,
                                                                      nil]];
@@ -135,14 +147,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         //拍照
         sourceType = UIImagePickerControllerSourceTypeCamera;
         
-        UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
-        imagePicker.sourceType = sourceType;
-        imagePicker.delegate = self;
+        //UIImagePickerController *
+//        imagePicker = [[UIImagePickerController alloc]init];
+//        imagePicker.sourceType = sourceType;
+//        imagePicker.allowsEditing=YES;
+//        imagePicker.delegate = self;
         
 
-        AppDelegate* app=[AppDelegate instance];
-        HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-        [homeVC homePageTabBarHide];
+//        AppDelegate* app=[AppDelegate instance];
+//        HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+//        [homeVC homePageTabBarHide];
         [self presentViewController:imagePicker animated:YES completion:nil];
 
         
@@ -155,8 +169,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         UIButton *button = (UIButton*)[self.view viewWithTag:4];
         button.hidden = NO;
         
-        UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
+        //UIImagePickerController *
+        imagePicker = [[UIImagePickerController alloc]init];
         imagePicker.sourceType = sourceType;
+        imagePicker.allowsEditing=YES;
         imagePicker.delegate = self;
         
         AppDelegate* app=[AppDelegate instance];
