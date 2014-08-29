@@ -8,6 +8,8 @@
 
 #import "AccountViewController.h"
 #import "LoginModel.h"
+#import "HomePageViewController.h"
+#import "AppDelegate.h"
 
 @interface AccountViewController ()
 
@@ -96,17 +98,107 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     });
 }
 
+//***********************************************************************************************************
+
+
 //*************************************************************************************************************
 
 -(void)setbackgroundImage//设置背景颜色
 {
     NSLog(@"设置背景图片");
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
+    [actionSheet showInView:self.tableView.superview];
+    actionSheet.tag =2014082901;
 }
 
 -(void)setuserIcon
 {
     NSLog(@"设置用户头像");
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
+    [actionSheet showInView:self.tableView.superview];
+    actionSheet.tag =2014082902;
 }
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+    UIImagePickerControllerSourceType sourceType;
+    if (buttonIndex==0) {
+        NSLog(@"拍照获取图片");
+        BOOL isCamera =  [UIImagePickerController isCameraDeviceAvailable: UIImagePickerControllerCameraDeviceRear];
+        
+        if (!isCamera) {
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"此设备无摄像头" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+            return;
+        }
+        
+        //拍照
+        sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
+        imagePicker.sourceType = sourceType;
+        imagePicker.delegate = self;
+        
+
+        AppDelegate* app=[AppDelegate instance];
+        HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+        [homeVC homePageTabBarHide];
+        [self presentViewController:imagePicker animated:YES completion:nil];
+
+        
+    }
+    if (buttonIndex==1) {
+        NSLog(@"通过相册获取图片");
+        
+        //用户相册
+        sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        UIButton *button = (UIButton*)[self.view viewWithTag:4];
+        button.hidden = NO;
+        
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
+        imagePicker.sourceType = sourceType;
+        imagePicker.delegate = self;
+        
+        AppDelegate* app=[AppDelegate instance];
+        HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+        [homeVC homePageTabBarHide];
+        [self presentViewController:imagePicker animated:YES completion:nil];
+
+        
+    }
+    if (buttonIndex==2) {
+        
+        //取消
+        return;
+    }
+    
+    
+    
+}
+
+#pragma mark ----UIImagePickerController delegate----
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSLog(@"()*********** %@",info);
+    UIImage * imge =  [info objectForKey:UIImagePickerControllerOriginalImage];
+  
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
 
 
 /******************************************************************************************************************/
@@ -133,21 +225,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 
 
--(void)viewWillAppear:(BOOL)animated
-{
-    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-[LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-    NSDictionary *responseObject = [posts objectAtIndex:0];
-    NSLog(@"dfffdfd*****   %@",responseObject);
-//    NSDictionary *data = [[responseObject objectForKey:@"d"] objectForKey:@"data"];
-//    NSString *fullName = [NSString stringWithFormat:@"%@",[data objectForKey:@"fullName"]];
-//    NSString *sex =[NSString stringWithFormat:@"%@",[data objectForKey:@"sex"]];
-//    NSString *department = [NSString stringWithFormat:@"%@",[data objectForKey:@"department"]];
-//    userDic = [[NSMutableDictionary alloc] init];
-    
-    
-   } userId:userId];
-}
 
 -(void)leftBtnClick{
     [self.navigationController popViewControllerAnimated:YES];
@@ -163,7 +240,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-        return 4;
+        return 1;
     
 }
 
@@ -177,22 +254,61 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             if (!cell2) {
                 cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             }
-            
-            UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 150, 30)];
+    
+            UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 70, 30)];
+            label1.textAlignment = NSTextAlignmentLeft;
+            label1.text = @"邮箱地址";
+            label1.font = [UIFont systemFontOfSize:14];
+            [cell2 addSubview:label1];
+            UILabel *emailLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 5, 180, 30)];
+            emailLabel.textAlignment = NSTextAlignmentLeft;
+            emailLabel.text = @"222222233445@qq.com";
+            emailLabel.font = [UIFont systemFontOfSize:14];
+            [cell2 addSubview:emailLabel];
+    
+            UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(10, 45, 70, 30)];
+            label2.textAlignment = NSTextAlignmentLeft;
+            label2.text = @"电      话";
+            label2.font = [UIFont systemFontOfSize:14];
+            [cell2 addSubview:label2];
+            UILabel *cellPhoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 45, 180, 30)];
+            cellPhoneLabel.textAlignment = NSTextAlignmentLeft;
+            cellPhoneLabel.text = @"123434556657";
+            cellPhoneLabel.font = [UIFont systemFontOfSize:14];
+            [cell2 addSubview:cellPhoneLabel];
+    
+            UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(10, 85, 70, 30)];
+            label3.textAlignment = NSTextAlignmentLeft;
+            label3.text = @"在职公司";
+            label3.font = [UIFont systemFontOfSize:14];
+            [cell2 addSubview:label3];
+            UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 85, 180, 30)];
             companyLabel.textAlignment = NSTextAlignmentLeft;
-            companyLabel.text = @"上海深即网络";
+            companyLabel.text = @"巴拉巴拉公司";
             companyLabel.font = [UIFont systemFontOfSize:14];
             [cell2 addSubview:companyLabel];
-            
-            
-            UILabel *positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 20, 80, 30)];
+    
+            UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(10, 125, 70, 30)];
+            label4.textAlignment = NSTextAlignmentLeft;
+            label4.text = @"职      位";
+            label4.font = [UIFont systemFontOfSize:14];
+            [cell2 addSubview:label4];
+            UILabel *positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 125, 180, 30)];
             positionLabel.textAlignment = NSTextAlignmentLeft;
-            positionLabel.textColor = [UIColor grayColor];
-            positionLabel.text = @"lisis";
+            positionLabel.text = @"总监";
             positionLabel.font = [UIFont systemFontOfSize:14];
             [cell2 addSubview:positionLabel];
+    
+    for (int i=0; i<3; i++) {
+        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(5, 39+40*i, 310, 2)];
+        line.image = [UIImage imageNamed:@"我的任务_05"];
+        [cell2 addSubview:line];
+    }
+    
+    
+
             return cell2;
-            
+    
     
     
 }
@@ -236,7 +352,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 50;
+    return 160;
     
 }
 - (void)didReceiveMemoryWarning

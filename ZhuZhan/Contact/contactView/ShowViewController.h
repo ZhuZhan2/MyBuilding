@@ -13,7 +13,7 @@
 
 -(void)jumpToGoToDetail;
 -(void)jumpToGotoConcern;
--(void)jumpToGetRecommend:(int)num;
+-(void)jumpToGetRecommend:(NSDictionary *)dic;
 
 @end
 

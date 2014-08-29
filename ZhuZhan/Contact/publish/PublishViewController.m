@@ -48,16 +48,16 @@
 
     
     
-    inputView =[[UITextView alloc] initWithFrame:CGRectZero];
+    inputView = [[UITextView alloc] initWithFrame:CGRectMake(10, 80, 300, 220)];
     inputView.delegate = self;
-    inputView.backgroundColor = [UIColor greenColor];
-    
+    inputView.backgroundColor = [UIColor yellowColor];
     [self.view addSubview:inputView];
+
     
-    toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+    toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-256, 320, 40)];
     [self.view addSubview:toolBar];
-    toolBar.backgroundColor = [UIColor redColor];
-    
+
+
     UIButton *textBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     textBtn.frame = CGRectMake(0, 0, 160, 40);
     [textBtn setBackgroundImage:[UIImage imageNamed:@"textBtnIcon"] forState:UIControlStateNormal];
@@ -71,7 +71,7 @@
     [toolBar addSubview:photoBtn];
 
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:UIKeyboardWillShowNotification object:nil];
+    
     
     [inputView becomeFirstResponder];
     
@@ -82,30 +82,30 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    //增加监听，当键盘出现或改变时收出消息
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
+//    //增加监听，当键盘出现或改变时收出消息
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(keyboardWillShow:)
+//                                                 name:UIKeyboardWillShowNotification
+//                                               object:nil];
 
 }
 
-- (void)keyboardWillShow:(NSNotification *)aNotification
-{
-    //获取键盘的高度
-    NSDictionary *userInfo = [aNotification userInfo];
-    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardRect = [aValue CGRectValue];
-    int height = keyboardRect.size.height;
-    NSLog(@"%d",height);
-    toolBar.frame =CGRectMake(0, kScreenHeight-height-40, 320, 40);
-    toolBar.backgroundColor = [UIColor redColor];
-    inputView.frame =CGRectMake(0, 0, 320, kContentHeight-height);
-    
-    
-
-    
-}
+//- (void)keyboardWillShow:(NSNotification *)aNotification
+//{
+//    //获取键盘的高度
+//    NSDictionary *userInfo = [aNotification userInfo];
+//    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+//    CGRect keyboardRect = [aValue CGRectValue];
+//    CGFloat height = keyboardRect.size.height;
+//    NSLog(@"%lf",height);
+//    toolBar.frame =CGRectMake(0, kScreenHeight-height-40, 320, 40);
+//    toolBar.backgroundColor = [UIColor redColor];
+////     inputView.frame =CGRectMake(0, 0, 320, kContentHeight-height);
+//    
+//    
+//
+//    
+//}
 
 -(void)publshText
 {
