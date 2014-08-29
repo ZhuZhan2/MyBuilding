@@ -34,6 +34,7 @@
 
    
     
+    
     UIImageView  *tempImageView= [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 260, 240)];
     tempImageView.image = [UIImage imageNamed:@"首页_16.png"];
     tempImageView.userInteractionEnabled = YES;

@@ -139,7 +139,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     
     if (indexPath.row==0 || indexPath.row==1) {
     
@@ -191,6 +190,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     cell4.commentsView.textColor = [UIColor blueColor];
     cell4.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell4;
+    
     
 }
 
