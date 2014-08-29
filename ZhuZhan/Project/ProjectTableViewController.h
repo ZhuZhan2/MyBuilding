@@ -12,7 +12,5 @@
 @interface ProjectTableViewController : UITableViewController{
     NSMutableArray *showArr;
     int startIndex;
-    TopicsTableViewController *topicsview;
-    SearchViewController *searchView;
 }
 @end

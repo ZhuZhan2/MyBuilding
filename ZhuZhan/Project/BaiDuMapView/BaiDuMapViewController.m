@@ -35,6 +35,14 @@ int j;
         //        self.edgesForExtendedLayout=UIRectEdgeNone;
         self.navigationController.navigationBar.translucent = NO;
     }
+    //LeftButton设置属性
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftButton setFrame:CGRectMake(0, 0, 29, 28.5)];
+    [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = leftButtonItem;
+    
     j=0;
     numberArr = [[NSArray alloc] initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z", nil];
     showArr = [[NSMutableArray alloc] init];
@@ -56,8 +64,8 @@ int j;
     //_mapView.showsUserLocation = NO;//先关闭显示的定位图层
     //_mapView.userTrackingMode = BMKUserTrackingModeNone;//设置定位的状态
     //_mapView.showsUserLocation = YES;//显示定位图层
-    _geocodesearch = [[BMKGeocodeSearch alloc]init];
-    
+    _geocodesearch = [[BMKGeoCodeSearch alloc]init];
+    _geocodesearch.delegate = self;
     CLLocationCoordinate2D coor;
     BMKCoordinateRegion viewRegion = BMKCoordinateRegionMake(coor, BMKCoordinateSpanMake(0.02f, 0));
     //调整后适合当前地图窗口显示的经纬度范围
@@ -81,15 +89,19 @@ int j;
     // Dispose of any resources that can be recreated.
 }
 
+-(void)leftBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void)viewWillAppear:(BOOL)animated {
-    [_mapView viewWillAppear];
+    //[_mapView viewWillAppear];
     _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
     _locService.delegate = self;
     _geocodesearch.delegate = self;
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
-    [_mapView viewWillDisappear];
+    //[_mapView viewWillDisappear];
     _mapView.delegate = nil; // 不用时，置nil
     _locService.delegate = nil;
     _geocodesearch.delegate = nil;
@@ -142,16 +154,17 @@ int j;
     if (_mapView) {
         _mapView.region = region;
         NSLog(@"当前的坐标  维度:%f,经度:%f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
-        _mapView.showsUserLocation = YES;//显示定位图层
+        //_mapView.showsUserLocation = YES;//显示定位图层
+        [_mapView updateLocationData:userLocation];
         
         isGeoSearch = false;
         CLLocationCoordinate2D pt = (CLLocationCoordinate2D){userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude};
         /*if (_coordinateXText.text != nil && _coordinateYText.text != nil) {
          pt = (CLLocationCoordinate2D){[_coordinateYText.text floatValue], [_coordinateXText.text floatValue]};
          }*/
-        BMKReverseGeocodeOption *reverseGeocodeSearchOption = [[BMKReverseGeocodeOption alloc]init];
+        BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
         reverseGeocodeSearchOption.reverseGeoPoint = pt;
-        BOOL flag = [_geocodesearch reverseGeocode:reverseGeocodeSearchOption];
+        BOOL flag = [_geocodesearch reverseGeoCode:reverseGeocodeSearchOption];
         if(flag)
         {
             NSLog(@"反geo检索发送成功");
@@ -164,8 +177,9 @@ int j;
     }
 }
 
--(void) onGetReverseGeocodeResult:(BMKGeocodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
+-(void) onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
 {
+    NSLog(@"asdfasdfasdfasf");
     annotationPoint = [[BMKPointAnnotation alloc]init];
     CLLocationCoordinate2D coor;
     coor.latitude = result.location.latitude;
@@ -205,6 +219,7 @@ int j;
  */
 - (BMKAnnotationView *)mapView:(BMKMapView *)view viewForAnnotation:(id <BMKAnnotation>)annotation
 {
+    NSLog(@"asdfasdfasdf");
     // 生成重用标示identifier
     NSString *AnnotationViewID = @"xidanMark";
 	

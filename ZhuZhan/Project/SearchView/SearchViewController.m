@@ -145,7 +145,6 @@
     if(toolbarView == nil){
         NSLog(@"%f",_tableView.frame.size.height);
         toolbarView = [[toolBarView alloc] initWithFrame:CGRectMake(0, 464-kbSize.height+64, 320, 40)];
-        //toolbarView = [[toolBarView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
         toolbarView.delegate = self;
         [self.view addSubview:toolbarView];
     }else{
@@ -191,7 +190,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     RecordModel *model = [showArr objectAtIndex:indexPath.row];
     _searchBar.text = model.a_name;
-    resultView = [[ResultsTableViewController alloc] init];
+    ResultsTableViewController *resultView = [[ResultsTableViewController alloc] init];
     resultView.searchStr = model.a_name;
     [self.navigationController pushViewController:resultView animated:YES];
 }
@@ -206,20 +205,18 @@
     [RecordSqlite InsertData:dic];
 }
 
+
 -(void)gotoView:(NSInteger)index{
-    switch (index) {
-        case 0:
-            
-            break;
-        case 1:
-            advancedSearchView = [[AdvancedSearchViewController alloc] init];
-            [self.navigationController pushViewController:advancedSearchView animated:YES];
-            break;
-        case 2:
-            
-            break;
-        default:
-            break;
+    if(index == 0){
+    
+    }else if(index == 1){
+        AdvancedSearchViewController *advancedSearchView = [[AdvancedSearchViewController alloc] init];
+        [self.navigationController pushViewController:advancedSearchView animated:YES];
+    }else if(index == 2){
+        BaiDuMapViewController *baiduMapView = [[BaiDuMapViewController alloc] init];
+        [self.navigationController pushViewController:baiduMapView animated:YES];
     }
 }
+
+
 @end
