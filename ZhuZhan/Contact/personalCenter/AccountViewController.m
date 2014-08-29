@@ -11,9 +11,7 @@
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
 
-@interface AccountViewController (){
-    UIImagePickerController* imagePicker;
-}
+@interface AccountViewController ()
 
 @end
 
@@ -33,16 +31,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    //UIImagePickerController *
-            imagePicker = [[UIImagePickerController alloc]init];
-            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            imagePicker.allowsEditing=YES;
-            imagePicker.delegate = self;
-    
     AppDelegate* app=[AppDelegate instance];
     HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
     [homeVC homePageTabBarHide];
@@ -155,29 +143,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 ////        AppDelegate* app=[AppDelegate instance];
 ////        HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
 ////        [homeVC homePageTabBarHide];
-//        [self presentViewController:imagePicker animated:YES completion:nil];
-        UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
-        if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
         {
             UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
             pickerController.delegate = self;
             //设置拍照后的图片可被编辑
-            pickerController.allowsEditing = YES;
-            pickerController.sourceType = sourceType;
-            
-            [self presentViewController:pickerController animated:YES completion:Nil];
-            
-            AppDelegate* app=[AppDelegate instance];
-            HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-            [homeVC homePageTabBarHide];
-        }else{
-            NSLog(@"模拟其中无法打开照相机,请在真机中使用");
-        }
-        
-        //拍照
-        sourceType = UIImagePickerControllerSourceTypeCamera;
-        
-        //UIImagePickerController *
 //        imagePicker = [[UIImagePickerController alloc]init];
 //        imagePicker.sourceType = sourceType;
 //        imagePicker.allowsEditing=YES;
