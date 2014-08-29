@@ -69,6 +69,7 @@
     popupView.layer.shadowRadius = 5;
     popupView.layer.shadowOpacity = 0.5;
     
+    
     // Add semi overlay
     UIView *overlayView = [[UIView alloc] initWithFrame:sourceView.bounds];
     overlayView.tag = kMJOverlayViewTag;

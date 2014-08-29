@@ -28,13 +28,15 @@
 {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor clearColor];
-    transparent = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
+    self.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
+    transparent = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 260, 200)];
     transparent.backgroundColor = [UIColor blackColor];
     transparent.alpha = 0.4;
     [self.view addSubview:transparent];
     
-    pan = [[Pan alloc] initWithFrame:CGRectMake(30, 100, 260, 360)];
+    pan = [[Pan alloc] initWithFrame:CGRectMake(0, 0, 260, 200)];
     pan.backgroundColor = [UIColor clearColor];
 
     
@@ -42,7 +44,7 @@
     pan.layer.cornerRadius = 0;
     [self.view addSubview:pan];
     
-    conFriendTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 240, 260, 120)];
+    conFriendTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 200, 260, 100)];
     conFriendTableView.delegate =self;
     conFriendTableView.dataSource =self;
     
@@ -51,6 +53,10 @@
     
     [conFriendTableView setSeparatorInset:UIEdgeInsetsZero];//设置tableViewcell下划线的位置没有偏移
     [pan addSubview:conFriendTableView];
+    
+//    UIImageView *image = [[UIImageView alloc] initWithFrame:self.view.frame];
+//    [image setImage:[UIImage imageNamed:@"首页_16.png"]];
+//    [self.view addSubview:image];
 
 }
 
