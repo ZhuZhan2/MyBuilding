@@ -432,6 +432,11 @@
 		D3AD620F19B05AF8001FD483 /* 项目－项目专题_14a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD620A19B05AF8001FD483 /* 项目－项目专题_14a.png */; };
 		D3AD621019B05AF8001FD483 /* 项目－项目专题_17a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD620B19B05AF8001FD483 /* 项目－项目专题_17a.png */; };
 		D3AD621119B05AF8001FD483 /* 项目－项目专题_23a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD620C19B05AF8001FD483 /* 项目－项目专题_23a.png */; };
+		D3AD621519B06702001FD483 /* 项目-首页_18a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD621419B06702001FD483 /* 项目-首页_18a.png */; };
+		D3AD621A19B068F5001FD483 /* +项目-首页_21a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD621619B068F5001FD483 /* +项目-首页_21a.png */; };
+		D3AD621B19B068F5001FD483 /* +项目-首页_23a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD621719B068F5001FD483 /* +项目-首页_23a.png */; };
+		D3AD621C19B068F5001FD483 /* +项目-首页_25a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD621819B068F5001FD483 /* +项目-首页_25a.png */; };
+		D3AD621D19B068F5001FD483 /* +项目-首页_27a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD621919B068F5001FD483 /* +项目-首页_27a.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1234,6 +1239,11 @@
 		D3AD620A19B05AF8001FD483 /* 项目－项目专题_14a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目－项目专题_14a.png"; sourceTree = "<group>"; };
 		D3AD620B19B05AF8001FD483 /* 项目－项目专题_17a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目－项目专题_17a.png"; sourceTree = "<group>"; };
 		D3AD620C19B05AF8001FD483 /* 项目－项目专题_23a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目－项目专题_23a.png"; sourceTree = "<group>"; };
+		D3AD621419B06702001FD483 /* 项目-首页_18a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目-首页_18a.png"; sourceTree = "<group>"; };
+		D3AD621619B068F5001FD483 /* +项目-首页_21a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+项目-首页_21a.png"; sourceTree = "<group>"; };
+		D3AD621719B068F5001FD483 /* +项目-首页_23a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+项目-首页_23a.png"; sourceTree = "<group>"; };
+		D3AD621819B068F5001FD483 /* +项目-首页_25a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+项目-首页_25a.png"; sourceTree = "<group>"; };
+		D3AD621919B068F5001FD483 /* +项目-首页_27a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+项目-首页_27a.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2112,6 +2122,11 @@
 		D3AD600B19AC4DC1001FD483 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3AD621619B068F5001FD483 /* +项目-首页_21a.png */,
+				D3AD621719B068F5001FD483 /* +项目-首页_23a.png */,
+				D3AD621819B068F5001FD483 /* +项目-首页_25a.png */,
+				D3AD621919B068F5001FD483 /* +项目-首页_27a.png */,
+				D3AD621419B06702001FD483 /* 项目-首页_18a.png */,
 				D3AD620819B05AF8001FD483 /* 项目－项目专题_11a-20.png */,
 				D3AD620919B05AF8001FD483 /* 项目－项目专题_11a.png */,
 				D3AD620A19B05AF8001FD483 /* 项目－项目专题_14a.png */,
@@ -2652,9 +2667,11 @@
 				5B031C3719ACA6C100573071 /* XinJianXiangMu in Resources */,
 				D3AD607B19AC4E01001FD483 /* 全部项目_37.png in Resources */,
 				D3AD606819AC4DC1001FD483 /* 面部采集_07.png in Resources */,
+				D3AD621B19B068F5001FD483 /* +项目-首页_23a.png in Resources */,
 				D3AD604119AC4DC1001FD483 /* bg-menuitem-highlighted.png in Resources */,
 				D3AD606319AC4DC1001FD483 /* 面部识别登录1_03.png in Resources */,
 				D3AD61EC19AF225A001FD483 /* message.png in Resources */,
+				D3AD621C19B068F5001FD483 /* +项目-首页_25a.png in Resources */,
 				D3AD605819AC4DC1001FD483 /* 注册.png in Resources */,
 				D3AD61ED19AF225A001FD483 /* photoBtnIcon.png in Resources */,
 				D3AD604219AC4DC1001FD483 /* bg-menuitem-highlighted@2x.png in Resources */,
@@ -2705,6 +2722,7 @@
 				04D10BF419AE059E0097C0C6 /* back_icon.png in Resources */,
 				D3AD605319AC4DC1001FD483 /* timescroll_minutehand@2x.png in Resources */,
 				5B031C3419ACA6C100573071 /* XiangMuXiangQing_3 in Resources */,
+				D3AD621D19B068F5001FD483 /* +项目-首页_27a.png in Resources */,
 				D3AD61F019AF225A001FD483 /* setBg.png in Resources */,
 				D3AD604319AC4DC1001FD483 /* bg-menuitem.png in Resources */,
 				D3AD605E19AC4DC1001FD483 /* 登录_03.png in Resources */,
@@ -2724,6 +2742,7 @@
 				04D10BF219AE059E0097C0C6 /* 1.png in Resources */,
 				D3AD61F519AF266B001FD483 /* 新建项目5_09.png in Resources */,
 				D3AD61FF19AF32D7001FD483 /* 搜索结果_09a.png in Resources */,
+				D3AD621519B06702001FD483 /* 项目-首页_18a.png in Resources */,
 				D3AD603E19AC4DC1001FD483 /* bg-addbutton-highlighted@2x.png in Resources */,
 				D3AD61EE19AF225A001FD483 /* project.png in Resources */,
 				0426BFF519922CE400CD8822 /* InfoPlist.strings in Resources */,
@@ -2739,6 +2758,7 @@
 				D3AD61F119AF225A001FD483 /* setIcon.png in Resources */,
 				D3AD605D19AC4DC1001FD483 /* 登录1_07.png in Resources */,
 				D3AD605B19AC4DC1001FD483 /* 注册_09.png in Resources */,
+				D3AD621A19B068F5001FD483 /* +项目-首页_21a.png in Resources */,
 				5B031C3119ACA6C100573071 /* XiangMuXiangQing in Resources */,
 				0426BFFD19922CE400CD8822 /* Images.xcassets in Resources */,
 				D3AD606D19AC4DC1001FD483 /* 首页侧拉栏_03.png in Resources */,

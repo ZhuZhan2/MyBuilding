@@ -82,13 +82,13 @@
     
     progressImage = [[UIImageView alloc] initWithFrame:CGRectMake(215,10,52,52)];
     if([stage isEqualToString:@"1"]){
-        [progressImage setImage:[UIImage imageNamed:@"全部项目_16.png"]];
+        [progressImage setImage:[UIImage imageNamed:@"+项目-首页_21a.png"]];
     }else if([stage isEqualToString:@"2"]){
-        [progressImage setImage:[UIImage imageNamed:@"全部项目_15.png"]];
+        [progressImage setImage:[UIImage imageNamed:@"+项目-首页_25a.png"]];
     }else if([stage isEqualToString:@"3"]){
-        [progressImage setImage:[UIImage imageNamed:@"全部项目_14.png"]];
+        [progressImage setImage:[UIImage imageNamed:@"+项目-首页_27a.png"]];
     }else{
-        [progressImage setImage:[UIImage imageNamed:@"全部项目_13.png"]];
+        [progressImage setImage:[UIImage imageNamed:@"+项目-首页_23a.png"]];
     }
     [bgImgView addSubview:progressImage];
     
@@ -112,15 +112,12 @@
     [arrowImage setImage:[UIImage imageNamed:@"全部项目_17.png"]];
     [bgImgView addSubview:arrowImage];
     
-    UIImageView *dianImage = [[UIImageView alloc] initWithFrame:CGRectMake(255,225,3.5,18)];
-    [dianImage setImage:[UIImage imageNamed:@"全部项目_19.png"]];
-    dianImage.userInteractionEnabled = YES;
-    UITapGestureRecognizer *dianImagetapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
-    //[dianImagetapGestureRecognizer addTarget:self action:@selector(dianImageClick)];
-    [dianImagetapGestureRecognizer setNumberOfTapsRequired:1];
-    [dianImagetapGestureRecognizer setNumberOfTouchesRequired:1];
-    [dianImage addGestureRecognizer:dianImagetapGestureRecognizer];
-    [bgImgView addSubview:dianImage];
+    UIButton *dianBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [dianBtn setFrame:CGRectMake(255,225,21,20)];
+    [dianBtn setBackgroundImage:[UIImage imageNamed:@"项目-首页_18a.png"] forState:UIControlStateNormal];
+    [dianBtn addTarget:self action:@selector(dianBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:dianBtn];
+    
     
     UILabel *zoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(35,225,60,20)];
     zoneLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
@@ -133,5 +130,9 @@
     addressLabel.textColor = [UIColor blackColor];
     addressLabel.text = model.a_landAddress;
     [bgImgView addSubview:addressLabel];
+}
+
+-(void)dianBtnClick{
+    NSLog(@"dianBtnClick");
 }
 @end
