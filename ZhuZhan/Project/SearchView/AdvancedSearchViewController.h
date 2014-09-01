@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "AdvancedSearchConditionsTableViewCell.h"
 #import "MultipleChoiceViewController.h"
-@interface AdvancedSearchViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,AdvancedSearchConditionsDelegate>{
+@interface AdvancedSearchViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,AdvancedSearchConditionsDelegate,MChoiceViewDelegate>{
     UITableView *_tableView;
     NSMutableDictionary *dataDic;
+    MultipleChoiceViewController *multipleChoseView;
 }
 
 @end

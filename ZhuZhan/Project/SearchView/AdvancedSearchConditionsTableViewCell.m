@@ -111,7 +111,7 @@
     [bgView addSubview:projectStageBtn];
     
     projectStageLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 205, 185, 40)];
-    projectStageLabel.text = @"asdfsadfsadfsdfsadfasdfasdfsadf";
+    projectStageLabel.text = @"";
     projectStageLabel.numberOfLines = 2;
     projectStageLabel.font = font;
     [bgView addSubview:projectStageLabel];
@@ -130,7 +130,7 @@
     [bgView addSubview:projectCategoryBtn];
     
     projectCategoryLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 255, 185, 40)];
-    projectCategoryLabel.text = @"asdfsadfsadfsdfsadfasdfasdfasdfasdfsadf";
+    projectCategoryLabel.text = @"";
     projectCategoryLabel.numberOfLines = 2;
     projectCategoryLabel.font = font;
     [bgView addSubview:projectCategoryLabel];
@@ -171,5 +171,10 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+}
+
+-(void)setDic:(NSMutableDictionary *)dic{
+    projectStageLabel.text = dic[@"projectStage"];
+    projectCategoryLabel.text = dic[@"projectCategory"];
 }
 @end

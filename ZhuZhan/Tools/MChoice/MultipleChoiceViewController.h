@@ -17,8 +17,9 @@
 @property(retain,nonatomic)NSMutableArray *dataArr;
 @property(retain,nonatomic)NSMutableArray *arr;
 @property(nonatomic ,weak)id<MChoiceViewDelegate>delegate;
+@property(nonatomic)int flag;
 @end
 @protocol MChoiceViewDelegate <NSObject>
--(void)choiceData:(NSMutableArray *)arr;
+-(void)choiceData:(NSMutableArray *)arr index:(int)index;
 -(void)backMChoiceViewController;
 @end

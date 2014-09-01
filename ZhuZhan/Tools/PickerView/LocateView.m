@@ -85,7 +85,6 @@
     [self setAlpha:1.0f];
     [self.layer addAnimation:animation forKey:@"LocateView"];
     
-    NSLog(@"%f",view.frame.size.height);
     self.frame=CGRectMake(0, view.frame.size.height-self.frame.size.height, self.frame.size.width, self.frame.size.height);
    // self.frame = CGRectMake(0, view.frame.size.height - self.frame.size.height, self.frame.size.width, self.frame.size.height);
     

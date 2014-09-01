@@ -210,7 +210,6 @@ int j;
  */
 - (BMKAnnotationView *)mapView:(BMKMapView *)view viewForAnnotation:(id <BMKAnnotation>)annotation
 {
-    NSLog(@"asdfasdfasdf");
     // 生成重用标示identifier
     NSString *AnnotationViewID = @"xidanMark";
 	
@@ -330,7 +329,6 @@ int j;
     CLLocationCoordinate2D coordinate = [_mapView convertPoint:location toCoordinateFromView:_mapView];
     [coordinates addObject:[NSValue valueWithMKCoordinate:coordinate]];
     CGPathCloseSubpath(pathRef);
-    //NSLog(@"==>%@",pathRef);
     int count = 0;
     if(logArr.count>26){
         count = 26;

@@ -114,14 +114,10 @@
 
 
 -(void)backToLogin{//返回到密码登录界面
-    NSLog(@"noninininoilnkkljjk");
-    
     LoginViewController *loginVC = [[LoginViewController alloc] init];
     UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
     [[AppDelegate instance] window].rootViewController = naVC;
     [[[AppDelegate instance] window] makeKeyAndVisible];
-    
-    
 }
 
 -(void)recognizeSuccess      //识别成功进行页面跳转

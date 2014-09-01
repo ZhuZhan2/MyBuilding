@@ -57,6 +57,8 @@
     [dataDic setValue:@"" forKey:@"keywords"];
     [dataDic setValue:@"" forKey:@"landDistrict"];
     [dataDic setValue:@"" forKey:@"landProvince"];
+    [dataDic setValue:@"" forKey:@"projectStage"];
+    [dataDic setValue:@"" forKey:@"projectCategory"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,6 +114,7 @@
         if(!cell){
             cell = [[AdvancedSearchConditionsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
+        cell.dic = dataDic;
         cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -135,15 +138,43 @@
 
 -(void)multipleChose:(int)index{
     if(index == 0){
-        MultipleChoiceViewController *multipleChoseView = [[MultipleChoiceViewController alloc] init];
+        multipleChoseView = [[MultipleChoiceViewController alloc] init];
         multipleChoseView.arr = [[NSMutableArray alloc] initWithObjects:@"工业",@"酒店及餐饮",@"商务办公",@"住宅/经济适用房",@"公用事业设施（教育、医疗、科研、基础建设等）",@"其他", nil];
         [multipleChoseView.view setFrame:CGRectMake(0, 0, 260, 310)];
+        multipleChoseView.flag = 0;
+        multipleChoseView.delegate = self;
         [self presentPopupViewController:multipleChoseView animationType:MJPopupViewAnimationFade];
     }else{
-        MultipleChoiceViewController *multipleChoseView = [[MultipleChoiceViewController alloc] init];
+        multipleChoseView = [[MultipleChoiceViewController alloc] init];
         multipleChoseView.arr = [[NSMutableArray alloc] initWithObjects:@"土地信息阶段",@"主体设计阶段",@"主体施工阶段",@"装修阶段", nil];
         [multipleChoseView.view setFrame:CGRectMake(0, 0, 260, 310)];
+        multipleChoseView.flag = 1;
+        multipleChoseView.delegate = self;
         [self presentPopupViewController:multipleChoseView animationType:MJPopupViewAnimationFade];
     }
+}
+
+-(void)choiceData:(NSMutableArray *)arr index:(int)index{
+    NSMutableString *string = [[NSMutableString alloc] init];
+    NSString *aStr = nil;
+    for(int i=0;i<arr.count;i++){
+        if(![[arr objectAtIndex:i] isEqualToString:@""]){
+            [string appendString:[NSString stringWithFormat:@"%@,",[arr objectAtIndex:i]]];
+        }
+    }
+    if(string.length !=0){
+        aStr = [string substringToIndex:([string length]-1)];
+        if(index == 0){
+            [dataDic setObject:aStr forKey:@"projectStage"];
+        }else{
+            [dataDic setObject:aStr forKey:@"projectCategory"];
+        }
+    }
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    [_tableView reloadData];
+}
+
+-(void)backMChoiceViewController{
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
 @end
