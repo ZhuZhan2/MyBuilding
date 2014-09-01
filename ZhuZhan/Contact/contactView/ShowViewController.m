@@ -111,8 +111,9 @@
         UILabel *label2 =[[UILabel alloc] initWithFrame:CGRectMake(220, 5,30, 30)];
         label2.text = @"1";
         [cell addSubview:label2];
-        return cell;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+        
 
     }
 static NSString *identifier2 = @"cell2";

@@ -37,6 +37,8 @@
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
     startIndex = 0;
+    NSLog(@"result   mmm%@",self.searchStr);
+//    self.searchStr = @"测试";
     [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             showArr = posts;
@@ -45,6 +47,8 @@
     } startIndex:startIndex keywords:self.searchStr];
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     self.tableView.separatorStyle = NO;
+    
+
 }
 
 - (void)didReceiveMemoryWarning

@@ -9,12 +9,14 @@
 #import "SearchViewController.h"
 #import "RecordSqlite.h"
 #import "RecordModel.h"
+
 @interface SearchViewController ()
 
 @end
 
 @implementation SearchViewController
 
+int startIndex;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -209,6 +211,8 @@
 -(void)gotoView:(NSInteger)index{
     if(index == 0){
     
+        ASRDialogview = [[ASRDialogViewController alloc] init];
+        [self.navigationController pushViewController:ASRDialogview animated:YES];
     }else if(index == 1){
         AdvancedSearchViewController *advancedSearchView = [[AdvancedSearchViewController alloc] init];
         [self.navigationController pushViewController:advancedSearchView animated:YES];
@@ -217,6 +221,8 @@
         [self.navigationController pushViewController:baiduMapView animated:YES];
     }
 }
+
+
 
 -(void)dealloc{
     NSLog(@"dealloc");
