@@ -130,48 +130,21 @@
 
 //图加图的数量
 +(UIView*)getImageViewWithImageUrl:(NSString*)imageUrl count:(NSInteger)count{
-//    EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:[UIImage imageNamed:@"首页_16.png"] ];//WithFrame:
-//    imageView.frame=CGRectMake(0, 0, 320, 215.5);
-//    imageView.showActivityIndicator=YES;
-//    
-//    //判断如果是image则无图
-////    if ([imageUrl isEqualToString:@"No"]) {
-////        imageView.image=[UIImage imageNamed:@"首页_16.png"];
-////    }else{
-//        imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,imageUrl]];
-//    //}
-//    //图片数量label
-//    UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 160, 70, 30)];
-//    label.text=[NSString stringWithFormat:@"%d张",count];
-//    label.textAlignment=NSTextAlignmentCenter;
-//    label.textColor=[UIColor whiteColor];
-//    label.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:.7];
-//    [imageView addSubview:label];
-//    
-//    UIView* view=[[UIView alloc]initWithFrame:imageView.frame];
-//    [view addSubview:imageView];
-//    return view;
-
-    
-    
-    
-    
-    
-    
     MyView* view=[[MyView alloc]init];
     view.frame=CGRectMake(0, 0, 320, 215.5);
     view.layer.masksToBounds=YES;
+    view.backgroundColor=[UIColor grayColor];
     
     view.myImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,imageUrl]];
     
     
     //图片数量label
-    UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 160, 70, 30)];
+    UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 180, 70, 30)];
     label.text=[NSString stringWithFormat:@"%d张",count];
     label.textAlignment=NSTextAlignmentCenter;
     label.textColor=[UIColor whiteColor];
     label.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:.7];
-    [view.myImageView addSubview:label];
+    [view addSubview:label];
     
    // NSLog(@"%@",imageView.frame);
     return view;

@@ -220,7 +220,7 @@
     //暂时移除观察者,避免加新view时有动画
     [self.view addSubview:self.selectTableView];
     [UIView animateWithDuration:0.5 animations:^{
-        self.selectTableView.center=CGPointMake(160, (568-64.5)*.5+64.5);
+        self.selectTableView.center=CGPointMake(160, (568-64)*.5+64);
     }];
 }
 
@@ -515,12 +515,10 @@
         BOOL stageLight=NO;
         int temp[4]={0,2,5,9};
         
-        //NSLog(@"%@",self.stages);
+        NSLog(@"%@",self.stages);
         for (NSString* str in [self.stages subarrayWithRange:NSMakeRange(temp[indexPath.section], stagesCount[indexPath.section])]) {
             
             if (![str isEqualToString:@"none"]) {
-                //NSLog(@"%d,%d",temp[indexPath.section], stagesCount[indexPath.section]);
-                //NSLog(@"%d,%d",indexPath.section,indexPath.row);
                 stageLight=YES;
                 break;
             }
@@ -569,7 +567,6 @@
                 third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }
         }
-        //NSLog(@"%@",self.stages[temp[indexPath.section]+indexPath.row]);
         
         ProgramSelectViewCell* cell=[ProgramSelectViewCell dequeueReusableCellWithTabelView:tableView identifier:@"Cell" indexPath:indexPath firstIcon:first secondIcon:second thirdIcon:third stageLight:stageLight];
         cell.delegate=self;

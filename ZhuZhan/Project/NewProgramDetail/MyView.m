@@ -34,13 +34,14 @@
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     CGSize size=self.myImageView.image.size;
+    NSLog(@"%f,%f",size.width,size.height);
     self.myImageView.frame=CGRectMake(0, 0, size.width*.5, size.height*.5);
     self.myImageView.center=CGPointMake(160, 215.5*.5);
 }
 
 -(void)dealloc{
     NSLog(@"EGOImageView SuperView Dealloc");
-    //[self.myImageView removeObserver:self forKeyPath:@"image"];
+    [self.myImageView removeObserver:self forKeyPath:@"image"];
 }
 /*
 // Only override drawRect: if you perform custom drawing.
