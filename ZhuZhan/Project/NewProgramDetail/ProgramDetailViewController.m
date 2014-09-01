@@ -383,7 +383,21 @@
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    NSArray* path=@[@"XiangMuXiangQing_ShaiXuan/map@2x.png",@"XiangMuXiangQing_ShaiXuan/pen_01@2x.png",@"XiangMuXiangQing_2/Subject_01@2x.png",@"XiangMuXiangQing_3/paint_01@2x.png"];
+    int stagesCount[4]={2,3,4,1};
+    BOOL stageLight=NO;
+    int temp[4]={0,2,5,9};
+    
+    for (NSString* str in [self.stages subarrayWithRange:NSMakeRange(temp[section], stagesCount[section])]) {
+        
+        if (![str isEqualToString:@"none"]) {
+            //NSLog(@"%d,%d",temp[indexPath.section], stagesCount[indexPath.section]);
+            //NSLog(@"%d,%d",indexPath.section,indexPath.row);
+            stageLight=YES;
+            break;
+        }
+    }
+    
+    NSArray* path=stageLight?@[@"XiangMuXiangQing/map@2x.png",@"XiangMuXiangQing_1/pen_01@2x.png",@"XiangMuXiangQing_2/Subject_01@2x.png",@"XiangMuXiangQing_3/paint_01@2x.png"]:@[@"项目详情-筛选_03.png",@"项目详情-筛选_06.png",@"XiangMuXiangQing_ShaiXuan/Subject@2x.png",@"XiangMuXiangQing_ShaiXuan/paint@2x.png"];
     
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 37.5)];
     
@@ -397,11 +411,12 @@
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(47, 12, 200, 16)];
     NSArray* ary=@[@"土地信息阶段",@"主体设计阶段",@"主体施工阶段",@"装修阶段"];
     label.text=ary[section];
+    label.textColor=stageLight?[UIColor blackColor]:RGBCOLOR(197, 197, 197);
     label.font=[UIFont systemFontOfSize:16];
     [view addSubview:label];
     
     UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(47, 36.5, 273, 1)];
-    separatorLine.backgroundColor=RGBCOLOR(96, 96, 96);
+    separatorLine.backgroundColor=stageLight?RGBCOLOR(96, 96, 96):RGBCOLOR(190, 190, 190);
     [view addSubview:separatorLine];
     
     //使该sectionHeader可以被点击
@@ -497,12 +512,16 @@
     }else{
         BOOL first,second,third;
         int stagesCount[4]={2,3,4,1};
-        BOOL stageHeight=NO;
+        BOOL stageLight=NO;
         int temp[4]={0,2,5,9};
         
+        //NSLog(@"%@",self.stages);
         for (NSString* str in [self.stages subarrayWithRange:NSMakeRange(temp[indexPath.section], stagesCount[indexPath.section])]) {
+            
             if (![str isEqualToString:@"none"]) {
-                stageHeight=YES;
+                //NSLog(@"%d,%d",temp[indexPath.section], stagesCount[indexPath.section]);
+                //NSLog(@"%d,%d",indexPath.section,indexPath.row);
+                stageLight=YES;
                 break;
             }
         }
@@ -550,8 +569,9 @@
                 third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }
         }
+        //NSLog(@"%@",self.stages[temp[indexPath.section]+indexPath.row]);
         
-        ProgramSelectViewCell* cell=[ProgramSelectViewCell dequeueReusableCellWithTabelView:tableView identifier:@"Cell" indexPath:indexPath firstIcon:first secondIcon:second thirdIcon:third heightStage:stageHeight];
+        ProgramSelectViewCell* cell=[ProgramSelectViewCell dequeueReusableCellWithTabelView:tableView identifier:@"Cell" indexPath:indexPath firstIcon:first secondIcon:second thirdIcon:third stageLight:stageLight];
         cell.delegate=self;
         return cell;
     }
