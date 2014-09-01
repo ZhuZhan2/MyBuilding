@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 @protocol AdvancedSearchConditionsDelegate <NSObject>
-
 -(void)multipleChose:(int)index;
-
+-(void)setTextFieldStr:(NSString *)str index:(int)index;
 @end
 @interface AdvancedSearchConditionsTableViewCell : UITableViewCell<UITextFieldDelegate>{
     UITextField *keyWord;

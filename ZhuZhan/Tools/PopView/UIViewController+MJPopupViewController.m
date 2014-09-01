@@ -222,7 +222,7 @@
     CGSize sourceSize = sourceView.bounds.size;
     CGSize popupSize = popupView.bounds.size;
     CGRect popupEndRect = CGRectMake((sourceSize.width - popupSize.width) / 2, 
-                                     (sourceSize.height - popupSize.height) / 2,
+                                     (sourceSize.height - popupSize.height) / 2-50,
                                      popupSize.width, 
                                      popupSize.height);
    

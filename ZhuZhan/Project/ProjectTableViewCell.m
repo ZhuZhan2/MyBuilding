@@ -135,4 +135,25 @@
 -(void)dianBtnClick{
     NSLog(@"dianBtnClick");
 }
+
+-(void)setModel:(projectModel *)model{
+    nameLabel.text = model.a_projectName;
+    investmentcountLabel.text = model.a_investment;
+    areacountLabel.text = model.a_area;
+    
+    stage = [ProjectStage JudgmentProjectStage:model];
+    if([stage isEqualToString:@"1"]){
+        [progressImage setImage:[UIImage imageNamed:@"+项目-首页_21a.png"]];
+    }else if([stage isEqualToString:@"2"]){
+        [progressImage setImage:[UIImage imageNamed:@"+项目-首页_25a.png"]];
+    }else if([stage isEqualToString:@"3"]){
+        [progressImage setImage:[UIImage imageNamed:@"+项目-首页_27a.png"]];
+    }else{
+        [progressImage setImage:[UIImage imageNamed:@"+项目-首页_23a.png"]];
+    }
+    
+    startdateLabel.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+    enddateLabel.text = [model.a_exceptFinishTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+    addressLabel.text = model.a_landAddress;
+}
 @end

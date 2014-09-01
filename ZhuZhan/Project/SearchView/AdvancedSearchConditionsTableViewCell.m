@@ -56,6 +56,7 @@
     keyWord.placeholder = @"请输入项目关键词";
     keyWord.returnKeyType = UIReturnKeyDone;
     keyWord.clearButtonMode = UITextFieldViewModeAlways;
+    keyWord.tag = 0;
     [bgView addSubview:keyWord];
     
     companyName = [[UITextField alloc] initWithFrame:CGRectMake(15, 55, 290, 40)];
@@ -63,6 +64,7 @@
     companyName.placeholder = @"请输入相关公司名称";
     companyName.returnKeyType = UIReturnKeyDone;
     companyName.clearButtonMode = UITextFieldViewModeAlways;
+    companyName.tag = 1;
     [bgView addSubview:companyName];
     
     districtBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -146,23 +148,33 @@
 
 -(void)searchClick{
     NSLog(@"searchClick");
+    [keyWord resignFirstResponder];
+    [companyName resignFirstResponder];
 }
 
 -(void)districtBtnClick{
     NSLog(@"districtBtnClick");
+    [keyWord resignFirstResponder];
+    [companyName resignFirstResponder];
 }
 
 -(void)provinceBtnClick{
     NSLog(@"provinceBtnClick");
+    [keyWord resignFirstResponder];
+    [companyName resignFirstResponder];
 }
 
 -(void)projectStageBtnClick:(UIButton *)button{
+    [keyWord resignFirstResponder];
+    [companyName resignFirstResponder];
     if([self.delegate respondsToSelector:@selector(multipleChose:)]){
         [self.delegate multipleChose:button.tag];
     }
 }
 
 -(void)projectCategoryBtnClick:(UIButton *)button{
+    [keyWord resignFirstResponder];
+    [companyName resignFirstResponder];
     if([self.delegate respondsToSelector:@selector(multipleChose:)]){
         [self.delegate multipleChose:button.tag];
     }
@@ -171,6 +183,12 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    if([self.delegate respondsToSelector:@selector(setTextFieldStr:index:)]){
+        [self.delegate setTextFieldStr:textField.text index:textField.tag];
+    }
 }
 
 -(void)setDic:(NSMutableDictionary *)dic{

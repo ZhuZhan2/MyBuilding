@@ -11,6 +11,7 @@
 #import "ProjectContactModel.h"
 #import "ProjectImageModel.h"
 #import "TopicsModel.h"
+#import "ConditionsModel.h"
 @implementation ProjectApi
 //RESPONSE:
 //{
@@ -295,7 +296,7 @@
 //    "SearchConditions":"是够大方司法局"
 //}
 + (NSURLSessionDataTask *)SearchConditionWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/SearchConditionr"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/SearchCondition"];
     return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
@@ -345,13 +346,17 @@
 //NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
 //[dic setObject:@"" forKey:@"distict"]; 所在区域
 //[dic setObject:@"" forKey:@"createBy"]; 创建人
-+ (NSURLSessionDataTask *)GetSearchConditionsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/GetSearchConditions?distict=%@&createBy=%@",dic[@"distict"],dic[@"createBy"]];
++ (NSURLSessionDataTask *)GetSearchConditionsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block{
+    NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/SearchConditions?distict=&createBy=0ba5403d-6b6e-425f-b7e6-9555be0c38a9"];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON);
+        //NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            //[mutablePosts addObject:JSON[@"d"][@"data"]];
+            for(NSDictionary *item in JSON[@"d"][@"data"]){
+                ConditionsModel *model = [[ConditionsModel alloc] init];
+                [model setDict:item];
+                [mutablePosts addObject:model];
+            }
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }

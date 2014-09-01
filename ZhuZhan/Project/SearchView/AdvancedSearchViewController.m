@@ -8,6 +8,10 @@
 
 #import "AdvancedSearchViewController.h"
 #import "UIViewController+MJPopupViewController.h"
+#import "ProjectApi.h"
+#import "SaveConditionsViewController.h"
+#import "AppDelegate.h"
+#import "HomePageViewController.h"
 @interface AdvancedSearchViewController ()
 
 @end
@@ -45,7 +49,7 @@
     
     self.title = @"高级搜索";
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 504)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
@@ -59,6 +63,18 @@
     [dataDic setValue:@"" forKey:@"landProvince"];
     [dataDic setValue:@"" forKey:@"projectStage"];
     [dataDic setValue:@"" forKey:@"projectCategory"];
+    
+    viewArr = [[NSMutableArray alloc] init];
+    [ProjectApi GetSearchConditionsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            showArr = posts;
+            for(int i=0;i<posts.count;i++){
+                conditionsView = [ConditionsView setFram:posts[i]];
+                [viewArr insertObject:conditionsView atIndex:0];
+            }
+            [_tableView reloadData];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,12 +93,32 @@
     // Pass the selected object to the new view controller.
 }
 */
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //恢复tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //隐藏tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarHide];
+}
+
 -(void)leftBtnClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)rightBtnClick{
-    NSLog(@"rightBtnClick");
+    saveView = [[SaveConditionsViewController alloc] init];
+    [saveView.view setFrame:CGRectMake(0, 0, 271, 173)];
+    saveView.delegate = self;
+    saveView.dataDic = dataDic;
+    [self presentPopupViewController:saveView animationType:MJPopupViewAnimationFade];
 }
 
 #pragma mark - Table view data source
@@ -96,14 +132,57 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 2;
+    return 2+showArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row == 0){
         return  355;
+    }else if (indexPath.row == 1){
+        return 44;
+    }else{
+        if(viewArr.count !=0){
+            conditionsView = [viewArr objectAtIndex:indexPath.row-2];
+            //NSLog(@"===>%f",conditionsView.frame.size.height);
+            if(conditionsView.frame.size.height <44){
+                return 44;
+            }else{
+                return conditionsView.frame.size.height;
+            }
+        }else{
+            return 0;
+        }
     }
-    return 44;
+}
+
+//哪几行可以编辑
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row == 0){
+        return NO;
+    }else if(indexPath.row == 1){
+        return NO;
+    }
+    return YES;
+}
+
+//继承该方法时,左右滑动会出现删除按钮(自定义按钮),点击按钮时的操作
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"editingStyle ==> %d",editingStyle);
+    /*if (editingStyle == UITableViewCellEditingStyleDelete){
+        [self.arr removeObjectAtIndex:indexPath.row];
+        NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+        [self.tableview deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    }else {
+        //我们实现的是在所选行的位置插入一行，因此直接使用了参数indexPath
+        NSArray *insertIndexPaths = [NSArray arrayWithObjects:indexPath,nil];
+        //同样，将数据加到list中，用的row
+        [self.arr insertObject:@"新添加的行" atIndex:0];
+        [tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationRight];
+    }*/
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -125,11 +204,31 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 7, 100, 30)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(55, 7, 100, 30)];
         label.text = @"个人搜索条件";
-        label.font = [UIFont systemFontOfSize:14];
-        [cell.contentView setBackgroundColor:[UIColor grayColor]];
+        label.font = [UIFont systemFontOfSize:12];
+        [cell.contentView setBackgroundColor:RGBCOLOR(242, 242, 242)];
         [cell.contentView addSubview:label];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 11.5, 19, 21)];
+        [imageView setImage:[UIImage imageNamed:@"项目－高级搜索－2_15a-19"]];
+        [cell.contentView addSubview:imageView];
+        return cell;
+    }else{
+        NSString *stringcell = @"Cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
+        if(!cell){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
+        }
+        for(int i=0;i<cell.contentView.subviews.count;i++) {
+            [((UIView*)[cell.contentView.subviews objectAtIndex:i]) removeFromSuperview];
+        }
+        [cell.contentView setBackgroundColor:[UIColor whiteColor]];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if(viewArr.count !=0){
+            conditionsView = [viewArr objectAtIndex:indexPath.row-2];
+            [cell.contentView addSubview:conditionsView];
+        }
         return cell;
     }
     
@@ -154,6 +253,15 @@
     }
 }
 
+-(void)setTextFieldStr:(NSString *)str index:(int)index{
+    if(index == 0){
+        [dataDic setValue:str forKey:@"keywords"];
+    }else{
+        [dataDic setValue:str forKey:@"landDistrict"];
+    }
+    [_tableView reloadData];
+}
+
 -(void)choiceData:(NSMutableArray *)arr index:(int)index{
     NSMutableString *string = [[NSMutableString alloc] init];
     NSString *aStr = nil;
@@ -174,7 +282,12 @@
     [_tableView reloadData];
 }
 
+
 -(void)backMChoiceViewController{
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+}
+
+-(void)backView{
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
 @end
