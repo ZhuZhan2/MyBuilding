@@ -146,6 +146,9 @@
     NSLog(@"searchClick");
     [keyWord resignFirstResponder];
     [companyName resignFirstResponder];
+    if([self.delegate respondsToSelector:@selector(startSearch)]){
+        [self.delegate startSearch];
+    }
 }
 
 -(void)districtBtnClick{

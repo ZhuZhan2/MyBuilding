@@ -11,6 +11,7 @@
 @protocol SaveConditionsViewDelegate <NSObject>
 
 -(void)backView;
+-(void)finshSave;
 @end
 
 @interface SaveConditionsViewController : UIViewController<UITextFieldDelegate>{

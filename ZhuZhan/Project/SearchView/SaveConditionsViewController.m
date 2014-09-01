@@ -101,8 +101,8 @@
     [ProjectApi SearchConditionWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             [nameTextField resignFirstResponder];
-            if([self.delegate respondsToSelector:@selector(backView)]){
-                [self.delegate backView];
+            if([self.delegate respondsToSelector:@selector(finshSave)]){
+                [self.delegate finshSave];
             }
         }
     } dic:dic];

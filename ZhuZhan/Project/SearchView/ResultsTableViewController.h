@@ -11,5 +11,7 @@
     NSMutableArray *showArr;
     int startIndex;
 }
-@property(nonatomic,retain)NSString *searchStr;
+@property(nonatomic,weak)NSString *searchStr;
+@property(nonatomic,weak)NSMutableDictionary *dic;
+@property(nonatomic)int flag;
 @end

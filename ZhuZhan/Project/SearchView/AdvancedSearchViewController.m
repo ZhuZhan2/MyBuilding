@@ -63,6 +63,7 @@
     [dataDic setValue:@"" forKey:@"landProvince"];
     [dataDic setValue:@"" forKey:@"projectStage"];
     [dataDic setValue:@"" forKey:@"projectCategory"];
+    [dataDic setValue:@"" forKey:@"companyName"];
     
     viewArr = [[NSMutableArray alloc] init];
     [ProjectApi GetSearchConditionsWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -275,7 +276,7 @@
     if(index == 0){
         [dataDic setValue:str forKey:@"keywords"];
     }else{
-        [dataDic setValue:str forKey:@"landDistrict"];
+        [dataDic setValue:str forKey:@"companyName"];
     }
     [_tableView reloadData];
 }
@@ -305,7 +306,29 @@
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
 
+-(void)finshSave{
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    [viewArr removeAllObjects];
+    [ProjectApi GetSearchConditionsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            showArr = posts;
+            for(int i=0;i<posts.count;i++){
+                conditionsView = [ConditionsView setFram:posts[i]];
+                [viewArr insertObject:conditionsView atIndex:0];
+            }
+            [_tableView reloadData];
+        }
+    }];
+}
+
 -(void)backView{
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+}
+
+-(void)startSearch{
+    ResultsTableViewController *resultView = [[ResultsTableViewController alloc] init];
+    resultView.dic = dataDic;
+    resultView.flag = 1;
+    [self.navigationController pushViewController:resultView animated:YES];
 }
 @end

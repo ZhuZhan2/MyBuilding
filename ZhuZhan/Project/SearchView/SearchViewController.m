@@ -205,6 +205,7 @@
     
     ResultsTableViewController *resultView = [[ResultsTableViewController alloc] init];
     resultView.searchStr = _searchBar.text;
+    resultView.flag = 0;
     [self.navigationController pushViewController:resultView animated:YES];
 }
 

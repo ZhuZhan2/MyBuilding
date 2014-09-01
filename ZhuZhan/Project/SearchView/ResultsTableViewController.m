@@ -37,12 +37,20 @@
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
     startIndex = 0;
-    [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            showArr = posts;
-            [self.tableView reloadData];
-        }
-    } startIndex:startIndex keywords:self.searchStr];
+    if(self.flag == 0){
+        [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                showArr = posts;
+                [self.tableView reloadData];
+            }
+        } startIndex:startIndex keywords:self.searchStr];
+    }else{
+        [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+            
+            }
+        } dic:self.dic startIndex:startIndex];
+    }
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     self.tableView.separatorStyle = NO;
 }
