@@ -145,7 +145,6 @@ int startIndex;
     //kbSize即為鍵盤尺寸 (有width, height)
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;//得到鍵盤的高度
     if(toolbarView == nil){
-        NSLog(@"%f",_tableView.frame.size.height);
         toolbarView = [[toolBarView alloc] initWithFrame:CGRectMake(0, 464-kbSize.height+64, 320, 40)];
         toolbarView.delegate = self;
         [self.view addSubview:toolbarView];
@@ -205,6 +204,10 @@ int startIndex;
     [dic setValue:_searchBar.text forKey:@"name"];
     [dic setValue:time forKey:@"time"];
     [RecordSqlite InsertData:dic];
+    
+    ResultsTableViewController *resultView = [[ResultsTableViewController alloc] init];
+    resultView.searchStr = _searchBar.text;
+    [self.navigationController pushViewController:resultView animated:YES];
 }
 
 

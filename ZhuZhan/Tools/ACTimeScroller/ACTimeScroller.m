@@ -156,7 +156,6 @@
 - (void)updateDisplayWithCell:(UITableViewCell *)cell
 {
     NSDate *date = [self.delegate timeScroller:self dateForCell:cell];
-    NSLog(@"===>%@",date);
     if (!date || [date isEqualToDate:_lastDate])
     {
         return;
@@ -171,7 +170,6 @@
     NSDateComponents *lastDateComponents = [self.calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekOfYearCalendarUnit | NSWeekCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:_lastDate];
     
     _timeLabel.text = [self.timeDateFormatter stringFromDate:date];
-    NSLog(@"==>%@",_timeLabel.text);
     
     CGFloat currentHourAngle = 0.5f * ((lastDateComponents.hour * 60.0f) + lastDateComponents.minute);
     CGFloat newHourAngle = 0.5f * ((dateComponents.hour * 60.0f) + dateComponents.minute);

@@ -89,7 +89,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 - (void)_refreshing {
     // refresh your data sources
-    NSLog(@"asdfasdfasdf");
     __weak AccountViewController *wself = self;
     double delayInSeconds = 4.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -181,7 +180,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 #pragma mark ----UIImagePickerController delegate----
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    NSLog(@"()*********** %@",info);
     UIImage * imge =  [info objectForKey:UIImagePickerControllerOriginalImage];
     
     AppDelegate* app=[AppDelegate instance];
