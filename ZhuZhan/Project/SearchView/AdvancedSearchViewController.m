@@ -137,7 +137,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row == 0){
-        return  355;
+        return  350;
     }else if (indexPath.row == 1){
         return 44;
     }else{
@@ -168,17 +168,27 @@
 //继承该方法时,左右滑动会出现删除按钮(自定义按钮),点击按钮时的操作
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"editingStyle ==> %d",editingStyle);
-    /*if (editingStyle == UITableViewCellEditingStyleDelete){
-        [self.arr removeObjectAtIndex:indexPath.row];
+    if (editingStyle == UITableViewCellEditingStyleDelete){
+        ConditionsModel *model = [showArr objectAtIndex:indexPath.row-2];
+        NSLog(@"%@",model.a_id);
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:model.a_id forKey:@"id"];
+        [dic setValue:model.a_createBy forKey:@"deleteBy"];
+        [ProjectApi DeleteSearchConditionsWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                
+            }
+        } dic:dic];
+        [showArr removeObjectAtIndex:indexPath.row-2];
         NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
-        [self.tableview deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+        [_tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
     }else {
         //我们实现的是在所选行的位置插入一行，因此直接使用了参数indexPath
-        NSArray *insertIndexPaths = [NSArray arrayWithObjects:indexPath,nil];
-        //同样，将数据加到list中，用的row
-        [self.arr insertObject:@"新添加的行" atIndex:0];
-        [tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationRight];
-    }*/
+//        NSArray *insertIndexPaths = [NSArray arrayWithObjects:indexPath,nil];
+//        //同样，将数据加到list中，用的row
+//        [self.arr insertObject:@"新添加的行" atIndex:0];
+//        [tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationRight];
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -213,6 +223,14 @@
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 11.5, 19, 21)];
         [imageView setImage:[UIImage imageNamed:@"项目－高级搜索－2_15a-19"]];
         [cell.contentView addSubview:imageView];
+        
+        UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 5)];
+        [lineImage setImage:[UIImage imageNamed:@"项目－高级搜索－2_15a"]];
+        [cell.contentView addSubview:lineImage];
+        
+        UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 41, 320, 3)];
+        [lineImage2 setImage:[UIImage imageNamed:@"项目－高级搜索－2_22a"]];
+        [cell.contentView addSubview:lineImage2];
         return cell;
     }else{
         NSString *stringcell = @"Cell";

@@ -62,6 +62,7 @@
     nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(23, 84, 225, 29)];
     nameTextField.placeholder = @"Name";
     nameTextField.delegate = self;
+    [nameTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:nameTextField];
     
     [nameTextField becomeFirstResponder];
@@ -83,6 +84,14 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    if (textField.text.length > 24) {
+        textField.text = [textField.text substringToIndex:24];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"名字太长了" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
 
 -(void)confirmBtnClick{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];

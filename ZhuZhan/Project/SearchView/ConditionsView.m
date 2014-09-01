@@ -44,7 +44,7 @@
     NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:tfont,NSFontAttributeName,nil];
     //ios7方法，获取文本需要的size，限制宽度
     CGSize  actualsize =[model.a_searchConditions boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin |NSStringDrawingUsesFontLeading attributes:tdic context:nil].size;
-    if(conditionsView.frame.size.height <44){
+    if(actualsize.height+10 <44){
         contentLabel.frame =CGRectMake(80,(44-actualsize.height)/2, actualsize.width, actualsize.height);
     }else{
         contentLabel.frame =CGRectMake(80,5, actualsize.width, actualsize.height);
@@ -53,14 +53,26 @@
     [conditionsView addSubview:contentLabel];
     
     UIImageView *image = [[UIImageView alloc] init];
-    if(conditionsView.frame.size.height <44){
+    if(conditionsView.frame.size.height+10 <44){
         image.frame = CGRectMake(0, 43, 320, 1);
     }else{
-        image.frame = CGRectMake(0, actualsize.height+9, 320, 1);
+        image.frame = CGRectMake(0, actualsize.height+10, 320, 1);
     }
     [image setBackgroundColor:[UIColor lightGrayColor]];
     [conditionsView addSubview:image];
     [image setAlpha:0.5];
+    
+    UILabel *nameLabel = [[UILabel alloc] init];
+    if(conditionsView.frame.size.height+10 <44){
+        nameLabel.frame =CGRectMake(10,2, 60, 40);
+    }else{
+        nameLabel.frame =CGRectMake(10,(actualsize.height-40)/2, 60, 40);
+    }
+    nameLabel.text = model.a_searchName;
+    nameLabel.textColor = [UIColor greenColor];
+    nameLabel.font = [UIFont systemFontOfSize:14];
+    nameLabel.numberOfLines = 4;
+    [conditionsView addSubview:nameLabel];
     return conditionsView;
 }
 @end

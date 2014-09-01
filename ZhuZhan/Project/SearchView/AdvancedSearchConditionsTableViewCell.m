@@ -33,7 +33,7 @@
 }
 
 -(void)setContent{
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 355)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 350)];
     [bgView setBackgroundColor:[UIColor whiteColor]];
     [self.contentView addSubview:bgView];
     
@@ -140,10 +140,6 @@
     UIImageView *arrowImage4 = [[UIImageView alloc] initWithFrame:CGRectMake(290,270, 8, 12.5)];
     [arrowImage4 setImage:[UIImage imageNamed:@"新建项目5_09.png"]];
     [self addSubview:arrowImage4];
-    
-    UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 350, 320, 5)];
-    [lineImage2 setImage:[UIImage imageNamed:@"项目－高级搜索－2_15a"]];
-    [bgView addSubview:lineImage2];
 }
 
 -(void)searchClick{
