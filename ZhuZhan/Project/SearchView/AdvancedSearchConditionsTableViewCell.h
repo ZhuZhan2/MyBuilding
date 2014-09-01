@@ -25,5 +25,6 @@
     UILabel *projectStageLabel;
     UILabel *projectCategoryLabel;
 }
+@property(nonatomic,weak)NSMutableDictionary *dic;
 @property(nonatomic,weak)id<AdvancedSearchConditionsDelegate>delegate;
 @end

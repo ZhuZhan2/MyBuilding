@@ -63,15 +63,8 @@
     [complated addTarget:self action:@selector(complatedClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:complated];
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, 260, 270)];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    _tableView.rowHeight = 44;
-    _tableView.allowsSelectionDuringEditing = YES;
-    [self.view addSubview:_tableView];
     self.dataArr = [[NSMutableArray alloc] init];
     self.showArr = [NSMutableArray arrayWithCapacity:0];
-    
     for (int i=0; i<self.arr.count; i++) {
         Item *item = [[Item alloc] init];
         item.title = [self.arr objectAtIndex:i];
@@ -79,6 +72,13 @@
         [self.showArr addObject:item];
         [self.dataArr addObject:@""];
     }
+    
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, 260, 270)];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.rowHeight = 44;
+    _tableView.allowsSelectionDuringEditing = YES;
+    [self.view addSubview:_tableView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -119,7 +119,6 @@
 	
 	cell.accessoryType = UITableViewCellAccessoryNone;
 	cell.textLabel.textColor = [UIColor blackColor];
-	
     Item* item = [self.showArr objectAtIndex:indexPath.row];
     
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(49, 10, 200, 30)];
@@ -152,8 +151,8 @@
 
 -(void)complatedClick{
     if(self.dataArr.count !=0){
-        if ([delegate respondsToSelector:@selector(choiceData:)]){
-            [delegate choiceData:self.dataArr];
+        if ([delegate respondsToSelector:@selector(choiceData:index:)]){
+            [delegate choiceData:self.dataArr index:self.flag];
         }
     }else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"

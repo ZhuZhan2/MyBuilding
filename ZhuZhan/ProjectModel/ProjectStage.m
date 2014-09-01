@@ -31,7 +31,6 @@
 }
 
 +(NSString *)ProjectBoolStage:(NSString *)str{
-    NSLog(@"%@",str);
     NSString *string = [[NSString alloc] init];
     if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@" "]){
         string = @"";
