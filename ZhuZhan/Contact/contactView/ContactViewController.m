@@ -17,7 +17,7 @@
 #import "PublishViewController.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "RecommendLetterViewController.h"
-
+#import "ContactProjectTableViewCell.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -59,10 +59,10 @@ static NSInteger rowNum=0;
     comments =@[@"评论内容",@"评论内容",@"评论内容",@"评论内容",@"评论内容"];//平路内容的数组
     
     //上拉刷新界面
-    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 150)];
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154)];
     _pathCover.delegate = self;
-    [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
-    [_pathCover setAvatarImage:[UIImage imageNamed:@"首页侧拉栏_03.png"]];
+    [_pathCover setBackgroundImage:[UIImage imageNamed:@"bg001.png"]];
+    [_pathCover setAvatarImage:[UIImage imageNamed:@"人脉_29a.png"]];
     [_pathCover setHeadTaget];
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"用户名", XHUserNameKey, @"公司名字显示在这里     职位", XHBirthdayKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
@@ -204,14 +204,15 @@ static NSInteger rowNum=0;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PSTableViewCellIdentifier];
-    
-    NSDate *date = _datasource[[indexPath row]];
-    NSTimeZone *zone = [NSTimeZone systemTimeZone];
-    
-    NSInteger interval = [zone secondsFromGMTForDate: date];
-    
-    NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
-    [[cell textLabel] setText:[NSString stringWithFormat:@"%@",localeDate]];
+    if(indexPath.row == 0){
+        NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
+        ContactProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[ContactProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = NO;
+        return cell;
+    }
     
     return cell;
 }
@@ -290,7 +291,7 @@ static NSInteger rowNum=0;
 {
         NSLog(@"访问个人详情");
     
-    [showVC dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
     [self.navigationController pushViewController:personalVC animated:NO];
 }
@@ -299,7 +300,7 @@ static NSInteger rowNum=0;
 {
 
         NSLog(@"关注好友");
-       [showVC dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+       [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
        NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithObjectsAndKeys:userId,@"userId",@"bfc78202-8ac9-447a-a99d-783606d25668",@"focusId", nil];
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -324,7 +325,7 @@ static NSInteger rowNum=0;
 -(void)jumpToGetRecommend:(NSDictionary *)dic
 {
     NSLog(@"获得推荐");
-    [showVC dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     RecommendLetterViewController *recommendLetterVC = [[RecommendLetterViewController alloc] init];
     [self.navigationController pushViewController:recommendLetterVC animated:YES];//跳转到推荐信页面
 }
