@@ -308,6 +308,8 @@
 		5B031C3519ACA6C100573071 /* XiangMuXiangQing_ShaiXuan in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2D19ACA6C100573071 /* XiangMuXiangQing_ShaiXuan */; };
 		5B031C3619ACA6C100573071 /* XiangMuXiangQing_TanKuang in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2E19ACA6C100573071 /* XiangMuXiangQing_TanKuang */; };
 		5B031C3719ACA6C100573071 /* XinJianXiangMu in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2F19ACA6C100573071 /* XinJianXiangMu */; };
+		5B0A006319B562AA00500C05 /* ProductCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A006219B562AA00500C05 /* ProductCollectionViewCell.m */; };
+		5B0A006619B5641900500C05 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A006519B5641900500C05 /* ProductViewController.m */; };
 		5B0D03A419B054FB00518D5E /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD614F19ADA1A9001FD483 /* libbaidumapapi.a */; };
 		5B0D03A519B0550900518D5E /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD615119ADA1A9001FD483 /* libbaidumapapi.a */; };
 		5B0D03E319B0554400518D5E /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B0D03E219B0554400518D5E /* mapapi.bundle */; };
@@ -1110,6 +1112,10 @@
 		5B031C2D19ACA6C100573071 /* XiangMuXiangQing_ShaiXuan */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuXiangQing_ShaiXuan; sourceTree = "<group>"; };
 		5B031C2E19ACA6C100573071 /* XiangMuXiangQing_TanKuang */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuXiangQing_TanKuang; sourceTree = "<group>"; };
 		5B031C2F19ACA6C100573071 /* XinJianXiangMu */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XinJianXiangMu; sourceTree = "<group>"; };
+		5B0A006119B562AA00500C05 /* ProductCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCollectionViewCell.h; sourceTree = "<group>"; };
+		5B0A006219B562AA00500C05 /* ProductCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCollectionViewCell.m; sourceTree = "<group>"; };
+		5B0A006419B5641900500C05 /* ProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductViewController.h; sourceTree = "<group>"; };
+		5B0A006519B5641900500C05 /* ProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductViewController.m; sourceTree = "<group>"; };
 		5B0D03E219B0554400518D5E /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		5B49D21319B0787C00E03EFE /* 项目详情-筛选_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情-筛选_03.png"; sourceTree = "<group>"; };
 		5B49D21419B0787C00E03EFE /* 项目详情-筛选_06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情-筛选_06.png"; sourceTree = "<group>"; };
@@ -1414,6 +1420,7 @@
 				0426C04419922D5900CD8822 /* LoginView */,
 				0426C04E19922D5900CD8822 /* RegistView */,
 				0426C05519922D5900CD8822 /* Tools */,
+				5B0A005D19B5625D00500C05 /* Product */,
 				0426C20519922D5A00CD8822 /* Trade */,
 				0426BFF919922CE400CD8822 /* AppDelegate.h */,
 				0426BFFA19922CE400CD8822 /* AppDelegate.m */,
@@ -2183,22 +2190,22 @@
 		042D9DCE19B559FC00689C5D /* NewProgramDetail */ = {
 			isa = PBXGroup;
 			children = (
-				042D9DCF19B559FC00689C5D /* DecorationProject.h */,
-				042D9DD019B559FC00689C5D /* DecorationProject.m */,
+				042D9DDD19B559FC00689C5D /* ProgramDetailViewController.h */,
+				042D9DDE19B559FC00689C5D /* ProgramDetailViewController.m */,
 				042D9DD119B559FC00689C5D /* LandInfo.h */,
 				042D9DD219B559FC00689C5D /* LandInfo.m */,
-				042D9DD319B559FC00689C5D /* MainBuild.h */,
-				042D9DD419B559FC00689C5D /* MainBuild.m */,
 				042D9DD519B559FC00689C5D /* MainDesign.h */,
 				042D9DD619B559FC00689C5D /* MainDesign.m */,
+				042D9DD319B559FC00689C5D /* MainBuild.h */,
+				042D9DD419B559FC00689C5D /* MainBuild.m */,
+				042D9DCF19B559FC00689C5D /* DecorationProject.h */,
+				042D9DD019B559FC00689C5D /* DecorationProject.m */,
 				042D9DD719B559FC00689C5D /* MyFactory.h */,
 				042D9DD819B559FC00689C5D /* MyFactory.m */,
 				042D9DD919B559FC00689C5D /* MyIndexPath.h */,
 				042D9DDA19B559FC00689C5D /* MyIndexPath.m */,
 				042D9DDB19B559FC00689C5D /* MyView.h */,
 				042D9DDC19B559FC00689C5D /* MyView.m */,
-				042D9DDD19B559FC00689C5D /* ProgramDetailViewController.h */,
-				042D9DDE19B559FC00689C5D /* ProgramDetailViewController.m */,
 				042D9DDF19B559FC00689C5D /* ProgramSelectViewCell.h */,
 				042D9DE019B559FC00689C5D /* ProgramSelectViewCell.m */,
 				042D9DE119B559FC00689C5D /* ScrollViewController.h */,
@@ -2341,6 +2348,17 @@
 				04D10C7619B074C70097C0C6 /* RecommendLetterViewController.m */,
 			);
 			path = recommendletter;
+			sourceTree = "<group>";
+		};
+		5B0A005D19B5625D00500C05 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				5B0A006419B5641900500C05 /* ProductViewController.h */,
+				5B0A006519B5641900500C05 /* ProductViewController.m */,
+				5B0A006119B562AA00500C05 /* ProductCollectionViewCell.h */,
+				5B0A006219B562AA00500C05 /* ProductCollectionViewCell.m */,
+			);
+			path = Product;
 			sourceTree = "<group>";
 		};
 		D3311CA519AAD342003B2682 /* ProjectModel */ = {
@@ -2962,6 +2980,7 @@
 				0426C2EB19922D5A00CD8822 /* FaceppTrainer.m in Sources */,
 				0426C28919922D5A00CD8822 /* GPUImageLocalBinaryPatternFilter.m in Sources */,
 				0426C25519922D5A00CD8822 /* GPUImageColorDodgeBlendFilter.m in Sources */,
+				5B0A006619B5641900500C05 /* ProductViewController.m in Sources */,
 				04D10BD919AE016A0097C0C6 /* ContactViewController.m in Sources */,
 				0426C23419922D5A00CD8822 /* RegistViewController.m in Sources */,
 				D3AD60A219AC574A001FD483 /* Reachability.m in Sources */,
@@ -3191,6 +3210,7 @@
 				D3AD618A19ADF629001FD483 /* MyCenterModel.m in Sources */,
 				0426C24519922D5A00CD8822 /* GPUImageAlphaBlendFilter.m in Sources */,
 				0426C2C219922D5A00CD8822 /* GPUImageSubtractBlendFilter.m in Sources */,
+				5B0A006319B562AA00500C05 /* ProductCollectionViewCell.m in Sources */,
 				04D10BE519AE016A0097C0C6 /* PersonalDetailViewController.m in Sources */,
 				0426C27E19922D5A00CD8822 /* GPUImageHueBlendFilter.m in Sources */,
 				0426C2F219922D5A00CD8822 /* CJSONSerializedData.m in Sources */,

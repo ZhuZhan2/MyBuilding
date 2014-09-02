@@ -48,39 +48,11 @@ static int touchCount =2;
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - Button Handler
-/*
- * @开始录音
- */
-//- (void) onBtnStart:(id) sender
-//{
-//    [_resultView setText:@""];
-//    [_resultView resignFirstResponder];
-//
-//    bool ret = [_iFlySpeechUnderstander startListening];
-//    if (ret) {
-//        [_startBtn setEnabled:NO];
-//        [_cancelBtn setEnabled:YES];
-//        [_stopBtn setEnabled:YES];
-//        self.isCanceled = NO;
-//    }
-//    else
-//    {
-//        [_popUpView setText: @"启动识别服务失败，请稍后重试"];//可能是上次请求未结束
-//        [self.view addSubview:_popUpView];
-//    }
-//    
-//}
-
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    //    [self addBackButton];
-    //    [self addtittle:@"语音搜索"];
-    //    [self addRightButton:CGRectMake(280, 20, 29, 28.5) title:nil iamge:[UIImage imageNamed:@"icon__09.png"]];
+    self.view.backgroundColor = [UIColor whiteColor];
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 0, 29, 28.5)];
@@ -104,12 +76,10 @@ static int touchCount =2;
     UIPlaceHolderTextView *resultView = [[UIPlaceHolderTextView alloc] initWithFrame:
                                          CGRectMake(Margin*2, Margin*2+3.5, self.view.frame.size.width-Margin*4, 300)];
     resultView.layer.cornerRadius = 8;
-    resultView.layer.borderWidth = 1;
     [self.view addSubview:resultView];
     resultView.font = [UIFont systemFontOfSize:25.0f];
-    //    resultView.placeholder = @"识别结果";
     resultView.editable = NO;
-    resultView.layer.borderColor = (__bridge CGColorRef)([UIColor clearColor]);
+    resultView.layer.borderWidth = 0;
     _textView = resultView;
     _textView.text =@"";
     label = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 140, 40)];
@@ -251,8 +221,9 @@ NSMutableString *resultString = [[NSMutableString alloc] init];
     
 }
 
--(void)dealloc{
-    NSLog(@"understand dealloc");
+- (void) onError:(IFlySpeechError *) errorCode{
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"%@",errorCode] delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil];
+    [alert show];
 }
-
 @end
