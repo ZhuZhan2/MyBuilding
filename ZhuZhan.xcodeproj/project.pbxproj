@@ -277,6 +277,7 @@
 		042D9E3419B55AB800689C5D /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042D9E2F19B55AB800689C5D /* iflyMSC.framework */; };
 		042D9E3519B55AB800689C5D /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E3119B55AB800689C5D /* UIPlaceHolderTextView.m */; };
 		042D9E3619B55AB800689C5D /* UnderstandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E3319B55AB800689C5D /* UnderstandViewController.m */; };
+		042D9E3E19B55BC200689C5D /* ConditionsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E3D19B55BC200689C5D /* ConditionsModel.m */; };
 		04D10BD619AE016A0097C0C6 /* CommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BAD19AE01690097C0C6 /* CommentsCell.m */; };
 		04D10BD719AE016A0097C0C6 /* CompanyPublishedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BAF19AE01690097C0C6 /* CompanyPublishedCell.m */; };
 		04D10BD919AE016A0097C0C6 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BB219AE016A0097C0C6 /* ContactViewController.m */; };
@@ -1063,6 +1064,8 @@
 		042D9E3119B55AB800689C5D /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
 		042D9E3219B55AB800689C5D /* UnderstandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnderstandViewController.h; sourceTree = "<group>"; };
 		042D9E3319B55AB800689C5D /* UnderstandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnderstandViewController.m; sourceTree = "<group>"; };
+		042D9E3C19B55BC200689C5D /* ConditionsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionsModel.h; sourceTree = "<group>"; };
+		042D9E3D19B55BC200689C5D /* ConditionsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionsModel.m; sourceTree = "<group>"; };
 		04D10BAC19AE01690097C0C6 /* CommentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsCell.h; sourceTree = "<group>"; };
 		04D10BAD19AE01690097C0C6 /* CommentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsCell.m; sourceTree = "<group>"; };
 		04D10BAE19AE01690097C0C6 /* CompanyPublishedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyPublishedCell.h; sourceTree = "<group>"; };
@@ -1389,6 +1392,7 @@
 		0426BFF019922CE400CD8822 /* ZhuZhan */ = {
 			isa = PBXGroup;
 			children = (
+				042D9E3B19B55BC200689C5D /* ConditionsModel */,
 				042D9DCA19B559FC00689C5D /* Project */,
 				04D10BA819AE01690097C0C6 /* Contact */,
 				D3AD618719ADF619001FD483 /* MyCenterModel */,
@@ -2249,6 +2253,15 @@
 			path = voice;
 			sourceTree = "<group>";
 		};
+		042D9E3B19B55BC200689C5D /* ConditionsModel */ = {
+			isa = PBXGroup;
+			children = (
+				042D9E3C19B55BC200689C5D /* ConditionsModel.h */,
+				042D9E3D19B55BC200689C5D /* ConditionsModel.m */,
+			);
+			path = ConditionsModel;
+			sourceTree = "<group>";
+		};
 		04D10BA819AE01690097C0C6 /* Contact */ = {
 			isa = PBXGroup;
 			children = (
@@ -3050,6 +3063,7 @@
 				042D9E2319B559FC00689C5D /* SaveConditionsViewController.m in Sources */,
 				0426C2AC19922D5A00CD8822 /* GPUImageRGBDilationFilter.m in Sources */,
 				04D10C0719AEDFC80097C0C6 /* ImgCell.m in Sources */,
+				042D9E3E19B55BC200689C5D /* ConditionsModel.m in Sources */,
 				0426C2C519922D5A00CD8822 /* GPUImageTextureOutput.m in Sources */,
 				0426C2D719922D5A00CD8822 /* GPUImageWeakPixelInclusionFilter.m in Sources */,
 				D3AD616419ADB918001FD483 /* SqliteHelper.m in Sources */,

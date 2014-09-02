@@ -19,9 +19,9 @@
  */
 @interface UnderstandViewController : UIViewController<IFlySpeechRecognizerDelegate>
 {
-UILabel *label;
-DKCircleButton *button;
-NSTimer *timer;
+    UILabel *label;
+    DKCircleButton *button;
+    NSTimer *timer;
 }
 @property (nonatomic,strong) IFlySpeechUnderstander *iFlySpeechUnderstander;
 @property (nonatomic,strong) PopupView          * popView;

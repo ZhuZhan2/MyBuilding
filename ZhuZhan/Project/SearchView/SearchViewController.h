@@ -17,7 +17,7 @@
     UITableView *_tableView;
     NSMutableArray *showArr;
     toolBarView *toolbarView;
-    UnderstandViewController *understandVC;
+   // UnderstandViewController *understandVC;
 }
 
 @end
