@@ -24,7 +24,7 @@
     ContactViewController *contactview;
     ProjectTableViewController *projectview;
     CompanyViewController *companyview;
-    ProductViewController *tradeview;
+    ProductViewController *productView;
     UINavigationController *nav;
     QuadCurveMenu *menu;
 }
