@@ -377,8 +377,23 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView==self.contentTableView) {
     }else{
-        //为了让sectionHeader可以被点击,所以将cell被点击之后实现的跳转加载功能封装到其他方法
-        [self didchangeStageSection:indexPath.section row:indexPath.row];
+        int stagesCount[4]={2,3,4,1};
+        BOOL stageLight=NO;
+        int temp[4]={0,2,5,9};
+        
+        for (NSString* str in [self.stages subarrayWithRange:NSMakeRange(temp[indexPath.section], stagesCount[indexPath.section])]) {
+            
+            if (![str isEqualToString:@"none"]) {
+                stageLight=YES;
+                break;
+            }
+        }
+        
+        if (stageLight) {
+            //为了让sectionHeader可以被点击,所以将cell被点击之后实现的跳转加载功能封装到其他方法
+            [self didchangeStageSection:indexPath.section row:indexPath.row];
+        }
+        
     }
 }
 
@@ -390,8 +405,6 @@
     for (NSString* str in [self.stages subarrayWithRange:NSMakeRange(temp[section], stagesCount[section])]) {
         
         if (![str isEqualToString:@"none"]) {
-            //NSLog(@"%d,%d",temp[indexPath.section], stagesCount[indexPath.section]);
-            //NSLog(@"%d,%d",indexPath.section,indexPath.row);
             stageLight=YES;
             break;
         }
@@ -420,11 +433,12 @@
     [view addSubview:separatorLine];
     
     //使该sectionHeader可以被点击
-    UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 320, 37.5)];
-    [button addTarget:self action:@selector(selectSection:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:button];
-    [self.sectionButtonArray addObject:button];
-    
+    if (stageLight) {
+        UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 320, 37.5)];
+        [button addTarget:self action:@selector(selectSection:) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:button];
+        [self.sectionButtonArray addObject:button];
+    }
     return view;
 }
 
@@ -475,7 +489,18 @@
         if (indexPath.section==3) {
             return NO;
         }else{
-            return YES;
+            int stagesCount[4]={2,3,4,1};
+            BOOL stageLight=NO;
+            int temp[4]={0,2,5,9};
+            
+            for (NSString* str in [self.stages subarrayWithRange:NSMakeRange(temp[indexPath.section], stagesCount[indexPath.section])]) {
+                
+                if (![str isEqualToString:@"none"]) {
+                    stageLight=YES;
+                    break;
+                }
+            }
+            return stageLight;
         }
     }
 }

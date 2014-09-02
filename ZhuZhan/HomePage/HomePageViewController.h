@@ -10,8 +10,9 @@
 #import "ContactViewController.h"
 #import "ProjectTableViewController.h"
 #import "CompanyViewController.h"
-#import "TradeViewController.h"
+//#import "TradeViewController.h"
 #import "QuadCurveMenu.h"
+#import "ProductViewController.h"
 @interface HomePageViewController : UIViewController<QuadCurveMenuDelegate>{
     UIButton *contactBtn;
     UIButton *projectBtn;
@@ -23,7 +24,7 @@
     ContactViewController *contactview;
     ProjectTableViewController *projectview;
     CompanyViewController *companyview;
-    TradeViewController *tradeview;
+    ProductViewController *productView;
     UINavigationController *nav;
     QuadCurveMenu *menu;
 }
