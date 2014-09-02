@@ -39,11 +39,15 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.layer.cornerRadius = 8;//设置那个圆角的有多圆
+    self.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
+    self.view.backgroundColor = [UIColor redColor];
+    
     UIImageView *bgimageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 260, 310)];
     [bgimageView setImage:[UIImage imageNamed:@"新建项目1_03.png"]];
     [self.view addSubview:bgimageView];
     
-    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 260, 40)];
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 260, 50)];
     [topView setBackgroundColor:[UIColor blackColor]];
     [self.view addSubview:topView];
     
@@ -73,11 +77,12 @@
         [self.dataArr addObject:@""];
     }
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, 260, 270)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 50, 260, 270)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.rowHeight = 44;
     _tableView.allowsSelectionDuringEditing = YES;
+    _tableView.scrollEnabled = NO;
     [self.view addSubview:_tableView];
 }
 
