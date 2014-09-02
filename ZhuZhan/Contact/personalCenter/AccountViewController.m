@@ -19,6 +19,7 @@
 
 @synthesize userDic,KindIndex;
 
+static int selectBtnTag =0;
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -82,6 +83,17 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [wself _refreshing];
     }];
     
+    [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+        
+        NSLog(@"**** %@",posts);
+//        NSDictionary *dic = [posts objectAtIndex:0];
+
+            NSLog(@"23rgfdg");
+        
+        
+        
+    } userId:@"f6cbf226-ebcb-42e1-94ce-acda4fce00d4"];
+    
 }
 
 
@@ -105,17 +117,19 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)setbackgroundImage//设置背景颜色
 {
     NSLog(@"设置背景图片");
+    selectBtnTag = 2014090201;
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
     [actionSheet showInView:self.tableView.superview];
-    actionSheet.tag =2014082901;
+    
 }
 
 -(void)setuserIcon
 {
     NSLog(@"设置用户头像");
+    selectBtnTag = 2014090202;
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
     [actionSheet showInView:self.tableView.superview];
-    actionSheet.tag =2014082902;
+   
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -128,9 +142,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if (!isCamera) {
             UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"此设备无摄像头" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
+            
             return;
         }
         
+
         //拍照
         sourceType = UIImagePickerControllerSourceTypeCamera;
         
@@ -150,6 +166,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if (buttonIndex==1) {
         NSLog(@"通过相册获取图片");
         
+
         //用户相册
         sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         UIButton *button = (UIButton*)[self.view viewWithTag:4];
@@ -170,6 +187,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if (buttonIndex==2) {
         
         //取消
+
         return;
     }
     
@@ -181,6 +199,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage * imge =  [info objectForKey:UIImagePickerControllerOriginalImage];
+    if (selectBtnTag == 2014090201) {
+        [_pathCover setBackgroundImage:imge];
+        
+    }
+    if (selectBtnTag == 2014090202) {
+        [_pathCover setAvatarImage:imge];
+    }
     
     AppDelegate* app=[AppDelegate instance];
     HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
@@ -230,7 +255,22 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)rightBtnClick{
+-(void)rightBtnClick{//完成修改后触发的方法
+    
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userId,@"userId",@"company",@"company",@"industry",@"industry",@"position",@"position",@"locationProvince",@"locationProvince",@"locationCity",@"locationCity",@"introduction",@"introduction",nil];
+    [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
+        NSDictionary *responseObject = [posts objectAtIndex:0];
+        NSString *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
+        if ([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"更新成功" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"更新失败" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+            [alert show];
+        }
+        
+    } dic:parameter];
     
 }
 

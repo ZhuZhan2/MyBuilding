@@ -292,7 +292,7 @@ static bool IsVerify =NO;
                 [[NSUserDefaults standardUserDefaults] setObject:isFaceRegister forKey:@"isFaceRegister"];
                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"faceCount"] forKey:@"currentFaceCount"];
                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"userId"] forKey:@"userId"];
-                NSLog(@"mmmmm    %@",[item objectForKey:@"userId"]);
+                NSLog(@"*****    %@",[item objectForKey:@"userId"]);
                  NSLog(@"mmmmm    %@",[item objectForKey:@"userToken"]);
                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"deviceToken"] forKey:@"deviceToken"];
                 [[NSUserDefaults standardUserDefaults] synchronize];

@@ -305,6 +305,7 @@ static NSInteger rowNum=0;
         NSLog(@"关注好友");
        [showVC dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+    NSLog(@"*******%@",userId);
        NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithObjectsAndKeys:userId,@"userId",@"bfc78202-8ac9-447a-a99d-783606d25668",@"focusId", nil];
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
         NSDictionary *responseObject = [posts objectAtIndex:0];
