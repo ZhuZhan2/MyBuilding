@@ -29,9 +29,9 @@
 
 @implementation UIViewController (MJPopupViewController)
 
-- (void)presentPopupViewController:(UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType
+- (void)presentPopupViewController:(UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType flag:(int)flag
 {
-    [self presentPopupView:popupViewController.view animationType:animationType];
+    [self presentPopupView:popupViewController.view animationType:animationType flag:flag];
 }
 
 - (void)dismissPopupViewControllerWithanimationType:(MJPopupViewAnimation)animationType
@@ -53,7 +53,7 @@
 #pragma mark -
 #pragma mark View Handling
 
-- (void)presentPopupView:(UIView*)popupView animationType:(MJPopupViewAnimation)animationType
+- (void)presentPopupView:(UIView*)popupView animationType:(MJPopupViewAnimation)animationType flag:(int)flag
 {
     UIView *sourceView = [self topView];
     sourceView.tag = kMJSourceViewTag;
@@ -104,7 +104,7 @@
         [self slideViewIn:popupView sourceView:sourceView overlayView:overlayView withAnimationType:animationType];
     } else {
         [dismissButton addTarget:self action:@selector(dismissPopupViewControllerWithanimationTypeFade) forControlEvents:UIControlEventTouchUpInside];
-        [self fadeViewIn:popupView sourceView:sourceView overlayView:overlayView];
+        [self fadeViewIn:popupView sourceView:sourceView overlayView:overlayView flag:flag];
     }    
 }
 
@@ -172,7 +172,8 @@
     // Set starting properties
     popupView.frame = popupStartRect;
     popupView.alpha = 1.0f;
-    [UIView animateWithDuration:kPopupModalAnimationDuration delay:0.0f options:UIViewAnimationCurveEaseOut animations:^{
+    //UIViewAnimationCurveEaseOut
+    [UIView animateWithDuration:kPopupModalAnimationDuration delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
         backgroundView.alpha = 1.0f;
         popupView.frame = popupEndRect;
     } completion:^(BOOL finished) {
@@ -203,8 +204,8 @@
                                   popupSize.height);
     }
     
-    
-    [UIView animateWithDuration:kPopupModalAnimationDuration delay:0.0f options:UIViewAnimationCurveEaseIn animations:^{
+    //UIViewAnimationCurveEaseIn
+    [UIView animateWithDuration:kPopupModalAnimationDuration delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
         popupView.frame = popupEndRect;
         backgroundView.alpha = 0.0f;
     } completion:^(BOOL finished) {
@@ -215,16 +216,25 @@
 
 #pragma mark --- Fade
 
-- (void)fadeViewIn:(UIView*)popupView sourceView:(UIView*)sourceView overlayView:(UIView*)overlayView
+- (void)fadeViewIn:(UIView*)popupView sourceView:(UIView*)sourceView overlayView:(UIView*)overlayView flag:(int)flag
 {
     UIView *backgroundView = [overlayView viewWithTag:kMJBackgroundViewTag];
     // Generating Start and Stop Positions
     CGSize sourceSize = sourceView.bounds.size;
     CGSize popupSize = popupView.bounds.size;
-    CGRect popupEndRect = CGRectMake((sourceSize.width - popupSize.width) / 2, 
-                                     (sourceSize.height - popupSize.height) / 2-50,
-                                     popupSize.width, 
-                                     popupSize.height);
+    CGRect popupEndRect;
+    if(flag == 0){
+        popupEndRect = CGRectMake((sourceSize.width - popupSize.width) / 2,
+                                  (sourceSize.height - popupSize.height) / 2,
+                                  popupSize.width,
+                                  popupSize.height);
+    }else{
+        popupEndRect = CGRectMake((sourceSize.width - popupSize.width) / 2,
+                                  (sourceSize.height - popupSize.height) / 2-55,
+                                  popupSize.width,
+                                  popupSize.height);
+    }
+    
    
     // Set starting properties
     popupView.frame = popupEndRect;

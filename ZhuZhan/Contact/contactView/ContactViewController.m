@@ -283,7 +283,7 @@ static NSInteger rowNum=0;
     showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
     showVC.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
     
-   [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade];
+    [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
 
     
 }
