@@ -11,6 +11,7 @@
 @interface ContactProjectTableViewCell : UITableViewCell{
     EGOImageView *headImageView;
     UIImageView *stageImage;
+    UILabel *titleLabel;
 }
 
 @end
