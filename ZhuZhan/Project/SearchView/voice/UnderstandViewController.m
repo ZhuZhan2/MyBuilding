@@ -101,16 +101,6 @@ static int touchCount =2;
     self.title = @"语音搜索";
     
     
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
-    if ( IOS7_OR_LATER )
-    {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.extendedLayoutIncludesOpaqueBars = NO;
-        self.modalPresentationCapturesStatusBarAppearance = NO;
-        self.navigationController.navigationBar.translucent = NO;
-    }
-#endif
-    
     UIPlaceHolderTextView *resultView = [[UIPlaceHolderTextView alloc] initWithFrame:
                                          CGRectMake(Margin*2, Margin*2+3.5, self.view.frame.size.width-Margin*4, 300)];
     resultView.layer.cornerRadius = 8;
@@ -261,6 +251,8 @@ NSMutableString *resultString = [[NSMutableString alloc] init];
     
 }
 
-
+-(void)dealloc{
+    NSLog(@"understand dealloc");
+}
 
 @end
