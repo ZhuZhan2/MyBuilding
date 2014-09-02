@@ -220,6 +220,7 @@ static int chanceToLoginByFace =3;
 -(void)detectWithImageArray:(NSMutableArray *)faceArray//没有进行脸部注册时候获取faceID
 {
     NSLog(@"detectWithImageArray");
+    NSLog(@"WWWWW  %@",faceArray);
      person_id = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
     
     for (int i =0; i<faceArray.count; i++) {
@@ -254,8 +255,9 @@ static int chanceToLoginByFace =3;
 
                     
                         [faceIDArray addObject:str];
-                        
+                    NSLog(@"WWWW %@",str);
                         if ([faceIDArray count]==5) {
+                            
                             [self beginToRegisterFace];
                         }
                     

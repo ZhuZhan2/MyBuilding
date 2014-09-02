@@ -85,7 +85,7 @@
                 [self.window makeKeyAndVisible];
                             [self.window makeKeyAndVisible];
     
-                NSLog(@"mimiimimimimamama%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"]);
+               /* NSLog(@"mimiimimimimamama%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"]);
                 if (![[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"] isEqualToString:@"1"]) {
     
     
@@ -103,7 +103,7 @@
                     [self.window makeKeyAndVisible];
     
     
-                }
+                }*/
     
             }
         }
