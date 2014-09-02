@@ -40,8 +40,8 @@
     UIFont *font = [UIFont systemFontOfSize:14];
     
     for(int i=0;i<6;i++){
-        UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 50*(i+1), 300, 1)];
-        [lineImage setBackgroundColor:[UIColor grayColor]];
+        UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(8.5, 50*(i+1), 303, 1)];
+        [lineImage setImage:[UIImage imageNamed:@"项目－高级搜索－2_03a"]];
         [bgView addSubview:lineImage];
     }
     

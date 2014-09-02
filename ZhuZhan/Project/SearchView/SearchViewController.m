@@ -79,6 +79,10 @@ int startIndex;
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [_searchBar becomeFirstResponder];
+}
+
 /*
 #pragma mark - Navigation
 

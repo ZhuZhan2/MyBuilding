@@ -41,9 +41,9 @@
 
 - (id)initWithDelegate:(id<ACTimeScrollerDelegate>)delegate
 {
-    UIImage *background = [[UIImage imageNamed:@"timescroll_pointer"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 35.0f, 0.0f, 10.0f)];
+    //UIImage *background = [[UIImage imageNamed:@"timescroll_pointer"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 35.0f, 0.0f, 10.0f)];
     
-    self = [super initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, background.size.height)];
+    self = [super initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 27.0f)];
     if (self)
     {
         self.calendar = [NSCalendar currentCalendar];
@@ -52,19 +52,21 @@
         self.alpha = 0.0f;
         self.transform = CGAffineTransformMakeTranslation(10.0f, 0.0f);
         
-        _backgroundView = [[UIImageView alloc] initWithImage:background];
-        _backgroundView.frame = CGRectMake(CGRectGetWidth(self.frame) - 80.0f, 0.0f, 80.0f, CGRectGetHeight(self.frame));
+        _backgroundView = [[UIImageView alloc] init];
+        _backgroundView.frame = CGRectMake(CGRectGetWidth(self.frame) - 118.0f, 0.0f, 118.0f, CGRectGetHeight(self.frame));
+        [_backgroundView setImage:[UIImage imageNamed:@"人脉_03a"]];
         [self addSubview:_backgroundView];
         
-        _handContainer = [[UIView alloc] initWithFrame:CGRectMake(5.0f, 4.0f, 20.0f, 20.0f)];
+        _handContainer = [[UIView alloc] initWithFrame:CGRectMake(4.0f, 4.0f, 20.0f, 20.0f)];
+        //[_handContainer setBackgroundColor:[UIColor redColor]];
         [_backgroundView addSubview:_handContainer];
         
-        _hourHand = [[UIView alloc] initWithFrame:CGRectMake(8.0f, 0.0f, 4.0f, 20.0f)];
+        _hourHand = [[UIView alloc] initWithFrame:CGRectMake(7.0f, 0.0f, 4.0f, 20.0f)];
         UIImageView *hourImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"timescroll_hourhand"]];
         [_hourHand addSubview:hourImageView];
         [_handContainer addSubview:_hourHand];
         
-        _minuteHand = [[UIView alloc] initWithFrame:CGRectMake(8.0f, 0.0f, 4.0f, 20.0f)];
+        _minuteHand = [[UIView alloc] initWithFrame:CGRectMake(7.0f, 0.0f, 4.0f, 20.0f)];
         UIImageView *minuteImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"timescroll_minutehand"]];
         [_minuteHand addSubview:minuteImageView];
         [_handContainer addSubview:_minuteHand];
@@ -316,62 +318,69 @@
     NSString *timeLabelString = _timeLabel.text;
     CGFloat dateLabelAlpha;
     
-    if (dateComponents.year == todayComponents.year && dateComponents.month == todayComponents.month && dateComponents.day == todayComponents.day)
-    {
-        dateLabelString = @"";
-        
-        backgroundFrame = CGRectMake(CGRectGetWidth(self.frame) - 80.0f, 0.0f, 80.0f, CGRectGetHeight(self.frame));
-        timeLabelFrame = CGRectMake(30.0f, 4.0f, 100.0f, 20.0f);
-        dateLabelAlpha = 0.0f;
-    }
-    else if ((dateComponents.year == todayComponents.year) && (dateComponents.month == todayComponents.month) && (dateComponents.day == todayComponents.day - 1))
-    {
-        timeLabelFrame = CGRectMake(30.0f, 4.0f, 100.0f, 10.0f);
-        
-        dateLabelString = @"Yesterday";
-        dateLabelAlpha = 1.0f;
-        backgroundFrame = CGRectMake(CGRectGetWidth(self.frame) - 85.0f, 0.0f, 85.0f, CGRectGetHeight(self.frame));
-    }
-    else if ((dateComponents.year == todayComponents.year) && (dateComponents.weekOfYear == todayComponents.weekOfYear))
-    {
-        timeLabelFrame = CGRectMake(30.0f, 4.0f, 100.0f, 10.0f);
-        dateLabelString = [self.dayOfWeekDateFormatter stringFromDate:date];
-        dateLabelAlpha = 1.0f;
-        
-        CGFloat width = 0.0f;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
+    timeLabelFrame = CGRectMake(30.0f, 4.0f, 100.0f, 10.0f);
+    
+    dateLabelString = [dateFormatter stringFromDate:date];
+    dateLabelAlpha = 1.0f;
+    backgroundFrame = CGRectMake(CGRectGetWidth(self.frame) - 118.0f, 0.0f, 118.0f, CGRectGetHeight(self.frame));
+//    if (dateComponents.year == todayComponents.year && dateComponents.month == todayComponents.month && dateComponents.day == todayComponents.day)
+//    {
+//        dateLabelString = @"";
+//        
+//        backgroundFrame = CGRectMake(CGRectGetWidth(self.frame) - 118.0f, 0.0f, 118.0f, CGRectGetHeight(self.frame));
+//        timeLabelFrame = CGRectMake(30.0f, 4.0f, 100.0f, 20.0f);
+//        dateLabelAlpha = 0.0f;
+//    }
+//    else if ((dateComponents.year == todayComponents.year) && (dateComponents.month == todayComponents.month) && (dateComponents.day == todayComponents.day - 1))
+//    {
+//        timeLabelFrame = CGRectMake(30.0f, 4.0f, 100.0f, 10.0f);
+//        
+//        dateLabelString = @"Yesterday";
+//        dateLabelAlpha = 1.0f;
+//        backgroundFrame = CGRectMake(CGRectGetWidth(self.frame) - 118.0f, 0.0f, 118.0f, CGRectGetHeight(self.frame));
+//    }
+//    else if ((dateComponents.year == todayComponents.year) && (dateComponents.weekOfYear == todayComponents.weekOfYear))
+//    {
+//        timeLabelFrame = CGRectMake(30.0f, 4.0f, 100.0f, 10.0f);
+//        dateLabelString = [self.dayOfWeekDateFormatter stringFromDate:date];
+//        dateLabelAlpha = 1.0f;
+//        
+//        CGFloat width = 0.0f;
+////        if ([dateLabelString sizeWithFont:_dateLabel.font].width < 50)
 //        if ([dateLabelString sizeWithFont:_dateLabel.font].width < 50)
-        if ([dateLabelString sizeWithFont:_dateLabel.font].width < 50)
-        {
-            width = 85.0f;
-        }
-        else
-        {
-            width = 95.0f;
-        }
-        
-        backgroundFrame = CGRectMake(CGRectGetWidth(self.frame) - width, 0.0f, width, CGRectGetHeight(self.frame));
-    }
-    else if (dateComponents.year == todayComponents.year)
-    {
-        timeLabelFrame = CGRectMake(30.0f, 4.0f, 100.0f, 10.0f);
-        
-        dateLabelString = [self.monthDayDateFormatter stringFromDate:date];
-        dateLabelAlpha = 1.0f;
-        
-        CGFloat width = [dateLabelString sizeWithFont:_dateLabel.font].width + 50.0f;
-        
-        backgroundFrame = CGRectMake(CGRectGetWidth(self.frame) - width, 0.0f, width, CGRectGetHeight(self.frame));
-    }
-    else
-    {
-        timeLabelFrame = CGRectMake(30.0f, 4.0f, 100.0f, 10.0f);
-        dateLabelString = [self.monthDayYearDateFormatter stringFromDate:date];
-        dateLabelAlpha = 1.0f;
-        
-        CGFloat width = [dateLabelString sizeWithFont:_dateLabel.font].width + 50.0f;
-        
-        backgroundFrame = CGRectMake(CGRectGetWidth(self.frame) - width, 0.0f, width, CGRectGetHeight(self.frame));
-    }
+//        {
+//            width = 85.0f;
+//        }
+//        else
+//        {
+//            width = 95.0f;
+//        }
+//        
+//        backgroundFrame = CGRectMake(CGRectGetWidth(self.frame) - 118.0f, 0.0f, 118.0f, CGRectGetHeight(self.frame));
+//    }
+//    else if (dateComponents.year == todayComponents.year)
+//    {
+//        timeLabelFrame = CGRectMake(30.0f, 4.0f, 100.0f, 10.0f);
+//        
+//        dateLabelString = [self.monthDayDateFormatter stringFromDate:date];
+//        dateLabelAlpha = 1.0f;
+//        
+//        CGFloat width = [dateLabelString sizeWithFont:_dateLabel.font].width + 50.0f;
+//        
+//        backgroundFrame = CGRectMake(CGRectGetWidth(self.frame) - width, 0.0f, width, CGRectGetHeight(self.frame));
+//    }
+//    else
+//    {
+//        timeLabelFrame = CGRectMake(30.0f, 4.0f, 100.0f, 10.0f);
+//        dateLabelString = [self.monthDayYearDateFormatter stringFromDate:date];
+//        dateLabelAlpha = 1.0f;
+//        
+//        CGFloat width = [dateLabelString sizeWithFont:_dateLabel.font].width + 50.0f;
+//        
+//        backgroundFrame = CGRectMake(CGRectGetWidth(self.frame) - width, 0.0f, width, CGRectGetHeight(self.frame));
+//    }
     
     [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAllowAnimatedContent animations:^{
         
