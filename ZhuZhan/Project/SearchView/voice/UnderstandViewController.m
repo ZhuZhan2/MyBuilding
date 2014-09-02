@@ -88,7 +88,7 @@ static int touchCount =2;
     label.text =@"请开始说话";
     [resultView addSubview:label];
     UIImage *image = [UIImage imageNamed:@"语音搜索_04.png"];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(90, resultView.frame.origin.y+resultView.frame.size.height+40, 149, 149)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(90, resultView.frame.origin.y+resultView.frame.size.height+103.5, 149, 149)];
     //    imageView.center = CGPointMake(160, resultView.frame.origin.y+resultView.frame.size.height+60);
     imageView.image = image;
     [self.view addSubview:imageView];
@@ -222,8 +222,6 @@ NSMutableString *resultString = [[NSMutableString alloc] init];
 }
 
 - (void) onError:(IFlySpeechError *) errorCode{
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"%@",errorCode] delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil];
-    [alert show];
+    NSLog(@"%@",errorCode);
 }
 @end
