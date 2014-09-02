@@ -105,6 +105,7 @@
             }
         }
         [array[index] addObject:imageModel.a_imageOriginalLocation];
+        NSLog(@"%@",[array lastObject]);
     }
 }
 @end

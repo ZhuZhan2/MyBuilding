@@ -10,7 +10,7 @@
 #import "ContactViewController.h"
 #import "ProjectTableViewController.h"
 #import "CompanyViewController.h"
-//#import "TradeViewController.h"
+#import "TradeViewController.h"
 #import "QuadCurveMenu.h"
 #import "ProductViewController.h"
 @interface HomePageViewController : UIViewController<QuadCurveMenuDelegate>{
@@ -25,8 +25,11 @@
     ProjectTableViewController *projectview;
     CompanyViewController *companyview;
     ProductViewController *productView;
+    TradeViewController* tradeView;
+    UIViewController* testVC;
     UINavigationController *nav;
     QuadCurveMenu *menu;
+    
 }
 -(void)homePageTabBarHide;
 -(void)homePageTabBarRestore;
