@@ -18,8 +18,8 @@
 #import "AFAppDotNetAPIClient.h"
 #endif
 
-//#define  serverAddress "http://192.168.222.173:2016"
-#define  serverAddress "http://192.168.222.95:801"
+#define  serverAddress "http://192.168.222.173:2016"
+//#define  serverAddress "http://192.168.222.95:801"
 #define  kScreenWidth  [[UIScreen mainScreen] bounds].size.width
 #define  kScreenHeight [[UIScreen mainScreen] bounds].size.height
 #define  kContentHeight [[UIScreen mainScreen] bounds].size.height-64.5

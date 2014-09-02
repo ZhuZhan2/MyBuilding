@@ -258,14 +258,14 @@
     if(index == 0){
         multipleChoseView = [[MultipleChoiceViewController alloc] init];
         multipleChoseView.arr = [[NSMutableArray alloc] initWithObjects:@"工业",@"酒店及餐饮",@"商务办公",@"住宅/经济适用房",@"公用事业设施（教育、医疗、科研、基础建设等）",@"其他", nil];
-        [multipleChoseView.view setFrame:CGRectMake(0, 0, 260, 350)];
+        [multipleChoseView.view setFrame:CGRectMake(0, 0, 272, 350)];
         multipleChoseView.flag = 0;
         multipleChoseView.delegate = self;
         [self presentPopupViewController:multipleChoseView animationType:MJPopupViewAnimationFade flag:0];
     }else{
         multipleChoseView = [[MultipleChoiceViewController alloc] init];
         multipleChoseView.arr = [[NSMutableArray alloc] initWithObjects:@"土地信息阶段",@"主体设计阶段",@"主体施工阶段",@"装修阶段", nil];
-        [multipleChoseView.view setFrame:CGRectMake(0, 0, 260, 350)];
+        [multipleChoseView.view setFrame:CGRectMake(0, 0, 272, 350)];
         multipleChoseView.flag = 1;
         multipleChoseView.delegate = self;
         [self presentPopupViewController:multipleChoseView animationType:MJPopupViewAnimationFade flag:0];
