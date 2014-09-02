@@ -54,11 +54,11 @@
     
     UIImageView *image = [[UIImageView alloc] init];
     if(conditionsView.frame.size.height+10 <44){
-        image.frame = CGRectMake(0, 43, 320, 1);
+        image.frame = CGRectMake(8.5, 43, 303, 1);
     }else{
-        image.frame = CGRectMake(0, actualsize.height+10, 320, 1);
+        image.frame = CGRectMake(8.5, actualsize.height+10, 303, 1);
     }
-    [image setBackgroundColor:[UIColor lightGrayColor]];
+    [image setImage:[UIImage imageNamed:@"项目－高级搜索－2_03a"]];
     [conditionsView addSubview:image];
     [image setAlpha:0.5];
     

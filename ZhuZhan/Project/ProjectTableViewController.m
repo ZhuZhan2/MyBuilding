@@ -69,8 +69,6 @@
     label.text = @"寻找项目，发现机会";
     label.font = [UIFont systemFontOfSize:12];
     [bgView addSubview:label];
-    
-   // UILabel *la
     self.navigationItem.titleView = bgView;
     
     startIndex = 0;

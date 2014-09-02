@@ -36,6 +36,40 @@
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
+    
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
+    [bgView setBackgroundColor:[UIColor clearColor]];
+    UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [searchBtn setFrame:CGRectMake(0, 0, 240, 31)];
+    [searchBtn setBackgroundImage:[UIImage imageNamed:@"搜索结果_03a.png"] forState:UIControlStateNormal];
+    [searchBtn addTarget:self action:@selector(serachClick) forControlEvents:UIControlEventTouchUpInside];
+    [bgView addSubview:searchBtn];
+    
+    UIImageView *searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 8, 15, 15)];
+    [searchImage setImage:[UIImage imageNamed:@"搜索结果_09a.png"]];
+    [bgView addSubview:searchImage];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 200, 30)];
+    label.textColor = [UIColor whiteColor];
+    if(self.flag == 0){
+        label.text = self.searchStr;
+    }else{
+        NSMutableString *str = [[NSMutableString alloc] init];
+        NSString *string = nil;
+        for(int i=0;i<self.dic.allKeys.count;i++){
+            if(![[self.dic objectForKey:[self.dic allKeys][i]] isEqualToString:@""]){
+                [str appendString:[NSString stringWithFormat:@"%@,",[self.dic objectForKey:[self.dic allKeys][i]]]];
+            }
+        }
+        if(str.length !=0){
+            string = [str substringToIndex:([str length]-1)];
+        }
+        label.text = string;
+    }
+    label.font = [UIFont systemFontOfSize:16];
+    [bgView addSubview:label];
+    self.navigationItem.titleView = bgView;
+    
     startIndex = 0;
     if(self.flag == 0){
         [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -63,6 +97,10 @@
 
 -(void)leftBtnClick{
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(void)serachClick{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Table view data source

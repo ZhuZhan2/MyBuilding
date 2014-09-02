@@ -292,6 +292,9 @@
 		D3311CAB19AAD3D3003B2682 /* AFAppDotNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D3311CAA19AAD3D3003B2682 /* AFAppDotNetAPIClient.m */; };
 		D3311CAF19AADB41003B2682 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3311CAE19AADB41003B2682 /* LoginModel.m */; };
 		D3311CB219AB03F3003B2682 /* ProjectApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3311CB119AB03F3003B2682 /* ProjectApi.m */; };
+		D3AC60F219B5555D0015B62F /* 地图搜索_02.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC60F019B5555D0015B62F /* 地图搜索_02.png */; };
+		D3AC60F319B5555D0015B62F /* mapsearch-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC60F119B5555D0015B62F /* mapsearch-1.png */; };
+		D3AC60F519B5571D0015B62F /* 搜索结果_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC60F419B5571D0015B62F /* 搜索结果_03a.png */; };
 		D3AD600119AB3AD6001FD483 /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD600019AB3AD6001FD483 /* ContactModel.m */; };
 		D3AD600419AC3E62001FD483 /* ProjectStage.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD600319AC3E62001FD483 /* ProjectStage.m */; };
 		D3AD600719AC48DD001FD483 /* ProjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD600619AC48DD001FD483 /* ProjectTableViewController.m */; };
@@ -449,6 +452,7 @@
 		D3AD62B019B468D4001FD483 /* ConditionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD62AF19B468D4001FD483 /* ConditionsView.m */; };
 		D3AD62B719B46B0A001FD483 /* ConditionsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD62B619B46B0A001FD483 /* ConditionsModel.m */; };
 		D3AD62BB19B481CA001FD483 /* 项目－高级搜索－2_22a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD62BA19B481CA001FD483 /* 项目－高级搜索－2_22a.png */; };
+		D3AD62C019B5502C001FD483 /* 项目－高级搜索－2_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD62BF19B5502C001FD483 /* 项目－高级搜索－2_03a.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1054,6 +1058,9 @@
 		D3311CAE19AADB41003B2682 /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
 		D3311CB019AB03F3003B2682 /* ProjectApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectApi.h; sourceTree = "<group>"; };
 		D3311CB119AB03F3003B2682 /* ProjectApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectApi.m; sourceTree = "<group>"; };
+		D3AC60F019B5555D0015B62F /* 地图搜索_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图搜索_02.png"; sourceTree = "<group>"; };
+		D3AC60F119B5555D0015B62F /* mapsearch-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapsearch-1.png"; sourceTree = "<group>"; };
+		D3AC60F419B5571D0015B62F /* 搜索结果_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索结果_03a.png"; sourceTree = "<group>"; };
 		D3AD5FFF19AB3AD6001FD483 /* ContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactModel.h; sourceTree = "<group>"; };
 		D3AD600019AB3AD6001FD483 /* ContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
 		D3AD600219AC3E62001FD483 /* ProjectStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectStage.h; sourceTree = "<group>"; };
@@ -1274,6 +1281,7 @@
 		D3AD62B519B46B0A001FD483 /* ConditionsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionsModel.h; sourceTree = "<group>"; };
 		D3AD62B619B46B0A001FD483 /* ConditionsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionsModel.m; sourceTree = "<group>"; };
 		D3AD62BA19B481CA001FD483 /* 项目－高级搜索－2_22a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目－高级搜索－2_22a.png"; sourceTree = "<group>"; };
+		D3AD62BF19B5502C001FD483 /* 项目－高级搜索－2_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目－高级搜索－2_03a.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2163,6 +2171,10 @@
 		D3AD600B19AC4DC1001FD483 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3AC60F419B5571D0015B62F /* 搜索结果_03a.png */,
+				D3AC60F019B5555D0015B62F /* 地图搜索_02.png */,
+				D3AC60F119B5555D0015B62F /* mapsearch-1.png */,
+				D3AD62BF19B5502C001FD483 /* 项目－高级搜索－2_03a.png */,
 				D3AD62BA19B481CA001FD483 /* 项目－高级搜索－2_22a.png */,
 				D3AD62AC19B442D1001FD483 /* 高级搜索－1_03a.png */,
 				D3AD62A019B433FD001FD483 /* 项目－高级搜索－2_15a-19.png */,
@@ -2732,6 +2744,7 @@
 				5B031C3719ACA6C100573071 /* XinJianXiangMu in Resources */,
 				D3AD607B19AC4E01001FD483 /* 全部项目_37.png in Resources */,
 				D3AD606819AC4DC1001FD483 /* 面部采集_07.png in Resources */,
+				D3AC60F519B5571D0015B62F /* 搜索结果_03a.png in Resources */,
 				D3AD621B19B068F5001FD483 /* +项目-首页_23a.png in Resources */,
 				D3AD604119AC4DC1001FD483 /* bg-menuitem-highlighted.png in Resources */,
 				D3AD606319AC4DC1001FD483 /* 面部识别登录1_03.png in Resources */,
@@ -2747,9 +2760,11 @@
 				D3AD606219AC4DC1001FD483 /* 面部识别登录.png in Resources */,
 				D3AD61EB19AF225A001FD483 /* interview.png in Resources */,
 				5B031C3619ACA6C100573071 /* XiangMuXiangQing_TanKuang in Resources */,
+				D3AC60F319B5555D0015B62F /* mapsearch-1.png in Resources */,
 				D3AD606F19AC4DD8001FD483 /* 全部项目_10.png in Resources */,
 				D3AD604919AC4DC1001FD483 /* icon-plus.png in Resources */,
 				D3AD61EA19AF225A001FD483 /* addFriend.png in Resources */,
+				D3AC60F219B5555D0015B62F /* 地图搜索_02.png in Resources */,
 				D3AD605619AC4DC1001FD483 /* 地图搜索_01.png in Resources */,
 				D3AD605119AC4DC1001FD483 /* timescroll_hourhand@2x.png in Resources */,
 				04D10BFC19AE06AF0097C0C6 /* RadioButton-Unselected.png in Resources */,
@@ -2787,6 +2802,7 @@
 				D3AD605219AC4DC1001FD483 /* timescroll_minutehand.png in Resources */,
 				D3AD621019B05AF8001FD483 /* 项目－项目专题_17a.png in Resources */,
 				D3AD606919AC4DC1001FD483 /* 面部采集_09.png in Resources */,
+				D3AD62C019B5502C001FD483 /* 项目－高级搜索－2_03a.png in Resources */,
 				04D10BF419AE059E0097C0C6 /* back_icon.png in Resources */,
 				D3AD605319AC4DC1001FD483 /* timescroll_minutehand@2x.png in Resources */,
 				5B031C3419ACA6C100573071 /* XiangMuXiangQing_3 in Resources */,
