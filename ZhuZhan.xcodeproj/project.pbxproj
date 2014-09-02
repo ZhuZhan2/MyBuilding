@@ -3056,6 +3056,7 @@
 				5B031C3319ACA6C100573071 /* XiangMuXiangQing_2 in Resources */,
 				D3AD620F19B05AF8001FD483 /* 项目－项目专题_14a.png in Resources */,
 				D3AD61B219AF010D001FD483 /* Unselected.png in Resources */,
+				042D9D0019B411A200689C5D /* 语音搜索_01.png in Resources */,
 				D3AD605F19AC4DC1001FD483 /* 登录_07.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
