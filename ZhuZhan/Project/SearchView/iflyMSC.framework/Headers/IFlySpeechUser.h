@@ -15,28 +15,34 @@
 @class IFlySpeechUser;
 
 /** 登陆完成回调 */
+__attribute__((deprecated))
 @protocol IFlySpeechUserDelegate
 
 /** 登陆结束回调
  
- 当本函数被调用的时候，表明登陆已经完成，可能失败或者成功，
+ 当本函数被调用的时候，表明登陆已经完成，可能失败或者成功。
  
  @param iFlySpeechUser      -[out] 登陆对象，
- @param error               -[out] 本次会话的错误对象，0表示没有错误，
+ @param error               -[out] 本次会话的错误对象，0表示没有错误
 */
+@optional
 - (void) onEnd:(IFlySpeechUser *)iFlySpeechUser error:(IFlySpeechError *)error;
 
 @end
 
+/** 用户接口。
+ *  此接口为用户登陆的接口，在上传用户数据时，您必须先登陆。
+ */
+
 @interface IFlySpeechUser : NSObject
 
-@property (assign) id<IFlySpeechUserDelegate> delegate;
+@property (assign) id<IFlySpeechUserDelegate> delegate __attribute__((deprecated));
 
 /** 初始化对象
  
  @param delegate        -[in]委托对象
  */
-- (id) initWithDelegate:(id<IFlySpeechUserDelegate>) delegate;
+- (id) initWithDelegate:(id<IFlySpeechUserDelegate>) delegate __attribute__((deprecated));
 
 /** 登陆接口
  
@@ -46,8 +52,12 @@
  @param   pwd         -[in] 密码，密码为您在语音云论坛中申请的账号，当user为空时，pwd自动被置为nil
  @param   param       -[in] 登陆的参数，具体参数可以参考用户手册
  */
-- (void) login:(NSString *) user pwd:(NSString *)pwd param:(NSString *) param;
+- (IFlySpeechError *) login:(NSString *) user pwd:(NSString *)pwd param:(NSString *) param;
 
+/** 退出登陆接口
+ MSPLogout 应当在应用程序退出时仅调用一次。
+ */
+-(void) logout;
 
 /** 登陆接口
  
@@ -57,7 +67,7 @@
  @param   pwd         -[in] 密码，密码为您在语音云论坛中申请的账号，当user为空时，pwd自动被置为nil
  @param   param       -[in] 登陆的参数，具体参数可以参考用户手册
  */
-- (IFlySpeechError *) synchronousLogin:(NSString *)user pwd:(NSString *)pwd param:(NSString *) param;
+- (IFlySpeechError *) synchronousLogin:(NSString *)user pwd:(NSString *)pwd param:(NSString *) param __attribute__((deprecated));
 
 /** 是否登陆成功
  

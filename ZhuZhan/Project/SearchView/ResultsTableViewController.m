@@ -38,7 +38,6 @@
     self.navigationItem.leftBarButtonItem = leftButtonItem;
     startIndex = 0;
     NSLog(@"result   mmm%@",self.searchStr);
-//    self.searchStr = @"测试";
     [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             showArr = posts;

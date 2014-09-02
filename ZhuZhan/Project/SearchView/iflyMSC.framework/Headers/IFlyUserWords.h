@@ -2,7 +2,7 @@
 //  UserWords.h
 //  MSC
 //
-//  description: 用户词表类，获取用户词表是为了更好的语音识别(sms)，用户词表也属于个性化的一部分
+//  description: 用户词表类，获取用户词表是为了更好的语音识别(iat)，用户词表也属于个性化的一部分
 
 //  Created by ypzhao on 13-2-26.
 //  Copyright (c) 2013年 iflytek. All rights reserved.
@@ -12,7 +12,7 @@
 
 /**用户词表类
  
- 获取用户词表是为了更好的语音识别(sms)，用户词表也属于个性化的一部分
+ 获取用户词表是为了更好的语音识别(iat)，用户词表也属于个性化的一部分
  */
 
 @interface IFlyUserWords  : NSObject
@@ -24,8 +24,8 @@
  
  在进行初始化时，需要传入的格式如下：
  
-        {\"userword\":[{\"name\":\"iflytek\",\"words\":[\"科大讯飞\",\"云平台\",\"用户词条\",\"开始上传词条\"]}]}
-
+<pre><code>{\"userword\":[{\"name\":\"iflytek\",\"words\":[\"科大讯飞\",\"云平台\",\"用户词条\",\"开始上传词条\"]}]}
+</code></pre>
  @param json 初始化时传入的数据
  @return 
  */
@@ -44,25 +44,25 @@
  */
 - (NSArray *) getWords: (NSString *) key;
 
-/** 添加一条数据
+/** 添加一条用户词数据
  
- @param key  数据对应的key
- @param value 上传的数据
+ @param key  用户词对应的key
+ @param value 上传的用户词数据
  @return 成功返回YES,失败返回NO
  */
 - (BOOL) putWord: (NSString *) key value:(NSString *)value;
 
 /** 添加一组数据
  
- @param key 数据对应的key
- @param words 上传的数据
+ @param key 用户词对应的key
+ @param words 上传的用户词数据
  @return  BOOL            -成功返回YES,失败返回NO
  */
 - (BOOL) putwords: (NSString *) key words:(NSArray *)words;
 
-/** 是否包含key对应的数据
+/** 是否包含key对应的用户词数据
  
- @param key
+ @param key 用户词对应的key
  @return 成功返回YES,失败返回NO
  */
 - (BOOL) containsKey: (NSString *) key;

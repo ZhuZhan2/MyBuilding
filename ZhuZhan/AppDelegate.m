@@ -13,7 +13,10 @@
 #import "HomePageViewController.h"
 #import "RecordSqlite.h"
 //#import "HomePageViewController.h"
+#import "iflyMSC/iflySetting.h"
 
+#import "Definition.h"
+#import "iflyMSC/IFlySpeechUtility.h"
 
 @implementation AppDelegate
 
@@ -23,6 +26,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    
+    
+
+    
+    //创建语音配置
+    NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@,timeout=%@",APPID_VALUE,TIMEOUT_VALUE];
+    //所有服务启动前，需要确保执行createUtility
+    
+    [IFlySpeechUtility createUtility:initString];
+    
+    
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     NSString *API_KEY = KAPI_KEY;

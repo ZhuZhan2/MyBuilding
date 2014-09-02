@@ -214,8 +214,8 @@ int startIndex;
 -(void)gotoView:(NSInteger)index{
     if(index == 0){
     
-        ASRDialogview = [[ASRDialogViewController alloc] init];
-        [self.navigationController pushViewController:ASRDialogview animated:YES];
+        understandVC = [[UnderstandViewController alloc] init];
+        [self.navigationController pushViewController:understandVC animated:YES];
     }else if(index == 1){
         AdvancedSearchViewController *advancedSearchView = [[AdvancedSearchViewController alloc] init];
         [self.navigationController pushViewController:advancedSearchView animated:YES];

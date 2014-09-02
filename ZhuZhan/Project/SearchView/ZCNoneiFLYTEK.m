@@ -51,7 +51,7 @@ static ZCNoneiFLYTEK *manager=nil;
     [iflySpeechRecognizer setParameter:@"vad_eos" value:@"1800"];//设置多少毫秒后断开录音
     
     
-    BOOL ret = [iflySpeechRecognizer startListening];
+    [iflySpeechRecognizer startListening];
     
     
     //    //停止录音会自动开始识别

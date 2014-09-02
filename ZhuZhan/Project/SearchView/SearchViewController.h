@@ -11,13 +11,13 @@
 #import "ResultsTableViewController.h"
 #import "AdvancedSearchViewController.h"
 #import "BaiDuMapViewController.h"
-#import "ASRDialogViewController.h"
+#import "UnderstandViewController.h"
 @interface SearchViewController : UIViewController<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,toolBarViewDelegate>{
     UISearchBar *_searchBar;
     UITableView *_tableView;
     NSMutableArray *showArr;
     toolBarView *toolbarView;
-    ASRDialogViewController *ASRDialogview;
+    UnderstandViewController *understandVC;
 }
 
 @end

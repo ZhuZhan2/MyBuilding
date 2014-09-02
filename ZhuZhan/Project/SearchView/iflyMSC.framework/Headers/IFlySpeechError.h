@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+
+/** 错误描述类 */
 @interface IFlySpeechError : NSObject
 {
     int         _errorCode;
@@ -24,7 +26,7 @@
 
 /**
  * @fn      errorCode
- * @brief   获取错误吗
+ * @brief   获取错误码
  *
  * @return  错误码
  * @see

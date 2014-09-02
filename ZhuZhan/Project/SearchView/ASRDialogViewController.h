@@ -8,11 +8,12 @@
 #import "BaseViewController.h"
 #import <UIKit/UIKit.h>
 #import "UIPlaceHolderTextView.h"
-//#import "iflyMSC/IFlyRecognizerViewDelegate.h"
+#import "iflyMSC/IFlyRecognizerViewDelegate.h"
 #import "ZCNoneiFLYTEK.h"
 @class IFlyRecognizerView;
 @class PopupView;
-
+//@class IFlySpeechUnderstander;
+#import "iflyMSC.framework/Headers/IFlySpeechUnderstander.h"
 /**
  有UI语音识别demo
  */
@@ -21,7 +22,7 @@
 //- (void)getSearchContent:(NSString *)searchContent;
 //
 //@end
-@interface ASRDialogViewController : UIViewController//<IFlyRecognizerViewDelegate>
+@interface ASRDialogViewController : UIViewController<IFlySpeechRecognizerDelegate>
 
 {
 
@@ -31,6 +32,7 @@
 @property (nonatomic,strong) IFlyRecognizerView * iflyRecognizerView;
 @property (nonatomic,strong) PopupView          * popView;
 @property (nonatomic,weak)   UITextView         * textView;
-//@property (nonatomic,strong)id<ASRDialogViewControllerDelegate> delegate;
+@property (nonatomic,strong) IFlySpeechUnderstander *iFlySpeechUnderstander;
+
 
 @end

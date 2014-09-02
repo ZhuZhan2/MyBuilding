@@ -7,29 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
-@protocol IFlyDataDownloaderDelegate
+#import "IFlySpeechError.h"
 
-/** 数据下载回调
- 
- @param result -[out] 下载的数据
- @param endCode -[out] 错误码
+/**此接口为数据上传接口
+ 为个性化服务提供数据
  */
-- (void) onIFlyDataDownloadEnd:(NSString *)result endCode:(int) endCode;
-
-@end
-
 @interface IFlyDataDownloader : NSObject
-{
-    int endCode;
-}
 
-/** 开始数据下载
+/** 设置下载数据参数
+  @param parameter 参数值
+  @param key 参数名
+*/
+-(void) setParameter:(NSString*) parameter forKey:(NSString*) key;
 
- @param params 下载时，上传的参数
- */
-- (void) dataDownLoader:(NSString *) params;
-
-/** 设置委托对象 */
-@property (assign) id<IFlyDataDownloaderDelegate> delegate;
+typedef void(^IFlyDownLoadDataCompletionHandler)(NSString* result,IFlySpeechError * error);
+/** 下载数据
+ 
+下载过程是**异步**的
+  @param completionHandler 下载完成回调
+*/
+- (void) downLoadDataWithCompletionHandler:(IFlyDownLoadDataCompletionHandler) completionHandler;
 
 @end
