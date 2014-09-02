@@ -41,14 +41,14 @@
     // Do any additional setup after loading the view.
     self.view.layer.cornerRadius = 8;//设置那个圆角的有多圆
     self.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
-    
     UIImageView *bgimageView = [[UIImageView alloc] init];
     if(self.flag == 0){
         bgimageView.frame = CGRectMake(0, 0, 272, 350);
+        [bgimageView setImage:[UIImage imageNamed:@"高级搜索-多选_03a.png"]];
     }else{
-        bgimageView.frame = CGRectMake(0, 0, 272, 350);
+        bgimageView.frame = CGRectMake(0, 0, 272, 270);
+        [bgimageView setImage:[UIImage imageNamed:@"高级搜索-多选_03aA.png"]];
     }
-    [bgimageView setImage:[UIImage imageNamed:@"高级搜索-多选_03a.png"]];
     [self.view addSubview:bgimageView];
     
     self.dataArr = [[NSMutableArray alloc] init];
@@ -65,7 +65,7 @@
     if(self.flag == 0){
         _tableView.frame = CGRectMake(1, 55, 269, 247);
     }else{
-        _tableView.frame = CGRectMake(1, 55, 269, 247);
+        _tableView.frame = CGRectMake(1, 55, 269, 157);
     }
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -76,7 +76,11 @@
     [self.view addSubview:_tableView];
     
     UIButton *complated = [UIButton buttonWithType:UIButtonTypeCustom];
-    complated.frame = CGRectMake(0,305, 135, 44);
+    if(self.flag == 0){
+        complated.frame = CGRectMake(0,305, 135, 44);
+    }else{
+        complated.frame = CGRectMake(0,225, 135, 44);
+    }
     [complated setTitle:@"确认" forState:UIControlStateNormal];
     [complated setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     complated.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:16];
@@ -84,7 +88,11 @@
     [self.view addSubview:complated];
     
     UIButton *cancel = [UIButton buttonWithType:UIButtonTypeCustom];
-    cancel.frame = CGRectMake(136,305, 135, 44);
+    if(self.flag == 0){
+        cancel.frame = CGRectMake(136,305, 135, 44);
+    }else{
+        cancel.frame = CGRectMake(136,225, 135, 44);
+    }
     [cancel setTitle:@"取消" forState:UIControlStateNormal];
     [cancel setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     cancel.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:16];
