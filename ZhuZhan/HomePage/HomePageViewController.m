@@ -289,7 +289,7 @@
             break;
         case 4:
             NSLog(@"交易");
-            tradeview = [[TradeViewController alloc] init];
+            tradeview = [[ProductViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:tradeview];
             [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
