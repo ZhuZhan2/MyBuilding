@@ -33,7 +33,7 @@
 }
 
 -(void)setContent{
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 355)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 350)];
     [bgView setBackgroundColor:[UIColor whiteColor]];
     [self.contentView addSubview:bgView];
     
@@ -56,6 +56,7 @@
     keyWord.placeholder = @"请输入项目关键词";
     keyWord.returnKeyType = UIReturnKeyDone;
     keyWord.clearButtonMode = UITextFieldViewModeAlways;
+    keyWord.tag = 0;
     [bgView addSubview:keyWord];
     
     companyName = [[UITextField alloc] initWithFrame:CGRectMake(15, 55, 290, 40)];
@@ -63,6 +64,7 @@
     companyName.placeholder = @"请输入相关公司名称";
     companyName.returnKeyType = UIReturnKeyDone;
     companyName.clearButtonMode = UITextFieldViewModeAlways;
+    companyName.tag = 1;
     [bgView addSubview:companyName];
     
     districtBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -138,31 +140,40 @@
     UIImageView *arrowImage4 = [[UIImageView alloc] initWithFrame:CGRectMake(290,270, 8, 12.5)];
     [arrowImage4 setImage:[UIImage imageNamed:@"新建项目5_09.png"]];
     [self addSubview:arrowImage4];
-    
-    UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 350, 320, 5)];
-    [lineImage2 setImage:[UIImage imageNamed:@"项目－高级搜索－2_15a"]];
-    [bgView addSubview:lineImage2];
 }
 
 -(void)searchClick{
     NSLog(@"searchClick");
+    [keyWord resignFirstResponder];
+    [companyName resignFirstResponder];
+    if([self.delegate respondsToSelector:@selector(startSearch)]){
+        [self.delegate startSearch];
+    }
 }
 
 -(void)districtBtnClick{
     NSLog(@"districtBtnClick");
+    [keyWord resignFirstResponder];
+    [companyName resignFirstResponder];
 }
 
 -(void)provinceBtnClick{
     NSLog(@"provinceBtnClick");
+    [keyWord resignFirstResponder];
+    [companyName resignFirstResponder];
 }
 
 -(void)projectStageBtnClick:(UIButton *)button{
+    [keyWord resignFirstResponder];
+    [companyName resignFirstResponder];
     if([self.delegate respondsToSelector:@selector(multipleChose:)]){
         [self.delegate multipleChose:button.tag];
     }
 }
 
 -(void)projectCategoryBtnClick:(UIButton *)button{
+    [keyWord resignFirstResponder];
+    [companyName resignFirstResponder];
     if([self.delegate respondsToSelector:@selector(multipleChose:)]){
         [self.delegate multipleChose:button.tag];
     }
@@ -171,6 +182,12 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    if([self.delegate respondsToSelector:@selector(setTextFieldStr:index:)]){
+        [self.delegate setTextFieldStr:textField.text index:textField.tag];
+    }
 }
 
 -(void)setDic:(NSMutableDictionary *)dic{

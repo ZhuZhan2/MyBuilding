@@ -157,7 +157,7 @@
 //    }
 //}
 + (NSURLSessionDataTask *)PostFaceLoginWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
-    NSString *urlStr = [NSString stringWithFormat:@"api/Account/PostFaceLogin"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Account/FaceLogin"];
     return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         
@@ -189,7 +189,7 @@
 //    }
 //}
 + (NSURLSessionDataTask *)PostLogOutWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
-    NSString *urlStr = [NSString stringWithFormat:@"api/Account/PostLogOut"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Account/LogOut"];
     return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
 
@@ -209,7 +209,7 @@
 
 
 + (NSURLSessionDataTask *)RegisterFaceWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
-NSString *urlStr = [NSString stringWithFormat:@"api/account/postfaceregister"];
+NSString *urlStr = [NSString stringWithFormat:@"api/account/faceregister"];
     return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
        
         NSLog(@"JSON===>%@",JSON);
@@ -231,7 +231,7 @@ NSString *urlStr = [NSString stringWithFormat:@"api/account/postfaceregister"];
 //完善用户信息
 + (NSURLSessionDataTask *)PostInformationImprovedWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic
 {
-NSString *urlStr = [NSString stringWithFormat:@"api/account/PostInformationImproved"];
+NSString *urlStr = [NSString stringWithFormat:@"api/account/InformationImproved"];
     return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
@@ -251,7 +251,7 @@ NSString *urlStr = [NSString stringWithFormat:@"api/account/PostInformationImpro
 }
 
 + (NSURLSessionDataTask *)GetUserInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId{
-    NSString *urlStr = [NSString stringWithFormat:@"api/account/GetUserInformation?userId=%@",userId];
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/UserInformation?userId=%@",userId];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){

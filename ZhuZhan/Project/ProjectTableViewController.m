@@ -201,6 +201,7 @@
     if(!cell){
         cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:model fromView:@"project"];
     }
+    cell.model = model;
     cell.selectionStyle = NO;
     return cell;
 }

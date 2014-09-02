@@ -10,6 +10,7 @@
 #import "TopicsDetailTableViewController.h"
 @interface TopicsTableViewController : UITableViewController{
     NSMutableArray *showArr;
+    int startIndex;
 }
 
 @end

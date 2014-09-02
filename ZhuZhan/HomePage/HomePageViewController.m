@@ -33,10 +33,39 @@
     contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 519)];
     contactview = [[ContactViewController alloc] init];
     nav = [[UINavigationController alloc] initWithRootViewController:contactview];
-    [nav.view setFrame:CGRectMake(0, 0, 320, 513)];
+    [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
     nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
     [contentView addSubview:nav.view];
+    
+    
+    
+    
+//    UIView* myView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 519-20)];
+//    //myView.backgroundColor=[UIColor redColor];
+//    
+//
+//    
+//    UIViewController* myVC=[[UIViewController alloc]init];
+//    myVC.view.frame=CGRectMake(0, 44, 200, 200);
+//    myVC.view.backgroundColor=[UIColor grayColor];
+//    
+//    UIView* test=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+//    test.backgroundColor=[UIColor grayColor];
+//    
+//    //[myVC.view addSubview:test];
+//    
+//    
+//    UINavigationController* myNavi=[[UINavigationController alloc]initWithRootViewController:myVC];
+//    //myNavi.view.frame=CGRectMake(0, 20, 320, 568-49-40);
+//    //myNavi.view.backgroundColor=[UIColor greenColor];
+//    NSLog(@"%f",myNavi.view.frame.size.height);
+//    
+//    //[myNavi.view addSubview:myVC.view];
+//    NSLog(@"%f,%f",myNavi.view.frame.size.height,myNavi.navigationBar.frame.size.height);
+//    
+//    [myView addSubview:myVC.view];
     [self.view addSubview:contentView];
+//    [self.view addSubview:myNavi.view];
     
     toolView = [[UIView alloc] initWithFrame:CGRectMake(0, 519, 320, 49)];
    [toolView setBackgroundColor:RGBCOLOR(229, 229, 229)];
@@ -104,6 +133,7 @@
     NSArray *menus = [NSArray arrayWithObjects:cameraMenuItem, peopleMenuItem, placeMenuItem, musicMenuItem, thoughtMenuItem, nil];
     
     menu = [[QuadCurveMenu alloc] initWithFrame:self.view.bounds menus:menus];
+    //menu.backgroundColor=[UIColor greenColor];
     menu.delegate = self;
     [self.view addSubview:menu];
 }
@@ -206,16 +236,20 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 -(void)homePageTabBarHide{
+    contentView.frame=CGRectMake(0, 0, 320, 568);
     [nav.view setFrame:CGRectMake(0, 0, 320, 568)];
-    toolView.hidden=YES;
     menu.hidden=YES;
+    toolView.hidden=YES;
 }
 
 -(void)homePageTabBarRestore{
+    contentView.frame=CGRectMake(0, 0, 320, 519);
     [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
-    toolView.hidden=NO;
     menu.hidden=NO;
+    toolView.hidden=NO;
+
 }
 
 -(void)BtnClick:(UIButton *)button{

@@ -21,5 +21,6 @@
     UILabel *addressLabel;
     int flag;
 }
+@property(nonatomic,weak)projectModel *model;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(projectModel *)model fromView:(NSString *)fromView;
 @end
