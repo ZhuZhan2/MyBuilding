@@ -217,7 +217,6 @@
 -(void)change{
     NSLog(@"用户选择了筛选");
     self.isNeedAnimation=NO;
-    //暂时移除观察者,避免加新view时有动画
     [self.view addSubview:self.selectTableView];
     [UIView animateWithDuration:0.5 animations:^{
         self.selectTableView.center=CGPointMake(160, (568-64)*.5+64);
@@ -307,6 +306,8 @@
         label.center=CGPointMake(160, self.contentTableView.contentSize.height-20);
         [self.contentTableView addSubview:label];
         
+        UIView* tempView=[[UIView alloc]initWithFrame:self.selectTableView.bounds];
+        [self.selectTableView addSubview:tempView];
         
         CGRect frame=self.animationView.frame;
         frame.size.height+=.000001;
@@ -316,6 +317,7 @@
             if (self.animationView.isAnimating) {
                 [self.animationView stopAnimating];
             }
+            [tempView removeFromSuperview];
             [label removeFromSuperview];
             [self contentsAddObject:view];
         }];

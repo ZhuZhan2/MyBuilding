@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ProductViewController : UIViewController
+#import "EGORefreshTableHeaderView.h"
+#import "EGORefreshTableFooterView.h"
+@interface ProductViewController : UIViewController<EGORefreshTableDelegate>{
+	//EGOHeader
+    EGORefreshTableHeaderView *_refreshHeaderView;
+    //EGOFoot
+    EGORefreshTableFooterView *_refreshFooterView;
+    //
+    BOOL _reloading;
+}
 
 @end
