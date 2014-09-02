@@ -9,7 +9,6 @@
 #import "HomePageViewController.h"
 #import "LoginModel.h"
 #import "AppDelegate.h"
-
 @interface HomePageViewController ()
 
 @end
@@ -290,11 +289,18 @@
         case 4:
             NSLog(@"交易");
             productView = [[ProductViewController alloc] init];
+            //tradeView=[[TradeViewController alloc]init];
+            //testVC=[[ViewController alloc]init];
+            
             nav = [[UINavigationController alloc] initWithRootViewController:productView];
+            //nav = [[UINavigationController alloc] initWithRootViewController:tradeView];
+            //nav=[[UINavigationController alloc]initWithRootViewController:testVC];
             [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
             productView = nil;
+            tradeView=nil;
+            testVC=nil;
             break;
         default:
             break;

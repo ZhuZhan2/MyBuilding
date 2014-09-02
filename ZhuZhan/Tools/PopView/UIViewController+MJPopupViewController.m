@@ -63,11 +63,11 @@
     if ([sourceView.subviews containsObject:popupView]) return;
     
     // customize popupView
-    popupView.layer.shadowPath = [UIBezierPath bezierPathWithRect:popupView.bounds].CGPath;
+    //popupView.layer.shadowPath = [UIBezierPath bezierPathWithRect:popupView.bounds].CGPath;
     //popupView.layer.masksToBounds = NO;
-    popupView.layer.shadowOffset = CGSizeMake(5, 5);
-    popupView.layer.shadowRadius = 5;
-    popupView.layer.shadowOpacity = 0.5;
+    //popupView.layer.shadowOffset = CGSizeMake(5, 5);
+    //popupView.layer.shadowRadius = 5;
+    //popupView.layer.shadowOpacity = 0.5;
     
     
     // Add semi overlay

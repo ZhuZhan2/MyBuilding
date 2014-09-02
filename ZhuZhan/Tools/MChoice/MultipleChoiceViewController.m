@@ -41,31 +41,15 @@
     // Do any additional setup after loading the view.
     self.view.layer.cornerRadius = 8;//设置那个圆角的有多圆
     self.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
-    self.view.backgroundColor = [UIColor redColor];
-    
-    UIImageView *bgimageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 260, 310)];
-    [bgimageView setImage:[UIImage imageNamed:@"新建项目1_03.png"]];
+    UIImageView *bgimageView = [[UIImageView alloc] init];
+    if(self.flag == 0){
+        bgimageView.frame = CGRectMake(0, 0, 272, 350);
+        [bgimageView setImage:[UIImage imageNamed:@"高级搜索-多选_03a.png"]];
+    }else{
+        bgimageView.frame = CGRectMake(0, 0, 272, 270);
+        [bgimageView setImage:[UIImage imageNamed:@"高级搜索-多选_03aA.png"]];
+    }
     [self.view addSubview:bgimageView];
-    
-    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 260, 50)];
-    [topView setBackgroundColor:[UIColor blackColor]];
-    [self.view addSubview:topView];
-    
-    UIButton *cancel = [UIButton buttonWithType:UIButtonTypeCustom];
-    cancel.frame = CGRectMake(10,7, 50, 30);
-    [cancel setTitle:@"取消" forState:UIControlStateNormal];
-    [cancel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    cancel.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:16];
-    [cancel addTarget:self action:@selector(CancelClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:cancel];
-    
-    UIButton *complated = [UIButton buttonWithType:UIButtonTypeCustom];
-    complated.frame = CGRectMake(200,7, 50, 30);
-    [complated setTitle:@"完成" forState:UIControlStateNormal];
-    [complated setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    complated.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:16];
-    [complated addTarget:self action:@selector(complatedClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:complated];
     
     self.dataArr = [[NSMutableArray alloc] init];
     self.showArr = [NSMutableArray arrayWithCapacity:0];
@@ -77,13 +61,49 @@
         [self.dataArr addObject:@""];
     }
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 50, 260, 270)];
+    _tableView = [[UITableView alloc] init];
+    if(self.flag == 0){
+        _tableView.frame = CGRectMake(1, 55, 269, 247);
+    }else{
+        _tableView.frame = CGRectMake(1, 55, 269, 157);
+    }
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.rowHeight = 44;
+    _tableView.rowHeight = 41;
     _tableView.allowsSelectionDuringEditing = YES;
     _tableView.scrollEnabled = NO;
+    _tableView.separatorStyle = NO;
     [self.view addSubview:_tableView];
+    
+    UIButton *complated = [UIButton buttonWithType:UIButtonTypeCustom];
+    if(self.flag == 0){
+        complated.frame = CGRectMake(0,305, 135, 44);
+    }else{
+        complated.frame = CGRectMake(0,225, 135, 44);
+    }
+    [complated setTitle:@"确认" forState:UIControlStateNormal];
+    [complated setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    complated.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:16];
+    [complated addTarget:self action:@selector(complatedClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:complated];
+    
+    UIButton *cancel = [UIButton buttonWithType:UIButtonTypeCustom];
+    if(self.flag == 0){
+        cancel.frame = CGRectMake(136,305, 135, 44);
+    }else{
+        cancel.frame = CGRectMake(136,225, 135, 44);
+    }
+    [cancel setTitle:@"取消" forState:UIControlStateNormal];
+    [cancel setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    cancel.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:16];
+    [cancel addTarget:self action:@selector(CancelClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:cancel];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 3, 270, 50)];
+    titleLabel.text = @"请选择搜索条件";
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:18];
+    [self.view addSubview:titleLabel];
 }
 
 - (void)didReceiveMemoryWarning
@@ -121,16 +141,23 @@
     if (cell == nil) {
         cell = [[MChoiceTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
-	
 	cell.accessoryType = UITableViewCellAccessoryNone;
 	cell.textLabel.textColor = [UIColor blackColor];
     Item* item = [self.showArr objectAtIndex:indexPath.row];
     
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(49, 10, 200, 30)];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 200, 30)];
     title.text = item.title;
+    title.font = [UIFont systemFontOfSize:14];
 	[cell addSubview:title];
 	[cell setChecked:item.isChecked];
     
+    if(indexPath.row != self.showArr.count-1){
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 41, 229, 1)];
+        [imageView setBackgroundColor:[UIColor blackColor]];
+        [cell addSubview:imageView];
+        imageView.alpha = 0.2;
+    }
+    cell.selectionStyle = NO;
     return cell;
 }
 
