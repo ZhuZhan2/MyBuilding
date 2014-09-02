@@ -87,6 +87,8 @@
     }
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     self.tableView.separatorStyle = NO;
+    
+
 }
 
 - (void)didReceiveMemoryWarning

@@ -260,44 +260,48 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     label1.text = @"邮箱地址";
     label1.font = [UIFont systemFontOfSize:14];
     [cell2 addSubview:label1];
-    UILabel *emailLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 5, 180, 30)];
-    emailLabel.textAlignment = NSTextAlignmentLeft;
-    emailLabel.text = @"222222233445@qq.com";
-    emailLabel.font = [UIFont systemFontOfSize:14];
-    [cell2 addSubview:emailLabel];
+    UITextField *emailField = [[UITextField alloc] initWithFrame:CGRectMake(90, 5, 200, 30)];
+    emailField.textAlignment = NSTextAlignmentLeft;
+    emailField.text = @"222222233445@qq.com";
+    emailField.font = [UIFont systemFontOfSize:14];
+    emailField.delegate = self;
+    [cell2 addSubview:emailField];
     
     UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(20, 45, 70, 30)];
     label2.textAlignment = NSTextAlignmentLeft;
     label2.text = @"电      话";
     label2.font = [UIFont systemFontOfSize:14];
     [cell2 addSubview:label2];
-    UILabel *cellPhoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 45, 180, 30)];
-    cellPhoneLabel.textAlignment = NSTextAlignmentLeft;
-    cellPhoneLabel.text = @"123434556657";
-    cellPhoneLabel.font = [UIFont systemFontOfSize:14];
-    [cell2 addSubview:cellPhoneLabel];
+    UITextField *cellPhoneFiled = [[UITextField alloc] initWithFrame:CGRectMake(90, 45, 200, 30)];
+    cellPhoneFiled.textAlignment = NSTextAlignmentLeft;
+    cellPhoneFiled.text = @"123434556657";
+    cellPhoneFiled.font = [UIFont systemFontOfSize:14];
+    cellPhoneFiled.delegate  =self;
+    [cell2 addSubview:cellPhoneFiled];
     
     UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(20, 85, 70, 30)];
     label3.textAlignment = NSTextAlignmentLeft;
     label3.text = @"在职公司";
     label3.font = [UIFont systemFontOfSize:14];
     [cell2 addSubview:label3];
-    UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 85, 180, 30)];
-    companyLabel.textAlignment = NSTextAlignmentLeft;
-    companyLabel.text = @"巴拉巴拉公司";
-    companyLabel.font = [UIFont systemFontOfSize:14];
-    [cell2 addSubview:companyLabel];
+    UITextField *companyField = [[UITextField alloc] initWithFrame:CGRectMake(90, 85, 200, 30)];
+    companyField.textAlignment = NSTextAlignmentLeft;
+    companyField.text = @"巴拉巴拉公司";
+    companyField.font = [UIFont systemFontOfSize:14];
+    companyField.delegate = self;
+    [cell2 addSubview:companyField];
     
     UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(20, 125, 70, 30)];
     label4.textAlignment = NSTextAlignmentLeft;
     label4.text = @"职      位";
     label4.font = [UIFont systemFontOfSize:14];
     [cell2 addSubview:label4];
-    UILabel *positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 125, 180, 30)];
-    positionLabel.textAlignment = NSTextAlignmentLeft;
-    positionLabel.text = @"总监";
-    positionLabel.font = [UIFont systemFontOfSize:14];
-    [cell2 addSubview:positionLabel];
+    UITextField *positionField = [[UITextField alloc] initWithFrame:CGRectMake(90, 125, 200, 30)];
+    positionField.textAlignment = NSTextAlignmentLeft;
+    positionField.text = @"总监";
+    positionField.font = [UIFont systemFontOfSize:14];
+    positionField.delegate =self;
+    [cell2 addSubview:positionField];
     
     for (int i=0; i<3; i++) {
         UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(10, 39+40*i, 300, 2)];
@@ -347,6 +351,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     return 160;
     
+}
+
+#pragma mark textFieldDelelgate----------
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 - (void)didReceiveMemoryWarning
 {

@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @interface ResultsTableViewController : UITableViewController{
     NSMutableArray *showArr;
     int startIndex;
+   
 }
 @property(nonatomic,weak)NSString *searchStr;
 @property(nonatomic,weak)NSMutableDictionary *dic;
