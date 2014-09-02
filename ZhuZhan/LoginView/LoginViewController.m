@@ -103,7 +103,7 @@
     [self.view addSubview:rememberView];
     
     UIButton *registBtn =  [UIButton buttonWithType:UIButtonTypeCustom];
-    registBtn.frame = CGRectMake(70, 420, 200, 36);//y为500
+    registBtn.frame = CGRectMake(70, 500, 200, 36);//y为500
     [registBtn setTitle:@"没有账户，去注册！" forState:UIControlStateNormal];
     registBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:17];
     [registBtn addTarget:self action:@selector(registBtnClick) forControlEvents:UIControlEventTouchUpInside];
