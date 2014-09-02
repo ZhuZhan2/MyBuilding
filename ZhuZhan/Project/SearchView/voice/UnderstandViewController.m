@@ -63,7 +63,7 @@ static int touchCount =2;
     
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton setFrame:CGRectMake(0, 0, 40, 30)];
+    [rightButton setFrame:CGRectMake(0, 0, 30, 30)];
     [rightButton setBackgroundImage:[UIImage imageNamed:@"icon__09"] forState:UIControlStateNormal];
     rightButton.titleLabel.textColor = [UIColor whiteColor];
     [rightButton addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
