@@ -429,12 +429,13 @@
 
 + (NSURLSessionDataTask *)GetSeminarProjectsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block Id:(NSString *)Id{
     NSString *urlStr = [NSString stringWithFormat:@"api/Projects/SeminarProjects?seminarId=%@",Id];
+    NSLog(@"******   %@",urlStr);
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        //NSLog(@"JSON===>%@",JSON);
+        NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             for(NSDictionary *item in JSON[@"d"][@"data"]){
-                projectModel *model = [[projectModel alloc] init];
+                TopicsModel *model = [[TopicsModel alloc] init];
                 [model setDict:item];
                 [mutablePosts addObject:model];
             }

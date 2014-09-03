@@ -39,6 +39,7 @@
     UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 316, 111)];
     [bgImage setImage:[UIImage imageNamed:@"项目－项目专题_02a"]];
     [bgView addSubview:bgImage];
+    
     [self.contentView addSubview:bgView];
     
     headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"首页_16"]];
