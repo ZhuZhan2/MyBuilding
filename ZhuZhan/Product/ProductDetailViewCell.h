@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CommentModel.h"
 @interface ProductDetailViewCell : UITableViewCell
-
++(ProductDetailViewCell*)dequeueReusableCellWithTableView:(UITableView*)tableView identifier:(NSString*)identifier comment:(CommentModel*)commentModel;
 @end

@@ -542,7 +542,7 @@
         BOOL stageLight=NO;
         int temp[4]={0,2,5,9};
         
-        NSLog(@"%@",self.stages);
+        //NSLog(@"%@",self.stages);
         for (NSString* str in [self.stages subarrayWithRange:NSMakeRange(temp[indexPath.section], stagesCount[indexPath.section])]) {
             
             if (![str isEqualToString:@"none"]) {

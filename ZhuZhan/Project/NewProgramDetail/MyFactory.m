@@ -135,6 +135,7 @@
     view.layer.masksToBounds=YES;
     view.backgroundColor=[UIColor grayColor];
     
+    NSLog(@"%@",imageUrl);
     view.myImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,imageUrl]];
     
     

@@ -8,14 +8,16 @@
 
 #import "ProductDetailViewController.h"
 #import "ProductDetailViewCell.h"
+#import "CommentView.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView* myTableView;
 
-@property(nonatomic,strong)UIImage* productImage;
-@property(nonatomic,copy)NSString* productText;
-@property(nonatomic,strong)NSMutableArray* comments;
+@property(nonatomic,strong)UIImage* productImage;//产品图片
+@property(nonatomic,copy)NSString* productText;//产品介绍文字
+@property(nonatomic,strong)UIView* productView;//产品图片和产品介绍文字的superView
 
-@property(nonatomic,strong)UIView* productView;
+@property(nonatomic,strong)NSMutableArray* commentModels;//评论数组，元素为评论实体类
+@property(nonatomic,strong)NSMutableArray* commentViews;//cell中的内容视图
 @end
 
 @implementation ProductDetailViewController
@@ -25,7 +27,8 @@
     if (self) {
         self.productImage=productImage;
         self.productText=productText;
-        self.comments=comments;
+        self.commentModels=comments;
+        self.commentViews=[[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -36,8 +39,15 @@
     self.view.backgroundColor=[UIColor whiteColor];
     [self getProductIntroduce];
     [self initNavi];
+    [self getTableViewContents];
     [self initMyTableView];
-    // Do any additional setup after loading the view.
+}
+
+-(void)getTableViewContents{
+    for (int i=0; i<self.commentModels.count; i++) {
+        CommentView* view=[[CommentView alloc]initWithCommentModel:self.commentModels[i]];
+        [self.commentViews addObject:view];
+    }
 }
 
 -(void)getProductIntroduce{
@@ -92,14 +102,14 @@
 //=========================================================================
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 25;
+    return self.commentViews.count+1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row==0) {
         return self.productView.frame.size.height;
     }else{
-        return 55;
+        return [self.commentViews[indexPath.row-1] frame].size.height;
     }
 }
 
@@ -118,12 +128,20 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }else{
+
+        
         ProductDetailViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"myCell"];
         if (!cell) {
             cell=[[ProductDetailViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"myCell"];
         }
-        cell.backgroundColor=[UIColor greenColor];
-        cell.textLabel.text=[NSString stringWithFormat:@"%d",indexPath.row];
+        
+        if (cell.contentView.subviews.count) {
+            [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        }
+        [cell.contentView addSubview:self.commentViews[indexPath.row-1]];
+        //cell.contentView.backgroundColor=RGBCOLOR(229, 229, 229);
+        cell.backgroundColor=[UIColor clearColor];
+        cell.contentView.backgroundColor=[UIColor clearColor];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
