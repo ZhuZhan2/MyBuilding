@@ -442,7 +442,7 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 }
 
 -(void)setHeadFrame:(CGRect)newFrame{
-    [_avatarButton setFrame:newFrame];
+    [_headImage setFrame:newFrame];
 }
 
 -(void)setHeadImageFrame:(CGRect)newFrame{

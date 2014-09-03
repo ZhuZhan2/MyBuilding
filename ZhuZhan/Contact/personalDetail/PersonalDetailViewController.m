@@ -44,13 +44,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
 
     
-    contactArr = @[@"12324545@qq.com",@"13935439090"];
+    contactArr = @[@"929097264@qq.com",@"13938439096"];
     kImgArr = @[@"人脉－人的详情_21a",@"人脉－人的详情_23a"];
     titleArr =@[@"email",@"手 机"];
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 200)];
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
-    [_pathCover setAvatarImage:[UIImage imageNamed:@"人脉－人的详情_53a"]];
+    [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadFrame:CGRectMake(120, -50, 70, 70)];
     [_pathCover setNameFrame:CGRectMake(145, 20, 100, 20) font:[UIFont systemFontOfSize:14]];
@@ -182,14 +182,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         commonLabel.textAlignment = NSTextAlignmentLeft;
         commonLabel.text = [contactArr objectAtIndex:indexPath.row-2];
         commonLabel.font = [UIFont systemFontOfSize:14];
+        commonLabel.tag= indexPath.row;
         [contactDetailCell addSubview:commonLabel];
         
         UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         rightBtn.frame = CGRectMake(250, 10, 30, 30);
         [rightBtn setBackgroundImage:[UIImage imageNamed:[kImgArr objectAtIndex:indexPath.row-2]] forState:UIControlStateNormal];
-        rightBtn.tag = indexPath.row;
-        [rightBtn addTarget:self action:@selector(goToSendMessageOrCall:) forControlEvents:UIControlEventTouchUpInside];
-        rightBtn.tag = indexPath.row+2014090301;
         [contactDetailCell addSubview:rightBtn];
         contactDetailCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return contactDetailCell;
@@ -296,10 +294,17 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
 }
 
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
+    if (indexPath.row ==2) {
+        [self onClickAttention:indexPath.row];
+    }
+    if (indexPath.row==3) {
+        [self onClickToCall:indexPath.row];
+        
+    }
+
     
 }
 
@@ -324,25 +329,26 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 
--(void)goToSendMessageOrCall:(UIButton *)button
+//**************************************************************************************************************
+-(void)onClickToCall:(int)indexPathRow//打电话
 {
-    if (button.tag ==2014090303) {
-        [self onClickAttention];
-    }
-    if (button.tag ==2014090303) {
-        
-    }
+    NSLog(@"***********");
+    UILabel *label = (UILabel *)[self.view viewWithTag:indexPathRow];
+    NSString *telephone = [NSString stringWithFormat:@"tel://%@",label.text];
+[[UIApplication sharedApplication] openURL:[NSURL URLWithString:telephone]];
 }
 
 //**************************************************************************************************************
--(void)onClickAttention{
+-(void)onClickAttention:(int)indexPathRow
+{
     if ([MFMailComposeViewController canSendMail]){
         // Email Subject
         NSString *emailTitle = nil;
         // Email Content
         NSString *messageBody = nil;
         // To address
-        NSArray *toRecipents = [NSArray arrayWithObject:@"929097264@qq.com"];
+        UILabel *label = (UILabel *)[self.view viewWithTag:indexPathRow];
+        NSArray *toRecipents = [NSArray arrayWithObject:label.text];
         
         MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
         mc.mailComposeDelegate = self;

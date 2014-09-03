@@ -61,16 +61,16 @@
     
     [RecordSqlite opensql];
     
-//    HomePageViewController *homeVC = [[HomePageViewController alloc] init];
-//    self.window.rootViewController = homeVC;
-//    [self.window makeKeyAndVisible];
+    HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+    self.window.rootViewController = homeVC;
+    [self.window makeKeyAndVisible];
     
     
 
-    PersonalDetailViewController *personVC = [[PersonalDetailViewController alloc] init];
-    UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:personVC];
-    self.window.rootViewController =naVC;
-    [self.window makeKeyAndVisible];
+//    PersonalDetailViewController *personVC = [[PersonalDetailViewController alloc] init];
+//    UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:personVC];
+//    self.window.rootViewController =naVC;
+//    [self.window makeKeyAndVisible];
     
     
       /* if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
