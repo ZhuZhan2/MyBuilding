@@ -293,7 +293,7 @@
 		04D10BE619AE016A0097C0C6 /* PImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BCA19AE016A0097C0C6 /* PImgCell.m */; };
 		04D10BEA19AE016A0097C0C6 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BD019AE016A0097C0C6 /* PublishViewController.m */; };
 		04D10BF219AE059E0097C0C6 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BEF19AE059E0097C0C6 /* 1.png */; };
-		04D10BF319AE059E0097C0C6 /* 123.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BF019AE059E0097C0C6 /* 123.png */; };
+		04D10BF319AE059E0097C0C6 /* bg000.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BF019AE059E0097C0C6 /* bg000.png */; };
 		04D10BF419AE059E0097C0C6 /* back_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BF119AE059E0097C0C6 /* back_icon.png */; };
 		04D10BFA19AE06AF0097C0C6 /* concern.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BF519AE06AE0097C0C6 /* concern.png */; };
 		04D10BFB19AE06AF0097C0C6 /* RadioButton-Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BF619AE06AF0097C0C6 /* RadioButton-Selected.png */; };
@@ -1138,7 +1138,7 @@
 		04D10BCF19AE016A0097C0C6 /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
 		04D10BD019AE016A0097C0C6 /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
 		04D10BEF19AE059E0097C0C6 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
-		04D10BF019AE059E0097C0C6 /* 123.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 123.png; sourceTree = "<group>"; };
+		04D10BF019AE059E0097C0C6 /* bg000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg000.png; sourceTree = "<group>"; };
 		04D10BF119AE059E0097C0C6 /* back_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_icon.png; sourceTree = "<group>"; };
 		04D10BF519AE06AE0097C0C6 /* concern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = concern.png; sourceTree = "<group>"; };
 		04D10BF619AE06AF0097C0C6 /* RadioButton-Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RadioButton-Selected.png"; sourceTree = "<group>"; };
@@ -1259,6 +1259,9 @@
 		D3AC61B419B6BFDC0015B62F /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		D3AC61B619B6C0AC0015B62F /* CommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentView.h; sourceTree = "<group>"; };
 		D3AC61B719B6C0AC0015B62F /* CommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentView.m; sourceTree = "<group>"; };
+		D3AC61B919B6D5D20015B62F /* CommentApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentApi.h; sourceTree = "<group>"; };
+		D3AC61BA19B6D5D20015B62F /* CommentApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentApi.m; sourceTree = "<group>"; };
+		D3AC61BD19B6E3FF0015B62F /* 人脉_66a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉_66a.png"; sourceTree = "<group>"; };
 		D3AD600C19AC4DC1001FD483 /* bg-addbutton-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton-highlighted.png"; sourceTree = "<group>"; };
 		D3AD600D19AC4DC1001FD483 /* bg-addbutton-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton-highlighted@2x.png"; sourceTree = "<group>"; };
 		D3AD600E19AC4DC1001FD483 /* bg-addbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton.png"; sourceTree = "<group>"; };
@@ -2554,6 +2557,8 @@
 				D3AC619119B6BF930015B62F /* ContactModel.m */,
 				D3AC61B319B6BFDC0015B62F /* CommentModel.h */,
 				D3AC61B419B6BFDC0015B62F /* CommentModel.m */,
+				D3AC61B919B6D5D20015B62F /* CommentApi.h */,
+				D3AC61BA19B6D5D20015B62F /* CommentApi.m */,
 			);
 			path = ContactModel;
 			sourceTree = "<group>";
@@ -2607,6 +2612,7 @@
 		D3AD600B19AC4DC1001FD483 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3AC61BD19B6E3FF0015B62F /* 人脉_66a.png */,
 				D3AC613919B6A5130015B62F /* 人脉_34a.png */,
 				D3AC612E19B5CBBC0015B62F /* 人脉_57a.png */,
 				D3AC612F19B5CBBC0015B62F /* 人脉_59a.png */,
@@ -2681,7 +2687,7 @@
 				04D10BF819AE06AF0097C0C6 /* tabbar.png */,
 				04D10BF919AE06AF0097C0C6 /* visit.png */,
 				04D10BEF19AE059E0097C0C6 /* 1.png */,
-				04D10BF019AE059E0097C0C6 /* 123.png */,
+				04D10BF019AE059E0097C0C6 /* bg000.png */,
 				04D10BF119AE059E0097C0C6 /* back_icon.png */,
 				D3AD617019ADC25C001FD483 /* 搜索_03.png */,
 				D3AD617119ADC25C001FD483 /* 搜索_05.png */,
@@ -3018,7 +3024,7 @@
 			files = (
 				D3AD62BB19B481CA001FD483 /* 项目－高级搜索－2_22a.png in Resources */,
 				D3AD61B119AF010D001FD483 /* Selected.png in Resources */,
-				04D10BF319AE059E0097C0C6 /* 123.png in Resources */,
+				04D10BF319AE059E0097C0C6 /* bg000.png in Resources */,
 				D3AC611D19B5B0C20015B62F /* 人脉_03a.png in Resources */,
 				D3AD603F19AC4DC1001FD483 /* bg-addbutton.png in Resources */,
 				D3AD606B19AC4DC1001FD483 /* 面部采集_12.png in Resources */,
@@ -3060,6 +3066,7 @@
 				042D9D0319B4180700689C5D /* icon__09.png in Resources */,
 				D3AD61EA19AF225A001FD483 /* addFriend.png in Resources */,
 				D3AC60F219B5555D0015B62F /* 地图搜索_02.png in Resources */,
+				D3AC61BE19B6E3FF0015B62F /* 人脉_66a.png in Resources */,
 				D3AD605619AC4DC1001FD483 /* 地图搜索_01.png in Resources */,
 				04D10BFC19AE06AF0097C0C6 /* RadioButton-Unselected.png in Resources */,
 				D3AD606419AC4DC1001FD483 /* 面部识别登录_03.png in Resources */,
@@ -3181,6 +3188,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3AC61BC19B6D9F70015B62F /* CommentView.m in Sources */,
 				0426C23319922D5A00CD8822 /* PanViewController.m in Sources */,
 				0426C28E19922D5A00CD8822 /* GPUImageLuminosityBlendFilter.m in Sources */,
 				0426C23019922D5A00CD8822 /* LoginViewController.m in Sources */,
@@ -3458,6 +3466,7 @@
 				0426C2C819922D5A00CD8822 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
 				0426C2FC19922D5A00CD8822 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				0426C24819922D5A00CD8822 /* GPUImageAverageLuminanceThresholdFilter.m in Sources */,
+				D3AC61BB19B6D5D20015B62F /* CommentApi.m in Sources */,
 				0426C2C719922D5A00CD8822 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
 				0426C2E619922D5A00CD8822 /* FaceppGroup.m in Sources */,
 				D3AC613819B6A3B40015B62F /* ContactTableViewCell.m in Sources */,

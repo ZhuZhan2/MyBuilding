@@ -10,16 +10,17 @@
 #import "XHPathCover.h"
 #import "ACTimeScroller.h"
 #import "ShowViewController.h"
-
-
+#import "CommentModel.h"
+#import "CommentView.h"
 @interface ContactViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate,showControllerDelegate>{
     NSMutableArray *_datasource;
     ACTimeScroller *_timeScroller;
      NSMutableArray *chooseArray ;
-    
+    NSMutableArray *showArr;
+    NSMutableArray *viewArr;
+    CommentView *commentView;
 }
 @property (nonatomic, strong) XHPathCover *pathCover;
-@property (nonatomic,strong) NSArray *comments;
 @property (nonatomic,strong) ShowViewController *showVC;
 @property (nonatomic,strong) UIView *transparent;
 
