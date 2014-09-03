@@ -16,6 +16,7 @@
 #import "RecommendLetterViewController.h"
 #import "ContactProjectTableViewCell.h"
 #import "ContactTableViewCell.h"
+#import "ContactCommentTableViewCell.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -203,6 +204,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             [cell.contentView addSubview:commentView];
         }
         return cell;
+    }else if ([model.type isEqualToString:@"comment"]){
+        NSString *CellIdentifier = [NSString stringWithFormat:@"ContactCommentTableViewCell"];
+        ContactCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[ContactCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = NO;
+        return cell;
     }
     return cell;
 }
@@ -214,10 +223,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         return 50;
     }else if([model.type isEqualToString:@"main"]){
         commentView = [viewArr objectAtIndex:indexPath.row];
-        NSLog(@"%f",commentView.frame.size.height);
         return commentView.frame.size.height;
     }else{
-        return 44;
+        return 60;
     }
 }
 
@@ -228,7 +236,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    CommentModel *model = [[CommentModel alloc] init];
+    model.content = [NSString stringWithFormat:@"%d",indexPath.row+1];
+    model.type = @"comment";
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSIndexPath *path = [NSIndexPath indexPathForItem:(indexPath.row+1) inSection:indexPath.section];
+    [showArr insertObject:model atIndex:path.row];
+    [viewArr insertObject:@"" atIndex:path.row];
+    [self.tableView beginUpdates];
+    [self.tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationMiddle];
+    [self.tableView endUpdates];
 }
 
 //时间标签
