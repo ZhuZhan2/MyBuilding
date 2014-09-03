@@ -73,7 +73,7 @@
 //    };
 //}
 + (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/AllProjects?pageSize=5&index=%d",startIndex];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/AllProjects?pageSize=5&index=%d",startIndex];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         //NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
@@ -99,7 +99,7 @@
 }
 
 + (NSURLSessionDataTask *)SingleProjectWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block projectId:(NSString *)projectId{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/Projects?projectId=%@",projectId];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/Projects?projectId=%@",projectId];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         //NSLog(@"JSON===>%@",JSON[@"d"][@"data"]);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
@@ -136,7 +136,7 @@
 
 
 + (NSURLSessionDataTask *)AddProjectWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/AddProject"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/AddProject"];
     return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
@@ -158,7 +158,7 @@
 }
 
 + (NSURLSessionDataTask *)UpdateProjectWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/UpdateProject"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/UpdateProject"];
     return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
@@ -185,7 +185,7 @@
 //[dic setObject:@"" forKey:@"landProvince"];
 //[dic setObject:@"" forKey:@"landCity"];
 + (NSURLSessionDataTask *)AdvanceSearchProjectsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic startIndex:(int)startIndex{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/AdvanceSearchProjects?pageSize=5&index=%d&keywords=%@&landDistrict=%@&landProvince=%@&ProjectCategory=%@&ProjectStage=%@&ProjectCompany=%@",startIndex,dic[@"keywords"],dic[@"landDistrict"],dic[@"landProvince"],dic[@"projectCategory"],dic[@"projectStage"],dic[@"companyName"]];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/AdvanceSearchProjects?pageSize=5&index=%d&keywords=%@&landDistrict=%@&landProvince=%@&ProjectCategory=%@&ProjectStage=%@&ProjectCompany=%@",startIndex,dic[@"keywords"],dic[@"landDistrict"],dic[@"landProvince"],dic[@"projectCategory"],dic[@"projectStage"],dic[@"companyName"]];
     NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)urlStr, NULL, NULL,  kCFStringEncodingUTF8 ));
     NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedClient] GET:encodedString parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
@@ -298,7 +298,7 @@
 //    "SearchConditions":"是够大方司法局"
 //}
 + (NSURLSessionDataTask *)SearchConditionWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/SearchCondition"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/SearchCondition"];
     return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
@@ -324,7 +324,7 @@
 //    "id":"搜索条件Id",
 //}
 + (NSURLSessionDataTask *)SearchCountAddWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/SearchCountAdd"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/SearchCountAdd"];
     return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
@@ -349,7 +349,7 @@
 //[dic setObject:@"" forKey:@"distict"]; 所在区域
 //[dic setObject:@"" forKey:@"createBy"]; 创建人
 + (NSURLSessionDataTask *)GetSearchConditionsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/SearchConditions?distict=&createBy=0ba5403d-6b6e-425f-b7e6-9555be0c38a9"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/SearchConditions?distict=&createBy=0ba5403d-6b6e-425f-b7e6-9555be0c38a9"];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
@@ -454,7 +454,7 @@
 }
 
 + (NSURLSessionDataTask *)DeleteSearchConditionsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProjectController/DeleteSearchConditions"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/DeleteSearchConditions"];
     return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){

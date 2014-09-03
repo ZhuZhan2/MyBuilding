@@ -382,42 +382,40 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     
     CGFloat waterDropRefreshHeight = 100;
     CGFloat waterDropRefreshWidth = 20;
-    _waterDropRefresh = [[XHWaterDropRefresh alloc] initWithFrame:CGRectMake(33, CGRectGetHeight(self.bounds) - waterDropRefreshHeight+10, waterDropRefreshWidth, waterDropRefreshHeight)];
+    _waterDropRefresh = [[XHWaterDropRefresh alloc] initWithFrame:CGRectMake(60.5, CGRectGetHeight(self.bounds) - waterDropRefreshHeight+5, waterDropRefreshWidth, waterDropRefreshHeight)];
     _waterDropRefresh.refreshCircleImage = [UIImage imageNamed:@"circle"];
     _waterDropRefresh.offsetHeight = 20; // 线条的长度
     [self addSubview:self.waterDropRefresh];
     
-    CGFloat avatarButtonHeight = 66;
+    CGFloat avatarButtonHeight = 46;
     self.showUserInfoViewOffsetHeight = CGRectGetHeight(self.frame) - waterDropRefreshHeight / 3 - avatarButtonHeight;
 
     _showView = [[UIView alloc] initWithFrame:CGRectMake(0, self.showUserInfoViewOffsetHeight, CGRectGetWidth(self.bounds), waterDropRefreshHeight)];
     _showView.backgroundColor = [UIColor clearColor];
     
-    _avatarButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 0, avatarButtonHeight, avatarButtonHeight)];
+    _avatarButton = [[UIButton alloc] initWithFrame:CGRectMake(53, 0, avatarButtonHeight, avatarButtonHeight)];
     [_avatarButton.layer setMasksToBounds:YES];
-    [_avatarButton.layer setCornerRadius:30];
+    [_avatarButton.layer setCornerRadius:23];
     
     
-    _userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(93, 0, 207, 34)];
+    _userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 35, 100, 20)];
     _userNameLabel.textColor = [UIColor whiteColor];
-    _userNameLabel.backgroundColor = [UIColor clearColor];
-    _userNameLabel.shadowColor = [UIColor blackColor];
-    _userNameLabel.shadowOffset = CGSizeMake(0, 2);
-    _userNameLabel.font = [UIFont boldSystemFontOfSize:28.0f];
+    _userNameLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
     
     
-    _birthdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(93, 42, 207, 24)];
+    _birthdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 47, 207, 24)];
     _birthdayLabel.textColor = [UIColor whiteColor];
-    _birthdayLabel.backgroundColor = [UIColor clearColor];
-    _birthdayLabel.shadowColor = [UIColor blackColor];
-    _birthdayLabel.shadowOffset = CGSizeMake(0, 2);
-    _birthdayLabel.font = [UIFont systemFontOfSize:14.0f];
+    _birthdayLabel.font = [UIFont systemFontOfSize:12];
     
     [_showView addSubview:self.avatarButton];
     [_showView addSubview:self.userNameLabel];
     [_showView addSubview:self.birthdayLabel];
     
     [self addSubview:self.showView];
+    
+//    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(74.5, 140, 2, 13)];
+//    [lineImage setBackgroundColor:[UIColor lightGrayColor]];
+//    [self addSubview:lineImage];
 }
 
 -(void)hidewaterDropRefresh{

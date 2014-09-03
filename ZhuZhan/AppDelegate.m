@@ -62,7 +62,7 @@
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;
     [self.window makeKeyAndVisible];
-       if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
+      /* if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
             NSLog(@"第一次启动");
             LoginViewController *loginview = [[LoginViewController alloc] init];
@@ -85,7 +85,7 @@
                 [self.window makeKeyAndVisible];
                             [self.window makeKeyAndVisible];
     
-               /* NSLog(@"mimiimimimimamama%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"]);
+                NSLog(@"mimiimimimimamama%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"]);
                 if (![[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"] isEqualToString:@"1"]) {
     
     
@@ -103,10 +103,10 @@
                     [self.window makeKeyAndVisible];
     
     
-                }*/
+                }
     
             }
-        }
+        }*/
     
     
 
