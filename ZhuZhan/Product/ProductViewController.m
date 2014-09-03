@@ -294,8 +294,12 @@
     for (int i=0; i<25; i++) {
         CommentModel* model=[[CommentModel alloc]init];
         model.name = [NSString stringWithFormat:@"name=%d",i];
-        model.time = [NSString stringWithFormat:@"time=%d",i];
-        model.content = [NSString stringWithFormat:@"content=%d",i];
+        model.time = [NSString stringWithFormat:@"%d-%d %d:%d",i,i,i,i];
+        NSString* content = [NSString stringWithFormat:@"content=%d",i];
+        model.content=content;
+        for (int k=0; k<i; k++) {
+            model.content=[NSString stringWithFormat:@"%@%@",model.content,content];
+        }
         model.imageUrl = [NSString stringWithFormat:@"imageUrl=%d",i];
         [comments addObject:model];
     }

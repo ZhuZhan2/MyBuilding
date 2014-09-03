@@ -10,4 +10,5 @@
 #import "CommentModel.h"
 @interface ProductCommentView : UIView
 -(instancetype)initWithCommentModel:(CommentModel*)commentModel;
+@property(nonatomic,strong)UIView* separatorLine;
 @end

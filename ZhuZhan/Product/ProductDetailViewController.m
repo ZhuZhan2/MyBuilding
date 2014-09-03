@@ -7,7 +7,6 @@
 //
 
 #import "ProductDetailViewController.h"
-#import "ProductDetailViewCell.h"
 #import "ProductCommentView.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView* myTableView;
@@ -61,7 +60,7 @@
     UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, height)];
     imageView.image=self.productImage;
     
-    UIImage* image=[UIImage imageNamed:@"项目-首页_18a.png"];
+    UIImage* image=[UIImage imageNamed:@"人脉_66a.png"];
     CGRect frame=CGRectMake(0, 0, image.size.width*.5, image.size.height*.5);
     UIImageView* tempImageView=[[UIImageView alloc]initWithFrame:frame];
     tempImageView.image=image;
@@ -87,6 +86,16 @@
     [self.productView addSubview:textLabel];
     
     tempHeight+=bounds.size.height+30;
+    
+    //与下方tableView的分割部分
+    UIImage* separatorImage=[UIImage imageNamed:@"产品－产品详情_12a@2x.png"];
+    frame=CGRectMake(0, tempHeight, separatorImage.size.width*.5, separatorImage.size.height*.5);
+    UIImageView* separatorImageView=[[UIImageView alloc]initWithFrame:frame];
+    separatorImageView.image=separatorImage;
+    separatorImageView.backgroundColor=RGBCOLOR(235, 235, 235);
+    [self.productView addSubview:separatorImageView];
+    
+    tempHeight+=frame.size.height;
     
     self.productView.frame=CGRectMake(0, 0, 320, tempHeight);
     
@@ -130,18 +139,19 @@
     }else{
 
         
-        ProductDetailViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"myCell"];
+        UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"myCell"];
         if (!cell) {
-            cell=[[ProductDetailViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"myCell"];
+            cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"myCell"];
         }
         
         if (cell.contentView.subviews.count) {
             [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         }
         [cell.contentView addSubview:self.commentViews[indexPath.row-1]];
-        //cell.contentView.backgroundColor=RGBCOLOR(229, 229, 229);
+        cell.layer.masksToBounds=YES;
+        cell.contentView.layer.masksToBounds=YES;
         cell.backgroundColor=[UIColor clearColor];
-        cell.contentView.backgroundColor=[UIColor clearColor];
+        //cell.contentView.backgroundColor=[UIColor redColor];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -155,7 +165,7 @@
     self.myTableView.delegate=self;
     self.myTableView.dataSource=self;
     self.myTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    self.myTableView.backgroundColor=[UIColor yellowColor];
+    self.myTableView.backgroundColor=RGBCOLOR(235, 235, 235);
     [self.view addSubview:self.myTableView];
 }
 
