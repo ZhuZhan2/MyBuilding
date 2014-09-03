@@ -7,15 +7,16 @@
 //
 
 #import "ProductDetailViewController.h"
-#import "ProductDetailViewCell.h"
+#import "ProductCommentView.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView* myTableView;
 
-@property(nonatomic,strong)UIImage* productImage;
-@property(nonatomic,copy)NSString* productText;
-@property(nonatomic,strong)NSMutableArray* comments;
+@property(nonatomic,strong)UIImage* productImage;//产品图片
+@property(nonatomic,copy)NSString* productText;//产品介绍文字
+@property(nonatomic,strong)UIView* productView;//产品图片和产品介绍文字的superView
 
-@property(nonatomic,strong)UIView* productView;
+@property(nonatomic,strong)NSMutableArray* commentModels;//评论数组，元素为评论实体类
+@property(nonatomic,strong)NSMutableArray* commentViews;//cell中的内容视图
 @end
 
 @implementation ProductDetailViewController
@@ -25,7 +26,8 @@
     if (self) {
         self.productImage=productImage;
         self.productText=productText;
-        self.comments=comments;
+        self.commentModels=comments;
+        self.commentViews=[[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -36,8 +38,15 @@
     self.view.backgroundColor=[UIColor whiteColor];
     [self getProductIntroduce];
     [self initNavi];
+    [self getTableViewContents];
     [self initMyTableView];
-    // Do any additional setup after loading the view.
+}
+
+-(void)getTableViewContents{
+    for (int i=0; i<self.commentModels.count; i++) {
+        ProductCommentView* view=[[ProductCommentView alloc]initWithCommentModel:self.commentModels[i]];
+        [self.commentViews addObject:view];
+    }
 }
 
 -(void)getProductIntroduce{
@@ -51,7 +60,7 @@
     UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, height)];
     imageView.image=self.productImage;
     
-    UIImage* image=[UIImage imageNamed:@"项目-首页_18a.png"];
+    UIImage* image=[UIImage imageNamed:@"人脉_66a.png"];
     CGRect frame=CGRectMake(0, 0, image.size.width*.5, image.size.height*.5);
     UIImageView* tempImageView=[[UIImageView alloc]initWithFrame:frame];
     tempImageView.image=image;
@@ -78,6 +87,16 @@
     
     tempHeight+=bounds.size.height+30;
     
+    //与下方tableView的分割部分
+    UIImage* separatorImage=[UIImage imageNamed:@"产品－产品详情_12a@2x.png"];
+    frame=CGRectMake(0, tempHeight, separatorImage.size.width*.5, separatorImage.size.height*.5);
+    UIImageView* separatorImageView=[[UIImageView alloc]initWithFrame:frame];
+    separatorImageView.image=separatorImage;
+    separatorImageView.backgroundColor=RGBCOLOR(235, 235, 235);
+    [self.productView addSubview:separatorImageView];
+    
+    tempHeight+=frame.size.height;
+    
     self.productView.frame=CGRectMake(0, 0, 320, tempHeight);
     
 }
@@ -92,14 +111,14 @@
 //=========================================================================
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 25;
+    return self.commentViews.count+1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row==0) {
         return self.productView.frame.size.height;
     }else{
-        return 55;
+        return [self.commentViews[indexPath.row-1] frame].size.height;
     }
 }
 
@@ -118,12 +137,21 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }else{
-        ProductDetailViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"myCell"];
+
+        
+        UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"myCell"];
         if (!cell) {
-            cell=[[ProductDetailViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"myCell"];
+            cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"myCell"];
         }
-        cell.backgroundColor=[UIColor greenColor];
-        cell.textLabel.text=[NSString stringWithFormat:@"%d",indexPath.row];
+        
+        if (cell.contentView.subviews.count) {
+            [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        }
+        [cell.contentView addSubview:self.commentViews[indexPath.row-1]];
+        cell.layer.masksToBounds=YES;
+        cell.contentView.layer.masksToBounds=YES;
+        cell.backgroundColor=[UIColor clearColor];
+        //cell.contentView.backgroundColor=[UIColor redColor];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -137,7 +165,7 @@
     self.myTableView.delegate=self;
     self.myTableView.dataSource=self;
     self.myTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    self.myTableView.backgroundColor=[UIColor yellowColor];
+    self.myTableView.backgroundColor=RGBCOLOR(235, 235, 235);
     [self.view addSubview:self.myTableView];
 }
 
