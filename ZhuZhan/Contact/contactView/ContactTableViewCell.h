@@ -1,18 +1,19 @@
 //
-//  ContactProjectTableViewCell.h
+//  ContactTableViewCell.h
 //  ZhuZhan
 //
-//  Created by 汪洋 on 14-9-2.
+//  Created by 汪洋 on 14-9-3.
 //
 //
 
 #import <UIKit/UIKit.h>
 #import "EGOImageView.h"
-@interface ContactProjectTableViewCell : UITableViewCell{
+@interface ContactTableViewCell : UITableViewCell{
     EGOImageView *headImageView;
     UIImageView *stageImage;
     UILabel *titleLabel;
-    UILabel *contentLabel;
+    UILabel *nameLabel;
+    UILabel *jobLabel;
 }
 
 @end

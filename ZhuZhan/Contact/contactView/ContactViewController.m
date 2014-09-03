@@ -8,9 +8,6 @@
 
 #import "ContactViewController.h"
 #import "CompanyMemberViewController.h"
-#import "Cell1.h"
-#import "CompanyPublishedCell.h"
-#import "CommentsCell.h"
 #import "PersonalCenterViewController.h"
 #import "PersonalDetailViewController.h"
 #import "LoginModel.h"
@@ -18,6 +15,7 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "RecommendLetterViewController.h"
 #import "ContactProjectTableViewCell.h"
+#import "ContactTableViewCell.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -26,7 +24,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 @implementation ContactViewController
 @synthesize comments,showVC,transparent;
 
-static NSInteger rowNum=0;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -141,27 +138,7 @@ static NSInteger rowNum=0;
 
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //{
-//    
-//    if (indexPath.row==0 || indexPath.row==1) {
-//    
-//        
-//        static  NSString *identifier2 = @"Cell1";
-//        Cell1 * cell2 = (Cell1 *)[tableView dequeueReusableCellWithIdentifier:identifier2];
-//        if (!cell2) {
-//            cell2 = [[Cell1 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier2];
-//        }
-//        
-//        cell2.cellIcon.image = [UIImage imageNamed:@"面部采集_12"];
-//        [cell2.userIcon setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
-//        [cell2.userIcon addTarget:self action:@selector(ShowUserPanView:) forControlEvents:UIControlEventTouchUpInside];
-//        cell2.userIcon.tag = indexPath.row;
-//        cell2.contentLabel.text = @"显示文字";
-//        cell2.selectionStyle = UITableViewCellSelectionStyleNone;
-//        return cell2;
-//        
-//        
-//        
-//    }
+//
 //    if (indexPath.row==2){
 //        static  NSString *identifier3 = @"CompanyPublishedCell";
 //        CompanyPublishedCell * cell3 = (CompanyPublishedCell *)[tableView dequeueReusableCellWithIdentifier:identifier3];
@@ -212,8 +189,15 @@ static NSInteger rowNum=0;
         }
         cell.selectionStyle = NO;
         return cell;
+    }else if (indexPath.row == 1){
+        NSString *CellIdentifier = [NSString stringWithFormat:@"ContactTableViewCell"];
+        ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[ContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = NO;
+        return cell;
     }
-    
     return cell;
 }
 
@@ -230,28 +214,15 @@ static NSInteger rowNum=0;
     return 50;
 }
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    rowNum =(int)[comments count]+3;
-//    
-//    return rowNum;
-//}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
 
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    
-//
-//    CompanyMemberViewController* memberVC=[[CompanyMemberViewController alloc]initWithMemberNumber:14];
-//    [self.navigationController pushViewController:memberVC animated:YES];
-//    if([hideDelegate respondsToSelector:@selector(homePageTabBarHide)]){
-//        [hideDelegate homePageTabBarHide];
-//    }
-//}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
 
 //时间标签
 - (UITableView *)tableViewForTimeScroller:(ACTimeScroller *)timeScroller
