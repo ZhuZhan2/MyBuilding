@@ -432,8 +432,10 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 }
 
 -(void)setNameFrame:(CGRect)newFrame font:(UIFont *)font{
+
     [_userNameLabel setFrame:newFrame];
     _userNameLabel.font = font;
+
 }
 
 - (void)dealloc {
