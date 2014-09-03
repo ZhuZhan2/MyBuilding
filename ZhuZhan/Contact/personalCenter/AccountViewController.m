@@ -17,7 +17,7 @@
 
 @implementation AccountViewController
 
-@synthesize userDic,KindIndex;
+@synthesize userDic,KindIndex,userIcon;
 
 static int selectBtnTag =0;
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
@@ -41,7 +41,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                                                                      nil]];
     
     self.title = @"帐户";
-    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+//    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
     
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -66,38 +66,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover.delegate = self;
     
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
-    
+    [_pathCover setAvatarImage:userIcon];
+
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadFrame:CGRectMake(120, -50, 70, 70)];
-    [_pathCover setNameFrame:CGRectMake(145, 20, 100, 20) font:[UIFont systemFontOfSize:14]];
-    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
+    [_pathCover.avatarButton.layer setMasksToBounds:YES];
+    [_pathCover.avatarButton.layer setCornerRadius:35];
+    _pathCover.avatarButton.center = CGPointMake(160, -15);
+//    [_pathCover setNameFrame:CGRectMake(145, 20, 100, 20) font:[UIFont systemFontOfSize:14]];
+//    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
     
-    [LoginModel GetUserImagesWithBlock:^(NSMutableArray *posts, NSError *error) {
-        
-        NSDictionary *dic = [posts objectAtIndex:0];
-        NSString  *statusCode = [[[dic objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
-        if([[NSString stringWithFormat:@"%@",statusCode]isEqualToString:@"1300"]){
-           NSArray *array = [[dic objectForKey:@"d"] objectForKey:@"data"];
-            NSDictionary *dic = [array  objectAtIndex:0];
-            
-            NSString *imageLocation = [dic objectForKey:@"imageLocation"];
-            NSLog(@"imageLocation %@",imageLocation);
-            NSString *host = [NSString stringWithFormat:@"%s",serverAddress];
-            NSString *urlString = [host stringByAppendingString:imageLocation];
-            NSData *imageData =[NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
-            NSLog(@"[NSURL URLWithString:urlString] %@",[NSURL URLWithString:urlString]);
-            UIImage *image = [UIImage imageWithData:imageData];
-        
-            [_pathCover setAvatarImage:image];
-            
-        }else{
-            
-                [_pathCover setAvatarImage:[UIImage imageNamed:@"1"]];
-        }
-        
-    } userId:@"f6cbf226-ebcb-42e1-94ce-acda4fce00d4"];
-    
-
     
 
     
@@ -124,7 +102,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         
         
         
-    } userId:@"f6cbf226-ebcb-42e1-94ce-acda4fce00d4"];
+    } userId:@"d2b49305-026c-4ff6-b2fc-5d1401510fd8"];
     
 }
 
@@ -185,7 +163,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
         imagePicker.sourceType = sourceType;
         imagePicker.delegate = self;
-        
+        imagePicker.allowsEditing = YES;
         
         AppDelegate* app=[AppDelegate instance];
         HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
@@ -207,7 +185,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
         imagePicker.sourceType = sourceType;
         imagePicker.delegate = self;
-        
+        imagePicker.allowsEditing = YES;
         AppDelegate* app=[AppDelegate instance];
         HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
         [homeVC homePageTabBarHide];
@@ -230,13 +208,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 #pragma mark ----UIImagePickerController delegate----
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage * image =  [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     image = [self fixOrientation:image];
     NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
     NSString *imageStr=[imageData base64EncodedStringWithOptions:0];
-//    NSString *imageStr =[imageData base64Encoding];
-    NSLog(@"****NNN %@",imageStr);
-    NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"f6cbf226-ebcb-42e1-94ce-acda4fce00d4",@"userId",imageStr,@"userImageStrings", nil];
+    NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"d2b49305-026c-4ff6-b2fc-5d1401510fd8",@"userId",imageStr,@"userImageStrings", nil];
     
     if (selectBtnTag == 2014090201) {
 //        [_pathCover setBackgroundImage:image];
@@ -245,8 +221,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if (selectBtnTag == 2014090202) {
         
         [LoginModel AddUserImageWithBlock:^(NSMutableArray *posts, NSError *error) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"修改头像成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil];
-            [alert show];
+
             [_pathCover setAvatarImage:image];
             
         } dic:parameter];
@@ -296,8 +271,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 
 
--(void)leftBtnClick{
+-(void)leftBtnClick{//退出到前一个页面
+    
     [self.navigationController popViewControllerAnimated:YES];
+
 }
 
 -(void)rightBtnClick{//完成修改后触发的方法

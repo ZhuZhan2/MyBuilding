@@ -174,6 +174,7 @@
                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"userId"] forKey:@"userId"];
                  [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"deviceToken"] forKey:@"deviceToken"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
+                NSLog(@"*****    %@",[item objectForKey:@"userId"]);
                 
                 NSLog(@",l,ll,l,l,l%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"firstPassWordLogin"]);
                 if([[NSUserDefaults standardUserDefaults] objectForKey:@"firstPassWordLogin"]==nil&&![[NSString stringWithFormat:@"%@",isFaceRegister] isEqualToString:@"1"]){//判断用户是否是第一次登陆并判断用户脸部识别的状态

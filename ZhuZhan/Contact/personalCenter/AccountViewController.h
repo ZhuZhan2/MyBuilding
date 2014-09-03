@@ -19,6 +19,6 @@
 @property (nonatomic,strong) NSMutableDictionary *userDic;
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong) NSArray *KindIndex;
-@property (nonatomic, weak) UIImage *userIcon;
+@property (nonatomic, strong) UIImage *userIcon;
 
 @end

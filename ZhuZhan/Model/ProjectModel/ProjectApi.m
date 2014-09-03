@@ -209,7 +209,7 @@
 }
 
 + (NSURLSessionDataTask *)GetPiProjectCommentWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block projectId:(NSString *)projectId{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProject/PiProjectComments?projectId=%@",projectId];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/PiProjectComments?projectId=%@",projectId];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
@@ -248,7 +248,7 @@
 //    }
 //}
 + (NSURLSessionDataTask *)PostAddPiProjectCommentsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProject/AddPiProjectComments"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/AddPiProjectComments"];
     return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
@@ -270,7 +270,7 @@
 }
 
 + (NSURLSessionDataTask *)GetPiProjectLogsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block projectId:(NSString *)projectId{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProject/PiProjectLogs?projectId=%@",projectId];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/PiProjectLogs?projectId=%@",projectId];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
@@ -375,7 +375,7 @@
 }
 
 + (NSURLSessionDataTask *)GetPiProjectSeachWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex keywords:(NSString *)keywords{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProject/PiProjectSeach?pageSize=5&index=%d&keywords=%@",startIndex,keywords];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/PiProjectSeach?pageSize=5&index=%d&keywords=%@",startIndex,keywords];
      NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)urlStr, NULL, NULL,  kCFStringEncodingUTF8 ));
     return [[AFAppDotNetAPIClient sharedClient] GET:encodedString parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
@@ -402,7 +402,7 @@
 }
 
 + (NSURLSessionDataTask *)GetPiProjectSeminarWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProject/Seminars?SeminarName=&SeminarId=&SeminarDescription="];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/Seminars?SeminarName=&SeminarId=&SeminarDescription="];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
@@ -428,7 +428,7 @@
 }
 
 + (NSURLSessionDataTask *)GetSeminarProjectsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block Id:(NSString *)Id{
-    NSString *urlStr = [NSString stringWithFormat:@"api/PiProject/SeminarProjects?seminarId=%@",Id];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/SeminarProjects?seminarId=%@",Id];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         //NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
