@@ -376,7 +376,9 @@
 		D3AC61B119B6BF930015B62F /* ProjectStage.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61A419B6BF930015B62F /* ProjectStage.m */; };
 		D3AC61B219B6BF930015B62F /* TopicsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61A719B6BF930015B62F /* TopicsModel.m */; };
 		D3AC61B519B6BFDC0015B62F /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61B419B6BFDC0015B62F /* CommentModel.m */; };
-		D3AC61B819B6C0AC0015B62F /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61B719B6C0AC0015B62F /* CommentView.m */; };
+		D3AC61BB19B6D5D20015B62F /* CommentApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61BA19B6D5D20015B62F /* CommentApi.m */; };
+		D3AC61BC19B6D9F70015B62F /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61B719B6C0AC0015B62F /* CommentView.m */; };
+		D3AC61BE19B6E3FF0015B62F /* 人脉_66a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC61BD19B6E3FF0015B62F /* 人脉_66a.png */; };
 		D3AD603D19AC4DC1001FD483 /* bg-addbutton-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD600C19AC4DC1001FD483 /* bg-addbutton-highlighted.png */; };
 		D3AD603E19AC4DC1001FD483 /* bg-addbutton-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD600D19AC4DC1001FD483 /* bg-addbutton-highlighted@2x.png */; };
 		D3AD603F19AC4DC1001FD483 /* bg-addbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD600E19AC4DC1001FD483 /* bg-addbutton.png */; };
@@ -1257,6 +1259,9 @@
 		D3AC61B419B6BFDC0015B62F /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		D3AC61B619B6C0AC0015B62F /* CommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentView.h; sourceTree = "<group>"; };
 		D3AC61B719B6C0AC0015B62F /* CommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentView.m; sourceTree = "<group>"; };
+		D3AC61B919B6D5D20015B62F /* CommentApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentApi.h; sourceTree = "<group>"; };
+		D3AC61BA19B6D5D20015B62F /* CommentApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentApi.m; sourceTree = "<group>"; };
+		D3AC61BD19B6E3FF0015B62F /* 人脉_66a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉_66a.png"; sourceTree = "<group>"; };
 		D3AD600C19AC4DC1001FD483 /* bg-addbutton-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton-highlighted.png"; sourceTree = "<group>"; };
 		D3AD600D19AC4DC1001FD483 /* bg-addbutton-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton-highlighted@2x.png"; sourceTree = "<group>"; };
 		D3AD600E19AC4DC1001FD483 /* bg-addbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton.png"; sourceTree = "<group>"; };
@@ -2550,6 +2555,8 @@
 				D3AC619119B6BF930015B62F /* ContactModel.m */,
 				D3AC61B319B6BFDC0015B62F /* CommentModel.h */,
 				D3AC61B419B6BFDC0015B62F /* CommentModel.m */,
+				D3AC61B919B6D5D20015B62F /* CommentApi.h */,
+				D3AC61BA19B6D5D20015B62F /* CommentApi.m */,
 			);
 			path = ContactModel;
 			sourceTree = "<group>";
@@ -2603,6 +2610,7 @@
 		D3AD600B19AC4DC1001FD483 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3AC61BD19B6E3FF0015B62F /* 人脉_66a.png */,
 				D3AC613919B6A5130015B62F /* 人脉_34a.png */,
 				D3AC612E19B5CBBC0015B62F /* 人脉_57a.png */,
 				D3AC612F19B5CBBC0015B62F /* 人脉_59a.png */,
@@ -3056,6 +3064,7 @@
 				042D9D0319B4180700689C5D /* icon__09.png in Resources */,
 				D3AD61EA19AF225A001FD483 /* addFriend.png in Resources */,
 				D3AC60F219B5555D0015B62F /* 地图搜索_02.png in Resources */,
+				D3AC61BE19B6E3FF0015B62F /* 人脉_66a.png in Resources */,
 				D3AD605619AC4DC1001FD483 /* 地图搜索_01.png in Resources */,
 				04D10BFC19AE06AF0097C0C6 /* RadioButton-Unselected.png in Resources */,
 				D3AD606419AC4DC1001FD483 /* 面部识别登录_03.png in Resources */,
@@ -3177,6 +3186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3AC61BC19B6D9F70015B62F /* CommentView.m in Sources */,
 				0426C23319922D5A00CD8822 /* PanViewController.m in Sources */,
 				0426C28E19922D5A00CD8822 /* GPUImageLuminosityBlendFilter.m in Sources */,
 				0426C23019922D5A00CD8822 /* LoginViewController.m in Sources */,
@@ -3453,6 +3463,7 @@
 				0426C2C819922D5A00CD8822 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
 				0426C2FC19922D5A00CD8822 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				0426C24819922D5A00CD8822 /* GPUImageAverageLuminanceThresholdFilter.m in Sources */,
+				D3AC61BB19B6D5D20015B62F /* CommentApi.m in Sources */,
 				0426C2C719922D5A00CD8822 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
 				0426C2E619922D5A00CD8822 /* FaceppGroup.m in Sources */,
 				D3AC613819B6A3B40015B62F /* ContactTableViewCell.m in Sources */,

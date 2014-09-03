@@ -78,13 +78,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     viewArr = [[NSMutableArray alloc] init];
     for(int i=0;i<4;i++){
         CommentModel *model = [[CommentModel alloc] init];
-        model.imageUrl = [NSString stringWithFormat:@"bg00%d",i];
         if(i==0){
             model.type = @"project";
         }else if(i==1){
             model.type = @"contact";
         }else{
             model.type = @"main";
+            model.imageUrl = [NSString stringWithFormat:@"bg00%d",i-2];
+            model.name = @"aaaaa";
+            model.content = @"asdfasfasfasdfasfas阿斯顿发生法法师打发asdfasfasfasdfasfas阿斯顿发生法法师打发asdfasfasfasdfasfas阿斯顿发生法法师打发asdfasfasfasdfasfas阿斯顿发生法法师打发";
         }
         [showArr addObject:model];
     }
@@ -212,7 +214,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         return 50;
     }else if([model.type isEqualToString:@"main"]){
         commentView = [viewArr objectAtIndex:indexPath.row];
-        return 50;
+        NSLog(@"%f",commentView.frame.size.height);
+        return commentView.frame.size.height;
     }else{
         return 44;
     }
