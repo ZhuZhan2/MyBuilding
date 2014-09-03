@@ -18,4 +18,5 @@
 }
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong)NSMutableArray *personalArray;
+
 @end
