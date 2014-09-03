@@ -70,8 +70,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadFrame:CGRectMake(120, -50, 70, 70)];
-    [_pathCover setNameFrame:CGRectMake(145, 20, 100, 20) font:[UIFont systemFontOfSize:14]];
-    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
+    [_pathCover.avatarButton.layer setMasksToBounds:YES];
+    [_pathCover.avatarButton.layer setCornerRadius:35];
+    _pathCover.avatarButton.center = CGPointMake(160, -15);
+//    [_pathCover setNameFrame:CGRectMake(145, 20, 100, 20) font:[UIFont systemFontOfSize:14]];
+//    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
     
     
 
@@ -160,7 +163,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
         imagePicker.sourceType = sourceType;
         imagePicker.delegate = self;
-        
+        imagePicker.allowsEditing = YES;
         
         AppDelegate* app=[AppDelegate instance];
         HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
@@ -182,7 +185,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
         imagePicker.sourceType = sourceType;
         imagePicker.delegate = self;
-        
+        imagePicker.allowsEditing = YES;
         AppDelegate* app=[AppDelegate instance];
         HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
         [homeVC homePageTabBarHide];
@@ -205,7 +208,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 #pragma mark ----UIImagePickerController delegate----
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage * image =  [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     image = [self fixOrientation:image];
     NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
     NSString *imageStr=[imageData base64EncodedStringWithOptions:0];

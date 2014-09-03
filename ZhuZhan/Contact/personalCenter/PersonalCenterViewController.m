@@ -64,8 +64,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
     [_pathCover setAvatarImage:[UIImage imageNamed:@"首页侧拉栏_03.png"]];
     [_pathCover hidewaterDropRefresh];
-    [_pathCover setHeadFrame:CGRectMake(120, 0, 70, 70)];
-    [_pathCover setNameFrame:CGRectMake(145, 70, 100, 20) font:[UIFont systemFontOfSize:14]];
+    [_pathCover setHeadFrame:CGRectMake(120, -20, 70, 70)];
+    [_pathCover.avatarButton.layer setMasksToBounds:YES];
+    [_pathCover.avatarButton.layer setCornerRadius:35];
+    
+    [_pathCover setNameFrame:CGRectMake(145, 50, 100, 20) font:[UIFont systemFontOfSize:14]];
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
     
