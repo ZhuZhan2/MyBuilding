@@ -7,7 +7,7 @@
 //
 
 #import "ContactModel.h"
-
+#import "AFAppDotNetAPIClient.h"
 @implementation ContactModel
 //POST:
 //{

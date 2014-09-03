@@ -56,10 +56,6 @@
     contentLabel.frame =CGRectMake(10,imageView.frame.size.height+10, actualsize.width, actualsize.height);
     [commentView addSubview:contentLabel];
     
-    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, imageView.frame.size.height+contentLabel.frame.size.height+20, 320, 1)];
-    [lineImage setBackgroundColor:[UIColor blackColor]];
-    [commentView addSubview:lineImage];
-    lineImage.alpha =0.2;
     
     commentView.frame = CGRectMake(0, 0, 320, imageView.frame.size.height+contentLabel.frame.size.height+20);
     
