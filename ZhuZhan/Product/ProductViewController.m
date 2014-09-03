@@ -9,7 +9,7 @@
 #import "ProductViewController.h"
 #import "TMQuiltView.h"
 #import "TMPhotoQuiltViewCell.h"
-
+#import "ProductDetailViewController.h"
 @interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate>
 {
 	TMQuiltView *qtmquitView;
@@ -284,6 +284,13 @@
 - (void)quiltView:(TMQuiltView *)quiltView didSelectCellAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSLog(@"index:%d",indexPath.row);
+    NSMutableDictionary* dataDic=[[NSMutableDictionary alloc]init];
+    [dataDic setObject:[UIImage imageNamed:@"123.png"] forKey:@"productImage"];
+    [dataDic setObject:@"按时打算将扩大时间的骄傲啥都怕时间的拉伸麦德龙；爱似麻烦；阿三方面了；按实际发牢骚；房间爱丽丝；房间爱；房间爱死了；房间爱；房间爱；房间爱；发觉是否；拉伸" forKey:@"productText"];
+    [dataDic setObject:[NSMutableArray array] forKey:@"comments"];
+    
+    ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithImage:dataDic[@"productImage"] text:dataDic[@"productText"] comments:dataDic[@"comments"]];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
