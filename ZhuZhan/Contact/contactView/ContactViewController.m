@@ -16,13 +16,14 @@
 #import "RecommendLetterViewController.h"
 #import "ContactProjectTableViewCell.h"
 #import "ContactTableViewCell.h"
+#import "ContactCommentTableViewCell.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
 @end
 
 @implementation ContactViewController
-@synthesize comments,showVC,transparent;
+@synthesize showVC,transparent;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -53,7 +54,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     self.title = @"人脉";
     
-    comments =@[@"评论内容",@"评论内容",@"评论内容",@"评论内容",@"评论内容"];//平路内容的数组
     
     //上拉刷新界面
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154)];
@@ -74,6 +74,33 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setHandleRefreshEvent:^{
         [wself _refreshing];
     }];
+    
+    showArr = [[NSMutableArray alloc] init];
+    viewArr = [[NSMutableArray alloc] init];
+    for(int i=0;i<4;i++){
+        CommentModel *model = [[CommentModel alloc] init];
+        if(i==0){
+            model.type = @"project";
+        }else if(i==1){
+            model.type = @"contact";
+        }else{
+            model.type = @"main";
+            model.imageUrl = [NSString stringWithFormat:@"bg00%d",i-2];
+            model.name = @"aaaaa";
+            model.content = @"asdfasfasfasdfasfas阿斯顿发生法法师打发asdfasfasfasdfasfas阿斯顿发生法法师打发asdfasfasfasdfasfas阿斯顿发生法法师打发asdfasfasfasdfasfas阿斯顿发生法法师打发";
+        }
+        [showArr addObject:model];
+    }
+    
+    for(int i=0;i<showArr.count;i++){
+        CommentModel *model = showArr[i];
+        if([model.type isEqualToString:@"main"]){
+            commentView = [CommentView setFram:model];
+            [viewArr insertObject:commentView atIndex:i];
+        }else{
+            [viewArr insertObject:@"" atIndex:i];
+        }
+    }
 }
 
 
@@ -136,52 +163,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 /******************************************************************************************************************/
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//
-//    if (indexPath.row==2){
-//        static  NSString *identifier3 = @"CompanyPublishedCell";
-//        CompanyPublishedCell * cell3 = (CompanyPublishedCell *)[tableView dequeueReusableCellWithIdentifier:identifier3];
-//        if (!cell3) {
-//            cell3 = [[CompanyPublishedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier3];
-//        }
-//        cell3.bigImgView.image = [UIImage imageNamed:@"123"];
-//        NSString *tempStr = @"           ";
-//        cell3.publishView.text =[tempStr stringByAppendingString:@"实现水平方向滑动的UIPicker。自定义UIPicker。如果你厌倦了iOS自带的UIPicker，那么你可以试试这个不一样的UIPicker。不仅仅可以用作选择器，也可以用作菜单"];
-//        cell3.userNameLabel.text = @"Jack:";
-//        cell3.userNameLabel.textColor = [UIColor blueColor];
-//        cell3.selectionStyle = UITableViewCellSelectionStyleNone;
-//        return cell3;
-//    }
-//    
-//    static  NSString *identifier4 = @"CommentsCell";
-//    CommentsCell * cell4 = (CommentsCell *)[tableView dequeueReusableCellWithIdentifier:identifier4];
-//    if (!cell4) {
-//        
-//        cell4 = [[CommentsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier4];
-//    }
-//    [cell4.userIcon setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
-//    [cell4.userIcon addTarget:self action:@selector(ShowUserPanView:) forControlEvents:UIControlEventTouchUpInside];
-//    cell4.userIcon.tag = indexPath.row;
-//    NSString *tempStr = @"           ";
-//    cell4.commentsView.text =[tempStr stringByAppendingString:@"实现水平方向滑动的UIPicker。"];
-//    cell4.userNameLabel.text = @"Lisa:";
-//    cell4.commentsView.textColor = [UIColor blueColor];
-//    cell4.selectionStyle = UITableViewCellSelectionStyleNone;
-//    return cell4;
-//    
-//    
-//}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_datasource count];
+    return [showArr count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PSTableViewCellIdentifier];
-    if(indexPath.row == 0){
+    CommentModel *model = showArr[indexPath.row];
+    if([model.type isEqualToString:@"project"]){
         NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
         ContactProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
@@ -189,11 +180,35 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }
         cell.selectionStyle = NO;
         return cell;
-    }else if (indexPath.row == 1){
+    }else if ([model.type isEqualToString:@"contact"]){
         NSString *CellIdentifier = [NSString stringWithFormat:@"ContactTableViewCell"];
         ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
             cell = [[ContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = NO;
+        return cell;
+    }else if ([model.type isEqualToString:@"main"]){
+        NSString *stringcell = @"Cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
+        if(!cell){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
+        }
+        for(int i=0;i<cell.contentView.subviews.count;i++) {
+            [((UIView*)[cell.contentView.subviews objectAtIndex:i]) removeFromSuperview];
+        }
+        [cell.contentView setBackgroundColor:[UIColor whiteColor]];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if(viewArr.count !=0){
+            commentView = [viewArr objectAtIndex:indexPath.row];
+            [cell.contentView addSubview:commentView];
+        }
+        return cell;
+    }else if ([model.type isEqualToString:@"comment"]){
+        NSString *CellIdentifier = [NSString stringWithFormat:@"ContactCommentTableViewCell"];
+        ContactCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[ContactCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.selectionStyle = NO;
         return cell;
@@ -203,15 +218,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    if (indexPath.row==0 ||indexPath.row==1) {
+    CommentModel *model = showArr[indexPath.row];
+    if([model.type isEqualToString:@"project"]||[model.type isEqualToString:@"contact"]){
         return 50;
+    }else if([model.type isEqualToString:@"main"]){
+        commentView = [viewArr objectAtIndex:indexPath.row];
+        return commentView.frame.size.height;
+    }else{
+        return 60;
     }
-    if(indexPath.row == 2){
-        return 280;
-    }
-    return 50;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -221,7 +236,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    CommentModel *model = [[CommentModel alloc] init];
+    model.content = [NSString stringWithFormat:@"%d",indexPath.row+1];
+    model.type = @"comment";
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSIndexPath *path = [NSIndexPath indexPathForItem:(indexPath.row+1) inSection:indexPath.section];
+    [showArr insertObject:model atIndex:path.row];
+    [viewArr insertObject:@"" atIndex:path.row];
+    [self.tableView beginUpdates];
+    [self.tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationMiddle];
+    [self.tableView endUpdates];
 }
 
 //时间标签

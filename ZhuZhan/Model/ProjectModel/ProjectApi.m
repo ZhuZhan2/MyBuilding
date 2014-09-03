@@ -12,6 +12,7 @@
 #import "ProjectImageModel.h"
 #import "TopicsModel.h"
 #import "ConditionsModel.h"
+#import "AFAppDotNetAPIClient.h"
 @implementation ProjectApi
 //RESPONSE:
 //{
