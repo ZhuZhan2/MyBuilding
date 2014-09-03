@@ -312,7 +312,6 @@
 		5B031C3519ACA6C100573071 /* XiangMuXiangQing_ShaiXuan in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2D19ACA6C100573071 /* XiangMuXiangQing_ShaiXuan */; };
 		5B031C3619ACA6C100573071 /* XiangMuXiangQing_TanKuang in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2E19ACA6C100573071 /* XiangMuXiangQing_TanKuang */; };
 		5B031C3719ACA6C100573071 /* XinJianXiangMu in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2F19ACA6C100573071 /* XinJianXiangMu */; };
-		5B0A006319B562AA00500C05 /* ProductCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A006219B562AA00500C05 /* ProductCollectionViewCell.m */; };
 		5B0A006619B5641900500C05 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A006519B5641900500C05 /* ProductViewController.m */; };
 		5B0A006C19B5874500500C05 /* TMPhotoQuiltViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A006A19B5874500500C05 /* TMPhotoQuiltViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5B0A008A19B587B200500C05 /* EGORefreshTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A008619B587B200500C05 /* EGORefreshTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -329,6 +328,8 @@
 		5B0D03A419B054FB00518D5E /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD614F19ADA1A9001FD483 /* libbaidumapapi.a */; };
 		5B0D03A519B0550900518D5E /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD615119ADA1A9001FD483 /* libbaidumapapi.a */; };
 		5B0D03E319B0554400518D5E /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B0D03E219B0554400518D5E /* mapapi.bundle */; };
+		5B13C70019B6AB0C008EA7A0 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C6FF19B6AB0C008EA7A0 /* ProductDetailViewController.m */; };
+		5B13C70319B6CAE2008EA7A0 /* ProductDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C70219B6CAE2008EA7A0 /* ProductDetailViewCell.m */; };
 		5B49D21519B0787C00E03EFE /* 项目详情-筛选_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B49D21319B0787C00E03EFE /* 项目详情-筛选_03.png */; };
 		5B49D21619B0787C00E03EFE /* 项目详情-筛选_06.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B49D21419B0787C00E03EFE /* 项目详情-筛选_06.png */; };
 		5B49D21A19B07FA100E03EFE /* +项目详情-3_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B49D21719B07FA100E03EFE /* +项目详情-3_03a.png */; };
@@ -1159,8 +1160,6 @@
 		5B031C2D19ACA6C100573071 /* XiangMuXiangQing_ShaiXuan */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuXiangQing_ShaiXuan; sourceTree = "<group>"; };
 		5B031C2E19ACA6C100573071 /* XiangMuXiangQing_TanKuang */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuXiangQing_TanKuang; sourceTree = "<group>"; };
 		5B031C2F19ACA6C100573071 /* XinJianXiangMu */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XinJianXiangMu; sourceTree = "<group>"; };
-		5B0A006119B562AA00500C05 /* ProductCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCollectionViewCell.h; sourceTree = "<group>"; };
-		5B0A006219B562AA00500C05 /* ProductCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCollectionViewCell.m; sourceTree = "<group>"; };
 		5B0A006419B5641900500C05 /* ProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductViewController.h; sourceTree = "<group>"; };
 		5B0A006519B5641900500C05 /* ProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductViewController.m; sourceTree = "<group>"; };
 		5B0A006919B5874500500C05 /* TMPhotoQuiltViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMPhotoQuiltViewCell.h; sourceTree = "<group>"; };
@@ -1186,6 +1185,10 @@
 		5B0A00A119B587CD00500C05 /* TMQuiltViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMQuiltViewController.h; sourceTree = "<group>"; };
 		5B0A00A219B587CD00500C05 /* TMQuiltViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMQuiltViewController.m; sourceTree = "<group>"; };
 		5B0D03E219B0554400518D5E /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
+		5B13C6FE19B6AB0C008EA7A0 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
+		5B13C6FF19B6AB0C008EA7A0 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
+		5B13C70119B6CAE2008EA7A0 /* ProductDetailViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewCell.h; sourceTree = "<group>"; };
+		5B13C70219B6CAE2008EA7A0 /* ProductDetailViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewCell.m; sourceTree = "<group>"; };
 		5B49D21319B0787C00E03EFE /* 项目详情-筛选_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情-筛选_03.png"; sourceTree = "<group>"; };
 		5B49D21419B0787C00E03EFE /* 项目详情-筛选_06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情-筛选_06.png"; sourceTree = "<group>"; };
 		5B49D21719B07FA100E03EFE /* +项目详情-3_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+项目详情-3_03a.png"; sourceTree = "<group>"; };
@@ -2462,15 +2465,17 @@
 		5B0A005D19B5625D00500C05 /* Product */ = {
 			isa = PBXGroup;
 			children = (
+				5B0A006419B5641900500C05 /* ProductViewController.h */,
+				5B0A006519B5641900500C05 /* ProductViewController.m */,
 				5B0A006919B5874500500C05 /* TMPhotoQuiltViewCell.h */,
 				5B0A006A19B5874500500C05 /* TMPhotoQuiltViewCell.m */,
 				5B0A006F19B5877C00500C05 /* EGO */,
 				5B0A006E19B5877300500C05 /* Resources */,
 				5B0A006D19B5875E00500C05 /* TMQuiltView */,
-				5B0A006419B5641900500C05 /* ProductViewController.h */,
-				5B0A006519B5641900500C05 /* ProductViewController.m */,
-				5B0A006119B562AA00500C05 /* ProductCollectionViewCell.h */,
-				5B0A006219B562AA00500C05 /* ProductCollectionViewCell.m */,
+				5B13C6FE19B6AB0C008EA7A0 /* ProductDetailViewController.h */,
+				5B13C6FF19B6AB0C008EA7A0 /* ProductDetailViewController.m */,
+				5B13C70119B6CAE2008EA7A0 /* ProductDetailViewCell.h */,
+				5B13C70219B6CAE2008EA7A0 /* ProductDetailViewCell.m */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -3207,6 +3212,7 @@
 				0426C2CA19922D5A00CD8822 /* GPUImageTiltShiftFilter.m in Sources */,
 				5B0A006C19B5874500500C05 /* TMPhotoQuiltViewCell.m in Sources */,
 				0426C2D819922D5A00CD8822 /* GPUImageWhiteBalanceFilter.m in Sources */,
+				5B13C70319B6CAE2008EA7A0 /* ProductDetailViewCell.m in Sources */,
 				0426C2CD19922D5A00CD8822 /* GPUImageTransformFilter.m in Sources */,
 				0426C25E19922D5A00CD8822 /* GPUImageDifferenceBlendFilter.m in Sources */,
 				042D9E5B19B5EBD500689C5D /* SDWebImagePrefetcher.m in Sources */,
@@ -3295,6 +3301,7 @@
 				042D9E3519B55AB800689C5D /* UIPlaceHolderTextView.m in Sources */,
 				0426C24B19922D5A00CD8822 /* GPUImageBrightnessFilter.m in Sources */,
 				042D9E1C19B559FC00689C5D /* AdvancedSearchViewController.m in Sources */,
+				5B13C70019B6AB0C008EA7A0 /* ProductDetailViewController.m in Sources */,
 				0426C2A119922D5A00CD8822 /* GPUImagePinchDistortionFilter.m in Sources */,
 				0426C29819922D5A00CD8822 /* GPUImageNobleCornerDetectionFilter.m in Sources */,
 				0426C27219922D5A00CD8822 /* GPUImageGlassSphereFilter.m in Sources */,
@@ -3437,8 +3444,6 @@
 				0426C25119922D5A00CD8822 /* GPUImageChromaKeyFilter.m in Sources */,
 				0426C24519922D5A00CD8822 /* GPUImageAlphaBlendFilter.m in Sources */,
 				0426C2C219922D5A00CD8822 /* GPUImageSubtractBlendFilter.m in Sources */,
-				D3AC61B819B6C0AC0015B62F /* CommentView.m in Sources */,
-				5B0A006319B562AA00500C05 /* ProductCollectionViewCell.m in Sources */,
 				04D10BE519AE016A0097C0C6 /* PersonalDetailViewController.m in Sources */,
 				0426C27E19922D5A00CD8822 /* GPUImageHueBlendFilter.m in Sources */,
 				0426C2F219922D5A00CD8822 /* CJSONSerializedData.m in Sources */,
