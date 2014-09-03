@@ -1257,8 +1257,6 @@
 		D3AC61A719B6BF930015B62F /* TopicsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicsModel.m; sourceTree = "<group>"; };
 		D3AC61B319B6BFDC0015B62F /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
 		D3AC61B419B6BFDC0015B62F /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
-		D3AC61B619B6C0AC0015B62F /* CommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentView.h; sourceTree = "<group>"; };
-		D3AC61B719B6C0AC0015B62F /* CommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentView.m; sourceTree = "<group>"; };
 		D3AC61B919B6D5D20015B62F /* CommentApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentApi.h; sourceTree = "<group>"; };
 		D3AC61BA19B6D5D20015B62F /* CommentApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentApi.m; sourceTree = "<group>"; };
 		D3AC61BD19B6E3FF0015B62F /* 人脉_66a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉_66a.png"; sourceTree = "<group>"; };
@@ -2417,8 +2415,6 @@
 				D3AC612A19B5C7D10015B62F /* ContactProjectTableViewCell.m */,
 				D3AC613619B6A3B40015B62F /* ContactTableViewCell.h */,
 				D3AC613719B6A3B40015B62F /* ContactTableViewCell.m */,
-				D3AC61B619B6C0AC0015B62F /* CommentView.h */,
-				D3AC61B719B6C0AC0015B62F /* CommentView.m */,
 			);
 			path = contactView;
 			sourceTree = "<group>";
