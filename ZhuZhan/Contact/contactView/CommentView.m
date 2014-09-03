@@ -7,7 +7,7 @@
 //
 
 #import "CommentView.h"
-
+#import "EGOImageView.h"
 @implementation CommentView
 
 - (id)initWithFrame:(CGRect)frame
@@ -29,6 +29,13 @@
 */
 +(CommentView *)setFram:(CommentModel *)model{
     CommentView *commentView = [[CommentView alloc] init];
+    UIImageView *topLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(75, 0, 2, 5)];
+    [topLineImage setBackgroundColor:[UIColor blackColor]];
+    [commentView addSubview:topLineImage];
+    topLineImage.alpha =0.2;
+    
+    EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:model.imageUrl]];
+    [commentView addSubview:imageView];
     return commentView;
 }
 @end

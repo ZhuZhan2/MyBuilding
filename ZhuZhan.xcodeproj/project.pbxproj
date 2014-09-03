@@ -293,7 +293,7 @@
 		04D10BE619AE016A0097C0C6 /* PImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BCA19AE016A0097C0C6 /* PImgCell.m */; };
 		04D10BEA19AE016A0097C0C6 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BD019AE016A0097C0C6 /* PublishViewController.m */; };
 		04D10BF219AE059E0097C0C6 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BEF19AE059E0097C0C6 /* 1.png */; };
-		04D10BF319AE059E0097C0C6 /* 123.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BF019AE059E0097C0C6 /* 123.png */; };
+		04D10BF319AE059E0097C0C6 /* bg000.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BF019AE059E0097C0C6 /* bg000.png */; };
 		04D10BF419AE059E0097C0C6 /* back_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BF119AE059E0097C0C6 /* back_icon.png */; };
 		04D10BFA19AE06AF0097C0C6 /* concern.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BF519AE06AE0097C0C6 /* concern.png */; };
 		04D10BFB19AE06AF0097C0C6 /* RadioButton-Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D10BF619AE06AF0097C0C6 /* RadioButton-Selected.png */; };
@@ -1137,7 +1137,7 @@
 		04D10BCF19AE016A0097C0C6 /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
 		04D10BD019AE016A0097C0C6 /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
 		04D10BEF19AE059E0097C0C6 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
-		04D10BF019AE059E0097C0C6 /* 123.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 123.png; sourceTree = "<group>"; };
+		04D10BF019AE059E0097C0C6 /* bg000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg000.png; sourceTree = "<group>"; };
 		04D10BF119AE059E0097C0C6 /* back_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_icon.png; sourceTree = "<group>"; };
 		04D10BF519AE06AE0097C0C6 /* concern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = concern.png; sourceTree = "<group>"; };
 		04D10BF619AE06AF0097C0C6 /* RadioButton-Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RadioButton-Selected.png"; sourceTree = "<group>"; };
@@ -2672,7 +2672,7 @@
 				04D10BF819AE06AF0097C0C6 /* tabbar.png */,
 				04D10BF919AE06AF0097C0C6 /* visit.png */,
 				04D10BEF19AE059E0097C0C6 /* 1.png */,
-				04D10BF019AE059E0097C0C6 /* 123.png */,
+				04D10BF019AE059E0097C0C6 /* bg000.png */,
 				04D10BF119AE059E0097C0C6 /* back_icon.png */,
 				D3AD617019ADC25C001FD483 /* 搜索_03.png */,
 				D3AD617119ADC25C001FD483 /* 搜索_05.png */,
@@ -3009,7 +3009,7 @@
 			files = (
 				D3AD62BB19B481CA001FD483 /* 项目－高级搜索－2_22a.png in Resources */,
 				D3AD61B119AF010D001FD483 /* Selected.png in Resources */,
-				04D10BF319AE059E0097C0C6 /* 123.png in Resources */,
+				04D10BF319AE059E0097C0C6 /* bg000.png in Resources */,
 				D3AC611D19B5B0C20015B62F /* 人脉_03a.png in Resources */,
 				D3AD603F19AC4DC1001FD483 /* bg-addbutton.png in Resources */,
 				D3AD606B19AC4DC1001FD483 /* 面部采集_12.png in Resources */,
