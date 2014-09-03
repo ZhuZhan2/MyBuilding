@@ -9,6 +9,9 @@
 #import "PersonalCenterViewController.h"
 #import "CommonCell.h"
 #import "AccountViewController.h"
+#import "LoginModel.h"
+#import "SDImageCache.h"
+
 @interface PersonalCenterViewController ()
 
 @end
@@ -16,6 +19,7 @@
 @implementation PersonalCenterViewController
 
 @synthesize personalArray;
+static int count =0; //用来记录用户第几次进入该页面
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -81,9 +85,47 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)rightBtnClick{
+-(void)rightBtnClick{//账户按钮触发的事件
+    count++;
+    if (count==1) {
+        [self pushToNextVC];
+    }
+    else{
+        AccountViewController *accountVC = [[AccountViewController alloc] init];
+        accountVC.userIcon =[[SDImageCache sharedImageCache] imageFromKey:@"userIcon"];
+        [self.navigationController pushViewController:accountVC animated:YES];
+    }
+    
+}
+
+-(void)pushToNextVC
+{
     AccountViewController *accountVC = [[AccountViewController alloc] init];
-    [self.navigationController pushViewController:accountVC animated:YES];
+    [LoginModel GetUserImagesWithBlock:^(NSMutableArray *posts, NSError *error) {
+        
+        NSLog(@"***** %@",posts);
+        NSDictionary *dic = [posts objectAtIndex:0];
+        NSString  *statusCode = [[[dic objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
+        if([[NSString stringWithFormat:@"%@",statusCode]isEqualToString:@"1300"]){
+            NSDictionary *dataDic = [[dic objectForKey:@"d"] objectForKey:@"data"];
+            
+            NSString *imageLocation = [dataDic objectForKey:@"imageLocation"];
+            NSLog(@"imageLocation %@",imageLocation);
+            NSString *host = [NSString stringWithFormat:@"%s",serverAddress];
+            NSString *urlString = [host stringByAppendingString:imageLocation];
+            NSData *imageData =[NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+            NSLog(@"[NSURL URLWithString:urlString] %@",[NSURL URLWithString:urlString]);
+            accountVC.userIcon = [UIImage imageWithData:imageData];
+            
+            
+        }else{
+            
+            accountVC.userIcon = [UIImage imageNamed:@"1"];
+        }
+        
+        [[SDImageCache sharedImageCache] storeImage:accountVC.userIcon forKey:@"userIcon"];
+        [self.navigationController pushViewController:accountVC animated:YES];
+    } userId:@"d2b49305-026c-4ff6-b2fc-5d1401510fd8"];
 }
 
 
@@ -175,12 +217,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     return _datasource[[indexPath row]];
 }
 
-////点击自己头像去个人中心
-//-(void)gotoMyCenter{
-//    NSLog(@"gotoMyCenter");
-//    PersonalCenterViewController *personalVC = [[PersonalCenterViewController alloc] init];
-//    [self.navigationController pushViewController:personalVC animated:YES];
-//}
+
 
 
 - (void)didReceiveMemoryWarning
@@ -189,15 +226,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
