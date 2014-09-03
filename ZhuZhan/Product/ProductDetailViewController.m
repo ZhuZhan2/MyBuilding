@@ -8,7 +8,7 @@
 
 #import "ProductDetailViewController.h"
 #import "ProductDetailViewCell.h"
-#import "CommentView.h"
+#import "ProductCommentView.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView* myTableView;
 
@@ -45,7 +45,7 @@
 
 -(void)getTableViewContents{
     for (int i=0; i<self.commentModels.count; i++) {
-        CommentView* view=[[CommentView alloc]initWithCommentModel:self.commentModels[i]];
+        ProductCommentView* view=[[ProductCommentView alloc]initWithCommentModel:self.commentModels[i]];
         [self.commentViews addObject:view];
     }
 }

@@ -1,22 +1,22 @@
 //
-//  CommentView.m
+//  ProductCommentView.m
 //  ZhuZhan
 //
 //  Created by 孙元侃 on 14-9-3.
 //
 //
 
-#import "CommentView.h"
+#import "ProductCommentView.h"
 #import "EGOImageView.h"
 
-@interface CommentView()
+@interface ProductCommentView()
 @property(nonatomic,strong)EGOImageView* userImageView;
 @property(nonatomic,strong)UILabel* userNameLabel;
 @property(nonatomic,strong)UILabel* userCommentContent;
 @property(nonatomic,strong)UILabel* publishTime;
 @end
 
-@implementation CommentView
+@implementation ProductCommentView
 
 -(instancetype)initWithCommentModel:(CommentModel*)commentModel{
     if ([super init]) {
@@ -31,7 +31,7 @@
     self.userImageView.frame=CGRectMake(20, 0, 50, 50);
     self.userImageView.showActivityIndicator=YES;
     [self addSubview:self.userImageView];
-
+    
     
     
     //用户名称label
@@ -52,3 +52,4 @@
     return self;
 }
 @end
+

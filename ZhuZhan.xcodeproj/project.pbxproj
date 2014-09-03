@@ -330,7 +330,7 @@
 		5B0D03E319B0554400518D5E /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B0D03E219B0554400518D5E /* mapapi.bundle */; };
 		5B13C70019B6AB0C008EA7A0 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C6FF19B6AB0C008EA7A0 /* ProductDetailViewController.m */; };
 		5B13C70319B6CAE2008EA7A0 /* ProductDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C70219B6CAE2008EA7A0 /* ProductDetailViewCell.m */; };
-		5B13C70619B6D775008EA7A0 /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C70519B6D775008EA7A0 /* CommentView.m */; };
+		5B13C70919B6E53A008EA7A0 /* ProductCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C70819B6E53A008EA7A0 /* ProductCommentView.m */; };
 		5B49D21519B0787C00E03EFE /* 项目详情-筛选_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B49D21319B0787C00E03EFE /* 项目详情-筛选_03.png */; };
 		5B49D21619B0787C00E03EFE /* 项目详情-筛选_06.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B49D21419B0787C00E03EFE /* 项目详情-筛选_06.png */; };
 		5B49D21A19B07FA100E03EFE /* +项目详情-3_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B49D21719B07FA100E03EFE /* +项目详情-3_03a.png */; };
@@ -1189,8 +1189,8 @@
 		5B13C6FF19B6AB0C008EA7A0 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
 		5B13C70119B6CAE2008EA7A0 /* ProductDetailViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewCell.h; sourceTree = "<group>"; };
 		5B13C70219B6CAE2008EA7A0 /* ProductDetailViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewCell.m; sourceTree = "<group>"; };
-		5B13C70419B6D775008EA7A0 /* CommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentView.h; sourceTree = "<group>"; };
-		5B13C70519B6D775008EA7A0 /* CommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentView.m; sourceTree = "<group>"; };
+		5B13C70719B6E53A008EA7A0 /* ProductCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCommentView.h; sourceTree = "<group>"; };
+		5B13C70819B6E53A008EA7A0 /* ProductCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCommentView.m; sourceTree = "<group>"; };
 		5B49D21319B0787C00E03EFE /* 项目详情-筛选_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情-筛选_03.png"; sourceTree = "<group>"; };
 		5B49D21419B0787C00E03EFE /* 项目详情-筛选_06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情-筛选_06.png"; sourceTree = "<group>"; };
 		5B49D21719B07FA100E03EFE /* +项目详情-3_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+项目详情-3_03a.png"; sourceTree = "<group>"; };
@@ -2481,8 +2481,8 @@
 				5B13C6FF19B6AB0C008EA7A0 /* ProductDetailViewController.m */,
 				5B13C70119B6CAE2008EA7A0 /* ProductDetailViewCell.h */,
 				5B13C70219B6CAE2008EA7A0 /* ProductDetailViewCell.m */,
-				5B13C70419B6D775008EA7A0 /* CommentView.h */,
-				5B13C70519B6D775008EA7A0 /* CommentView.m */,
+				5B13C70719B6E53A008EA7A0 /* ProductCommentView.h */,
+				5B13C70819B6E53A008EA7A0 /* ProductCommentView.m */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -3066,7 +3066,6 @@
 				042D9D0319B4180700689C5D /* icon__09.png in Resources */,
 				D3AD61EA19AF225A001FD483 /* addFriend.png in Resources */,
 				D3AC60F219B5555D0015B62F /* 地图搜索_02.png in Resources */,
-				D3AC61BE19B6E3FF0015B62F /* 人脉_66a.png in Resources */,
 				D3AD605619AC4DC1001FD483 /* 地图搜索_01.png in Resources */,
 				04D10BFC19AE06AF0097C0C6 /* RadioButton-Unselected.png in Resources */,
 				D3AD606419AC4DC1001FD483 /* 面部识别登录_03.png in Resources */,
@@ -3188,7 +3187,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3AC61BC19B6D9F70015B62F /* CommentView.m in Sources */,
 				0426C23319922D5A00CD8822 /* PanViewController.m in Sources */,
 				0426C28E19922D5A00CD8822 /* GPUImageLuminosityBlendFilter.m in Sources */,
 				0426C23019922D5A00CD8822 /* LoginViewController.m in Sources */,
@@ -3358,6 +3356,7 @@
 				0426C2FF19922D5A00CD8822 /* UIImageView+AFNetworking.m in Sources */,
 				5B0A00A419B587CD00500C05 /* TMQuiltViewCell.m in Sources */,
 				0426C28819922D5A00CD8822 /* GPUImageLineGenerator.m in Sources */,
+				5B13C70919B6E53A008EA7A0 /* ProductCommentView.m in Sources */,
 				042D9E1519B559FC00689C5D /* MyView.m in Sources */,
 				D3AD60A619AC5769001FD483 /* MBProgressHUD.m in Sources */,
 				0426C28119922D5A00CD8822 /* GPUImageKuwaharaFilter.m in Sources */,
@@ -3403,7 +3402,6 @@
 				0426C2ED19922D5A00CD8822 /* FaceppResult.m in Sources */,
 				D3AC61B019B6BF930015B62F /* projectModel.m in Sources */,
 				0426C20C19922D5A00CD8822 /* HomePageViewController.m in Sources */,
-				5B13C70619B6D775008EA7A0 /* CommentView.m in Sources */,
 				0426C28F19922D5A00CD8822 /* GPUImageMaskFilter.m in Sources */,
 				0426C25919922D5A00CD8822 /* GPUImageContrastFilter.m in Sources */,
 				D3AD609219AC56CB001FD483 /* MJRefreshBaseView.m in Sources */,
@@ -3466,7 +3464,6 @@
 				0426C2C819922D5A00CD8822 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
 				0426C2FC19922D5A00CD8822 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				0426C24819922D5A00CD8822 /* GPUImageAverageLuminanceThresholdFilter.m in Sources */,
-				D3AC61BB19B6D5D20015B62F /* CommentApi.m in Sources */,
 				0426C2C719922D5A00CD8822 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
 				0426C2E619922D5A00CD8822 /* FaceppGroup.m in Sources */,
 				D3AC613819B6A3B40015B62F /* ContactTableViewCell.m in Sources */,
