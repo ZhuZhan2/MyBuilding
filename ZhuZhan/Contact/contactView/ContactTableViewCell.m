@@ -1,14 +1,15 @@
 //
-//  ContactProjectTableViewCell.m
+//  ContactTableViewCell.m
 //  ZhuZhan
 //
-//  Created by 汪洋 on 14-9-2.
+//  Created by 汪洋 on 14-9-3.
 //
 //
 
-#import "ContactProjectTableViewCell.h"
+#import "ContactTableViewCell.h"
 
-@implementation ContactProjectTableViewCell
+@implementation ContactTableViewCell
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -47,20 +48,20 @@
     [self.contentView addSubview:headImageView];
     
     stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(62.5, 11.5, 27, 27)];
-    [stageImage setImage:[UIImage imageNamed:@"人脉_57a"]];
+    [stageImage setImage:[UIImage imageNamed:@"人脉_34a"]];
     [self.contentView addSubview:stageImage];
     
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 5, 200, 20)];
-    titleLabel.text = @"项目名称显示在这里";
+    titleLabel.text = [NSString stringWithFormat:@"%@ 添加了联系人",@"用户名"];
     titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:titleLabel];
     
-    contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 25, 200, 20)];
-    contentLabel.text = @"修改的字段在这里列出来";
-    contentLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
-    contentLabel.textAlignment = NSTextAlignmentLeft;
-    contentLabel.textColor = [UIColor lightGrayColor];
-    [self.contentView addSubview:contentLabel];
+    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 25, 100, 20)];
+    nameLabel.text = @"赵某某";
+    nameLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
+    nameLabel.textAlignment = NSTextAlignmentLeft;
+    nameLabel.textColor = [UIColor lightGrayColor];
+    [self.contentView addSubview:nameLabel];
 }
 @end
