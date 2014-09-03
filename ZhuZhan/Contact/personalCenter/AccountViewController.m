@@ -66,7 +66,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover.delegate = self;
     
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
-    [_pathCover setAvatarImage:userIcon];
+    [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
 
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadFrame:CGRectMake(120, -50, 70, 70)];
@@ -222,7 +222,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         
         [LoginModel AddUserImageWithBlock:^(NSMutableArray *posts, NSError *error) {
 
-            [_pathCover setAvatarImage:image];
+            [_pathCover addImageHead:image];
             
         } dic:parameter];
     }

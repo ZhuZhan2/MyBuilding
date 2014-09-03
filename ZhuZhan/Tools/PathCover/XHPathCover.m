@@ -202,7 +202,7 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 }
 
 // avatar
-- (void)setAvatarImage:(UIImage *)avatarImage {
+/*- (void)setAvatarImage:(UIImage *)avatarImage {
     if (avatarImage) {
         [_avatarButton setImage:avatarImage forState:UIControlStateNormal];
     }
@@ -211,6 +211,18 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 - (void)setAvatarUrlString:(NSString *)avatarUrlString {
     if (avatarUrlString) {
         
+    }
+}*/
+
+-(void)setHeadImageUrl:(NSString *)imageUrl{
+    if(imageUrl){
+        _headImage.imageURL = [NSURL URLWithString:imageUrl];
+    }
+}
+
+-(void)addImageHead:(UIImage *)img{
+    if(img){
+        _headImage.image = img;
     }
 }
 
@@ -393,6 +405,11 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     _showView = [[UIView alloc] initWithFrame:CGRectMake(0, self.showUserInfoViewOffsetHeight, CGRectGetWidth(self.bounds), waterDropRefreshHeight)];
     _showView.backgroundColor = [UIColor clearColor];
     
+    _headImage = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"人脉_29a.png"]];
+    _headImage.frame = CGRectMake(53, 0, avatarButtonHeight, avatarButtonHeight);
+    [_headImage.layer setMasksToBounds:YES];
+    [_headImage.layer setCornerRadius:23];
+    
     _avatarButton = [[UIButton alloc] initWithFrame:CGRectMake(53, 0, avatarButtonHeight, avatarButtonHeight)];
     [_avatarButton.layer setMasksToBounds:YES];
     [_avatarButton.layer setCornerRadius:23];
@@ -407,6 +424,7 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     _birthdayLabel.textColor = [UIColor whiteColor];
     _birthdayLabel.font = [UIFont systemFontOfSize:12];
     
+    [_showView addSubview:self.headImage];
     [_showView addSubview:self.avatarButton];
     [_showView addSubview:self.userNameLabel];
     [_showView addSubview:self.birthdayLabel];
@@ -425,6 +443,10 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 
 -(void)setHeadFrame:(CGRect)newFrame{
     [_avatarButton setFrame:newFrame];
+}
+
+-(void)setHeadImageFrame:(CGRect)newFrame{
+    [_headImage setFrame:newFrame];
 }
 
 -(void)setHeadTaget{

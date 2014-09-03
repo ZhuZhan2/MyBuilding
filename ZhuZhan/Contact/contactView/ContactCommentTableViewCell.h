@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ContactCommentTableViewCell : UITableViewCell
-
+#import "EGOImageView.h"
+#import "CommentModel.h"
+@interface ContactCommentTableViewCell : UITableViewCell{
+    EGOImageView *headImageView;
+    UILabel *contentLabel;
+    UILabel *timeLabel;
+}
+@property(nonatomic,strong)CommentModel *model;
 @end
