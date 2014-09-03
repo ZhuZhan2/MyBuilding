@@ -8,8 +8,6 @@
 
 #import "ContactViewController.h"
 #import "CompanyMemberViewController.h"
-#import "CompanyPublishedCell.h"
-#import "CommentsCell.h"
 #import "PersonalCenterViewController.h"
 #import "PersonalDetailViewController.h"
 #import "LoginModel.h"

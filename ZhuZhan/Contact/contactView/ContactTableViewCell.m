@@ -57,11 +57,18 @@
     titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:titleLabel];
     
-    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 25, 100, 20)];
+    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 25, 50, 20)];
     nameLabel.text = @"赵某某";
     nameLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
     nameLabel.textAlignment = NSTextAlignmentLeft;
     nameLabel.textColor = [UIColor lightGrayColor];
     [self.contentView addSubview:nameLabel];
+    
+    jobLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 25, 100, 20)];
+    jobLabel.text = @"职位";
+    jobLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
+    jobLabel.textAlignment = NSTextAlignmentLeft;
+    jobLabel.textColor = [UIColor lightGrayColor];
+    [self.contentView addSubview:jobLabel];
 }
 @end

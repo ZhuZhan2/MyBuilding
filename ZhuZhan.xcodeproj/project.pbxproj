@@ -286,8 +286,6 @@
 		042D9E5B19B5EBD500689C5D /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E5119B5EBD500689C5D /* SDWebImagePrefetcher.m */; };
 		042D9E5C19B5EBD500689C5D /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E5319B5EBD500689C5D /* UIButton+WebCache.m */; };
 		042D9E5D19B5EBD500689C5D /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E5519B5EBD500689C5D /* UIImageView+WebCache.m */; };
-		04D10BD619AE016A0097C0C6 /* CommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BAD19AE01690097C0C6 /* CommentsCell.m */; };
-		04D10BD719AE016A0097C0C6 /* CompanyPublishedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BAF19AE01690097C0C6 /* CompanyPublishedCell.m */; };
 		04D10BD919AE016A0097C0C6 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BB219AE016A0097C0C6 /* ContactViewController.m */; };
 		04D10BDD19AE016A0097C0C6 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BBA19AE016A0097C0C6 /* AccountViewController.m */; };
 		04D10BDE19AE016A0097C0C6 /* CommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BBC19AE016A0097C0C6 /* CommonCell.m */; };
@@ -361,7 +359,6 @@
 		D3AC611B19B5B0530015B62F /* timescroll_minutehand.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC611919B5B0530015B62F /* timescroll_minutehand.png */; };
 		D3AC611D19B5B0C20015B62F /* 人脉_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC611C19B5B0C20015B62F /* 人脉_03a.png */; };
 		D3AC612119B5B8930015B62F /* 高级搜索-多选_03aA.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC612019B5B8930015B62F /* 高级搜索-多选_03aA.png */; };
-		D3AC612319B5BCBE0015B62F /* bg001.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC612219B5BCBE0015B62F /* bg001.png */; };
 		D3AC612519B5BD5E0015B62F /* 人脉_29a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC612419B5BD5E0015B62F /* 人脉_29a.png */; };
 		D3AC612B19B5C7D10015B62F /* ContactProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC612A19B5C7D10015B62F /* ContactProjectTableViewCell.m */; };
 		D3AC612D19B5C9120015B62F /* 人脉_06a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC612C19B5C9120015B62F /* 人脉_06a.png */; };
@@ -1125,10 +1122,6 @@
 		042D9E5319B5EBD500689C5D /* UIButton+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
 		042D9E5419B5EBD500689C5D /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		042D9E5519B5EBD500689C5D /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
-		04D10BAC19AE01690097C0C6 /* CommentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsCell.h; sourceTree = "<group>"; };
-		04D10BAD19AE01690097C0C6 /* CommentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsCell.m; sourceTree = "<group>"; };
-		04D10BAE19AE01690097C0C6 /* CompanyPublishedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyPublishedCell.h; sourceTree = "<group>"; };
-		04D10BAF19AE01690097C0C6 /* CompanyPublishedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyPublishedCell.m; sourceTree = "<group>"; };
 		04D10BB119AE01690097C0C6 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
 		04D10BB219AE016A0097C0C6 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		04D10BB919AE016A0097C0C6 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
@@ -2416,10 +2409,6 @@
 		04D10BA919AE01690097C0C6 /* contactView */ = {
 			isa = PBXGroup;
 			children = (
-				04D10BAC19AE01690097C0C6 /* CommentsCell.h */,
-				04D10BAD19AE01690097C0C6 /* CommentsCell.m */,
-				04D10BAE19AE01690097C0C6 /* CompanyPublishedCell.h */,
-				04D10BAF19AE01690097C0C6 /* CompanyPublishedCell.m */,
 				04D10BB119AE01690097C0C6 /* ContactViewController.h */,
 				04D10BB219AE016A0097C0C6 /* ContactViewController.m */,
 				04D10C2E19AF3C120097C0C6 /* ShowViewController.h */,
@@ -3085,7 +3074,6 @@
 				D3AD61F219AF225A001FD483 /* telephone.png in Resources */,
 				D3AC611119B5AB0E0015B62F /* timescroll_pointer@2x.png in Resources */,
 				D3AD604519AC4DC1001FD483 /* circle.png in Resources */,
-				5B0A009B19B587C000500C05 /* whiteArrow@2x.png in Resources */,
 				D3AD621019B05AF8001FD483 /* 项目－项目专题_17a.png in Resources */,
 				D3AD606919AC4DC1001FD483 /* 面部采集_09.png in Resources */,
 				D3AD62C019B5502C001FD483 /* 项目－高级搜索－2_03a.png in Resources */,
@@ -3302,7 +3290,6 @@
 				0426C25319922D5A00CD8822 /* GPUImageColorBlendFilter.m in Sources */,
 				0426C24319922D5A00CD8822 /* GPUImageAdaptiveThresholdFilter.m in Sources */,
 				0426C2AD19922D5A00CD8822 /* GPUImageRGBErosionFilter.m in Sources */,
-				04D10BD619AE016A0097C0C6 /* CommentsCell.m in Sources */,
 				0426C28519922D5A00CD8822 /* GPUImageLevelsFilter.m in Sources */,
 				0426C23619922D5A00CD8822 /* AFHTTPRequestOperation.m in Sources */,
 				04D10BDE19AE016A0097C0C6 /* CommonCell.m in Sources */,
@@ -3481,7 +3468,6 @@
 				0426C2F419922D5A00CD8822 /* NSDictionary_JSONExtensions.m in Sources */,
 				0426C26719922D5A00CD8822 /* GPUImageExposureFilter.m in Sources */,
 				042D9E5C19B5EBD500689C5D /* UIButton+WebCache.m in Sources */,
-				04D10BD719AE016A0097C0C6 /* CompanyPublishedCell.m in Sources */,
 				0426C2E719922D5A00CD8822 /* FaceppGrouping.m in Sources */,
 				0426C2A619922D5A00CD8822 /* GPUImagePolkaDotFilter.m in Sources */,
 				0426C28019922D5A00CD8822 /* GPUImageJFAVoronoiFilter.m in Sources */,
