@@ -64,6 +64,7 @@
     
     UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, height)];
     imageView.image=self.productImage;
+    NSLog(@"%f",imageView.frame.size.width);
     
     UIImage* image=[UIImage imageNamed:@"人脉_66a.png"];
     CGRect frame=CGRectMake(0, 0, image.size.width*.5, image.size.height*.5);
