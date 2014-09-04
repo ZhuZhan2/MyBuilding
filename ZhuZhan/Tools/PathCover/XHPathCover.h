@@ -61,6 +61,7 @@ extern NSString *const XHBirthdayKey;
 -(void)setHeadImageUrl:(NSString *)imageUrl;
 -(void)addImageHead:(UIImage *)img;
 -(void)setHeadImageFrame:(CGRect)newFrame;
+-(void)setHeadFrame:(CGRect)newFrame;
 //删除点
 -(void)hidewaterDropRefresh;
 //设置头像位置
@@ -74,7 +75,7 @@ extern NSString *const XHBirthdayKey;
 - (void)setInfo:(NSDictionary *)info;
 
 //设置button的位置
-- (void)setButton:(UIButton *)button WithFrame:(CGRect)frame WithBackgroundImage:(UIImage *)image AddTarget:(id)target WithAction:(SEL)selector;
+- (void)setButton:(UIButton *)button WithFrame:(CGRect)frame WithBackgroundImage:(UIImage *)image AddTarget:(id)target WithAction:(SEL)selector WithTitle:(NSString *)title;
 
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;

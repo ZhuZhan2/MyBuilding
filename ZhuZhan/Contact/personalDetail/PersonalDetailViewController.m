@@ -49,15 +49,13 @@ static float textHeight =0;
     
 
     
-//    contactArr = @[@"929097264@qq.com",@"13938439096"];
-//    kImgArr = @[@"人脉－人的详情_21a",@"人脉－人的详情_23a"];
-//    titleArr =@[@"email",@"手 机"];
+
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 200)];
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
     [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
     [_pathCover hidewaterDropRefresh];
-    [_pathCover setHeadFrame:CGRectMake(120, -50, 70, 70)];
+    [_pathCover setHeadImageFrame:CGRectMake(120, -50, 70, 70)];
     _pathCover.headImage.layer.cornerRadius =35;
     _pathCover.headImage.layer.masksToBounds =YES;
     [_pathCover setNameFrame:CGRectMake(145, 20, 100, 20) font:[UIFont systemFontOfSize:14]];
@@ -86,7 +84,7 @@ static float textHeight =0;
     model.contactImageIconArr =@[@"人脉－人的详情_21a",@"人脉－人的详情_23a"];
     model.projectBeginTime =@"2012年9月";
     model.projectEndTime = @"目前";
-    model.personalBackground = @"oifdjbfddgk;lkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufmoifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvv";
+    model.personalBackground = textStr;
     model.projectName = @"项目名称显示在这里";
     model.projectDistrict = @"华南区－上海";
     textHeight =[self heightForString:textStr fontSize:14 andWidth:280];
@@ -182,30 +180,7 @@ static float textHeight =0;
         if (!backGroundCell) {
             backGroundCell = [[BgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithTextHeight:textHeight WithModel:model];
         }
-        
-        NSString *textStr =@"oifdjbfddgk;lkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhilkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhilkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhilkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhi";
-        UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(20, 60, 280, textViewHeight)];
-        textView.editable =NO;
-        textView.textAlignment = NSTextAlignmentLeft;
-        textView.text = textStr;
-        textView.font = [UIFont systemFontOfSize:14];
-        
-        UIView *bgview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, textViewHeight+60)];
-        [backGroundCell addSubview:bgview];
-        
-        UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, 30)];
-        companyLabel.text = @"上海某某公司";
-        companyLabel.textAlignment = NSTextAlignmentLeft;
-        [bgview addSubview:companyLabel];
-        
-        UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 30, 280, 30)];
-        timeLabel.text = @"XX年XX月－－目前";
-        timeLabel.textAlignment = NSTextAlignmentLeft;
-        [bgview addSubview:timeLabel];
-        [bgview addSubview:textView];
-        
-        backGroundCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return backGroundCell;
+            return backGroundCell;
         
     }
     
