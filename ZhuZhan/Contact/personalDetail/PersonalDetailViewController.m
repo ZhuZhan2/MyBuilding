@@ -7,6 +7,10 @@
 //
 
 #import "PersonalDetailViewController.h"
+#import "SectionCell.h"
+#import "CompanyCell.h"
+#import "ContactCell.h"
+#import "ProgramDetailViewController.h"
 
 @interface PersonalDetailViewController ()
 
@@ -14,9 +18,10 @@
 
 @implementation PersonalDetailViewController
 
-@synthesize contactArr,kImgArr,textViewHeight,titleArr;
+@synthesize model;
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
-
+static NSString *textStr=nil;
+static float textHeight =0;
 
 -(id)init{
     self = [super init];
@@ -44,16 +49,20 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
 
     
-    contactArr = @[@"929097264@qq.com",@"13938439096"];
-    kImgArr = @[@"人脉－人的详情_21a",@"人脉－人的详情_23a"];
-    titleArr =@[@"email",@"手 机"];
+//    contactArr = @[@"929097264@qq.com",@"13938439096"];
+//    kImgArr = @[@"人脉－人的详情_21a",@"人脉－人的详情_23a"];
+//    titleArr =@[@"email",@"手 机"];
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 200)];
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
     [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadFrame:CGRectMake(120, -50, 70, 70)];
+    _pathCover.headImage.layer.cornerRadius =35;
+    _pathCover.headImage.layer.masksToBounds =YES;
     [_pathCover setNameFrame:CGRectMake(145, 20, 100, 20) font:[UIFont systemFontOfSize:14]];
+    _pathCover.userNameLabel.textAlignment = NSTextAlignmentCenter;
+    _pathCover.userNameLabel.center = CGPointMake(155, 30);
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
     
     
@@ -68,6 +77,21 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
        [self.tableView setSeparatorInset:UIEdgeInsetsZero];//设置tableViewcell下划线的位置没有偏移
 
 
+    textStr =@"oifdjbfddgk;lkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvv";
+    model = [[ContactModel alloc] init];
+    model.companyName = @"上海深集网络";
+    model.projectLeader = @"项目负责人";
+    model.email = @"929097264@11.com";
+    model.cellPhone =@"13938439096";
+    model.contactImageIconArr =@[@"人脉－人的详情_21a",@"人脉－人的详情_23a"];
+    model.projectBeginTime =@"2012年9月";
+    model.projectEndTime = @"目前";
+    model.personalBackground = @"oifdjbfddgk;lkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufmoifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvv";
+    model.projectName = @"项目名称显示在这里";
+    model.projectDistrict = @"华南区－上海";
+    textHeight =[self heightForString:textStr fontSize:14 andWidth:280];
+    
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)_refreshing {
@@ -128,168 +152,50 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     if (indexPath.row==0) {
      
-            static NSString *identifier = @"Cell";
-            UITableViewCell *companyCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+            static NSString *identifier = @"companyCell";
+            CompanyCell *companyCell =[tableView dequeueReusableCellWithIdentifier:identifier];
             if (!companyCell) {
-                companyCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+                companyCell = [[CompanyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:model];
             }
-            
-            UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 150, 30)];
-            companyLabel.textAlignment = NSTextAlignmentLeft;
-            companyLabel.text = @"上海深即网络";
-            companyLabel.font = [UIFont systemFontOfSize:14];
-            [companyCell addSubview:companyLabel];
-            
-            
-            UILabel *positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 20, 80, 30)];
-            positionLabel.textAlignment = NSTextAlignmentLeft;
-            positionLabel.textColor = [UIColor grayColor];
-            positionLabel.text = @"lisis";
-            positionLabel.font = [UIFont systemFontOfSize:14];
-            [companyCell addSubview:positionLabel];
-            companyCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return companyCell;
-
+        return companyCell;
     }
-    if (indexPath.row ==1) {
-        static NSString *identifier = @"Cell1";
-        UITableViewCell *contactCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-        if (!contactCell) {
-            contactCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    if (indexPath.row ==1 || indexPath.row ==4 ||indexPath.row ==6) {
+        static NSString *identifier = @"sectionCell";
+        SectionCell *sectionCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!sectionCell) {
+            sectionCell = [[SectionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithIndex:indexPath.row];
         }
-        
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-        titleLabel.textAlignment = NSTextAlignmentCenter;
-        titleLabel.text = @"联系方式";
-        titleLabel.textColor =BlueColor;
-        [contactCell addSubview:titleLabel];
-        contactCell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"grayColor"]];
-        contactCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return contactCell;
+
+        return sectionCell;
 
     }
     if (indexPath.row ==2 ||indexPath.row==3) {
-        static NSString *identifier = @"Cell2";
-        UITableViewCell *contactDetailCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-        if (!contactDetailCell) {
-            contactDetailCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        static NSString *identifier = @"contactCell";
+        ContactCell *contactCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!contactCell) {
+            contactCell = [[ContactCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:model WithIndex:indexPath.row];
         }
-        
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 60, 30)];
-        label.text = [titleArr objectAtIndex:indexPath.row-2];
-        [contactDetailCell addSubview:label];
-        UILabel *commonLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 10, 150, 30)];
-        commonLabel.textAlignment = NSTextAlignmentLeft;
-        commonLabel.text = [contactArr objectAtIndex:indexPath.row-2];
-        commonLabel.font = [UIFont systemFontOfSize:14];
-        commonLabel.tag= indexPath.row;
-        [contactDetailCell addSubview:commonLabel];
-        
-        UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        rightBtn.frame = CGRectMake(250, 10, 30, 30);
-        [rightBtn setBackgroundImage:[UIImage imageNamed:[kImgArr objectAtIndex:indexPath.row-2]] forState:UIControlStateNormal];
-        [contactDetailCell addSubview:rightBtn];
-        contactDetailCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return contactDetailCell;
+        return contactCell;
 
     }
-    if (indexPath.row==4) {
-        static NSString *identifier = @"Cell3";
-        UITableViewCell *bgCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-        if (!bgCell) {
-            bgCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        }
-        
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-        titleLabel.textAlignment = NSTextAlignmentCenter;
-        titleLabel.textColor =BlueColor;
-        titleLabel.text = @"个人背景";
-        [bgCell addSubview:titleLabel];
-        bgCell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"grayColor"]];
-        bgCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return bgCell;
-
-    }
-    if (indexPath.row ==5) {
-        static NSString *identifier = @"Cell4";
-        UITableViewCell *backGroundCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+        if (indexPath.row ==5) {
+        static NSString *identifier = @"backGroundCell";
+        BgCell *backGroundCell =[tableView dequeueReusableCellWithIdentifier:identifier];
         if (!backGroundCell) {
-            backGroundCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            backGroundCell = [[BgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithTextHeight:textHeight WithModel:model];
         }
         
-        NSString *textStr =@"oifdjbfddgk;lkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhi";
-        UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(20, 60, 280, textViewHeight)];
-        textView.editable =NO;
-        textView.textAlignment = NSTextAlignmentLeft;
-        textView.text = textStr;
-        textView.font = [UIFont systemFontOfSize:14];
-        
-        UIView *bgview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, textViewHeight+60)];
-        [backGroundCell addSubview:bgview];
-        
-        UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, 30)];
-        companyLabel.text = @"上海某某公司";
-        companyLabel.textAlignment = NSTextAlignmentLeft;
-        [bgview addSubview:companyLabel];
-        
-        UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 30, 280, 30)];
-        timeLabel.text = @"XX年XX月－－目前";
-        timeLabel.textAlignment = NSTextAlignmentLeft;
-        [bgview addSubview:timeLabel];
-        [bgview addSubview:textView];
-        
-        backGroundCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return backGroundCell;
         
     }
     
-    if (indexPath.row==6) {
-        static NSString *identifier = @"Cell5";
-        UITableViewCell *relevantCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-        if (!relevantCell) {
-            relevantCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        }
-        
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-        titleLabel.textAlignment = NSTextAlignmentCenter;
-        titleLabel.textColor =BlueColor;
-        titleLabel.text = @"关联项目";
-        [relevantCell addSubview:titleLabel];
-        relevantCell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"grayColor"]];
-        relevantCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return relevantCell;
-        
-    }
-    
 
-    static NSString *identifier = @"Cell6";
-    UITableViewCell *relevantDetailCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!relevantDetailCell) {
-        relevantDetailCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    static NSString *identifier = @"correlateCell";
+    CorrelateCell *correlateCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!correlateCell) {
+        correlateCell = [[CorrelateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:model];
     }
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame =CGRectMake(40, 10, 30, 30);
-    [button setBackgroundImage:[UIImage imageNamed:@"read"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(goToProject:) forControlEvents:UIControlEventTouchUpInside];
-    button.tag = indexPath.row+20140903;
-    [relevantDetailCell addSubview:button];
-    UILabel *ProjectLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 0, 150, 30)];
-    ProjectLabel.textAlignment = NSTextAlignmentLeft;
-    ProjectLabel.text = @"项目名称显示在这里";
-    ProjectLabel.font = [UIFont systemFontOfSize:14];
-    [relevantDetailCell addSubview:ProjectLabel];
-    
-    
-    UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 20, 120, 30)];
-    addressLabel.textAlignment = NSTextAlignmentLeft;
-    addressLabel.textColor = [UIColor grayColor];
-    addressLabel.text = @"华南区－上海";
-    addressLabel.font = [UIFont systemFontOfSize:14];
-    relevantDetailCell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [relevantDetailCell addSubview:addressLabel];
-    
-    return relevantDetailCell;
+    return correlateCell;
 
     
 }
@@ -299,32 +205,42 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     if (indexPath.row ==2) {
         [self onClickAttention:indexPath.row];
+        return;
     }
     if (indexPath.row==3) {
         [self onClickToCall:indexPath.row];
+        return;
         
     }
+    if (indexPath.row==0 ||indexPath.row==1 ||indexPath.row==4 ||indexPath.row==5 ||indexPath.row==6) {
+        
+        NSLog(@"不做任何操作");
+        
+        return;
+    }
+    
+    ProgramDetailViewController *programDetailVC = [[ProgramDetailViewController alloc] init];
+//    programDetailVC.model 
+    [self.navigationController pushViewController:programDetailVC animated:YES];
+    
 
     
 }
 
 
-
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.row==1 || indexPath.row==4 || indexPath.row==6) {
-        return 40;
+    if (indexPath.row==1 || indexPath.row==4 || indexPath.row==6 ||indexPath.row==2 ||indexPath.row==3) {
+        
+        return 50;
     }
     if (indexPath.row==5) {
-        NSString *textStr =@"oifdjbfddgk;lkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhi";
-        [self heightForString:textStr fontSize:14 andWidth:280];
-        NSLog(@"textViewHeight %f",textViewHeight);
-        return textViewHeight+60;
+
+        return textHeight+60;
     }
     
-    return 50;
+    return 60;
     
 }
 
@@ -333,9 +249,18 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)onClickToCall:(int)indexPathRow//打电话
 {
     NSLog(@"***********");
-    UILabel *label = (UILabel *)[self.view viewWithTag:indexPathRow];
-    NSString *telephone = [NSString stringWithFormat:@"tel://%@",label.text];
-[[UIApplication sharedApplication] openURL:[NSURL URLWithString:telephone]];
+    NSString *deviceType = [UIDevice currentDevice].model;
+    if ([deviceType isEqualToString:@"iPhone"]) {
+        UILabel *label = (UILabel *)[self.view viewWithTag:indexPathRow];
+        NSString *telephone = [NSString stringWithFormat:@"tel://%@",label.text];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telephone]];
+    }
+    else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"此设备不能打电话" delegate:nil cancelButtonTitle:@"是" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+
 }
 
 //**************************************************************************************************************
@@ -359,10 +284,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         // Present mail view controller on screen
         [self presentViewController:mc animated:YES completion:NULL];
     }else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure"
-                                                        message:@"Your device doesn't support the composer sheet"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                        message:@"此设备不支持发送邮件"
                                                        delegate:nil
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:@"是"
                                               otherButtonTitles: nil];
         
         [alert show];
@@ -397,28 +322,17 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-//***************************************************************************************************************
 
--(void)goToProject:(UIButton *)button//进入到相关项目中去
+
+
+- (float) heightForString:(NSString *)value fontSize:(float)fontSize andWidth:(float)width//根据 字符串的的 长度来计算UITextView的高度
 {
-
+    
+    float textViewHeight = [[NSString stringWithFormat:@"%@\n ",value] boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:fontSize],NSFontAttributeName, nil] context:nil].size.height;
+    
+    
+    return textViewHeight;
 }
-- (void) heightForString:(NSString *)value fontSize:(float)fontSize andWidth:(float)width//根据 字符串的的 长度来计算UITextView的高度
-{
-    textViewHeight = [[NSString stringWithFormat:@"%@\n ",value] boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:fontSize],NSFontAttributeName, nil] context:nil].size.height;
-    
-    
-}
-
--(void)rightBtnClicked:(UIButton *)button
-{
-
-    
-    
-}
-
-
-
 
 - (void)didReceiveMemoryWarning
 {
