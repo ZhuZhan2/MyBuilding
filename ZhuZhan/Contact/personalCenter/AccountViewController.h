@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import "XHPathCover.h"
+#import "AccountCell.h"
 
-
-@interface AccountViewController : UITableViewController<XHPathCoverDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>
+@interface AccountViewController : UITableViewController<XHPathCoverDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,AccountCellDelegate>
 {
     
     
@@ -20,5 +19,6 @@
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong) NSArray *KindIndex;
 @property (nonatomic, strong) UIImage *userIcon;
+@property (nonatomic, strong) ContactModel *model;
 
 @end

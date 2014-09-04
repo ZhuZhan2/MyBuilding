@@ -1,17 +1,15 @@
 //
 //  CommonCell.h
-//  PersonalCenter
+//  ZhuZhan
 //
-//  Created by Jack on 14-8-18.
-//  Copyright (c) 2014年 Jack. All rights reserved.
+//  Created by Jack on 14-9-4.
+//
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ContactModel.h"
 @interface CommonCell : UITableViewCell
 
-
-@property (nonatomic,strong)UIImageView *userIcon;
-@property (nonatomic,strong) UILabel *contentLabel;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(ContactModel *)model WithIndex:(int)index;
 
 @end

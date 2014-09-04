@@ -9,6 +9,7 @@
 #import "ContactModel.h"
 #import "AFAppDotNetAPIClient.h"
 @implementation ContactModel
+
 //POST:
 //{
 //    "sourceUserId": "源用户Id" 必填

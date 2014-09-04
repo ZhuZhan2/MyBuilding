@@ -214,9 +214,9 @@ static float textHeight =0;
         return;
     }
     
-    ProgramDetailViewController *programDetailVC = [[ProgramDetailViewController alloc] init];
-//    programDetailVC.model 
-    [self.navigationController pushViewController:programDetailVC animated:YES];
+//    ProgramDetailViewController *programDetailVC = [[ProgramDetailViewController alloc] init];
+//
+//    [self.navigationController pushViewController:programDetailVC animated:YES];
     
 
     
