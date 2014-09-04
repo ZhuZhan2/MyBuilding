@@ -15,6 +15,8 @@
 //时间的处理
 +(NSString *)ProjectTimeStage:(NSString *)str;
 
++(NSDate *)ProjectDateStage:(NSString *)str;
+
 //bool的处理
 +(NSString *)ProjectBoolStage:(NSString *)str;
 

@@ -62,44 +62,5 @@ static int count = 0;
     contentLabel.backgroundColor = [UIColor redColor];
     contentLabel.font = [UIFont systemFontOfSize:13];
     [bgView addSubview:contentLabel];
-    
-    arrow= [[UIImageView alloc] initWithFrame:CGRectMake(80, 333, 30, 30)];
-    arrow.image = [UIImage imageNamed:@"downArrow"];
-    [bgView addSubview:arrow];
-    moreBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    moreBtn.frame =CGRectMake(15, 333, 60, 30);
-    [moreBtn setTitle:@"展开阅读" forState:UIControlStateNormal];
-    moreBtn.titleLabel.textColor = [UIColor blueColor];
-    [moreBtn addTarget:self action:@selector(readMoreMessage) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self addSubview:moreBtn];
-    
-    
-}
-
-
--(void)readMoreMessage{
-    count++;
-    NSLog(@"查阅更多信息");
-    if (count==1) {
-        contentLabel.frame = CGRectMake(15, 253, 288, 200);
-        arrow.frame =CGRectMake(80, 453, 30, 30);
-        arrow.image = [UIImage imageNamed:@"upArrow"];
-        moreBtn.frame =CGRectMake(15, 453, 60, 30);
-        self.frame =CGRectMake(0, 0, 320, 483);
-    }
-    else{
-        contentLabel.frame = CGRectMake(15, 253, 288, 80);
-        arrow.frame =CGRectMake(80, 333, 30, 30);
-        arrow.image = [UIImage imageNamed:@"downArrow"];
-    moreBtn.frame =CGRectMake(15, 333, 60, 30);
-        self.frame =CGRectMake(0, 0, 320, 358);
-        count=0;
-        
-    }
-
-    
-    
-    
 }
 @end

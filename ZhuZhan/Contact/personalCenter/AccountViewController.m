@@ -94,15 +94,17 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
     
     [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-        
-        NSLog(@"**** %@",posts);
-//        NSDictionary *dic = [posts objectAtIndex:0];
-
-            NSLog(@"23rgfdg");
-        
-        
-        
-    } userId:@"d2b49305-026c-4ff6-b2fc-5d1401510fd8"];
+        if(!error){
+            
+        }
+    } userId:@"a435ccfe-65cb-4d6d-ad89-3f828f51e0bb"];
+    
+    /*[LoginModel GetUserImagesWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            
+        }
+    } userId:@"a435ccfe-65cb-4d6d-ad89-3f828f51e0bb"];*/
+    
     
 }
 

@@ -136,12 +136,16 @@
         ProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         projectModel *model = showArr[indexPath.row-2];
         if(!cell){
-            cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:model fromView:@"topics"];
+            cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:model fromView:@"topics" index:indexPath.row];
         }
+        cell.delegate = self;
         cell.selectionStyle = NO;
         return cell;
     }
     return nil;
 }
 
+-(void)addProjectCommentView:(int)index{
+    NSLog(@"%d",index);
+}
 @end

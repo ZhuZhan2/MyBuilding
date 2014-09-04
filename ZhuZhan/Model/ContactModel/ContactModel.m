@@ -101,12 +101,11 @@
 }
 
 + (NSURLSessionDataTask *)AllActivesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId startIndex:(int)startIndex{
-    NSString *urlStr = [NSString stringWithFormat:@"api/networking/AllActives?userId=%@&pageSize=10&pageIndex=%d",userId,startIndex];
+    NSString *urlStr = [NSString stringWithFormat:@"api/networking/AllActives?userId=%@&pageSize=5&pageIndex=%d",userId,startIndex];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON);
+        //NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON[@"d"][@"data"]];
             for(NSDictionary *item in JSON[@"d"][@"data"]){
                 CommentModel *model = [[CommentModel alloc] init];
                 [model setDict:item];

@@ -18,6 +18,9 @@
 #import "ContactTableViewCell.h"
 #import "ContactCommentTableViewCell.h"
 #import "ContactModel.h"
+#import "ContactCommentModel.h"
+#import "CommentModel.h"
+#import "ContactCommentTableViewCell.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -76,28 +79,24 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }];
     
     startIndex = 0;
-    [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            
-        }
-    } userId:@"f483bcfc-3726-445a-97ff-ac7f207dd888" startIndex:startIndex];
-    
     showArr = [[NSMutableArray alloc] init];
     viewArr = [[NSMutableArray alloc] init];
-    for(int i=0;i<4;i++){
-        CommentModel *model = [[CommentModel alloc] init];
-        if(i==0){
-            model.a_type = @"Project";
-        }else if(i==1){
-            model.a_type = @"Personal";
-        }else{
-            model.a_type = @"Product";
-            model.a_imageUrl = [NSString stringWithFormat:@"bg00%d",i-2];
-            model.a_name = @"aaaaa";
-            model.a_content = @"asdfasfasfasdfasfas阿斯顿发生法法师打发asdfasfasfasdfasfas阿斯顿发生法法师打发asdfasfasfasdfasfas阿斯顿发生法法师打发asdfasfasfasdfasfas阿斯顿发生法法师打发";
+    [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            for(int i=0;i<posts.count;i++){
+                CommentModel *commentModel = posts[i];
+                [showArr addObject:commentModel];
+                if(commentModel.a_commentsArr.count !=0){
+                    for(int i=0;i<commentModel.a_commentsArr.count;i++){
+                        ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[i];
+                        [showArr addObject:contactCommentModel];
+                    }
+                }
+            }
+            //NSLog(@"%@",showArr);
+            [self.tableView reloadData];
         }
-        [showArr addObject:model];
-    }
+    } userId:@"f483bcfc-3726-445a-97ff-ac7f207dd888" startIndex:startIndex];
     
     for(int i=0;i<showArr.count;i++){
         CommentModel *model = showArr[i];
@@ -108,6 +107,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             [viewArr insertObject:@"" atIndex:i];
         }
     }
+    
 }
 
 
