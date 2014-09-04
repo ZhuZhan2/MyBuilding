@@ -11,13 +11,14 @@
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
 
+
 @interface AccountViewController ()
 
 @end
 
 @implementation AccountViewController
 
-@synthesize userDic,KindIndex,userIcon;
+@synthesize userDic,KindIndex,userIcon,model;
 
 static int selectBtnTag =0;
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
@@ -81,8 +82,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     UIButton *setBgBtn =nil;
     UIButton *setIconBtn =nil;
-    [_pathCover setButton:setBgBtn WithFrame:CGRectMake(0, 160, 160, 40) WithBackgroundImage:[UIImage imageNamed:@"setBg"] AddTarget:self WithAction:@selector(setbackgroundImage)WithTitle:@"设置封面"];
-    [_pathCover setButton:setIconBtn WithFrame:CGRectMake(160, 160, 160, 40) WithBackgroundImage:[UIImage imageNamed:@"setIcon"] AddTarget:self WithAction:@selector(setuserIcon)WithTitle:@"设置头像"];
+    [_pathCover setButton:setBgBtn WithFrame:CGRectMake(0, 160, 158, 40) WithBackgroundImage:[UIImage imageNamed:@"setBg"] AddTarget:self WithAction:@selector(setbackgroundImage)WithTitle:@"设置封面"];
+    [_pathCover setButton:setIconBtn WithFrame:CGRectMake(162, 160, 158, 40) WithBackgroundImage:[UIImage imageNamed:@"setIcon"] AddTarget:self WithAction:@selector(setuserIcon)WithTitle:@"设置头像"];
 
     
     
@@ -92,6 +93,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [wself _refreshing];
     }];
 
+    
+    model = [[ContactModel alloc] init];
+    model.userName =@"张三";
+    model.password =@"123456";
+    model.realName = @"张天天";
+    model.sex = @"男";
+    model.email = @"929097264@qq.com";
+    model.cellPhone = @"13938439093";
+    model.companyName = @"上海某公司";
+    model.position = @"总经理";
     
     [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
@@ -106,6 +117,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     } userId:@"a435ccfe-65cb-4d6d-ad89-3f828f51e0bb"];*/
     
     
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 
@@ -300,7 +312,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -313,72 +325,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     
     
-    static NSString *identifier = @"Cell";
-    UITableViewCell *cell2 =[tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell2) {
-        cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    static NSString *identifier = @"AccountCell";
+    AccountCell *accountCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!accountCell) {
+        accountCell = [[AccountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:model];
     }
-    
-    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 70, 30)];
-    label1.textAlignment = NSTextAlignmentLeft;
-    label1.text = @"邮箱地址";
-    label1.font = [UIFont systemFontOfSize:14];
-    [cell2 addSubview:label1];
-    UITextField *emailField = [[UITextField alloc] initWithFrame:CGRectMake(90, 5, 200, 30)];
-    emailField.textAlignment = NSTextAlignmentLeft;
-    emailField.text = @"222222233445@qq.com";
-    emailField.font = [UIFont systemFontOfSize:14];
-    emailField.delegate = self;
-    [cell2 addSubview:emailField];
-    
-    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(20, 45, 70, 30)];
-    label2.textAlignment = NSTextAlignmentLeft;
-    label2.text = @"电      话";
-    label2.font = [UIFont systemFontOfSize:14];
-    [cell2 addSubview:label2];
-    UITextField *cellPhoneFiled = [[UITextField alloc] initWithFrame:CGRectMake(90, 45, 200, 30)];
-    cellPhoneFiled.textAlignment = NSTextAlignmentLeft;
-    cellPhoneFiled.text = @"123434556657";
-    cellPhoneFiled.font = [UIFont systemFontOfSize:14];
-    cellPhoneFiled.delegate  =self;
-    [cell2 addSubview:cellPhoneFiled];
-    
-    UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(20, 85, 70, 30)];
-    label3.textAlignment = NSTextAlignmentLeft;
-    label3.text = @"在职公司";
-    label3.font = [UIFont systemFontOfSize:14];
-    [cell2 addSubview:label3];
-    UITextField *companyField = [[UITextField alloc] initWithFrame:CGRectMake(90, 85, 200, 30)];
-    companyField.textAlignment = NSTextAlignmentLeft;
-    companyField.text = @"巴拉巴拉公司";
-    companyField.font = [UIFont systemFontOfSize:14];
-    companyField.delegate = self;
-    [cell2 addSubview:companyField];
-    
-    UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(20, 125, 70, 30)];
-    label4.textAlignment = NSTextAlignmentLeft;
-    label4.text = @"职      位";
-    label4.font = [UIFont systemFontOfSize:14];
-    [cell2 addSubview:label4];
-    UITextField *positionField = [[UITextField alloc] initWithFrame:CGRectMake(90, 125, 200, 30)];
-    positionField.textAlignment = NSTextAlignmentLeft;
-    positionField.text = @"总监";
-    positionField.font = [UIFont systemFontOfSize:14];
-    positionField.delegate =self;
-    [cell2 addSubview:positionField];
-    
-    for (int i=0; i<3; i++) {
-        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(10, 39+40*i, 300, 2)];
-        line.image = [UIImage imageNamed:@"我的任务_05"];
-        [cell2 addSubview:line];
-    }
-    
-    
-    cell2.selectionStyle = UITableViewCellSeparatorStyleNone;
-    return cell2;
-    
-    
-    
+    accountCell.delegate =self;
+    return accountCell;
+
 }
 
 -(void)rightBtnClicked:(UIButton *)button
@@ -390,39 +344,20 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    
-    return 40;
-}
 
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;
-{
-    UIView *view = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
-    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"grayColor"]];
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 80, 30)];
-    label.center = CGPointMake(160, 20);
-    label.backgroundColor = [UIColor clearColor];
-    label.text = [KindIndex objectAtIndex:section];
-    label.textColor = BlueColor;
-    label.textAlignment = NSTextAlignmentCenter;
-    [view addSubview:label];
-    return view;
-}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 160;
+    return 590;
     
 }
 
-#pragma mark textFieldDelelgate----------
--(BOOL)textFieldShouldReturn:(UITextField *)textField
+-(void)ModifyPassword:(NSString *)password
 {
-    [textField resignFirstResponder];
-    return YES;
+    NSLog(@"开始修改密码");
+
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

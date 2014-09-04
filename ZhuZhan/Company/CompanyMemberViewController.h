@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CompanyMemberViewController : UITableViewController
+@interface CompanyMemberViewController : UIViewController
 -(id)initWithMemberNumber:(NSInteger)number;
 @end

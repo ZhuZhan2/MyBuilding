@@ -10,6 +10,7 @@
 #import "AFAppDotNetAPIClient.h"
 #import "CommentModel.h"
 @implementation ContactModel
+
 //POST:
 //{
 //    "sourceUserId": "源用户Id" 必填
