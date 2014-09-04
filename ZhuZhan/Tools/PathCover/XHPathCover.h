@@ -64,7 +64,7 @@ extern NSString *const XHBirthdayKey;
 //删除点
 -(void)hidewaterDropRefresh;
 //设置头像位置
--(void)setHeadFrame:(CGRect)newFrame;
+//-(void)setHeadFrame:(CGRect)newFrame;
 //设置头像点击时间
 -(void)setHeadTaget;
 //设置名字位置

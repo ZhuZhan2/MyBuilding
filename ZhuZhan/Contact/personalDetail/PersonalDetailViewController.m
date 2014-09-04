@@ -44,7 +44,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
 
     
-    contactArr = @[@"929097264@qq.com",@"13938439096"];
+    contactArr = @[@"beibqtds@gmail.com",@"13938439096"];
     kImgArr = @[@"人脉－人的详情_21a",@"人脉－人的详情_23a"];
     titleArr =@[@"email",@"手 机"];
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 200)];
@@ -52,7 +52,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
     [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
     [_pathCover hidewaterDropRefresh];
-    [_pathCover setHeadFrame:CGRectMake(120, -50, 70, 70)];
     [_pathCover setNameFrame:CGRectMake(145, 20, 100, 20) font:[UIFont systemFontOfSize:14]];
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
     
@@ -123,9 +122,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
 
-    
     if (indexPath.row==0) {
      
             static NSString *identifier = @"Cell";
@@ -217,7 +214,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             backGroundCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
         
-        NSString *textStr =@"oifdjbfddgk;lkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhi";
+        NSString *textStr =@"oifdjbfddgk;lkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhilkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhilkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhilkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhi";
         UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(20, 60, 280, textViewHeight)];
         textView.editable =NO;
         textView.textAlignment = NSTextAlignmentLeft;

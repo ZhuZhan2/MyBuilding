@@ -11,6 +11,7 @@
 #import "TMPhotoQuiltViewCell.h"
 #import "ProductDetailViewController.h"
 #import "CommentModel.h"
+#import "ProductModel.h"
 @interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate>
 {
 	TMQuiltView *qtmquitView;
@@ -40,6 +41,13 @@
 	[qtmquitView reloadData];
     //[self createHeaderView];
 	//[self performSelector:@selector(testFinishedLoadData) withObject:nil afterDelay:0.0f];
+    
+    startIndex = 0;
+    [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+        
+        }
+    } productId:@"" startIndex:startIndex];
     
 }
 
@@ -293,14 +301,14 @@
     NSMutableArray* comments=[[NSMutableArray alloc]init];
     for (int i=0; i<25; i++) {
         CommentModel* model=[[CommentModel alloc]init];
-        model.name = [NSString stringWithFormat:@"name=%d",i];
-        model.time = [NSString stringWithFormat:@"%d-%d %d:%d",i,i,i,i];
+        model.a_name = [NSString stringWithFormat:@"name=%d",i];
+        model.a_time = [NSString stringWithFormat:@"%d-%d %d:%d",i,i,i,i];
         NSString* content = [NSString stringWithFormat:@"content=%d",i];
-        model.content=content;
+        model.a_content=content;
         for (int k=0; k<i; k++) {
-            model.content=[NSString stringWithFormat:@"%@%@",model.content,content];
+            model.a_content=[NSString stringWithFormat:@"%@%@",model.a_content,content];
         }
-        model.imageUrl = [NSString stringWithFormat:@"imageUrl=%d",i];
+        model.a_imageUrl = [NSString stringWithFormat:@"imageUrl=%d",i];
         [comments addObject:model];
     }
     

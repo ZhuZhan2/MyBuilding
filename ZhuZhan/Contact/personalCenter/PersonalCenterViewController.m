@@ -64,7 +64,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
     [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
     [_pathCover hidewaterDropRefresh];
-    [_pathCover setHeadFrame:CGRectMake(120, -20, 70, 70)];
     _pathCover.headImage.layer.cornerRadius =35;
     _pathCover.headImage.layer.masksToBounds =YES;
     [_pathCover.avatarButton.layer setMasksToBounds:YES];

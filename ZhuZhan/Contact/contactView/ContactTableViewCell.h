@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "EGOImageView.h"
+#import "HeadImageDelegate.h"
 @interface ContactTableViewCell : UITableViewCell{
     EGOImageView *headImageView;
     UIImageView *stageImage;
@@ -15,5 +16,5 @@
     UILabel *nameLabel;
     UILabel *jobLabel;
 }
-
+@property(nonatomic,strong)id<HeadImageDelegate>delegate;
 @end

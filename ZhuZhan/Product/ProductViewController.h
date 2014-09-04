@@ -16,6 +16,8 @@
     EGORefreshTableFooterView *_refreshFooterView;
     //
     BOOL _reloading;
+    
+    int startIndex;
 }
 
 @end
