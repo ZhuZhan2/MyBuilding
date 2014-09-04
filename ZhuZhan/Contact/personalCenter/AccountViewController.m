@@ -110,13 +110,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }
     } userId:@"a435ccfe-65cb-4d6d-ad89-3f828f51e0bb"];
     
-    /*[LoginModel GetUserImagesWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            
-        }
-    } userId:@"a435ccfe-65cb-4d6d-ad89-3f828f51e0bb"];*/
-    
-    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
