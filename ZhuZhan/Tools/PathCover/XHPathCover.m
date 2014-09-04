@@ -8,7 +8,7 @@
 
 #import "XHPathCover.h"
 #import "XHWaterDropRefresh.h"
-
+#import "EGOCache.h"
 NSString *const XHUserNameKey = @"XHUserName";
 NSString *const XHBirthdayKey = @"XHBirthday";
 
@@ -519,12 +519,13 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 
 - (void)setButton:(UIButton *)button WithFrame:(CGRect)frame WithBackgroundImage:(UIImage *)image AddTarget:(id)target WithAction:(SEL)selector WithTitle:(NSString *)title
 {
+//    UIView *back = [[UIView alloc] initWithFrame:frame];
+//    back.backgroundColor = [UIColor blackColor];
+//    back.alpha =0.4;
+//    [self addSubview:back];
     button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:frame];
-//    [button setBackgroundImage:image forState:UIControlStateNormal];
     [button setTitle:title forState:UIControlStateNormal];
-    button.backgroundColor = [UIColor blackColor];
-    button.alpha =0.4;
     [button addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:button];
     

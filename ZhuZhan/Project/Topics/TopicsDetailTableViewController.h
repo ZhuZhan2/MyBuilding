@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "TopicsModel.h"
-@interface TopicsDetailTableViewController : UITableViewController{
+#import "ProjectTableViewCell.h"
+@interface TopicsDetailTableViewController : UITableViewController<ProjectTableViewCellDelegate>{
     NSMutableArray *showArr;
 }
 @property (nonatomic,retain) TopicsModel *model;

@@ -18,7 +18,7 @@
 
 @implementation PersonalCenterViewController
 
-@synthesize personalArray;
+@synthesize personalArray,model;
 static int count =0; //用来记录用户第几次进入该页面
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 - (id)initWithStyle:(UITableViewStyle)style
@@ -46,8 +46,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton setFrame:CGRectMake(0, 0, 50, 19.5)];
-    [rightButton setTitle:@"帐户" forState:UIControlStateNormal];
+    [rightButton setFrame:CGRectMake(0, 0, 80, 19.5)];
+    [rightButton setTitle:@"账号设置" forState:UIControlStateNormal];
     rightButton.titleLabel.textColor = [UIColor whiteColor];
     [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
@@ -82,7 +82,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setHandleRefreshEvent:^{
         [wself _refreshing];
     }];
+    
+    model = [[ContactModel alloc] init];
+    model.companyName = @"上海中技桩业有限公司";
+    model.projectLeader = @"项目负责人";
+    model.projectName =@"鸟巢";
+    model.addFriendArr = @[@"张三",@"李四"];
+    model.userMood = @"今天真是一个好天气哦";
+    model.updatePicture =[UIImage imageNamed:@"首页_16"];
 
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 
@@ -92,45 +101,21 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)rightBtnClick{//账户按钮触发的事件
     count++;
-    if (count==1) {
-        [self pushToNextVC];
-    }
-    else{
+//    if (count==1) {
+//        [self pushToNextVC];
+//    }
+//    else{
         AccountViewController *accountVC = [[AccountViewController alloc] init];
-        accountVC.userIcon =[[SDImageCache sharedImageCache] imageFromKey:@"userIcon"];
+//        accountVC.userIcon =[[SDImageCache sharedImageCache] imageFromKey:@"userIcon"];
         [self.navigationController pushViewController:accountVC animated:YES];
-    }
+//    }
     
 }
 
 -(void)pushToNextVC
 {
     AccountViewController *accountVC = [[AccountViewController alloc] init];
-    [LoginModel GetUserImagesWithBlock:^(NSMutableArray *posts, NSError *error) {
-        
-        NSLog(@"***** %@",posts);
-        NSDictionary *dic = [posts objectAtIndex:0];
-        NSString  *statusCode = [[[dic objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
-        if([[NSString stringWithFormat:@"%@",statusCode]isEqualToString:@"1300"]){
-            NSDictionary *dataDic = [[dic objectForKey:@"d"] objectForKey:@"data"];
-            
-            NSString *imageLocation = [dataDic objectForKey:@"imageLocation"];
-            NSLog(@"imageLocation %@",imageLocation);
-            NSString *host = [NSString stringWithFormat:@"%s",serverAddress];
-            NSString *urlString = [host stringByAppendingString:imageLocation];
-            NSData *imageData =[NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
-            NSLog(@"[NSURL URLWithString:urlString] %@",[NSURL URLWithString:urlString]);
-            accountVC.userIcon = [UIImage imageWithData:imageData];
-            
-            
-        }else{
-            
-            accountVC.userIcon = [UIImage imageNamed:@"1"];
-        }
-        
-        [[SDImageCache sharedImageCache] storeImage:accountVC.userIcon forKey:@"userIcon"];
-        [self.navigationController pushViewController:accountVC animated:YES];
-    } userId:@"d2b49305-026c-4ff6-b2fc-5d1401510fd8"];
+    [self.navigationController pushViewController:accountVC animated:YES];
 }
 
 
@@ -186,28 +171,33 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_datasource count];
+    return 6;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    static NSString *identifier2 = @"commonCell";
-        CommonCell *cell2 = (CommonCell*)[tableView dequeueReusableCellWithIdentifier:identifier2];
-        if (!cell2) {
-            cell2 = [[CommonCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:identifier2];
+    static NSString *identifier = @"commonCell";
+        CommonCell *commonCell = (CommonCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!commonCell) {
+            commonCell = [[CommonCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:identifier WithModel:model WithIndex:indexPath.row];
         }
    
-    cell2.userIcon.image = [UIImage imageNamed:@"面部采集_12"];
-    cell2.contentLabel.text = [NSString stringWithFormat:@"%@",[_datasource objectAtIndex:indexPath.row]];
-    
-    return cell2;
+    return commonCell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    if (indexPath.row==0) {
+        return 60;
+    }
+    if (indexPath.row ==1 ||indexPath.row==2 ||indexPath.row==3) {
+        return 50;
+    }
     
-    return 50;
+    if (indexPath.row==4) {
+        return 80;
+    }
+    return 200;
 }
 
 //时间标签

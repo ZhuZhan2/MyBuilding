@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "TopicsTableViewController.h"
 #import "SearchViewController.h"
-@interface ProjectTableViewController : UITableViewController{
+#import "ProjectTableViewCell.h"
+#import "PorjectCommentTableViewController.h"
+@interface ProjectTableViewController : UITableViewController<ProjectTableViewCellDelegate>{
     NSMutableArray *showArr;
     int startIndex;
 }

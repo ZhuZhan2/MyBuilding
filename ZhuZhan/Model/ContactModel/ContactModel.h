@@ -41,6 +41,29 @@
 //项目所在区域
 @property (nonatomic,copy) NSString * projectDistrict;
 
+//新添加的好友数组
+@property (nonatomic,copy) NSArray * addFriendArr;
+
+//用户更新心情
+@property (nonatomic,copy) NSString * userMood;
+
+//用户更新图片
+@property (nonatomic,copy) UIImage * updatePicture;
+
+//用户名
+@property (nonatomic,strong)NSString  *userName;
+
+//密码
+@property (nonatomic,strong)NSString  *password;
+
+//真实姓名
+@property (nonatomic,strong)NSString *realName;
+
+//性别
+@property (nonatomic,strong)NSString *sex;
+
+//职位
+@property (nonatomic,strong)NSString *position;
 //***********************************************************************************
 
 

@@ -10,12 +10,13 @@
 #import "ProjectStage.h"
 @implementation ProjectTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(projectModel *)model fromView:(NSString *)fromView
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(projectModel *)model fromView:(NSString *)fromView index:(int)index
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
         self.backgroundColor = RGBCOLOR(239, 237, 237);
+        indexRow = index;
         if([fromView isEqualToString:@"project"]){
             flag = 0;
         }else if([fromView isEqualToString:@"topics"]){
@@ -113,7 +114,7 @@
     [bgImgView addSubview:arrowImage];
     
     UIButton *dianBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [dianBtn setFrame:CGRectMake(255,225,21,20)];
+    [dianBtn setFrame:CGRectMake(275,225,21,20)];
     [dianBtn setBackgroundImage:[UIImage imageNamed:@"项目-首页_18a.png"] forState:UIControlStateNormal];
     [dianBtn addTarget:self action:@selector(dianBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:dianBtn];
@@ -133,7 +134,9 @@
 }
 
 -(void)dianBtnClick{
-    NSLog(@"dianBtnClick");
+    if([self.delegate respondsToSelector:@selector(addProjectCommentView:)]){
+        [self.delegate addProjectCommentView:indexRow];
+    }
 }
 
 -(void)setModel:(projectModel *)model{
