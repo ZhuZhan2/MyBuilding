@@ -183,6 +183,28 @@ static float textHeight =0;
             backGroundCell = [[BgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithTextHeight:textHeight WithModel:model];
         }
         
+        NSString *textStr =@"oifdjbfddgk;lkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhilkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhilkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhilkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhi";
+        UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(20, 60, 280, textViewHeight)];
+        textView.editable =NO;
+        textView.textAlignment = NSTextAlignmentLeft;
+        textView.text = textStr;
+        textView.font = [UIFont systemFontOfSize:14];
+        
+        UIView *bgview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, textViewHeight+60)];
+        [backGroundCell addSubview:bgview];
+        
+        UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, 30)];
+        companyLabel.text = @"上海某某公司";
+        companyLabel.textAlignment = NSTextAlignmentLeft;
+        [bgview addSubview:companyLabel];
+        
+        UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 30, 280, 30)];
+        timeLabel.text = @"XX年XX月－－目前";
+        timeLabel.textAlignment = NSTextAlignmentLeft;
+        [bgview addSubview:timeLabel];
+        [bgview addSubview:textView];
+        
+        backGroundCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return backGroundCell;
         
     }
