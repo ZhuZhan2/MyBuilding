@@ -74,8 +74,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
-    if (self.model.a_id) {
-        [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
+    [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 [self.model getContacts:posts[0]];
                 [self.model getImages:posts[1]];
@@ -84,11 +83,7 @@
             }else{
                 
             }
-        } projectId:self.model.a_id];
-    }else{
-        [self loadSelf];
-    }
-    
+    } projectId:self.model.a_id];
 }
 
 -(void)loadSelf{
