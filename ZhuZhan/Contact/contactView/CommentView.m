@@ -34,8 +34,8 @@
     [commentView addSubview:topLineImage];
     topLineImage.alpha =0.2;
     
-    EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:model.imageUrl]];
-    imageView.frame = CGRectMake(5, 5, 310, [UIImage imageNamed:model.imageUrl].size.height/2);
+    EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:model.a_imageUrl]];
+    imageView.frame = CGRectMake(5, 5, 310, [UIImage imageNamed:model.a_imageUrl].size.height/2);
     [commentView addSubview:imageView];
     
     UILabel *contentLabel = [[UILabel alloc] init];
@@ -44,9 +44,9 @@
     contentLabel.font = tfont;
     contentLabel.textColor = [UIColor blackColor];
     contentLabel.lineBreakMode =NSLineBreakByCharWrapping ;
-    contentLabel.text = [NSString stringWithFormat:@"%@:%@",model.name,model.content];
+    contentLabel.text = [NSString stringWithFormat:@"%@:%@",model.a_name,model.a_content];
     
-    NSString *string = [NSString stringWithFormat:@"%@:%@",model.name,model.content];
+    NSString *string = [NSString stringWithFormat:@"%@:%@",model.a_name,model.a_content];
     //给一个比较大的高度，宽度不变
     CGSize size =CGSizeMake(300,1000);
     //    获取当前文本的属性

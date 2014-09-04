@@ -66,12 +66,6 @@
     [self.window makeKeyAndVisible];
     
     
-
-//    PersonalDetailViewController *personVC = [[PersonalDetailViewController alloc] init];
-//    UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:personVC];
-//    self.window.rootViewController =naVC;
-//    [self.window makeKeyAndVisible];
-    
     
       /* if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];

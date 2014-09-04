@@ -19,10 +19,10 @@
 
 #import <UIKit/UIKit.h>
 #import "TMQuiltViewCell.h"
-
+#import "EGOImageView.h"
 @interface TMPhotoQuiltViewCell : TMQuiltViewCell
 
-@property (nonatomic, retain) UIImageView *photoView;
+@property (nonatomic, retain) EGOImageView *photoView;
 @property (nonatomic, retain) UILabel *titleLabel;
 @property (nonatomic, retain) UILabel* commentCountLabel;
 @end

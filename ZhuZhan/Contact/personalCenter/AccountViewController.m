@@ -69,7 +69,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
 
     [_pathCover hidewaterDropRefresh];
-    [_pathCover setHeadFrame:CGRectMake(120, -50, 70, 70)];
     _pathCover.headImage.layer.cornerRadius =35;
     _pathCover.headImage.layer.masksToBounds =YES;
     _pathCover.avatarButton.center = CGPointMake(160, -15);

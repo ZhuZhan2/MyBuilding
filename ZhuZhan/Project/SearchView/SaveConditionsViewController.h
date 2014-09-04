@@ -16,7 +16,7 @@
 
 @interface SaveConditionsViewController : UIViewController<UITextFieldDelegate>{
     UITextField *nameTextField;
-    NSString *string;
+    NSString *newstring;
 }
 @property(nonatomic,weak)id<SaveConditionsViewDelegate>delegate;
 @property(nonatomic,weak)NSMutableDictionary *dataDic;

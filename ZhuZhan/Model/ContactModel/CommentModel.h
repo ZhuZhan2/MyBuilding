@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface CommentModel : NSObject
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *content;
-@property (nonatomic, copy) NSString *imageUrl;
-@property (nonatomic, copy) NSString *time;
-@property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *a_id;
+@property (nonatomic, copy) NSString *a_name;
+@property (nonatomic, copy) NSString *a_content;
+@property (nonatomic, copy) NSString *a_imageUrl;
+@property (nonatomic, copy) NSString *a_time;
+@property (nonatomic, copy) NSString *a_type;
 @property (nonatomic, copy) NSDictionary *dict;
 @end

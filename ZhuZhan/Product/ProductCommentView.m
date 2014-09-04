@@ -37,17 +37,17 @@
     
     //用户名称label
     self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(80, 15, 150, 20)];
-    self.userNameLabel.text=commentModel.name;
+    self.userNameLabel.text=commentModel.a_name;
     self.userNameLabel.font=[UIFont systemFontOfSize:20];
     //self.userNameLabel.backgroundColor=[UIColor redColor];
     [self addSubview:self.userNameLabel];
     
     //用户评论内容label
-    CGRect bounds=[commentModel.content boundingRectWithSize:CGSizeMake(213, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+    CGRect bounds=[commentModel.a_content boundingRectWithSize:CGSizeMake(213, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
     self.userCommentContent=[[UILabel alloc]initWithFrame:CGRectMake(80, 40, 213, bounds.size.height)];
     self.userCommentContent.numberOfLines=0;
     self.userCommentContent.font=[UIFont systemFontOfSize:17];
-    self.userCommentContent.text=commentModel.content;
+    self.userCommentContent.text=commentModel.a_content;
     self.userCommentContent.textColor=RGBCOLOR(86, 86, 86);
     [self addSubview:self.userCommentContent];
     
@@ -60,7 +60,7 @@
     
     //用户发表评论时间
     self.publishTime=[[UILabel alloc]initWithFrame:CGRectMake(192, 15, 100, 20)];
-    self.publishTime.text=commentModel.time;
+    self.publishTime.text=commentModel.a_time;
     self.publishTime.textColor=RGBCOLOR(170, 170, 170);
     self.publishTime.font=[UIFont systemFontOfSize:16];
     self.publishTime.textAlignment=NSTextAlignmentRight;

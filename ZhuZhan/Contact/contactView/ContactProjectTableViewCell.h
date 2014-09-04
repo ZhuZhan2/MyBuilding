@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "EGOImageView.h"
+#import "HeadImageDelegate.h"
 @interface ContactProjectTableViewCell : UITableViewCell{
     EGOImageView *headImageView;
     UIImageView *stageImage;
     UILabel *titleLabel;
     UILabel *contentLabel;
 }
-
+@property(nonatomic,strong)id<HeadImageDelegate>delegate;
 @end

@@ -62,7 +62,7 @@
     nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(23, 84, 225, 29)];
     nameTextField.placeholder = @"Name";
     nameTextField.delegate = self;
-    [nameTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    //[nameTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:nameTextField];
     
     [nameTextField becomeFirstResponder];
@@ -84,24 +84,43 @@
     // Pass the selected object to the new view controller.
 }
 */
-- (void)textFieldDidChange:(UITextField *)textField
-{
-    NSLog(@"===========%d",textField.text.length);
-    if (textField.text.length > 24) {
-    //if (textField.text.length > 5) {
-        NSLog(@"%d",textField.text.length);
-        textField.text = [textField.text substringToIndex:24];
-        NSLog(@"1111111");
+//- (void)textFieldDidChange:(UITextField *)textField
+//{
+//    if (textField.text.length > 24) {
+//        textField.text = [textField.text substringToIndex:24];
 //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"名字太长了" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
 //        [alert show];
+//    }
+//}
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
+{  //string就是此时输入的那个字符textField就是此时正在输入的那个输入框返回YES就是可以改变输入框的值NO相反
+    
+    if ([string isEqualToString:@"\n"])  //按会车可以改变
+    {
+        return YES;
     }
+    
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string]; //得到输入框的内容
+    
+    if (nameTextField == textField)  //判断是否时我们想要限定的那个输入框
+    {
+        if ([toBeString length] > 20) { //如果输入框内容大于20则弹出警告
+            textField.text = [toBeString substringToIndex:20];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"超过最大字数不能输入了" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            return NO;
+        }
+    }
+    return YES;
 }
 
 -(void)confirmBtnClick{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:nameTextField.text forKey:@"SearchName"];
     [dic setValue:@"0ba5403d-6b6e-425f-b7e6-9555be0c38a9" forKey:@"CreateBy"];
-    [dic setValue:string forKey:@"SearchConditions"];
+    [dic setValue:newstring forKey:@"SearchConditions"];
     [ProjectApi SearchConditionWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             [nameTextField resignFirstResponder];
@@ -127,7 +146,7 @@
         }
     }
     if(str.length !=0){
-        string = [str substringToIndex:([str length]-2)];
+        newstring = [str substringToIndex:([str length]-2)];
     }
 }
 @end

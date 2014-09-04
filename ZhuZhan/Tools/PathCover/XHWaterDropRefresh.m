@@ -77,7 +77,7 @@
     
     
     _shapeLayer = [CAShapeLayer layer];
-    _shapeLayer.fillColor = [UIColor colorWithRed:222./255. green:216./255. blue:211./255. alpha:1].CGColor;
+    _shapeLayer.fillColor = [UIColor whiteColor].CGColor;
     _shapeLayer.strokeColor = [[UIColor whiteColor] CGColor];
     _shapeLayer.lineWidth = 2;
     [self.layer addSublayer:_shapeLayer];
