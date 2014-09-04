@@ -299,7 +299,6 @@
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
             productView = nil;
-            tradeView=nil;
             testVC=nil;
             break;
         default:

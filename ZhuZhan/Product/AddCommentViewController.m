@@ -57,6 +57,8 @@
     self.textView.backgroundColor=[UIColor clearColor];
     self.textView.font=[UIFont systemFontOfSize:18];
     [self.view addSubview:self.textView];
+    
+    [self.textView becomeFirstResponder];
 }
 
 -(void)textViewDidChange:(UITextView *)textView{
