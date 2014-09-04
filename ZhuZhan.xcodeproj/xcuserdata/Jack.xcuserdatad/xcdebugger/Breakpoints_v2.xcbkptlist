@@ -48,22 +48,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ZhuZhan/Contact/personalCenter/PersonalCenterViewController.m"
-            timestampString = "431406111.279964"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "-pushToNextVC"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -75,6 +59,36 @@
             endingLineNumber = "434"
             landmarkName = "+GetSeminarProjectsWithBlock:Id:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[ProjectApi GetSeminarProjectsWithBlock:Id:]"
+                  moduleName = "ZhuZhan"
+                  urlString = "file:///Users/Jack/Desktop/%E6%88%91%E7%9A%84%E4%BB%A3%E7%A0%81/GitHub/ZhuZhanDev/ZhuZhan/Model/ProjectModel/ProjectApi.m"
+                  timestampString = "431505787.273081"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "434"
+                  endingLineNumber = "434"
+                  offsetFromSymbolStart = "118">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__45+[ProjectApi GetSeminarProjectsWithBlock:Id:]_block_invoke"
+                  moduleName = "ZhuZhan"
+                  urlString = "file:///Users/Jack/Desktop/%E6%88%91%E7%9A%84%E4%BB%A3%E7%A0%81/GitHub/ZhuZhanDev/ZhuZhan/Model/ProjectModel/ProjectApi.m"
+                  timestampString = "431505787.27327"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "434"
+                  endingLineNumber = "434"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
