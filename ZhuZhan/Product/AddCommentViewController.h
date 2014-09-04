@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommentModel.h"
+@protocol AddCommentDelegate <NSObject>
+
+-(void)cancelFromAddComment;
+-(void)sureFromAddCommentWithComment:(NSString*)comment;
+
+@end
 
 @interface AddCommentViewController : UIViewController
-
+@property(nonatomic,weak)id<AddCommentDelegate>delegate;
 @end

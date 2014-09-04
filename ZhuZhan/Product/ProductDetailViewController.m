@@ -11,7 +11,7 @@
 #import "AddCommentViewController.h"
 #import "AppDelegate.h"
 #import "UIViewController+MJPopupViewController.h"
-@interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate>
 @property(nonatomic,strong)UITableView* myTableView;
 
 @property(nonatomic,strong)UIImage* productImage;//产品图片
@@ -107,18 +107,26 @@
 }
 
 -(void)chooseComment:(UIButton*)button{
-   // self.vc=nil;
     self.vc=[[AddCommentViewController alloc]init];
-    AppDelegate* app=[AppDelegate instance];
-    //app.window.rootViewController;
-    //[self presentViewController:vc animated:NO completion:nil];
-    //[app.window.rootViewController presentViewController:vc animated:NO completion:nil];
-    [app.window.rootViewController presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
+    self.vc.delegate=self;
+    [self presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
 }
 
+//=========================================================================
+//AddCommentDelegate
+//=========================================================================
+-(void)cancelFromAddComment{
+    NSLog(@"cancelFromAddComment");
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+}
+-(void)sureFromAddCommentWithComment:(NSString *)comment{
+    NSLog(@"sureFromAddCommentWithCommentModel:");
+    NSLog(@"%@",comment);
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+}
 
 //=========================================================================
-//=========================================================================
+//UITableViewDataSource,UITableViewDelegate
 //=========================================================================
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

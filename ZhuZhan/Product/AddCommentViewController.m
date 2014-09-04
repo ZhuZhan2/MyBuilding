@@ -11,6 +11,7 @@
 @interface AddCommentViewController ()<UITextViewDelegate>
 @property(nonatomic,strong)UILabel* countLabel;//字数label
 @property(nonatomic,strong)UILabel* aboveMaxLabel;//超过字数限制时的中文提示label
+@property(nonatomic,strong)UITextView* textView;
 @end
 
 @implementation AddCommentViewController
@@ -51,11 +52,11 @@
     frame.origin.x+=10;
     frame.size.width-=20;
     
-    UITextView* textView=[[UITextView alloc]initWithFrame:frame];
-    textView.delegate=self;
-    textView.backgroundColor=[UIColor clearColor];
-    textView.font=[UIFont systemFontOfSize:18];
-    [self.view addSubview:textView];
+    self.textView=[[UITextView alloc]initWithFrame:frame];
+    self.textView.delegate=self;
+    self.textView.backgroundColor=[UIColor clearColor];
+    self.textView.font=[UIFont systemFontOfSize:18];
+    [self.view addSubview:self.textView];
 }
 
 -(void)textViewDidChange:(UITextView *)textView{
@@ -100,11 +101,23 @@
 }
 
 -(void)cancel{
+    if ([self.delegate respondsToSelector:@selector(cancelFromAddComment)]) {
+        [self.delegate cancelFromAddComment];
+    }
     NSLog(@"cancel");
 }
 
 -(void)sure{
-    NSLog(@"sure");
+    if ([self.delegate respondsToSelector:@selector(sureFromAddCommentWithComment:)]) {
+        NSString* tempStr;
+        if (self.textView.text.length>100) {
+            tempStr=[self.textView.text substringToIndex:100];
+        }else{
+            tempStr=self.textView.text;
+        }
+        [self.delegate sureFromAddCommentWithComment:tempStr];
+        NSLog(@"sure");
+    }
 }
 //=========================================================================
 //=========================================================================
