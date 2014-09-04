@@ -392,6 +392,8 @@
 		5B656CFC19932E36007D79A8 /* QuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CFA19932E36007D79A8 /* QuadCurveMenuItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5BF08A3619B83CDC00782976 /* 人脉_01a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF08A3419B83CDC00782976 /* 人脉_01a.png */; };
 		5BF08A3719B83CDC00782976 /* 人脉_02a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF08A3519B83CDC00782976 /* 人脉_02a.png */; };
+		5BF08A3A19B86C5D00782976 /* MoreCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */; };
+		5BF08A3D19B8779D00782976 /* MoreCompanyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */; };
 		D3AC60F219B5555D0015B62F /* 地图搜索_02.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC60F019B5555D0015B62F /* 地图搜索_02.png */; };
 		D3AC60F519B5571D0015B62F /* 搜索结果_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC60F419B5571D0015B62F /* 搜索结果_03a.png */; };
 		D3AC610319B589970015B62F /* 高级搜索-多选_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC610019B589970015B62F /* 高级搜索-多选_03a.png */; };
@@ -1304,6 +1306,10 @@
 		5B656CFA19932E36007D79A8 /* QuadCurveMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadCurveMenuItem.m; sourceTree = "<group>"; };
 		5BF08A3419B83CDC00782976 /* 人脉_01a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉_01a.png"; sourceTree = "<group>"; };
 		5BF08A3519B83CDC00782976 /* 人脉_02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉_02a.png"; sourceTree = "<group>"; };
+		5BF08A3819B86C5D00782976 /* MoreCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCompanyViewController.h; sourceTree = "<group>"; };
+		5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCompanyViewController.m; sourceTree = "<group>"; };
+		5BF08A3B19B8779D00782976 /* MoreCompanyViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCompanyViewCell.h; sourceTree = "<group>"; };
+		5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCompanyViewCell.m; sourceTree = "<group>"; };
 		D3AC60F019B5555D0015B62F /* 地图搜索_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图搜索_02.png"; sourceTree = "<group>"; };
 		D3AC60F119B5555D0015B62F /* mapsearch-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapsearch-1.png"; sourceTree = "<group>"; };
 		D3AC60F419B5571D0015B62F /* 搜索结果_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索结果_03a.png"; sourceTree = "<group>"; };
@@ -1667,6 +1673,10 @@
 				0426C01B19922D5900CD8822 /* CompanyViewController.m */,
 				5B656CF419931275007D79A8 /* CompanyMemberViewController.h */,
 				5B656CF519931275007D79A8 /* CompanyMemberViewController.m */,
+				5BF08A3819B86C5D00782976 /* MoreCompanyViewController.h */,
+				5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */,
+				5BF08A3B19B8779D00782976 /* MoreCompanyViewCell.h */,
+				5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */,
 			);
 			path = Company;
 			sourceTree = "<group>";
@@ -3436,6 +3446,7 @@
 				5B13C71919B70699008EA7A0 /* AddCommentViewController.m in Sources */,
 				D3AD609519AC56CB001FD483 /* MJRefreshHeaderView.m in Sources */,
 				0426C2CE19922D5A00CD8822 /* GPUImageTwoInputCrossTextureSamplingFilter.m in Sources */,
+				5BF08A3A19B86C5D00782976 /* MoreCompanyViewController.m in Sources */,
 				0426C2CA19922D5A00CD8822 /* GPUImageTiltShiftFilter.m in Sources */,
 				5B0A006C19B5874500500C05 /* TMPhotoQuiltViewCell.m in Sources */,
 				0426C2D819922D5A00CD8822 /* GPUImageWhiteBalanceFilter.m in Sources */,
@@ -3550,6 +3561,7 @@
 				0426C2B419922D5A00CD8822 /* GPUImageSharpenFilter.m in Sources */,
 				0426C2FB19922D5A00CD8822 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				D3AC61A919B6BF930015B62F /* ContactModel.m in Sources */,
+				5BF08A3D19B8779D00782976 /* MoreCompanyViewCell.m in Sources */,
 				042D9E2319B559FC00689C5D /* SaveConditionsViewController.m in Sources */,
 				0426C2AC19922D5A00CD8822 /* GPUImageRGBDilationFilter.m in Sources */,
 				0426C2C519922D5A00CD8822 /* GPUImageTextureOutput.m in Sources */,
