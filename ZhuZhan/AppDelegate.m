@@ -65,6 +65,10 @@
     self.window.rootViewController = homeVC;
     [self.window makeKeyAndVisible];
     
+//    PersonalDetailViewController *personVC = [[PersonalDetailViewController alloc] init];
+//    self.window.rootViewController = personVC;
+//    [self.window makeKeyAndVisible];
+    
     
     
       /* if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){

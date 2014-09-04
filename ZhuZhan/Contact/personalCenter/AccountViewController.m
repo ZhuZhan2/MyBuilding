@@ -69,20 +69,22 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
 
     [_pathCover hidewaterDropRefresh];
-    _pathCover.headImage.layer.cornerRadius =35;
-    _pathCover.headImage.layer.masksToBounds =YES;
-    _pathCover.avatarButton.center = CGPointMake(160, -15);
-
+    [_pathCover setHeadImageFrame:CGRectMake(120, -50, 70, 70)];
+    [_pathCover.headImage.layer setMasksToBounds:YES];
+    [_pathCover.headImage.layer setCornerRadius:35];
+    [_pathCover setNameFrame:CGRectMake(145, 20, 100, 20) font:[UIFont systemFontOfSize:14]];
+    _pathCover.userNameLabel.textAlignment = NSTextAlignmentCenter;
+    _pathCover.userNameLabel.center = CGPointMake(155, 30);
     
-    
-
+    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
+    self.tableView.tableHeaderView = self.pathCover;
     
     UIButton *setBgBtn =nil;
     UIButton *setIconBtn =nil;
-    [_pathCover setButton:setBgBtn WithFrame:CGRectMake(0, 160, 160, 40) WithBackgroundImage:[UIImage imageNamed:@"setBg"] AddTarget:self WithAction:@selector(setbackgroundImage)];
-    [_pathCover setButton:setIconBtn WithFrame:CGRectMake(160, 160, 160, 40) WithBackgroundImage:[UIImage imageNamed:@"setIcon"] AddTarget:self WithAction:@selector(setuserIcon)];
+    [_pathCover setButton:setBgBtn WithFrame:CGRectMake(0, 160, 160, 40) WithBackgroundImage:[UIImage imageNamed:@"setBg"] AddTarget:self WithAction:@selector(setbackgroundImage)WithTitle:@"设置封面"];
+    [_pathCover setButton:setIconBtn WithFrame:CGRectMake(160, 160, 160, 40) WithBackgroundImage:[UIImage imageNamed:@"setIcon"] AddTarget:self WithAction:@selector(setuserIcon)WithTitle:@"设置头像"];
+
     
-    self.tableView.tableHeaderView = self.pathCover;
     
     
     __weak AccountViewController *wself = self;

@@ -101,6 +101,9 @@
 @property(nonatomic,strong)NSMutableArray* decorationImages;
 
 @property (nonatomic, copy) NSDictionary *dict;
+
+//************************************************************************************
+
 -(void)getContacts:(NSArray*)contacts;
 -(void)getImages:(NSArray*)images;
 @end

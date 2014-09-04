@@ -9,13 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "XHPathCover.h"
 #import <MessageUI/MessageUI.h>
+#import "BgCell.h"
+#import "CorrelateCell.h"
+#import "ContactModel.h"
 @interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate,MFMailComposeViewControllerDelegate>
 
-@property (nonatomic,strong) NSArray *contactArr;
-@property (nonatomic,strong) NSArray *kImgArr;
 @property (nonatomic, strong) XHPathCover *pathCover;
-@property (nonatomic) float textViewHeight;
-@property (nonatomic,strong) NSArray *titleArr;
-
+@property (nonatomic,strong) ContactModel *model;
 
 @end

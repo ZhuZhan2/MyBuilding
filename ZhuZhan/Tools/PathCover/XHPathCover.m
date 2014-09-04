@@ -517,11 +517,14 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     }
 }
 
-- (void)setButton:(UIButton *)button WithFrame:(CGRect)frame WithBackgroundImage:(UIImage *)image AddTarget:(id)target WithAction:(SEL)selector
+- (void)setButton:(UIButton *)button WithFrame:(CGRect)frame WithBackgroundImage:(UIImage *)image AddTarget:(id)target WithAction:(SEL)selector WithTitle:(NSString *)title
 {
     button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:frame];
-    [button setBackgroundImage:image forState:UIControlStateNormal];
+//    [button setBackgroundImage:image forState:UIControlStateNormal];
+    [button setTitle:title forState:UIControlStateNormal];
+    button.backgroundColor = [UIColor blackColor];
+    button.alpha =0.4;
     [button addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:button];
     
