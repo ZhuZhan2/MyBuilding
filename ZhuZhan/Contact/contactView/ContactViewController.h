@@ -13,7 +13,8 @@
 #import "CommentModel.h"
 #import "CommentView.h"
 #import "HeadImageDelegate.h"
-@interface ContactViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate,showControllerDelegate,HeadImageDelegate>{
+#import "AddCommentViewController.h"
+@interface ContactViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate,showControllerDelegate,HeadImageDelegate,CommentViewDelegate,AddCommentDelegate>{
     NSMutableArray *_datasource;
     ACTimeScroller *_timeScroller;
      NSMutableArray *chooseArray ;
@@ -21,6 +22,8 @@
     NSMutableArray *viewArr;
     CommentView *commentView;
     int startIndex;
+    AddCommentViewController *addCommentView;
+    NSIndexPath *indexpath;
 }
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong) ShowViewController *showVC;
