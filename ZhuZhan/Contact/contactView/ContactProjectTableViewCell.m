@@ -46,6 +46,11 @@
     [headImageView setFrame:CGRectMake(15, 6.5, 37, 37)];
     [self.contentView addSubview:headImageView];
     
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(15, 6.5, 37, 37);
+    [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:btn];
+    
     stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(62.5, 11.5, 27, 27)];
     [stageImage setImage:[UIImage imageNamed:@"人脉_57a"]];
     [self.contentView addSubview:stageImage];
@@ -62,5 +67,11 @@
     contentLabel.textAlignment = NSTextAlignmentLeft;
     contentLabel.textColor = [UIColor lightGrayColor];
     [self.contentView addSubview:contentLabel];
+}
+
+-(void)btnClick{
+    if([self.delegate respondsToSelector:@selector(HeadImageAction)]){
+        [self.delegate HeadImageAction];
+    }
 }
 @end

@@ -147,9 +147,7 @@ static float textHeight =0;
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
 
-    
     if (indexPath.row==0) {
      
             static NSString *identifier = @"companyCell";

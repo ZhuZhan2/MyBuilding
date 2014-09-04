@@ -11,6 +11,8 @@
 #import "TMPhotoQuiltViewCell.h"
 #import "ProductDetailViewController.h"
 #import "CommentModel.h"
+#import "ProductModel.h"
+#import "EGOImageView.h"
 @interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate>
 {
 	TMQuiltView *qtmquitView;
@@ -37,9 +39,17 @@
 	qtmquitView.showsVerticalScrollIndicator=NO;
 	[self.view addSubview:qtmquitView];
 	
-	[qtmquitView reloadData];
     //[self createHeaderView];
 	//[self performSelector:@selector(testFinishedLoadData) withObject:nil afterDelay:0.0f];
+    
+    startIndex = 0;
+    [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            showArr = posts;
+            NSLog(@"%@",showArr);
+            [qtmquitView reloadData];
+        }
+    } productId:@"" startIndex:startIndex];
     
 }
 
@@ -240,11 +250,15 @@
 
 
 - (UIImage *)imageAtIndexPath:(NSIndexPath *)indexPath {
-    return [UIImage imageNamed:[self.images objectAtIndex:indexPath.row]];
+    ProductModel *model = showArr[indexPath.row];
+    EGOImageView *imageview = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"bg001"]];
+    imageview.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
+    //return [UIImage imageNamed:[self.images objectAtIndex:indexPath.row]];
+    return imageview.image;
 }
 
 - (NSInteger)quiltViewNumberOfCells:(TMQuiltView *)TMQuiltView {
-    return [self.images count];
+    return [showArr count];
 }
 
 - (TMQuiltViewCell *)quiltView:(TMQuiltView *)quiltView cellAtIndexPath:(NSIndexPath *)indexPath {
@@ -252,11 +266,13 @@
     if (!cell) {
         cell = [[TMPhotoQuiltViewCell alloc] initWithReuseIdentifier:@"PhotoCell"];
     }
-    NSArray* ary=@[@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf"];
+    ProductModel *model = showArr[indexPath.row];
     
-    cell.photoView.image = [self imageAtIndexPath:indexPath];
-    cell.titleLabel.text = ary[indexPath.row];
-    cell.commentCountLabel.text=[NSString stringWithFormat:@"%d",indexPath.row];
+    //cell.photoView.image = [self imageAtIndexPath:indexPath];
+    cell.photoView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
+
+    cell.titleLabel.text = model.a_content;
+    cell.commentCountLabel.text= model.a_commentNumber;
     return cell;
 }
 
@@ -293,14 +309,14 @@
     NSMutableArray* comments=[[NSMutableArray alloc]init];
     for (int i=0; i<25; i++) {
         CommentModel* model=[[CommentModel alloc]init];
-        model.name = [NSString stringWithFormat:@"name=%d",i];
-        model.time = [NSString stringWithFormat:@"%d-%d %d:%d",i,i,i,i];
+        model.a_name = [NSString stringWithFormat:@"name=%d",i];
+        model.a_time = [NSString stringWithFormat:@"%d-%d %d:%d",i,i,i,i];
         NSString* content = [NSString stringWithFormat:@"content=%d",i];
-        model.content=content;
+        model.a_content=content;
         for (int k=0; k<i; k++) {
-            model.content=[NSString stringWithFormat:@"%@%@",model.content,content];
+            model.a_content=[NSString stringWithFormat:@"%@%@",model.a_content,content];
         }
-        model.imageUrl = [NSString stringWithFormat:@"imageUrl=%d",i];
+        model.a_imageUrl = [NSString stringWithFormat:@"imageUrl=%d",i];
         [comments addObject:model];
     }
     

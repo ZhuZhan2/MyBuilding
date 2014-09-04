@@ -16,6 +16,10 @@
     EGORefreshTableFooterView *_refreshFooterView;
     //
     BOOL _reloading;
+    
+    int startIndex;
+    
+    NSMutableArray *showArr;
 }
 
 @end
