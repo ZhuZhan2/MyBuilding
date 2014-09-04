@@ -353,7 +353,6 @@
 		5B13C74219B835BE008EA7A0 /* 公司－公司组织_05a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C72419B835BE008EA7A0 /* 公司－公司组织_05a@2x.png */; };
 		5B13C74319B835BE008EA7A0 /* 公司－公司组织_12a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C72519B835BE008EA7A0 /* 公司－公司组织_12a.png */; };
 		5B13C74419B835BE008EA7A0 /* 公司－公司组织_12a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C72619B835BE008EA7A0 /* 公司－公司组织_12a@2x.png */; };
-		5B13C74519B835BE008EA7A0 /* 公司－公司组织_13a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C72719B835BE008EA7A0 /* 公司－公司组织_13a.png */; };
 		5B13C74619B835BE008EA7A0 /* 公司－公司组织_13a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C72819B835BE008EA7A0 /* 公司－公司组织_13a@2x.png */; };
 		5B13C74719B835BE008EA7A0 /* 公司－我的公司_02a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C72919B835BE008EA7A0 /* 公司－我的公司_02a.png */; };
 		5B13C74819B835BE008EA7A0 /* 公司－我的公司_02a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C72A19B835BE008EA7A0 /* 公司－我的公司_02a@2x.png */; };
@@ -385,6 +384,8 @@
 		5B656CFC19932E36007D79A8 /* QuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CFA19932E36007D79A8 /* QuadCurveMenuItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5BF08A3619B83CDC00782976 /* 人脉_01a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF08A3419B83CDC00782976 /* 人脉_01a.png */; };
 		5BF08A3719B83CDC00782976 /* 人脉_02a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF08A3519B83CDC00782976 /* 人脉_02a.png */; };
+		5BF08A3A19B86C5D00782976 /* MoreCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */; };
+		5BF08A3D19B8779D00782976 /* MoreCompanyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */; };
 		D3AC60F219B5555D0015B62F /* 地图搜索_02.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC60F019B5555D0015B62F /* 地图搜索_02.png */; };
 		D3AC60F519B5571D0015B62F /* 搜索结果_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC60F419B5571D0015B62F /* 搜索结果_03a.png */; };
 		D3AC610319B589970015B62F /* 高级搜索-多选_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC610019B589970015B62F /* 高级搜索-多选_03a.png */; };
@@ -1282,6 +1283,10 @@
 		5B656CFA19932E36007D79A8 /* QuadCurveMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadCurveMenuItem.m; sourceTree = "<group>"; };
 		5BF08A3419B83CDC00782976 /* 人脉_01a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉_01a.png"; sourceTree = "<group>"; };
 		5BF08A3519B83CDC00782976 /* 人脉_02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉_02a.png"; sourceTree = "<group>"; };
+		5BF08A3819B86C5D00782976 /* MoreCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCompanyViewController.h; sourceTree = "<group>"; };
+		5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCompanyViewController.m; sourceTree = "<group>"; };
+		5BF08A3B19B8779D00782976 /* MoreCompanyViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCompanyViewCell.h; sourceTree = "<group>"; };
+		5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCompanyViewCell.m; sourceTree = "<group>"; };
 		D3AC60F019B5555D0015B62F /* 地图搜索_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图搜索_02.png"; sourceTree = "<group>"; };
 		D3AC60F119B5555D0015B62F /* mapsearch-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapsearch-1.png"; sourceTree = "<group>"; };
 		D3AC60F419B5571D0015B62F /* 搜索结果_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索结果_03a.png"; sourceTree = "<group>"; };
@@ -1635,6 +1640,10 @@
 				0426C01B19922D5900CD8822 /* CompanyViewController.m */,
 				5B656CF419931275007D79A8 /* CompanyMemberViewController.h */,
 				5B656CF519931275007D79A8 /* CompanyMemberViewController.m */,
+				5BF08A3819B86C5D00782976 /* MoreCompanyViewController.h */,
+				5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */,
+				5BF08A3B19B8779D00782976 /* MoreCompanyViewCell.h */,
+				5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */,
 			);
 			path = Company;
 			sourceTree = "<group>";
@@ -3147,7 +3156,6 @@
 				5B13C71019B6E91A008EA7A0 /* +项目-首页_27a.png in Resources */,
 				D3AD62BB19B481CA001FD483 /* 项目－高级搜索－2_22a.png in Resources */,
 				5B13C75719B835BE008EA7A0 /* 公司认证员工_18a.png in Resources */,
-				D3AD61B119AF010D001FD483 /* Selected.png in Resources */,
 				5B13C75419B835BE008EA7A0 /* 公司认证员工_13a@2x.png in Resources */,
 				04D10BF319AE059E0097C0C6 /* bg000.png in Resources */,
 				5B13C74619B835BE008EA7A0 /* 公司－公司组织_13a@2x.png in Resources */,
@@ -3255,14 +3263,12 @@
 				D3AC610419B589970015B62F /* 高级搜索-多选_07a.png in Resources */,
 				5B031C3419ACA6C100573071 /* XiangMuXiangQing_3 in Resources */,
 				5B13C75219B835BE008EA7A0 /* 公司认证员工_08a@2x.png in Resources */,
-				D3AD61F019AF225A001FD483 /* setBg.png in Resources */,
 				D3AD604319AC4DC1001FD483 /* bg-menuitem.png in Resources */,
 				D3AD605E19AC4DC1001FD483 /* 登录_03.png in Resources */,
 				D3AD605C19AC4DC1001FD483 /* 登录1_03.png in Resources */,
 				D3AD605A19AC4DC1001FD483 /* 注册_07.png in Resources */,
 				D3AC612119B5B8930015B62F /* 高级搜索-多选_03aA.png in Resources */,
 				5B13C73D19B835BE008EA7A0 /* 公司－公司组织_02a.png in Resources */,
-				042D9E6319B6E16500689C5D /* upArrow.png in Resources */,
 				D3AD604419AC4DC1001FD483 /* bg-menuitem@2x.png in Resources */,
 				D3AD61FD19AF31D7001FD483 /* 项目-首页_08a.png in Resources */,
 				5B0A009719B587C000500C05 /* blueArrow@2x.png in Resources */,
@@ -3278,12 +3284,10 @@
 				D3AD607319AC4DE7001FD483 /* 全部项目_13.png in Resources */,
 				5B49D21A19B07FA100E03EFE /* +项目详情-3_03a.png in Resources */,
 				D3AD603D19AC4DC1001FD483 /* bg-addbutton-highlighted.png in Resources */,
-				04D10BF219AE059E0097C0C6 /* 1.png in Resources */,
 				5B13C74E19B835BE008EA7A0 /* 公司认证员工_03a@2x.png in Resources */,
 				D3AD61F519AF266B001FD483 /* 新建项目5_09.png in Resources */,
 				D3AD61FF19AF32D7001FD483 /* 搜索结果_09a.png in Resources */,
 				5B13C74119B835BE008EA7A0 /* 公司－公司组织_05a.png in Resources */,
-				042D9E6219B6E16500689C5D /* downArrow.png in Resources */,
 				5B13C75519B835BE008EA7A0 /* 公司认证员工_14a.png in Resources */,
 				D3AD621519B06702001FD483 /* 项目-首页_18a.png in Resources */,
 				D3AD603E19AC4DC1001FD483 /* bg-addbutton-highlighted@2x.png in Resources */,
@@ -3316,7 +3320,6 @@
 				5B031C3319ACA6C100573071 /* XiangMuXiangQing_2 in Resources */,
 				D3AD620F19B05AF8001FD483 /* 项目－项目专题_14a.png in Resources */,
 				5B13C74719B835BE008EA7A0 /* 公司－我的公司_02a.png in Resources */,
-				D3AD61B219AF010D001FD483 /* Unselected.png in Resources */,
 				D3AD605F19AC4DC1001FD483 /* 登录_07.png in Resources */,
 				D3AC61C319B70F350015B62F /* 人脉_74a.png in Resources */,
 			);
@@ -3372,6 +3375,7 @@
 				5B13C71919B70699008EA7A0 /* AddCommentViewController.m in Sources */,
 				D3AD609519AC56CB001FD483 /* MJRefreshHeaderView.m in Sources */,
 				0426C2CE19922D5A00CD8822 /* GPUImageTwoInputCrossTextureSamplingFilter.m in Sources */,
+				5BF08A3A19B86C5D00782976 /* MoreCompanyViewController.m in Sources */,
 				0426C2CA19922D5A00CD8822 /* GPUImageTiltShiftFilter.m in Sources */,
 				5B0A006C19B5874500500C05 /* TMPhotoQuiltViewCell.m in Sources */,
 				0426C2D819922D5A00CD8822 /* GPUImageWhiteBalanceFilter.m in Sources */,
@@ -3485,6 +3489,7 @@
 				0426C2B419922D5A00CD8822 /* GPUImageSharpenFilter.m in Sources */,
 				0426C2FB19922D5A00CD8822 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				D3AC61A919B6BF930015B62F /* ContactModel.m in Sources */,
+				5BF08A3D19B8779D00782976 /* MoreCompanyViewCell.m in Sources */,
 				042D9E2319B559FC00689C5D /* SaveConditionsViewController.m in Sources */,
 				0426C2AC19922D5A00CD8822 /* GPUImageRGBDilationFilter.m in Sources */,
 				04D10C0719AEDFC80097C0C6 /* ImgCell.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "CompanyViewController.h"
 #import "CompanyMemberViewController.h"
+#import "MoreCompanyViewController.h"
 @interface CompanyViewController ()
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic)NSInteger memberNumber;
@@ -141,12 +142,13 @@
 -(void)gotoMemberView{
     CompanyMemberViewController* memberVC=[[CompanyMemberViewController alloc]initWithMemberNumber:self.memberNumber];
     [self.navigationController pushViewController:memberVC animated:YES];
-
 }
 
 -(void)more{
-    NSLog(@"用户选择了更多");
+    MoreCompanyViewController* moreVC=[[MoreCompanyViewController alloc]initWithMemberNumber:0];
+    [self.navigationController pushViewController:moreVC animated:YES];
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
