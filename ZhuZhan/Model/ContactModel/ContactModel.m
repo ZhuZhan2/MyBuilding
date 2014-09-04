@@ -8,6 +8,7 @@
 
 #import "ContactModel.h"
 #import "AFAppDotNetAPIClient.h"
+#import "CommentModel.h"
 @implementation ContactModel
 //POST:
 //{
@@ -106,6 +107,11 @@
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             [mutablePosts addObject:JSON[@"d"][@"data"]];
+            for(NSDictionary *item in JSON[@"d"][@"data"]){
+                CommentModel *model = [[CommentModel alloc] init];
+                [model setDict:item];
+                [mutablePosts addObject:model];
+            }
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
