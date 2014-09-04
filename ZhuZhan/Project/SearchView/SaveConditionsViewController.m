@@ -86,10 +86,14 @@
 */
 - (void)textFieldDidChange:(UITextField *)textField
 {
+    NSLog(@"===========%d",textField.text.length);
     if (textField.text.length > 24) {
+    //if (textField.text.length > 5) {
+        NSLog(@"%d",textField.text.length);
         textField.text = [textField.text substringToIndex:24];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"名字太长了" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
+        NSLog(@"1111111");
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"名字太长了" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//        [alert show];
     }
 }
 

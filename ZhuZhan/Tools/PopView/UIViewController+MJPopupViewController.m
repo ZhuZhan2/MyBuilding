@@ -228,9 +228,14 @@
                                   (sourceSize.height - popupSize.height) / 2,
                                   popupSize.width,
                                   popupSize.height);
-    }else{
+    }else if(flag==1){
         popupEndRect = CGRectMake((sourceSize.width - popupSize.width) / 2,
                                   (sourceSize.height - popupSize.height) / 2-55,
+                                  popupSize.width,
+                                  popupSize.height);
+    }else{
+        popupEndRect = CGRectMake((sourceSize.width - popupSize.width) / 2,
+                                  (sourceSize.height - popupSize.height) / 2-88,
                                   popupSize.width,
                                   popupSize.height);
     }

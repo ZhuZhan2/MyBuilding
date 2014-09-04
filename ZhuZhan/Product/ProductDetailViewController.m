@@ -8,6 +8,9 @@
 
 #import "ProductDetailViewController.h"
 #import "ProductCommentView.h"
+#import "AddCommentViewController.h"
+#import "AppDelegate.h"
+#import "UIViewController+MJPopupViewController.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView* myTableView;
 
@@ -17,6 +20,8 @@
 
 @property(nonatomic,strong)NSMutableArray* commentModels;//评论数组，元素为评论实体类
 @property(nonatomic,strong)NSMutableArray* commentViews;//cell中的内容视图
+
+@property(nonatomic,strong)AddCommentViewController* vc;
 @end
 
 @implementation ProductDetailViewController
@@ -102,7 +107,13 @@
 }
 
 -(void)chooseComment:(UIButton*)button{
-    NSLog(@"chooseComment");
+   // self.vc=nil;
+    self.vc=[[AddCommentViewController alloc]init];
+    AppDelegate* app=[AppDelegate instance];
+    //app.window.rootViewController;
+    //[self presentViewController:vc animated:NO completion:nil];
+    //[app.window.rootViewController presentViewController:vc animated:NO completion:nil];
+    [app.window.rootViewController presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
 }
 
 

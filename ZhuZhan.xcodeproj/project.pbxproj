@@ -336,6 +336,8 @@
 		5B13C70F19B6E91A008EA7A0 /* mapsearch-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC60F119B5555D0015B62F /* mapsearch-1.png */; };
 		5B13C71019B6E91A008EA7A0 /* +项目-首页_27a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD621919B068F5001FD483 /* +项目-首页_27a.png */; };
 		5B13C71219B6EF32008EA7A0 /* 产品－产品详情_12a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C71119B6EF32008EA7A0 /* 产品－产品详情_12a@2x.png */; };
+		5B13C71519B704B9008EA7A0 /* ContactCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C71419B704B9008EA7A0 /* ContactCommentTableViewCell.m */; };
+		5B13C71919B70699008EA7A0 /* AddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C71819B70699008EA7A0 /* AddCommentViewController.m */; };
 		5B49D21519B0787C00E03EFE /* 项目详情-筛选_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B49D21319B0787C00E03EFE /* 项目详情-筛选_03.png */; };
 		5B49D21619B0787C00E03EFE /* 项目详情-筛选_06.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B49D21419B0787C00E03EFE /* 项目详情-筛选_06.png */; };
 		5B49D21A19B07FA100E03EFE /* +项目详情-3_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B49D21719B07FA100E03EFE /* +项目详情-3_03a.png */; };
@@ -1197,6 +1199,10 @@
 		5B13C70A19B6E8A5008EA7A0 /* CommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentView.h; sourceTree = "<group>"; };
 		5B13C70B19B6E8A5008EA7A0 /* CommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentView.m; sourceTree = "<group>"; };
 		5B13C71119B6EF32008EA7A0 /* 产品－产品详情_12a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "产品－产品详情_12a@2x.png"; sourceTree = "<group>"; };
+		5B13C71319B704B9008EA7A0 /* ContactCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCommentTableViewCell.h; sourceTree = "<group>"; };
+		5B13C71419B704B9008EA7A0 /* ContactCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCommentTableViewCell.m; sourceTree = "<group>"; };
+		5B13C71719B70699008EA7A0 /* AddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCommentViewController.h; sourceTree = "<group>"; };
+		5B13C71819B70699008EA7A0 /* AddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCommentViewController.m; sourceTree = "<group>"; };
 		5B49D21319B0787C00E03EFE /* 项目详情-筛选_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情-筛选_03.png"; sourceTree = "<group>"; };
 		5B49D21419B0787C00E03EFE /* 项目详情-筛选_06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情-筛选_06.png"; sourceTree = "<group>"; };
 		5B49D21719B07FA100E03EFE /* +项目详情-3_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+项目详情-3_03a.png"; sourceTree = "<group>"; };
@@ -1266,8 +1272,6 @@
 		D3AC61B919B6D5D20015B62F /* CommentApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentApi.h; sourceTree = "<group>"; };
 		D3AC61BA19B6D5D20015B62F /* CommentApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentApi.m; sourceTree = "<group>"; };
 		D3AC61BD19B6E3FF0015B62F /* 人脉_66a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉_66a.png"; sourceTree = "<group>"; };
-		D3AC61BF19B6E9BA0015B62F /* ContactCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCommentTableViewCell.h; sourceTree = "<group>"; };
-		D3AC61C019B6E9BA0015B62F /* ContactCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCommentTableViewCell.m; sourceTree = "<group>"; };
 		D3AD600C19AC4DC1001FD483 /* bg-addbutton-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton-highlighted.png"; sourceTree = "<group>"; };
 		D3AD600D19AC4DC1001FD483 /* bg-addbutton-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton-highlighted@2x.png"; sourceTree = "<group>"; };
 		D3AD600E19AC4DC1001FD483 /* bg-addbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton.png"; sourceTree = "<group>"; };
@@ -2415,6 +2419,8 @@
 		04D10BA919AE01690097C0C6 /* contactView */ = {
 			isa = PBXGroup;
 			children = (
+				5B13C71319B704B9008EA7A0 /* ContactCommentTableViewCell.h */,
+				5B13C71419B704B9008EA7A0 /* ContactCommentTableViewCell.m */,
 				5B13C70A19B6E8A5008EA7A0 /* CommentView.h */,
 				5B13C70B19B6E8A5008EA7A0 /* CommentView.m */,
 				04D10BB119AE01690097C0C6 /* ContactViewController.h */,
@@ -2483,6 +2489,7 @@
 				5B0A006F19B5877C00500C05 /* EGO */,
 				5B0A006E19B5877300500C05 /* Resources */,
 				5B0A006D19B5875E00500C05 /* TMQuiltView */,
+				5B13C71619B70659008EA7A0 /* AddComment */,
 				5B13C6FE19B6AB0C008EA7A0 /* ProductDetailViewController.h */,
 				5B13C6FF19B6AB0C008EA7A0 /* ProductDetailViewController.m */,
 				5B13C70719B6E53A008EA7A0 /* ProductCommentView.h */,
@@ -2530,6 +2537,15 @@
 				5B0A008919B587B200500C05 /* EGOViewCommon.h */,
 			);
 			name = EGO;
+			sourceTree = "<group>";
+		};
+		5B13C71619B70659008EA7A0 /* AddComment */ = {
+			isa = PBXGroup;
+			children = (
+				5B13C71719B70699008EA7A0 /* AddCommentViewController.h */,
+				5B13C71819B70699008EA7A0 /* AddCommentViewController.m */,
+			);
+			name = AddComment;
 			sourceTree = "<group>";
 		};
 		D3AC618B19B6BF930015B62F /* Model */ = {
@@ -3227,6 +3243,7 @@
 				0426C23419922D5A00CD8822 /* RegistViewController.m in Sources */,
 				D3AD60A219AC574A001FD483 /* Reachability.m in Sources */,
 				0426C25B19922D5A00CD8822 /* GPUImageCrosshairGenerator.m in Sources */,
+				5B13C71919B70699008EA7A0 /* AddCommentViewController.m in Sources */,
 				D3AD609519AC56CB001FD483 /* MJRefreshHeaderView.m in Sources */,
 				0426C2CE19922D5A00CD8822 /* GPUImageTwoInputCrossTextureSamplingFilter.m in Sources */,
 				0426C2CA19922D5A00CD8822 /* GPUImageTiltShiftFilter.m in Sources */,
@@ -3441,6 +3458,7 @@
 				0426C23219922D5A00CD8822 /* FaceViewController.m in Sources */,
 				0426C25F19922D5A00CD8822 /* GPUImageDilationFilter.m in Sources */,
 				042D9E1419B559FC00689C5D /* MyIndexPath.m in Sources */,
+				5B13C71519B704B9008EA7A0 /* ContactCommentTableViewCell.m in Sources */,
 				0426C2A019922D5A00CD8822 /* GPUImagePerlinNoiseFilter.m in Sources */,
 				042D9E1E19B559FC00689C5D /* ConditionsView.m in Sources */,
 				0426C2DA19922D5A00CD8822 /* GPUImageZoomBlurFilter.m in Sources */,
@@ -3488,7 +3506,6 @@
 				0426C2CC19922D5A00CD8822 /* GPUImageToonFilter.m in Sources */,
 				0426C29419922D5A00CD8822 /* GPUImageMotionBlurFilter.m in Sources */,
 				D3AD60FC19AC7CC5001FD483 /* EGOImageView.m in Sources */,
-				D3AC61C119B6E9BA0015B62F /* ContactCommentTableViewCell.m in Sources */,
 				D3AD619D19AEEE30001FD483 /* SinglePickerView.m in Sources */,
 				0426C2BA19922D5A00CD8822 /* GPUImageSobelEdgeDetectionFilter.m in Sources */,
 				0426C29119922D5A00CD8822 /* GPUImageMissEtikateFilter.m in Sources */,
