@@ -13,6 +13,8 @@
     EGOImageView *headImageView;
     UILabel *titleLabel;
     UILabel *contentLabel;
+    UIButton *moreBtn;
+    UIImageView *arrow;
 }
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(TopicsModel *)model;
 @end

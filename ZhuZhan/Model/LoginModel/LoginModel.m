@@ -7,7 +7,7 @@
 //
 
 #import "LoginModel.h"
-
+#import "AFAppDotNetAPIClient.h"
 @implementation LoginModel
 - (void)setDict:(NSDictionary *)dict{
     _dict = dict;

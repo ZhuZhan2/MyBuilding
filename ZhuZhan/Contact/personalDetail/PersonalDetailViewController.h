@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "XHPathCover.h"
-@interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate>
+#import <MessageUI/MessageUI.h>
+@interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate,MFMailComposeViewControllerDelegate>
 
-@property (nonatomic,strong) NSArray *KindIndex;
+@property (nonatomic,strong) NSArray *contactArr;
 @property (nonatomic,strong) NSArray *kImgArr;
 @property (nonatomic, strong) XHPathCover *pathCover;
+@property (nonatomic) float textViewHeight;
+@property (nonatomic,strong) NSArray *titleArr;
+
 
 @end

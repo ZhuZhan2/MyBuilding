@@ -18,6 +18,8 @@
 #import "Definition.h"
 #import "iflyMSC/IFlySpeechUtility.h"
 
+#import "PersonalDetailViewController.h"
+
 @implementation AppDelegate
 
 + (AppDelegate *)instance {
@@ -62,6 +64,15 @@
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;
     [self.window makeKeyAndVisible];
+    
+    
+
+//    PersonalDetailViewController *personVC = [[PersonalDetailViewController alloc] init];
+//    UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:personVC];
+//    self.window.rootViewController =naVC;
+//    [self.window makeKeyAndVisible];
+    
+    
       /* if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
             NSLog(@"第一次启动");
@@ -113,6 +124,7 @@
     
     return YES;
 }
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application
