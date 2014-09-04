@@ -29,7 +29,8 @@
 -(void)loadSelfWithCommentModel:(CommentModel*)commentModel{
     //获取用户头像
     self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[UIImage imageNamed:@"首页_16.png"]];
-    //self.userImageView=[[EGOImageView alloc]init];
+    self.userImageView.layer.masksToBounds=YES;
+    self.userImageView.layer.cornerRadius=5;
     self.userImageView.frame=CGRectMake(15, 20, 50, 50);
     self.userImageView.showActivityIndicator=YES;
     [self addSubview:self.userImageView];
@@ -65,22 +66,10 @@
     self.publishTime.textAlignment=NSTextAlignmentRight;
     [self addSubview:self.publishTime];
     
-    //分割线
-    self.separatorLine.center=CGPointMake(154, height-.5);
-    [self addSubview:self.separatorLine];
-    
-    
     self.frame=CGRectMake(6, 0, 308, height);
     self.backgroundColor=[UIColor whiteColor];
 }
 
--(UIView *)separatorLine{
-    if (!_separatorLine) {
-        _separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 308, 1)];
-        _separatorLine.backgroundColor=RGBCOLOR(229, 229, 229);
-    }
-    return _separatorLine;
-}
 
 - (id)initWithFrame:(CGRect)frame
 {

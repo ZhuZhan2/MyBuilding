@@ -41,7 +41,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
-    [self getProductIntroduce];
+    [self getProductView];
     [self initNavi];
     [self getTableViewContents];
     [self initMyTableView];
@@ -54,7 +54,7 @@
     }
 }
 
--(void)getProductIntroduce{
+-(void)getProductView{
     self.productView=[[UIView alloc]initWithFrame:CGRectZero];
     CGFloat tempHeight=0;
     
@@ -119,6 +119,7 @@
     NSLog(@"cancelFromAddComment");
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
+
 -(void)sureFromAddCommentWithComment:(NSString *)comment{
     NSLog(@"sureFromAddCommentWithCommentModel:");
     NSLog(@"%@",comment);
@@ -152,11 +153,9 @@
         }
         [cell.contentView addSubview:self.productView];
         
-        
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }else{
-
         
         UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"myCell"];
         if (!cell) {
@@ -167,13 +166,47 @@
             [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         }
         [cell.contentView addSubview:self.commentViews[indexPath.row-1]];
-        cell.layer.masksToBounds=YES;
-        cell.contentView.layer.masksToBounds=YES;
+        
+        CGFloat height=[cell.contentView.subviews.lastObject frame].size.height;
+        
+        //第一个cell,添加下方长方形区域,遮盖圆角
+        if (indexPath.row==1) {
+            [cell.contentView.subviews.lastObject layer].cornerRadius=7;
+            UIView* view=[self getCellSpaceView];
+                        view.center=CGPointMake(160, height-5);
+            [cell.contentView insertSubview:view atIndex:0];
+            
+        //最后一个cell,添加上方长方形区域,遮盖圆角
+        }else if (indexPath.row==self.commentViews.count){
+            [cell.contentView.subviews.lastObject layer].cornerRadius=7;
+            UIView* view=[self getCellSpaceView];
+            view.center=CGPointMake(160, 5);
+            [cell.contentView insertSubview:view atIndex:0];
+
+        //其他cell,处理圆角
+        }else{
+            if ([cell.contentView.subviews.lastObject layer].cornerRadius>0) {
+                [cell.contentView.subviews.lastObject layer].cornerRadius=0;
+            }
+        }
+        
+        //处理分割线
+        if (indexPath.row!=self.commentViews.count) {
+            UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 308, 1)];
+            separatorLine.backgroundColor=RGBCOLOR(229, 229, 229);
+            separatorLine.center=CGPointMake(160, height-.5);
+            [cell.contentView addSubview:separatorLine];
+        }
         cell.backgroundColor=[UIColor clearColor];
-        //cell.contentView.backgroundColor=[UIColor redColor];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
+}
+
+-(UIView*)getCellSpaceView{
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 308, 10)];
+    view.backgroundColor=[UIColor whiteColor];
+    return view;
 }
 
 //=========================================================================
@@ -185,6 +218,7 @@
     self.myTableView.dataSource=self;
     self.myTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     self.myTableView.backgroundColor=RGBCOLOR(235, 235, 235);
+    self.myTableView.showsVerticalScrollIndicator=NO;
     [self.view addSubview:self.myTableView];
 }
 
