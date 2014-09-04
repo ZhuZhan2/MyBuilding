@@ -49,12 +49,13 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
     return self;
 }
 
-- (UIImageView *)photoView {
+- (EGOImageView *)photoView {
     if (!_photoView) {
-        _photoView = [[UIImageView alloc] init];
+        _photoView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"bg001"]];
         //_photoView.contentMode = UIViewContentModeScaleAspectFill;
-        _photoView.contentMode=UIViewContentModeScaleAspectFill;
-        _photoView.clipsToBounds = YES;
+        //_photoView.contentMode=UIViewContentModeScaleAspectFill;
+        //_photoView.clipsToBounds = YES;
+        _photoView.showActivityIndicator = YES;
         [self addSubview:_photoView];
     }
     return _photoView;

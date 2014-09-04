@@ -87,11 +87,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     for(int i=0;i<4;i++){
         CommentModel *model = [[CommentModel alloc] init];
         if(i==0){
-            model.a_type = @"project";
+            model.a_type = @"Project";
         }else if(i==1){
-            model.a_type = @"contact";
+            model.a_type = @"Personal";
         }else{
-            model.a_type = @"main";
+            model.a_type = @"Product";
             model.a_imageUrl = [NSString stringWithFormat:@"bg00%d",i-2];
             model.a_name = @"aaaaa";
             model.a_content = @"asdfasfasfasdfasfas阿斯顿发生法法师打发asdfasfasfasdfasfas阿斯顿发生法法师打发asdfasfasfasdfasfas阿斯顿发生法法师打发asdfasfasfasdfasfas阿斯顿发生法法师打发";
@@ -101,7 +101,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     for(int i=0;i<showArr.count;i++){
         CommentModel *model = showArr[i];
-        if([model.a_type isEqualToString:@"main"]){
+        if([model.a_type isEqualToString:@"Product"]){
             commentView = [CommentView setFram:model];
             [viewArr insertObject:commentView atIndex:i];
         }else{
@@ -179,7 +179,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PSTableViewCellIdentifier];
     CommentModel *model = showArr[indexPath.row];
-    if([model.a_type isEqualToString:@"project"]){
+    if([model.a_type isEqualToString:@"Project"]){
         NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
         ContactProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
@@ -188,7 +188,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         cell.delegate = self;
         cell.selectionStyle = NO;
         return cell;
-    }else if ([model.a_type isEqualToString:@"contact"]){
+    }else if ([model.a_type isEqualToString:@"Personal"]){
         NSString *CellIdentifier = [NSString stringWithFormat:@"ContactTableViewCell"];
         ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
@@ -197,7 +197,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         cell.delegate = self;
         cell.selectionStyle = NO;
         return cell;
-    }else if ([model.a_type isEqualToString:@"main"]){
+    }else if ([model.a_type isEqualToString:@"Product"]){
         NSString *stringcell = @"Cell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
         if(!cell){
@@ -228,9 +228,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CommentModel *model = showArr[indexPath.row];
-    if([model.a_type isEqualToString:@"project"]||[model.a_type isEqualToString:@"contact"]){
+    if([model.a_type isEqualToString:@"Project"]||[model.a_type isEqualToString:@"Personal"]){
         return 50;
-    }else if([model.a_type isEqualToString:@"main"]){
+    }else if([model.a_type isEqualToString:@"Product"]){
         commentView = [viewArr objectAtIndex:indexPath.row];
         return commentView.frame.size.height;
     }else{

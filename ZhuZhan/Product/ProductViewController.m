@@ -12,6 +12,7 @@
 #import "ProductDetailViewController.h"
 #import "CommentModel.h"
 #import "ProductModel.h"
+#import "EGOImageView.h"
 @interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate>
 {
 	TMQuiltView *qtmquitView;
@@ -38,14 +39,15 @@
 	qtmquitView.showsVerticalScrollIndicator=NO;
 	[self.view addSubview:qtmquitView];
 	
-	[qtmquitView reloadData];
     //[self createHeaderView];
 	//[self performSelector:@selector(testFinishedLoadData) withObject:nil afterDelay:0.0f];
     
     startIndex = 0;
     [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-        
+            showArr = posts;
+            NSLog(@"%@",showArr);
+            [qtmquitView reloadData];
         }
     } productId:@"" startIndex:startIndex];
     
@@ -248,11 +250,15 @@
 
 
 - (UIImage *)imageAtIndexPath:(NSIndexPath *)indexPath {
-    return [UIImage imageNamed:[self.images objectAtIndex:indexPath.row]];
+    ProductModel *model = showArr[indexPath.row];
+    EGOImageView *imageview = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"bg001"]];
+    imageview.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
+    //return [UIImage imageNamed:[self.images objectAtIndex:indexPath.row]];
+    return imageview.image;
 }
 
 - (NSInteger)quiltViewNumberOfCells:(TMQuiltView *)TMQuiltView {
-    return [self.images count];
+    return [showArr count];
 }
 
 - (TMQuiltViewCell *)quiltView:(TMQuiltView *)quiltView cellAtIndexPath:(NSIndexPath *)indexPath {
@@ -260,11 +266,13 @@
     if (!cell) {
         cell = [[TMPhotoQuiltViewCell alloc] initWithReuseIdentifier:@"PhotoCell"];
     }
-    NSArray* ary=@[@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf",@"asdpfoasmfpsafpoaskfpaskpasmdpasmdasmdl;asmdlas;mdl;asmdasl;dmas;lmdasl;mfl;asmfasmfasmfasmf"];
+    ProductModel *model = showArr[indexPath.row];
     
-    cell.photoView.image = [self imageAtIndexPath:indexPath];
-    cell.titleLabel.text = ary[indexPath.row];
-    cell.commentCountLabel.text=[NSString stringWithFormat:@"%d",indexPath.row];
+    //cell.photoView.image = [self imageAtIndexPath:indexPath];
+    cell.photoView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
+
+    cell.titleLabel.text = model.a_content;
+    cell.commentCountLabel.text= model.a_commentNumber;
     return cell;
 }
 

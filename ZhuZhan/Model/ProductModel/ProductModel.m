@@ -7,8 +7,16 @@
 //
 
 #import "ProductModel.h"
-
+#import "ProjectStage.h"
 @implementation ProductModel
+-(void)setDict:(NSDictionary *)dict{
+    _dict = dict;
+    self.a_id = [ProjectStage ProjectStrStage:dict[@"id"]];
+    self.a_name = [ProjectStage ProjectStrStage:dict[@"productName"]];
+    self.a_content = [ProjectStage ProjectStrStage:dict[@"productDescription"]];
+    self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"productImageLocation"]];
+    self.a_commentNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"productCommentsNumber"]]];
+}
 
 + (NSURLSessionDataTask *)GetProductInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block productId:(NSString *)productId startIndex:(int)startIndex{
     NSString *urlStr = [NSString stringWithFormat:@"api/ProductInformation/ProductInformation?productId=%@&pageSize=5&pageIndex=%d",productId,startIndex];
@@ -16,7 +24,11 @@
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON[@"d"][@"data"]];
+            for(NSDictionary *item in JSON[@"d"][@"data"]){
+                ProductModel *model = [[ProductModel alloc] init];
+                [model setDict:item];
+                [mutablePosts addObject:model];
+            }
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
