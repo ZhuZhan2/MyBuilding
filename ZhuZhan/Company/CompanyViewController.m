@@ -40,20 +40,25 @@
     //公司图标
     UIImageView* companyImageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"公司－我的公司_02a.png"]];
     [view addSubview:companyImageView];
-    
+
     //公司名称label
-    UILabel* companyLabel=[[UILabel alloc]initWithFrame:CGRectMake(15, 10, 250, 30)];
-    NSString* companyName=@"公司名称显示在这里";
+    UILabel* companyLabel=[[UILabel alloc]initWithFrame:CGRectMake(105, 20, 200, 50)];
+    //companyLabel.backgroundColor=[UIColor yellowColor];
+    companyLabel.numberOfLines=2;
+    companyLabel.textColor=BlueColor;
+    NSString* companyName=@"公司名称显示在这里显示";//在这里里显示在这里里里";
     companyLabel.text=companyName;
-    companyLabel.font=[UIFont boldSystemFontOfSize:18];
-    //[view addSubview:companyLabel];
+    companyLabel.font=[UIFont boldSystemFontOfSize:17];
+    [view addSubview:companyLabel];
+    
     
     //公司行业label
-    UILabel* businessLabel=[[UILabel alloc]initWithFrame:CGRectMake(15, 50, 300, 20)];
+    UILabel* businessLabel=[[UILabel alloc]initWithFrame:CGRectMake(105, 70, 300, 20)];
     NSString* businessName=@"建筑";
     businessLabel.text=[NSString stringWithFormat:@"公司行业：%@",businessName];
+    businessLabel.font=[UIFont systemFontOfSize:15];
     businessLabel.textColor=[UIColor grayColor];
-    //[view addSubview:businessLabel];
+    [view addSubview:businessLabel];
     
     //关注button
     UIButton* button=[UIButton buttonWithType:UIButtonTypeSystem];

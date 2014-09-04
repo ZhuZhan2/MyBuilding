@@ -74,16 +74,21 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
-    [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            [self.model getContacts:posts[0]];
-            [self.model getImages:posts[1]];
-            [self loadSelf];
-            self.stages=[ProjectStage JudgmentProjectDetailStage:self.model];
-        }else{
-            
-        }
-    } projectId:self.model.a_id];
+    if (self.model.a_id) {
+        [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                [self.model getContacts:posts[0]];
+                [self.model getImages:posts[1]];
+                [self loadSelf];
+                self.stages=[ProjectStage JudgmentProjectDetailStage:self.model];
+            }else{
+                
+            }
+        } projectId:self.model.a_id];
+    }else{
+        [self loadSelf];
+    }
+    
 }
 
 -(void)loadSelf{
