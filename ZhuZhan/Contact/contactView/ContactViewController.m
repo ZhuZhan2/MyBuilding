@@ -248,18 +248,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if(indexPath.row !=0){
-//        CommentModel *model = [[CommentModel alloc] init];
-//        model.a_content = [NSString stringWithFormat:@"%d",indexPath.row+1];
-//        model.a_type = @"comment";
-//        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//        NSIndexPath *path = [NSIndexPath indexPathForItem:(indexPath.row+1) inSection:indexPath.section];
-//        [showArr insertObject:model atIndex:path.row];
-//        [viewArr insertObject:@"" atIndex:path.row];
-//        [self.tableView beginUpdates];
-//        [self.tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationMiddle];
-//        [self.tableView endUpdates];
-//    }
+
 }
 
 //时间标签
