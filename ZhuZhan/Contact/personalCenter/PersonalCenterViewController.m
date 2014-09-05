@@ -10,7 +10,7 @@
 #import "CommonCell.h"
 #import "AccountViewController.h"
 #import "LoginModel.h"
-#import "SDImageCache.h"
+
 
 @interface PersonalCenterViewController ()
 
@@ -63,6 +63,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
     [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
+       
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadImageFrame:CGRectMake(120, -20, 70, 70)];
     [_pathCover.headImage.layer setMasksToBounds:YES];
