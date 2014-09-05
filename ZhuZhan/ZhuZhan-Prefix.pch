@@ -16,6 +16,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "AFNetworking.h"
 #import "AFAppDotNetAPIClient.h"
+#import "EGOCache.h"
 #endif
 
 //#define  serverAddress "http://192.168.222.173:2016"
