@@ -35,6 +35,7 @@
     topLineImage.alpha =0.2;
     
     EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"bg001.png"]];
+    
     if(![model.a_imageUrl isEqualToString:@""]){
         if(![model.a_imageWidth isEqualToString:@""]){
             NSLog(@"%f",[model.a_imageHeight intValue]*1.0/([model.a_imageWidth intValue]*1.0/310));

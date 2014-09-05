@@ -15,7 +15,7 @@
     
     self.a_id = [ProjectStage ProjectStrStage:dict[@"actives"][@"entityId"]];;
     self.a_name = [ProjectStage ProjectStrStage:dict[@"actives"][@"updatedBy"]];
-    self.a_time = [ProjectStage ProjectDateStage:dict[@"actives"][@"updatedTime"]];
+    self.a_time = [ProjectStage ProjectDateStage:dict[@"actives"][@"updateTime"]];
     self.a_content = [ProjectStage ProjectStrStage:dict[@"actives"][@"activeContents"]];
     self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"actives"][@"activeImage"]];
     self.a_type = [ProjectStage ProjectStrStage:dict[@"actives"][@"category"]];

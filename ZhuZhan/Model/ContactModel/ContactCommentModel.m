@@ -15,6 +15,6 @@
     self.a_time = [ProjectStage ProjectDateStage:dict[@"createdTime"]];
     self.a_content = [ProjectStage ProjectStrStage:dict[@"commentContents"]];
     //self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"activeImage"]];
-    self.a_type = [ProjectStage ProjectStrStage:dict[@"entityType"]];
+    self.a_type = @"comment";
 }
 @end
