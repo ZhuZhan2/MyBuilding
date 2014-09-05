@@ -150,13 +150,22 @@
     NSLog(@"%@",comment);
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
+            [self addTableViewContentWithContent:comment];
+            [self.myTableView reloadData];
             [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
         }
         NSLog(@"sucess");
-    } dic:[@{@"EntityId":self.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":@"12321sd312"} mutableCopy]];
+    } dic:[@{@"EntityId":self.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":@"f483bcfc-3726-445a-97ff-ac7f207dd888"} mutableCopy]];
     
 }
 
+
+-(void)addTableViewContentWithContent:(NSString*)content{
+    CommentModel* model=[[CommentModel alloc]init];
+    model.a_content=content;
+        ProductCommentView* view=[[ProductCommentView alloc]initWithCommentModel:model];
+    [self.commentViews insertObject:view atIndex:0];
+}
 //=========================================================================
 //UITableViewDataSource,UITableViewDelegate
 //=========================================================================
