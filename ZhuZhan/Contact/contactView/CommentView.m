@@ -34,8 +34,15 @@
     [commentView addSubview:topLineImage];
     topLineImage.alpha =0.2;
     
-    EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:model.a_imageUrl]];
-    imageView.frame = CGRectMake(5, 5, 310, [UIImage imageNamed:model.a_imageUrl].size.height/2);
+    EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"bg001.png"]];
+    NSLog(@"===>%@",model.a_imageUrl);
+    if(![model.a_imageUrl isEqualToString:@""]){
+        imageView.frame = CGRectMake(5, 5, 310, [UIImage imageNamed:model.a_imageUrl].size.height);
+        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
+    }else{
+        imageView.frame = CGRectMake(5, 5, 310, 310);
+    }
+    
     [commentView addSubview:imageView];
     
     UILabel *contentLabel = [[UILabel alloc] init];

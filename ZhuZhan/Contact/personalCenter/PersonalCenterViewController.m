@@ -245,6 +245,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     // Dispose of any resources that can be recreated.
 }
 
+-(void)gotoMyCenter{
 
+}
 
 @end

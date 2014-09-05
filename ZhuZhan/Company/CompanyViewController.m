@@ -71,7 +71,7 @@
     button.backgroundColor=[UIColor whiteColor];
     button.layer.borderWidth=1;
     button.layer.borderColor=[[UIColor lightGrayColor]CGColor];
-    [button addTarget:self action:@selector(notice) forControlEvents:UIControlEventTouchUpInside];
+    //[button addTarget:self action:@selector(notice) forControlEvents:UIControlEventTouchUpInside];
     //[view addSubview:button];
 }
 

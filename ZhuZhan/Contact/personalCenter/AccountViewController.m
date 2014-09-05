@@ -434,5 +434,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     return img;
 }
 
+-(void)gotoMyCenter{
 
+}
 @end

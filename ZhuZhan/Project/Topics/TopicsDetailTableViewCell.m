@@ -10,7 +10,6 @@
 
 @implementation TopicsDetailTableViewCell
 
-static int count = 0;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(TopicsModel *)model
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

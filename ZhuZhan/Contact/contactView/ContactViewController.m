@@ -21,6 +21,7 @@
 #import "ContactCommentModel.h"
 #import "CommentModel.h"
 #import "ContactCommentTableViewCell.h"
+#import "CommentApi.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -94,20 +95,19 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 }
             }
             //NSLog(@"%@",showArr);
+            for(int i=0;i<showArr.count;i++){
+                CommentModel *model = showArr[i];
+                if([model.a_type isEqualToString:@"Product"]){
+                    NSLog(@"%@",model.a_id);
+                    commentView = [CommentView setFram:model];
+                    [viewArr insertObject:commentView atIndex:i];
+                }else{
+                    [viewArr insertObject:@"" atIndex:i];
+                }
+            }
             [self.tableView reloadData];
         }
     } userId:@"f483bcfc-3726-445a-97ff-ac7f207dd888" startIndex:startIndex];
-    
-    for(int i=0;i<showArr.count;i++){
-        CommentModel *model = showArr[i];
-        if([model.a_type isEqualToString:@"Product"]){
-            commentView = [CommentView setFram:model];
-            [viewArr insertObject:commentView atIndex:i];
-        }else{
-            [viewArr insertObject:@"" atIndex:i];
-        }
-    }
-    
 }
 
 
@@ -354,6 +354,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self.tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationMiddle];
     [self.tableView endUpdates];
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    
+    CommentModel *model2 = showArr[indexpath.row];
+    NSLog(@"%@",model2.a_id);
+    [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+        
+        }
+    } dic:nil];
 }
 
 -(void)cancelFromAddComment{
