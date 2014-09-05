@@ -8,7 +8,7 @@
 
 #import "CompanyMemberViewController.h"
 
-@interface CompanyMemberViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UIScrollViewDelegate>
+@interface CompanyMemberViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>//,UIScrollViewDelegate>
 @property(nonatomic)NSInteger memberNumber;
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)UISearchBar* searchBar;
@@ -52,6 +52,16 @@
 -(void)changeButtonImage:(UIButton*)button{
     [button setImage:[UIImage imageNamed:@"bg-addbutton-highlighted"] forState:UIControlStateNormal];
 }
+
+//===========================================================================
+//UIScrollViewDelegate
+//===========================================================================
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    if ([self.searchBar isFirstResponder]) {
+        [self.searchBar resignFirstResponder];
+    }
+}
+
 //===========================================================================
 //UITableViewDataSource,UITableViewDelegate
 //===========================================================================
@@ -72,6 +82,7 @@
     if (cell.contentView.subviews.count) {
         [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     }
+    //搜索栏
     if (indexPath.row==0) {
         [cell.contentView addSubview:self.searchBar];
         cell.textLabel.text=nil;
@@ -79,6 +90,7 @@
         cell.detailTextLabel.text=nil;
         cell.accessoryView=nil;
     }
+    //公司认证员工部分
     if (indexPath.row!=0) {
         UIView* separatorLine=[self getSeparatorLine];
         [cell.contentView addSubview:separatorLine];
@@ -106,7 +118,7 @@
 
 -(void)initSearchView{
     self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
-    self.searchBar.placeholder = @"搜索";
+    //self.searchBar.placeholder = @"搜索";
     self.searchBar.backgroundColor=[UIColor redColor];
     self.searchBar.tintColor = [UIColor grayColor];
     self.searchBar.backgroundImage=[self imageWithColor:RGBCOLOR(223, 223, 223)];
@@ -118,12 +130,9 @@
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    
     self.tableView.allowsSelection=NO;
     [self.view addSubview:self.tableView];
-    
     self.title = @"公司员工";
-    
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
     
     
@@ -132,6 +141,10 @@
     [button setImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
+}
+
+-(void)dealloc{
+    NSLog(@"member dealloc");
 }
 
 - (void)didReceiveMemoryWarning

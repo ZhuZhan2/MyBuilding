@@ -103,11 +103,12 @@
 }
 
 -(void)initThirdView{
-    NSString* str=@"asdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;da";
+    NSString* str=@"asdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmfla=====smdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasn=====fmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflas=====mdlasmdalsdmasldasl;da";
     CGRect bounds=[str boundingRectWithSize:CGSizeMake(280, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(20, 15, 280, bounds.size.height)];
     label.numberOfLines=0;
     label.text=str;
+    label.font=[UIFont systemFontOfSize:15];
     label.textColor=GrayColor;
     
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, self.myScrollView.contentSize.height, 320, label.frame.size.height+30)];
