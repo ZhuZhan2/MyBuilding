@@ -67,7 +67,7 @@
                   symbolName = "+[ProjectApi GetSeminarProjectsWithBlock:Id:]"
                   moduleName = "ZhuZhan"
                   urlString = "file:///Users/Jack/Desktop/%E6%88%91%E7%9A%84%E4%BB%A3%E7%A0%81/GitHub/ZhuZhanDev/ZhuZhan/Model/ProjectModel/ProjectApi.m"
-                  timestampString = "431522210.235811"
+                  timestampString = "431573433.394882"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "434"
@@ -81,7 +81,7 @@
                   symbolName = "__45+[ProjectApi GetSeminarProjectsWithBlock:Id:]_block_invoke"
                   moduleName = "ZhuZhan"
                   urlString = "file:///Users/Jack/Desktop/%E6%88%91%E7%9A%84%E4%BB%A3%E7%A0%81/GitHub/ZhuZhanDev/ZhuZhan/Model/ProjectModel/ProjectApi.m"
-                  timestampString = "431522210.2361"
+                  timestampString = "431573433.395063"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "434"
@@ -89,6 +89,22 @@
                   offsetFromSymbolStart = "84">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZhuZhan/RegistView/RegistViewController.m"
+            timestampString = "431522722.881814"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
+            landmarkName = "-commomRegister"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
