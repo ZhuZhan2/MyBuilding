@@ -32,7 +32,7 @@
 
 - (void)dealloc {
     [_quiltView release], _quiltView = nil;
-    
+    NSLog(@"TMQuiltViewCell dealloc");
     [super dealloc];
 }
 

@@ -35,7 +35,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self = [super initWithStyle:style];
     if (self)
     {
-        [self setupDatasource];
+
     }
     return self;
 }
@@ -82,23 +82,30 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     startIndex = 0;
     showArr = [[NSMutableArray alloc] init];
     viewArr = [[NSMutableArray alloc] init];
+    _datasource = [[NSMutableArray alloc] init];
     [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             for(int i=0;i<posts.count;i++){
                 CommentModel *commentModel = posts[i];
                 [showArr addObject:commentModel];
+                [_datasource addObject:commentModel.a_time];
                 if(commentModel.a_commentsArr.count !=0){
-                    for(int i=0;i<commentModel.a_commentsArr.count;i++){
-                        ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[i];
-                        [showArr addObject:contactCommentModel];
-                    }
+                    ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[0];
+                    [showArr addObject:contactCommentModel];
+                    [_datasource addObject:contactCommentModel.a_time];
+//                    for(int i=0;i<commentModel.a_commentsArr.count;i++){
+//                        ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[i];
+//                        [showArr addObject:contactCommentModel];
+//                        NSLog(@"%@",contactCommentModel.a_time);
+//                        [_datasource addObject:contactCommentModel.a_time];
+//                    }
                 }
             }
             //NSLog(@"%@",showArr);
             for(int i=0;i<showArr.count;i++){
                 CommentModel *model = showArr[i];
                 if([model.a_type isEqualToString:@"Product"]){
-                    NSLog(@"%@",model.a_id);
+                    NSLog(@"%@",model.a_type);
                     commentView = [CommentView setFram:model];
                     [viewArr insertObject:commentView atIndex:i];
                 }else{
@@ -126,17 +133,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     // Dispose of any resources that can be recreated.
 }
 
-
-
-//设置时间
-- (void)setupDatasource
-{
-    _datasource = [NSMutableArray new];
-    for(int i=0;i<30;i++){
-        NSTimeInterval interval = 60 * 60 * i;
-        [_datasource addObject:[[NSDate date] initWithTimeInterval:interval sinceDate:[NSDate date]]];
-    }
-}
 
 - (void)_refreshing {
     // refresh your data sources
@@ -358,11 +354,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     CommentModel *model2 = showArr[indexpath.row];
     NSLog(@"%@",model2.a_id);
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:model2.a_id forKey:@"EntityId"];
+    [dic setValue:[NSString stringWithFormat:@"%@",comment] forKey:@"CommentContents"];
+    [dic setValue:model2.a_type forKey:@"EntityType"];
+    [dic setValue:@"f483bcfc-3726-445a-97ff-ac7f207dd888" forKey:@"CreatedBy"];
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-        
+            
         }
-    } dic:nil];
+    } dic:dic];
 }
 
 -(void)cancelFromAddComment{

@@ -13,6 +13,8 @@
 @property (nonatomic, copy) NSString *a_name;
 @property (nonatomic, copy) NSString *a_content;
 @property (nonatomic, copy) NSString *a_imageUrl;
+@property (nonatomic, copy) NSString *a_imageWidth;
+@property (nonatomic, copy) NSString *a_imageHeight;
 @property (nonatomic, copy) NSDate *a_time;
 @property (nonatomic, copy) NSString *a_type;
 @property (nonatomic, strong) NSMutableArray *a_commentsArr;

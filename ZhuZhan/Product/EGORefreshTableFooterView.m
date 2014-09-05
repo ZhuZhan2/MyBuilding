@@ -250,7 +250,7 @@
 #pragma mark Dealloc
 
 - (void)dealloc {
-	
+	NSLog(@"EGORefreshTableFooterView dealloc");
 	_delegate=nil;
 	_activityView = nil;
 	_statusLabel = nil;

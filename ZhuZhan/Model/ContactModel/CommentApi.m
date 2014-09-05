@@ -46,11 +46,12 @@
 // }
 + (NSURLSessionDataTask *)AddEntityCommentsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
     NSString *urlStr = [NSString stringWithFormat:@"api/EntityComments/Add"];
+    NSLog(@"%@",dic);
     return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        //NSLog(@"JSON===>%@",JSON);
+        NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON[@"d"][@"data"]];
+            [mutablePosts addObject:JSON[@"d"][@"status"]];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }

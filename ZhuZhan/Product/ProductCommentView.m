@@ -13,8 +13,6 @@
 @property(nonatomic,strong)EGOImageView* userImageView;
 @property(nonatomic,strong)UILabel* userNameLabel;
 @property(nonatomic,strong)UILabel* userCommentContent;
-@property(nonatomic,strong)UILabel* publishTime;
-
 @end
 
 @implementation ProductCommentView
@@ -27,6 +25,7 @@
 }
 
 -(void)loadSelfWithCommentModel:(CommentModel*)commentModel{
+    NSLog(@"111=====%@",commentModel.a_content);
     //获取用户头像
     self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[UIImage imageNamed:@"首页_16.png"]];
     self.userImageView.layer.masksToBounds=YES;
@@ -57,14 +56,6 @@
     }else{
         height=90;
     }
-    
-    //用户发表评论时间
-    self.publishTime=[[UILabel alloc]initWithFrame:CGRectMake(192, 15, 100, 20)];
-    self.publishTime.text=[NSString stringWithFormat:@"%@",commentModel.a_time];
-    self.publishTime.textColor=RGBCOLOR(170, 170, 170);
-    self.publishTime.font=[UIFont systemFontOfSize:16];
-    self.publishTime.textAlignment=NSTextAlignmentRight;
-    [self addSubview:self.publishTime];
     
     self.frame=CGRectMake(6, 0, 308, height);
     self.backgroundColor=[UIColor whiteColor];

@@ -11,6 +11,8 @@
 #import "AddCommentViewController.h"
 #import "AppDelegate.h"
 #import "UIViewController+MJPopupViewController.h"
+#import "CommentApi.h"
+#import "CommentModel.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate>
 @property(nonatomic,strong)UITableView* myTableView;
 
@@ -22,17 +24,21 @@
 @property(nonatomic,strong)NSMutableArray* commentViews;//cell中的内容视图
 
 @property(nonatomic,strong)AddCommentViewController* vc;
+
+@property(nonatomic,copy)NSString* a_id;
+
 @end
 
 @implementation ProductDetailViewController
 
--(instancetype)initWithImage:(UIImage*)productImage text:(NSString*)productText comments:(NSMutableArray*)comments{
+-(instancetype)initWithImage:(UIImage*)productImage text:(NSString*)productText productID:(NSString *)productID{
     self=[super init];
     if (self) {
         self.productImage=productImage;
         self.productText=productText;
-        self.commentModels=comments;
+        self.commentModels=[[NSMutableArray alloc]init];
         self.commentViews=[[NSMutableArray alloc]init];
+        self.a_id=productID;
     }
     return self;
 }
@@ -40,15 +46,35 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        NSLog(@"%@,%@",posts,self.a_id);
+        for (int i=0; i<posts.count; i++) {
+            NSLog(@"%@",[posts[i] a_name]);
+            [self.commentModels addObject:posts[i]];
+        }
+        [self getTableViewContents];
+        [self myTableViewReloadData];
+        //[self.myTableView reloadData];
+        
+    } entityId:self.a_id entityType:@"Product"];
+    
     self.view.backgroundColor=[UIColor whiteColor];
-    [self getProductView];
     [self initNavi];
-    [self getTableViewContents];
     [self initMyTableView];
+    [self getProductView];
+    
+
+}
+
+-(void)myTableViewReloadData{
+    [self getProductView];
+    [self.myTableView reloadData];
 }
 
 -(void)getTableViewContents{
     for (int i=0; i<self.commentModels.count; i++) {
+        
         ProductCommentView* view=[[ProductCommentView alloc]initWithCommentModel:self.commentModels[i]];
         [self.commentViews addObject:view];
     }
@@ -94,15 +120,16 @@
     tempHeight+=bounds.size.height+30;
     
     //与下方tableView的分割部分
-    UIImage* separatorImage=[UIImage imageNamed:@"产品－产品详情_12a@2x.png"];
-    frame=CGRectMake(0, tempHeight, separatorImage.size.width*.5, separatorImage.size.height*.5);
-    UIImageView* separatorImageView=[[UIImageView alloc]initWithFrame:frame];
-    separatorImageView.image=separatorImage;
-    separatorImageView.backgroundColor=RGBCOLOR(235, 235, 235);
-    [self.productView addSubview:separatorImageView];
-    
-    tempHeight+=frame.size.height;
-    
+    if (self.commentViews.count) {
+        UIImage* separatorImage=[UIImage imageNamed:@"产品－产品详情_12a@2x.png"];
+        frame=CGRectMake(0, tempHeight, separatorImage.size.width*.5, separatorImage.size.height*.5);
+        UIImageView* separatorImageView=[[UIImageView alloc]initWithFrame:frame];
+        separatorImageView.image=separatorImage;
+        separatorImageView.backgroundColor=RGBCOLOR(235, 235, 235);
+        [self.productView addSubview:separatorImageView];
+        
+        tempHeight+=frame.size.height;
+    }
     self.productView.frame=CGRectMake(0, 0, 320, tempHeight);
     
 }
@@ -110,7 +137,7 @@
 -(void)chooseComment:(UIButton*)button{
     self.vc=[[AddCommentViewController alloc]init];
     self.vc.delegate=self;
-    [self presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
+    [self.navigationController presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
 }
 
 //=========================================================================
@@ -120,13 +147,31 @@
     NSLog(@"cancelFromAddComment");
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
-
+//// "EntityId": ":entity ID", （项目，产品，公司，动态等）
+// "entityType": ":”entityType", Personal,Company,Project,Product 之一
+// "CommentContents": "评论内容",
+// "CreatedBy": ":“评论人"
+// }
 -(void)sureFromAddCommentWithComment:(NSString *)comment{
     NSLog(@"sureFromAddCommentWithCommentModel:");
     NSLog(@"%@",comment);
-    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            [self addTableViewContentWithContent:comment];
+            [self.myTableView reloadData];
+            [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+        }
+        NSLog(@"sucess");
+    } dic:[@{@"EntityId":self.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":@"f483bcfc-3726-445a-97ff-ac7f207dd888"} mutableCopy]];
 }
 
+
+-(void)addTableViewContentWithContent:(NSString*)content{
+    CommentModel* model=[[CommentModel alloc]init];
+    model.a_content=content;
+        ProductCommentView* view=[[ProductCommentView alloc]initWithCommentModel:model];
+    [self.commentViews insertObject:view atIndex:0];
+}
 //=========================================================================
 //UITableViewDataSource,UITableViewDelegate
 //=========================================================================
