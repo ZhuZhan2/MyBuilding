@@ -30,7 +30,7 @@
     [self initMyTableViewAndNavi];
 }
 
-- (UIImage *)imageWithColor:(UIColor *)color{
+-(UIImage*)imageWithColor:(UIColor *)color{
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -55,8 +55,10 @@
 //===========================================================================
 //UIScrollViewDelegate
 //===========================================================================
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self.searchBar resignFirstResponder];
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    if ([self.searchBar isFirstResponder]) {
+        [self.searchBar resignFirstResponder];
+    }
 }
 
 //===========================================================================
@@ -144,6 +146,10 @@
     [button setImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
+}
+
+-(void)dealloc{
+    NSLog(@"more dealloc");
 }
 
 - (void)didReceiveMemoryWarning

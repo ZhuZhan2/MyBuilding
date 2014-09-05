@@ -8,7 +8,7 @@
 
 #import "CompanyMemberViewController.h"
 
-@interface CompanyMemberViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UIScrollViewDelegate>
+@interface CompanyMemberViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>//,UIScrollViewDelegate>
 @property(nonatomic)NSInteger memberNumber;
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)UISearchBar* searchBar;
@@ -56,10 +56,11 @@
 //===========================================================================
 //UIScrollViewDelegate
 //===========================================================================
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self.searchBar resignFirstResponder];
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    if ([self.searchBar isFirstResponder]) {
+        [self.searchBar resignFirstResponder];
+    }
 }
-
 
 //===========================================================================
 //UITableViewDataSource,UITableViewDelegate
@@ -101,7 +102,6 @@
         cell.detailTextLabel.font=[UIFont boldSystemFontOfSize:13];
         cell.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:indexPath.row%2?@"公司认证员工_08a.png":@"公司认证员工_18a.png"]];
     }
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -130,11 +130,9 @@
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    
+    self.tableView.allowsSelection=NO;
     [self.view addSubview:self.tableView];
-    
     self.title = @"公司员工";
-    
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
     
     
@@ -143,6 +141,10 @@
     [button setImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
+}
+
+-(void)dealloc{
+    NSLog(@"member dealloc");
 }
 
 - (void)didReceiveMemoryWarning

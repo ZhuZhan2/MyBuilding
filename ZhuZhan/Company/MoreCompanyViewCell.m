@@ -33,8 +33,6 @@
 
 +(MoreCompanyViewCell *)getCellWithTableView:(UITableView *)tableView style:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     MoreCompanyViewCell* cell=[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    NSLog(@"11");
-        NSLog(@"22");
     
     if (!cell.myImageView) {
         //公司图片
@@ -62,14 +60,6 @@
         [cell addSubview:cell.companyIntroduce];
 
     }
-        //cell=[[MoreCompanyViewCell alloc]initWithStyle:style reuseIdentifier:reuseIdentifier];
-//        cell.myImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 45, 45)];
-//        cell.myImageView.image=[UIImage imageNamed:@"公司－我的公司_02a.png"];
-//    cell.companyIntroduce.text=@"sadasda";
-//
-           // }
-    
-    
     return cell;
 }
 @end
