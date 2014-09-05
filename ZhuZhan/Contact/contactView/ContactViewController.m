@@ -117,7 +117,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     NSLog(@"发布产品");
 
     PublishViewController *publishVC = [[PublishViewController alloc] init];
-    [self.navigationController pushViewController:publishVC animated:NO];
+    [self.navigationController pushViewController:publishVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
