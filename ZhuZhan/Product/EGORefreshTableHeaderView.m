@@ -245,7 +245,7 @@
 #pragma mark Dealloc
 
 - (void)dealloc {
-	
+	NSLog(@"EGORefreshTableHeaderView dealloc");
 	_delegate=nil;
 	_activityView = nil;
 	_statusLabel = nil;

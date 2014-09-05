@@ -76,6 +76,7 @@ NSString *const kDefaultReusableIdentifier = @"kTMQuiltViewDefaultReusableIdenti
 #pragma mark - Memory Management
 
 - (void)dealloc {
+    NSLog(@"TMQuiltView dealloc");
     [_indexPaths release], _indexPaths = nil;
     [_reusableViewsDictionary release], _reusableViewsDictionary = nil;
     [_rowsToInsert release], _rowsToInsert = nil;

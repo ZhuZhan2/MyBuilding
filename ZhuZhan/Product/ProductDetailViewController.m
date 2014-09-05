@@ -54,7 +54,8 @@
             [self.commentModels addObject:posts[i]];
         }
         [self getTableViewContents];
-        [self.myTableView reloadData];
+        [self myTableViewReloadData];
+        //[self.myTableView reloadData];
         
     } entityId:self.a_id entityType:@"Product"];
     
@@ -64,6 +65,11 @@
     [self getProductView];
     
 
+}
+
+-(void)myTableViewReloadData{
+    [self getProductView];
+    [self.myTableView reloadData];
 }
 
 -(void)getTableViewContents{
@@ -114,15 +120,16 @@
     tempHeight+=bounds.size.height+30;
     
     //与下方tableView的分割部分
-    UIImage* separatorImage=[UIImage imageNamed:@"产品－产品详情_12a@2x.png"];
-    frame=CGRectMake(0, tempHeight, separatorImage.size.width*.5, separatorImage.size.height*.5);
-    UIImageView* separatorImageView=[[UIImageView alloc]initWithFrame:frame];
-    separatorImageView.image=separatorImage;
-    separatorImageView.backgroundColor=RGBCOLOR(235, 235, 235);
-    [self.productView addSubview:separatorImageView];
-    
-    tempHeight+=frame.size.height;
-    
+    if (self.commentViews.count) {
+        UIImage* separatorImage=[UIImage imageNamed:@"产品－产品详情_12a@2x.png"];
+        frame=CGRectMake(0, tempHeight, separatorImage.size.width*.5, separatorImage.size.height*.5);
+        UIImageView* separatorImageView=[[UIImageView alloc]initWithFrame:frame];
+        separatorImageView.image=separatorImage;
+        separatorImageView.backgroundColor=RGBCOLOR(235, 235, 235);
+        [self.productView addSubview:separatorImageView];
+        
+        tempHeight+=frame.size.height;
+    }
     self.productView.frame=CGRectMake(0, 0, 320, tempHeight);
     
 }
@@ -156,7 +163,6 @@
         }
         NSLog(@"sucess");
     } dic:[@{@"EntityId":self.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":@"f483bcfc-3726-445a-97ff-ac7f207dd888"} mutableCopy]];
-    
 }
 
 

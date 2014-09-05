@@ -34,6 +34,7 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 @synthesize commentCountLabel = _commentCountLabel;
 
 - (void)dealloc {
+    NSLog(@"TMPhotoQuiltViewCell dealloc");
     [_photoView release], _photoView = nil;
     [_titleLabel release], _titleLabel = nil;
     

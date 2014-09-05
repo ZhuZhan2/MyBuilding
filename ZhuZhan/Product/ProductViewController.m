@@ -23,7 +23,7 @@
 @implementation ProductViewController
 
 -(void)dealloc{
-    NSLog(@"dealloc");
+    NSLog(@"ProductViewController dealloc");
 }
 
 - (void)viewDidLoad
@@ -53,8 +53,7 @@
                 ProductModel* model=showArr[i];
                 NSLog(@"%d,%@",i,model.a_content);
             }
-            
-            
+
             [qtmquitView reloadData];
         }
     } productId:@"" startIndex:startIndex];

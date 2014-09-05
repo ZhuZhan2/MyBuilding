@@ -26,7 +26,7 @@
 
 - (void)dealloc {
     [_reuseIdentifier release], _reuseIdentifier = nil;
-    
+    NSLog(@"TMQuiltViewCell dealloc");
     [super dealloc];
 }
 
