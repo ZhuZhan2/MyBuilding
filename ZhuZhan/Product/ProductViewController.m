@@ -45,8 +45,16 @@
     startIndex = 0;
     [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
+            NSLog(@"=====%@",posts);
             showArr = posts;
-            NSLog(@"%@",showArr);
+            //NSLog(@"%@",showArr);
+            
+            for (int i=0; i<showArr.count; i++) {
+                ProductModel* model=showArr[i];
+                NSLog(@"%d,%@",i,model.a_content);
+            }
+            
+            
             [qtmquitView reloadData];
         }
     } productId:@"" startIndex:startIndex];
@@ -234,19 +242,20 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSMutableArray *)images
-{
-    if (!_images)
-	{
-        _images=[NSMutableArray array];
-        //图片源
-        NSArray* names=@[@"+项目-首页_21a.png",@"地图搜索1_09.png",@"+项目-首页_21a.png",@"语音搜索_01.png",@"地图搜索1_09.png",@"语音搜索_01.png",@"+项目-首页_21a.png",@"语音搜索_01.png",@"+项目-首页_21a.png"];
-        for(int i = 0; i < names.count; i++) {
-            [_images addObject:names[i]];
-        }
-    }
-    return _images;
-}
+//- (NSMutableArray *)images
+//{
+//    NSLog(@"22222");
+//    if (!_images)
+//	{
+//        _images=[NSMutableArray array];
+//        //图片源
+//        NSArray* names=@[@"+项目-首页_21a.png",@"地图搜索1_09.png",@"+项目-首页_21a.png",@"语音搜索_01.png",@"地图搜索1_09.png",@"语音搜索_01.png",@"+项目-首页_21a.png",@"语音搜索_01.png",@"+项目-首页_21a.png"];
+//        for(int i = 0; i < names.count; i++) {
+//            [_images addObject:names[i]];
+//        }
+//    }
+//    return _images;
+//}
 
 
 - (UIImage *)imageAtIndexPath:(NSIndexPath *)indexPath {
@@ -323,6 +332,7 @@
     [dataDic setObject:comments forKey:@"comments"];
     
     ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithImage:dataDic[@"productImage"] text:dataDic[@"productText"] comments:dataDic[@"comments"]];
+    vc.a_id=[showArr[indexPath.row] a_id];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

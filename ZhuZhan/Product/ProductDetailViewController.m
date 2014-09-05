@@ -11,6 +11,8 @@
 #import "AddCommentViewController.h"
 #import "AppDelegate.h"
 #import "UIViewController+MJPopupViewController.h"
+#import "CommentApi.h"
+#import "CommentModel.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate>
 @property(nonatomic,strong)UITableView* myTableView;
 
@@ -40,6 +42,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        NSLog(@"%@,%@",posts,self.a_id);
+        CommentModel* model=posts[0];
+        NSLog(@"%@",model.a_content);
+        
+    } entityId:self.a_id entityType:@"Product"];
+    
+    
     self.view.backgroundColor=[UIColor whiteColor];
     [self getProductView];
     [self initNavi];
