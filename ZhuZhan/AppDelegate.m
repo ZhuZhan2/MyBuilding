@@ -71,7 +71,7 @@
     
     
     
-      /* if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
+       /*if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
             NSLog(@"第一次启动");
             LoginViewController *loginview = [[LoginViewController alloc] init];

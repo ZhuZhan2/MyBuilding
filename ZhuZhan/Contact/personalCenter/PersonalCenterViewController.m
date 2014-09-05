@@ -100,15 +100,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)rightBtnClick{//账户按钮触发的事件
-    count++;
-//    if (count==1) {
-//        [self pushToNextVC];
-//    }
-//    else{
+    
         AccountViewController *accountVC = [[AccountViewController alloc] init];
-//        accountVC.userIcon =[[SDImageCache sharedImageCache] imageFromKey:@"userIcon"];
         [self.navigationController pushViewController:accountVC animated:YES];
-//    }
     
 }
 

@@ -8,9 +8,6 @@
 
 #import "AccountViewController.h"
 #import "LoginModel.h"
-#import "HomePageViewController.h"
-#import "AppDelegate.h"
-
 
 @interface AccountViewController ()
 
@@ -18,7 +15,7 @@
 
 @implementation AccountViewController
 
-@synthesize userDic,KindIndex,userIcon,model;
+@synthesize userDic,KindIndex,userIcon,model,camera;
 
 static int selectBtnTag =0;
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
@@ -138,6 +135,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
     [actionSheet showInView:self.tableView.superview];
     
+    
 }
 
 -(void)setuserIcon
@@ -146,108 +144,27 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     selectBtnTag = 2014090202;
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
     [actionSheet showInView:self.tableView.superview];
+    
    
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    UIImagePickerControllerSourceType sourceType;
-    if (buttonIndex==0) {
-        NSLog(@"拍照获取图片");
-        BOOL isCamera =  [UIImagePickerController isCameraDeviceAvailable: UIImagePickerControllerCameraDeviceRear];
-        
-        if (!isCamera) {
-            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"此设备无摄像头" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alertView show];
-            
-            return;
-        }
-        
-
-        //拍照
-        sourceType = UIImagePickerControllerSourceTypeCamera;
-        
-        UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
-        imagePicker.sourceType = sourceType;
-        imagePicker.delegate = self;
-        imagePicker.allowsEditing = YES;
-        
-        AppDelegate* app=[AppDelegate instance];
-        HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-        [homeVC homePageTabBarHide];
- [self.view.window.rootViewController presentViewController:imagePicker animated:YES completion:nil];
-        
-        
-        
-    }
-    if (buttonIndex==1) {
-        NSLog(@"通过相册获取图片");
-        
-
-        //用户相册
-        sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        UIButton *button = (UIButton*)[self.view viewWithTag:4];
-        button.hidden = NO;
-        
-        UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
-        imagePicker.sourceType = sourceType;
-        imagePicker.delegate = self;
-        imagePicker.allowsEditing = YES;
-        AppDelegate* app=[AppDelegate instance];
-        HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-        [homeVC homePageTabBarHide];
-        [self.view.window.rootViewController presentViewController:imagePicker animated:YES completion:nil];
-        //        [self presentViewController:imagePicker animated:YES completion:nil];
-        
-        
-    }
-    if (buttonIndex==2) {
-        
-        //取消
-
-        return;
-    }
-    
-    
+    camera = [[Camera alloc] init];
+    camera.delegate = self;
+    [self.tableView.superview addSubview:camera.view];
+     [camera modifyUserIconWithButtonIndex:buttonIndex WithButtonTag:selectBtnTag];
     
 }
 
-#pragma mark ----UIImagePickerController delegate----
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+//cameraDelegate
+-(void)changeUserIcon:(NSString *)imageStr AndImage:(UIImage *)image
 {
-    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    image = [self fixOrientation:image];
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
-    NSString *imageStr=[imageData base64EncodedStringWithOptions:0];
-    NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"d2b49305-026c-4ff6-b2fc-5d1401510fd8",@"userId",imageStr,@"userImageStrings", nil];
-    
-    if (selectBtnTag == 2014090201) {
-//        [_pathCover setBackgroundImage:image];
+    NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"cfa78e37-a16c-49fe-9370-04f2879cbc88",@"userId",imageStr,@"userImageStrings", nil];
+    [LoginModel AddUserImageWithBlock:^(NSMutableArray *posts, NSError *error) {
         
-    }
-    if (selectBtnTag == 2014090202) {
+        [_pathCover addImageHead:image];
         
-        [LoginModel AddUserImageWithBlock:^(NSMutableArray *posts, NSError *error) {
-
-            [_pathCover addImageHead:image];
-            
-        } dic:parameter];
-    }
-    
-    AppDelegate* app=[AppDelegate instance];
-    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-    [homeVC homePageTabBarRestore];
-    
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    
-    AppDelegate* app=[AppDelegate instance];
-    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-    [homeVC homePageTabBarRestore];
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    } dic:parameter];
     
 }
 
