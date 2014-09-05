@@ -60,7 +60,7 @@
     
     //用户发表评论时间
     self.publishTime=[[UILabel alloc]initWithFrame:CGRectMake(192, 15, 100, 20)];
-    self.publishTime.text=commentModel.a_time;
+    self.publishTime.text=[NSString stringWithFormat:@"%@",commentModel.a_time];
     self.publishTime.textColor=RGBCOLOR(170, 170, 170);
     self.publishTime.font=[UIFont systemFontOfSize:16];
     self.publishTime.textAlignment=NSTextAlignmentRight;

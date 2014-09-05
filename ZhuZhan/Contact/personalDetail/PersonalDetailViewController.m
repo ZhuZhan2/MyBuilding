@@ -335,5 +335,7 @@ static float textHeight =0;
     // Dispose of any resources that can be recreated.
 }
 
+-(void)gotoMyCenter{
 
+}
 @end

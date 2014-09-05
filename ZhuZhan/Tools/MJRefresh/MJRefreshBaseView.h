@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 itcast. All rights reserved.
 
 #import <UIKit/UIKit.h>
-
+#import "SvGifView.h"
 @class MJRefreshBaseView;
 
 #pragma mark - 控件的刷新状态
@@ -35,7 +35,7 @@ typedef enum {
 @property (nonatomic, weak, readonly) UILabel *statusLabel;
 @property (nonatomic, weak, readonly) UIImageView *arrowImage;
 @property (nonatomic, weak, readonly) UIActivityIndicatorView *activityView;
-
+@property (nonatomic, strong) SvGifView *_gifView;
 #pragma mark - 回调
 /**
  *  开始进入刷新状态的监听器

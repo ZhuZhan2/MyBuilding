@@ -107,6 +107,35 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
 }
 
+//-(void)pushToNextVC
+//{
+//    AccountViewController *accountVC = [[AccountViewController alloc] init];
+//    [LoginModel GetUserImagesWithBlock:^(NSMutableArray *posts, NSError *error) {
+//        
+//        NSLog(@"***** %@",posts);
+//        NSDictionary *dic = [posts objectAtIndex:0];
+//        NSString  *statusCode = [[[dic objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
+//        if([[NSString stringWithFormat:@"%@",statusCode]isEqualToString:@"1300"]){
+//            NSDictionary *dataDic = [[dic objectForKey:@"d"] objectForKey:@"data"];
+//            
+//            NSString *imageLocation = [dataDic objectForKey:@"imageLocation"];
+//            NSLog(@"imageLocation %@",imageLocation);
+//            NSString *host = [NSString stringWithFormat:@"%s",serverAddress];
+//            NSString *urlString = [host stringByAppendingString:imageLocation];
+//            NSData *imageData =[NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+//            NSLog(@"[NSURL URLWithString:urlString] %@",[NSURL URLWithString:urlString]);
+//            accountVC.userIcon = [UIImage imageWithData:imageData];
+//            
+//            
+//        }else{
+//            
+//            accountVC.userIcon = [UIImage imageNamed:@"1"];
+//        }
+//        
+//        [[SDImageCache sharedImageCache] storeImage:accountVC.userIcon forKey:@"userIcon"];
+//        [self.navigationController pushViewController:accountVC animated:YES];
+//    } userId:@"d2b49305-026c-4ff6-b2fc-5d1401510fd8"];
+//}
 
 
 //设置时间
@@ -211,6 +240,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     // Dispose of any resources that can be recreated.
 }
 
+-(void)gotoMyCenter{
 
+}
 
 @end
