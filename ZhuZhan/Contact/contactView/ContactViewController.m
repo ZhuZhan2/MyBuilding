@@ -230,15 +230,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    CommentModel *model = showArr[indexPath.row];
-//    if([model.a_type isEqualToString:@"Project"]||[model.a_type isEqualToString:@"Personal"]){
-//        return 50;
-//    }else if([model.a_type isEqualToString:@"Product"]){
-//        commentView = [viewArr objectAtIndex:indexPath.row];
-//        return commentView.frame.size.height;
-//    }else{
-//        return 60;
-//    }
+    CommentModel *model = showArr[indexPath.row];
+    if([model.a_type isEqualToString:@"Project"]||[model.a_type isEqualToString:@"Personal"]){
+        return 50;
+    }else if([model.a_type isEqualToString:@"Product"]){
+        commentView = [viewArr objectAtIndex:indexPath.row];
+        return commentView.frame.size.height;
+    }else{
+        return 60;
+    }
     return 60;
 }
 

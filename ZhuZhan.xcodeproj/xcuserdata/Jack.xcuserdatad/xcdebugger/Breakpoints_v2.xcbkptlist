@@ -4,22 +4,6 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ZhuZhan/LoginView/LoginEvent.m"
-            timestampString = "430641775.925777"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "-detectWithImage:With:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
@@ -27,22 +11,6 @@
             continueAfterRunningActions = "No"
             scope = "0"
             stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ZhuZhan/LoginView/LoginEvent.m"
-            timestampString = "431334450.17851"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
-            landmarkName = "-detectWithImageArray:"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -67,7 +35,7 @@
                   symbolName = "+[ProjectApi GetSeminarProjectsWithBlock:Id:]"
                   moduleName = "ZhuZhan"
                   urlString = "file:///Users/Jack/Desktop/%E6%88%91%E7%9A%84%E4%BB%A3%E7%A0%81/GitHub/ZhuZhanDev/ZhuZhan/Model/ProjectModel/ProjectApi.m"
-                  timestampString = "431590644.509242"
+                  timestampString = "431603873.913222"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "434"
@@ -81,7 +49,7 @@
                   symbolName = "__45+[ProjectApi GetSeminarProjectsWithBlock:Id:]_block_invoke"
                   moduleName = "ZhuZhan"
                   urlString = "file:///Users/Jack/Desktop/%E6%88%91%E7%9A%84%E4%BB%A3%E7%A0%81/GitHub/ZhuZhanDev/ZhuZhan/Model/ProjectModel/ProjectApi.m"
-                  timestampString = "431590644.509435"
+                  timestampString = "431603873.913509"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "434"
@@ -118,9 +86,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
+            endingLineNumber = "106">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

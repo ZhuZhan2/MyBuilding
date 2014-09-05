@@ -11,4 +11,7 @@
 @interface PublishViewController : UIViewController<UITextViewDelegate>
 @property (nonatomic,strong) UIView *toolBar;
 @property (nonatomic,strong) UITextView *inputView;
+@property (nonatomic,strong) UILabel *alertLabel;
+@property (nonatomic,strong) UIImageView *leftBtnImage;
+@property (nonatomic,strong) UIImageView *rightBtnImage;
 @end
