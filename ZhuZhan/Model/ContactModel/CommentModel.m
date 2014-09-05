@@ -19,6 +19,8 @@
     self.a_content = [ProjectStage ProjectStrStage:dict[@"actives"][@"activeContents"]];
     self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"actives"][@"activeImage"]];
     self.a_type = [ProjectStage ProjectStrStage:dict[@"actives"][@"category"]];
+    self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"actives"][@"imageWidth"]]];
+    self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"actives"][@"imageHeight"]]];
     
     self.a_commentsArr = [[NSMutableArray alloc] init];
     if([dict[@"comments"] count] !=0){
