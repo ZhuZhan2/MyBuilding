@@ -81,6 +81,7 @@
     if (cell.contentView.subviews.count) {
         [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     }
+    //搜索栏
     if (indexPath.row==0) {
         [cell.contentView addSubview:self.searchBar];
         cell.textLabel.text=nil;
@@ -88,6 +89,7 @@
         cell.detailTextLabel.text=nil;
         cell.accessoryView=nil;
     }
+    //公司认证员工部分
     if (indexPath.row!=0) {
         UIView* separatorLine=[self getSeparatorLine];
         [cell.contentView addSubview:separatorLine];
@@ -99,6 +101,7 @@
         cell.detailTextLabel.font=[UIFont boldSystemFontOfSize:13];
         cell.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:indexPath.row%2?@"公司认证员工_08a.png":@"公司认证员工_18a.png"]];
     }
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -128,7 +131,6 @@
     self.tableView.dataSource=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     
-    self.tableView.allowsSelection=NO;
     [self.view addSubview:self.tableView];
     
     self.title = @"公司员工";

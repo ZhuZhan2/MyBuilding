@@ -38,21 +38,22 @@
     
     if (!cell.myImageView) {
         //公司图片
-        cell.myImageView=[[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 94, 94)];
+        cell.myImageView=[[UIImageView alloc]initWithFrame:CGRectMake(5, 0, 94, 94)];
         
         //公司名称
-        cell.companyNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(99, 10, 210, 20)];
+        cell.companyNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(99, 18, 210, 15)];
         cell.companyNameLabel.textColor=RGBCOLOR(62, 127, 226);
-        cell.companyNameLabel.font=[UIFont boldSystemFontOfSize:14];
+        cell.companyNameLabel.font=[UIFont boldSystemFontOfSize:15];
         
         //公司行业
-        cell.companyBusiness=[[UILabel alloc]initWithFrame:CGRectMake(99, 30, 210, 20)];
+        cell.companyBusiness=[[UILabel alloc]initWithFrame:CGRectMake(99, 39, 210, 15)];
         cell.companyBusiness.font=[UIFont boldSystemFontOfSize:13];
-        cell.companyBusiness.textColor=RGBCOLOR(188, 188, 188);
+        cell.companyBusiness.textColor=RGBCOLOR(98, 98, 98);
         
         //公司介绍
-        cell.companyIntroduce=[[UILabel alloc]initWithFrame:CGRectMake(99, 50, 210, 40)];
+        cell.companyIntroduce=[[UILabel alloc]initWithFrame:CGRectMake(99, 58, 210, 15)];
         cell.companyIntroduce.font=[UIFont boldSystemFontOfSize:13];
+        cell.companyIntroduce.textColor=RGBCOLOR(98, 98, 98);
         cell.companyIntroduce.numberOfLines=2;
         
         [cell addSubview:cell.myImageView];
