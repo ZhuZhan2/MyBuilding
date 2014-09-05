@@ -53,6 +53,13 @@
     [button setImage:[UIImage imageNamed:@"bg-addbutton-highlighted"] forState:UIControlStateNormal];
 }
 //===========================================================================
+//UIScrollViewDelegate
+//===========================================================================
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.searchBar resignFirstResponder];
+}
+
+//===========================================================================
 //UITableViewDataSource,UITableViewDelegate
 //===========================================================================
 
@@ -119,7 +126,7 @@
     self.tableView.allowsSelection=NO;
     [self.view addSubview:self.tableView];
     
-    self.title = @"公司员工";
+    self.title = @"公司组织";
     
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
     
