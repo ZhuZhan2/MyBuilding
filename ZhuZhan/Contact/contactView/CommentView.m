@@ -9,7 +9,7 @@
 #import "CommentView.h"
 #import "EGOImageView.h"
 @implementation CommentView
-
+@synthesize indexpath = _indexpath;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -62,7 +62,18 @@
     UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     commentBtn.frame = CGRectMake(270, imageView.frame.size.height-40, 37, 37);
     [commentBtn setImage:[UIImage imageNamed:@"人脉_66a"] forState:UIControlStateNormal];
+    [commentBtn addTarget:commentView action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
     [commentView addSubview:commentBtn];
     return commentView;
+}
+
+-(void)commentClick{
+    if([self.delegate respondsToSelector:@selector(addCommentView:)]){
+        [self.delegate addCommentView:_indexpath];
+    }
+}
+
+-(void)setIndexPath:(NSIndexPath *)indexPath{
+    _indexpath = indexPath;
 }
 @end

@@ -30,6 +30,20 @@
     return string;
 }
 
++(NSDate *)ProjectDateStage:(NSString *)str{
+    NSDate *date = nil;
+    if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@" "]){
+        date = nil;
+    }else{
+        NSArray *arr = [str componentsSeparatedByString:@"."];
+        NSString *time = [arr[0] stringByReplacingOccurrencesOfString:@"T" withString:@" "];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        date = [dateFormatter dateFromString:time];
+    }
+    return date;
+}
+
 +(NSString *)ProjectBoolStage:(NSString *)str{
     NSString *string = [[NSString alloc] init];
     if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@" "]){

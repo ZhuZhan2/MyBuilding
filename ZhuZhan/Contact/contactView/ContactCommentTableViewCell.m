@@ -62,6 +62,7 @@
 }
 
 -(void)setModel:(CommentModel *)model{
-    
+    contentLabel.frame = CGRectMake(120, 15, 100, 30);
+    contentLabel.text = model.a_content;
 }
 @end

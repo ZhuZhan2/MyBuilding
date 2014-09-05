@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ResultsTableViewController : UITableViewController{
+#import "ProjectTableViewCell.h"
+@interface ResultsTableViewController : UITableViewController<ProjectTableViewCellDelegate>{
     NSMutableArray *showArr;
     int startIndex;
    

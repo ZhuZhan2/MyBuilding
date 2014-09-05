@@ -44,13 +44,13 @@
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,
                                                                      nil]];
     
-    //LeftButton设置属性
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftButton setFrame:CGRectMake(0, 0, 41, 36.5)];
-    [leftButton setBackgroundImage:[UIImage imageNamed:@"项目-首页_03a.png"] forState:UIControlStateNormal];
-    [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
-    self.navigationItem.leftBarButtonItem = leftButtonItem;
+    //RightButton设置属性
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setFrame:CGRectMake(0, 0, 41, 36.5)];
+    [rightButton setBackgroundImage:[UIImage imageNamed:@"项目-首页_03a.png"] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
     
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
     [bgView setBackgroundColor:[UIColor clearColor]];
@@ -162,7 +162,7 @@
     }
 }
 
--(void)leftBtnClick{
+-(void)rightBtnClick{
     TopicsTableViewController *topicsview = [[TopicsTableViewController alloc] init];
     [self.navigationController pushViewController:topicsview animated:YES];
 }
@@ -197,8 +197,9 @@
     ProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     projectModel *model = showArr[indexPath.row];
     if(!cell){
-        cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:model fromView:@"project"];
+        cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:model fromView:@"project" index:indexPath.row];
     }
+    cell.delegate = self;
     cell.model = model;
     cell.selectionStyle = NO;
     return cell;
@@ -228,5 +229,13 @@
         return bgView;
     }
     return nil;
+}
+
+-(void)addProjectCommentView:(int)index{
+    projectModel *model = showArr[index];
+    PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
+    projectCommentView.projectId = model.a_id;
+    projectCommentView.projectName = model.a_projectName;
+    [self.navigationController pushViewController:projectCommentView animated:YES];
 }
 @end
