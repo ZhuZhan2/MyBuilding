@@ -29,7 +29,6 @@
         if (block) {
             block([NSMutableArray array], error);
         }
-        
     }];
 }
 

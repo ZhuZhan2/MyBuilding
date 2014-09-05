@@ -319,7 +319,7 @@
     for (int i=0; i<25; i++) {
         CommentModel* model=[[CommentModel alloc]init];
         model.a_name = [NSString stringWithFormat:@"name=%d",i];
-        model.a_time = [NSString stringWithFormat:@"%d-%d %d:%d",i,i,i,i];
+        //model.a_time = [NSString stringWithFormat:@"%d-%d %d:%d",i,i,i,i];
         NSString* content = [NSString stringWithFormat:@"content=%d",i];
         model.a_content=content;
         for (int k=0; k<i; k++) {
@@ -331,8 +331,7 @@
     
     [dataDic setObject:comments forKey:@"comments"];
     
-    ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithImage:dataDic[@"productImage"] text:dataDic[@"productText"] comments:dataDic[@"comments"]];
-    vc.a_id=[showArr[indexPath.row] a_id];
+    ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithImage:dataDic[@"productImage"] text:dataDic[@"productText"] productID:[showArr[indexPath.row] a_id]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
