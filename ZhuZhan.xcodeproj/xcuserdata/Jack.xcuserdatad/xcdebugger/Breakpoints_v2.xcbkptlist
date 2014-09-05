@@ -67,7 +67,7 @@
                   symbolName = "+[ProjectApi GetSeminarProjectsWithBlock:Id:]"
                   moduleName = "ZhuZhan"
                   urlString = "file:///Users/Jack/Desktop/%E6%88%91%E7%9A%84%E4%BB%A3%E7%A0%81/GitHub/ZhuZhanDev/ZhuZhan/Model/ProjectModel/ProjectApi.m"
-                  timestampString = "431573433.394882"
+                  timestampString = "431590644.509242"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "434"
@@ -81,7 +81,7 @@
                   symbolName = "__45+[ProjectApi GetSeminarProjectsWithBlock:Id:]_block_invoke"
                   moduleName = "ZhuZhan"
                   urlString = "file:///Users/Jack/Desktop/%E6%88%91%E7%9A%84%E4%BB%A3%E7%A0%81/GitHub/ZhuZhanDev/ZhuZhan/Model/ProjectModel/ProjectApi.m"
-                  timestampString = "431573433.395063"
+                  timestampString = "431590644.509435"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "434"
@@ -104,6 +104,22 @@
             startingLineNumber = "295"
             endingLineNumber = "295"
             landmarkName = "-commomRegister"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZhuZhan/Contact/personalCenter/AccountViewController.m"
+            timestampString = "431578047.184313"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

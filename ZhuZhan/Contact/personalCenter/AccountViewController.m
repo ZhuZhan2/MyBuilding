@@ -64,8 +64,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover.delegate = self;
     
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
-    [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
-
+        [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
+   
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadImageFrame:CGRectMake(120, -50, 70, 70)];
     [_pathCover.headImage.layer setMasksToBounds:YES];
@@ -102,10 +102,22 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     model.position = @"总经理";
     
     [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+        
+        NSLog(@"**** %@",posts);
+//        NSDictionary *dic = [posts objectAtIndex:0];
+
+            NSLog(@"23rgfdg");
+        
+        
+        
+    } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0"];
+    
+    /*[LoginModel GetUserImagesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             
         }
-    } userId:@"a435ccfe-65cb-4d6d-ad89-3f828f51e0bb"];
+    } userId:@"a435ccfe-65cb-4d6d-ad89-3f828f51e0bb"];*/
+    
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
@@ -159,7 +171,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //cameraDelegate
 -(void)changeUserIcon:(NSString *)imageStr AndImage:(UIImage *)image
 {
-    NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"cfa78e37-a16c-49fe-9370-04f2879cbc88",@"userId",imageStr,@"userImageStrings", nil];
+    NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0",@"userId",imageStr,@"userImageStrings", nil];
     [LoginModel AddUserImageWithBlock:^(NSMutableArray *posts, NSError *error) {
         
         [_pathCover addImageHead:image];
