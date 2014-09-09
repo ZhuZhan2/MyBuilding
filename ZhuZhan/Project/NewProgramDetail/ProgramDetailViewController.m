@@ -238,7 +238,8 @@
         NSLog(@"关注");
         [ProjectApi AddUserFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
             NSLog(@"notice sucess");
-        } dic:[@{@"UserId":@"f483bcfc-3726-445a-97ff-ac7f207dd888",@"ProjectId":self.model.a_id,@"CreateTime":[NSDate date],@"IsDelted":@"true"} mutableCopy]];
+        } dic:[@{@"UserId":@"f483bcfc-3726-445a-97ff-ac7f207dd888",@"ProjectId":self.model.a_id,@"CreateTime":@""//[NSDate date]
+                 ,@"IsDelted":@"true"} mutableCopy]];
         
     }else if (buttonIndex==1){
         NSLog(@"评论");
