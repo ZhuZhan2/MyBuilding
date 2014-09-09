@@ -114,6 +114,7 @@ rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
     selectBtnTag = 2014090901;
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
     [actionSheet showInView:self.view.superview];
+
     
 }
 
@@ -132,7 +133,7 @@ leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_09a"];
     camera = [[Camera alloc] init];
     camera.delegate = self;
     [self.view addSubview:camera.view];
-    [camera modifyUserIconWithButtonIndex:buttonIndex WithButtonTag:selectBtnTag WithActionSheet:actionSheet];
+    [camera modifyUserIconWithButtonIndex:buttonIndex WithButtonTag:selectBtnTag];
     
 }
 
