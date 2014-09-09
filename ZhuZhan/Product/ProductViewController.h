@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "EGORefreshTableHeaderView.h"
 #import "EGORefreshTableFooterView.h"
+#import "TMQuiltView.h"
+
 @interface ProductViewController : UIViewController<EGORefreshTableDelegate>{
 	//EGOHeader
     EGORefreshTableHeaderView *_refreshHeaderView;
@@ -20,6 +22,7 @@
     int startIndex;
     
     NSMutableArray *showArr;
+    TMQuiltView *qtmquitView;
 }
 
 @end
