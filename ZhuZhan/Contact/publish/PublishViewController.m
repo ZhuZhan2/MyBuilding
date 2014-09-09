@@ -15,7 +15,7 @@
 @end
 
 @implementation PublishViewController
-@synthesize toolBar,inputView;
+@synthesize toolBar,inputView,alertLabel,leftBtnImage,rightBtnImage;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -48,155 +48,129 @@
     self.title = @"发布";
 
 
-    
-    
-    inputView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-    inputView.backgroundColor = [UIColor yellowColor];
-    inputView.text = @"asdfasdfasdfasdf";
-    [self.view addSubview:inputView];
 
+    inputView = [[UITextView alloc] initWithFrame:CGRectMake(10, 44, 300, 220)];
+    inputView.delegate = self;
+    inputView.returnKeyType = UIReturnKeySend;
+//    inputView.contentInset = UIEdgeInsetsMake(30,30,0,0.0);
+    inputView.font = [UIFont systemFontOfSize:16];
+    inputView.text =@"             ";
+//    inputView.backgroundColor = [UIColor redColor];
+    [inputView becomeFirstResponder];
+    [self.view addSubview:inputView];
     
-//    toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-40, 320, 40)];
-//    toolBar.backgroundColor = [UIColor blackColor];
-//    toolBar.alpha =0.5;
-//    [self.view addSubview:toolBar];
-//
-//
-//    UIButton *textBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    textBtn.frame = CGRectMake(0, 0, 158, 40);
-//
-//    [textBtn setTitle:@"想说些什么..." forState:UIControlStateNormal];
-//    [textBtn setImage:[UIImage imageNamed:@"人脉－发布动态_09a"] forState:UIControlStateNormal];
-//    [textBtn setImage:[UIImage imageNamed:@"人脉－发布动态_07a"] forState:UIControlStateSelected];
-//    
-//    [textBtn addTarget:self action:@selector(publshText) forControlEvents:UIControlEventTouchUpInside];
-//    [toolBar addSubview:textBtn];
-//    
-//    UIButton *photoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    photoBtn.frame = CGRectMake(162, 0, 160, 40);
-//
-//    [photoBtn setTitle:@"产品信息     " forState:UIControlStateNormal];
-//    [photoBtn setImage:[UIImage imageNamed:@"人脉－发布动态_13a"] forState:UIControlStateNormal];
-//    [photoBtn addTarget:self action:@selector(publshPhoto) forControlEvents:UIControlEventTouchUpInside];
-//    [toolBar addSubview:photoBtn];
+    alertLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 110, 120, 30)];
+    alertLabel.text = @"您在做什么?";
+    alertLabel.textColor = GrayColor;
+    alertLabel.alpha = 0.6;
+    alertLabel.textAlignment =NSTextAlignmentLeft;
+    [self.view addSubview:alertLabel];
+    
+
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 74.5, 60, 60)];
+    imageView.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
+    [self.view addSubview:imageView];
+    
+    toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, 312, 320, 40)];
+    [self.view addSubview:toolBar];
+
+
+    UIButton *textBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    textBtn.frame = CGRectMake(0, 0, 158, 40);
+    leftBtnImage = [[UIImageView alloc] initWithFrame:CGRectMake(25, 11.5, 19, 17)];
+    leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_09a"];
+    leftBtnImage.userInteractionEnabled = YES;
+    [textBtn addSubview:leftBtnImage];
+    UILabel *leftBtnLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 100, 30)];
+    leftBtnLabel.text = @"想说些什么...";
+    [textBtn addSubview:leftBtnLabel];
+    
+    [textBtn addTarget:self action:@selector(publshText) forControlEvents:UIControlEventTouchUpInside];
+    [toolBar addSubview:textBtn];
+    
+    UIButton *photoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    photoBtn.frame = CGRectMake(162, 0, 160, 40);
+    rightBtnImage = [[UIImageView alloc] initWithFrame:CGRectMake(25, 11.5, 19, 17)];
+    rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
+    rightBtnImage.userInteractionEnabled = YES;
+    [photoBtn addSubview:rightBtnImage];
+    UILabel *rightBtnLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 100, 30)];
+    rightBtnLabel.text = @"产品信息";
+    [photoBtn addSubview:rightBtnLabel];
+    [photoBtn addTarget:self action:@selector(publshPhoto) forControlEvents:UIControlEventTouchUpInside];
+    [toolBar addSubview:photoBtn];
 
 
     
 
 }
 
-//-(void)viewWillAppear:(BOOL)animated
-//{
-//    //增加监听，当键盘出现或改变时收出消息
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(keyboardWillShow:)
-//                                                 name:UIKeyboardWillShowNotification
-//                                               object:nil];
-//[inputView addObserver:self forKeyPath:@"contentSize"options:NSKeyValueObservingOptionNew context:nil];//也可以监听contentSize属性
-//    
-//    AppDelegate* app=[AppDelegate instance];
-//    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-//    [homeVC homePageTabBarHide];
-//
-//}
-//
-//-(void)viewDidDisappear:(BOOL)animated
-//{
-//
-//    AppDelegate* app=[AppDelegate instance];
-//    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-//    [homeVC homePageTabBarRestore];
-//}
-//
-//- (void)keyboardWillShow:(NSNotification *)aNotification//获取键盘的高度条横tool和inputView的frame
-//{
-//    //获取键盘的高度
-//    NSDictionary *userInfo = [aNotification userInfo];
-//    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-//    CGRect keyboardRect = [aValue CGRectValue];
-//    CGFloat height = keyboardRect.size.height;
-//    NSLog(@"%lf",height);
-//    toolBar.frame =CGRectMake(0, kScreenHeight-height-40, 320, 40);
-//    //inputView.frame = CGRectMake(10, 80, 300, kScreenHeight-height-40-100);
-//}
-//
-//
-//
-////接收处理
-//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-//{
-//    NSLog(@"keyPath  ***%@",keyPath);
-//    NSLog(@"change ***%@",change);
-//    NSLog(@"context   ***%@",context);
-//    
-//    CGFloat topCorrect = ([inputView bounds].size.height - [inputView contentSize].height);
-//    
-//    topCorrect = (topCorrect <0.0 ?0.0 : topCorrect);
-//    
-//    //inputView.contentOffset = (CGPoint){.x =0, .y = -topCorrect/2};
-//    
-//}
-//
-//-(void)publshText
-//{
-//    NSLog(@"发布文字信息");
-//        inputView.editable =YES;
-//    [inputView becomeFirstResponder];
-//
-//}
-//
-//-(void)publshPhoto{
-//  NSLog(@"发布图片信息");
-//}
-//
-//-(void)leftBtnClick{
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
-//
-//
-//
-//-(void)clearAll
-//{
-//    inputView.text =nil;
-//}
-//
-//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text; {
-//    
-//    if ([@"\n" isEqualToString:text] == YES) { //发送的操作
-//            inputView.editable =NO;
-//        [inputView resignFirstResponder];
-//        toolBar.frame =CGRectMake(0, kScreenHeight-40, 320, 40);
-//        //inputView.frame = CGRectMake(10, 80, 300, kScreenHeight-40-100);
-//        return NO;
-//        
-//    }
-//    
-//    return YES;
-//}
-//
-//- (void)textViewDidChange:(UITextView *)textView
-//{
-//
-//    
-//    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0f)
-//    {
-//        CGRect line = [textView caretRectForPosition:
-//                       textView.selectedTextRange.start];
-//        CGFloat overflow = line.origin.y + line.size.height
-//        - ( textView.contentOffset.y + textView.bounds.size.height
-//           - textView.contentInset.bottom - textView.contentInset.top);
-//        if ( overflow > 0 ) {
-//            // We are at the bottom of the visible text and introduced a line feed, scroll down (iOS 7 does not do it)
-//            // Scroll caret to visible area
-//            CGPoint offset = textView.contentOffset;
-//            offset.y += overflow + 7; // leave 7 pixels margin
-//            // Cannot animate with setContentOffset:animated: or caret will not appear
-//            [UIView animateWithDuration:.2 animations:^{
-//                [textView setContentOffset:offset];
-//            }];
-//        }
-//    }
-//}
+
+-(void)publshText
+{
+    NSLog(@"发布文字信息");
+leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_07a"];
+}
+
+-(void)publshPhoto{
+  NSLog(@"发布图片信息");
+    
+leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_09a"];
+    
+}
+
+-(void)leftBtnClick{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+
+-(void)clearAll
+{
+    inputView.text =@"             ";
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text; {
+    
+//    NSLog(@"Text **%@mm",text);
+
+    alertLabel.hidden = YES;
+    if ([@"\n" isEqualToString:text] == YES) { //发送的操作
+        if ([inputView.text length] <13) {
+            inputView.text =@"             ";
+        }
+        inputView.text = [inputView.text substringFromIndex:13];
+//        NSLog(@"inputView.text  %@",inputView.text);
+        inputView.text =@"             ";
+        return NO;
+    }
+    if ([@"" isEqualToString:text] == YES) {
+        CGPoint cursorPosition = [textView caretRectForPosition:textView.selectedTextRange.start].origin;
+        NSLog(@"===%lf,%f",cursorPosition.x,cursorPosition.y);
+        if ((cursorPosition.x==58.720001 &&cursorPosition.y==7)||(cursorPosition.x==63.279999 &&cursorPosition.y==7)) {
+            if ([inputView.text length] <14) {
+               inputView.text =@"             ";
+                return NO;
+            }
+            
+            [@" " stringByAppendingString:inputView.text];
+            return NO;
+
+        }
+
+        else if(cursorPosition.x<63.281014 && cursorPosition.y==7){
+            NSLog(@"韩海龙");
+            [@" " stringByAppendingString:inputView.text];
+            return NO;
+        }
+        
+    }
+    
+    return YES;
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {
