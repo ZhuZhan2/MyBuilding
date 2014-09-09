@@ -108,7 +108,7 @@
 
 -(void)publshText
 {
-    NSLog(@"发布文字信息");
+    NSLog(@"想说些什么");
 leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_07a"];
 }
 
