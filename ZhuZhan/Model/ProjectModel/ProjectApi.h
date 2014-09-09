@@ -53,4 +53,7 @@
 
 //删除搜索条件
 + (NSURLSessionDataTask *)DeleteSearchConditionsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic;
+
+//添加关注项目
++ (NSURLSessionDataTask *)AddUserFocusWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic;
 @end

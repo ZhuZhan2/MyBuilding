@@ -770,7 +770,7 @@
     NSLog(@"ProgramDetailViewControllerDealloc");
 }
 
-//去评论项目
+//去评论项目 关注项目
 -(void)rightBtnClick{
     UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"关注项目",@"评论项目", nil];
     [actionSheet showInView:self.view];

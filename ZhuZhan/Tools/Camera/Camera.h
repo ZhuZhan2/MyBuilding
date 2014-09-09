@@ -11,6 +11,7 @@
 @protocol CameraDelegate <NSObject>
 
 -(void)changeUserIcon:(NSString *)imageStr AndImage:(UIImage *)image;
+-(void)publishImage:(NSString *)imageStr andImage:(UIImage *)image;
 
 @end
 
@@ -18,6 +19,6 @@
 
 @property (nonatomic,weak) id<CameraDelegate> delegate;
 
--(void)modifyUserIconWithButtonIndex:(int)index WithButtonTag:(int)tag;
+-(void)modifyUserIconWithButtonIndex:(int)index WithButtonTag:(int)tag WithActionSheet:(UIActionSheet *)actionSheet;
 
 @end
