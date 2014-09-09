@@ -13,8 +13,6 @@
 #import "ProductModel.h"
 #import "EGOImageView.h"
 @interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate>
-{
-}
 @property (nonatomic, strong) NSMutableArray *images;
 @end
 
