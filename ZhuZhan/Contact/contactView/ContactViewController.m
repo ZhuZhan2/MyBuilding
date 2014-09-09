@@ -93,12 +93,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[0];
                     [showArr addObject:contactCommentModel];
                     [_datasource addObject:contactCommentModel.a_time];
-//                    for(int i=0;i<commentModel.a_commentsArr.count;i++){
-//                        ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[i];
-//                        [showArr addObject:contactCommentModel];
-//                        NSLog(@"%@",contactCommentModel.a_time);
-//                        [_datasource addObject:contactCommentModel.a_time];
-//                    }
                 }
             }
             //NSLog(@"%@",showArr);
