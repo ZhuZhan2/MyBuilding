@@ -93,12 +93,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[0];
                     [showArr addObject:contactCommentModel];
                     [_datasource addObject:contactCommentModel.a_time];
-//                    for(int i=0;i<commentModel.a_commentsArr.count;i++){
-//                        ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[i];
-//                        [showArr addObject:contactCommentModel];
-//                        NSLog(@"%@",contactCommentModel.a_time);
-//                        [_datasource addObject:contactCommentModel.a_time];
-//                    }
                 }
             }
             //NSLog(@"%@",showArr);
@@ -114,7 +108,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             }
             [self.tableView reloadData];
         }
-    } userId:@"f483bcfc-3726-445a-97ff-ac7f207dd888" startIndex:startIndex];
+    } userId:@"91b9d2e3-01ff-4e8b-8231-5fc41a3f7323" startIndex:startIndex];
 }
 
 
@@ -358,7 +352,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [dic setValue:model2.a_id forKey:@"EntityId"];
     [dic setValue:[NSString stringWithFormat:@"%@",comment] forKey:@"CommentContents"];
     [dic setValue:model2.a_type forKey:@"EntityType"];
-    [dic setValue:@"f483bcfc-3726-445a-97ff-ac7f207dd888" forKey:@"CreatedBy"];
+    [dic setValue:@"91b9d2e3-01ff-4e8b-8231-5fc41a3f7323" forKey:@"CreatedBy"];
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             
