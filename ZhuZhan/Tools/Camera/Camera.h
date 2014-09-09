@@ -12,13 +12,12 @@
 
 -(void)changeUserIcon:(NSString *)imageStr AndImage:(UIImage *)image;
 -(void)publishImage:(NSString *)imageStr andImage:(UIImage *)image;
-
 @end
 
 @interface Camera : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic,weak) id<CameraDelegate> delegate;
 
--(void)modifyUserIconWithButtonIndex:(int)index WithButtonTag:(int)tag WithActionSheet:(UIActionSheet *)actionSheet;
+-(void)modifyUserIconWithButtonIndex:(int)index WithButtonTag:(int)tag;
 
 @end

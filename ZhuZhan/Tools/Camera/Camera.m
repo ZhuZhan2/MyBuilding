@@ -33,7 +33,7 @@ static int BtnTag =0;
     // Do any additional setup after loading the view.
 }
 
--(void)modifyUserIconWithButtonIndex:(int)index WithButtonTag:(int)tag WithActionSheet:(UIActionSheet *)actionSheet
+-(void)modifyUserIconWithButtonIndex:(int)index WithButtonTag:(int)tag
 {
     BtnTag =tag;
     UIImagePickerControllerSourceType sourceType;
@@ -72,8 +72,7 @@ static int BtnTag =0;
     
     if (index==2) {
         
-        actionSheet =nil;
-        
+        [self.view removeFromSuperview];
     }
     
 }
