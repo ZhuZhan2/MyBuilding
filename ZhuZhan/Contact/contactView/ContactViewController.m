@@ -108,7 +108,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             }
             [self.tableView reloadData];
         }
-    } userId:@"91b9d2e3-01ff-4e8b-8231-5fc41a3f7323" startIndex:startIndex];
+    } userId:@"f483bcfc-3726-445a-97ff-ac7f207dd888" startIndex:startIndex];
 }
 
 
@@ -352,7 +352,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [dic setValue:model2.a_id forKey:@"EntityId"];
     [dic setValue:[NSString stringWithFormat:@"%@",comment] forKey:@"CommentContents"];
     [dic setValue:model2.a_type forKey:@"EntityType"];
-    [dic setValue:@"91b9d2e3-01ff-4e8b-8231-5fc41a3f7323" forKey:@"CreatedBy"];
+    [dic setValue:@"f483bcfc-3726-445a-97ff-ac7f207dd888" forKey:@"CreatedBy"];
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             

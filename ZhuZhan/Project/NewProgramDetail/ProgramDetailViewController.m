@@ -764,7 +764,7 @@
     NSLog(@"ProgramDetailViewControllerDealloc");
 }
 
-//去评论项目
+//去评论项目 关注项目
 -(void)rightBtnClick{
     NSLog(@"rightBtnClick");
 }
