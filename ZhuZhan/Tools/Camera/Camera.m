@@ -70,6 +70,11 @@ static int BtnTag =0;
         
     }
     
+    if (index==2) {
+        
+        [self.view removeFromSuperview];
+    }
+    
 }
 
 
@@ -78,12 +83,14 @@ static int BtnTag =0;
 {
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     image = [self fixOrientation:image];
+    
     NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+    
     NSString *imageStr=[imageData base64EncodedStringWithOptions:0];
+
    
     
     if (BtnTag == 2014090201) {
-        //        [_pathCover setBackgroundImage:image];
         
     }
     if (BtnTag == 2014090202) {
@@ -92,6 +99,18 @@ static int BtnTag =0;
         [self.view removeFromSuperview];
         [delegate changeUserIcon:imageStr AndImage:image];
         
+    }
+    if (BtnTag == 2014090901) {
+        [picker dismissViewControllerAnimated:YES completion:nil];
+        [self.view removeFromSuperview];
+        [delegate publishImage:imageStr andImage:image];
+    }
+    if (BtnTag == 2014090902) {
+        
+        [picker dismissViewControllerAnimated:YES completion:nil];
+        [self.view removeFromSuperview];
+        [delegate publishImage:imageStr andImage:image];
+
     }
     
 }

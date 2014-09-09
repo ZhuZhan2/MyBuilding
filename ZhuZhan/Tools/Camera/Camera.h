@@ -11,7 +11,7 @@
 @protocol CameraDelegate <NSObject>
 
 -(void)changeUserIcon:(NSString *)imageStr AndImage:(UIImage *)image;
-
+-(void)publishImage:(NSString *)imageStr andImage:(UIImage *)image;
 @end
 
 @interface Camera : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
