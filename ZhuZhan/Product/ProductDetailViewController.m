@@ -164,9 +164,8 @@
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [self addTableViewContentWithContent:comment];
-            [self.myTableView reloadData];
+            [self myTableViewReloadData];
             [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-            NSLog(@"sucess");
         }
         
     } dic:[@{@"EntityId":self.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":@"f483bcfc-3726-445a-97ff-ac7f207dd888"} mutableCopy]];

@@ -95,8 +95,8 @@
 -(void)loadSelf{
     [self initNavi];
     [self initLoadingView];
-    [self initContentTableView];
     [self initThemeView];
+    [self initContentTableView];
     [self initAnimationView];
     [self initSelectTableView];
 }
@@ -120,24 +120,35 @@
 }
 
 -(void)initContentTableView{
-    self.landInfo=[LandInfo getLandInfoWithDelegate:self part:0];
-    [[[self.landInfo.firstView.subviews[0] subviews][0]subviews][0] removeFromSuperview];
-    
-    self.contents=[[NSMutableArray alloc]init];
-    [self contentsAddObject:self.landInfo];
-    
-    self.contentTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 64+50, 320, 568-64-50) style:UITableViewStylePlain];
-    self.contentTableView.delegate=self;
-    self.contentTableView.dataSource=self;
-    self.contentTableView.backgroundColor=RGBCOLOR(229, 229, 229);
-    
-    self.contentTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    self.contentTableView.showsVerticalScrollIndicator=NO;
-    [self.view addSubview:self.contentTableView];
+
+        self.landInfo=[LandInfo getLandInfoWithDelegate:self part:0];
+        [[[self.landInfo.firstView.subviews[0] subviews][0]subviews][0] removeFromSuperview];
+        
+        self.contents=[[NSMutableArray alloc]init];
+        [self contentsAddObject:self.landInfo];
+        
+        self.contentTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 64+50, 320, 568-64-50) style:UITableViewStylePlain];
+        self.contentTableView.dataSource=self;
+        self.contentTableView.delegate=self;
+        self.contentTableView.backgroundColor=RGBCOLOR(229, 229, 229);
+        
+        self.contentTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+        self.contentTableView.showsVerticalScrollIndicator=NO;
+        [self.view addSubview:self.contentTableView];
+
+
+
 }
 
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+//去评论项目 关注项目
+-(void)rightBtnClick{
+    UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"关注项目",@"评论项目", nil];
+    [actionSheet showInView:self.view];
+    NSLog(@"rightBtnClick");
 }
 
 -(void)initNavi{
@@ -214,6 +225,50 @@
     [self.view addSubview:self.selectTableView];
     //用于存放使sectionHeader可以被点击的button的array
     self.sectionButtonArray=[NSMutableArray array];
+}
+
+//**********************************************************************
+//UIActionSheetDelegate,AddCommentDelegate
+//**********************************************************************
+
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==0) {
+        NSLog(@"关注");
+        [ProjectApi AddUserFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+            NSLog(@"notice sucess");
+        } dic:[@{@"UserId":@"f483bcfc-3726-445a-97ff-ac7f207dd888",@"ProjectId":self.model.a_id,@"CreateTime":[NSDate date],@"IsDelted":@"true"} mutableCopy]];
+        
+    }else if (buttonIndex==1){
+        NSLog(@"评论");
+        self.vc=[[AddCommentViewController alloc]init];
+        self.vc.delegate=self;
+        [self presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
+        
+    }else{
+        NSLog(@"取消");
+    }
+}
+-(void)cancelFromAddComment{
+    NSLog(@"cancelFromAddComment");
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+}
+//// "EntityId": ":entity ID", （项目，产品，公司，动态等）
+// "entityType": ":”entityType", Personal,Company,Project,Product 之一
+// "CommentContents": "评论内容",
+// "CreatedBy": ":“评论人"
+// }
+-(void)sureFromAddCommentWithComment:(NSString *)comment{
+    NSLog(@"sureFromAddCommentWithCommentModel:");
+    NSLog(@"%@",comment);
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    
+    [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            NSLog(@"sucess");
+        }
+    } dic:[@{@"EntityId":self.model.a_id,@"entityType":@"Project",@"CommentContents":comment,@"CreatedBy":@"f483bcfc-3726-445a-97ff-ac7f207dd888"} mutableCopy]];
 }
 
 //**********************************************************************
@@ -770,46 +825,6 @@
     NSLog(@"ProgramDetailViewControllerDealloc");
 }
 
-//去评论项目 关注项目
--(void)rightBtnClick{
-    UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"关注项目",@"评论项目", nil];
-    [actionSheet showInView:self.view];
-    NSLog(@"rightBtnClick");
-}
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex==0) {
-        NSLog(@"关注");
-    }else if (buttonIndex==1){
-        NSLog(@"评论");
-        self.vc=[[AddCommentViewController alloc]init];
-        self.vc.delegate=self;
-        [self.navigationController presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
-    }else{
-        NSLog(@"取消");
-    }
-}
--(void)cancelFromAddComment{
-    NSLog(@"cancelFromAddComment");
-    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-}
-//// "EntityId": ":entity ID", （项目，产品，公司，动态等）
-// "entityType": ":”entityType", Personal,Company,Project,Product 之一
-// "CommentContents": "评论内容",
-// "CreatedBy": ":“评论人"
-// }
--(void)sureFromAddCommentWithComment:(NSString *)comment{
-    NSLog(@"sureFromAddCommentWithCommentModel:");
-    NSLog(@"%@",comment);
-    [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            //[self addTableViewContentWithContent:comment];
-            //[self.myTableView reloadData];
-            [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-            NSLog(@"sucess");
-        }
-        
-    } dic:[@{@"EntityId":self.model.a_id,@"entityType":@"Project",@"CommentContents":comment,@"CreatedBy":@"f483bcfc-3726-445a-97ff-ac7f207dd888"} mutableCopy]];
-}
 
 @end

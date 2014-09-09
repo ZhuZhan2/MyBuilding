@@ -7,7 +7,8 @@
 //
 
 #import "CompanyMemberViewController.h"
-
+#import "AppDelegate.h"
+#import "HomePageViewController.h"
 @interface CompanyMemberViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>//,UIScrollViewDelegate>
 @property(nonatomic)NSInteger memberNumber;
 @property(nonatomic,strong)UITableView* tableView;
@@ -20,6 +21,22 @@
         self.memberNumber=number;
     }
     return self;
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //恢复tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //    //隐藏tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarHide];
 }
 
 - (void)viewDidLoad
@@ -126,11 +143,12 @@
 }
 
 -(void)initMyTableViewAndNavi{
-    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568-49) style:UITableViewStylePlain];
+    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection=NO;
+    self.tableView.showsVerticalScrollIndicator=NO;
     [self.view addSubview:self.tableView];
     self.title = @"公司员工";
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];

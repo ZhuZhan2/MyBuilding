@@ -9,6 +9,7 @@
 #import "CompanyViewController.h"
 #import "CompanyMemberViewController.h"
 #import "MoreCompanyViewController.h"
+#import "ProjectApi.h"
 @interface CompanyViewController ()
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic)NSInteger memberNumber;
@@ -137,6 +138,9 @@
 }
 
 -(void)gotoNoticeView{
+//    [ProjectApi AddUserFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+//        NSLog(@"notice sucess");
+//    } dic:[@{@"UserId":@"f483bcfc-3726-445a-97ff-ac7f207dd888",@"ProjectId":self.model.a_id,@"CreateTime":[NSDate date],@"IsDelted":@"true"} mutableCopy]];
     NSLog(@"用户选择了关注");
 }
 
