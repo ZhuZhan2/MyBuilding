@@ -22,7 +22,7 @@
 #import "EGOImageView.h"
 @interface TMPhotoQuiltViewCell : TMQuiltViewCell
 
-@property (nonatomic, retain) EGOImageView *photoView;
-@property (nonatomic, retain) UILabel *titleLabel;
-@property (nonatomic, retain) UILabel* commentCountLabel;
+@property (nonatomic, strong) EGOImageView *photoView;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel* commentCountLabel;
 @end

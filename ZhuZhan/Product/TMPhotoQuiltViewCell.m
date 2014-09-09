@@ -29,18 +29,31 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 
 @implementation TMPhotoQuiltViewCell
 
-@synthesize photoView = _photoView;
-@synthesize titleLabel = _titleLabel;
-@synthesize commentCountLabel = _commentCountLabel;
-
+//@synthesize photoView = _photoView;
+//@synthesize titleLabel = _titleLabel;
+//@synthesize commentCountLabel = _commentCountLabel;
+//
+//- (void)dealloc {
+//    NSLog(@"TMPhotoQuiltViewCell dealloc");
+//    [_photoView release];
+//    _photoView = nil;
+//    [_titleLabel release];
+//    _titleLabel = nil;
+//
+//    [_commentCountLabel release];
+//    _commentCountLabel=nil;
+//    
+//    [self.commentIcon release];
+//    self.commentIcon=nil;
+//    
+//    [self.separatorLine release];
+//    self.separatorLine=nil;
+//    
+//    [super dealloc];
+//}
 - (void)dealloc {
-    NSLog(@"TMPhotoQuiltViewCell dealloc");
-    [_photoView release], _photoView = nil;
-    [_titleLabel release], _titleLabel = nil;
-    
-    [super dealloc];
+     NSLog(@"TMPhotoQuiltViewCell dealloc");
 }
-
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithReuseIdentifier:reuseIdentifier];
@@ -53,9 +66,6 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 - (EGOImageView *)photoView {
     if (!_photoView) {
         _photoView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"bg001"]];
-        //_photoView.contentMode = UIViewContentModeScaleAspectFill;
-        //_photoView.contentMode=UIViewContentModeScaleAspectFill;
-        //_photoView.clipsToBounds = YES;
         _photoView.showActivityIndicator = YES;
         [self addSubview:_photoView];
     }
@@ -101,11 +111,6 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 }
 
 - (void)layoutSubviews {
-    //self.photoView.frame = CGRectInset(self.bounds, 0*kTMPhotoQuiltViewMargin, 0*kTMPhotoQuiltViewMargin);
-    /*
-    self.titleLabel.frame = CGRectMake(0*kTMPhotoQuiltViewMargin, self.bounds.size.height - 20 - 0*kTMPhotoQuiltViewMargin,
-                                       self.bounds.size.width - 2 * 0*kTMPhotoQuiltViewMargin, 20);
-     */
     self.photoView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height-100);
 
     self.titleLabel.frame = CGRectMake(10, self.bounds.size.height - 100,
@@ -116,10 +121,7 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
     self.commentIcon.center=CGPointMake(20, self.bounds.size.height-20);
     
     self.separatorLine.center=CGPointMake(self.bounds.size.width*.5, self.bounds.size.height-40);
-    
-//    cell.contentView.backgroundColor=[UIColor whiteColor];
-//    cell.contentView.layer.cornerRadius=7;
-    
+  
     
     self.layer.shadowColor=[[UIColor grayColor]CGColor];
     self.layer.shadowOffset=CGSizeMake(0, .1);//使阴影均匀

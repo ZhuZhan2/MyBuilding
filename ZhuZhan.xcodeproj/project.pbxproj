@@ -324,7 +324,7 @@
 		5B031C3619ACA6C100573071 /* XiangMuXiangQing_TanKuang in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2E19ACA6C100573071 /* XiangMuXiangQing_TanKuang */; };
 		5B031C3719ACA6C100573071 /* XinJianXiangMu in Resources */ = {isa = PBXBuildFile; fileRef = 5B031C2F19ACA6C100573071 /* XinJianXiangMu */; };
 		5B0A006619B5641900500C05 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A006519B5641900500C05 /* ProductViewController.m */; };
-		5B0A006C19B5874500500C05 /* TMPhotoQuiltViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A006A19B5874500500C05 /* TMPhotoQuiltViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5B0A006C19B5874500500C05 /* TMPhotoQuiltViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A006A19B5874500500C05 /* TMPhotoQuiltViewCell.m */; };
 		5B0A008A19B587B200500C05 /* EGORefreshTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A008619B587B200500C05 /* EGORefreshTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5B0A008B19B587B200500C05 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A008819B587B200500C05 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5B0A009519B587C000500C05 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B0A008D19B587C000500C05 /* blackArrow@2x.png */; };
