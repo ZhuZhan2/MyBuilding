@@ -21,7 +21,10 @@
 #import "ProgramSelectViewCell.h"
 #import "CycleScrollView.h"
 #import "ProjectStage.h"
-@interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate,CycleScrollViewDelegate>
+#import "AddCommentViewController.h"
+#import "UIViewController+MJPopupViewController.h"
+#import "CommentApi.h"
+@interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate,CycleScrollViewDelegate,UIActionSheetDelegate,AddCommentDelegate>
 @property(nonatomic,strong)UITableView* contentTableView;
 @property(nonatomic,strong)UITableView* selectTableView;
 
@@ -51,6 +54,8 @@
 @property(nonatomic,strong)UIView* scrollViewBackground;
 
 @property(nonatomic,strong)NSArray* stages;//判断阶段的数组
+
+@property(nonatomic,strong)AddCommentViewController* vc;
 @end
 
 @implementation ProgramDetailViewController
@@ -80,8 +85,9 @@
                 [self.model getImages:posts[1]];
                 [self loadSelf];
                 self.stages=[ProjectStage JudgmentProjectDetailStage:self.model];
+                NSLog(@"%@",posts);
             }else{
-                
+                NSLog(@"=====%@",error);
             }
     } projectId:self.model.a_id];
 }
@@ -766,6 +772,44 @@
 
 //去评论项目
 -(void)rightBtnClick{
+    UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"关注项目",@"评论项目", nil];
+    [actionSheet showInView:self.view];
     NSLog(@"rightBtnClick");
 }
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==0) {
+        NSLog(@"关注");
+    }else if (buttonIndex==1){
+        NSLog(@"评论");
+        self.vc=[[AddCommentViewController alloc]init];
+        self.vc.delegate=self;
+        [self.navigationController presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
+    }else{
+        NSLog(@"取消");
+    }
+}
+-(void)cancelFromAddComment{
+    NSLog(@"cancelFromAddComment");
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+}
+//// "EntityId": ":entity ID", （项目，产品，公司，动态等）
+// "entityType": ":”entityType", Personal,Company,Project,Product 之一
+// "CommentContents": "评论内容",
+// "CreatedBy": ":“评论人"
+// }
+-(void)sureFromAddCommentWithComment:(NSString *)comment{
+    NSLog(@"sureFromAddCommentWithCommentModel:");
+    NSLog(@"%@",comment);
+    [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            //[self addTableViewContentWithContent:comment];
+            //[self.myTableView reloadData];
+            [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+            NSLog(@"sucess");
+        }
+        
+    } dic:[@{@"EntityId":self.model.a_id,@"entityType":@"Project",@"CommentContents":comment,@"CreatedBy":@"f483bcfc-3726-445a-97ff-ac7f207dd888"} mutableCopy]];
+}
+
 @end

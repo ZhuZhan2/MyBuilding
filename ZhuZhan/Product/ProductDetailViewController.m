@@ -13,7 +13,8 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "CommentApi.h"
 #import "CommentModel.h"
-@interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate>
+#import "ACTimeScroller.h"
+@interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate>//,ACTimeScrollerDelegate>
 @property(nonatomic,strong)UITableView* myTableView;
 
 @property(nonatomic,strong)UIImage* productImage;//产品图片
@@ -27,6 +28,7 @@
 
 @property(nonatomic,copy)NSString* a_id;
 
+//@property(nonatomic,strong)ACTimeScroller* timeScroller;
 @end
 
 @implementation ProductDetailViewController
@@ -53,8 +55,12 @@
             NSLog(@"%@",[posts[i] a_name]);
             [self.commentModels addObject:posts[i]];
         }
+        
         [self getTableViewContents];
         [self myTableViewReloadData];
+        
+        //self.timeScroller=[[ACTimeScroller alloc]initWithDelegate:self];;
+
         //[self.myTableView reloadData];
         
     } entityId:self.a_id entityType:@"Product"];
@@ -160,8 +166,9 @@
             [self addTableViewContentWithContent:comment];
             [self.myTableView reloadData];
             [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+            NSLog(@"sucess");
         }
-        NSLog(@"sucess");
+        
     } dic:[@{@"EntityId":self.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":@"f483bcfc-3726-445a-97ff-ac7f207dd888"} mutableCopy]];
 }
 
