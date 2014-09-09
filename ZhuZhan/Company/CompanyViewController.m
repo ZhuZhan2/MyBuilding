@@ -61,19 +61,6 @@
     businessLabel.font=[UIFont boldSystemFontOfSize:15];
     businessLabel.textColor=RGBCOLOR(168, 168, 168);
     [view addSubview:businessLabel];
-    
-    //关注button
-    UIButton* button=[UIButton buttonWithType:UIButtonTypeSystem];
-    button.frame=CGRectMake(220, 20, 70, 30);
-    [button setTitle:@"关注" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    button.titleLabel.font=[UIFont boldSystemFontOfSize:18];
-    button.layer.cornerRadius=3;
-    button.backgroundColor=[UIColor whiteColor];
-    button.layer.borderWidth=1;
-    button.layer.borderColor=[[UIColor lightGrayColor]CGColor];
-    [button addTarget:self action:@selector(gotoNoticeView) forControlEvents:UIControlEventTouchUpInside];
-    //[view addSubview:button];
 }
 
 -(void)initSecondView{

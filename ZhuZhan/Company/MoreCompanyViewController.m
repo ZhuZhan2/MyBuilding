@@ -10,6 +10,7 @@
 #import "MoreCompanyViewCell.h"
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
+#import "CompanyDetailViewController.h"
 @interface MoreCompanyViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UIScrollViewDelegate>
 @property(nonatomic)NSInteger memberNumber;
 @property(nonatomic,strong)UITableView* tableView;
@@ -84,6 +85,8 @@
 //===========================================================================
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    CompanyDetailViewController* vc=[[CompanyDetailViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
     NSLog(@"%d",indexPath.row-1);
 }
 
