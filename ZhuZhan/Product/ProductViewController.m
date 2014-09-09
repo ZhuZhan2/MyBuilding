@@ -7,16 +7,12 @@
 //
 
 #import "ProductViewController.h"
-#import "TMQuiltView.h"
 #import "TMPhotoQuiltViewCell.h"
 #import "ProductDetailViewController.h"
 #import "CommentModel.h"
 #import "ProductModel.h"
 #import "EGOImageView.h"
 @interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate>
-{
-	TMQuiltView *qtmquitView;
-}
 @property (nonatomic, strong) NSMutableArray *images;
 @end
 
@@ -38,7 +34,6 @@
 	qtmquitView.dataSource = self;
 	qtmquitView.showsVerticalScrollIndicator=NO;
 	[self.view addSubview:qtmquitView];
-	
     //[self createHeaderView];
 	//[self performSelector:@selector(testFinishedLoadData) withObject:nil afterDelay:0.0f];
     
