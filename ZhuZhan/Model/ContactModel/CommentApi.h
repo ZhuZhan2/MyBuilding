@@ -14,4 +14,6 @@
 
 //添加评论
 + (NSURLSessionDataTask *)AddEntityCommentsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic;
+
+
 @end
