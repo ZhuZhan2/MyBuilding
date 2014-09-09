@@ -15,7 +15,8 @@
 @end
 
 @implementation PublishViewController
-@synthesize toolBar,inputView,alertLabel,leftBtnImage,rightBtnImage;
+@synthesize toolBar,inputView,alertLabel,leftBtnImage,rightBtnImage,publishImage,camera;
+static int selectBtnTag =0;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -52,10 +53,8 @@
     inputView = [[UITextView alloc] initWithFrame:CGRectMake(10, 44, 300, 220)];
     inputView.delegate = self;
     inputView.returnKeyType = UIReturnKeySend;
-//    inputView.contentInset = UIEdgeInsetsMake(30,30,0,0.0);
     inputView.font = [UIFont systemFontOfSize:16];
     inputView.text =@"             ";
-//    inputView.backgroundColor = [UIColor redColor];
     [inputView becomeFirstResponder];
     [self.view addSubview:inputView];
     
@@ -67,17 +66,19 @@
     [self.view addSubview:alertLabel];
     
 
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 74.5, 60, 60)];
-    imageView.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
-    [self.view addSubview:imageView];
+    publishImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 74.5, 60, 60)];
+    publishImage.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
+    [self.view addSubview:publishImage];
     
-    toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, 312, 320, 40)];
+    toolBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 312, 320, 40)];
+    toolBar.image = [UIImage imageNamed:@"人脉－发布动态_15a"];
+    toolBar.userInteractionEnabled = YES;
     [self.view addSubview:toolBar];
 
 
     UIButton *textBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     textBtn.frame = CGRectMake(0, 0, 158, 40);
-    leftBtnImage = [[UIImageView alloc] initWithFrame:CGRectMake(25, 11.5, 19, 17)];
+    leftBtnImage = [[UIImageView alloc] initWithFrame:CGRectMake(15, 11.5, 19, 17)];
     leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_09a"];
     leftBtnImage.userInteractionEnabled = YES;
     [textBtn addSubview:leftBtnImage];
@@ -90,7 +91,7 @@
     
     UIButton *photoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     photoBtn.frame = CGRectMake(162, 0, 160, 40);
-    rightBtnImage = [[UIImageView alloc] initWithFrame:CGRectMake(25, 11.5, 19, 17)];
+    rightBtnImage = [[UIImageView alloc] initWithFrame:CGRectMake(15, 11.5, 19, 17)];
     rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
     rightBtnImage.userInteractionEnabled = YES;
     [photoBtn addSubview:rightBtnImage];
@@ -99,8 +100,6 @@
     [photoBtn addSubview:rightBtnLabel];
     [photoBtn addTarget:self action:@selector(publshPhoto) forControlEvents:UIControlEventTouchUpInside];
     [toolBar addSubview:photoBtn];
-
-
     
 
 }
@@ -110,15 +109,43 @@
 {
     NSLog(@"想说些什么");
 leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_07a"];
+rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
+    
+    selectBtnTag = 2014090901;
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
+    [actionSheet showInView:self.view.superview];
+    
 }
 
 -(void)publshPhoto{
   NSLog(@"发布图片信息");
-    
 leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_09a"];
+    rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_11a"];
+    selectBtnTag = 2014090902;
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
+    [actionSheet showInView:self.view.superview];
+    
+    
+    
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    camera = [[Camera alloc] init];
+    camera.delegate = self;
+    [self.view addSubview:camera.view];
+    [camera modifyUserIconWithButtonIndex:buttonIndex WithButtonTag:selectBtnTag WithActionSheet:actionSheet];
     
 }
 
+
+
+
+-(void)publishImage:(NSString *)imageStr andImage:(UIImage *)image;
+{
+    CGRect frame = CGRectMake(image.size.width/2-30, image.size.height/2-30, 60, 60);
+   image=[UIImage imageWithCGImage:CGImageCreateWithImageInRect([image CGImage], frame)];
+    publishImage.image = image;
+    
+}
 -(void)leftBtnClick{
     
     [self.navigationController popViewControllerAnimated:YES];

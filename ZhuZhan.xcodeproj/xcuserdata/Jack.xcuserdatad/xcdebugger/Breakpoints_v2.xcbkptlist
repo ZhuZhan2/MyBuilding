@@ -35,12 +35,12 @@
                   symbolName = "+[ProjectApi GetSeminarProjectsWithBlock:Id:]"
                   moduleName = "ZhuZhan"
                   urlString = "file:///Users/Jack/Desktop/%E6%88%91%E7%9A%84%E4%BB%A3%E7%A0%81/GitHub/ZhuZhanDev/ZhuZhan/Model/ProjectModel/ProjectApi.m"
-                  timestampString = "431605006.713374"
+                  timestampString = "431923674.427299"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "434"
                   endingLineNumber = "434"
-                  offsetFromSymbolStart = "174">
+                  offsetFromSymbolStart = "118">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -49,12 +49,12 @@
                   symbolName = "__45+[ProjectApi GetSeminarProjectsWithBlock:Id:]_block_invoke"
                   moduleName = "ZhuZhan"
                   urlString = "file:///Users/Jack/Desktop/%E6%88%91%E7%9A%84%E4%BB%A3%E7%A0%81/GitHub/ZhuZhanDev/ZhuZhan/Model/ProjectModel/ProjectApi.m"
-                  timestampString = "431605006.71354"
+                  timestampString = "431923674.427481"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "434"
                   endingLineNumber = "434"
-                  offsetFromSymbolStart = "121">
+                  offsetFromSymbolStart = "84">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -86,7 +86,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "106"
-            endingLineNumber = "106">
+            endingLineNumber = "106"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

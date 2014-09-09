@@ -304,6 +304,8 @@
 		042D9EF719B95F2800689C5D /* 人脉－发布动态_07a.png in Resources */ = {isa = PBXBuildFile; fileRef = 042D9EF319B95F2800689C5D /* 人脉－发布动态_07a.png */; };
 		042D9EF819B95F2800689C5D /* 人脉－发布动态_09a.png in Resources */ = {isa = PBXBuildFile; fileRef = 042D9EF419B95F2800689C5D /* 人脉－发布动态_09a.png */; };
 		042D9EF919B95F2800689C5D /* 人脉－发布动态_13a.png in Resources */ = {isa = PBXBuildFile; fileRef = 042D9EF519B95F2800689C5D /* 人脉－发布动态_13a.png */; };
+		04BF134A19BE9645002E02C9 /* 人脉－发布动态_11a.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BF134819BE9645002E02C9 /* 人脉－发布动态_11a.png */; };
+		04BF134B19BE9645002E02C9 /* 人脉－发布动态_15a.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BF134919BE9645002E02C9 /* 人脉－发布动态_15a.png */; };
 		04D10BD919AE016A0097C0C6 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BB219AE016A0097C0C6 /* ContactViewController.m */; };
 		04D10BDD19AE016A0097C0C6 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BBA19AE016A0097C0C6 /* AccountViewController.m */; };
 		04D10BE019AE016A0097C0C6 /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BC019AE016A0097C0C6 /* PersonalCenterViewController.m */; };
@@ -1186,6 +1188,8 @@
 		042D9EF319B95F2800689C5D /* 人脉－发布动态_07a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－发布动态_07a.png"; sourceTree = "<group>"; };
 		042D9EF419B95F2800689C5D /* 人脉－发布动态_09a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－发布动态_09a.png"; sourceTree = "<group>"; };
 		042D9EF519B95F2800689C5D /* 人脉－发布动态_13a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－发布动态_13a.png"; sourceTree = "<group>"; };
+		04BF134819BE9645002E02C9 /* 人脉－发布动态_11a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－发布动态_11a.png"; sourceTree = "<group>"; };
+		04BF134919BE9645002E02C9 /* 人脉－发布动态_15a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－发布动态_15a.png"; sourceTree = "<group>"; };
 		04D10BB119AE01690097C0C6 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
 		04D10BB219AE016A0097C0C6 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		04D10BB919AE016A0097C0C6 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
@@ -2787,6 +2791,8 @@
 				042D9EF319B95F2800689C5D /* 人脉－发布动态_07a.png */,
 				042D9EF419B95F2800689C5D /* 人脉－发布动态_09a.png */,
 				042D9EF519B95F2800689C5D /* 人脉－发布动态_13a.png */,
+				04BF134819BE9645002E02C9 /* 人脉－发布动态_11a.png */,
+				04BF134919BE9645002E02C9 /* 人脉－发布动态_15a.png */,
 				D3AC61BD19B6E3FF0015B62F /* 人脉_66a.png */,
 				D3AC61C219B70F350015B62F /* 人脉_74a.png */,
 				042D9ED919B8489000689C5D /* 人脉_65a.png */,
@@ -3198,6 +3204,7 @@
 				5B13C70F19B6E91A008EA7A0 /* mapsearch-1.png in Resources */,
 				5B13C74B19B835BE008EA7A0 /* 公司－我的公司_05a.png in Resources */,
 				5B13C71019B6E91A008EA7A0 /* +项目-首页_27a.png in Resources */,
+				04BF134B19BE9645002E02C9 /* 人脉－发布动态_15a.png in Resources */,
 				D3AD62BB19B481CA001FD483 /* 项目－高级搜索－2_22a.png in Resources */,
 				042D9EDE19B856D200689C5D /* 人脉－个人中心_06a.png in Resources */,
 				5B13C75719B835BE008EA7A0 /* 公司认证员工_18a.png in Resources */,
@@ -3266,6 +3273,7 @@
 				D3AD607E19AC4E09001FD483 /* 全部项目_17.png in Resources */,
 				D3AD617619ADC25C001FD483 /* 搜索_07.png in Resources */,
 				D3AD604719AC4DC1001FD483 /* icon-plus-highlighted.png in Resources */,
+				04BF134A19BE9645002E02C9 /* 人脉－发布动态_11a.png in Resources */,
 				D3AD604E19AC4DC1001FD483 /* icon_04.png in Resources */,
 				5B0D03E319B0554400518D5E /* mapapi.bundle in Resources */,
 				5B13C73F19B835BE008EA7A0 /* 公司－公司组织_03a.png in Resources */,

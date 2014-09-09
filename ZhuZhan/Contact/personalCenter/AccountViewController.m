@@ -164,7 +164,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     camera = [[Camera alloc] init];
     camera.delegate = self;
     [self.tableView.superview addSubview:camera.view];
-     [camera modifyUserIconWithButtonIndex:buttonIndex WithButtonTag:selectBtnTag];
+    [camera modifyUserIconWithButtonIndex:buttonIndex WithButtonTag:selectBtnTag WithActionSheet:actionSheet];
     
 }
 
