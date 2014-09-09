@@ -9,6 +9,7 @@
 #import "PorjectCommentTableViewController.h"
 #import "CommentApi.h"
 #import "ProjectCommentModel.h"
+#import "UIViewController+MJPopupViewController.h"
 @interface PorjectCommentTableViewController ()
 
 @end
@@ -57,9 +58,6 @@
                 [viewArr addObject:projectCommentView];
                 [_datasource addObject:model.a_time];
             }
-            for(int i=0;i<30;i++){
-                [_datasource addObject:[NSDate date]];
-            }
             [self.tableView reloadData];
         }
     } entityId:projectId entityType:@"Project"];
@@ -81,18 +79,11 @@
 }
 
 -(void)rightBtnClick{
-
+    addCommentView = [[AddCommentViewController alloc] init];
+    addCommentView.delegate = self;
+    [self presentPopupViewController:addCommentView animationType:MJPopupViewAnimationFade flag:2];
 }
 
-//设置时间
-- (void)setupDatasource
-{
-    _datasource = [NSMutableArray new];
-    for(int i=0;i<30;i++){
-        NSTimeInterval interval = 60 * 60 * i;
-        [_datasource addObject:[[NSDate date] initWithTimeInterval:interval sinceDate:[NSDate date]]];
-    }
-}
 
 //滚动是触发的事件
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -149,7 +140,7 @@
         [cell.contentView addSubview:label];
         return cell;
     }else{
-        NSString *CellIdentifier = [NSString stringWithFormat:@"cell"];
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cell2"];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -173,6 +164,39 @@
 - (NSDate *)timeScroller:(ACTimeScroller *)timeScroller dateForCell:(UITableViewCell *)cell
 {
     NSIndexPath *indexPath = [[self tableView] indexPathForCell:cell];
-    return _datasource[[indexPath row]];
+    if(indexPath.row !=0){
+        return _datasource[[indexPath row]-1];
+    }else{
+        return nil;
+    }
+}
+
+-(void)sureFromAddCommentWithComment:(NSString*)comment{
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:self.projectId forKey:@"EntityId"];
+    [dic setValue:[NSString stringWithFormat:@"%@",comment] forKey:@"CommentContents"];
+    [dic setValue:@"Project" forKey:@"EntityType"];
+    [dic setValue:@"f483bcfc-3726-445a-97ff-ac7f207dd888" forKey:@"CreatedBy"];
+    [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            ProjectCommentModel *model = [[ProjectCommentModel alloc] init];
+            model.a_id = self.projectId;
+            model.a_name = @"";
+            model.a_imageUrl = @"";
+            model.a_content = [NSString stringWithFormat:@"%@",comment];
+            model.a_type = @"comment";
+            model.a_time = [NSDate date];
+            [showArr insertObject:model atIndex:0];
+            projectCommentView = [[ProjectCommentView alloc] initWithCommentModel:model];
+            [viewArr insertObject:projectCommentView atIndex:0];
+            [_datasource insertObject:[NSDate date] atIndex:0];
+            [self.tableView reloadData];
+        }
+    } dic:dic];
+}
+
+-(void)cancelFromAddComment{
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
 @end
