@@ -26,6 +26,8 @@
 {
     [super viewDidLoad];
 	
+    NSLog(@"%@",NSHomeDirectory());
+    
     self.title = @"产品";
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
     
@@ -40,7 +42,7 @@
     startIndex = 0;
     [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            NSLog(@"=====%@",posts);
+            //NSLog(@"=====%@",posts);
             showArr = posts;
             //NSLog(@"%@",showArr);
             
@@ -273,7 +275,7 @@
     
     //cell.photoView.image = [self imageAtIndexPath:indexPath];
     cell.photoView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
-
+    //NSLog(@"=====%@",model.a_imageUrl);
     cell.titleLabel.text = model.a_content;
     cell.commentCountLabel.text= model.a_commentNumber;
     return cell;
@@ -295,6 +297,7 @@
 //返回cell的高度
 - (CGFloat)quiltView:(TMQuiltView *)quiltView heightForCellAtIndexPath:(NSIndexPath *)indexPath
 {
+    return 200;
     CGSize size=[self imageAtIndexPath:indexPath].size;
     CGFloat scroll=[quiltView cellWidth]/size.width;
     
