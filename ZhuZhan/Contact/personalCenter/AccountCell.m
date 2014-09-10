@@ -224,7 +224,7 @@
         back13.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"grayColor"]];
         [self addSubview:back13];
         UIImageView *imageView13 = [[UIImageView alloc] initWithFrame:CGRectMake(134, 633, 52, 34)];
-        imageView13.image = [UIImage imageNamed:@"人脉－账号设置_14a"];
+        imageView13.image = [UIImage imageNamed:@"人脉－账号设置_18a"];
         [self addSubview:imageView13];
         
         //在职公司
