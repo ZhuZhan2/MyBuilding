@@ -8,7 +8,8 @@
 
 #import "PersonalDetailViewController.h"
 #import "ProgramDetailViewController.h"
-#import "ContactModel.h"
+#import "AppDelegate.h"
+#import "HomePageViewController.h"
 @interface PersonalDetailViewController ()
 
 @end
@@ -377,7 +378,6 @@ static int projectNum =0;
 
 - (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
-    NSLog(@"ghfhgfhgf");
     switch (result)
     {
         case MFMailComposeResultCancelled:
@@ -397,9 +397,7 @@ static int projectNum =0;
     }
     
     // Close the Mail Interface
-    [self dismissViewControllerAnimated:YES completion:NULL];
-    
-    NSLog(@"%f",self.tableView.frame.size.height);
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 

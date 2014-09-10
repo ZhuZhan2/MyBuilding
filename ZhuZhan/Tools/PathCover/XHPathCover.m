@@ -191,7 +191,7 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 - (void)setBackgroundImage:(UIImage *)backgroundImage {
     if (backgroundImage) {
         _bannerImageView.image = backgroundImage;
-        _bannerImageViewWithImageEffects.image = [backgroundImage applyLightEffect];
+        //_bannerImageViewWithImageEffects.image = [backgroundImage applyLightEffect];
     }
 }
 
