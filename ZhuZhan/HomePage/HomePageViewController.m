@@ -36,35 +36,8 @@
     nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
     [contentView addSubview:nav.view];
     
-    
-    
-    
-//    UIView* myView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 519-20)];
-//    //myView.backgroundColor=[UIColor redColor];
-//    
-//
-//    
-//    UIViewController* myVC=[[UIViewController alloc]init];
-//    myVC.view.frame=CGRectMake(0, 44, 200, 200);
-//    myVC.view.backgroundColor=[UIColor grayColor];
-//    
-//    UIView* test=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
-//    test.backgroundColor=[UIColor grayColor];
-//    
-//    //[myVC.view addSubview:test];
-//    
-//    
-//    UINavigationController* myNavi=[[UINavigationController alloc]initWithRootViewController:myVC];
-//    //myNavi.view.frame=CGRectMake(0, 20, 320, 568-49-40);
-//    //myNavi.view.backgroundColor=[UIColor greenColor];
-//    NSLog(@"%f",myNavi.view.frame.size.height);
-//    
-//    //[myNavi.view addSubview:myVC.view];
-//    NSLog(@"%f,%f",myNavi.view.frame.size.height,myNavi.navigationBar.frame.size.height);
-//    
-//    [myView addSubview:myVC.view];
     [self.view addSubview:contentView];
-//    [self.view addSubview:myNavi.view];
+
     
     toolView = [[UIView alloc] initWithFrame:CGRectMake(0, 519, 320, 49)];
    [toolView setBackgroundColor:RGBCOLOR(229, 229, 229)];
@@ -136,88 +109,6 @@
     menu.delegate = self;
     [self.view addSubview:menu];
 }
-
-//-(NSString *)timeConversion:(NSString *)time
-//{
-//    NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
-//    [inputFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
-//    [inputFormatter setDateFormat:@"yyyyMMdd"];
-//    NSDate* inputDate = [inputFormatter dateFromString:time];
-//    NSLog(@"date = %@", inputDate);
-//    
-//    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateFormat:@"yyyy-MM-dd"];
-//    NSString *confromTimespStr = [formatter stringFromDate:inputDate];
-//
-//    return confromTimespStr;
-//}
-//
-//
-//- (void)perfect
-//{
-//         NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-// NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userId,@"userId",@"company",@"company",@"industry",@"industry",@"position",@"position",@"locationProvince",@"locationProvince",@"locationCity",@"locationCity",@"introduction",@"introduction",nil];
-//    [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
-//        NSDictionary *responseObject = [posts objectAtIndex:0];
-//        NSString *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
-//        if ([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]) {
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"更新成功" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
-//            [alert show];
-//        }else{
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"更新失败" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
-//            [alert show];
-//        }
-//
-//    } dic:parameter];
-//    
-//}
-//
-//-(void)loginOut
-//{
-//
-//    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-////    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
-//    NSString *deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
-//
-//    
-//    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userId,@"userId",deviceToken,@"deviceToken",@"mobile",@"deviceType",nil];
-//    [LoginModel PostLogOutWithBlock:^(NSMutableArray *posts, NSError *error) {
-//        NSDictionary *responseObject = [posts objectAtIndex:0];
-//        NSString *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
-//        if ([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]) {
-////            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注销成功" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
-////            [alert show];
-//            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userName"];
-//            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"isFaceRegister"];
-//            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"currentFaceCount"];
-//            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userId"];
-//            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"deviceToken"];
-//            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"firstPassWordLogin"];
-//            HomePageViewController *homepage = [[HomePageViewController alloc] init];
-//            
-//            CGContextRef context = UIGraphicsGetCurrentContext();
-//            [UIView beginAnimations:nil context:context];
-//            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-//            [UIView setAnimationDuration:0.7];
-//            [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[AppDelegate instance] window] cache:YES];
-//            NSUInteger tview1 = [[self.view subviews] indexOfObject:[[AppDelegate instance] window]];
-//            NSUInteger tview2 = [[self.view subviews] indexOfObject:homepage.view];
-//            [self.view exchangeSubviewAtIndex:tview2 withSubviewAtIndex:tview1];
-//            [UIView setAnimationDelegate:self];
-//            [UIView commitAnimations];
-//            
-//            [[AppDelegate instance] window].rootViewController = homepage;
-//            [[[AppDelegate instance] window] makeKeyAndVisible];
-//
-//
-//            
-//        }else{
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注销失败" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
-//            [alert show];
-//        }
-//    } dic:parameter];
-//    
-//}
 
 - (void)didReceiveMemoryWarning
 {

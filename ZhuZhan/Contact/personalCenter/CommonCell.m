@@ -65,7 +65,7 @@
                 [self addSubview:icon];
                 
                 UILabel *updateProject = [[UILabel alloc] initWithFrame:CGRectMake(60, 5, 200, 40)];
-//                updateProject.text =[NSString stringWithFormat:@"更新了项目 项目名称 %@",model.projectName];
+                updateProject.text =[NSString stringWithFormat:@"更新了项目 项目名称 %@",proModel.a_projectName];
                 updateProject.textAlignment = NSTextAlignmentLeft;
                 updateProject.font = [UIFont systemFontOfSize:16];
                 [self addSubview:updateProject];

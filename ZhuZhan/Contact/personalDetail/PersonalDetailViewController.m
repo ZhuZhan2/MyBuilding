@@ -119,6 +119,8 @@ static int projectNum =0;
         
         }
     } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0"];
+    
+    NSLog(@"%f",self.tableView.frame.size.height);
 }
 
 - (void)_refreshing {
@@ -373,9 +375,10 @@ static int projectNum =0;
             break;
     }
     
-    
     // Close the Mail Interface
     [self dismissViewControllerAnimated:YES completion:NULL];
+    
+    NSLog(@"%f",self.tableView.frame.size.height);
 }
 
 
