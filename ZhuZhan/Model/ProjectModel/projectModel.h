@@ -104,13 +104,9 @@
 
 //***********************************************************************************
 
-//公司名称
-@property (nonatomic,copy) NSString *companyName;
 
-//项目负责人
-@property (nonatomic,copy) NSString *projectLeader;
 //关联项目数组
-@property (nonatomic,copy) NSArray *projectArr;
+@property (nonatomic,copy) NSMutableArray *projectArr;
 
 //************************************************************************************
 

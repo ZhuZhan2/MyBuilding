@@ -30,6 +30,7 @@
 {
     [super viewDidLoad];
 
+    self.view.backgroundColor = [UIColor whiteColor];
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 5, 29, 28.5)];
     [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
