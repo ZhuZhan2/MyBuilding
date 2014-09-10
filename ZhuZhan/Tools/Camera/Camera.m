@@ -91,6 +91,8 @@ static int BtnTag =0;
    
     
     if (BtnTag == 2014090201) {
+        [picker dismissViewControllerAnimated:YES completion:nil];
+        [self.view removeFromSuperview];
         
     }
     if (BtnTag == 2014090202) {
@@ -100,17 +102,10 @@ static int BtnTag =0;
         [delegate changeUserIcon:imageStr AndImage:image];
         
     }
-    if (BtnTag == 2014090901) {
+    if (BtnTag == 110120) {
         [picker dismissViewControllerAnimated:YES completion:nil];
         [self.view removeFromSuperview];
         [delegate publishImage:imageStr andImage:image];
-    }
-    if (BtnTag == 2014090902) {
-        
-        [picker dismissViewControllerAnimated:YES completion:nil];
-        [self.view removeFromSuperview];
-        [delegate publishImage:imageStr andImage:image];
-
     }
     
 }
@@ -118,6 +113,7 @@ static int BtnTag =0;
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     
     [picker dismissViewControllerAnimated:YES completion:nil];
+    [delegate becomeFirstResponder];
     [self.view removeFromSuperview];
     
 }

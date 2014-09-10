@@ -100,24 +100,20 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     model.cellPhone = @"13938439093";
     model.companyName = @"上海某公司";
     model.position = @"总经理";
+
+    NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
     
+    NSLog(@"********userId******* %@",userIdStr);
     [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         
-        NSLog(@"**** %@",posts);
-//        NSDictionary *dic = [posts objectAtIndex:0];
-
-            NSLog(@"23rgfdg");
+        NSDictionary *dic = [posts objectAtIndex:0];
         
+        userDic = [NSMutableDictionary dictionaryWithDictionary:dic];
         
+         NSLog(@"********userDic******* %@",userDic);
+       
         
-    } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0"];
-    
-    /*[LoginModel GetUserImagesWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            
-        }
-    } userId:@"a435ccfe-65cb-4d6d-ad89-3f828f51e0bb"];*/
-    
+    } userId:userIdStr];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
@@ -171,7 +167,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //cameraDelegate
 -(void)changeUserIcon:(NSString *)imageStr AndImage:(UIImage *)image
 {
-    NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0",@"userId",imageStr,@"userImageStrings", nil];
+    NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+    
+    NSLog(@"********userId******* %@",userIdStr);
+    NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"userId",imageStr,@"userImageStrings", nil];
     [LoginModel AddUserImageWithBlock:^(NSMutableArray *posts, NSError *error) {
         
         [_pathCover addImageHead:image];
@@ -270,13 +269,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 590;
+    return 800;
     
 }
 
 -(void)ModifyPassword:(NSString *)password
 {
     NSLog(@"开始修改密码");
+    
 
 }
 

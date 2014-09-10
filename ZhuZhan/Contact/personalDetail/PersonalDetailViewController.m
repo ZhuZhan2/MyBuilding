@@ -7,7 +7,6 @@
 //
 
 #import "PersonalDetailViewController.h"
-#import "SectionCell.h"
 #import "CompanyCell.h"
 #import "ContactCell.h"
 #import "ProgramDetailViewController.h"
@@ -22,6 +21,9 @@
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 static NSString *textStr=nil;
 static float textHeight =0;
+static bool isEmailExist = NO;
+static bool isPersonalBackgroundExist = NO;
+static bool isProjectExist = NO;
 
 -(id)init{
     self = [super init];
@@ -81,12 +83,12 @@ static float textHeight =0;
     model.projectLeader = @"项目负责人";
     model.email = @"929097264@11.com";
     model.cellPhone =@"13938439096";
-    model.contactImageIconArr =@[@"人脉－人的详情_21a",@"人脉－人的详情_23a"];
+//    model.contactImageIconArr =@[@"人脉－人的详情_21a",@"人脉－人的详情_23a"];
     model.projectBeginTime =@"2012年9月";
     model.projectEndTime = @"目前";
     model.personalBackground = textStr;
-    model.projectName = @"项目名称显示在这里";
-    model.projectDistrict = @"华南区－上海";
+//    model.projectName = @"项目名称显示在这里";
+//    model.projectDistrict = @"华南区－上海";
     textHeight =[self heightForString:textStr fontSize:14 andWidth:280];
     
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -139,7 +141,25 @@ static float textHeight =0;
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-        return 10;
+    int emailNum =0;
+    if (model.email) {
+        emailNum =1;
+        isEmailExist = YES;
+    }
+    int backgroundNum = 0;
+    if (model.personalBackground) {
+        backgroundNum = 2;
+        isPersonalBackgroundExist =YES;
+    }
+    
+    int projectNum =0;
+    if (model.projectArr) {
+        projectNum = [model.projectArr count]+1;
+        isProjectExist = YES;
+    }
+    
+    return 1+2+emailNum+backgroundNum+projectNum;
+    
     
 }
 
@@ -155,40 +175,34 @@ static float textHeight =0;
             }
         return companyCell;
     }
-    if (indexPath.row ==1 || indexPath.row ==4 ||indexPath.row ==6) {
-        static NSString *identifier = @"sectionCell";
-        SectionCell *sectionCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-        if (!sectionCell) {
-            sectionCell = [[SectionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithIndex:indexPath.row];
-        }
+    
+    
 
-        return sectionCell;
-
-    }
-    if (indexPath.row ==2 ||indexPath.row==3) {
+    if (indexPath.row ==2) {
         static NSString *identifier = @"contactCell";
         ContactCell *contactCell =[tableView dequeueReusableCellWithIdentifier:identifier];
         if (!contactCell) {
-            contactCell = [[ContactCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:model WithIndex:indexPath.row];
+            contactCell = [[ContactCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:model WithEmailExist:isEmailExist];
         }
         return contactCell;
 
     }
-        if (indexPath.row ==5) {
-        static NSString *identifier = @"backGroundCell";
-        BgCell *backGroundCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-        if (!backGroundCell) {
-            backGroundCell = [[BgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithTextHeight:textHeight WithModel:model];
-        }
-            return backGroundCell;
-        
+    
+    if (isPersonalBackgroundExist) {
+            if (indexPath.row==3) {
+                static NSString *identifier = @"backGroundCell";
+                BgCell *backGroundCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+                if (!backGroundCell) {
+                    backGroundCell = [[BgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithTextHeight:textHeight WithModel:model];
+                }
+                return backGroundCell;
+            }
     }
     
-
     static NSString *identifier = @"correlateCell";
     CorrelateCell *correlateCell =[tableView dequeueReusableCellWithIdentifier:identifier];
     if (!correlateCell) {
-        correlateCell = [[CorrelateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:model];
+        correlateCell = [[CorrelateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:model WithExist:isProjectExist];
     }
     return correlateCell;
 
@@ -198,16 +212,21 @@ static float textHeight =0;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.row ==2) {
-        [self onClickAttention:indexPath.row];
-        return;
-    }
-    if (indexPath.row==3) {
-        [self onClickToCall:indexPath.row];
-        return;
+    if (isEmailExist) {
         
+        if (indexPath.row ==2) {
+            [self onClickAttention:indexPath.row];
+            return;
+        }
+        if (indexPath.row==3) {
+            [self onClickToCall:indexPath.row];
+            return;
+            
+        }
+
     }
-    if (indexPath.row==0 ||indexPath.row==1 ||indexPath.row==4 ||indexPath.row==5 ||indexPath.row==6) {
+    
+        if (indexPath.row==0 ||indexPath.row==1 ||indexPath.row==4 ||indexPath.row==5 ||indexPath.row==6) {
         
         NSLog(@"不做任何操作");
         
