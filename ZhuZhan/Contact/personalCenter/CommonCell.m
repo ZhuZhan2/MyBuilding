@@ -43,8 +43,6 @@
                 leader.font = [UIFont systemFontOfSize:14];
                 leader.textColor = GrayColor;
                 [self addSubview:leader];
-                
-                
             }
                 break;
             case 1:

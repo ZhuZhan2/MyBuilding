@@ -382,6 +382,7 @@
 		5B13C75919B835BE008EA7A0 /* 公司认证员工_20a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C73B19B835BE008EA7A0 /* 公司认证员工_20a.png */; };
 		5B13C75A19B835BE008EA7A0 /* 公司认证员工_20a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C73C19B835BE008EA7A0 /* 公司认证员工_20a@2x.png */; };
 		5B18B46F19BFFC3700551F82 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B18B46E19BFFC3700551F82 /* GradientView.m */; };
+		5B18B47219C01DAD00551F82 /* CommonCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B18B47119C01DAD00551F82 /* CommonCellView.m */; };
 		5B1AC4B019BEE4DC006CA4F4 /* CompanyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */; };
 		5B1AC4B419BEEF1A006CA4F4 /* u33.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B1AC4B319BEEF1A006CA4F4 /* u33.png */; };
 		5B1AC4B719BF04D9006CA4F4 /* 公司－公司详情_05a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B1AC4B519BF04D9006CA4F4 /* 公司－公司详情_05a.png */; };
@@ -1291,6 +1292,8 @@
 		5B13C73C19B835BE008EA7A0 /* 公司认证员工_20a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司认证员工_20a@2x.png"; sourceTree = "<group>"; };
 		5B18B46D19BFFC3700551F82 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
 		5B18B46E19BFFC3700551F82 /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
+		5B18B47019C01DAD00551F82 /* CommonCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCellView.h; sourceTree = "<group>"; };
+		5B18B47119C01DAD00551F82 /* CommonCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonCellView.m; sourceTree = "<group>"; };
 		5B1AC4AE19BEE4DC006CA4F4 /* CompanyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyDetailViewController.h; sourceTree = "<group>"; };
 		5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyDetailViewController.m; sourceTree = "<group>"; };
 		5B1AC4B319BEEF1A006CA4F4 /* u33.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = u33.png; sourceTree = "<group>"; };
@@ -2529,6 +2532,8 @@
 				04D10BC019AE016A0097C0C6 /* PersonalCenterViewController.m */,
 				042D9ED619B846B800689C5D /* CommonCell.h */,
 				042D9ED719B846B800689C5D /* CommonCell.m */,
+				5B18B47019C01DAD00551F82 /* CommonCellView.h */,
+				5B18B47119C01DAD00551F82 /* CommonCellView.m */,
 			);
 			path = personalCenter;
 			sourceTree = "<group>";
@@ -3624,6 +3629,7 @@
 				0426C25D19922D5A00CD8822 /* GPUImageDarkenBlendFilter.m in Sources */,
 				0426C2FD19922D5A00CD8822 /* UIAlertView+AFNetworking.m in Sources */,
 				D3AC61B119B6BF930015B62F /* ProjectStage.m in Sources */,
+				5B18B47219C01DAD00551F82 /* CommonCellView.m in Sources */,
 				0426C26619922D5A00CD8822 /* GPUImageExclusionBlendFilter.m in Sources */,
 				0426C2E419922D5A00CD8822 /* FaceppDetection.m in Sources */,
 				042D9E1119B559FC00689C5D /* MainBuild.m in Sources */,

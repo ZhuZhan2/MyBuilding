@@ -10,7 +10,8 @@
 #import "CommonCell.h"
 #import "AccountViewController.h"
 #import "LoginModel.h"
-
+#import "HomePageViewController.h"
+#import "AppDelegate.h"
 
 @interface PersonalCenterViewController ()
 
@@ -19,16 +20,21 @@
 @implementation PersonalCenterViewController
 
 @synthesize personalArray,model,proModel;
-static int count =0; //用来记录用户第几次进入该页面
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self)
-    {
-        [self setupDatasource];
-    }
-    return self;
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //恢复tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //    //隐藏tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarHide];
 }
 
 - (void)viewDidLoad
@@ -46,8 +52,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton setFrame:CGRectMake(0, 0, 80, 19.5)];
+    [rightButton setFrame:CGRectMake(0, 0, 70, 19.5)];
     [rightButton setTitle:@"账号设置" forState:UIControlStateNormal];
+    rightButton.titleLabel.font=[UIFont systemFontOfSize:14];
     rightButton.titleLabel.textColor = [UIColor whiteColor];
     [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
@@ -86,7 +93,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     model = [[ContactModel alloc] init];
     model.companyName = @"上海中技桩业有限公司";
-    model.projectLeader = @"项目负责人";
+    //model.projectLeader = @"项目负责人";
     //model.projectName =@"鸟巢";
     model.addFriendArr = @[@"张三",@"李四"];
     model.userMood = @"今天真是一个好天气哦";

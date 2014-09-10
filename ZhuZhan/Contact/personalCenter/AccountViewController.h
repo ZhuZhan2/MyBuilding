@@ -12,7 +12,7 @@
 #import "Camera.h"
 
 
-@interface AccountViewController : UITableViewController<XHPathCoverDelegate,UIActionSheetDelegate,UITextFieldDelegate,AccountCellDelegate,CameraDelegate>
+@interface AccountViewController : UIViewController<XHPathCoverDelegate,UIActionSheetDelegate,UITextFieldDelegate,AccountCellDelegate,CameraDelegate>
 
 @property (nonatomic,strong) NSMutableDictionary *userDic;
 @property (nonatomic, strong) XHPathCover *pathCover;
