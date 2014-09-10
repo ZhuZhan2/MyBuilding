@@ -61,17 +61,17 @@
     
     [RecordSqlite opensql];
     
-    HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+   /* HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;
-    [self.window makeKeyAndVisible];
-    
-   /* PersonalDetailViewController *personVC = [[PersonalDetailViewController alloc] init];
-    self.window.rootViewController = personVC;
     [self.window makeKeyAndVisible];*/
     
+   PersonalDetailViewController *personVC = [[PersonalDetailViewController alloc] init];
+    self.window.rootViewController = personVC;
+    [self.window makeKeyAndVisible];
     
     
-       /*if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
+    
+      /* if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
             NSLog(@"第一次启动");
             LoginViewController *loginview = [[LoginViewController alloc] init];

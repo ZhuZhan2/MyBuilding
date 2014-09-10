@@ -9,14 +9,14 @@
 #import "PublishViewController.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
-
+#import "ProductModel.h"
+#import "CommentApi.h"
 @interface PublishViewController ()
 
 @end
 
 @implementation PublishViewController
-@synthesize toolBar,inputView,alertLabel,leftBtnImage,rightBtnImage,publishImage,camera;
-static int selectBtnTag =0;
+@synthesize toolBar,inputView,alertLabel,leftBtnImage,rightBtnImage,publishImage,camera,publishImageStr;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -118,17 +118,40 @@ static int selectBtnTag =0;
     NSLog(@"想说些什么");
 leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_07a"];
 rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
-selectBtnTag = 2014090901;
 
-
+    NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
     
+    NSLog(@"********userId******* %@",userIdStr);
+    NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",inputView.text,@"ActiveText",publishImageStr,@"PictureStrings",@"Personal",@"Type",userIdStr,@"CreatedBy", nil];
+    
+    [CommentApi SendActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
+        NSLog(@"******posts***** %@",posts);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
+        [alert show];
+    publishImage.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
+        inputView.text = nil;
+        
+    } dic:dic];
 }
 
 -(void)publshPhoto{
-  NSLog(@"发布图片信息");
-leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_09a"];
+  NSLog(@"发布产品信息");
+    leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_09a"];
     rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_11a"];
-    selectBtnTag = 2014090902;
+    NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+    
+    NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"21344",@"ProductName",inputView.text,@"ProductDescription",publishImageStr,@"ProductImageStrings",userIdStr,@"CreatedBy", nil];
+    [ProductModel AddProductInfomationWithBlock:^(NSMutableArray *posts, NSError *error) {
+        
+        NSLog(@"******posts***** %@",posts);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
+        [alert show];
+        
+        publishImage.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
+        inputView.text = nil;
+        
+    } dic:dic];
+    
 
     
 }
@@ -146,6 +169,7 @@ leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_09a"];
 -(void)publishImage:(NSString *)imageStr andImage:(UIImage *)image;
 {
     [inputView becomeFirstResponder];
+    publishImageStr = imageStr;
 //    CGRect frame = CGRectMake(image.size.width/2-30, image.size.height/2-30, 60, 60);
 //   image=[UIImage imageWithCGImage:CGImageCreateWithImageInRect([image CGImage], frame)];
     publishImage.image = image;

@@ -16,4 +16,5 @@
 @property (nonatomic,strong) UIImageView *rightBtnImage;
 @property (nonatomic,strong) UIImageView *publishImage;
 @property (nonatomic, strong) Camera *camera;
+@property (nonatomic, strong) NSString *publishImageStr;
 @end
