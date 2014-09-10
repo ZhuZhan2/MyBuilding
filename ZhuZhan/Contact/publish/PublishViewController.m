@@ -141,7 +141,7 @@ rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
     NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
     
     NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"21344",@"ProductName",inputView.text,@"ProductDescription",publishImageStr,@"ProductImageStrings",userIdStr,@"CreatedBy", nil];
-    [ProductModel AddProductInfomationWithBlock:^(NSMutableArray *posts, NSError *error) {
+    [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         
         NSLog(@"******posts***** %@",posts);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];

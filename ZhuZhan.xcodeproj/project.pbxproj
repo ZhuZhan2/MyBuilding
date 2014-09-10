@@ -381,6 +381,7 @@
 		5B13C75819B835BE008EA7A0 /* 公司认证员工_18a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C73A19B835BE008EA7A0 /* 公司认证员工_18a@2x.png */; };
 		5B13C75919B835BE008EA7A0 /* 公司认证员工_20a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C73B19B835BE008EA7A0 /* 公司认证员工_20a.png */; };
 		5B13C75A19B835BE008EA7A0 /* 公司认证员工_20a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C73C19B835BE008EA7A0 /* 公司认证员工_20a@2x.png */; };
+		5B18B46F19BFFC3700551F82 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B18B46E19BFFC3700551F82 /* GradientView.m */; };
 		5B1AC4B019BEE4DC006CA4F4 /* CompanyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */; };
 		5B1AC4B419BEEF1A006CA4F4 /* u33.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B1AC4B319BEEF1A006CA4F4 /* u33.png */; };
 		5B1AC4B719BF04D9006CA4F4 /* 公司－公司详情_05a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B1AC4B519BF04D9006CA4F4 /* 公司－公司详情_05a.png */; };
@@ -1286,6 +1287,8 @@
 		5B13C73A19B835BE008EA7A0 /* 公司认证员工_18a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司认证员工_18a@2x.png"; sourceTree = "<group>"; };
 		5B13C73B19B835BE008EA7A0 /* 公司认证员工_20a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司认证员工_20a.png"; sourceTree = "<group>"; };
 		5B13C73C19B835BE008EA7A0 /* 公司认证员工_20a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司认证员工_20a@2x.png"; sourceTree = "<group>"; };
+		5B18B46D19BFFC3700551F82 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
+		5B18B46E19BFFC3700551F82 /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		5B1AC4AE19BEE4DC006CA4F4 /* CompanyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyDetailViewController.h; sourceTree = "<group>"; };
 		5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyDetailViewController.m; sourceTree = "<group>"; };
 		5B1AC4B319BEEF1A006CA4F4 /* u33.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = u33.png; sourceTree = "<group>"; };
@@ -1722,6 +1725,7 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				5B18B46C19BFFC2900551F82 /* GradientView */,
 				D3AC61E719B961120015B62F /* SvGifView */,
 				042D9EEC19B8853300689C5D /* Camera */,
 				042D9CF819B40C4C00689C5D /* DKCircleButton */,
@@ -2673,6 +2677,15 @@
 			name = "公司";
 			sourceTree = "<group>";
 		};
+		5B18B46C19BFFC2900551F82 /* GradientView */ = {
+			isa = PBXGroup;
+			children = (
+				5B18B46D19BFFC3700551F82 /* GradientView.h */,
+				5B18B46E19BFFC3700551F82 /* GradientView.m */,
+			);
+			path = GradientView;
+			sourceTree = "<group>";
+		};
 		D3AC618B19B6BF930015B62F /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -3506,6 +3519,7 @@
 				04D10C3019AF3C120097C0C6 /* ShowViewController.m in Sources */,
 				0426C25C19922D5A00CD8822 /* GPUImageCrosshatchFilter.m in Sources */,
 				042D9CFB19B40C4C00689C5D /* DKCircleButton.m in Sources */,
+				5B18B46F19BFFC3700551F82 /* GradientView.m in Sources */,
 				D3AC61D019B849920015B62F /* PorjectCommentTableViewController.m in Sources */,
 				0426C23C19922D5A00CD8822 /* AFURLRequestSerialization.m in Sources */,
 				0426C26419922D5A00CD8822 /* GPUImageEmbossFilter.m in Sources */,

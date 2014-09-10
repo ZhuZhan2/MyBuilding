@@ -38,7 +38,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,
                                                                      nil]];
     
-    self.title = @"帐户";
+    self.title = @"账号设置";
 //    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
     
     //LeftButton设置属性
@@ -51,8 +51,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton setFrame:CGRectMake(0, 0, 80, 19.5)];
+    [rightButton setFrame:CGRectMake(0, 0, 40, 19.5)];
     [rightButton setTitle:@"完成" forState:UIControlStateNormal];
+    rightButton.titleLabel.font=[UIFont systemFontOfSize:15];
     rightButton.titleLabel.textColor = [UIColor whiteColor];
     [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
