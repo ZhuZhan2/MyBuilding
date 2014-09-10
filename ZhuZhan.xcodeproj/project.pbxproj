@@ -443,6 +443,8 @@
 		D3AC61E419B882050015B62F /* ContactCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61E319B882050015B62F /* ContactCommentModel.m */; };
 		D3AC61EA19B961120015B62F /* SvGifView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61E919B961120015B62F /* SvGifView.m */; };
 		D3AC61EC19B962990015B62F /* 欧莱凯GIF图片 (34).gif in Resources */ = {isa = PBXBuildFile; fileRef = D3AC61EB19B962990015B62F /* 欧莱凯GIF图片 (34).gif */; };
+		D3AC61EF19BFFA510015B62F /* 人脉－账号设置_03a-05.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC61ED19BFFA510015B62F /* 人脉－账号设置_03a-05.png */; };
+		D3AC61F019BFFA510015B62F /* 人脉－账号设置_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC61EE19BFFA510015B62F /* 人脉－账号设置_03a.png */; };
 		D3AD603D19AC4DC1001FD483 /* bg-addbutton-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD600C19AC4DC1001FD483 /* bg-addbutton-highlighted.png */; };
 		D3AD603E19AC4DC1001FD483 /* bg-addbutton-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD600D19AC4DC1001FD483 /* bg-addbutton-highlighted@2x.png */; };
 		D3AD603F19AC4DC1001FD483 /* bg-addbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD600E19AC4DC1001FD483 /* bg-addbutton.png */; };
@@ -1377,6 +1379,8 @@
 		D3AC61E819B961120015B62F /* SvGifView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SvGifView.h; sourceTree = "<group>"; };
 		D3AC61E919B961120015B62F /* SvGifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SvGifView.m; sourceTree = "<group>"; };
 		D3AC61EB19B962990015B62F /* 欧莱凯GIF图片 (34).gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "欧莱凯GIF图片 (34).gif"; sourceTree = "<group>"; };
+		D3AC61ED19BFFA510015B62F /* 人脉－账号设置_03a-05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－账号设置_03a-05.png"; sourceTree = "<group>"; };
+		D3AC61EE19BFFA510015B62F /* 人脉－账号设置_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－账号设置_03a.png"; sourceTree = "<group>"; };
 		D3AD600C19AC4DC1001FD483 /* bg-addbutton-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton-highlighted.png"; sourceTree = "<group>"; };
 		D3AD600D19AC4DC1001FD483 /* bg-addbutton-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton-highlighted@2x.png"; sourceTree = "<group>"; };
 		D3AD600E19AC4DC1001FD483 /* bg-addbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton.png"; sourceTree = "<group>"; };
@@ -2785,6 +2789,8 @@
 		D3AD600B19AC4DC1001FD483 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3AC61ED19BFFA510015B62F /* 人脉－账号设置_03a-05.png */,
+				D3AC61EE19BFFA510015B62F /* 人脉－账号设置_03a.png */,
 				D3AC61EB19B962990015B62F /* 欧莱凯GIF图片 (34).gif */,
 				D3AC61E019B86DB30015B62F /* 项目－评论列表_03a-07.png */,
 				D3AC61D119B849F30015B62F /* 项目－评论列表_03a.png */,
@@ -3354,6 +3360,7 @@
 				D3AD604B19AC4DC1001FD483 /* icon-star.png in Resources */,
 				D3AD607F19AC4E09001FD483 /* 全部项目_19.png in Resources */,
 				D3AD607319AC4DE7001FD483 /* 全部项目_13.png in Resources */,
+				D3AC61EF19BFFA510015B62F /* 人脉－账号设置_03a-05.png in Resources */,
 				5B49D21A19B07FA100E03EFE /* +项目详情-3_03a.png in Resources */,
 				D3AD603D19AC4DC1001FD483 /* bg-addbutton-highlighted.png in Resources */,
 				5B13C74E19B835BE008EA7A0 /* 公司认证员工_03a@2x.png in Resources */,
@@ -3370,6 +3377,7 @@
 				D3AC613419B5CBBC0015B62F /* 人脉_61a.png in Resources */,
 				5B13C74C19B835BE008EA7A0 /* 公司－我的公司_05a@2x.png in Resources */,
 				0426BFF519922CE400CD8822 /* InfoPlist.strings in Resources */,
+				D3AC61F019BFFA510015B62F /* 人脉－账号设置_03a.png in Resources */,
 				5B13C75019B835BE008EA7A0 /* 公司认证员工_05a@2x.png in Resources */,
 				042D9D0119B411A200689C5D /* 语音搜索1_05.png in Resources */,
 				D3AD607919AC4DF8001FD483 /* 全部项目_21.png in Resources */,
