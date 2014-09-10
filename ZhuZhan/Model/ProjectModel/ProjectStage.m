@@ -10,7 +10,7 @@
 
 @implementation ProjectStage
 +(NSString *)ProjectStrStage:(NSString *)str{
-    NSString *string = [[NSString alloc] init];
+    NSString *string = nil;
     if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@" "]){
         string = @"";
     }else{
@@ -20,7 +20,7 @@
 }
 
 +(NSString *)ProjectTimeStage:(NSString *)str{
-    NSString *string = [[NSString alloc] init];
+    NSString *string = nil;
     if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@" "]){
         string = @"";
     }else{
@@ -45,7 +45,7 @@
 }
 
 +(NSString *)ProjectBoolStage:(NSString *)str{
-    NSString *string = [[NSString alloc] init];
+    NSString *string = nil;
     if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@" "]){
         string = @"";
     }else{

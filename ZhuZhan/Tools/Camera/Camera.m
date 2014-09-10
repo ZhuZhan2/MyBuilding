@@ -113,7 +113,7 @@ static int BtnTag =0;
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     
     [picker dismissViewControllerAnimated:YES completion:nil];
-    [delegate becomeFirstResponder];
+    [delegate openKeyBoard];
     [self.view removeFromSuperview];
     
 }
