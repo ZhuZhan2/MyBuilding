@@ -87,7 +87,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     model = [[ContactModel alloc] init];
     model.companyName = @"上海中技桩业有限公司";
     model.projectLeader = @"项目负责人";
-    model.projectName =@"鸟巢";
+    //model.projectName =@"鸟巢";
     model.addFriendArr = @[@"张三",@"李四"];
     model.userMood = @"今天真是一个好天气哦";
     model.updatePicture =[UIImage imageNamed:@"首页_16"];
@@ -101,10 +101,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)rightBtnClick{//账户按钮触发的事件
-    
-        AccountViewController *accountVC = [[AccountViewController alloc] init];
-        [self.navigationController pushViewController:accountVC animated:YES];
-    
+    AccountViewController *accountVC = [[AccountViewController alloc] init];
+    [self.navigationController pushViewController:accountVC animated:YES];
 }
 
 //-(void)pushToNextVC

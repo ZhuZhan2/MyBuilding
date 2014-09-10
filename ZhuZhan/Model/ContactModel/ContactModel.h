@@ -71,7 +71,6 @@
 //血型
 @property (nonatomic,strong)NSString *bloodType;
 
-
 //职位
 @property (nonatomic,strong)NSString *position;
 
@@ -92,4 +91,7 @@
 
 //获取所有动态
 + (NSURLSessionDataTask *)AllActivesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId startIndex:(int)startIndex;
+
+//获取人的详情
++ (NSURLSessionDataTask *)UserDetailsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId;
 @end
