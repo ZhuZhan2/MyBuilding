@@ -66,6 +66,9 @@
     NSLog(@"===> %d",contacts.count);
     for(int i=0;i<contacts.count;i++){
         ProjectContactModel* contactModel = contacts[i];
+        if ([contactModel.a_category isEqualToString:@""]) {
+            break;
+        }
         NSInteger index=0;
         for (int i=0; i<array.count; i++) {
             if ([contactModel.a_category isEqualToString:categorys[i]]) {
@@ -97,6 +100,9 @@
     
     for(int i=0;i<images.count;i++){
         ProjectImageModel* imageModel = images[i];
+        if ([imageModel.a_imageCategory isEqualToString:@""]) {
+            break;
+        }
         NSInteger index=0;
         for (int i=0; i<array.count; i++) {
             if ([imageModel.a_imageCategory isEqualToString:categorys[i]]) {

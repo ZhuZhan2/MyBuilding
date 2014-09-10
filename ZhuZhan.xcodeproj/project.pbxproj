@@ -381,6 +381,8 @@
 		5B13C75819B835BE008EA7A0 /* 公司认证员工_18a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C73A19B835BE008EA7A0 /* 公司认证员工_18a@2x.png */; };
 		5B13C75919B835BE008EA7A0 /* 公司认证员工_20a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C73B19B835BE008EA7A0 /* 公司认证员工_20a.png */; };
 		5B13C75A19B835BE008EA7A0 /* 公司认证员工_20a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C73C19B835BE008EA7A0 /* 公司认证员工_20a@2x.png */; };
+		5B1AC4B019BEE4DC006CA4F4 /* CompanyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */; };
+		5B1AC4B419BEEF1A006CA4F4 /* u33.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B1AC4B319BEEF1A006CA4F4 /* u33.png */; };
 		5B49D21519B0787C00E03EFE /* 项目详情-筛选_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B49D21319B0787C00E03EFE /* 项目详情-筛选_03.png */; };
 		5B49D21619B0787C00E03EFE /* 项目详情-筛选_06.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B49D21419B0787C00E03EFE /* 项目详情-筛选_06.png */; };
 		5B49D21A19B07FA100E03EFE /* +项目详情-3_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B49D21719B07FA100E03EFE /* +项目详情-3_03a.png */; };
@@ -1282,6 +1284,9 @@
 		5B13C73A19B835BE008EA7A0 /* 公司认证员工_18a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司认证员工_18a@2x.png"; sourceTree = "<group>"; };
 		5B13C73B19B835BE008EA7A0 /* 公司认证员工_20a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司认证员工_20a.png"; sourceTree = "<group>"; };
 		5B13C73C19B835BE008EA7A0 /* 公司认证员工_20a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司认证员工_20a@2x.png"; sourceTree = "<group>"; };
+		5B1AC4AE19BEE4DC006CA4F4 /* CompanyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyDetailViewController.h; sourceTree = "<group>"; };
+		5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyDetailViewController.m; sourceTree = "<group>"; };
+		5B1AC4B319BEEF1A006CA4F4 /* u33.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = u33.png; sourceTree = "<group>"; };
 		5B49D21319B0787C00E03EFE /* 项目详情-筛选_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情-筛选_03.png"; sourceTree = "<group>"; };
 		5B49D21419B0787C00E03EFE /* 项目详情-筛选_06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情-筛选_06.png"; sourceTree = "<group>"; };
 		5B49D21719B07FA100E03EFE /* +项目详情-3_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+项目详情-3_03a.png"; sourceTree = "<group>"; };
@@ -1669,6 +1674,8 @@
 				5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */,
 				5BF08A3B19B8779D00782976 /* MoreCompanyViewCell.h */,
 				5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */,
+				5B1AC4AE19BEE4DC006CA4F4 /* CompanyDetailViewController.h */,
+				5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */,
 			);
 			path = Company;
 			sourceTree = "<group>";
@@ -2626,6 +2633,7 @@
 			isa = PBXGroup;
 			children = (
 				5B13C71F19B835BE008EA7A0 /* 公司－公司组织_02a.png */,
+				5B1AC4B319BEEF1A006CA4F4 /* u33.png */,
 				5B13C72019B835BE008EA7A0 /* 公司－公司组织_02a@2x.png */,
 				5B13C72119B835BE008EA7A0 /* 公司－公司组织_03a.png */,
 				5B13C72219B835BE008EA7A0 /* 公司－公司组织_03a@2x.png */,
@@ -3368,6 +3376,7 @@
 				D3AD607719AC4DF1001FD483 /* 全部项目_14.png in Resources */,
 				D3AC613219B5CBBC0015B62F /* 人脉_57a.png in Resources */,
 				D3AD607519AC4DE7001FD483 /* 全部项目_16.png in Resources */,
+				5B1AC4B419BEEF1A006CA4F4 /* u33.png in Resources */,
 				D3AC611A19B5B0530015B62F /* timescroll_hourhand.png in Resources */,
 				D3AD61E919AF225A001FD483 /* 我的任务_05.png in Resources */,
 				D3AD620E19B05AF8001FD483 /* 项目－项目专题_11a.png in Resources */,
@@ -3416,6 +3425,7 @@
 				042D9EBB19B7FB1B00689C5D /* BgCell.m in Sources */,
 				0426C23019922D5A00CD8822 /* LoginViewController.m in Sources */,
 				0426C2F719922D5A00CD8822 /* CJSONSerializer.m in Sources */,
+				5B1AC4B019BEE4DC006CA4F4 /* CompanyDetailViewController.m in Sources */,
 				0426C24419922D5A00CD8822 /* GPUImageAddBlendFilter.m in Sources */,
 				0426C28319922D5A00CD8822 /* GPUImageLanczosResamplingFilter.m in Sources */,
 				D3AD619B19AEEE30001FD483 /* DatePickerView.m in Sources */,

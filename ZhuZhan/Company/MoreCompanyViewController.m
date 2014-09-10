@@ -8,6 +8,9 @@
 
 #import "MoreCompanyViewController.h"
 #import "MoreCompanyViewCell.h"
+#import "HomePageViewController.h"
+#import "AppDelegate.h"
+#import "CompanyDetailViewController.h"
 @interface MoreCompanyViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UIScrollViewDelegate>
 @property(nonatomic)NSInteger memberNumber;
 @property(nonatomic,strong)UITableView* tableView;
@@ -20,6 +23,22 @@
         self.memberNumber=number;
     }
     return self;
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //恢复tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //    //隐藏tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarHide];
 }
 
 - (void)viewDidLoad
@@ -66,6 +85,8 @@
 //===========================================================================
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    CompanyDetailViewController* vc=[[CompanyDetailViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
     NSLog(@"%d",indexPath.row-1);
 }
 
@@ -128,12 +149,12 @@
 }
 
 -(void)initMyTableViewAndNavi{
-    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568-49) style:UITableViewStylePlain];
+    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
     [self.tableView registerClass:[MoreCompanyViewCell class] forCellReuseIdentifier:@"Cell"];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    
+    self.tableView.showsVerticalScrollIndicator=NO;
     [self.view addSubview:self.tableView];
     
     self.title = @"公司组织";

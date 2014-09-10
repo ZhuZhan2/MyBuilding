@@ -9,6 +9,7 @@
 #import "CompanyViewController.h"
 #import "CompanyMemberViewController.h"
 #import "MoreCompanyViewController.h"
+#import "ProjectApi.h"
 @interface CompanyViewController ()
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic)NSInteger memberNumber;
@@ -60,19 +61,6 @@
     businessLabel.font=[UIFont boldSystemFontOfSize:15];
     businessLabel.textColor=RGBCOLOR(168, 168, 168);
     [view addSubview:businessLabel];
-    
-    //关注button
-    UIButton* button=[UIButton buttonWithType:UIButtonTypeSystem];
-    button.frame=CGRectMake(220, 20, 70, 30);
-    [button setTitle:@"关注" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    button.titleLabel.font=[UIFont boldSystemFontOfSize:18];
-    button.layer.cornerRadius=3;
-    button.backgroundColor=[UIColor whiteColor];
-    button.layer.borderWidth=1;
-    button.layer.borderColor=[[UIColor lightGrayColor]CGColor];
-    [button addTarget:self action:@selector(gotoNoticeView) forControlEvents:UIControlEventTouchUpInside];
-    //[view addSubview:button];
 }
 
 -(void)initSecondView{
@@ -137,6 +125,9 @@
 }
 
 -(void)gotoNoticeView{
+//    [ProjectApi AddUserFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+//        NSLog(@"notice sucess");
+//    } dic:[@{@"UserId":@"f483bcfc-3726-445a-97ff-ac7f207dd888",@"ProjectId":self.model.a_id,@"CreateTime":[NSDate date],@"IsDelted":@"true"} mutableCopy]];
     NSLog(@"用户选择了关注");
 }
 
