@@ -77,11 +77,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
     
-    UIButton *setBgBtn =nil;
-    UIButton *setIconBtn =nil;
-    [_pathCover setButton:setBgBtn WithFrame:CGRectMake(0, 160, 158, 40) WithBackgroundImage:[UIImage imageNamed:@"setBg"] AddTarget:self WithAction:@selector(setbackgroundImage)WithTitle:@"设置封面"];
-    [_pathCover setButton:setIconBtn WithFrame:CGRectMake(162, 160, 158, 40) WithBackgroundImage:[UIImage imageNamed:@"setIcon"] AddTarget:self WithAction:@selector(setuserIcon)WithTitle:@"设置头像"];
-
+    //UIButton *setBgBtn =nil;
+    //UIButton *setIconBtn =nil;
+    //[_pathCover setButton:setBgBtn WithFrame:CGRectMake(0, 160, 158, 40) WithBackgroundImage:[UIImage imageNamed:@"setBg"] AddTarget:self WithAction:@selector(setbackgroundImage)WithTitle:@"设置封面"];
+    //[_pathCover setButton:setIconBtn WithFrame:CGRectMake(162, 160, 158, 40) WithBackgroundImage:[UIImage imageNamed:@"setIcon"] AddTarget:self WithAction:@selector(setuserIcon)WithTitle:@"设置头像"];
     
     
     
