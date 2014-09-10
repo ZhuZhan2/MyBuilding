@@ -18,7 +18,7 @@
 
 @implementation PersonalCenterViewController
 
-@synthesize personalArray,model;
+@synthesize personalArray,model,proModel;
 static int count =0; //用来记录用户第几次进入该页面
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 - (id)initWithStyle:(UITableViewStyle)style
@@ -197,7 +197,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     static NSString *identifier = @"commonCell";
         CommonCell *commonCell = (CommonCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
         if (!commonCell) {
-            commonCell = [[CommonCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:identifier WithModel:model WithIndex:indexPath.row];
+            commonCell = [[CommonCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:identifier WithModel:proModel WithIndex:indexPath.row WithContactModel:model];
         }
    
     return commonCell;

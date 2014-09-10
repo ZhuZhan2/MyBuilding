@@ -29,7 +29,7 @@
         [self addSubview:companyLabel];
         
         UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 85, 280, 30)];
-        NSString *tempStr = [NSString stringWithFormat:@"%@————%@",model.projectBeginTime,model.projectEndTime];
+        NSString *tempStr = [NSString stringWithFormat:@"%@————%@",model.beginTime,model.endTime];
         timeLabel.text = tempStr;
         timeLabel.textAlignment = NSTextAlignmentLeft;
         timeLabel.font = [UIFont systemFontOfSize:14];

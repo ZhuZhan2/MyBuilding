@@ -10,7 +10,7 @@
 
 @implementation CorrelateCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(ContactModel*)model WithExist:(BOOL)exist
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(projectModel*)model WithExist:(BOOL)exist
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -28,7 +28,7 @@
                 UILabel *ProjectLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 550*i, 150, 30)];
                 ProjectLabel.textAlignment = NSTextAlignmentLeft;
                 ProjectLabel.font = [UIFont systemFontOfSize:16];
-                ProjectLabel.text= @"项目名称显示在这里";
+                ProjectLabel.text= model.a_projectName;//@"项目名称显示在这里";
                 [self addSubview:ProjectLabel];
                 
                 
@@ -36,7 +36,7 @@
                 addressLabel.textAlignment = NSTextAlignmentLeft;
                 addressLabel.textColor = [UIColor grayColor];
                 addressLabel.font = [UIFont systemFontOfSize:14];
-                addressLabel.text = @"华南区－上海";
+                addressLabel.text = model.a_district; //@"华南区－上海";
                 [self addSubview:addressLabel];
                 
                 UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(20, 59+50*i, 280, 1)];
