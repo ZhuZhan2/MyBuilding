@@ -12,9 +12,10 @@
 #import "BgCell.h"
 #import "CorrelateCell.h"
 #import "ContactModel.h"
+#import "projectModel.h"
 @interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate,MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) XHPathCover *pathCover;
-@property (nonatomic,strong) ContactModel *model;
-
+@property (nonatomic,strong) ContactModel *contactModel;
+@property (nonatomic,strong) projectModel *proModel;//项目model
 @end

@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ContactModel.h"
+#import "projectModel.h"
 
 @interface CorrelateCell : UITableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(ContactModel*)model WithExist:(BOOL)exist;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(projectModel*)model WithExist:(BOOL)exist;
 @end

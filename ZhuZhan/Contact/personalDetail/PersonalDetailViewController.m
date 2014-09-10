@@ -17,7 +17,7 @@
 
 @implementation PersonalDetailViewController
 
-@synthesize model;
+@synthesize contactModel,proModel;
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 static NSString *textStr=nil;
 static float textHeight =0;
@@ -78,20 +78,21 @@ static bool isProjectExist = NO;
 
 
     textStr =@"oifdjbfddgk;lkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvv";
-    model = [[ContactModel alloc] init];
-    model.companyName = @"上海深集网络";
-    model.projectLeader = @"项目负责人";
-    model.email = @"929097264@11.com";
-    model.cellPhone =@"13938439096";
-//    model.contactImageIconArr =@[@"人脉－人的详情_21a",@"人脉－人的详情_23a"];
-    model.projectBeginTime =@"2012年9月";
-    model.projectEndTime = @"目前";
-    model.personalBackground = textStr;
-//    model.projectName = @"项目名称显示在这里";
-//    model.projectDistrict = @"华南区－上海";
-    textHeight =[self heightForString:textStr fontSize:14 andWidth:280];
+    contactModel = [[ContactModel alloc] init];
+    contactModel.companyName = @"上海深集网络";
+    contactModel.email = @"929097264@11.com";
+    contactModel.cellPhone =@"13938439096";
+    contactModel.beginTime =@"2012年9月";
+    contactModel.endTime = @"目前";
+    contactModel.personalBackground = textStr;
+   textHeight =[self heightForString:textStr fontSize:14 andWidth:280];
     
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    proModel.projectLeader = @"项目负责人";
+    proModel.a_projectName = @"项目名称显示在这里";
+    proModel.a_district = @"华南区－上海";
+    
+    
+       self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)_refreshing {
@@ -142,69 +143,77 @@ static bool isProjectExist = NO;
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     int emailNum =0;
-    if (model.email) {
+    if (contactModel.email) {
         emailNum =1;
         isEmailExist = YES;
     }
     int backgroundNum = 0;
-    if (model.personalBackground) {
+    if (contactModel.personalBackground) {
         backgroundNum = 2;
         isPersonalBackgroundExist =YES;
     }
     
     int projectNum =0;
-    if (model.projectArr) {
-        projectNum = [model.projectArr count]+1;
+    if ([proModel.projectArr count]>0) {
+        projectNum = [proModel.projectArr count]+1;
         isProjectExist = YES;
     }
     
-    return 1+2+emailNum+backgroundNum+projectNum;
+//    return 1+2+emailNum+backgroundNum+projectNum;
     
+    return 10;
     
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    if (indexPath.row==0) {
-     
-            static NSString *identifier = @"companyCell";
-            CompanyCell *companyCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-            if (!companyCell) {
-                companyCell = [[CompanyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:model];
-            }
-        return companyCell;
-    }
     
-    
-
-    if (indexPath.row ==2) {
-        static NSString *identifier = @"contactCell";
-        ContactCell *contactCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-        if (!contactCell) {
-            contactCell = [[ContactCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:model WithEmailExist:isEmailExist];
-        }
-        return contactCell;
-
-    }
-    
-    if (isPersonalBackgroundExist) {
-            if (indexPath.row==3) {
-                static NSString *identifier = @"backGroundCell";
-                BgCell *backGroundCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-                if (!backGroundCell) {
-                    backGroundCell = [[BgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithTextHeight:textHeight WithModel:model];
+               static NSString *identifier = @"Cell";
+               UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:identifier];
+               if (!cell) {
+                   cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
                 }
-                return backGroundCell;
-            }
-    }
-    
-    static NSString *identifier = @"correlateCell";
-    CorrelateCell *correlateCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!correlateCell) {
-        correlateCell = [[CorrelateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:model WithExist:isProjectExist];
-    }
-    return correlateCell;
+           return cell;
+
+//    if (indexPath.row==0) {
+//     
+//            static NSString *identifier = @"companyCell";
+//            CompanyCell *companyCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+//            if (!companyCell) {
+//                companyCell = [[CompanyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:proModel];
+//            }
+//        return companyCell;
+//    }
+//    
+//    
+//
+//    if (indexPath.row ==2) {
+//        static NSString *identifier = @"contactCell";
+//        ContactCell *contactCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+//        if (!contactCell) {
+//            contactCell = [[ContactCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:contactModel WithEmailExist:isEmailExist];
+//        }
+//        return contactCell;
+//
+//    }
+//    
+//    if (isPersonalBackgroundExist) {
+//            if (indexPath.row==3) {
+//                static NSString *identifier = @"backGroundCell";
+//                BgCell *backGroundCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+//                if (!backGroundCell) {
+//                    backGroundCell = [[BgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithTextHeight:textHeight WithModel:contactModel];
+//                }
+//                return backGroundCell;
+//            }
+//    }
+//    
+//    static NSString *identifier = @"correlateCell";
+//    CorrelateCell *correlateCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+//    if (!correlateCell) {
+//        correlateCell = [[CorrelateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:proModel WithExist:isProjectExist];
+//    }
+//    return correlateCell;
 
     
 }
@@ -212,32 +221,118 @@ static bool isProjectExist = NO;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (isEmailExist) {
-        
-        if (indexPath.row ==2) {
-            [self onClickAttention:indexPath.row];
-            return;
-        }
-        if (indexPath.row==3) {
-            [self onClickToCall:indexPath.row];
-            return;
-            
-        }
-
-    }
-    
-        if (indexPath.row==0 ||indexPath.row==1 ||indexPath.row==4 ||indexPath.row==5 ||indexPath.row==6) {
-        
-        NSLog(@"不做任何操作");
-        
-        return;
-    }
-    
-//    ProgramDetailViewController *programDetailVC = [[ProgramDetailViewController alloc] init];
+//    if (isEmailExist) {
+//        
+//        if (indexPath.row ==2) {
+//            [self onClickAttention:indexPath.row];
+//            return;
+//        }
+//        if (indexPath.row==3) {
+//            [self onClickToCall:indexPath.row];
+//            return;
+//            
+//        }
+//        if (indexPath.row==0 ||indexPath.row==1 ){
+//            NSLog(@"不做任何操作");
+//            
+//            return;
+//        }
+//        if (isPersonalBackgroundExist) {
+//            if (indexPath.row==4 ||indexPath.row==5) {
+//                NSLog(@"不做任何操作");
+//                return;
+//            }
+//            
+//            if (isProjectExist) {
+//                if (indexPath.row==6) {
+//                    NSLog(@"不做任何操作");
+//                    
+//                    return;
+//                }
+//                
+//                //    ProgramDetailViewController *programDetailVC = [[ProgramDetailViewController alloc] init];
+//                //
+//                //    [self.navigationController pushViewController:programDetailVC animated:YES];
+//               
+//            }
+//        }
+//        
+//        }
+//        if (!isPersonalBackgroundExist) {
+//            
+//            if (isProjectExist) {
+//                if (indexPath.row==4) {
+//                    NSLog(@"不做任何操作");
+//                    
+//                    return;
+//                }
+//                
+//                //    ProgramDetailViewController *programDetailVC = [[ProgramDetailViewController alloc] init];
+//                //
+//                //    [self.navigationController pushViewController:programDetailVC animated:YES];
+//                
+//            }
+//  
+//        }
+//    
 //
-//    [self.navigationController pushViewController:programDetailVC animated:YES];
+//    }
+//    if (!isEmailExist) {
+//    
+//        if (indexPath.row==0 ||indexPath.row==1 ){
+//            NSLog(@"不做任何操作");
+//            
+//            return;
+//        }
+//        
+//        if (indexPath.row==2) {
+//            [self onClickToCall:indexPath.row];
+//            return;
+//            
+//        }
+//        
+//        if (isPersonalBackgroundExist) {
+//            if (indexPath.row==3 ||indexPath.row==4) {
+//                NSLog(@"不做任何操作");
+//                return;
+//            }
+//            
+//            if (isProjectExist) {
+//                if (indexPath.row==5) {
+//                    NSLog(@"不做任何操作");
+//                    
+//                    return;
+//                }
+//                
+//                //    ProgramDetailViewController *programDetailVC = [[ProgramDetailViewController alloc] init];
+//                //
+//                //    [self.navigationController pushViewController:programDetailVC animated:YES];
+//            }
+//
+//          }
+//            if (!isPersonalBackgroundExist) {
+//                
+//                if (isProjectExist) {
+//                    if (indexPath.row==3) {
+//                        NSLog(@"不做任何操作");
+//                        
+//                        return;
+//                    }
+//                    
+//                    //    ProgramDetailViewController *programDetailVC = [[ProgramDetailViewController alloc] init];
+//                    //
+//                    //    [self.navigationController pushViewController:programDetailVC animated:YES];
+//                    
+//                }
+// 
+//            }
+//    }
+//
+//
+//
+//    
+//    }
     
-
     
 }
 
@@ -357,4 +452,5 @@ static bool isProjectExist = NO;
 -(void)gotoMyCenter{
 
 }
+    
 @end
