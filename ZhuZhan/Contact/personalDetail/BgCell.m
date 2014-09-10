@@ -17,15 +17,18 @@
     if (self) {
         // Initialization code
         
-        AutoChangeTextView *textView = [[AutoChangeTextView alloc] initWithFrame:CGRectMake(20, 60, 280, height)];
+        UIImageView *imgaeView = [[UIImageView alloc] initWithFrame:CGRectMake(129, 8, 52, 34)];
+        imgaeView.image = [UIImage imageNamed:@"人脉－人的详情_29a"];
+        [self addSubview:imgaeView];
+        AutoChangeTextView *textView = [[AutoChangeTextView alloc] initWithFrame:CGRectMake(20, 110, 280, height)];
         textView.text = model.personalBackground;
         [self addSubview:textView];
-        UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+        UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 60, 280, 30)];
         companyLabel.text = model.companyName;
         companyLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:companyLabel];
         
-        UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 35, 280, 30)];
+        UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 85, 280, 30)];
         NSString *tempStr = [NSString stringWithFormat:@"%@————%@",model.projectBeginTime,model.projectEndTime];
         timeLabel.text = tempStr;
         timeLabel.textAlignment = NSTextAlignmentLeft;

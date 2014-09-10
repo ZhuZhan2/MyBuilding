@@ -35,11 +35,8 @@
 //项目结束时间
 @property (nonatomic,copy) NSString * projectEndTime;
 
-//项目名称
-@property (nonatomic,copy) NSString * projectName;
-
-//项目所在区域
-@property (nonatomic,copy) NSString * projectDistrict;
+//关联项目数组
+@property (nonatomic,copy) NSArray * projectArr;
 
 //新添加的好友数组
 @property (nonatomic,copy) NSArray * addFriendArr;
@@ -62,8 +59,22 @@
 //性别
 @property (nonatomic,strong)NSString *sex;
 
+//所在地
+@property (nonatomic,strong)NSString *location;
+
+//生日
+@property (nonatomic,strong)NSString *birthday;
+
+//星座
+@property (nonatomic,strong)NSString *constellation;//星座
+
+//血型
+@property (nonatomic,strong)NSString *bloodType;
+
+
 //职位
 @property (nonatomic,strong)NSString *position;
+
 //***********************************************************************************
 
 

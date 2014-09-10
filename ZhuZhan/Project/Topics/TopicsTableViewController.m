@@ -110,6 +110,8 @@
             if(!error){
                 showArr = posts;
                 [self.tableView reloadData];
+                [self.tableView footerEndRefreshing];
+                [self.tableView headerEndRefreshing];
             }
         }];
     }
@@ -133,6 +135,8 @@
             if(!error){
                 showArr = posts;
                 [self.tableView reloadData];
+                [self.tableView footerEndRefreshing];
+                [self.tableView headerEndRefreshing];
             }
         }];
     }

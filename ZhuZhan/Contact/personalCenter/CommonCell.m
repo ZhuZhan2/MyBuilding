@@ -176,6 +176,7 @@
                 break;
         }
     }
+    self.selectionStyle =UITableViewCellSelectionStyleNone;
     return self;
 }
 

@@ -10,6 +10,6 @@
 #import "ContactModel.h"
 @interface ContactCell : UITableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(ContactModel *)model WithIndex:(int)index;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(ContactModel *)model WithEmailExist:(BOOL)exist;
 
 @end

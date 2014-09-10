@@ -9,14 +9,14 @@
 #import "PublishViewController.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
-
+#import "ProductModel.h"
+#import "CommentApi.h"
 @interface PublishViewController ()
 
 @end
 
 @implementation PublishViewController
-@synthesize toolBar,inputView,alertLabel,leftBtnImage,rightBtnImage,publishImage,camera;
-static int selectBtnTag =0;
+@synthesize toolBar,inputView,alertLabel,leftBtnImage,rightBtnImage,publishImage,camera,publishImageStr;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -50,7 +50,7 @@ static int selectBtnTag =0;
 
 
 
-    inputView = [[UITextView alloc] initWithFrame:CGRectMake(10, 44, 300, 220)];
+    inputView = [[UITextView alloc] initWithFrame:CGRectMake(10, 42, 300, 220)];
     inputView.delegate = self;
     inputView.returnKeyType = UIReturnKeySend;
     inputView.font = [UIFont systemFontOfSize:16];
@@ -68,7 +68,10 @@ static int selectBtnTag =0;
 
     publishImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 74.5, 60, 60)];
     publishImage.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
+    publishImage.userInteractionEnabled =YES;
     [self.view addSubview:publishImage];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(beginToAddImage)];
+    [publishImage addGestureRecognizer:tap];
     
     toolBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 312, 320, 40)];
     toolBar.image = [UIImage imageNamed:@"人脉－发布动态_15a"];
@@ -104,36 +107,59 @@ static int selectBtnTag =0;
 
 }
 
+-(void)beginToAddImage
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
+    [actionSheet showInView:self.view.superview];
+}
 
 -(void)publshText
 {
     NSLog(@"想说些什么");
 leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_07a"];
 rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
-    
-    selectBtnTag = 2014090901;
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
-    [actionSheet showInView:self.view.superview];
 
+    NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
     
+    NSLog(@"********userId******* %@",userIdStr);
+    NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",inputView.text,@"ActiveText",publishImageStr,@"PictureStrings",@"Personal",@"Type",userIdStr,@"CreatedBy", nil];
+    
+    [CommentApi SendActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
+        NSLog(@"******posts***** %@",posts);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
+        [alert show];
+    publishImage.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
+        inputView.text = nil;
+        
+    } dic:dic];
 }
 
 -(void)publshPhoto{
-  NSLog(@"发布图片信息");
-leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_09a"];
+  NSLog(@"发布产品信息");
+    leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_09a"];
     rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_11a"];
-    selectBtnTag = 2014090902;
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
-    [actionSheet showInView:self.view.superview];
+    NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
     
+    NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"21344",@"ProductName",inputView.text,@"ProductDescription",publishImageStr,@"ProductImageStrings",userIdStr,@"CreatedBy", nil];
+    [ProductModel AddProductInfomationWithBlock:^(NSMutableArray *posts, NSError *error) {
+        
+        NSLog(@"******posts***** %@",posts);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
+        [alert show];
+        
+        publishImage.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
+        inputView.text = nil;
+        
+    } dic:dic];
     
+
     
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     camera = [[Camera alloc] init];
     camera.delegate = self;
     [self.view addSubview:camera.view];
-    [camera modifyUserIconWithButtonIndex:buttonIndex WithButtonTag:selectBtnTag];
+    [camera modifyUserIconWithButtonIndex:buttonIndex WithButtonTag:110120];
     
 }
 
@@ -142,10 +168,17 @@ leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_09a"];
 
 -(void)publishImage:(NSString *)imageStr andImage:(UIImage *)image;
 {
-    CGRect frame = CGRectMake(image.size.width/2-30, image.size.height/2-30, 60, 60);
-   image=[UIImage imageWithCGImage:CGImageCreateWithImageInRect([image CGImage], frame)];
+    [inputView becomeFirstResponder];
+    publishImageStr = imageStr;
+//    CGRect frame = CGRectMake(image.size.width/2-30, image.size.height/2-30, 60, 60);
+//   image=[UIImage imageWithCGImage:CGImageCreateWithImageInRect([image CGImage], frame)];
     publishImage.image = image;
     
+}
+
+-(void)becomeFirstResponder
+{
+    [inputView becomeFirstResponder];
 }
 -(void)leftBtnClick{
     
@@ -177,6 +210,8 @@ leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_09a"];
         CGPoint cursorPosition = [textView caretRectForPosition:textView.selectedTextRange.start].origin;
         NSLog(@"===%lf,%f",cursorPosition.x,cursorPosition.y);
         if ((cursorPosition.x==58.720001 &&cursorPosition.y==7)||(cursorPosition.x==63.279999 &&cursorPosition.y==7)) {
+            
+            
             if ([inputView.text length] <14) {
                inputView.text =@"             ";
                 return NO;
