@@ -117,7 +117,7 @@
     UIButton* button=[UIButton buttonWithType:UIButtonTypeSystem];
     button.frame=CGRectMake(0, 0, 50, 30);
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    button.titleLabel.font=[UIFont systemFontOfSize:17];
+    button.titleLabel.font=[UIFont systemFontOfSize:14];
     [button setTitle:@"更多" forState:UIControlStateNormal];
     button.backgroundColor=[UIColor clearColor];
     [button addTarget:self action:@selector(more) forControlEvents:UIControlEventTouchUpInside];

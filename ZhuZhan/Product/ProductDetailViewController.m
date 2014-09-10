@@ -14,6 +14,8 @@
 #import "CommentApi.h"
 #import "CommentModel.h"
 #import "ACTimeScroller.h"
+#import "HomePageViewController.h"
+#import "AppDelegate.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate>//,ACTimeScrollerDelegate>
 @property(nonatomic,strong)UITableView* myTableView;
 
@@ -44,6 +46,23 @@
     }
     return self;
 }
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //恢复tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //    //隐藏tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarHide];
+}
+
 
 - (void)viewDidLoad
 {
@@ -265,7 +284,7 @@
 //=========================================================================
 //=========================================================================
 -(void)initMyTableView{
-    self.myTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568-49) style:UITableViewStylePlain];
+    self.myTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
     self.myTableView.delegate=self;
     self.myTableView.dataSource=self;
     self.myTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
