@@ -39,7 +39,7 @@
                 
                 UILabel *leader = [[UILabel alloc] initWithFrame:CGRectMake(62, 30, 100, 30)];
                 leader.textAlignment = NSTextAlignmentLeft;
-                leader.text =proModel.projectLeader;
+                leader.text =model.projectLeader;
                 leader.font = [UIFont systemFontOfSize:14];
                 leader.textColor = GrayColor;
                 [self addSubview:leader];

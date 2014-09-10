@@ -86,7 +86,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     model = [[ContactModel alloc] init];
     model.companyName = @"上海中技桩业有限公司";
-    proModel.projectLeader = @"项目负责人";
+    model.projectLeader = @"项目负责人";
     model.addFriendArr = @[@"张三",@"李四"];
     model.userMood = @"今天真是一个好天气哦";
     model.updatePicture =[UIImage imageNamed:@"首页_16"];

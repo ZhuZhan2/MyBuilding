@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "projectModel.h"
+#import "ContactCell.h"
 @interface CompanyCell : UITableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(projectModel *)model;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(ContactModel *)model;
 
 @end
