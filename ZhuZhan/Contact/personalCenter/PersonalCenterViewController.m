@@ -97,8 +97,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //model.projectName =@"鸟巢";
     model.addFriendArr = @[@"张三",@"李四"];
     model.userMood = @"今天真是一个好天气哦";
-    model.updatePicture =[UIImage imageNamed:@"首页_16"];
+    model.updatePicture =[UIImage imageNamed:@"首页_16"];//proModel.a_projectName
 
+        proModel = [[projectModel alloc] init];
+    proModel.a_projectName = @"鸟巢";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 

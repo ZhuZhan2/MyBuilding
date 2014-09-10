@@ -11,11 +11,13 @@
 #import <MessageUI/MessageUI.h>
 #import "BgCell.h"
 #import "CorrelateCell.h"
+#import "CompanyCell.h"
+#import "ContactCell.h"
 #import "ContactModel.h"
 #import "projectModel.h"
-@interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate,MFMailComposeViewControllerDelegate>
+@interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate,MFMailComposeViewControllerDelegate,ContactCellDelegate,CorrelateCellDelegate>
 
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong) ContactModel *contactModel;
-@property (nonatomic,strong) projectModel *proModel;//项目model
+@property (nonatomic,strong) projectModel *proModel;//项目model  
 @end

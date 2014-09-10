@@ -16,10 +16,14 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        UIView *back = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+        back.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"grayColor"]];
+        [self addSubview:back];
         
         UIImageView *imgaeView = [[UIImageView alloc] initWithFrame:CGRectMake(129, 8, 52, 34)];
         imgaeView.image = [UIImage imageNamed:@"人脉－人的详情_29a"];
-        [self addSubview:imgaeView];
+        [back addSubview:imgaeView];
+        
         AutoChangeTextView *textView = [[AutoChangeTextView alloc] initWithFrame:CGRectMake(20, 110, 280, height)];
         textView.text = model.personalBackground;
         [self addSubview:textView];
