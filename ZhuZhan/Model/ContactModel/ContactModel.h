@@ -10,11 +10,7 @@
 
 @interface ContactModel : NSObject
 
-//公司名称
-@property (nonatomic,copy) NSString *companyName;
 
-//项目负责人
-@property (nonatomic,copy) NSString *projectLeader;
 
 //电子邮件
 @property (nonatomic,copy) NSString * email;
@@ -25,18 +21,16 @@
 //联系方式图标数组
 @property (nonatomic,copy) NSArray * contactImageIconArr;
 
+//所在公司
+@property (nonatomic,copy) NSString * companyName;
+
+//beginTime
+@property (nonatomic,copy) NSString * beginTime;
+//endtime
+@property (nonatomic,copy) NSString * endTime;
 //个人背景
 @property (nonatomic,copy) NSString * personalBackground;
 
-
-//项目开始时间
-@property (nonatomic,copy) NSString * projectBeginTime;
-
-//项目结束时间
-@property (nonatomic,copy) NSString * projectEndTime;
-
-//关联项目数组
-@property (nonatomic,copy) NSArray * projectArr;
 
 //新添加的好友数组
 @property (nonatomic,copy) NSArray * addFriendArr;

@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ContactModel.h"
+#import "projectModel.h"
+#import "ContactCell.h"
 @interface CommonCell : UITableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(ContactModel *)model WithIndex:(int)index;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(projectModel *)proModel WithIndex:(int)index WithContactModel:(ContactModel *)model;
 
 @end

@@ -10,7 +10,7 @@
 
 @implementation CommonCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(ContactModel *)model WithIndex:(int)index
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(projectModel *)proModel WithIndex:(int)index WithContactModel:(ContactModel *)model
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -39,7 +39,7 @@
                 
                 UILabel *leader = [[UILabel alloc] initWithFrame:CGRectMake(62, 30, 100, 30)];
                 leader.textAlignment = NSTextAlignmentLeft;
-                leader.text =model.projectLeader;
+                leader.text =proModel.projectLeader;
                 leader.font = [UIFont systemFontOfSize:14];
                 leader.textColor = GrayColor;
                 [self addSubview:leader];

@@ -18,7 +18,7 @@
 
 @implementation PersonalCenterViewController
 
-@synthesize personalArray,model;
+@synthesize personalArray,model,proModel;
 static int count =0; //用来记录用户第几次进入该页面
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 - (id)initWithStyle:(UITableViewStyle)style
@@ -86,8 +86,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     model = [[ContactModel alloc] init];
     model.companyName = @"上海中技桩业有限公司";
-    model.projectLeader = @"项目负责人";
-//    model.projectName =@"鸟巢";
+    proModel.projectLeader = @"项目负责人";
     model.addFriendArr = @[@"张三",@"李四"];
     model.userMood = @"今天真是一个好天气哦";
     model.updatePicture =[UIImage imageNamed:@"首页_16"];
@@ -199,7 +198,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     static NSString *identifier = @"commonCell";
         CommonCell *commonCell = (CommonCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
         if (!commonCell) {
-            commonCell = [[CommonCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:identifier WithModel:model WithIndex:indexPath.row];
+            commonCell = [[CommonCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:identifier WithModel:proModel WithIndex:indexPath.row WithContactModel:model];
         }
    
     return commonCell;
