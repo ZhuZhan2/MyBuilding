@@ -61,7 +61,7 @@
     
     [RecordSqlite opensql];
     
-    HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+   HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;
     [self.window makeKeyAndVisible];
     
