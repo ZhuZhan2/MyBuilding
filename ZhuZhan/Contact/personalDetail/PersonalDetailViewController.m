@@ -10,7 +10,7 @@
 #import "CompanyCell.h"
 #import "ContactCell.h"
 #import "ProgramDetailViewController.h"
-
+#import "ContactModel.h"
 @interface PersonalDetailViewController ()
 
 @end
@@ -93,6 +93,12 @@ static bool isProjectExist = NO;
     
     
        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [ContactModel UserDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+        
+        }
+    } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0"];
 }
 
 - (void)_refreshing {
