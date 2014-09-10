@@ -132,6 +132,23 @@ static int projectNum =0;
         [wself.pathCover stopRefresh];
     });
 }
+/******************************************************************************************************************/
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //恢复tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //隐藏tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarHide];
+}
 
 /******************************************************************************************************************/
 //滚动是触发的事件
@@ -324,6 +341,7 @@ static int projectNum =0;
 //**************************************************************************************************************
 -(void)onClickAttention:(int)tag
 {
+    
     if ([MFMailComposeViewController canSendMail]){
         // Email Subject
         NSString *emailTitle = nil;
@@ -340,7 +358,9 @@ static int projectNum =0;
         [mc setToRecipients:toRecipents];
         
         // Present mail view controller on screen
-        [self presentViewController:mc animated:YES completion:NULL];
+       [self.view.window.rootViewController presentViewController:mc animated:YES completion:NULL];
+
+
     }else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                         message:@"此设备不支持发送邮件"
@@ -357,6 +377,7 @@ static int projectNum =0;
 
 - (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
+    NSLog(@"ghfhgfhgf");
     switch (result)
     {
         case MFMailComposeResultCancelled:
