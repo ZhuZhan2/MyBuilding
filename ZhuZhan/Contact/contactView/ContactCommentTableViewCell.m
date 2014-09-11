@@ -45,6 +45,8 @@
     
     headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"人脉_74a"]];
     headImageView.frame = CGRectMake(85, 22, 27, 27);
+    headImageView.layer.masksToBounds = YES;
+    headImageView.layer.cornerRadius = 3;
     [self.contentView addSubview:headImageView];
     
     contentLabel = [[UILabel alloc] init];
