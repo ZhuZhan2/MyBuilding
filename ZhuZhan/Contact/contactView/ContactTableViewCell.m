@@ -51,7 +51,7 @@
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(15, 6.5, 37, 37);
-    [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:btn];
     
     stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(62.5, 11.5, 27, 27)];
@@ -79,13 +79,10 @@
     [self.contentView addSubview:jobLabel];
 }
 
--(void)btnClick{
-    if([self.delegate respondsToSelector:@selector(HeadImageAction)]){
-        [self.delegate HeadImageAction];
+-(void)btnClick:(UIButton *)button{
+    if([self.delegate respondsToSelector:@selector(HeadImageAction:)]){
+        [self.delegate HeadImageAction:button];
     }
 }
 
--(void)setModel:(CommentModel *)model{
-    headImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
-}
 @end

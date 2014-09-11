@@ -17,6 +17,7 @@
 
 @implementation PublishViewController
 @synthesize toolBar,inputView,alertLabel,leftBtnImage,rightBtnImage,publishImage,camera,publishImageStr;
+static int PublishNum =0;//0没有选择不能发布 1 发布动态  2，发布产品
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -90,7 +91,7 @@
     leftBtnLabel.text = @"想说些什么...";
     [textBtn addSubview:leftBtnLabel];
     
-    [textBtn addTarget:self action:@selector(publshText) forControlEvents:UIControlEventTouchUpInside];
+    [textBtn addTarget:self action:@selector(publshActivities) forControlEvents:UIControlEventTouchUpInside];
     [toolBar addSubview:textBtn];
     
     UIButton *photoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -102,7 +103,7 @@
     UILabel *rightBtnLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 100, 30)];
     rightBtnLabel.text = @"产品信息";
     [photoBtn addSubview:rightBtnLabel];
-    [photoBtn addTarget:self action:@selector(publshPhoto) forControlEvents:UIControlEventTouchUpInside];
+    [photoBtn addTarget:self action:@selector(publshProduct) forControlEvents:UIControlEventTouchUpInside];
     [toolBar addSubview:photoBtn];
     
 
@@ -114,44 +115,22 @@
     [actionSheet showInView:self.view.superview];
 }
 
--(void)publshText
+-(void)publshActivities
 {
     NSLog(@"想说些什么");
 leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_07a"];
 rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
+    PublishNum =1;
 
-    NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-    
-    NSLog(@"********userId******* %@",userIdStr);
-    NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",inputView.text,@"ActiveText",publishImageStr,@"PictureStrings",@"Personal",@"Type",userIdStr,@"CreatedBy", nil];
-    
-    [CommentApi SendActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
-        NSLog(@"******posts***** %@",posts);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
-        [alert show];
-    publishImage.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
-        inputView.text = nil;
-        
-    } dic:dic];
-}
+    }
 
--(void)publshPhoto{
+-(void)publshProduct{
   NSLog(@"发布产品信息");
     leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_09a"];
     rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_11a"];
-    NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
     
-    NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"21344",@"ProductName",inputView.text,@"ProductDescription",publishImageStr,@"ProductImageStrings",userIdStr,@"CreatedBy", nil];
-    [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-        
-        NSLog(@"******posts***** %@",posts);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
-        [alert show];
-        
-        publishImage.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
-        inputView.text = nil;
-        
-    } dic:dic];
+    PublishNum =2;
+    
     
 
     
@@ -191,6 +170,7 @@ rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
 
 -(void)clearAll
 {
+    publishImage.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
     inputView.text =@"             ";
 }
 
@@ -200,12 +180,13 @@ rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
 
     alertLabel.hidden = YES;
     if ([@"\n" isEqualToString:text] == YES) { //发送的操作
-        if ([inputView.text length] <13) {
-            inputView.text =@"             ";
-        }
-        inputView.text = [inputView.text substringFromIndex:13];
-//        NSLog(@"inputView.text  %@",inputView.text);
-        inputView.text =@"             ";
+//        if ([inputView.text length] <13) {
+//            inputView.text =@"             ";
+//        }
+//        inputView.text = [inputView.text substringFromIndex:13];;
+//        inputView.text =@"             ";
+        [self goToPublish];
+        
         return NO;
     }
     if ([@"" isEqualToString:text] == YES) {
@@ -233,6 +214,63 @@ rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
     }
     
     return YES;
+}
+
+
+-(void)goToPublish
+{
+    NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+    NSLog(@"******userId****** %@",userIdStr);
+    if (PublishNum ==0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请选择发布类型" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
+        [alert show];
+    }
+    if ([inputView.text isEqualToString:@"             "]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布内容不能为空" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
+        [alert show];
+        return;
+    }
+    if (PublishNum ==1) {
+
+        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",inputView.text,@"ActiveText",publishImageStr,@"PictureStrings",@"Personal",@"Type",userIdStr,@"CreatedBy", nil];
+        
+        [CommentApi SendActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
+            NSLog(@"******posts***** %@",posts);
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
+            [alert show];
+            publishImage.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
+            inputView.text =@"             ";
+            PublishNum =0;
+            
+        } dic:dic];
+
+    }
+    
+    if (PublishNum ==2) {
+        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"21344",@"ProductName",inputView.text,@"ProductDescription",publishImageStr,@"ProductImageStrings",userIdStr,@"CreatedBy", nil];
+        [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+            
+            
+            NSDictionary *dic = [posts objectAtIndex:0];
+            NSString *productId = [[[dic objectForKey:@"d"] objectForKey:@"data"] objectForKey:@"id"];
+            
+            NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:productId,@"id",userIdStr,@"PublishedBy", nil];
+            
+            [ProductModel PublishProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
+                [alert show];
+                
+                publishImage.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
+                inputView.text =@"             ";
+                            PublishNum =0;
+                
+            } dic:parameters];
+            
+            
+        } dic:dic];
+
+    }
 }
 
 

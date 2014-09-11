@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @protocol HeadImageDelegate <NSObject>
--(void)HeadImageAction;
+-(void)HeadImageAction:(UIButton *)button;
 @end
