@@ -204,6 +204,7 @@ rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
 {
     publishImage.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
     inputView.text =@"             ";
+    publishImageStr = @"";
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text; {
