@@ -45,6 +45,8 @@
     
     headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"人脉_06a"]];
     [headImageView setFrame:CGRectMake(15, 6.5, 37, 37)];
+    headImageView.layer.masksToBounds = YES;
+    headImageView.layer.cornerRadius = 3;
     [self.contentView addSubview:headImageView];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
