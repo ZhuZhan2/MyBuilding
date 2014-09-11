@@ -266,18 +266,18 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self.navigationController pushViewController:personalVC animated:YES];
 }
 
--(void)ShowUserPanView:(UIButton *)button{
-
-    showVC = [[ShowViewController alloc] init];
-    showVC.delegate =self;
-    [showVC.view setFrame:CGRectMake(40, 70, 220, 240)];
-    showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
-    showVC.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
-    
-    [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
-
-    
-}
+//-(void)ShowUserPanView:(UIButton *)button{
+//
+//    showVC = [[ShowViewController alloc] init];
+//    showVC.delegate =self;
+//    [showVC.view setFrame:CGRectMake(40, 70, 220, 240)];
+//    showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
+//    showVC.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
+//    
+//    [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
+//
+//    
+//}
 
 
 
@@ -325,9 +325,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self.navigationController pushViewController:recommendLetterVC animated:YES];//跳转到推荐信页面
 }
 
--(void)HeadImageAction{
-    PersonalDetailViewController *personVC = [[PersonalDetailViewController alloc] init];
-    [self.navigationController pushViewController:personVC animated:YES];
+-(void)HeadImageAction:(UIButton *)button{
+//    PersonalDetailViewController *personVC = [[PersonalDetailViewController alloc] init];
+//    [self.navigationController pushViewController:personVC animated:YES];
+    showVC = [[ShowViewController alloc] init];
+    showVC.delegate =self;
+    [showVC.view setFrame:CGRectMake(40, 70, 220, 240)];
+    showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
+    showVC.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
+    
+    [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
 }
 
 -(void)addCommentView:(NSIndexPath *)indexPath{
