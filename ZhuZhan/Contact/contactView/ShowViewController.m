@@ -76,10 +76,20 @@
 //    [concernBtn addTarget:self action:@selector(gotoConcern) forControlEvents:UIControlEventTouchUpInside];
 //    [tempImageView addSubview:concernBtn];
     
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(150, 200, 100, 25)];
+    bgView.center = CGPointMake(110, 200);
+    bgView.backgroundColor = [UIColor blackColor];
+    bgView.alpha = 0.5;
+    bgView.layer.cornerRadius = 3;//设置那个圆角的有多圆
+    bgView.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
+    [tempImageView addSubview:bgView];
+    
     UIButton *concernBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    concernBtn.frame = CGRectMake(150, 200, 70, 25);
+    concernBtn.frame = CGRectMake(150, 200, 100, 25);
     concernBtn.center = CGPointMake(110, 200);
-    [concernBtn setBackgroundImage:[UIImage imageNamed:@"concern"] forState:UIControlStateNormal];
+    [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
+    concernBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+//    [concernBtn setBackgroundImage:[UIImage imageNamed:@"concern"] forState:UIControlStateNormal];
     [concernBtn addTarget:self action:@selector(gotoConcern) forControlEvents:UIControlEventTouchUpInside];
     [tempImageView addSubview:concernBtn];
     

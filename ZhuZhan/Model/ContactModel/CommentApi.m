@@ -87,7 +87,7 @@
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
