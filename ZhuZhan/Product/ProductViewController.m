@@ -237,20 +237,20 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSMutableArray *)images
-{
-    //NSLog(@"22222");
-    if (!_images)
-	{
-        _images=[NSMutableArray array];
-        //图片源
-        NSArray* names=@[@"+项目-首页_21a.png",@"地图搜索1_09.png",@"+项目-首页_21a.png",@"语音搜索_01.png",@"地图搜索1_09.png",@"语音搜索_01.png",@"+项目-首页_21a.png",@"语音搜索_01.png",@"+项目-首页_21a.png"];
-        for(int i = 0; i < names.count; i++) {
-            [_images addObject:names[i]];
-        }
-    }
-    return _images;
-}
+//- (NSMutableArray *)images
+//{
+//    //NSLog(@"22222");
+//    if (!_images)
+//	{
+//        _images=[NSMutableArray array];
+//        //图片源
+//        NSArray* names=@[@"+项目-首页_21a.png",@"地图搜索1_09.png",@"+项目-首页_21a.png",@"语音搜索_01.png",@"地图搜索1_09.png",@"语音搜索_01.png",@"+项目-首页_21a.png",@"语音搜索_01.png",@"+项目-首页_21a.png"];
+//        for(int i = 0; i < names.count; i++) {
+//            [_images addObject:names[i]];
+//        }
+//    }
+//    return _images;
+//}
 
 
 - (UIImage *)imageAtIndexPath:(NSIndexPath *)indexPath {
