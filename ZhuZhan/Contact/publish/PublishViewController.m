@@ -106,12 +106,10 @@ static int PublishNum =0;//0没有选择不能发布 1 发布动态  2，发布�
     [photoBtn addTarget:self action:@selector(publshProduct) forControlEvents:UIControlEventTouchUpInside];
     [toolBar addSubview:photoBtn];
     
-
+    publishImageStr =@"";
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    publishImageStr =nil;
-}
+
 
 -(void)beginToAddImage
 {
@@ -236,7 +234,7 @@ rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
         return;
     }
     if (PublishNum ==1) {
-
+        NSLog(@"publishImageStr ==> %@",publishImageStr);
         NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",inputView.text,@"ActiveText",@"Personal",@"Type",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
             NSLog(@"******userId****** %@",userIdStr);
         
@@ -254,7 +252,8 @@ rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
     }
     
     if (PublishNum ==2) {
-        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"21344",@"ProductName",inputView.text,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
+        NSLog(@"publishImageStr ==> %@",publishImageStr);
+        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"21344",@"ProductName",inputView.text,@"ProductDescription",@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0",@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
             NSLog(@"******dic****** %@",dic);
           NSLog(@"******userId****** %@",userIdStr);
         [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -263,7 +262,7 @@ rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
             NSDictionary *dic = [posts objectAtIndex:0];
             NSString *productId = [[[dic objectForKey:@"d"] objectForKey:@"data"] objectForKey:@"id"];
             
-            NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:productId,@"id",userIdStr,@"PublishedBy", nil];
+            NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:productId,@"id",@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0",@"PublishedBy", nil];
             
             [ProductModel PublishProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
