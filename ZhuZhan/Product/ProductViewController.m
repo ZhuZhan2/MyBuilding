@@ -44,7 +44,6 @@
         if(!error){
             //NSLog(@"=====%@",posts);
             showArr = posts;
-            //NSLog(@"%@",showArr);
             
             for (int i=0; i<showArr.count; i++) {
                 ProductModel* model=showArr[i];

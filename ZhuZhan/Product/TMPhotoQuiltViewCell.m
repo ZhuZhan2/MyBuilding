@@ -84,7 +84,7 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 - (UILabel *)commentCountLabel {
     if (!_commentCountLabel) {
         _commentCountLabel = [[UILabel alloc] init];
-        _commentCountLabel.textColor=RGBCOLOR(186, 186, 186);
+        _commentCountLabel.textColor=BlueColor;
         [self addSubview:_commentCountLabel];
     }
     return _commentCountLabel;
@@ -116,7 +116,7 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
     self.titleLabel.frame = CGRectMake(10, self.bounds.size.height - 100,
                                        self.bounds.size.width-20, 60);
     
-    self.commentCountLabel.frame =  CGRectMake(40, self.bounds.size.height - 40 ,self.bounds.size.width, 40);
+    self.commentCountLabel.frame =  CGRectMake(40, self.bounds.size.height - 40 ,self.bounds.size.width-40, 40);
     
     self.commentIcon.center=CGPointMake(20, self.bounds.size.height-20);
     

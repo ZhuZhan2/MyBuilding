@@ -28,6 +28,8 @@
     NSLog(@"111=====%@",commentModel.a_content);
     //获取用户头像
     self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[UIImage imageNamed:@"首页_16.png"]];
+    NSLog(@"===>%@",commentModel.a_imageUrl);
+    self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,commentModel.a_imageUrl]];
     self.userImageView.layer.masksToBounds=YES;
     self.userImageView.layer.cornerRadius=5;
     self.userImageView.frame=CGRectMake(15, 20, 50, 50);

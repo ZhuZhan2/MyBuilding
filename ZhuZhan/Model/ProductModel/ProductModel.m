@@ -19,7 +19,7 @@
 }
 
 + (NSURLSessionDataTask *)GetProductInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block productId:(NSString *)productId startIndex:(int)startIndex{
-    NSString *urlStr = [NSString stringWithFormat:@"api/ProductInformation/ProductInformation?productId=%@&pageSize=5&pageIndex=%d",productId,startIndex];
+    NSString *urlStr = [NSString stringWithFormat:@"api/ProductInformation/ProductInformation?productId=%@&pageSize=10&pageIndex=%d",productId,startIndex];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){

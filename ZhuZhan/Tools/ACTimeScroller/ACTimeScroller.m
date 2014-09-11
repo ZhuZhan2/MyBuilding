@@ -134,8 +134,9 @@
 
 - (void)captureTableViewAndScrollBar
 {
+    //NSLog(@"====%@",self.delegate);
     _tableView = [self.delegate tableViewForTimeScroller:self];
-    
+    NSLog(@"====%@",_tableView.subviews);
     self.frame = CGRectMake(CGRectGetWidth(self.frame) - 10.0f, 0.0f, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
     
     for (id subview in [_tableView subviews])
@@ -420,6 +421,7 @@
     point = [_scrollBar convertPoint:point toView:_tableView];
     
     UITableViewCell* cell=[_tableView cellForRowAtIndexPath:[_tableView indexPathForRowAtPoint:point]];
+    //NSLog(@"=====,%@,%f,%f",_tableView.subviews,point.x,point.y);
     if (cell) {
         [self updateDisplayWithCell:cell];
         if (![self alpha])

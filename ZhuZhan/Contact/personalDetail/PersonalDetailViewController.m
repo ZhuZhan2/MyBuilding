@@ -41,7 +41,7 @@ static int projectNum =0;
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,
                                                                      nil]];
     
-    self.title = @"个人详情";
+    self.title = @"人的详情";
     
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];

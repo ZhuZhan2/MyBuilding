@@ -89,10 +89,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 CommentModel *commentModel = posts[i];
                 [showArr addObject:commentModel];
                 [_datasource addObject:commentModel.a_time];
+                //NSLog(@"%@",commentModel.a_time);
                 if(commentModel.a_commentsArr.count !=0){
                     ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[0];
                     [showArr addObject:contactCommentModel];
                     [_datasource addObject:contactCommentModel.a_time];
+                   // NSLog(@"%@",contactCommentModel.a_time);
                 }
             }
             //NSLog(@"%@",showArr);
@@ -251,6 +253,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (NSDate *)timeScroller:(ACTimeScroller *)timeScroller dateForCell:(UITableViewCell *)cell
 {
     NSIndexPath *indexPath = [[self tableView] indexPathForCell:cell];
+    NSLog(@"%@",_datasource);
     return _datasource[[indexPath row]];
 }
 
