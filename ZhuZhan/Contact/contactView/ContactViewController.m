@@ -85,23 +85,18 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     showArr = [[NSMutableArray alloc] init];
     viewArr = [[NSMutableArray alloc] init];
     _datasource = [[NSMutableArray alloc] init];
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        errorview = [[ErrorView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
-        errorview.delegate = self;
-        [self.tableView addSubview:errorview];
-        self.tableView.scrollEnabled = NO;
-    }else{
-        [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                for(int i=0;i<posts.count;i++){
-                    CommentModel *commentModel = posts[i];
-                    [showArr addObject:commentModel];
-                    [_datasource addObject:commentModel.a_time];
-                    if(commentModel.a_commentsArr.count !=0){
-                        ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[0];
-                        [showArr addObject:contactCommentModel];
-                        [_datasource addObject:contactCommentModel.a_time];
-                    }
+    [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            for(int i=0;i<posts.count;i++){
+                CommentModel *commentModel = posts[i];
+                [showArr addObject:commentModel];
+                [_datasource addObject:commentModel.a_time];
+                //NSLog(@"%@",commentModel.a_time);
+                if(commentModel.a_commentsArr.count !=0){
+                    ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[0];
+                    [showArr addObject:contactCommentModel];
+                    [_datasource addObject:contactCommentModel.a_time];
+                   // NSLog(@"%@",contactCommentModel.a_time);
                 }
                 //NSLog(@"%@",showArr);
                 for(int i=0;i<showArr.count;i++){
@@ -270,6 +265,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (NSDate *)timeScroller:(ACTimeScroller *)timeScroller dateForCell:(UITableViewCell *)cell
 {
     NSIndexPath *indexPath = [[self tableView] indexPathForCell:cell];
+    NSLog(@"%@",_datasource);
     return _datasource[[indexPath row]];
 }
 

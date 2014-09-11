@@ -44,13 +44,6 @@
         if(!error){
             //NSLog(@"=====%@",posts);
             showArr = posts;
-            //NSLog(@"%@",showArr);
-            
-            for (int i=0; i<showArr.count; i++) {
-                ProductModel* model=showArr[i];
-                NSLog(@"%d,%@",i,model.a_content);
-            }
-
             [qtmquitView reloadData];
         }
     } productId:@"" startIndex:startIndex];
@@ -238,27 +231,36 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSMutableArray *)images
-{
-    //NSLog(@"22222");
-    if (!_images)
-	{
-        _images=[NSMutableArray array];
-        //图片源
-        NSArray* names=@[@"+项目-首页_21a.png",@"地图搜索1_09.png",@"+项目-首页_21a.png",@"语音搜索_01.png",@"地图搜索1_09.png",@"语音搜索_01.png",@"+项目-首页_21a.png",@"语音搜索_01.png",@"+项目-首页_21a.png"];
-        for(int i = 0; i < names.count; i++) {
-            [_images addObject:names[i]];
-        }
-    }
-    return _images;
-}
+//- (NSMutableArray *)images
+//{
+//    //NSLog(@"22222");
+//    if (!_images)
+//	{
+//        _images=[NSMutableArray array];
+//        //图片源
+//        NSArray* names=@[@"+项目-首页_21a.png",@"地图搜索1_09.png",@"+项目-首页_21a.png",@"语音搜索_01.png",@"地图搜索1_09.png",@"语音搜索_01.png",@"+项目-首页_21a.png",@"语音搜索_01.png",@"+项目-首页_21a.png"];
+//        for(int i = 0; i < names.count; i++) {
+//            [_images addObject:names[i]];
+//        }
+//    }
+//    return _images;
+//}
 
 
-- (UIImage *)imageAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)imageAtIndexPath:(NSIndexPath *)indexPath {
 //    ProductModel *model = showArr[indexPath.row];
 //    EGOImageView *imageview = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"bg001"]];
 //    imageview.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
-    return [UIImage imageNamed:[self.images objectAtIndex:indexPath.row]];
+    ProductModel* model=showArr[indexPath.row];
+
+    CGSize size;
+    if ([model.a_imageUrl isEqualToString:@""]) {
+        size=CGSizeMake(151, 113);
+    }else{
+    size=CGSizeMake([model.a_imageWidth floatValue]*.5, [model.a_imageHeight floatValue]*.5);
+    }
+    
+    return size;
     //return imageview.image;
 }
 
@@ -273,9 +275,7 @@
     }
     ProductModel *model = showArr[indexPath.row];
     
-    //cell.photoView.image = [self imageAtIndexPath:indexPath];
     cell.photoView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
-    //NSLog(@"=====%@",model.a_imageUrl);
     cell.titleLabel.text = model.a_content;
     cell.commentCountLabel.text= model.a_commentNumber;
     return cell;
@@ -297,11 +297,11 @@
 //返回cell的高度
 - (CGFloat)quiltView:(TMQuiltView *)quiltView heightForCellAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 200;
-    CGSize size=[self imageAtIndexPath:indexPath].size;
+    //return 200;
+    CGSize size=[self imageAtIndexPath:indexPath];
     CGFloat scroll=[quiltView cellWidth]/size.width;
     
-    return [self imageAtIndexPath:indexPath].size.height *scroll+100;// / [self quiltViewNumberOfColumns:quiltView];
+    return [self imageAtIndexPath:indexPath].height *scroll+80;// / [self quiltViewNumberOfColumns:quiltView];
 }
 
 //选中cell调用的方法
@@ -328,7 +328,16 @@
     
     [dataDic setObject:comments forKey:@"comments"];
     
-    ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithImage:dataDic[@"productImage"] text:dataDic[@"productText"] productID:[showArr[indexPath.row] a_id]];
+    ProductModel* model=showArr[indexPath.row];
+    
+    CGSize size;
+    if ([model.a_imageUrl isEqualToString:@""]) {
+        size=CGSizeMake(151, 113);
+    }else{
+        size=CGSizeMake([model.a_imageWidth floatValue]*.5, [model.a_imageHeight floatValue]*.5);
+    }
+
+    ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithProductModel:model text:dataDic[@"productText"] productID:[showArr[indexPath.row] a_id]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
