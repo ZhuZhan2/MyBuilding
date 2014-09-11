@@ -402,6 +402,7 @@
 		D3A4280D19C1748500BAB6C7 /* 数据加载失败_07a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A4280B19C1748400BAB6C7 /* 数据加载失败_07a.png */; };
 		D3A4280E19C1748500BAB6C7 /* 数据加载失败_07a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A4280C19C1748500BAB6C7 /* 数据加载失败_07a@2x.png */; };
 		D3A4281019C1749E00BAB6C7 /* ErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4280F19C1749E00BAB6C7 /* ErrorView.m */; };
+		D3A4281519C19A3E00BAB6C7 /* BirthDay.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281419C19A3E00BAB6C7 /* BirthDay.m */; };
 		D3AC60F219B5555D0015B62F /* 地图搜索_02.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC60F019B5555D0015B62F /* 地图搜索_02.png */; };
 		D3AC60F519B5571D0015B62F /* 搜索结果_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC60F419B5571D0015B62F /* 搜索结果_03a.png */; };
 		D3AC610319B589970015B62F /* 高级搜索-多选_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC610019B589970015B62F /* 高级搜索-多选_03a.png */; };
@@ -1325,6 +1326,8 @@
 		D3A4280C19C1748500BAB6C7 /* 数据加载失败_07a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "数据加载失败_07a@2x.png"; sourceTree = "<group>"; };
 		D3A4280F19C1749E00BAB6C7 /* ErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorView.m; sourceTree = "<group>"; };
 		D3A4281119C1857E00BAB6C7 /* ContactCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCommentTableViewCell.h; sourceTree = "<group>"; };
+		D3A4281319C19A3E00BAB6C7 /* BirthDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirthDay.h; sourceTree = "<group>"; };
+		D3A4281419C19A3E00BAB6C7 /* BirthDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BirthDay.m; sourceTree = "<group>"; };
 		D3AC60F019B5555D0015B62F /* 地图搜索_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图搜索_02.png"; sourceTree = "<group>"; };
 		D3AC60F119B5555D0015B62F /* mapsearch-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapsearch-1.png"; sourceTree = "<group>"; };
 		D3AC60F419B5571D0015B62F /* 搜索结果_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索结果_03a.png"; sourceTree = "<group>"; };
@@ -1743,6 +1746,7 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3A4281219C19A2C00BAB6C7 /* BirthDay */,
 				D3A427FF19C16E5100BAB6C7 /* ErrorView */,
 				5B18B46C19BFFC2900551F82 /* GradientView */,
 				D3AC61E719B961120015B62F /* SvGifView */,
@@ -2714,6 +2718,15 @@
 			path = ErrorView;
 			sourceTree = "<group>";
 		};
+		D3A4281219C19A2C00BAB6C7 /* BirthDay */ = {
+			isa = PBXGroup;
+			children = (
+				D3A4281319C19A3E00BAB6C7 /* BirthDay.h */,
+				D3A4281419C19A3E00BAB6C7 /* BirthDay.m */,
+			);
+			path = BirthDay;
+			sourceTree = "<group>";
+		};
 		D3AC618B19B6BF930015B62F /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -3497,6 +3510,7 @@
 				042D9E2019B559FC00689C5D /* PopupView.m in Sources */,
 				0426C2B019922D5A00CD8822 /* GPUImageSaturationBlendFilter.m in Sources */,
 				0426C2D419922D5A00CD8822 /* GPUImageVideoCamera.m in Sources */,
+				D3A4281519C19A3E00BAB6C7 /* BirthDay.m in Sources */,
 				042D9E1B19B559FC00689C5D /* AdvancedSearchConditionsTableViewCell.m in Sources */,
 				042D9E1919B559FC00689C5D /* ProjectTableViewCell.m in Sources */,
 				0426C2A919922D5A00CD8822 /* GPUImageRawDataInput.m in Sources */,

@@ -23,6 +23,7 @@
 #import "ContactCommentTableViewCell.h"
 #import "CommentApi.h"
 #import "ConnectionAvailable.h"
+#import "BirthDay.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -118,6 +119,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             }
         } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0" startIndex:startIndex];
     }
+    
+    
+    NSLog(@"%@",[BirthDay getAge:@"1979-06-19"]);
+    NSLog(@"%@",[BirthDay getConstellation:@"1979-06-19"]);
+    NSLog(@"%@",[BirthDay getZodiac:@"1979-06-19"]);
+    
+    
+   
 }
 
 
