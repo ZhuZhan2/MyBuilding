@@ -17,9 +17,8 @@
 
 @end
 
-@interface ShowViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,showControllerDelegate>
+@interface ShowViewController : UIViewController<showControllerDelegate>
 
-@property (nonatomic,strong) UITableView *conFriendTableView;
 @property (nonatomic,strong) id<showControllerDelegate>  delegate;
 
 @end
