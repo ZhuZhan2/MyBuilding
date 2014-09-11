@@ -17,7 +17,7 @@
 
 @implementation PublishViewController
 @synthesize toolBar,inputView,alertLabel,leftBtnImage,rightBtnImage,publishImage,camera,publishImageStr;
-static int PublishNum =0;//0没有选择不能发布 1 发布动态  2，发布产品
+static int PublishNum =1;//1 发布动态  2，发布产品
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -111,6 +111,7 @@ static int PublishNum =0;//0没有选择不能发布 1 发布动态  2，发布�
 
 
 
+
 -(void)beginToAddImage
 {
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
@@ -182,11 +183,8 @@ rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
 
     alertLabel.hidden = YES;
     if ([@"\n" isEqualToString:text] == YES) { //发送的操作
-//        if ([inputView.text length] <13) {
-//            inputView.text =@"             ";
-//        }
-//        inputView.text = [inputView.text substringFromIndex:13];;
-//        inputView.text =@"             ";
+
+        inputView.text = [inputView.text substringFromIndex:13];;
         [self goToPublish];
         
         return NO;
@@ -223,12 +221,8 @@ rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
 {
     NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
 //    NSLog(@"******userId****** %@",userIdStr);
-    if (PublishNum ==0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请选择发布类型" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
-        [alert show];
-        return;
-    }
-    if ([inputView.text isEqualToString:@"             "]) {
+
+    if ([inputView.text isEqualToString:@"             "] &&[publishImageStr isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布内容不能为空" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
         [alert show];
         return;
@@ -245,7 +239,8 @@ rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
             [alert show];
             publishImage.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
             inputView.text =@"             ";
-            PublishNum =0;
+            PublishNum =1;
+            publishImageStr =@"";
             
         } dic:dic];
 
@@ -270,7 +265,8 @@ rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
                 
                 publishImage.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
                 inputView.text =@"             ";
-                            PublishNum =0;
+                PublishNum =1;
+                publishImageStr =@"";
                 
             } dic:parameters];
             
