@@ -108,6 +108,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     [viewArr insertObject:@"" atIndex:i];
                 }
             }
+            
             [self.tableView reloadData];
         }
     } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0" startIndex:startIndex];
@@ -188,6 +189,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }
         cell.delegate = self;
         cell.selectionStyle = NO;
+        cell.model = model;
         return cell;
     }else if ([model.a_type isEqualToString:@"Product"]){
         NSString *stringcell = @"Cell";

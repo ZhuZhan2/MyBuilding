@@ -159,6 +159,7 @@
 - (void)updateDisplayWithCell:(UITableViewCell *)cell
 {
     NSDate *date = [self.delegate timeScroller:self dateForCell:cell];
+    NSLog(@"==>%@",date);
     if (!date || [date isEqualToDate:_lastDate])
     {
         return;

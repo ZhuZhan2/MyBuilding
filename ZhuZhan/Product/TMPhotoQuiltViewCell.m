@@ -53,6 +53,7 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 //}
 - (void)dealloc {
      NSLog(@"TMPhotoQuiltViewCell dealloc");
+    
 }
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier
 {
