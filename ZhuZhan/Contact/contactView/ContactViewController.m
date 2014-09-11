@@ -15,13 +15,14 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "RecommendLetterViewController.h"
 #import "ContactProjectTableViewCell.h"
-#import "ContactTableViewCell.h"
+//#import "ContactTableViewCell.h"
 #import "ContactCommentTableViewCell.h"
 #import "ContactModel.h"
 #import "ContactCommentModel.h"
 #import "CommentModel.h"
 #import "ContactCommentTableViewCell.h"
 #import "CommentApi.h"
+#import "ConnectionAvailable.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -96,22 +97,22 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     [_datasource addObject:contactCommentModel.a_time];
                    // NSLog(@"%@",contactCommentModel.a_time);
                 }
-            }
-            //NSLog(@"%@",showArr);
-            for(int i=0;i<showArr.count;i++){
-                CommentModel *model = showArr[i];
-                if([model.a_type isEqualToString:@"Product"]){
-                    NSLog(@"%@",model.a_type);
-                    commentView = [CommentView setFram:model];
-                    [viewArr insertObject:commentView atIndex:i];
-                }else{
-                    [viewArr insertObject:@"" atIndex:i];
+                //NSLog(@"%@",showArr);
+                for(int i=0;i<showArr.count;i++){
+                    CommentModel *model = showArr[i];
+                    if([model.a_type isEqualToString:@"Product"]){
+                        NSLog(@"%@",model.a_type);
+                        commentView = [CommentView setFram:model];
+                        [viewArr insertObject:commentView atIndex:i];
+                    }else{
+                        [viewArr insertObject:@"" atIndex:i];
+                    }
                 }
+                
+                [self.tableView reloadData];
             }
-            
-            [self.tableView reloadData];
-        }
-    } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0" startIndex:startIndex];
+        } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0" startIndex:startIndex];
+    }
 }
 
 
@@ -266,22 +267,22 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self.navigationController pushViewController:personalVC animated:YES];
 }
 
-//-(void)ShowUserPanView:(UIButton *)button{
-//
-//    showVC = [[ShowViewController alloc] init];
-//    showVC.delegate =self;
-//    [showVC.view setFrame:CGRectMake(40, 70, 220, 240)];
-//    showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
-//    showVC.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
-//    
-//    [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
-//
-//    
-//}
+-(void)ShowUserPanView:(UIButton *)button{
+
+    showVC = [[ShowViewController alloc] init];
+    showVC.delegate =self;
+    [showVC.view setFrame:CGRectMake(40, 70, 220, 240)];
+    showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
+    showVC.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
+    
+    [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
+
+    
+}
 
 
 
-- (void)jumpToGoToDetail
+- (void)jumpToGoToDetail:(UIButton *)button
 {
         NSLog(@"访问个人详情");
     
@@ -290,7 +291,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self.navigationController pushViewController:personalVC animated:NO];
 }
 
-- (void)jumpToGotoConcern
+- (void)jumpToGotoConcern:(UIButton *)button
 {
 
         NSLog(@"关注好友");
@@ -325,17 +326,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self.navigationController pushViewController:recommendLetterVC animated:YES];//跳转到推荐信页面
 }
 
--(void)HeadImageAction:(UIButton *)button{
-//    PersonalDetailViewController *personVC = [[PersonalDetailViewController alloc] init];
-//    [self.navigationController pushViewController:personVC animated:YES];
-    showVC = [[ShowViewController alloc] init];
-    showVC.delegate =self;
-    [showVC.view setFrame:CGRectMake(40, 70, 220, 240)];
-    showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
-    showVC.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
-    
-    [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
-}
+
 
 -(void)addCommentView:(NSIndexPath *)indexPath{
     indexpath = indexPath;
@@ -374,5 +365,49 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)cancelFromAddComment{
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+}
+
+-(void)reloadView{
+    startIndex = 0;
+    [showArr removeAllObjects];
+    [viewArr removeAllObjects];
+    [_datasource removeAllObjects];
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        errorview = [[ErrorView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
+        errorview.delegate = self;
+        [self.tableView addSubview:errorview];
+        self.tableView.scrollEnabled = NO;
+    }else{
+        [errorview removeFromSuperview];
+        errorview = nil;
+        self.tableView.scrollEnabled = YES;
+        [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                for(int i=0;i<posts.count;i++){
+                    CommentModel *commentModel = posts[i];
+                    [showArr addObject:commentModel];
+                    [_datasource addObject:commentModel.a_time];
+                    if(commentModel.a_commentsArr.count !=0){
+                        ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[0];
+                        [showArr addObject:contactCommentModel];
+                        [_datasource addObject:contactCommentModel.a_time];
+                    }
+                }
+                //NSLog(@"%@",showArr);
+                for(int i=0;i<showArr.count;i++){
+                    CommentModel *model = showArr[i];
+                    if([model.a_type isEqualToString:@"Product"]){
+                        NSLog(@"%@",model.a_type);
+                        commentView = [CommentView setFram:model];
+                        [viewArr insertObject:commentView atIndex:i];
+                    }else{
+                        [viewArr insertObject:@"" atIndex:i];
+                    }
+                }
+                
+                [self.tableView reloadData];
+            }
+        } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0" startIndex:startIndex];
+    }
 }
 @end
