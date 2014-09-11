@@ -44,12 +44,6 @@
         if(!error){
             //NSLog(@"=====%@",posts);
             showArr = posts;
-            
-            for (int i=0; i<showArr.count; i++) {
-                ProductModel* model=showArr[i];
-                NSLog(@"%d,%@",i,model.a_content);
-            }
-
             [qtmquitView reloadData];
         }
     } productId:@"" startIndex:startIndex];
@@ -257,10 +251,16 @@
 //    ProductModel *model = showArr[indexPath.row];
 //    EGOImageView *imageview = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"bg001"]];
 //    imageview.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
-    ProductModel* model=showArr[i];
+    ProductModel* model=showArr[indexPath.row];
 
-    CGSize size=CGSizeMake(self., <#CGFloat height#>);
-    return [UIImage imageNamed:[self.images objectAtIndex:indexPath.row]];
+    CGSize size;
+    if ([model.a_imageUrl isEqualToString:@""]) {
+        size=CGSizeMake(151, 113);
+    }else{
+    size=CGSizeMake([model.a_imageWidth floatValue]*.5, [model.a_imageHeight floatValue]*.5);
+    }
+    
+    return size;
     //return imageview.image;
 }
 
@@ -276,7 +276,6 @@
     ProductModel *model = showArr[indexPath.row];
     
     cell.photoView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
-    //NSLog(@"=====%@",model.a_imageUrl);
     cell.titleLabel.text = model.a_content;
     cell.commentCountLabel.text= model.a_commentNumber;
     return cell;
@@ -298,11 +297,11 @@
 //返回cell的高度
 - (CGFloat)quiltView:(TMQuiltView *)quiltView heightForCellAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 200;
-    CGSize size=[self imageAtIndexPath:indexPath].size;
+    //return 200;
+    CGSize size=[self imageAtIndexPath:indexPath];
     CGFloat scroll=[quiltView cellWidth]/size.width;
     
-    return [self imageAtIndexPath:indexPath].size.height *scroll+100;// / [self quiltViewNumberOfColumns:quiltView];
+    return [self imageAtIndexPath:indexPath].height *scroll+80;// / [self quiltViewNumberOfColumns:quiltView];
 }
 
 //选中cell调用的方法
@@ -329,7 +328,16 @@
     
     [dataDic setObject:comments forKey:@"comments"];
     
-    ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithImage:dataDic[@"productImage"] text:dataDic[@"productText"] productID:[showArr[indexPath.row] a_id]];
+    ProductModel* model=showArr[indexPath.row];
+    
+    CGSize size;
+    if ([model.a_imageUrl isEqualToString:@""]) {
+        size=CGSizeMake(151, 113);
+    }else{
+        size=CGSizeMake([model.a_imageWidth floatValue]*.5, [model.a_imageHeight floatValue]*.5);
+    }
+
+    ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithProductModel:model text:dataDic[@"productText"] productID:[showArr[indexPath.row] a_id]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

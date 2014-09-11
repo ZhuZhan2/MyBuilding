@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ProductModel.h"
 @interface ProductDetailViewController : UIViewController
--(instancetype)initWithImage:(UIImage*)productImage text:(NSString*)productText productID:(NSString*)productID;
+-(instancetype)initWithProductModel:(ProductModel*)productModel text:(NSString*)productText productID:(NSString*)productID;
 @end

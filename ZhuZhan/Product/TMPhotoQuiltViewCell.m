@@ -66,8 +66,8 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 
 - (EGOImageView *)photoView {
     if (!_photoView) {
-        _photoView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"bg001"]];
-        _photoView.showActivityIndicator = YES;
+        _photoView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"产品－列表_10a.png"]];
+        //_photoView.showActivityIndicator = YES;
         [self addSubview:_photoView];
     }
     return _photoView;
@@ -77,6 +77,8 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.numberOfLines=2;
+        _titleLabel.font=[UIFont systemFontOfSize:14];
+        _titleLabel.textColor=GrayColor;
         [self addSubview:_titleLabel];
     }
     return _titleLabel;
@@ -86,6 +88,7 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
     if (!_commentCountLabel) {
         _commentCountLabel = [[UILabel alloc] init];
         _commentCountLabel.textColor=BlueColor;
+        _commentCountLabel.font=[UIFont systemFontOfSize:14];
         [self addSubview:_commentCountLabel];
     }
     return _commentCountLabel;
@@ -93,9 +96,9 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 
 -(UIImageView *)commentIcon{
     if (!_commentIcon) {
-        UIImage* image=[UIImage imageNamed:@"项目-首页_18a.png"];
-        CGRect frame=CGRectMake(0, 0, image.size.width*.5, image.size.height*.5);
-        _commentIcon=[[UIImageView alloc]initWithFrame:frame];
+        UIImage* image=[UIImage imageNamed:@"产品－列表_06a.png"];
+//        CGRect frame=CGRectMake(0, 0, image.size.width*.5, image.size.height*.5);
+        _commentIcon=[[UIImageView alloc]initWithImage:image];
         _commentIcon.image=image;
         [self addSubview:_commentIcon];
     }
@@ -112,16 +115,18 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 }
 
 - (void)layoutSubviews {
-    self.photoView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height-100);
+    self.photoView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height-80);
 
-    self.titleLabel.frame = CGRectMake(10, self.bounds.size.height - 100,
-                                       self.bounds.size.width-20, 60);
+    NSLog(@"%@",self.titleLabel.text);
+
+    NSLog(@"%f,%f",self.bounds.size.width,self.bounds.size.height);
+    self.titleLabel.frame = CGRectMake(10, self.bounds.size.height - 75,self.bounds.size.width-20,40);
     
-    self.commentCountLabel.frame =  CGRectMake(40, self.bounds.size.height - 40 ,self.bounds.size.width-40, 40);
+    self.commentCountLabel.frame =  CGRectMake(35, self.bounds.size.height - 37 ,self.bounds.size.width-40, 40);
     
-    self.commentIcon.center=CGPointMake(20, self.bounds.size.height-20);
+    self.commentIcon.center=CGPointMake(20, self.bounds.size.height-15);
     
-    self.separatorLine.center=CGPointMake(self.bounds.size.width*.5, self.bounds.size.height-40);
+    self.separatorLine.center=CGPointMake(self.bounds.size.width*.5, self.bounds.size.height-30);
   
     
     self.layer.shadowColor=[[UIColor grayColor]CGColor];
