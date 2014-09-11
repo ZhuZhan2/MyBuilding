@@ -19,6 +19,7 @@
 //评论数
 @property (nonatomic,copy) NSString *a_commentNumber;
 
+
 @property (nonatomic, copy) NSDictionary *dict;
 
 

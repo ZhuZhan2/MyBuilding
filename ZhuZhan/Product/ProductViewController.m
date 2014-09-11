@@ -253,10 +253,13 @@
 //}
 
 
-- (UIImage *)imageAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)imageAtIndexPath:(NSIndexPath *)indexPath {
 //    ProductModel *model = showArr[indexPath.row];
 //    EGOImageView *imageview = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"bg001"]];
 //    imageview.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
+    ProductModel* model=showArr[i];
+
+    CGSize size=CGSizeMake(self., <#CGFloat height#>);
     return [UIImage imageNamed:[self.images objectAtIndex:indexPath.row]];
     //return imageview.image;
 }
@@ -272,7 +275,6 @@
     }
     ProductModel *model = showArr[indexPath.row];
     
-    //cell.photoView.image = [self imageAtIndexPath:indexPath];
     cell.photoView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
     //NSLog(@"=====%@",model.a_imageUrl);
     cell.titleLabel.text = model.a_content;
