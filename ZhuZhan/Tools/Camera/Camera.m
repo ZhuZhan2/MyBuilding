@@ -212,5 +212,7 @@ static int BtnTag =0;
     // Pass the selected object to the new view controller.
 }
 */
-
+-(void)dealloc{
+    NSLog(@"camera dealloc");
+}
 @end
