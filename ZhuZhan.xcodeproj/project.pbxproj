@@ -350,7 +350,6 @@
 		5B13C71219B6EF32008EA7A0 /* 产品－产品详情_12a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C71119B6EF32008EA7A0 /* 产品－产品详情_12a@2x.png */; };
 		5B13C71519B704B9008EA7A0 /* ContactCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C71419B704B9008EA7A0 /* ContactCommentTableViewCell.m */; };
 		5B13C71919B70699008EA7A0 /* AddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C71819B70699008EA7A0 /* AddCommentViewController.m */; };
-		5B13C71A19B80E26008EA7A0 /* ContactCommentTableViewCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C71319B704B9008EA7A0 /* ContactCommentTableViewCell.h */; };
 		5B13C73D19B835BE008EA7A0 /* 公司－公司组织_02a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C71F19B835BE008EA7A0 /* 公司－公司组织_02a.png */; };
 		5B13C73E19B835BE008EA7A0 /* 公司－公司组织_02a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C72019B835BE008EA7A0 /* 公司－公司组织_02a@2x.png */; };
 		5B13C73F19B835BE008EA7A0 /* 公司－公司组织_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C72119B835BE008EA7A0 /* 公司－公司组织_03a.png */; };
@@ -1260,7 +1259,6 @@
 		5B13C70A19B6E8A5008EA7A0 /* CommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentView.h; sourceTree = "<group>"; };
 		5B13C70B19B6E8A5008EA7A0 /* CommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentView.m; sourceTree = "<group>"; };
 		5B13C71119B6EF32008EA7A0 /* 产品－产品详情_12a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "产品－产品详情_12a@2x.png"; sourceTree = "<group>"; };
-		5B13C71319B704B9008EA7A0 /* ContactCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCommentTableViewCell.h; sourceTree = "<group>"; };
 		5B13C71419B704B9008EA7A0 /* ContactCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCommentTableViewCell.m; sourceTree = "<group>"; };
 		5B13C71719B70699008EA7A0 /* AddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCommentViewController.h; sourceTree = "<group>"; };
 		5B13C71819B70699008EA7A0 /* AddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCommentViewController.m; sourceTree = "<group>"; };
@@ -1326,6 +1324,7 @@
 		D3A4280B19C1748400BAB6C7 /* 数据加载失败_07a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "数据加载失败_07a.png"; sourceTree = "<group>"; };
 		D3A4280C19C1748500BAB6C7 /* 数据加载失败_07a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "数据加载失败_07a@2x.png"; sourceTree = "<group>"; };
 		D3A4280F19C1749E00BAB6C7 /* ErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorView.m; sourceTree = "<group>"; };
+		D3A4281119C1857E00BAB6C7 /* ContactCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCommentTableViewCell.h; sourceTree = "<group>"; };
 		D3AC60F019B5555D0015B62F /* 地图搜索_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图搜索_02.png"; sourceTree = "<group>"; };
 		D3AC60F119B5555D0015B62F /* mapsearch-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapsearch-1.png"; sourceTree = "<group>"; };
 		D3AC60F419B5571D0015B62F /* 搜索结果_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索结果_03a.png"; sourceTree = "<group>"; };
@@ -2517,7 +2516,7 @@
 		04D10BA919AE01690097C0C6 /* contactView */ = {
 			isa = PBXGroup;
 			children = (
-				5B13C71319B704B9008EA7A0 /* ContactCommentTableViewCell.h */,
+				D3A4281119C1857E00BAB6C7 /* ContactCommentTableViewCell.h */,
 				5B13C71419B704B9008EA7A0 /* ContactCommentTableViewCell.m */,
 				5B13C70A19B6E8A5008EA7A0 /* CommentView.h */,
 				5B13C70B19B6E8A5008EA7A0 /* CommentView.m */,
@@ -3484,7 +3483,6 @@
 			files = (
 				D3AC61EA19B961120015B62F /* SvGifView.m in Sources */,
 				D3AC61D319B84F770015B62F /* CommentApi.m in Sources */,
-				5B13C71A19B80E26008EA7A0 /* ContactCommentTableViewCell.h in Sources */,
 				042D9EE519B8671900689C5D /* AccountCell.m in Sources */,
 				0426C23319922D5A00CD8822 /* PanViewController.m in Sources */,
 				0426C28E19922D5A00CD8822 /* GPUImageLuminosityBlendFilter.m in Sources */,

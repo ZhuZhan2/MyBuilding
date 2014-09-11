@@ -106,10 +106,38 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     [photoBtn addTarget:self action:@selector(publshProduct) forControlEvents:UIControlEventTouchUpInside];
     [toolBar addSubview:photoBtn];
     
+    
+    leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_07a"];
+    rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
+
+}
+
+-(void)viewWillAppear:(BOOL)animated{
     publishImageStr =@"";
+    
+    //增加监听，当键盘出现或改变时收出消息
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 }
 
 
+//当键盘出现或改变时调用
+- (void)keyboardWillShow:(NSNotification *)aNotification
+{
+    //获取键盘的高度
+    NSDictionary *userInfo = [aNotification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    int height = keyboardRect.size.height;
+    toolBar.frame =CGRectMake(0, kScreenHeight-height-40, 320, 40);
+}
 
 
 -(void)beginToAddImage
