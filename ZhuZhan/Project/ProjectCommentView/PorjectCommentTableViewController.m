@@ -10,6 +10,8 @@
 #import "CommentApi.h"
 #import "ProjectCommentModel.h"
 #import "UIViewController+MJPopupViewController.h"
+#import "AppDelegate.h"
+#import "HomePageViewController.h"
 @interface PorjectCommentTableViewController ()
 
 @end
@@ -82,6 +84,22 @@
     addCommentView = [[AddCommentViewController alloc] init];
     addCommentView.delegate = self;
     [self presentPopupViewController:addCommentView animationType:MJPopupViewAnimationFade flag:2];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //恢复tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //隐藏tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarHide];
 }
 
 
