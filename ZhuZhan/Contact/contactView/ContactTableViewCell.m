@@ -82,4 +82,8 @@
         [self.delegate HeadImageAction];
     }
 }
+
+-(void)setModel:(CommentModel *)model{
+    headImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
+}
 @end
