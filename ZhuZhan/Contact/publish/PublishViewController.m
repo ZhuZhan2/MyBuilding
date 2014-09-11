@@ -109,6 +109,10 @@ static int PublishNum =0;//0没有选择不能发布 1 发布动态  2，发布�
 
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    publishImageStr =nil;
+}
+
 -(void)beginToAddImage
 {
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
@@ -220,10 +224,11 @@ rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
 -(void)goToPublish
 {
     NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-    NSLog(@"******userId****** %@",userIdStr);
+//    NSLog(@"******userId****** %@",userIdStr);
     if (PublishNum ==0) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请选择发布类型" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
         [alert show];
+        return;
     }
     if ([inputView.text isEqualToString:@"             "]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布内容不能为空" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
@@ -232,7 +237,8 @@ rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
     }
     if (PublishNum ==1) {
 
-        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",inputView.text,@"ActiveText",publishImageStr,@"PictureStrings",@"Personal",@"Type",userIdStr,@"CreatedBy", nil];
+        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",inputView.text,@"ActiveText",@"Personal",@"Type",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
+            NSLog(@"******userId****** %@",userIdStr);
         
         [CommentApi SendActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
             NSLog(@"******posts***** %@",posts);
@@ -248,7 +254,9 @@ rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
     }
     
     if (PublishNum ==2) {
-        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"21344",@"ProductName",inputView.text,@"ProductDescription",publishImageStr,@"ProductImageStrings",userIdStr,@"CreatedBy", nil];
+        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"21344",@"ProductName",inputView.text,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
+            NSLog(@"******dic****** %@",dic);
+          NSLog(@"******userId****** %@",userIdStr);
         [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
             
             
