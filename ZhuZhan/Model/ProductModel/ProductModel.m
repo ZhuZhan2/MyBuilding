@@ -16,6 +16,8 @@
     self.a_content = [ProjectStage ProjectStrStage:dict[@"productDescription"]];
     self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"productImageLocation"]];
     self.a_commentNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"productCommentsNumber"]]];
+    self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageWidth"]]];
+    self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageHeight"]]];
 }
 
 + (NSURLSessionDataTask *)GetProductInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block productId:(NSString *)productId startIndex:(int)startIndex{

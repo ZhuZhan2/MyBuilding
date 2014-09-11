@@ -18,6 +18,8 @@
 @property (nonatomic,copy) NSString *a_imageUrl;
 //评论数
 @property (nonatomic,copy) NSString *a_commentNumber;
+@property (nonatomic, copy) NSString *a_imageWidth;
+@property (nonatomic, copy) NSString *a_imageHeight;
 
 
 @property (nonatomic, copy) NSDictionary *dict;

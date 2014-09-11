@@ -151,6 +151,10 @@
 }
 
 -(void)addProjectCommentView:(int)index{
-    NSLog(@"%d",index);
+    projectModel *model = showArr[index-2];
+    PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
+    projectCommentView.projectId = model.a_id;
+    projectCommentView.projectName = model.a_projectName;
+    [self.navigationController pushViewController:projectCommentView animated:YES];
 }
 @end
