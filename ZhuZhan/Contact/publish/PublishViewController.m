@@ -11,6 +11,7 @@
 #import "HomePageViewController.h"
 #import "ProductModel.h"
 #import "CommentApi.h"
+#import "GTMBase64.h"
 @interface PublishViewController ()
 
 @end

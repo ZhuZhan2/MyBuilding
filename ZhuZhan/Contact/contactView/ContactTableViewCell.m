@@ -80,8 +80,8 @@
 }
 
 -(void)btnClick:(UIButton *)button{
-    if([self.delegate respondsToSelector:@selector(ShowUserPanView:)]){
-        [self.delegate ShowUserPanView:button];
+    if([self.delegate respondsToSelector:@selector(HeadImageAction:)]){
+        [self.delegate HeadImageAction:button];
     }
 }
 

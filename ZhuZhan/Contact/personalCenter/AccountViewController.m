@@ -11,6 +11,7 @@
 #import "GradientView.h"
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
+#import "UserModel.h"
 @interface AccountViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView* tableView;
 @end
@@ -78,8 +79,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover.delegate = self;
     
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
-        [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
-   
+    UserModel *userModel = [UserModel sharedUserModel];
+    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,userModel.userImageUrl]];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadImageFrame:CGRectMake(120, -50, 70, 70)];
     [_pathCover.headImage.layer setMasksToBounds:YES];
@@ -193,7 +194,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
     
     NSLog(@"********userId******* %@",userIdStr);
-    NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"userId",imageStr,@"userImageStrings", nil];
+    NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0",@"userId",imageStr,@"userImageStrings", nil];
     [LoginModel AddUserImageWithBlock:^(NSMutableArray *posts, NSError *error) {
         
         [_pathCover addImageHead:image];
@@ -307,83 +308,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
-- (UIImage *)fixOrientation:(UIImage *)aImage {
-    
-    // No-op if the orientation is already correct
-    if (aImage.imageOrientation == UIImageOrientationUp)
-        return aImage;
-    
-    // We need to calculate the proper transformation to make the image upright.
-    // We do it in 2 steps: Rotate if Left/Right/Down, and then flip if Mirrored.
-    CGAffineTransform transform = CGAffineTransformIdentity;
-    
-    switch (aImage.imageOrientation) {
-        case UIImageOrientationDown:
-        case UIImageOrientationDownMirrored:
-            transform = CGAffineTransformTranslate(transform, aImage.size.width, aImage.size.height);
-            transform = CGAffineTransformRotate(transform, M_PI);
-            break;
-            
-        case UIImageOrientationLeft:
-        case UIImageOrientationLeftMirrored:
-            transform = CGAffineTransformTranslate(transform, aImage.size.width, 0);
-            transform = CGAffineTransformRotate(transform, M_PI_2);
-            break;
-            
-        case UIImageOrientationRight:
-        case UIImageOrientationRightMirrored:
-            transform = CGAffineTransformTranslate(transform, 0, aImage.size.height);
-            transform = CGAffineTransformRotate(transform, -M_PI_2);
-            break;
-        default:
-            break;
-    }
-    
-    switch (aImage.imageOrientation) {
-        case UIImageOrientationUpMirrored:
-        case UIImageOrientationDownMirrored:
-            transform = CGAffineTransformTranslate(transform, aImage.size.width, 0);
-            transform = CGAffineTransformScale(transform, -1, 1);
-            break;
-            
-        case UIImageOrientationLeftMirrored:
-        case UIImageOrientationRightMirrored:
-            transform = CGAffineTransformTranslate(transform, aImage.size.height, 0);
-            transform = CGAffineTransformScale(transform, -1, 1);
-            break;
-        default:
-            break;
-    }
-    
-    // Now we draw the underlying CGImage into a new context, applying the transform
-    // calculated above.
-    CGContextRef ctx = CGBitmapContextCreate(NULL, aImage.size.width, aImage.size.height,
-                                             CGImageGetBitsPerComponent(aImage.CGImage), 0,
-                                             CGImageGetColorSpace(aImage.CGImage),
-                                             CGImageGetBitmapInfo(aImage.CGImage));
-    CGContextConcatCTM(ctx, transform);
-    switch (aImage.imageOrientation) {
-        case UIImageOrientationLeft:
-        case UIImageOrientationLeftMirrored:
-        case UIImageOrientationRight:
-        case UIImageOrientationRightMirrored:
-            CGContextDrawImage(ctx, CGRectMake(0,0,aImage.size.height,aImage.size.width), aImage.CGImage);
-            break;
-            
-        default:
-            CGContextDrawImage(ctx, CGRectMake(0,0,aImage.size.width,aImage.size.height), aImage.CGImage);
-            break;
-    }
-    
-    // And now we just create a new UIImage from the drawing context
-    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
-    UIImage *img = [UIImage imageWithCGImage:cgimg];
-    CGContextRelease(ctx);
-    CGImageRelease(cgimg);
-    return img;
 }
 
 -(void)gotoMyCenter{

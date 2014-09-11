@@ -16,7 +16,7 @@
 #import "AddCommentViewController.h"
 #import "ErrorView.h"
 #import "ContactTableViewCell.h"
-@interface ContactViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate,showControllerDelegate,HeadImageDelegate,CommentViewDelegate,AddCommentDelegate,ErrorViewDelegate,ContactTableViewCellDelegate>{
+@interface ContactViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate,showControllerDelegate,HeadImageDelegate,CommentViewDelegate,AddCommentDelegate,ErrorViewDelegate>{
     NSMutableArray *_datasource;
     ACTimeScroller *_timeScroller;
      NSMutableArray *chooseArray ;

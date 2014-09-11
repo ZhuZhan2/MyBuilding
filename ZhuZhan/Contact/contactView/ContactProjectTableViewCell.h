@@ -15,5 +15,5 @@
     UILabel *titleLabel;
     UILabel *contentLabel;
 }
-@property(nonatomic,strong)id<HeadImageDelegate>delegate;
+@property(nonatomic,weak)id<HeadImageDelegate>delegate;
 @end

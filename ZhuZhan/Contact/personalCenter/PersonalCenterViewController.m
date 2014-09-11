@@ -12,7 +12,7 @@
 #import "LoginModel.h"
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
-
+#import "UserModel.h"
 @interface PersonalCenterViewController ()
 
 @end
@@ -69,7 +69,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 150)];
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
-    [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
+    UserModel *userModel = [UserModel sharedUserModel];
+    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,userModel.userImageUrl]];
        
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadImageFrame:CGRectMake(120, -20, 70, 70)];
