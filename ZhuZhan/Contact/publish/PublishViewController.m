@@ -109,12 +109,12 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     
     leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_07a"];
     rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
+    publishImageStr =@"";
 
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    publishImageStr =@"";
-    
+
     //增加监听，当键盘出现或改变时收出消息
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -167,6 +167,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    [inputView resignFirstResponder];
     camera = [[Camera alloc] init];
     camera.delegate = self;
     [self.view addSubview:camera.view];
@@ -203,6 +204,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
 {
     publishImage.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
     inputView.text =@"             ";
+    publishImageStr = @"";
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text; {
@@ -212,7 +214,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     alertLabel.hidden = YES;
     if ([@"\n" isEqualToString:text] == YES) { //发送的操作
 
-        inputView.text = [inputView.text substringFromIndex:13];;
+        inputView.text = [inputView.text substringFromIndex:13];
         [self goToPublish];
         
         return NO;
@@ -248,13 +250,16 @@ static int PublishNum =1;//1 发布动态  2，发布产品
 -(void)goToPublish
 {
     NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-//    NSLog(@"******userId****** %@",userIdStr);
+//NSLog(@"******userId****** %@",userIdStr);
+NSLog(@"******publishImageStr******%@&&",publishImageStr);
 
-    if ([inputView.text isEqualToString:@"             "] &&[publishImageStr isEqualToString:@""]) {
+    if ([inputView.text isEqualToString:@""]&&[publishImageStr isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布内容不能为空" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
         [alert show];
+        inputView.text =@"             ";
         return;
     }
+
     if (PublishNum ==1) {
         NSLog(@"publishImageStr ==> %@",publishImageStr);
         NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",inputView.text,@"ActiveText",@"Personal",@"Type",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
@@ -267,7 +272,6 @@ static int PublishNum =1;//1 发布动态  2，发布产品
             [alert show];
             publishImage.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
             inputView.text =@"             ";
-            PublishNum =1;
             publishImageStr =@"";
             
         } dic:dic];
@@ -293,7 +297,6 @@ static int PublishNum =1;//1 发布动态  2，发布产品
                 
                 publishImage.image = [UIImage imageNamed:@"人脉－发布动态_03a"];
                 inputView.text =@"             ";
-                PublishNum =1;
                 publishImageStr =@"";
                 
             } dic:parameters];
