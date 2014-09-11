@@ -22,6 +22,7 @@
 #import "CommentModel.h"
 #import "ContactCommentTableViewCell.h"
 #import "CommentApi.h"
+#import "ConnectionAvailable.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -83,33 +84,40 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     showArr = [[NSMutableArray alloc] init];
     viewArr = [[NSMutableArray alloc] init];
     _datasource = [[NSMutableArray alloc] init];
-    [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            for(int i=0;i<posts.count;i++){
-                CommentModel *commentModel = posts[i];
-                [showArr addObject:commentModel];
-                [_datasource addObject:commentModel.a_time];
-                if(commentModel.a_commentsArr.count !=0){
-                    ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[0];
-                    [showArr addObject:contactCommentModel];
-                    [_datasource addObject:contactCommentModel.a_time];
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        errorview = [[ErrorView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
+        errorview.delegate = self;
+        [self.tableView addSubview:errorview];
+        self.tableView.scrollEnabled = NO;
+    }else{
+        [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                for(int i=0;i<posts.count;i++){
+                    CommentModel *commentModel = posts[i];
+                    [showArr addObject:commentModel];
+                    [_datasource addObject:commentModel.a_time];
+                    if(commentModel.a_commentsArr.count !=0){
+                        ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[0];
+                        [showArr addObject:contactCommentModel];
+                        [_datasource addObject:contactCommentModel.a_time];
+                    }
                 }
-            }
-            //NSLog(@"%@",showArr);
-            for(int i=0;i<showArr.count;i++){
-                CommentModel *model = showArr[i];
-                if([model.a_type isEqualToString:@"Product"]){
-                    NSLog(@"%@",model.a_type);
-                    commentView = [CommentView setFram:model];
-                    [viewArr insertObject:commentView atIndex:i];
-                }else{
-                    [viewArr insertObject:@"" atIndex:i];
+                //NSLog(@"%@",showArr);
+                for(int i=0;i<showArr.count;i++){
+                    CommentModel *model = showArr[i];
+                    if([model.a_type isEqualToString:@"Product"]){
+                        NSLog(@"%@",model.a_type);
+                        commentView = [CommentView setFram:model];
+                        [viewArr insertObject:commentView atIndex:i];
+                    }else{
+                        [viewArr insertObject:@"" atIndex:i];
+                    }
                 }
+                
+                [self.tableView reloadData];
             }
-            
-            [self.tableView reloadData];
-        }
-    } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0" startIndex:startIndex];
+        } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0" startIndex:startIndex];
+    }
 }
 
 
@@ -371,5 +379,49 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)cancelFromAddComment{
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+}
+
+-(void)reloadView{
+    startIndex = 0;
+    [showArr removeAllObjects];
+    [viewArr removeAllObjects];
+    [_datasource removeAllObjects];
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        errorview = [[ErrorView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
+        errorview.delegate = self;
+        [self.tableView addSubview:errorview];
+        self.tableView.scrollEnabled = NO;
+    }else{
+        [errorview removeFromSuperview];
+        errorview = nil;
+        self.tableView.scrollEnabled = YES;
+        [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                for(int i=0;i<posts.count;i++){
+                    CommentModel *commentModel = posts[i];
+                    [showArr addObject:commentModel];
+                    [_datasource addObject:commentModel.a_time];
+                    if(commentModel.a_commentsArr.count !=0){
+                        ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[0];
+                        [showArr addObject:contactCommentModel];
+                        [_datasource addObject:contactCommentModel.a_time];
+                    }
+                }
+                //NSLog(@"%@",showArr);
+                for(int i=0;i<showArr.count;i++){
+                    CommentModel *model = showArr[i];
+                    if([model.a_type isEqualToString:@"Product"]){
+                        NSLog(@"%@",model.a_type);
+                        commentView = [CommentView setFram:model];
+                        [viewArr insertObject:commentView atIndex:i];
+                    }else{
+                        [viewArr insertObject:@"" atIndex:i];
+                    }
+                }
+                
+                [self.tableView reloadData];
+            }
+        } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0" startIndex:startIndex];
+    }
 }
 @end

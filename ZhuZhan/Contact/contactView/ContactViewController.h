@@ -14,7 +14,8 @@
 #import "CommentView.h"
 #import "HeadImageDelegate.h"
 #import "AddCommentViewController.h"
-@interface ContactViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate,showControllerDelegate,HeadImageDelegate,CommentViewDelegate,AddCommentDelegate>{
+#import "ErrorView.h"
+@interface ContactViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate,showControllerDelegate,HeadImageDelegate,CommentViewDelegate,AddCommentDelegate,ErrorViewDelegate>{
     NSMutableArray *_datasource;
     ACTimeScroller *_timeScroller;
      NSMutableArray *chooseArray ;
@@ -24,6 +25,7 @@
     int startIndex;
     AddCommentViewController *addCommentView;
     NSIndexPath *indexpath;
+    ErrorView *errorview;
 }
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong) ShowViewController *showVC;
