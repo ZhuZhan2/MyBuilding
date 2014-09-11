@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "HeadImageDelegate.h"
 
 @protocol showControllerDelegate <NSObject>
 
--(void)jumpToGoToDetail;
--(void)jumpToGotoConcern;
+-(void)jumpToGoToDetail:(UIButton *)button;
+-(void)jumpToGotoConcern:(UIButton *)button;
 -(void)jumpToGetRecommend:(NSDictionary *)dic;
 
 @end

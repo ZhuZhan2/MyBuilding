@@ -44,7 +44,16 @@
     UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
     icon.image = [UIImage imageNamed:@"面部识别登录1_03"];
     icon.center = CGPointMake(110, 80);
+    icon.userInteractionEnabled = YES;
     [tempImageView addSubview:icon];
+    
+    UIButton *visitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    visitBtn.frame =CGRectMake(0, 0, 70, 70);
+    visitBtn.center = CGPointMake(110, 80);
+    
+    [visitBtn addTarget:self action:@selector(beginToVisitDetail:) forControlEvents:UIControlEventTouchUpInside];
+    [tempImageView addSubview:visitBtn];
+    
     
     UILabel *userName = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
     userName.center = CGPointMake(110, 130);
@@ -68,7 +77,7 @@
     bgView.center = CGPointMake(110, 200);
     bgView.backgroundColor = [UIColor blackColor];
     bgView.alpha = 0.7;
-    bgView.layer.cornerRadius = 3;//设置那个圆角的有多圆
+    bgView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     bgView.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
     [tempImageView addSubview:bgView];
     
@@ -77,7 +86,7 @@
     concernBtn.center = CGPointMake(110, 200);
     [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
     concernBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [concernBtn addTarget:self action:@selector(gotoConcern) forControlEvents:UIControlEventTouchUpInside];
+    [concernBtn addTarget:self action:@selector(gotoConcern:) forControlEvents:UIControlEventTouchUpInside];
     [tempImageView addSubview:concernBtn];
     
 }
@@ -95,9 +104,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)gotoConcern
+-(void)beginToVisitDetail:(UIButton *)button
 {
-    [_delegate jumpToGotoConcern];
+    [_delegate jumpToGoToDetail:button];
+}
+- (void)gotoConcern:(UIButton *)button
+{
+    [_delegate jumpToGotoConcern:button];
 }
 
 @end
