@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EGOImageView.h"
 #import "HeadImageDelegate.h"
-
+#import "CommentModel.h"
 @interface ContactTableViewCell : UITableViewCell{
     EGOImageView *headImageView;
     UIImageView *stageImage;

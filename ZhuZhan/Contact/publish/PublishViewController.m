@@ -156,7 +156,7 @@ rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
     
 }
 
--(void)openKeyboard
+-(void)openKeyBoard
 {
     [inputView becomeFirstResponder];
 }
