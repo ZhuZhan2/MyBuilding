@@ -17,5 +17,6 @@
     UILabel *nameLabel;
     UILabel *jobLabel;
 }
-@property(nonatomic,strong)id<HeadImageDelegate>delegate;
+@property(nonatomic,weak)CommentModel *model;
+@property(nonatomic,weak)id<HeadImageDelegate>delegate;
 @end

@@ -135,7 +135,7 @@
 
 -(void)initSearchView{
     self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
-    //self.searchBar.placeholder = @"搜索";
+    self.searchBar.placeholder = @"搜索";
     self.searchBar.backgroundColor=[UIColor redColor];
     self.searchBar.tintColor = [UIColor grayColor];
     self.searchBar.backgroundImage=[self imageWithColor:RGBCOLOR(223, 223, 223)];

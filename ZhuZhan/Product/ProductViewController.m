@@ -26,6 +26,8 @@
 {
     [super viewDidLoad];
 	
+    NSLog(@"%@",NSHomeDirectory());
+    
     self.title = @"产品";
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
     
@@ -40,7 +42,7 @@
     startIndex = 0;
     [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            NSLog(@"=====%@",posts);
+            //NSLog(@"=====%@",posts);
             showArr = posts;
             //NSLog(@"%@",showArr);
             
@@ -236,28 +238,28 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (NSMutableArray *)images
-//{
-//    NSLog(@"22222");
-//    if (!_images)
-//	{
-//        _images=[NSMutableArray array];
-//        //图片源
-//        NSArray* names=@[@"+项目-首页_21a.png",@"地图搜索1_09.png",@"+项目-首页_21a.png",@"语音搜索_01.png",@"地图搜索1_09.png",@"语音搜索_01.png",@"+项目-首页_21a.png",@"语音搜索_01.png",@"+项目-首页_21a.png"];
-//        for(int i = 0; i < names.count; i++) {
-//            [_images addObject:names[i]];
-//        }
-//    }
-//    return _images;
-//}
+- (NSMutableArray *)images
+{
+    //NSLog(@"22222");
+    if (!_images)
+	{
+        _images=[NSMutableArray array];
+        //图片源
+        NSArray* names=@[@"+项目-首页_21a.png",@"地图搜索1_09.png",@"+项目-首页_21a.png",@"语音搜索_01.png",@"地图搜索1_09.png",@"语音搜索_01.png",@"+项目-首页_21a.png",@"语音搜索_01.png",@"+项目-首页_21a.png"];
+        for(int i = 0; i < names.count; i++) {
+            [_images addObject:names[i]];
+        }
+    }
+    return _images;
+}
 
 
 - (UIImage *)imageAtIndexPath:(NSIndexPath *)indexPath {
-    ProductModel *model = showArr[indexPath.row];
-    EGOImageView *imageview = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"bg001"]];
-    imageview.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
-    //return [UIImage imageNamed:[self.images objectAtIndex:indexPath.row]];
-    return imageview.image;
+//    ProductModel *model = showArr[indexPath.row];
+//    EGOImageView *imageview = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"bg001"]];
+//    imageview.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
+    return [UIImage imageNamed:[self.images objectAtIndex:indexPath.row]];
+    //return imageview.image;
 }
 
 - (NSInteger)quiltViewNumberOfCells:(TMQuiltView *)TMQuiltView {
@@ -273,7 +275,7 @@
     
     //cell.photoView.image = [self imageAtIndexPath:indexPath];
     cell.photoView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
-
+    //NSLog(@"=====%@",model.a_imageUrl);
     cell.titleLabel.text = model.a_content;
     cell.commentCountLabel.text= model.a_commentNumber;
     return cell;
@@ -295,6 +297,7 @@
 //返回cell的高度
 - (CGFloat)quiltView:(TMQuiltView *)quiltView heightForCellAtIndexPath:(NSIndexPath *)indexPath
 {
+    return 200;
     CGSize size=[self imageAtIndexPath:indexPath].size;
     CGFloat scroll=[quiltView cellWidth]/size.width;
     

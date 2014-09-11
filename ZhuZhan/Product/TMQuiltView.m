@@ -76,6 +76,14 @@ NSString *const kDefaultReusableIdentifier = @"kTMQuiltViewDefaultReusableIdenti
 #pragma mark - Memory Management
 
 - (void)dealloc {
+    NSMutableArray* tempAry=[NSMutableArray array];
+
+    for (TMQuiltViewCell* cell in self.subviews) {
+        if ([cell.class isSubclassOfClass:[TMQuiltViewCell class]] ) {
+            [tempAry addObject:cell];
+        }
+    }
+
     NSLog(@"TMQuiltView dealloc");
     [_indexPaths release], _indexPaths = nil;
     [_reusableViewsDictionary release], _reusableViewsDictionary = nil;
@@ -86,6 +94,10 @@ NSString *const kDefaultReusableIdentifier = @"kTMQuiltViewDefaultReusableIdenti
     
     [self removeGestureRecognizer:self.tapGestureRecognizer];
     [_tapGestureRecognizer release], _tapGestureRecognizer = nil;
+    
+    for (int i=0; i<tempAry.count; i++) {
+        [tempAry[i] release];
+    }
     
     [super dealloc];
 }
@@ -419,7 +431,9 @@ NSString *const kDefaultReusableIdentifier = @"kTMQuiltViewDefaultReusableIdenti
                 newCell.frame = [self rectForCellAtIndex:0 column:i];
                 [self.indexPathToViewByColumn[i] setObject:newCell forKey:indexPath];
                 [self addSubview:newCell];
+                
                 [[self reusableViewsWithReuseIdentifier:newCell.reuseIdentifier] removeObject:newCell];
+
                 *top = 0;
                 *bottom = 0;
             } else {

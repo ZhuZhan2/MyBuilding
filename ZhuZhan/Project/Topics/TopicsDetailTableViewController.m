@@ -40,13 +40,18 @@
     self.navigationItem.leftBarButtonItem = leftButtonItem;
     
     self.title = @"专题详情";
-//    [ProjectApi GetSeminarProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
-//        if(!error){
-//            showArr = posts;
-//        }
-//    } Id:self.model.a_id];
+    [ProjectApi GetSeminarProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            showArr = posts;
+            [self.tableView reloadData];
+        }
+    } Id:self.model.a_id];
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     self.tableView.separatorStyle = NO;
+    
+    
+    
+    self.model.a_content=@"sadasd的大声的撒的卡里打卡上了罚款了；阿费莱；萨菲拉斯；麻烦了；爱似麻烦；拉什么疯了；爱似麻烦；爱似麻烦；爱似麻烦；ASF；拉什么疯了；阿萨姆；阿拉是魔法师；浪费马上；发来撒明法审令；fdasdasdasdasdasdassdadadadadadadsdasdasdasdas";
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,7 +96,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row == 0){
-        return 363;
+        CGRect bounds=[self.model.a_content boundingRectWithSize:CGSizeMake(288, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
+        return 278+bounds.size.height+5-10;//5像素为原始版本遗留下来的高度
     }else if(indexPath.row == 1){
         return 45;
     }
@@ -115,18 +121,17 @@
         if(!cell){
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        [cell.contentView setBackgroundColor:[UIColor grayColor]];
+        [cell.contentView setBackgroundColor:RGBCOLOR(247, 247, 247)];
         cell.selectionStyle = NO;
         UILabel *projectCount = [[UILabel alloc] initWithFrame:CGRectMake(0, 3, 320, 20)];
         projectCount.text = self.model.a_projectCount;
-        projectCount.textColor = [UIColor blueColor];
+        projectCount.textColor = BlueColor;
         projectCount.font = [UIFont systemFontOfSize:17];
         projectCount.textAlignment = NSTextAlignmentCenter;
         [cell.contentView addSubview:projectCount];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 320, 20)];
         label.text = @"关联项目";
-        label.textColor = [UIColor blueColor];
         label.font = [UIFont systemFontOfSize:14];
         label.textAlignment = NSTextAlignmentCenter;
         [cell.contentView addSubview:label];

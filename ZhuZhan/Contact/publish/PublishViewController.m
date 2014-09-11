@@ -160,6 +160,7 @@ rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
 {
     [inputView becomeFirstResponder];
 }
+
 -(void)leftBtnClick{
     
     [self.navigationController popViewControllerAnimated:YES];

@@ -29,10 +29,13 @@
         UILabel *userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 70, 80, 30)];
         userNameLabel.text = @"用  户  名";
         userNameLabel.textAlignment = NSTextAlignmentLeft;
+        userNameLabel.font=[UIFont systemFontOfSize:15];
         [self addSubview:userNameLabel];
         userName = [[UILabel alloc] initWithFrame:CGRectMake(110, 70, 120, 30)];
         userName.textAlignment = NSTextAlignmentLeft;
         userName.text =model.userName;
+        userName.font=[UIFont systemFontOfSize:15];
+        userName.textColor=GrayColor;
         [self addSubview:userName];
         UIImageView *horizontalLine1 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 109, 280, 1)];
         horizontalLine1.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
@@ -42,10 +45,12 @@
         //密码
         UILabel *passwordLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 120, 80, 30)];
         passwordLabel.text = @"密        码";
+        passwordLabel.font=[UIFont systemFontOfSize:15];
         passwordLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:passwordLabel];
         password = [[UITextField alloc] initWithFrame:CGRectMake(110, 120, 120, 30)];
         password.textAlignment = NSTextAlignmentLeft;
+        password.font=[UIFont systemFontOfSize:15];
         password.delegate =self;
         password.secureTextEntry =YES;
         password.text = model.password;
@@ -64,12 +69,16 @@
           //真实姓名
         UILabel *realNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 170, 80, 30)];
         realNameLabel.text = @"真实姓名";
+        realNameLabel.font=[UIFont systemFontOfSize:15];
+
         realNameLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:realNameLabel];
         realName = [[UITextField alloc] initWithFrame:CGRectMake(110, 170, 120, 30)];
         realName.textAlignment = NSTextAlignmentLeft;
         realName.delegate =self;
         realName.text = model.realName;
+        realName.font=[UIFont systemFontOfSize:15];
+        realName.textColor=GrayColor;
         [self addSubview:realName];
         UIImageView *horizontalLine3 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 209, 280, 1)];
         horizontalLine3.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
@@ -79,12 +88,16 @@
         //性别
         UILabel *sexLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 220, 80, 30)];
         sexLabel.text = @"性        别";
+        sexLabel.font=[UIFont systemFontOfSize:15];
+
         sexLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:sexLabel];
         sex = [[UITextField alloc] initWithFrame:CGRectMake(110, 220, 120, 30)];
         sex.textAlignment = NSTextAlignmentLeft;
         sex.delegate =self;
         sex.text = model.sex;
+        sex.font=[UIFont systemFontOfSize:15];
+        sex.textColor=GrayColor;
         [self addSubview:sex];
         UIImageView *horizontalLine4 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 259, 280, 1)];
         horizontalLine4.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
@@ -94,12 +107,15 @@
         //所在地
         UILabel *locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 270, 80, 30)];
         locationLabel.text = @"所   在  地";
+        locationLabel.font=[UIFont systemFontOfSize:15];
         locationLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:locationLabel];
         location = [[UITextField alloc] initWithFrame:CGRectMake(110, 270, 120, 30)];
         location.textAlignment = NSTextAlignmentLeft;
         location.delegate =self;
         location.text = model.location;
+        location.font=[UIFont systemFontOfSize:15];
+        location.textColor=GrayColor;
         [self addSubview:location];
         UIImageView *horizontalLine5 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 309, 280, 1)];
         horizontalLine5.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
@@ -109,6 +125,7 @@
         //生日
         UILabel *birthdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 320, 80, 30)];
         birthdayLabel.text = @"生        日";
+        birthdayLabel.font=[UIFont systemFontOfSize:15];
         birthdayLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:birthdayLabel];
         birthday= [[UITextField alloc] initWithFrame:CGRectMake(110, 320, 120, 30)];
@@ -116,6 +133,8 @@
         birthday.delegate =self;
         birthday.placeholder = @"yyyy-mm-dd";
         birthday.text = model.birthday;
+        birthday.font=[UIFont systemFontOfSize:15];
+        birthday.textColor=GrayColor;
         [self addSubview:birthday];
         UIImageView *horizontalLine6 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 359, 280, 1)];
         horizontalLine6.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
@@ -125,11 +144,14 @@
         //星座
         UILabel *constellationLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 370, 80, 30)];
         constellationLabel.text = @"星       座";
+        constellationLabel.font=[UIFont systemFontOfSize:15];
         constellationLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:constellationLabel];
         constellation= [[UILabel alloc] initWithFrame:CGRectMake(110, 370, 120, 30)];
         constellation.textAlignment = NSTextAlignmentLeft;
         constellation.text = model.constellation;
+        constellation.font=[UIFont systemFontOfSize:15];
+        constellation.textColor=GrayColor;
         [self addSubview:constellation];
         UIImageView *horizontalLine7 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 409, 280, 1)];
         horizontalLine7.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
@@ -139,12 +161,15 @@
         //血型
         UILabel *bloodTypeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 420, 80, 30)];
         bloodTypeLabel.text = @"血       型";
+        bloodTypeLabel.font=[UIFont systemFontOfSize:15];
         bloodTypeLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:bloodTypeLabel];
         bloodType= [[UITextField alloc] initWithFrame:CGRectMake(110, 420, 120, 30)];
         bloodType.textAlignment = NSTextAlignmentLeft;
         bloodType.delegate =self;
         bloodType.text = model.bloodType;
+        bloodType.font=[UIFont systemFontOfSize:15];
+        bloodType.textColor=GrayColor;
         [self addSubview:bloodType];
 
         
@@ -162,12 +187,15 @@
         //email
         UILabel *emailLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 530, 80, 30)];
         emailLabel.text = @"邮箱地址";
+        emailLabel.font=[UIFont systemFontOfSize:15];
         emailLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:emailLabel];
         email = [[UITextField alloc] initWithFrame:CGRectMake(110, 530, 200, 30)];
         email.textAlignment = NSTextAlignmentLeft;
         email.delegate =self;
         email.text = model.email;
+        email.font=[UIFont systemFontOfSize:15];
+        email.textColor=GrayColor;
         [self addSubview:email];
         UIImageView *horizontalLine9 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 569, 280, 1)];
         horizontalLine9.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
@@ -177,11 +205,14 @@
         //cellPhone
         UILabel *cellPhoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 580, 80, 30)];
         cellPhoneLabel.text = @"电       话";
+        cellPhoneLabel.font=[UIFont systemFontOfSize:15];
         cellPhoneLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:cellPhoneLabel];
         cellPhone = [[UILabel alloc] initWithFrame:CGRectMake(110, 580, 120, 30)];
         cellPhone.textAlignment = NSTextAlignmentLeft;
         cellPhone.text = model.cellPhone;
+        cellPhone.font=[UIFont systemFontOfSize:15];
+        cellPhone.textColor=GrayColor;
         [self addSubview:cellPhone];
 
         
@@ -199,12 +230,15 @@
         //在职公司
         UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 690, 80, 30)];
         companyLabel.text = @"在职公司";
+        companyLabel.font=[UIFont systemFontOfSize:15];
         companyLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:companyLabel];
         company = [[UITextField alloc] initWithFrame:CGRectMake(110, 690, 120, 30)];
         company.textAlignment = NSTextAlignmentLeft;
         company.delegate =self;
         company.text = model.companyName;
+        company.font=[UIFont systemFontOfSize:15];
+        company.textColor=GrayColor;
         [self addSubview:company];
         UIImageView *horizontalLine10 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 729, 280, 1)];
         horizontalLine10.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
@@ -214,18 +248,16 @@
         //职位
         UILabel *positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 740, 80, 30)];
         positionLabel.text = @"职        位";
+        positionLabel.font=[UIFont systemFontOfSize:15];
         positionLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:positionLabel];
         position = [[UITextField alloc] initWithFrame:CGRectMake(110, 740, 120, 30)];
         position.textAlignment = NSTextAlignmentLeft;
         position.delegate =self;
         position.text = model.position;
+        position.font=[UIFont systemFontOfSize:15];
+        position.textColor=GrayColor;
         [self addSubview:position];
-        UIImageView *horizontalLine11 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 779, 280, 1)];
-        horizontalLine11.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
-        horizontalLine11.alpha = 0.5;
-        [self addSubview:horizontalLine11];
-
     }
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     return self;

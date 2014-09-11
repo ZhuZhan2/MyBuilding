@@ -35,7 +35,6 @@
 
 - (id)initWithPlaceholderImage:(UIImage*)anImage {
 	return [self initWithPlaceholderImage:anImage delegate:nil];
-	
 }
 
 - (id)initWithPlaceholderImage:(UIImage*)anImage delegate:(id<EGOImageViewDelegate>)aDelegate {
@@ -102,7 +101,6 @@
 	
 	if(anImage) {
 		self.image = anImage;
-
         // modified by yang at 2012/04/27
         [self stopActivityViewAnimationg];
         
@@ -156,6 +154,10 @@
 #pragma mark -
 - (void)dealloc {
 	[[EGOImageLoader sharedImageLoader] removeObserver:self];
+    //[self.delegate release];
+	//[self.imageURL release];
+	//[self.placeholderImage release];
+    NSLog(@"%@",self.image);
 	self.delegate = nil;
 	self.imageURL = nil;
 	self.placeholderImage = nil;

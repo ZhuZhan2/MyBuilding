@@ -81,7 +81,7 @@
     self.view.backgroundColor=[UIColor whiteColor];
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
-                NSLog(@"==========%@",posts);
+                //NSLog(@"==========%@",posts);
                 [self.model getContacts:posts[0]];
                 [self.model getImages:posts[1]];
                 [self loadSelf];

@@ -8,9 +8,11 @@
 
 #import "AccountViewController.h"
 #import "LoginModel.h"
-
-@interface AccountViewController ()
-
+#import "GradientView.h"
+#import "HomePageViewController.h"
+#import "AppDelegate.h"
+@interface AccountViewController ()<UITableViewDataSource,UITableViewDelegate>
+@property(nonatomic,strong)UITableView* tableView;
 @end
 
 @implementation AccountViewController
@@ -20,25 +22,36 @@
 static int selectBtnTag =0;
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self)
-    {
-        
-    }
-    return self;
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //恢复tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //    //隐藏tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarHide];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.tableView=[[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStylePlain];
+    self.tableView.delegate=self;
+    self.tableView.dataSource=self;
+    self.tableView.backgroundColor=RGBCOLOR(237, 237, 237);
+    [self.view addSubview:self.tableView];
     
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,
-                                                                     nil]];
     
-    self.title = @"帐户";
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
+    
+    self.title = @"账号设置";
 //    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
     
     //LeftButton设置属性
@@ -51,8 +64,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton setFrame:CGRectMake(0, 0, 80, 19.5)];
+    [rightButton setFrame:CGRectMake(0, 0, 40, 19.5)];
     [rightButton setTitle:@"完成" forState:UIControlStateNormal];
+    rightButton.titleLabel.font=[UIFont systemFontOfSize:14];
     rightButton.titleLabel.textColor = [UIColor whiteColor];
     [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
@@ -77,12 +91,22 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
     
-    //UIButton *setBgBtn =nil;
-    //UIButton *setIconBtn =nil;
-    //[_pathCover setButton:setBgBtn WithFrame:CGRectMake(0, 160, 158, 40) WithBackgroundImage:[UIImage imageNamed:@"setBg"] AddTarget:self WithAction:@selector(setbackgroundImage)WithTitle:@"设置封面"];
-    //[_pathCover setButton:setIconBtn WithFrame:CGRectMake(162, 160, 158, 40) WithBackgroundImage:[UIImage imageNamed:@"setIcon"] AddTarget:self WithAction:@selector(setuserIcon)WithTitle:@"设置头像"];
     
     
+    
+    NSArray *colorArray = [@[[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:0.0],[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:.5]] mutableCopy];
+    GradientView *footView = [[GradientView alloc] initWithFrame:CGRectMake(0, 100, 320, 100) colorArr:colorArray];
+    [_pathCover addSubview:footView];
+    
+    for (int i=0; i<2; i++) {
+        UIButton *tempBtn =[UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage* tempImg=[UIImage imageNamed:i?@"人脉－账号设置_03a-05.png":@"人脉－账号设置_03a.png"];
+        tempBtn.frame=CGRectMake(0, 0, tempImg.size.width*.5, tempImg.size.height*.5);
+        tempBtn.center=CGPointMake(80+160*i, footView.frame.size.height-tempBtn.frame.size.height*.5-10);
+        [tempBtn setImage:tempImg forState:UIControlStateNormal];
+        [footView addSubview:tempBtn];
+        [tempBtn addTarget:self action:i?@selector(setuserIcon):@selector(setbackgroundImage) forControlEvents:UIControlEventTouchUpInside];
+    }
     
     __weak AccountViewController *wself = self;
     [_pathCover setHandleRefreshEvent:^{
@@ -268,7 +292,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 800;
+    return 780;
     
 }
 
