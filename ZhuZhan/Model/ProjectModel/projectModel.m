@@ -69,8 +69,8 @@
             break;
         }
         NSInteger index=0;
-        for (int i=0; i<array.count; i++) {
-            if ([contactModel.a_category isEqualToString:categorys[i]]) {
+        for (int k=0; k<array.count; k++) {
+            if ([contactModel.a_category isEqualToString:categorys[k]]) {
                 index=i;
                 break;
             }
