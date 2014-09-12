@@ -14,11 +14,11 @@
 
 @interface AccountViewController : UIViewController<XHPathCoverDelegate,UIActionSheetDelegate,UITextFieldDelegate,AccountCellDelegate,CameraDelegate>
 
-@property (nonatomic,strong) NSMutableDictionary *userDic;
+
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong) NSArray *KindIndex;
 @property (nonatomic, strong) UIImage *userIcon;
 @property (nonatomic, strong) ContactModel *model;
 @property (nonatomic, strong) Camera *camera;
-
+@property (nonatomic, strong) NSString *userIdStr;
 @end

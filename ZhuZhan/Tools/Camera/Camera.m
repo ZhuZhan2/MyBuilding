@@ -70,7 +70,7 @@ static int BtnTag =0;
         
     }
     
-    if (index==2) {
+    if (index==2) {//取消
         
         [self.view removeFromSuperview];
     }
@@ -89,19 +89,19 @@ static int BtnTag =0;
     NSString* imageStr = [[NSString alloc] initWithData:[GTMBase64 encodeData:imageData] encoding:NSUTF8StringEncoding];
    
     
-    if (BtnTag == 2014090201) {
+    if (BtnTag == 2014090201) {//更换背景
         [picker dismissViewControllerAnimated:YES completion:nil];
         [self.view removeFromSuperview];
         
     }
-    if (BtnTag == 2014090202) {
+    if (BtnTag == 2014090202) {//更改用户头像
         
         [picker dismissViewControllerAnimated:YES completion:nil];
         [self.view removeFromSuperview];
         [delegate changeUserIcon:imageStr AndImage:image];
         
     }
-    if (BtnTag == 110120) {
+    if (BtnTag == 110120) {//发布时获取照片
         [picker dismissViewControllerAnimated:YES completion:nil];
         [self.view removeFromSuperview];
         [delegate publishImage:imageStr andImage:image];
@@ -112,7 +112,10 @@ static int BtnTag =0;
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     
     [picker dismissViewControllerAnimated:YES completion:nil];
-    [delegate openKeyBoard];
+    if (BtnTag == 110120) {//发布时获取照片
+           [delegate openKeyBoard];
+    }
+    
     [self.view removeFromSuperview];
     
 }

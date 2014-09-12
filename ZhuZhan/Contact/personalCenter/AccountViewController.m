@@ -18,26 +18,12 @@
 
 @implementation AccountViewController
 
-@synthesize userDic,KindIndex,userIcon,model,camera;
+@synthesize KindIndex,userIcon,model,camera,userIdStr;
 
 static int selectBtnTag =0;
+static float textFieldFrame_Y_PlusHeight =0;
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    //恢复tabBar
-    AppDelegate* app=[AppDelegate instance];
-    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-    [homeVC homePageTabBarRestore];
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    //    //隐藏tabBar
-    AppDelegate* app=[AppDelegate instance];
-    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-    [homeVC homePageTabBarHide];
-}
 
 - (void)viewDidLoad
 {
@@ -53,7 +39,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
     
     self.title = @"账号设置";
-//    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+
     
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -69,7 +55,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [rightButton setTitle:@"完成" forState:UIControlStateNormal];
     rightButton.titleLabel.font=[UIFont systemFontOfSize:14];
     rightButton.titleLabel.textColor = [UIColor whiteColor];
-    [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [rightButton addTarget:self action:@selector(completePerfect) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
@@ -82,12 +68,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     UserModel *userModel = [UserModel sharedUserModel];
     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,userModel.userImageUrl]];
     [_pathCover hidewaterDropRefresh];
-    [_pathCover setHeadImageFrame:CGRectMake(120, -50, 70, 70)];
+    [_pathCover setHeadImageFrame:CGRectMake(125, -50, 70, 70)];
     [_pathCover.headImage.layer setMasksToBounds:YES];
     [_pathCover.headImage.layer setCornerRadius:35];
     [_pathCover setNameFrame:CGRectMake(145, 20, 100, 20) font:[UIFont systemFontOfSize:14]];
     _pathCover.userNameLabel.textAlignment = NSTextAlignmentCenter;
-    _pathCover.userNameLabel.center = CGPointMake(155, 30);
+    _pathCover.userNameLabel.center = CGPointMake(157.5, 30);
     
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
@@ -115,30 +101,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }];
 
     
-    model = [[ContactModel alloc] init];
-    model.userName =@"张三";
-    model.password =@"123456";
-    model.realName = @"张天天";
-    model.sex = @"男";
-    model.email = @"929097264@qq.com";
-    model.cellPhone = @"13938439093";
-    model.companyName = @"上海某公司";
-    model.position = @"总经理";
 
-    NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-    
-    NSLog(@"********userId******* %@",userIdStr);
-    [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         
-        NSDictionary *dic = [posts objectAtIndex:0];
-        
-        userDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-        
-         NSLog(@"********userDic******* %@",userDic);
-       
-        
-    } userId:userIdStr];
-    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
@@ -156,6 +120,66 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 //***********************************************************************************************************
+
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //恢复tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //    //隐藏tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarHide];
+    
+    //增加监听，当键盘出现或改变时收出消息
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+
+//当键盘出现或改变时调用
+- (void)keyboardWillShow:(NSNotification *)aNotification
+{
+    //获取键盘的高度
+    NSDictionary *userInfo = [aNotification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    float height = keyboardRect.size.height;
+  
+    
+    //用来计算键盘还有相关textField的位置，一面textField被遮挡
+    float nowTextFieldFrame_Y_PlusHeight =textFieldFrame_Y_PlusHeight+200-64-self.tableView.contentOffset.y;
+    if ((nowTextFieldFrame_Y_PlusHeight>kContentHeight-height) || (nowTextFieldFrame_Y_PlusHeight == kContentHeight-height)) {
+        float tabViewFrame_Y =kContentHeight - height- nowTextFieldFrame_Y_PlusHeight;
+        NSLog(@"********self.tableView.contentOffset.y *** %f",self.tableView.contentOffset.y);
+        self.tableView.frame = CGRectMake(0, tabViewFrame_Y- 10, 320, kScreenHeight);
+    }
+    
+
+}
+
+
+//当键退出时调用
+- (void)keyboardWillHide:(NSNotification *)aNotification
+{
+    self.tableView.frame = CGRectMake(0, 0, 320, kScreenHeight);
+}
+
 
 
 //*************************************************************************************************************
@@ -189,9 +213,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 //cameraDelegate
--(void)changeUserIcon:(NSString *)imageStr AndImage:(UIImage *)image
+-(void)changeUserIcon:(NSString *)imageStr AndImage:(UIImage *)image//更该用户头像
 {
-    NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+
     
     NSLog(@"********userId******* %@",userIdStr);
     NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0",@"userId",imageStr,@"userImageStrings", nil];
@@ -236,10 +260,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 }
 
--(void)rightBtnClick{//完成修改后触发的方法
+-(void)completePerfect{//完成修改后触发的方法
     
-    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userId,@"userId",@"company",@"company",@"industry",@"industry",@"position",@"position",@"locationProvince",@"locationProvince",@"locationCity",@"locationCity",@"introduction",@"introduction",nil];
+
+    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.userName,@"UserName",model.realName,@"FullName",model.sex,@"Sex",model.locationCity,@"LocationCity",model.birthday,@"Birthday",model.constellation,@"Constellation",model.bloodType,@"BloodType",model.email,@"Email",model.companyName,@"Company",model.position,@"Duties",nil];
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
         NSDictionary *responseObject = [posts objectAtIndex:0];
         NSString *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
@@ -254,6 +278,60 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     } dic:parameter];
     
 }
+#pragma mark  AccountCellDelegate----------
+-(void)ModifyPassword:(NSString *)password
+{
+    NSLog(@"开始修改密码");
+    
+    
+}
+
+-(void)getTextFieldFrame_yPlusHeight:(float)y
+{
+    textFieldFrame_Y_PlusHeight =y;
+}
+
+-(void)AddDataToModel:(int)flag WithTextField:(UITextField *)textField
+{
+    
+
+    switch (flag) {
+        case 0:
+            model.userName = textField.text;
+            break;
+        case 1:
+            model.realName = textField.text;
+            break;
+        case 2:
+            model.sex = textField.text;
+            break;
+        case 3:
+            model.locationCity = textField.text;
+            break;
+        case 4:
+            model.birthday = textField.text;
+            break;
+        case 5:
+            model.constellation = textField.text;
+            break;
+        case 6:
+            model.bloodType = textField.text;
+            break;
+        case 7:
+            model.email = textField.text;
+            break;
+        case 8:
+            model.companyName = textField.text;
+            break;
+        case 9:
+            model.position = textField.text;
+            break;
+            
+        default:
+            break;
+    }
+}
+
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -280,14 +358,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 }
 
--(void)rightBtnClicked:(UIButton *)button
-{
-    
-    
-    
-}
-
-
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -297,12 +367,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
 }
 
--(void)ModifyPassword:(NSString *)password
-{
-    NSLog(@"开始修改密码");
-    
-
-}
 
 - (void)didReceiveMemoryWarning
 {
