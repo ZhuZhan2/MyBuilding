@@ -70,15 +70,25 @@
     //将从接口获取到的所有联系人放入到对应的联系人数组
     for(int i=0;i<contacts.count;i++){
         ProjectContactModel* contactModel = contacts[i];
-        if ([contactModel.a_category isEqualToString:@""]) {
-            break;
-        }
-        NSInteger index=0;
-        for (int i=0; i<array.count; i++) {
-            if ([contactModel.a_category isEqualToString:categorys[i]]) {
-                index=i;
+        
+        NSLog(@"=====%@,%@",contactModel.a_contactName,contactModel.a_category);
+        
+        //判断是这个category是什么
+        NSInteger index=-1;
+        for (int k=0; k<array.count; k++) {
+            if ([contactModel.a_category isEqualToString:categorys[k]]) {
+                index=k;
                 break;
             }
+        }
+        
+        //判断是否为我们已有的6个category,并且由于接口可能存在的异常,如果超过3个联系人则不再在对应联系人数组里加入联系人
+        if (index!=-1&&[array[index] count]<3) {
+            //加入一个联系人模型
+            NSArray* tempAry=@[contactModel.a_contactName,contactModel.a_duties,contactModel.a_accountName,contactModel.a_accountAddress,contactModel.a_mobilePhone];
+            [array[index] addObject:tempAry];
+
+            NSLog(@"=====");
         }
         NSArray* tempAry=@[contactModel.a_contactName,contactModel.a_duties,contactModel.a_accountName,contactModel.a_accountAddress,contactModel.a_mobilePhone];
         [array[index] addObject:tempAry];
