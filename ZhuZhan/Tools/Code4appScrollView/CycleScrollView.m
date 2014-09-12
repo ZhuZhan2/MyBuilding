@@ -34,13 +34,11 @@
         
         // 在水平方向滚动
         if(scrollDirection == CycleDirectionLandscape) {
-            scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * 3,
-                                                scrollView.frame.size.height);
+            scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * 3,scrollView.frame.size.height);
         }
         // 在垂直方向滚动 
         if(scrollDirection == CycleDirectionPortait) {
-            scrollView.contentSize = CGSizeMake(scrollView.frame.size.width,
-                                                scrollView.frame.size.height * 3);
+            scrollView.contentSize = CGSizeMake(scrollView.frame.size.width,scrollView.frame.size.height * 3);
         }
         
         [self addSubview:scrollView];
@@ -53,7 +51,6 @@
 - (void)refreshScrollView {
     
     if(scrollView.subviews.count != 0) {
-        //[scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         for (UIView* view in scrollView.subviews) {
             [view removeFromSuperview];
         }
@@ -63,7 +60,6 @@
     
     NSLog(@"%d",curImages.count);
     for (int i = 0; i < 3; i++) {
-        //NSLog(@"%d",i);
 
         EGOImageView *imageView = [[EGOImageView alloc] initWithFrame:scrollFrame];
         imageView.userInteractionEnabled = YES;
@@ -162,7 +158,6 @@
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)tap {
-    NSLog(@"====>%@",self.delegate);
     if ([self.delegate respondsToSelector:@selector(cycleScrollViewDelegate:didSelectImageView:)]) {
         [self.delegate cycleScrollViewDelegate:self didSelectImageView:curPage];
     }

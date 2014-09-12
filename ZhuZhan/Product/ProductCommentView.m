@@ -25,7 +25,6 @@
 }
 
 -(void)loadSelfWithCommentModel:(CommentModel*)commentModel{
-    NSLog(@"111=====%@",commentModel.a_content);
     //获取用户头像
     self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[UIImage imageNamed:@"公司认证员工_05a.png"]];
     self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,commentModel.a_imageUrl]];

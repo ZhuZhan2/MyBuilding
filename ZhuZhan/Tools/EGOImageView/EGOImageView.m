@@ -153,11 +153,11 @@
 
 #pragma mark -
 - (void)dealloc {
+    //NSLog(@"EGOImageView dealloc");
 	[[EGOImageLoader sharedImageLoader] removeObserver:self];
     //[self.delegate release];
 	//[self.imageURL release];
 	//[self.placeholderImage release];
-    NSLog(@"%@",self.image);
 	self.delegate = nil;
 	self.imageURL = nil;
 	self.placeholderImage = nil;

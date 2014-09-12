@@ -63,7 +63,6 @@
     
     NSArray* array=@[self.auctionContacts,self.ownerContacts,self.explorationContacts,self.designContacts,self.constructionContacts,self.pileContacts];
     NSArray* categorys=@[@"auctionUnitContacts",@"ownerUnitContacts",@"explorationUnitContacts",@"contractorUnitContacts",@"designInstituteContacts",@"pileFoundationUnitContacts"];
-    NSLog(@"===> %d",contacts.count);
     for(int i=0;i<contacts.count;i++){
         ProjectContactModel* contactModel = contacts[i];
         if ([contactModel.a_category isEqualToString:@""]) {

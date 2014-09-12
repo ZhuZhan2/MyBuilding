@@ -25,9 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-    NSLog(@"%@",NSHomeDirectory());
-    
+	   
     self.title = @"产品";
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
     
@@ -307,37 +305,9 @@
 //选中cell调用的方法
 - (void)quiltView:(TMQuiltView *)quiltView didSelectCellAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSLog(@"index:%d",indexPath.row);
-    NSMutableDictionary* dataDic=[[NSMutableDictionary alloc]init];
-    [dataDic setObject:[UIImage imageNamed:@"123.png"] forKey:@"productImage"];
-    [dataDic setObject:@"按时打算将扩大时间的骄傲啥都怕时间的拉伸麦德龙；爱似麻烦；阿三方面了；按实际发牢骚；房间爱丽丝；房间爱；房间爱死了；房间爱；房间爱；房间爱；发觉是否；拉伸" forKey:@"productText"];
-    
-    NSMutableArray* comments=[[NSMutableArray alloc]init];
-    for (int i=0; i<25; i++) {
-        CommentModel* model=[[CommentModel alloc]init];
-        model.a_name = [NSString stringWithFormat:@"name=%d",i];
-        //model.a_time = [NSString stringWithFormat:@"%d-%d %d:%d",i,i,i,i];
-        NSString* content = [NSString stringWithFormat:@"content=%d",i];
-        model.a_content=content;
-        for (int k=0; k<i; k++) {
-            model.a_content=[NSString stringWithFormat:@"%@%@",model.a_content,content];
-        }
-        model.a_imageUrl = [NSString stringWithFormat:@"imageUrl=%d",i];
-        [comments addObject:model];
-    }
-    
-    [dataDic setObject:comments forKey:@"comments"];
-    
     ProductModel* model=showArr[indexPath.row];
-    
-    CGSize size;
-    if ([model.a_imageUrl isEqualToString:@""]) {
-        size=CGSizeMake(151, 113);
-    }else{
-        size=CGSizeMake([model.a_imageWidth floatValue]*.5, [model.a_imageHeight floatValue]*.5);
-    }
 
-    ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithProductModel:model text:dataDic[@"productText"] productID:[showArr[indexPath.row] a_id]];
+    ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithProductModel:model];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

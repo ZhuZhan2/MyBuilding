@@ -135,7 +135,6 @@
     view.layer.masksToBounds=YES;
     view.backgroundColor=[UIColor grayColor];
     
-    NSLog(@"%@",imageUrl);
     view.myImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,imageUrl]];
     
     
@@ -147,7 +146,6 @@
     label.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:.7];
     [view addSubview:label];
     
-   // NSLog(@"%@",imageView.frame);
     return view;
 }
 

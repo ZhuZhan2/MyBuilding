@@ -102,7 +102,7 @@
 + (NSURLSessionDataTask *)SingleProjectWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block projectId:(NSString *)projectId{
     NSString *urlStr = [NSString stringWithFormat:@"api/Projects/Projects?projectId=%@",projectId];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON[@"d"][@"data"]);
+        //NSLog(@"JSON===>%@",JSON[@"d"][@"data"]);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             NSMutableArray *contactArr = [[NSMutableArray alloc] init];
