@@ -134,7 +134,7 @@
         birthday.textAlignment = NSTextAlignmentLeft;
         birthday.delegate =self;
         birthday.placeholder = @"yyyy-mm-dd";
-        birthday.text = model.birthday;
+        birthday.text = [model.birthday substringWithRange:NSMakeRange(0,10)];
         birthday.font=[UIFont systemFontOfSize:15];
         birthday.textColor=GrayColor;
         [self addSubview:birthday];
@@ -274,8 +274,39 @@
 #pragma mark textFieldDelelgate----------
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    
     [textField resignFirstResponder];
+    int flag =0;
+    if ([textField isEqual:userName]) {
+        flag =0;
+    }
+    if ([textField isEqual:realName]) {
+        flag =1;
+    }
+    if ([textField isEqual:sex]) {
+        flag =2;
+    }
+    if ([textField isEqual:location]) {
+        flag =3;
+    }
+    if ([textField isEqual:birthday]) {
+        flag =4;
+    }
+    if ([textField isEqual:constellation]) {
+        flag =5;
+    }
+    if ([textField isEqual:bloodType]) {
+        flag =6;
+    }
+    if ([textField isEqual:email]) {
+        flag =7;
+    }
+    if ([textField isEqual:company]) {
+        flag =8;
+    }
+    if ([textField isEqual:position]) {
+        flag =9;
+    }
+    [delegate AddDataToModel:flag WithTextField:textField];
     return YES;
 }
 

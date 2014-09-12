@@ -13,6 +13,7 @@
 
 -(void)ModifyPassword:(NSString *)password;
 - (void)getTextFieldFrame_yPlusHeight:(float)y;
+-(void)AddDataToModel:(int)flag WithTextField:(UITextField *)textField;
 
 @end
 @interface AccountCell : UITableViewCell<UITextFieldDelegate>

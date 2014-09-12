@@ -39,7 +39,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
     
     self.title = @"账号设置";
-//    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+
     
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -68,12 +68,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     UserModel *userModel = [UserModel sharedUserModel];
     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,userModel.userImageUrl]];
     [_pathCover hidewaterDropRefresh];
-    [_pathCover setHeadImageFrame:CGRectMake(120, -50, 70, 70)];
+    [_pathCover setHeadImageFrame:CGRectMake(125, -50, 70, 70)];
     [_pathCover.headImage.layer setMasksToBounds:YES];
     [_pathCover.headImage.layer setCornerRadius:35];
     [_pathCover setNameFrame:CGRectMake(145, 20, 100, 20) font:[UIFont systemFontOfSize:14]];
     _pathCover.userNameLabel.textAlignment = NSTextAlignmentCenter;
-    _pathCover.userNameLabel.center = CGPointMake(155, 30);
+    _pathCover.userNameLabel.center = CGPointMake(157.5, 30);
     
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
@@ -263,7 +263,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)completePerfect{//完成修改后触发的方法
     
 
-    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.companyName,@"company",@"经理",@"position",model.locationCity,@"locationCity",nil];
+    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.userName,@"UserName",model.realName,@"FullName",model.sex,@"Sex",model.locationCity,@"LocationCity",model.birthday,@"Birthday",model.constellation,@"Constellation",model.bloodType,@"BloodType",model.email,@"Email",model.companyName,@"Company",model.position,@"Duties",nil];
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
         NSDictionary *responseObject = [posts objectAtIndex:0];
         NSString *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
@@ -289,6 +289,47 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)getTextFieldFrame_yPlusHeight:(float)y
 {
     textFieldFrame_Y_PlusHeight =y;
+}
+
+-(void)AddDataToModel:(int)flag WithTextField:(UITextField *)textField
+{
+    
+
+    switch (flag) {
+        case 0:
+            model.userName = textField.text;
+            break;
+        case 1:
+            model.realName = textField.text;
+            break;
+        case 2:
+            model.sex = textField.text;
+            break;
+        case 3:
+            model.locationCity = textField.text;
+            break;
+        case 4:
+            model.birthday = textField.text;
+            break;
+        case 5:
+            model.constellation = textField.text;
+            break;
+        case 6:
+            model.bloodType = textField.text;
+            break;
+        case 7:
+            model.email = textField.text;
+            break;
+        case 8:
+            model.companyName = textField.text;
+            break;
+        case 9:
+            model.position = textField.text;
+            break;
+            
+        default:
+            break;
+    }
 }
 
 
