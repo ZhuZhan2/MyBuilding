@@ -12,6 +12,7 @@
 #import "ProjectApi.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
+#import "ProgramDetailViewController.h"
 @interface TopicsDetailTableViewController ()
 
 @end
@@ -148,6 +149,15 @@
         return cell;
     }
     return nil;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ProgramDetailViewController* vc=[[ProgramDetailViewController alloc]init];
+    projectModel *model = showArr[indexPath.row-2];
+    vc.model=model;
+    
+    //[self.delegate homePageTabBarHide];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)addProjectCommentView:(int)index{

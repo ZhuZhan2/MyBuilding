@@ -74,9 +74,9 @@
                 index=i;
                 break;
             }
+            NSArray* tempAry=@[contactModel.a_contactName,contactModel.a_duties,contactModel.a_accountName,contactModel.a_accountAddress,contactModel.a_mobilePhone];
+            [array[index] addObject:tempAry];
         }
-        NSArray* tempAry=@[contactModel.a_contactName,contactModel.a_duties,contactModel.a_accountName,contactModel.a_accountAddress,contactModel.a_mobilePhone];
-        [array[index] addObject:tempAry];
     }
 }
 
