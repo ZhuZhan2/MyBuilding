@@ -66,18 +66,18 @@
     NSLog(@"===> %d",contacts.count);
     for(int i=0;i<contacts.count;i++){
         ProjectContactModel* contactModel = contacts[i];
-        if ([contactModel.a_category isEqualToString:@""]) {
-            break;
-        }
-        NSInteger index=0;
-        for (int i=0; i<array.count; i++) {
-            if ([contactModel.a_category isEqualToString:categorys[i]]) {
-                index=i;
-                break;
+        if (![contactModel.a_category isEqualToString:@""]) {
+            NSLog(@"%@",contactModel.a_category);
+            NSInteger index=0;
+            for (int i=0; i<array.count; i++) {
+                if ([contactModel.a_category isEqualToString:categorys[i]]) {
+                    index=i;
+                    break;
+                }
             }
+            NSArray* tempAry=@[contactModel.a_contactName,contactModel.a_duties,contactModel.a_accountName,contactModel.a_accountAddress,contactModel.a_mobilePhone];
+            [array[index] addObject:tempAry];
         }
-        NSArray* tempAry=@[contactModel.a_contactName,contactModel.a_duties,contactModel.a_accountName,contactModel.a_accountAddress,contactModel.a_mobilePhone];
-        [array[index] addObject:tempAry];
     }
 }
 

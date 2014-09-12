@@ -11,6 +11,9 @@
 #import "projectModel.h"
 #import "ProjectTableViewCell.h"
 #import "ProgramDetailViewController.h"
+#import "MJRefresh.h"
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
 @interface ResultsTableViewController ()
 
 @end
@@ -81,14 +84,16 @@
     }else{
         [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-            
+                showArr = posts;
+                [self.tableView reloadData];
             }
         } dic:self.dic startIndex:startIndex];
     }
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     self.tableView.separatorStyle = NO;
     
-
+    //集成刷新控件
+    [self setupRefresh];
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,6 +108,93 @@
 
 -(void)serachClick{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    //[_tableView headerBeginRefreshing];
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.removeFromSuperViewOnHide =YES;
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"当前网络不可用，请检查网络连接！";
+        hud.labelFont = [UIFont fontWithName:nil size:14];
+        hud.minSize = CGSizeMake(132.f, 108.0f);
+        [hud hide:YES afterDelay:3];
+        [self.tableView footerEndRefreshing];
+        [self.tableView headerEndRefreshing];
+    }else{
+        startIndex = 0;
+        [showArr removeAllObjects];
+        if(self.flag == 0){
+            [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    showArr = posts;
+                    [self.tableView reloadData];
+                    [self.tableView footerEndRefreshing];
+                    [self.tableView headerEndRefreshing];
+                }
+            } startIndex:startIndex keywords:self.searchStr];
+        }else{
+            [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    showArr = posts;
+                    [self.tableView reloadData];
+                    [self.tableView footerEndRefreshing];
+                    [self.tableView headerEndRefreshing];
+                }
+            } dic:self.dic startIndex:startIndex];
+        }
+    }
+}
+
+- (void)footerRereshing
+{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.removeFromSuperViewOnHide =YES;
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"当前网络不可用，请检查网络连接！";
+        hud.labelFont = [UIFont fontWithName:nil size:14];
+        hud.minSize = CGSizeMake(132.f, 108.0f);
+        [hud hide:YES afterDelay:3];
+        [self.tableView footerEndRefreshing];
+        [self.tableView headerEndRefreshing];
+    }else{
+        startIndex = startIndex +1;
+        if(self.flag == 0){
+            [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    [showArr addObjectsFromArray:posts];
+                    [self.tableView reloadData];
+                    [self.tableView footerEndRefreshing];
+                    [self.tableView headerEndRefreshing];
+                }
+            } startIndex:startIndex keywords:self.searchStr];
+        }else{
+            [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    [showArr addObjectsFromArray:posts];
+                    [self.tableView reloadData];
+                    [self.tableView footerEndRefreshing];
+                    [self.tableView headerEndRefreshing];
+                }
+            } dic:self.dic startIndex:startIndex];
+        }
+    }
 }
 
 #pragma mark - Table view data source
