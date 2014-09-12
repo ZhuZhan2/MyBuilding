@@ -112,7 +112,10 @@ static int BtnTag =0;
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     
     [picker dismissViewControllerAnimated:YES completion:nil];
-    [delegate openKeyBoard];
+    if (BtnTag == 110120) {//发布时获取照片
+           [delegate openKeyBoard];
+    }
+    
     [self.view removeFromSuperview];
     
 }
