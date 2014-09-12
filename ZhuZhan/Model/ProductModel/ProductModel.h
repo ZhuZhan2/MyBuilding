@@ -21,6 +21,7 @@
 @property (nonatomic, copy) NSString *a_imageWidth;
 @property (nonatomic, copy) NSString *a_imageHeight;
 
+
 @property (nonatomic, copy) NSDictionary *dict;
 
 

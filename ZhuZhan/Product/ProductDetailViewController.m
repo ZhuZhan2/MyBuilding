@@ -19,7 +19,7 @@
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate>//,ACTimeScrollerDelegate>
 @property(nonatomic,strong)UITableView* myTableView;
 
-@property(nonatomic,strong)UIImage* productImage;//产品图片
+@property(nonatomic,strong)ProductModel* productModel;//产品图片
 @property(nonatomic,copy)NSString* productText;//产品介绍文字
 @property(nonatomic,strong)UIView* productView;//产品图片和产品介绍文字的superView
 
@@ -35,10 +35,10 @@
 
 @implementation ProductDetailViewController
 
--(instancetype)initWithImage:(UIImage*)productImage text:(NSString*)productText productID:(NSString *)productID{
+-(instancetype)initWithProductModel:(ProductModel *)productModel text:(NSString*)productText productID:(NSString *)productID{
     self=[super init];
     if (self) {
-        self.productImage=productImage;
+        self.productModel=productModel;
         self.productText=productText;
         self.commentModels=[[NSMutableArray alloc]init];
         self.commentViews=[[NSMutableArray alloc]init];
@@ -110,12 +110,20 @@
     CGFloat tempHeight=0;
     
     //imageView部分
-    CGFloat scale=320.0/self.productImage.size.width;
-    CGFloat height=self.productImage.size.height*scale;
+    CGFloat scale=320.0/[self.productModel.a_imageWidth floatValue]*2;//self.productImage.size.width;
+    CGFloat height=[self.productModel.a_imageHeight floatValue]*.5*scale;
     
-    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, height)];
-    imageView.image=self.productImage;
+    //UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, height)];
+    EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:[UIImage imageNamed:@"产品－产品详情_03a.png"]];
+    if (![self.productModel.a_imageUrl isEqualToString:@""]) {
+        imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.productModel.a_imageUrl]];
+    }else{
+        height=202;
+    }
+    imageView.frame=CGRectMake(0, 0, 320, height);
+
     
+    //imageView右下角评论图标
     UIImage* image=[UIImage imageNamed:@"人脉_66a.png"];
     CGRect frame=CGRectMake(0, 0, image.size.width*.5, image.size.height*.5);
     UIImageView* tempImageView=[[UIImageView alloc]initWithFrame:frame];
@@ -131,17 +139,20 @@
     tempHeight+=imageView.frame.size.height;
     
     //文字label部分
-    UIFont* font=[UIFont systemFontOfSize:15];
-    CGRect bounds=[self.productText boundingRectWithSize:CGSizeMake(270, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil];
-    UILabel* textLabel=[[UILabel alloc]initWithFrame:bounds];
-    textLabel.numberOfLines=0;
-    textLabel.font=font;
-    textLabel.text=self.productText;
-    textLabel.textColor=RGBCOLOR(86, 86, 86);
-    textLabel.center=CGPointMake(160, height+bounds.size.height*.5+15);
-    [self.productView addSubview:textLabel];
-    
-    tempHeight+=bounds.size.height+30;
+    if (![self.productModel.a_content isEqualToString:@""]) {
+        UIFont* font=[UIFont systemFontOfSize:15];
+        CGRect bounds=[self.productModel.a_content boundingRectWithSize:CGSizeMake(270, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil];
+        UILabel* textLabel=[[UILabel alloc]initWithFrame:CGRectMake(25, height+15, 270, bounds.size.height)];
+        ;
+        textLabel.numberOfLines=0;
+        textLabel.font=font;
+        textLabel.text=self.productModel.a_content;
+        textLabel.textColor=RGBCOLOR(86, 86, 86);
+        [self.productView addSubview:textLabel];
+        
+        tempHeight+=bounds.size.height+30;
+
+    }
     
     //与下方tableView的分割部分
     if (self.commentViews.count) {
@@ -242,9 +253,11 @@
         //第一个cell,添加下方长方形区域,遮盖圆角
         if (indexPath.row==1) {
             [cell.contentView.subviews.lastObject layer].cornerRadius=7;
-            UIView* view=[self getCellSpaceView];
-                        view.center=CGPointMake(160, height-5);
-            [cell.contentView insertSubview:view atIndex:0];
+            if (indexPath.row!=self.commentViews.count) {
+                UIView* view=[self getCellSpaceView];
+                view.center=CGPointMake(160, height-5);
+                [cell.contentView insertSubview:view atIndex:0];
+            }
             
         //最后一个cell,添加上方长方形区域,遮盖圆角
         }else if (indexPath.row==self.commentViews.count){

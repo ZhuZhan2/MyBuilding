@@ -316,7 +316,7 @@ NSString *urlStr = [NSString stringWithFormat:@"api/account/faceregister"];
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON];
+            [mutablePosts addObject:JSON[@"d"][@"data"][@"imageLocation"]];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }

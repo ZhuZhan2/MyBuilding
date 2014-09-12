@@ -480,8 +480,6 @@
 //{
 //    "UserId": ":"用户Id" 必填
 //    "ProjectId":"项目ID" 必填
-//    "CreateTime":"创建时间"
-//    "IsDelted":"false/true"
 //}
 + (NSURLSessionDataTask *)AddUserFocusWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
     NSString *urlStr = [NSString stringWithFormat:@"api/Projects/AddUserFocus"];

@@ -9,7 +9,7 @@
 #import "Camera.h"
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
-
+#import "GTMBase64.h"
 @interface Camera ()
 
 @end
@@ -86,8 +86,7 @@ static int BtnTag =0;
     
     NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
     
-    NSString *imageStr=[imageData base64EncodedStringWithOptions:0];
-
+    NSString* imageStr = [[NSString alloc] initWithData:[GTMBase64 encodeData:imageData] encoding:NSUTF8StringEncoding];
    
     
     if (BtnTag == 2014090201) {//更换背景
@@ -97,7 +96,7 @@ static int BtnTag =0;
     }
     if (BtnTag == 2014090202) {//更改用户头像
         
-   [picker dismissViewControllerAnimated:YES completion:nil];
+        [picker dismissViewControllerAnimated:YES completion:nil];
         [self.view removeFromSuperview];
         [delegate changeUserIcon:imageStr AndImage:image];
         
@@ -212,5 +211,7 @@ static int BtnTag =0;
     // Pass the selected object to the new view controller.
 }
 */
-
+-(void)dealloc{
+    NSLog(@"camera dealloc");
+}
 @end

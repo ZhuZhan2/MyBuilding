@@ -38,14 +38,13 @@
     
     if(![model.a_imageUrl isEqualToString:@""]){
         if(![model.a_imageWidth isEqualToString:@""]){
-            NSLog(@"%f",[model.a_imageHeight intValue]*1.0/([model.a_imageWidth intValue]*1.0/310));
             imageView.frame = CGRectMake(5, 5, 310,[model.a_imageHeight intValue]*1.0/([model.a_imageWidth intValue]*1.0/310));
             imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
         }else{
-            imageView.frame = CGRectMake(5, 5, 310, 310);
+            imageView.frame = CGRectMake(5, 5, 0, 0);
         }
     }else{
-        imageView.frame = CGRectMake(5, 5, 310, 310);
+        imageView.frame = CGRectMake(5, 5, 0, 0);
     }
     
     [commentView addSubview:imageView];
@@ -71,11 +70,13 @@
     
     commentView.frame = CGRectMake(0, 0, 320, imageView.frame.size.height+contentLabel.frame.size.height+20);
     
-    UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    commentBtn.frame = CGRectMake(270, imageView.frame.size.height-40, 37, 37);
-    [commentBtn setImage:[UIImage imageNamed:@"人脉_66a"] forState:UIControlStateNormal];
-    [commentBtn addTarget:commentView action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
-    [commentView addSubview:commentBtn];
+    if(imageView.frame.size.height !=0){
+        UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        commentBtn.frame = CGRectMake(270, imageView.frame.size.height-40, 37, 37);
+        [commentBtn setImage:[UIImage imageNamed:@"人脉_66a"] forState:UIControlStateNormal];
+        [commentBtn addTarget:commentView action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
+        [commentView addSubview:commentBtn];
+    }
     return commentView;
 }
 
