@@ -31,9 +31,10 @@
         userNameLabel.textAlignment = NSTextAlignmentLeft;
         userNameLabel.font=[UIFont systemFontOfSize:15];
         [self addSubview:userNameLabel];
-        userName = [[UILabel alloc] initWithFrame:CGRectMake(110, 70, 120, 30)];
+        userName = [[UITextField alloc] initWithFrame:CGRectMake(110, 70, 120, 30)];
         userName.textAlignment = NSTextAlignmentLeft;
         userName.text =model.userName;
+        userName.delegate =self;
         userName.font=[UIFont systemFontOfSize:15];
         userName.textColor=GrayColor;
         [self addSubview:userName];
@@ -113,7 +114,8 @@
         location = [[UITextField alloc] initWithFrame:CGRectMake(110, 270, 120, 30)];
         location.textAlignment = NSTextAlignmentLeft;
         location.delegate =self;
-        location.text = model.location;
+        location.placeholder = @"所在的城市";
+        location.text = model.locationCity;
         location.font=[UIFont systemFontOfSize:15];
         location.textColor=GrayColor;
         [self addSubview:location];
@@ -147,11 +149,12 @@
         constellationLabel.font=[UIFont systemFontOfSize:15];
         constellationLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:constellationLabel];
-        constellation= [[UILabel alloc] initWithFrame:CGRectMake(110, 370, 120, 30)];
+        constellation= [[UITextField alloc] initWithFrame:CGRectMake(110, 370, 120, 30)];
         constellation.textAlignment = NSTextAlignmentLeft;
         constellation.text = model.constellation;
         constellation.font=[UIFont systemFontOfSize:15];
         constellation.textColor=GrayColor;
+        constellation.delegate =self;
         [self addSubview:constellation];
         UIImageView *horizontalLine7 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 409, 280, 1)];
         horizontalLine7.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
@@ -271,7 +274,16 @@
 #pragma mark textFieldDelelgate----------
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    
     [textField resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+
+    float y = textField.frame.size.height+textField.frame.origin.y;
+    [delegate getTextFieldFrame_yPlusHeight:y];
+    
     return YES;
 }
 

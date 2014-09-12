@@ -17,26 +17,12 @@
 
 @implementation AccountViewController
 
-@synthesize userDic,KindIndex,userIcon,model,camera;
+@synthesize KindIndex,userIcon,model,camera,userIdStr;
 
 static int selectBtnTag =0;
+static float textFieldFrame_Y_PlusHeight =0;
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    //恢复tabBar
-    AppDelegate* app=[AppDelegate instance];
-    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-    [homeVC homePageTabBarRestore];
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    //    //隐藏tabBar
-    AppDelegate* app=[AppDelegate instance];
-    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-    [homeVC homePageTabBarHide];
-}
 
 - (void)viewDidLoad
 {
@@ -68,7 +54,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [rightButton setTitle:@"完成" forState:UIControlStateNormal];
     rightButton.titleLabel.font=[UIFont systemFontOfSize:14];
     rightButton.titleLabel.textColor = [UIColor whiteColor];
-    [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [rightButton addTarget:self action:@selector(completePerfect) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
@@ -114,30 +100,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }];
 
     
-    model = [[ContactModel alloc] init];
-    model.userName =@"张三";
-    model.password =@"123456";
-    model.realName = @"张天天";
-    model.sex = @"男";
-    model.email = @"929097264@qq.com";
-    model.cellPhone = @"13938439093";
-    model.companyName = @"上海某公司";
-    model.position = @"总经理";
 
-    NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-    
-    NSLog(@"********userId******* %@",userIdStr);
-    [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         
-        NSDictionary *dic = [posts objectAtIndex:0];
-        
-        userDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-        
-         NSLog(@"********userDic******* %@",userDic);
-       
-        
-    } userId:userIdStr];
-    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
@@ -155,6 +119,66 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 //***********************************************************************************************************
+
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //恢复tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //    //隐藏tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarHide];
+    
+    //增加监听，当键盘出现或改变时收出消息
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+
+//当键盘出现或改变时调用
+- (void)keyboardWillShow:(NSNotification *)aNotification
+{
+    //获取键盘的高度
+    NSDictionary *userInfo = [aNotification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    float height = keyboardRect.size.height;
+  
+    
+    //用来计算键盘还有相关textField的位置，一面textField被遮挡
+    float nowTextFieldFrame_Y_PlusHeight =textFieldFrame_Y_PlusHeight+200-64-self.tableView.contentOffset.y;
+    if ((nowTextFieldFrame_Y_PlusHeight>kContentHeight-height) || (nowTextFieldFrame_Y_PlusHeight == kContentHeight-height)) {
+        float tabViewFrame_Y =kContentHeight - height- nowTextFieldFrame_Y_PlusHeight;
+        NSLog(@"********self.tableView.contentOffset.y *** %f",self.tableView.contentOffset.y);
+        self.tableView.frame = CGRectMake(0, tabViewFrame_Y- 10, 320, kScreenHeight);
+    }
+    
+
+}
+
+
+//当键退出时调用
+- (void)keyboardWillHide:(NSNotification *)aNotification
+{
+    self.tableView.frame = CGRectMake(0, 0, 320, kScreenHeight);
+}
+
 
 
 //*************************************************************************************************************
@@ -188,9 +212,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 //cameraDelegate
--(void)changeUserIcon:(NSString *)imageStr AndImage:(UIImage *)image
+-(void)changeUserIcon:(NSString *)imageStr AndImage:(UIImage *)image//更该用户头像
 {
-    NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+
     
     NSLog(@"********userId******* %@",userIdStr);
     NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"userId",imageStr,@"userImageStrings", nil];
@@ -235,10 +259,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 }
 
--(void)rightBtnClick{//完成修改后触发的方法
+-(void)completePerfect{//完成修改后触发的方法
     
-    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userId,@"userId",@"company",@"company",@"industry",@"industry",@"position",@"position",@"locationProvince",@"locationProvince",@"locationCity",@"locationCity",@"introduction",@"introduction",nil];
+
+    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.companyName,@"company",@"经理",@"position",model.locationCity,@"locationCity",nil];
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
         NSDictionary *responseObject = [posts objectAtIndex:0];
         NSString *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
@@ -253,6 +277,19 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     } dic:parameter];
     
 }
+#pragma mark  AccountCellDelegate----------
+-(void)ModifyPassword:(NSString *)password
+{
+    NSLog(@"开始修改密码");
+    
+    
+}
+
+-(void)getTextFieldFrame_yPlusHeight:(float)y
+{
+    textFieldFrame_Y_PlusHeight =y;
+}
+
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -279,14 +316,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 }
 
--(void)rightBtnClicked:(UIButton *)button
-{
-    
-    
-    
-}
-
-
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -296,94 +325,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
 }
 
--(void)ModifyPassword:(NSString *)password
-{
-    NSLog(@"开始修改密码");
-    
-
-}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
-- (UIImage *)fixOrientation:(UIImage *)aImage {
-    
-    // No-op if the orientation is already correct
-    if (aImage.imageOrientation == UIImageOrientationUp)
-        return aImage;
-    
-    // We need to calculate the proper transformation to make the image upright.
-    // We do it in 2 steps: Rotate if Left/Right/Down, and then flip if Mirrored.
-    CGAffineTransform transform = CGAffineTransformIdentity;
-    
-    switch (aImage.imageOrientation) {
-        case UIImageOrientationDown:
-        case UIImageOrientationDownMirrored:
-            transform = CGAffineTransformTranslate(transform, aImage.size.width, aImage.size.height);
-            transform = CGAffineTransformRotate(transform, M_PI);
-            break;
-            
-        case UIImageOrientationLeft:
-        case UIImageOrientationLeftMirrored:
-            transform = CGAffineTransformTranslate(transform, aImage.size.width, 0);
-            transform = CGAffineTransformRotate(transform, M_PI_2);
-            break;
-            
-        case UIImageOrientationRight:
-        case UIImageOrientationRightMirrored:
-            transform = CGAffineTransformTranslate(transform, 0, aImage.size.height);
-            transform = CGAffineTransformRotate(transform, -M_PI_2);
-            break;
-        default:
-            break;
-    }
-    
-    switch (aImage.imageOrientation) {
-        case UIImageOrientationUpMirrored:
-        case UIImageOrientationDownMirrored:
-            transform = CGAffineTransformTranslate(transform, aImage.size.width, 0);
-            transform = CGAffineTransformScale(transform, -1, 1);
-            break;
-            
-        case UIImageOrientationLeftMirrored:
-        case UIImageOrientationRightMirrored:
-            transform = CGAffineTransformTranslate(transform, aImage.size.height, 0);
-            transform = CGAffineTransformScale(transform, -1, 1);
-            break;
-        default:
-            break;
-    }
-    
-    // Now we draw the underlying CGImage into a new context, applying the transform
-    // calculated above.
-    CGContextRef ctx = CGBitmapContextCreate(NULL, aImage.size.width, aImage.size.height,
-                                             CGImageGetBitsPerComponent(aImage.CGImage), 0,
-                                             CGImageGetColorSpace(aImage.CGImage),
-                                             CGImageGetBitmapInfo(aImage.CGImage));
-    CGContextConcatCTM(ctx, transform);
-    switch (aImage.imageOrientation) {
-        case UIImageOrientationLeft:
-        case UIImageOrientationLeftMirrored:
-        case UIImageOrientationRight:
-        case UIImageOrientationRightMirrored:
-            CGContextDrawImage(ctx, CGRectMake(0,0,aImage.size.height,aImage.size.width), aImage.CGImage);
-            break;
-            
-        default:
-            CGContextDrawImage(ctx, CGRectMake(0,0,aImage.size.width,aImage.size.height), aImage.CGImage);
-            break;
-    }
-    
-    // And now we just create a new UIImage from the drawing context
-    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
-    UIImage *img = [UIImage imageWithCGImage:cgimg];
-    CGContextRelease(ctx);
-    CGImageRelease(cgimg);
-    return img;
 }
 
 -(void)gotoMyCenter{
