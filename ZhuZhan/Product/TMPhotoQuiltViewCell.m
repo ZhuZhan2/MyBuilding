@@ -29,32 +29,10 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 
 @implementation TMPhotoQuiltViewCell
 
-//@synthesize photoView = _photoView;
-//@synthesize titleLabel = _titleLabel;
-//@synthesize commentCountLabel = _commentCountLabel;
-//
-//- (void)dealloc {
-//    NSLog(@"TMPhotoQuiltViewCell dealloc");
-//    [_photoView release];
-//    _photoView = nil;
-//    [_titleLabel release];
-//    _titleLabel = nil;
-//
-//    [_commentCountLabel release];
-//    _commentCountLabel=nil;
-//    
-//    [self.commentIcon release];
-//    self.commentIcon=nil;
-//    
-//    [self.separatorLine release];
-//    self.separatorLine=nil;
-//    
-//    [super dealloc];
-//}
 - (void)dealloc {
      NSLog(@"TMPhotoQuiltViewCell dealloc");
-    
 }
+
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithReuseIdentifier:reuseIdentifier];
@@ -67,7 +45,6 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 - (EGOImageView *)photoView {
     if (!_photoView) {
         _photoView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"产品－列表_10a.png"]];
-        //_photoView.showActivityIndicator = YES;
         [self addSubview:_photoView];
     }
     return _photoView;
@@ -97,7 +74,6 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 -(UIImageView *)commentIcon{
     if (!_commentIcon) {
         UIImage* image=[UIImage imageNamed:@"产品－列表_06a.png"];
-//        CGRect frame=CGRectMake(0, 0, image.size.width*.5, image.size.height*.5);
         _commentIcon=[[UIImageView alloc]initWithImage:image];
         _commentIcon.image=image;
         [self addSubview:_commentIcon];

@@ -54,16 +54,20 @@
     self.ownerContacts=[[NSMutableArray alloc]init];
     //对应原explorationAry 对应json键explorationUnitContacts
     self.explorationContacts=[[NSMutableArray alloc]init];
-    //对应原designAry 对应json键contractorUnitContacts
+    //对应原designAry 对应json键contractorUnitContacts designInstituteContacts
     self.designContacts=[[NSMutableArray alloc]init];
-    //对应原horizonAry 对应json键designInstituteContacts
+    //对应原horizonAry 对应json键designInstituteContacts contractorUnitContacts
     self.constructionContacts=[[NSMutableArray alloc]init];
     //对应原pileAry 对应json键pileFoundationUnitContacts
     self.pileContacts=[[NSMutableArray alloc]init];
     
+    //将6个联系人数组放入数组,方便后期放入联系人相关内容
     NSArray* array=@[self.auctionContacts,self.ownerContacts,self.explorationContacts,self.designContacts,self.constructionContacts,self.pileContacts];
-    NSArray* categorys=@[@"auctionUnitContacts",@"ownerUnitContacts",@"explorationUnitContacts",@"contractorUnitContacts",@"designInstituteContacts",@"pileFoundationUnitContacts"];
-    NSLog(@"===> %d",contacts.count);
+    
+    //6个联系人的接口字段
+    NSArray* categorys=@[@"auctionUnitContacts",@"ownerUnitContacts",@"explorationUnitContacts",@"designInstituteContacts",@"contractorUnitContacts",@"pileFoundationUnitContacts"];
+    
+    //将从接口获取到的所有联系人放入到对应的联系人数组
     for(int i=0;i<contacts.count;i++){
         ProjectContactModel* contactModel = contacts[i];
         if ([contactModel.a_category isEqualToString:@""]) {
@@ -100,18 +104,19 @@
     
     for(int i=0;i<images.count;i++){
         ProjectImageModel* imageModel = images[i];
-        if ([imageModel.a_imageCategory isEqualToString:@""]) {
-            break;
-        }
-        NSInteger index=0;
-        for (int i=0; i<array.count; i++) {
-            if ([imageModel.a_imageCategory isEqualToString:categorys[i]]) {
-                index=i;
+        
+        NSInteger index=-1;
+        for (int k=0; k<array.count; k++) {
+            if ([imageModel.a_imageCategory isEqualToString:categorys[k]]) {
+                index=k;
                 break;
             }
         }
-        [array[index] addObject:imageModel.a_imageOriginalLocation];
-        NSLog(@"%@",[array lastObject]);
+        
+        //判断是否为我们已有的6个category,并且由于接口可能存在的异常,如果超过3个联系人则不再在对应联系人数组里加入联系人
+        if (index!=-1) {
+            [array[index] addObject:imageModel.a_imageOriginalLocation];
+        }
     }
 }
 @end

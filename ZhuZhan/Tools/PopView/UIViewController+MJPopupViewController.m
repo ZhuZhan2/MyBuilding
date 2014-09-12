@@ -235,7 +235,7 @@
                                   popupSize.height);
     }else{
         popupEndRect = CGRectMake((sourceSize.width - popupSize.width) / 2,
-                                  (sourceSize.height - popupSize.height) / 2-73,
+                                  (sourceSize.height - popupSize.height) / 2-93,
                                   popupSize.width,
                                   popupSize.height);
     }
