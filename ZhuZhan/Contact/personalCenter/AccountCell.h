@@ -12,18 +12,19 @@
 @protocol  AccountCellDelegate <NSObject>
 
 -(void)ModifyPassword:(NSString *)password;
-
+- (void)getTextFieldFrame_yPlusHeight:(float)y;
+-(void)AddDataToModel:(int)flag WithTextField:(UITextField *)textField;
 
 @end
 @interface AccountCell : UITableViewCell<UITextFieldDelegate>
 
-@property (nonatomic,strong)UILabel *userName;
+@property (nonatomic,strong)UITextField *userName;
 @property (nonatomic,strong)UITextField *password;
 @property (nonatomic,strong)UITextField *realName;
 @property (nonatomic,strong)UITextField *sex;
 @property (nonatomic,strong)UITextField *location;
 @property (nonatomic,strong)UITextField *birthday;
-@property (nonatomic,strong)UILabel *constellation;//星座
+@property (nonatomic,strong)UITextField *constellation;//星座
 @property (nonatomic,strong)UITextField *bloodType;
 @property (nonatomic,strong)UITextField *email;
 @property (nonatomic,strong)UILabel *cellPhone;

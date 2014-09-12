@@ -14,6 +14,7 @@
 -(void)changeUserIcon:(NSString *)imageStr AndImage:(UIImage *)image;
 -(void)publishImage:(NSString *)imageStr andImage:(UIImage *)image;
 -(void)openKeyBoard;
+
 @end
 
 @interface Camera : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate>

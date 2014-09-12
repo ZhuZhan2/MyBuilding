@@ -250,7 +250,7 @@ NSString *urlStr = [NSString stringWithFormat:@"api/account/faceregister"];
 }
 
 + (NSURLSessionDataTask *)GetUserInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId{
-    NSString *urlStr = [NSString stringWithFormat:@"api/account/UserInformation?userId=%@",userId];
+    NSString *urlStr = [NSString stringWithFormat:@"api/networking/UserDetails?userId=%@",userId];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"获取用户信息");
         NSLog(@"JSON===>%@",JSON);
