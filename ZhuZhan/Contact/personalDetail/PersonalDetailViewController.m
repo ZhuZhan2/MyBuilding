@@ -54,7 +54,7 @@ static int projectNum =0;
 
     
 
-    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 200)];
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154)];
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
     [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
@@ -121,7 +121,7 @@ static int projectNum =0;
         }
     } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0"];
     
-    NSLog(@"%f",self.tableView.frame.size.height);
+    self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
 }
 
 - (void)_refreshing {

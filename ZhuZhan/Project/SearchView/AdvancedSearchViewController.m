@@ -171,10 +171,10 @@
     NSLog(@"editingStyle ==> %d",editingStyle);
     if (editingStyle == UITableViewCellEditingStyleDelete){
         ConditionsModel *model = [showArr objectAtIndex:indexPath.row-2];
-        NSLog(@"%@",model.a_id);
+        NSLog(@"%@",model.a_createBy);
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         [dic setValue:model.a_id forKey:@"id"];
-        [dic setValue:model.a_createBy forKey:@"deleteBy"];
+        [dic setValue:model.a_createBy forKey:@"DeletedBy"];
         [ProjectApi DeleteSearchConditionsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 

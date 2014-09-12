@@ -66,7 +66,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     personalArray = [NSMutableArray arrayWithArray:array];
     
-    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 150)];
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154)];
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
     UserModel *userModel = [UserModel sharedUserModel];
@@ -102,6 +102,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         proModel = [[projectModel alloc] init];
     proModel.a_projectName = @"鸟巢";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
 }
 
 
