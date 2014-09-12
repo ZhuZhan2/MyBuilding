@@ -409,6 +409,8 @@
 		D3A4281519C19A3E00BAB6C7 /* BirthDay.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281419C19A3E00BAB6C7 /* BirthDay.m */; };
 		D3A4281B19C1A2E700BAB6C7 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281819C1A2E700BAB6C7 /* GTMBase64.m */; };
 		D3A4281E19C1A62F00BAB6C7 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281D19C1A62F00BAB6C7 /* UserModel.m */; };
+		D3A4282119C2FC7100BAB6C7 /* controls_03.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A4281F19C2FC7100BAB6C7 /* controls_03.png */; };
+		D3A4282219C2FC7100BAB6C7 /* controls_05.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A4282019C2FC7100BAB6C7 /* controls_05.png */; };
 		D3AC60F219B5555D0015B62F /* 地图搜索_02.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC60F019B5555D0015B62F /* 地图搜索_02.png */; };
 		D3AC60F519B5571D0015B62F /* 搜索结果_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC60F419B5571D0015B62F /* 搜索结果_03a.png */; };
 		D3AC610319B589970015B62F /* 高级搜索-多选_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC610019B589970015B62F /* 高级搜索-多选_03a.png */; };
@@ -1344,6 +1346,8 @@
 		D3A4281A19C1A2E700BAB6C7 /* GTMObjectSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMObjectSingleton.h; sourceTree = "<group>"; };
 		D3A4281C19C1A62F00BAB6C7 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		D3A4281D19C1A62F00BAB6C7 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		D3A4281F19C2FC7100BAB6C7 /* controls_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls_03.png; sourceTree = "<group>"; };
+		D3A4282019C2FC7100BAB6C7 /* controls_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls_05.png; sourceTree = "<group>"; };
 		D3AC60F019B5555D0015B62F /* 地图搜索_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图搜索_02.png"; sourceTree = "<group>"; };
 		D3AC60F119B5555D0015B62F /* mapsearch-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapsearch-1.png"; sourceTree = "<group>"; };
 		D3AC60F419B5571D0015B62F /* 搜索结果_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索结果_03a.png"; sourceTree = "<group>"; };
@@ -2875,6 +2879,8 @@
 		D3AD600B19AC4DC1001FD483 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3A4281F19C2FC7100BAB6C7 /* controls_03.png */,
+				D3A4282019C2FC7100BAB6C7 /* controls_05.png */,
 				5B0C3D5219C19F18004A8D11 /* 数据加载失败_07a.png */,
 				5B0C3D5319C19F18004A8D11 /* 数据加载失败_07a@2x.png */,
 				5B0C3D4E19C192F9004A8D11 /* 产品－列表_10a.png */,
@@ -3337,6 +3343,7 @@
 				D3A4280519C16E6E00BAB6C7 /* 数据加载失败_03a@2x.png in Resources */,
 				5B0C3D5019C192F9004A8D11 /* 产品－列表_10a.png in Resources */,
 				D3AD605719AC4DC1001FD483 /* 扫描页面_03.png in Resources */,
+				D3A4282119C2FC7100BAB6C7 /* controls_03.png in Resources */,
 				5B031C3719ACA6C100573071 /* XinJianXiangMu in Resources */,
 				D3AD607B19AC4E01001FD483 /* 全部项目_37.png in Resources */,
 				D3AC626C19C1672F0015B62F /* 产品－列表_06a.png in Resources */,
@@ -3433,6 +3440,7 @@
 				D3AC612519B5BD5E0015B62F /* 人脉_29a.png in Resources */,
 				D3AD606C19AC4DC1001FD483 /* 首页_16.png in Resources */,
 				D3AD61F919AF2FF4001FD483 /* 项目－高级搜索－2_15a.png in Resources */,
+				D3A4282219C2FC7100BAB6C7 /* controls_05.png in Resources */,
 				D3AC611119B5AB0E0015B62F /* timescroll_pointer@2x.png in Resources */,
 				5B13C73E19B835BE008EA7A0 /* 公司－公司组织_02a@2x.png in Resources */,
 				D3AD604519AC4DC1001FD483 /* circle.png in Resources */,
