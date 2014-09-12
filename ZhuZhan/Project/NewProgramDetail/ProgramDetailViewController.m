@@ -81,7 +81,7 @@
     self.view.backgroundColor=[UIColor whiteColor];
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
-                //NSLog(@"==========%@",posts);
+                //NSLog(@"==========%@",posts[0]);
                 [self.model getContacts:posts[0]];
                 [self.model getImages:posts[1]];
                 [self loadSelf];
@@ -512,7 +512,6 @@
 }
 
 -(void)didchangeStageSection:(NSInteger)section row:(NSInteger)row{
-    NSLog(@"%f",self.contentTableView.contentOffset.y);
     for (int i=1; i<=section; i++) {//土地信息阶段必存在，不用判断和操作
         if (!self.mainDesign&&i==1) {
             //加载主体设计
@@ -691,7 +690,6 @@
     NSArray* part3=@[self.model.decorationImages];
     NSArray* array=@[part0,part1,part2,part3];
     
-    NSLog(@"%@",array);
     NSMutableArray* imageUrls=[[NSMutableArray alloc]init];
     for (int i=0; i<[array[indexPath.part][indexPath.section] count]; i++) {
         NSURL* url=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,array[indexPath.part][indexPath.section][i]]];
@@ -824,7 +822,4 @@
 -(void)dealloc{
     NSLog(@"ProgramDetailViewControllerDealloc");
 }
-
-
-
 @end

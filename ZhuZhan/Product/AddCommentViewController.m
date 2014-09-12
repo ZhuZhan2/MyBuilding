@@ -63,7 +63,6 @@
 
 -(void)textViewDidChange:(UITextView *)textView{
     //该判断用于联想输入
-    NSLog(@"%d",10-textView.text.length);
     if (textView.text.length<=100) {
         self.countLabel.text=[NSString stringWithFormat:@"%d/100",textView.text.length];
         self.aboveMaxLabel.text=nil;

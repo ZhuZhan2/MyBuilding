@@ -20,7 +20,6 @@
 @property(nonatomic,strong)UITableView* myTableView;
 
 @property(nonatomic,strong)ProductModel* productModel;//产品图片
-@property(nonatomic,copy)NSString* productText;//产品介绍文字
 @property(nonatomic,strong)UIView* productView;//产品图片和产品介绍文字的superView
 
 @property(nonatomic,strong)NSMutableArray* commentModels;//评论数组，元素为评论实体类
@@ -28,21 +27,16 @@
 
 @property(nonatomic,strong)AddCommentViewController* vc;
 
-@property(nonatomic,copy)NSString* a_id;
-
 //@property(nonatomic,strong)ACTimeScroller* timeScroller;
 @end
 
 @implementation ProductDetailViewController
 
--(instancetype)initWithProductModel:(ProductModel *)productModel text:(NSString*)productText productID:(NSString *)productID{
+-(instancetype)initWithProductModel:(ProductModel *)productModel{
     self=[super init];
     if (self) {
         self.productModel=productModel;
-        self.productText=productText;
-        self.commentModels=[[NSMutableArray alloc]init];
         self.commentViews=[[NSMutableArray alloc]init];
-        self.a_id=productID;
     }
     return self;
 }
@@ -69,20 +63,16 @@
     [super viewDidLoad];
 
     [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
-        NSLog(@"%@,%@",posts,self.a_id);
-        for (int i=0; i<posts.count; i++) {
-            NSLog(@"%@",[posts[i] a_name]);
-            [self.commentModels addObject:posts[i]];
-        }
+
+        self.commentModels=posts;
         
         [self getTableViewContents];
         [self myTableViewReloadData];
         
         //self.timeScroller=[[ACTimeScroller alloc]initWithDelegate:self];;
-
         //[self.myTableView reloadData];
         
-    } entityId:self.a_id entityType:@"Product"];
+    } entityId:self.productModel.a_id entityType:@"Product"];
     
     self.view.backgroundColor=[UIColor whiteColor];
     [self initNavi];
@@ -99,7 +89,6 @@
 
 -(void)getTableViewContents{
     for (int i=0; i<self.commentModels.count; i++) {
-        
         ProductCommentView* view=[[ProductCommentView alloc]initWithCommentModel:self.commentModels[i]];
         [self.commentViews addObject:view];
     }
@@ -110,10 +99,8 @@
     CGFloat tempHeight=0;
     
     //imageView部分
-    CGFloat scale=320.0/[self.productModel.a_imageWidth floatValue]*2;//self.productImage.size.width;
-    CGFloat height=[self.productModel.a_imageHeight floatValue]*.5*scale;
-    
-    //UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, height)];
+    CGFloat scale=320.0/[self.productModel.a_imageWidth floatValue]*2;    CGFloat height=[self.productModel.a_imageHeight floatValue]*.5*scale;
+
     EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:[UIImage imageNamed:@"产品－产品详情_03a.png"]];
     if (![self.productModel.a_imageUrl isEqualToString:@""]) {
         imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.productModel.a_imageUrl]];
@@ -189,7 +176,6 @@
 // }
 -(void)sureFromAddCommentWithComment:(NSString *)comment{
     NSLog(@"sureFromAddCommentWithCommentModel:");
-    NSLog(@"%@",comment);
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [self addTableViewContentWithContent:comment];
@@ -197,7 +183,7 @@
             [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
         }
         
-    } dic:[@{@"EntityId":self.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":@"f483bcfc-3726-445a-97ff-ac7f207dd888"} mutableCopy]];
+    } dic:[@{@"EntityId":self.productModel.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":@"f483bcfc-3726-445a-97ff-ac7f207dd888"} mutableCopy]];
 }
 
 
@@ -320,6 +306,5 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 @end

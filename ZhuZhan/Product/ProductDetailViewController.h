@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "ProductModel.h"
 @interface ProductDetailViewController : UIViewController
--(instancetype)initWithProductModel:(ProductModel*)productModel text:(NSString*)productText productID:(NSString*)productID;
+-(instancetype)initWithProductModel:(ProductModel*)productModel;
 @end

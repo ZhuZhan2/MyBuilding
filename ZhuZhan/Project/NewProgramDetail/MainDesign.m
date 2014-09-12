@@ -66,6 +66,7 @@
     UIView* view0=[MyFactory getTwoLinesTitleViewWithTitle:@"设计阶段" titleImage:[UIImage imageNamed:@"XiangMuXiangQing_1/pen_02@2x.png"] firstStrs:@[@"主体设计阶段"] secondStrs:secondStrs];
     
     NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
+    
     UIView* view1=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];
     
     
