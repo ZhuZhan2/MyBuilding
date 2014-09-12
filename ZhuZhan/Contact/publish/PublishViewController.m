@@ -11,6 +11,7 @@
 #import "HomePageViewController.h"
 #import "ProductModel.h"
 #import "CommentApi.h"
+#import "GTMBase64.h"
 @interface PublishViewController ()
 
 @end
@@ -149,11 +150,11 @@ static int PublishNum =1;//1 发布动态  2，发布产品
 -(void)publshActivities
 {
     NSLog(@"想说些什么");
-leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_07a"];
-rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
+    leftBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_07a"];
+    rightBtnImage.image = [UIImage imageNamed:@"人脉－发布动态_13a"];
     PublishNum =1;
-
-    }
+    
+}
 
 -(void)publshProduct{
   NSLog(@"发布产品信息");
@@ -315,6 +316,8 @@ NSLog(@"******publishImageStr******%@&&",publishImageStr);
     // Dispose of any resources that can be recreated.
 }
 
-
-
+-(void)dealloc{
+    NSLog(@"dealloc");
+    NSLog(@"%@",publishImage);
+}
 @end

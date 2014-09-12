@@ -406,6 +406,9 @@
 		D3A4280419C16E6E00BAB6C7 /* 数据加载失败_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A4280019C16E6E00BAB6C7 /* 数据加载失败_03a.png */; };
 		D3A4280519C16E6E00BAB6C7 /* 数据加载失败_03a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A4280119C16E6E00BAB6C7 /* 数据加载失败_03a@2x.png */; };
 		D3A4281019C1749E00BAB6C7 /* ErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4280F19C1749E00BAB6C7 /* ErrorView.m */; };
+		D3A4281519C19A3E00BAB6C7 /* BirthDay.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281419C19A3E00BAB6C7 /* BirthDay.m */; };
+		D3A4281B19C1A2E700BAB6C7 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281819C1A2E700BAB6C7 /* GTMBase64.m */; };
+		D3A4281E19C1A62F00BAB6C7 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281D19C1A62F00BAB6C7 /* UserModel.m */; };
 		D3AC60F219B5555D0015B62F /* 地图搜索_02.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC60F019B5555D0015B62F /* 地图搜索_02.png */; };
 		D3AC60F519B5571D0015B62F /* 搜索结果_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC60F419B5571D0015B62F /* 搜索结果_03a.png */; };
 		D3AC610319B589970015B62F /* 高级搜索-多选_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC610019B589970015B62F /* 高级搜索-多选_03a.png */; };
@@ -1333,6 +1336,14 @@
 		D3A4280819C16F2400BAB6C7 /* ErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorView.h; sourceTree = "<group>"; };
 		D3A4280F19C1749E00BAB6C7 /* ErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorView.m; sourceTree = "<group>"; };
 		D3A4281119C1857E00BAB6C7 /* ContactCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCommentTableViewCell.h; sourceTree = "<group>"; };
+		D3A4281319C19A3E00BAB6C7 /* BirthDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirthDay.h; sourceTree = "<group>"; };
+		D3A4281419C19A3E00BAB6C7 /* BirthDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BirthDay.m; sourceTree = "<group>"; };
+		D3A4281719C1A2E700BAB6C7 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		D3A4281819C1A2E700BAB6C7 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		D3A4281919C1A2E700BAB6C7 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		D3A4281A19C1A2E700BAB6C7 /* GTMObjectSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMObjectSingleton.h; sourceTree = "<group>"; };
+		D3A4281C19C1A62F00BAB6C7 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		D3A4281D19C1A62F00BAB6C7 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		D3AC60F019B5555D0015B62F /* 地图搜索_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图搜索_02.png"; sourceTree = "<group>"; };
 		D3AC60F119B5555D0015B62F /* mapsearch-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapsearch-1.png"; sourceTree = "<group>"; };
 		D3AC60F419B5571D0015B62F /* 搜索结果_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索结果_03a.png"; sourceTree = "<group>"; };
@@ -1751,6 +1762,8 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3A4281619C1A2E700BAB6C7 /* GTM */,
+				D3A4281219C19A2C00BAB6C7 /* BirthDay */,
 				D3A427FF19C16E5100BAB6C7 /* ErrorView */,
 				5B18B46C19BFFC2900551F82 /* GradientView */,
 				D3AC61E719B961120015B62F /* SvGifView */,
@@ -2722,6 +2735,26 @@
 			path = ErrorView;
 			sourceTree = "<group>";
 		};
+		D3A4281219C19A2C00BAB6C7 /* BirthDay */ = {
+			isa = PBXGroup;
+			children = (
+				D3A4281319C19A3E00BAB6C7 /* BirthDay.h */,
+				D3A4281419C19A3E00BAB6C7 /* BirthDay.m */,
+			);
+			path = BirthDay;
+			sourceTree = "<group>";
+		};
+		D3A4281619C1A2E700BAB6C7 /* GTM */ = {
+			isa = PBXGroup;
+			children = (
+				D3A4281719C1A2E700BAB6C7 /* GTMBase64.h */,
+				D3A4281819C1A2E700BAB6C7 /* GTMBase64.m */,
+				D3A4281919C1A2E700BAB6C7 /* GTMDefines.h */,
+				D3A4281A19C1A2E700BAB6C7 /* GTMObjectSingleton.h */,
+			);
+			path = GTM;
+			sourceTree = "<group>";
+		};
 		D3AC618B19B6BF930015B62F /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -2765,6 +2798,8 @@
 			children = (
 				D3AC619319B6BF930015B62F /* LoginModel.h */,
 				D3AC619419B6BF930015B62F /* LoginModel.m */,
+				D3A4281C19C1A62F00BAB6C7 /* UserModel.h */,
+				D3A4281D19C1A62F00BAB6C7 /* UserModel.m */,
 			);
 			path = LoginModel;
 			sourceTree = "<group>";
@@ -3513,6 +3548,7 @@
 				042D9E2019B559FC00689C5D /* PopupView.m in Sources */,
 				0426C2B019922D5A00CD8822 /* GPUImageSaturationBlendFilter.m in Sources */,
 				0426C2D419922D5A00CD8822 /* GPUImageVideoCamera.m in Sources */,
+				D3A4281519C19A3E00BAB6C7 /* BirthDay.m in Sources */,
 				042D9E1B19B559FC00689C5D /* AdvancedSearchConditionsTableViewCell.m in Sources */,
 				042D9E1919B559FC00689C5D /* ProjectTableViewCell.m in Sources */,
 				0426C2A919922D5A00CD8822 /* GPUImageRawDataInput.m in Sources */,
@@ -3566,6 +3602,7 @@
 				0426C26C19922D5A00CD8822 /* GPUImageFilterGroup.m in Sources */,
 				D3AD609819AC56CB001FD483 /* UIView+Extension.m in Sources */,
 				0426C27119922D5A00CD8822 /* GPUImageGaussianSelectiveBlurFilter.m in Sources */,
+				D3A4281E19C1A62F00BAB6C7 /* UserModel.m in Sources */,
 				0426C29B19922D5A00CD8822 /* GPUImageOpacityFilter.m in Sources */,
 				0426C25719922D5A00CD8822 /* GPUImageColorMatrixFilter.m in Sources */,
 				0426C27319922D5A00CD8822 /* GPUImageGrayscaleFilter.m in Sources */,
@@ -3760,6 +3797,7 @@
 				0426C24919922D5A00CD8822 /* GPUImageBilateralFilter.m in Sources */,
 				0426C2EA19922D5A00CD8822 /* FaceppRecognition.m in Sources */,
 				042D9E0E19B559FC00689C5D /* BaiDuMapViewController.m in Sources */,
+				D3A4281B19C1A2E700BAB6C7 /* GTMBase64.m in Sources */,
 				0426C26219922D5A00CD8822 /* GPUImageDissolveBlendFilter.m in Sources */,
 				0426C24F19922D5A00CD8822 /* GPUImageCGAColorspaceFilter.m in Sources */,
 				0426C2A819922D5A00CD8822 /* GPUImagePrewittEdgeDetectionFilter.m in Sources */,

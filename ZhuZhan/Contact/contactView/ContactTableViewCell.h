@@ -9,12 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EGOImageView.h"
 #import "CommentModel.h"
-
-@protocol ContactTableViewCellDelegate <NSObject>
-
--(void)ShowUserPanView:(UIButton *)button;
-
-@end
+#import "HeadImageDelegate.h"
 @interface ContactTableViewCell : UITableViewCell{
     EGOImageView *headImageView;
     UIImageView *stageImage;
@@ -23,5 +18,5 @@
     UILabel *jobLabel;
 }
 @property(nonatomic,weak)CommentModel *model;
-@property(nonatomic,strong)id<ContactTableViewCellDelegate>delegate;
+@property(nonatomic,weak)id<HeadImageDelegate>delegate;
 @end

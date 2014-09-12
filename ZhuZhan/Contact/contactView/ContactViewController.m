@@ -23,6 +23,8 @@
 #import "ContactCommentTableViewCell.h"
 #import "CommentApi.h"
 #import "ConnectionAvailable.h"
+#import "BirthDay.h"
+#import "UserModel.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -64,7 +66,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154)];
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"bg001.png"]];
-    [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
+    //[_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
     [_pathCover setHeadTaget];
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"用户名", XHUserNameKey, @"公司名字显示在这里     职位", XHBirthdayKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
@@ -106,7 +108,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 for(int i=0;i<showArr.count;i++){
                     CommentModel *model = showArr[i];
                     if([model.a_type isEqualToString:@"Product"]){
-                        NSLog(@"%@",model.a_type);
                         commentView = [CommentView setFram:model];
                         [viewArr insertObject:commentView atIndex:i];
                     }else{
@@ -116,8 +117,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 
                 [self.tableView reloadData];
             }
-        } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0" startIndex:startIndex];
-    }
+        }
+    } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0" startIndex:startIndex];
+    //NSLog(@"%@",[BirthDay getAge:@"1979-06-19"]);
+    //NSLog(@"%@",[BirthDay getConstellation:@"1979-06-19"]);
+    //NSLog(@"%@",[BirthDay getZodiac:@"1979-06-19"]);
 }
 
 
@@ -261,7 +265,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (NSDate *)timeScroller:(ACTimeScroller *)timeScroller dateForCell:(UITableViewCell *)cell
 {
     NSIndexPath *indexPath = [[self tableView] indexPathForCell:cell];
-    NSLog(@"%@",_datasource);
     return _datasource[[indexPath row]];
 }
 
@@ -272,8 +275,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self.navigationController pushViewController:personalVC animated:YES];
 }
 
--(void)ShowUserPanView:(UIButton *)button{
-
+-(void)HeadImageAction:(UIButton *)button{
     showVC = [[ShowViewController alloc] init];
     showVC.delegate =self;
     [showVC.view setFrame:CGRectMake(40, 70, 220, 240)];
@@ -281,11 +283,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     showVC.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
     
     [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
-
-    
 }
-
-
 
 - (void)jumpToGoToDetail:(UIButton *)button
 {
@@ -293,7 +291,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
-    [self.navigationController pushViewController:personalVC animated:NO];
+    [self.navigationController pushViewController:personalVC animated:YES];
 }
 
 - (void)jumpToGotoConcern:(UIButton *)button
@@ -341,7 +339,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)sureFromAddCommentWithComment:(NSString*)comment{
-    NSLog(@"%d",indexpath.row);
     CommentModel *model = [[CommentModel alloc] init];
     model.a_content = [NSString stringWithFormat:@"%@",comment];
     model.a_type = @"comment";
