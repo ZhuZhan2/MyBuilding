@@ -337,7 +337,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void) AddBirthdayPicker:(UILabel *)label
 {
 
-    DatePickerView *dataView = [[DatePickerView alloc] initWithTitle:CGRectMake(20, 120, 280, 150) delegate:nil date:nil];
+    DatePickerView *dataView = [[DatePickerView alloc] initWithTitle:CGRectMake(0, 120, 320, 150) delegate:nil date:nil];
     [dataView showInView:self.tableView.superview];
     
 }
