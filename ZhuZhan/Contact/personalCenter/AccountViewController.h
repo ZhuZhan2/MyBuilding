@@ -14,8 +14,8 @@
 
 @interface AccountViewController : UIViewController<XHPathCoverDelegate,UIActionSheetDelegate,UITextFieldDelegate,AccountCellDelegate,CameraDelegate,UITableViewDataSource,UITableViewDelegate>
 {
-    UIActivityIndicatorView *indicatorView;
-    UIView *blackView;
+
+ 
 }
 
 @property (nonatomic, strong) XHPathCover *pathCover;

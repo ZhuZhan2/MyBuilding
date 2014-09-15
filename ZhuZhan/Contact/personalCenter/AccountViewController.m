@@ -102,18 +102,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }];
 
     
-
-    blackView = [[UIView alloc] initWithFrame:self.view.frame];
-    blackView.backgroundColor = [UIColor blackColor];
-    blackView.alpha =0.2;
-    [self.view addSubview:blackView];
-    indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    indicatorView.color = [UIColor whiteColor];
-    indicatorView.frame = CGRectMake(160, 380, 0, 0);
-    [self.view addSubview:indicatorView];
-    [indicatorView startAnimating];
     [self getUserInformation];
-//    [self performSelectorInBackground:@selector(getUserInformation) withObject:nil];
+
 
     
 
@@ -133,10 +123,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         model = [[ContactModel alloc] init];
 
        model.dict = userDic;
-//            NSLog(@"********userDic******* %@",model.dict);
-        [indicatorView removeFromSuperview];
-        [blackView removeFromSuperview];
-      
+
             [self.tableView reloadData];
 
 
