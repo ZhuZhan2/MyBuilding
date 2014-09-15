@@ -313,7 +313,6 @@
 		04BF13B819C4162A002E02C9 /* ProjectImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13AF19C4162A002E02C9 /* ProjectImageModel.m */; };
 		04BF13B919C4162A002E02C9 /* projectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13B119C4162A002E02C9 /* projectModel.m */; };
 		04BF13BA19C4162A002E02C9 /* ProjectStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13B319C4162A002E02C9 /* ProjectStage.m */; };
-		04BF13BD19C4178A002E02C9 /* ContactStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13BC19C4178A002E02C9 /* ContactStage.m */; };
 		04D10BD919AE016A0097C0C6 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BB219AE016A0097C0C6 /* ContactViewController.m */; };
 		04D10BDD19AE016A0097C0C6 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BBA19AE016A0097C0C6 /* AccountViewController.m */; };
 		04D10BE019AE016A0097C0C6 /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BC019AE016A0097C0C6 /* PersonalCenterViewController.m */; };
@@ -1227,8 +1226,6 @@
 		04BF13B119C4162A002E02C9 /* projectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = projectModel.m; sourceTree = "<group>"; };
 		04BF13B219C4162A002E02C9 /* ProjectStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectStage.h; sourceTree = "<group>"; };
 		04BF13B319C4162A002E02C9 /* ProjectStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectStage.m; sourceTree = "<group>"; };
-		04BF13BB19C4178A002E02C9 /* ContactStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactStage.h; sourceTree = "<group>"; };
-		04BF13BC19C4178A002E02C9 /* ContactStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactStage.m; sourceTree = "<group>"; };
 		04D10BB119AE01690097C0C6 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
 		04D10BB219AE016A0097C0C6 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		04D10BB919AE016A0097C0C6 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
@@ -2826,8 +2823,6 @@
 				D3AC61D819B8573E0015B62F /* CommentModel.m */,
 				D3AC61E219B882050015B62F /* ContactCommentModel.h */,
 				D3AC61E319B882050015B62F /* ContactCommentModel.m */,
-				04BF13BB19C4178A002E02C9 /* ContactStage.h */,
-				04BF13BC19C4178A002E02C9 /* ContactStage.m */,
 			);
 			path = ContactModel;
 			sourceTree = "<group>";
@@ -3693,7 +3688,6 @@
 				0426C28519922D5A00CD8822 /* GPUImageLevelsFilter.m in Sources */,
 				0426C23619922D5A00CD8822 /* AFHTTPRequestOperation.m in Sources */,
 				0426C2B519922D5A00CD8822 /* GPUImageShiTomasiFeatureDetectionFilter.m in Sources */,
-				04BF13BD19C4178A002E02C9 /* ContactStage.m in Sources */,
 				04BF13B619C4162A002E02C9 /* ProjectCommentModel.m in Sources */,
 				5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */,
 				0426C2B219922D5A00CD8822 /* GPUImageScreenBlendFilter.m in Sources */,

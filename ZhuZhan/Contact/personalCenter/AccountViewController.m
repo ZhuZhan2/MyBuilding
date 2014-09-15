@@ -101,14 +101,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [wself _refreshing];
     }];
 
+    model = [[ContactModel alloc] init];
+    [self getUserInformation];
+
+
     
-    [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            NSLog(@"%@",posts);
-            [self.tableView reloadData];
-        }
-    } userId:@"5dc180cc-d1df-424c-bbbf-0de57da5831c"];
-    
+
+        
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
@@ -119,16 +118,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     NSLog(@"********userId******* %@",userIdStr);
     [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-        
-        NSDictionary *userDic = [posts objectAtIndex:0];
-        model = [[ContactModel alloc] init];
-
-       model.dict = userDic;
-
-            [self.tableView reloadData];
-
-
-    } userId:userIdStr];
+        model = posts[0];
+        [self.tableView reloadData];
+    } userId:@"5dc180cc-d1df-424c-bbbf-0de57da5831c"];
 }
 
 

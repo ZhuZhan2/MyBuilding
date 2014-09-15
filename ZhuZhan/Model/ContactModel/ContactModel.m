@@ -9,7 +9,7 @@
 #import "ContactModel.h"
 #import "AFAppDotNetAPIClient.h"
 #import "CommentModel.h"
-#import "ContactStage.h"
+#import "ProjectStage.h"
 
 @implementation ContactModel
 
@@ -18,23 +18,18 @@
 -(void)setDict:(NSDictionary *)dict
 {
     _dict = dict;
-    
-    NSDictionary *baseInformation =[_dict objectForKey:@"baseInformation"];
-    
-    
-    self.userName = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"userName"]]];
-    self.realName = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"fullName"]]];
-    self.sex = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"sex"]]];
-    self.locationProvice = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"locationProvince"]]];
-    self.locationCity = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"locationCity"]]];
-    self.birthday = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"birthday"]]];
-    self.constellation = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"constellation"]]];
-    self.bloodType = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"bloodType"]]];
-    self.email = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"email"]]];
-    self.cellPhone = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"cellPhone"]]];
-    self.companyName = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"company"]]];
-    self.position = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"duties"]]];
-   
+    self.userName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"userName"]]];
+    self.realName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"fullName"]]];
+    self.sex = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"sex"]]];
+    self.locationProvice = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"locationProvince"]]];
+    self.locationCity = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"locationCity"]]];
+    self.birthday = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"birthday"]]];
+    self.constellation = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"constellation"]]];
+    self.bloodType = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"bloodType"]]];
+    self.email = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"email"]]];
+    self.cellPhone = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"cellPhone"]]];
+    self.companyName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"company"]]];
+    self.position = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"duties"]]];
 }
 
 //POST:

@@ -13,10 +13,6 @@
 
 
 @interface AccountViewController : UIViewController<XHPathCoverDelegate,UIActionSheetDelegate,UITextFieldDelegate,AccountCellDelegate,CameraDelegate,UITableViewDataSource,UITableViewDelegate>
-{
-
- 
-}
 
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property(nonatomic,strong)UITableView* tableView;
