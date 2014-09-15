@@ -9,7 +9,33 @@
 #import "ContactModel.h"
 #import "AFAppDotNetAPIClient.h"
 #import "CommentModel.h"
+#import "ContactStage.h"
+
 @implementation ContactModel
+
+
+
+-(void)setDict:(NSDictionary *)dict
+{
+    _dict = dict;
+    
+    NSDictionary *baseInformation =[_dict objectForKey:@"baseInformation"];
+    
+    
+    self.userName = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"userName"]]];
+    self.realName = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"fullName"]]];
+    self.sex = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"sex"]]];
+    self.locationProvice = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"locationProvince"]]];
+    self.locationCity = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"locationCity"]]];
+    self.birthday = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"birthday"]]];
+    self.constellation = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"constellation"]]];
+    self.bloodType = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"bloodType"]]];
+    self.email = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"email"]]];
+    self.cellPhone = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"cellPhone"]]];
+    self.companyName = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"company"]]];
+    self.position = [ContactStage ContactStrStage:[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"duties"]]];
+   
+}
 
 //POST:
 //{

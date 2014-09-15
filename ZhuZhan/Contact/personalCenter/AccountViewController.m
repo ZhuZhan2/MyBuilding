@@ -13,16 +13,18 @@
 #import "AppDelegate.h"
 #import "UserModel.h"
 #import "DatePickerView.h"
-@interface AccountViewController ()<UITableViewDataSource,UITableViewDelegate>
-@property(nonatomic,strong)UITableView* tableView;
+#import "BirthDay.h"
+@interface AccountViewController ()
+
 @end
 
 @implementation AccountViewController
 
-@synthesize KindIndex,userIcon,model,camera,userIdStr;
+@synthesize userIcon,model,camera,userIdStr;
 
 static int selectBtnTag =0;
 static float textFieldFrame_Y_PlusHeight =0;
+static bool isBirthday = NO;
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 
 
@@ -59,8 +61,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [rightButton addTarget:self action:@selector(completePerfect) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
-    
-    KindIndex = @[@"账号信息",@"个人资料",@"联系方式"];
     
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 200)];
     _pathCover.delegate = self;
@@ -103,9 +103,46 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
     
 
+    blackView = [[UIView alloc] initWithFrame:self.view.frame];
+    blackView.backgroundColor = [UIColor blackColor];
+    blackView.alpha =0.2;
+    [self.view addSubview:blackView];
+    indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    indicatorView.color = [UIColor whiteColor];
+    indicatorView.frame = CGRectMake(160, 380, 0, 0);
+    [self.view addSubview:indicatorView];
+    [indicatorView startAnimating];
+    [self getUserInformation];
+//    [self performSelectorInBackground:@selector(getUserInformation) withObject:nil];
+
+    
+
         
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
+
+- (void)getUserInformation
+{
+
+    userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+    
+    NSLog(@"********userId******* %@",userIdStr);
+    [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+        
+        NSDictionary *userDic = [posts objectAtIndex:0];
+        model = [[ContactModel alloc] init];
+
+       model.dict = userDic;
+//            NSLog(@"********userDic******* %@",model.dict);
+        [indicatorView removeFromSuperview];
+        [blackView removeFromSuperview];
+      
+            [self.tableView reloadData];
+
+
+    } userId:userIdStr];
+}
+
 
 
 
@@ -205,7 +242,23 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
    
 }
 
+#pragma mark actionSheetDelegate---------------------
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if(isBirthday ==YES){
+        isBirthday =NO;
+        if (buttonIndex==1) {
+            NSLog(@"传递生日");
+            DatePickerView *dataView = (DatePickerView *)actionSheet;
+               NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"yyyy-MM-dd"];
+               model.birthday = [formatter stringFromDate:dataView.datepicker.date];
+
+            model.constellation = [BirthDay getConstellation:model.birthday];
+            [self.tableView reloadData];
+        }
+        return;
+    }
     camera = [[Camera alloc] init];
     camera.delegate = self;
     [self.tableView.superview addSubview:camera.view];
@@ -309,9 +362,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         case 3:
             model.locationCity = textField.text;
             break;
-        case 4:
-            model.birthday = textField.text;
-            break;
+
         case 5:
             model.constellation = textField.text;
             break;
@@ -337,12 +388,19 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void) AddBirthdayPicker:(UILabel *)label
 {
 
-    DatePickerView *dataView = [[DatePickerView alloc] initWithTitle:CGRectMake(0, 120, 320, 150) delegate:nil date:nil];
-    [dataView showInView:self.tableView.superview];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    model.birthday =[model.birthday substringWithRange:NSMakeRange(0,10)];
+    NSLog(@"*******model.birthday*******%@",model.birthday);
+    NSDate* birthdayDate = [formatter dateFromString:model.birthday];
+    DatePickerView *dataView = [[DatePickerView alloc] initWithTitle:CGRectMake(0, 120, 320, 240) delegate:self date:birthdayDate];
+    [dataView showInView:self.view];
+    isBirthday =YES;
     
 }
 
-
+/*********  tableView   *************************************************************************************************/
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -357,12 +415,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 {
     
     
-    
     static NSString *identifier = @"AccountCell";
-    AccountCell *accountCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!accountCell) {
-        accountCell = [[AccountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:model];
-    }
+    AccountCell *accountCell = [[AccountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:model];
     accountCell.delegate =self;
     return accountCell;
 

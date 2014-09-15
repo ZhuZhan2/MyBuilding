@@ -18,6 +18,7 @@ static int textFieldTag =0;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
+         NSLog(@"model.dict  ********* %@",model.dict);
         //*********账户信息**********************************************************************************
         UIView *back1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
         back1.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"grayColor"]];
@@ -56,7 +57,7 @@ static int textFieldTag =0;
         password.font=[UIFont systemFontOfSize:15];
         password.delegate =self;
         password.secureTextEntry =YES;
-        password.text = model.password;
+        password.text = @"";
         password.tag = 2014091202;
         [self addSubview:password];
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -308,9 +309,7 @@ static int textFieldTag =0;
     if ([textField isEqual:location]) {
         flag =3;
     }
-    if ([textField isEqual:birthday]) {
-        flag =4;
-    }
+    
     if ([textField isEqual:constellation]) {
         flag =5;
     }

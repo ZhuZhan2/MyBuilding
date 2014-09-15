@@ -12,11 +12,14 @@
 #import "Camera.h"
 
 
-@interface AccountViewController : UIViewController<XHPathCoverDelegate,UIActionSheetDelegate,UITextFieldDelegate,AccountCellDelegate,CameraDelegate>
-
+@interface AccountViewController : UIViewController<XHPathCoverDelegate,UIActionSheetDelegate,UITextFieldDelegate,AccountCellDelegate,CameraDelegate,UITableViewDataSource,UITableViewDelegate>
+{
+    UIActivityIndicatorView *indicatorView;
+    UIView *blackView;
+}
 
 @property (nonatomic, strong) XHPathCover *pathCover;
-@property (nonatomic,strong) NSArray *KindIndex;
+@property(nonatomic,strong)UITableView* tableView;
 @property (nonatomic, strong) UIImage *userIcon;
 @property (nonatomic, strong) ContactModel *model;
 @property (nonatomic, strong) Camera *camera;
