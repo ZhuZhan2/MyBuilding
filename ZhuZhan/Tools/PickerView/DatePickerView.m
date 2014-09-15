@@ -96,7 +96,6 @@
 
 -(void)complatedClick{
     NSDate* _date = datepicker.date;
-    NSLog(@"%@",_date);
     timeSp = [NSString stringWithFormat:@"%ld", (long)[_date timeIntervalSince1970]];
     CATransition *animation = [CATransition  animation];
     animation.delegate = self;

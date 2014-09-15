@@ -10,7 +10,7 @@
 #import <sqlite3.h>
 
 
-static NSString *const DataBaseName = @"salesforce.sqlite";
+static NSString *const DataBaseName = @"ZhuZhan.sqlite";
 
 
 @interface SqliteHelper : NSObject {

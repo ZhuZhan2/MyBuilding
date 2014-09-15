@@ -101,8 +101,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }];
 
     
-
-        
+    [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            NSLog(@"%@",posts);
+            [self.tableView reloadData];
+        }
+    } userId:@"5dc180cc-d1df-424c-bbbf-0de57da5831c"];
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
@@ -339,6 +344,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+     NSLog(@"numberOfRowsInSection");
     return 1;
     
 }
@@ -346,7 +352,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
+    NSLog(@"cellForRowAtIndexPath");
     
     static NSString *identifier = @"AccountCell";
     AccountCell *accountCell =[tableView dequeueReusableCellWithIdentifier:identifier];

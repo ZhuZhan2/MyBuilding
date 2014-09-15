@@ -114,69 +114,69 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         AccountViewController *accountVC = [[AccountViewController alloc] init];
     
     accountVC.userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-    
-    NSLog(@"********userId******* %@",accountVC.userIdStr);
-    [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-        
-        NSDictionary *userDic = [posts objectAtIndex:0];
-        NSDictionary *baseInformation =[userDic objectForKey:@"baseInformation"];
-        
-        accountVC.model = [[ContactModel alloc] init];
-
-        accountVC.model.userName =[NSString stringWithFormat:@"%@",[userDic objectForKey:@"userName"]];
-        if ( [accountVC.model.userName isEqualToString:@"<null>"]) {
-            accountVC.model.userName =@"";
-        }
-        accountVC.model.realName = [NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"fullName"]];
-        if ( [accountVC.model.realName isEqualToString:@"<null>"]) {
-            accountVC.model.realName =@"";
-        }
-        accountVC.model.sex = [NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"sex"]];
-        if ( [accountVC.model.sex isEqualToString:@"<null>"]) {
-            accountVC.model.sex =@"";
-        }
-        accountVC.model.locationProvice = [NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"locationProvince"]];
-        if ( [accountVC.model.locationProvice isEqualToString:@"<null>"]) {
-            accountVC.model.locationProvice =@"";
-        }
-        accountVC.model.locationCity = [NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"locationCity"]];
-        if ( [accountVC.model.locationCity isEqualToString:@"<null>"]) {
-            accountVC.model.locationCity =@"";
-        }
-        accountVC.model.birthday =[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"birthday"]];
-        if ( [accountVC.model.birthday isEqualToString:@"<null>"]) {
-            accountVC.model.birthday =@"";
-        }
-        accountVC.model.constellation =[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"constellation"]];
-        if ( [accountVC.model.constellation isEqualToString:@"<null>"]) {
-            accountVC.model.constellation =@"";
-        }
-        accountVC.model.bloodType =[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"bloodType"]];
-        if ( [accountVC.model.bloodType isEqualToString:@"<null>"]) {
-            accountVC.model.bloodType =@"";
-        }
-        accountVC.model.email = [NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"email"]];
-        if ( [accountVC.model.email isEqualToString:@"<null>"]) {
-            accountVC.model.email =@"";
-        }
-        accountVC.model.cellPhone = [NSString stringWithFormat:@"%@",[userDic objectForKey:@"cellPhone"]];
-        if ( [accountVC.model.cellPhone isEqualToString:@"<null>"]) {
-            accountVC.model.cellPhone =@"";
-        }
-        accountVC.model.companyName = [NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"company"]];
-        if ( [accountVC.model.companyName isEqualToString:@"<null>"]) {
-            accountVC.model.companyName =@"";
-        }
-        accountVC.model.position = [NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"duties"]];
-        if ( [accountVC.model.position isEqualToString:@"<null>"]) {
-            accountVC.model.position =@"";
-        }
-
-        
-        
     [self.navigationController pushViewController:accountVC animated:YES];
-        
-    } userId:accountVC.userIdStr];
+//    NSLog(@"********userId******* %@",accountVC.userIdStr);
+//    [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+//        
+//        NSDictionary *userDic = [posts objectAtIndex:0];
+//        NSDictionary *baseInformation =[userDic objectForKey:@"baseInformation"];
+//        
+//        accountVC.model = [[ContactModel alloc] init];
+//
+//        accountVC.model.userName =[NSString stringWithFormat:@"%@",[userDic objectForKey:@"userName"]];
+//        if ( [accountVC.model.userName isEqualToString:@"<null>"]) {
+//            accountVC.model.userName =@"";
+//        }
+//        accountVC.model.realName = [NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"fullName"]];
+//        if ( [accountVC.model.realName isEqualToString:@"<null>"]) {
+//            accountVC.model.realName =@"";
+//        }
+//        accountVC.model.sex = [NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"sex"]];
+//        if ( [accountVC.model.sex isEqualToString:@"<null>"]) {
+//            accountVC.model.sex =@"";
+//        }
+//        accountVC.model.locationProvice = [NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"locationProvince"]];
+//        if ( [accountVC.model.locationProvice isEqualToString:@"<null>"]) {
+//            accountVC.model.locationProvice =@"";
+//        }
+//        accountVC.model.locationCity = [NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"locationCity"]];
+//        if ( [accountVC.model.locationCity isEqualToString:@"<null>"]) {
+//            accountVC.model.locationCity =@"";
+//        }
+//        accountVC.model.birthday =[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"birthday"]];
+//        if ( [accountVC.model.birthday isEqualToString:@"<null>"]) {
+//            accountVC.model.birthday =@"";
+//        }
+//        accountVC.model.constellation =[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"constellation"]];
+//        if ( [accountVC.model.constellation isEqualToString:@"<null>"]) {
+//            accountVC.model.constellation =@"";
+//        }
+//        accountVC.model.bloodType =[NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"bloodType"]];
+//        if ( [accountVC.model.bloodType isEqualToString:@"<null>"]) {
+//            accountVC.model.bloodType =@"";
+//        }
+//        accountVC.model.email = [NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"email"]];
+//        if ( [accountVC.model.email isEqualToString:@"<null>"]) {
+//            accountVC.model.email =@"";
+//        }
+//        accountVC.model.cellPhone = [NSString stringWithFormat:@"%@",[userDic objectForKey:@"cellPhone"]];
+//        if ( [accountVC.model.cellPhone isEqualToString:@"<null>"]) {
+//            accountVC.model.cellPhone =@"";
+//        }
+//        accountVC.model.companyName = [NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"company"]];
+//        if ( [accountVC.model.companyName isEqualToString:@"<null>"]) {
+//            accountVC.model.companyName =@"";
+//        }
+//        accountVC.model.position = [NSString stringWithFormat:@"%@",[baseInformation objectForKey:@"duties"]];
+//        if ( [accountVC.model.position isEqualToString:@"<null>"]) {
+//            accountVC.model.position =@"";
+//        }
+//
+//        
+//        
+//    [self.navigationController pushViewController:accountVC animated:YES];
+//        
+//    } userId:accountVC.userIdStr];
 
 
 
