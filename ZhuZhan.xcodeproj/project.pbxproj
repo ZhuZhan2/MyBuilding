@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04248B0519C67C1D000FB8A9 /* ProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04248B0419C67C1D000FB8A9 /* ProductModel.m */; };
 		0426BFEB19922CE400CD8822 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0426BFEA19922CE400CD8822 /* Foundation.framework */; };
 		0426BFED19922CE400CD8822 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0426BFEC19922CE400CD8822 /* CoreGraphics.framework */; };
 		0426BFEF19922CE400CD8822 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0426BFEE19922CE400CD8822 /* UIKit.framework */; };
@@ -305,6 +306,14 @@
 		042D9EF919B95F2800689C5D /* 人脉－发布动态_13a.png in Resources */ = {isa = PBXBuildFile; fileRef = 042D9EF519B95F2800689C5D /* 人脉－发布动态_13a.png */; };
 		04BF134A19BE9645002E02C9 /* 人脉－发布动态_11a.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BF134819BE9645002E02C9 /* 人脉－发布动态_11a.png */; };
 		04BF134B19BE9645002E02C9 /* 人脉－发布动态_15a.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BF134919BE9645002E02C9 /* 人脉－发布动态_15a.png */; };
+		04BF13B419C4162A002E02C9 /* AFAppDotNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13A719C4162A002E02C9 /* AFAppDotNetAPIClient.m */; };
+		04BF13B519C4162A002E02C9 /* ProjectApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13A919C4162A002E02C9 /* ProjectApi.m */; };
+		04BF13B619C4162A002E02C9 /* ProjectCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13AB19C4162A002E02C9 /* ProjectCommentModel.m */; };
+		04BF13B719C4162A002E02C9 /* ProjectContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13AD19C4162A002E02C9 /* ProjectContactModel.m */; };
+		04BF13B819C4162A002E02C9 /* ProjectImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13AF19C4162A002E02C9 /* ProjectImageModel.m */; };
+		04BF13B919C4162A002E02C9 /* projectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13B119C4162A002E02C9 /* projectModel.m */; };
+		04BF13BA19C4162A002E02C9 /* ProjectStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13B319C4162A002E02C9 /* ProjectStage.m */; };
+		04BF13BD19C4178A002E02C9 /* ContactStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13BC19C4178A002E02C9 /* ContactStage.m */; };
 		04D10BD919AE016A0097C0C6 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BB219AE016A0097C0C6 /* ContactViewController.m */; };
 		04D10BDD19AE016A0097C0C6 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BBA19AE016A0097C0C6 /* AccountViewController.m */; };
 		04D10BE019AE016A0097C0C6 /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BC019AE016A0097C0C6 /* PersonalCenterViewController.m */; };
@@ -440,20 +449,12 @@
 		D3AC61A919B6BF930015B62F /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC619119B6BF930015B62F /* ContactModel.m */; };
 		D3AC61AA19B6BF930015B62F /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC619419B6BF930015B62F /* LoginModel.m */; };
 		D3AC61AB19B6BF930015B62F /* MyCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC619719B6BF930015B62F /* MyCenterModel.m */; };
-		D3AC61AC19B6BF930015B62F /* AFAppDotNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC619A19B6BF930015B62F /* AFAppDotNetAPIClient.m */; };
-		D3AC61AD19B6BF930015B62F /* ProjectApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC619C19B6BF930015B62F /* ProjectApi.m */; };
-		D3AC61AE19B6BF930015B62F /* ProjectContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC619E19B6BF930015B62F /* ProjectContactModel.m */; };
-		D3AC61AF19B6BF930015B62F /* ProjectImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61A019B6BF930015B62F /* ProjectImageModel.m */; };
-		D3AC61B019B6BF930015B62F /* projectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61A219B6BF930015B62F /* projectModel.m */; };
-		D3AC61B119B6BF930015B62F /* ProjectStage.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61A419B6BF930015B62F /* ProjectStage.m */; };
 		D3AC61B219B6BF930015B62F /* TopicsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61A719B6BF930015B62F /* TopicsModel.m */; };
 		D3AC61C319B70F350015B62F /* 人脉_74a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC61C219B70F350015B62F /* 人脉_74a.png */; };
-		D3AC61C819B80BDE0015B62F /* ProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61C719B80BDE0015B62F /* ProductModel.m */; };
 		D3AC61D019B849920015B62F /* PorjectCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61CF19B849920015B62F /* PorjectCommentTableViewController.m */; };
 		D3AC61D219B849F30015B62F /* 项目－评论列表_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC61D119B849F30015B62F /* 项目－评论列表_03a.png */; };
 		D3AC61D319B84F770015B62F /* CommentApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61BA19B6D5D20015B62F /* CommentApi.m */; };
 		D3AC61D919B8573E0015B62F /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61D819B8573E0015B62F /* CommentModel.m */; };
-		D3AC61DC19B859950015B62F /* ProjectCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61DB19B859950015B62F /* ProjectCommentModel.m */; };
 		D3AC61DF19B85CA50015B62F /* ProjectCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61DE19B85CA50015B62F /* ProjectCommentView.m */; };
 		D3AC61E119B86DB30015B62F /* 项目－评论列表_03a-07.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC61E019B86DB30015B62F /* 项目－评论列表_03a-07.png */; };
 		D3AC61E419B882050015B62F /* ContactCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61E319B882050015B62F /* ContactCommentModel.m */; };
@@ -585,6 +586,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04248B0319C67C1D000FB8A9 /* ProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductModel.h; sourceTree = "<group>"; };
+		04248B0419C67C1D000FB8A9 /* ProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductModel.m; sourceTree = "<group>"; };
 		0426BFE719922CE400CD8822 /* ZhuZhan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZhuZhan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0426BFEA19922CE400CD8822 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0426BFEC19922CE400CD8822 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1210,6 +1213,22 @@
 		042D9EF519B95F2800689C5D /* 人脉－发布动态_13a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－发布动态_13a.png"; sourceTree = "<group>"; };
 		04BF134819BE9645002E02C9 /* 人脉－发布动态_11a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－发布动态_11a.png"; sourceTree = "<group>"; };
 		04BF134919BE9645002E02C9 /* 人脉－发布动态_15a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－发布动态_15a.png"; sourceTree = "<group>"; };
+		04BF13A619C4162A002E02C9 /* AFAppDotNetAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAppDotNetAPIClient.h; sourceTree = "<group>"; };
+		04BF13A719C4162A002E02C9 /* AFAppDotNetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAppDotNetAPIClient.m; sourceTree = "<group>"; };
+		04BF13A819C4162A002E02C9 /* ProjectApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectApi.h; sourceTree = "<group>"; };
+		04BF13A919C4162A002E02C9 /* ProjectApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectApi.m; sourceTree = "<group>"; };
+		04BF13AA19C4162A002E02C9 /* ProjectCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCommentModel.h; sourceTree = "<group>"; };
+		04BF13AB19C4162A002E02C9 /* ProjectCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCommentModel.m; sourceTree = "<group>"; };
+		04BF13AC19C4162A002E02C9 /* ProjectContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectContactModel.h; sourceTree = "<group>"; };
+		04BF13AD19C4162A002E02C9 /* ProjectContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectContactModel.m; sourceTree = "<group>"; };
+		04BF13AE19C4162A002E02C9 /* ProjectImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectImageModel.h; sourceTree = "<group>"; };
+		04BF13AF19C4162A002E02C9 /* ProjectImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectImageModel.m; sourceTree = "<group>"; };
+		04BF13B019C4162A002E02C9 /* projectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = projectModel.h; sourceTree = "<group>"; };
+		04BF13B119C4162A002E02C9 /* projectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = projectModel.m; sourceTree = "<group>"; };
+		04BF13B219C4162A002E02C9 /* ProjectStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectStage.h; sourceTree = "<group>"; };
+		04BF13B319C4162A002E02C9 /* ProjectStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectStage.m; sourceTree = "<group>"; };
+		04BF13BB19C4178A002E02C9 /* ContactStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactStage.h; sourceTree = "<group>"; };
+		04BF13BC19C4178A002E02C9 /* ContactStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactStage.m; sourceTree = "<group>"; };
 		04D10BB119AE01690097C0C6 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
 		04D10BB219AE016A0097C0C6 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		04D10BB919AE016A0097C0C6 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
@@ -1385,18 +1404,6 @@
 		D3AC619419B6BF930015B62F /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
 		D3AC619619B6BF930015B62F /* MyCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterModel.h; sourceTree = "<group>"; };
 		D3AC619719B6BF930015B62F /* MyCenterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterModel.m; sourceTree = "<group>"; };
-		D3AC619919B6BF930015B62F /* AFAppDotNetAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAppDotNetAPIClient.h; sourceTree = "<group>"; };
-		D3AC619A19B6BF930015B62F /* AFAppDotNetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAppDotNetAPIClient.m; sourceTree = "<group>"; };
-		D3AC619B19B6BF930015B62F /* ProjectApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectApi.h; sourceTree = "<group>"; };
-		D3AC619C19B6BF930015B62F /* ProjectApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectApi.m; sourceTree = "<group>"; };
-		D3AC619D19B6BF930015B62F /* ProjectContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectContactModel.h; sourceTree = "<group>"; };
-		D3AC619E19B6BF930015B62F /* ProjectContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectContactModel.m; sourceTree = "<group>"; };
-		D3AC619F19B6BF930015B62F /* ProjectImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectImageModel.h; sourceTree = "<group>"; };
-		D3AC61A019B6BF930015B62F /* ProjectImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectImageModel.m; sourceTree = "<group>"; };
-		D3AC61A119B6BF930015B62F /* projectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = projectModel.h; sourceTree = "<group>"; };
-		D3AC61A219B6BF930015B62F /* projectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = projectModel.m; sourceTree = "<group>"; };
-		D3AC61A319B6BF930015B62F /* ProjectStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectStage.h; sourceTree = "<group>"; };
-		D3AC61A419B6BF930015B62F /* ProjectStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectStage.m; sourceTree = "<group>"; };
 		D3AC61A619B6BF930015B62F /* TopicsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicsModel.h; sourceTree = "<group>"; };
 		D3AC61A719B6BF930015B62F /* TopicsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicsModel.m; sourceTree = "<group>"; };
 		D3AC61B919B6D5D20015B62F /* CommentApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentApi.h; sourceTree = "<group>"; };
@@ -1404,15 +1411,11 @@
 		D3AC61BD19B6E3FF0015B62F /* 人脉_66a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉_66a.png"; sourceTree = "<group>"; };
 		D3AC61C219B70F350015B62F /* 人脉_74a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉_74a.png"; sourceTree = "<group>"; };
 		D3AC61C419B722360015B62F /* HeadImageDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeadImageDelegate.h; sourceTree = "<group>"; };
-		D3AC61C619B80BDE0015B62F /* ProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductModel.h; sourceTree = "<group>"; };
-		D3AC61C719B80BDE0015B62F /* ProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductModel.m; sourceTree = "<group>"; };
 		D3AC61CE19B849920015B62F /* PorjectCommentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PorjectCommentTableViewController.h; sourceTree = "<group>"; };
 		D3AC61CF19B849920015B62F /* PorjectCommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PorjectCommentTableViewController.m; sourceTree = "<group>"; };
 		D3AC61D119B849F30015B62F /* 项目－评论列表_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目－评论列表_03a.png"; sourceTree = "<group>"; };
 		D3AC61D719B8573E0015B62F /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
 		D3AC61D819B8573E0015B62F /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
-		D3AC61DA19B859950015B62F /* ProjectCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCommentModel.h; sourceTree = "<group>"; };
-		D3AC61DB19B859950015B62F /* ProjectCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCommentModel.m; sourceTree = "<group>"; };
 		D3AC61DD19B85CA50015B62F /* ProjectCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCommentView.h; sourceTree = "<group>"; };
 		D3AC61DE19B85CA50015B62F /* ProjectCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCommentView.m; sourceTree = "<group>"; };
 		D3AC61E019B86DB30015B62F /* 项目－评论列表_03a-07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目－评论列表_03a-07.png"; sourceTree = "<group>"; };
@@ -1610,6 +1613,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04248B0219C67C1D000FB8A9 /* ProductModel */ = {
+			isa = PBXGroup;
+			children = (
+				04248B0319C67C1D000FB8A9 /* ProductModel.h */,
+				04248B0419C67C1D000FB8A9 /* ProductModel.m */,
+			);
+			path = ProductModel;
+			sourceTree = "<group>";
+		};
 		0426BFDE19922CE400CD8822 = {
 			isa = PBXGroup;
 			children = (
@@ -2526,6 +2538,27 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
+		04BF13A519C4162A002E02C9 /* ProjectModel */ = {
+			isa = PBXGroup;
+			children = (
+				04BF13A619C4162A002E02C9 /* AFAppDotNetAPIClient.h */,
+				04BF13A719C4162A002E02C9 /* AFAppDotNetAPIClient.m */,
+				04BF13A819C4162A002E02C9 /* ProjectApi.h */,
+				04BF13A919C4162A002E02C9 /* ProjectApi.m */,
+				04BF13AA19C4162A002E02C9 /* ProjectCommentModel.h */,
+				04BF13AB19C4162A002E02C9 /* ProjectCommentModel.m */,
+				04BF13AC19C4162A002E02C9 /* ProjectContactModel.h */,
+				04BF13AD19C4162A002E02C9 /* ProjectContactModel.m */,
+				04BF13AE19C4162A002E02C9 /* ProjectImageModel.h */,
+				04BF13AF19C4162A002E02C9 /* ProjectImageModel.m */,
+				04BF13B019C4162A002E02C9 /* projectModel.h */,
+				04BF13B119C4162A002E02C9 /* projectModel.m */,
+				04BF13B219C4162A002E02C9 /* ProjectStage.h */,
+				04BF13B319C4162A002E02C9 /* ProjectStage.m */,
+			);
+			path = ProjectModel;
+			sourceTree = "<group>";
+		};
 		04D10BA819AE01690097C0C6 /* Contact */ = {
 			isa = PBXGroup;
 			children = (
@@ -2762,12 +2795,12 @@
 		D3AC618B19B6BF930015B62F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D3AC61C519B80BC50015B62F /* ProductModel */,
+				04248B0219C67C1D000FB8A9 /* ProductModel */,
+				04BF13A519C4162A002E02C9 /* ProjectModel */,
 				D3AC618C19B6BF930015B62F /* ConditionsModel */,
 				D3AC618F19B6BF930015B62F /* ContactModel */,
 				D3AC619219B6BF930015B62F /* LoginModel */,
 				D3AC619519B6BF930015B62F /* MyCenterModel */,
-				D3AC619819B6BF930015B62F /* ProjectModel */,
 				D3AC61A519B6BF930015B62F /* TopicsModel */,
 			);
 			path = Model;
@@ -2793,6 +2826,8 @@
 				D3AC61D819B8573E0015B62F /* CommentModel.m */,
 				D3AC61E219B882050015B62F /* ContactCommentModel.h */,
 				D3AC61E319B882050015B62F /* ContactCommentModel.m */,
+				04BF13BB19C4178A002E02C9 /* ContactStage.h */,
+				04BF13BC19C4178A002E02C9 /* ContactStage.m */,
 			);
 			path = ContactModel;
 			sourceTree = "<group>";
@@ -2817,27 +2852,6 @@
 			path = MyCenterModel;
 			sourceTree = "<group>";
 		};
-		D3AC619819B6BF930015B62F /* ProjectModel */ = {
-			isa = PBXGroup;
-			children = (
-				D3AC619919B6BF930015B62F /* AFAppDotNetAPIClient.h */,
-				D3AC619A19B6BF930015B62F /* AFAppDotNetAPIClient.m */,
-				D3AC619B19B6BF930015B62F /* ProjectApi.h */,
-				D3AC619C19B6BF930015B62F /* ProjectApi.m */,
-				D3AC619D19B6BF930015B62F /* ProjectContactModel.h */,
-				D3AC619E19B6BF930015B62F /* ProjectContactModel.m */,
-				D3AC619F19B6BF930015B62F /* ProjectImageModel.h */,
-				D3AC61A019B6BF930015B62F /* ProjectImageModel.m */,
-				D3AC61A119B6BF930015B62F /* projectModel.h */,
-				D3AC61A219B6BF930015B62F /* projectModel.m */,
-				D3AC61A319B6BF930015B62F /* ProjectStage.h */,
-				D3AC61A419B6BF930015B62F /* ProjectStage.m */,
-				D3AC61DA19B859950015B62F /* ProjectCommentModel.h */,
-				D3AC61DB19B859950015B62F /* ProjectCommentModel.m */,
-			);
-			path = ProjectModel;
-			sourceTree = "<group>";
-		};
 		D3AC61A519B6BF930015B62F /* TopicsModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -2845,15 +2859,6 @@
 				D3AC61A719B6BF930015B62F /* TopicsModel.m */,
 			);
 			path = TopicsModel;
-			sourceTree = "<group>";
-		};
-		D3AC61C519B80BC50015B62F /* ProductModel */ = {
-			isa = PBXGroup;
-			children = (
-				D3AC61C619B80BDE0015B62F /* ProductModel.h */,
-				D3AC61C719B80BDE0015B62F /* ProductModel.m */,
-			);
-			path = ProductModel;
 			sourceTree = "<group>";
 		};
 		D3AC61CD19B849800015B62F /* ProjectCommentView */ = {
@@ -3632,11 +3637,13 @@
 				042D9E2C19B559FC00689C5D /* TopicsTableViewController.m in Sources */,
 				0426C29E19922D5A00CD8822 /* GPUImageOverlayBlendFilter.m in Sources */,
 				0426C2B119922D5A00CD8822 /* GPUImageSaturationFilter.m in Sources */,
+				04BF13B419C4162A002E02C9 /* AFAppDotNetAPIClient.m in Sources */,
 				0426C2BE19922D5A00CD8822 /* GPUImageSourceOverBlendFilter.m in Sources */,
 				0426C2B719922D5A00CD8822 /* GPUImageSingleComponentGaussianBlurFilter.m in Sources */,
 				0426C29D19922D5A00CD8822 /* GPUImageOutput.m in Sources */,
 				0426C27619922D5A00CD8822 /* GPUImageHarrisCornerDetectionFilter.m in Sources */,
 				0426C2AA19922D5A00CD8822 /* GPUImageRawDataOutput.m in Sources */,
+				04BF13BA19C4162A002E02C9 /* ProjectStage.m in Sources */,
 				0426C29219922D5A00CD8822 /* GPUImageMonochromeFilter.m in Sources */,
 				042D9E2419B559FC00689C5D /* SearchViewController.m in Sources */,
 				0426C2D319922D5A00CD8822 /* GPUImageUnsharpMaskFilter.m in Sources */,
@@ -3660,6 +3667,7 @@
 				0426C27019922D5A00CD8822 /* GPUImageGaussianBlurPositionFilter.m in Sources */,
 				0426C28219922D5A00CD8822 /* GPUImageKuwaharaRadius3Filter.m in Sources */,
 				D3AD61A419AEF0A2001FD483 /* MultipleChoiceViewController.m in Sources */,
+				04BF13B819C4162A002E02C9 /* ProjectImageModel.m in Sources */,
 				0426C2B819922D5A00CD8822 /* GPUImageSketchFilter.m in Sources */,
 				5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */,
 				0426C23819922D5A00CD8822 /* AFHTTPSessionManager.m in Sources */,
@@ -3685,11 +3693,13 @@
 				0426C28519922D5A00CD8822 /* GPUImageLevelsFilter.m in Sources */,
 				0426C23619922D5A00CD8822 /* AFHTTPRequestOperation.m in Sources */,
 				0426C2B519922D5A00CD8822 /* GPUImageShiTomasiFeatureDetectionFilter.m in Sources */,
-				D3AC61AE19B6BF930015B62F /* ProjectContactModel.m in Sources */,
+				04BF13BD19C4178A002E02C9 /* ContactStage.m in Sources */,
+				04BF13B619C4162A002E02C9 /* ProjectCommentModel.m in Sources */,
 				5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */,
 				0426C2B219922D5A00CD8822 /* GPUImageScreenBlendFilter.m in Sources */,
 				0426C2B419922D5A00CD8822 /* GPUImageSharpenFilter.m in Sources */,
 				0426C2FB19922D5A00CD8822 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				04248B0519C67C1D000FB8A9 /* ProductModel.m in Sources */,
 				D3AC61A919B6BF930015B62F /* ContactModel.m in Sources */,
 				5BF08A3D19B8779D00782976 /* MoreCompanyViewCell.m in Sources */,
 				042D9E2319B559FC00689C5D /* SaveConditionsViewController.m in Sources */,
@@ -3699,7 +3709,6 @@
 				D3AD616419ADB918001FD483 /* SqliteHelper.m in Sources */,
 				D3AD61A319AEF0A2001FD483 /* MChoiceTableViewCell.m in Sources */,
 				042D9E1719B559FC00689C5D /* ProgramSelectViewCell.m in Sources */,
-				D3AC61AD19B6BF930015B62F /* ProjectApi.m in Sources */,
 				0426C25219922D5A00CD8822 /* GPUImageClosingFilter.m in Sources */,
 				0426C28C19922D5A00CD8822 /* GPUImageLuminanceThresholdFilter.m in Sources */,
 				0426C27719922D5A00CD8822 /* GPUImageHazeFilter.m in Sources */,
@@ -3717,10 +3726,10 @@
 				042D9E1519B559FC00689C5D /* MyView.m in Sources */,
 				D3AD60A619AC5769001FD483 /* MBProgressHUD.m in Sources */,
 				D3A4281019C1749E00BAB6C7 /* ErrorView.m in Sources */,
+				04BF13B719C4162A002E02C9 /* ProjectContactModel.m in Sources */,
 				0426C28119922D5A00CD8822 /* GPUImageKuwaharaFilter.m in Sources */,
 				0426C25D19922D5A00CD8822 /* GPUImageDarkenBlendFilter.m in Sources */,
 				0426C2FD19922D5A00CD8822 /* UIAlertView+AFNetworking.m in Sources */,
-				D3AC61B119B6BF930015B62F /* ProjectStage.m in Sources */,
 				5B18B47219C01DAD00551F82 /* CommonCellView.m in Sources */,
 				0426C26619922D5A00CD8822 /* GPUImageExclusionBlendFilter.m in Sources */,
 				0426C2E419922D5A00CD8822 /* FaceppDetection.m in Sources */,
@@ -3758,16 +3767,15 @@
 				D3AD619C19AEEE30001FD483 /* LocateView.m in Sources */,
 				0426C23919922D5A00CD8822 /* AFNetworkReachabilityManager.m in Sources */,
 				0426C23E19922D5A00CD8822 /* AFURLSessionManager.m in Sources */,
+				04BF13B919C4162A002E02C9 /* projectModel.m in Sources */,
 				04D10BE019AE016A0097C0C6 /* PersonalCenterViewController.m in Sources */,
 				0426C2AF19922D5A00CD8822 /* GPUImageRGBOpeningFilter.m in Sources */,
 				0426C2ED19922D5A00CD8822 /* FaceppResult.m in Sources */,
-				D3AC61B019B6BF930015B62F /* projectModel.m in Sources */,
 				5B13C70C19B6E8A5008EA7A0 /* CommentView.m in Sources */,
 				0426C20C19922D5A00CD8822 /* HomePageViewController.m in Sources */,
 				0426C28F19922D5A00CD8822 /* GPUImageMaskFilter.m in Sources */,
 				0426C25919922D5A00CD8822 /* GPUImageContrastFilter.m in Sources */,
 				D3AD609219AC56CB001FD483 /* MJRefreshBaseView.m in Sources */,
-				D3AC61AF19B6BF930015B62F /* ProjectImageModel.m in Sources */,
 				D3AC61AA19B6BF930015B62F /* LoginModel.m in Sources */,
 				0426C2D119922D5A00CD8822 /* GPUImageTwoPassTextureSamplingFilter.m in Sources */,
 				5B0A00A319B587CD00500C05 /* TMQuiltView.m in Sources */,
@@ -3784,7 +3792,6 @@
 				0426BFFB19922CE400CD8822 /* AppDelegate.m in Sources */,
 				0426C2B919922D5A00CD8822 /* GPUImageSmoothToonFilter.m in Sources */,
 				0426C30019922D5A00CD8822 /* UIProgressView+AFNetworking.m in Sources */,
-				D3AC61AC19B6BF930015B62F /* AFAppDotNetAPIClient.m in Sources */,
 				042D9E3619B55AB800689C5D /* UnderstandViewController.m in Sources */,
 				0426C26019922D5A00CD8822 /* GPUImageDirectionalNonMaximumSuppressionFilter.m in Sources */,
 				D3AD60FB19AC7CC5001FD483 /* EGOImageLoader.m in Sources */,
@@ -3797,7 +3804,6 @@
 				0426C2A019922D5A00CD8822 /* GPUImagePerlinNoiseFilter.m in Sources */,
 				042D9E1E19B559FC00689C5D /* ConditionsView.m in Sources */,
 				0426C2DA19922D5A00CD8822 /* GPUImageZoomBlurFilter.m in Sources */,
-				D3AC61C819B80BDE0015B62F /* ProductModel.m in Sources */,
 				042D9E1219B559FC00689C5D /* MainDesign.m in Sources */,
 				0426C28A19922D5A00CD8822 /* GPUImageLookupFilter.m in Sources */,
 				0426C24119922D5A00CD8822 /* GPUImage3x3ConvolutionFilter.m in Sources */,
@@ -3812,6 +3818,7 @@
 				0426C26D19922D5A00CD8822 /* GPUImageFilterPipeline.m in Sources */,
 				042D9E0F19B559FC00689C5D /* DecorationProject.m in Sources */,
 				0426C2A519922D5A00CD8822 /* GPUImagePolarPixellateFilter.m in Sources */,
+				04BF13B519C4162A002E02C9 /* ProjectApi.m in Sources */,
 				04D10BEA19AE016A0097C0C6 /* PublishViewController.m in Sources */,
 				042D9E1319B559FC00689C5D /* MyFactory.m in Sources */,
 				D3AD60A119AC574A001FD483 /* networkConnect.m in Sources */,
@@ -3855,7 +3862,6 @@
 				0426C2CF19922D5A00CD8822 /* GPUImageTwoInputFilter.m in Sources */,
 				0426C2DD19922D5A00CD8822 /* GPUImagePicture.m in Sources */,
 				042D9E2519B559FC00689C5D /* toolBarView.m in Sources */,
-				D3AC61DC19B859950015B62F /* ProjectCommentModel.m in Sources */,
 				042D9E1019B559FC00689C5D /* LandInfo.m in Sources */,
 				0426C29719922D5A00CD8822 /* GPUImageMultiplyBlendFilter.m in Sources */,
 				0426C26519922D5A00CD8822 /* GPUImageErosionFilter.m in Sources */,
