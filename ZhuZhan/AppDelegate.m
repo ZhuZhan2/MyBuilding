@@ -12,7 +12,7 @@
 #import "FaceLoginViewController.h"
 #import "HomePageViewController.h"
 #import "RecordSqlite.h"
-//#import "HomePageViewController.h"
+#import "networkConnect.h"
 #import "iflyMSC/iflySetting.h"
 
 #import "Definition.h"
@@ -61,9 +61,6 @@
     
     [RecordSqlite opensql];
     
-   HomePageViewController *homeVC = [[HomePageViewController alloc] init];
-    self.window.rootViewController = homeVC;
-    [self.window makeKeyAndVisible];
     
 //   PersonalDetailViewController *personVC = [[PersonalDetailViewController alloc] init];
 //    self.window.rootViewController = personVC;
@@ -76,31 +73,20 @@
             NSLog(@"第一次启动");
             LoginViewController *loginview = [[LoginViewController alloc] init];
             UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
-    
             [self.window setRootViewController:naVC];
             self.window.backgroundColor = [UIColor whiteColor];
             [self.window makeKeyAndVisible];
         }else{
-            NSLog(@"==>%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"deviceToken"]);
-            if (![[NSUserDefaults standardUserDefaults]objectForKey:@"deviceToken"]) {
-                LoginViewController *loginview = [[LoginViewController alloc] init];
-                UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
-                [self.window setRootViewController:naVC];
-                self.window.backgroundColor = [UIColor whiteColor];
-                [self.window makeKeyAndVisible];
-            }else{
-                HomePageViewController *homeVC = [[HomePageViewController alloc] init];
-                self.window.rootViewController = homeVC;
-                [self.window makeKeyAndVisible];
-                            [self.window makeKeyAndVisible];
-    
-                NSLog(@"mimiimimimimamama%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"]);
-                if (![[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"] isEqualToString:@"1"]) {
-    
-    
+            #if TARGET_IPHONE_SIMULATOR
+            HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+            self.window.rootViewController = homeVC;
+            [self.window makeKeyAndVisible];
+            #elif TARGET_OS_IPHONE
+            if([[networkConnect sharedInstance] connectedToNetwork]){
+                NSLog(@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"]);
+                if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"] isEqualToString:@"0"]) {
                     LoginViewController *loginview = [[LoginViewController alloc] init];
                     UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
-    
                     [self.window setRootViewController:naVC];
                     self.window.backgroundColor = [UIColor whiteColor];
                     [self.window makeKeyAndVisible];
@@ -110,10 +96,11 @@
                     [self.window setRootViewController:naVC];
                     self.window.backgroundColor = [UIColor whiteColor];
                     [self.window makeKeyAndVisible];
-    
-    
                 }
-    
+            }else{
+                HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+                self.window.rootViewController = homeVC;
+                [self.window makeKeyAndVisible];
             }
         }
     
