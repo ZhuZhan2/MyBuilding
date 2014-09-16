@@ -158,7 +158,7 @@ static int chanceToLoginByFace =3;
 - (void)learnToAddFaceWith:(NSMutableDictionary *)parameters WithFaceID:(NSString *)str      //   登录判断
 {
 
-
+    NSLog(@"********%@",str);
     [LoginModel PostFaceLoginWithBlock:^(NSMutableArray *posts, NSError *error) {
         NSDictionary *responseObject = [posts objectAtIndex:0];
         NSNumber *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
