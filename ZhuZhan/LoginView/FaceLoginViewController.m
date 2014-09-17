@@ -86,7 +86,7 @@
 #pragma mark  开始进行脸部识别－－－－－－－－－－
 -(void)beginFaceRecoginzer     //第一次进行脸部识别
 {
-
+    self.view.userInteractionEnabled = NO;
     faceVC = [[FaceViewController alloc] init];
     [self.view addSubview:faceVC.view];
 }
@@ -95,6 +95,7 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event     //第二次第三进行脸部识别
 {
 
+    self.view.userInteractionEnabled = NO;
     faceVC = [[FaceViewController alloc] init];
     [self.view addSubview:faceVC.view];
 
@@ -110,6 +111,7 @@
 -(void)backToFormerVC{    //返回到上一个界面
     [faceVC.view removeFromSuperview];
     faceVC = nil;
+    self.view.userInteractionEnabled = NO;
 }
 
 

@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZhuZhan/RegistView/RegistViewController.m"
-            timestampString = "432544968.320198"
+            timestampString = "432548775.713996"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
             landmarkName = "-commomRegister"
             landmarkType = "5">
          </BreakpointContent>
