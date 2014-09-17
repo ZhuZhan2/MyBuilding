@@ -62,12 +62,6 @@ static int People =0;
     [indicator startAnimating];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 
 //初始化
@@ -245,7 +239,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     m_highlitView[_index].hidden = NO;
     
     //判定截图的条件
-    if (m_highlitView[_index].center.x>80&&m_highlitView[_index].center.x<240&&m_highlitView[_index].center.y>self.view.center.y-100&&m_highlitView[_index].center.x<self.view.frame.size.height-100&&m_highlitView[_index].frame.size.width>60&&m_highlitView[_index].frame.size.width<280&&m_highlitView[_index].frame.size.height>80&&m_highlitView[_index].frame.size.height<440) {
+    if (m_highlitView[_index].center.x>80&&m_highlitView[_index].center.x<240&&m_highlitView[_index].center.y>100&&m_highlitView[_index].center.x<400&&m_highlitView[_index].frame.size.width>60&&m_highlitView[_index].frame.size.width<280&&m_highlitView[_index].frame.size.height>80&&m_highlitView[_index].frame.size.height<440) {
         isBeginToCutFace =YES;//截图的bool值为YES，开始执行截图函数
         [self performSelector:@selector(delayTojudge:) withObject:image afterDelay:1.0];
     }
@@ -295,5 +289,10 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     return nil;
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 @end

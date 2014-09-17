@@ -239,8 +239,13 @@ static bool IsVerify =NO;
 }
 
 - (void)commomRegister//账号密码的注册
+
 {
     NSLog(@"共同注册部分");
+    if (![self phoneNoErr:_phoneNumberTextField.text]) {
+        return;
+    }
+   
 //    if (!IsVerify) {
 //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请单击获取手机验证码" delegate:nil cancelButtonTitle:@"是" otherButtonTitles:nil];
 //        [alert show];
