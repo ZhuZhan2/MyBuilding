@@ -60,6 +60,7 @@
 
 +(NSString *)JudgmentProjectStage:(projectModel *)model{
     NSString *stage = [[NSString alloc] init];
+    stage = 0;
     if(![model.a_landName isEqualToString:@""] ||
        ![model.a_district isEqualToString:@""] ||
        ![model.a_province isEqualToString:@""] ||

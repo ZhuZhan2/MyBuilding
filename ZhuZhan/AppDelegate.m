@@ -14,12 +14,10 @@
 #import "RecordSqlite.h"
 #import "networkConnect.h"
 #import "iflyMSC/iflySetting.h"
-
 #import "Definition.h"
 #import "iflyMSC/IFlySpeechUtility.h"
-
 #import "PersonalDetailViewController.h"
-
+#import "LoginSqlite.h"
 @implementation AppDelegate
 
 + (AppDelegate *)instance {
@@ -59,8 +57,14 @@
 		NSLog(@"manager start failed!");
 	}
     
+    [LoginSqlite opensql];
     [RecordSqlite opensql];
-    
+    [LoginSqlite insertData:@"" datakey:@"userId"];
+    [LoginSqlite insertData:@"" datakey:@"isFaceRegister"];
+    [LoginSqlite insertData:@"" datakey:@"deviceToken"];
+    [LoginSqlite insertData:@"" datakey:@"userNmae"];
+    [LoginSqlite insertData:@"" datakey:@"userImage"];
+    [LoginSqlite insertData:@"" datakey:@"faceCount"];
     
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];

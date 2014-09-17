@@ -72,7 +72,7 @@ static bool IsVerify =NO;
     [getCodeBtn addTarget:self action:@selector(getVerifitionCode) forControlEvents:UIControlEventTouchUpInside];
     [panView addSubview:getCodeBtn];
     
-    UIImageView *bgImgView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0,110,260,91)];
+    UIImageView *bgImgView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0,110,264,91)];
     [bgImgView3 setImage:[UIImage imageNamed:@"登录_07.png"]];
     [panView addSubview:bgImgView3];
     

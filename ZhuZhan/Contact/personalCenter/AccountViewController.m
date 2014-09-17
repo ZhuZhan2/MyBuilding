@@ -11,9 +11,9 @@
 #import "GradientView.h"
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
-#import "UserModel.h"
 #import "DatePickerView.h"
 #import "BirthDay.h"
+#import "LoginSqlite.h"
 @interface AccountViewController ()
 
 @end
@@ -66,8 +66,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover.delegate = self;
     
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
-    UserModel *userModel = [UserModel sharedUserModel];
-    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,userModel.userImageUrl]];
+    
+    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,[LoginSqlite getdata:@"userImageUrl" defaultdata:@"userImageUrl"]]];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadImageFrame:CGRectMake(125, -50, 70, 70)];
     [_pathCover.headImage.layer setMasksToBounds:YES];
