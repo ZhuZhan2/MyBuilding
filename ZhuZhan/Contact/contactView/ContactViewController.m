@@ -23,8 +23,10 @@
 #import "CommentApi.h"
 #import "ConnectionAvailable.h"
 #import "BirthDay.h"
-#import "UserModel.h"
+#import "LoginSqlite.h"
 #import "LoginViewController.h"
+
+
 
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
@@ -274,6 +276,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //点击自己头像去个人中心
 -(void)gotoMyCenter{
     NSLog(@"gotoMyCenter");
+    [LoginSqlite opensql];
+    NSString *deviceToken = [LoginSqlite getdata:@"userToken" defaultdata:@""];
+
+    if ([deviceToken isEqualToString:@""]) {
+        LoginViewController *loginVC = [[LoginViewController alloc]init];
+        [self.navigationController pushViewController:loginVC animated:YES];
+        return;
+    }
     
     PersonalCenterViewController *personalVC = [[PersonalCenterViewController alloc] init];
     [self.navigationController pushViewController:personalVC animated:YES];
