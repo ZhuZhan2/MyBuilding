@@ -82,7 +82,7 @@
     [bgImgView addSubview:areacountLabel];
     
     progressImage = [[UIImageView alloc] initWithFrame:CGRectMake(215,10,52,52)];
-    if([stage isEqualToString:@"1"]){
+    if([stage isEqualToString:@"1"]||[stage isEqualToString:@"0"]){
         [progressImage setImage:[UIImage imageNamed:@"+项目-首页_21a.png"]];
     }else if([stage isEqualToString:@"2"]){
         [progressImage setImage:[UIImage imageNamed:@"+项目-首页_25a.png"]];

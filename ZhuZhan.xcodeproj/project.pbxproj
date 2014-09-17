@@ -416,9 +416,9 @@
 		D3A4281019C1749E00BAB6C7 /* ErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4280F19C1749E00BAB6C7 /* ErrorView.m */; };
 		D3A4281519C19A3E00BAB6C7 /* BirthDay.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281419C19A3E00BAB6C7 /* BirthDay.m */; };
 		D3A4281B19C1A2E700BAB6C7 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281819C1A2E700BAB6C7 /* GTMBase64.m */; };
-		D3A4281E19C1A62F00BAB6C7 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281D19C1A62F00BAB6C7 /* UserModel.m */; };
 		D3A4282119C2FC7100BAB6C7 /* controls_03.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A4281F19C2FC7100BAB6C7 /* controls_03.png */; };
 		D3A4282219C2FC7100BAB6C7 /* controls_05.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A4282019C2FC7100BAB6C7 /* controls_05.png */; };
+		D3A4283819C9401C00BAB6C7 /* LoginSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4283719C9401C00BAB6C7 /* LoginSqlite.m */; };
 		D3AC60F219B5555D0015B62F /* 地图搜索_02.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC60F019B5555D0015B62F /* 地图搜索_02.png */; };
 		D3AC60F519B5571D0015B62F /* 搜索结果_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC60F419B5571D0015B62F /* 搜索结果_03a.png */; };
 		D3AC610319B589970015B62F /* 高级搜索-多选_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC610019B589970015B62F /* 高级搜索-多选_03a.png */; };
@@ -1360,10 +1360,10 @@
 		D3A4281819C1A2E700BAB6C7 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
 		D3A4281919C1A2E700BAB6C7 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		D3A4281A19C1A2E700BAB6C7 /* GTMObjectSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMObjectSingleton.h; sourceTree = "<group>"; };
-		D3A4281C19C1A62F00BAB6C7 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
-		D3A4281D19C1A62F00BAB6C7 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		D3A4281F19C2FC7100BAB6C7 /* controls_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls_03.png; sourceTree = "<group>"; };
 		D3A4282019C2FC7100BAB6C7 /* controls_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls_05.png; sourceTree = "<group>"; };
+		D3A4283619C9401C00BAB6C7 /* LoginSqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSqlite.h; sourceTree = "<group>"; };
+		D3A4283719C9401C00BAB6C7 /* LoginSqlite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSqlite.m; sourceTree = "<group>"; };
 		D3AC60F019B5555D0015B62F /* 地图搜索_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图搜索_02.png"; sourceTree = "<group>"; };
 		D3AC60F119B5555D0015B62F /* mapsearch-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapsearch-1.png"; sourceTree = "<group>"; };
 		D3AC60F419B5571D0015B62F /* 搜索结果_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索结果_03a.png"; sourceTree = "<group>"; };
@@ -2832,8 +2832,6 @@
 			children = (
 				D3AC619319B6BF930015B62F /* LoginModel.h */,
 				D3AC619419B6BF930015B62F /* LoginModel.m */,
-				D3A4281C19C1A62F00BAB6C7 /* UserModel.h */,
-				D3A4281D19C1A62F00BAB6C7 /* UserModel.m */,
 			);
 			path = LoginModel;
 			sourceTree = "<group>";
@@ -3173,6 +3171,8 @@
 		D3AD616119ADB918001FD483 /* Sqlite3 */ = {
 			isa = PBXGroup;
 			children = (
+				D3A4283619C9401C00BAB6C7 /* LoginSqlite.h */,
+				D3A4283719C9401C00BAB6C7 /* LoginSqlite.m */,
 				D3AD616719ADB9F7001FD483 /* RecordModel.h */,
 				D3AD616819ADB9F7001FD483 /* RecordModel.m */,
 				D3AD616919ADB9F7001FD483 /* RecordSqlite.h */,
@@ -3610,7 +3610,6 @@
 				0426C26C19922D5A00CD8822 /* GPUImageFilterGroup.m in Sources */,
 				D3AD609819AC56CB001FD483 /* UIView+Extension.m in Sources */,
 				0426C27119922D5A00CD8822 /* GPUImageGaussianSelectiveBlurFilter.m in Sources */,
-				D3A4281E19C1A62F00BAB6C7 /* UserModel.m in Sources */,
 				0426C29B19922D5A00CD8822 /* GPUImageOpacityFilter.m in Sources */,
 				0426C25719922D5A00CD8822 /* GPUImageColorMatrixFilter.m in Sources */,
 				0426C27319922D5A00CD8822 /* GPUImageGrayscaleFilter.m in Sources */,
@@ -3856,6 +3855,7 @@
 				0426C2CF19922D5A00CD8822 /* GPUImageTwoInputFilter.m in Sources */,
 				0426C2DD19922D5A00CD8822 /* GPUImagePicture.m in Sources */,
 				042D9E2519B559FC00689C5D /* toolBarView.m in Sources */,
+				D3A4283819C9401C00BAB6C7 /* LoginSqlite.m in Sources */,
 				042D9E1019B559FC00689C5D /* LandInfo.m in Sources */,
 				0426C29719922D5A00CD8822 /* GPUImageMultiplyBlendFilter.m in Sources */,
 				0426C26519922D5A00CD8822 /* GPUImageErosionFilter.m in Sources */,
