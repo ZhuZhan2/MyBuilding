@@ -45,8 +45,11 @@
     sqlite3 *zpzchinaMobileDB;
     char *errorMsg;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
     NSString *documents = [paths objectAtIndex:0];
+    
     NSString *database_path = [documents stringByAppendingPathComponent:DataBaseName];
+    
     if (sqlite3_open([database_path UTF8String], &zpzchinaMobileDB)==SQLITE_OK) {
         
         NSString *createSQL = @"CREATE TABLE IF NOT EXISTS Login (primarykey INTEGER PRIMARY KEY  AUTOINCREMENT, data Varchar,datakey Varchar);";
@@ -158,6 +161,7 @@
     if (sqlite3_prepare_v2(zpzchinaMobileDB, update, -1, &stmt, nil) == SQLITE_OK) {
         sqlite3_bind_int(stmt, 1, i);
         sqlite3_bind_text(stmt,2, [datakey UTF8String],-1,NULL);
+        data=[NSString stringWithFormat:@"%@",data];
         sqlite3_bind_text(stmt,3, [data UTF8String], -1, NULL);
     }
     

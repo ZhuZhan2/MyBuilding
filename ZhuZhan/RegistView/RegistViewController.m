@@ -14,6 +14,11 @@
 #import "FaceViewController.h"
 #import "PanViewController.h"
 #import "LoginModel.h"
+#import "LoginSqlite.h"
+
+#import "AppDelegate.h"
+#import "HomePageViewController.h"
+
 @interface RegistViewController ()
 
 @end
@@ -114,6 +119,23 @@ static bool IsVerify =NO;
     [panView addSubview:cancelBtn];
     
 }
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //恢复tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //隐藏tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarHide];
+}
+
 
 
 #pragma mark UITextFieldDelegate
@@ -291,16 +313,21 @@ static bool IsVerify =NO;
             IsVerify =NO;
             NSArray *a = [[responseObject objectForKey:@"d"] objectForKey:@"data"];
             for(NSDictionary *item in a){
-                [[NSUserDefaults standardUserDefaults]setObject:_phoneNumberTextField.text forKey:@"userName"];
-                NSString *isFaceRegister = [NSString stringWithFormat:@"%@",[item objectForKey:@"isFaceRegister"]];
-                NSLog(@"ssssssssss  %@",isFaceRegister);
-                [[NSUserDefaults standardUserDefaults] setObject:isFaceRegister forKey:@"isFaceRegister"];
-                [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"faceCount"] forKey:@"currentFaceCount"];
-                [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"userId"] forKey:@"userId"];
-                NSLog(@"*****    %@",[item objectForKey:@"userId"]);
-                 NSLog(@"mmmmm    %@",[item objectForKey:@"userToken"]);
-                [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"deviceToken"] forKey:@"deviceToken"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                
+                [LoginSqlite opensql];
+                [LoginSqlite insertData:[item objectForKey:@"isFaceRegister"] datakey:@"isFaceRegister"];
+                [LoginSqlite insertData:[item objectForKey:@"faceCount"] datakey:@"faceCount"];
+                 NSLog(@"***********%@",[item objectForKey:@"userName"]);
+                NSString *userName =[NSString stringWithFormat:@"%@",[item objectForKey:@"userName"]];
+                if ([userName isEqualToString:@"(null)"]||[userName isEqualToString:@"<null>"]) {
+                userName = @"";
+                }
+                [LoginSqlite insertData:userName datakey:@"userName"];//待会跟岳志强沟通
+                [LoginSqlite insertData:[item objectForKey:@"userId"] datakey:@"userId"];
+//                NSLog(@"")
+                [LoginSqlite insertData:[item objectForKey:@"userToken"] datakey:@"userToken"];
+                
                 
             }
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册成功，是否进行脸部识别的注册" delegate:self cancelButtonTitle:@"是" otherButtonTitles:@"否", nil];
