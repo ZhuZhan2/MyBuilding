@@ -77,6 +77,7 @@
         [commentBtn addTarget:commentView action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
         [commentView addSubview:commentBtn];
     }
+    
     return commentView;
 }
 

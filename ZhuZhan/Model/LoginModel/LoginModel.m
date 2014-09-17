@@ -121,7 +121,11 @@
 + (NSURLSessionDataTask *)LoginWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
     NSString *urlStr = [NSString stringWithFormat:@"api/account/login"];
     NSLog(@"dic===>%@",dic);
-    return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
+    AFAppDotNetAPIClient *_sharedClient = [[AFAppDotNetAPIClient alloc] initWithBaseURL:[NSURL URLWithString:[NSString stringWithFormat:@"%s",serverAddress]]];
+    _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+    _sharedClient.responseSerializer = [AFJSONResponseSerializer serializer];
+    [_sharedClient.requestSerializer setValue:[NSString stringWithFormat:@"%@:%@",dic[@"cellPhone"],dic[@"password"]] forHTTPHeaderField:@"Authentication"];
+    return [_sharedClient POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             [mutablePosts addObject:JSON];
