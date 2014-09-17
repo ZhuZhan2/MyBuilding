@@ -45,8 +45,8 @@
 //用户名
 @property (nonatomic,strong)NSString  *userName;
 
-//密码
-@property (nonatomic,strong)NSString  *password;
+////密码
+//@property (nonatomic,strong)NSString  *password;
 
 //真实姓名
 @property (nonatomic,strong)NSString *realName;
@@ -70,6 +70,9 @@
 
 //职位
 @property (nonatomic,strong)NSString *position;
+
+//用户信息对字典
+@property (nonatomic, copy) NSDictionary *dict;
 
 //***********************************************************************************
 

@@ -15,7 +15,6 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "RecommendLetterViewController.h"
 #import "ContactProjectTableViewCell.h"
-//#import "ContactTableViewCell.h"
 #import "ContactCommentTableViewCell.h"
 #import "ContactModel.h"
 #import "ContactCommentModel.h"
@@ -24,7 +23,7 @@
 #import "CommentApi.h"
 #import "ConnectionAvailable.h"
 #import "BirthDay.h"
-#import "UserModel.h"
+#import "LoginSqlite.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -91,8 +90,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             [LoginModel GetUserImagesWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
                     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0]]];
-                    UserModel *model = [UserModel sharedUserModel];
-                    model.userImageUrl = posts[0];
+                    [LoginSqlite insertData:posts[0] datakey:@"userImageUrl"];
                 }
             } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0"];
             

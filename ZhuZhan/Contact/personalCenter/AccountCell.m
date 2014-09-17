@@ -18,6 +18,7 @@ static int textFieldTag =0;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
+         NSLog(@"model.dict  ********* %@",model.dict);
         //*********账户信息**********************************************************************************
         UIView *back1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
         back1.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"grayColor"]];
@@ -56,7 +57,7 @@ static int textFieldTag =0;
         password.font=[UIFont systemFontOfSize:15];
         password.delegate =self;
         password.secureTextEntry =YES;
-        password.text = model.password;
+        password.text = @"";
         password.tag = 2014091202;
         [self addSubview:password];
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -136,15 +137,22 @@ static int textFieldTag =0;
         birthdayLabel.font=[UIFont systemFontOfSize:15];
         birthdayLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:birthdayLabel];
-        birthday= [[UITextField alloc] initWithFrame:CGRectMake(110, 320, 150, 30)];
+        birthday= [[UILabel alloc] initWithFrame:CGRectMake(110, 320, 150, 30)];
         birthday.textAlignment = NSTextAlignmentLeft;
-        birthday.delegate =self;
-        birthday.placeholder = @"yyyy-mm-dd";
+//        birthday.delegate =self;
+
+//        birthday.placeholder = @"yyyy-mm-dd";
         birthday.text = [model.birthday substringWithRange:NSMakeRange(0,10)];
         birthday.font=[UIFont systemFontOfSize:15];
         birthday.textColor=GrayColor;
         birthday.tag = 2014091206;
         [self addSubview:birthday];
+        
+        UIButton *birthdayBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        birthdayBtn.frame = CGRectMake(110, 320, 150, 30);
+        [birthdayBtn addTarget:self action:@selector(brithdayBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:birthdayBtn];
+        
         UIImageView *horizontalLine6 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 359, 280, 1)];
         horizontalLine6.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
         horizontalLine6.alpha = 0.5;
@@ -156,12 +164,12 @@ static int textFieldTag =0;
         constellationLabel.font=[UIFont systemFontOfSize:15];
         constellationLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:constellationLabel];
-        constellation= [[UITextField alloc] initWithFrame:CGRectMake(110, 370, 150, 30)];
+        constellation= [[UILabel alloc] initWithFrame:CGRectMake(110, 370, 150, 30)];
         constellation.textAlignment = NSTextAlignmentLeft;
         constellation.text = model.constellation;
         constellation.font=[UIFont systemFontOfSize:15];
         constellation.textColor=GrayColor;
-        constellation.delegate =self;
+//        constellation.delegate =self;
         constellation.tag = 2014091207;
         [self addSubview:constellation];
         UIImageView *horizontalLine7 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 409, 280, 1)];
@@ -301,9 +309,7 @@ static int textFieldTag =0;
     if ([textField isEqual:location]) {
         flag =3;
     }
-    if ([textField isEqual:birthday]) {
-        flag =4;
-    }
+    
     if ([textField isEqual:constellation]) {
         flag =5;
     }
@@ -335,6 +341,13 @@ static int textFieldTag =0;
 {
     UITextField *textField = (UITextField *)[self viewWithTag:textFieldTag];
     [textField resignFirstResponder];
+}
+
+
+-(void)brithdayBtnClicked
+{
+    UILabel*label =(UILabel *)[self viewWithTag:2014091206];
+    [delegate AddBirthdayPicker:label];
 }
 
 - (void)awakeFromNib

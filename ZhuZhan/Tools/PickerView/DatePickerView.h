@@ -10,6 +10,7 @@
 @interface DatePickerView : UIActionSheet{
     UIDatePicker *datepicker;
     NSString *timeSp;
+    NSDate *newDate;
 }
 @property(retain,nonatomic)NSString *timeSp;
 @property (nonatomic,retain) UIDatePicker *datepicker;

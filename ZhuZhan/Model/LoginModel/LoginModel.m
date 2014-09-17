@@ -8,6 +8,7 @@
 
 #import "LoginModel.h"
 #import "AFAppDotNetAPIClient.h"
+#import "ContactModel.h"
 @implementation LoginModel
 - (void)setDict:(NSDictionary *)dict{
     _dict = dict;
@@ -256,7 +257,9 @@ NSString *urlStr = [NSString stringWithFormat:@"api/account/faceregister"];
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON[@"d"][@"data"]];
+            ContactModel *model = [[ContactModel alloc] init];
+            [model setDict:JSON[@"d"][@"data"][@"baseInformation"]];
+            [mutablePosts addObject:model];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }

@@ -72,7 +72,7 @@ static bool IsVerify =NO;
     [getCodeBtn addTarget:self action:@selector(getVerifitionCode) forControlEvents:UIControlEventTouchUpInside];
     [panView addSubview:getCodeBtn];
     
-    UIImageView *bgImgView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0,110,260,91)];
+    UIImageView *bgImgView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0,110,264,91)];
     [bgImgView3 setImage:[UIImage imageNamed:@"登录_07.png"]];
     [panView addSubview:bgImgView3];
     
@@ -239,8 +239,13 @@ static bool IsVerify =NO;
 }
 
 - (void)commomRegister//账号密码的注册
+
 {
     NSLog(@"共同注册部分");
+    if (![self phoneNoErr:_phoneNumberTextField.text]) {
+        return;
+    }
+   
 //    if (!IsVerify) {
 //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请单击获取手机验证码" delegate:nil cancelButtonTitle:@"是" otherButtonTitles:nil];
 //        [alert show];
