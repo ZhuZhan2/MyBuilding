@@ -125,13 +125,14 @@
         [self.tableView headerEndRefreshing];
     }else{
         startIndex = 0;
-        [showArr removeAllObjects];
+        
         [ProjectApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
+                [showArr removeAllObjects];
                 showArr = posts;
-                [self.tableView reloadData];
                 [self.tableView footerEndRefreshing];
                 [self.tableView headerEndRefreshing];
+                [self.tableView reloadData];
             }
         }startIndex:startIndex];
     }
@@ -154,9 +155,9 @@
         [ProjectApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 [showArr addObjectsFromArray:posts];
-                [self.tableView reloadData];
                 [self.tableView footerEndRefreshing];
                 [self.tableView headerEndRefreshing];
+                [self.tableView reloadData];
             }
         }startIndex:startIndex];
     }

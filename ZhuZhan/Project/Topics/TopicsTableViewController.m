@@ -105,13 +105,13 @@
         [self.tableView headerEndRefreshing];
     }else{
         startIndex = 0;
-        [showArr removeAllObjects];
         [ProjectApi GetPiProjectSeminarWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
+                [showArr removeAllObjects];
                 showArr = posts;
-                [self.tableView reloadData];
                 [self.tableView footerEndRefreshing];
                 [self.tableView headerEndRefreshing];
+                [self.tableView reloadData];
             }
         }startIndex:startIndex];
     }
@@ -137,6 +137,7 @@
                 [self.tableView reloadData];
                 [self.tableView footerEndRefreshing];
                 [self.tableView headerEndRefreshing];
+                [self.tableView reloadData];
             }
         }startIndex:startIndex];
     }
@@ -165,6 +166,7 @@
 {
     NSString *CellIdentifier = [NSString stringWithFormat:@"TopicsTableViewCell"];
     TopicsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NSLog(@"===== %@,%d",showArr,indexPath.row);
     TopicsModel *model = showArr[indexPath.row];
     if(!cell){
         cell = [[TopicsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:model];

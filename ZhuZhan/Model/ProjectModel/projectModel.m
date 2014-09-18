@@ -90,8 +90,6 @@
 
             NSLog(@"=====");
         }
-        NSArray* tempAry=@[contactModel.a_contactName,contactModel.a_duties,contactModel.a_accountName,contactModel.a_accountAddress,contactModel.a_mobilePhone];
-        [array[index] addObject:tempAry];
     }
 }
 
@@ -108,6 +106,7 @@
     self.mainBulidImages=[[NSMutableArray alloc]init];
     //装修 阶段 图片 electroweakImageArr @"electroweak"
     self.decorationImages=[[NSMutableArray alloc]init];
+    //主体施工 消防/景观绿化 图片,显示在 主体施工/主体施工 阶段里
     
     NSArray* array=@[self.auctionImages,self.explorationImages,self.constructionImages,self.pileImages,self.mainBulidImages,self.decorationImages];
     NSArray* categorys=@[@"plan",@"exploration",@"horizon",@"pileFoundation",@"mainPart",@"electroweak"];
