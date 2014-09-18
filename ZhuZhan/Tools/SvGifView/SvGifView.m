@@ -27,8 +27,7 @@ void getFrameInfo(CFURLRef url, NSMutableArray *frames, NSMutableArray *delayTim
         CGImageRelease(frame);
         
         // get gif info with each frame
-        NSDictionary *dict = (__bridge NSDictionary*)CGImageSourceCopyPropertiesAtIndex(gifSource, i, NULL);
-        
+        NSDictionary *dict = (NSDictionary*)CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(gifSource, i, NULL));
         // get gif size
         if (gifWidth != NULL && gifHeight != NULL) {
             *gifWidth = [[dict valueForKey:(NSString*)kCGImagePropertyPixelWidth] floatValue];
@@ -71,7 +70,7 @@ void getFrameInfo(CFURLRef url, NSMutableArray *frames, NSMutableArray *delayTim
         _height = 0;
         
         if (fileURL) {
-            getFrameInfo((__bridge CFURLRef)fileURL, _frames, _frameDelayTimes, &_totalTime, &_width, &_height);
+            getFrameInfo((CFURLRef)CFBridgingRetain(fileURL), _frames, _frameDelayTimes, &_totalTime, &_width, &_height);
         }
         
         self.frame = CGRectMake(0, 0, _width, _height);
