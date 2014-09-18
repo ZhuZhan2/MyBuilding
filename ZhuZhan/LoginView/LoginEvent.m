@@ -168,7 +168,7 @@ static int chanceToLoginByFace =3;
             
             NSArray *a = [[responseObject objectForKey:@"d"] objectForKey:@"data"];
             for(NSDictionary *item in a){
-                [[NSUserDefaults standardUserDefaults]setObject:[item objectForKey:@"userToken"] forKey:@"UserToken"];
+                [[NSUserDefaults standardUserDefaults]setObject:[item objectForKey:@"deviceToken"] forKey:@"deviceToken"];
                 [[NSUserDefaults standardUserDefaults]synchronize];
                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"faceCount"] forKey:@"currentFaceCount"]; //  保存用户名下脸的张数，以便自学习是进行判断
                 [[NSUserDefaults standardUserDefaults] synchronize];

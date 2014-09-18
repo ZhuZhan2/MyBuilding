@@ -60,7 +60,7 @@
                 showArr = posts;
                 [self.tableView reloadData];
             }
-        }];
+        } startIndex:startIndex];
     }
     
     //集成刷新控件
@@ -113,7 +113,7 @@
                 [self.tableView footerEndRefreshing];
                 [self.tableView headerEndRefreshing];
             }
-        }];
+        }startIndex:startIndex];
     }
 }
 
@@ -133,12 +133,12 @@
         startIndex = startIndex +1;
         [ProjectApi GetPiProjectSeminarWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                showArr = posts;
+                [showArr addObjectsFromArray:posts];
                 [self.tableView reloadData];
                 [self.tableView footerEndRefreshing];
                 [self.tableView headerEndRefreshing];
             }
-        }];
+        }startIndex:startIndex];
     }
 }
 

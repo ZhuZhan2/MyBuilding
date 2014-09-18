@@ -24,6 +24,7 @@
 #import "ConnectionAvailable.h"
 #import "BirthDay.h"
 #import "LoginSqlite.h"
+#import "LoginViewController.h"
 #import "ActivesModel.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
@@ -93,12 +94,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0]]];
                     [LoginSqlite insertData:posts[0] datakey:@"userImageUrl"];
                 }
-            } userId:@"ce753b56-baff-4194-8da2-d88e695afdde"];
+            } userId:@"8809548a-e49b-450a-974a-2cd829784156"];
             
-            ActivesModel *model = posts[0];
-            NSLog(@"%@",model.a_content);
+            //ActivesModel *model = posts[0];
+            //NSLog(@"%@",model.a_content);
         }
-    } userId:@"ce753b56-baff-4194-8da2-d88e695afdde" startIndex:startIndex];
+    } userId:@"8809548a-e49b-450a-974a-2cd829784156" startIndex:startIndex];
 }
 
 
@@ -249,7 +250,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)gotoMyCenter{
     NSLog(@"gotoMyCenter");
     [LoginSqlite opensql];
-    NSString *deviceToken = [LoginSqlite getdata:@"userToken" defaultdata:@""];
+    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
 
     if ([deviceToken isEqualToString:@""]) {
         LoginViewController *loginVC = [[LoginViewController alloc]init];

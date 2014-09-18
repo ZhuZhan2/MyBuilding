@@ -34,13 +34,19 @@ static NSString * const AFAppDotNetAPIBaseURLString = @serverAddress;
         _sharedClient = [[AFAppDotNetAPIClient alloc] initWithBaseURL:[NSURL URLWithString:AFAppDotNetAPIBaseURLString]];
         _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         _sharedClient.responseSerializer = [AFJSONResponseSerializer serializer];
-        
-        if([LoginSqlite getdata:@"userToken" defaultdata:@""]){
-        
-        }
     });
-    
     return _sharedClient;
+}
+
++(AFAppDotNetAPIClient *)sharedNewClient{
+    AFAppDotNetAPIClient *_sharedNewClient = [AFAppDotNetAPIClient sharedClient];
+    //NSLog(@"%@",_sharedNewClient);
+    if(![[LoginSqlite getdata:@"deviceToken" defaultdata:@""] isEqualToString:@""]){
+        //NSLog(@"=====>%@",[LoginSqlite getdata:@"deviceToken" defaultdata:@""]);
+        [_sharedNewClient.requestSerializer setValue:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId" defaultdata:@""],[LoginSqlite getdata:@"deviceToken" defaultdata:@""]] forHTTPHeaderField:@"AuthenticationToken"];
+    }
+    //NSLog(@"%@",_sharedNewClient.requestSerializer.HTTPRequestHeaders);
+    return _sharedNewClient;
 }
 
 @end
