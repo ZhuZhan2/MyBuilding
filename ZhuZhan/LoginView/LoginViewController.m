@@ -13,7 +13,10 @@
 #import "PanViewController.h"
 #import "HomePageViewController.h"
 #import "LoginModel.h"
-
+#import "LoginSqlite.h"
+#import "AppDelegate.h"
+#import "HomePageViewController.h"
+#import "ProjectStage.h"
 @interface LoginViewController ()
 
 @end
@@ -115,6 +118,22 @@
     
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //恢复tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //隐藏tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarHide];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -165,18 +184,18 @@
             NSArray *a = [[responseObject objectForKey:@"d"] objectForKey:@"data"];
             NSLog(@"bdsfdfdggggyrt  %@",a);
             for(NSDictionary *item in a){
-                self.userToken = [item objectForKey:@"userToken"];
-                NSString *isFaceRegister = [item objectForKey:@"isFaceRegister"];
                 
-                [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@",isFaceRegister]forKey:@"isFaceRegister"];
-                [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"faceCount"] forKey:@"currentFaceCount"];
-                [[NSUserDefaults standardUserDefaults] setObject:_userNameTextField.text forKey:@"userName"];
-                [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"userId"] forKey:@"userId"];
-                 [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"deviceToken"] forKey:@"deviceToken"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                NSLog(@"*****    %@",[item objectForKey:@"userId"]);
+                [LoginSqlite opensql];
+                [LoginSqlite insertData:[item objectForKey:@"isFaceRegister"] datakey:@"isFaceRegister"];
+                [LoginSqlite insertData:[item objectForKey:@"faceCount"] datakey:@"faceCount"];
+                NSString *userName =[NSString stringWithFormat:@"%@",[item objectForKey:@"userName"]];
+                userName = [ProjectStage ProjectStrStage:userName];
+                [LoginSqlite insertData:userName datakey:@"userName"];//待会跟岳志强沟通
+                [LoginSqlite insertData:[item objectForKey:@"userId"] datakey:@"userId"];
+                [LoginSqlite insertData:[item objectForKey:@"userToken"] datakey:@"userToken"];
                 
-                NSLog(@",l,ll,l,l,l%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"firstPassWordLogin"]);
+                 NSString *isFaceRegister = [item objectForKey:@"isFaceRegister"];
+                
                 if([[NSUserDefaults standardUserDefaults] objectForKey:@"firstPassWordLogin"]==nil&&![[NSString stringWithFormat:@"%@",isFaceRegister] isEqualToString:@"1"]){//判断用户是否是第一次登陆并判断用户脸部识别的状态
                     [[NSUserDefaults standardUserDefaults] setObject:@"firstLogin" forKey:@"firstPassWordLogin"];
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否要进行脸部识别的注册" delegate:self cancelButtonTitle:@"是" otherButtonTitles:@"否", nil];
@@ -199,11 +218,11 @@
 }
 
 -(void)loginSuccess{//登录成功后进行的跳转
-    NSLog(@"sid === > %@",self.userToken);
-    [[NSUserDefaults standardUserDefaults]setObject:_userNameTextField.text forKey:@"userName"];
-    [[NSUserDefaults standardUserDefaults]setObject:_passWordTextField.text forKey:@"passWord"];
-//    [[NSUserDefaults standardUserDefaults]setObject:self.userToken forKey:@"UserToken"];
-    [[NSUserDefaults standardUserDefaults]synchronize];
+//    NSLog(@"sid === > %@",self.userToken);
+//    [[NSUserDefaults standardUserDefaults]setObject:_userNameTextField.text forKey:@"userName"];
+//    [[NSUserDefaults standardUserDefaults]setObject:_passWordTextField.text forKey:@"passWord"];
+////    [[NSUserDefaults standardUserDefaults]setObject:self.userToken forKey:@"UserToken"];
+//    [[NSUserDefaults standardUserDefaults]synchronize];
     
     UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"登录成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     alert.tag = 20140731;

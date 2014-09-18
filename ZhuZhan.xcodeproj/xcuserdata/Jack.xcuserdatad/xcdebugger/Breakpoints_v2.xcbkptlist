@@ -35,22 +35,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ZhuZhan/RegistView/RegistViewController.m"
-            timestampString = "432548775.713996"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
-            landmarkName = "-commomRegister"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "ZhuZhan/LoginView/LoginEvent.m"
             timestampString = "432541017.190325"
             startingColumnNumber = "9223372036854775807"
@@ -74,6 +58,22 @@
             startingLineNumber = "134"
             endingLineNumber = "134"
             landmarkName = "-detectWithImage:With:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZhuZhan/RegistView/RegistViewController.m"
+            timestampString = "432631097.656728"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
+            landmarkName = "-commomRegister"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

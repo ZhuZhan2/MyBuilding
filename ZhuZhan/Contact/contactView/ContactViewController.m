@@ -24,6 +24,10 @@
 #import "ConnectionAvailable.h"
 #import "BirthDay.h"
 #import "LoginSqlite.h"
+#import "LoginViewController.h"
+
+
+
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -65,7 +69,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154)];
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"bg001.png"]];
-    //[_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
+    [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
     [_pathCover setHeadTaget];
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"用户名", XHUserNameKey, @"公司名字显示在这里     职位", XHBirthdayKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
@@ -272,6 +276,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //点击自己头像去个人中心
 -(void)gotoMyCenter{
     NSLog(@"gotoMyCenter");
+    [LoginSqlite opensql];
+    NSString *deviceToken = [LoginSqlite getdata:@"userToken" defaultdata:@""];
+
+    if ([deviceToken isEqualToString:@""]) {
+        LoginViewController *loginVC = [[LoginViewController alloc]init];
+        [self.navigationController pushViewController:loginVC animated:YES];
+        return;
+    }
+    
     PersonalCenterViewController *personalVC = [[PersonalCenterViewController alloc] init];
     [self.navigationController pushViewController:personalVC animated:YES];
 }
