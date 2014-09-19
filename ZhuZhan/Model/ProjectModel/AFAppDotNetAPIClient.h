@@ -25,6 +25,8 @@
 
 @interface AFAppDotNetAPIClient : AFHTTPSessionManager
 
-+ (instancetype)sharedClient;
++(instancetype)sharedClient;
+
++(AFAppDotNetAPIClient *)sharedNewClient;
 
 @end

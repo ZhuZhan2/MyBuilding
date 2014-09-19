@@ -59,12 +59,6 @@
     
     [LoginSqlite opensql];
     [RecordSqlite opensql];
-//    [LoginSqlite insertData:@"" datakey:@"userId"];
-//    [LoginSqlite insertData:@"" datakey:@"isFaceRegister"];
-//    [LoginSqlite insertData:@"" datakey:@"deviceToken"];
-//    [LoginSqlite insertData:@"" datakey:@"userNmae"];
-//    [LoginSqlite insertData:@"" datakey:@"userImage"];
-//    [LoginSqlite insertData:@"" datakey:@"faceCount"];
     
     
 //    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){

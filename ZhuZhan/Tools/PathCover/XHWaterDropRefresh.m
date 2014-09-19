@@ -181,8 +181,9 @@
         float w = ((_maxOffset - currentOffset)/_maxOffset) + 1;
         CGPathAddRect(line, NULL, CGRectMake(15-w/2, top + wdiff + _radius*2,w, currentOffset-wdiff + self.offsetHeight)); // 最好的+20就是线条的长度
         _lineLayer.path = line;
-        
+    
         self.transform = CGAffineTransformMakeScale(0.8+0.2*(w-1), 1);
+        CGPathRelease(line);
     } else {
         if(self.timer == nil)
         {

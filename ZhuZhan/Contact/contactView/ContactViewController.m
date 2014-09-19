@@ -25,9 +25,7 @@
 #import "BirthDay.h"
 #import "LoginSqlite.h"
 #import "LoginViewController.h"
-
-
-
+#import "ActivesModel.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -96,7 +94,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0]]];
                     [LoginSqlite insertData:posts[0] datakey:@"userImageUrl"];
                 }
-            } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0"];
+            } userId:@"ce753b56-baff-4194-8da2-d88e695afdde"];
             
             for(int i=0;i<posts.count;i++){
                 CommentModel *commentModel = posts[i];
@@ -123,10 +121,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [self.tableView reloadData];
             }
         }
-    } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0" startIndex:startIndex];
-    //NSLog(@"%@",[BirthDay getAge:@"1979-06-19"]);
-    //NSLog(@"%@",[BirthDay getConstellation:@"1979-06-19"]);
-    //NSLog(@"%@",[BirthDay getZodiac:@"1979-06-19"]);
+    } userId:@"ce753b56-baff-4194-8da2-d88e695afdde" startIndex:startIndex];
 }
 
 
@@ -278,7 +273,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)gotoMyCenter{
     NSLog(@"gotoMyCenter");
     [LoginSqlite opensql];
-    NSString *deviceToken = [LoginSqlite getdata:@"userToken" defaultdata:@""];
+    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
 
     if ([deviceToken isEqualToString:@""]) {
         LoginViewController *loginVC = [[LoginViewController alloc]init];

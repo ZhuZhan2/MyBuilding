@@ -326,7 +326,7 @@ static bool IsVerify =NO;
                 [LoginSqlite insertData:userName datakey:@"userName"];//待会跟岳志强沟通
                 [LoginSqlite insertData:[item objectForKey:@"userId"] datakey:@"userId"];
 //                NSLog(@"")
-                [LoginSqlite insertData:[item objectForKey:@"userToken"] datakey:@"userToken"];
+                [LoginSqlite insertData:[item objectForKey:@"deviceToken"] datakey:@"deviceToken"];
                 
                 
             }
