@@ -34,7 +34,7 @@
     [commentView addSubview:topLineImage];
     topLineImage.alpha =0.2;
     
-    EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"bg001.png"]];
+    EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001"]];
     
     if(![model.a_imageUrl isEqualToString:@""]){
         if(![model.a_imageWidth isEqualToString:@""]){
@@ -73,7 +73,7 @@
     if(imageView.frame.size.height !=0){
         UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         commentBtn.frame = CGRectMake(270, imageView.frame.size.height-40, 37, 37);
-        [commentBtn setImage:[UIImage imageNamed:@"人脉_66a"] forState:UIControlStateNormal];
+        [commentBtn setImage:[GetImagePath getImagePath:@"人脉_66a"] forState:UIControlStateNormal];
         [commentBtn addTarget:commentView action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
         [commentView addSubview:commentBtn];
     }

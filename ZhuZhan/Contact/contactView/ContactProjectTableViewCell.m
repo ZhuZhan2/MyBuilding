@@ -42,7 +42,7 @@
     [self.contentView addSubview:lineImage2];
     lineImage2.alpha = 0.2;
     
-    headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"人脉_06a"]];
+    headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a"]];
     [headImageView setFrame:CGRectMake(15, 6.5, 37, 37)];
     headImageView.layer.masksToBounds = YES;
     headImageView.layer.cornerRadius = 3;
@@ -54,7 +54,7 @@
     [self.contentView addSubview:btn];
     
     stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(62.5, 11.5, 27, 27)];
-    [stageImage setImage:[UIImage imageNamed:@"人脉_57a"]];
+    [stageImage setImage:[GetImagePath getImagePath:@"人脉_57a"]];
     [self.contentView addSubview:stageImage];
     
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 5, 200, 20)];

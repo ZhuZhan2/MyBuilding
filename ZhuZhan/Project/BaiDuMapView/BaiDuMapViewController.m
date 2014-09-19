@@ -33,7 +33,7 @@ int j;
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 0, 29, 28.5)];
-    [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [leftButton setBackgroundImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
@@ -67,7 +67,7 @@ int j;
     btnView = [[UIView alloc] initWithFrame:CGRectMake(0, 84, 66, 220)];
     drawBtn =  [UIButton buttonWithType:UIButtonTypeCustom];
     drawBtn.frame = CGRectMake(10,20, 40, 40);
-    [drawBtn setBackgroundImage:[UIImage imageNamed:@"mapsearch-1.png"] forState:UIControlStateNormal];
+    [drawBtn setBackgroundImage:[GetImagePath getImagePath:@"mapsearch-1"] forState:UIControlStateNormal];
     [drawBtn addTarget:self action:@selector(drawFunction) forControlEvents:UIControlEventTouchUpInside];
     [btnView addSubview:drawBtn];
     
@@ -219,7 +219,7 @@ int j;
     // 缓存没有命中，自己构造一个，一般首次添加annotation代码会运行到此处
     if (annotationView == nil) {
         annotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
-		[annotationView setImage:[UIImage imageNamed:@"地图搜索1_09.png"]];
+		[annotationView setImage:[GetImagePath getImagePath:@"地图搜索1_09"]];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 28.5, 30)];
         label.textColor = [UIColor whiteColor];
         label.font = [UIFont fontWithName:nil size:14];
@@ -251,7 +251,7 @@ int j;
         [countLabel removeFromSuperview];
         countLabel = nil;
         imageView=[[UIImageView alloc] initWithFrame:_mapView.frame];
-        [imageView setImage:[UIImage imageNamed:@"地图搜索_02.png"]];
+        [imageView setImage:[GetImagePath getImagePath:@"地图搜索_02"]];
         imageView.userInteractionEnabled=YES;
         [self.view insertSubview:imageView atIndex:1];
         UIGraphicsBeginImageContext(imageView.frame.size);

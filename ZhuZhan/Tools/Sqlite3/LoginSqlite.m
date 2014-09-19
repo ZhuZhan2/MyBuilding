@@ -11,20 +11,20 @@
 @implementation LoginSqlite
 +(void)opensql
 {
-    sqlite3 *zpzchinaMobileDB;
+    sqlite3 *zhuZhanDB;
     char *errorMsg;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documents = [paths objectAtIndex:0];
     NSString *database_path = [documents stringByAppendingPathComponent:DataBaseName];
     //  NSLog(@"%@,=========%@",paths,database_path);
-    if (sqlite3_open([database_path UTF8String], &zpzchinaMobileDB)==SQLITE_OK) {
+    if (sqlite3_open([database_path UTF8String], &zhuZhanDB)==SQLITE_OK) {
         NSLog(@"打开数据库成功!");
         
         
         NSString *createSQL = @"CREATE TABLE IF NOT EXISTS Login (primarykey INTEGER PRIMARY KEY  AUTOINCREMENT, data Varchar ,datakey Varchar);";
         
-        if (sqlite3_exec(zpzchinaMobileDB, [createSQL UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK) {
-            sqlite3_close(zpzchinaMobileDB);
+        if (sqlite3_exec(zhuZhanDB, [createSQL UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK) {
+            sqlite3_close(zhuZhanDB);
             NSAssert(0, @"创建数据库表错误: %s", errorMsg);
         }
         
@@ -34,7 +34,7 @@
         NSLog(@"打开数据库失败！");
         
     }
-    if(sqlite3_close(zpzchinaMobileDB)==SQLITE_OK)
+    if(sqlite3_close(zhuZhanDB)==SQLITE_OK)
     { // NSLog(@"关闭数据库成功!");
     }
     
@@ -42,7 +42,7 @@
 
 +(NSString *)getdata:(NSString *)datakey defaultdata:(NSString *)defaultdata
 {
-    sqlite3 *zpzchinaMobileDB;
+    sqlite3 *zhuZhanDB;
     char *errorMsg;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
@@ -50,11 +50,11 @@
     
     NSString *database_path = [documents stringByAppendingPathComponent:DataBaseName];
     
-    if (sqlite3_open([database_path UTF8String], &zpzchinaMobileDB)==SQLITE_OK) {
+    if (sqlite3_open([database_path UTF8String], &zhuZhanDB)==SQLITE_OK) {
         
         NSString *createSQL = @"CREATE TABLE IF NOT EXISTS Login (primarykey INTEGER PRIMARY KEY  AUTOINCREMENT, data Varchar,datakey Varchar);";
-        if (sqlite3_exec(zpzchinaMobileDB, [createSQL UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK) {
-            sqlite3_close(zpzchinaMobileDB);
+        if (sqlite3_exec(zhuZhanDB, [createSQL UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK) {
+            sqlite3_close(zhuZhanDB);
             NSAssert(0, @"创建数据库表错误: %s", errorMsg);
         }
         
@@ -70,7 +70,7 @@
     sqlite3_stmt *statement;
     NSString *sql=[[NSString alloc]initWithFormat:@"select datakey,data from Login where datakey='%@'",datakey];
     const char *selectSql=[sql UTF8String];
-    if (sqlite3_prepare_v2(zpzchinaMobileDB, selectSql, -1, &statement, nil)==SQLITE_OK) {
+    if (sqlite3_prepare_v2(zhuZhanDB, selectSql, -1, &statement, nil)==SQLITE_OK) {
         //NSLog(@"select ok.!!!!!!");
         //查询成功
     }
@@ -83,7 +83,7 @@
     
     
     sqlite3_finalize(statement);
-    if(sqlite3_close(zpzchinaMobileDB)==SQLITE_OK)
+    if(sqlite3_close(zhuZhanDB)==SQLITE_OK)
     {  // NSLog(@"关闭数据库成功!");
     }
     return data;
@@ -91,7 +91,7 @@
 
 +(void)insertData:(NSString *)data datakey:(NSString *)datakey
 {
-    sqlite3 *zpzchinaMobileDB;
+    sqlite3 *zhuZhanDB;
     char *errorMsg;
     sqlite3_stmt *stmt;
     int i=0;
@@ -99,12 +99,12 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documents = [paths objectAtIndex:0];
     NSString *database_path = [documents stringByAppendingPathComponent:DataBaseName];
-    if (sqlite3_open([database_path UTF8String], &zpzchinaMobileDB)==SQLITE_OK) {
+    if (sqlite3_open([database_path UTF8String], &zhuZhanDB)==SQLITE_OK) {
         
         NSString *createSQL = @"CREATE TABLE IF NOT EXISTS Login (primarykey INTEGER PRIMARY KEY  AUTOINCREMENT, data Varchar,datakey Varchar);";
         
-        if (sqlite3_exec(zpzchinaMobileDB, [createSQL UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK) {
-            sqlite3_close(zpzchinaMobileDB);
+        if (sqlite3_exec(zhuZhanDB, [createSQL UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK) {
+            sqlite3_close(zhuZhanDB);
             NSAssert(0, @"创建数据库表错误: %s", errorMsg);
         }
         
@@ -121,7 +121,7 @@
     NSString *sql=[NSString stringWithFormat:@"select primarykey,datakey,data from Login where datakey='%@'",datakey];
     const char *selectSql=[sql UTF8String];
     
-    if (sqlite3_prepare_v2(zpzchinaMobileDB, selectSql, -1, &stmt, nil)==SQLITE_OK) {
+    if (sqlite3_prepare_v2(zhuZhanDB, selectSql, -1, &stmt, nil)==SQLITE_OK) {
         
         //查询成功
     }
@@ -142,7 +142,7 @@
         
         NSString *sql=[NSString stringWithFormat:@"select primarykey,datakey,data from Login where primarykey=0"];
         const char *selectSql=[sql UTF8String];
-        if (sqlite3_prepare_v2(zpzchinaMobileDB, selectSql, -1, &stmt, nil)==SQLITE_OK) {
+        if (sqlite3_prepare_v2(zhuZhanDB, selectSql, -1, &stmt, nil)==SQLITE_OK) {
             
             //查询成功
         }
@@ -158,7 +158,7 @@
     
     
     char *update = "INSERT OR REPLACE INTO Login (primarykey,datakey, data) VALUES (?,?,?);";
-    if (sqlite3_prepare_v2(zpzchinaMobileDB, update, -1, &stmt, nil) == SQLITE_OK) {
+    if (sqlite3_prepare_v2(zhuZhanDB, update, -1, &stmt, nil) == SQLITE_OK) {
         sqlite3_bind_int(stmt, 1, i);
         sqlite3_bind_text(stmt,2, [datakey UTF8String],-1,NULL);
         data=[NSString stringWithFormat:@"%@",data];
@@ -170,7 +170,7 @@
         sqlite3_finalize(stmt);
     
     
-    if (sqlite3_prepare_v2(zpzchinaMobileDB, update, -1, &stmt, nil) == SQLITE_OK) {
+    if (sqlite3_prepare_v2(zhuZhanDB, update, -1, &stmt, nil) == SQLITE_OK) {
         sqlite3_bind_int(stmt, 1, 0);
         sqlite3_bind_text(stmt,2, [@"primarykey" UTF8String],-1,NULL);
         sqlite3_bind_int(stmt, 3, i);
@@ -181,25 +181,25 @@
         sqlite3_finalize(stmt);
     
     
-    if(sqlite3_close(zpzchinaMobileDB)==SQLITE_OK)
+    if(sqlite3_close(zhuZhanDB)==SQLITE_OK)
     {  // NSLog(@"关闭数据库成功!");
         
     }
 }
 
 +(void)dropTable{
-    sqlite3 *zpzchinaMobileDB;
+    sqlite3 *zhuZhanDB;
     char *errorMsg;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documents = [paths objectAtIndex:0];
     NSString *database_path = [documents stringByAppendingPathComponent:DataBaseName];
     //  NSLog(@"%@,=========%@",paths,database_path);
-    if (sqlite3_open([database_path UTF8String], &zpzchinaMobileDB)==SQLITE_OK) {
+    if (sqlite3_open([database_path UTF8String], &zhuZhanDB)==SQLITE_OK) {
         
         NSString *createSQL = @"DROP TABLE Login";
         
-        if (sqlite3_exec(zpzchinaMobileDB, [createSQL UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK) {
-            sqlite3_close(zpzchinaMobileDB);
+        if (sqlite3_exec(zhuZhanDB, [createSQL UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK) {
+            sqlite3_close(zhuZhanDB);
             NSAssert(0, @"删除数据库表错误: %s", errorMsg);
         }else{
             NSLog(@"Login删除成功");

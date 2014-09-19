@@ -69,7 +69,7 @@
 }
 
 -(void)changeButtonImage:(UIButton*)button{
-    [button setImage:[UIImage imageNamed:@"bg-addbutton-highlighted"] forState:UIControlStateNormal];
+    [button setImage:[GetImagePath getImagePath:@"bg-addbutton-highlighted"] forState:UIControlStateNormal];
 }
 //===========================================================================
 //UIScrollViewDelegate
@@ -118,11 +118,11 @@
     if (indexPath.row!=0) {
         UIView* separatorLine=[self getSeparatorLine];
         [cell.contentView addSubview:separatorLine];
-        cell.myImageView.image=[UIImage imageNamed:@"公司－公司组织_12a.png"];
+        cell.myImageView.image=[GetImagePath getImagePath:@"公司－公司组织_12a"];
         cell.companyNameLabel.text=[NSString stringWithFormat:@"公司名称:上海%d有限公司",indexPath.row];
         cell.companyBusiness.text=[NSString stringWithFormat:@"公司行业:%d建筑",indexPath.row];
         cell.companyIntroduce.text=[NSString stringWithFormat:@"000%d位关注者",indexPath.row];
-        cell.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"公司－公司组织_03a.png"]];
+        cell.accessoryView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"公司－公司组织_03a"]];
     }
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
@@ -164,7 +164,7 @@
     
     //左back button
     UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,0,29,28.5)];
-    [button setImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [button setImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
 }

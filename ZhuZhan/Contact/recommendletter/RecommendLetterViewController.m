@@ -33,7 +33,7 @@
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 0, 29, 28.5)];
-    [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [leftButton setBackgroundImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
@@ -41,7 +41,7 @@
     self.title = @"引荐信";
     
     iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 74.5, 40, 40)];//用户头像
-    iconImageView.image = [UIImage imageNamed:@"1"];
+    iconImageView.image = [GetImagePath getImagePath:@"1"];
     [self.view addSubview:iconImageView];
     themeField = [[UITextField alloc] initWithFrame:CGRectMake(60, 74.5, 250, 40)];
     themeField.borderStyle =UITextBorderStyleNone;

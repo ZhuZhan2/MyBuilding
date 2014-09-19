@@ -41,13 +41,13 @@
     
     for(int i=0;i<6;i++){
         UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(8.5, 50*(i+1), 303, 1)];
-        [lineImage setImage:[UIImage imageNamed:@"项目－高级搜索－2_03a"]];
+        [lineImage setImage:[GetImagePath getImagePath:@"项目－高级搜索－2_03a"]];
         [bgView addSubview:lineImage];
     }
     
     UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [searchBtn setFrame:CGRectMake(12.5, 305, 295, 40)];
-    [searchBtn setBackgroundImage:[UIImage imageNamed:@"项目－高级搜索－2_11a"] forState:UIControlStateNormal];
+    [searchBtn setBackgroundImage:[GetImagePath getImagePath:@"项目－高级搜索－2_11a"] forState:UIControlStateNormal];
     [searchBtn addTarget:self action:@selector(searchClick) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:searchBtn];
     
@@ -82,7 +82,7 @@
     [bgView addSubview:districtLabel];
     
     UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(290,120, 8, 12.5)];
-    [arrowImage setImage:[UIImage imageNamed:@"新建项目5_09.png"]];
+    [arrowImage setImage:[GetImagePath getImagePath:@"新建项目5_09"]];
     [self addSubview:arrowImage];
     
     provinceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -100,7 +100,7 @@
     [bgView addSubview:provinceLabel];
     
     UIImageView *arrowImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(290,170, 8, 12.5)];
-    [arrowImage2 setImage:[UIImage imageNamed:@"新建项目5_09.png"]];
+    [arrowImage2 setImage:[GetImagePath getImagePath:@"新建项目5_09"]];
     [self addSubview:arrowImage2];
     
     projectStageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -119,7 +119,7 @@
     [bgView addSubview:projectStageLabel];
     
     UIImageView *arrowImage3 = [[UIImageView alloc] initWithFrame:CGRectMake(290,220, 8, 12.5)];
-    [arrowImage3 setImage:[UIImage imageNamed:@"新建项目5_09.png"]];
+    [arrowImage3 setImage:[GetImagePath getImagePath:@"新建项目5_09"]];
     [self addSubview:arrowImage3];
     
     projectCategoryBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -138,7 +138,7 @@
     [bgView addSubview:projectCategoryLabel];
     
     UIImageView *arrowImage4 = [[UIImageView alloc] initWithFrame:CGRectMake(290,270, 8, 12.5)];
-    [arrowImage4 setImage:[UIImage imageNamed:@"新建项目5_09.png"]];
+    [arrowImage4 setImage:[GetImagePath getImagePath:@"新建项目5_09"]];
     [self addSubview:arrowImage4];
 }
 

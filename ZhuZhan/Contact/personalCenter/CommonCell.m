@@ -20,15 +20,15 @@
             {
                 
                 UIImageView *horizontalLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, 59, 320, 1)];
-                horizontalLine.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+                horizontalLine.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
                 horizontalLine.alpha = 0.5;
                 [self addSubview:horizontalLine];
                 
                 UIImageView *verticalLine = [[UIImageView alloc] initWithFrame:CGRectMake(30, 0, 4, 60)];
-                verticalLine.image = [UIImage imageNamed:@"人脉_65a"];
+                verticalLine.image = [GetImagePath getImagePath:@"人脉_65a"];
                 [self addSubview:verticalLine];
                 UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
-                icon.image =[UIImage imageNamed:@"人脉_27a"];
+                icon.image = [GetImagePath getImagePath:@"人脉_27a"];
                 icon.center = CGPointMake(32, 20);
                 [self addSubview:icon];
                 UILabel *company = [[UILabel alloc] initWithFrame:CGRectMake(60, 5, 200, 30)];
@@ -49,16 +49,16 @@
             {
                 
                 UIImageView *horizontalLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, 49, 320, 1)];
-                horizontalLine.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+                horizontalLine.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
                 horizontalLine.alpha = 0.5;
                 [self addSubview:horizontalLine];
                 UIImageView *verticalLine = [[UIImageView alloc] initWithFrame:CGRectMake(30, 0, 4, 50)];
-                verticalLine.image = [UIImage imageNamed:@"人脉_65a"];
+                verticalLine.image = [GetImagePath getImagePath:@"人脉_65a"];
                 [self addSubview:verticalLine];
                 
                 UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
                 icon.center =verticalLine.center;
-                icon.image =[UIImage imageNamed:@"人脉_34a"];
+                icon.image =[GetImagePath getImagePath:@"人脉_34a"];
                 icon.center = CGPointMake(33, 25);
                 [self addSubview:icon];
                 
@@ -74,16 +74,16 @@
             {
                 
                 UIImageView *horizontalLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, 49, 320, 1)];
-                horizontalLine.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+                horizontalLine.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
                 horizontalLine.alpha = 0.5;
                 [self addSubview:horizontalLine];
                 UIImageView *verticalLine = [[UIImageView alloc] initWithFrame:CGRectMake(30, 0, 4, 50)];
-                verticalLine.image = [UIImage imageNamed:@"人脉_65a"];
+                verticalLine.image = [GetImagePath getImagePath:@"人脉_65a"];
                 [self addSubview:verticalLine];
                 
                 UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
                 icon.center =verticalLine.center;
-                icon.image =[UIImage imageNamed:@"人脉_57a"];
+                icon.image =[GetImagePath getImagePath:@"人脉_57a"];
                 [self addSubview:icon];
                 UILabel *updateFriend = [[UILabel alloc] initWithFrame:CGRectMake(60, 5, 200, 40)];
                 NSString *tempStr =@"与";
@@ -104,16 +104,16 @@
             case 3:
             {
                 UIImageView *horizontalLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, 49, 320, 1)];
-                horizontalLine.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+                horizontalLine.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
                 horizontalLine.alpha = 0.5;
                 [self addSubview:horizontalLine];
                 
                 UIImageView *verticalLine = [[UIImageView alloc] initWithFrame:CGRectMake(30, 0, 4, 50)];
-                verticalLine.image = [UIImage imageNamed:@"人脉_65a"];
+                verticalLine.image = [GetImagePath getImagePath:@"人脉_65a"];
                 [self addSubview:verticalLine];
                 
                 UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
-                icon.image =[UIImage imageNamed:@"人脉－个人中心_07a"];
+                icon.image =[GetImagePath getImagePath:@"人脉－个人中心_07a"];
                 icon.center =verticalLine.center;
                 [self addSubview:icon];
                 
@@ -128,15 +128,15 @@
             case 4:
             {
                 UIImageView *horizontalLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, 79, 320, 1)];
-                horizontalLine.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+                horizontalLine.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
                 horizontalLine.alpha = 0.5;
                 [self addSubview:horizontalLine];
                 UIImageView *verticalLine = [[UIImageView alloc] initWithFrame:CGRectMake(30, 0, 4, 80)];
-                verticalLine.image = [UIImage imageNamed:@"人脉_65a"];
+                verticalLine.image = [GetImagePath getImagePath:@"人脉_65a"];
                 [self addSubview:verticalLine];
                 
                 UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
-                icon.image =[UIImage imageNamed:@"人脉－个人中心_05a"];
+                icon.image = [GetImagePath getImagePath:@"人脉－个人中心_05a"];
                 icon.center =CGPointMake(32, 25);
                 [self addSubview:icon];
                 
@@ -152,15 +152,15 @@
             {
             
                 UIImageView *horizontalLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, 199, 320, 1)];
-                horizontalLine.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+                horizontalLine.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
                 horizontalLine.alpha = 0.5;
                 [self addSubview:horizontalLine];
                 UIImageView *verticalLine = [[UIImageView alloc] initWithFrame:CGRectMake(30, 0, 4, 200)];
-                verticalLine.image = [UIImage imageNamed:@"人脉_65a"];
+                verticalLine.image = [GetImagePath getImagePath:@"人脉_65a"];
                 [self addSubview:verticalLine];
                 
                 UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
-                icon.image =[UIImage imageNamed:@"人脉－个人中心_06a"];
+                icon.image =[GetImagePath getImagePath:@"人脉－个人中心_06a"];
                 icon.center =CGPointMake(32, 30);
                 [self addSubview:icon];
                 

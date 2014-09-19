@@ -10,8 +10,6 @@
 
 @implementation AccountCell
 
-@synthesize userName,password,realName,sex,location,birthday,constellation,bloodType,email,cellPhone,company,position,delegate;
-
 static int textFieldTag =0;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(ContactModel *)model
 {
@@ -21,10 +19,10 @@ static int textFieldTag =0;
          NSLog(@"model.dict  ********* %@",model.dict);
         //*********账户信息**********************************************************************************
         UIView *back1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
-        back1.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"grayColor"]];
+        back1.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
         [self addSubview:back1];
         UIImageView *imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(134, 13, 52, 34)];
-        imageView1.image = [UIImage imageNamed:@"人脉－账号设置_10a"];
+        imageView1.image = [GetImagePath getImagePath:@"人脉－账号设置_10a"];
         [self addSubview:imageView1];
         
         //用户名
@@ -42,7 +40,7 @@ static int textFieldTag =0;
         userName.tag = 2014091201;
         [self addSubview:userName];
         UIImageView *horizontalLine1 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 109, 280, 1)];
-        horizontalLine1.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+        horizontalLine1.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
         horizontalLine1.alpha = 0.5;
         [self addSubview:horizontalLine1];
         
@@ -67,7 +65,7 @@ static int textFieldTag =0;
         [self addSubview:button];
         
         UIImageView *horizontalLine2 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 159, 280, 1)];
-        horizontalLine2.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+        horizontalLine2.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
         horizontalLine2.alpha = 0.5;
         [self addSubview:horizontalLine2];
         
@@ -87,7 +85,7 @@ static int textFieldTag =0;
         realName.tag = 2014091203;
         [self addSubview:realName];
         UIImageView *horizontalLine3 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 209, 280, 1)];
-        horizontalLine3.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+        horizontalLine3.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
         horizontalLine3.alpha = 0.5;
         [self addSubview:horizontalLine3];
         
@@ -107,7 +105,7 @@ static int textFieldTag =0;
         sex.tag = 2014091204;
         [self addSubview:sex];
         UIImageView *horizontalLine4 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 259, 280, 1)];
-        horizontalLine4.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+        horizontalLine4.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
         horizontalLine4.alpha = 0.5;
         [self addSubview:horizontalLine4];
         
@@ -127,7 +125,7 @@ static int textFieldTag =0;
         location.tag = 2014091205;
         [self addSubview:location];
         UIImageView *horizontalLine5 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 309, 280, 1)];
-        horizontalLine5.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+        horizontalLine5.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
         horizontalLine5.alpha = 0.5;
         [self addSubview:horizontalLine5];
         
@@ -154,7 +152,7 @@ static int textFieldTag =0;
         [self addSubview:birthdayBtn];
         
         UIImageView *horizontalLine6 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 359, 280, 1)];
-        horizontalLine6.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+        horizontalLine6.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
         horizontalLine6.alpha = 0.5;
         [self addSubview:horizontalLine6];
         
@@ -173,7 +171,7 @@ static int textFieldTag =0;
         constellation.tag = 2014091207;
         [self addSubview:constellation];
         UIImageView *horizontalLine7 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 409, 280, 1)];
-        horizontalLine7.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+        horizontalLine7.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
         horizontalLine7.alpha = 0.5;
         [self addSubview:horizontalLine7];
         
@@ -198,10 +196,10 @@ static int textFieldTag =0;
         //*******联系方式**********************************************************************************
         
         UIView *back12 = [[UIView alloc] initWithFrame:CGRectMake(0, 460, 320, 60)];
-        back12.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"grayColor"]];
+        back12.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
         [self addSubview:back12];
         UIImageView *imageView12 = [[UIImageView alloc] initWithFrame:CGRectMake(134, 473, 52, 34)];
-        imageView12.image = [UIImage imageNamed:@"人脉－账号设置_14a"];
+        imageView12.image = [GetImagePath getImagePath:@"人脉－账号设置_14a"];
         [self addSubview:imageView12];
         
         //email
@@ -219,7 +217,7 @@ static int textFieldTag =0;
         email.tag = 2014091209;
         [self addSubview:email];
         UIImageView *horizontalLine9 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 569, 280, 1)];
-        horizontalLine9.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+        horizontalLine9.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
         horizontalLine9.alpha = 0.5;
         [self addSubview:horizontalLine9];
         
@@ -243,10 +241,10 @@ static int textFieldTag =0;
         //*********公司信息*********************************************************************************
         
         UIView *back13 = [[UIView alloc] initWithFrame:CGRectMake(0, 620, 320, 60)];
-        back13.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"grayColor"]];
+        back13.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
         [self addSubview:back13];
         UIImageView *imageView13 = [[UIImageView alloc] initWithFrame:CGRectMake(134, 633, 52, 34)];
-        imageView13.image = [UIImage imageNamed:@"人脉－账号设置_18a"];
+        imageView13.image = [GetImagePath getImagePath:@"人脉－账号设置_18a"];
         [self addSubview:imageView13];
         
         //在职公司
@@ -264,7 +262,7 @@ static int textFieldTag =0;
         company.tag = 2014091210;
         [self addSubview:company];
         UIImageView *horizontalLine10 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 729, 280, 1)];
-        horizontalLine10.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+        horizontalLine10.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
         horizontalLine10.alpha = 0.5;
         [self addSubview:horizontalLine10];
         
@@ -289,7 +287,7 @@ static int textFieldTag =0;
 
 -(void)begintoModifyPassword
 {
-    [delegate ModifyPassword:password.text];
+    [self.delegate ModifyPassword:password.text];
 }
 
 #pragma mark textFieldDelelgate----------
@@ -325,14 +323,14 @@ static int textFieldTag =0;
     if ([textField isEqual:position]) {
         flag =9;
     }
-    [delegate AddDataToModel:flag WithTextField:textField];
+    [self.delegate AddDataToModel:flag WithTextField:textField];
     return YES;
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
 
     float y = textField.frame.size.height+textField.frame.origin.y;
-    [delegate getTextFieldFrame_yPlusHeight:y];
+    [self.delegate getTextFieldFrame_yPlusHeight:y];
     textFieldTag =textField.tag;
     return YES;
 }
@@ -347,7 +345,7 @@ static int textFieldTag =0;
 -(void)brithdayBtnClicked
 {
     UILabel*label =(UILabel *)[self viewWithTag:2014091206];
-    [delegate AddBirthdayPicker:label];
+    [self.delegate AddBirthdayPicker:label];
 }
 
 - (void)awakeFromNib

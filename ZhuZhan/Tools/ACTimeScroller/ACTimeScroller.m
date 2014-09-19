@@ -41,7 +41,7 @@
 
 - (id)initWithDelegate:(id<ACTimeScrollerDelegate>)delegate
 {
-    //UIImage *background = [[UIImage imageNamed:@"timescroll_pointer"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 35.0f, 0.0f, 10.0f)];
+    //UIImage *background = [[GetImagePath getImagePath:@"timescroll_pointer"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 35.0f, 0.0f, 10.0f)];
     
     self = [super initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 27.0f)];
     if (self)
@@ -54,7 +54,7 @@
         
         _backgroundView = [[UIImageView alloc] init];
         _backgroundView.frame = CGRectMake(CGRectGetWidth(self.frame) - 118.0f, 0.0f, 118.0f, CGRectGetHeight(self.frame));
-        [_backgroundView setImage:[UIImage imageNamed:@"人脉_03a"]];
+        [_backgroundView setImage:[GetImagePath getImagePath:@"人脉_03a"]];
         [self addSubview:_backgroundView];
         
         _handContainer = [[UIView alloc] initWithFrame:CGRectMake(4.0f, 4.0f, 20.0f, 20.0f)];
@@ -62,12 +62,12 @@
         [_backgroundView addSubview:_handContainer];
         
         _hourHand = [[UIView alloc] initWithFrame:CGRectMake(7.0f, 0.0f, 4.0f, 20.0f)];
-        UIImageView *hourImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"timescroll_hourhand"]];
+        UIImageView *hourImageView = [[UIImageView alloc] initWithImage:[GetImagePath getImagePath:@"timescroll_hourhand"]];
         [_hourHand addSubview:hourImageView];
         [_handContainer addSubview:_hourHand];
         
         _minuteHand = [[UIView alloc] initWithFrame:CGRectMake(7.0f, 0.0f, 4.0f, 20.0f)];
-        UIImageView *minuteImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"timescroll_minutehand"]];
+        UIImageView *minuteImageView = [[UIImageView alloc] initWithImage:[GetImagePath getImagePath:@"timescroll_minutehand"]];
         [_minuteHand addSubview:minuteImageView];
         [_handContainer addSubview:_minuteHand];
         

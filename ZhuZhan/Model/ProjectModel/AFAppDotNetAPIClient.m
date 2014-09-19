@@ -40,12 +40,12 @@ static NSString * const AFAppDotNetAPIBaseURLString = @serverAddress;
 
 +(AFAppDotNetAPIClient *)sharedNewClient{
     AFAppDotNetAPIClient *_sharedNewClient = [AFAppDotNetAPIClient sharedClient];
-    //NSLog(@"%@",_sharedNewClient);
+    NSLog(@"%@",_sharedNewClient);
     if(![[LoginSqlite getdata:@"deviceToken" defaultdata:@""] isEqualToString:@""]){
         //NSLog(@"=====>%@",[LoginSqlite getdata:@"deviceToken" defaultdata:@""]);
         [_sharedNewClient.requestSerializer setValue:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId" defaultdata:@""],[LoginSqlite getdata:@"deviceToken" defaultdata:@""]] forHTTPHeaderField:@"Authorization"];
     }
-    //NSLog(@"%@",_sharedNewClient.requestSerializer.HTTPRequestHeaders);
+    NSLog(@"%@",_sharedNewClient.requestSerializer.HTTPRequestHeaders);
     return _sharedNewClient;
 }
 

@@ -44,28 +44,28 @@
     
     contactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [contactBtn setFrame:CGRectMake(25, 10, 25, 36)];
-    [contactBtn setBackgroundImage:[UIImage imageNamed:@"项目－项目专题_11a-20"] forState:UIControlStateNormal];
+    [contactBtn setBackgroundImage:[GetImagePath getImagePath:@"项目－项目专题_11a-20"] forState:UIControlStateNormal];
     contactBtn.tag = 0;
     [contactBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:contactBtn];
     
     projectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [projectBtn setFrame:CGRectMake(82, 10, 25, 36)];
-    [projectBtn setBackgroundImage:[UIImage imageNamed:@"项目－项目专题_14a"] forState:UIControlStateNormal];
+    [projectBtn setBackgroundImage:[GetImagePath getImagePath:@"项目－项目专题_14a"] forState:UIControlStateNormal];
     projectBtn.tag = 1;
     [projectBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:projectBtn];
     
     companyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [companyBtn setFrame:CGRectMake(210, 10, 25, 36)];
-    [companyBtn setBackgroundImage:[UIImage imageNamed:@"项目－项目专题_17a"] forState:UIControlStateNormal];
+    [companyBtn setBackgroundImage:[GetImagePath getImagePath:@"项目－项目专题_17a"] forState:UIControlStateNormal];
     companyBtn.tag = 3;
     [companyBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:companyBtn];
     
     tradeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [tradeBtn setFrame:CGRectMake(270, 10, 25, 36)];
-    [tradeBtn setBackgroundImage:[UIImage imageNamed:@"项目－项目专题_23a"] forState:UIControlStateNormal];
+    [tradeBtn setBackgroundImage:[GetImagePath getImagePath:@"项目－项目专题_23a"] forState:UIControlStateNormal];
     tradeBtn.tag = 4;
     [tradeBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:tradeBtn];
@@ -73,33 +73,33 @@
     
     
     //更多按钮的实现
-    UIImage *storyMenuItemImage = [UIImage imageNamed:@"bg-menuitem.png"];
-    UIImage *storyMenuItemImagePressed = [UIImage imageNamed:@"bg-menuitem-highlighted.png"];
+    UIImage *storyMenuItemImage = [GetImagePath getImagePath:@"bg-menuitem"];
+    UIImage *storyMenuItemImagePressed = [GetImagePath getImagePath:@"bg-menuitem-highlighted"];
     
     // Camera MenuItem.
     QuadCurveMenuItem *cameraMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
                                                                 highlightedImage:storyMenuItemImagePressed
-                                                                    ContentImage:[UIImage imageNamed:@"icon-star.png"]
+                                                                    ContentImage:[GetImagePath getImagePath:@"icon-star"]
                                                          highlightedContentImage:nil flag:0];
     // People MenuItem.
     QuadCurveMenuItem *peopleMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
                                                                 highlightedImage:storyMenuItemImagePressed
-                                                                    ContentImage:[UIImage imageNamed:@"icon-star.png"]
+                                                                    ContentImage:[GetImagePath getImagePath:@"icon-star"]
                                                          highlightedContentImage:nil flag:0];
     // Place MenuItem.
     QuadCurveMenuItem *placeMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
                                                                highlightedImage:storyMenuItemImagePressed
-                                                                   ContentImage:[UIImage imageNamed:@"icon-star.png"]
+                                                                   ContentImage:[GetImagePath getImagePath:@"icon-star"]
                                                         highlightedContentImage:nil flag:0];
     // Music MenuItem.
     QuadCurveMenuItem *musicMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
                                                                highlightedImage:storyMenuItemImagePressed
-                                                                   ContentImage:[UIImage imageNamed:@"icon-star.png"]
+                                                                   ContentImage:[GetImagePath getImagePath:@"icon-star"]
                                                         highlightedContentImage:nil flag:0];
     // Thought MenuItem.
     QuadCurveMenuItem *thoughtMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
                                                                  highlightedImage:storyMenuItemImagePressed
-                                                                     ContentImage:[UIImage imageNamed:@"icon-star.png"]
+                                                                     ContentImage:[GetImagePath getImagePath:@"icon-star"]
                                                           highlightedContentImage:nil flag:0];
     
     NSArray *menus = [NSArray arrayWithObjects:cameraMenuItem, peopleMenuItem, placeMenuItem, musicMenuItem, thoughtMenuItem, nil];

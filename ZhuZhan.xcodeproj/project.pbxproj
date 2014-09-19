@@ -465,6 +465,7 @@
 		D3AC626D19C1672F0015B62F /* 产品－列表_06a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AC626B19C1672F0015B62F /* 产品－列表_06a@2x.png */; };
 		D3AC86A419C97DAD0009673C /* ContactCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC86A319C97DAD0009673C /* ContactCommentTableViewController.m */; };
 		D3AC86A719C981DC0009673C /* ContactCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC86A619C981DC0009673C /* ContactCommentTableViewCell.m */; };
+		D3AC86AB19CBD3E30009673C /* GetImagePath.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC86AA19CBD3E30009673C /* GetImagePath.m */; };
 		D3AD603D19AC4DC1001FD483 /* bg-addbutton-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD600C19AC4DC1001FD483 /* bg-addbutton-highlighted.png */; };
 		D3AD603E19AC4DC1001FD483 /* bg-addbutton-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD600D19AC4DC1001FD483 /* bg-addbutton-highlighted@2x.png */; };
 		D3AD603F19AC4DC1001FD483 /* bg-addbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD600E19AC4DC1001FD483 /* bg-addbutton.png */; };
@@ -1431,6 +1432,8 @@
 		D3AC86A319C97DAD0009673C /* ContactCommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCommentTableViewController.m; sourceTree = "<group>"; };
 		D3AC86A519C981DC0009673C /* ContactCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCommentTableViewCell.h; sourceTree = "<group>"; };
 		D3AC86A619C981DC0009673C /* ContactCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCommentTableViewCell.m; sourceTree = "<group>"; };
+		D3AC86A919CBD3E30009673C /* GetImagePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetImagePath.h; sourceTree = "<group>"; };
+		D3AC86AA19CBD3E30009673C /* GetImagePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetImagePath.m; sourceTree = "<group>"; };
 		D3AD600C19AC4DC1001FD483 /* bg-addbutton-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton-highlighted.png"; sourceTree = "<group>"; };
 		D3AD600D19AC4DC1001FD483 /* bg-addbutton-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton-highlighted@2x.png"; sourceTree = "<group>"; };
 		D3AD600E19AC4DC1001FD483 /* bg-addbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton.png"; sourceTree = "<group>"; };
@@ -1781,6 +1784,7 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3AC86A819CBD3D20009673C /* GetImagePath */,
 				D3A4281619C1A2E700BAB6C7 /* GTM */,
 				D3A4281219C19A2C00BAB6C7 /* BirthDay */,
 				D3A427FF19C16E5100BAB6C7 /* ErrorView */,
@@ -2892,6 +2896,15 @@
 			path = ContactComment;
 			sourceTree = "<group>";
 		};
+		D3AC86A819CBD3D20009673C /* GetImagePath */ = {
+			isa = PBXGroup;
+			children = (
+				D3AC86A919CBD3E30009673C /* GetImagePath.h */,
+				D3AC86AA19CBD3E30009673C /* GetImagePath.m */,
+			);
+			path = GetImagePath;
+			sourceTree = "<group>";
+		};
 		D3AD600B19AC4DC1001FD483 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -3639,6 +3652,7 @@
 				0426C24E19922D5A00CD8822 /* GPUImageCannyEdgeDetectionFilter.m in Sources */,
 				0426C23519922D5A00CD8822 /* ACTimeScroller.m in Sources */,
 				04D10C3019AF3C120097C0C6 /* ShowViewController.m in Sources */,
+				D3AC86AB19CBD3E30009673C /* GetImagePath.m in Sources */,
 				0426C25C19922D5A00CD8822 /* GPUImageCrosshatchFilter.m in Sources */,
 				042D9CFB19B40C4C00689C5D /* DKCircleButton.m in Sources */,
 				5B18B46F19BFFC3700551F82 /* GradientView.m in Sources */,

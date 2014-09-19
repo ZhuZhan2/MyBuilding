@@ -58,7 +58,7 @@
     }else{
         image.frame = CGRectMake(8.5, actualsize.height+10, 303, 1);
     }
-    [image setImage:[UIImage imageNamed:@"项目－高级搜索－2_03a"]];
+    [image setImage:[GetImagePath getImagePath:@"项目－高级搜索－2_03a"]];
     [conditionsView addSubview:image];
     [image setAlpha:0.5];
     

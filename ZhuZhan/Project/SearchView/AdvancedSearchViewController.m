@@ -34,7 +34,7 @@
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 0, 29, 28.5)];
-    [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [leftButton setBackgroundImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
@@ -222,15 +222,15 @@
         [cell.contentView addSubview:label];
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 11.5, 19, 21)];
-        [imageView setImage:[UIImage imageNamed:@"项目－高级搜索－2_15a-19"]];
+        [imageView setImage:[GetImagePath getImagePath:@"项目－高级搜索－2_15a-19"]];
         [cell.contentView addSubview:imageView];
         
         UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 5)];
-        [lineImage setImage:[UIImage imageNamed:@"项目－高级搜索－2_15a"]];
+        [lineImage setImage:[GetImagePath getImagePath:@"项目－高级搜索－2_15a"]];
         [cell.contentView addSubview:lineImage];
         
         UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 41, 320, 3)];
-        [lineImage2 setImage:[UIImage imageNamed:@"项目－高级搜索－2_22a"]];
+        [lineImage2 setImage:[GetImagePath getImagePath:@"项目－高级搜索－2_22a"]];
         [cell.contentView addSubview:lineImage2];
         return cell;
     }else{

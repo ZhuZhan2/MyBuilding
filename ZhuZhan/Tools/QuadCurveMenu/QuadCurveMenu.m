@@ -121,7 +121,7 @@
         }
         
         // add the "Add" Button.
-        _addButton = [[QuadCurveMenuItem alloc] initWithImage:[UIImage imageNamed:@"项目－项目专题_11a.png"]
+        _addButton = [[QuadCurveMenuItem alloc] initWithImage:[GetImagePath getImagePath:@"项目－项目专题_11a"]
                                        highlightedImage:nil
                                            ContentImage:nil
                                 highlightedContentImage:nil flag:1];

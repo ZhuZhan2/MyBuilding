@@ -12,7 +12,7 @@
     }
 
 #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
-    UIImage *image = [UIImage imageNamed:@"lookup_amatorka.png"];
+    UIImage *image = [UIImage imageNamed:@"lookup_amatorka.png"]; 
 #else
     NSImage *image = [NSImage imageNamed:@"lookup_amatorka.png"];
 #endif

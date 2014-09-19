@@ -44,7 +44,7 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 
 - (EGOImageView *)photoView {
     if (!_photoView) {
-        _photoView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"产品－列表_10a.png"]];
+        _photoView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"产品－列表_10a"]];
         [self addSubview:_photoView];
     }
     return _photoView;
@@ -73,7 +73,7 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 
 -(UIImageView *)commentIcon{
     if (!_commentIcon) {
-        UIImage* image=[UIImage imageNamed:@"产品－列表_06a.png"];
+        UIImage* image=[GetImagePath getImagePath:@"产品－列表_06a"];
         _commentIcon=[[UIImageView alloc]initWithImage:image];
         _commentIcon.image=image;
         [self addSubview:_commentIcon];

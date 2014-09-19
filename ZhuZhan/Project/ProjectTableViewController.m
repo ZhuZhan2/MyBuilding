@@ -47,7 +47,7 @@
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setFrame:CGRectMake(0, 0, 41, 36.5)];
-    [rightButton setBackgroundImage:[UIImage imageNamed:@"项目-首页_03a.png"] forState:UIControlStateNormal];
+    [rightButton setBackgroundImage:[GetImagePath getImagePath:@"项目-首页_03a"] forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
@@ -56,12 +56,12 @@
     [bgView setBackgroundColor:[UIColor clearColor]];
     UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [searchBtn setFrame:CGRectMake(15, 0, 169, 31)];
-    [searchBtn setBackgroundImage:[UIImage imageNamed:@"项目-首页_08a.png"] forState:UIControlStateNormal];
+    [searchBtn setBackgroundImage:[GetImagePath getImagePath:@"项目-首页_08a"] forState:UIControlStateNormal];
     [searchBtn addTarget:self action:@selector(serachClick) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:searchBtn];
     
     UIImageView *searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(35, 8, 15, 15)];
-    [searchImage setImage:[UIImage imageNamed:@"搜索结果_09a.png"]];
+    [searchImage setImage:[GetImagePath getImagePath:@"搜索结果_09a"]];
     [bgView addSubview:searchImage];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(55, 0, 120, 30)];

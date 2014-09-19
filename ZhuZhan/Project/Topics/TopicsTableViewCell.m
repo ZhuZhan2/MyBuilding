@@ -37,15 +37,14 @@
 -(void)addContent:(TopicsModel *)model{
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(2, 5, 316, 111)];
     UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 316, 111)];
-    [bgImage setImage:[UIImage imageNamed:@"项目－项目专题_02a"]];
+    [bgImage setImage:[GetImagePath getImagePath:@"项目－项目专题_02a"]];
     [bgView addSubview:bgImage];
     
     [self.contentView addSubview:bgView];
     
-    headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"首页_16"]];
+    headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"首页_16"]];
     [headImageView setFrame:CGRectMake(3, 2, 132, 106)];
     headImageView.showActivityIndicator = YES;
-    NSLog(@"%@",model.a_image);
     headImageView.imageURL = [NSURL URLWithString:model.a_image];
     [bgView addSubview:headImageView];
     
@@ -62,7 +61,7 @@
     [bgView addSubview:contentLabel];
     
     UIImageView *countImage = [[UIImageView alloc] initWithFrame:CGRectMake(147, 88, 17, 12)];
-    [countImage setImage:[UIImage imageNamed:@"项目－项目专题_03a"]];
+    [countImage setImage:[GetImagePath getImagePath:@"项目－项目专题_03a"]];
     [bgView addSubview:countImage];
     
     projectCount = [[UILabel alloc] initWithFrame:CGRectMake(170, 83, 100, 20)];

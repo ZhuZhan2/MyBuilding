@@ -36,29 +36,29 @@
     UIButton *yuingBtn =  [UIButton buttonWithType:UIButtonTypeCustom];
     yuingBtn.frame = CGRectMake(40, 6, 28, 28);
     yuingBtn.tag = 0;
-    [yuingBtn setBackgroundImage:[UIImage imageNamed:@"搜索_03.png"] forState:UIControlStateNormal];
+    [yuingBtn setBackgroundImage:[GetImagePath getImagePath:@"搜索_03"] forState:UIControlStateNormal];
     [yuingBtn addTarget:self action:@selector(gotoViewClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:yuingBtn];
     
     UIImageView *lineImage1 = [[UIImageView alloc] initWithFrame:CGRectMake(108, 7, 1, 27.5)];
-    [lineImage1 setImage:[UIImage imageNamed:@"搜索_10.png"]];
+    [lineImage1 setImage:[GetImagePath getImagePath:@"搜索_10"]];
     [self addSubview:lineImage1];
     
     UIButton *advancedBtn =  [UIButton buttonWithType:UIButtonTypeCustom];
     advancedBtn.frame = CGRectMake(148, 6, 28, 28);
     advancedBtn.tag = 1;
-    [advancedBtn setBackgroundImage:[UIImage imageNamed:@"搜索_05.png"] forState:UIControlStateNormal];
+    [advancedBtn setBackgroundImage:[GetImagePath getImagePath:@"搜索_05"] forState:UIControlStateNormal];
     [advancedBtn addTarget:self action:@selector(gotoViewClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:advancedBtn];
     
     UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(216, 7, 1, 27.5)];
-    [lineImage2 setImage:[UIImage imageNamed:@"搜索_10.png"]];
+    [lineImage2 setImage:[GetImagePath getImagePath:@"搜索_10"]];
     [self addSubview:lineImage2];
     
     UIButton *mapBtn =  [UIButton buttonWithType:UIButtonTypeCustom];
     mapBtn.frame = CGRectMake(256, 6, 28, 28);
     mapBtn.tag = 2;
-    [mapBtn setBackgroundImage:[UIImage imageNamed:@"搜索_07.png"] forState:UIControlStateNormal];
+    [mapBtn setBackgroundImage:[GetImagePath getImagePath:@"搜索_07"] forState:UIControlStateNormal];
     [mapBtn addTarget:self action:@selector(gotoViewClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:mapBtn];
 }

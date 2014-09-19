@@ -18,7 +18,7 @@
         self.backgroundColor = RGBCOLOR(245, 245, 245);
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(84, 100, 152, 102)];
-        [imageView setImage:[UIImage imageNamed:@"数据加载失败_03a"]];
+        [imageView setImage:[GetImagePath getImagePath:@"数据加载失败_03a"]];
         [self addSubview:imageView];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 252, 320, 40)];
@@ -37,7 +37,7 @@
         
         UIButton *reloadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [reloadBtn setFrame:CGRectMake(103, 332, 114, 32)];
-        [reloadBtn setBackgroundImage:[UIImage imageNamed:@"数据加载失败_07a"] forState:UIControlStateNormal];
+        [reloadBtn setBackgroundImage:[GetImagePath getImagePath:@"数据加载失败_07a"] forState:UIControlStateNormal];
         [reloadBtn addTarget:self action:@selector(reloadBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:reloadBtn];
     }

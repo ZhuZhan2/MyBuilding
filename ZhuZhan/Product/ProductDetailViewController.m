@@ -101,7 +101,7 @@
     //imageView部分
     CGFloat scale=320.0/[self.productModel.a_imageWidth floatValue]*2;    CGFloat height=[self.productModel.a_imageHeight floatValue]*.5*scale;
 
-    EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:[UIImage imageNamed:@"产品－产品详情_03a.png"]];
+    EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"产品－产品详情_03a"]];
     if (![self.productModel.a_imageUrl isEqualToString:@""]) {
         imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.productModel.a_imageUrl]];
     }else{
@@ -111,7 +111,7 @@
 
     
     //imageView右下角评论图标
-    UIImage* image=[UIImage imageNamed:@"人脉_66a.png"];
+    UIImage* image=[GetImagePath getImagePath:@"人脉_66a"];
     CGRect frame=CGRectMake(0, 0, image.size.width*.5, image.size.height*.5);
     UIImageView* tempImageView=[[UIImageView alloc]initWithFrame:frame];
     tempImageView.image=image;
@@ -143,7 +143,7 @@
     
     //与下方tableView的分割部分
     if (self.commentViews.count) {
-        UIImage* separatorImage=[UIImage imageNamed:@"产品－产品详情_12a@2x.png"];
+        UIImage* separatorImage=[GetImagePath getImagePath:@"产品－产品详情_12a@2x"];
         frame=CGRectMake(0, tempHeight, separatorImage.size.width*.5, separatorImage.size.height*.5);
         UIImageView* separatorImageView=[[UIImageView alloc]initWithFrame:frame];
         separatorImageView.image=separatorImage;
@@ -293,7 +293,7 @@
 
 -(void)initNavi{
     UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,5,29,28.5)];
-    [button setImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [button setImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.title=@"产品详情";

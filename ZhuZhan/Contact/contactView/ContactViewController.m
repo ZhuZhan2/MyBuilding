@@ -55,7 +55,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setFrame:CGRectMake(0, 0, 21, 19)];
-    [rightButton setImage:[UIImage imageNamed:@"人脉_02a"] forState:UIControlStateNormal];
+    [rightButton setImage:[GetImagePath getImagePath:@"人脉_02a"] forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(publish) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
@@ -66,7 +66,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //上拉刷新界面
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154)];
     _pathCover.delegate = self;
-    [_pathCover setBackgroundImage:[UIImage imageNamed:@"bg001.png"]];
+    [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"bg001"]];
     [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
     [_pathCover setHeadTaget];
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"用户名", XHUserNameKey, @"公司名字显示在这里     职位", XHBirthdayKey, nil]];
@@ -96,8 +96,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 }
             } userId:@"ce753b56-baff-4194-8da2-d88e695afdde"];
             
-            //ActivesModel *model = posts[0];
-            //NSLog(@"%@",model.a_content);
+            showArr = posts;
+            ActivesModel *model = showArr[1];
+            NSLog(@"%@",model.a_content);
+            [self.tableView reloadData];
         }
     } userId:@"ce753b56-baff-4194-8da2-d88e695afdde" startIndex:startIndex];
 }
@@ -159,8 +161,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PSTableViewCellIdentifier];
-    CommentModel *model = showArr[indexPath.row];
-    if([model.a_type isEqualToString:@"Project"]){
+    ActivesModel *model = showArr[indexPath.row];
+    if([model.a_category isEqualToString:@"Project"]){
         NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
         ContactProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
@@ -169,57 +171,43 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         cell.delegate = self;
         cell.selectionStyle = NO;
         return cell;
-    }else if ([model.a_type isEqualToString:@"Personal"]){
-        NSString *CellIdentifier = [NSString stringWithFormat:@"ContactTableViewCell"];
-        ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(!cell){
-            cell = [[ContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }else if([model.a_category isEqualToString:@"Personal"]){
+        if([model.a_category isEqualToString:@"Actives"]){
+        
+        }else{
+        
         }
-        cell.delegate = self;
-        cell.selectionStyle = NO;
-        cell.model = model;
-        return cell;
-    }else if ([model.a_type isEqualToString:@"Product"]){
-        NSString *stringcell = @"Cell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
-        if(!cell){
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
+    }else if([model.a_category isEqualToString:@"Company"]){
+        if([model.a_category isEqualToString:@"Actives"]){
+            
+        }else{
+            
         }
-        for(int i=0;i<cell.contentView.subviews.count;i++) {
-            [((UIView*)[cell.contentView.subviews objectAtIndex:i]) removeFromSuperview];
-        }
-        [cell.contentView setBackgroundColor:[UIColor whiteColor]];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        if(viewArr.count !=0){
-            commentView = [viewArr objectAtIndex:indexPath.row];
-            commentView.delegate = self;
-            commentView.indexpath = indexPath;
-            [cell.contentView addSubview:commentView];
-        }
-        return cell;
-    }else if ([model.a_type isEqualToString:@"comment"]){
-        NSString *CellIdentifier = [NSString stringWithFormat:@"ContactCommentTableViewCell"];
-        ContactCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(!cell){
-            cell = [[ContactCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        cell.model = model;
-        cell.selectionStyle = NO;
-        return cell;
+    }else{
+        
     }
     return cell;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CommentModel *model = showArr[indexPath.row];
-    if([model.a_type isEqualToString:@"Project"]||[model.a_type isEqualToString:@"Personal"]){
+    ActivesModel *model = showArr[indexPath.row];
+    if([model.a_category isEqualToString:@"Project"]){
         return 50;
-    }else if([model.a_type isEqualToString:@"Product"]){
-        commentView = [viewArr objectAtIndex:indexPath.row];
-        return commentView.frame.size.height;
+    }else if([model.a_category isEqualToString:@"Personal"]){
+        if([model.a_category isEqualToString:@"Actives"]){
+            return 100;
+        }else{
+            return 50;
+        }
+    }else if([model.a_category isEqualToString:@"Company"]){
+        if([model.a_category isEqualToString:@"Actives"]){
+            return 100;
+        }else{
+            return 50;
+        }
     }else{
-        return 60;
+        return 50;
     }
     return 60;
 }

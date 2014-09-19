@@ -395,7 +395,7 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     CGFloat waterDropRefreshHeight = 100;
     CGFloat waterDropRefreshWidth = 20;
     _waterDropRefresh = [[XHWaterDropRefresh alloc] initWithFrame:CGRectMake(60.5, CGRectGetHeight(self.bounds) - waterDropRefreshHeight+5, waterDropRefreshWidth, waterDropRefreshHeight)];
-    _waterDropRefresh.refreshCircleImage = [UIImage imageNamed:@"circle"];
+    _waterDropRefresh.refreshCircleImage = [GetImagePath getImagePath:@"circle"];
     _waterDropRefresh.offsetHeight = 20; // 线条的长度
     [self addSubview:self.waterDropRefresh];
     
@@ -405,7 +405,7 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     _showView = [[UIView alloc] initWithFrame:CGRectMake(0, self.showUserInfoViewOffsetHeight, CGRectGetWidth(self.bounds), waterDropRefreshHeight)];
     _showView.backgroundColor = [UIColor clearColor];
     
-    _headImage = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"人脉_29a.png"]];
+    _headImage = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_29a"]];
     _headImage.frame = CGRectMake(53, 0, avatarButtonHeight, avatarButtonHeight);
     [_headImage.layer setMasksToBounds:YES];
     [_headImage.layer setCornerRadius:23];
