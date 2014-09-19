@@ -130,7 +130,7 @@
             for(NSDictionary *item in JSON[@"d"][@"data"]){
                 CommentModel *model = [[CommentModel alloc] init];
                 [model setDict:item];
-                //[mutablePosts addObject:model];
+                [mutablePosts addObject:model];
             }
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);

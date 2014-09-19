@@ -101,7 +101,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             for(int i=0;i<posts.count;i++){
                 CommentModel *commentModel = posts[i];
                 [showArr addObject:commentModel];
-                [_datasource addObject:commentModel.a_time];
+                [_datasource addObject:[NSDate date]];
                 //NSLog(@"%@",commentModel.a_time);
                 if(commentModel.a_commentsArr.count !=0){
                     ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[0];
@@ -213,9 +213,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
         }
         for(int i=0;i<cell.contentView.subviews.count;i++) {
-            [((UIView*)[cell.contentView.subviews objectAtIndex:i]) removeFromSuperview];
+            [((UIView*)[cell.contentView.subviews lastObject]) removeFromSuperview];
         }
-        [cell.contentView setBackgroundColor:[UIColor whiteColor]];
+        //[cell.contentView setBackgroundColor:[UIColor whiteColor]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if(viewArr.count !=0){
             commentView = [viewArr objectAtIndex:indexPath.row];
@@ -223,6 +223,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             commentView.indexpath = indexPath;
             [cell.contentView addSubview:commentView];
         }
+        cell.contentView.backgroundColor=RGBCOLOR(228, 228, 228);
         return cell;
     }else if ([model.a_type isEqualToString:@"comment"]){
         NSString *CellIdentifier = [NSString stringWithFormat:@"ContactCommentTableViewCell"];
