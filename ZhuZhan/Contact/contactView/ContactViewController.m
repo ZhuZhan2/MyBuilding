@@ -97,9 +97,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             } userId:@"ce753b56-baff-4194-8da2-d88e695afdde"];
             
             showArr = posts;
-            ActivesModel *model = showArr[1];
-            NSLog(@"%@",model.a_content);
-            [self.tableView reloadData];
+//            NSLog(@"****posts********%@",posts);
+//           NSLog(@"****showArr********%@",showArr);
+//            ActivesModel *model = showArr[1];
+//            NSLog(@"%@",model.a_content);
+//            [self.tableView reloadData];
         }
     } userId:@"ce753b56-baff-4194-8da2-d88e695afdde" startIndex:startIndex];
 }
