@@ -16,11 +16,11 @@
     if (self) {
         
         UIView *back = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
-        back.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"grayColor"]];
+        back.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
         [self addSubview:back];
         
         UIImageView *imgaeView = [[UIImageView alloc] initWithFrame:CGRectMake(129, 8, 52, 34)];
-        imgaeView.image = [UIImage imageNamed:@"人脉－人的详情_28a"];
+        imgaeView.image = [GetImagePath getImagePath:@"人脉－人的详情_28a"];
         [back addSubview:imgaeView];
         
         if (exist) {
@@ -38,10 +38,10 @@
             [self addSubview:emailBtn];
             
             UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(20, 99, 280, 1)];
-            line.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+            line.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
             [self addSubview:line];
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(270, 66, 21, 18)];
-            [imageView setImage:[UIImage imageNamed:@"人脉－人的详情_21a"]];
+            [imageView setImage:[GetImagePath getImagePath:@"人脉－人的详情_21a"]];
             [self addSubview:imageView];
             imageView.userInteractionEnabled =YES;
             
@@ -61,12 +61,12 @@
             
             
             UIImageView *imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(270, 116, 21, 18)];
-            [imageView1 setImage:[UIImage imageNamed:@"人脉－人的详情_23a"]];
+            [imageView1 setImage:[GetImagePath getImagePath:@"人脉－人的详情_23a"]];
             [self addSubview:imageView1];
             imageView1.userInteractionEnabled =YES;
             
             UIImageView *line2 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 150, 280, 1)];
-            line2.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+            line2.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
             [self addSubview:line2];
 
         }
@@ -86,12 +86,12 @@
             
             
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(270, 66, 21, 18)];
-            [imageView setImage:[UIImage imageNamed:@"人脉－人的详情_23a"]];
+            [imageView setImage:[GetImagePath getImagePath:@"人脉－人的详情_23a"]];
             [self addSubview:imageView];
             imageView.userInteractionEnabled =YES;
             
             UIImageView *line2 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 100, 280, 1)];
-            line2.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+            line2.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
             [self addSubview:line2];
         }
         

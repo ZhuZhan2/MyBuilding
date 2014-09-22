@@ -40,7 +40,7 @@
     [bgView addSubview:bgImage];
     [self.contentView addSubview:bgView];
     
-    headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"首页_16"]];
+    headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"首页_16"]];
     [headImageView setFrame:CGRectMake(0, 0, 320, 202)];
     headImageView.imageURL = [NSURL URLWithString:model.a_image];
     [bgView addSubview:headImageView];
@@ -68,7 +68,7 @@
     
     
     UIImageView* shadow=[[UIImageView alloc]initWithFrame:CGRectMake(0, 278+bounds.size.height-10-3.5, 320, 3.5)];
-    shadow.image=[UIImage imageNamed:@"XiangMuXiangQing/Shadow-bottom.png"];
+    shadow.image=[GetImagePath getImagePath:@"XiangMuXiangQing/Shadow-bottom"];
     [self addSubview:shadow];
     
     

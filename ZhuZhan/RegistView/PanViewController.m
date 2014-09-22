@@ -36,7 +36,7 @@ static int j =0;
     self.navigationController.navigationBar.hidden = YES;
     
     UIImageView *naBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
-    naBar.image = [UIImage imageNamed:@"地图搜索_01"];
+    naBar.image = [GetImagePath getImagePath:@"地图搜索_01"];
     [self.view addSubview:naBar];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, 320, 40)];
@@ -59,7 +59,7 @@ static int j =0;
     
     nowIMageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 453/2, 603/2)];
     nowIMageView.center = CGPointMake(160, kScreenHeight/2-10);
-    UIImage *defaultImg =[UIImage imageNamed:@"扫描页面_03"];
+    UIImage *defaultImg =[GetImagePath getImagePath:@"扫描页面_03"];
     nowIMageView.image = defaultImg;
     [self.view addSubview:nowIMageView];
     
@@ -68,7 +68,7 @@ static int j =0;
     collectBtn.center = CGPointMake(160, kScreenHeight-100);
     collectBtn.titleLabel.font = [UIFont systemFontOfSize:18.0];
     [collectBtn setTitle:@"照片采集" forState:UIControlStateNormal];
-    [collectBtn setBackgroundImage:[UIImage imageNamed:@"面部采集_07"] forState:UIControlStateNormal];
+    [collectBtn setBackgroundImage:[GetImagePath getImagePath:@"面部采集_07"] forState:UIControlStateNormal];
     [collectBtn addTarget:self action:@selector(addmMoreImage) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:collectBtn];
     
@@ -81,7 +81,7 @@ static int j =0;
     [self.view addSubview:jumpBtn];
     UIImageView *tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 12, 12)];
     tempImgView.center = CGPointMake(185, kScreenHeight-30);
-    tempImgView.image = [UIImage imageNamed:@"面部采集_11"];
+    tempImgView.image = [GetImagePath getImagePath:@"面部采集_11"];
     [self.view addSubview:tempImgView];
     
     event = [[LoginEvent alloc] init];

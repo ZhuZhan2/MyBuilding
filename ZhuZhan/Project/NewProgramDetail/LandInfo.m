@@ -31,9 +31,8 @@
 -(void)getFirstView{
     //土地规划/拍卖
     self.firstView=[[UIView alloc]initWithFrame:CGRectZero];
-    
     NSArray* dataThreeStrs=[self.delegate getThreeLinesTitleViewWithThreeStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
-    UIView* view0=[MyFactory getThreeLinesTitleViewWithTitle:@"土地规划/拍卖" titleImage:[UIImage imageNamed:@"XiangMuXiangQing/map_01.png"] dataThreeStrs:dataThreeStrs];
+    UIView* view0=[MyFactory getThreeLinesTitleViewWithTitle:@"土地规划/拍卖" titleImage:[GetImagePath getImagePath:@"XiangMuXiangQing/map_01"] dataThreeStrs:dataThreeStrs];
     
     NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     UIView* view1=[MyFactory getImageViewWithImageUrl:images.count?images[0]:@"No" count:images.count];
@@ -67,7 +66,7 @@
     self.secondView=[[UIView alloc]initWithFrame:CGRectZero];
     
     NSArray* threeStrs=[self.delegate getThreeLinesTitleViewWithThreeStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
-    UIView* view0=[MyFactory getThreeLinesTitleViewWithTitle:@"项目立项" titleImage:[UIImage imageNamed:@"XiangMuXiangQing/map_01.png"] dataThreeStrs:threeStrs];
+    UIView* view0=[MyFactory getThreeLinesTitleViewWithTitle:@"项目立项" titleImage:[GetImagePath getImagePath:@"XiangMuXiangQing/map_01"] dataThreeStrs:threeStrs];
     
     NSArray* sixStrs=[self.delegate getBlueTwoLinesWithStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
     UIView* view1=[MyFactory getBlueTwoLinesWithFirstStr:@[@"预计开工时间",@"建筑层高",@"外资参与",@"预计竣工时间",@"投资额",@"建筑面积"] secondStr:sixStrs];
@@ -76,7 +75,7 @@
     UIView* view2=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];
     [view2 addSubview:[MyFactory getSeperatedLine]];
     
-    UIView* view3=[MyFactory getOwnerTypeViewWithImage:[UIImage imageNamed:@"XiangMuXiangQing/logo@2x.png"] owners:[self.delegate getOwnerTypeViewWithImageAndOwnersWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]]];
+    UIView* view3=[MyFactory getOwnerTypeViewWithImage:[GetImagePath getImagePath:@"XiangMuXiangQing/logo@2x"] owners:[self.delegate getOwnerTypeViewWithImageAndOwnersWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]]];
     
     NSArray* tempAry=@[view0,view1,view2,view3];
     CGFloat height=0;

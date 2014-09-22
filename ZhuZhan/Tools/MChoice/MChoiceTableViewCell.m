@@ -16,7 +16,7 @@
     if (self) {
         // Initialization code
         m_checkImageView = [[UIImageView alloc] initWithFrame:CGRectMake(230, 12, 18, 18)];
-        [m_checkImageView setImage:[UIImage imageNamed:@"高级搜索-多选_09a.png"]];
+        [m_checkImageView setImage:[GetImagePath getImagePath:@"高级搜索-多选_09a"]];
         [self addSubview:m_checkImageView];
     }
     return self;
@@ -38,12 +38,12 @@
 {
 	if (checked)
 	{
-		m_checkImageView.image = [UIImage imageNamed:@"高级搜索-多选_07a.png"];
+		m_checkImageView.image = [GetImagePath getImagePath:@"高级搜索-多选_07a"];
 		self.backgroundView.backgroundColor = [UIColor colorWithRed:223.0/255.0 green:230.0/255.0 blue:250.0/255.0 alpha:1.0];
 	}
 	else
 	{
-		m_checkImageView.image = [UIImage imageNamed:@"高级搜索-多选_09a.png"];
+		m_checkImageView.image = [GetImagePath getImagePath:@"高级搜索-多选_09a"];
 		self.backgroundView.backgroundColor = [UIColor whiteColor];
 	}
 	m_checked = checked;

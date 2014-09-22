@@ -44,10 +44,10 @@
     UIImageView *bgimageView = [[UIImageView alloc] init];
     if(self.flag == 0){
         bgimageView.frame = CGRectMake(0, 0, 272, 350);
-        [bgimageView setImage:[UIImage imageNamed:@"高级搜索-多选_03a.png"]];
+        [bgimageView setImage:[GetImagePath getImagePath:@"高级搜索-多选_03a"]];
     }else{
         bgimageView.frame = CGRectMake(0, 0, 272, 270);
-        [bgimageView setImage:[UIImage imageNamed:@"高级搜索-多选_03aA.png"]];
+        [bgimageView setImage:[GetImagePath getImagePath:@"高级搜索-多选_03aA"]];
     }
     [self.view addSubview:bgimageView];
     

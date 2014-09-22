@@ -36,13 +36,13 @@
     
     
     UIImageView  *tempImageView= [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 260, 240)];
-    tempImageView.image = [UIImage imageNamed:@"首页_16.png"];
+    tempImageView.image = [GetImagePath getImagePath:@"首页_16"];
     tempImageView.userInteractionEnabled = YES;
     [self.view addSubview:tempImageView];
     
     
     UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
-    icon.image = [UIImage imageNamed:@"面部识别登录1_03"];
+    icon.image = [GetImagePath getImagePath:@"面部识别登录1_03"];
     icon.center = CGPointMake(110, 80);
     icon.userInteractionEnabled = YES;
     [tempImageView addSubview:icon];

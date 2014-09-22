@@ -67,7 +67,7 @@
 }
 
 -(void)changeButtonImage:(UIButton*)button{
-    [button setImage:[UIImage imageNamed:@"bg-addbutton-highlighted"] forState:UIControlStateNormal];
+    [button setImage:[GetImagePath getImagePath:@"bg-addbutton-highlighted"] forState:UIControlStateNormal];
 }
 
 //===========================================================================
@@ -113,11 +113,11 @@
         [cell.contentView addSubview:separatorLine];
         cell.textLabel.text=[NSString stringWithFormat:@"用户名显示%d",indexPath.row-1];
         cell.textLabel.font=[UIFont boldSystemFontOfSize:16];
-        cell.imageView.image=[UIImage imageNamed:@"公司认证员工_03a.png"];
+        cell.imageView.image=[GetImagePath getImagePath:@"公司认证员工_03a"];
         cell.detailTextLabel.text=[NSString stringWithFormat:@"部门职位"];
         cell.detailTextLabel.textColor=RGBCOLOR(155, 155, 155);
         cell.detailTextLabel.font=[UIFont boldSystemFontOfSize:13];
-        cell.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:indexPath.row%2?@"公司认证员工_08a.png":@"公司认证员工_18a.png"]];
+        cell.accessoryView=[[UIImageView alloc]initWithImage:indexPath.row%2?[GetImagePath getImagePath:@"公司认证员工_08a"]:[GetImagePath getImagePath:@"公司认证员工_18a"]];
     }
     return cell;
 }
@@ -156,7 +156,7 @@
     
     //左back button
     UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,0,29,28.5)];
-    [button setImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [button setImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
 }

@@ -21,7 +21,7 @@
 -(instancetype)init{
     self=[super init];
     if (self) {
-        self.myImageView=[[EGOImageView alloc]initWithPlaceholderImage:[UIImage imageNamed:@"首页_16.png"]];
+        self.myImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"首页_16"]];
         self.myImageView.frame=CGRectMake(0, 0, 320, 215.5);
         self.myImageView.showActivityIndicator=YES;
         [self addSubview:self.myImageView];

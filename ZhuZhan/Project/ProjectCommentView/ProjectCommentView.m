@@ -37,7 +37,7 @@
 
 -(void)loadSelfWithCommentModel:(ProjectCommentModel *)commentModel{
     //获取用户头像
-    self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[UIImage imageNamed:@"首页_16.png"]];
+    self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"首页_16"]];
     self.userImageView.layer.masksToBounds=YES;
     self.userImageView.layer.cornerRadius=5;
     self.userImageView.frame=CGRectMake(15, 20, 50, 50);

@@ -46,17 +46,13 @@
         
         UIButton *cancel = [UIButton buttonWithType:UIButtonTypeCustom];
         cancel.frame = CGRectMake(10,7, 66.5, 29);
-        [cancel setBackgroundImage:[UIImage imageNamed:@"controls_03.png"] forState:UIControlStateNormal];
-        //[cancel setTitle:@"取消" forState:UIControlStateNormal];
-        //[cancel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [cancel setBackgroundImage:[GetImagePath getImagePath:@"controls_03"] forState:UIControlStateNormal];
         [cancel addTarget:self action:@selector(cancelClick) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:cancel];
         
         UIButton *complated = [UIButton buttonWithType:UIButtonTypeCustom];
         complated.frame = CGRectMake(240,7, 66.5, 29);
-        [complated setBackgroundImage:[UIImage imageNamed:@"controls_05.png"] forState:UIControlStateNormal];
-        //[complated setTitle:@"完成" forState:UIControlStateNormal];
-        //[complated setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [complated setBackgroundImage:[GetImagePath getImagePath:@"controls_05"] forState:UIControlStateNormal];
         [complated addTarget:self action:@selector(complatedClick) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:complated];
         

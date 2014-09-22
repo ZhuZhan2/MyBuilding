@@ -15,17 +15,6 @@
 @implementation ScrollViewController
 
 
-//-(NSMutableArray *)imagesArray{
-//    if (!_imagesArray) {
-//        _imagesArray=[NSMutableArray array];
-//        for (int i=0; i<8; i++) {
-//            UIImage* image=[UIImage imageNamed:[NSString stringWithFormat:@"%d.JPG",i]];
-//            [_imagesArray addObject:image];
-//        }
-//    }
-//    return _imagesArray;
-//}
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

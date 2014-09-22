@@ -56,7 +56,7 @@ static int touchCount =2;
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 0, 29, 28.5)];
-    [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [leftButton setBackgroundImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
@@ -64,7 +64,7 @@ static int touchCount =2;
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setFrame:CGRectMake(0, 0, 30, 30)];
-    [rightButton setBackgroundImage:[UIImage imageNamed:@"icon__09"] forState:UIControlStateNormal];
+    [rightButton setBackgroundImage:[GetImagePath getImagePath:@"icon__09"] forState:UIControlStateNormal];
     rightButton.titleLabel.textColor = [UIColor whiteColor];
     [rightButton addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
@@ -87,7 +87,7 @@ static int touchCount =2;
     label.textColor = [UIColor colorWithRed:(151/255.0)  green:(151/255.0)  blue:(151/255.0)  alpha:1.0];
     label.text =@"请开始说话";
     [resultView addSubview:label];
-    UIImage *image = [UIImage imageNamed:@"语音搜索_04.png"];
+    UIImage *image = [GetImagePath getImagePath:@"语音搜索_04"];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(90, resultView.frame.origin.y+resultView.frame.size.height+103.5, 149, 149)];
     //    imageView.center = CGPointMake(160, resultView.frame.origin.y+resultView.frame.size.height+60);
     imageView.image = image;
@@ -99,9 +99,9 @@ static int touchCount =2;
     
     
     
-    [button setBackgroundImage:[UIImage imageNamed:@"语音搜索1_05"] forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"语音搜索1_05"] forState:UIControlStateSelected];
-    [button setBackgroundImage:[UIImage imageNamed:@"语音搜索1_05"] forState:UIControlStateHighlighted];
+    [button setBackgroundImage:[GetImagePath getImagePath:@"语音搜索1_05"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[GetImagePath getImagePath:@"语音搜索1_05"] forState:UIControlStateSelected];
+    [button setBackgroundImage:[GetImagePath getImagePath:@"语音搜索1_05"] forState:UIControlStateHighlighted];
     
     [button addTarget:self action:@selector(startListening1) forControlEvents:UIControlEventTouchUpInside];
     

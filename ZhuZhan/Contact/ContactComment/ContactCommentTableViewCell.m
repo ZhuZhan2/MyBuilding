@@ -35,7 +35,7 @@
 -(void)setContent{
     
     
-    headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"人脉_74a"]];
+    headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_74a"]];
     headImageView.frame = CGRectMake(5, 5, 27, 27);
     headImageView.layer.masksToBounds = YES;
     headImageView.layer.cornerRadius = 3;
