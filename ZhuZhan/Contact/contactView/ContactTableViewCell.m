@@ -86,6 +86,13 @@
     headImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_avatarUrl]];
     titleLabel.text = model.a_title;
     nameLabel.text = model.a_content;
+    if([model.a_category isEqualToString:@"Personal"]){
+        [stageImage setImage:[GetImagePath getImagePath:@"人脉－个人中心_05a"]];
+    }else if([model.a_category isEqualToString:@"Company"]){
+        [stageImage setImage:[GetImagePath getImagePath:@"人脉－个人中心_07a"]];
+    }else if([model.a_category isEqualToString:@"Product"]){
+        [stageImage setImage:[GetImagePath getImagePath:@"人脉－个人中心_06a"]];
+    }
 }
 
 @end

@@ -208,10 +208,26 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if([model.a_eventType isEqualToString:@"Actives"]){
             
         }else{
-            
+            NSString *CellIdentifier = [NSString stringWithFormat:@"ContactTableViewCell"];
+            ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if(!cell){
+                cell = [[ContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            cell.delegate = self;
+            cell.selectionStyle = NO;
+            cell.model = model;
+            return cell;
         }
     }else{
-        
+        NSString *CellIdentifier = [NSString stringWithFormat:@"ContactTableViewCell"];
+        ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[ContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.delegate = self;
+        cell.selectionStyle = NO;
+        cell.model = model;
+        return cell;
     }
     return cell;
 }
