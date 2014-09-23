@@ -28,6 +28,7 @@
 
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
+#import "LoginSqlite.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -212,6 +213,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             }
             commentView = viewArr[indexPath.row];
             commentView.indexpath = indexpath;
+            commentView.delegate = self;
             commentView.showArr = model.a_commentsArr;
             [cell.contentView addSubview:commentView];
             return cell;
@@ -376,16 +378,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 
 -(void)addCommentView:(NSIndexPath *)indexPath{
-    indexpath = indexPath;
-    addCommentView = [[AddCommentViewController alloc] init];
-    addCommentView.delegate = self;
-    [self presentPopupViewController:addCommentView animationType:MJPopupViewAnimationFade flag:2];
-}
-
--(void)sureFromAddCommentWithComment:(NSString*)comment{
     
     NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
-    
+    NSLog(@"********deviceToken***%@",deviceToken);
     if ([deviceToken isEqualToString:@""]) {
         
         LoginViewController *loginVC = [[LoginViewController alloc] init];
@@ -395,6 +390,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         return;
     }
 
+    indexpath = indexPath;
+    addCommentView = [[AddCommentViewController alloc] init];
+    addCommentView.delegate = self;
+    [self presentPopupViewController:addCommentView animationType:MJPopupViewAnimationFade flag:2];
+}
+
+-(void)sureFromAddCommentWithComment:(NSString*)comment{
+    
+   
     
     CommentModel *model = [[CommentModel alloc] init];
     model.a_content = [NSString stringWithFormat:@"%@",comment];

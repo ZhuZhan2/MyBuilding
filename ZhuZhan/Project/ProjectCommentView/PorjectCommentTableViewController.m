@@ -83,6 +83,17 @@
 }
 
 -(void)rightBtnClick{
+    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+    
+    if ([deviceToken isEqualToString:@""]) {
+        
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [[AppDelegate instance] window].rootViewController = naVC;
+        [[[AppDelegate instance] window] makeKeyAndVisible];
+        return;
+    }
+    
     addCommentView = [[AddCommentViewController alloc] init];
     addCommentView.delegate = self;
     [self presentPopupViewController:addCommentView animationType:MJPopupViewAnimationFade flag:2];
@@ -193,16 +204,7 @@
 
 -(void)sureFromAddCommentWithComment:(NSString*)comment{
     
-    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
-    
-    if ([deviceToken isEqualToString:@""]) {
-        
-        LoginViewController *loginVC = [[LoginViewController alloc] init];
-        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
-        [[AppDelegate instance] window].rootViewController = naVC;
-        [[[AppDelegate instance] window] makeKeyAndVisible];
-        return;
-    }
+
 
     
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];

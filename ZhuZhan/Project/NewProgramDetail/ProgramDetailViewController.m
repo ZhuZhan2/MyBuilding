@@ -245,6 +245,17 @@
         
     }else if (buttonIndex==1){
         NSLog(@"评论");
+        NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+        
+        if ([deviceToken isEqualToString:@""]) {
+            
+            LoginViewController *loginVC = [[LoginViewController alloc] init];
+            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+            [[AppDelegate instance] window].rootViewController = naVC;
+            [[[AppDelegate instance] window] makeKeyAndVisible];
+            return;
+        }
+        
         self.vc=[[AddCommentViewController alloc]init];
         self.vc.delegate=self;
         [self presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
@@ -264,16 +275,7 @@
 // }
 -(void)sureFromAddCommentWithComment:(NSString *)comment{
     
-    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
-    
-    if ([deviceToken isEqualToString:@""]) {
-        
-        LoginViewController *loginVC = [[LoginViewController alloc] init];
-        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
-        [[AppDelegate instance] window].rootViewController = naVC;
-        [[[AppDelegate instance] window] makeKeyAndVisible];
-        return;
-    }
+
 
     NSLog(@"sureFromAddCommentWithCommentModel:");
     NSLog(@"%@",comment);
