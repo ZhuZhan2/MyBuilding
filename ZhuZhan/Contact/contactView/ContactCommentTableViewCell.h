@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "EGOImageView.h"
-#import "CommentModel.h"
+#import "ContactCommentModel.h"
 @interface ContactCommentTableViewCell : UITableViewCell{
     EGOImageView *headImageView;
     UILabel *contentLabel;
     UILabel *timeLabel;
 }
-@property(nonatomic,strong)CommentModel *model;
+@property(nonatomic,strong)ContactCommentModel *model;
 @end

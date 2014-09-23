@@ -55,8 +55,8 @@
     [self.contentView addSubview:timeLabel];
 }
 
--(void)setModel:(CommentModel *)model{
+-(void)setModel:(ContactCommentModel *)model{
     contentLabel.frame = CGRectMake(40, 5, 100, 30);
-    contentLabel.text = model.a_content;
+    contentLabel.text = model.a_commentContents;
 }
 @end
