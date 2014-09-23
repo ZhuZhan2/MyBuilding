@@ -27,54 +27,36 @@
             endingLineNumber = "434"
             landmarkName = "+GetSeminarProjectsWithBlock:Id:"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ZhuZhan/LoginView/LoginEvent.m"
-            timestampString = "432541017.190325"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "-learnToAddFaceWith:WithFaceID:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ZhuZhan/LoginView/LoginEvent.m"
-            timestampString = "432541083.400961"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "-detectWithImage:With:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ZhuZhan/RegistView/RegistViewController.m"
-            timestampString = "432631097.656728"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
-            landmarkName = "-commomRegister"
-            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[ProjectApi GetSeminarProjectsWithBlock:Id:]"
+                  moduleName = "ZhuZhan"
+                  urlString = "file:///Users/Jack/Desktop/%E6%88%91%E7%9A%84%E4%BB%A3%E7%A0%81/GitHub/ZhuZhanDev/ZhuZhan/Model/ProjectModel/ProjectApi.m"
+                  timestampString = "433132234.81659"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "434"
+                  endingLineNumber = "434"
+                  offsetFromSymbolStart = "98">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__45+[ProjectApi GetSeminarProjectsWithBlock:Id:]_block_invoke"
+                  moduleName = "ZhuZhan"
+                  urlString = "file:///Users/Jack/Desktop/%E6%88%91%E7%9A%84%E4%BB%A3%E7%A0%81/GitHub/ZhuZhanDev/ZhuZhan/Model/ProjectModel/ProjectApi.m"
+                  timestampString = "433132234.816803"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "434"
+                  endingLineNumber = "434"
+                  offsetFromSymbolStart = "116">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

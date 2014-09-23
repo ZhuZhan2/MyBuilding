@@ -60,17 +60,17 @@ static int People =0;
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     //恢复tabBar
-    AppDelegate* app=[AppDelegate instance];
-    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-    [homeVC homePageTabBarRestore];
+//    AppDelegate* app=[AppDelegate instance];
+//    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+//    [homeVC homePageTabBarRestore];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //隐藏tabBar
-    AppDelegate* app=[AppDelegate instance];
-    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-    [homeVC homePageTabBarHide];
+//    AppDelegate* app=[AppDelegate instance];
+//    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+//    [homeVC homePageTabBarHide];
 }
 
 -(void)playIndicator

@@ -24,6 +24,9 @@
 #import "AddCommentViewController.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "CommentApi.h"
+#import "LoginSqlite.h"
+#import "LoginViewController.h"
+
 @interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate,CycleScrollViewDelegate,UIActionSheetDelegate,AddCommentDelegate>
 @property(nonatomic,strong)UITableView* contentTableView;
 @property(nonatomic,strong)UITableView* selectTableView;
@@ -260,6 +263,18 @@
 // "CreatedBy": ":“评论人"
 // }
 -(void)sureFromAddCommentWithComment:(NSString *)comment{
+    
+    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+    
+    if ([deviceToken isEqualToString:@""]) {
+        
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [[AppDelegate instance] window].rootViewController = naVC;
+        [[[AppDelegate instance] window] makeKeyAndVisible];
+        return;
+    }
+
     NSLog(@"sureFromAddCommentWithCommentModel:");
     NSLog(@"%@",comment);
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];

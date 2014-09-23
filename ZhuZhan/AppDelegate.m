@@ -79,11 +79,11 @@
 //            self.window.backgroundColor = [UIColor whiteColor];
 //            [self.window makeKeyAndVisible];
 //        }else{
-    
+//    
 //            #if TARGET_IPHONE_SIMULATOR
-            HomePageViewController *homeVC = [[HomePageViewController alloc] init];
-            self.window.rootViewController = homeVC;
-            [self.window makeKeyAndVisible];
+//            HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+//            self.window.rootViewController = homeVC;
+//            [self.window makeKeyAndVisible];
 //            #elif TARGET_OS_IPHONE
 //            if([[networkConnect sharedInstance] connectedToNetwork]){
 //                NSLog(@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"]);
@@ -101,9 +101,9 @@
 //                    [self.window makeKeyAndVisible];
 //                }
 //            }else{
-//                HomePageViewController *homeVC = [[HomePageViewController alloc] init];
-//                self.window.rootViewController = homeVC;
-//                [self.window makeKeyAndVisible];
+                HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+                self.window.rootViewController = homeVC;
+                [self.window makeKeyAndVisible];
 //            }
 //            #endif
 //        }
