@@ -12,6 +12,8 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
+#import "LoginSqlite.h"
+#import "LoginViewController.h"
 @interface PorjectCommentTableViewController ()
 
 @end
@@ -190,6 +192,19 @@
 }
 
 -(void)sureFromAddCommentWithComment:(NSString*)comment{
+    
+    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+    
+    if ([deviceToken isEqualToString:@""]) {
+        
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [[AppDelegate instance] window].rootViewController = naVC;
+        [[[AppDelegate instance] window] makeKeyAndVisible];
+        return;
+    }
+
+    
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:self.projectId forKey:@"EntityId"];

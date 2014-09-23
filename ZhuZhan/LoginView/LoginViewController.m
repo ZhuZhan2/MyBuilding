@@ -118,20 +118,21 @@
     
 }
 
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    //恢复tabBar
-//    AppDelegate* app=[AppDelegate instance];
-//    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-//    [homeVC homePageTabBarRestore];
+
+
+-(void)beginHomePageTabBarHide
+{
+
+
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    //隐藏tabBar
-//    AppDelegate* app=[AppDelegate instance];
-//    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-//    [homeVC homePageTabBarHide];
+-(void)beginHomePageTabBarRestore
+{
+    //恢复tabBar
+        AppDelegate* app=[AppDelegate instance];
+        HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+       [homeVC homePageTabBarRestore];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -218,11 +219,7 @@
 }
 
 -(void)loginSuccess{//登录成功后进行的跳转
-//    NSLog(@"sid === > %@",self.userToken);
-//    [[NSUserDefaults standardUserDefaults]setObject:_userNameTextField.text forKey:@"userName"];
-//    [[NSUserDefaults standardUserDefaults]setObject:_passWordTextField.text forKey:@"passWord"];
-////    [[NSUserDefaults standardUserDefaults]setObject:self.userToken forKey:@"UserToken"];
-//    [[NSUserDefaults standardUserDefaults]synchronize];
+
     
     UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"登录成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     alert.tag = 20140731;
@@ -256,6 +253,7 @@
 
         [[AppDelegate instance] window].rootViewController = homepage;
         [[[AppDelegate instance] window] makeKeyAndVisible];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(beginHomePageTabBarRestore) name:@"Restore" object:nil];
         
     }
     else{

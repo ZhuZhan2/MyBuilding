@@ -26,6 +26,9 @@
 #import "LoginSqlite.h"
 #import "LoginViewController.h"
 #import "ActivesModel.h"
+
+#import "AppDelegate.h"
+#import "HomePageViewController.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -111,7 +114,18 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)publish
 {
     NSLog(@"发布产品");
-
+    
+    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+    
+    if ([deviceToken isEqualToString:@""]) {
+        
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [[AppDelegate instance] window].rootViewController = naVC;
+        [[[AppDelegate instance] window] makeKeyAndVisible];
+        return;
+    }
+    
     PublishViewController *publishVC = [[PublishViewController alloc] init];
     [self.navigationController pushViewController:publishVC animated:YES];
 }
@@ -239,12 +253,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //点击自己头像去个人中心
 -(void)gotoMyCenter{
     NSLog(@"gotoMyCenter");
-    [LoginSqlite opensql];
+
     NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
 
     if ([deviceToken isEqualToString:@""]) {
-        LoginViewController *loginVC = [[LoginViewController alloc]init];
-        [self.navigationController pushViewController:loginVC animated:YES];
+        
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [[AppDelegate instance] window].rootViewController = naVC;
+        [[[AppDelegate instance] window] makeKeyAndVisible];
         return;
     }
     
@@ -316,6 +333,19 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)sureFromAddCommentWithComment:(NSString*)comment{
+    
+    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+    
+    if ([deviceToken isEqualToString:@""]) {
+        
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [[AppDelegate instance] window].rootViewController = naVC;
+        [[[AppDelegate instance] window] makeKeyAndVisible];
+        return;
+    }
+
+    
     CommentModel *model = [[CommentModel alloc] init];
     model.a_content = [NSString stringWithFormat:@"%@",comment];
     model.a_type = @"comment";
