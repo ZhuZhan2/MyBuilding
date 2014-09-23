@@ -21,14 +21,18 @@
 }
 
 /*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
-+(CommentView *)setFram:(CommentModel *)model{
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
++(CommentView *)setFram:(ActivesModel *)model{
+    /*for(int i=0;i<model.a_commentsArr.count;i++){
+        ContactCommentModel *commentModel = model.a_commentsArr[i];
+        NSLog(@"commentModel ===> %@",commentModel.a_commentContents);
+    }*/
     CommentView *commentView = [[CommentView alloc] init];
     CGFloat height=0;
     //上分割线
@@ -43,9 +47,9 @@
     EGOImageView *imageView;
     //动态图像
     if(![model.a_imageUrl isEqualToString:@""]){
-        imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"bg001.png"]];
+        imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
         imageView.frame = CGRectMake(5, 5, 310,[model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310);
-        imageView.imageURL = [NSURL URLWithString:model.a_userImageUrl];//[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
+        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
         [commentView addSubview:imageView];
         height+=imageView.frame.size.height;
     }
@@ -54,16 +58,17 @@
     //动态描述
     if (![model.a_content isEqualToString:@""]) {
         UILabel* contentTextView = [[UILabel alloc] init];
+        contentTextView.backgroundColor=[UIColor greenColor];
         contentTextView.numberOfLines =0;
         UIFont * tfont = [UIFont systemFontOfSize:15];
         contentTextView.font = tfont;
         contentTextView.textColor = [UIColor blackColor];
         contentTextView.lineBreakMode =NSLineBreakByCharWrapping ;
-
+        
         //用户名颜色
-        NSString * text = [NSString stringWithFormat:@"%@:%@",model.a_name,model.a_content];
+        NSString * text = [NSString stringWithFormat:@"%@:%@",model.a_userName,model.a_content];
         NSMutableAttributedString* attributedText=[[NSMutableAttributedString alloc]initWithString:text];
-        NSRange range=NSMakeRange(0, model.a_name.length+1);
+        NSRange range=NSMakeRange(0, model.a_userName.length+1);
         [attributedText addAttributes:@{NSForegroundColorAttributeName:BlueColor} range:range];
         [attributedText addAttributes:@{NSFontAttributeName:tfont} range:NSMakeRange(0, text.length)];
         
@@ -78,8 +83,8 @@
         NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:tfont,NSFontAttributeName,nil];
         //ios7方法，获取文本需要的size，限制宽度
         CGSize actualsize =[text boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin |NSStringDrawingUsesFontLeading attributes:tdic context:nil].size;
-        contentTextView.frame =CGRectMake(imageUrlExist?10:60,5, actualsize.width, actualsize.height);
-
+        contentTextView.frame =CGRectMake(imageUrlExist?10:60,10, actualsize.width, actualsize.height);
+        
         
         contentTotalView=[[UIView alloc]initWithFrame:CGRectMake(5, height, 310, imageView?contentTextView.frame.size.height+20:contentTextView.frame.size.height+20+40)];
         [contentTotalView addSubview:contentTextView];
@@ -95,7 +100,7 @@
     [commentBtn addTarget:commentView action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
     [commentView addSubview:commentBtn];
     if (!imageView) {
-
+        
     }
     
     //用户头像
@@ -104,15 +109,16 @@
     userImageView.frame=CGRectMake(10,tempHeight+5,36,36);
     [commentView addSubview:userImageView];
     
-    userImageView.imageURL = [NSURL URLWithString:model.a_userImageUrl];//[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
+    userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_avatarUrl]];
     [commentView addSubview:userImageView];
     height+=imageView.frame.size.height;
 
     
-    
-    //设置总的frame
-    commentView.frame = CGRectMake(0, 0, 320, height);
-    
+    UITableView *_tableView = [[UITableView alloc] initWithFrame:CGRectMake(90, height, 200, 300)];
+    _tableView.delegate = commentView;
+    _tableView.dataSource = commentView;
+    [commentView addSubview:_tableView];
+    height += 320;
     
     //设置总的frame
     commentView.frame = CGRectMake(0, 0, 320, height);

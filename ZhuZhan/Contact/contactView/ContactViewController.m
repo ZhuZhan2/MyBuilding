@@ -98,30 +98,18 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 }
             } userId:@"13756154-7db5-4516-bcc6-6b7842504c81"];
             
-            for(int i=0;i<posts.count;i++){
-                CommentModel *commentModel = posts[i];
-                [showArr addObject:commentModel];
-                [_datasource addObject:[NSDate date]];
-                //NSLog(@"%@",commentModel.a_time);
-                if(commentModel.a_commentsArr.count !=0){
-                    ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[0];
-                    [showArr addObject:contactCommentModel];
-                    [_datasource addObject:contactCommentModel.a_time];
-                    // NSLog(@"%@",contactCommentModel.a_time);
+            showArr = posts;
+            for(int i=0;i<showArr.count;i++){
+                ActivesModel *model = showArr[i];
+                if([model.a_eventType isEqualToString:@"Actives"]){
+                    commentView = [CommentView setFram:model];
+                    [viewArr addObject:commentView];
+                }else{
+                    [viewArr addObject:@""];
                 }
-                //NSLog(@"%@",showArr);
-                for(int i=0;i<showArr.count;i++){
-                    CommentModel *model = showArr[i];
-                    if([model.a_type isEqualToString:@"Product"]){
-                        commentView = [CommentView setFram:model];
-                        [viewArr insertObject:commentView atIndex:i];
-                    }else{
-                        [viewArr insertObject:@"" atIndex:i];
-                    }
-                }
-                
-                [self.tableView reloadData];
+                [_datasource addObject:model.a_time];
             }
+            [self.tableView reloadData];
         }
     } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
 }
@@ -253,34 +241,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         cell.delegate = self;
         cell.selectionStyle = NO;
         cell.model = model;
-        return cell;
-    }else if ([model.a_type isEqualToString:@"Product"]){
-        NSString *stringcell = @"Cell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
-        if(!cell){
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
-        }
-        for(int i=0;i<cell.contentView.subviews.count;i++) {
-            [((UIView*)[cell.contentView.subviews lastObject]) removeFromSuperview];
-        }
-        //[cell.contentView setBackgroundColor:[UIColor whiteColor]];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        if(viewArr.count !=0){
-            commentView = [viewArr objectAtIndex:indexPath.row];
-            commentView.delegate = self;
-            commentView.indexpath = indexPath;
-            [cell.contentView addSubview:commentView];
-        }
-        cell.contentView.backgroundColor=RGBCOLOR(228, 228, 228);
-        return cell;
-    }else if ([model.a_type isEqualToString:@"comment"]){
-        NSString *CellIdentifier = [NSString stringWithFormat:@"ContactCommentTableViewCell"];
-        ContactCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(!cell){
-            cell = [[ContactCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        cell.model = model;
-        cell.selectionStyle = NO;
         return cell;
     }
     return cell;
