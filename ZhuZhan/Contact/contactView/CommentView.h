@@ -14,10 +14,12 @@
 -(void)addCommentView:(NSIndexPath *)indexPath;
 
 @end
-@interface CommentView : UIView{
+@interface CommentView : UIView<UITableViewDelegate,UITableViewDataSource>{
     NSIndexPath *indexpath;
+    NSMutableArray *showArr;
 }
 @property(nonatomic,weak)id<CommentViewDelegate>delegate;
+@property(nonatomic,strong)NSMutableArray *showArr;
 +(CommentView *)setFram:(ActivesModel *)model;
 @property(nonatomic,strong)NSIndexPath *indexpath;
 @end

@@ -30,11 +30,7 @@ highlightedContentImage:(UIImage *)hcimg flag:(int)flag;
         _contentImageView = [[UIImageView alloc] initWithImage:cimg];
         _contentImageView.highlightedImage = hcimg;
         
-        if(flag == 1){
-            self.bounds = CGRectMake(0, 0, self.image.size.width/2, self.image.size.height/2);
-        }else{
-            self.bounds = CGRectMake(0, 0, self.image.size.width, self.image.size.height);
-        }
+        self.bounds = CGRectMake(0, 0, self.image.size.width, self.image.size.height);
         
         float width = _contentImageView.image.size.width;
         float height = _contentImageView.image.size.height;
