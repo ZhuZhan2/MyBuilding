@@ -18,21 +18,21 @@
 
 @end
 
-@interface AccountCell : UITableViewCell<UITextFieldDelegate>
-
-@property (nonatomic,strong)UITextField *userName;
-@property (nonatomic,strong)UITextField *password;
-@property (nonatomic,strong)UITextField *realName;
-@property (nonatomic,strong)UITextField *sex;
-@property (nonatomic,strong)UITextField *location;
-@property (nonatomic,strong)UILabel *birthday;
-@property (nonatomic,strong)UILabel *constellation;//星座
-@property (nonatomic,strong)UITextField *bloodType;
-@property (nonatomic,strong)UITextField *email;
-@property (nonatomic,strong)UILabel *cellPhone;
-@property (nonatomic,strong)UITextField *company;
-@property (nonatomic,strong)UITextField *position;
-@property (nonatomic,strong)id<AccountCellDelegate> delegate;
+@interface AccountCell : UITableViewCell<UITextFieldDelegate>{
+    UITextField *userName;
+    UITextField *password;
+    UITextField *realName;
+    UITextField *sex;
+    UITextField *location;
+    UILabel *birthday;
+    UILabel *constellation;//星座
+    UITextField *bloodType;
+    UITextField *email;
+    UILabel *cellPhone;
+    UITextField *company;
+    UITextField *position;
+}
+@property (nonatomic,weak)id<AccountCellDelegate> delegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(ContactModel *)model;
 @end

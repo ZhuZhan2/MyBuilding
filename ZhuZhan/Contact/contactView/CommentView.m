@@ -8,6 +8,7 @@
 
 #import "CommentView.h"
 #import "EGOImageView.h"
+#import "ContactCommentModel.h"
 @implementation CommentView
 @synthesize indexpath = _indexpath;
 - (id)initWithFrame:(CGRect)frame
@@ -113,6 +114,9 @@
     commentView.frame = CGRectMake(0, 0, 320, height);
     
     
+    //设置总的frame
+    commentView.frame = CGRectMake(0, 0, 320, height);
+    [commentView setBackgroundColor:[UIColor yellowColor]];
     return commentView;
 }
 
@@ -124,5 +128,32 @@
 
 -(void)setIndexPath:(NSIndexPath *)indexPath{
     _indexpath = indexPath;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return 1;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(!cell){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"%d",indexPath.row);
 }
 @end

@@ -16,16 +16,16 @@
     if (self) {
        
             UIView *back = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
-            back.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"grayColor"]];
+            back.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
             [self addSubview:back];
         
             UIImageView *imgaeView = [[UIImageView alloc] initWithFrame:CGRectMake(129, 8, 52, 34)];
-            imgaeView.image = [UIImage imageNamed:@"人脉－人的详情_30a"];
+            imgaeView.image = [GetImagePath getImagePath:@"人脉－人的详情_30a"];
             [back addSubview:imgaeView];
             
             for (int i=0; i<[model.projectArr count]; i++) {
                 UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(30, 60+60*i, 40, 40)];
-                imageView.image = [UIImage imageNamed:@"人脉_57a"];
+                imageView.image = [GetImagePath getImagePath:@"人脉_57a"];
                 imageView.userInteractionEnabled =YES;
                 [self addSubview:imageView];
                 
@@ -44,7 +44,7 @@
                 [self addSubview:addressLabel];
                 
                 UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(20, 49+60*i+60, 280, 1)];
-                line.image = [UIImage imageNamed:@"人脉－引荐信_08a"];
+                line.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
                 [self addSubview:line];
                 UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
                 button.frame = CGRectMake(0, 50+60*i, 320, 50);

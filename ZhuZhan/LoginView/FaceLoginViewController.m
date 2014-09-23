@@ -31,18 +31,18 @@
     [super viewDidLoad];
     
     UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:self.view.frame];
-    [bgImgView setImage:[UIImage imageNamed:@"面部识别登录.png"]];
+    [bgImgView setImage:[GetImagePath getImagePath:@"面部识别登录"]];
     bgImgView.userInteractionEnabled =YES;
     [self.view addSubview:bgImgView];
     
     self.navigationController.navigationBar.hidden =YES;
     UIImageView *iconBgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 190, 190)];
     iconBgImgView.center = CGPointMake(160.5, 200);
-    iconBgImgView.image = [UIImage imageNamed:@"面部识别登录_03"];
+    iconBgImgView.image = [GetImagePath getImagePath:@"面部识别登录_03"];
     [bgImgView addSubview:iconBgImgView];
     
     UIImageView *faceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(120, 220, 180, 180)];
-    faceImageView.image =[UIImage imageNamed:@"面部识别登录1_03"];
+    faceImageView.image =[GetImagePath getImagePath:@"面部识别登录1_03"];
         faceImageView.center = CGPointMake(160, 205);
     [bgImgView addSubview:faceImageView];
     
@@ -51,7 +51,7 @@
     
     UIImageView *squareImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
     squareImageView.center = CGPointMake(159.5, 205);
-    squareImageView.image = [UIImage imageNamed:@"面部识别登录_07"];
+    squareImageView.image = [GetImagePath getImagePath:@"面部识别登录_07"];
     [bgImgView addSubview:squareImageView];
     
     UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 220, 50)];

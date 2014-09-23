@@ -28,7 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     UIView *topView=[[UIView alloc] initWithFrame:CGRectMake(0, 0,kScreenWidth, 64.5)];
-    topView.layer.contents=(id)[UIImage imageNamed:@"地图搜索_01.png"].CGImage;
+    topView.layer.contents=(id)[GetImagePath getImagePath:@"地图搜索_01"].CGImage;
     [self.view addSubview:topView];
     self.topView=topView;
     
@@ -59,7 +59,7 @@
 {
     UIButton* backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     backButton.frame = CGRectMake(0,27,29,28.5);
-    [backButton setImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [backButton setImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
     [self.topView addSubview:backButton];
 }

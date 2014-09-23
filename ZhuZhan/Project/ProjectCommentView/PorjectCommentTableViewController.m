@@ -12,6 +12,8 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
+#import "LoginSqlite.h"
+#import "LoginViewController.h"
 @interface PorjectCommentTableViewController ()
 
 @end
@@ -33,7 +35,7 @@
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 0, 29, 28.5)];
-    [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [leftButton setBackgroundImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
@@ -44,7 +46,7 @@
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setFrame:CGRectMake(0, 0, 30, 20)];
-    [rightButton setBackgroundImage:[UIImage imageNamed:@"项目－评论列表_03a.png"] forState:UIControlStateNormal];
+    [rightButton setBackgroundImage:[GetImagePath getImagePath:@"项目－评论列表_03a"] forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
@@ -147,7 +149,7 @@
         }
         cell.backgroundColor = RGBCOLOR(239, 237, 237);
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(151.5, 10, 17, 17)];
-        [imageView setImage:[UIImage imageNamed:@"项目－评论列表_03a-07"]];
+        [imageView setImage:[GetImagePath getImagePath:@"项目－评论列表_03a-07"]];
         [cell.contentView addSubview:imageView];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 27, 320, 20)];
@@ -190,6 +192,19 @@
 }
 
 -(void)sureFromAddCommentWithComment:(NSString*)comment{
+    
+    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+    
+    if ([deviceToken isEqualToString:@""]) {
+        
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [[AppDelegate instance] window].rootViewController = naVC;
+        [[[AppDelegate instance] window] makeKeyAndVisible];
+        return;
+    }
+
+    
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:self.projectId forKey:@"EntityId"];

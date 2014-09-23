@@ -48,7 +48,7 @@
     }else if(flag == 1){
         [bgImgView setFrame:CGRectMake(15,10,291.5,260)];
     }
-    [bgImgView setImage:[UIImage imageNamed:@"全部项目_10.png"]];
+    [bgImgView setImage:[GetImagePath getImagePath:@"全部项目_10"]];
     [self addSubview:bgImgView];
     
     nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,5,160,36)];
@@ -83,13 +83,13 @@
     
     progressImage = [[UIImageView alloc] initWithFrame:CGRectMake(215,10,52,52)];
     if([stage isEqualToString:@"1"]||[stage isEqualToString:@"0"]){
-        [progressImage setImage:[UIImage imageNamed:@"+项目-首页_21a.png"]];
+        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];
     }else if([stage isEqualToString:@"2"]){
-        [progressImage setImage:[UIImage imageNamed:@"+项目-首页_25a.png"]];
+        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_25a"]];
     }else if([stage isEqualToString:@"3"]){
-        [progressImage setImage:[UIImage imageNamed:@"+项目-首页_27a.png"]];
+        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_27a"]];
     }else{
-        [progressImage setImage:[UIImage imageNamed:@"+项目-首页_23a.png"]];
+        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_23a"]];
     }
     [bgImgView addSubview:progressImage];
     
@@ -106,11 +106,11 @@
     [bgImgView addSubview:enddateLabel];
     
     UIImageView *bigImage = [[UIImageView alloc] initWithFrame:CGRectMake(2.5,100,286.5,109.5)];
-    [bigImage setImage:[UIImage imageNamed:@"全部项目_37.png"]];
+    [bigImage setImage:[GetImagePath getImagePath:@"全部项目_37"]];
     [bgImgView addSubview:bigImage];
     
     UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(10,225,20,20)];
-    [arrowImage setImage:[UIImage imageNamed:@"全部项目_17.png"]];
+    [arrowImage setImage:[GetImagePath getImagePath:@"全部项目_17"]];
     [bgImgView addSubview:arrowImage];
     
     UIButton *dianBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -119,7 +119,7 @@
     }else{
         [dianBtn setFrame:CGRectMake(275,235,21,20)];
     }
-    [dianBtn setBackgroundImage:[UIImage imageNamed:@"项目-首页_18a.png"] forState:UIControlStateNormal];
+    [dianBtn setBackgroundImage:[GetImagePath getImagePath:@"项目-首页_18a"] forState:UIControlStateNormal];
     [dianBtn addTarget:self action:@selector(dianBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:dianBtn];
     
@@ -152,13 +152,13 @@
     
     stage = [ProjectStage JudgmentProjectStage:model];
     if([stage isEqualToString:@"1"]){
-        [progressImage setImage:[UIImage imageNamed:@"+项目-首页_21a.png"]];
+        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];
     }else if([stage isEqualToString:@"2"]){
-        [progressImage setImage:[UIImage imageNamed:@"+项目-首页_25a.png"]];
+        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_25a"]];
     }else if([stage isEqualToString:@"3"]){
-        [progressImage setImage:[UIImage imageNamed:@"+项目-首页_27a.png"]];
+        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_27a"]];
     }else{
-        [progressImage setImage:[UIImage imageNamed:@"+项目-首页_23a.png"]];
+        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_23a"]];
     }
     
     startdateLabel.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];

@@ -28,7 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 271, 173)];
-    [bgImage setImage:[UIImage imageNamed:@"高级搜索－1_03a"]];
+    [bgImage setImage:[GetImagePath getImagePath:@"高级搜索－1_03a"]];
     [self.view addSubview:bgImage];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 28, 271, 16)];

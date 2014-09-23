@@ -43,7 +43,7 @@
     [self.contentView addSubview:lineImage2];
     lineImage2.alpha = 0.2;
     
-    headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"人脉_06a"]];
+    headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a"]];
     [headImageView setFrame:CGRectMake(15, 6.5, 37, 37)];
     headImageView.layer.masksToBounds = YES;
     headImageView.layer.cornerRadius = 3;
@@ -54,25 +54,22 @@
     [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:btn];
     
-    stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(62.5, 11.5, 27, 27)];
-    [stageImage setImage:[UIImage imageNamed:@"人脉_34a"]];
+    stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(70, 18.5, 12, 13)];
+    [stageImage setImage:[GetImagePath getImagePath:@"人脉－个人中心_05a"]];
     [self.contentView addSubview:stageImage];
     
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 5, 200, 20)];
-    titleLabel.text = [NSString stringWithFormat:@"%@ 添加了联系人",@"用户名"];
     titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:titleLabel];
     
-    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 25, 50, 20)];
-    nameLabel.text = @"赵某某";
+    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 25, 150, 20)];
     nameLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
     nameLabel.textAlignment = NSTextAlignmentLeft;
     nameLabel.textColor = [UIColor lightGrayColor];
     [self.contentView addSubview:nameLabel];
     
     jobLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 25, 100, 20)];
-    jobLabel.text = @"职位";
     jobLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
     jobLabel.textAlignment = NSTextAlignmentLeft;
     jobLabel.textColor = [UIColor lightGrayColor];
@@ -82,6 +79,19 @@
 -(void)btnClick:(UIButton *)button{
     if([self.delegate respondsToSelector:@selector(HeadImageAction:)]){
         [self.delegate HeadImageAction:button];
+    }
+}
+
+-(void)setModel:(ActivesModel *)model{
+    headImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_avatarUrl]];
+    titleLabel.text = model.a_title;
+    nameLabel.text = model.a_content;
+    if([model.a_category isEqualToString:@"Personal"]){
+        [stageImage setImage:[GetImagePath getImagePath:@"人脉－个人中心_05a"]];
+    }else if([model.a_category isEqualToString:@"Company"]){
+        [stageImage setImage:[GetImagePath getImagePath:@"人脉－个人中心_07a"]];
+    }else if([model.a_category isEqualToString:@"Product"]){
+        [stageImage setImage:[GetImagePath getImagePath:@"人脉－个人中心_06a"]];
     }
 }
 

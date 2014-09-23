@@ -32,12 +32,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.tableView=[[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStylePlain];
+    self.tableView=[[UITableView alloc]initWithFrame:self.view.frame];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.backgroundColor=RGBCOLOR(237, 237, 237);
     [self.view addSubview:self.tableView];
-    
+
     
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
     
@@ -47,7 +47,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 0, 29, 28.5)];
-    [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [leftButton setBackgroundImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
@@ -65,7 +65,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 200)];
     _pathCover.delegate = self;
     
-    [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
+    [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"首页_16"]];
     
     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,[LoginSqlite getdata:@"userImageUrl" defaultdata:@"userImageUrl"]]];
     [_pathCover hidewaterDropRefresh];
@@ -88,7 +88,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     for (int i=0; i<2; i++) {
         UIButton *tempBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage* tempImg=[UIImage imageNamed:i?@"人脉－账号设置_03a-05.png":@"人脉－账号设置_03a.png"];
+        UIImage* tempImg=i?[GetImagePath getImagePath:@"人脉－账号设置_03a-05"]:[GetImagePath getImagePath:@"人脉－账号设置_03a"];
         tempBtn.frame=CGRectMake(0, 0, tempImg.size.width*.5, tempImg.size.height*.5);
         tempBtn.center=CGPointMake(80+160*i, footView.frame.size.height-tempBtn.frame.size.height*.5-10);
         [tempBtn setImage:tempImg forState:UIControlStateNormal];
@@ -218,8 +218,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     selectBtnTag = 2014090202;
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
     [actionSheet showInView:self.tableView.superview];
-    
-   
 }
 
 #pragma mark actionSheetDelegate---------------------
@@ -395,13 +393,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSLog(@"cellForRowAtIndexPath");
-    
-    static NSString *identifier = @"AccountCell";
-    AccountCell *accountCell = [[AccountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:model];
-    accountCell.delegate =self;
-    return accountCell;
-
+    NSString *CellIdentifier = [NSString stringWithFormat:@"AccountCell"];
+    AccountCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    [cell removeFromSuperview];
+    cell = nil;
+    if(!cell){
+        cell = [[AccountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier WithModel:model];
+    }
+    cell.delegate = self;
+    return cell;
 }
 
 
@@ -422,5 +422,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)gotoMyCenter{
 
+}
+
+
+-(void)dealloc{
+    NSLog(@"dealloc");
 }
 @end

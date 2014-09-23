@@ -24,6 +24,9 @@
 #import "AddCommentViewController.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "CommentApi.h"
+#import "LoginSqlite.h"
+#import "LoginViewController.h"
+
 @interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate,CycleScrollViewDelegate,UIActionSheetDelegate,AddCommentDelegate>
 @property(nonatomic,strong)UITableView* contentTableView;
 @property(nonatomic,strong)UITableView* selectTableView;
@@ -105,7 +108,7 @@
     self.loadingView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 56)];
     self.loadingView.backgroundColor=RGBCOLOR(229, 229, 229);
     UIImageView* shadow=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 3.5)];
-    shadow.image=[UIImage imageNamed:@"XiangMuXiangQing/Shadow-bottom.png"];
+    shadow.image=[GetImagePath getImagePath:@"XiangMuXiangQing/Shadow-bottom"];
     [self.loadingView addSubview:shadow];
 }
 
@@ -153,7 +156,7 @@
 
 -(void)initNavi{
     UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,5,29,28.5)];
-    [button setImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [button setImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.title=@"项目详情";
@@ -161,7 +164,7 @@
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setFrame:CGRectMake(0, 0, 21, 20)];
-    [rightButton setBackgroundImage:[UIImage imageNamed:@"+项目详情-3_03a"] forState:UIControlStateNormal];
+    [rightButton setBackgroundImage:[GetImagePath getImagePath:@"+项目详情-3_03a"] forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
@@ -174,7 +177,7 @@
     [self.view addSubview:themeView];
     
     //大标题左边的大阶段图片
-    UIImage* image=[UIImage imageNamed:@"XiangMuXiangQing/map@2x.png"];
+    UIImage* image=[GetImagePath getImagePath:@"XiangMuXiangQing/map@2x"];
     CGRect frame=CGRectMake(20, 12, image.size.width*.5, image.size.height*.5);
     self.bigStageImageView=[[UIImageView alloc]initWithFrame:frame];
     self.bigStageImageView.image=image;
@@ -196,12 +199,12 @@
     
     //右箭头imageView
     UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(280, 14, 25.5, 22.5)];
-    imageView.image=[UIImage imageNamed:@"XiangMuXiangQing/more_02@2x.png"];
+    imageView.image=[GetImagePath getImagePath:@"XiangMuXiangQing/more_02@2x"];
     [themeView addSubview:imageView];
     
     //上导航栏themeView第二部分,上导航下方阴影
     UIImageView* shadowView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 48.5, 320, 1.5)];
-    shadowView.image=[UIImage imageNamed:@"XiangMuXiangQing/Shadow-top.png"];
+    shadowView.image=[GetImagePath getImagePath:@"XiangMuXiangQing/Shadow-top"];
     shadowView.alpha=.5;
     [themeView addSubview:shadowView];
     
@@ -260,6 +263,18 @@
 // "CreatedBy": ":“评论人"
 // }
 -(void)sureFromAddCommentWithComment:(NSString *)comment{
+    
+    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+    
+    if ([deviceToken isEqualToString:@""]) {
+        
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [[AppDelegate instance] window].rootViewController = naVC;
+        [[[AppDelegate instance] window] makeKeyAndVisible];
+        return;
+    }
+
     NSLog(@"sureFromAddCommentWithCommentModel:");
     NSLog(@"%@",comment);
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
@@ -312,7 +327,7 @@
     
     NSArray* smallTitles=@[@"土地规划/拍卖",@"项目立项",@"地勘阶段",@"设计阶段",@"出图阶段",@"地平",@"桩基基坑",@"主体施工",@"消防/景观绿化",@""];
     NSArray* bigTitles=@[@"土地信息",@"主体设计阶段",@"主体施工阶段",@"装修阶段"];
-    NSArray* bigStageImageNames=@[@"XiangMuXiangQing/map@2x.png",@"XiangMuXiangQing_1/pen_01@2x.png",@"XiangMuXiangQing_2/Subject_01@2x.png",@"XiangMuXiangQing_3/paint_01@2x.png"];
+    NSArray* bigStageImageNames=@[@"XiangMuXiangQing/map@2x",@"XiangMuXiangQing_1/pen_01@2x",@"XiangMuXiangQing_2/Subject_01@2x",@"XiangMuXiangQing_3/paint_01@2x"];
     
     for (int i=0; i<self.bigStageStandardY.count; i++) {
         if (scrollView.contentOffset.y+568-64-50<[self.bigStageStandardY[i] floatValue]) {
@@ -320,7 +335,7 @@
             self.bigStageLabel.text=bigTitles[i];
             
             //大阶段左边图标
-            UIImage* image=[UIImage imageNamed:bigStageImageNames[i]];
+            UIImage* image=[GetImagePath getImagePath:bigStageImageNames[i]];
             CGPoint center=self.bigStageImageView.center;
             CGRect frame=CGRectMake(0, 0, image.size.width*.5, image.size.height*.5);
             self.bigStageImageView.frame=frame;
@@ -473,11 +488,11 @@
         }
     }
     
-    NSArray* path=stageLight?@[@"XiangMuXiangQing/map@2x.png",@"XiangMuXiangQing_1/pen_01@2x.png",@"XiangMuXiangQing_2/Subject_01@2x.png",@"XiangMuXiangQing_3/paint_01@2x.png"]:@[@"项目详情-筛选_03.png",@"项目详情-筛选_06.png",@"XiangMuXiangQing_ShaiXuan/Subject@2x.png",@"XiangMuXiangQing_ShaiXuan/paint@2x.png"];
+    NSArray* path=stageLight?@[@"XiangMuXiangQing/map@2x",@"XiangMuXiangQing_1/pen_01@2x",@"XiangMuXiangQing_2/Subject_01@2x",@"XiangMuXiangQing_3/paint_01@2x"]:@[@"项目详情-筛选_03",@"项目详情-筛选_06",@"XiangMuXiangQing_ShaiXuan/Subject@2x",@"XiangMuXiangQing_ShaiXuan/paint@2x"];
     
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 37.5)];
     
-    UIImage* image=[UIImage imageNamed:path[section]];
+    UIImage* image=[GetImagePath getImagePath:path[section]];
     CGRect frame=CGRectMake(0, 0, image.size.width*.5, image.size.height*.5);
     UIImageView* imageView=[[UIImageView alloc]initWithFrame:frame];
     imageView.center=CGPointMake(23.5, 37.5*.5);

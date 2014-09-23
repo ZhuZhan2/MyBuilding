@@ -40,8 +40,10 @@
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 115)];
     [self scrollViewAddView:view];
     
+    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"公司－我的公司_02a" ofType:@"png"];
+    UIImage *appleImage = [[UIImage alloc] initWithContentsOfFile:imagePath];
     //公司图标
-    UIImageView* companyImageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"公司－我的公司_02a.png"]];
+    UIImageView* companyImageView=[[UIImageView alloc]initWithImage:appleImage];
     [view addSubview:companyImageView];
 
     //公司名称label
@@ -64,7 +66,9 @@
 }
 
 -(void)initSecondView{
-    UIImageView* imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"公司－我的公司_05a.png"]];
+    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"公司－我的公司_05a" ofType:@"png"];
+    UIImage *appleImage = [[UIImage alloc] initWithContentsOfFile:imagePath];
+    UIImageView* imageView=[[UIImageView alloc]initWithImage:appleImage];
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, self.myScrollView.contentSize.height, imageView.frame.size.width, imageView.frame.size.height)];
     [self scrollViewAddView:view];
     [view addSubview:imageView];

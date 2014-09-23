@@ -38,7 +38,7 @@
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 65)];
     
     UIImageView* shadow=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 3.5)];
-    shadow.image=[UIImage imageNamed:@"XiangMuXiangQing/Shadow-bottom.png"];
+    shadow.image=[GetImagePath getImagePath:@"XiangMuXiangQing/Shadow-bottom"];
     [view addSubview:shadow];
     
     UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, titleImage.size.width*.5, titleImage.size.height*.5)];    imageView.image=titleImage;
@@ -322,7 +322,7 @@
         
         //电话图标
         UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(197, 46+i*120, 12.5, 12.5)];
-        imageView.image=[UIImage imageNamed:@"XiangMuXiangQing/phone@2x.png"];
+        imageView.image=[GetImagePath getImagePath:@"XiangMuXiangQing/phone@2x"];
         [view addSubview:imageView];
         
         //电话号码

@@ -45,7 +45,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 0, 29, 28.5)];
-    [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [leftButton setBackgroundImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
@@ -68,7 +68,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154)];
     _pathCover.delegate = self;
-    [_pathCover setBackgroundImage:[UIImage imageNamed:@"首页_16.png"]];
+    [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"首页_16"]];
     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,[LoginSqlite getdata:@"userImageUrl" defaultdata:@"userImageUrl"]]];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadImageFrame:CGRectMake(125, -20, 70, 70)];
@@ -95,7 +95,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     model.projectLeader = @"项目负责人";
     model.addFriendArr = @[@"张三",@"李四"];
     model.userMood = @"今天真是一个好天气哦";
-    model.updatePicture =[UIImage imageNamed:@"首页_16"];//proModel.a_projectName
+    model.updatePicture =[GetImagePath getImagePath:@"首页_16"];//proModel.a_projectName
 
         proModel = [[projectModel alloc] init];
     proModel.a_projectName = @"鸟巢";

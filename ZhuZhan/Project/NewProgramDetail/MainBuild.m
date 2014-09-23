@@ -38,7 +38,7 @@
     self.firstView=[[UIView alloc]initWithFrame:CGRectZero];
     
     NSArray* secondStrs=[self.delegate getTwoLinesTitleViewFirstStrsAndSecondStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
-    UIView* view0=[MyFactory getTwoLinesTitleViewWithTitle:@"地平阶段" titleImage:[UIImage imageNamed:@"XiangMuXiangQing_2/Subject_02@2x.png"] firstStrs:@[@"实际开工时间"] secondStrs:secondStrs];
+    UIView* view0=[MyFactory getTwoLinesTitleViewWithTitle:@"地平阶段" titleImage:[GetImagePath getImagePath:@"XiangMuXiangQing_2/Subject_02@2x"] firstStrs:@[@"实际开工时间"] secondStrs:secondStrs];
     
     NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     UIView* view1=[MyFactory getImageViewWithImageUrl:images.count?images[0]:@"No" count:images.count];
@@ -66,7 +66,7 @@
     //桩基基坑
     self.secondView=[[UIView alloc]initWithFrame:CGRectZero];
     
-    UIView* view0=[MyFactory getNoLineTitleViewWithTitle:@"桩基基坑" titleImage:[UIImage imageNamed:@"XiangMuXiangQing_2/Subject_02@2x.png"]];
+    UIView* view0=[MyFactory getNoLineTitleViewWithTitle:@"桩基基坑" titleImage:[GetImagePath getImagePath:@"XiangMuXiangQing_2/Subject_02@2x"]];
     
     NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
     UIView* view1=[MyFactory getImageViewWithImageUrl:images.count?images[0]:@"No" count:images.count];
@@ -94,7 +94,7 @@
     //主体施工
     self.thirdView=[[UIView alloc]initWithFrame:CGRectZero];
     
-    UIView* view0=[MyFactory getNoLineTitleViewWithTitle:@"主体施工" titleImage:[UIImage imageNamed:@"XiangMuXiangQing_2/Subject_02@2x.png"]];
+    UIView* view0=[MyFactory getNoLineTitleViewWithTitle:@"主体施工" titleImage:[GetImagePath getImagePath:@"XiangMuXiangQing_2/Subject_02@2x"]];
     
     NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:2]];
     UIView* view1=[MyFactory getImageViewWithImageUrl:images.count?images[0]:@"No" count:images.count];
@@ -119,7 +119,7 @@
     //消防/景观绿化
     self.fourthView=[[UIView alloc]initWithFrame:CGRectZero];
     
-    UIView* view0=[MyFactory getNoLineTitleViewWithTitle:@"消防/景观绿化" titleImage:[UIImage imageNamed:@"XiangMuXiangQing_2/Subject_02@2x.png"]];
+    UIView* view0=[MyFactory getNoLineTitleViewWithTitle:@"消防/景观绿化" titleImage:[GetImagePath getImagePath:@"XiangMuXiangQing_2/Subject_02@2x"]];
     
     NSArray* secondStrs=[self.delegate getBlackTwoLinesWithStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:3]];
     UIView* view1=[MyFactory getBlackTwoLinesWithFirstStr:@[@"消防",@"景观绿化"] secondStr:secondStrs];

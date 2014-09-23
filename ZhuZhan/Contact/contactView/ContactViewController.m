@@ -19,13 +19,15 @@
 #import "ContactModel.h"
 #import "ContactCommentModel.h"
 #import "CommentModel.h"
-#import "ContactCommentTableViewCell.h"
 #import "CommentApi.h"
 #import "ConnectionAvailable.h"
 #import "BirthDay.h"
 #import "LoginSqlite.h"
 #import "LoginViewController.h"
 #import "ActivesModel.h"
+
+#import "AppDelegate.h"
+#import "HomePageViewController.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -55,7 +57,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setFrame:CGRectMake(0, 0, 21, 19)];
-    [rightButton setImage:[UIImage imageNamed:@"人脉_02a"] forState:UIControlStateNormal];
+    [rightButton setImage:[GetImagePath getImagePath:@"人脉_02a"] forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(publish) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
@@ -66,7 +68,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //上拉刷新界面
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154)];
     _pathCover.delegate = self;
-    [_pathCover setBackgroundImage:[UIImage imageNamed:@"bg001.png"]];
+    [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"bg001"]];
     [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
     [_pathCover setHeadTaget];
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"用户名", XHUserNameKey, @"公司名字显示在这里     职位", XHBirthdayKey, nil]];
@@ -94,7 +96,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0]]];
                     [LoginSqlite insertData:posts[0] datakey:@"userImageUrl"];
                 }
-            } userId:@"ce753b56-baff-4194-8da2-d88e695afdde"];
+            } userId:@"13756154-7db5-4516-bcc6-6b7842504c81"];
             
             for(int i=0;i<posts.count;i++){
                 CommentModel *commentModel = posts[i];
@@ -121,7 +123,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [self.tableView reloadData];
             }
         }
-    } userId:@"ce753b56-baff-4194-8da2-d88e695afdde" startIndex:startIndex];
+    } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
 }
 
 
@@ -129,7 +131,18 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)publish
 {
     NSLog(@"发布产品");
-
+    
+    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+    
+    if ([deviceToken isEqualToString:@""]) {
+        
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [[AppDelegate instance] window].rootViewController = naVC;
+        [[[AppDelegate instance] window] makeKeyAndVisible];
+        return;
+    }
+    
     PublishViewController *publishVC = [[PublishViewController alloc] init];
     [self.navigationController pushViewController:publishVC animated:YES];
 }
@@ -181,8 +194,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PSTableViewCellIdentifier];
-    CommentModel *model = showArr[indexPath.row];
-    if([model.a_type isEqualToString:@"Project"]){
+    ActivesModel *model = showArr[indexPath.row];
+    if([model.a_category isEqualToString:@"Project"]){
         NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
         ContactProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
@@ -190,8 +203,48 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }
         cell.delegate = self;
         cell.selectionStyle = NO;
+        cell.model = model;
         return cell;
-    }else if ([model.a_type isEqualToString:@"Personal"]){
+    }else if([model.a_category isEqualToString:@"Personal"]){
+        if([model.a_eventType isEqualToString:@"Actives"]){
+            NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if(!cell){
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            cell.selectionStyle = NO;
+            for(int i=0;i<cell.contentView.subviews.count;i++) {
+                [((UIView*)[cell.contentView.subviews objectAtIndex:i]) removeFromSuperview];
+            }
+            commentView = viewArr[indexPath.row];
+            [cell.contentView addSubview:commentView];
+            return cell;
+        }else{
+            NSString *CellIdentifier = [NSString stringWithFormat:@"ContactTableViewCell"];
+            ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if(!cell){
+                cell = [[ContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            cell.delegate = self;
+            cell.selectionStyle = NO;
+            cell.model = model;
+            return cell;
+        }
+    }else if([model.a_category isEqualToString:@"Company"]){
+        if([model.a_eventType isEqualToString:@"Actives"]){
+            
+        }else{
+            NSString *CellIdentifier = [NSString stringWithFormat:@"ContactTableViewCell"];
+            ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if(!cell){
+                cell = [[ContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            cell.delegate = self;
+            cell.selectionStyle = NO;
+            cell.model = model;
+            return cell;
+        }
+    }else{
         NSString *CellIdentifier = [NSString stringWithFormat:@"ContactTableViewCell"];
         ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
@@ -235,14 +288,24 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CommentModel *model = showArr[indexPath.row];
-    if([model.a_type isEqualToString:@"Project"]||[model.a_type isEqualToString:@"Personal"]){
+    ActivesModel *model = showArr[indexPath.row];
+    if([model.a_category isEqualToString:@"Project"]){
         return 50;
-    }else if([model.a_type isEqualToString:@"Product"]){
-        commentView = [viewArr objectAtIndex:indexPath.row];
-        return commentView.frame.size.height;
+    }else if([model.a_category isEqualToString:@"Personal"]){
+        if([model.a_eventType isEqualToString:@"Actives"]){
+            commentView = viewArr[indexPath.row];
+            return commentView.frame.size.height;
+        }else{
+            return 50;
+        }
+    }else if([model.a_category isEqualToString:@"Company"]){
+        if([model.a_eventType isEqualToString:@"Actives"]){
+            return 100;
+        }else{
+            return 50;
+        }
     }else{
-        return 60;
+        return 50;
     }
     return 60;
 }
@@ -272,12 +335,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //点击自己头像去个人中心
 -(void)gotoMyCenter{
     NSLog(@"gotoMyCenter");
-    [LoginSqlite opensql];
+
     NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
 
     if ([deviceToken isEqualToString:@""]) {
-        LoginViewController *loginVC = [[LoginViewController alloc]init];
-        [self.navigationController pushViewController:loginVC animated:YES];
+        
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [[AppDelegate instance] window].rootViewController = naVC;
+        [[[AppDelegate instance] window] makeKeyAndVisible];
         return;
     }
     
@@ -349,6 +415,19 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)sureFromAddCommentWithComment:(NSString*)comment{
+    
+    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+    
+    if ([deviceToken isEqualToString:@""]) {
+        
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [[AppDelegate instance] window].rootViewController = naVC;
+        [[[AppDelegate instance] window] makeKeyAndVisible];
+        return;
+    }
+
+    
     CommentModel *model = [[CommentModel alloc] init];
     model.a_content = [NSString stringWithFormat:@"%@",comment];
     model.a_type = @"comment";
@@ -395,31 +474,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         self.tableView.scrollEnabled = YES;
         [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                for(int i=0;i<posts.count;i++){
-                    CommentModel *commentModel = posts[i];
-                    [showArr addObject:commentModel];
-                    [_datasource addObject:commentModel.a_time];
-                    if(commentModel.a_commentsArr.count !=0){
-                        ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[0];
-                        [showArr addObject:contactCommentModel];
-                        [_datasource addObject:contactCommentModel.a_time];
-                    }
-                }
-                //NSLog(@"%@",showArr);
-                for(int i=0;i<showArr.count;i++){
-                    CommentModel *model = showArr[i];
-                    if([model.a_type isEqualToString:@"Product"]){
-                        NSLog(@"%@",model.a_type);
-                        commentView = [CommentView setFram:model];
-                        [viewArr insertObject:commentView atIndex:i];
-                    }else{
-                        [viewArr insertObject:@"" atIndex:i];
-                    }
-                }
-                
+                showArr = posts;
                 [self.tableView reloadData];
             }
-        } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0" startIndex:startIndex];
+        } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
     }
 }
 @end

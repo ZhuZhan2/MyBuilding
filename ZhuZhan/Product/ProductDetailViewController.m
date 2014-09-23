@@ -16,6 +16,8 @@
 #import "ACTimeScroller.h"
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
+#import "LoginSqlite.h"
+#import "LoginViewController.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate>//,ACTimeScrollerDelegate>
 @property(nonatomic,strong)UITableView* myTableView;
 
@@ -101,7 +103,7 @@
     //imageView部分
     CGFloat scale=320.0/[self.productModel.a_imageWidth floatValue]*2;    CGFloat height=[self.productModel.a_imageHeight floatValue]*.5*scale;
 
-    EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:[UIImage imageNamed:@"产品－产品详情_03a.png"]];
+    EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"产品－产品详情_03a"]];
     if (![self.productModel.a_imageUrl isEqualToString:@""]) {
         imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.productModel.a_imageUrl]];
     }else{
@@ -111,7 +113,7 @@
 
     
     //imageView右下角评论图标
-    UIImage* image=[UIImage imageNamed:@"人脉_66a.png"];
+    UIImage* image=[GetImagePath getImagePath:@"人脉_66a"];
     CGRect frame=CGRectMake(0, 0, image.size.width*.5, image.size.height*.5);
     UIImageView* tempImageView=[[UIImageView alloc]initWithFrame:frame];
     tempImageView.image=image;
@@ -143,8 +145,8 @@
     
     //与下方tableView的分割部分
     if (self.commentViews.count) {
-        UIImage* separatorImage=[UIImage imageNamed:@"产品－产品详情_12a@2x.png"];
-        frame=CGRectMake(0, tempHeight, separatorImage.size.width*.5, separatorImage.size.height*.5);
+        UIImage* separatorImage=[GetImagePath getImagePath:@"产品－产品详情_12a"];
+        frame=CGRectMake(0, tempHeight, separatorImage.size.width, separatorImage.size.height);
         UIImageView* separatorImageView=[[UIImageView alloc]initWithFrame:frame];
         separatorImageView.image=separatorImage;
         separatorImageView.backgroundColor=RGBCOLOR(235, 235, 235);
@@ -176,6 +178,18 @@
 // }
 -(void)sureFromAddCommentWithComment:(NSString *)comment{
     NSLog(@"sureFromAddCommentWithCommentModel:");
+    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+    
+    if ([deviceToken isEqualToString:@""]) {
+        
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [[AppDelegate instance] window].rootViewController = naVC;
+        [[[AppDelegate instance] window] makeKeyAndVisible];
+        return;
+    }
+
+    
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [self addTableViewContentWithContent:comment];
@@ -293,7 +307,7 @@
 
 -(void)initNavi{
     UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,5,29,28.5)];
-    [button setImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [button setImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.title=@"产品详情";

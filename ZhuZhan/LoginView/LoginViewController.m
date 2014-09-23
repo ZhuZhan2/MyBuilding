@@ -42,11 +42,11 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.hidden = YES;
     UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 321, 568)];
-    [bgImgView setImage:[UIImage imageNamed:@"注册.png"]];
+    [bgImgView setImage:[GetImagePath getImagePath:@"注册"]];
     [self.view addSubview:bgImgView];
     
     UIImageView *headerImgView = [[UIImageView alloc] initWithFrame:CGRectMake(111, 80, 98.5, 98.5)];
-    [headerImgView setImage:[UIImage imageNamed:@"登录_03.png"]];
+    [headerImgView setImage:[GetImagePath getImagePath:@"登录_03"]];
     UIImageView *roundView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 89, 89)];
     roundView.layer.masksToBounds = YES;
     roundView.layer.cornerRadius = 45;
@@ -57,7 +57,7 @@
 
     UIView *textView = [[UIView alloc] initWithFrame:CGRectMake(25,240,264,87)];
     UIImageView *bgImgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,264,87)];
-    [bgImgView2 setImage:[UIImage imageNamed:@"登录_07.png"]];
+    [bgImgView2 setImage:[GetImagePath getImagePath:@"登录_07"]];
     [textView addSubview:bgImgView2];
     _userNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(10,0,254,43)];
     _userNameTextField.delegate = self;
@@ -83,7 +83,7 @@
     loginBtn.tag = 20140801;
     [loginBtn setTitle:@"登    录" forState:UIControlStateNormal];
     loginBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:17];
-    [loginBtn setBackgroundImage:[UIImage imageNamed:@"登录_11.png"] forState:UIControlStateNormal];
+    [loginBtn setBackgroundImage:[GetImagePath getImagePath:@"登录_11"] forState:UIControlStateNormal];
     [loginBtn addTarget:self action:@selector(loginBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginBtn];
     
@@ -102,7 +102,7 @@
     [self.view addSubview:rememberBtn];
     
     rememberView = [[UIImageView alloc] initWithFrame:CGRectMake(30, 396, 13, 13)];
-    [rememberView setImage:[UIImage imageNamed:@"登录_15.png"]];
+    [rememberView setImage:[GetImagePath getImagePath:@"登录_15"]];
     [self.view addSubview:rememberView];
     
     UIButton *registBtn =  [UIButton buttonWithType:UIButtonTypeCustom];
@@ -118,20 +118,21 @@
     
 }
 
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    //恢复tabBar
-    AppDelegate* app=[AppDelegate instance];
-    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-    [homeVC homePageTabBarRestore];
+
+
+-(void)beginHomePageTabBarHide
+{
+
+
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    //隐藏tabBar
-    AppDelegate* app=[AppDelegate instance];
-    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-    [homeVC homePageTabBarHide];
+-(void)beginHomePageTabBarRestore
+{
+    //恢复tabBar
+        AppDelegate* app=[AppDelegate instance];
+        HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+       [homeVC homePageTabBarRestore];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -142,10 +143,10 @@
 
 -(void)rememberBtnClick{   //记住密码
     if(!_isSelect){
-        [rememberView setImage:[UIImage imageNamed:@"登录1_07.png"]];
+        [rememberView setImage:[GetImagePath getImagePath:@"登录1_07"]];
         _isSelect = YES;
     }else{
-        [rememberView setImage:[UIImage imageNamed:@"登录_15.png"]];
+        [rememberView setImage:[GetImagePath getImagePath:@"登录_15"]];
         _isSelect = NO;
     }
 }
@@ -218,11 +219,7 @@
 }
 
 -(void)loginSuccess{//登录成功后进行的跳转
-//    NSLog(@"sid === > %@",self.userToken);
-//    [[NSUserDefaults standardUserDefaults]setObject:_userNameTextField.text forKey:@"userName"];
-//    [[NSUserDefaults standardUserDefaults]setObject:_passWordTextField.text forKey:@"passWord"];
-////    [[NSUserDefaults standardUserDefaults]setObject:self.userToken forKey:@"UserToken"];
-//    [[NSUserDefaults standardUserDefaults]synchronize];
+
     
     UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"登录成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     alert.tag = 20140731;
@@ -256,6 +253,7 @@
 
         [[AppDelegate instance] window].rootViewController = homepage;
         [[[AppDelegate instance] window] makeKeyAndVisible];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(beginHomePageTabBarRestore) name:@"Restore" object:nil];
         
     }
     else{

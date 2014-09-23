@@ -42,7 +42,7 @@
     [self.contentView addSubview:lineImage2];
     lineImage2.alpha = 0.2;
     
-    headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"人脉_06a"]];
+    headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a"]];
     [headImageView setFrame:CGRectMake(15, 6.5, 37, 37)];
     headImageView.layer.masksToBounds = YES;
     headImageView.layer.cornerRadius = 3;
@@ -54,17 +54,14 @@
     [self.contentView addSubview:btn];
     
     stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(62.5, 11.5, 27, 27)];
-    [stageImage setImage:[UIImage imageNamed:@"人脉_57a"]];
     [self.contentView addSubview:stageImage];
     
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 5, 200, 20)];
-    titleLabel.text = @"项目名称显示在这里";
     titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:titleLabel];
     
     contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 25, 200, 20)];
-    contentLabel.text = @"修改的字段在这里列出来";
     contentLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
     contentLabel.textAlignment = NSTextAlignmentLeft;
     contentLabel.textColor = [UIColor lightGrayColor];
@@ -75,5 +72,23 @@
     if([self.delegate respondsToSelector:@selector(HeadImageAction:)]){
         [self.delegate HeadImageAction:button];
     }
+}
+
+-(void)setModel:(ActivesModel *)model{
+    if([model.a_projectStage isEqualToString:@"LandStage"]){
+        [stageImage setImage:[GetImagePath getImagePath:@"人脉_57a"]];
+    }else if([model.a_projectStage isEqualToString:@"MainDesignStage"]){
+        [stageImage setImage:[GetImagePath getImagePath:@"人脉_59a"]];
+    }else if([model.a_projectStage isEqualToString:@"MainConstructStage"]){
+        [stageImage setImage:[GetImagePath getImagePath:@"人脉_61a"]];
+    }else if([model.a_projectStage isEqualToString:@"DecorateStage"]){
+        [stageImage setImage:[GetImagePath getImagePath:@"人脉_63a"]];
+    }else{
+        [stageImage setImage:[GetImagePath getImagePath:@"人脉_57a"]];
+    }
+    
+    titleLabel.text = model.a_title;
+    contentLabel.text = model.a_content;
+    headImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_avatarUrl]];
 }
 @end

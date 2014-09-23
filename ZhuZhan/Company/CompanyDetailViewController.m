@@ -40,7 +40,7 @@
     [self scrollViewAddView:view];
     
     //公司图标
-    UIImageView* companyImageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"公司－我的公司_02a.png"]];
+    UIImageView* companyImageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"公司－我的公司_02a"]];
     [view addSubview:companyImageView];
     
     //公司名称label
@@ -63,7 +63,7 @@
 }
 
 -(void)initSecondView{
-    UIImageView* imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"公司－公司详情_05a.png"]];
+    UIImageView* imageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"公司－公司详情_05a"]];
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, self.myScrollView.contentSize.height, imageView.frame.size.width, imageView.frame.size.height)];
     [self scrollViewAddView:view];
     [view addSubview:imageView];
@@ -115,7 +115,7 @@
     
     //左back button
     UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,0,29,28.5)];
-    [button setImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+    [button setImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
 

@@ -26,7 +26,7 @@
 
 -(void)loadSelfWithCommentModel:(CommentModel*)commentModel{
     //获取用户头像
-    self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[UIImage imageNamed:@"公司认证员工_05a.png"]];
+    self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"公司认证员工_05a"]];
     self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,commentModel.a_imageUrl]];
     self.userImageView.layer.masksToBounds=YES;
     self.userImageView.layer.cornerRadius=5;
