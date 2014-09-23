@@ -9,6 +9,7 @@
 #import "CommentView.h"
 #import "EGOImageView.h"
 #import "ContactCommentModel.h"
+#import "ContactCommentTableViewCell.h"
 @implementation CommentView
 @synthesize indexpath = _indexpath;
 @synthesize showArr;
@@ -122,7 +123,7 @@
         }else{
             count = model.a_commentsArr.count;
         }
-        UITableView *_tableView = [[UITableView alloc] initWithFrame:CGRectMake(90, height, 200, 50*count)];
+        UITableView *_tableView = [[UITableView alloc] initWithFrame:CGRectMake(85, height, 230, 50*count)];
         _tableView.delegate = commentView;
         _tableView.dataSource = commentView;
         _tableView.separatorStyle = NO;
@@ -161,15 +162,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NSString *CellIdentifier = [NSString stringWithFormat:@"ContactCommentTableViewCell"];
+    ContactCommentModel *model = showArr[indexpath.row];
+    ContactCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(!cell){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[ContactCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    cell.selectionStyle = NO;
+    cell.model = model;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"%d",indexPath.row);
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
 }
 @end
