@@ -99,11 +99,17 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             } userId:@"13756154-7db5-4516-bcc6-6b7842504c81"];
             
             showArr = posts;
-//            NSLog(@"****posts********%@",posts);
-//           NSLog(@"****showArr********%@",showArr);
-//            ActivesModel *model = showArr[1];
-//            NSLog(@"%@",model.a_content);
-//            [self.tableView reloadData];
+            for(int i=0;i<showArr.count;i++){
+                ActivesModel *model = showArr[i];
+                if([model.a_eventType isEqualToString:@"Actives"]){
+                    commentView = [CommentView setFram:model];
+                    [viewArr addObject:commentView];
+                }else{
+                    [viewArr addObject:@""];
+                }
+                [_datasource addObject:model.a_time];
+            }
+            [self.tableView reloadData];
         }
     } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
 }
