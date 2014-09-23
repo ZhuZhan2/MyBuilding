@@ -76,7 +76,7 @@
  */
 + (NSURLSessionDataTask *)SendActivesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic
 {
-    NSString *urlStr = [NSString stringWithFormat:@"api/Actives/SendActives"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/ActiveCenter/SendActives"];
     NSLog(@"%@",dic);
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
