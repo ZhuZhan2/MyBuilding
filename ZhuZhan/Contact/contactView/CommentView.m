@@ -114,7 +114,7 @@
     [commentView addSubview:userImageView];
     height+=imageView.frame.size.height;
 
-    
+    //评论tableView
     if(model.a_commentsArr.count !=0){
         int count = 0;
         if(model.a_commentsArr.count>4){
@@ -122,17 +122,28 @@
         }else{
             count = model.a_commentsArr.count;
         }
-        UITableView *_tableView = [[UITableView alloc] initWithFrame:CGRectMake(85, height, 230, 50*count)];
+        //评论内容上箭头图片
+        UIImageView* upImageView=[[UIImageView alloc]initWithFrame:CGRectMake(320-251, height, 251, 11)];
+        upImageView.image=[GetImagePath getImagePath:@"+人脉2_03a"];
+        [commentView addSubview:upImageView];
+        
+        
+        UITableView *_tableView = [[UITableView alloc] initWithFrame:CGRectMake(320-251+5, height+11, 242, 50*count)];
         _tableView.delegate = commentView;
         _tableView.dataSource = commentView;
         _tableView.separatorStyle = NO;
         [commentView addSubview:_tableView];
-        height += 50*count+10;
+        
+        UIImageView* downImageView=[[UIImageView alloc]initWithFrame:CGRectMake(320-251, height+50*count+11, 251, 9)];
+        downImageView.image=[GetImagePath getImagePath:@"+人脉2_05a"];
+        [commentView addSubview:downImageView];
+        
+        height += 50*count+10+11+9;//11为上箭头线
     }
     
     //设置总的frame
     commentView.frame = CGRectMake(0, 0, 320, height);
-    [commentView setBackgroundColor:RGBCOLOR(239, 237, 237)];
+    [commentView setBackgroundColor:RGBCOLOR(242, 242, 242)];
     return commentView;
 }
 
@@ -167,6 +178,7 @@
     if(!cell){
         cell = [[ContactCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+//    cell.backgroundColor=[UIColor redColor];
     cell.selectionStyle = NO;
     cell.model = model;
     return cell;
