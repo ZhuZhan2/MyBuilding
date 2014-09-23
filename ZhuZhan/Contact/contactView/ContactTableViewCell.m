@@ -15,6 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        [self setBackgroundColor:RGBCOLOR(239, 237, 237)];
         [self setContent];
     }
     return self;

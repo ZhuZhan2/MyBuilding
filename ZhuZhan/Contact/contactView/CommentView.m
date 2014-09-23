@@ -11,6 +11,7 @@
 #import "ContactCommentModel.h"
 @implementation CommentView
 @synthesize indexpath = _indexpath;
+@synthesize showArr;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -33,6 +34,7 @@
         ContactCommentModel *commentModel = model.a_commentsArr[i];
         NSLog(@"commentModel ===> %@",commentModel.a_commentContents);
     }*/
+    
     CommentView *commentView = [[CommentView alloc] init];
     CGFloat height=0;
     //上分割线
@@ -94,7 +96,7 @@
     CGFloat tempHeight=imageView?imageView.frame.origin.y+imageView.frame.size.height:height;
     UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     commentBtn.frame = CGRectMake(270, tempHeight-40, 37, 37);
-    [commentBtn setImage:[UIImage imageNamed:@"人脉_66a"] forState:UIControlStateNormal];
+    [commentBtn setImage:[GetImagePath getImagePath:@"人脉_66a"] forState:UIControlStateNormal];
     [commentBtn addTarget:commentView action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
     [commentView addSubview:commentBtn];
     if (!imageView) {
@@ -103,7 +105,9 @@
     
     //用户头像
     tempHeight=imageView?imageView.frame.origin.y:contentTotalView.frame.origin.y;
-    EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"bg001.png"]];
+    EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
+    userImageView.layer.masksToBounds = YES;
+    userImageView.layer.cornerRadius = 3;
     userImageView.frame=CGRectMake(10,tempHeight+5,36,36);
     [commentView addSubview:userImageView];
     
@@ -111,15 +115,24 @@
     [commentView addSubview:userImageView];
 
     
-    UITableView *_tableView = [[UITableView alloc] initWithFrame:CGRectMake(90, height, 200, 300)];
-    _tableView.delegate = commentView;
-    _tableView.dataSource = commentView;
-    [commentView addSubview:_tableView];
-    height += 320;
+    if(model.a_commentsArr.count !=0){
+        int count = 0;
+        if(model.a_commentsArr.count>4){
+            count = 4;
+        }else{
+            count = model.a_commentsArr.count;
+        }
+        UITableView *_tableView = [[UITableView alloc] initWithFrame:CGRectMake(90, height, 200, 50*count)];
+        _tableView.delegate = commentView;
+        _tableView.dataSource = commentView;
+        _tableView.separatorStyle = NO;
+        [commentView addSubview:_tableView];
+        height += 50*count+10;
+    }
     
     //设置总的frame
     commentView.frame = CGRectMake(0, 0, 320, height);
-    [commentView setBackgroundColor:[UIColor yellowColor]];
+    [commentView setBackgroundColor:RGBCOLOR(239, 237, 237)];
     return commentView;
 }
 
@@ -142,7 +155,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 1;
+    return showArr.count;
 }
 
 
