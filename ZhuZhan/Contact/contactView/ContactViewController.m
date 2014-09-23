@@ -80,7 +80,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [[self tableView] registerClass:[UITableViewCell class] forCellReuseIdentifier:PSTableViewCellIdentifier];
     
     self.tableView.separatorStyle = NO;
-    
+    [self.tableView setBackgroundColor:RGBCOLOR(239, 237, 237)];
     __weak ContactViewController *wself = self;
     [_pathCover setHandleRefreshEvent:^{
         [wself _refreshing];

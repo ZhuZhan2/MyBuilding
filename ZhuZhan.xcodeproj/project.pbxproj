@@ -956,6 +956,10 @@
 		D3F79F1619D1590900E3B473 /* XiangMuXiangQing_ShaiXuan in Resources */ = {isa = PBXBuildFile; fileRef = D3F79F0E19D1590900E3B473 /* XiangMuXiangQing_ShaiXuan */; };
 		D3F79F1719D1590900E3B473 /* XiangMuXiangQing_TanKuang in Resources */ = {isa = PBXBuildFile; fileRef = D3F79F0F19D1590900E3B473 /* XiangMuXiangQing_TanKuang */; };
 		D3F79F1819D1590900E3B473 /* XinJianXiangMu in Resources */ = {isa = PBXBuildFile; fileRef = D3F79F1019D1590900E3B473 /* XinJianXiangMu */; };
+		D3F79F1D19D1691900E3B473 /* +人脉2_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F79F1919D1691900E3B473 /* +人脉2_03a.png */; };
+		D3F79F1E19D1691900E3B473 /* +人脉2_03a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F79F1A19D1691900E3B473 /* +人脉2_03a@2x.png */; };
+		D3F79F1F19D1691900E3B473 /* +人脉2_05a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F79F1B19D1691900E3B473 /* +人脉2_05a.png */; };
+		D3F79F2019D1691900E3B473 /* +人脉2_05a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F79F1C19D1691900E3B473 /* +人脉2_05a@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2335,6 +2339,10 @@
 		D3F79F0E19D1590900E3B473 /* XiangMuXiangQing_ShaiXuan */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuXiangQing_ShaiXuan; sourceTree = "<group>"; };
 		D3F79F0F19D1590900E3B473 /* XiangMuXiangQing_TanKuang */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuXiangQing_TanKuang; sourceTree = "<group>"; };
 		D3F79F1019D1590900E3B473 /* XinJianXiangMu */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XinJianXiangMu; sourceTree = "<group>"; };
+		D3F79F1919D1691900E3B473 /* +人脉2_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+人脉2_03a.png"; sourceTree = "<group>"; };
+		D3F79F1A19D1691900E3B473 /* +人脉2_03a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+人脉2_03a@2x.png"; sourceTree = "<group>"; };
+		D3F79F1B19D1691900E3B473 /* +人脉2_05a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+人脉2_05a.png"; sourceTree = "<group>"; };
+		D3F79F1C19D1691900E3B473 /* +人脉2_05a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+人脉2_05a@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3808,6 +3816,10 @@
 		D3F79A1419D157A400E3B473 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3F79F1919D1691900E3B473 /* +人脉2_03a.png */,
+				D3F79F1A19D1691900E3B473 /* +人脉2_03a@2x.png */,
+				D3F79F1B19D1691900E3B473 /* +人脉2_05a.png */,
+				D3F79F1C19D1691900E3B473 /* +人脉2_05a@2x.png */,
 				D3F79F0919D1590900E3B473 /* XiangMuJieDuan */,
 				D3F79F0A19D1590900E3B473 /* XiangMuXiangQing */,
 				D3F79F0B19D1590900E3B473 /* XiangMuXiangQing_1 */,
@@ -4584,6 +4596,7 @@
 				D3F79DF119D157A700E3B473 /* 地图搜索结果_10a.png in Resources */,
 				D3F79EE319D157A700E3B473 /* 项目－项目专题_23a.png in Resources */,
 				D3F79E7419D157A700E3B473 /* 项目详情-3_03a@2x.png in Resources */,
+				D3F79F1D19D1691900E3B473 /* +人脉2_03a.png in Resources */,
 				D3F79E5019D157A700E3B473 /* 面部识别登录_03@2x.png in Resources */,
 				D3F79DA219D157A700E3B473 /* 人脉－账号设置_14a@2x.png in Resources */,
 				D3F79DA119D157A700E3B473 /* 人脉－账号设置_14a.png in Resources */,
@@ -4810,6 +4823,7 @@
 				D3F79E5219D157A700E3B473 /* 面部识别登录_07@2x.png in Resources */,
 				D3F79DE919D157A700E3B473 /* 地图搜索_02.png in Resources */,
 				D3F79D2B19D157A700E3B473 /* 人脉_02a.png in Resources */,
+				D3F79F2019D1691900E3B473 /* +人脉2_05a@2x.png in Resources */,
 				D3F79E4F19D157A700E3B473 /* 面部识别登录_03.png in Resources */,
 				D3F79DFC19D157A700E3B473 /* 地图搜索结果_33a@2x.png in Resources */,
 				D3F79D9719D157A700E3B473 /* 人脉－引荐信_06a.png in Resources */,
@@ -4983,6 +4997,7 @@
 				D3F79E8F19D157A700E3B473 /* 项目详情-筛选_06.png in Resources */,
 				D3F79CA319D157A700E3B473 /* back_icon.png in Resources */,
 				D3F79C9719D157A700E3B473 /* +人脉_24a.png in Resources */,
+				D3F79F1F19D1691900E3B473 /* +人脉2_05a.png in Resources */,
 				D3F79E2E19D157A700E3B473 /* 新建项目－8_03a@2x.png in Resources */,
 				D3F79E9819D157A700E3B473 /* 项目详情-筛选_18a1@2x.png in Resources */,
 				D3F79D9A19D157A700E3B473 /* 人脉－引荐信_08a@2x.png in Resources */,
@@ -5003,6 +5018,7 @@
 				D3F79DFF19D157A700E3B473 /* 我的任务_05.png in Resources */,
 				D3F79E8819D157A700E3B473 /* 项目详情-筛选_03@2x.png in Resources */,
 				D3F79E5B19D157A700E3B473 /* 面部采集_11.png in Resources */,
+				D3F79F1E19D1691900E3B473 /* +人脉2_03a@2x.png in Resources */,
 				D3F79D5519D157A700E3B473 /* 人脉－个人中心_02a.png in Resources */,
 				D3F79CD719D157A700E3B473 /* u33@2x.png in Resources */,
 				D3F79E5F19D157A700E3B473 /* 项目-首页_03a.png in Resources */,

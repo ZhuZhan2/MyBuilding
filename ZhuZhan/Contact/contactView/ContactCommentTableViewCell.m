@@ -41,22 +41,19 @@
     headImageView.layer.cornerRadius = 3;
     [self.contentView addSubview:headImageView];
     
-    contentLabel = [[UILabel alloc] init];
-    contentLabel.numberOfLines =0;
-    UIFont * tfont = [UIFont systemFontOfSize:14];
-    contentLabel.font = tfont;
-    contentLabel.textColor = [UIColor blackColor];
-    contentLabel.lineBreakMode =NSLineBreakByCharWrapping ;
+    contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 0, 190, 30)];
+    contentLabel.numberOfLines = 3;
+    contentLabel.backgroundColor = [UIColor yellowColor];
+    contentLabel.font = [UIFont systemFontOfSize:12];
     [self.contentView addSubview:contentLabel];
     
     timeLabel = [[UILabel alloc] init];
     timeLabel.textColor = [UIColor lightGrayColor];
-    timeLabel.font = [UIFont systemFontOfSize:14];
+    timeLabel.font = [UIFont systemFontOfSize:12];
     [self.contentView addSubview:timeLabel];
 }
 
 -(void)setModel:(ContactCommentModel *)model{
-    contentLabel.frame = CGRectMake(40, 5, 100, 30);
     contentLabel.text = model.a_commentContents;
 }
 @end
