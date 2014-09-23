@@ -35,7 +35,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     self.view.backgroundColor = [UIColor whiteColor];
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 5, 29, 28.5)];
-    [leftButton setBackgroundImage:[GetImagePath getImagePath:@"icon_04.png"] forState:UIControlStateNormal];
+    [leftButton setBackgroundImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;

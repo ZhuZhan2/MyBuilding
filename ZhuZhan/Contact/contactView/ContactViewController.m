@@ -215,7 +215,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             }
             cell.delegate = self;
             cell.selectionStyle = NO;
-            //cell.model = model;
+            cell.model = model;
             return cell;
         }
     }else if([model.a_category isEqualToString:@"Company"]){
