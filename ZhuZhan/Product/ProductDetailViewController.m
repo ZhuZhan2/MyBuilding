@@ -145,8 +145,8 @@
     
     //与下方tableView的分割部分
     if (self.commentViews.count) {
-        UIImage* separatorImage=[GetImagePath getImagePath:@"产品－产品详情_12a@2x"];
-        frame=CGRectMake(0, tempHeight, separatorImage.size.width*.5, separatorImage.size.height*.5);
+        UIImage* separatorImage=[GetImagePath getImagePath:@"产品－产品详情_12a"];
+        frame=CGRectMake(0, tempHeight, separatorImage.size.width, separatorImage.size.height);
         UIImageView* separatorImageView=[[UIImageView alloc]initWithFrame:frame];
         separatorImageView.image=separatorImage;
         separatorImageView.backgroundColor=RGBCOLOR(235, 235, 235);

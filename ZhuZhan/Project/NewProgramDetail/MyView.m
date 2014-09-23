@@ -33,7 +33,7 @@
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     CGSize size=self.myImageView.image.size;
-    self.myImageView.frame=CGRectMake(0, 0, size.width*.5, size.height*.5);
+    self.myImageView.frame=CGRectMake(0, 0, size.width, size.height);
     self.myImageView.center=CGPointMake(160, 215.5*.5);
 }
 

@@ -14,7 +14,7 @@
 -(void)addCommentView:(NSIndexPath *)indexPath;
 
 @end
-@interface CommentView : UIView{
+@interface CommentView : UIView<UITableViewDelegate,UITableViewDataSource>{
     NSIndexPath *indexpath;
 }
 @property(nonatomic,weak)id<CommentViewDelegate>delegate;

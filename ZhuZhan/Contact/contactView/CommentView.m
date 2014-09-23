@@ -42,13 +42,12 @@
     topLineImage.alpha =0.2;
     height+=topLineImage.frame.size.height;
     
-    model.a_imageUrl=@"";
     EGOImageView *imageView;
     //动态图像
     if(![model.a_imageUrl isEqualToString:@""]){
-        imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"bg001.png"]];
+        imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
         imageView.frame = CGRectMake(5, 5, 310,[model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310);
-        imageView.imageURL = [NSURL URLWithString:model.a_imageUrl];//[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
+        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
         [commentView addSubview:imageView];
         height+=imageView.frame.size.height;
     }
@@ -86,7 +85,6 @@
         
         
         contentTotalView=[[UIView alloc]initWithFrame:CGRectMake(5, height, 310, imageView?contentTextView.frame.size.height+20:contentTextView.frame.size.height+20+40)];
-        contentTotalView.backgroundColor=[UIColor yellowColor];
         [contentTotalView addSubview:contentTextView];
         [commentView addSubview:contentTotalView];
         height+=contentTotalView.frame.size.height;
@@ -109,16 +107,19 @@
     userImageView.frame=CGRectMake(10,tempHeight+5,36,36);
     [commentView addSubview:userImageView];
     
-    userImageView.imageURL = [NSURL URLWithString:model.a_avatarUrl];//[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
+    userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_avatarUrl]];
     [commentView addSubview:userImageView];
-    height+=imageView.frame.size.height;
+
     
-    
+    UITableView *_tableView = [[UITableView alloc] initWithFrame:CGRectMake(90, height, 200, 300)];
+    _tableView.delegate = commentView;
+    _tableView.dataSource = commentView;
+    [commentView addSubview:_tableView];
+    height += 320;
     
     //设置总的frame
     commentView.frame = CGRectMake(0, 0, 320, height);
-    
-    
+    [commentView setBackgroundColor:[UIColor yellowColor]];
     return commentView;
 }
 
@@ -130,5 +131,32 @@
 
 -(void)setIndexPath:(NSIndexPath *)indexPath{
     _indexpath = indexPath;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return 1;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(!cell){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"%d",indexPath.row);
 }
 @end
