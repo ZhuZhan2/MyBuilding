@@ -371,13 +371,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 
 -(void)addCommentView:(NSIndexPath *)indexPath{
-    indexpath = indexPath;
-    addCommentView = [[AddCommentViewController alloc] init];
-    addCommentView.delegate = self;
-    [self presentPopupViewController:addCommentView animationType:MJPopupViewAnimationFade flag:2];
-}
-
--(void)sureFromAddCommentWithComment:(NSString*)comment{
     
     NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
     
@@ -390,6 +383,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         return;
     }
 
+    indexpath = indexPath;
+    addCommentView = [[AddCommentViewController alloc] init];
+    addCommentView.delegate = self;
+    [self presentPopupViewController:addCommentView animationType:MJPopupViewAnimationFade flag:2];
+}
+
+-(void)sureFromAddCommentWithComment:(NSString*)comment{
+    
+   
     
     CommentModel *model = [[CommentModel alloc] init];
     model.a_content = [NSString stringWithFormat:@"%@",comment];
