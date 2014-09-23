@@ -28,6 +28,7 @@
 
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
+#import "LoginSqlite.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
