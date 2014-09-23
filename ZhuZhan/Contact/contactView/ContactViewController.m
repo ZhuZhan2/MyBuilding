@@ -101,6 +101,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             showArr = posts;
             for(int i=0;i<showArr.count;i++){
                 ActivesModel *model = showArr[i];
+                NSLog(@"===>%@",model.a_eventType);
                 if([model.a_eventType isEqualToString:@"Actives"]){
                     commentView = [CommentView setFram:model];
                     [viewArr addObject:commentView];
@@ -183,6 +184,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PSTableViewCellIdentifier];
     ActivesModel *model = showArr[indexPath.row];
+    NSLog(@"=======>%@",model.a_category);
     if([model.a_category isEqualToString:@"Project"]){
         NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
         ContactProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -194,7 +196,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         cell.model = model;
         return cell;
     }else if([model.a_category isEqualToString:@"Personal"]){
+        NSLog(@"===============");
         if([model.a_eventType isEqualToString:@"Actives"]){
+            
+            
+            
             NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if(!cell){

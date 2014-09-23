@@ -60,7 +60,6 @@
     //动态描述
     if (![model.a_content isEqualToString:@""]) {
         UILabel* contentTextView = [[UILabel alloc] init];
-        contentTextView.backgroundColor=[UIColor greenColor];
         contentTextView.numberOfLines =0;
         UIFont * tfont = [UIFont systemFontOfSize:15];
         contentTextView.font = tfont;
@@ -87,8 +86,8 @@
         CGSize actualsize =[text boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin |NSStringDrawingUsesFontLeading attributes:tdic context:nil].size;
         contentTextView.frame =CGRectMake(imageUrlExist?10:60,10, actualsize.width, actualsize.height);
         
-        
         contentTotalView=[[UIView alloc]initWithFrame:CGRectMake(5, height, 310, imageView?contentTextView.frame.size.height+20:contentTextView.frame.size.height+20+40)];
+        contentTotalView.backgroundColor=[UIColor whiteColor];
         [contentTotalView addSubview:contentTextView];
         [commentView addSubview:contentTotalView];
         height+=contentTotalView.frame.size.height;
@@ -101,10 +100,7 @@
     [commentBtn setImage:[GetImagePath getImagePath:@"人脉_66a"] forState:UIControlStateNormal];
     [commentBtn addTarget:commentView action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
     [commentView addSubview:commentBtn];
-    if (!imageView) {
-        
-    }
-    
+
     //用户头像
     tempHeight=imageView?imageView.frame.origin.y:contentTotalView.frame.origin.y;
     EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
