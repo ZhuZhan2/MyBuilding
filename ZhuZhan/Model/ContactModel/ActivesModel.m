@@ -12,11 +12,14 @@
 - (void)setDict:(NSDictionary *)dict{
     _dict = dict;
     
+    self.a_id = [ProjectStage ProjectStrStage:dict[@"actives"][@"id"]];
     self.a_entityId = [ProjectStage ProjectStrStage:dict[@"actives"][@"entityId"]];
     self.a_entityUrl = [ProjectStage ProjectStrStage:dict[@"actives"][@"entityUrl"]];
-    self.a_name = [ProjectStage ProjectStrStage:dict[@"actives"][@"userName"]];
+    self.a_projectName = [ProjectStage ProjectStrStage:dict[@"actives"][@"projectName"]];
+    self.a_projectStage = [ProjectStage ProjectStrStage:dict[@"actives"][@"projectStage"]];
+    self.a_userName = [ProjectStage ProjectStrStage:dict[@"actives"][@"userName"]];
     self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"actives"][@"avatarUrl"]];
-    self.a_time = [ProjectStage ProjectDateStage:dict[@"actives"][@"createdBy"]];
+    self.a_time = [ProjectStage ProjectDateStage:dict[@"actives"][@"createdTime"]];
     self.a_content = [ProjectStage ProjectStrStage:dict[@"actives"][@"content"]];
     self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"actives"][@"imageLocation"]];
     self.a_category = [ProjectStage ProjectStrStage:dict[@"actives"][@"category"]];

@@ -19,7 +19,6 @@
 #import "ContactModel.h"
 #import "ContactCommentModel.h"
 #import "CommentModel.h"
-#import "ContactCommentTableViewCell.h"
 #import "CommentApi.h"
 #import "ConnectionAvailable.h"
 #import "BirthDay.h"
@@ -94,14 +93,22 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0]]];
                     [LoginSqlite insertData:posts[0] datakey:@"userImageUrl"];
                 }
-            } userId:@"ce753b56-baff-4194-8da2-d88e695afdde"];
+            } userId:@"13756154-7db5-4516-bcc6-6b7842504c81"];
             
             showArr = posts;
-            ActivesModel *model = showArr[1];
-            NSLog(@"%@",model.a_content);
+            for(int i=0;i<showArr.count;i++){
+                ActivesModel *model = showArr[i];
+                if([model.a_eventType isEqualToString:@"Actives"]){
+                    commentView = [CommentView setFram:model];
+                    [viewArr addObject:commentView];
+                }else{
+                    [viewArr addObject:@""];
+                }
+                [_datasource addObject:model.a_time];
+            }
             [self.tableView reloadData];
         }
-    } userId:@"ce753b56-baff-4194-8da2-d88e695afdde" startIndex:startIndex];
+    } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
 }
 
 
@@ -170,15 +177,35 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }
         cell.delegate = self;
         cell.selectionStyle = NO;
+        cell.model = model;
         return cell;
     }else if([model.a_category isEqualToString:@"Personal"]){
-        if([model.a_category isEqualToString:@"Actives"]){
-        
+        if([model.a_eventType isEqualToString:@"Actives"]){
+            NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if(!cell){
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            cell.selectionStyle = NO;
+            for(int i=0;i<cell.contentView.subviews.count;i++) {
+                [((UIView*)[cell.contentView.subviews objectAtIndex:i]) removeFromSuperview];
+            }
+            commentView = viewArr[indexPath.row];
+            [cell.contentView addSubview:commentView];
+            return cell;
         }else{
-        
+            NSString *CellIdentifier = [NSString stringWithFormat:@"ContactTableViewCell"];
+            ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if(!cell){
+                cell = [[ContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            cell.delegate = self;
+            cell.selectionStyle = NO;
+            //cell.model = model;
+            return cell;
         }
     }else if([model.a_category isEqualToString:@"Company"]){
-        if([model.a_category isEqualToString:@"Actives"]){
+        if([model.a_eventType isEqualToString:@"Actives"]){
             
         }else{
             
@@ -195,13 +222,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if([model.a_category isEqualToString:@"Project"]){
         return 50;
     }else if([model.a_category isEqualToString:@"Personal"]){
-        if([model.a_category isEqualToString:@"Actives"]){
-            return 100;
+        if([model.a_eventType isEqualToString:@"Actives"]){
+            commentView = viewArr[indexPath.row];
+            return commentView.frame.size.height;
         }else{
             return 50;
         }
     }else if([model.a_category isEqualToString:@"Company"]){
-        if([model.a_category isEqualToString:@"Actives"]){
+        if([model.a_eventType isEqualToString:@"Actives"]){
             return 100;
         }else{
             return 50;
@@ -360,31 +388,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         self.tableView.scrollEnabled = YES;
         [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                for(int i=0;i<posts.count;i++){
-                    CommentModel *commentModel = posts[i];
-                    [showArr addObject:commentModel];
-                    [_datasource addObject:commentModel.a_time];
-                    if(commentModel.a_commentsArr.count !=0){
-                        ContactCommentModel *contactCommentModel = commentModel.a_commentsArr[0];
-                        [showArr addObject:contactCommentModel];
-                        [_datasource addObject:contactCommentModel.a_time];
-                    }
-                }
-                //NSLog(@"%@",showArr);
-                for(int i=0;i<showArr.count;i++){
-                    CommentModel *model = showArr[i];
-                    if([model.a_type isEqualToString:@"Product"]){
-                        NSLog(@"%@",model.a_type);
-                        commentView = [CommentView setFram:model];
-                        [viewArr insertObject:commentView atIndex:i];
-                    }else{
-                        [viewArr insertObject:@"" atIndex:i];
-                    }
-                }
-                
+                showArr = posts;
                 [self.tableView reloadData];
             }
-        } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0" startIndex:startIndex];
+        } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
     }
 }
 @end

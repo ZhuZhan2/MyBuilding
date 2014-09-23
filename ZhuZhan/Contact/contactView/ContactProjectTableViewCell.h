@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EGOImageView.h"
 #import "HeadImageDelegate.h"
+#import "ActivesModel.h"
 @interface ContactProjectTableViewCell : UITableViewCell{
     EGOImageView *headImageView;
     UIImageView *stageImage;
@@ -16,4 +17,5 @@
     UILabel *contentLabel;
 }
 @property(nonatomic,weak)id<HeadImageDelegate>delegate;
+@property(nonatomic,strong)ActivesModel *model;
 @end

@@ -27,7 +27,7 @@
     // Drawing code
 }
 */
-+(CommentView *)setFram:(CommentModel *)model{
++(CommentView *)setFram:(ActivesModel *)model{
     CommentView *commentView = [[CommentView alloc] init];
     UIImageView *topLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(75, 0, 2, 5)];
     [topLineImage setBackgroundColor:[UIColor blackColor]];
@@ -55,9 +55,9 @@
     contentLabel.font = tfont;
     contentLabel.textColor = [UIColor blackColor];
     contentLabel.lineBreakMode =NSLineBreakByCharWrapping ;
-    contentLabel.text = [NSString stringWithFormat:@"%@:%@",model.a_name,model.a_content];
+    contentLabel.text = [NSString stringWithFormat:@"%@:%@",model.a_userName,model.a_content];
     
-    NSString *string = [NSString stringWithFormat:@"%@:%@",model.a_name,model.a_content];
+    NSString *string = [NSString stringWithFormat:@"%@:%@",model.a_userName,model.a_content];
     //给一个比较大的高度，宽度不变
     CGSize size =CGSizeMake(300,1000);
     //    获取当前文本的属性

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CommentModel.h"
+#import "ActivesModel.h"
 
 @protocol CommentViewDelegate <NSObject>
 
@@ -18,6 +18,6 @@
     NSIndexPath *indexpath;
 }
 @property(nonatomic,weak)id<CommentViewDelegate>delegate;
-+(CommentView *)setFram:(CommentModel *)model;
++(CommentView *)setFram:(ActivesModel *)model;
 @property(nonatomic,strong)NSIndexPath *indexpath;
 @end

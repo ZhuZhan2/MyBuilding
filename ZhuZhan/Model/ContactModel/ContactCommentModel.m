@@ -10,11 +10,12 @@
 #import "ProjectStage.h"
 @implementation ContactCommentModel
 -(void)setDict:(NSDictionary *)dict{
-    self.a_id = [ProjectStage ProjectStrStage:dict[@"entityId"]];;
-    self.a_name = [ProjectStage ProjectStrStage:dict[@"createdBy"]];
+    self.a_id = [ProjectStage ProjectStrStage:dict[@"id"]];
+    self.a_entityId = [ProjectStage ProjectStrStage:dict[@"entityId"]];
+    self.a_createdBy = [ProjectStage ProjectStrStage:dict[@"createdBy"]];
+    self.a_userName = [ProjectStage ProjectStrStage:dict[@"userName"]];
     self.a_time = [ProjectStage ProjectDateStage:dict[@"createdTime"]];
-    self.a_content = [ProjectStage ProjectStrStage:dict[@"commentContents"]];
-    //self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"activeImage"]];
-    self.a_type = @"comment";
+    self.a_commentContents = [ProjectStage ProjectStrStage:dict[@"commentContents"]];
+    self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"avatarUrl"]];
 }
 @end
