@@ -267,14 +267,18 @@ NSLog(@"******publishImageStr******%@&&",publishImageStr);
             NSLog(@"******userId****** %@",userIdStr);
         
         [CommentApi SendActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
-            NSLog(@"******posts***** %@",posts);
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
-            [alert show];
-            publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
-            inputView.text =@"             ";
-            publishImageStr =@"";
-            
+            if(!error){
+                NSLog(@"******posts***** %@",posts);
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
+                [alert show];
+                publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
+                inputView.text =@"             ";
+                publishImageStr =@"";
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
+                [alert show];
+            }
         } dic:dic];
 
     }
@@ -285,24 +289,30 @@ NSLog(@"******publishImageStr******%@&&",publishImageStr);
             NSLog(@"******dic****** %@",dic);
           NSLog(@"******userId****** %@",userIdStr);
         [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-            
-            
-            NSDictionary *dic = [posts objectAtIndex:0];
-            NSString *productId = [[[dic objectForKey:@"d"] objectForKey:@"data"] objectForKey:@"id"];
-            
-            NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:productId,@"id",@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0",@"PublishedBy", nil];
-            
-            [ProductModel PublishProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
+            if(!error){
+                NSDictionary *dic = [posts objectAtIndex:0];
+                NSString *productId = [[[dic objectForKey:@"d"] objectForKey:@"data"] objectForKey:@"id"];
+                
+                NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:productId,@"id",@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0",@"PublishedBy", nil];
+                
+                [ProductModel PublishProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+                    if(!error){
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
+                        [alert show];
+                        
+                        publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
+                        inputView.text =@"             ";
+                        publishImageStr =@"";
+                    }else{
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
+                        [alert show];
+                    }
+                    
+                } dic:parameters];
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
                 [alert show];
-                
-                publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
-                inputView.text =@"             ";
-                publishImageStr =@"";
-                
-            } dic:parameters];
-            
-            
+            }
         } dic:dic];
 
     }

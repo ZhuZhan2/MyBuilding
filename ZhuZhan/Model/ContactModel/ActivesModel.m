@@ -8,6 +8,7 @@
 
 #import "ActivesModel.h"
 #import "ProjectStage.h"
+#import "ContactCommentModel.h"
 @implementation ActivesModel
 - (void)setDict:(NSDictionary *)dict{
     _dict = dict;
@@ -27,5 +28,14 @@
     self.a_title = [ProjectStage ProjectStrStage:dict[@"actives"][@"title"]];
     self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"actives"][@"imageWidth"]]];
     self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"actives"][@"imageHeight"]]];
+    
+    self.a_commentsArr = [[NSMutableArray alloc] init];
+    if([dict[@"comments"] count] !=0){
+        for(NSDictionary *item in dict[@"comments"]){
+            ContactCommentModel *model = [[ContactCommentModel alloc] init];
+            [model setDict:item];
+            [self.a_commentsArr addObject:model];
+        }
+    }
 }
 @end
