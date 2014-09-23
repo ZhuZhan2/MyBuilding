@@ -12,6 +12,7 @@
 #import "ProductModel.h"
 #import "CommentApi.h"
 #import "GTMBase64.h"
+#import "LoginSqlite.h"
 @interface PublishViewController ()
 
 @end
@@ -250,8 +251,8 @@ static int PublishNum =1;//1 发布动态  2，发布产品
 
 -(void)goToPublish
 {
-    NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-//NSLog(@"******userId****** %@",userIdStr);
+//    NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+    NSString *userIdStr = [LoginSqlite getdata:@"userId" defaultdata:@""];
 NSLog(@"******publishImageStr******%@&&",publishImageStr);
 
     if ([inputView.text isEqualToString:@""]&&[publishImageStr isEqualToString:@""]) {
@@ -263,8 +264,10 @@ NSLog(@"******publishImageStr******%@&&",publishImageStr);
 
     if (PublishNum ==1) {
         NSLog(@"publishImageStr ==> %@",publishImageStr);
-        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",inputView.text,@"ActiveText",@"Personal",@"Type",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
-            NSLog(@"******userId****** %@",userIdStr);
+        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",inputView.text,@"ActiveText",@"Personal",@"Category",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
+            NSLog(@"******dic****** %@",dic);
+        NSString *headBlankStr =@"             ";
+        inputView.text = [NSString stringWithFormat:@"%@%@",headBlankStr,inputView.text];
         
         [CommentApi SendActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
@@ -278,6 +281,7 @@ NSLog(@"******publishImageStr******%@&&",publishImageStr);
             }else{
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
                 [alert show];
+
             }
         } dic:dic];
 
@@ -285,8 +289,10 @@ NSLog(@"******publishImageStr******%@&&",publishImageStr);
     
     if (PublishNum ==2) {
         NSLog(@"publishImageStr ==> %@",publishImageStr);
-        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"21344",@"ProductName",inputView.text,@"ProductDescription",@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0",@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
+        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"21344",@"ProductName",inputView.text,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
             NSLog(@"******dic****** %@",dic);
+        NSString *headBlankStr =@"             ";
+        inputView.text = [NSString stringWithFormat:@"%@%@",headBlankStr,inputView.text];
           NSLog(@"******userId****** %@",userIdStr);
         [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
@@ -306,6 +312,7 @@ NSLog(@"******publishImageStr******%@&&",publishImageStr);
                     }else{
                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
                         [alert show];
+
                     }
                     
                 } dic:parameters];
