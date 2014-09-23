@@ -207,6 +207,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             }
             commentView = viewArr[indexPath.row];
             commentView.indexpath = indexpath;
+            commentView.delegate = self;
             commentView.showArr = model.a_commentsArr;
             [cell.contentView addSubview:commentView];
             return cell;
@@ -373,7 +374,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)addCommentView:(NSIndexPath *)indexPath{
     
     NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
-    
+    NSLog(@"********deviceToken***%@",deviceToken);
     if ([deviceToken isEqualToString:@""]) {
         
         LoginViewController *loginVC = [[LoginViewController alloc] init];
