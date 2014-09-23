@@ -9,12 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @interface ActivesModel : NSObject
+@property (nonatomic, copy) NSString *a_id;
 @property (nonatomic, copy) NSString *a_entityId;
 @property (nonatomic, copy) NSString *a_entityUrl;
-@property (nonatomic, copy) NSString *a_name;
-@property (nonatomic, copy) NSString *a_avatarUrl;
+@property (nonatomic, copy) NSString *a_projectName;
+@property (nonatomic, copy) NSString *a_projectStage;
 @property (nonatomic, copy) NSString *a_content;
 @property (nonatomic, copy) NSString *a_title;
+@property (nonatomic, copy) NSString *a_userName;
+@property (nonatomic, copy) NSString *a_avatarUrl;
 @property (nonatomic, copy) NSString *a_imageUrl;
 @property (nonatomic, copy) NSString *a_imageWidth;
 @property (nonatomic, copy) NSString *a_imageHeight;
