@@ -128,11 +128,15 @@
         //NSLog(@"JSON===>%@",JSON[@"d"][@"data"][0][@"actives"][@"content"]);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            for(NSDictionary *item in JSON[@"d"][@"data"]){
-                ActivesModel *model = [[ActivesModel alloc] init];
+            /*for(NSDictionary *item in JSON[@"d"][@"data"]){
+                CommentModel *model = [[CommentModel alloc] init];
                 [model setDict:item];
                 [mutablePosts addObject:model];
-            }
+            }*/
+            NSDictionary *item = [[NSDictionary alloc] init];
+            CommentModel *model = [[CommentModel alloc] init];
+            [model setDict:item];
+            [mutablePosts addObject:model];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
