@@ -174,6 +174,16 @@
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
             cell.selectionStyle = NO;
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 230, 30)];
+            label.text = @"查看全部评论";
+            label.textAlignment = NSTextAlignmentCenter;
+            label.font = [UIFont systemFontOfSize:12];
+            [cell.contentView addSubview:label];
+            
+            UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 50, 230, 1)];
+            [lineImage setBackgroundColor:[UIColor blackColor]];
+            [cell.contentView addSubview:lineImage];
+            lineImage.alpha = 0.1;
             return cell;
         }else{
             NSString *CellIdentifier = [NSString stringWithFormat:@"ContactCommentTableViewCell"];
