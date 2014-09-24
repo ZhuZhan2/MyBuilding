@@ -31,23 +31,11 @@
 }
 */
 +(CommentView *)setFram:(ActivesModel *)model{
-    /*for(int i=0;i<model.a_commentsArr.count;i++){
-        ContactCommentModel *commentModel = model.a_commentsArr[i];
-        NSLog(@"commentModel ===> %@",commentModel.a_commentContents);
-    }*/
-    
     CommentView *commentView = [[CommentView alloc] init];
     CGFloat height=0;
 
-    //上分割线
-//    UIImageView *topLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(75, 0, 2, 5)];
-//    [topLineImage setBackgroundColor:[UIColor blackColor]];
-//    [commentView addSubview:topLineImage];
-//    topLineImage.alpha =0.2;
-    height+=5;//topLineImage.frame.size.height;
+    height+=5;//预留上方空间
     
-    //model.a_imageUrl=@"";
-    //model.a_content=@"";
     EGOImageView *imageView;
     //动态图像
     if(![model.a_imageUrl isEqualToString:@""]){
@@ -78,7 +66,6 @@
         //动态文字内容
         contentTextView.attributedText=attributedText;
         
-        
         BOOL imageUrlExist=![model.a_imageUrl isEqualToString:@""];
         //给一个比较大的高度，宽度不变
         CGSize size =CGSizeMake(imageUrlExist?300:250,CGFLOAT_MAX);
@@ -108,7 +95,7 @@
     EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
     userImageView.layer.masksToBounds = YES;
     userImageView.layer.cornerRadius = 3;
-    userImageView.frame=CGRectMake(10,tempHeight+5,36,36);
+    userImageView.frame=CGRectMake(10,tempHeight+5,37,37);
     [commentView addSubview:userImageView];
     
     userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_avatarUrl]];
@@ -153,7 +140,6 @@
     [commentView addSubview:lineImage];
     lineImage.alpha = 0.1;
 
-    
     //设置总的frame
     commentView.frame = CGRectMake(0, 0, 320, height);
     [commentView setBackgroundColor:RGBCOLOR(242, 242, 242)];

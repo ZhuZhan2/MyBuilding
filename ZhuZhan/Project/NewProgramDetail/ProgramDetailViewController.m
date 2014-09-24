@@ -82,6 +82,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
+    [self initNavi];
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 //NSLog(@"==========%@",posts[0]);
@@ -96,7 +97,6 @@
 }
 
 -(void)loadSelf{
-    [self initNavi];
     [self initLoadingView];
     [self initThemeView];
     [self initContentTableView];
