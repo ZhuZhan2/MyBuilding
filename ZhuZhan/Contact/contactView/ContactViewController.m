@@ -179,9 +179,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PSTableViewCellIdentifier];
-    NSLog(@"showarr=====%@,%d,%d",showArr,showArr.count,indexPath.row);
     ActivesModel *model = showArr[indexPath.row];
-    NSLog(@"=======>%@",model.a_category);
     if([model.a_category isEqualToString:@"Project"]){
         NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
         ContactProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -193,7 +191,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         cell.model = model;
         return cell;
     }else if([model.a_category isEqualToString:@"Personal"]){
-        NSLog(@"===============");
         if([model.a_eventType isEqualToString:@"Actives"]){
             
             
@@ -404,10 +401,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if(!error){
             ContactCommentModel *commentModel = [[ContactCommentModel alloc] init];
             [commentModel setDict:posts[0]];
-            if(model.a_commentsArr.count >3){
+            if(model.a_commentsArr.count >=3){
                 [model.a_commentsArr removeObjectAtIndex:1];
                 [model.a_commentsArr insertObject:commentModel atIndex:0];
-            }else if(model.a_commentsArr.count ==3){
+            }else if(model.a_commentsArr.count ==2){
                 [model.a_commentsArr insertObject:commentModel atIndex:0];
                 [model.a_commentsArr insertObject:@"" atIndex:2];
             }else{
