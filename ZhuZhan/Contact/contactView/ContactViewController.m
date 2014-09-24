@@ -28,6 +28,7 @@
 
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
+#import "LoginSqlite.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -374,7 +375,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     indexpath = indexPath;
     NSLog(@"%d",indexpath.row);
     NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
-    
+    NSLog(@"********deviceToken***%@",deviceToken);
     if ([deviceToken isEqualToString:@""]) {
         
         LoginViewController *loginVC = [[LoginViewController alloc] init];

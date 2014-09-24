@@ -159,6 +159,18 @@
 }
 
 -(void)chooseComment:(UIButton*)button{
+    
+    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+    
+    if ([deviceToken isEqualToString:@""]) {
+        
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [[AppDelegate instance] window].rootViewController = naVC;
+        [[[AppDelegate instance] window] makeKeyAndVisible];
+        return;
+    }
+    
     self.vc=[[AddCommentViewController alloc]init];
     self.vc.delegate=self;
     [self.navigationController presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
@@ -178,16 +190,6 @@
 // }
 -(void)sureFromAddCommentWithComment:(NSString *)comment{
     NSLog(@"sureFromAddCommentWithCommentModel:");
-    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
-    
-    if ([deviceToken isEqualToString:@""]) {
-        
-        LoginViewController *loginVC = [[LoginViewController alloc] init];
-        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
-        [[AppDelegate instance] window].rootViewController = naVC;
-        [[[AppDelegate instance] window] makeKeyAndVisible];
-        return;
-    }
 
     
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
