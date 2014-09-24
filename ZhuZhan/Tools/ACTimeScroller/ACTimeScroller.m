@@ -92,6 +92,10 @@
         [_backgroundView addSubview:_dateLabel];
         
         _delegate = delegate;
+        
+        self.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.layer.shadowOpacity = .5;
+        self.layer.shadowOffset = CGSizeMake(0, 1.5);
     }
     return self;
 }
