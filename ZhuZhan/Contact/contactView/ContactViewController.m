@@ -205,7 +205,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [((UIView*)[cell.contentView.subviews objectAtIndex:i]) removeFromSuperview];
             }
             commentView = viewArr[indexPath.row];
-            commentView.indexpath = indexpath;
+            commentView.delegate = self;
+            commentView.indexpath = indexPath;
             commentView.showArr = model.a_commentsArr;
             [cell.contentView addSubview:commentView];
             return cell;
@@ -371,13 +372,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)addCommentView:(NSIndexPath *)indexPath{
     indexpath = indexPath;
-    addCommentView = [[AddCommentViewController alloc] init];
-    addCommentView.delegate = self;
-    [self presentPopupViewController:addCommentView animationType:MJPopupViewAnimationFade flag:2];
-}
-
--(void)sureFromAddCommentWithComment:(NSString*)comment{
-    
+    NSLog(@"%d",indexpath.row);
     NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
     
     if ([deviceToken isEqualToString:@""]) {
@@ -388,30 +383,33 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [[[AppDelegate instance] window] makeKeyAndVisible];
         return;
     }
+    addCommentView = [[AddCommentViewController alloc] init];
+    addCommentView.delegate = self;
+    [self presentPopupViewController:addCommentView animationType:MJPopupViewAnimationFade flag:2];
+}
 
-    
-    CommentModel *model = [[CommentModel alloc] init];
-    model.a_content = [NSString stringWithFormat:@"%@",comment];
-    model.a_type = @"comment";
-    [self.tableView deselectRowAtIndexPath:indexpath animated:YES];
-    NSIndexPath *path = [NSIndexPath indexPathForItem:(indexpath.row+1) inSection:indexpath.section];
-    [showArr insertObject:model atIndex:path.row];
-    [viewArr insertObject:@"" atIndex:path.row];
-    [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationMiddle];
-    [self.tableView endUpdates];
+-(void)sureFromAddCommentWithComment:(NSString*)comment{
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-    
-    CommentModel *model2 = showArr[indexpath.row];
-    NSLog(@"%@",model2.a_id);
+    ActivesModel *model = showArr[indexpath.row];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setValue:model2.a_id forKey:@"EntityId"];
+    [dic setValue:model.a_id forKey:@"EntityId"];
     [dic setValue:[NSString stringWithFormat:@"%@",comment] forKey:@"CommentContents"];
-    [dic setValue:model2.a_type forKey:@"EntityType"];
-    [dic setValue:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0" forKey:@"CreatedBy"];
+    [dic setValue:model.a_category forKey:@"EntityType"];
+    [dic setValue:@"13756154-7db5-4516-bcc6-6b7842504c81" forKey:@"CreatedBy"];
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            
+            ContactCommentModel *commentModel = [[ContactCommentModel alloc] init];
+            [commentModel setDict:posts[0]];
+            if(model.a_commentsArr.count >=3){
+                [model.a_commentsArr removeObjectAtIndex:1];
+                [model.a_commentsArr insertObject:commentModel atIndex:0];
+            }else{
+                [model.a_commentsArr insertObject:commentModel atIndex:0];
+            }
+            commentView = [CommentView setFram:model];
+            [showArr replaceObjectAtIndex:indexpath.row withObject:model];
+            [viewArr replaceObjectAtIndex:indexpath.row withObject:commentView];
+            [self.tableView reloadData];
         }
     } dic:dic];
 }

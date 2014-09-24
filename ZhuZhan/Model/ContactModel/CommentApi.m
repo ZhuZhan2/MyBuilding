@@ -9,6 +9,7 @@
 #import "CommentApi.h"
 #import "AFAppDotNetAPIClient.h"
 #import "ProjectCommentModel.h"
+#import "ContactCommentModel.h"
 @implementation CommentApi
 + (NSURLSessionDataTask *)GetEntityCommentsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block entityId:(NSString *)entityId entityType:(NSString *)entityType{
     NSString *urlStr = [NSString stringWithFormat:@"api/EntityComments/Get?entityId=%@&entityType=%@",entityId,entityType];
@@ -51,7 +52,7 @@
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON[@"d"][@"status"]];
+            [mutablePosts addObject:JSON[@"d"][@"data"]];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }

@@ -59,7 +59,6 @@
     //动态描述
     if (![model.a_content isEqualToString:@""]) {
         UILabel* contentTextView = [[UILabel alloc] init];
-        contentTextView.backgroundColor=[UIColor greenColor];
         contentTextView.numberOfLines =0;
         UIFont * tfont = [UIFont systemFontOfSize:15];
         contentTextView.font = tfont;
@@ -118,7 +117,7 @@
     
     if(model.a_commentsArr.count !=0){
         int count = 0;
-        if(model.a_commentsArr.count>4){
+        if(model.a_commentsArr.count>=3){
             count = 4;
         }else{
             count = model.a_commentsArr.count;
@@ -156,21 +155,47 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return showArr.count;
+    if(showArr.count>=3){
+        return 4;
+    }else{
+        return showArr.count;
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = [NSString stringWithFormat:@"ContactCommentTableViewCell"];
-    ContactCommentModel *model = showArr[indexpath.row];
-    ContactCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(!cell){
-        cell = [[ContactCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    ContactCommentModel *model = showArr[indexPath.row];
+    if(showArr.count>=3){
+        if(indexPath.row == 2){
+            NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if(!cell){
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            cell.selectionStyle = NO;
+            return cell;
+        }else{
+            NSString *CellIdentifier = [NSString stringWithFormat:@"ContactCommentTableViewCell"];
+            ContactCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if(!cell){
+                cell = [[ContactCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            cell.selectionStyle = NO;
+            cell.model = model;
+            return cell;
+        }
+    }else{
+        NSString *CellIdentifier = [NSString stringWithFormat:@"ContactCommentTableViewCell"];
+        ContactCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[ContactCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = NO;
+        cell.model = model;
+        return cell;
     }
-    cell.selectionStyle = NO;
-    cell.model = model;
-    return cell;
+    return nil;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
