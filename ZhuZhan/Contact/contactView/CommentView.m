@@ -121,6 +121,7 @@
         _tableView.delegate = commentView;
         _tableView.dataSource = commentView;
         _tableView.separatorStyle = NO;
+        _tableView.scrollEnabled = NO;
         [commentView addSubview:_tableView];
         
         UIImageView* downImageView=[[UIImageView alloc]initWithFrame:CGRectMake(320-251, height+50*count+11, 251, 9)];
