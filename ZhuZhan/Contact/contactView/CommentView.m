@@ -46,7 +46,7 @@
 //    topLineImage.alpha =0.2;
     height+=5;//topLineImage.frame.size.height;
     
-    model.a_imageUrl=@"";
+    //model.a_imageUrl=@"";
     //model.a_content=@"";
     EGOImageView *imageView;
     //动态图像
@@ -113,7 +113,6 @@
     
     userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_avatarUrl]];
     [commentView addSubview:userImageView];
-    height+=imageView.frame.size.height;
 
     //评论tableView
     if(model.a_commentsArr.count !=0){
