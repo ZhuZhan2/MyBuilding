@@ -38,13 +38,13 @@
     [self.contentView addSubview:lineImage];
     lineImage.alpha = 0.1;
     
-    UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(75, 0, 2, 49)];
+    UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(67, 0, 2, 49)];
     [lineImage2 setBackgroundColor:[UIColor blackColor]];
     [self.contentView addSubview:lineImage2];
     lineImage2.alpha = 0.2;
     
     headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a"]];
-    [headImageView setFrame:CGRectMake(15, 6.5, 37, 37)];
+    [headImageView setFrame:CGRectMake(10, 6.5, 37, 37)];
     headImageView.layer.masksToBounds = YES;
     headImageView.layer.cornerRadius = 3;
     [self.contentView addSubview:headImageView];
@@ -54,7 +54,7 @@
     [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:btn];
     
-    stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(62.5, 11.5, 27, 27)];
+    stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(53.5, 11.5, 27, 27)];
     [self.contentView addSubview:stageImage];
     
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 5, 200, 20)];
