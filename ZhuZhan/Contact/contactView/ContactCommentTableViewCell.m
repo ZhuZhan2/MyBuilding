@@ -52,7 +52,7 @@
     timeLabel.font = [UIFont systemFontOfSize:12];
     [self.contentView addSubview:timeLabel];
     
-    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 50, 230, 1)];
+    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 50, 242, 1)];
     [lineImage setBackgroundColor:[UIColor blackColor]];
     [self.contentView addSubview:lineImage];
     lineImage.alpha = 0.1;

@@ -38,13 +38,16 @@
     
     CommentView *commentView = [[CommentView alloc] init];
     CGFloat height=0;
+
     //上分割线
-    UIImageView *topLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(75, 0, 2, 5)];
-    [topLineImage setBackgroundColor:[UIColor blackColor]];
-    [commentView addSubview:topLineImage];
-    topLineImage.alpha =0.2;
-    height+=topLineImage.frame.size.height;
+//    UIImageView *topLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(75, 0, 2, 5)];
+//    [topLineImage setBackgroundColor:[UIColor blackColor]];
+//    [commentView addSubview:topLineImage];
+//    topLineImage.alpha =0.2;
+    height+=5;//topLineImage.frame.size.height;
     
+    model.a_imageUrl=@"";
+    //model.a_content=@"";
     EGOImageView *imageView;
     //动态图像
     if(![model.a_imageUrl isEqualToString:@""]){
@@ -85,8 +88,8 @@
         CGSize actualsize =[text boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin |NSStringDrawingUsesFontLeading attributes:tdic context:nil].size;
         contentTextView.frame =CGRectMake(imageUrlExist?10:60,10, actualsize.width, actualsize.height);
         
-        
         contentTotalView=[[UIView alloc]initWithFrame:CGRectMake(5, height, 310, imageView?contentTextView.frame.size.height+20:contentTextView.frame.size.height+20+40)];
+        contentTotalView.backgroundColor=[UIColor whiteColor];
         [contentTotalView addSubview:contentTextView];
         [commentView addSubview:contentTotalView];
         height+=contentTotalView.frame.size.height;
@@ -99,10 +102,7 @@
     [commentBtn setImage:[GetImagePath getImagePath:@"人脉_66a"] forState:UIControlStateNormal];
     [commentBtn addTarget:commentView action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
     [commentView addSubview:commentBtn];
-    if (!imageView) {
-        
-    }
-    
+
     //用户头像
     tempHeight=imageView?imageView.frame.origin.y:contentTotalView.frame.origin.y;
     EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
@@ -113,8 +113,9 @@
     
     userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_avatarUrl]];
     [commentView addSubview:userImageView];
+    height+=imageView.frame.size.height;
 
-    
+    //评论tableView
     if(model.a_commentsArr.count !=0){
         int count = 0;
         if(model.a_commentsArr.count>=3){
@@ -122,17 +123,40 @@
         }else{
             count = model.a_commentsArr.count;
         }
-        UITableView *_tableView = [[UITableView alloc] initWithFrame:CGRectMake(85, height, 230, 50*count)];
+        //评论内容上箭头图片
+        UIImageView* upImageView=[[UIImageView alloc]initWithFrame:CGRectMake(320-251, height, 251, 11)];
+        upImageView.image=[GetImagePath getImagePath:@"+人脉2_03a"];
+        [commentView addSubview:upImageView];
+        
+        
+        UITableView *_tableView = [[UITableView alloc] initWithFrame:CGRectMake(320-251+5, height+11, 242, 50*count)];
         _tableView.delegate = commentView;
         _tableView.dataSource = commentView;
         _tableView.separatorStyle = NO;
         [commentView addSubview:_tableView];
-        height += 50*count+10;
+        
+        UIImageView* downImageView=[[UIImageView alloc]initWithFrame:CGRectMake(320-251, height+50*count+11, 251, 9)];
+        downImageView.image=[GetImagePath getImagePath:@"+人脉2_05a"];
+        [commentView addSubview:downImageView];
+        
+        height += 50*count+11+9;//11为上箭头线,9为下方圆角及空的地方
     }
+    
+    //上分割线
+    UIImageView *topLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(67, 0, 2, height)];
+    [topLineImage setBackgroundColor:[UIColor blackColor]];
+        [commentView insertSubview:topLineImage atIndex:0];
+    topLineImage.alpha =0.2;
+    
+    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, height-1, 320, 1)];
+    [lineImage setBackgroundColor:[UIColor blackColor]];
+    [commentView addSubview:lineImage];
+    lineImage.alpha = 0.1;
+
     
     //设置总的frame
     commentView.frame = CGRectMake(0, 0, 320, height);
-    [commentView setBackgroundColor:RGBCOLOR(239, 237, 237)];
+    [commentView setBackgroundColor:RGBCOLOR(242, 242, 242)];
     return commentView;
 }
 
@@ -180,7 +204,7 @@
             label.font = [UIFont systemFontOfSize:12];
             [cell.contentView addSubview:label];
             
-            UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 50, 230, 1)];
+            UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 50, 242, 1)];
             [lineImage setBackgroundColor:[UIColor blackColor]];
             [cell.contentView addSubview:lineImage];
             lineImage.alpha = 0.1;
