@@ -404,9 +404,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if(!error){
             ContactCommentModel *commentModel = [[ContactCommentModel alloc] init];
             [commentModel setDict:posts[0]];
-            if(model.a_commentsArr.count >=3){
+            if(model.a_commentsArr.count >3){
                 [model.a_commentsArr removeObjectAtIndex:1];
                 [model.a_commentsArr insertObject:commentModel atIndex:0];
+            }else if(model.a_commentsArr.count ==3){
+                [model.a_commentsArr insertObject:commentModel atIndex:0];
+                [model.a_commentsArr insertObject:@"" atIndex:2];
             }else{
                 [model.a_commentsArr insertObject:commentModel atIndex:0];
             }
