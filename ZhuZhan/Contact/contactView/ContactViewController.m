@@ -206,6 +206,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [((UIView*)[cell.contentView.subviews objectAtIndex:i]) removeFromSuperview];
             }
             commentView = viewArr[indexPath.row];
+            commentView.indexpath = indexpath;
             commentView.delegate = self;
             commentView.indexpath = indexPath;
             commentView.showArr = model.a_commentsArr;
