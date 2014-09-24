@@ -206,10 +206,7 @@
         cell.model = model;
         return cell;
     }
-//    cell.backgroundColor=[UIColor redColor];
-    cell.selectionStyle = NO;
-    cell.model = model;
-    return cell;
+    return nil;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

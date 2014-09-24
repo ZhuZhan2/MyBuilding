@@ -146,12 +146,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 - (void)_refreshing {
     // refresh your data sources
-    __weak ContactViewController *wself = self;
-    double delayInSeconds = 4.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [wself.pathCover stopRefresh];
-    });
+    [self reloadView];
 }
 
 /******************************************************************************************************************/
@@ -184,6 +179,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PSTableViewCellIdentifier];
+    NSLog(@"showarr=====%@,%d,%d",showArr,showArr.count,indexPath.row);
     ActivesModel *model = showArr[indexPath.row];
     NSLog(@"=======>%@",model.a_category);
     if([model.a_category isEqualToString:@"Project"]){
@@ -428,9 +424,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)reloadView{
     startIndex = 0;
-    [showArr removeAllObjects];
-    [viewArr removeAllObjects];
-    [_datasource removeAllObjects];
+    
     if (![ConnectionAvailable isConnectionAvailable]) {
         errorview = [[ErrorView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
         errorview.delegate = self;
@@ -442,8 +436,24 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         self.tableView.scrollEnabled = YES;
         [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
+                [showArr removeAllObjects];
+                [viewArr removeAllObjects];
+                [_datasource removeAllObjects];
                 showArr = posts;
+                for(int i=0;i<showArr.count;i++){
+                    ActivesModel *model = showArr[i];
+                    NSLog(@"===>%@",model.a_eventType);
+                    if([model.a_eventType isEqualToString:@"Actives"]){
+                        commentView = [CommentView setFram:model];
+                        [viewArr addObject:commentView];
+                    }else{
+                        [viewArr addObject:@""];
+                    }
+                    [_datasource addObject:model.a_time];
+                }
                 [self.tableView reloadData];
+                __weak ContactViewController *wself = self;
+                [wself.pathCover stopRefresh];
             }
         } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
     }
