@@ -38,12 +38,13 @@
     
     CommentView *commentView = [[CommentView alloc] init];
     CGFloat height=0;
+
     //上分割线
-    UIImageView *topLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(75, 0, 2, 5)];
-    [topLineImage setBackgroundColor:[UIColor blackColor]];
-    [commentView addSubview:topLineImage];
-    topLineImage.alpha =0.2;
-    height+=topLineImage.frame.size.height;
+//    UIImageView *topLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(75, 0, 2, 5)];
+//    [topLineImage setBackgroundColor:[UIColor blackColor]];
+//    [commentView addSubview:topLineImage];
+//    topLineImage.alpha =0.2;
+    height+=5;//topLineImage.frame.size.height;
     
     model.a_imageUrl=@"";
     //model.a_content=@"";
@@ -138,8 +139,20 @@
         downImageView.image=[GetImagePath getImagePath:@"+人脉2_05a"];
         [commentView addSubview:downImageView];
         
-        height += 50*count+10+11+9;//11为上箭头线
+        height += 50*count+11+9;//11为上箭头线,9为下方圆角及空的地方
     }
+    
+    //上分割线
+    UIImageView *topLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(67, 0, 2, height)];
+    [topLineImage setBackgroundColor:[UIColor blackColor]];
+        [commentView insertSubview:topLineImage atIndex:0];
+    topLineImage.alpha =0.2;
+    
+    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, height-1, 320, 1)];
+    [lineImage setBackgroundColor:[UIColor blackColor]];
+    [commentView addSubview:lineImage];
+    lineImage.alpha = 0.1;
+
     
     //设置总的frame
     commentView.frame = CGRectMake(0, 0, 320, height);
@@ -191,7 +204,7 @@
             label.font = [UIFont systemFontOfSize:12];
             [cell.contentView addSubview:label];
             
-            UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 50, 230, 1)];
+            UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 50, 242, 1)];
             [lineImage setBackgroundColor:[UIColor blackColor]];
             [cell.contentView addSubview:lineImage];
             lineImage.alpha = 0.1;
