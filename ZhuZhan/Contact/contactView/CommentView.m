@@ -30,12 +30,14 @@
     // Drawing code
 }
 */
+
 +(CommentView *)setFram:(ActivesModel *)model{
     CommentView *commentView = [[CommentView alloc] init];
     CGFloat height=0;
 
     height+=5;//预留上方空间
     
+    model.a_content=@"";
     EGOImageView *imageView;
     //动态图像
     if(![model.a_imageUrl isEqualToString:@""]){
