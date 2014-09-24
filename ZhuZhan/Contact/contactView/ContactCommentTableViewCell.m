@@ -42,18 +42,26 @@
     [self.contentView addSubview:headImageView];
     
     contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 0, 190, 30)];
-    contentLabel.numberOfLines = 3;
-    contentLabel.backgroundColor = [UIColor yellowColor];
+    contentLabel.numberOfLines = 2;
     contentLabel.font = [UIFont systemFontOfSize:12];
+    contentLabel.lineBreakMode =NSLineBreakByTruncatingTail ;
     [self.contentView addSubview:contentLabel];
     
-    timeLabel = [[UILabel alloc] init];
+    timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 25, 190, 30)];
     timeLabel.textColor = [UIColor lightGrayColor];
     timeLabel.font = [UIFont systemFontOfSize:12];
     [self.contentView addSubview:timeLabel];
 }
 
 -(void)setModel:(ContactCommentModel *)model{
-    contentLabel.text = model.a_commentContents;
+    NSString* tempStr = [NSString stringWithFormat:@"%@:%@",model.a_userName,model.a_commentContents];
+    NSMutableAttributedString* attStr=[[NSMutableAttributedString alloc]initWithString:tempStr];
+    [attStr addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(242, 66, 146) range:NSMakeRange(0, model.a_userName.length)];
+    contentLabel.attributedText = attStr;
+    
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *fixString = [dateFormatter stringFromDate:model.a_time];
+    timeLabel.text = fixString;
 }
 @end

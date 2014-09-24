@@ -36,6 +36,10 @@
             [model setDict:item];
             [self.a_commentsArr addObject:model];
         }
+        
+        if(self.a_commentsArr.count >=3){
+            [self.a_commentsArr insertObject:@"" atIndex:2];
+        }
     }
 }
 @end
