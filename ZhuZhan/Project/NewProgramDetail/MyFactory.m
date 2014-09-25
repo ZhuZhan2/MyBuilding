@@ -38,7 +38,7 @@
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 65)];
     
     UIImageView* shadow=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 3.5)];
-    shadow.image=[GetImagePath getImagePath:@"XiangMuXiangQing/Shadow-bottom"];
+    shadow.image=[GetImagePath getImagePath:@"Shadow-bottom"];
     [view addSubview:shadow];
     
     UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, titleImage.size.width, titleImage.size.height)];
