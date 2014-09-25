@@ -100,4 +100,28 @@
 
 }
 
++ (NSURLSessionDataTask *)ProjectUrlWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block url:(NSString *)url{
+    return [[AFAppDotNetAPIClient sharedNewClient] GET:url parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            for(NSDictionary *item in JSON[@"d"][@"data"]){
+                
+            }
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+        
+    }];
+}
+
 @end
