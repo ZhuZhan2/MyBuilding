@@ -55,7 +55,8 @@ static int textFieldTag =0;
         password.font=[UIFont systemFontOfSize:15];
         password.delegate =self;
         password.secureTextEntry =YES;
-        password.text = @"";
+        password.enabled = NO;
+        password.text = model.password;
         password.tag = 2014091202;
         [self addSubview:password];
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -71,7 +72,7 @@ static int textFieldTag =0;
         
           //真实姓名
         UILabel *realNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 170, 80, 30)];
-        realNameLabel.text = @"真实姓名";
+        realNameLabel.text = @"姓        名";
         realNameLabel.font=[UIFont systemFontOfSize:15];
 
         realNameLabel.textAlignment = NSTextAlignmentLeft;
@@ -118,7 +119,6 @@ static int textFieldTag =0;
         location = [[UITextField alloc] initWithFrame:CGRectMake(110, 270, 150, 30)];
         location.textAlignment = NSTextAlignmentLeft;
         location.delegate =self;
-        location.placeholder = @"所在的城市";
         location.text = model.locationCity;
         location.font=[UIFont systemFontOfSize:15];
         location.textColor=GrayColor;
@@ -137,10 +137,7 @@ static int textFieldTag =0;
         [self addSubview:birthdayLabel];
         birthday= [[UILabel alloc] initWithFrame:CGRectMake(110, 320, 150, 30)];
         birthday.textAlignment = NSTextAlignmentLeft;
-//        birthday.delegate =self;
-
-//        birthday.placeholder = @"yyyy-mm-dd";
-        birthday.text = [model.birthday substringWithRange:NSMakeRange(0,10)];
+        birthday.text = model.birthday;
         birthday.font=[UIFont systemFontOfSize:15];
         birthday.textColor=GrayColor;
         birthday.tag = 2014091206;
@@ -167,7 +164,6 @@ static int textFieldTag =0;
         constellation.text = model.constellation;
         constellation.font=[UIFont systemFontOfSize:15];
         constellation.textColor=GrayColor;
-//        constellation.delegate =self;
         constellation.tag = 2014091207;
         [self addSubview:constellation];
         UIImageView *horizontalLine7 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 409, 280, 1)];

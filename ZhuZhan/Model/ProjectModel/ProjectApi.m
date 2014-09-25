@@ -103,11 +103,22 @@
 + (NSURLSessionDataTask *)SingleProjectWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block projectId:(NSString *)projectId{
     NSString *urlStr = [NSString stringWithFormat:@"api/Projects/Projects?projectId=%@",projectId];
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        //NSLog(@"JSON===>%@",JSON[@"d"][@"data"]);
+        NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             NSMutableArray *contactArr = [[NSMutableArray alloc] init];
             NSMutableArray *imageArr = [[NSMutableArray alloc] init];
+            
+            projectModel *proModel = [[projectModel alloc] init];
+            NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] init];
+            [dataDic setValuesForKeysWithDictionary:JSON[@"d"][@"data"][@"projectBaseInfomation"]];
+            [dataDic setValuesForKeysWithDictionary:JSON[@"d"][@"data"][@"projectDecorateStage"]];
+            [dataDic setValuesForKeysWithDictionary:JSON[@"d"][@"data"][@"projectLandStage"]];
+            [dataDic setValuesForKeysWithDictionary:JSON[@"d"][@"data"][@"projectMainConstructStage"]];
+            [dataDic setValuesForKeysWithDictionary:JSON[@"d"][@"data"][@"projectMainDesignStage"]];
+            [proModel setDict:dataDic];
+            [mutablePosts addObject:proModel];
+            
             for(NSDictionary *item in JSON[@"d"][@"data"][@"projectBaseContacts"]){
                 ProjectContactModel *model = [[ProjectContactModel alloc] init];
                 [model setDict:item];

@@ -221,7 +221,9 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%d",indexPath.row);
+    if([self.delegate respondsToSelector:@selector(gotoDetailView:)]){
+        [self.delegate gotoDetailView:_indexpath];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

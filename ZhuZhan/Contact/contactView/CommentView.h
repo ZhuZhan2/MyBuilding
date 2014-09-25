@@ -12,7 +12,7 @@
 @protocol CommentViewDelegate <NSObject>
 
 -(void)addCommentView:(NSIndexPath *)indexPath;
-
+-(void)gotoDetailView:(NSIndexPath *)indexPath;
 @end
 @interface CommentView : UIView<UITableViewDelegate,UITableViewDataSource>{
     NSIndexPath *indexpath;
