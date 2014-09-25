@@ -168,6 +168,8 @@
 }
 
 -(void)initThemeView{
+    NSLog(@"222");
+    
     //画布themeView初始
     UIView* themeView=[[UIView alloc]initWithFrame:CGRectMake(0, 64, 320, 50)];
     themeView.backgroundColor=[UIColor whiteColor];
