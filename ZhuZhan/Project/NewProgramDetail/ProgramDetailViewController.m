@@ -369,6 +369,7 @@
         }else{
             tempStr=@"装修";
         }
+        NSLog(@"222");
         tempStr=[NSString stringWithFormat:@"正在加载 %@ 阶段",tempStr];
         NSMutableAttributedString* attStr=[[NSMutableAttributedString alloc]initWithString:tempStr];
         [attStr addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(82, 125, 237) range:NSMakeRange(4, tempStr.length-6)];
