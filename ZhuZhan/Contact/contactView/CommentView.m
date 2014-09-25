@@ -37,7 +37,6 @@
 
     height+=5;//预留上方空间
     
-    model.a_content=@"";
     EGOImageView *imageView;
     //动态图像
     if(![model.a_imageUrl isEqualToString:@""]){

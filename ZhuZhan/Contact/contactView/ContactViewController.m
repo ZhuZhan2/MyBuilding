@@ -29,6 +29,7 @@
 #import "HomePageViewController.h"
 #import "LoginSqlite.h"
 #import "ProgramDetailViewController.h"
+#import "ProductDetailViewController.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -481,7 +482,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)gotoDetailView:(NSIndexPath *)indexPath{
+    NSLog(@"indexPath=====%d",indexPath.row);
     ActivesModel *model = showArr[indexPath.row];
     NSLog(@"%@",model.a_entityUrl);
+    ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end
