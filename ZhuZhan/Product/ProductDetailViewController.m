@@ -19,6 +19,7 @@
 #import "LoginSqlite.h"
 #import "LoginViewController.h"
 #import "ContactCommentModel.h"
+#import "ProjectCommentModel.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate>//,ACTimeScrollerDelegate>
 @property(nonatomic,strong)UITableView* myTableView;
 
@@ -79,6 +80,7 @@
         [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 self.commentModels=posts;
+                NSLog(@"%@",self.commentModels);
                 [self getTableViewContents];
                 [self myTableViewReloadData];
                 //self.timeScroller=[[ACTimeScroller alloc]initWithDelegate:self];;
@@ -99,31 +101,45 @@
                         [self.commentModels addObject:self.activesModel.a_commentsArr[i]];
                     }
                 }
+                [self getTableViewContents];
+                [self myTableViewReloadData];
             }
         } url:self.activesModel.a_entityUrl];
         self.view.backgroundColor=[UIColor whiteColor];
         //self.activesModel.a_content=@"";
         //self.activesModel.a_imageUrl=@"";
         [self initNavi];
-        //[self initMyTableView];
+        [self initMyTableView];
         [self getActivesView];
     }
 }
 
 -(void)myTableViewReloadData{
-    [self getProductView];
+    if (self.productModel) {
+        [self getProductView];
+    }else{
+        [self getActivesView];
+    }
     [self.myTableView reloadData];
 }
 
 -(void)getTableViewContents{
     for (int i=0; i<self.commentModels.count; i++) {
-        ProductCommentView* view=[[ProductCommentView alloc]initWithCommentModel:self.commentModels[i]];
+        ProductCommentView* view;
+        if (self.productModel) {
+            ProjectCommentModel* model=self.commentModels[i];
+            view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_imageUrl userName:model.a_name commentContent:model.a_content];
+        }else{
+            ContactCommentModel* model=self.commentModels[i];
+            NSLog(@"%@",model.a_avatarUrl);
+            view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_avatarUrl userName:model.a_userName commentContent:model.a_commentContents];
+        }
         [self.commentViews addObject:view];
     }
 }
 
 -(void)getActivesView{
-    UIView *commentView = [[UIView alloc] init];
+    self.productView = [[UIView alloc] initWithFrame:CGRectZero];
     CGFloat height=0;
     
     height+=5;//预留上方空间
@@ -134,7 +150,7 @@
         imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
         imageView.frame = CGRectMake(5, 5, 310,[self.activesModel.a_imageHeight floatValue]/[self.activesModel.a_imageWidth floatValue]*310);
         imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.activesModel.a_imageUrl]];
-        [commentView addSubview:imageView];
+        [self.productView addSubview:imageView];
         height+=imageView.frame.size.height;
     }
     
@@ -170,7 +186,7 @@
         contentTotalView=[[UIView alloc]initWithFrame:CGRectMake(5, height, 310, imageView?contentTextView.frame.size.height+20:contentTextView.frame.size.height+20+40)];
         contentTotalView.backgroundColor=[UIColor whiteColor];
         [contentTotalView addSubview:contentTextView];
-        [commentView addSubview:contentTotalView];
+        [self.productView addSubview:contentTotalView];
         height+=contentTotalView.frame.size.height;
     }
     
@@ -180,7 +196,7 @@
     commentBtn.frame = CGRectMake(270, tempHeight-40, 37, 37);
     [commentBtn setImage:[GetImagePath getImagePath:@"人脉_66a"] forState:UIControlStateNormal];
     [commentBtn addTarget:self action:@selector(chooseComment:) forControlEvents:UIControlEventTouchUpInside];
-    [commentView addSubview:commentBtn];
+    [self.productView addSubview:commentBtn];
     
     //用户头像
     tempHeight=imageView?imageView.frame.origin.y:contentTotalView.frame.origin.y;
@@ -188,15 +204,26 @@
     userImageView.layer.masksToBounds = YES;
     userImageView.layer.cornerRadius = 3;
     userImageView.frame=CGRectMake(10,tempHeight+5,37,37);
-    [commentView addSubview:userImageView];
+    [self.productView addSubview:userImageView];
     
     userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.activesModel.a_avatarUrl]];
-    [commentView addSubview:userImageView];
+    [self.productView addSubview:userImageView];
     
+    //与下方tableView的分割部分
+    if (self.commentViews.count) {
+        UIImage* separatorImage=[GetImagePath getImagePath:@"产品－产品详情_12a"];
+        CGRect frame=CGRectMake(0, height, separatorImage.size.width, separatorImage.size.height);
+        UIImageView* separatorImageView=[[UIImageView alloc]initWithFrame:frame];
+        separatorImageView.image=separatorImage;
+        separatorImageView.backgroundColor=RGBCOLOR(235, 235, 235);
+        [self.productView addSubview:separatorImageView];
+        
+        height+=frame.size.height;
+    }
+
     //设置总的frame
-    commentView.frame = CGRectMake(0, 64+0, 320, height);
-    [commentView setBackgroundColor:RGBCOLOR(242, 242, 242)];
-    [self.view addSubview:commentView];
+    self.productView.frame = CGRectMake(0, 0, 320, height);
+    [self.productView setBackgroundColor:RGBCOLOR(242, 242, 242)];
 }
 
 -(void)getProductView{
@@ -262,7 +289,6 @@
 }
 
 -(void)chooseComment:(UIButton*)button{
-    
     NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
     
     if ([deviceToken isEqualToString:@""]) {
@@ -306,7 +332,7 @@
 -(void)addTableViewContentWithContent:(NSString*)content{
     CommentModel* model=[[CommentModel alloc]init];
     model.a_content=content;
-    ProductCommentView* view=[[ProductCommentView alloc]initWithCommentModel:model];
+    ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_userImageUrl userName:model.a_name commentContent:model.a_content];
     [self.commentViews insertObject:view atIndex:0];
 }
 //=========================================================================

@@ -17,17 +17,17 @@
 
 @implementation ProductCommentView
 
--(instancetype)initWithCommentModel:(CommentModel*)commentModel{
+-(instancetype)initWithCommentImageUrl:(NSString*)userImageUrl userName:(NSString*)userName commentContent:(NSString*)commentContent{
     if ([super init]) {
-        [self loadSelfWithCommentModel:commentModel];
+        [self loadSelfWithCommentImageUrl:userImageUrl userName:userName commentContent:commentContent];
     }
     return self;
 }
 
--(void)loadSelfWithCommentModel:(CommentModel*)commentModel{
+-(void)loadSelfWithCommentImageUrl:(NSString*)userImageUrl userName:(NSString*)userName commentContent:(NSString*)commentContent{
     //获取用户头像
     self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"公司认证员工_05a"]];
-    self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,commentModel.a_imageUrl]];
+    self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,userImageUrl]];
     self.userImageView.layer.masksToBounds=YES;
     self.userImageView.layer.cornerRadius=5;
     self.userImageView.frame=CGRectMake(15, 20, 50, 50);
@@ -35,17 +35,17 @@
     
     //用户名称label
     self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(80, 15, 150, 20)];
-    self.userNameLabel.text=commentModel.a_name;
+    self.userNameLabel.text=userName;
     self.userNameLabel.font=[UIFont systemFontOfSize:20];
     //self.userNameLabel.backgroundColor=[UIColor redColor];
     [self addSubview:self.userNameLabel];
     
     //用户评论内容label
-    CGRect bounds=[commentModel.a_content boundingRectWithSize:CGSizeMake(213, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+    CGRect bounds=[commentContent boundingRectWithSize:CGSizeMake(213, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
     self.userCommentContent=[[UILabel alloc]initWithFrame:CGRectMake(80, 40, 213, bounds.size.height)];
     self.userCommentContent.numberOfLines=0;
     self.userCommentContent.font=[UIFont systemFontOfSize:17];
-    self.userCommentContent.text=commentModel.a_content;
+    self.userCommentContent.text=commentContent;
     self.userCommentContent.textColor=RGBCOLOR(86, 86, 86);
     [self addSubview:self.userCommentContent];
     

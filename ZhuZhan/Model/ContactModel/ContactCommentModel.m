@@ -16,6 +16,6 @@
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"userName"]];
     self.a_time = [ProjectStage ProjectDateStage:dict[@"createdTime"]];
     self.a_commentContents = [ProjectStage ProjectStrStage:dict[@"commentContents"]];
-    self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"avatarUrl"]];
+    self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"userImage"]];
 }
 @end

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "CommentModel.h"
 @interface ProductCommentView : UIView
--(instancetype)initWithCommentModel:(CommentModel*)commentModel;
+-(instancetype)initWithCommentImageUrl:(NSString*)userImageUrl userName:(NSString*)userName commentContent:(NSString*)commentContent;
 @end
