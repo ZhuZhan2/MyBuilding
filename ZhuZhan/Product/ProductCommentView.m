@@ -29,7 +29,7 @@
     self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"公司认证员工_05a"]];
     self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,userImageUrl]];
     self.userImageView.layer.masksToBounds=YES;
-    self.userImageView.layer.cornerRadius=5;
+    self.userImageView.layer.cornerRadius=3;
     self.userImageView.frame=CGRectMake(15, 20, 50, 50);
     [self addSubview:self.userImageView];
     

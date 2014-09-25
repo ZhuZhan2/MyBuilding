@@ -101,13 +101,12 @@
                         [self.commentModels addObject:self.activesModel.a_commentsArr[i]];
                     }
                 }
+
                 [self getTableViewContents];
                 [self myTableViewReloadData];
             }
         } url:self.activesModel.a_entityUrl];
         self.view.backgroundColor=[UIColor whiteColor];
-        //self.activesModel.a_content=@"";
-        //self.activesModel.a_imageUrl=@"";
         [self initNavi];
         [self initMyTableView];
         [self getActivesView];
@@ -140,17 +139,21 @@
 
 -(void)getActivesView{
     self.productView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    UIView* forCornerView=[[UIView alloc]initWithFrame:CGRectZero];
+    [self.productView addSubview:forCornerView];
+    forCornerView.layer.cornerRadius=2;
+    forCornerView.layer.masksToBounds=YES;
+    
     CGFloat height=0;
-    
-    height+=5;//预留上方空间
-    
+
     EGOImageView *imageView;
     //动态图像
     if(![self.activesModel.a_imageUrl isEqualToString:@""]){
         imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
-        imageView.frame = CGRectMake(5, 5, 310,[self.activesModel.a_imageHeight floatValue]/[self.activesModel.a_imageWidth floatValue]*310);
+        imageView.frame = CGRectMake(0, 0, 310,[self.activesModel.a_imageHeight floatValue]/[self.activesModel.a_imageWidth floatValue]*310);
         imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.activesModel.a_imageUrl]];
-        [self.productView addSubview:imageView];
+        [forCornerView addSubview:imageView];
         height+=imageView.frame.size.height;
     }
     
@@ -183,39 +186,41 @@
         CGSize actualsize =[text boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin |NSStringDrawingUsesFontLeading attributes:tdic context:nil].size;
         contentTextView.frame =CGRectMake(imageUrlExist?10:60,10, actualsize.width, actualsize.height);
         
-        contentTotalView=[[UIView alloc]initWithFrame:CGRectMake(5, height, 310, imageView?contentTextView.frame.size.height+20:contentTextView.frame.size.height+20+40)];
+        contentTotalView=[[UIView alloc]initWithFrame:CGRectMake(0, height, 310, imageView?contentTextView.frame.size.height+20:contentTextView.frame.size.height+20+40)];
         contentTotalView.backgroundColor=[UIColor whiteColor];
         [contentTotalView addSubview:contentTextView];
-        [self.productView addSubview:contentTotalView];
+        [forCornerView addSubview:contentTotalView];
         height+=contentTotalView.frame.size.height;
     }
     
     //评论图标
     CGFloat tempHeight=imageView?imageView.frame.origin.y+imageView.frame.size.height:height;
     UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    commentBtn.frame = CGRectMake(270, tempHeight-40, 37, 37);
+    commentBtn.frame = CGRectMake(265, tempHeight-40, 37, 37);
     [commentBtn setImage:[GetImagePath getImagePath:@"人脉_66a"] forState:UIControlStateNormal];
     [commentBtn addTarget:self action:@selector(chooseComment:) forControlEvents:UIControlEventTouchUpInside];
-    [self.productView addSubview:commentBtn];
+    [forCornerView addSubview:commentBtn];
     
     //用户头像
     tempHeight=imageView?imageView.frame.origin.y:contentTotalView.frame.origin.y;
     EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
     userImageView.layer.masksToBounds = YES;
     userImageView.layer.cornerRadius = 3;
-    userImageView.frame=CGRectMake(10,tempHeight+5,37,37);
-    [self.productView addSubview:userImageView];
+    userImageView.frame=CGRectMake(5,tempHeight+5,37,37);
+    [forCornerView addSubview:userImageView];
     
     userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.activesModel.a_avatarUrl]];
-    [self.productView addSubview:userImageView];
+    [forCornerView addSubview:userImageView];
+    
+    //设置总的view的frame
+    forCornerView.frame=CGRectMake(5, 5, 310, height-5);
     
     //与下方tableView的分割部分
     if (self.commentViews.count) {
-        UIImage* separatorImage=[GetImagePath getImagePath:@"产品－产品详情_12a"];
+        UIImage* separatorImage=[GetImagePath getImagePath:@"动态详情_14a"];
         CGRect frame=CGRectMake(0, height, separatorImage.size.width, separatorImage.size.height);
         UIImageView* separatorImageView=[[UIImageView alloc]initWithFrame:frame];
         separatorImageView.image=separatorImage;
-        separatorImageView.backgroundColor=RGBCOLOR(235, 235, 235);
         [self.productView addSubview:separatorImageView];
         
         height+=frame.size.height;
@@ -223,7 +228,7 @@
 
     //设置总的frame
     self.productView.frame = CGRectMake(0, 0, 320, height);
-    [self.productView setBackgroundColor:RGBCOLOR(242, 242, 242)];
+    [self.productView setBackgroundColor:RGBCOLOR(235, 235, 235)];
 }
 
 -(void)getProductView{
@@ -380,7 +385,7 @@
         
         //第一个cell,添加下方长方形区域,遮盖圆角
         if (indexPath.row==1) {
-            [cell.contentView.subviews.lastObject layer].cornerRadius=7;
+            [cell.contentView.subviews.lastObject layer].cornerRadius=3;
             if (indexPath.row!=self.commentViews.count) {
                 UIView* view=[self getCellSpaceView];
                 view.center=CGPointMake(160, height-5);
@@ -389,7 +394,7 @@
             
         //最后一个cell,添加上方长方形区域,遮盖圆角
         }else if (indexPath.row==self.commentViews.count){
-            [cell.contentView.subviews.lastObject layer].cornerRadius=7;
+            [cell.contentView.subviews.lastObject layer].cornerRadius=3;
             UIView* view=[self getCellSpaceView];
             view.center=CGPointMake(160, 5);
             [cell.contentView insertSubview:view atIndex:0];
