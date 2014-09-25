@@ -31,6 +31,7 @@
     UILabel *cellPhone;
     UITextField *company;
     UITextField *position;
+    ContactModel *_model;
 }
 @property (nonatomic,weak)id<AccountCellDelegate> delegate;
 

@@ -40,10 +40,10 @@
     //输出在console的log开关
     [IFlySetting showLogcat:NO];
     
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-//    NSString *cachePath = [paths objectAtIndex:0];
-//    //设置msc.log的保存路径
-//    [IFlySetting setLogFilePath:cachePath];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachePath = [paths objectAtIndex:0];
+    //设置msc.log的保存路径
+    [IFlySetting setLogFilePath:cachePath];
     
     //创建语音配置
     NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@,timeout=%@",APPID_VALUE,TIMEOUT_VALUE];
