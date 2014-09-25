@@ -28,7 +28,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     //设置log等级，此处log为默认在documents目录下的msc.log文件
-    [IFlySetting setLogFile:LVL_ALL];
+    [IFlySetting setLogFile:LVL_NONE];
     
     //输出在console的log开关
     [IFlySetting showLogcat:YES];
@@ -37,6 +37,7 @@
     NSString *cachePath = [paths objectAtIndex:0];
     //设置msc.log的保存路径
     [IFlySetting setLogFilePath:cachePath];
+    
     
     //创建语音配置
     NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@,timeout=%@",APPID_VALUE,TIMEOUT_VALUE];
