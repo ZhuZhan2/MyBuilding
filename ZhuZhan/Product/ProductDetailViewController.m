@@ -408,7 +408,7 @@
         
         //处理分割线
         if (indexPath.row!=self.commentViews.count) {
-            UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 308, 1)];
+            UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 310, 1)];
             separatorLine.backgroundColor=RGBCOLOR(229, 229, 229);
             separatorLine.center=CGPointMake(160, height-.5);
             [cell.contentView addSubview:separatorLine];
@@ -420,7 +420,7 @@
 }
 
 -(UIView*)getCellSpaceView{
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 308, 10)];
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 310, 10)];
     view.backgroundColor=[UIColor whiteColor];
     return view;
 }

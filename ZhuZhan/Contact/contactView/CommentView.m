@@ -90,7 +90,7 @@
     //评论图标
     CGFloat tempHeight=imageView?imageView.frame.origin.y+imageView.frame.size.height:height;
     UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    commentBtn.frame = CGRectMake(265, tempHeight-40-5, 37, 37);
+    commentBtn.frame = CGRectMake(265, tempHeight-40, 37, 37);
     [commentBtn setImage:[GetImagePath getImagePath:@"人脉_66a"] forState:UIControlStateNormal];
     [commentBtn addTarget:commentView action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
     [forCornerView addSubview:commentBtn];

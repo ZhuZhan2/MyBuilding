@@ -56,7 +56,7 @@
         height=90;
     }
     
-    self.frame=CGRectMake(6, 0, 308, height);
+    self.frame=CGRectMake(5, 0, 310, height);
     self.backgroundColor=[UIColor whiteColor];
 }
 
