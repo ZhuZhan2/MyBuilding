@@ -948,14 +948,6 @@
 		D3F79F0619D157A800E3B473 /* ＋项目－项目专题_11a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F79C9019D157A700E3B473 /* ＋项目－项目专题_11a@2x.png */; };
 		D3F79F0719D157A800E3B473 /* ＋高级搜索 多选 2.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F79C9119D157A700E3B473 /* ＋高级搜索 多选 2.png */; };
 		D3F79F0819D157A800E3B473 /* ＋高级搜索 多选 2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F79C9219D157A700E3B473 /* ＋高级搜索 多选 2@2x.png */; };
-		D3F79F1119D1590900E3B473 /* XiangMuJieDuan in Resources */ = {isa = PBXBuildFile; fileRef = D3F79F0919D1590900E3B473 /* XiangMuJieDuan */; };
-		D3F79F1219D1590900E3B473 /* XiangMuXiangQing in Resources */ = {isa = PBXBuildFile; fileRef = D3F79F0A19D1590900E3B473 /* XiangMuXiangQing */; };
-		D3F79F1319D1590900E3B473 /* XiangMuXiangQing_1 in Resources */ = {isa = PBXBuildFile; fileRef = D3F79F0B19D1590900E3B473 /* XiangMuXiangQing_1 */; };
-		D3F79F1419D1590900E3B473 /* XiangMuXiangQing_2 in Resources */ = {isa = PBXBuildFile; fileRef = D3F79F0C19D1590900E3B473 /* XiangMuXiangQing_2 */; };
-		D3F79F1519D1590900E3B473 /* XiangMuXiangQing_3 in Resources */ = {isa = PBXBuildFile; fileRef = D3F79F0D19D1590900E3B473 /* XiangMuXiangQing_3 */; };
-		D3F79F1619D1590900E3B473 /* XiangMuXiangQing_ShaiXuan in Resources */ = {isa = PBXBuildFile; fileRef = D3F79F0E19D1590900E3B473 /* XiangMuXiangQing_ShaiXuan */; };
-		D3F79F1719D1590900E3B473 /* XiangMuXiangQing_TanKuang in Resources */ = {isa = PBXBuildFile; fileRef = D3F79F0F19D1590900E3B473 /* XiangMuXiangQing_TanKuang */; };
-		D3F79F1819D1590900E3B473 /* XinJianXiangMu in Resources */ = {isa = PBXBuildFile; fileRef = D3F79F1019D1590900E3B473 /* XinJianXiangMu */; };
 		D3F79F1D19D1691900E3B473 /* +人脉2_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F79F1919D1691900E3B473 /* +人脉2_03a.png */; };
 		D3F79F1E19D1691900E3B473 /* +人脉2_03a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F79F1A19D1691900E3B473 /* +人脉2_03a@2x.png */; };
 		D3F79F1F19D1691900E3B473 /* +人脉2_05a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F79F1B19D1691900E3B473 /* +人脉2_05a.png */; };
@@ -2333,14 +2325,6 @@
 		D3F79C9019D157A700E3B473 /* ＋项目－项目专题_11a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "＋项目－项目专题_11a@2x.png"; sourceTree = "<group>"; };
 		D3F79C9119D157A700E3B473 /* ＋高级搜索 多选 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "＋高级搜索 多选 2.png"; sourceTree = "<group>"; };
 		D3F79C9219D157A700E3B473 /* ＋高级搜索 多选 2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "＋高级搜索 多选 2@2x.png"; sourceTree = "<group>"; };
-		D3F79F0919D1590900E3B473 /* XiangMuJieDuan */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuJieDuan; sourceTree = "<group>"; };
-		D3F79F0A19D1590900E3B473 /* XiangMuXiangQing */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuXiangQing; sourceTree = "<group>"; };
-		D3F79F0B19D1590900E3B473 /* XiangMuXiangQing_1 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuXiangQing_1; sourceTree = "<group>"; };
-		D3F79F0C19D1590900E3B473 /* XiangMuXiangQing_2 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuXiangQing_2; sourceTree = "<group>"; };
-		D3F79F0D19D1590900E3B473 /* XiangMuXiangQing_3 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuXiangQing_3; sourceTree = "<group>"; };
-		D3F79F0E19D1590900E3B473 /* XiangMuXiangQing_ShaiXuan */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuXiangQing_ShaiXuan; sourceTree = "<group>"; };
-		D3F79F0F19D1590900E3B473 /* XiangMuXiangQing_TanKuang */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XiangMuXiangQing_TanKuang; sourceTree = "<group>"; };
-		D3F79F1019D1590900E3B473 /* XinJianXiangMu */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XinJianXiangMu; sourceTree = "<group>"; };
 		D3F79F1919D1691900E3B473 /* +人脉2_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+人脉2_03a.png"; sourceTree = "<group>"; };
 		D3F79F1A19D1691900E3B473 /* +人脉2_03a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+人脉2_03a@2x.png"; sourceTree = "<group>"; };
 		D3F79F1B19D1691900E3B473 /* +人脉2_05a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+人脉2_05a.png"; sourceTree = "<group>"; };
@@ -3826,14 +3810,6 @@
 				D3F79F1A19D1691900E3B473 /* +人脉2_03a@2x.png */,
 				D3F79F1B19D1691900E3B473 /* +人脉2_05a.png */,
 				D3F79F1C19D1691900E3B473 /* +人脉2_05a@2x.png */,
-				D3F79F0919D1590900E3B473 /* XiangMuJieDuan */,
-				D3F79F0A19D1590900E3B473 /* XiangMuXiangQing */,
-				D3F79F0B19D1590900E3B473 /* XiangMuXiangQing_1 */,
-				D3F79F0C19D1590900E3B473 /* XiangMuXiangQing_2 */,
-				D3F79F0D19D1590900E3B473 /* XiangMuXiangQing_3 */,
-				D3F79F0E19D1590900E3B473 /* XiangMuXiangQing_ShaiXuan */,
-				D3F79F0F19D1590900E3B473 /* XiangMuXiangQing_TanKuang */,
-				D3F79F1019D1590900E3B473 /* XinJianXiangMu */,
 				D3F79A1519D157A400E3B473 /* +人脉_21a.png */,
 				D3F79A1619D157A400E3B473 /* +人脉_21a@2x.png */,
 				D3F79A1719D157A400E3B473 /* +人脉_22a.png */,
@@ -4549,10 +4525,8 @@
 				D3F79E2519D157A700E3B473 /* 新建项目_03a.png in Resources */,
 				D3F79EE419D157A700E3B473 /* 项目－项目专题_23a@2x.png in Resources */,
 				D3F79F0519D157A800E3B473 /* ＋项目－项目专题_11a.png in Resources */,
-				D3F79F1619D1590900E3B473 /* XiangMuXiangQing_ShaiXuan in Resources */,
 				D3F79D8A19D157A700E3B473 /* 人脉－发布动态_07a@2x.png in Resources */,
 				D3F79CB419D157A700E3B473 /* controls_03@2x.png in Resources */,
-				D3F79F1219D1590900E3B473 /* XiangMuXiangQing in Resources */,
 				D3F79EAF19D157A700E3B473 /* 项目详情_05a.png in Resources */,
 				D3F79D5219D157A700E3B473 /* 人脉_74a@2x.png in Resources */,
 				D3F79ED719D157A700E3B473 /* 项目－项目专题_02a.png in Resources */,
@@ -4699,7 +4673,6 @@
 				D3F79E1219D157A700E3B473 /* 搜索结果_13a-17@2x.png in Resources */,
 				D3F79D8419D157A700E3B473 /* 人脉－人的详情_53a@2x.png in Resources */,
 				D3F79EA319D157A700E3B473 /* 项目详情-筛选_39a.png in Resources */,
-				D3F79F1719D1590900E3B473 /* XiangMuXiangQing_TanKuang in Resources */,
 				D3F79D9C19D157A700E3B473 /* 人脉－账号设置_03a-05@2x.png in Resources */,
 				D3F79ED019D157A700E3B473 /* 项目－搜索_30a@2x.png in Resources */,
 				D3F79DAE19D157A700E3B473 /* 全部项目_16@2x.png in Resources */,
@@ -4931,7 +4904,6 @@
 				D3F79E4519D157A700E3B473 /* 语音搜索1_05.png in Resources */,
 				0426BFF519922CE400CD8822 /* InfoPlist.strings in Resources */,
 				D3F79D6819D157A700E3B473 /* 人脉－人的详情1_27a@2x.png in Resources */,
-				D3F79F1319D1590900E3B473 /* XiangMuXiangQing_1 in Resources */,
 				D3F79CA019D157A700E3B473 /* +项目-首页_27a@2x.png in Resources */,
 				5B0A009919B587C000500C05 /* grayArrow@2x.png in Resources */,
 				D3F79DF419D157A700E3B473 /* 地图搜索结果_15a@2x.png in Resources */,
@@ -4957,7 +4929,6 @@
 				D3F79E3E19D157A700E3B473 /* 登录_03@2x.png in Resources */,
 				D3F79D9219D157A700E3B473 /* 人脉－发布动态_15a@2x.png in Resources */,
 				D3F79CB219D157A700E3B473 /* circle@2x.png in Resources */,
-				D3F79F1119D1590900E3B473 /* XiangMuJieDuan in Resources */,
 				D3F79D4519D157A700E3B473 /* 人脉_57a.png in Resources */,
 				D3F79CB119D157A700E3B473 /* circle.png in Resources */,
 				D3F79EDB19D157A700E3B473 /* 项目－项目专题_11a-20.png in Resources */,
@@ -4972,7 +4943,6 @@
 				D3F79CC019D157A700E3B473 /* icon-star@2x.png in Resources */,
 				D3F79E5619D157A700E3B473 /* 面部采集_06@2x.png in Resources */,
 				D3F79D3E19D157A700E3B473 /* 人脉_42a@2x.png in Resources */,
-				D3F79F1819D1590900E3B473 /* XinJianXiangMu in Resources */,
 				D3F79EBA19D157A700E3B473 /* 项目阶段_14a@2x.png in Resources */,
 				D3F79DCD19D157A700E3B473 /* 公司－公司组织_13a.png in Resources */,
 				D3F79D1319D157A700E3B473 /* 产品－产品详情_03a.png in Resources */,
@@ -5043,7 +5013,6 @@
 				D3F79EB919D157A700E3B473 /* 项目阶段_14a.png in Resources */,
 				D3F79E9D19D157A700E3B473 /* 项目详情-筛选_25a.png in Resources */,
 				D3F79D7F19D157A700E3B473 /* 人脉－人的详情_30a.png in Resources */,
-				D3F79F1519D1590900E3B473 /* XiangMuXiangQing_3 in Resources */,
 				D3F79D5B19D157A700E3B473 /* 人脉－个人中心_06a.png in Resources */,
 				D3F79CC419D157A700E3B473 /* icon_04@2x.png in Resources */,
 				D3F79D7119D157A700E3B473 /* 人脉－人的详情_07a.png in Resources */,
@@ -5079,7 +5048,6 @@
 				D3F79ECA19D157A700E3B473 /* 项目－搜索_18a@2x.png in Resources */,
 				D3F79E3219D157A700E3B473 /* 注册@2x.png in Resources */,
 				D3F79E9019D157A700E3B473 /* 项目详情-筛选_06@2x.png in Resources */,
-				D3F79F1419D1590900E3B473 /* XiangMuXiangQing_2 in Resources */,
 				D3F79D4F19D157A700E3B473 /* 人脉_66a.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5559,6 +5527,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZhuZhan/ZhuZhan-Prefix.pch";
 				INFOPLIST_FILE = "ZhuZhan/ZhuZhan-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ZhuZhan/Tools/BaiduMap/libs/Release$(EFFECTIVE_PLATFORM_NAME)",
@@ -5588,6 +5557,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZhuZhan/ZhuZhan-Prefix.pch";
 				INFOPLIST_FILE = "ZhuZhan/ZhuZhan-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ZhuZhan/Tools/BaiduMap/libs/Release$(EFFECTIVE_PLATFORM_NAME)",

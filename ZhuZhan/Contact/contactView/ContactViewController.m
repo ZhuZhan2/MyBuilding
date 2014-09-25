@@ -25,10 +25,10 @@
 #import "LoginSqlite.h"
 #import "LoginViewController.h"
 #import "ActivesModel.h"
-
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
 #import "LoginSqlite.h"
+#import "ProgramDetailViewController.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -281,7 +281,27 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    ActivesModel *model = showArr[indexPath.row];
+    NSLog(@"%@",model.a_entityUrl);
+    if([model.a_category isEqualToString:@"Project"]){
+        ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
+        vc.projectId = model.a_entityId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if([model.a_category isEqualToString:@"Personal"]){
+        if([model.a_eventType isEqualToString:@"Actives"]){
+            
+        }else{
+            
+        }
+    }else if([model.a_category isEqualToString:@"Company"]){
+        if([model.a_eventType isEqualToString:@"Actives"]){
+            
+        }else{
+            
+        }
+    }else{
+        
+    }
 }
 
 //时间标签
@@ -442,7 +462,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 showArr = posts;
                 for(int i=0;i<showArr.count;i++){
                     ActivesModel *model = showArr[i];
-                    NSLog(@"===>%@",model.a_eventType);
                     if([model.a_eventType isEqualToString:@"Actives"]){
                         commentView = [CommentView setFram:model];
                         [viewArr addObject:commentView];
@@ -457,5 +476,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             }
         } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
     }
+}
+
+-(void)gotoDetailView:(NSIndexPath *)indexPath{
+    ActivesModel *model = showArr[indexPath.row];
+    NSLog(@"%@",model.a_entityUrl);
 }
 @end
