@@ -361,7 +361,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
         NSLog(@"关注好友");
        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+    NSString *userId = [LoginSqlite getdata:@"userId" defaultdata:@""];
     NSLog(@"*******%@",userId);
        NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithObjectsAndKeys:userId,@"userId",@"bfc78202-8ac9-447a-a99d-783606d25668",@"focusId", nil];
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
