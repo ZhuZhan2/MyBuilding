@@ -369,7 +369,6 @@
         }else{
             tempStr=@"装修";
         }
-        NSLog(@"222");
         tempStr=[NSString stringWithFormat:@"正在加载 %@ 阶段",tempStr];
         NSMutableAttributedString* attStr=[[NSMutableAttributedString alloc]initWithString:tempStr];
         [attStr addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(82, 125, 237) range:NSMakeRange(4, tempStr.length-6)];
@@ -485,12 +484,12 @@
         }
     }
     
-    NSArray* path=stageLight?@[@"XiangMuXiangQing/map@2x",@"XiangMuXiangQing_1/pen_01@2x",@"XiangMuXiangQing_2/Subject_01@2x",@"XiangMuXiangQing_3/paint_01@2x"]:@[@"项目详情-筛选_03",@"项目详情-筛选_06",@"XiangMuXiangQing_ShaiXuan/Subject@2x",@"XiangMuXiangQing_ShaiXuan/paint@2x"];
+    NSArray* path=stageLight?@[@"筛选中01",@"筛选中02",@"筛选中03",@"筛选中04"]:@[@"01",@"02",@"03",@"04"];
     
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 37.5)];
     
     UIImage* image=[GetImagePath getImagePath:path[section]];
-    CGRect frame=CGRectMake(0, 0, image.size.width*.5, image.size.height*.5);
+    CGRect frame=CGRectMake(0, 0, image.size.width, image.size.height);
     UIImageView* imageView=[[UIImageView alloc]initWithFrame:frame];
     imageView.center=CGPointMake(23.5, 37.5*.5);
     imageView.image=image;
