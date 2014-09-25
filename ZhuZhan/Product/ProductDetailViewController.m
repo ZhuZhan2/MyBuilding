@@ -21,7 +21,9 @@
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate>//,ACTimeScrollerDelegate>
 @property(nonatomic,strong)UITableView* myTableView;
 
-@property(nonatomic,strong)ProductModel* productModel;//产品图片
+@property(nonatomic,strong)ProductModel* productModel;//产品详情模型
+@property(nonatomic,strong)ActivesModel* activesModel;//动态详情模型
+
 @property(nonatomic,strong)UIView* productView;//产品图片和产品介绍文字的superView
 
 @property(nonatomic,strong)NSMutableArray* commentModels;//评论数组，元素为评论实体类
@@ -38,6 +40,15 @@
     self=[super init];
     if (self) {
         self.productModel=productModel;
+        self.commentViews=[[NSMutableArray alloc]init];
+    }
+    return self;
+}
+
+-(instancetype)initWithActivesModel:(ActivesModel *)activesModel{
+    self=[super init];
+    if (self) {
+        self.activesModel=activesModel;
         self.commentViews=[[NSMutableArray alloc]init];
     }
     return self;
@@ -63,18 +74,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
-
-        self.commentModels=posts;
+    if (self.productModel) {
+        [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                self.commentModels=posts;
+                [self getTableViewContents];
+                [self myTableViewReloadData];
+                //self.timeScroller=[[ACTimeScroller alloc]initWithDelegate:self];;
+                //[self.myTableView reloadData];
+            }
+        } entityId:self.productModel.a_id entityType:@"Product"];
+    }else{
         
-        [self getTableViewContents];
-        [self myTableViewReloadData];
-        
-        //self.timeScroller=[[ACTimeScroller alloc]initWithDelegate:self];;
-        //[self.myTableView reloadData];
-        
-    } entityId:self.productModel.a_id entityType:@"Product"];
+    }
+    
     
     self.view.backgroundColor=[UIColor whiteColor];
     [self initNavi];
@@ -114,7 +127,7 @@
     
     //imageView右下角评论图标
     UIImage* image=[GetImagePath getImagePath:@"人脉_66a"];
-    CGRect frame=CGRectMake(0, 0, image.size.width*.5, image.size.height*.5);
+    CGRect frame=CGRectMake(0, 0, image.size.width, image.size.height);
     UIImageView* tempImageView=[[UIImageView alloc]initWithFrame:frame];
     tempImageView.image=image;
     tempImageView.center=CGPointMake(320-30, height-30);
@@ -198,7 +211,6 @@
             [self myTableViewReloadData];
             [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
         }
-        
     } dic:[@{@"EntityId":self.productModel.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":@"f483bcfc-3726-445a-97ff-ac7f207dd888"} mutableCopy]];
 }
 

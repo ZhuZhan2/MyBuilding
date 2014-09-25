@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ProductModel.h"
+#import "ActivesModel.h"
 @interface ProductDetailViewController : UIViewController
 -(instancetype)initWithProductModel:(ProductModel*)productModel;
+-(instancetype)initWithActivesModel:(ActivesModel *)activesModel;
 @end
