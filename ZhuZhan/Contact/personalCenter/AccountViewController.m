@@ -89,7 +89,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     for (int i=0; i<2; i++) {
         UIButton *tempBtn =[UIButton buttonWithType:UIButtonTypeCustom];
         UIImage* tempImg=i?[GetImagePath getImagePath:@"人脉－账号设置_03a-05"]:[GetImagePath getImagePath:@"人脉－账号设置_03a"];
-        tempBtn.frame=CGRectMake(0, 0, tempImg.size.width*.5, tempImg.size.height*.5);
+        tempBtn.frame=CGRectMake(0, 0, tempImg.size.width, tempImg.size.height);
         tempBtn.center=CGPointMake(80+160*i, footView.frame.size.height-tempBtn.frame.size.height*.5-10);
         [tempBtn setImage:tempImg forState:UIControlStateNormal];
         [footView addSubview:tempBtn];

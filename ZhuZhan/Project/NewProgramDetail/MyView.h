@@ -10,4 +10,5 @@
 #import "EGOImageView.h"
 @interface MyView : UIView
 @property(nonatomic,strong)EGOImageView* myImageView;
+-(void)observeImage;
 @end
