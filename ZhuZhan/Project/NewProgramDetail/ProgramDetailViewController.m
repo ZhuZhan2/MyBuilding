@@ -82,21 +82,21 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
+    [self initNavi];
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
-                //NSLog(@"==========%@",posts[0]);
-                [self.model getContacts:posts[0]];
-                [self.model getImages:posts[1]];
+                self.model = posts[0];
+                [self.model getContacts:posts[1]];
+                [self.model getImages:posts[2]];
                 [self loadSelf];
                 self.stages=[ProjectStage JudgmentProjectDetailStage:self.model];
             }else{
                 NSLog(@"=====%@",error);
             }
-    } projectId:self.model.a_id];
+    } projectId:self.projectId];
 }
 
 -(void)loadSelf{
-    [self initNavi];
     [self initLoadingView];
     [self initThemeView];
     [self initContentTableView];

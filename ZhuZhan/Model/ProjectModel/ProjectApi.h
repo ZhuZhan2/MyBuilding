@@ -56,4 +56,7 @@
 
 //添加关注项目
 + (NSURLSessionDataTask *)AddUserFocusWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic;
+
+//地图搜索 精度,维度
++ (NSURLSessionDataTask *)GetMapSearchWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block longitude:(NSString*)longitude latitude:(NSString*)latitude;
 @end

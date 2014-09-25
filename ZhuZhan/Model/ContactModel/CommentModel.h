@@ -11,6 +11,7 @@
 @interface CommentModel : NSObject
 @property (nonatomic, copy) NSString *a_id;
 @property (nonatomic, copy) NSString *a_name;
+@property (nonatomic, copy) NSString *a_userImageUrl;
 @property (nonatomic, copy) NSString *a_content;
 @property (nonatomic, copy) NSString *a_imageUrl;
 @property (nonatomic, copy) NSString *a_imageWidth;

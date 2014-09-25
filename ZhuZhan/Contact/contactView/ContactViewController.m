@@ -25,10 +25,10 @@
 #import "LoginSqlite.h"
 #import "LoginViewController.h"
 #import "ActivesModel.h"
-
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
 #import "LoginSqlite.h"
+#import "ProgramDetailViewController.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -80,7 +80,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [[self tableView] registerClass:[UITableViewCell class] forCellReuseIdentifier:PSTableViewCellIdentifier];
     
     self.tableView.separatorStyle = NO;
-    [self.tableView setBackgroundColor:RGBCOLOR(239, 237, 237)];
+    [self.tableView setBackgroundColor:RGBCOLOR(242, 242, 242)];
     __weak ContactViewController *wself = self;
     [_pathCover setHandleRefreshEvent:^{
         [wself _refreshing];
@@ -102,6 +102,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             showArr = posts;
             for(int i=0;i<showArr.count;i++){
                 ActivesModel *model = showArr[i];
+                NSLog(@"===>%@",model.a_eventType);
                 if([model.a_eventType isEqualToString:@"Actives"]){
                     commentView = [CommentView setFram:model];
                     [viewArr addObject:commentView];
@@ -145,12 +146,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 - (void)_refreshing {
     // refresh your data sources
-    __weak ContactViewController *wself = self;
-    double delayInSeconds = 4.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [wself.pathCover stopRefresh];
-    });
+    [self reloadView];
 }
 
 /******************************************************************************************************************/
@@ -196,6 +192,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         return cell;
     }else if([model.a_category isEqualToString:@"Personal"]){
         if([model.a_eventType isEqualToString:@"Actives"]){
+            
+            
+            
             NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if(!cell){
@@ -208,6 +207,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             commentView = viewArr[indexPath.row];
             commentView.indexpath = indexpath;
             commentView.delegate = self;
+            commentView.indexpath = indexPath;
             commentView.showArr = model.a_commentsArr;
             [cell.contentView addSubview:commentView];
             return cell;
@@ -281,7 +281,27 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    ActivesModel *model = showArr[indexPath.row];
+    NSLog(@"%@",model.a_entityUrl);
+    if([model.a_category isEqualToString:@"Project"]){
+        ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
+        vc.projectId = model.a_entityId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if([model.a_category isEqualToString:@"Personal"]){
+        if([model.a_eventType isEqualToString:@"Actives"]){
+            
+        }else{
+            
+        }
+    }else if([model.a_category isEqualToString:@"Company"]){
+        if([model.a_eventType isEqualToString:@"Actives"]){
+            
+        }else{
+            
+        }
+    }else{
+        
+    }
 }
 
 //时间标签
@@ -372,7 +392,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 
 -(void)addCommentView:(NSIndexPath *)indexPath{
-    
+    indexpath = indexPath;
+    NSLog(@"%d",indexpath.row);
     NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
     NSLog(@"********deviceToken***%@",deviceToken);
     if ([deviceToken isEqualToString:@""]) {
@@ -383,39 +404,36 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [[[AppDelegate instance] window] makeKeyAndVisible];
         return;
     }
-
-    indexpath = indexPath;
     addCommentView = [[AddCommentViewController alloc] init];
     addCommentView.delegate = self;
     [self presentPopupViewController:addCommentView animationType:MJPopupViewAnimationFade flag:2];
 }
 
 -(void)sureFromAddCommentWithComment:(NSString*)comment{
-    
-   
-    
-    CommentModel *model = [[CommentModel alloc] init];
-    model.a_content = [NSString stringWithFormat:@"%@",comment];
-    model.a_type = @"comment";
-    [self.tableView deselectRowAtIndexPath:indexpath animated:YES];
-    NSIndexPath *path = [NSIndexPath indexPathForItem:(indexpath.row+1) inSection:indexpath.section];
-    [showArr insertObject:model atIndex:path.row];
-    [viewArr insertObject:@"" atIndex:path.row];
-    [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationMiddle];
-    [self.tableView endUpdates];
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-    
-    CommentModel *model2 = showArr[indexpath.row];
-    NSLog(@"%@",model2.a_id);
+    ActivesModel *model = showArr[indexpath.row];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setValue:model2.a_id forKey:@"EntityId"];
+    [dic setValue:model.a_id forKey:@"EntityId"];
     [dic setValue:[NSString stringWithFormat:@"%@",comment] forKey:@"CommentContents"];
-    [dic setValue:model2.a_type forKey:@"EntityType"];
-    [dic setValue:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0" forKey:@"CreatedBy"];
+    [dic setValue:model.a_category forKey:@"EntityType"];
+    [dic setValue:@"13756154-7db5-4516-bcc6-6b7842504c81" forKey:@"CreatedBy"];
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            
+            ContactCommentModel *commentModel = [[ContactCommentModel alloc] init];
+            [commentModel setDict:posts[0]];
+            if(model.a_commentsArr.count >=3){
+                [model.a_commentsArr removeObjectAtIndex:1];
+                [model.a_commentsArr insertObject:commentModel atIndex:0];
+            }else if(model.a_commentsArr.count ==2){
+                [model.a_commentsArr insertObject:commentModel atIndex:0];
+                [model.a_commentsArr insertObject:@"" atIndex:2];
+            }else{
+                [model.a_commentsArr insertObject:commentModel atIndex:0];
+            }
+            commentView = [CommentView setFram:model];
+            [showArr replaceObjectAtIndex:indexpath.row withObject:model];
+            [viewArr replaceObjectAtIndex:indexpath.row withObject:commentView];
+            [self.tableView reloadData];
         }
     } dic:dic];
 }
@@ -426,9 +444,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)reloadView{
     startIndex = 0;
-    [showArr removeAllObjects];
-    [viewArr removeAllObjects];
-    [_datasource removeAllObjects];
+    
     if (![ConnectionAvailable isConnectionAvailable]) {
         errorview = [[ErrorView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
         errorview.delegate = self;
@@ -440,10 +456,30 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         self.tableView.scrollEnabled = YES;
         [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
+                [showArr removeAllObjects];
+                [viewArr removeAllObjects];
+                [_datasource removeAllObjects];
                 showArr = posts;
+                for(int i=0;i<showArr.count;i++){
+                    ActivesModel *model = showArr[i];
+                    if([model.a_eventType isEqualToString:@"Actives"]){
+                        commentView = [CommentView setFram:model];
+                        [viewArr addObject:commentView];
+                    }else{
+                        [viewArr addObject:@""];
+                    }
+                    [_datasource addObject:model.a_time];
+                }
                 [self.tableView reloadData];
+                __weak ContactViewController *wself = self;
+                [wself.pathCover stopRefresh];
             }
         } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
     }
+}
+
+-(void)gotoDetailView:(NSIndexPath *)indexPath{
+    ActivesModel *model = showArr[indexPath.row];
+    NSLog(@"%@",model.a_entityUrl);
 }
 @end

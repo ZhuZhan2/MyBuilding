@@ -54,7 +54,7 @@
         
         _backgroundView = [[UIImageView alloc] init];
         _backgroundView.frame = CGRectMake(CGRectGetWidth(self.frame) - 118.0f, 0.0f, 118.0f, CGRectGetHeight(self.frame));
-        [_backgroundView setImage:[GetImagePath getImagePath:@"人脉_03a"]];
+        [_backgroundView setImage:[GetImagePath getImagePath:@"＋人脉－个人中心2_30a"]];
         [self addSubview:_backgroundView];
         
         _handContainer = [[UIView alloc] initWithFrame:CGRectMake(4.0f, 4.0f, 20.0f, 20.0f)];
@@ -92,6 +92,10 @@
         [_backgroundView addSubview:_dateLabel];
         
         _delegate = delegate;
+        
+        self.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.layer.shadowOpacity = .5;
+        self.layer.shadowOffset = CGSizeMake(0, 1.5);
     }
     return self;
 }
