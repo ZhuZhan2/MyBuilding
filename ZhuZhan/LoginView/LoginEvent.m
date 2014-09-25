@@ -323,8 +323,8 @@ static int chanceToLoginByFace =3;
         NSNumber *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
         if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"])
         {
-            [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"isFaceRegister"];//保存用户脸部识别注册的状态
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            [LoginSqlite insertData:@"1" datakey:@"isFaceRegister"];
+
             [[NSNotificationCenter defaultCenter] postNotificationName:@"faceLogin" object:nil];//登录
         }else{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"faceRegister" object:nil];//返回前一个VC
