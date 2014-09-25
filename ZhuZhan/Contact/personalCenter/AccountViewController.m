@@ -69,12 +69,11 @@ static int count =0;//记录生日textField 的时间被触发的次数
     
     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,[LoginSqlite getdata:@"userImageUrl" defaultdata:@"userImageUrl"]]];
     [_pathCover hidewaterDropRefresh];
-    [_pathCover setHeadImageFrame:CGRectMake(125, -50, 70, 70)];
+    [_pathCover setHeadImageFrame:CGRectMake(125, -70, 70, 70)];
     [_pathCover.headImage.layer setMasksToBounds:YES];
     [_pathCover.headImage.layer setCornerRadius:35];
-    [_pathCover setNameFrame:CGRectMake(145, 20, 100, 20) font:[UIFont systemFontOfSize:14]];
-    _pathCover.userNameLabel.textAlignment = NSTextAlignmentCenter;
-    _pathCover.userNameLabel.center = CGPointMake(157.5, 30);
+    [_pathCover setNameFrame:CGRectMake(145, 0, 100, 20) font:[UIFont systemFontOfSize:14]];
+    
     
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
@@ -89,7 +88,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
     for (int i=0; i<2; i++) {
         UIButton *tempBtn =[UIButton buttonWithType:UIButtonTypeCustom];
         UIImage* tempImg=i?[GetImagePath getImagePath:@"人脉－账号设置_03a-05"]:[GetImagePath getImagePath:@"人脉－账号设置_03a"];
-        tempBtn.frame=CGRectMake(0, 0, tempImg.size.width*.5, tempImg.size.height*.5);
+        tempBtn.frame=CGRectMake(0, 0, tempImg.size.width, tempImg.size.height);
         tempBtn.center=CGPointMake(80+160*i, footView.frame.size.height-tempBtn.frame.size.height*.5-10);
         [tempBtn setImage:tempImg forState:UIControlStateNormal];
         [footView addSubview:tempBtn];
@@ -375,7 +374,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
     [formatter setDateFormat:@"yyyy-MM-dd"];
-    model.birthday =[model.birthday substringWithRange:NSMakeRange(0,10)];
+    model.birthday = model.birthday;
     NSLog(@"*******model.birthday*******%@",model.birthday);
     NSDate* birthdayDate = [formatter dateFromString:model.birthday];
     DatePickerView *dataView = [[DatePickerView alloc] initWithTitle:CGRectMake(0, 120, 320, 240) delegate:self date:birthdayDate];

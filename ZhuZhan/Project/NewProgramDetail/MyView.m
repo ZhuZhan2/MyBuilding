@@ -7,7 +7,9 @@
 //
 
 #import "MyView.h"
-
+@interface MyView ()
+@property(nonatomic,strong)UIImage* originImage;
+@end
 @implementation MyView
 
 - (id)initWithFrame:(CGRect)frame
@@ -21,19 +23,23 @@
 -(instancetype)init{
     self=[super init];
     if (self) {
-        self.myImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"首页_16"]];
+        self.originImage=[GetImagePath getImagePath:@"首页_16"];
+        self.myImageView=[[EGOImageView alloc]initWithPlaceholderImage:self.originImage];
         self.myImageView.frame=CGRectMake(0, 0, 320, 215.5);
         self.myImageView.showActivityIndicator=YES;
         [self addSubview:self.myImageView];
-        
-        [self.myImageView addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
 }
 
+-(void)observeImage{
+    [self.myImageView addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:nil];
+}
+
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    if (self.myImageView.image==self.originImage) return;
     CGSize size=self.myImageView.image.size;
-    self.myImageView.frame=CGRectMake(0, 0, size.width, size.height);
+    self.myImageView.frame=CGRectMake(0, 0, size.width*.5, size.height*.5);
     self.myImageView.center=CGPointMake(160, 215.5*.5);
 }
 

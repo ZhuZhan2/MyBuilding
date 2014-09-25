@@ -40,26 +40,26 @@
         cell.stageLabel=[[UILabel alloc]initWithFrame:CGRectMake(47, 4, 150, 20)];
         cell.stageLabel.text=arrayTotal[indexPath.section][indexPath.row];
         cell.stageLabel.font=[UIFont systemFontOfSize:14];
-        cell.stageLabel.textColor=textColor;//thirdIcon?[UIColor blackColor]:RGBCOLOR(197, 197, 197);
+        cell.stageLabel.textColor=textColor;
         [cell.contentView addSubview:cell.stageLabel];
         
         if (stageLight) {
             //右边三个小icon的最右边那个，必显示，但是图不同
             UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(270, 6, 16, 16)];
-            imageView.image= thirdIcon?[GetImagePath getImagePath:@"XiangMuXiangQing_ShaiXuan/right@2x"]:[GetImagePath getImagePath:@"XiangMuXiangQing_ShaiXuan/dot@2x"];//1则是勾的图，0则是没勾的图
+            imageView.image= thirdIcon?[GetImagePath getImagePath:@"016"]:[GetImagePath getImagePath:@"05"];//1则是勾的图，0则是没勾的图
             [cell.contentView addSubview:imageView];
             
             //右边三个小icon的左边2个，选择性显示，图同
             CGFloat tempX=245;
             if (secondIcon) {
                 UIImageView* tempImageView=[[UIImageView alloc]initWithFrame:CGRectMake(tempX, 6, 16, 16)];
-                tempImageView.image=[GetImagePath getImagePath:@"XiangMuXiangQing_ShaiXuan/Gallery@2x"];
+                tempImageView.image=[GetImagePath getImagePath:@"06"];
                 [cell.contentView addSubview:tempImageView];
                 tempX-=25;
             }
             if (firstIcon) {
                 UIImageView* tempImageView=[[UIImageView alloc]initWithFrame:CGRectMake(tempX, 6, 16, 16)];
-                tempImageView.image=[GetImagePath getImagePath:@"XiangMuXiangQing_ShaiXuan/use@2x"];
+                tempImageView.image=[GetImagePath getImagePath:@"017"];
                 [cell.contentView addSubview:tempImageView];
             }
         }
@@ -68,7 +68,7 @@
         
         //上拉取消tableView的箭头
         UIButton* cancel=[[UIButton alloc]initWithFrame:CGRectMake(145, 20, 24.5, 15.5)];
-        [cancel setBackgroundImage:[GetImagePath getImagePath:@"XiangMuXiangQing_ShaiXuan/more_15@2x"] forState:UIControlStateNormal];
+        [cancel setBackgroundImage:[GetImagePath getImagePath:@"015"] forState:UIControlStateNormal];
         [cancel addTarget:cell.delegate action:@selector(selectCancel) forControlEvents:UIControlEventTouchUpInside];
         [cell.contentView addSubview:cancel];
     }

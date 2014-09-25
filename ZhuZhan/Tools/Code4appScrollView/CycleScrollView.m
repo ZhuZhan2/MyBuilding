@@ -78,7 +78,6 @@
             imageView.frame = CGRectOffset(imageView.frame, 0, scrollFrame.size.height * i);
         }
         
-        
         [scrollView addSubview:imageView];
     }
     if (scrollDirection == CycleDirectionLandscape) {
@@ -87,7 +86,6 @@
     if (scrollDirection == CycleDirectionPortait) {
         [scrollView setContentOffset:CGPointMake(0, scrollFrame.size.height)];
     }
-    
 }
 
 - (NSArray *)getDisplayImagesWithCurpage:(int)page {
