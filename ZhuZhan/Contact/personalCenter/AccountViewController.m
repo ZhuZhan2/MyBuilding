@@ -120,7 +120,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         model = posts[0];
         [self.tableView reloadData];
-    } userId:@"5dc180cc-d1df-424c-bbbf-0de57da5831c"];
+    } userId:[LoginSqlite getdata:@"userId" defaultdata:@"userId"]];
 }
 
 
@@ -369,7 +369,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
     [formatter setDateFormat:@"yyyy-MM-dd"];
-    model.birthday =[model.birthday substringWithRange:NSMakeRange(0,10)];
+    model.birthday = model.birthday;
     NSLog(@"*******model.birthday*******%@",model.birthday);
     NSDate* birthdayDate = [formatter dateFromString:model.birthday];
     DatePickerView *dataView = [[DatePickerView alloc] initWithTitle:CGRectMake(0, 120, 320, 240) delegate:self date:birthdayDate];

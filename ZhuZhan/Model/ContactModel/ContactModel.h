@@ -46,7 +46,7 @@
 @property (nonatomic,strong)NSString  *userName;
 
 ////密码
-//@property (nonatomic,strong)NSString  *password;
+@property (nonatomic,strong)NSString  *password;
 
 //真实姓名
 @property (nonatomic,strong)NSString *realName;
