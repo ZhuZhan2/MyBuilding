@@ -83,6 +83,7 @@
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
     [self initNavi];
+
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 self.model = posts[0];
@@ -108,7 +109,7 @@
     self.loadingView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 56)];
     self.loadingView.backgroundColor=RGBCOLOR(229, 229, 229);
     UIImageView* shadow=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 3.5)];
-    shadow.image=[GetImagePath getImagePath:@"XiangMuXiangQing/Shadow-bottom"];
+    shadow.image=[GetImagePath getImagePath:@"Shadow-bottom"];
     [self.loadingView addSubview:shadow];
 }
 
@@ -123,7 +124,6 @@
 }
 
 -(void)initContentTableView{
-
         self.landInfo=[LandInfo getLandInfoWithDelegate:self part:0];
         [[[self.landInfo.firstView.subviews[0] subviews][0]subviews][0] removeFromSuperview];
         
@@ -138,9 +138,6 @@
         self.contentTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
         self.contentTableView.showsVerticalScrollIndicator=NO;
         [self.view addSubview:self.contentTableView];
-
-
-
 }
 
 -(void)back{
@@ -156,7 +153,7 @@
 
 -(void)initNavi{
     UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,5,29,28.5)];
-    [button setImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
+    [button setImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.title=@"项目详情";
@@ -177,8 +174,8 @@
     [self.view addSubview:themeView];
     
     //大标题左边的大阶段图片
-    UIImage* image=[GetImagePath getImagePath:@"XiangMuXiangQing/map@2x"];
-    CGRect frame=CGRectMake(20, 12, image.size.width*.5, image.size.height*.5);
+    UIImage* image=[GetImagePath getImagePath:@"筛选中01"];
+    CGRect frame=CGRectMake(20, 12, image.size.width, image.size.height);
     self.bigStageImageView=[[UIImageView alloc]initWithFrame:frame];
     self.bigStageImageView.image=image;
     [themeView addSubview:self.bigStageImageView];
@@ -198,13 +195,13 @@
     [themeView addSubview:self.smallStageLabel];
     
     //右箭头imageView
-    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(280, 14, 25.5, 22.5)];
-    imageView.image=[GetImagePath getImagePath:@"XiangMuXiangQing/more_02@2x"];
+    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(280, 14, 25, 22)];
+    imageView.image=[GetImagePath getImagePath:@"012"];
     [themeView addSubview:imageView];
     
     //上导航栏themeView第二部分,上导航下方阴影
     UIImageView* shadowView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 48.5, 320, 1.5)];
-    shadowView.image=[GetImagePath getImagePath:@"XiangMuXiangQing/Shadow-top"];
+    shadowView.image=[GetImagePath getImagePath:@"Shadow-top"];
     shadowView.alpha=.5;
     [themeView addSubview:shadowView];
     
@@ -274,9 +271,6 @@
 // "CreatedBy": ":“评论人"
 // }
 -(void)sureFromAddCommentWithComment:(NSString *)comment{
-    
-
-
     NSLog(@"sureFromAddCommentWithCommentModel:");
     NSLog(@"%@",comment);
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
@@ -329,7 +323,7 @@
     
     NSArray* smallTitles=@[@"土地规划/拍卖",@"项目立项",@"地勘阶段",@"设计阶段",@"出图阶段",@"地平",@"桩基基坑",@"主体施工",@"消防/景观绿化",@""];
     NSArray* bigTitles=@[@"土地信息",@"主体设计阶段",@"主体施工阶段",@"装修阶段"];
-    NSArray* bigStageImageNames=@[@"XiangMuXiangQing/map@2x",@"XiangMuXiangQing_1/pen_01@2x",@"XiangMuXiangQing_2/Subject_01@2x",@"XiangMuXiangQing_3/paint_01@2x"];
+    NSArray* bigStageImageNames=@[@"筛选中01",@"筛选中02",@"筛选中03",@"筛选中04"];
     
     for (int i=0; i<self.bigStageStandardY.count; i++) {
         if (scrollView.contentOffset.y+568-64-50<[self.bigStageStandardY[i] floatValue]) {
@@ -339,7 +333,7 @@
             //大阶段左边图标
             UIImage* image=[GetImagePath getImagePath:bigStageImageNames[i]];
             CGPoint center=self.bigStageImageView.center;
-            CGRect frame=CGRectMake(0, 0, image.size.width*.5, image.size.height*.5);
+            CGRect frame=CGRectMake(0, 0, image.size.width, image.size.height);
             self.bigStageImageView.frame=frame;
             self.bigStageImageView.image=image;
             self.bigStageImageView.center=center;
@@ -375,6 +369,7 @@
         }else{
             tempStr=@"装修";
         }
+        NSLog(@"222");
         tempStr=[NSString stringWithFormat:@"正在加载 %@ 阶段",tempStr];
         NSMutableAttributedString* attStr=[[NSMutableAttributedString alloc]initWithString:tempStr];
         [attStr addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(82, 125, 237) range:NSMakeRange(4, tempStr.length-6)];

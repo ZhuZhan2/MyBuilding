@@ -38,10 +38,11 @@
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 65)];
     
     UIImageView* shadow=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 3.5)];
-    shadow.image=[GetImagePath getImagePath:@"XiangMuXiangQing/Shadow-bottom"];
+    shadow.image=[GetImagePath getImagePath:@"Shadow-bottom"];
     [view addSubview:shadow];
     
-    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, titleImage.size.width*.5, titleImage.size.height*.5)];    imageView.image=titleImage;
+    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, titleImage.size.width, titleImage.size.height)];
+    imageView.image=titleImage;
     imageView.center=CGPointMake(160, imageView.frame.size.height*.5+10);
     [view addSubview:imageView];
     
@@ -134,7 +135,7 @@
     view.frame=CGRectMake(0, 0, 320, 215.5);
     view.layer.masksToBounds=YES;
     view.backgroundColor=[UIColor grayColor];
-    
+    [view observeImage];
     view.myImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,imageUrl]];
     
     
@@ -322,7 +323,7 @@
         
         //电话图标
         UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(197, 46+i*120, 12.5, 12.5)];
-        imageView.image=[GetImagePath getImagePath:@"XiangMuXiangQing/phone@2x"];
+        imageView.image=[GetImagePath getImagePath:@"021"];
         [view addSubview:imageView];
         
         //电话号码
