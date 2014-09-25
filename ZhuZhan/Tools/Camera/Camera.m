@@ -71,7 +71,10 @@ static int BtnTag =0;
     }
     
     if (index==2) {//取消
-        
+        if (BtnTag == 110120) {//发布时获取照片
+            [delegate openKeyBoard];
+        }
+
         [self.view removeFromSuperview];
     }
     
@@ -101,9 +104,10 @@ static int BtnTag =0;
         
     }
     if (BtnTag == 110120) {//发布时获取照片
+                [delegate publishImage:imageStr andImage:image];
         [picker dismissViewControllerAnimated:YES completion:nil];
         [self.view removeFromSuperview];
-        [delegate publishImage:imageStr andImage:image];
+
     }
     
 }
@@ -215,5 +219,6 @@ static int BtnTag =0;
 */
 -(void)dealloc{
     NSLog(@"camera dealloc");
+    
 }
 @end

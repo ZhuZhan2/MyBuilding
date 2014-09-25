@@ -56,7 +56,6 @@ static int textFieldTag =0;
         password.font=[UIFont systemFontOfSize:15];
         password.delegate =self;
         password.secureTextEntry =YES;
-        password.enabled = NO;
         password.text = model.password;
         password.tag = 2014091202;
         [self addSubview:password];
@@ -186,6 +185,7 @@ static int textFieldTag =0;
         bloodType.textColor=GrayColor;
         bloodType.tag = 2014091208;
         [self addSubview:bloodType];
+
 
         
 
@@ -336,45 +336,6 @@ static int textFieldTag =0;
     return YES;
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UITextField *textField = (UITextField *)[self viewWithTag:textFieldTag];
-    [textField resignFirstResponder];
-    int flag =0;
-    if ([textField isEqual:userName]) {
-        
-        flag =0;
-    }
-    if ([textField isEqual:realName]) {
-        flag =1;
-    }
-    if ([textField isEqual:sex]) {
-        flag =2;
-    }
-    if ([textField isEqual:location]) {
-        flag =3;
-    }
-    
-    if ([textField isEqual:constellation]) {
-        flag =4;
-    }
-    if ([textField isEqual:bloodType]) {
-        flag =5;
-    }
-    if ([textField isEqual:email]) {
-        flag =6;
-    }
-    if ([textField isEqual:company]) {
-        flag =7;
-    }
-    if ([textField isEqual:position]) {
-        flag =8;
-    }
-    if ([textField isEqual:password]) {
-        flag =9;
-    }
-    [self.delegate AddDataToModel:flag WithTextField:textField];
-}
 
 
 -(void)brithdayBtnClicked

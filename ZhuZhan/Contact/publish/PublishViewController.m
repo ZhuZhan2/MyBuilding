@@ -184,8 +184,6 @@ static int PublishNum =1;//1 发布动态  2，发布产品
 {
     [inputView becomeFirstResponder];
     publishImageStr = imageStr;
-//    CGRect frame = CGRectMake(image.size.width/2-30, image.size.height/2-30, 60, 60);
-//   image=[UIImage imageWithCGImage:CGImageCreateWithImageInRect([image CGImage], frame)];
     publishImage.image = image;
     
 }
@@ -251,7 +249,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
 
 -(void)goToPublish
 {
-//    NSString *userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+
     NSString *userIdStr = [LoginSqlite getdata:@"userId" defaultdata:@""];
 NSLog(@"******publishImageStr******%@&&",publishImageStr);
 

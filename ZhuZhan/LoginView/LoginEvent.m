@@ -168,10 +168,7 @@ static int chanceToLoginByFace =3;
             
             NSArray *a = [[responseObject objectForKey:@"d"] objectForKey:@"data"];
             for(NSDictionary *item in a){
-                [[NSUserDefaults standardUserDefaults]setObject:[item objectForKey:@"deviceToken"] forKey:@"deviceToken"];
-                [[NSUserDefaults standardUserDefaults]synchronize];
-                [[NSUserDefaults standardUserDefaults] setObject:[item objectForKey:@"faceCount"] forKey:@"currentFaceCount"]; //  保存用户名下脸的张数，以便自学习是进行判断
-                [[NSUserDefaults standardUserDefaults] synchronize];
+                [LoginSqlite insertData:[item objectForKey:@"faceCount"] datakey:@"currentFaceCount"];//  保存用户名下脸的张数，以便自学习是进行判断
                 
                 //自学习，每次登录成功后继续注册脸，直到脸的张数为15
                 if([[item objectForKey:@"faceCount"] intValue] <15){
