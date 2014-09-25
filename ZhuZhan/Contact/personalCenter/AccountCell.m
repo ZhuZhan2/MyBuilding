@@ -17,6 +17,7 @@ static int textFieldTag =0;
     if (self) {
         
          NSLog(@"model.dict  ********* %@",model.dict);
+        _model =model;
         //*********账户信息**********************************************************************************
         UIView *back1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
         back1.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
@@ -292,6 +293,7 @@ static int textFieldTag =0;
     [textField resignFirstResponder];
     int flag =0;
     if ([textField isEqual:userName]) {
+        
         flag =0;
     }
     if ([textField isEqual:realName]) {
@@ -305,18 +307,21 @@ static int textFieldTag =0;
     }
     
     if ([textField isEqual:constellation]) {
-        flag =5;
+        flag =4;
     }
     if ([textField isEqual:bloodType]) {
-        flag =6;
+        flag =5;
     }
     if ([textField isEqual:email]) {
-        flag =7;
+        flag =6;
     }
     if ([textField isEqual:company]) {
-        flag =8;
+        flag =7;
     }
     if ([textField isEqual:position]) {
+        flag =8;
+    }
+    if ([textField isEqual:password]) {
         flag =9;
     }
     [self.delegate AddDataToModel:flag WithTextField:textField];
@@ -335,6 +340,40 @@ static int textFieldTag =0;
 {
     UITextField *textField = (UITextField *)[self viewWithTag:textFieldTag];
     [textField resignFirstResponder];
+    int flag =0;
+    if ([textField isEqual:userName]) {
+        
+        flag =0;
+    }
+    if ([textField isEqual:realName]) {
+        flag =1;
+    }
+    if ([textField isEqual:sex]) {
+        flag =2;
+    }
+    if ([textField isEqual:location]) {
+        flag =3;
+    }
+    
+    if ([textField isEqual:constellation]) {
+        flag =4;
+    }
+    if ([textField isEqual:bloodType]) {
+        flag =5;
+    }
+    if ([textField isEqual:email]) {
+        flag =6;
+    }
+    if ([textField isEqual:company]) {
+        flag =7;
+    }
+    if ([textField isEqual:position]) {
+        flag =8;
+    }
+    if ([textField isEqual:password]) {
+        flag =9;
+    }
+    [self.delegate AddDataToModel:flag WithTextField:textField];
 }
 
 

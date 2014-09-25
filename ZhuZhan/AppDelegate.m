@@ -33,6 +33,13 @@
     //输出在console的log开关
     [IFlySetting showLogcat:YES];
     
+    
+    //设置log等级，此处log为默认在documents目录下的msc.log文件
+    [IFlySetting setLogFile:LVL_NONE];
+    
+    //输出在console的log开关
+    [IFlySetting showLogcat:NO];
+    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *cachePath = [paths objectAtIndex:0];
     //设置msc.log的保存路径
@@ -41,9 +48,12 @@
     
     //创建语音配置
     NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@,timeout=%@",APPID_VALUE,TIMEOUT_VALUE];
-    //所有服务启动前，需要确保执行createUtility
     
+    //所有服务启动前，需要确保执行createUtility
     [IFlySpeechUtility createUtility:initString];
+    
+    //创建语音配置
+
     
     
     // Override point for customization after application launch.
@@ -69,7 +79,7 @@
     [RecordSqlite opensql];
     
     
-/*    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
+  /* if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
         NSLog(@"第一次启动");
         LoginViewController *loginview = [[LoginViewController alloc] init];
@@ -94,8 +104,9 @@
             [self.window makeKeyAndVisible];
             #elif TARGET_OS_IPHONE
             if([[networkConnect sharedInstance] connectedToNetwork]){
-                NSLog(@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"]);
-                if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isFaceRegister"] isEqualToString:@"0"]) {
+                NSString *isFaceRegister = [LoginSqlite getdata:@"isFaceRegister" defaultdata:@""];
+                NSLog(@"%@",isFaceRegister);
+                if (![isFaceRegister isEqualToString:@"1"]) {
                     LoginViewController *loginview = [[LoginViewController alloc] init];
                     UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
                     [self.window setRootViewController:naVC];
@@ -112,10 +123,10 @@
                 HomePageViewController *homeVC = [[HomePageViewController alloc] init];
                 self.window.rootViewController = homeVC;
                 [self.window makeKeyAndVisible];
-/*            }
-            #endif
-        }
-    }*/
+//           }
+//            #endif
+//        }
+//    }
     return YES;
 }
 

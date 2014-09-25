@@ -26,7 +26,7 @@ static int selectBtnTag =0;
 static float textFieldFrame_Y_PlusHeight =0;
 static bool isBirthday = NO;
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
-
+static int count =0;//记录生日textField 的时间被触发的次数
 
 - (void)viewDidLoad
 {
@@ -113,13 +113,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (void)getUserInformation
 {
 
-    userIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+    userIdStr = [LoginSqlite getdata:@"userId" defaultdata:@""];
     
     NSLog(@"********userId******* %@",userIdStr);
     [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         model = posts[0];
         [self.tableView reloadData];
-    } userId:[LoginSqlite getdata:@"userId" defaultdata:@"userId"]];
+    } userId:userIdStr];
 }
 
 
@@ -232,8 +232,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                model.birthday = [formatter stringFromDate:dataView.datepicker.date];
 
             model.constellation = [BirthDay getConstellation:model.birthday];
+            NSLog(@"*****model******%@",model);
             [self.tableView reloadData];
         }
+        count=0;
         return;
     }
     camera = [[Camera alloc] init];
@@ -325,7 +327,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)AddDataToModel:(int)flag WithTextField:(UITextField *)textField
 {
     
-
+    NSLog(@"textField*******%@",textField.text);
     switch (flag) {
         case 0:
             model.userName = textField.text;
@@ -340,31 +342,35 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             model.locationCity = textField.text;
             break;
 
-        case 5:
+        case 4:
             model.constellation = textField.text;
             break;
-        case 6:
+        case 5:
             model.bloodType = textField.text;
             break;
-        case 7:
+        case 6:
             model.email = textField.text;
             break;
-        case 8:
+        case 7:
             model.companyName = textField.text;
             break;
-        case 9:
+        case 8:
             model.position = textField.text;
             break;
             
         default:
             break;
+           
+            
     }
 }
 
 
 -(void) AddBirthdayPicker:(UILabel *)label
 {
-
+    if (count==1) {
+        return;
+    }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
     [formatter setDateFormat:@"yyyy-MM-dd"];
@@ -374,6 +380,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     DatePickerView *dataView = [[DatePickerView alloc] initWithTitle:CGRectMake(0, 120, 320, 240) delegate:self date:birthdayDate];
     [dataView showInView:self.view];
     isBirthday =YES;
+    count++;
     
 }
 
