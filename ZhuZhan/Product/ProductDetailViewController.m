@@ -84,17 +84,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 self.commentModels=posts;
                 [self getTableViewContents];
                 [self myTableViewReloadData];
-                //self.timeScroller=[[ACTimeScroller alloc]initWithDelegate:self];;
-                //[self.myTableView reloadData];
             }
         } entityId:self.productModel.a_id entityType:@"Product"];
         self.view.backgroundColor=[UIColor whiteColor];
         [self initNavi];
         [self initMyTableView];
         [self getProductView];
-        self.timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
-        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:PSTableViewCellIdentifier];
-        
     }else{
         [CommentApi CommentUrlWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
@@ -115,6 +110,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [self initMyTableView];
         [self getActivesView];
     }
+    self.timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:PSTableViewCellIdentifier];
 }
 
 -(void)myTableViewReloadData{
@@ -310,24 +307,22 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [self.navigationController presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
     }
 }
-//======================================================================
+//=============================================================
 //ACTimeScrollerDelegate
-//======================================================================
+//=============================================================
 - (UITableView *)tableViewForTimeScroller:(ACTimeScroller *)timeScroller{
-    NSLog(@"33333333333");
     return self.tableView;
 }
 - (NSDate *)timeScroller:(ACTimeScroller *)timeScroller dateForCell:(UITableViewCell *)cell{
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    NSLog(@"%d",cell.contentView.subviews[0]==self.productView );
     if (cell.contentView.subviews[0]==self.productView) {
         timeScroller.hidden=YES;
-        return nil;
+        return [NSDate date];
     }else{
         timeScroller.hidden=NO;
+        NSLog(@"commentViews.count=%d,commentModels.count=%d",self.commentViews.count,self.commentModels.count);
         return [self.commentModels[indexPath.row-1] a_time];
     }
-    //return _datasource[indexPath row];
 }
 
 
@@ -345,9 +340,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 
-//======================================================================
+//=============================================================
 //AddCommentDelegate
-//======================================================================
+//=============================================================
 //点击添加评论并点取消的回调方法
 -(void)cancelFromAddComment{
     NSLog(@"cancelFromAddComment");
@@ -415,9 +410,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
     [self.commentViews insertObject:view atIndex:0];
 }
-//======================================================================
+//=============================================================
 //UITableViewDataSource,UITableViewDelegate
-//======================================================================
+//=============================================================
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.commentViews.count+1;
@@ -500,9 +495,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     return view;
 }
 
-//======================================================================
-//======================================================================
-//======================================================================
+//=============================================================
+//=============================================================
+//=============================================================
 -(void)initMyTableView{
     self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
     self.tableView.delegate=self;
