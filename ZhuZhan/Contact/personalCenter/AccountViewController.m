@@ -422,8 +422,9 @@ static int count =0;//记录生日textField 的时间被触发的次数
 
 }
 
-
 -(void)dealloc{
+    self.tableView.delegate=nil;
+    self.tableView.dataSource=nil;
     NSLog(@"dealloc");
 }
 @end
