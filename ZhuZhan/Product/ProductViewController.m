@@ -80,9 +80,9 @@
     }else{
         startIndex=0;
         [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-            [qtmquitView headerEndRefreshing];
             if(!error){
                 showArr = posts;
+                [qtmquitView headerEndRefreshing];
                 [qtmquitView reloadData];
             }
         } productId:@"" startIndex:startIndex];
@@ -105,9 +105,9 @@
     }else{
         startIndex++;
         [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-            [qtmquitView footerEndRefreshing];
             if(!error){
                 [showArr addObjectsFromArray:posts];
+                [qtmquitView footerEndRefreshing];
                 [qtmquitView reloadData];
             }
         } productId:@"" startIndex:startIndex];
