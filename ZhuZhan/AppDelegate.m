@@ -72,7 +72,10 @@
     
     [LoginSqlite opensql];
     [RecordSqlite opensql];
-    
+    HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+    self.window.rootViewController = homeVC;
+    [self.window makeKeyAndVisible];
+    /*
 //    NSString *mmm =[LoginSqlite getdata:@"firstLaunch" defaultdata:@""];
 //    NSLog(@"mmm*********%@",mmm);
    if(![[LoginSqlite getdata:@"firstLaunch" defaultdata:@""]isEqualToString:@"1"]){
@@ -97,7 +100,7 @@
             self.window.backgroundColor = [UIColor whiteColor];
             [self.window makeKeyAndVisible];
         }else{
-    
+            
             #if TARGET_IPHONE_SIMULATOR
             HomePageViewController *homeVC = [[HomePageViewController alloc] init];
             self.window.rootViewController = homeVC;
@@ -127,7 +130,9 @@
             #endif
         }
     }
+     */
     return YES;
+     
 }
 
 

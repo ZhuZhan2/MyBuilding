@@ -18,10 +18,15 @@
 #import "AppDelegate.h"
 #import "LoginSqlite.h"
 #import "LoginViewController.h"
+#import "ContactCommentModel.h"
+#import "ProjectCommentModel.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate>//,ACTimeScrollerDelegate>
 @property(nonatomic,strong)UITableView* myTableView;
 
-@property(nonatomic,strong)ProductModel* productModel;//产品图片
+@property(nonatomic,strong)ProductModel* productModel;//产品详情模型
+@property(nonatomic,strong)ActivesModel* activesModel;//动态详情模型
+//@property(nonatomic,strong)NSString* activesEntityUrl;//动态详情模型url
+
 @property(nonatomic,strong)UIView* productView;//产品图片和产品介绍文字的superView
 
 @property(nonatomic,strong)NSMutableArray* commentModels;//评论数组，元素为评论实体类
@@ -34,10 +39,19 @@
 
 @implementation ProductDetailViewController
 
--(instancetype)initWithProductModel:(ProductModel *)productModel{
+-(instancetype)initWithProductModel:(ProductModel*)productModel{
     self=[super init];
     if (self) {
         self.productModel=productModel;
+        self.commentViews=[[NSMutableArray alloc]init];
+    }
+    return self;
+}
+
+-(instancetype)initWithActivesModel:(ActivesModel*)activesModel{
+    self=[super init];
+    if (self) {
+        self.activesModel=activesModel;
         self.commentViews=[[NSMutableArray alloc]init];
     }
     return self;
@@ -59,41 +73,160 @@
     [homeVC homePageTabBarHide];
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (self.productModel) {
+        [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                self.commentModels=posts;
+                [self getTableViewContents];
+                [self myTableViewReloadData];
+                //self.timeScroller=[[ACTimeScroller alloc]initWithDelegate:self];;
+                //[self.myTableView reloadData];
+            }
+        } entityId:self.productModel.a_id entityType:@"Product"];
+        self.view.backgroundColor=[UIColor whiteColor];
+        [self initNavi];
+        [self initMyTableView];
+        [self getProductView];
+    }else{
+        [CommentApi CommentUrlWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                self.activesModel=posts[0];
+                if (!self.commentModels) self.commentModels=[[NSMutableArray alloc]init];
+                for (int i=0; i<self.activesModel.a_commentsArr.count; i++) {
+                    if ([self.activesModel.a_commentsArr[i] isKindOfClass:[ContactCommentModel class]] ) {
+                        [self.commentModels addObject:self.activesModel.a_commentsArr[i]];
+                    }
+                }
 
-    [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
-
-        self.commentModels=posts;
-        
-        [self getTableViewContents];
-        [self myTableViewReloadData];
-        
-        //self.timeScroller=[[ACTimeScroller alloc]initWithDelegate:self];;
-        //[self.myTableView reloadData];
-        
-    } entityId:self.productModel.a_id entityType:@"Product"];
-    
-    self.view.backgroundColor=[UIColor whiteColor];
-    [self initNavi];
-    [self initMyTableView];
-    [self getProductView];
-    
-
+                [self getTableViewContents];
+                [self myTableViewReloadData];
+            }
+        } url:self.activesModel.a_entityUrl];
+        self.view.backgroundColor=[UIColor whiteColor];
+        [self initNavi];
+        [self initMyTableView];
+        [self getActivesView];
+    }
 }
 
 -(void)myTableViewReloadData{
-    [self getProductView];
+    if (self.productModel) {
+        [self getProductView];
+    }else{
+        [self getActivesView];
+    }
     [self.myTableView reloadData];
 }
 
 -(void)getTableViewContents{
     for (int i=0; i<self.commentModels.count; i++) {
-        ProductCommentView* view=[[ProductCommentView alloc]initWithCommentModel:self.commentModels[i]];
+        ProductCommentView* view;
+        if (self.productModel) {
+            ProjectCommentModel* model=self.commentModels[i];
+            view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_imageUrl userName:model.a_name commentContent:model.a_content];
+        }else{
+            ContactCommentModel* model=self.commentModels[i];
+            view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_avatarUrl userName:model.a_userName commentContent:model.a_commentContents];
+        }
         [self.commentViews addObject:view];
     }
+}
+
+-(void)getActivesView{
+    self.productView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    UIView* forCornerView=[[UIView alloc]initWithFrame:CGRectZero];
+    [self.productView addSubview:forCornerView];
+    forCornerView.layer.cornerRadius=2;
+    forCornerView.layer.masksToBounds=YES;
+    
+    CGFloat height=0;
+
+    EGOImageView *imageView;
+    //动态图像
+    if(![self.activesModel.a_imageUrl isEqualToString:@""]){
+        imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
+        imageView.frame = CGRectMake(0, 0, 310,[self.activesModel.a_imageHeight floatValue]/[self.activesModel.a_imageWidth floatValue]*310);
+        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.activesModel.a_imageUrl]];
+        [forCornerView addSubview:imageView];
+        height+=imageView.frame.size.height;
+    }
+    
+    UIView* contentTotalView;
+    //动态描述
+    if (![self.activesModel.a_content isEqualToString:@""]) {
+        UILabel* contentTextView = [[UILabel alloc] init];
+        contentTextView.numberOfLines =0;
+        UIFont * tfont = [UIFont systemFontOfSize:15];
+        contentTextView.font = tfont;
+        contentTextView.textColor = [UIColor blackColor];
+        contentTextView.lineBreakMode =NSLineBreakByCharWrapping ;
+        
+        //用户名颜色
+        NSString * text = [NSString stringWithFormat:@"%@:%@",self.activesModel.a_userName,self.activesModel.a_content];
+        NSMutableAttributedString* attributedText=[[NSMutableAttributedString alloc]initWithString:text];
+        NSRange range=NSMakeRange(0, self.activesModel.a_userName.length+1);
+        [attributedText addAttributes:@{NSForegroundColorAttributeName:BlueColor} range:range];
+        [attributedText addAttributes:@{NSFontAttributeName:tfont} range:NSMakeRange(0, text.length)];
+        
+        //动态文字内容
+        contentTextView.attributedText=attributedText;
+        
+        BOOL imageUrlExist=![self.activesModel.a_imageUrl isEqualToString:@""];
+        //给一个比较大的高度，宽度不变
+        CGSize size =CGSizeMake(imageUrlExist?300:250,CGFLOAT_MAX);
+        // 获取当前文本的属性
+        NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:tfont,NSFontAttributeName,nil];
+        //ios7方法，获取文本需要的size，限制宽度
+        CGSize actualsize =[text boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin |NSStringDrawingUsesFontLeading attributes:tdic context:nil].size;
+        contentTextView.frame =CGRectMake(imageUrlExist?10:60,10, actualsize.width, actualsize.height);
+        
+        contentTotalView=[[UIView alloc]initWithFrame:CGRectMake(0, height, 310, imageView?contentTextView.frame.size.height+20:contentTextView.frame.size.height+20+40)];
+        contentTotalView.backgroundColor=[UIColor whiteColor];
+        [contentTotalView addSubview:contentTextView];
+        [forCornerView addSubview:contentTotalView];
+        height+=contentTotalView.frame.size.height;
+    }
+    
+    //评论图标
+    CGFloat tempHeight=imageView?imageView.frame.origin.y+imageView.frame.size.height:height;
+    UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    commentBtn.frame = CGRectMake(265, tempHeight-40, 37, 37);
+    [commentBtn setImage:[GetImagePath getImagePath:@"人脉_66a"] forState:UIControlStateNormal];
+    [commentBtn addTarget:self action:@selector(chooseComment:) forControlEvents:UIControlEventTouchUpInside];
+    [forCornerView addSubview:commentBtn];
+    
+    //用户头像
+    tempHeight=imageView?imageView.frame.origin.y:contentTotalView.frame.origin.y;
+    EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
+    userImageView.layer.masksToBounds = YES;
+    userImageView.layer.cornerRadius = 3;
+    userImageView.frame=CGRectMake(5,tempHeight+5,37,37);
+    [forCornerView addSubview:userImageView];
+    
+    userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.activesModel.a_avatarUrl]];
+    [forCornerView addSubview:userImageView];
+    
+    //设置总的view的frame
+    forCornerView.frame=CGRectMake(5, 5, 310, height-5);
+    
+    //与下方tableView的分割部分
+    if (self.commentViews.count) {
+        UIImage* separatorImage=[GetImagePath getImagePath:@"动态详情_14a"];
+        CGRect frame=CGRectMake(0, height, separatorImage.size.width, separatorImage.size.height);
+        UIImageView* separatorImageView=[[UIImageView alloc]initWithFrame:frame];
+        separatorImageView.image=separatorImage;
+        [self.productView addSubview:separatorImageView];
+        
+        height+=frame.size.height;
+    }
+
+    //设置总的frame
+    self.productView.frame = CGRectMake(0, 0, 320, height);
+    [self.productView setBackgroundColor:RGBCOLOR(235, 235, 235)];
 }
 
 -(void)getProductView{
@@ -101,7 +234,8 @@
     CGFloat tempHeight=0;
     
     //imageView部分
-    CGFloat scale=320.0/[self.productModel.a_imageWidth floatValue]*2;    CGFloat height=[self.productModel.a_imageHeight floatValue]*.5*scale;
+    CGFloat scale=320.0/[self.productModel.a_imageWidth floatValue]*2;
+    CGFloat height=[self.productModel.a_imageHeight floatValue]*.5*scale;
 
     EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"产品－产品详情_03a"]];
     if (![self.productModel.a_imageUrl isEqualToString:@""]) {
@@ -111,10 +245,9 @@
     }
     imageView.frame=CGRectMake(0, 0, 320, height);
 
-    
     //imageView右下角评论图标
     UIImage* image=[GetImagePath getImagePath:@"人脉_66a"];
-    CGRect frame=CGRectMake(0, 0, image.size.width*.5, image.size.height*.5);
+    CGRect frame=CGRectMake(0, 0, image.size.width, image.size.height);
     UIImageView* tempImageView=[[UIImageView alloc]initWithFrame:frame];
     tempImageView.image=image;
     tempImageView.center=CGPointMake(320-30, height-30);
@@ -159,59 +292,86 @@
 }
 
 -(void)chooseComment:(UIButton*)button{
-    
     NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
-    
+    //判断是否有deviceToken,没有则进登录界面
     if ([deviceToken isEqualToString:@""]) {
-        
         LoginViewController *loginVC = [[LoginViewController alloc] init];
         UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [[AppDelegate instance] window].rootViewController = naVC;
         [[[AppDelegate instance] window] makeKeyAndVisible];
-        return;
+    }else{
+        self.vc=[[AddCommentViewController alloc]init];
+        self.vc.delegate=self;
+        [self.navigationController presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
     }
-    
-    self.vc=[[AddCommentViewController alloc]init];
-    self.vc.delegate=self;
-    [self.navigationController presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
 }
 
-//=========================================================================
+//======================================================================
 //AddCommentDelegate
-//=========================================================================
+//======================================================================
+//点击添加评论并点取消的回调方法
 -(void)cancelFromAddComment{
     NSLog(@"cancelFromAddComment");
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
-//// "EntityId": ":entity ID", （项目，产品，公司，动态等）
+
+// "EntityId": ":entity ID", （项目，产品，公司，动态等）
 // "entityType": ":”entityType", Personal,Company,Project,Product 之一
 // "CommentContents": "评论内容",
 // "CreatedBy": ":“评论人"
 // }
+//点击添加评论并点确认的回调方法
 -(void)sureFromAddCommentWithComment:(NSString *)comment{
     NSLog(@"sureFromAddCommentWithCommentModel:");
+    if (self.productModel) {
+        [self addProductComment:comment];
+    }else{
+        [self addActivesComment:comment];
+    }
+}
 
-    
+//post完成之后的操作
+-(void)finishAddComment:(NSString*)comment{
+    [self addTableViewContentWithContent:comment];
+    [self myTableViewReloadData];
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+}
+
+//添加动态详情的评论
+-(void)addActivesComment:(NSString*)comment{
+    ActivesModel *model = self.activesModel;
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:model.a_id forKey:@"EntityId"];
+    [dic setValue:[NSString stringWithFormat:@"%@",comment] forKey:@"CommentContents"];
+    [dic setValue:model.a_category forKey:@"EntityType"];
+    [dic setValue:@"13756154-7db5-4516-bcc6-6b7842504c81" forKey:@"CreatedBy"];
+    [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self finishAddComment:comment];
+            if ([self.delegate respondsToSelector:@selector(finishAddCommentFromDetailWithPosts:)]) {
+                [self.delegate finishAddCommentFromDetailWithPosts:posts];
+            }
+        }
+    } dic:dic];
+}
+
+//添加产品详情的评论
+-(void)addProductComment:(NSString*)comment{
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            [self addTableViewContentWithContent:comment];
-            [self myTableViewReloadData];
-            [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+            [self finishAddComment:comment];
         }
-        
     } dic:[@{@"EntityId":self.productModel.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":@"f483bcfc-3726-445a-97ff-ac7f207dd888"} mutableCopy]];
 }
 
-
+//给tableView添加数据
 -(void)addTableViewContentWithContent:(NSString*)content{
-    CommentModel* model=[[CommentModel alloc]init];
-    model.a_content=content;
-        ProductCommentView* view=[[ProductCommentView alloc]initWithCommentModel:model];
+    ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:@"" userName:@"" commentContent:content];
     [self.commentViews insertObject:view atIndex:0];
 }
-//=========================================================================
+//======================================================================
 //UITableViewDataSource,UITableViewDelegate
-//=========================================================================
+//======================================================================
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.commentViews.count+1;
@@ -254,7 +414,7 @@
         
         //第一个cell,添加下方长方形区域,遮盖圆角
         if (indexPath.row==1) {
-            [cell.contentView.subviews.lastObject layer].cornerRadius=7;
+            [cell.contentView.subviews.lastObject layer].cornerRadius=3;
             if (indexPath.row!=self.commentViews.count) {
                 UIView* view=[self getCellSpaceView];
                 view.center=CGPointMake(160, height-5);
@@ -263,7 +423,7 @@
             
         //最后一个cell,添加上方长方形区域,遮盖圆角
         }else if (indexPath.row==self.commentViews.count){
-            [cell.contentView.subviews.lastObject layer].cornerRadius=7;
+            [cell.contentView.subviews.lastObject layer].cornerRadius=3;
             UIView* view=[self getCellSpaceView];
             view.center=CGPointMake(160, 5);
             [cell.contentView insertSubview:view atIndex:0];
@@ -277,7 +437,7 @@
         
         //处理分割线
         if (indexPath.row!=self.commentViews.count) {
-            UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 308, 1)];
+            UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 310, 1)];
             separatorLine.backgroundColor=RGBCOLOR(229, 229, 229);
             separatorLine.center=CGPointMake(160, height-.5);
             [cell.contentView addSubview:separatorLine];
@@ -289,14 +449,14 @@
 }
 
 -(UIView*)getCellSpaceView{
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 308, 10)];
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 310, 10)];
     view.backgroundColor=[UIColor whiteColor];
     return view;
 }
 
-//=========================================================================
-//=========================================================================
-//=========================================================================
+//======================================================================
+//======================================================================
+//======================================================================
 -(void)initMyTableView{
     self.myTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
     self.myTableView.delegate=self;
@@ -312,7 +472,7 @@
     [button setImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
-    self.navigationItem.title=@"产品详情";
+    self.navigationItem.title=self.productModel?@"产品详情":@"";
 }
 
 -(void)back{

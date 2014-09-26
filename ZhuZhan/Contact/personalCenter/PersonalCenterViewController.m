@@ -13,6 +13,7 @@
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
 #import "LoginSqlite.h"
+#import "CommentApi.h"
 @interface PersonalCenterViewController ()
 
 @end
@@ -89,6 +90,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setHandleRefreshEvent:^{
         [wself _refreshing];
     }];
+    
+    [CommentApi PersonalActiveWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+        
+        }
+    } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:0];
     
     model = [[ContactModel alloc] init];
     model.companyName = @"上海中技桩业有限公司";

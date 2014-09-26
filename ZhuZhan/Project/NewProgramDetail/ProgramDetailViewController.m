@@ -167,7 +167,7 @@
     self.navigationItem.rightBarButtonItem = rightButtonItem;
 }
 
--(void)initThemeView{   
+-(void)initThemeView{
     //画布themeView初始
     UIView* themeView=[[UIView alloc]initWithFrame:CGRectMake(0, 64, 320, 50)];
     themeView.backgroundColor=[UIColor whiteColor];
