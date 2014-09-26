@@ -47,7 +47,7 @@
             [qtmquitView reloadData];
             [self setupRefresh];
         }
-    } productId:@"" startIndex:startIndex];
+    } startIndex:startIndex];
 }
 
 /**
@@ -85,7 +85,7 @@
                 [qtmquitView headerEndRefreshing];
                 [qtmquitView reloadData];
             }
-        } productId:@"" startIndex:startIndex];
+        } startIndex:startIndex];
     }
 }
 
@@ -110,7 +110,7 @@
                 [qtmquitView footerEndRefreshing];
                 [qtmquitView reloadData];
             }
-        } productId:@"" startIndex:startIndex];
+        } startIndex:startIndex];
     }
 
 //    if (![ConnectionAvailable isConnectionAvailable]) {
