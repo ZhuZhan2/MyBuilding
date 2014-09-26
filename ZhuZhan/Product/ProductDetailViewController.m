@@ -293,18 +293,17 @@
 
 -(void)chooseComment:(UIButton*)button{
     NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
-    
+    //判断是否有deviceToken,没有则进登录界面
     if ([deviceToken isEqualToString:@""]) {
         LoginViewController *loginVC = [[LoginViewController alloc] init];
         UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [[AppDelegate instance] window].rootViewController = naVC;
         [[[AppDelegate instance] window] makeKeyAndVisible];
-        return;
+    }else{
+        self.vc=[[AddCommentViewController alloc]init];
+        self.vc.delegate=self;
+        [self.navigationController presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
     }
-    
-    self.vc=[[AddCommentViewController alloc]init];
-    self.vc.delegate=self;
-    [self.navigationController presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
 }
 
 //======================================================================
