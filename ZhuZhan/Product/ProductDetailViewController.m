@@ -20,8 +20,9 @@
 #import "LoginViewController.h"
 #import "ContactCommentModel.h"
 #import "ProjectCommentModel.h"
-@interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate>//,ACTimeScrollerDelegate>
-@property(nonatomic,strong)UITableView* myTableView;
+#import "ACTimeScroller.h"
+@interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate,ACTimeScrollerDelegate>
+@property(nonatomic,strong)UITableView* tableView;
 
 @property(nonatomic,strong)ProductModel* productModel;//产品详情模型
 @property(nonatomic,strong)ActivesModel* activesModel;//动态详情模型
@@ -34,10 +35,11 @@
 
 @property(nonatomic,strong)AddCommentViewController* vc;
 
-//@property(nonatomic,strong)ACTimeScroller* timeScroller;
+@property(nonatomic,strong)ACTimeScroller* timeScroller;
 @end
 
 @implementation ProductDetailViewController
+static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 
 -(instancetype)initWithProductModel:(ProductModel*)productModel{
     self=[super init];
@@ -90,6 +92,9 @@
         [self initNavi];
         [self initMyTableView];
         [self getProductView];
+        self.timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
+        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:PSTableViewCellIdentifier];
+        
     }else{
         [CommentApi CommentUrlWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
@@ -118,7 +123,7 @@
     }else{
         [self getActivesView];
     }
-    [self.myTableView reloadData];
+    [self.tableView reloadData];
 }
 
 -(void)getTableViewContents{
@@ -305,6 +310,40 @@
         [self.navigationController presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
     }
 }
+//======================================================================
+//ACTimeScrollerDelegate
+//======================================================================
+- (UITableView *)tableViewForTimeScroller:(ACTimeScroller *)timeScroller{
+    NSLog(@"33333333333");
+    return self.tableView;
+}
+- (NSDate *)timeScroller:(ACTimeScroller *)timeScroller dateForCell:(UITableViewCell *)cell{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    NSLog(@"%d",cell.contentView.subviews[0]==self.productView );
+    if (cell.contentView.subviews[0]==self.productView) {
+        timeScroller.hidden=YES;
+        return nil;
+    }else{
+        timeScroller.hidden=NO;
+        return [self.commentModels[indexPath.row-1] a_time];
+    }
+    //return _datasource[indexPath row];
+}
+
+
+//滚动是触发的事件
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [_timeScroller scrollViewDidScroll];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [_timeScroller scrollViewDidEndDecelerating];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [_timeScroller scrollViewWillBeginDragging];
+}
+
 
 //======================================================================
 //AddCommentDelegate
@@ -367,6 +406,13 @@
 //给tableView添加数据
 -(void)addTableViewContentWithContent:(NSString*)content{
     ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:@"" userName:@"" commentContent:content];
+    if (self.productModel) {
+        ProjectCommentModel* model=[[ProjectCommentModel alloc]initWithEntityID:nil userName:nil commentContents:content userImage:nil time:[NSDate date]];
+        [self.commentModels insertObject:model atIndex:0];
+    }else{
+        ContactCommentModel* model=[[ContactCommentModel alloc]initWithID:nil entityID:nil createdBy:nil userName:nil commentContents:content avatarUrl:nil time:[NSDate date]];
+        [self.commentModels insertObject:model atIndex:0];
+    }
     [self.commentViews insertObject:view atIndex:0];
 }
 //======================================================================
@@ -458,13 +504,12 @@
 //======================================================================
 //======================================================================
 -(void)initMyTableView{
-    self.myTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
-    self.myTableView.delegate=self;
-    self.myTableView.dataSource=self;
-    self.myTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    self.myTableView.backgroundColor=RGBCOLOR(235, 235, 235);
-    self.myTableView.showsVerticalScrollIndicator=NO;
-    [self.view addSubview:self.myTableView];
+    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
+    self.tableView.delegate=self;
+    self.tableView.dataSource=self;
+    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor=RGBCOLOR(235, 235, 235);
+    [self.view addSubview:self.tableView];
 }
 
 -(void)initNavi{
@@ -476,6 +521,8 @@
 }
 
 -(void)back{
+    self.tableView.delegate=nil;
+    self.tableView.dataSource=nil;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

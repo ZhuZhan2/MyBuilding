@@ -18,4 +18,6 @@
 @property (nonatomic, copy) NSDate *a_time;
 
 @property (nonatomic, copy) NSDictionary *dict;
+
+-(instancetype)initWithID:(NSString*)ID entityID:(NSString*)entityID createdBy:(NSString*)createdBy userName:(NSString*)userName commentContents:(NSString*)commentContents avatarUrl:(NSString*)avatarUrl time:(NSDate*)time;
 @end

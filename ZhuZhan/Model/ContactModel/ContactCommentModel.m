@@ -18,4 +18,18 @@
     self.a_commentContents = [ProjectStage ProjectStrStage:dict[@"commentContents"]];
     self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"userImage"]];
 }
+
+-(instancetype)initWithID:(NSString*)ID entityID:(NSString*)entityID createdBy:(NSString*)createdBy userName:(NSString*)userName commentContents:(NSString*)commentContents avatarUrl:(NSString*)avatarUrl time:(NSDate*)time{
+    if (self= [super init]) {
+        self.a_id = ID;
+        self.a_entityId = entityID;
+        self.a_createdBy = createdBy;
+        self.a_userName = userName;
+        self.a_time = time;
+        self.a_commentContents = commentContents;
+        self.a_avatarUrl = avatarUrl;
+    }
+    return self;
+}
+
 @end
