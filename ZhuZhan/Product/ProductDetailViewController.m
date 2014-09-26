@@ -39,7 +39,7 @@
 
 @implementation ProductDetailViewController
 
--(instancetype)initWithProductModel:(ProductModel *)productModel{
+-(instancetype)initWithProductModel:(ProductModel*)productModel{
     self=[super init];
     if (self) {
         self.productModel=productModel;
@@ -48,7 +48,7 @@
     return self;
 }
 
--(instancetype)initWithActivesModel:(ActivesModel *)activesModel{
+-(instancetype)initWithActivesModel:(ActivesModel*)activesModel{
     self=[super init];
     if (self) {
         self.activesModel=activesModel;
@@ -307,9 +307,9 @@
     [self.navigationController presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
 }
 
-//=========================================================================
+//======================================================================
 //AddCommentDelegate
-//=========================================================================
+//======================================================================
 //点击添加评论并点取消的回调方法
 -(void)cancelFromAddComment{
     NSLog(@"cancelFromAddComment");
@@ -349,7 +349,9 @@
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             [self finishAddComment:comment];
-            [self.navigationController.viewControllers.firstObject _refreshing];
+            if ([self.delegate respondsToSelector:@selector(finishAddCommentFromDetailWithPosts:)]) {
+                [self.delegate finishAddCommentFromDetailWithPosts:posts];
+            }
         }
     } dic:dic];
 }
@@ -368,9 +370,9 @@
     ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:@"" userName:@"" commentContent:content];
     [self.commentViews insertObject:view atIndex:0];
 }
-//=========================================================================
+//======================================================================
 //UITableViewDataSource,UITableViewDelegate
-//=========================================================================
+//======================================================================
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.commentViews.count+1;
@@ -453,9 +455,9 @@
     return view;
 }
 
-//=========================================================================
-//=========================================================================
-//=========================================================================
+//======================================================================
+//======================================================================
+//======================================================================
 -(void)initMyTableView{
     self.myTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
     self.myTableView.delegate=self;
