@@ -423,7 +423,7 @@
     point = [_scrollBar convertPoint:point toView:_tableView];
     
     UITableViewCell* cell=[_tableView cellForRowAtIndexPath:[_tableView indexPathForRowAtPoint:point]];
-    //NSLog(@"=====,%@,%f,%f",_tableView.subviews,point.x,point.y);
+    
     if (cell) {
         [self updateDisplayWithCell:cell];
         if (![self alpha])
@@ -450,7 +450,6 @@
     {
         return;
     }
-    
     CGRect newFrame = [_scrollBar convertRect:self.frame toView:_tableView.superview];
     self.frame = newFrame;
     [_tableView.superview addSubview:self];
@@ -475,7 +474,6 @@
     {
         return;
     }
-    
     CGRect selfFrame = self.frame;
     CGRect scrollBarFrame = _scrollBar.frame;
     

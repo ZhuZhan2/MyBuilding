@@ -30,6 +30,7 @@
 #import "LoginSqlite.h"
 #import "ProgramDetailViewController.h"
 #import "ProductDetailViewController.h"
+#import "MJRefresh.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -86,6 +87,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setHandleRefreshEvent:^{
         [wself _refreshing];
     }];
+    
+    //集成刷新控件
+    [self setupRefresh];
     
     startIndex = 0;
     showArr = [[NSMutableArray alloc] init];
@@ -150,6 +154,45 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (void)_refreshing {
     // refresh your data sources
     [self reloadView];
+}
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+#pragma mark 开始进入刷新状态
+- (void)footerRereshing
+{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        
+    }else{
+        startIndex = startIndex +1;
+        [errorview removeFromSuperview];
+        errorview = nil;
+        self.tableView.scrollEnabled = YES;
+        [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                [showArr addObjectsFromArray:posts];
+                for(int i=0;i<posts.count;i++){
+                    ActivesModel *model = posts[i];
+                    if([model.a_eventType isEqualToString:@"Actives"]){
+                        commentView = [CommentView setFram:model];
+                        [viewArr addObject:commentView];
+                    }else{
+                        [viewArr addObject:@""];
+                    }
+                    [_datasource addObject:model.a_time];
+                }
+                [self.tableView footerEndRefreshing];
+                [self.tableView reloadData];
+            }
+        } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
+    }
 }
 
 /******************************************************************************************************************/
@@ -303,7 +346,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             
         }
     }else{
-        
+        ActivesModel *model = showArr[indexPath.row];
+        NSLog(@"%@",model.a_entityUrl);
+        ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
