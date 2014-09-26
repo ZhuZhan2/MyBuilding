@@ -102,10 +102,6 @@ static int count =0;//记录生日textField 的时间被触发的次数
 
     model = [[ContactModel alloc] init];
     [self getUserInformation];
-
-
-    
-
         
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
@@ -142,9 +138,9 @@ static int count =0;//记录生日textField 的时间被触发的次数
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     //恢复tabBar
-    AppDelegate* app=[AppDelegate instance];
-    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-    [homeVC homePageTabBarRestore];
+//    AppDelegate* app=[AppDelegate instance];
+//    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+//    [homeVC homePageTabBarRestore];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
@@ -153,9 +149,9 @@ static int count =0;//记录生日textField 的时间被触发的次数
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //    //隐藏tabBar
-    AppDelegate* app=[AppDelegate instance];
-    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-    [homeVC homePageTabBarHide];
+//    AppDelegate* app=[AppDelegate instance];
+//    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+//    [homeVC homePageTabBarHide];
     
     //增加监听，当键盘出现或改变时收出消息
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -194,7 +190,8 @@ static int count =0;//记录生日textField 的时间被触发的次数
 //当键退出时调用
 - (void)keyboardWillHide:(NSNotification *)aNotification
 {
-    self.tableView.frame = CGRectMake(0, 0, 320, kScreenHeight);
+    
+//    self.tableView.frame = CGRectMake(0, 0, 320, kScreenHeight);
 }
 
 
@@ -433,5 +430,8 @@ static int count =0;//记录生日textField 的时间被触发的次数
 
 -(void)dealloc{
     NSLog(@"dealloc");
+    self.tableView.delegate = nil;
+    self.tableView.dataSource = nil;
+    
 }
 @end
