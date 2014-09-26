@@ -45,7 +45,7 @@
             //初始化刷新视图
             [self setupRefresh];
         }
-    } productId:@"" startIndex:startIndex];
+    } startIndex:startIndex];
 }
 
 -(void)loadQtmquitView{
@@ -105,7 +105,7 @@
                 [qtmquitView headerEndRefreshing];
                 [qtmquitView reloadData];
             }
-        } productId:@"" startIndex:startIndex];
+        } startIndex:startIndex];
     }
 }
 
@@ -122,7 +122,7 @@
                 [qtmquitView footerEndRefreshing];
                 [qtmquitView reloadData];
             }
-        } productId:@"" startIndex:startIndex];
+        } startIndex:startIndex];
     }
 }
 
