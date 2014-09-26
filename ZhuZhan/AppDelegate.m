@@ -77,11 +77,18 @@
     
     [LoginSqlite opensql];
     [RecordSqlite opensql];
-    
-    
-  /* if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+    HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+    self.window.rootViewController = homeVC;
+    [self.window makeKeyAndVisible];
+    /*
+//    NSString *mmm =[LoginSqlite getdata:@"firstLaunch" defaultdata:@""];
+//    NSLog(@"mmm*********%@",mmm);
+   if(![[LoginSqlite getdata:@"firstLaunch" defaultdata:@""]isEqualToString:@"1"]){
+       [LoginSqlite insertData:@"1" datakey:@"firstLaunch"];
         NSLog(@"第一次启动");
+       
+//       NSString *mmm =[LoginSqlite getdata:@"firstLaunch" defaultdata:@""];
+//       NSLog(@"mmm*********%@",mmm);
         LoginViewController *loginview = [[LoginViewController alloc] init];
         UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
         
@@ -89,15 +96,16 @@
         self.window.backgroundColor = [UIColor whiteColor];
         [self.window makeKeyAndVisible];
     }else{
-        NSLog(@"==>%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"deviceToken"]);
-        if (![[NSUserDefaults standardUserDefaults]objectForKey:@"deviceToken"]) {
+
+        NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+        if ([deviceToken isEqualToString:@""]) {
             LoginViewController *loginview = [[LoginViewController alloc] init];
             UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
             [self.window setRootViewController:naVC];
             self.window.backgroundColor = [UIColor whiteColor];
             [self.window makeKeyAndVisible];
         }else{
-    
+            
             #if TARGET_IPHONE_SIMULATOR
             HomePageViewController *homeVC = [[HomePageViewController alloc] init];
             self.window.rootViewController = homeVC;
@@ -119,15 +127,17 @@
                     self.window.backgroundColor = [UIColor whiteColor];
                     [self.window makeKeyAndVisible];
                 }
-            }else{*/
+            }else{
                 HomePageViewController *homeVC = [[HomePageViewController alloc] init];
                 self.window.rootViewController = homeVC;
                 [self.window makeKeyAndVisible];
-//           }
-//            #endif
-//        }
-//    }
+           }
+            #endif
+        }
+    }
+     */
     return YES;
+     
 }
 
 

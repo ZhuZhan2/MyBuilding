@@ -33,18 +33,21 @@
 
 +(CommentView *)setFram:(ActivesModel *)model{
     CommentView *commentView = [[CommentView alloc] init];
-    CGFloat height=0;
-
-    height+=5;//预留上方空间
     
-    model.a_content=@"";
+    UIView* forCornerView=[[UIView alloc]initWithFrame:CGRectZero];
+    [commentView addSubview:forCornerView];
+    forCornerView.layer.cornerRadius=2;
+    forCornerView.layer.masksToBounds=YES;
+    
+    CGFloat height=0;
+    
     EGOImageView *imageView;
     //动态图像
     if(![model.a_imageUrl isEqualToString:@""]){
         imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
-        imageView.frame = CGRectMake(5, 5, 310,[model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310);
+        imageView.frame = CGRectMake(0, 0, 310,[model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310);
         imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
-        [commentView addSubview:imageView];
+        [forCornerView addSubview:imageView];
         height+=imageView.frame.size.height;
     }
     
@@ -77,32 +80,31 @@
         CGSize actualsize =[text boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin |NSStringDrawingUsesFontLeading attributes:tdic context:nil].size;
         contentTextView.frame =CGRectMake(imageUrlExist?10:60,10, actualsize.width, actualsize.height);
         
-        contentTotalView=[[UIView alloc]initWithFrame:CGRectMake(5, height, 310, imageView?contentTextView.frame.size.height+20:contentTextView.frame.size.height+20+40)];
+        contentTotalView=[[UIView alloc]initWithFrame:CGRectMake(0, height, 310, imageView?contentTextView.frame.size.height+20:contentTextView.frame.size.height+20+40)];
         contentTotalView.backgroundColor=[UIColor whiteColor];
         [contentTotalView addSubview:contentTextView];
-        [commentView addSubview:contentTotalView];
+        [forCornerView addSubview:contentTotalView];
         height+=contentTotalView.frame.size.height;
     }
     
     //评论图标
     CGFloat tempHeight=imageView?imageView.frame.origin.y+imageView.frame.size.height:height;
     UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    commentBtn.frame = CGRectMake(270, tempHeight-40, 37, 37);
+    commentBtn.frame = CGRectMake(265, tempHeight-40-5, 37, 37);
     [commentBtn setImage:[GetImagePath getImagePath:@"人脉_66a"] forState:UIControlStateNormal];
     [commentBtn addTarget:commentView action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
-    [commentView addSubview:commentBtn];
+    [forCornerView addSubview:commentBtn];
 
     //用户头像
     tempHeight=imageView?imageView.frame.origin.y:contentTotalView.frame.origin.y;
     EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
     userImageView.layer.masksToBounds = YES;
     userImageView.layer.cornerRadius = 3;
-    userImageView.frame=CGRectMake(10,tempHeight+5,37,37);
-    [commentView addSubview:userImageView];
-    
+    userImageView.frame=CGRectMake(5,tempHeight,37,37);
     userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_avatarUrl]];
-    [commentView addSubview:userImageView];
 
+    forCornerView.frame=CGRectMake(5, 5, 310, height-5);
+    
     //评论tableView
     if(model.a_commentsArr.count !=0){
         int count = 0;

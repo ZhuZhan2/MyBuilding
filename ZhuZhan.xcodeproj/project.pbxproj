@@ -309,6 +309,8 @@
 		5B0A00A319B587CD00500C05 /* TMQuiltView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A009E19B587CD00500C05 /* TMQuiltView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5B0A00A419B587CD00500C05 /* TMQuiltViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A00A019B587CD00500C05 /* TMQuiltViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5B0A00A519B587CD00500C05 /* TMQuiltViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A00A219B587CD00500C05 /* TMQuiltViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5B0C8A4E19D40E670058C0EE /* 动态详情_14a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B0C8A4C19D40E670058C0EE /* 动态详情_14a.png */; };
+		5B0C8A4F19D40E670058C0EE /* 动态详情_14a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B0C8A4D19D40E670058C0EE /* 动态详情_14a@2x.png */; };
 		5B0D03A419B054FB00518D5E /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD614F19ADA1A9001FD483 /* libbaidumapapi.a */; };
 		5B0D03A519B0550900518D5E /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD615119ADA1A9001FD483 /* libbaidumapapi.a */; };
 		5B0D03E319B0554400518D5E /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B0D03E219B0554400518D5E /* mapapi.bundle */; };
@@ -1688,6 +1690,8 @@
 		5B0A00A019B587CD00500C05 /* TMQuiltViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMQuiltViewCell.m; sourceTree = "<group>"; };
 		5B0A00A119B587CD00500C05 /* TMQuiltViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMQuiltViewController.h; sourceTree = "<group>"; };
 		5B0A00A219B587CD00500C05 /* TMQuiltViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMQuiltViewController.m; sourceTree = "<group>"; };
+		5B0C8A4C19D40E670058C0EE /* 动态详情_14a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "动态详情_14a.png"; sourceTree = "<group>"; };
+		5B0C8A4D19D40E670058C0EE /* 动态详情_14a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "动态详情_14a@2x.png"; sourceTree = "<group>"; };
 		5B0D03E219B0554400518D5E /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		5B13C6FE19B6AB0C008EA7A0 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
 		5B13C6FF19B6AB0C008EA7A0 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
@@ -3936,6 +3940,8 @@
 		D3F79A1419D157A400E3B473 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5B0C8A4C19D40E670058C0EE /* 动态详情_14a.png */,
+				5B0C8A4D19D40E670058C0EE /* 动态详情_14a@2x.png */,
 				D3F79F2919D3DC0D00E3B473 /* 01.png */,
 				D3F79F2A19D3DC0D00E3B473 /* 01@2x.png */,
 				D3F79F2B19D3DC0D00E3B473 /* 02.png */,
@@ -4672,6 +4678,7 @@
 				D3F79D5119D157A700E3B473 /* 人脉_74a.png in Resources */,
 				D3F79E6C19D157A700E3B473 /* 项目详情-2_03a@2x.png in Resources */,
 				D3F79EE819D157A700E3B473 /* 项目－项目专题详情_07a@2x.png in Resources */,
+				5B0C8A4F19D40E670058C0EE /* 动态详情_14a@2x.png in Resources */,
 				D3F79DCF19D157A700E3B473 /* 公司－公司详情_05a.png in Resources */,
 				D3F79F7F19D3DC0E00E3B473 /* 011.png in Resources */,
 				D3F79D5E19D157A700E3B473 /* 人脉－个人中心_07a@2x.png in Resources */,
@@ -5146,6 +5153,7 @@
 				D3F79EB619D157A700E3B473 /* 项目阶段_07a@2x.png in Resources */,
 				D3F79D8B19D157A700E3B473 /* 人脉－发布动态_09a.png in Resources */,
 				D3F79EA419D157A700E3B473 /* 项目详情-筛选_39a@2x.png in Resources */,
+				5B0C8A4E19D40E670058C0EE /* 动态详情_14a.png in Resources */,
 				D3F79CB019D157A700E3B473 /* bg001@2x.png in Resources */,
 				D3F79E8719D157A700E3B473 /* 项目详情-筛选_03.png in Resources */,
 				D3F79D2119D157A700E3B473 /* 人脉-点击效果_06a.png in Resources */,
