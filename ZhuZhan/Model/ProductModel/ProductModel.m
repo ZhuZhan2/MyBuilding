@@ -28,10 +28,10 @@
 }
 
 + (NSURLSessionDataTask *)GetProductInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block productId:(NSString *)productId startIndex:(int)startIndex{
-    NSString *urlStr = [NSString stringWithFormat:@"api/ProductInformation/ProductInformation?productId=%@&pageSize=50&pageIndex=%d",productId,startIndex];
+    NSString *urlStr = [NSString stringWithFormat:@"api/ProductInformation/ProductInformation?productId=%@&pageSize=10&pageIndex=%d",productId,startIndex];
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]||[[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             for(NSDictionary *item in JSON[@"d"][@"data"]){
                 ProductModel *model = [[ProductModel alloc] init];
@@ -66,7 +66,7 @@
     NSString *urlStr = [NSString stringWithFormat:@"api/ProductInformation/AddProductInformation"];
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON==add=>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]||[[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             [mutablePosts addObject:JSON];
             if (block) {
@@ -94,7 +94,7 @@
     NSString *urlStr = [NSString stringWithFormat:@"api/ProductInformation/PublishProductInformation"];
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON=publish==>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]||[[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             [mutablePosts addObject:JSON];
             if (block) {

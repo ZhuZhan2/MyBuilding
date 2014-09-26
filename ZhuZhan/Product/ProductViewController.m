@@ -12,6 +12,8 @@
 #import "CommentModel.h"
 #import "ProductModel.h"
 #import "EGOImageView.h"
+#import "MJRefresh.h"
+#import "ConnectionAvailable.h"
 @interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate>
 @property (nonatomic, strong) NSMutableArray *images;
 @end
@@ -34,7 +36,7 @@
 	qtmquitView.dataSource = self;
 	qtmquitView.showsVerticalScrollIndicator=NO;
 	[self.view addSubview:qtmquitView];
-    //[self createHeaderView];
+    // [self createHeaderView];
 	//[self performSelector:@selector(testFinishedLoadData) withObject:nil afterDelay:0.0f];
     
     startIndex = 0;
@@ -43,9 +45,95 @@
             //NSLog(@"=====%@",posts);
             showArr = posts;
             [qtmquitView reloadData];
+            [self setupRefresh];
         }
     } productId:@"" startIndex:startIndex];
+}
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [qtmquitView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    //[_tableView headerBeginRefreshing];
     
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [qtmquitView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    NSLog(@"33333333333");
+    if (![ConnectionAvailable isConnectionAvailable]) {
+//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        hud.removeFromSuperViewOnHide =YES;
+//        hud.mode = MBProgressHUDModeText;
+//        hud.labelText = @"当前网络不可用，请检查网络连接！";
+//        hud.labelFont = [UIFont fontWithName:nil size:14];
+//        hud.minSize = CGSizeMake(132.f, 108.0f);
+//        [hud hide:YES afterDelay:3];
+//        [self.tableView footerEndRefreshing];
+//        [self.tableView headerEndRefreshing];
+    }else{
+        startIndex=0;
+        [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                showArr = posts;
+                [qtmquitView headerEndRefreshing];
+                [qtmquitView reloadData];
+            }
+        } productId:@"" startIndex:startIndex];
+    }
+}
+
+- (void)footerRereshing
+{
+    NSLog(@"33333333333");
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        //        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        //        hud.removeFromSuperViewOnHide =YES;
+        //        hud.mode = MBProgressHUDModeText;
+        //        hud.labelText = @"当前网络不可用，请检查网络连接！";
+        //        hud.labelFont = [UIFont fontWithName:nil size:14];
+        //        hud.minSize = CGSizeMake(132.f, 108.0f);
+        //        [hud hide:YES afterDelay:3];
+        //        [self.tableView footerEndRefreshing];
+        //        [self.tableView headerEndRefreshing];
+    }else{
+        startIndex++;
+        [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                [showArr addObjectsFromArray:posts];
+                [qtmquitView footerEndRefreshing];
+                [qtmquitView reloadData];
+            }
+        } productId:@"" startIndex:startIndex];
+    }
+
+//    if (![ConnectionAvailable isConnectionAvailable]) {
+//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        hud.removeFromSuperViewOnHide =YES;
+//        hud.mode = MBProgressHUDModeText;
+//        hud.labelText = @"当前网络不可用，请检查网络连接！";
+//        hud.labelFont = [UIFont fontWithName:nil size:14];
+//        hud.minSize = CGSizeMake(132.f, 108.0f);
+//        [hud hide:YES afterDelay:3];
+//        [self.tableView footerEndRefreshing];
+//        [self.tableView headerEndRefreshing];
+//    }else{
+//        startIndex = startIndex +1;
+//        [ProjectApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+//            if(!error){
+//                [showArr addObjectsFromArray:posts];
+//                [self.tableView footerEndRefreshing];
+//                [self.tableView headerEndRefreshing];
+//                [self.tableView reloadData];
+//            }
+//        }startIndex:startIndex];
+//    }
 }
 
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
