@@ -39,7 +39,7 @@
     [self.contentView addSubview:lineImage];
     lineImage.alpha = 0.1;
     
-    UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(75, 0, 2, 49)];
+    UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(67, 0, 2, 49)];
     [lineImage2 setBackgroundColor:[UIColor blackColor]];
     [self.contentView addSubview:lineImage2];
     lineImage2.alpha = 0.2;
@@ -55,7 +55,7 @@
     [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:btn];
     
-    stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(70, 18.5, 12, 13)];
+    stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(62, 18.5, 12, 13)];
     [stageImage setImage:[GetImagePath getImagePath:@"人脉－个人中心_05a"]];
     [self.contentView addSubview:stageImage];
     
