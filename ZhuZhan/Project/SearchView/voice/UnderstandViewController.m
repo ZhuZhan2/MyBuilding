@@ -22,21 +22,18 @@
 #import "AppDelegate.h"
 #import "JSONKit.h"
 
-#define FirstTouch 1
-#define SecondTouch 2
+
 
 @implementation UnderstandViewController
 
-
-static int touchCount =2;
+static int timeCount =0;
+static bool startListen =YES;
 - (instancetype) init
 {
     self = [super init];
-    if (!self) {
-        return nil;
+    if (self) {
+
     }
-    _iFlySpeechUnderstander = [IFlySpeechUnderstander sharedInstance];
-    _iFlySpeechUnderstander.delegate = self;
     return self;
 }
 
@@ -82,14 +79,13 @@ static int touchCount =2;
     resultView.layer.borderWidth = 0;
     _textView = resultView;
     _textView.text =@"";
-    label = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 140, 40)];
+    label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 140, 40)];
     label.font = [UIFont systemFontOfSize:25.0f];
     label.textColor = [UIColor colorWithRed:(151/255.0)  green:(151/255.0)  blue:(151/255.0)  alpha:1.0];
     label.text =@"请开始说话";
     [resultView addSubview:label];
     UIImage *image = [GetImagePath getImagePath:@"语音搜索_04"];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(90, resultView.frame.origin.y+resultView.frame.size.height+103.5, 149, 149)];
-    //    imageView.center = CGPointMake(160, resultView.frame.origin.y+resultView.frame.size.height+60);
     imageView.image = image;
     [self.view addSubview:imageView];
     button = [[DKCircleButton alloc] initWithFrame:CGRectMake(0, 0, 140, 140)];
@@ -108,6 +104,9 @@ static int touchCount =2;
     [self.view addSubview:button];
     
     [resultView setNeedsDisplay];
+    
+    _iFlySpeechUnderstander = [IFlySpeechUnderstander sharedInstance];
+    _iFlySpeechUnderstander.delegate = self;
 }
 
 -(void)leftBtnClick{
@@ -129,6 +128,11 @@ static int touchCount =2;
     [homeVC homePageTabBarRestore];
     [_iFlySpeechUnderstander cancel];
     _iFlySpeechUnderstander.delegate = nil;
+        startListen = YES;
+    [timer invalidate];
+    [_iFlySpeechUnderstander stopListening];
+    timer =nil;
+    timeCount =0;
     //设置回非语义识别
     [_iFlySpeechUnderstander destroy];
 }
@@ -136,57 +140,41 @@ static int touchCount =2;
 - (void)startListening1
 {
     
-    
-    touchCount--;
-    [button blink];
-    label.hidden =NO;
-    label.text =@"正在接收中...";
-    if (touchCount ==FirstTouch) {
+    NSLog(@"nnn******%u",startListen);
+    if (startListen ==YES) {
         _textView.text =@"";
-        timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(startListening1) userInfo:nil repeats:YES];
-        
         bool ret = [_iFlySpeechUnderstander startListening];
+        
         if (ret) {
-            
-           NSString  *str =  [_textView.text stringByReplacingOccurrencesOfString:@" (置信度:100)\n" withString:@""];
-            str =  [str stringByReplacingOccurrencesOfString:@"。" withString:@""];
-            str =  [str stringByReplacingOccurrencesOfString:@"！" withString:@""];
-            _textView.text =str;
-            
-            if (![str  isEqual:@""]) {
-                label.hidden =YES;
-                [timer invalidate];
-                [_iFlySpeechUnderstander stopListening];
-                _textView.text = str;
-                touchCount=2;
-                return;
-            }
+            timer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(circleBtn) userInfo:nil repeats:YES];
+            startListen =NO;
+            label.hidden =NO;
+            label.text =@"正在接收中...";
         }
         else
         {
             [_popView setText: @"启动识别服务失败，请稍后重试"];//可能是上次请求未结束
             [self.view addSubview:_popView];
+            startListen =NO;
         }
         
-        touchCount = touchCount+5;
-    }
-    else if(touchCount==SecondTouch) {
-        label.hidden =YES;
-        [timer invalidate];
-        [_iFlySpeechUnderstander stopListening];
-        return;
+        
     }
     
+}
+
+-(void)circleBtn
+{
+    
+    [button blink];
 }
 
 
 - (void)rightAction{
     
     ResultsTableViewController *resultVC = [[ResultsTableViewController alloc] init];
-    NSString *string = [_textView.text stringByReplacingOccurrencesOfString:@"。" withString:@""];
-    
-    NSLog(@"nijiosdfopskopd   %@",string);
-    resultVC.searchStr = string;
+
+    resultVC.searchStr = _textView.text;
     [self.navigationController pushViewController:resultVC animated:YES];
 }
 
@@ -198,7 +186,15 @@ static int touchCount =2;
 
 - (void) onResults:(NSArray *) results isLast:(BOOL)isLast
 {
-NSMutableString *resultString = [[NSMutableString alloc] init];
+    [_iFlySpeechUnderstander stopListening];
+    [timer invalidate];
+    label.hidden =YES;
+    timeCount++;
+    if (timeCount==2) {
+        return;
+    }
+    startListen = YES;
+    NSMutableString *resultString = [[NSMutableString alloc] init];
     NSDictionary *dic = results [0];
     NSString *jsonStr=nil;
     for (NSString *key in dic) {
@@ -210,18 +206,25 @@ NSMutableString *resultString = [[NSMutableString alloc] init];
         for (NSDictionary *tempDic in array) {
             NSString *tempStr =[[[tempDic objectForKey:@"cw"] objectAtIndex:0] objectForKey:@"w"];
             [resultString appendString:tempStr];
-                    NSLog(@"听写wwwwwww结果：%@",resultString);
+            NSLog(@"听写wwwwwww结果：%@",resultString);
         }
         
     }
     NSString  *str =  [resultString stringByReplacingOccurrencesOfString:@" (置信度:100)\n" withString:@""];
     str =  [str stringByReplacingOccurrencesOfString:@"。" withString:@""];
     str =  [str stringByReplacingOccurrencesOfString:@"！" withString:@""];
-    _textView.text =str;
+    str =  [str stringByReplacingOccurrencesOfString:@"？" withString:@""];
+    str =  [str stringByReplacingOccurrencesOfString:@"，" withString:@""];
+    if (![str isEqualToString:@""]) {
+        _textView.text =str;
+    }
+    
+    
     
 }
 
 - (void) onError:(IFlySpeechError *) errorCode{
-    NSLog(@"%@",errorCode);
+    NSLog(@"***%@",errorCode);
 }
+
 @end

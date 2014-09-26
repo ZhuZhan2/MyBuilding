@@ -8,7 +8,7 @@
 
 #import "RecognizerFactory.h"
 #import "iflyMSC/IFlySpeechRecognizer.h"
-//#import "Definition.h"
+#import "Definition.h"
 #import "iflyMSC/IFlySpeechConstant.h"
 //#import "iflyMSC/IFlySpeechUtility.h"
 
@@ -23,7 +23,8 @@
     iflySpeechRecognizer = [IFlySpeechRecognizer sharedInstance];
     iflySpeechRecognizer.delegate = delegate;//请不要删除这句,createRecognizer是单例方法，需要重新设置代理
     [iflySpeechRecognizer setParameter:domain forKey:[IFlySpeechConstant IFLY_DOMAIN]];
-    [iflySpeechRecognizer setParameter:@"16000" forKey:[IFlySpeechConstant SAMPLE_RATE]];
+    [iflySpeechRecognizer setParameter:@"15000" forKey:[IFlySpeechConstant SAMPLE_RATE]];
+    [iflySpeechRecognizer setParameter:VAD_EOS_VALUE forKey:[IFlySpeechConstant VAD_EOS]];
     [iflySpeechRecognizer setParameter:@"asr.pcm" forKey:[IFlySpeechConstant ASR_AUDIO_PATH]];
     
     // | result_type   | 返回结果的数据格式，可设置为json，xml，plain，默认为json。
