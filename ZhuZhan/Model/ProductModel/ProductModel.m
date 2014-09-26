@@ -20,6 +20,13 @@
     self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageHeight"]]];
 }
 
+-(NSString *)a_commentNumber{
+    if ([_a_commentNumber isEqualToString:@""]) {
+        _a_commentNumber=@"0";
+    }
+    return _a_commentNumber;
+}
+
 + (NSURLSessionDataTask *)GetProductInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block productId:(NSString *)productId startIndex:(int)startIndex{
     NSString *urlStr = [NSString stringWithFormat:@"api/ProductInformation/ProductInformation?productId=%@&pageSize=50&pageIndex=%d",productId,startIndex];
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {

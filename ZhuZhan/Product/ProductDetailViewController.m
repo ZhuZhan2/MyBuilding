@@ -39,7 +39,7 @@
 
 @implementation ProductDetailViewController
 
--(instancetype)initWithProductModel:(ProductModel *)productModel{
+-(instancetype)initWithProductModel:(ProductModel*)productModel{
     self=[super init];
     if (self) {
         self.productModel=productModel;
@@ -48,7 +48,7 @@
     return self;
 }
 
--(instancetype)initWithActivesModel:(ActivesModel *)activesModel{
+-(instancetype)initWithActivesModel:(ActivesModel*)activesModel{
     self=[super init];
     if (self) {
         self.activesModel=activesModel;
@@ -80,7 +80,6 @@
         [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 self.commentModels=posts;
-                NSLog(@"%@",self.commentModels);
                 [self getTableViewContents];
                 [self myTableViewReloadData];
                 //self.timeScroller=[[ACTimeScroller alloc]initWithDelegate:self];;
@@ -130,7 +129,6 @@
             view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_imageUrl userName:model.a_name commentContent:model.a_content];
         }else{
             ContactCommentModel* model=self.commentModels[i];
-            NSLog(@"%@",model.a_avatarUrl);
             view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_avatarUrl userName:model.a_userName commentContent:model.a_commentContents];
         }
         [self.commentViews addObject:view];
@@ -295,54 +293,85 @@
 
 -(void)chooseComment:(UIButton*)button{
     NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
-    
+    //判断是否有deviceToken,没有则进登录界面
     if ([deviceToken isEqualToString:@""]) {
         LoginViewController *loginVC = [[LoginViewController alloc] init];
         UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [[AppDelegate instance] window].rootViewController = naVC;
         [[[AppDelegate instance] window] makeKeyAndVisible];
-        return;
+    }else{
+        self.vc=[[AddCommentViewController alloc]init];
+        self.vc.delegate=self;
+        [self.navigationController presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
     }
-    
-    self.vc=[[AddCommentViewController alloc]init];
-    self.vc.delegate=self;
-    [self.navigationController presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
 }
 
-//=========================================================================
+//======================================================================
 //AddCommentDelegate
-//=========================================================================
+//======================================================================
+//点击添加评论并点取消的回调方法
 -(void)cancelFromAddComment{
     NSLog(@"cancelFromAddComment");
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
-//// "EntityId": ":entity ID", （项目，产品，公司，动态等）
+
+// "EntityId": ":entity ID", （项目，产品，公司，动态等）
 // "entityType": ":”entityType", Personal,Company,Project,Product 之一
 // "CommentContents": "评论内容",
 // "CreatedBy": ":“评论人"
 // }
-//添加完评论并点确认回来之后
+//点击添加评论并点确认的回调方法
 -(void)sureFromAddCommentWithComment:(NSString *)comment{
     NSLog(@"sureFromAddCommentWithCommentModel:");
+    if (self.productModel) {
+        [self addProductComment:comment];
+    }else{
+        [self addActivesComment:comment];
+    }
+}
 
+//post完成之后的操作
+-(void)finishAddComment:(NSString*)comment{
+    [self addTableViewContentWithContent:comment];
+    [self myTableViewReloadData];
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+}
+
+//添加动态详情的评论
+-(void)addActivesComment:(NSString*)comment{
+    ActivesModel *model = self.activesModel;
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:model.a_id forKey:@"EntityId"];
+    [dic setValue:[NSString stringWithFormat:@"%@",comment] forKey:@"CommentContents"];
+    [dic setValue:model.a_category forKey:@"EntityType"];
+    [dic setValue:@"13756154-7db5-4516-bcc6-6b7842504c81" forKey:@"CreatedBy"];
+    [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self finishAddComment:comment];
+            if ([self.delegate respondsToSelector:@selector(finishAddCommentFromDetailWithPosts:)]) {
+                [self.delegate finishAddCommentFromDetailWithPosts:posts];
+            }
+        }
+    } dic:dic];
+}
+
+//添加产品详情的评论
+-(void)addProductComment:(NSString*)comment{
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            [self addTableViewContentWithContent:comment];
-            [self myTableViewReloadData];
-            [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+            [self finishAddComment:comment];
         }
     } dic:[@{@"EntityId":self.productModel.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":@"f483bcfc-3726-445a-97ff-ac7f207dd888"} mutableCopy]];
 }
 
+//给tableView添加数据
 -(void)addTableViewContentWithContent:(NSString*)content{
-    CommentModel* model=[[CommentModel alloc]init];
-    model.a_content=content;
-    ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_userImageUrl userName:model.a_name commentContent:model.a_content];
+    ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:@"" userName:@"" commentContent:content];
     [self.commentViews insertObject:view atIndex:0];
 }
-//=========================================================================
+//======================================================================
 //UITableViewDataSource,UITableViewDelegate
-//=========================================================================
+//======================================================================
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.commentViews.count+1;
@@ -408,7 +437,7 @@
         
         //处理分割线
         if (indexPath.row!=self.commentViews.count) {
-            UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 308, 1)];
+            UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 310, 1)];
             separatorLine.backgroundColor=RGBCOLOR(229, 229, 229);
             separatorLine.center=CGPointMake(160, height-.5);
             [cell.contentView addSubview:separatorLine];
@@ -420,14 +449,14 @@
 }
 
 -(UIView*)getCellSpaceView{
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 308, 10)];
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 310, 10)];
     view.backgroundColor=[UIColor whiteColor];
     return view;
 }
 
-//=========================================================================
-//=========================================================================
-//=========================================================================
+//======================================================================
+//======================================================================
+//======================================================================
 -(void)initMyTableView{
     self.myTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
     self.myTableView.delegate=self;
@@ -443,7 +472,7 @@
     [button setImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
-    self.navigationItem.title=@"产品详情";
+    self.navigationItem.title=self.productModel?@"产品详情":@"";
 }
 
 -(void)back{

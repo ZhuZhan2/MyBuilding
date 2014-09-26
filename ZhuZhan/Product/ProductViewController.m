@@ -282,7 +282,10 @@
     CGSize size=[self imageAtIndexPath:indexPath];
     CGFloat scroll=[quiltView cellWidth]/size.width;
     
-    return [self imageAtIndexPath:indexPath].height *scroll+80;// / [self quiltViewNumberOfColumns:quiltView];
+    ProductModel *model = showArr[indexPath.row];
+    BOOL productContentExist=![model.a_content isEqualToString:@""];
+    
+    return [self imageAtIndexPath:indexPath].height *scroll+(productContentExist?80:30);
 }
 
 //选中cell调用的方法

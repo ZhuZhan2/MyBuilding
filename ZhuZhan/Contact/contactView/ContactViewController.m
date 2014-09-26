@@ -29,7 +29,6 @@
 #import "HomePageViewController.h"
 #import "LoginSqlite.h"
 #import "ProgramDetailViewController.h"
-#import "ProductDetailViewController.h"
 #import "MJRefresh.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
@@ -468,23 +467,33 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [dic setValue:@"13756154-7db5-4516-bcc6-6b7842504c81" forKey:@"CreatedBy"];
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            ContactCommentModel *commentModel = [[ContactCommentModel alloc] init];
-            [commentModel setDict:posts[0]];
-            if(model.a_commentsArr.count >=3){
-                [model.a_commentsArr removeObjectAtIndex:1];
-                [model.a_commentsArr insertObject:commentModel atIndex:0];
-            }else if(model.a_commentsArr.count ==2){
-                [model.a_commentsArr insertObject:commentModel atIndex:0];
-                [model.a_commentsArr insertObject:@"" atIndex:2];
-            }else{
-                [model.a_commentsArr insertObject:commentModel atIndex:0];
-            }
-            commentView = [CommentView setFram:model];
-            [showArr replaceObjectAtIndex:indexpath.row withObject:model];
-            [viewArr replaceObjectAtIndex:indexpath.row withObject:commentView];
-            [self.tableView reloadData];
+            [self finishPostCommentWithPosts:posts activesModel:model];
         }
     } dic:dic];
+}
+
+//评论发送完后的页面tableView刷新
+-(void)finishPostCommentWithPosts:(NSMutableArray*)posts activesModel:(ActivesModel*)model{
+    ContactCommentModel *commentModel = [[ContactCommentModel alloc] init];
+    [commentModel setDict:posts[0]];
+    if(model.a_commentsArr.count >=3){
+        [model.a_commentsArr removeObjectAtIndex:1];
+        [model.a_commentsArr insertObject:commentModel atIndex:0];
+    }else if(model.a_commentsArr.count ==2){
+        [model.a_commentsArr insertObject:commentModel atIndex:0];
+        [model.a_commentsArr insertObject:@"" atIndex:2];
+    }else{
+        [model.a_commentsArr insertObject:commentModel atIndex:0];
+    }
+    commentView = [CommentView setFram:model];
+    [showArr replaceObjectAtIndex:indexpath.row withObject:model];
+    [viewArr replaceObjectAtIndex:indexpath.row withObject:commentView];
+    [self.tableView reloadData];
+}
+
+-(void)finishAddCommentFromDetailWithPosts:(NSMutableArray *)posts{
+    ActivesModel *model = showArr[indexpath.row];
+    [self finishPostCommentWithPosts:posts activesModel:model];
 }
 
 -(void)cancelFromAddComment{
@@ -528,10 +537,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)gotoDetailView:(NSIndexPath *)indexPath{
-    NSLog(@"indexPath=====%d",indexPath.row);
+    indexpath=indexPath;
     ActivesModel *model = showArr[indexPath.row];
-    NSLog(@"%@",model.a_entityUrl);
     ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+    vc.delegate=self;
     [self.navigationController pushViewController:vc animated:YES];
 }
 @end

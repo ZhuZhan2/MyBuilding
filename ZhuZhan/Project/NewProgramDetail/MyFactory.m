@@ -23,7 +23,7 @@
     height+=part0.frame.size.height;
     
     //获得第二部分
-    UIView* part1=[self getThreeLinesWithDataThreeStrs:datas];
+    UIView* part1=[self getThreeLinesWithDataThreeStrs:datas isFirst:[title isEqualToString:@"土地规划/拍卖"]?YES:NO];
     part1.center=CGPointMake(160, height+part1.frame.size.height*.5);
     [view addSubview:part1];
     height+=part1.frame.size.height;
@@ -58,38 +58,52 @@
 }
 
 //获得titleView下面的三行strs
-+(UIView*)getThreeLinesWithDataThreeStrs:(NSArray*)datas{
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 110)];
++(UIView*)getThreeLinesWithDataThreeStrs:(NSArray*)datas isFirst:(BOOL)isFirst{
+    UIView* view=[[UIView alloc]initWithFrame:CGRectZero];
+    
+    //计算总高,初始值10为分割线下方的预留高度
+    CGFloat height=10;
     
     //与大标题之间的分割线
     [view addSubview:[self getSeperatedLine]];
     
     //第一行str
-    UILabel* programName=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 20)];
-    programName.center=CGPointMake(160, 20);
+    UIFont* font=[UIFont systemFontOfSize:18];
+    CGSize size=[datas[0] boundingRectWithSize:CGSizeMake(280, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
+    UILabel* programName=[[UILabel alloc]initWithFrame:CGRectMake(20, height, 280, size.height)];
     programName.text=datas[0];
-    programName.font=[UIFont systemFontOfSize:18];
+    programName.font=font;
+    programName.numberOfLines=0;
     programName.textAlignment=NSTextAlignmentCenter;
     [view addSubview:programName];
+    height+=programName.frame.size.height+5;
     
     //第二行str
-    UILabel* areaLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 20)];
-    areaLabel.center=CGPointMake(160, 50);
+    font=[UIFont systemFontOfSize:14];
+    size=[datas[1] boundingRectWithSize:CGSizeMake(280, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
+    
+    UILabel* areaLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, height, 280, size.height)];
     areaLabel.text=datas[1];
+    areaLabel.numberOfLines=2;
     areaLabel.font=[UIFont systemFontOfSize:14];
     areaLabel.textAlignment=NSTextAlignmentCenter;
     [view addSubview:areaLabel];
+    height+=areaLabel.frame.size.height+5;
     
     //第三行str
-    UILabel* areaDetailLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 280, 40)];
+    font=[UIFont systemFontOfSize:13];
+    size=[datas[2] boundingRectWithSize:CGSizeMake(280, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
+    
+    UILabel* areaDetailLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, height, 280, isFirst?(size.height>20?32:size.height):size.height)];
     areaDetailLabel.text=datas[2];
-    areaDetailLabel.center=CGPointMake(160, 80);
-    areaDetailLabel.numberOfLines=2;
+    areaDetailLabel.numberOfLines=0;
     areaDetailLabel.textColor=RGBCOLOR(125, 125, 125);
     areaDetailLabel.font=[UIFont systemFontOfSize:13];
     areaDetailLabel.textAlignment=NSTextAlignmentCenter;
     [view addSubview:areaDetailLabel];
+    height+=areaDetailLabel.frame.size.height+10;
     
+    view.frame=CGRectMake(0, 0, 320, height);
     return view;
 }
 
@@ -181,37 +195,53 @@
     UIView* view=[[UIView alloc]initWithFrame:CGRectZero];
     view.backgroundColor=[UIColor whiteColor];
     
-    for (int i=0; i<2; i++) {
-        UILabel* firstLabel=[[UILabel alloc]initWithFrame:CGRectMake(i*160, 10, 160, 20)];
-        firstLabel.text=firstStrs[i];
-        firstLabel.textColor=RGBCOLOR(82, 125, 237);
-        firstLabel.font=[UIFont systemFontOfSize:14];
-        firstLabel.textAlignment=NSTextAlignmentCenter;
-        [view addSubview:firstLabel];
-        
-        UILabel* secondLabel=[[UILabel alloc]initWithFrame:CGRectMake(i*160, 30, 160, 20)];
-        secondLabel.text=secondStrs[i];
-        secondLabel.textColor=RGBCOLOR(125, 125, 125);
-        secondLabel.font=[UIFont systemFontOfSize:14];
-        secondLabel.textAlignment=NSTextAlignmentCenter;
-        [view addSubview:secondLabel];
-    }
-    UILabel* firstLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 10+60, 160, 20)];
-    firstLabel.text=firstStrs[2];
-    firstLabel.textColor=RGBCOLOR(82, 125, 237);
-    firstLabel.font=[UIFont systemFontOfSize:14];
-    firstLabel.textAlignment=NSTextAlignmentCenter;
-    [view addSubview:firstLabel];
+    //土地面积
+    UILabel* areaFirstLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 10, 160, 20)];
+    areaFirstLabel.text=firstStrs[0];
+    areaFirstLabel.textColor=RGBCOLOR(82, 125, 237);
+    areaFirstLabel.font=[UIFont systemFontOfSize:14];
+    areaFirstLabel.textAlignment=NSTextAlignmentLeft;
+    [view addSubview:areaFirstLabel];
     
-    UILabel* secondLabel=[[UILabel alloc]initWithFrame:CGRectZero];
-    secondLabel.text=secondStrs[2];
-    secondLabel.numberOfLines=0;
-    secondLabel.textColor=RGBCOLOR(125, 125, 125);
-    secondLabel.font=[UIFont systemFontOfSize:14];
-    secondLabel.textAlignment=NSTextAlignmentLeft;
-    CGRect bounds=[secondLabel.text boundingRectWithSize:CGSizeMake( 305-52, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:14] forKey:NSFontAttributeName] context:nil];
-    secondLabel.frame=CGRectMake(52, 30+60, 305-52, bounds.size.height);
-    [view addSubview:secondLabel];
+    UILabel* areaSecondLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 30, 160, 20)];
+    areaSecondLabel.text=secondStrs[0];
+    areaSecondLabel.textColor=RGBCOLOR(125, 125, 125);
+    areaSecondLabel.font=[UIFont systemFontOfSize:14];
+    areaSecondLabel.textAlignment=NSTextAlignmentLeft;
+    [view addSubview:areaSecondLabel];
+
+    //土地容积率
+    UILabel* plotFirstLabel=[[UILabel alloc]initWithFrame:CGRectMake(160, 10, 160, 20)];
+    plotFirstLabel.text=firstStrs[1];
+    plotFirstLabel.textColor=RGBCOLOR(82, 125, 237);
+    plotFirstLabel.font=[UIFont systemFontOfSize:14];
+    plotFirstLabel.textAlignment=NSTextAlignmentCenter;
+    [view addSubview:plotFirstLabel];
+    
+    UILabel* plotSecondLabel=[[UILabel alloc]initWithFrame:CGRectMake(160, 30, 160, 20)];
+    plotSecondLabel.text=secondStrs[1];
+    plotSecondLabel.textColor=RGBCOLOR(125, 125, 125);
+    plotSecondLabel.font=[UIFont systemFontOfSize:14];
+    plotSecondLabel.textAlignment=NSTextAlignmentCenter;
+    [view addSubview:plotSecondLabel];
+    
+    //地块用途
+    UILabel* usedFirstLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 10+60, 160, 20)];
+    usedFirstLabel.text=firstStrs[2];
+    usedFirstLabel.textColor=RGBCOLOR(82, 125, 237);
+    usedFirstLabel.font=[UIFont systemFontOfSize:14];
+    usedFirstLabel.textAlignment=NSTextAlignmentLeft;
+    [view addSubview:usedFirstLabel];
+    
+    UILabel* usedSecondLabel=[[UILabel alloc]initWithFrame:CGRectZero];
+    usedSecondLabel.text=secondStrs[2];
+    usedSecondLabel.numberOfLines=0;
+    usedSecondLabel.textColor=RGBCOLOR(125, 125, 125);
+    usedSecondLabel.font=[UIFont systemFontOfSize:14];
+    usedSecondLabel.textAlignment=NSTextAlignmentLeft;
+    CGRect bounds=[usedSecondLabel.text boundingRectWithSize:CGSizeMake( 280, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:14] forKey:NSFontAttributeName] context:nil];
+    usedSecondLabel.frame=CGRectMake(20, 30+60, 280, bounds.size.height);
+    [view addSubview:usedSecondLabel];
     
     view.frame=CGRectMake(0, 0, 320, 2*60+(bounds.size.height-20));
     return view;

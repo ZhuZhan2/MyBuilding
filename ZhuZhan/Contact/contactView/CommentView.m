@@ -22,15 +22,6 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
-
 +(CommentView *)setFram:(ActivesModel *)model{
     CommentView *commentView = [[CommentView alloc] init];
     
@@ -90,7 +81,7 @@
     //评论图标
     CGFloat tempHeight=imageView?imageView.frame.origin.y+imageView.frame.size.height:height;
     UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    commentBtn.frame = CGRectMake(265, tempHeight-40-5, 37, 37);
+    commentBtn.frame = CGRectMake(265, tempHeight-40, 37, 37);
     [commentBtn setImage:[GetImagePath getImagePath:@"人脉_66a"] forState:UIControlStateNormal];
     [commentBtn addTarget:commentView action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
     [forCornerView addSubview:commentBtn];
@@ -162,13 +153,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     if(showArr.count>=3){
         return 4;
     }else{

@@ -12,6 +12,9 @@
 @property(nonatomic,strong)UILabel* countLabel;//字数label
 @property(nonatomic,strong)UILabel* aboveMaxLabel;//超过字数限制时的中文提示label
 @property(nonatomic,strong)UITextView* textView;
+
+@property(nonatomic,strong)UIButton* sureBtn;
+@property(nonatomic,strong)UIButton* cancelBtn;
 @end
 
 @implementation AddCommentViewController
@@ -80,21 +83,21 @@
     titleLabel.font=[UIFont boldSystemFontOfSize:18];
     [self.view addSubview:titleLabel];
     
-    UIButton* cancelBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    cancelBtn.frame=CGRectMake(10, 10, 50, 20);
-    [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
-    [cancelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    cancelBtn.titleLabel.font=[UIFont boldSystemFontOfSize:17];
-    [cancelBtn addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:cancelBtn];
+    self.cancelBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    self.cancelBtn.frame=CGRectMake(10, 10, 50, 20);
+    [self.cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [self.cancelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.cancelBtn.titleLabel.font=[UIFont boldSystemFontOfSize:17];
+    [self.cancelBtn addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.cancelBtn];
     
-    UIButton* sureBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    sureBtn.frame=CGRectMake(220, 10, 50, 20);
-    [sureBtn setTitle:@"确认" forState:UIControlStateNormal];
-    [sureBtn setTitleColor:BlueColor forState:UIControlStateNormal];
-    sureBtn.titleLabel.font=[UIFont boldSystemFontOfSize:17];
-    [sureBtn addTarget:self action:@selector(sure) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:sureBtn];
+    self.sureBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    self.sureBtn.frame=CGRectMake(220, 10, 50, 20);
+    [self.sureBtn setTitle:@"确认" forState:UIControlStateNormal];
+    [self.sureBtn setTitleColor:BlueColor forState:UIControlStateNormal];
+    self.sureBtn.titleLabel.font=[UIFont boldSystemFontOfSize:17];
+    [self.sureBtn addTarget:self action:@selector(sure) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.sureBtn];
     
     UIView* separatorLine=[self getSeparatorLine];
     separatorLine.center=CGPointMake(140, 40);
@@ -103,6 +106,7 @@
 
 -(void)cancel{
     if ([self.delegate respondsToSelector:@selector(cancelFromAddComment)]) {
+        self.cancelBtn.enabled=NO;
         [self.delegate cancelFromAddComment];
     }
     NSLog(@"cancel");
@@ -116,13 +120,15 @@
         }else{
             tempStr=self.textView.text;
         }
+        self.sureBtn.enabled=NO;
         [self.delegate sureFromAddCommentWithComment:tempStr];
         NSLog(@"sure");
     }
 }
-//=========================================================================
-//=========================================================================
-//=========================================================================
+
+//======================================================================
+//======================================================================
+//======================================================================
 
 -(UIView*)getSeparatorLine{
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 280, 1)];

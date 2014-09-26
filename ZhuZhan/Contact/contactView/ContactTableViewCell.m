@@ -51,7 +51,7 @@
     [self.contentView addSubview:headImageView];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(15, 6.5, 37, 37);
+    btn.frame = CGRectMake(10, 6.5, 37, 37);
     [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:btn];
     

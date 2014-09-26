@@ -74,12 +74,8 @@ static int count =0;//记录生日textField 的时间被触发的次数
     [_pathCover.headImage.layer setCornerRadius:35];
     [_pathCover setNameFrame:CGRectMake(145, 0, 100, 20) font:[UIFont systemFontOfSize:14]];
     
-    
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
-    
-    
-    
     
     NSArray *colorArray = [@[[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:0.0],[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:.5]] mutableCopy];
     GradientView *footView = [[GradientView alloc] initWithFrame:CGRectMake(0, 100, 320, 100) colorArr:colorArray];
@@ -102,11 +98,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
 
     model = [[ContactModel alloc] init];
     [self getUserInformation];
-
-
     
-
-        
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
@@ -430,8 +422,9 @@ static int count =0;//记录生日textField 的时间被触发的次数
 
 }
 
-
 -(void)dealloc{
+    self.tableView.delegate=nil;
+    self.tableView.dataSource=nil;
     NSLog(@"dealloc");
 }
 @end

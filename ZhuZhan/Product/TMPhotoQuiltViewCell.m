@@ -91,20 +91,37 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 }
 
 - (void)layoutSubviews {
-    self.photoView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height-80);
+    //产品描述内容是否存在
+    BOOL productContentExist=![self.titleLabel.text isEqualToString:@""];
 
-    NSLog(@"%@",self.titleLabel.text);
-
-    NSLog(@"%f,%f",self.bounds.size.width,self.bounds.size.height);
-    self.titleLabel.frame = CGRectMake(10, self.bounds.size.height - 75,self.bounds.size.width-20,40);
+    //产品图片
+    self.photoView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height-(productContentExist?80:30));
     
-    self.commentCountLabel.frame =  CGRectMake(35, self.bounds.size.height - 37 ,self.bounds.size.width-40, 40);
+    //判断cell中是否包含产品描述内容
+    BOOL isContainContent=[self.subviews containsObject:self.titleLabel];
+    if (productContentExist) {
+        if (!isContainContent) [self addSubview:self.titleLabel];
+        self.titleLabel.frame = CGRectMake(10, self.bounds.size.height - 75,self.bounds.size.width-20,40);
+    }else{
+        if (isContainContent) [self.titleLabel removeFromSuperview];
+    }
     
+    //评论数量
+    self.commentCountLabel.frame =  CGRectMake(35, self.bounds.size.height - 27 ,self.bounds.size.width-40, 20);
+    
+    //评论图标
     self.commentIcon.center=CGPointMake(20, self.bounds.size.height-15);
     
-    self.separatorLine.center=CGPointMake(self.bounds.size.width*.5, self.bounds.size.height-30);
+    //判断cell是否包含分割线
+    BOOL isContainSeparatorLine=[self.subviews containsObject:self.separatorLine];
+    if (productContentExist) {
+        if (!isContainSeparatorLine) [self addSubview:self.separatorLine];
+        self.separatorLine.center=CGPointMake(self.bounds.size.width*.5, self.bounds.size.height-30);
+    }else{
+        if (isContainSeparatorLine) [self.separatorLine removeFromSuperview];
+    }
   
-    
+    //cell的阴影
     self.layer.shadowColor=[[UIColor grayColor]CGColor];
     self.layer.shadowOffset=CGSizeMake(0, .1);//使阴影均匀
     self.layer.shadowOpacity=.5;//阴影的alpha
