@@ -80,7 +80,6 @@
         [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 self.commentModels=posts;
-                NSLog(@"%@",self.commentModels);
                 [self getTableViewContents];
                 [self myTableViewReloadData];
                 //self.timeScroller=[[ACTimeScroller alloc]initWithDelegate:self];;
@@ -130,7 +129,6 @@
             view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_imageUrl userName:model.a_name commentContent:model.a_content];
         }else{
             ContactCommentModel* model=self.commentModels[i];
-            NSLog(@"%@",model.a_avatarUrl);
             view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_avatarUrl userName:model.a_userName commentContent:model.a_commentContents];
         }
         [self.commentViews addObject:view];
@@ -312,32 +310,62 @@
 //=========================================================================
 //AddCommentDelegate
 //=========================================================================
+//点击添加评论并点取消的回调方法
 -(void)cancelFromAddComment{
     NSLog(@"cancelFromAddComment");
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
-//// "EntityId": ":entity ID", （项目，产品，公司，动态等）
+
+// "EntityId": ":entity ID", （项目，产品，公司，动态等）
 // "entityType": ":”entityType", Personal,Company,Project,Product 之一
 // "CommentContents": "评论内容",
 // "CreatedBy": ":“评论人"
 // }
-//添加完评论并点确认回来之后
+//点击添加评论并点确认的回调方法
 -(void)sureFromAddCommentWithComment:(NSString *)comment{
     NSLog(@"sureFromAddCommentWithCommentModel:");
+    if (self.productModel) {
+        [self addProductComment:comment];
+    }else{
+        [self addActivesComment:comment];
+    }
+}
 
+//post完成之后的操作
+-(void)finishAddComment:(NSString*)comment{
+    [self addTableViewContentWithContent:comment];
+    [self myTableViewReloadData];
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+}
+
+//添加动态详情的评论
+-(void)addActivesComment:(NSString*)comment{
+    ActivesModel *model = self.activesModel;
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:model.a_id forKey:@"EntityId"];
+    [dic setValue:[NSString stringWithFormat:@"%@",comment] forKey:@"CommentContents"];
+    [dic setValue:model.a_category forKey:@"EntityType"];
+    [dic setValue:@"13756154-7db5-4516-bcc6-6b7842504c81" forKey:@"CreatedBy"];
+    [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self finishAddComment:comment];
+            [self.navigationController.viewControllers.firstObject _refreshing];
+        }
+    } dic:dic];
+}
+
+//添加产品详情的评论
+-(void)addProductComment:(NSString*)comment{
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            [self addTableViewContentWithContent:comment];
-            [self myTableViewReloadData];
-            [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+            [self finishAddComment:comment];
         }
     } dic:[@{@"EntityId":self.productModel.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":@"f483bcfc-3726-445a-97ff-ac7f207dd888"} mutableCopy]];
 }
 
+//给tableView添加数据
 -(void)addTableViewContentWithContent:(NSString*)content{
-    CommentModel* model=[[CommentModel alloc]init];
-    model.a_content=content;
-    ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_userImageUrl userName:model.a_name commentContent:model.a_content];
+    ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:@"" userName:@"" commentContent:content];
     [self.commentViews insertObject:view atIndex:0];
 }
 //=========================================================================
@@ -443,7 +471,7 @@
     [button setImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
-    self.navigationItem.title=@"产品详情";
+    self.navigationItem.title=self.productModel?@"产品详情":@"";
 }
 
 -(void)back{

@@ -31,5 +31,5 @@
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong) ShowViewController *showVC;
 @property (nonatomic,strong) UIView *transparent;
-
+- (void)_refreshing ;
 @end
