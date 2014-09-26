@@ -34,7 +34,7 @@
 	qtmquitView.dataSource = self;
 	qtmquitView.showsVerticalScrollIndicator=NO;
 	[self.view addSubview:qtmquitView];
-    //[self createHeaderView];
+    [self createHeaderView];
 	//[self performSelector:@selector(testFinishedLoadData) withObject:nil afterDelay:0.0f];
     
     startIndex = 0;
