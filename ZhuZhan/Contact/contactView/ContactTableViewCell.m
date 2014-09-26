@@ -45,7 +45,7 @@
     lineImage2.alpha = 0.2;
     
     headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a"]];
-    [headImageView setFrame:CGRectMake(15, 6.5, 37, 37)];
+    [headImageView setFrame:CGRectMake(10, 6.5, 37, 37)];
     headImageView.layer.masksToBounds = YES;
     headImageView.layer.cornerRadius = 3;
     [self.contentView addSubview:headImageView];

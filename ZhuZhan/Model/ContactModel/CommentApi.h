@@ -19,5 +19,5 @@
 + (NSURLSessionDataTask *)SendActivesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic;
 
 //通过人脉的url获取项目详情
-+ (NSURLSessionDataTask *)ProjectUrlWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block url:(NSString *)url;
++ (NSURLSessionDataTask *)CommentUrlWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block url:(NSString *)url;
 @end

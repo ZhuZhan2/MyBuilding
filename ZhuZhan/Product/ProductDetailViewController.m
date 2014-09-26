@@ -92,7 +92,7 @@
         [self initMyTableView];
         [self getProductView];
     }else{
-        [CommentApi ProjectUrlWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [CommentApi CommentUrlWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 self.activesModel=posts[0];
                 if (!self.commentModels) self.commentModels=[[NSMutableArray alloc]init];

@@ -101,7 +101,7 @@
 
 }
 
-+ (NSURLSessionDataTask *)ProjectUrlWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block url:(NSString *)url{
++ (NSURLSessionDataTask *)CommentUrlWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block url:(NSString *)url{
     return [[AFAppDotNetAPIClient sharedNewClient] GET:url parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
