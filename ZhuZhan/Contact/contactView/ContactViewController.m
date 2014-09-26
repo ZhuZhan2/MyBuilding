@@ -77,8 +77,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self.tableView.tableHeaderView = self.pathCover;
     //时间标签
     _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
-
     [[self tableView] registerClass:[UITableViewCell class] forCellReuseIdentifier:PSTableViewCellIdentifier];
+    
     
     self.tableView.separatorStyle = NO;
     [self.tableView setBackgroundColor:RGBCOLOR(242, 242, 242)];
@@ -356,7 +356,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }
     }else{
         ActivesModel *model = showArr[indexPath.row];
-        NSLog(@"%@",model.a_entityUrl);
+        NSLog(@"==>%@",model.a_entityUrl);
         ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
         [self.navigationController pushViewController:vc animated:YES];
     }

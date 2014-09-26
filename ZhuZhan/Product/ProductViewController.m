@@ -44,7 +44,7 @@
             showArr = posts;
             [qtmquitView reloadData];
         }
-    } productId:@"" startIndex:startIndex];
+    }startIndex:startIndex];
     
 }
 
