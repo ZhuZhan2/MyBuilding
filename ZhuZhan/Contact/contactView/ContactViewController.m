@@ -94,32 +94,42 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     showArr = [[NSMutableArray alloc] init];
     viewArr = [[NSMutableArray alloc] init];
     _datasource = [[NSMutableArray alloc] init];
-    [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            [LoginModel GetUserImagesWithBlock:^(NSMutableArray *posts, NSError *error) {
-                if(!error){
-                    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0]]];
-                    [LoginSqlite insertData:posts[0] datakey:@"userImageUrl"];
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        errorview = [[ErrorView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
+        errorview.delegate = self;
+        [self.tableView addSubview:errorview];
+        self.tableView.scrollEnabled = NO;
+    }else{
+        [errorview removeFromSuperview];
+        errorview = nil;
+        self.tableView.scrollEnabled = YES;
+        [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                [LoginModel GetUserImagesWithBlock:^(NSMutableArray *posts, NSError *error) {
+                    if(!error){
+                        [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0]]];
+                        [LoginSqlite insertData:posts[0] datakey:@"userImageUrl"];
+                    }
+                } userId:@"13756154-7db5-4516-bcc6-6b7842504c81"];
+                
+                showArr = posts;
+                for(int i=0;i<showArr.count;i++){
+                    ActivesModel *model = showArr[i];
+                    NSLog(@"===>%@",model.a_eventType);
+                    if([model.a_eventType isEqualToString:@"Actives"]){
+                        commentView = [CommentView setFram:model];
+                        [viewArr addObject:commentView];
+                    }else{
+                        [viewArr addObject:@""];
+                    }
+                    [_datasource addObject:model.a_time];
                 }
-            } userId:@"13756154-7db5-4516-bcc6-6b7842504c81"];
-            
-            showArr = posts;
-            for(int i=0;i<showArr.count;i++){
-                ActivesModel *model = showArr[i];
-                NSLog(@"===>%@",model.a_eventType);
-                if([model.a_eventType isEqualToString:@"Actives"]){
-                    commentView = [CommentView setFram:model];
-                    [viewArr addObject:commentView];
-                }else{
-                    [viewArr addObject:@""];
-                }
-                [_datasource addObject:model.a_time];
+                
+                
+                [self.tableView reloadData];
             }
-            
-            
-            [self.tableView reloadData];
-        }
-    } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
+        } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
+    }
 }
 
 
