@@ -8,6 +8,7 @@
 
 #import "SaveConditionsViewController.h"
 #import "ProjectApi.h"
+#import "LoginSqlite.h"
 @interface SaveConditionsViewController ()
 
 @end
@@ -119,7 +120,7 @@
 -(void)confirmBtnClick{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:nameTextField.text forKey:@"SearchName"];
-    [dic setValue:@"0ba5403d-6b6e-425f-b7e6-9555be0c38a9" forKey:@"CreateBy"];
+    [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@"userId"] forKey:@"CreateBy"];
     [dic setValue:newstring forKey:@"SearchConditions"];
     [ProjectApi SearchConditionWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){

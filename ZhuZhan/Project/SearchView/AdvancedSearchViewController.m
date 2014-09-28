@@ -213,28 +213,28 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(55, 7, 100, 30)];
+            label.text = @"个人搜索条件";
+            label.font = [UIFont systemFontOfSize:12];
+            [cell.contentView setBackgroundColor:RGBCOLOR(242, 242, 242)];
+            [cell.contentView addSubview:label];
+            
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 11.5, 19, 21)];
+            [imageView setImage:[GetImagePath getImagePath:@"项目－高级搜索－2_15a-19"]];
+            [cell.contentView addSubview:imageView];
+            
+            UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 5)];
+            [lineImage setImage:[GetImagePath getImagePath:@"项目－高级搜索－2_15a"]];
+            [cell.contentView addSubview:lineImage];
+            
+            UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 41, 320, 3)];
+            [lineImage2 setImage:[GetImagePath getImagePath:@"项目－高级搜索－2_22a"]];
+            [cell.contentView addSubview:lineImage2];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(55, 7, 100, 30)];
-        label.text = @"个人搜索条件";
-        label.font = [UIFont systemFontOfSize:12];
-        [cell.contentView setBackgroundColor:RGBCOLOR(242, 242, 242)];
-        [cell.contentView addSubview:label];
-        
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 11.5, 19, 21)];
-        [imageView setImage:[GetImagePath getImagePath:@"项目－高级搜索－2_15a-19"]];
-        [cell.contentView addSubview:imageView];
-        
-        UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 5)];
-        [lineImage setImage:[GetImagePath getImagePath:@"项目－高级搜索－2_15a"]];
-        [cell.contentView addSubview:lineImage];
-        
-        UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 41, 320, 3)];
-        [lineImage2 setImage:[GetImagePath getImagePath:@"项目－高级搜索－2_22a"]];
-        [cell.contentView addSubview:lineImage2];
         return cell;
     }else{
-        NSString *stringcell = @"Cell";
+        NSString *stringcell = @"Cell2";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
         if(!cell){
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;

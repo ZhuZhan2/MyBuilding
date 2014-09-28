@@ -13,6 +13,7 @@
 #import "TopicsModel.h"
 #import "ConditionsModel.h"
 #import "AFAppDotNetAPIClient.h"
+#import "LoginSqlite.h"
 @implementation ProjectApi
 //RESPONSE:
 //{
@@ -362,7 +363,7 @@
 //[dic setObject:@"" forKey:@"distict"]; 所在区域
 //[dic setObject:@"" forKey:@"createBy"]; 创建人
 + (NSURLSessionDataTask *)GetSearchConditionsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block{
-    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/SearchConditions?distict=&createBy=0ba5403d-6b6e-425f-b7e6-9555be0c38a9"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/SearchConditions?distict=&createBy=%@",[LoginSqlite getdata:@"userId" defaultdata:@"userId"]];
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]||[[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
