@@ -38,15 +38,15 @@
     [self.contentView addSubview:lineImage2];
     lineImage2.alpha = 0.2;
     
-    stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(53.5, 11.5, 27, 27)];
+    stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(27.5, 11.5, 27, 27)];
     [self.contentView addSubview:stageImage];
     
-    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 5, 200, 20)];
+    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 5, 200, 20)];
     titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:titleLabel];
     
-    contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 25, 200, 20)];
+    contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 25, 200, 20)];
     contentLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
     contentLabel.textAlignment = NSTextAlignmentLeft;
     contentLabel.textColor = [UIColor lightGrayColor];
@@ -54,6 +54,18 @@
 }
 
 -(void)setModel:(PersonalCenterModel *)model{
-
+    contentLabel.text = model.a_content;
+    titleLabel.text = model.a_entityName;
+    if([model.a_projectStage isEqualToString:@"LandStage"]){
+        [stageImage setImage:[GetImagePath getImagePath:@"人脉_57a"]];
+    }else if([model.a_projectStage isEqualToString:@"MainDesignStage"]){
+        [stageImage setImage:[GetImagePath getImagePath:@"人脉_59a"]];
+    }else if([model.a_projectStage isEqualToString:@"MainConstructStage"]){
+        [stageImage setImage:[GetImagePath getImagePath:@"人脉_61a"]];
+    }else if([model.a_projectStage isEqualToString:@"DecorateStage"]){
+        [stageImage setImage:[GetImagePath getImagePath:@"人脉_63a"]];
+    }else{
+        [stageImage setImage:[GetImagePath getImagePath:@"人脉_57a"]];
+    }
 }
 @end
