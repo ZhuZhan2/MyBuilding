@@ -348,19 +348,4 @@
     resultView.flag = 1;
     [self.navigationController pushViewController:resultView animated:YES];
 }
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"%@",showArr[indexPath.row-2]);
-    ConditionsModel *model = showArr[indexPath.row-2];
-    NSLog(@"%@",model.a_searchName);
-    NSLog(@"%@",model.a_searchConditions);
-    return;
-    if(indexPath.row>1){
-    ResultsTableViewController *resultView = [[ResultsTableViewController alloc] init];
-    resultView.dic = [showArr objectAtIndex:indexPath.row-2];
-    resultView.flag = 1;
-    [self.navigationController pushViewController:resultView animated:YES];
-    }
-}
 @end

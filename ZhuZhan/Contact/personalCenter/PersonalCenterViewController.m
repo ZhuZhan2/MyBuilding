@@ -15,6 +15,10 @@
 #import "CommentApi.h"
 #import "ActivesModel.h"
 #import "MJRefresh.h"
+#import "PersonalCenterModel.h"
+#import "PersonalCenterCellView.h"
+#import "ConnectionAvailable.h"
+#import "PersonalProjectTableViewCell.h"
 @interface PersonalCenterViewController ()
 
 @end
@@ -90,24 +94,39 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //集成刷新控件
     [self setupRefresh];
     
-    startIndex=0;
     showArr = [[NSMutableArray alloc] init];
+    contentViews=[[NSMutableArray alloc]init];
     _datasource = [[NSMutableArray alloc] init];
+    
+    [self downLoad:nil];
+    
+    //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
+}
+
+-(void)downLoad:(void(^)())block{
+    startIndex=0;
     [CommentApi PersonalActiveWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             showArr = posts;
             for(int i=0;i<showArr.count;i++){
-                ActivesModel *model = showArr[i];
-                NSLog(@"%@",model.a_content);
+                PersonalCenterModel *model = showArr[i];
                 [_datasource addObject:model.a_time];
-                [self.tableView reloadData];
+                
+                if (![model.a_category isEqualToString:@"Project"]) {
+                    UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:model.a_imageUrl content:model.a_content category:model.a_category];
+                    [contentViews addObject:view];
+                }else{
+                    [contentViews addObject:@""];
+                }
+            }
+            [self.tableView reloadData];
+            if (block) {
+                block();
             }
         }
     } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
-    
-    
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
 }
 
 /**
@@ -183,39 +202,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 - (void)_refreshing {
     // refresh your data sources
-    
-    NSLog(@"asdfasdfasdfasf");
-    __weak PersonalCenterViewController *wself = self;
-    double delayInSeconds = 4.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    [self downLoad:^{
+        __weak PersonalCenterViewController *wself = self;
         [wself.pathCover stopRefresh];
-    });
+    }];
 }
-
-/******************************************************************************************************************/
-////滚动是触发的事件
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    [_pathCover scrollViewDidScroll:scrollView];
-//    [_timeScroller scrollViewDidScroll];
-//}
-//
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-//    [_pathCover scrollViewDidEndDecelerating:scrollView];
-//    [_timeScroller scrollViewDidEndDecelerating];
-//}
-//
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-//    [_pathCover scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
-//}
-//
-//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-//    [_pathCover scrollViewWillBeginDragging:scrollView];
-//    [_timeScroller scrollViewWillBeginDragging];
-//}
-/******************************************************************************************************************/
-
-
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -229,14 +220,32 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(!cell){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    PersonalCenterModel *model;
+    if(showArr.count !=0){
+        model = showArr[indexPath.row];
     }
-    cell.selectionStyle = NO;
-    return cell;
+    if([model.a_category isEqualToString:@"Project"]){
+        NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalProjectTableViewCell"];
+        PersonalProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[PersonalProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.model = model;
+        cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
+        cell.selectionStyle = NO;
+        return cell;
+    }else{
+        NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [cell.contentView addSubview:contentViews[indexPath.row]];
+        cell.selectionStyle = NO;
+        cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
+        return cell;
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -258,24 +267,22 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             }
         } url:model.a_entityUrl];
         
-        ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
-        [self.navigationController pushViewController:vc animated:YES];
+        //ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+        //[self.navigationController pushViewController:vc animated:YES];
     }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row==0) {
-        return 60;
+    PersonalCenterModel *model;
+    if(showArr.count !=0){
+        model = showArr[indexPath.row];
     }
-    if (indexPath.row ==1 ||indexPath.row==2 ||indexPath.row==3) {
+    if([model.a_category isEqualToString:@"Project"]){
         return 50;
+    }else{
+        return [contentViews[indexPath.row] frame].size.height;
     }
-    
-    if (indexPath.row==4) {
-        return 80;
-    }
-    return 200;
 }
 
 //时间标签
