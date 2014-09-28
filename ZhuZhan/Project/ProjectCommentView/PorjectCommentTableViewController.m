@@ -8,7 +8,7 @@
 
 #import "PorjectCommentTableViewController.h"
 #import "CommentApi.h"
-#import "ProjectCommentModel.h"
+#import "ContactCommentModel.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
@@ -57,7 +57,7 @@
         if(!error){
             showArr = posts;
             for(int i=0; i<posts.count;i++){
-                ProjectCommentModel *model = posts[i];
+                ContactCommentModel *model = posts[i];
                 projectCommentView = [[ProjectCommentView alloc] initWithCommentModel:model];
                 [viewArr addObject:projectCommentView];
                 [_datasource addObject:model.a_time];
@@ -203,10 +203,6 @@
 }
 
 -(void)sureFromAddCommentWithComment:(NSString*)comment{
-    
-
-
-    
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:self.projectId forKey:@"EntityId"];
@@ -215,12 +211,11 @@
     [dic setValue:@"f483bcfc-3726-445a-97ff-ac7f207dd888" forKey:@"CreatedBy"];
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            ProjectCommentModel *model = [[ProjectCommentModel alloc] init];
-            model.a_id = self.projectId;
-            model.a_name = @"";
-            model.a_imageUrl = @"";
-            model.a_content = [NSString stringWithFormat:@"%@",comment];
-            model.a_type = @"comment";
+            ContactCommentModel *model = [[ContactCommentModel alloc] init];
+            model.a_entityId = self.projectId;
+            model.a_userName = @"";
+            model.a_avatarUrl = @"";
+            model.a_commentContents = [NSString stringWithFormat:@"%@",comment];
             model.a_time = [NSDate date];
             [showArr insertObject:model atIndex:0];
             projectCommentView = [[ProjectCommentView alloc] initWithCommentModel:model];

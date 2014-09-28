@@ -10,6 +10,7 @@
 
 @implementation ConditionsView
 
+@synthesize dataDic;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -30,6 +31,7 @@
 
 +(ConditionsView *)setFram:(ConditionsModel *)model{
     ConditionsView *conditionsView = [[ConditionsView alloc] init];
+
     
     UILabel *contentLabel = [[UILabel alloc] init];
     contentLabel.numberOfLines =0;
@@ -72,7 +74,7 @@
     nameLabel.textColor = [UIColor greenColor];
     nameLabel.font = [UIFont systemFontOfSize:14];
     nameLabel.numberOfLines = 4;
-    [conditionsView addSubview:nameLabel];
+    [conditionsView addSubview:nameLabel];    
     return conditionsView;
 }
 @end

@@ -13,7 +13,7 @@
     int startIndex;
    
 }
-@property(nonatomic,weak)NSString *searchStr;
+@property(nonatomic,strong)NSString *searchStr;
 @property(nonatomic,weak)NSMutableDictionary *dic;
 @property(nonatomic)int flag;
 @end

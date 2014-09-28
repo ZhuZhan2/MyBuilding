@@ -70,12 +70,17 @@
         if (!error) {
             showArr = posts;
             for(int i=0;i<posts.count;i++){
+                ConditionsModel *model = posts[i];
+                NSLog(@"%@",model.a_searchName);
+                NSLog(@"%@",model.a_searchConditions);
+                
                 conditionsView = [ConditionsView setFram:posts[i]];
+
                 [viewArr addObject:conditionsView];
             }
             [_tableView reloadData];
         }
-    }];
+    }userId:@"13756154-7db5-4516-bcc6-6b7842504c81"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -119,6 +124,7 @@
     [saveView.view setFrame:CGRectMake(0, 0, 271, 173)];
     saveView.delegate = self;
     saveView.dataDic = dataDic;
+    
     [self presentPopupViewController:saveView animationType:MJPopupViewAnimationFade flag:1];
 }
 
@@ -247,6 +253,7 @@
         if(viewArr.count !=0){
             conditionsView = [viewArr objectAtIndex:indexPath.row-2];
             [cell.contentView addSubview:conditionsView];
+            
         }
         return cell;
     }
@@ -328,7 +335,7 @@
             }
             [_tableView reloadData];
         }
-    }];
+    }userId:@"13756154-7db5-4516-bcc6-6b7842504c81"];
 }
 
 -(void)backView{
