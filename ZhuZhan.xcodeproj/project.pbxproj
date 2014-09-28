@@ -380,6 +380,8 @@
 		D3AD61AD19AEF80B001FD483 /* NIDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61A919AEF80B001FD483 /* NIDropDown.m */; };
 		D3AD61AE19AEF80B001FD483 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61AB19AEF80B001FD483 /* UIViewController+MJPopupViewController.m */; };
 		D3B1C28319D155CC00E6D89F /* ContactCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B1C28219D155CC00E6D89F /* ContactCommentTableViewCell.m */; };
+		D3B8F4A819D7C16F008F6164 /* 人脉－个人中心_10a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3B8F4A619D7C16F008F6164 /* 人脉－个人中心_10a.png */; };
+		D3B8F4A919D7C16F008F6164 /* 人脉－个人中心_10a@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = D3B8F4A719D7C16F008F6164 /* 人脉－个人中心_10a@2X.png */; };
 		D3F79C9319D157A700E3B473 /* +人脉_21a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F79A1519D157A400E3B473 /* +人脉_21a.png */; };
 		D3F79C9419D157A700E3B473 /* +人脉_21a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F79A1619D157A400E3B473 /* +人脉_21a@2x.png */; };
 		D3F79C9519D157A700E3B473 /* +人脉_22a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F79A1719D157A400E3B473 /* +人脉_22a.png */; };
@@ -1824,6 +1826,8 @@
 		D3AD61AB19AEF80B001FD483 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
 		D3B1C28119D155CC00E6D89F /* ContactCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCommentTableViewCell.h; sourceTree = "<group>"; };
 		D3B1C28219D155CC00E6D89F /* ContactCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCommentTableViewCell.m; sourceTree = "<group>"; };
+		D3B8F4A619D7C16F008F6164 /* 人脉－个人中心_10a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－个人中心_10a.png"; sourceTree = "<group>"; };
+		D3B8F4A719D7C16F008F6164 /* 人脉－个人中心_10a@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－个人中心_10a@2X.png"; sourceTree = "<group>"; };
 		D3F79A1519D157A400E3B473 /* +人脉_21a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+人脉_21a.png"; sourceTree = "<group>"; };
 		D3F79A1619D157A400E3B473 /* +人脉_21a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+人脉_21a@2x.png"; sourceTree = "<group>"; };
 		D3F79A1719D157A400E3B473 /* +人脉_22a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+人脉_22a.png"; sourceTree = "<group>"; };
@@ -4159,6 +4163,8 @@
 				D3F79AE619D157A500E3B473 /* 人脉－个人中心_06a@2x.png */,
 				D3F79AE719D157A500E3B473 /* 人脉－个人中心_07a.png */,
 				D3F79AE819D157A500E3B473 /* 人脉－个人中心_07a@2x.png */,
+				D3B8F4A619D7C16F008F6164 /* 人脉－个人中心_10a.png */,
+				D3B8F4A719D7C16F008F6164 /* 人脉－个人中心_10a@2X.png */,
 				D3F79AEB19D157A500E3B473 /* 人脉－人的详情1_21a.png */,
 				D3F79AEC19D157A500E3B473 /* 人脉－人的详情1_21a@2x.png */,
 				D3F79AED19D157A500E3B473 /* 人脉－人的详情1_23a.png */,
@@ -4948,6 +4954,7 @@
 				D3F79D4919D157A700E3B473 /* 人脉_61a.png in Resources */,
 				D3F79DEB19D157A700E3B473 /* 地图搜索_03a.png in Resources */,
 				D3F79D1E19D157A700E3B473 /* 人脉-点击效果_04a@2x.png in Resources */,
+				D3B8F4A919D7C16F008F6164 /* 人脉－个人中心_10a@2X.png in Resources */,
 				D3F79E1719D157A700E3B473 /* 数据加载失败_07a.png in Resources */,
 				D3F79E1819D157A700E3B473 /* 数据加载失败_07a@2x.png in Resources */,
 				D3F79F6B19D3DC0E00E3B473 /* 01.png in Resources */,
@@ -5016,6 +5023,7 @@
 				D3F79D4419D157A700E3B473 /* 人脉_54a@2x.png in Resources */,
 				D3F79EE919D157A700E3B473 /* 项目－高级搜索－2_03a.png in Resources */,
 				D3F79EDE19D157A700E3B473 /* 项目－项目专题_11a@2x.png in Resources */,
+				D3B8F4A819D7C16F008F6164 /* 人脉－个人中心_10a.png in Resources */,
 				D3F79E9519D157A700E3B473 /* 项目详情-筛选_17a1.png in Resources */,
 				D3F79F7A19D3DC0E00E3B473 /* 08@2x.png in Resources */,
 				D3F79E2419D157A700E3B473 /* 新建项目5_09@2x.png in Resources */,
