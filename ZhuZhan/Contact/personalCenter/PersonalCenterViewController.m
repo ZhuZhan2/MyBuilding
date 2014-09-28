@@ -121,7 +121,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     [contentViews addObject:@""];
                 }
             }
+            _timeScroller.hidden=YES;
             [self.tableView reloadData];
+            _timeScroller.hidden=NO;
             if (block) {
                 block();
             }
@@ -159,8 +161,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                         [contentViews addObject:@""];
                     }
                 }
-                [self.tableView footerEndRefreshing];
                 _timeScroller.hidden=YES;
+                [self.tableView footerEndRefreshing];
                 [self.tableView reloadData];
                 _timeScroller.hidden=NO;
             }
@@ -169,7 +171,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
 }
 
-/******************************************************************************************************************/
+//****************************************************************
 //滚动是触发的事件
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [_pathCover scrollViewDidScroll:scrollView];
@@ -259,16 +261,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         projectCommentView.projectName = model.a_entityName;
         [self.navigationController pushViewController:projectCommentView animated:YES];
     }else{
-        NSLog(@"%@",model.a_entityUrl);
-        NSLog(@"%@",model.a_entityId);
-        [CommentApi CommentUrlWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                
-            }
-        } url:model.a_entityUrl];
-        
-        //ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
-        //[self.navigationController pushViewController:vc animated:YES];
+        ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithPersonalCenterModel:model];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -296,9 +290,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     NSIndexPath *indexPath = [[self tableView] indexPathForCell:cell];
     return _datasource[[indexPath row]];
 }
-
-
-
 
 - (void)didReceiveMemoryWarning
 {

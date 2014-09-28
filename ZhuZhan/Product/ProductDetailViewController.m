@@ -25,6 +25,8 @@
 
 @property(nonatomic,strong)ProductModel* productModel;//产品详情模型
 @property(nonatomic,strong)ActivesModel* activesModel;//动态详情模型
+@property(nonatomic,strong)PersonalCenterModel* personalModel;//个人中心评论
+
 //@property(nonatomic,strong)NSString* activesEntityUrl;//动态详情模型url
 
 @property(nonatomic,strong)UIView* productView;//产品图片和产品介绍文字的superView
@@ -35,16 +37,37 @@
 @property(nonatomic,strong)AddCommentViewController* vc;
 
 @property(nonatomic,strong)ACTimeScroller* timeScroller;
+
+@property(nonatomic,copy)NSString* imageWidth;
+@property(nonatomic,copy)NSString* imageHeight;
+@property(nonatomic,copy)NSString* imageUrl;
+@property(nonatomic,copy)NSString* userImageUrl;
+@property(nonatomic,copy)NSString* content;
+@property(nonatomic,copy)NSString* entityID;
+@property(nonatomic,copy)NSString* entityUrl;
+@property(nonatomic,copy)NSString* userName;
 @end
 
 @implementation ProductDetailViewController
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 
+-(void)loadMyPropertyWithImgW:(NSString*)imgW imgH:(NSString*)imgH imgUrl:(NSString*)imgUrl userImgUrl:(NSString*)userImgUrl content:(NSString*)content entityID:(NSString*)entityID entityUrl:(NSString*)entityUrl userName:(NSString*)userName{
+    self.imageWidth=imgW;
+    self.imageHeight=imgH;
+    self.imageUrl=imgUrl;
+    self.userImageUrl=userImgUrl;
+    self.content=content;
+    self.entityID=entityID;
+    self.entityUrl=entityUrl;
+    self.userName=userName;
+    self.commentViews=[[NSMutableArray alloc]init];
+}
+
 -(instancetype)initWithProductModel:(ProductModel*)productModel{
     self=[super init];
     if (self) {
         self.productModel=productModel;
-        self.commentViews=[[NSMutableArray alloc]init];
+        [self loadMyPropertyWithImgW:productModel.a_imageWidth imgH:productModel.a_imageHeight imgUrl:productModel.a_imageUrl userImgUrl:@"" content:productModel.a_content entityID:productModel.a_id entityUrl:@"" userName:productModel.a_name];
     }
     return self;
 }
@@ -53,7 +76,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.activesModel=activesModel;
-        self.commentViews=[[NSMutableArray alloc]init];
+        [self loadMyPropertyWithImgW:activesModel.a_imageWidth imgH:activesModel.a_imageHeight imgUrl:activesModel.a_imageUrl userImgUrl:activesModel.a_avatarUrl content:activesModel.a_content entityID:activesModel.a_entityId entityUrl:activesModel.a_id userName:activesModel.a_userName];
+    }
+    return self;
+}
+
+-(instancetype)initWithPersonalCenterModel:(PersonalCenterModel *)personalModel{
+    self=[super init];
+    if (self) {
+        self.personalModel=personalModel;
+        [self loadMyPropertyWithImgW:personalModel.a_imageWidth imgH:personalModel.a_imageHeight imgUrl:personalModel.a_imageUrl userImgUrl:@"" content:personalModel.a_content entityID:personalModel.a_entityId entityUrl:personalModel.a_entityUrl userName:@"自己"];
     }
     return self;
 }
@@ -77,40 +109,70 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (self.productModel) {
+    self.view.backgroundColor=[UIColor whiteColor];
+    [self initNavi];
+    [self initMyTableView];
+    [self getMainView];
+    [self loadTimeScroller];
+    [self getNetWorkData];
+}
+
+//初始化竖直滚动导航的时间标示
+-(void)loadTimeScroller{
+    self.timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:PSTableViewCellIdentifier];
+}
+
+//获取网络数据
+-(void)getNetWorkData{
+    //产品详情的评论 或者个人中心的产品详情
+    if (self.productModel||(self.personalModel&&![self.personalModel.a_entityId isEqualToString:@""])) {
+        NSString* ID=self.productModel?self.productModel.a_id:self.personalModel.a_entityId;
+        
         [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 self.commentModels=posts;
                 [self getTableViewContents];
                 [self myTableViewReloadData];
             }
-        } entityId:self.productModel.a_id entityType:@"Product"];
-        self.view.backgroundColor=[UIColor whiteColor];
-        [self initNavi];
-        [self initMyTableView];
-        [self getProductView];
-    }else{
+        } entityId:ID entityType:@"Product"];
+        
+    //动态详情的评论 或者个人中心的个人动态
+    }else if (self.activesModel||(self.personalModel&&![self.personalModel.a_entityUrl isEqualToString:@""])){
+        NSString* url=self.activesModel?self.activesModel.a_entityUrl:self.personalModel.a_entityUrl;
+        
         [CommentApi CommentUrlWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 self.activesModel=posts[0];
+                
                 if (!self.commentModels) self.commentModels=[[NSMutableArray alloc]init];
                 for (int i=0; i<self.activesModel.a_commentsArr.count; i++) {
+                    NSLog(@"%@",[self.activesModel.a_commentsArr[i] class]);
                     if ([self.activesModel.a_commentsArr[i] isKindOfClass:[ContactCommentModel class]] ) {
                         [self.commentModels addObject:self.activesModel.a_commentsArr[i]];
                     }
                 }
-
                 [self getTableViewContents];
                 [self myTableViewReloadData];
             }
-        } url:self.activesModel.a_entityUrl];
-        self.view.backgroundColor=[UIColor whiteColor];
-        [self initNavi];
-        [self initMyTableView];
-        [self getActivesView];
+        } url:url];
+        
+    //个人中心的评论
+    }else{
+        
+        
     }
-    self.timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:PSTableViewCellIdentifier];
+}
+
+//获得上方主要显示的图文内容
+-(void)getMainView{
+    if (self.productModel) {
+        [self getProductView];
+    }else if (self.activesModel){
+        [self getActivesView];
+    }else{
+    
+    }
 }
 
 -(void)myTableViewReloadData{
@@ -124,14 +186,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)getTableViewContents{
     for (int i=0; i<self.commentModels.count; i++) {
-        ProductCommentView* view;
-        if (self.productModel) {
-            ProjectCommentModel* model=self.commentModels[i];
-            view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_imageUrl userName:model.a_name commentContent:model.a_content];
-        }else{
-            ContactCommentModel* model=self.commentModels[i];
-            view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_avatarUrl userName:model.a_userName commentContent:model.a_commentContents];
-        }
+        ContactCommentModel* model=self.commentModels[i];
+        ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_avatarUrl userName:model.a_userName commentContent:model.a_commentContents];
         [self.commentViews addObject:view];
     }
 }
@@ -148,17 +204,17 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
     EGOImageView *imageView;
     //动态图像
-    if(![self.activesModel.a_imageUrl isEqualToString:@""]){
+    if(![self.imageUrl isEqualToString:@""]){
         imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
-        imageView.frame = CGRectMake(0, 0, 310,[self.activesModel.a_imageHeight floatValue]/[self.activesModel.a_imageWidth floatValue]*310);
-        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.activesModel.a_imageUrl]];
+        imageView.frame = CGRectMake(0, 0, 310,[self.imageHeight floatValue]/[self.imageWidth floatValue]*310);
+        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.imageUrl]];
         [forCornerView addSubview:imageView];
         height+=imageView.frame.size.height;
     }
     
     UIView* contentTotalView;
     //动态描述
-    if (![self.activesModel.a_content isEqualToString:@""]) {
+    if (![self.content isEqualToString:@""]) {
         UILabel* contentTextView = [[UILabel alloc] init];
         contentTextView.numberOfLines =0;
         UIFont * tfont = [UIFont systemFontOfSize:15];
@@ -167,16 +223,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         contentTextView.lineBreakMode =NSLineBreakByCharWrapping ;
         
         //用户名颜色
-        NSString * text = [NSString stringWithFormat:@"%@:%@",self.activesModel.a_userName,self.activesModel.a_content];
+        NSString * text = [NSString stringWithFormat:@"%@:%@",self.userName,self.content];
         NSMutableAttributedString* attributedText=[[NSMutableAttributedString alloc]initWithString:text];
-        NSRange range=NSMakeRange(0, self.activesModel.a_userName.length+1);
+        NSRange range=NSMakeRange(0, self.userName.length+1);
         [attributedText addAttributes:@{NSForegroundColorAttributeName:BlueColor} range:range];
         [attributedText addAttributes:@{NSFontAttributeName:tfont} range:NSMakeRange(0, text.length)];
         
         //动态文字内容
         contentTextView.attributedText=attributedText;
         
-        BOOL imageUrlExist=![self.activesModel.a_imageUrl isEqualToString:@""];
+        BOOL imageUrlExist=![self.imageUrl isEqualToString:@""];
         //给一个比较大的高度，宽度不变
         CGSize size =CGSizeMake(imageUrlExist?300:250,CGFLOAT_MAX);
         // 获取当前文本的属性
@@ -208,7 +264,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     userImageView.frame=CGRectMake(5,tempHeight+5,37,37);
     [forCornerView addSubview:userImageView];
     
-    userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.activesModel.a_avatarUrl]];
+    userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.userImageUrl]];
     [forCornerView addSubview:userImageView];
     
     //设置总的view的frame
@@ -237,7 +293,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //imageView部分
     CGFloat scale=320.0/[self.productModel.a_imageWidth floatValue]*2;
     CGFloat height=[self.productModel.a_imageHeight floatValue]*.5*scale;
-
+    
     EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"产品－产品详情_03a"]];
     if (![self.productModel.a_imageUrl isEqualToString:@""]) {
         imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.productModel.a_imageUrl]];
