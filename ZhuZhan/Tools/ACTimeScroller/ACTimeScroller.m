@@ -413,7 +413,7 @@
     
     CGRect selfFrame = self.frame;
     CGRect scrollBarFrame = _scrollBar.frame;
-    
+//    NSLog(@"%f,%f,%f,%f",self.frame.origin.x,self.frame.size.width,_backgroundView.frame.origin.x,_backgroundView.frame.size.width);
     self.frame = CGRectMake(CGRectGetWidth(selfFrame) * -1.0f,
                             (CGRectGetHeight(scrollBarFrame) / 2.0f) - (CGRectGetHeight(selfFrame) / 2.0f),
                             CGRectGetWidth(selfFrame),
@@ -423,7 +423,6 @@
     point = [_scrollBar convertPoint:point toView:_tableView];
     
     UITableViewCell* cell=[_tableView cellForRowAtIndexPath:[_tableView indexPathForRowAtPoint:point]];
-    
     if (cell) {
         [self updateDisplayWithCell:cell];
         if (![self alpha])

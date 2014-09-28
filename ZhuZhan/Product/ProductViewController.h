@@ -11,13 +11,13 @@
 #import "EGORefreshTableFooterView.h"
 #import "TMQuiltView.h"
 
-@interface ProductViewController : UIViewController<EGORefreshTableDelegate>{
-	//EGOHeader
-    EGORefreshTableHeaderView *_refreshHeaderView;
-    //EGOFoot
-    EGORefreshTableFooterView *_refreshFooterView;
-    //
-    BOOL _reloading;
+@interface ProductViewController : UIViewController{
+//	//EGOHeader
+//    EGORefreshTableHeaderView *_refreshHeaderView;
+//    //EGOFoot
+//    EGORefreshTableFooterView *_refreshFooterView;
+//    //
+//    BOOL _reloading;
     
     int startIndex;
     

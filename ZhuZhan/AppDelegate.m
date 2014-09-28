@@ -27,11 +27,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    //设置log等级，此处log为默认在documents目录下的msc.log文件
-    [IFlySetting setLogFile:LVL_NONE];
-    
-    //输出在console的log开关
-    [IFlySetting showLogcat:YES];
+
     
     
     //设置log等级，此处log为默认在documents目录下的msc.log文件
@@ -52,7 +48,6 @@
     //所有服务启动前，需要确保执行createUtility
     [IFlySpeechUtility createUtility:initString];
     
-    //创建语音配置
 
     
     

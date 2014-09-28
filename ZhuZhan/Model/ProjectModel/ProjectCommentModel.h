@@ -17,4 +17,5 @@
 @property (nonatomic,copy) NSDate *a_time;
 
 @property (nonatomic,copy) NSDictionary *dict;
+-(instancetype)initWithEntityID:(NSString*)entityID userName:(NSString*)userName commentContents:(NSString*)commentContents userImage:(NSString*)userImage time:(NSDate*)time;
 @end
