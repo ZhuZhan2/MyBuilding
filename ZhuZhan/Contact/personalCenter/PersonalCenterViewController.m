@@ -13,9 +13,10 @@
 #import "AppDelegate.h"
 #import "LoginSqlite.h"
 #import "CommentApi.h"
-#import "ActivesModel.h"
+#import "PersonalCenterModel.h"
 #import "MJRefresh.h"
 #import "PersonalCenterCellView.h"
+#import "PersonalProjectTableViewCell.h"
 @interface PersonalCenterViewController ()
 
 @end
@@ -101,7 +102,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if(!error){
             showArr = posts;
             for(int i=0;i<showArr.count;i++){
-                ActivesModel *model = showArr[i];
+                PersonalCenterModel *model = showArr[i];
                 NSLog(@"%@",model.a_content);
                 [_datasource addObject:model.a_time];
                 [self.tableView reloadData];
@@ -111,6 +112,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     
     //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
 }
 
@@ -165,28 +167,49 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return contentViews.count;
     return showArr.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(!cell){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    PersonalCenterModel *model;
+    if(showArr.count !=0){
+        model = showArr[indexPath.row];
     }
-    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
-    [cell.contentView addSubview:contentViews[indexPath.row]];
-    cell.selectionStyle = NO;
-    return cell;
+    if([model.a_category isEqualToString:@"Project"]){
+        NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalProjectTableViewCell"];
+        PersonalProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[PersonalProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = NO;
+        return cell;
+    }else{
+        NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
+        //[cell.contentView addSubview:contentViews[indexPath.row]];
+        cell.selectionStyle = NO;
+        return cell;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [contentViews[indexPath.row] frame].size.height;
+    //return [contentViews[indexPath.row] frame].size.height;
+    PersonalCenterModel *model;
+    if(showArr.count !=0){
+        model = showArr[indexPath.row];
+    }
+    if([model.a_category isEqualToString:@"Project"]){
+        return 50;
+    }
+    
+    
     
     if (indexPath.row==0) {
         return 60;

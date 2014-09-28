@@ -33,10 +33,10 @@
 }
 
 -(void)addContent{
-    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 49, 320, 1)];
-    [lineImage setBackgroundColor:[UIColor blackColor]];
-    [self.contentView addSubview:lineImage];
-    lineImage.alpha = 0.1;
+    UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(40, 0, 2, 49)];
+    [lineImage2 setBackgroundColor:[UIColor blackColor]];
+    [self.contentView addSubview:lineImage2];
+    lineImage2.alpha = 0.2;
     
     stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(53.5, 11.5, 27, 27)];
     [self.contentView addSubview:stageImage];
