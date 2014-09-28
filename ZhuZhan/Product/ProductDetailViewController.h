@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ProductModel.h"
 #import "ActivesModel.h"
-
+#import "PersonalCenterModel.h"
 @protocol ProductDetailDelegate <NSObject>
 -(void)finishAddCommentFromDetailWithPosts:(NSMutableArray*)posts;
 @end
@@ -18,4 +18,5 @@
 @property(nonatomic,strong)id<ProductDetailDelegate>delegate;
 -(instancetype)initWithProductModel:(ProductModel*)productModel;
 -(instancetype)initWithActivesModel:(ActivesModel*)activesModel;
+-(instancetype)initWithPersonalCenterModel:(PersonalCenterModel*)personalModel;
 @end

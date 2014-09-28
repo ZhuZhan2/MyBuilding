@@ -94,10 +94,19 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //集成刷新控件
     [self setupRefresh];
     
-    startIndex=0;
     showArr = [[NSMutableArray alloc] init];
     contentViews=[[NSMutableArray alloc]init];
     _datasource = [[NSMutableArray alloc] init];
+    
+    [self downLoad:nil];
+    
+    //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
+}
+
+-(void)downLoad:(void(^)())block{
+    startIndex=0;
     [CommentApi PersonalActiveWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             showArr = posts;
@@ -112,14 +121,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     [contentViews addObject:@""];
                 }
             }
+            _timeScroller.hidden=YES;
             [self.tableView reloadData];
+            _timeScroller.hidden=NO;
+            if (block) {
+                block();
+            }
         }
     } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
-    
-    
-    //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
 }
 
 /**
@@ -152,8 +161,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                         [contentViews addObject:@""];
                     }
                 }
-                [self.tableView footerEndRefreshing];
                 _timeScroller.hidden=YES;
+                [self.tableView footerEndRefreshing];
                 [self.tableView reloadData];
                 _timeScroller.hidden=NO;
             }
@@ -162,7 +171,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
 }
 
-/******************************************************************************************************************/
+//****************************************************************
 //滚动是触发的事件
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [_pathCover scrollViewDidScroll:scrollView];
@@ -194,7 +203,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 - (void)_refreshing {
-    NSLog(@"222222222");
+    [self downLoad:^{
+        __weak PersonalCenterViewController *wself = self;
+        [wself.pathCover stopRefresh];
+    }];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -248,15 +260,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         projectCommentView.projectName = model.a_entityName;
         [self.navigationController pushViewController:projectCommentView animated:YES];
     }else{
-        NSLog(@"%@",model.a_entityUrl);
-        NSLog(@"%@",model.a_entityId);
-        [CommentApi CommentUrlWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                
-            }
-        } url:model.a_entityUrl];
-        
-        ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+        ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithPersonalCenterModel:model];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

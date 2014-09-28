@@ -26,6 +26,8 @@
 
 @property(nonatomic,strong)ProductModel* productModel;//产品详情模型
 @property(nonatomic,strong)ActivesModel* activesModel;//动态详情模型
+@property(nonatomic,strong)PersonalCenterModel* personalModel;//个人中心评论
+
 //@property(nonatomic,strong)NSString* activesEntityUrl;//动态详情模型url
 
 @property(nonatomic,strong)UIView* productView;//产品图片和产品介绍文字的superView
@@ -59,6 +61,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     return self;
 }
 
+-(instancetype)initWithPersonalCenterModel:(PersonalCenterModel *)personalModel{
+    self=[super init];
+    if (self) {
+        self.personalModel=personalModel;
+        self.commentViews=[[NSMutableArray alloc]init];
+    }
+    return self;
+}
+
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     //恢复tabBar
@@ -78,40 +89,70 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (self.productModel) {
+    self.view.backgroundColor=[UIColor whiteColor];
+    [self initNavi];
+    [self initMyTableView];
+    [self getMainView];
+    [self loadTimeScroller];
+    [self getNetWorkData];
+}
+
+//初始化竖直滚动导航的时间标示
+-(void)loadTimeScroller{
+    self.timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:PSTableViewCellIdentifier];
+}
+
+//获取网络数据
+-(void)getNetWorkData{
+    //产品详情的评论 或者个人中心的产品详情
+    if (self.productModel||(self.personalModel&&![self.personalModel.a_entityId isEqualToString:@""])) {
+        NSString* ID=self.productModel?self.productModel.a_id:self.personalModel.a_entityId;
+        
         [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 self.commentModels=posts;
                 [self getTableViewContents];
                 [self myTableViewReloadData];
             }
-        } entityId:self.productModel.a_id entityType:@"Product"];
-        self.view.backgroundColor=[UIColor whiteColor];
-        [self initNavi];
-        [self initMyTableView];
-        [self getProductView];
-    }else{
+        } entityId:ID entityType:@"Product"];
+        
+    //动态详情的评论 或者个人中心的个人动态
+    }else if (self.activesModel||(self.personalModel&&![self.personalModel.a_entityUrl isEqualToString:@""])){
+        NSString* url=self.activesModel?self.activesModel.a_entityUrl:self.personalModel.a_entityUrl;
+        
         [CommentApi CommentUrlWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 self.activesModel=posts[0];
+                
                 if (!self.commentModels) self.commentModels=[[NSMutableArray alloc]init];
                 for (int i=0; i<self.activesModel.a_commentsArr.count; i++) {
+                    NSLog(@"%@",[self.activesModel.a_commentsArr[i] class]);
                     if ([self.activesModel.a_commentsArr[i] isKindOfClass:[ContactCommentModel class]] ) {
                         [self.commentModels addObject:self.activesModel.a_commentsArr[i]];
                     }
                 }
-
                 [self getTableViewContents];
                 [self myTableViewReloadData];
             }
-        } url:self.activesModel.a_entityUrl];
-        self.view.backgroundColor=[UIColor whiteColor];
-        [self initNavi];
-        [self initMyTableView];
-        [self getActivesView];
+        } url:url];
+        
+    //个人中心的评论
+    }else{
+        
+        
     }
-    self.timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:PSTableViewCellIdentifier];
+}
+
+//获得上方主要显示的图文内容
+-(void)getMainView{
+    if (self.productModel) {
+        [self getProductView];
+    }else if (self.activesModel){
+        [self getActivesView];
+    }else{
+    
+    }
 }
 
 -(void)myTableViewReloadData{
@@ -238,7 +279,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //imageView部分
     CGFloat scale=320.0/[self.productModel.a_imageWidth floatValue]*2;
     CGFloat height=[self.productModel.a_imageHeight floatValue]*.5*scale;
-
+    
     EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"产品－产品详情_03a"]];
     if (![self.productModel.a_imageUrl isEqualToString:@""]) {
         imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.productModel.a_imageUrl]];
