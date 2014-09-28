@@ -279,7 +279,6 @@
 		042D9EC419B8011300689C5D /* AutoChangeTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9EC319B8011300689C5D /* AutoChangeTextView.m */; };
 		042D9ECA19B81B2C00689C5D /* CompanyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9EC919B81B2C00689C5D /* CompanyCell.m */; };
 		042D9ECD19B81BE400689C5D /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9ECC19B81BE400689C5D /* ContactCell.m */; };
-		042D9ED819B846B800689C5D /* CommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9ED719B846B800689C5D /* CommonCell.m */; };
 		042D9EE519B8671900689C5D /* AccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9EE419B8671900689C5D /* AccountCell.m */; };
 		042D9EEF19B8855100689C5D /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9EEE19B8855100689C5D /* Camera.m */; };
 		04BF13B419C4162A002E02C9 /* AFAppDotNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13A719C4162A002E02C9 /* AFAppDotNetAPIClient.m */; };
@@ -319,13 +318,13 @@
 		5B13C70C19B6E8A5008EA7A0 /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C70B19B6E8A5008EA7A0 /* CommentView.m */; };
 		5B13C71919B70699008EA7A0 /* AddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C71819B70699008EA7A0 /* AddCommentViewController.m */; };
 		5B18B46F19BFFC3700551F82 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B18B46E19BFFC3700551F82 /* GradientView.m */; };
-		5B18B47219C01DAD00551F82 /* CommonCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B18B47119C01DAD00551F82 /* CommonCellView.m */; };
 		5B1AC4B019BEE4DC006CA4F4 /* CompanyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */; };
 		5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
 		5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF819932E36007D79A8 /* QuadCurveMenu.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5B656CFC19932E36007D79A8 /* QuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CFA19932E36007D79A8 /* QuadCurveMenuItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5BF08A3A19B86C5D00782976 /* MoreCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */; };
 		5BF08A3D19B8779D00782976 /* MoreCompanyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */; };
+		D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */; };
 		D3A4281019C1749E00BAB6C7 /* ErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4280F19C1749E00BAB6C7 /* ErrorView.m */; };
 		D3A4281519C19A3E00BAB6C7 /* BirthDay.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281419C19A3E00BAB6C7 /* BirthDay.m */; };
 		D3A4281B19C1A2E700BAB6C7 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281819C1A2E700BAB6C7 /* GTMBase64.m */; };
@@ -1631,8 +1630,6 @@
 		042D9EC919B81B2C00689C5D /* CompanyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyCell.m; sourceTree = "<group>"; };
 		042D9ECB19B81BE400689C5D /* ContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCell.h; sourceTree = "<group>"; };
 		042D9ECC19B81BE400689C5D /* ContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCell.m; sourceTree = "<group>"; };
-		042D9ED619B846B800689C5D /* CommonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCell.h; sourceTree = "<group>"; };
-		042D9ED719B846B800689C5D /* CommonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonCell.m; sourceTree = "<group>"; };
 		042D9EE319B8671900689C5D /* AccountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountCell.h; sourceTree = "<group>"; };
 		042D9EE419B8671900689C5D /* AccountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountCell.m; sourceTree = "<group>"; };
 		042D9EED19B8855100689C5D /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
@@ -1702,8 +1699,6 @@
 		5B13C71819B70699008EA7A0 /* AddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCommentViewController.m; sourceTree = "<group>"; };
 		5B18B46D19BFFC3700551F82 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
 		5B18B46E19BFFC3700551F82 /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
-		5B18B47019C01DAD00551F82 /* CommonCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCellView.h; sourceTree = "<group>"; };
-		5B18B47119C01DAD00551F82 /* CommonCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonCellView.m; sourceTree = "<group>"; };
 		5B1AC4AE19BEE4DC006CA4F4 /* CompanyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyDetailViewController.h; sourceTree = "<group>"; };
 		5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyDetailViewController.m; sourceTree = "<group>"; };
 		5B656CF419931275007D79A8 /* CompanyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMemberViewController.h; sourceTree = "<group>"; };
@@ -1716,6 +1711,8 @@
 		5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCompanyViewController.m; sourceTree = "<group>"; };
 		5BF08A3B19B8779D00782976 /* MoreCompanyViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCompanyViewCell.h; sourceTree = "<group>"; };
 		5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCompanyViewCell.m; sourceTree = "<group>"; };
+		D32C88CD19D79E0800D1BA1D /* PersonalCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterModel.h; sourceTree = "<group>"; };
+		D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterModel.m; sourceTree = "<group>"; };
 		D3A4280819C16F2400BAB6C7 /* ErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorView.h; sourceTree = "<group>"; };
 		D3A4280F19C1749E00BAB6C7 /* ErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorView.m; sourceTree = "<group>"; };
 		D3A4281319C19A3E00BAB6C7 /* BirthDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirthDay.h; sourceTree = "<group>"; };
@@ -3497,10 +3494,6 @@
 				042D9EE419B8671900689C5D /* AccountCell.m */,
 				04D10BBF19AE016A0097C0C6 /* PersonalCenterViewController.h */,
 				04D10BC019AE016A0097C0C6 /* PersonalCenterViewController.m */,
-				042D9ED619B846B800689C5D /* CommonCell.h */,
-				042D9ED719B846B800689C5D /* CommonCell.m */,
-				5B18B47019C01DAD00551F82 /* CommonCellView.h */,
-				5B18B47119C01DAD00551F82 /* CommonCellView.m */,
 			);
 			path = personalCenter;
 			sourceTree = "<group>";
@@ -3685,6 +3678,8 @@
 				D3AC61E319B882050015B62F /* ContactCommentModel.m */,
 				D3A4283919C94E5E00BAB6C7 /* ActivesModel.h */,
 				D3A4283A19C94E5E00BAB6C7 /* ActivesModel.m */,
+				D32C88CD19D79E0800D1BA1D /* PersonalCenterModel.h */,
+				D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */,
 			);
 			path = ContactModel;
 			sourceTree = "<group>";
@@ -5521,7 +5516,6 @@
 				0426C28119922D5A00CD8822 /* GPUImageKuwaharaFilter.m in Sources */,
 				0426C25D19922D5A00CD8822 /* GPUImageDarkenBlendFilter.m in Sources */,
 				0426C2FD19922D5A00CD8822 /* UIAlertView+AFNetworking.m in Sources */,
-				5B18B47219C01DAD00551F82 /* CommonCellView.m in Sources */,
 				0426C26619922D5A00CD8822 /* GPUImageExclusionBlendFilter.m in Sources */,
 				0426C2E419922D5A00CD8822 /* FaceppDetection.m in Sources */,
 				042D9E1119B559FC00689C5D /* MainBuild.m in Sources */,
@@ -5539,7 +5533,6 @@
 				0426C2D019922D5A00CD8822 /* GPUImageTwoPassFilter.m in Sources */,
 				0426C27B19922D5A00CD8822 /* GPUImageHistogramGenerator.m in Sources */,
 				0426C22E19922D5A00CD8822 /* FaceLoginViewController.m in Sources */,
-				042D9ED819B846B800689C5D /* CommonCell.m in Sources */,
 				5B656CFC19932E36007D79A8 /* QuadCurveMenuItem.m in Sources */,
 				0426C27A19922D5A00CD8822 /* GPUImageHistogramFilter.m in Sources */,
 				0426C23A19922D5A00CD8822 /* AFSecurityPolicy.m in Sources */,
@@ -5578,6 +5571,7 @@
 				0426C2BD19922D5A00CD8822 /* GPUImageSolidColorGenerator.m in Sources */,
 				0426C24D19922D5A00CD8822 /* GPUImageBulgeDistortionFilter.m in Sources */,
 				042D9DC719B4A1C600689C5D /* JSONKit.m in Sources */,
+				D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */,
 				0426C24C19922D5A00CD8822 /* GPUImageBuffer.m in Sources */,
 				0426C24019922D5A00CD8822 /* GLProgram.m in Sources */,
 				0426BFFB19922CE400CD8822 /* AppDelegate.m in Sources */,

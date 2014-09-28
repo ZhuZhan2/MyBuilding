@@ -11,6 +11,7 @@
 #import "ProjectCommentModel.h"
 #import "ContactCommentModel.h"
 #import "ActivesModel.h"
+#import "PersonalCenterModel.h"
 @implementation CommentApi
 + (NSURLSessionDataTask *)GetEntityCommentsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block entityId:(NSString *)entityId entityType:(NSString *)entityType{
     NSString *urlStr = [NSString stringWithFormat:@"api/EntityComments/Get?entityId=%@&entityType=%@",entityId,entityType];
@@ -129,12 +130,15 @@
 
 + (NSURLSessionDataTask *)PersonalActiveWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId startIndex:(int)startIndex{
     NSString *urlStr = [NSString stringWithFormat:@"api/AcPersonalActiveCenter/PersonalActive?UserId=%@&pageSize=5&pageIndex=%d",userId,startIndex];
-    NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]||[[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON[@"d"][@"data"]];
+            for(NSDictionary *item in JSON[@"d"][@"data"]){
+                PersonalCenterModel* model=[[PersonalCenterModel alloc]init];
+                [model setDict:item];
+                [mutablePosts addObject:model];
+            }
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
