@@ -46,12 +46,11 @@
     view.backgroundColor=[UIColor whiteColor];
     
     CGFloat contentX=10;
-    imageUrl=@"dasdas";
     BOOL imageExist = ![imageUrl isEqualToString:@""];
     if (imageExist) {
         EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"公司认证员工_05a"]];
         imageView.frame=CGRectMake(10, 10, 60, 60);
-        imageView.imageURL=[NSURL URLWithString:@"http://pic2.ooopic.com/01/27/78/24b1OOOPICa7.jpg"];//[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,imageUrl]];
+        imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,imageUrl]];
         [view addSubview:imageView];
         contentX=80;
     }
