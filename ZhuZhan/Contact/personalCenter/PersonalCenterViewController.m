@@ -17,6 +17,7 @@
 #import "MJRefresh.h"
 #import "PersonalCenterCellView.h"
 #import "PersonalProjectTableViewCell.h"
+#import "PorjectCommentTableViewController.h"
 @interface PersonalCenterViewController ()
 
 @end
@@ -98,7 +99,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             showArr = posts;
             for(int i=0;i<showArr.count;i++){
                 PersonalCenterModel *model = showArr[i];
-                NSLog(@"%@",model.a_category);
                 [_datasource addObject:model.a_time];
                 
                 if (![model.a_category isEqualToString:@"Project"]) {
@@ -185,6 +185,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             cell = [[PersonalProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.model = model;
+        cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
         cell.selectionStyle = NO;
         return cell;
     }else{
@@ -198,6 +199,27 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [cell.contentView addSubview:contentViews[indexPath.row]];
         cell.selectionStyle = NO;
         return cell;
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    PersonalCenterModel *model;
+    if(showArr.count !=0){
+        model = showArr[indexPath.row];
+    }
+    if([model.a_category isEqualToString:@"Project"]){
+        PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
+        projectCommentView.projectId = model.a_entityId;
+        projectCommentView.projectName = model.a_entityName;
+        [self.navigationController pushViewController:projectCommentView animated:YES];
+    }else{
+        NSLog(@"%@",model.a_entityUrl);
+        NSLog(@"%@",model.a_entityId);
+        [CommentApi CommentUrlWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                
+            }
+        } url:model.a_entityUrl];
     }
 }
 

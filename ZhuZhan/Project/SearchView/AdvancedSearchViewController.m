@@ -71,7 +71,7 @@
             showArr = posts;
             for(int i=0;i<posts.count;i++){
                 conditionsView = [ConditionsView setFram:posts[i]];
-                [viewArr insertObject:conditionsView atIndex:0];
+                [viewArr addObject:conditionsView];
             }
             [_tableView reloadData];
         }
@@ -252,6 +252,16 @@
     }
     
     return nil;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //ConditionsModel *model = showArr[indexPath.row-2];
+    if(indexPath.row>1){
+        ResultsTableViewController *resultsView = [[ResultsTableViewController alloc] init];
+        resultsView.flag = 1;
+        resultsView.dic = dataDic;
+        [self.navigationController pushViewController:resultsView animated:YES];
+    }
 }
 
 -(void)multipleChose:(int)index{
