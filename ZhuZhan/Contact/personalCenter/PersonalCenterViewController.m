@@ -17,6 +17,7 @@
 #import "MJRefresh.h"
 #import "PersonalCenterCellView.h"
 #import "PersonalProjectTableViewCell.h"
+#import "ConnectionAvailable.h"
 #import "PorjectCommentTableViewController.h"
 @interface PersonalCenterViewController ()
 
@@ -194,6 +195,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 - (void)_refreshing {
     // refresh your data sources
+    
+    NSLog(@"asdfasdfasdfasf");
     __weak PersonalCenterViewController *wself = self;
     double delayInSeconds = 4.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -284,6 +287,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 
             }
         } url:model.a_entityUrl];
+        
+        ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
