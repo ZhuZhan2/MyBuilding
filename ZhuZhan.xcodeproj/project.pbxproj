@@ -379,6 +379,7 @@
 		D3AD61AD19AEF80B001FD483 /* NIDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61A919AEF80B001FD483 /* NIDropDown.m */; };
 		D3AD61AE19AEF80B001FD483 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61AB19AEF80B001FD483 /* UIViewController+MJPopupViewController.m */; };
 		D3B1C28319D155CC00E6D89F /* ContactCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B1C28219D155CC00E6D89F /* ContactCommentTableViewCell.m */; };
+		D3B8F4A519D7A3DF008F6164 /* PersonalProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B8F4A419D7A3DF008F6164 /* PersonalProjectTableViewCell.m */; };
 		D3F79C9319D157A700E3B473 /* +人脉_21a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F79A1519D157A400E3B473 /* +人脉_21a.png */; };
 		D3F79C9419D157A700E3B473 /* +人脉_21a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F79A1619D157A400E3B473 /* +人脉_21a@2x.png */; };
 		D3F79C9519D157A700E3B473 /* +人脉_22a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F79A1719D157A400E3B473 /* +人脉_22a.png */; };
@@ -1823,6 +1824,8 @@
 		D3AD61AB19AEF80B001FD483 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
 		D3B1C28119D155CC00E6D89F /* ContactCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCommentTableViewCell.h; sourceTree = "<group>"; };
 		D3B1C28219D155CC00E6D89F /* ContactCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCommentTableViewCell.m; sourceTree = "<group>"; };
+		D3B8F4A319D7A3DF008F6164 /* PersonalProjectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProjectTableViewCell.h; sourceTree = "<group>"; };
+		D3B8F4A419D7A3DF008F6164 /* PersonalProjectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProjectTableViewCell.m; sourceTree = "<group>"; };
 		D3F79A1519D157A400E3B473 /* +人脉_21a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+人脉_21a.png"; sourceTree = "<group>"; };
 		D3F79A1619D157A400E3B473 /* +人脉_21a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+人脉_21a@2x.png"; sourceTree = "<group>"; };
 		D3F79A1719D157A400E3B473 /* +人脉_22a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+人脉_22a.png"; sourceTree = "<group>"; };
@@ -5352,6 +5355,7 @@
 				0426C24A19922D5A00CD8822 /* GPUImageBoxBlurFilter.m in Sources */,
 				042D9E2019B559FC00689C5D /* PopupView.m in Sources */,
 				0426C2B019922D5A00CD8822 /* GPUImageSaturationBlendFilter.m in Sources */,
+				D3B8F4A519D7A3DF008F6164 /* PersonalProjectTableViewCell.m in Sources */,
 				0426C2D419922D5A00CD8822 /* GPUImageVideoCamera.m in Sources */,
 				D3A4281519C19A3E00BAB6C7 /* BirthDay.m in Sources */,
 				042D9E1B19B559FC00689C5D /* AdvancedSearchConditionsTableViewCell.m in Sources */,
