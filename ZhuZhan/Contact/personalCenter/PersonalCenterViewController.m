@@ -92,10 +92,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     showArr = [[NSMutableArray alloc] init];
     contentViews=[[NSMutableArray alloc]init];
-    for (int i=0; i<5; i++) {
-        UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:@"" content:@"asddddddddddddddddddddddddddddddddddddddasdsa" category:@"动态"];
-        [contentViews addObject:view];
-    }
     
     _datasource = [[NSMutableArray alloc] init];
     [CommentApi PersonalActiveWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -167,6 +163,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    return contentViews.count;
+    NSLog(@"222");
     return showArr.count;
 }
 
@@ -176,7 +174,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if(showArr.count !=0){
         model = showArr[indexPath.row];
     }
-    if([model.a_category isEqualToString:@"Project"]){
+    if([model.a_category isEqualToString:@"Project"]&&0){
         NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalProjectTableViewCell"];
         PersonalProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
@@ -192,7 +190,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }
         [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
-        //[cell.contentView addSubview:contentViews[indexPath.row]];
+        [cell.contentView addSubview:contentViews[indexPath.row]];
         cell.selectionStyle = NO;
         return cell;
     }
@@ -200,7 +198,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //return [contentViews[indexPath.row] frame].size.height;
+    return [contentViews[indexPath.row] frame].size.height;
     PersonalCenterModel *model;
     if(showArr.count !=0){
         model = showArr[indexPath.row];
