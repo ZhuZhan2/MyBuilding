@@ -15,6 +15,7 @@
     NSMutableArray *_datasource;
     ACTimeScroller *_timeScroller;
     NSMutableArray *showArr;
+    NSMutableArray* contentViews;
 }
 @property (nonatomic, strong) XHPathCover *pathCover;
 @end
