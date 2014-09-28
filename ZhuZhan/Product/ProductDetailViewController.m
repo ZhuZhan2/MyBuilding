@@ -68,7 +68,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.productModel=productModel;
-        [self loadMyPropertyWithImgW:productModel.a_imageWidth imgH:productModel.a_imageHeight imgUrl:@"" userImgUrl:productModel.a_imageUrl content:productModel.a_content entityID:productModel.a_id entityUrl:@"" userName:productModel.a_name];
+        [self loadMyPropertyWithImgW:productModel.a_imageWidth imgH:productModel.a_imageHeight imgUrl:productModel.a_imageUrl userImgUrl:@"" content:productModel.a_content entityID:productModel.a_id entityUrl:@"" userName:productModel.a_name];
     }
     return self;
 }
@@ -233,7 +233,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         //动态文字内容
         contentTextView.attributedText=attributedText;
         
-        BOOL imageUrlExist=![self.activesModel.a_imageUrl isEqualToString:@""];
+        BOOL imageUrlExist=![self.imageUrl isEqualToString:@""];
         //给一个比较大的高度，宽度不变
         CGSize size =CGSizeMake(imageUrlExist?300:250,CGFLOAT_MAX);
         // 获取当前文本的属性
@@ -265,7 +265,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     userImageView.frame=CGRectMake(5,tempHeight+5,37,37);
     [forCornerView addSubview:userImageView];
     
-    userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.activesModel.a_avatarUrl]];
+    userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.userImageUrl]];
     [forCornerView addSubview:userImageView];
     
     //设置总的view的frame
