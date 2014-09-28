@@ -311,6 +311,7 @@
 		5B0A00A519B587CD00500C05 /* TMQuiltViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A00A219B587CD00500C05 /* TMQuiltViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5B0C8A4E19D40E670058C0EE /* 动态详情_14a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B0C8A4C19D40E670058C0EE /* 动态详情_14a.png */; };
 		5B0C8A4F19D40E670058C0EE /* 动态详情_14a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B0C8A4D19D40E670058C0EE /* 动态详情_14a@2x.png */; };
+		5B0C8AA619D79E550058C0EE /* PersonalCenterCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C8AA519D79E550058C0EE /* PersonalCenterCellView.m */; };
 		5B0D03A419B054FB00518D5E /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD614F19ADA1A9001FD483 /* libbaidumapapi.a */; };
 		5B0D03A519B0550900518D5E /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD615119ADA1A9001FD483 /* libbaidumapapi.a */; };
 		5B0D03E319B0554400518D5E /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B0D03E219B0554400518D5E /* mapapi.bundle */; };
@@ -319,7 +320,6 @@
 		5B13C70C19B6E8A5008EA7A0 /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C70B19B6E8A5008EA7A0 /* CommentView.m */; };
 		5B13C71919B70699008EA7A0 /* AddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C71819B70699008EA7A0 /* AddCommentViewController.m */; };
 		5B18B46F19BFFC3700551F82 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B18B46E19BFFC3700551F82 /* GradientView.m */; };
-		5B18B47219C01DAD00551F82 /* CommonCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B18B47119C01DAD00551F82 /* CommonCellView.m */; };
 		5B1AC4B019BEE4DC006CA4F4 /* CompanyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */; };
 		5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
 		5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF819932E36007D79A8 /* QuadCurveMenu.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1691,6 +1691,8 @@
 		5B0A00A219B587CD00500C05 /* TMQuiltViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMQuiltViewController.m; sourceTree = "<group>"; };
 		5B0C8A4C19D40E670058C0EE /* 动态详情_14a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "动态详情_14a.png"; sourceTree = "<group>"; };
 		5B0C8A4D19D40E670058C0EE /* 动态详情_14a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "动态详情_14a@2x.png"; sourceTree = "<group>"; };
+		5B0C8AA419D79E550058C0EE /* PersonalCenterCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterCellView.h; sourceTree = "<group>"; };
+		5B0C8AA519D79E550058C0EE /* PersonalCenterCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterCellView.m; sourceTree = "<group>"; };
 		5B0D03E219B0554400518D5E /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		5B13C6FE19B6AB0C008EA7A0 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
 		5B13C6FF19B6AB0C008EA7A0 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
@@ -1702,8 +1704,6 @@
 		5B13C71819B70699008EA7A0 /* AddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCommentViewController.m; sourceTree = "<group>"; };
 		5B18B46D19BFFC3700551F82 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
 		5B18B46E19BFFC3700551F82 /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
-		5B18B47019C01DAD00551F82 /* CommonCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCellView.h; sourceTree = "<group>"; };
-		5B18B47119C01DAD00551F82 /* CommonCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonCellView.m; sourceTree = "<group>"; };
 		5B1AC4AE19BEE4DC006CA4F4 /* CompanyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyDetailViewController.h; sourceTree = "<group>"; };
 		5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyDetailViewController.m; sourceTree = "<group>"; };
 		5B656CF419931275007D79A8 /* CompanyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMemberViewController.h; sourceTree = "<group>"; };
@@ -3499,8 +3499,8 @@
 				04D10BC019AE016A0097C0C6 /* PersonalCenterViewController.m */,
 				042D9ED619B846B800689C5D /* CommonCell.h */,
 				042D9ED719B846B800689C5D /* CommonCell.m */,
-				5B18B47019C01DAD00551F82 /* CommonCellView.h */,
-				5B18B47119C01DAD00551F82 /* CommonCellView.m */,
+				5B0C8AA419D79E550058C0EE /* PersonalCenterCellView.h */,
+				5B0C8AA519D79E550058C0EE /* PersonalCenterCellView.m */,
 			);
 			path = personalCenter;
 			sourceTree = "<group>";
@@ -5388,6 +5388,7 @@
 				04D10BDD19AE016A0097C0C6 /* AccountViewController.m in Sources */,
 				0426C2E519922D5A00CD8822 /* FaceppFaceset.m in Sources */,
 				0426C2AE19922D5A00CD8822 /* GPUImageRGBFilter.m in Sources */,
+				5B0C8AA619D79E550058C0EE /* PersonalCenterCellView.m in Sources */,
 				0426C2A419922D5A00CD8822 /* GPUImagePoissonBlendFilter.m in Sources */,
 				0426C23B19922D5A00CD8822 /* AFURLConnectionOperation.m in Sources */,
 				0426C30119922D5A00CD8822 /* UIRefreshControl+AFNetworking.m in Sources */,
@@ -5521,7 +5522,6 @@
 				0426C28119922D5A00CD8822 /* GPUImageKuwaharaFilter.m in Sources */,
 				0426C25D19922D5A00CD8822 /* GPUImageDarkenBlendFilter.m in Sources */,
 				0426C2FD19922D5A00CD8822 /* UIAlertView+AFNetworking.m in Sources */,
-				5B18B47219C01DAD00551F82 /* CommonCellView.m in Sources */,
 				0426C26619922D5A00CD8822 /* GPUImageExclusionBlendFilter.m in Sources */,
 				0426C2E419922D5A00CD8822 /* FaceppDetection.m in Sources */,
 				042D9E1119B559FC00689C5D /* MainBuild.m in Sources */,
