@@ -9,7 +9,6 @@
 #import "ProductViewController.h"
 #import "TMPhotoQuiltViewCell.h"
 #import "ProductDetailViewController.h"
-#import "CommentModel.h"
 #import "ProductModel.h"
 #import "EGOImageView.h"
 #import "MJRefresh.h"

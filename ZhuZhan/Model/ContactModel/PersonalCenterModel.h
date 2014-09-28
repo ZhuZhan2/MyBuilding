@@ -20,6 +20,7 @@
 @property (nonatomic, copy) NSString *a_imageHeight;
 @property (nonatomic, copy) NSDate *a_time;
 @property (nonatomic, copy) NSString *a_category;
-
+@property (nonatomic, copy) NSString *a_avatarUrl;
+@property (nonatomic, copy) NSString *a_userName;
 @property (nonatomic, copy) NSDictionary *dict;
 @end

@@ -10,7 +10,6 @@
 #import "XHPathCover.h"
 #import "ACTimeScroller.h"
 #import "ShowViewController.h"
-#import "CommentModel.h"
 #import "CommentView.h"
 #import "HeadImageDelegate.h"
 #import "AddCommentViewController.h"

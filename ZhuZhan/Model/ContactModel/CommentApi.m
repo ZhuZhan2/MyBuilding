@@ -8,7 +8,6 @@
 
 #import "CommentApi.h"
 #import "AFAppDotNetAPIClient.h"
-#import "ProjectCommentModel.h"
 #import "ContactCommentModel.h"
 #import "ActivesModel.h"
 #import "PersonalCenterModel.h"
