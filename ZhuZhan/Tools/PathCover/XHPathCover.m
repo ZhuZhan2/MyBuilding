@@ -437,8 +437,7 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 }
 
 -(void)hidewaterDropRefresh{
-    [self.waterDropRefresh removeFromSuperview];
-    self.waterDropRefresh = nil;
+    self.waterDropRefresh.hidden = YES;
 }
 
 -(void)setHeadFrame:(CGRect)newFrame{
