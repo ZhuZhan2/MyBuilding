@@ -171,6 +171,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return contentViews.count;
+    NSLog(@"222");
     return showArr.count;
 }
 
