@@ -106,7 +106,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 NSLog(@"%@",model.a_content);
                 [_datasource addObject:model.a_time];
                 [self.tableView reloadData];
-                NSLog(@"asf");
             }
         }
     } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:0];
