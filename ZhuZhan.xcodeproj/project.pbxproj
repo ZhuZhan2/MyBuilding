@@ -312,8 +312,6 @@
 		5B0C8A4F19D40E670058C0EE /* 动态详情_14a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B0C8A4D19D40E670058C0EE /* 动态详情_14a@2x.png */; };
 		5B0C8AA619D79E550058C0EE /* PersonalCenterCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C8AA519D79E550058C0EE /* PersonalCenterCellView.m */; };
 		5B0C8AA919D7ABA30058C0EE /* PersonalProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C8AA819D7ABA30058C0EE /* PersonalProjectTableViewCell.m */; };
-		5B0C8AB819D7C79D0058C0EE /* 人脉－个人中心_10a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B0C8AB619D7C79D0058C0EE /* 人脉－个人中心_10a.png */; };
-		5B0C8AB919D7C79D0058C0EE /* 人脉－个人中心_10a@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B0C8AB719D7C79D0058C0EE /* 人脉－个人中心_10a@2X.png */; };
 		5B0D03A419B054FB00518D5E /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD614F19ADA1A9001FD483 /* libbaidumapapi.a */; };
 		5B0D03A519B0550900518D5E /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD615119ADA1A9001FD483 /* libbaidumapapi.a */; };
 		5B0D03E319B0554400518D5E /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B0D03E219B0554400518D5E /* mapapi.bundle */; };
@@ -1694,8 +1692,6 @@
 		5B0C8AA519D79E550058C0EE /* PersonalCenterCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterCellView.m; sourceTree = "<group>"; };
 		5B0C8AA719D7ABA30058C0EE /* PersonalProjectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProjectTableViewCell.h; sourceTree = "<group>"; };
 		5B0C8AA819D7ABA30058C0EE /* PersonalProjectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProjectTableViewCell.m; sourceTree = "<group>"; };
-		5B0C8AB619D7C79D0058C0EE /* 人脉－个人中心_10a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－个人中心_10a.png"; sourceTree = "<group>"; };
-		5B0C8AB719D7C79D0058C0EE /* 人脉－个人中心_10a@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－个人中心_10a@2X.png"; sourceTree = "<group>"; };
 		5B0D03E219B0554400518D5E /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		5B13C6FE19B6AB0C008EA7A0 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
 		5B13C6FF19B6AB0C008EA7A0 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
@@ -3943,8 +3939,6 @@
 		D3F79A1419D157A400E3B473 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				5B0C8AB619D7C79D0058C0EE /* 人脉－个人中心_10a.png */,
-				5B0C8AB719D7C79D0058C0EE /* 人脉－个人中心_10a@2X.png */,
 				D3F79FAD19D52B1100E3B473 /* 欧莱凯GIF图片.gif */,
 				5B0C8A4C19D40E670058C0EE /* 动态详情_14a.png */,
 				5B0C8A4D19D40E670058C0EE /* 动态详情_14a@2x.png */,
@@ -4954,7 +4948,6 @@
 				D3F79D4919D157A700E3B473 /* 人脉_61a.png in Resources */,
 				D3F79DEB19D157A700E3B473 /* 地图搜索_03a.png in Resources */,
 				D3F79D1E19D157A700E3B473 /* 人脉-点击效果_04a@2x.png in Resources */,
-				5B0C8AB919D7C79D0058C0EE /* 人脉－个人中心_10a@2X.png in Resources */,
 				D3F79E1719D157A700E3B473 /* 数据加载失败_07a.png in Resources */,
 				D3F79E1819D157A700E3B473 /* 数据加载失败_07a@2x.png in Resources */,
 				D3F79F6B19D3DC0E00E3B473 /* 01.png in Resources */,
@@ -5023,7 +5016,6 @@
 				D3F79D4419D157A700E3B473 /* 人脉_54a@2x.png in Resources */,
 				D3F79EE919D157A700E3B473 /* 项目－高级搜索－2_03a.png in Resources */,
 				D3F79EDE19D157A700E3B473 /* 项目－项目专题_11a@2x.png in Resources */,
-				5B0C8AB819D7C79D0058C0EE /* 人脉－个人中心_10a.png in Resources */,
 				D3F79E9519D157A700E3B473 /* 项目详情-筛选_17a1.png in Resources */,
 				D3F79F7A19D3DC0E00E3B473 /* 08@2x.png in Resources */,
 				D3F79E2419D157A700E3B473 /* 新建项目5_09@2x.png in Resources */,
