@@ -12,7 +12,7 @@
 @implementation ActivesModel
 - (void)setDict:(NSDictionary *)dict{
     _dict = dict;
-    
+
     self.a_id = [ProjectStage ProjectStrStage:dict[@"actives"][@"id"]];
     self.a_entityId = [ProjectStage ProjectStrStage:dict[@"actives"][@"entityId"]];
     self.a_entityUrl = [ProjectStage ProjectStrStage:dict[@"actives"][@"entityUrl"]];

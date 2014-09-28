@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "PersonalCenterModel.h"
-@interface PersonalProjectTableViewCell : UITableViewCell
+@interface PersonalProjectTableViewCell : UITableViewCell{
+    UIImageView *stageImage;
+    UILabel *titleLabel;
+    UILabel *contentLabel;
+}
 @property(nonatomic,strong)PersonalCenterModel *model;
 @end

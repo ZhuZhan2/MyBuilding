@@ -13,9 +13,10 @@
 #import "AppDelegate.h"
 #import "LoginSqlite.h"
 #import "CommentApi.h"
-#import "ActivesModel.h"
+#import "PersonalCenterModel.h"
 #import "MJRefresh.h"
 #import "PersonalCenterCellView.h"
+#import "PersonalProjectTableViewCell.h"
 @interface PersonalCenterViewController ()
 
 @end
@@ -91,26 +92,30 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     showArr = [[NSMutableArray alloc] init];
     contentViews=[[NSMutableArray alloc]init];
-    for (int i=0; i<5; i++) {
-        UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:@"" content:@"sdas拉拉阿拉" category:@"公司"];
-        [contentViews addObject:view];
-    }
     
     _datasource = [[NSMutableArray alloc] init];
     [CommentApi PersonalActiveWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             showArr = posts;
             for(int i=0;i<showArr.count;i++){
-                ActivesModel *model = showArr[i];
+                PersonalCenterModel *model = showArr[i];
                 NSLog(@"%@",model.a_content);
                 [_datasource addObject:model.a_time];
-                [self.tableView reloadData];
+                
+                if (![model.a_category isEqualToString:@"Project"]) {
+                    UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:model.a_imageUrl content:model.a_content category:model.a_category];
+                    [contentViews addObject:view];
+                    
+                    [self.tableView reloadData];
+                }
+                
             }
         }
     } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:0];
     
     
     //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
 }
 
@@ -171,22 +176,44 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(!cell){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    PersonalCenterModel *model;
+    if(showArr.count !=0){
+        model = showArr[indexPath.row];
     }
-    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
-    [cell.contentView addSubview:contentViews[indexPath.row]];
-    cell.selectionStyle = NO;
-    return cell;
+    if([model.a_category isEqualToString:@"Project"]&&0){
+        NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalProjectTableViewCell"];
+        PersonalProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[PersonalProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = NO;
+        return cell;
+    }else{
+        NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
+        [cell.contentView addSubview:contentViews[indexPath.row]];
+        cell.selectionStyle = NO;
+        return cell;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [contentViews[indexPath.row] frame].size.height;
+    PersonalCenterModel *model;
+    if(showArr.count !=0){
+        model = showArr[indexPath.row];
+    }
+    if([model.a_category isEqualToString:@"Project"]){
+        return 50;
+    }
+    
+    
     
     if (indexPath.row==0) {
         return 60;

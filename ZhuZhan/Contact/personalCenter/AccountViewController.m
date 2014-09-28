@@ -100,6 +100,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
     [self getUserInformation];
         
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
 }
 
 - (void)getUserInformation
