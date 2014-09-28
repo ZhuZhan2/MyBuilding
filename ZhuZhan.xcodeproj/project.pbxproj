@@ -480,7 +480,6 @@
 		04BC41A619D7E5B3006B5C7B /* 人脉－个人中心_06a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BC3F2219D7E5B0006B5C7B /* 人脉－个人中心_06a@2x.png */; };
 		04BC41A719D7E5B3006B5C7B /* 人脉－个人中心_07a.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BC3F2319D7E5B0006B5C7B /* 人脉－个人中心_07a.png */; };
 		04BC41A819D7E5B3006B5C7B /* 人脉－个人中心_07a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BC3F2419D7E5B0006B5C7B /* 人脉－个人中心_07a@2x.png */; };
-		04BC41A919D7E5B3006B5C7B /* 人脉－个人中心_10a.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BC3F2519D7E5B0006B5C7B /* 人脉－个人中心_10a.png */; };
 		04BC41AB19D7E5B3006B5C7B /* 人脉－人的详情1_21a.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BC3F2719D7E5B0006B5C7B /* 人脉－人的详情1_21a.png */; };
 		04BC41AC19D7E5B3006B5C7B /* 人脉－人的详情1_21a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BC3F2819D7E5B0006B5C7B /* 人脉－人的详情1_21a@2x.png */; };
 		04BC41AD19D7E5B3006B5C7B /* 人脉－人的详情1_23a.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BC3F2919D7E5B0006B5C7B /* 人脉－人的详情1_23a.png */; };
@@ -5130,7 +5129,6 @@
 				04BC422919D7E5B3006B5C7B /* 关注的动态－弹框_14a.png in Resources */,
 				04BC414119D7E5B3006B5C7B /* icon02.png in Resources */,
 				04BC420019D7E5B3006B5C7B /* 全部项目_37@2x.png in Resources */,
-				04BC41A919D7E5B3006B5C7B /* 人脉－个人中心_10a.png in Resources */,
 				04BC42AD19D7E5B3006B5C7B /* 面部识别登录_07@2x.png in Resources */,
 				04BC411319D7E5B3006B5C7B /* 03@2x.png in Resources */,
 				04BC429D19D7E5B3006B5C7B /* 筛选中03@2x.png in Resources */,
