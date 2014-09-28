@@ -194,38 +194,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 - (void)_refreshing {
-    // refresh your data sources
-    __weak PersonalCenterViewController *wself = self;
-    double delayInSeconds = 4.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [wself.pathCover stopRefresh];
-    });
+    NSLog(@"222222222");
 }
-
-/******************************************************************************************************************/
-////滚动是触发的事件
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    [_pathCover scrollViewDidScroll:scrollView];
-//    [_timeScroller scrollViewDidScroll];
-//}
-//
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-//    [_pathCover scrollViewDidEndDecelerating:scrollView];
-//    [_timeScroller scrollViewDidEndDecelerating];
-//}
-//
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-//    [_pathCover scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
-//}
-//
-//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-//    [_pathCover scrollViewWillBeginDragging:scrollView];
-//    [_timeScroller scrollViewWillBeginDragging];
-//}
-/******************************************************************************************************************/
-
-
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -291,9 +261,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     NSIndexPath *indexPath = [[self tableView] indexPathForCell:cell];
     return _datasource[[indexPath row]];
 }
-
-
-
 
 - (void)didReceiveMemoryWarning
 {
