@@ -20,7 +20,7 @@
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]||[[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             for(NSDictionary *item in JSON[@"d"][@"data"]){
-                ProjectCommentModel *model = [[ProjectCommentModel alloc] init];
+                ContactCommentModel *model = [[ContactCommentModel alloc] init];
                 [model setDict:item];
                 [mutablePosts addObject:model];
             }

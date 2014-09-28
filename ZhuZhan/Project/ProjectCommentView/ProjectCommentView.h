@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ProjectCommentModel.h"
+#import "ContactCommentModel.h"
 #import "EGOImageView.h"
 @interface ProjectCommentView : UIView
 @property(nonatomic,strong)EGOImageView* userImageView;
 @property(nonatomic,strong)UILabel* userNameLabel;
 @property(nonatomic,strong)UILabel* userCommentContent;
--(instancetype)initWithCommentModel:(ProjectCommentModel*)model;
+-(instancetype)initWithCommentModel:(ContactCommentModel*)model;
 @end
