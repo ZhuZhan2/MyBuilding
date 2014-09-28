@@ -34,12 +34,12 @@
 }
 
 -(void)addContent{
-    UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(40, 0, 2, 49)];
+    UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(35, 0, 2, 50)];
     [lineImage2 setBackgroundColor:[UIColor blackColor]];
     [self.contentView addSubview:lineImage2];
     lineImage2.alpha = 0.2;
     
-    stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(27.5, 11.5, 27, 27)];
+    stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(22.5, 11.5, 27, 27)];
     [self.contentView addSubview:stageImage];
     
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 5, 200, 20)];
