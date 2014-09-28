@@ -10,26 +10,36 @@
 @implementation PersonalCenterCellView
 +(UIView *)getPersonalCenterCellViewWithImageUrl:(NSString *)imageUrl content:(NSString *)content category:(NSString *)category{
     UIView* view=[[UIView alloc]initWithFrame:CGRectZero];
+    
+    //分割线上的图片路径
+    NSString* path;
+    //category对应的动态名称
+    NSString* newCategory;
+    if([category isEqualToString:@"Personal"]){
+        path=@"人脉－个人中心_05a";
+        newCategory=@"个人";
+    }else if([category isEqualToString:@"Company"]){
+        path=@"人脉－个人中心_07a";
+        newCategory=@"公司";
+    }else if([category isEqualToString:@"Product"]){
+        path=@"人脉－个人中心_06a";
+        newCategory=@"产品";
+    }
+    
     //动态描述部分
-    UIView* contentView=[self getContentViewWithImageUrl:imageUrl content:content category:category];
+    UIView* contentView=[self getContentViewWithImageUrl:imageUrl content:content category:newCategory];
     
     //竖分割线
-    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(50, 0, 2, contentView.frame.size.height+20)];
+    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(35, 0, 2, contentView.frame.size.height+20)];
     [lineImage setBackgroundColor:[UIColor blackColor]];
     [view addSubview:lineImage];
     lineImage.alpha = 0.2;
     
     //小icon
-    UIImageView *stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(45, 18.5, 12, 13)];
+    UIImageView *stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(30, 18.5, 12, 13)];
     [stageImage setImage:[GetImagePath getImagePath:@"人脉－个人中心_05a"]];
     [view addSubview:stageImage];
-    if([category isEqualToString:@"Personal"]){
-        [stageImage setImage:[GetImagePath getImagePath:@"人脉－个人中心_05a"]];
-    }else if([category isEqualToString:@"Company"]){
-        [stageImage setImage:[GetImagePath getImagePath:@"人脉－个人中心_07a"]];
-    }else if([category isEqualToString:@"Product"]){
-        [stageImage setImage:[GetImagePath getImagePath:@"人脉－个人中心_06a"]];
-    }
+    stageImage.image=[GetImagePath getImagePath:path];
     
     //小箭头
     UIImageView* arrowsImage=[[UIImageView alloc]initWithFrame:CGRectMake(contentView.frame.origin.x-7, 19, 7, 12)];
@@ -75,14 +85,15 @@
     //提醒label设置
     category=[NSString stringWithFormat:@"我的%@动态有新评论",category];
     NSMutableAttributedString* reminderStr=[[NSMutableAttributedString  alloc]initWithString:category];
-    [reminderStr addAttributes:@{NSForegroundColorAttributeName:GrayColor} range:NSMakeRange(0, category.length-3)];
+    [reminderStr addAttributes:@{NSForegroundColorAttributeName:RGBCOLOR(148, 148, 148)} range:NSMakeRange(0, category.length-3)];
     [reminderStr addAttributes:@{NSForegroundColorAttributeName:BlueColor} range:NSMakeRange(category.length-3, 3)];
     reminderLabel.attributedText=reminderStr;
     reminderLabel.font=[UIFont systemFontOfSize:12];
     [view addSubview:reminderLabel];
     
 
-    view.frame=CGRectMake(70, 10, 235, imageExist?80:reminderLabel.frame.origin.y+reminderLabel.frame.size.height+5);
+    view.frame=CGRectMake(55, 10, 250, imageExist?80:reminderLabel.frame.origin.y+reminderLabel.frame.size.height+5);
+    view.layer.cornerRadius=2;
     return view;
 }
 

@@ -185,6 +185,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             cell = [[PersonalProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.model = model;
+        cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
         cell.selectionStyle = NO;
         return cell;
     }else{
@@ -194,9 +195,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
         [cell.contentView addSubview:contentViews[indexPath.row]];
         cell.selectionStyle = NO;
+        cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
         return cell;
     }
 }
