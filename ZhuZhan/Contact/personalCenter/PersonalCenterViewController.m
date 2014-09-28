@@ -92,7 +92,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     showArr = [[NSMutableArray alloc] init];
     contentViews=[[NSMutableArray alloc]init];
     for (int i=0; i<5; i++) {
-        UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:@"" content:@"asddddddddddddddddddddddddddddddddddddddasdsa" category:@"动态"];
+        UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:@"" content:@"sdas拉拉阿拉" category:@"公司"];
         [contentViews addObject:view];
     }
     
