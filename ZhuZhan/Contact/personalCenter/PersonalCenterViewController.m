@@ -17,6 +17,7 @@
 #import "MJRefresh.h"
 #import "PersonalCenterCellView.h"
 #import "PersonalProjectTableViewCell.h"
+#import "ConnectionAvailable.h"
 @interface PersonalCenterViewController ()
 
 @end
@@ -89,7 +90,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [wself _refreshing];
     }];
     
+    //集成刷新控件
+    [self setupRefresh];
     
+    startIndex=0;
     showArr = [[NSMutableArray alloc] init];
     contentViews=[[NSMutableArray alloc]init];
     _datasource = [[NSMutableArray alloc] init];
@@ -110,12 +114,73 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             }
             [self.tableView reloadData];
         }
-    } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:0];
+    } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
     
     
     //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
+}
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+#pragma mark 开始进入刷新状态
+- (void)footerRereshing
+{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        
+    }else{
+        startIndex ++;
+        [CommentApi PersonalActiveWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                [showArr addObjectsFromArray:posts];
+                for(int i=0;i<posts.count;i++){
+                    PersonalCenterModel *model = posts[i];
+                    [_datasource addObject:model.a_time];
+                    
+                    if (![model.a_category isEqualToString:@"Project"]) {
+                        UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:model.a_imageUrl content:model.a_content category:model.a_category];
+                        [contentViews addObject:view];
+                    }else{
+                        [contentViews addObject:@""];
+                    }
+                }
+                [self.tableView footerEndRefreshing];
+                _timeScroller.hidden=YES;
+                [self.tableView reloadData];
+                _timeScroller.hidden=NO;
+            }
+        } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
+
+    }
+}
+
+/******************************************************************************************************************/
+//滚动是触发的事件
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [_pathCover scrollViewDidScroll:scrollView];
+    [_timeScroller scrollViewDidScroll];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [_pathCover scrollViewDidEndDecelerating:scrollView];
+    [_timeScroller scrollViewDidEndDecelerating];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [_pathCover scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [_pathCover scrollViewWillBeginDragging:scrollView];
+    [_timeScroller scrollViewWillBeginDragging];
 }
 
 
@@ -139,25 +204,25 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 /******************************************************************************************************************/
-//滚动是触发的事件
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [_pathCover scrollViewDidScroll:scrollView];
-    [_timeScroller scrollViewDidScroll];
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    [_pathCover scrollViewDidEndDecelerating:scrollView];
-    [_timeScroller scrollViewDidEndDecelerating];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    [_pathCover scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [_pathCover scrollViewWillBeginDragging:scrollView];
-    [_timeScroller scrollViewWillBeginDragging];
-}
+////滚动是触发的事件
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    [_pathCover scrollViewDidScroll:scrollView];
+//    [_timeScroller scrollViewDidScroll];
+//}
+//
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+//    [_pathCover scrollViewDidEndDecelerating:scrollView];
+//    [_timeScroller scrollViewDidEndDecelerating];
+//}
+//
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+//    [_pathCover scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+//}
+//
+//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+//    [_pathCover scrollViewWillBeginDragging:scrollView];
+//    [_timeScroller scrollViewWillBeginDragging];
+//}
 /******************************************************************************************************************/
 
 

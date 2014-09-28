@@ -198,7 +198,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     [_datasource addObject:model.a_time];
                 }
                 [self.tableView footerEndRefreshing];
+                _timeScroller.hidden=YES;
                 [self.tableView reloadData];
+                _timeScroller.hidden=NO;
             }
         } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
     }
