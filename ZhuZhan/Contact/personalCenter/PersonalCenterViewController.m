@@ -15,6 +15,7 @@
 #import "CommentApi.h"
 #import "ActivesModel.h"
 #import "MJRefresh.h"
+#import "PersonalCenterCellView.h"
 @interface PersonalCenterViewController ()
 
 @end
@@ -89,6 +90,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     
     showArr = [[NSMutableArray alloc] init];
+    contentViews=[[NSMutableArray alloc]init];
+    for (int i=0; i<5; i++) {
+        UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:@"" content:@"asddddddddddddddddddddddddddddddddddddddasdsa" category:@"动态"];
+        [contentViews addObject:view];
+    }
+    
     _datasource = [[NSMutableArray alloc] init];
     [CommentApi PersonalActiveWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
@@ -103,7 +110,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:0];
     
     
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
 }
 
@@ -158,6 +165,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    return contentViews.count;
     return showArr.count;
 }
 
@@ -169,12 +177,17 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if(!cell){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
+    [cell.contentView addSubview:contentViews[indexPath.row]];
     cell.selectionStyle = NO;
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    return [contentViews[indexPath.row] frame].size.height;
+    
     if (indexPath.row==0) {
         return 60;
     }
