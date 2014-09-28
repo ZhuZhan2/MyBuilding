@@ -19,7 +19,6 @@
 #import "LoginSqlite.h"
 #import "LoginViewController.h"
 #import "ContactCommentModel.h"
-#import "ProjectCommentModel.h"
 #import "ACTimeScroller.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate,ACTimeScrollerDelegate>
 @property(nonatomic,strong)UITableView* tableView;

@@ -925,7 +925,6 @@
 		04BC436519D7E5B3006B5C7B /* ＋高级搜索 多选 2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BC40E119D7E5B3006B5C7B /* ＋高级搜索 多选 2@2x.png */; };
 		04BF13B419C4162A002E02C9 /* AFAppDotNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13A719C4162A002E02C9 /* AFAppDotNetAPIClient.m */; };
 		04BF13B519C4162A002E02C9 /* ProjectApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13A919C4162A002E02C9 /* ProjectApi.m */; };
-		04BF13B619C4162A002E02C9 /* ProjectCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13AB19C4162A002E02C9 /* ProjectCommentModel.m */; };
 		04BF13B719C4162A002E02C9 /* ProjectContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13AD19C4162A002E02C9 /* ProjectContactModel.m */; };
 		04BF13B819C4162A002E02C9 /* ProjectImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13AF19C4162A002E02C9 /* ProjectImageModel.m */; };
 		04BF13B919C4162A002E02C9 /* projectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13B119C4162A002E02C9 /* projectModel.m */; };
@@ -2293,8 +2292,6 @@
 		04BF13A719C4162A002E02C9 /* AFAppDotNetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAppDotNetAPIClient.m; sourceTree = "<group>"; };
 		04BF13A819C4162A002E02C9 /* ProjectApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectApi.h; sourceTree = "<group>"; };
 		04BF13A919C4162A002E02C9 /* ProjectApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectApi.m; sourceTree = "<group>"; };
-		04BF13AA19C4162A002E02C9 /* ProjectCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCommentModel.h; sourceTree = "<group>"; };
-		04BF13AB19C4162A002E02C9 /* ProjectCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCommentModel.m; sourceTree = "<group>"; };
 		04BF13AC19C4162A002E02C9 /* ProjectContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectContactModel.h; sourceTree = "<group>"; };
 		04BF13AD19C4162A002E02C9 /* ProjectContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectContactModel.m; sourceTree = "<group>"; };
 		04BF13AE19C4162A002E02C9 /* ProjectImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectImageModel.h; sourceTree = "<group>"; };
@@ -4104,8 +4101,6 @@
 				04BF13A719C4162A002E02C9 /* AFAppDotNetAPIClient.m */,
 				04BF13A819C4162A002E02C9 /* ProjectApi.h */,
 				04BF13A919C4162A002E02C9 /* ProjectApi.m */,
-				04BF13AA19C4162A002E02C9 /* ProjectCommentModel.h */,
-				04BF13AB19C4162A002E02C9 /* ProjectCommentModel.m */,
 				04BF13AC19C4162A002E02C9 /* ProjectContactModel.h */,
 				04BF13AD19C4162A002E02C9 /* ProjectContactModel.m */,
 				04BF13AE19C4162A002E02C9 /* ProjectImageModel.h */,
@@ -5499,7 +5494,6 @@
 				0426C23619922D5A00CD8822 /* AFHTTPRequestOperation.m in Sources */,
 				5B0C8AA919D7ABA30058C0EE /* PersonalProjectTableViewCell.m in Sources */,
 				0426C2B519922D5A00CD8822 /* GPUImageShiTomasiFeatureDetectionFilter.m in Sources */,
-				04BF13B619C4162A002E02C9 /* ProjectCommentModel.m in Sources */,
 				5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */,
 				0426C2B219922D5A00CD8822 /* GPUImageScreenBlendFilter.m in Sources */,
 				0426C2B419922D5A00CD8822 /* GPUImageSharpenFilter.m in Sources */,
