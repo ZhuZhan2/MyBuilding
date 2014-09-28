@@ -59,6 +59,36 @@
             endingLineNumber = "94"
             landmarkName = "-getTableViewContents"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ProductDetailViewController viewDidLoad]"
+                  moduleName = "ZhuZhan"
+                  urlString = "file:///Users/Jack/Desktop/%E6%88%91%E7%9A%84%E4%BB%A3%E7%A0%81/GitHub/%E4%BF%A1%E6%81%AF%E9%87%87%E9%9B%86/ZhuZhanDev/ZhuZhan/Product/ProductDetailViewController.m"
+                  timestampString = "433579577.106355"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "94"
+                  endingLineNumber = "94"
+                  offsetFromSymbolStart = "616">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__42-[ProductDetailViewController viewDidLoad]_block_invoke57"
+                  moduleName = "ZhuZhan"
+                  urlString = "file:///Users/Jack/Desktop/%E6%88%91%E7%9A%84%E4%BB%A3%E7%A0%81/GitHub/%E4%BF%A1%E6%81%AF%E9%87%87%E9%9B%86/ZhuZhanDev/ZhuZhan/Product/ProductDetailViewController.m"
+                  timestampString = "433579577.106539"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "94"
+                  endingLineNumber = "94"
+                  offsetFromSymbolStart = "86">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
