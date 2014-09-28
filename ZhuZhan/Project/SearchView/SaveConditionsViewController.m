@@ -120,12 +120,12 @@
 -(void)confirmBtnClick{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:nameTextField.text forKey:@"SearchName"];
-    [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@"userId"] forKey:@"CreateBy"];
+    [dic setValue:@"13756154-7db5-4516-bcc6-6b7842504c81" forKey:@"CreateBy"];
     [dic setValue:newstring forKey:@"SearchConditions"];
     [ProjectApi SearchConditionWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             [nameTextField resignFirstResponder];
-            if([self.delegate respondsToSelector:@selector(finshSave)]){
+            if([self.delegate respondsToSelector:@selector(finshSave)]){//保存
                 [self.delegate finshSave];
             }
         }

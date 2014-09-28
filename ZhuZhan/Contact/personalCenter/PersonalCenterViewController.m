@@ -13,10 +13,8 @@
 #import "AppDelegate.h"
 #import "LoginSqlite.h"
 #import "CommentApi.h"
-#import "PersonalCenterModel.h"
+#import "ActivesModel.h"
 #import "MJRefresh.h"
-#import "PersonalCenterCellView.h"
-#import "PersonalProjectTableViewCell.h"
 @interface PersonalCenterViewController ()
 
 @end
@@ -91,30 +89,21 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     
     showArr = [[NSMutableArray alloc] init];
-    contentViews=[[NSMutableArray alloc]init];
     _datasource = [[NSMutableArray alloc] init];
     [CommentApi PersonalActiveWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             showArr = posts;
             for(int i=0;i<showArr.count;i++){
-                PersonalCenterModel *model = showArr[i];
-                NSLog(@"%@",model.a_category);
+                ActivesModel *model = showArr[i];
+                NSLog(@"%@",model.a_content);
                 [_datasource addObject:model.a_time];
-                
-                if (![model.a_category isEqualToString:@"Project"]) {
-                    UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:model.a_imageUrl content:model.a_content category:model.a_category];
-                    [contentViews addObject:view];
-                }else{
-                    [contentViews addObject:@""];
-                }
+                [self.tableView reloadData];
             }
-            [self.tableView reloadData];
         }
     } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:0];
     
     
-    //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
 }
 
@@ -174,45 +163,29 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PersonalCenterModel *model;
-    if(showArr.count !=0){
-        model = showArr[indexPath.row];
+
+    NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(!cell){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    if([model.a_category isEqualToString:@"Project"]){
-        NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalProjectTableViewCell"];
-        PersonalProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(!cell){
-            cell = [[PersonalProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        cell.model = model;
-        cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
-        cell.selectionStyle = NO;
-        return cell;
-    }else{
-        NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(!cell){
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [cell.contentView addSubview:contentViews[indexPath.row]];
-        cell.selectionStyle = NO;
-        cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
-        return cell;
-    }
+    cell.selectionStyle = NO;
+    return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PersonalCenterModel *model;
-    if(showArr.count !=0){
-        model = showArr[indexPath.row];
+    if (indexPath.row==0) {
+        return 60;
     }
-    if([model.a_category isEqualToString:@"Project"]){
+    if (indexPath.row ==1 ||indexPath.row==2 ||indexPath.row==3) {
         return 50;
-    }else{
-        return [contentViews[indexPath.row] frame].size.height;
     }
+    
+    if (indexPath.row==4) {
+        return 80;
+    }
+    return 200;
 }
 
 //时间标签

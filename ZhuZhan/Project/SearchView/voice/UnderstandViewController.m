@@ -175,6 +175,7 @@ static bool startListen =YES;
     ResultsTableViewController *resultVC = [[ResultsTableViewController alloc] init];
 
     resultVC.searchStr = _textView.text;
+    NSLog(@"***resultVC.searchStr****%@",_textView.text);
     [self.navigationController pushViewController:resultVC animated:YES];
 }
 
@@ -191,6 +192,7 @@ static bool startListen =YES;
     label.hidden =YES;
     timeCount++;
     if (timeCount==2) {
+        timeCount=0;
         return;
     }
     startListen = YES;

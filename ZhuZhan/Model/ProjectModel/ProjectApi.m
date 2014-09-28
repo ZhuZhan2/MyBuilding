@@ -362,8 +362,9 @@
 //NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
 //[dic setObject:@"" forKey:@"distict"]; 所在区域
 //[dic setObject:@"" forKey:@"createBy"]; 创建人
-+ (NSURLSessionDataTask *)GetSearchConditionsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block{
-    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/SearchConditions?distict=&createBy=%@",[LoginSqlite getdata:@"userId" defaultdata:@"userId"]];
++ (NSURLSessionDataTask *)GetSearchConditionsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId{
+    NSLog(@"userId*********%@",[LoginSqlite getdata:@"userId" defaultdata:@"userId"]);
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/SearchConditions?createBy=%@",userId];
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]||[[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){

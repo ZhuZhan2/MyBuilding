@@ -75,62 +75,58 @@
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;
     [self.window makeKeyAndVisible];
-    /*
-//    NSString *mmm =[LoginSqlite getdata:@"firstLaunch" defaultdata:@""];
-//    NSLog(@"mmm*********%@",mmm);
-   if(![[LoginSqlite getdata:@"firstLaunch" defaultdata:@""]isEqualToString:@"1"]){
-       [LoginSqlite insertData:@"1" datakey:@"firstLaunch"];
-        NSLog(@"第一次启动");
-       
-//       NSString *mmm =[LoginSqlite getdata:@"firstLaunch" defaultdata:@""];
-//       NSLog(@"mmm*********%@",mmm);
-        LoginViewController *loginview = [[LoginViewController alloc] init];
-        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
-        
-        [self.window setRootViewController:naVC];
-        self.window.backgroundColor = [UIColor whiteColor];
-        [self.window makeKeyAndVisible];
-    }else{
-
-        NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
-        if ([deviceToken isEqualToString:@""]) {
-            LoginViewController *loginview = [[LoginViewController alloc] init];
-            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
-            [self.window setRootViewController:naVC];
-            self.window.backgroundColor = [UIColor whiteColor];
-            [self.window makeKeyAndVisible];
-        }else{
-            
-            #if TARGET_IPHONE_SIMULATOR
-            HomePageViewController *homeVC = [[HomePageViewController alloc] init];
-            self.window.rootViewController = homeVC;
-            [self.window makeKeyAndVisible];
-            #elif TARGET_OS_IPHONE
-            if([[networkConnect sharedInstance] connectedToNetwork]){
-                NSString *isFaceRegister = [LoginSqlite getdata:@"isFaceRegister" defaultdata:@""];
-                NSLog(@"%@",isFaceRegister);
-                if (![isFaceRegister isEqualToString:@"1"]) {
-                    LoginViewController *loginview = [[LoginViewController alloc] init];
-                    UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
-                    [self.window setRootViewController:naVC];
-                    self.window.backgroundColor = [UIColor whiteColor];
-                    [self.window makeKeyAndVisible];
-                }else{
-                    FaceLoginViewController *faceVC = [[FaceLoginViewController alloc] init];
-                    UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:faceVC];
-                    [self.window setRootViewController:naVC];
-                    self.window.backgroundColor = [UIColor whiteColor];
-                    [self.window makeKeyAndVisible];
-                }
-            }else{
-                HomePageViewController *homeVC = [[HomePageViewController alloc] init];
-                self.window.rootViewController = homeVC;
-                [self.window makeKeyAndVisible];
-           }
-            #endif
-        }
-    }
-     */
+    
+//   if(![[LoginSqlite getdata:@"firstLaunch" defaultdata:@""]isEqualToString:@"1"]){
+//       [LoginSqlite insertData:@"1" datakey:@"firstLaunch"];
+//        NSLog(@"第一次启动");
+//       
+//        LoginViewController *loginview = [[LoginViewController alloc] init];
+//        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
+//        
+//        [self.window setRootViewController:naVC];
+//        self.window.backgroundColor = [UIColor whiteColor];
+//        [self.window makeKeyAndVisible];
+//    }else{
+//
+//        NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+//        if ([deviceToken isEqualToString:@""]) {
+//            LoginViewController *loginview = [[LoginViewController alloc] init];
+//            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
+//            [self.window setRootViewController:naVC];
+//            self.window.backgroundColor = [UIColor whiteColor];
+//            [self.window makeKeyAndVisible];
+//        }else{
+//            
+//            #if TARGET_IPHONE_SIMULATOR
+//            HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+//            self.window.rootViewController = homeVC;
+//            [self.window makeKeyAndVisible];
+//            #elif TARGET_OS_IPHONE
+//            if([[networkConnect sharedInstance] connectedToNetwork]){
+//                NSString *isFaceRegister = [LoginSqlite getdata:@"isFaceRegister" defaultdata:@""];
+//                NSLog(@"%@",isFaceRegister);
+//                if (![isFaceRegister isEqualToString:@"1"]) {
+//                    LoginViewController *loginview = [[LoginViewController alloc] init];
+//                    UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginview];
+//                    [self.window setRootViewController:naVC];
+//                    self.window.backgroundColor = [UIColor whiteColor];
+//                    [self.window makeKeyAndVisible];
+//                }else{
+//                    FaceLoginViewController *faceVC = [[FaceLoginViewController alloc] init];
+//                    UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:faceVC];
+//                    [self.window setRootViewController:naVC];
+//                    self.window.backgroundColor = [UIColor whiteColor];
+//                    [self.window makeKeyAndVisible];
+//                }
+//            }else{
+//                HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+//                self.window.rootViewController = homeVC;
+//                [self.window makeKeyAndVisible];
+//           }
+//            #endif
+//        }
+//    }
+    
     return YES;
      
 }
