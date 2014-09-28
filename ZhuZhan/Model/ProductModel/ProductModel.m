@@ -18,6 +18,8 @@
     self.a_commentNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"productCommentsNumber"]]];
     self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageWidth"]]];
     self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageHeight"]]];
+    self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"avatarUrl"]];
+    self.a_userName = [ProjectStage ProjectStrStage:dict[@"userName"]];
 }
 
 -(NSString *)a_commentNumber{
