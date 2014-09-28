@@ -456,13 +456,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //给tableView添加数据
 -(void)addTableViewContentWithContent:(NSString*)content{
     ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:@"" userName:@"" commentContent:content];
-    if (self.productModel) {
-        ProjectCommentModel* model=[[ProjectCommentModel alloc]initWithEntityID:nil userName:nil commentContents:content userImage:nil time:[NSDate date]];
-        [self.commentModels insertObject:model atIndex:0];
-    }else{
-        ContactCommentModel* model=[[ContactCommentModel alloc]initWithID:nil entityID:nil createdBy:nil userName:nil commentContents:content avatarUrl:nil time:[NSDate date]];
-        [self.commentModels insertObject:model atIndex:0];
-    }
+    ContactCommentModel* model=[[ContactCommentModel alloc]initWithID:nil entityID:nil createdBy:nil userName:nil commentContents:content avatarUrl:nil time:[NSDate date]];
+    [self.commentModels insertObject:model atIndex:0];
+    
     [self.commentViews insertObject:view atIndex:0];
 }
 //=============================================================
