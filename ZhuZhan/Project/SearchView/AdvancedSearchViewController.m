@@ -261,6 +261,16 @@
     return nil;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //ConditionsModel *model = showArr[indexPath.row-2];
+    if(indexPath.row>1){
+        ResultsTableViewController *resultsView = [[ResultsTableViewController alloc] init];
+        resultsView.flag = 1;
+        resultsView.dic = dataDic;
+        [self.navigationController pushViewController:resultsView animated:YES];
+    }
+}
+
 -(void)multipleChose:(int)index{
     if(index == 0){
         multipleChoseView = [[MultipleChoiceViewController alloc] init];

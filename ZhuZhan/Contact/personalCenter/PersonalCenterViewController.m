@@ -87,7 +87,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [wself _refreshing];
     }];
     
+    //集成刷新控件
+    [self setupRefresh];
     
+    startIndex=0;
     showArr = [[NSMutableArray alloc] init];
     _datasource = [[NSMutableArray alloc] init];
     [CommentApi PersonalActiveWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -100,31 +103,51 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [self.tableView reloadData];
             }
         }
-    } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:0];
+    } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
     
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
 }
 
-
--(void)leftBtnClick{
-    [self.navigationController popViewControllerAnimated:YES];
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
 }
 
--(void)rightBtnClick{//账户按钮触发的事件
-    AccountViewController *accountVC = [[AccountViewController alloc] init];
-    [self.navigationController pushViewController:accountVC animated:YES];
-}
+#pragma mark 开始进入刷新状态
+- (void)footerRereshing
+{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        
+    }else{
+        startIndex ++;
+        [CommentApi PersonalActiveWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                [showArr addObjectsFromArray:posts];
+                for(int i=0;i<posts.count;i++){
+                    PersonalCenterModel *model = posts[i];
+                    [_datasource addObject:model.a_time];
+                    
+                    if (![model.a_category isEqualToString:@"Project"]) {
+                        UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:model.a_imageUrl content:model.a_content category:model.a_category];
+                        [contentViews addObject:view];
+                    }else{
+                        [contentViews addObject:@""];
+                    }
+                }
+                [self.tableView footerEndRefreshing];
+                _timeScroller.hidden=YES;
+                [self.tableView reloadData];
+                _timeScroller.hidden=NO;
+            }
+        } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
 
-- (void)_refreshing {
-    // refresh your data sources
-    __weak PersonalCenterViewController *wself = self;
-    double delayInSeconds = 4.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [wself.pathCover stopRefresh];
-    });
+    }
 }
 
 /******************************************************************************************************************/
@@ -147,6 +170,49 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover scrollViewWillBeginDragging:scrollView];
     [_timeScroller scrollViewWillBeginDragging];
 }
+
+
+-(void)leftBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)rightBtnClick{//账户按钮触发的事件
+    AccountViewController *accountVC = [[AccountViewController alloc] init];
+    [self.navigationController pushViewController:accountVC animated:YES];
+}
+
+- (void)_refreshing {
+    // refresh your data sources
+    
+    NSLog(@"asdfasdfasdfasf");
+    __weak PersonalCenterViewController *wself = self;
+    double delayInSeconds = 4.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [wself.pathCover stopRefresh];
+    });
+}
+
+/******************************************************************************************************************/
+////滚动是触发的事件
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    [_pathCover scrollViewDidScroll:scrollView];
+//    [_timeScroller scrollViewDidScroll];
+//}
+//
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+//    [_pathCover scrollViewDidEndDecelerating:scrollView];
+//    [_timeScroller scrollViewDidEndDecelerating];
+//}
+//
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+//    [_pathCover scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+//}
+//
+//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+//    [_pathCover scrollViewWillBeginDragging:scrollView];
+//    [_timeScroller scrollViewWillBeginDragging];
+//}
 /******************************************************************************************************************/
 
 
@@ -171,6 +237,30 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
     cell.selectionStyle = NO;
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    PersonalCenterModel *model;
+    if(showArr.count !=0){
+        model = showArr[indexPath.row];
+    }
+    if([model.a_category isEqualToString:@"Project"]){
+        PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
+        projectCommentView.projectId = model.a_entityId;
+        projectCommentView.projectName = model.a_entityName;
+        [self.navigationController pushViewController:projectCommentView animated:YES];
+    }else{
+        NSLog(@"%@",model.a_entityUrl);
+        NSLog(@"%@",model.a_entityId);
+        [CommentApi CommentUrlWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                
+            }
+        } url:model.a_entityUrl];
+        
+        ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
