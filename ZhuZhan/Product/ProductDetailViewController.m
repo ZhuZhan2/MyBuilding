@@ -21,6 +21,7 @@
 #import "ContactCommentModel.h"
 #import "ProjectCommentModel.h"
 #import "ACTimeScroller.h"
+#import "LoginSqlite.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate,ACTimeScrollerDelegate>
 @property(nonatomic,strong)UITableView* tableView;
 
@@ -47,10 +48,28 @@
 @property(nonatomic,copy)NSString* entityID;
 @property(nonatomic,copy)NSString* entityUrl;
 @property(nonatomic,copy)NSString* userName;
+
+@property(nonatomic,copy)NSString* myName;
+@property(nonatomic,copy)NSString* myImageUrl;
 @end
 
 @implementation ProductDetailViewController
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
+
+-(NSString*)myName{
+    if (!_myName) {
+        _myName=[LoginSqlite getdata:@"userName" defaultdata:@""];
+    }
+    return _myName;
+}
+
+-(NSString*)myImageUrl{
+    if (!_myImageUrl) {
+        _myImageUrl=[LoginSqlite getdata:@"userImageUrl" defaultdata:@""];
+        NSLog(@"%@",_myImageUrl);
+    }
+    return _myImageUrl;
+}
 
 -(void)loadMyPropertyWithImgW:(NSString*)imgW imgH:(NSString*)imgH imgUrl:(NSString*)imgUrl userImgUrl:(NSString*)userImgUrl content:(NSString*)content entityID:(NSString*)entityID entityUrl:(NSString*)entityUrl userName:(NSString*)userName{
     self.imageWidth=imgW;
@@ -68,7 +87,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.productModel=productModel;
-        [self loadMyPropertyWithImgW:productModel.a_imageWidth imgH:productModel.a_imageHeight imgUrl:productModel.a_imageUrl userImgUrl:@"" content:productModel.a_content entityID:productModel.a_id entityUrl:@"" userName:productModel.a_name];
+        [self loadMyPropertyWithImgW:productModel.a_imageWidth imgH:productModel.a_imageHeight imgUrl:productModel.a_imageUrl userImgUrl:productModel.a_avatarUrl content:productModel.a_content entityID:productModel.a_id entityUrl:@"" userName:productModel.a_name];
     }
     return self;
 }
@@ -86,7 +105,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.personalModel=personalModel;
-        [self loadMyPropertyWithImgW:personalModel.a_imageWidth imgH:personalModel.a_imageHeight imgUrl:personalModel.a_imageUrl userImgUrl:@"" content:personalModel.a_content entityID:personalModel.a_entityId entityUrl:personalModel.a_entityUrl userName:@"自己"];
+        [self loadMyPropertyWithImgW:personalModel.a_imageWidth imgH:personalModel.a_imageHeight imgUrl:personalModel.a_imageUrl userImgUrl:self.myImageUrl content:personalModel.a_content entityID:personalModel.a_entityId entityUrl:personalModel.a_entityUrl userName:self.myName];
     }
     return self;
 }
@@ -167,21 +186,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 //获得上方主要显示的图文内容
 -(void)getMainView{
-    if (self.productModel) {
-        [self getProductView];
-    }else if (self.activesModel){
-        [self getActivesView];
-    }else{
-    
-    }
+    [self getActivesView];
 }
 
 -(void)myTableViewReloadData{
-    if (self.productModel) {
-        [self getProductView];
-    }else{
-        [self getActivesView];
-    }
+    [self getActivesView];
     [self.tableView reloadData];
 }
 
@@ -287,67 +296,67 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self.productView setBackgroundColor:RGBCOLOR(235, 235, 235)];
 }
 
--(void)getProductView{
-    self.productView=[[UIView alloc]initWithFrame:CGRectZero];
-    CGFloat tempHeight=0;
-    
-    //imageView部分
-    CGFloat scale=320.0/[self.productModel.a_imageWidth floatValue]*2;
-    CGFloat height=[self.productModel.a_imageHeight floatValue]*.5*scale;
-    
-    EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"产品－产品详情_03a"]];
-    if (![self.productModel.a_imageUrl isEqualToString:@""]) {
-        imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.productModel.a_imageUrl]];
-    }else{
-        height=202;
-    }
-    imageView.frame=CGRectMake(0, 0, 320, height);
-
-    //imageView右下角评论图标
-    UIImage* image=[GetImagePath getImagePath:@"人脉_66a"];
-    CGRect frame=CGRectMake(0, 0, image.size.width, image.size.height);
-    UIImageView* tempImageView=[[UIImageView alloc]initWithFrame:frame];
-    tempImageView.image=image;
-    tempImageView.center=CGPointMake(320-30, height-30);
-    [imageView addSubview:tempImageView];
-    
-    UIButton* button=[[UIButton alloc]initWithFrame:tempImageView.frame];
-    [button addTarget:self action:@selector(chooseComment:) forControlEvents:UIControlEventTouchUpInside];
-    [self.productView addSubview:button];
-    
-    [self.productView addSubview:imageView];
-    tempHeight+=imageView.frame.size.height;
-    
-    //文字label部分
-    if (![self.productModel.a_content isEqualToString:@""]) {
-        UIFont* font=[UIFont systemFontOfSize:15];
-        CGRect bounds=[self.productModel.a_content boundingRectWithSize:CGSizeMake(270, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil];
-        UILabel* textLabel=[[UILabel alloc]initWithFrame:CGRectMake(25, height+15, 270, bounds.size.height)];
-        ;
-        textLabel.numberOfLines=0;
-        textLabel.font=font;
-        textLabel.text=self.productModel.a_content;
-        textLabel.textColor=RGBCOLOR(86, 86, 86);
-        [self.productView addSubview:textLabel];
-        
-        tempHeight+=bounds.size.height+30;
-
-    }
-    
-    //与下方tableView的分割部分
-    if (self.commentViews.count) {
-        UIImage* separatorImage=[GetImagePath getImagePath:@"产品－产品详情_12a"];
-        frame=CGRectMake(0, tempHeight, separatorImage.size.width, separatorImage.size.height);
-        UIImageView* separatorImageView=[[UIImageView alloc]initWithFrame:frame];
-        separatorImageView.image=separatorImage;
-        separatorImageView.backgroundColor=RGBCOLOR(235, 235, 235);
-        [self.productView addSubview:separatorImageView];
-        
-        tempHeight+=frame.size.height;
-    }
-    self.productView.frame=CGRectMake(0, 0, 320, tempHeight);
-    
-}
+//-(void)getProductView{
+//    self.productView=[[UIView alloc]initWithFrame:CGRectZero];
+//    CGFloat tempHeight=0;
+//    
+//    //imageView部分
+//    CGFloat scale=320.0/[self.productModel.a_imageWidth floatValue]*2;
+//    CGFloat height=[self.productModel.a_imageHeight floatValue]*.5*scale;
+//    
+//    EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"产品－产品详情_03a"]];
+//    if (![self.productModel.a_imageUrl isEqualToString:@""]) {
+//        imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.productModel.a_imageUrl]];
+//    }else{
+//        height=202;
+//    }
+//    imageView.frame=CGRectMake(0, 0, 320, height);
+//
+//    //imageView右下角评论图标
+//    UIImage* image=[GetImagePath getImagePath:@"人脉_66a"];
+//    CGRect frame=CGRectMake(0, 0, image.size.width, image.size.height);
+//    UIImageView* tempImageView=[[UIImageView alloc]initWithFrame:frame];
+//    tempImageView.image=image;
+//    tempImageView.center=CGPointMake(320-30, height-30);
+//    [imageView addSubview:tempImageView];
+//    
+//    UIButton* button=[[UIButton alloc]initWithFrame:tempImageView.frame];
+//    [button addTarget:self action:@selector(chooseComment:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.productView addSubview:button];
+//    
+//    [self.productView addSubview:imageView];
+//    tempHeight+=imageView.frame.size.height;
+//    
+//    //文字label部分
+//    if (![self.productModel.a_content isEqualToString:@""]) {
+//        UIFont* font=[UIFont systemFontOfSize:15];
+//        CGRect bounds=[self.productModel.a_content boundingRectWithSize:CGSizeMake(270, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil];
+//        UILabel* textLabel=[[UILabel alloc]initWithFrame:CGRectMake(25, height+15, 270, bounds.size.height)];
+//        ;
+//        textLabel.numberOfLines=0;
+//        textLabel.font=font;
+//        textLabel.text=self.productModel.a_content;
+//        textLabel.textColor=RGBCOLOR(86, 86, 86);
+//        [self.productView addSubview:textLabel];
+//        
+//        tempHeight+=bounds.size.height+30;
+//
+//    }
+//    
+//    //与下方tableView的分割部分
+//    if (self.commentViews.count) {
+//        UIImage* separatorImage=[GetImagePath getImagePath:@"产品－产品详情_12a"];
+//        frame=CGRectMake(0, tempHeight, separatorImage.size.width, separatorImage.size.height);
+//        UIImageView* separatorImageView=[[UIImageView alloc]initWithFrame:frame];
+//        separatorImageView.image=separatorImage;
+//        separatorImageView.backgroundColor=RGBCOLOR(235, 235, 235);
+//        [self.productView addSubview:separatorImageView];
+//        
+//        tempHeight+=frame.size.height;
+//    }
+//    self.productView.frame=CGRectMake(0, 0, 320, tempHeight);
+//    
+//}
 
 -(void)chooseComment:(UIButton*)button{
     NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
@@ -457,13 +466,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //给tableView添加数据
 -(void)addTableViewContentWithContent:(NSString*)content{
     ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:@"" userName:@"" commentContent:content];
-    if (self.productModel) {
-        ProjectCommentModel* model=[[ProjectCommentModel alloc]initWithEntityID:nil userName:nil commentContents:content userImage:nil time:[NSDate date]];
+
+    ContactCommentModel* model=[[ContactCommentModel alloc]initWithID:nil entityID:nil createdBy:nil userName:nil commentContents:content avatarUrl:nil time:[NSDate date]];
         [self.commentModels insertObject:model atIndex:0];
-    }else{
-        ContactCommentModel* model=[[ContactCommentModel alloc]initWithID:nil entityID:nil createdBy:nil userName:nil commentContents:content avatarUrl:nil time:[NSDate date]];
-        [self.commentModels insertObject:model atIndex:0];
-    }
+    
     [self.commentViews insertObject:view atIndex:0];
 }
 //=============================================================
