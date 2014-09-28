@@ -18,7 +18,6 @@
 #import "ContactCommentTableViewCell.h"
 #import "ContactModel.h"
 #import "ContactCommentModel.h"
-#import "CommentModel.h"
 #import "CommentApi.h"
 #import "ConnectionAvailable.h"
 #import "BirthDay.h"

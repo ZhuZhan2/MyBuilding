@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CommentModel.h"
 @protocol AddCommentDelegate <NSObject>
 
 -(void)cancelFromAddComment;

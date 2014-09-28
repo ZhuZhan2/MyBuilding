@@ -8,7 +8,6 @@
 
 #import "ContactModel.h"
 #import "AFAppDotNetAPIClient.h"
-#import "CommentModel.h"
 #import "ProjectStage.h"
 #import "ActivesModel.h"
 @implementation ContactModel

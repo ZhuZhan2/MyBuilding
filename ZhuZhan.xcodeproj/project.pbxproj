@@ -980,7 +980,6 @@
 		D3AC61B219B6BF930015B62F /* TopicsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61A719B6BF930015B62F /* TopicsModel.m */; };
 		D3AC61D019B849920015B62F /* PorjectCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61CF19B849920015B62F /* PorjectCommentTableViewController.m */; };
 		D3AC61D319B84F770015B62F /* CommentApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61BA19B6D5D20015B62F /* CommentApi.m */; };
-		D3AC61D919B8573E0015B62F /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61D819B8573E0015B62F /* CommentModel.m */; };
 		D3AC61DF19B85CA50015B62F /* ProjectCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61DE19B85CA50015B62F /* ProjectCommentView.m */; };
 		D3AC61E419B882050015B62F /* ContactCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61E319B882050015B62F /* ContactCommentModel.m */; };
 		D3AC61EA19B961120015B62F /* SvGifView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61E919B961120015B62F /* SvGifView.m */; };
@@ -2398,8 +2397,6 @@
 		D3AC61C419B722360015B62F /* HeadImageDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeadImageDelegate.h; sourceTree = "<group>"; };
 		D3AC61CE19B849920015B62F /* PorjectCommentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PorjectCommentTableViewController.h; sourceTree = "<group>"; };
 		D3AC61CF19B849920015B62F /* PorjectCommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PorjectCommentTableViewController.m; sourceTree = "<group>"; };
-		D3AC61D719B8573E0015B62F /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
-		D3AC61D819B8573E0015B62F /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		D3AC61DD19B85CA50015B62F /* ProjectCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCommentView.h; sourceTree = "<group>"; };
 		D3AC61DE19B85CA50015B62F /* ProjectCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCommentView.m; sourceTree = "<group>"; };
 		D3AC61E219B882050015B62F /* ContactCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCommentModel.h; sourceTree = "<group>"; };
@@ -4336,8 +4333,6 @@
 				D3AC619119B6BF930015B62F /* ContactModel.m */,
 				D3AC61B919B6D5D20015B62F /* CommentApi.h */,
 				D3AC61BA19B6D5D20015B62F /* CommentApi.m */,
-				D3AC61D719B8573E0015B62F /* CommentModel.h */,
-				D3AC61D819B8573E0015B62F /* CommentModel.m */,
 				D3AC61E219B882050015B62F /* ContactCommentModel.h */,
 				D3AC61E319B882050015B62F /* ContactCommentModel.m */,
 				D3A4283919C94E5E00BAB6C7 /* ActivesModel.h */,
@@ -5459,7 +5454,6 @@
 				0426C2F119922D5A00CD8822 /* CJSONSerialization.m in Sources */,
 				0426C2EF19922D5A00CD8822 /* CFilteringJSONSerializer.m in Sources */,
 				5B0A00A519B587CD00500C05 /* TMQuiltViewController.m in Sources */,
-				D3AC61D919B8573E0015B62F /* CommentModel.m in Sources */,
 				0426C22F19922D5A00CD8822 /* LoginEvent.m in Sources */,
 				0426C2E819922D5A00CD8822 /* FaceppInfo.m in Sources */,
 				0426C2D919922D5A00CD8822 /* GPUImageXYDerivativeFilter.m in Sources */,

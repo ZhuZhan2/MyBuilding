@@ -12,7 +12,6 @@
 #import "AppDelegate.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "CommentApi.h"
-#import "CommentModel.h"
 #import "ACTimeScroller.h"
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
