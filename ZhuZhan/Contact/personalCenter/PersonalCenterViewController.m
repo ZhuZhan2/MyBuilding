@@ -92,17 +92,23 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     showArr = [[NSMutableArray alloc] init];
     contentViews=[[NSMutableArray alloc]init];
-    
     _datasource = [[NSMutableArray alloc] init];
     [CommentApi PersonalActiveWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             showArr = posts;
             for(int i=0;i<showArr.count;i++){
                 PersonalCenterModel *model = showArr[i];
-                NSLog(@"%@",model.a_content);
+                NSLog(@"%@",model.a_category);
                 [_datasource addObject:model.a_time];
-                [self.tableView reloadData];
+                
+                if (![model.a_category isEqualToString:@"Project"]) {
+                    UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:model.a_imageUrl content:model.a_content category:model.a_category];
+                    [contentViews addObject:view];
+                }else{
+                    [contentViews addObject:@""];
+                }
             }
+            [self.tableView reloadData];
         }
     } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:0];
     
@@ -163,8 +169,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return contentViews.count;
-    NSLog(@"222");
     return showArr.count;
 }
 
@@ -174,7 +178,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if(showArr.count !=0){
         model = showArr[indexPath.row];
     }
-    if([model.a_category isEqualToString:@"Project"]&&0){
+    if([model.a_category isEqualToString:@"Project"]){
         NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalProjectTableViewCell"];
         PersonalProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
@@ -198,28 +202,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [contentViews[indexPath.row] frame].size.height;
     PersonalCenterModel *model;
     if(showArr.count !=0){
         model = showArr[indexPath.row];
     }
     if([model.a_category isEqualToString:@"Project"]){
         return 50;
+    }else{
+        return [contentViews[indexPath.row] frame].size.height;
     }
-    
-    
-    
-    if (indexPath.row==0) {
-        return 60;
-    }
-    if (indexPath.row ==1 ||indexPath.row==2 ||indexPath.row==3) {
-        return 50;
-    }
-    
-    if (indexPath.row==4) {
-        return 80;
-    }
-    return 200;
 }
 
 //时间标签
