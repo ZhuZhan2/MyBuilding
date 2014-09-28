@@ -10,16 +10,11 @@
 
 #import "XHPathCover.h"
 #import "ACTimeScroller.h"
-#import "ContactModel.h"
-#import "projectModel.h"
 @interface PersonalCenterViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate>
 {
     NSMutableArray *_datasource;
     ACTimeScroller *_timeScroller;
-
+    NSMutableArray *showArr;
 }
 @property (nonatomic, strong) XHPathCover *pathCover;
-@property (nonatomic,strong)NSMutableArray *personalArray;
-@property (nonatomic,strong)ContactModel *model;
-@property (nonatomic,strong)projectModel *proModel;
 @end

@@ -7,20 +7,19 @@
 //
 
 #import "PersonalCenterViewController.h"
-#import "CommonCell.h"
 #import "AccountViewController.h"
 #import "LoginModel.h"
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
 #import "LoginSqlite.h"
 #import "CommentApi.h"
+#import "ActivesModel.h"
+#import "MJRefresh.h"
 @interface PersonalCenterViewController ()
 
 @end
 
 @implementation PersonalCenterViewController
-
-@synthesize personalArray,model,proModel;
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -63,9 +62,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     self.title = @"个人中心";
 
-    NSArray *array = @[@"上海中技桩业公司",@"XXX更新了项目名称",@"XXX与XXX成为了好友",@"XXX更新了的头像"];
-    
-    personalArray = [NSMutableArray arrayWithArray:array];
     
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154)];
     _pathCover.delegate = self;
@@ -91,21 +87,22 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [wself _refreshing];
     }];
     
+    
+    showArr = [[NSMutableArray alloc] init];
+    _datasource = [[NSMutableArray alloc] init];
     [CommentApi PersonalActiveWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-        
+            showArr = posts;
+            for(int i=0;i<showArr.count;i++){
+                ActivesModel *model = showArr[i];
+                NSLog(@"%@",model.a_content);
+                [_datasource addObject:model.a_time];
+                [self.tableView reloadData];
+            }
         }
     } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:0];
     
-    model = [[ContactModel alloc] init];
-    model.companyName = @"上海中技桩业有限公司";
-    model.projectLeader = @"项目负责人";
-    model.addFriendArr = @[@"张三",@"李四"];
-    model.userMood = @"今天真是一个好天气哦";
-    model.updatePicture =[GetImagePath getImagePath:@"首页_16"];//proModel.a_projectName
-
-        proModel = [[projectModel alloc] init];
-    proModel.a_projectName = @"鸟巢";
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
 }
@@ -118,18 +115,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)rightBtnClick{//账户按钮触发的事件
     AccountViewController *accountVC = [[AccountViewController alloc] init];
     [self.navigationController pushViewController:accountVC animated:YES];
-}
-
-
-//设置时间
-- (void)setupDatasource
-{
-    _datasource = [NSMutableArray new];
-    
-    
-    for(int i=0;i<30;i++){
-        [_datasource addObject:[NSDate date]];
-    }
 }
 
 - (void)_refreshing {
@@ -173,20 +158,21 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return showArr.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    static NSString *identifier = @"commonCell";
-        CommonCell *commonCell = (CommonCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
-        if (!commonCell) {
-            commonCell = [[CommonCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:identifier WithModel:proModel WithIndex:indexPath.row WithContactModel:model];
-        }
-   
-    return commonCell;
+    NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(!cell){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    cell.selectionStyle = NO;
+    return cell;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row==0) {
