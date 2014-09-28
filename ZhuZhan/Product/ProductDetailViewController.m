@@ -38,16 +38,37 @@
 @property(nonatomic,strong)AddCommentViewController* vc;
 
 @property(nonatomic,strong)ACTimeScroller* timeScroller;
+
+@property(nonatomic,copy)NSString* imageWidth;
+@property(nonatomic,copy)NSString* imageHeight;
+@property(nonatomic,copy)NSString* imageUrl;
+@property(nonatomic,copy)NSString* userImageUrl;
+@property(nonatomic,copy)NSString* content;
+@property(nonatomic,copy)NSString* entityID;
+@property(nonatomic,copy)NSString* entityUrl;
+@property(nonatomic,copy)NSString* userName;
 @end
 
 @implementation ProductDetailViewController
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 
+-(void)loadMyPropertyWithImgW:(NSString*)imgW imgH:(NSString*)imgH imgUrl:(NSString*)imgUrl userImgUrl:(NSString*)userImgUrl content:(NSString*)content entityID:(NSString*)entityID entityUrl:(NSString*)entityUrl userName:(NSString*)userName{
+    self.imageWidth=imgW;
+    self.imageHeight=imgH;
+    self.imageUrl=imgUrl;
+    self.userImageUrl=userImgUrl;
+    self.content=content;
+    self.entityID=entityID;
+    self.entityUrl=entityUrl;
+    self.userName=userName;
+    self.commentViews=[[NSMutableArray alloc]init];
+}
+
 -(instancetype)initWithProductModel:(ProductModel*)productModel{
     self=[super init];
     if (self) {
         self.productModel=productModel;
-        self.commentViews=[[NSMutableArray alloc]init];
+        [self loadMyPropertyWithImgW:productModel.a_imageWidth imgH:productModel.a_imageHeight imgUrl:@"" userImgUrl:productModel.a_imageUrl content:productModel.a_content entityID:productModel.a_id entityUrl:@"" userName:productModel.a_name];
     }
     return self;
 }
@@ -56,7 +77,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.activesModel=activesModel;
-        self.commentViews=[[NSMutableArray alloc]init];
+        [self loadMyPropertyWithImgW:activesModel.a_imageWidth imgH:activesModel.a_imageHeight imgUrl:activesModel.a_imageUrl userImgUrl:activesModel.a_avatarUrl content:activesModel.a_content entityID:activesModel.a_entityId entityUrl:activesModel.a_id userName:activesModel.a_userName];
     }
     return self;
 }
@@ -65,7 +86,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.personalModel=personalModel;
-        self.commentViews=[[NSMutableArray alloc]init];
+        [self loadMyPropertyWithImgW:personalModel.a_imageWidth imgH:personalModel.a_imageHeight imgUrl:personalModel.a_imageUrl userImgUrl:@"" content:personalModel.a_content entityID:personalModel.a_entityId entityUrl:personalModel.a_entityUrl userName:@"自己"];
     }
     return self;
 }
@@ -166,14 +187,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)getTableViewContents{
     for (int i=0; i<self.commentModels.count; i++) {
-        ProductCommentView* view;
-        if (self.productModel) {
-            ProjectCommentModel* model=self.commentModels[i];
-            view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_imageUrl userName:model.a_name commentContent:model.a_content];
-        }else{
-            ContactCommentModel* model=self.commentModels[i];
-            view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_avatarUrl userName:model.a_userName commentContent:model.a_commentContents];
-        }
+        ContactCommentModel* model=self.commentModels[i];
+        ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_avatarUrl userName:model.a_userName commentContent:model.a_commentContents];
         [self.commentViews addObject:view];
     }
 }
@@ -190,17 +205,17 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
     EGOImageView *imageView;
     //动态图像
-    if(![self.activesModel.a_imageUrl isEqualToString:@""]){
+    if(![self.imageUrl isEqualToString:@""]){
         imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
-        imageView.frame = CGRectMake(0, 0, 310,[self.activesModel.a_imageHeight floatValue]/[self.activesModel.a_imageWidth floatValue]*310);
-        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.activesModel.a_imageUrl]];
+        imageView.frame = CGRectMake(0, 0, 310,[self.imageHeight floatValue]/[self.imageWidth floatValue]*310);
+        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.imageUrl]];
         [forCornerView addSubview:imageView];
         height+=imageView.frame.size.height;
     }
     
     UIView* contentTotalView;
     //动态描述
-    if (![self.activesModel.a_content isEqualToString:@""]) {
+    if (![self.content isEqualToString:@""]) {
         UILabel* contentTextView = [[UILabel alloc] init];
         contentTextView.numberOfLines =0;
         UIFont * tfont = [UIFont systemFontOfSize:15];
@@ -209,9 +224,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         contentTextView.lineBreakMode =NSLineBreakByCharWrapping ;
         
         //用户名颜色
-        NSString * text = [NSString stringWithFormat:@"%@:%@",self.activesModel.a_userName,self.activesModel.a_content];
+        NSString * text = [NSString stringWithFormat:@"%@:%@",self.userName,self.content];
         NSMutableAttributedString* attributedText=[[NSMutableAttributedString alloc]initWithString:text];
-        NSRange range=NSMakeRange(0, self.activesModel.a_userName.length+1);
+        NSRange range=NSMakeRange(0, self.userName.length+1);
         [attributedText addAttributes:@{NSForegroundColorAttributeName:BlueColor} range:range];
         [attributedText addAttributes:@{NSFontAttributeName:tfont} range:NSMakeRange(0, text.length)];
         

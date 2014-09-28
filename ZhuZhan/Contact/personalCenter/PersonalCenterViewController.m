@@ -203,6 +203,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 - (void)_refreshing {
+    // refresh your data sources
     [self downLoad:^{
         __weak PersonalCenterViewController *wself = self;
         [wself.pathCover stopRefresh];
