@@ -358,12 +358,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 //添加动态详情的评论
 -(void)addActivesComment:(NSString*)comment{
-    //ActivesModel *model = self.activesModel;
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setValue:self.entityID forKey:@"EntityId"];
-    [dic setValue:[NSString stringWithFormat:@"%@",comment] forKey:@"CommentContents"];
-    [dic setValue:self.category forKey:@"EntityType"];
-    [dic setValue:@"13756154-7db5-4516-bcc6-6b7842504c81" forKey:@"CreatedBy"];
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             [self finishAddComment:comment];
@@ -371,7 +365,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [self.delegate finishAddCommentFromDetailWithPosts:posts];
             }
         }
-    } dic:dic];
+    } dic:[@{@"EntityId":self.entityID,@"CommentContents":comment,@"EntityType":self.category,@"CreatedBy":@"13756154-7db5-4516-bcc6-6b7842504c81"} mutableCopy]];
 }
 
 //添加产品详情的评论
