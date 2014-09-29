@@ -223,4 +223,25 @@
     return array;
 }
 
+
++(NSString *)SearchProjectStage:(NSString *)str{
+    NSString *string = nil;
+    if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@" "]){
+        string = @"";
+    }else{
+        NSArray *arr = [str componentsSeparatedByString:@","];
+        string = [NSString stringWithFormat:@"%@+%@+%@+%@+%@+%@",arr[0],arr[1],arr[2],arr[3],arr[4],arr[5]];
+        NSMutableString *newStr = [[NSMutableString alloc] init];
+        for(int i=0;i<arr.count;i++){
+            if(![arr[i] isEqualToString:@" "]){
+                NSString * a = [NSString stringWithFormat:@"%@+",arr[i]];
+                [newStr appendString:a];
+            }
+        }
+        if(newStr.length !=0){
+            string = [newStr substringToIndex:([newStr length]-1)];
+        }
+    }
+    return string;
+}
 @end

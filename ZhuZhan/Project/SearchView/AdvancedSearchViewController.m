@@ -58,12 +58,12 @@
     [self.view addSubview:_tableView];
     
     dataDic = [[NSMutableDictionary alloc] init];
-    [dataDic setValue:@"" forKey:@"keywords"];
-    [dataDic setValue:@"" forKey:@"landDistrict"];
-    [dataDic setValue:@"" forKey:@"landProvince"];
-    [dataDic setValue:@"" forKey:@"projectStage"];
-    [dataDic setValue:@"" forKey:@"projectCategory"];
-    [dataDic setValue:@"" forKey:@"companyName"];
+    [dataDic setValue:@" " forKey:@"keywords"];
+    [dataDic setValue:@" " forKey:@"companyName"];
+    [dataDic setValue:@" " forKey:@"landProvince"];
+    [dataDic setValue:@" " forKey:@"landDistrict"];
+    [dataDic setValue:@" " forKey:@"projectStage"];
+    [dataDic setValue:@" " forKey:@"projectCategory"];
     
     viewArr = [[NSMutableArray alloc] init];
     [ProjectApi GetSearchConditionsWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -177,7 +177,6 @@
     NSLog(@"editingStyle ==> %d",editingStyle);
     if (editingStyle == UITableViewCellEditingStyleDelete){
         ConditionsModel *model = [showArr objectAtIndex:indexPath.row-2];
-        NSLog(@"%@",model.a_createBy);
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         [dic setValue:model.a_id forKey:@"id"];
         [dic setValue:model.a_createBy forKey:@"DeletedBy"];
@@ -262,13 +261,25 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //ConditionsModel *model = showArr[indexPath.row-2];
+    ConditionsModel *model = showArr[indexPath.row-2];
     if(indexPath.row>1){
         ResultsTableViewController *resultsView = [[ResultsTableViewController alloc] init];
         resultsView.flag = 1;
-        resultsView.dic = dataDic;
+        resultsView.dic = [self setDic:model.a_searchConditions];
         [self.navigationController pushViewController:resultsView animated:YES];
     }
+}
+
+-(NSMutableDictionary *)setDic:(NSString *)str{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    NSArray *arr = [str componentsSeparatedByString:@","];
+    [dic setValue:arr[0] forKey:@"keywords"];
+    [dataDic setValue:arr[1] forKey:@"companyName"];
+    [dataDic setValue:arr[2] forKey:@"landProvince"];
+    [dataDic setValue:arr[3] forKey:@"landDistrict"];
+    [dataDic setValue:arr[4] forKey:@"projectStage"];
+    [dataDic setValue:arr[5] forKey:@"projectCategory"];
+    return dic;
 }
 
 -(void)multipleChose:(int)index{

@@ -140,14 +140,6 @@
 }
 
 -(void)setDataDic:(NSMutableDictionary *)dataDic{
-    NSMutableString *str = [[NSMutableString alloc] init];
-    for(int i=0;i<dataDic.allKeys.count;i++){
-        if(![[dataDic objectForKey:[dataDic allKeys][i]] isEqualToString:@""]){
-            [str appendString:[NSString stringWithFormat:@"%@ + ",[dataDic objectForKey:[dataDic allKeys][i]]]];
-        }
-    }
-    if(str.length !=0){
-        newstring = [str substringToIndex:([str length]-2)];
-    }
+    newstring = [NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@",dataDic[@"keywords"],dataDic[@"companyName"],dataDic[@"landProvince"],dataDic[@"landDistrict"],dataDic[@"projectStage"],dataDic[@"projectCategory"]];
 }
 @end

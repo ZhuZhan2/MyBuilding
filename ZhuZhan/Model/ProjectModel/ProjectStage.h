@@ -25,4 +25,7 @@
 
 //判断项目详细阶段,给展示页用
 +(NSArray*)JudgmentProjectDetailStage:(projectModel*)model;
+
+//处理高级搜索的搜索条件
++(NSString *)SearchProjectStage:(NSString *)str;
 @end
