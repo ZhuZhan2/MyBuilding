@@ -10,17 +10,10 @@
 #import "EGOImageView.h"
 #import "ContactCommentModel.h"
 #import "ContactCommentTableViewCell.h"
+#import "NBLabel.h"
 @implementation CommentView
 @synthesize indexpath = _indexpath;
 @synthesize showArr;
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 
 +(CommentView *)setFram:(ActivesModel *)model{
     CommentView *commentView = [[CommentView alloc] init];
@@ -33,8 +26,9 @@
     CGFloat height=0;
     
     EGOImageView *imageView;
+    BOOL imageUrlExist=![model.a_imageUrl isEqualToString:@""];
     //动态图像
-    if(![model.a_imageUrl isEqualToString:@""]){
+    if(imageUrlExist){
         imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
         imageView.frame = CGRectMake(0, 0, 310,[model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310);
         imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
@@ -45,13 +39,7 @@
     UIView* contentTotalView;
     //动态描述
     if (![model.a_content isEqualToString:@""]) {
-        UILabel* contentTextView = [[UILabel alloc] init];
-        contentTextView.numberOfLines =0;
         UIFont * tfont = [UIFont systemFontOfSize:15];
-        contentTextView.font = tfont;
-        contentTextView.textColor = [UIColor blackColor];
-        contentTextView.lineBreakMode =NSLineBreakByCharWrapping ;
-        
         //用户名颜色
         NSString * text = [NSString stringWithFormat:@"%@:%@",model.a_userName,model.a_content];
         NSMutableAttributedString* attributedText=[[NSMutableAttributedString alloc]initWithString:text];
@@ -60,18 +48,28 @@
         [attributedText addAttributes:@{NSFontAttributeName:tfont} range:NSMakeRange(0, text.length)];
         
         //动态文字内容
-        contentTextView.attributedText=attributedText;
-        
-        BOOL imageUrlExist=![model.a_imageUrl isEqualToString:@""];
-        //给一个比较大的高度，宽度不变
-        CGSize size =CGSizeMake(imageUrlExist?300:250,CGFLOAT_MAX);
-        // 获取当前文本的属性
-        NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:tfont,NSFontAttributeName,nil];
-        //ios7方法，获取文本需要的size，限制宽度
-        CGSize actualsize =[text boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin |NSStringDrawingUsesFontLeading attributes:tdic context:nil].size;
-        contentTextView.frame =CGRectMake(imageUrlExist?10:60,10, actualsize.width, actualsize.height);
-        
-        contentTotalView=[[UIView alloc]initWithFrame:CGRectMake(0, height, 310, imageView?contentTextView.frame.size.height+20:contentTextView.frame.size.height+20+40)];
+        UIView* contentTextView;
+        if (imageUrlExist) {
+            UILabel* contentLabel = [[UILabel alloc] init];
+            contentLabel.numberOfLines =0;
+            contentLabel.font = tfont;
+            contentLabel.textColor = [UIColor blackColor];
+            contentLabel.attributedText=attributedText;
+            
+            CGSize size =CGSizeMake(290,CGFLOAT_MAX);
+            CGSize actualsize =[text boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:tfont} context:nil].size;
+            actualsize.height=actualsize.height>=60?60:actualsize.height;
+            contentLabel.frame =CGRectMake(10,10, actualsize.width, actualsize.height);
+            
+            contentTextView=contentLabel;
+        }else{
+            NBLabel* contentLabel=[NBLabel labelWithLabelWidth:250 imageSize:CGSizeMake(40, 40) font:tfont lineHeight:17];
+            contentLabel.attributedText=attributedText;
+            contentLabel.frame=CGRectMake(55, 10, contentLabel.frame.size.width, contentLabel.frame.size.height);
+            
+            contentTextView=contentLabel;
+        }
+        contentTotalView=[[UIView alloc]initWithFrame:CGRectMake(0, height, 310, contentTextView.frame.size.height+20)];
         contentTotalView.backgroundColor=[UIColor whiteColor];
         [contentTotalView addSubview:contentTextView];
         [forCornerView addSubview:contentTotalView];
@@ -79,21 +77,22 @@
     }
     
     //评论图标
-    CGFloat tempHeight=imageView?imageView.frame.origin.y+imageView.frame.size.height:height;
+    CGFloat tempHeight=imageView?imageView.frame.origin.y+imageView.frame.size.height-3:height-6;
     UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    commentBtn.frame = CGRectMake(265, tempHeight-40, 37, 37);
+    commentBtn.frame = CGRectMake(267, tempHeight-40, 37, 37);
     [commentBtn setImage:[GetImagePath getImagePath:@"人脉_66a"] forState:UIControlStateNormal];
     [commentBtn addTarget:commentView action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
     [forCornerView addSubview:commentBtn];
 
     //用户头像
-    tempHeight=imageView?imageView.frame.origin.y:contentTotalView.frame.origin.y;
+    tempHeight=imageView?imageView.frame.origin.y+5:contentTotalView.frame.origin.y+10;
     EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
     userImageView.layer.masksToBounds = YES;
     userImageView.layer.cornerRadius = 3;
     userImageView.frame=CGRectMake(5,tempHeight,37,37);
     userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_avatarUrl]];
-
+    [forCornerView addSubview:userImageView];
+    
     forCornerView.frame=CGRectMake(5, 5, 310, height-5);
     
     //评论tableView

@@ -29,7 +29,7 @@
 
 //@property(nonatomic,strong)NSString* activesEntityUrl;//动态详情模型url
 
-@property(nonatomic,strong)UIView* productView;//产品图片和产品介绍文字的superView
+@property(nonatomic,strong)UIView* mainView;//产品图片和产品介绍文字的superView
 
 @property(nonatomic,strong)NSMutableArray* commentModels;//评论数组，元素为评论实体类
 @property(nonatomic,strong)NSMutableArray* commentViews;//cell中的内容视图
@@ -96,7 +96,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.activesModel=activesModel;
-        [self loadMyPropertyWithImgW:activesModel.a_imageWidth imgH:activesModel.a_imageHeight imgUrl:activesModel.a_imageUrl userImgUrl:activesModel.a_avatarUrl content:activesModel.a_content entityID:activesModel.a_entityId entityUrl:activesModel.a_id userName:activesModel.a_userName category:activesModel.a_category];
+        [self loadMyPropertyWithImgW:activesModel.a_imageWidth imgH:activesModel.a_imageHeight imgUrl:activesModel.a_imageUrl userImgUrl:activesModel.a_avatarUrl content:activesModel.a_content entityID:activesModel.a_entityId entityUrl:activesModel.a_entityUrl userName:activesModel.a_userName category:activesModel.a_category];
     }
     return self;
 }
@@ -176,10 +176,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 //获得上方主要显示的图文内容
 -(void)getMainView{
-    self.productView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.mainView = [[UIView alloc] initWithFrame:CGRectZero];
     
     UIView* forCornerView=[[UIView alloc]initWithFrame:CGRectZero];
-    [self.productView addSubview:forCornerView];
+    [self.mainView addSubview:forCornerView];
     forCornerView.layer.cornerRadius=2;
     forCornerView.layer.masksToBounds=YES;
     
@@ -217,7 +217,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         
         BOOL imageUrlExist=![self.imageUrl isEqualToString:@""];
         //给一个比较大的高度，宽度不变
-        CGSize size =CGSizeMake(imageUrlExist?300:250,CGFLOAT_MAX);
+        CGSize size =CGSizeMake(imageUrlExist?290:250,CGFLOAT_MAX);
         // 获取当前文本的属性
         NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:tfont,NSFontAttributeName,nil];
         //ios7方法，获取文本需要的size，限制宽度
@@ -259,14 +259,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         CGRect frame=CGRectMake(0, height, separatorImage.size.width, separatorImage.size.height);
         UIImageView* separatorImageView=[[UIImageView alloc]initWithFrame:frame];
         separatorImageView.image=separatorImage;
-        [self.productView addSubview:separatorImageView];
+        [self.mainView addSubview:separatorImageView];
         
         height+=frame.size.height;
     }
     
     //设置总的frame
-    self.productView.frame = CGRectMake(0, 0, 320, height);
-    [self.productView setBackgroundColor:RGBCOLOR(235, 235, 235)];
+    self.mainView.frame = CGRectMake(0, 0, 320, height);
+    [self.mainView setBackgroundColor:RGBCOLOR(235, 235, 235)];
 }
 
 -(void)myTableViewReloadData{
@@ -304,7 +304,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 - (NSDate *)timeScroller:(ACTimeScroller *)timeScroller dateForCell:(UITableViewCell *)cell{
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    if (cell.contentView.subviews[0]==self.productView) {
+    if (cell.contentView.subviews[0]==self.mainView) {
         timeScroller.hidden=YES;
         return [NSDate date];
     }else{
@@ -394,7 +394,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return indexPath.row?[self.commentViews[indexPath.row-1] frame].size.height:self.productView.frame.size.height;
+    return indexPath.row?[self.commentViews[indexPath.row-1] frame].size.height:self.mainView.frame.size.height;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -406,7 +406,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if (cell.contentView.subviews.count) {
             [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         }
-        [cell.contentView addSubview:self.productView];
+        [cell.contentView addSubview:self.mainView];
         
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
