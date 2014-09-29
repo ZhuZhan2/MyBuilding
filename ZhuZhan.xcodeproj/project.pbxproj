@@ -960,6 +960,7 @@
 		5B13C71919B70699008EA7A0 /* AddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C71819B70699008EA7A0 /* AddCommentViewController.m */; };
 		5B18B46F19BFFC3700551F82 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B18B46E19BFFC3700551F82 /* GradientView.m */; };
 		5B1AC4B019BEE4DC006CA4F4 /* CompanyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */; };
+		5B2D232B19D93373007C2C29 /* NBLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D232A19D93373007C2C29 /* NBLabel.m */; };
 		5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
 		5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF819932E36007D79A8 /* QuadCurveMenu.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5B656CFC19932E36007D79A8 /* QuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CFA19932E36007D79A8 /* QuadCurveMenuItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -2354,6 +2355,8 @@
 		5B18B46E19BFFC3700551F82 /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		5B1AC4AE19BEE4DC006CA4F4 /* CompanyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyDetailViewController.h; sourceTree = "<group>"; };
 		5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyDetailViewController.m; sourceTree = "<group>"; };
+		5B2D232919D93373007C2C29 /* NBLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBLabel.h; path = NBLabel/NBLabel.h; sourceTree = "<group>"; };
+		5B2D232A19D93373007C2C29 /* NBLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBLabel.m; path = NBLabel/NBLabel.m; sourceTree = "<group>"; };
 		5B656CF419931275007D79A8 /* CompanyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMemberViewController.h; sourceTree = "<group>"; };
 		5B656CF519931275007D79A8 /* CompanyMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyMemberViewController.m; sourceTree = "<group>"; };
 		5B656CF719932E36007D79A8 /* QuadCurveMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadCurveMenu.h; sourceTree = "<group>"; };
@@ -2680,6 +2683,7 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				5B2D232819D9335D007C2C29 /* NBLabel */,
 				D3AC86A819CBD3D20009673C /* GetImagePath */,
 				D3A4281619C1A2E700BAB6C7 /* GTM */,
 				D3A4281219C19A2C00BAB6C7 /* BirthDay */,
@@ -4274,6 +4278,15 @@
 			path = GradientView;
 			sourceTree = "<group>";
 		};
+		5B2D232819D9335D007C2C29 /* NBLabel */ = {
+			isa = PBXGroup;
+			children = (
+				5B2D232919D93373007C2C29 /* NBLabel.h */,
+				5B2D232A19D93373007C2C29 /* NBLabel.m */,
+			);
+			name = NBLabel;
+			sourceTree = "<group>";
+		};
 		D3A427FF19C16E5100BAB6C7 /* ErrorView */ = {
 			isa = PBXGroup;
 			children = (
@@ -5663,6 +5676,7 @@
 				0426C26919922D5A00CD8822 /* GPUImageFastBlurFilter.m in Sources */,
 				0426C29019922D5A00CD8822 /* GPUImageMedianFilter.m in Sources */,
 				0426C27519922D5A00CD8822 /* GPUImageHardLightBlendFilter.m in Sources */,
+				5B2D232B19D93373007C2C29 /* NBLabel.m in Sources */,
 				D3AD609719AC56CB001FD483 /* UIScrollView+MJRefresh.m in Sources */,
 				0426C2BB19922D5A00CD8822 /* GPUImageSoftEleganceFilter.m in Sources */,
 				0426C2F419922D5A00CD8822 /* NSDictionary_JSONExtensions.m in Sources */,
