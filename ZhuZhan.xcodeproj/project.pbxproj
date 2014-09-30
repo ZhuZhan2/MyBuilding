@@ -261,7 +261,6 @@
 		042D9E1C19B559FC00689C5D /* AdvancedSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DEC19B559FC00689C5D /* AdvancedSearchViewController.m */; };
 		042D9E1E19B559FC00689C5D /* ConditionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DF019B559FC00689C5D /* ConditionsView.m */; };
 		042D9E2019B559FC00689C5D /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DF419B559FC00689C5D /* PopupView.m */; };
-		042D9E2119B559FC00689C5D /* RecognizerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DF619B559FC00689C5D /* RecognizerFactory.m */; };
 		042D9E2219B559FC00689C5D /* ResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DF819B559FC00689C5D /* ResultsTableViewController.m */; };
 		042D9E2319B559FC00689C5D /* SaveConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DFA19B559FC00689C5D /* SaveConditionsViewController.m */; };
 		042D9E2419B559FC00689C5D /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DFC19B559FC00689C5D /* SearchViewController.m */; };
@@ -270,7 +269,6 @@
 		042D9E2A19B559FC00689C5D /* TopicsDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E0919B559FC00689C5D /* TopicsDetailTableViewController.m */; };
 		042D9E2B19B559FC00689C5D /* TopicsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E0B19B559FC00689C5D /* TopicsTableViewCell.m */; };
 		042D9E2C19B559FC00689C5D /* TopicsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E0D19B559FC00689C5D /* TopicsTableViewController.m */; };
-		042D9E3419B55AB800689C5D /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042D9E2F19B55AB800689C5D /* iflyMSC.framework */; };
 		042D9E3519B55AB800689C5D /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E3119B55AB800689C5D /* UIPlaceHolderTextView.m */; };
 		042D9E3619B55AB800689C5D /* UnderstandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E3319B55AB800689C5D /* UnderstandViewController.m */; };
 		042D9EAF19B7136600689C5D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042D9EAE19B7136600689C5D /* MessageUI.framework */; };
@@ -1019,6 +1017,9 @@
 		D3AD61AD19AEF80B001FD483 /* NIDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61A919AEF80B001FD483 /* NIDropDown.m */; };
 		D3AD61AE19AEF80B001FD483 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61AB19AEF80B001FD483 /* UIViewController+MJPopupViewController.m */; };
 		D3B1C28319D155CC00E6D89F /* ContactCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B1C28219D155CC00E6D89F /* ContactCommentTableViewCell.m */; };
+		D3B8F53F19D92716008F6164 /* RecognizerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B8F53E19D92716008F6164 /* RecognizerFactory.m */; };
+		D3B8F54719D94789008F6164 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B8F54619D94789008F6164 /* iflyMSC.framework */; };
+		D3B8F54919D9483B008F6164 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B8F54819D9483B008F6164 /* libz.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1606,8 +1607,6 @@
 		042D9DF019B559FC00689C5D /* ConditionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionsView.m; sourceTree = "<group>"; };
 		042D9DF319B559FC00689C5D /* PopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupView.h; sourceTree = "<group>"; };
 		042D9DF419B559FC00689C5D /* PopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupView.m; sourceTree = "<group>"; };
-		042D9DF519B559FC00689C5D /* RecognizerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecognizerFactory.h; sourceTree = "<group>"; };
-		042D9DF619B559FC00689C5D /* RecognizerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecognizerFactory.m; sourceTree = "<group>"; };
 		042D9DF719B559FC00689C5D /* ResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsTableViewController.h; sourceTree = "<group>"; };
 		042D9DF819B559FC00689C5D /* ResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsTableViewController.m; sourceTree = "<group>"; };
 		042D9DF919B559FC00689C5D /* SaveConditionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveConditionsViewController.h; sourceTree = "<group>"; };
@@ -1625,7 +1624,6 @@
 		042D9E0C19B559FC00689C5D /* TopicsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicsTableViewController.h; sourceTree = "<group>"; };
 		042D9E0D19B559FC00689C5D /* TopicsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicsTableViewController.m; sourceTree = "<group>"; };
 		042D9E2E19B55AB800689C5D /* Definition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definition.h; sourceTree = "<group>"; };
-		042D9E2F19B55AB800689C5D /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iflyMSC.framework; path = ZhuZhan/Project/SearchView/voice/iflyMSC.framework; sourceTree = "<group>"; };
 		042D9E3019B55AB800689C5D /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
 		042D9E3119B55AB800689C5D /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
 		042D9E3219B55AB800689C5D /* UnderstandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnderstandViewController.h; sourceTree = "<group>"; };
@@ -2474,6 +2472,10 @@
 		D3AD61AB19AEF80B001FD483 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
 		D3B1C28119D155CC00E6D89F /* ContactCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCommentTableViewCell.h; sourceTree = "<group>"; };
 		D3B1C28219D155CC00E6D89F /* ContactCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCommentTableViewCell.m; sourceTree = "<group>"; };
+		D3B8F53D19D92716008F6164 /* RecognizerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecognizerFactory.h; sourceTree = "<group>"; };
+		D3B8F53E19D92716008F6164 /* RecognizerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecognizerFactory.m; sourceTree = "<group>"; };
+		D3B8F54619D94789008F6164 /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iflyMSC.framework; path = ZhuZhan/Project/SearchView/voice/iflyMSC.framework; sourceTree = "<group>"; };
+		D3B8F54819D9483B008F6164 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2481,6 +2483,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3B8F54919D9483B008F6164 /* libz.dylib in Frameworks */,
+				D3B8F54719D94789008F6164 /* iflyMSC.framework in Frameworks */,
 				042D9EAF19B7136600689C5D /* MessageUI.framework in Frameworks */,
 				5B0D03A519B0550900518D5E /* libbaidumapapi.a in Frameworks */,
 				5B0D03A419B054FB00518D5E /* libbaidumapapi.a in Frameworks */,
@@ -2490,7 +2494,6 @@
 				D3AD615B19ADA487001FD483 /* CoreLocation.framework in Frameworks */,
 				0426C31119922E5C00CD8822 /* CoreMedia.framework in Frameworks */,
 				0426C31D19922E9C00CD8822 /* ImageIO.framework in Frameworks */,
-				042D9E3419B55AB800689C5D /* iflyMSC.framework in Frameworks */,
 				0426C31B19922E9000CD8822 /* CoreImage.framework in Frameworks */,
 				0426C31919922E8800CD8822 /* CoreVideo.framework in Frameworks */,
 				0426C31719922E7800CD8822 /* Accelerate.framework in Frameworks */,
@@ -2549,8 +2552,9 @@
 		0426BFE919922CE400CD8822 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3B8F54819D9483B008F6164 /* libz.dylib */,
+				D3B8F54619D94789008F6164 /* iflyMSC.framework */,
 				042D9EAE19B7136600689C5D /* MessageUI.framework */,
-				042D9E2F19B55AB800689C5D /* iflyMSC.framework */,
 				D3AD618219ADCCC0001FD483 /* MapKit.framework */,
 				D3AD616519ADB981001FD483 /* libsqlite3.0.dylib */,
 				D3AD615C19ADA4A4001FD483 /* Security.framework */,
@@ -3395,8 +3399,6 @@
 				042D9DF019B559FC00689C5D /* ConditionsView.m */,
 				042D9DF319B559FC00689C5D /* PopupView.h */,
 				042D9DF419B559FC00689C5D /* PopupView.m */,
-				042D9DF519B559FC00689C5D /* RecognizerFactory.h */,
-				042D9DF619B559FC00689C5D /* RecognizerFactory.m */,
 				042D9DF719B559FC00689C5D /* ResultsTableViewController.h */,
 				042D9DF819B559FC00689C5D /* ResultsTableViewController.m */,
 				042D9DF919B559FC00689C5D /* SaveConditionsViewController.h */,
@@ -3427,6 +3429,8 @@
 		042D9E2D19B55AB800689C5D /* voice */ = {
 			isa = PBXGroup;
 			children = (
+				D3B8F53D19D92716008F6164 /* RecognizerFactory.h */,
+				D3B8F53E19D92716008F6164 /* RecognizerFactory.m */,
 				042D9E2E19B55AB800689C5D /* Definition.h */,
 				042D9E3019B55AB800689C5D /* UIPlaceHolderTextView.h */,
 				042D9E3119B55AB800689C5D /* UIPlaceHolderTextView.m */,
@@ -5635,8 +5639,8 @@
 				04D10BE519AE016A0097C0C6 /* PersonalDetailViewController.m in Sources */,
 				0426C27E19922D5A00CD8822 /* GPUImageHueBlendFilter.m in Sources */,
 				0426C2F219922D5A00CD8822 /* CJSONSerializedData.m in Sources */,
+				D3B8F53F19D92716008F6164 /* RecognizerFactory.m in Sources */,
 				0426C29C19922D5A00CD8822 /* GPUImageOpeningFilter.m in Sources */,
-				042D9E2119B559FC00689C5D /* RecognizerFactory.m in Sources */,
 				042D9E1819B559FC00689C5D /* ScrollViewController.m in Sources */,
 				0426C2C819922D5A00CD8822 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
 				0426C2FC19922D5A00CD8822 /* UIActivityIndicatorView+AFNetworking.m in Sources */,

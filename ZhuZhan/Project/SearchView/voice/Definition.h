@@ -13,7 +13,7 @@
 #define IOS7_OR_LATER   ( [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending )
 #define ButtonHeight 44
 #define NavigationBarHeight 44
-#define APPID_VALUE @"53fda526"
+#define APPID_VALUE @"5428e85c"
 #define URL_VALUE             @""                 // url
 #define TIMEOUT_VALUE         @"20000"            // timeout      连接超时的时间，以ms为单位
 #define BEST_URL_VALUE        @"1"                // best_search_url 最优搜索路径
