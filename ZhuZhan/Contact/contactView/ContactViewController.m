@@ -196,10 +196,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     }
                     [_datasource addObject:model.a_time];
                 }
-                [self.tableView footerEndRefreshing];
                 _timeScroller.hidden=YES;
+                [self.tableView footerEndRefreshing];
                 [self.tableView reloadData];
-                _timeScroller.hidden=NO;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    _timeScroller.hidden=NO;
+                });
+
             }
         } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
     }
