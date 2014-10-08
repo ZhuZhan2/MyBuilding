@@ -51,7 +51,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"asdfasdfafasdf");
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,
                                                                      nil]];
     
@@ -548,6 +547,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             }
         } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
     }
+    NSLog(@"aasdff");
 }
 
 -(void)gotoDetailView:(NSIndexPath *)indexPath{
