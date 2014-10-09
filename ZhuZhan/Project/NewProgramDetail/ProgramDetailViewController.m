@@ -665,7 +665,6 @@
         cell.delegate=self;
         return cell;
     }
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -691,12 +690,7 @@
     NSArray* part2=@[self.model.constructionImages,self.model.pileImages,self.model.mainBulidImages];
     NSArray* part3=@[self.model.decorationImages];
     NSArray* array=@[part0,part1,part2,part3];
-    
-//    NSMutableArray* imageUrls=[[NSMutableArray alloc]init];
-//    for (int i=0; i<[array[indexPath.part][indexPath.section] count]; i++) {
-//        NSURL* url=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,array[indexPath.part][indexPath.section][i]]];
-//        [imageUrls addObject:url];
-//    }
+
     [self addScrollViewWithUrls:array[indexPath.part][indexPath.section]];
 }
 
