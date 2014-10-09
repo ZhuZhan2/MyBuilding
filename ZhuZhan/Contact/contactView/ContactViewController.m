@@ -108,7 +108,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                         [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0]]];
                         [LoginSqlite insertData:posts[0] datakey:@"userImageUrl"];
                     }
-                } userId:@"13756154-7db5-4516-bcc6-6b7842504c81"];
+                } userId:[LoginSqlite getdata:@"userId" defaultdata:@"userId"]];
                 
                 showArr = posts;
                 for(int i=0;i<showArr.count;i++){
@@ -126,7 +126,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 
                 [self.tableView reloadData];
             }
-        } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
+        } userId:[LoginSqlite getdata:@"userId" defaultdata:@"userId"] startIndex:startIndex];
     }
 }
 
@@ -198,12 +198,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 _timeScroller.hidden=YES;
                 [self.tableView footerEndRefreshing];
                 [self.tableView reloadData];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 700ull *  NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
                     _timeScroller.hidden=NO;
                 });
-
             }
-        } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
+        } userId:[LoginSqlite getdata:@"userId" defaultdata:@"userId"] startIndex:startIndex];
     }
 }
 
@@ -477,7 +476,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [dic setValue:model.a_id forKey:@"EntityId"];
     [dic setValue:[NSString stringWithFormat:@"%@",comment] forKey:@"CommentContents"];
     [dic setValue:model.a_category forKey:@"EntityType"];
-    [dic setValue:@"13756154-7db5-4516-bcc6-6b7842504c81" forKey:@"CreatedBy"];
+    [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@"userId"] forKey:@"CreatedBy"];
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             [self finishPostCommentWithPosts:posts activesModel:model];
@@ -545,9 +544,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 __weak ContactViewController *wself = self;
                 [wself.pathCover stopRefresh];
             }
-        } userId:@"13756154-7db5-4516-bcc6-6b7842504c81" startIndex:startIndex];
+        } userId:[LoginSqlite getdata:@"userId" defaultdata:@"userId"] startIndex:startIndex];
     }
-    NSLog(@"aasdff");
 }
 
 -(void)gotoDetailView:(NSIndexPath *)indexPath{

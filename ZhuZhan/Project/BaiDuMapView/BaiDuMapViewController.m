@@ -254,6 +254,7 @@ int j;
         [imageView setImage:[GetImagePath getImagePath:@"地图搜索_02"]];
         imageView.userInteractionEnabled=YES;
         [self.view insertSubview:imageView atIndex:1];
+        [self removeAnnotationsOnTheMap];
         UIGraphicsBeginImageContext(imageView.frame.size);
         
         [imageView.image drawInRect:CGRectMake(0, 0, imageView.frame.size.width, imageView.frame.size.height)];
@@ -265,7 +266,6 @@ int j;
         CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 4);
         
         [coordinates removeAllObjects];
-        [self removeAnnotationsOnTheMap];
     }else{
         [imageView removeFromSuperview];
         imageView = nil;
