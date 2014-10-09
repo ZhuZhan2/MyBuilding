@@ -12,6 +12,7 @@
 #import "SaveConditionsViewController.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
+#import "LoginSqlite.h"
 @interface AdvancedSearchViewController ()
 
 @end
@@ -80,7 +81,7 @@
             }
             [_tableView reloadData];
         }
-    }userId:@"13756154-7db5-4516-bcc6-6b7842504c81"];
+    }userId:[LoginSqlite getdata:@"userId" defaultdata:@"userId"]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -346,7 +347,7 @@
             }
             [_tableView reloadData];
         }
-    }userId:@"13756154-7db5-4516-bcc6-6b7842504c81"];
+    }userId:[LoginSqlite getdata:@"userId" defaultdata:@"userId"]];
 }
 
 -(void)backView{

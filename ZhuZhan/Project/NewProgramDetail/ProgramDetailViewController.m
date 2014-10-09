@@ -238,7 +238,7 @@
         NSLog(@"关注");
         [ProjectApi AddUserFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
             NSLog(@"notice sucess");
-        } dic:[@{@"UserId":@"f483bcfc-3726-445a-97ff-ac7f207dd888",@"ProjectId":self.model.a_id} mutableCopy]];
+        } dic:[@{@"UserId":[LoginSqlite getdata:@"userId" defaultdata:@"userId"],@"ProjectId":self.model.a_id} mutableCopy]];
         
     }else if (buttonIndex==1){
         NSLog(@"评论");
@@ -279,7 +279,7 @@
         if (!error) {
             NSLog(@"sucess");
         }
-    } dic:[@{@"EntityId":self.model.a_id,@"entityType":@"Project",@"CommentContents":comment,@"CreatedBy":@"f483bcfc-3726-445a-97ff-ac7f207dd888"} mutableCopy]];
+    } dic:[@{@"EntityId":self.model.a_id,@"entityType":@"Project",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId" defaultdata:@"userId"]} mutableCopy]];
 }
 
 //**********************************************************************
