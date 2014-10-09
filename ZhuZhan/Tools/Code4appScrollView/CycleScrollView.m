@@ -8,6 +8,7 @@
 
 #import "CycleScrollView.h"
 #import "EGOImageView.h"
+#import "ProjectImageModel.h"
 @implementation CycleScrollView
 
 - (id)initWithFrame:(CGRect)frame cycleDirection:(CycleDirection)direction pictures:(NSArray *)pictureArray
@@ -18,7 +19,7 @@
         scrollFrame = frame;
         scrollDirection = direction;
         totalPage = pictureArray.count;
-        curPage = 1;                                    // 显示的是图片数组里的第一张图片
+        curPage = 1; // 显示的是图片数组里的第一张图片
         curImages = [[NSMutableArray alloc] init];
         
         /////////////********************************
@@ -58,17 +59,18 @@
     
     [self getDisplayImagesWithCurpage:curPage];
     
-    NSLog(@"%d",curImages.count);
     for (int i = 0; i < 3; i++) {
-
-        EGOImageView *imageView = [[EGOImageView alloc] initWithFrame:scrollFrame];
+        ProjectImageModel* model=[curImages objectAtIndex:i];
+        CGFloat height=[model.a_imageHeight floatValue];
+        CGFloat wdith=[model.a_imageWidth floatValue];
+        EGOImageView *imageView = [[EGOImageView alloc] initWithFrame:CGRectMake(0, 0, 320, height*320/wdith)];
+        imageView.center=scrollView.center;
         imageView.userInteractionEnabled = YES;
-        imageView.imageURL = [curImages objectAtIndex:i];
+        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageOriginalLocation]];
         
-        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                    action:@selector(handleTap:)];
+        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
         [imageView addGestureRecognizer:singleTap];
-        
+
         // 水平滚动
         if(scrollDirection == CycleDirectionLandscape) {
             imageView.frame = CGRectOffset(imageView.frame, scrollFrame.size.width * i, 0);

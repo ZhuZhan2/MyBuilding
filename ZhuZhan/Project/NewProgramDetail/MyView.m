@@ -12,14 +12,6 @@
 @end
 @implementation MyView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-    }
-    return self;
-}
-
 -(instancetype)init{
     self=[super init];
     if (self) {
