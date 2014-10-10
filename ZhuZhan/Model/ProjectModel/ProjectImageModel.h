@@ -18,6 +18,7 @@
 @property (nonatomic,strong) NSString *a_imageOriginalLocation;
 //类型
 @property (nonatomic,strong) NSString *a_imageCategory;
-
+@property(nonatomic,strong)NSString* a_imageHeight;
+@property(nonatomic,strong)NSString* a_imageWidth;
 @property (nonatomic, copy) NSDictionary *dict;
 @end

@@ -26,6 +26,7 @@
 #import "CommentApi.h"
 #import "LoginSqlite.h"
 #import "LoginViewController.h"
+#import "ProjectImageModel.h"
 
 @interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate,CycleScrollViewDelegate,UIActionSheetDelegate,AddCommentDelegate>
 @property(nonatomic,strong)UITableView* contentTableView;
@@ -230,8 +231,6 @@
 //**********************************************************************
 //UIActionSheetDelegate,AddCommentDelegate
 //**********************************************************************
-
-
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==0) {
@@ -579,11 +578,7 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    if (tableView==self.contentTableView) {
-        return 1;
-    }else{
-        return 4;
-    }
+    return tableView==self.contentTableView?1:4;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -670,7 +665,6 @@
         cell.delegate=self;
         return cell;
     }
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -687,11 +681,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (tableView==self.contentTableView) {
-        return 0;
-    }else{
-        return 37.5;
-    }
+    return tableView==self.contentTableView?0:37.5;
 }
 
 -(void)chooseImageViewWithIndexPath:(MyIndexPath *)indexPath{
@@ -700,18 +690,11 @@
     NSArray* part2=@[self.model.constructionImages,self.model.pileImages,self.model.mainBulidImages];
     NSArray* part3=@[self.model.decorationImages];
     NSArray* array=@[part0,part1,part2,part3];
-    
-    NSMutableArray* imageUrls=[[NSMutableArray alloc]init];
-    for (int i=0; i<[array[indexPath.part][indexPath.section] count]; i++) {
-        NSURL* url=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,array[indexPath.part][indexPath.section][i]]];
-        [imageUrls addObject:url];
-    }
-    [self addScrollViewWithUrls:imageUrls];
+
+    [self addScrollViewWithUrls:array[indexPath.part][indexPath.section]];
 }
 
--(void)addScrollViewWithUrls:(NSMutableArray*)urls{
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    
+-(void)addScrollViewWithUrls:(NSMutableArray*)imageModels{
     self.scrollViewBackground=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 568)];
     
     UIButton* button=[[UIButton alloc]initWithFrame:self.scrollViewBackground.frame];
@@ -719,9 +702,8 @@
     [self.scrollViewBackground addSubview:button];
     
     self.scrollViewBackground.backgroundColor=[UIColor blackColor];
-    CycleScrollView* scrollView =[[CycleScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 320) cycleDirection:CycleDirectionLandscape pictures:urls];
+    CycleScrollView* scrollView =[[CycleScrollView alloc]initWithFrame:self.scrollViewBackground.frame cycleDirection:CycleDirectionLandscape pictures:imageModels];
     scrollView.delegate=self;
-    scrollView.center=CGPointMake(160, 250);
     [self.scrollViewBackground addSubview:scrollView];
     
     AppDelegate* app=[AppDelegate instance];
@@ -733,7 +715,6 @@
 }
 
 -(void)backToProgram{
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [self.scrollViewBackground removeFromSuperview];
     self.scrollViewBackground=nil;
 }
@@ -758,7 +739,13 @@
     NSArray* part2=@[self.model.constructionImages,self.model.pileImages,self.model.mainBulidImages];
     NSArray* part3=@[self.model.decorationImages];
     NSArray* array=@[part0,part1,part2,part3];
-    return array[indexPath.part][indexPath.section];
+    NSArray* temp=array[indexPath.part][indexPath.section];
+    NSMutableArray* imageUrls=[[NSMutableArray alloc]init];
+    for (int i=0; i<temp.count; i++) {
+        ProjectImageModel* model=temp[i];
+        [imageUrls addObject:model.a_imageOriginalLocation];
+    }
+    return imageUrls;
 }
 
 //第一行蓝，第二行黑的view

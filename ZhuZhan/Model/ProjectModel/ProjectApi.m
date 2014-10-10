@@ -106,7 +106,7 @@
 + (NSURLSessionDataTask *)SingleProjectWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block projectId:(NSString *)projectId{
     NSString *urlStr = [NSString stringWithFormat:@"api/Projects/Projects?projectId=%@",projectId];
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON);
+        //NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             NSMutableArray *contactArr = [[NSMutableArray alloc] init];
@@ -128,6 +128,7 @@
                 [contactArr addObject:model];
             }
             
+            //NSLog(@"project images==>%@",JSON[@"d"][@"data"][@"projectImages"]);
             for(NSDictionary *item in JSON[@"d"][@"data"][@"projectImages"]){
                 ProjectImageModel *model = [[ProjectImageModel alloc] init];
                 [model setDict:item];

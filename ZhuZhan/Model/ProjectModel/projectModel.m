@@ -124,7 +124,8 @@
         
         //判断是否为我们已有的6个category,并且由于接口可能存在的异常,如果超过3个联系人则不再在对应联系人数组里加入联系人
         if (index!=-1) {
-            [array[index] addObject:imageModel.a_imageOriginalLocation];
+            [array[index] addObject:imageModel];
+            //.a_imageOriginalLocation];
         }
     }
 }
