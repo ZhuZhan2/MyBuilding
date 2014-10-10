@@ -260,6 +260,7 @@
         NSLog(@"取消");
     }
 }
+
 -(void)cancelFromAddComment{
     NSLog(@"cancelFromAddComment");
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
@@ -696,12 +697,8 @@
 
 -(void)addScrollViewWithUrls:(NSMutableArray*)imageModels{
     self.scrollViewBackground=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 568)];
-    
-    UIButton* button=[[UIButton alloc]initWithFrame:self.scrollViewBackground.frame];
-    [button addTarget:self action:@selector(backToProgram) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollViewBackground addSubview:button];
-    
     self.scrollViewBackground.backgroundColor=[UIColor blackColor];
+    
     CycleScrollView* scrollView =[[CycleScrollView alloc]initWithFrame:self.scrollViewBackground.frame cycleDirection:CycleDirectionLandscape pictures:imageModels];
     scrollView.delegate=self;
     [self.scrollViewBackground addSubview:scrollView];
@@ -711,10 +708,6 @@
 }
 
 -(void)cycleScrollViewDelegate:(CycleScrollView *)cycleScrollView didSelectImageView:(int)index{
-    [self backToProgram];
-}
-
--(void)backToProgram{
     [self.scrollViewBackground removeFromSuperview];
     self.scrollViewBackground=nil;
 }

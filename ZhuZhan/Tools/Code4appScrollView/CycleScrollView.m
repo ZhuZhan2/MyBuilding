@@ -27,11 +27,13 @@
         pictureArray=nil;
         
         scrollView = [[UIScrollView alloc] initWithFrame:frame];
-        scrollView.backgroundColor = [UIColor blackColor];
+        scrollView.backgroundColor = [UIColor clearColor];
         scrollView.showsHorizontalScrollIndicator = NO;
         scrollView.showsVerticalScrollIndicator = NO;
         scrollView.pagingEnabled = YES;
         scrollView.delegate = self;
+        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+        [scrollView addGestureRecognizer:singleTap];
         
         // 在水平方向滚动
         if(scrollDirection == CycleDirectionLandscape) {
