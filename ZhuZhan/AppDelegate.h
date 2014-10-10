@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "BMapKit.h"
-#define KAPI_KEY @"cc319a1603439ff53c1a9856a0276a58"
-#define KAPI_SECRET @"nqC5mTxBhRkyF0k1Mq2J7YR-0lu0-Bgj"
-
-
+#define KAPI_KEY @"25d987b4f4f915bf02aaecde055db243"//face++
+#define KAPI_SECRET @"S_rg7gvJpWXO4OJS4m7yaQt_VtTwszC7"
 @interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate>{
     BMKMapManager* _mapManager;
 }
