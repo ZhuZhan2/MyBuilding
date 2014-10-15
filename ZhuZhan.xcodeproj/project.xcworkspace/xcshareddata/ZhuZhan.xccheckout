@@ -10,29 +10,29 @@
 	<string>ZhuZhan</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>88AD96F3-9519-4E7C-8FCB-A7D57A999B35</key>
+		<key>B6E33D63AE6254BE1BB51185B52C78B84D5B50B6</key>
 		<string>https://github.com/ZhuZhanDeveloper/ZhuZhanDev.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>ZhuZhan.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>88AD96F3-9519-4E7C-8FCB-A7D57A999B35</key>
+		<key>B6E33D63AE6254BE1BB51185B52C78B84D5B50B6</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/ZhuZhanDeveloper/ZhuZhanDev.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>88AD96F3-9519-4E7C-8FCB-A7D57A999B35</string>
+	<string>B6E33D63AE6254BE1BB51185B52C78B84D5B50B6</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>88AD96F3-9519-4E7C-8FCB-A7D57A999B35</string>
+			<string>B6E33D63AE6254BE1BB51185B52C78B84D5B50B6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>ZhuZhanDev</string>
 		</dict>
