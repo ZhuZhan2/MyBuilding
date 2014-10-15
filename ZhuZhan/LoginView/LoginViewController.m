@@ -17,6 +17,7 @@
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
 #import "ProjectStage.h"
+#import "MD5.h"
 @interface LoginViewController ()
 
 @end
@@ -175,7 +176,7 @@
     //测试账号:zm 密码:123
     //登录接口
     
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:_userNameTextField.text,@"cellPhone",_passWordTextField.text,@"password" ,@"mobile",@"deviceType",nil];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:_userNameTextField.text,@"cellPhone",[MD5 md5HexDigest:_passWordTextField.text],@"password" ,@"mobile",@"deviceType",nil];
     NSLog(@"%@",parameters);
     [LoginModel LoginWithBlock:^(NSMutableArray *posts, NSError *error) {
         NSLog(@"JSON: %@", posts);

@@ -18,7 +18,7 @@
 
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
-
+#import "MD5.h"
 @interface RegistViewController ()
 
 @end
@@ -300,7 +300,7 @@ static bool IsVerify =NO;
     //**********************************
 
 
-    NSMutableDictionary *parameters =[[NSMutableDictionary alloc] initWithObjectsAndKeys:_phoneNumberTextField.text,@"cellPhone",passWordField.text,@"password",@"mobile",@"deviceType",_yzmTextField.text,@"barCode",nil];
+    NSMutableDictionary *parameters =[[NSMutableDictionary alloc] initWithObjectsAndKeys:_phoneNumberTextField.text,@"cellPhone",[MD5 md5HexDigest:passWordField.text],@"password",@"mobile",@"deviceType",_yzmTextField.text,@"barCode",nil];
     NSLog(@"nininiiinmmmmmmmmmmmm%@",parameters);
 
     [LoginModel RegisterWithBlock:^(NSMutableArray *posts, NSError *error) {
