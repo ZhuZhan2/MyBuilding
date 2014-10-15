@@ -10,13 +10,12 @@
 #import "ProjectStage.h"
 @implementation ProjectTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(projectModel *)model fromView:(NSString *)fromView index:(int)index
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(projectModel *)model fromView:(NSString *)fromView
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
         self.backgroundColor = RGBCOLOR(239, 237, 237);
-        indexRow = index;
         if([fromView isEqualToString:@"project"]){
             flag = 0;
         }else if([fromView isEqualToString:@"topics"]){
@@ -141,7 +140,7 @@
 
 -(void)dianBtnClick{
     if([self.delegate respondsToSelector:@selector(addProjectCommentView:)]){
-        [self.delegate addProjectCommentView:indexRow];
+        [self.delegate addProjectCommentView:self.indexRow];
     }
 }
 

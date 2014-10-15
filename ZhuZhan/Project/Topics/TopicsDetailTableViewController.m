@@ -142,8 +142,9 @@
         ProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         projectModel *model = showArr[indexPath.row-2];
         if(!cell){
-            cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:model fromView:@"topics" index:indexPath.row];
+            cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:model fromView:@"topics"];
         }
+        cell.indexRow=indexPath.row;
         cell.delegate = self;
         cell.selectionStyle = NO;
         return cell;

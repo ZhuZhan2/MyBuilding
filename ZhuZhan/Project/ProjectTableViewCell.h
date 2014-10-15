@@ -26,9 +26,9 @@
     UILabel *enddateLabel;
     UILabel *addressLabel;
     int flag;
-    int indexRow;
 }
 @property(nonatomic,weak)projectModel *model;
 @property(nonatomic,weak)id<ProjectTableViewCellDelegate>delegate;
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(projectModel *)model fromView:(NSString *)fromView index:(int)index;
+@property(nonatomic)int indexRow;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(projectModel *)model fromView:(NSString *)fromView;
 @end
