@@ -17,6 +17,7 @@
 @interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate,ErrorViewDelegate>
 @property (nonatomic, strong) NSMutableArray *images;
 @property(nonatomic,strong)ErrorView* errorView;
+@property(nonatomic,strong)UIActivityIndicatorView* indicatorView;
 @end
 
 @implementation ProductViewController
@@ -25,22 +26,35 @@
     NSLog(@"ProductViewController dealloc");
 }
 
+-(void)loadIndicatorView{
+    self.indicatorView=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.indicatorView.color=[UIColor blackColor];
+    self.indicatorView.center=CGPointMake(160, self.view.frame.size.height*.5);
+    [self.view addSubview:self.indicatorView];
+    [self.indicatorView startAnimating];
+}
+
+-(void)endIndicatorView{
+    [self.indicatorView stopAnimating];
+    [self.indicatorView removeFromSuperview];
+    self.indicatorView=nil;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	  
     //初始化navi
     [self loadNavi];
-    
 	//初始化瀑布流视图
     [self loadQtmquitView];
-    
+    [self loadIndicatorView];
     startIndex = 0;
     [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             showArr = posts;
             [qtmquitView reloadData];
-            
+            [self endIndicatorView];
             //初始化刷新视图
             [self setupRefresh];
         }

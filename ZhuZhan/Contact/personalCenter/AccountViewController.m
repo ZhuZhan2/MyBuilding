@@ -282,14 +282,10 @@ static int count =0;//记录生日textField 的时间被触发的次数
 
 
 -(void)leftBtnClick{//退出到前一个页面
-    
     [self.navigationController popViewControllerAnimated:YES];
-
 }
 
 -(void)completePerfect{//完成修改后触发的方法
-    
-
     NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.userName,@"UserName",model.realName,@"FullName",model.sex,@"Sex",model.locationCity,@"LocationCity",model.birthday,@"Birthday",model.constellation,@"Constellation",model.bloodType,@"BloodType",model.email,@"Email",model.companyName,@"Company",model.position,@"Duties",nil];
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
         NSDictionary *responseObject = [posts objectAtIndex:0];
@@ -305,12 +301,11 @@ static int count =0;//记录生日textField 的时间被触发的次数
     } dic:parameter];
     
 }
+
 #pragma mark  AccountCellDelegate----------
 -(void)ModifyPassword:(NSString *)password
 {
     NSLog(@"开始修改密码");
-    
-    
 }
 
 -(void)getTextFieldFrame_yPlusHeight:(float)y
@@ -385,9 +380,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-     NSLog(@"numberOfRowsInSection");
     return 1;
-    
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -425,8 +418,6 @@ static int count =0;//记录生日textField 的时间被触发的次数
 }
 
 -(void)dealloc{
-    self.tableView.delegate=nil;
-    self.tableView.dataSource=nil;
     NSLog(@"dealloc");
     self.tableView.delegate = nil;
     self.tableView.dataSource = nil;

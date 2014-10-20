@@ -188,7 +188,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     EGOImageView *imageView;
     //动态图像
     if(![self.imageUrl isEqualToString:@""]){
-        imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
+        imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001"]];
         imageView.frame = CGRectMake(0, 0, 310,[self.imageHeight floatValue]/[self.imageWidth floatValue]*310);
         imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.imageUrl]];
         [forCornerView addSubview:imageView];

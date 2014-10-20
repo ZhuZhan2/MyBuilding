@@ -59,7 +59,9 @@
 
 @property(nonatomic,strong)NSArray* stages;//判断阶段的数组
 
-@property(nonatomic,strong)AddCommentViewController* vc;
+@property(nonatomic,strong)AddCommentViewController* addCommentVC;
+
+@property(nonatomic,strong)UIActivityIndicatorView* indicatorView;
 @end
 
 @implementation ProgramDetailViewController
@@ -80,21 +82,36 @@
     [homeVC homePageTabBarHide];
 }
 
+-(void)loadIndicatorView{
+    self.indicatorView=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.indicatorView.color=[UIColor blackColor];
+    self.indicatorView.center=CGPointMake(160, self.view.frame.size.height*.5);
+    [self.view addSubview:self.indicatorView];
+    [self.indicatorView startAnimating];
+}
+
+-(void)endIndicatorView{
+    [self.indicatorView stopAnimating];
+    [self.indicatorView removeFromSuperview];
+    self.indicatorView=nil;
+}
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
     [self initNavi];
-
+    [self loadIndicatorView];
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if (!error) {
-                self.model = posts[0];
-                [self.model getContacts:posts[1]];
-                [self.model getImages:posts[2]];
-                [self loadSelf];
-                self.stages=[ProjectStage JudgmentProjectDetailStage:self.model];
-            }else{
-                NSLog(@"=====%@",error);
-            }
+        if (!error) {
+            self.model = posts[0];
+            [self.model getContacts:posts[1]];
+            [self.model getImages:posts[2]];
+            [self loadSelf];
+            self.stages=[ProjectStage JudgmentProjectDetailStage:self.model];
+        }else{
+            NSLog(@"=====%@",error);
+        }
+        [self endIndicatorView];
     } projectId:self.projectId];
 }
 
@@ -252,9 +269,9 @@
             return;
         }
         
-        self.vc=[[AddCommentViewController alloc]init];
-        self.vc.delegate=self;
-        [self presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
+        self.addCommentVC=[[AddCommentViewController alloc]init];
+        self.addCommentVC.delegate=self;
+        [self presentPopupViewController:self.addCommentVC animationType:MJPopupViewAnimationFade flag:2];
         
     }else{
         NSLog(@"取消");
@@ -699,12 +716,12 @@
     self.scrollViewBackground=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 568)];
     self.scrollViewBackground.backgroundColor=[UIColor blackColor];
     
+    AppDelegate* app=[AppDelegate instance];
+    [app.window.rootViewController.view addSubview:self.scrollViewBackground];
+    
     CycleScrollView* scrollView =[[CycleScrollView alloc]initWithFrame:self.scrollViewBackground.frame cycleDirection:CycleDirectionLandscape pictures:imageModels];
     scrollView.delegate=self;
     [self.scrollViewBackground addSubview:scrollView];
-    
-    AppDelegate* app=[AppDelegate instance];
-    [app.window.rootViewController.view addSubview:self.scrollViewBackground];
 }
 
 -(void)cycleScrollViewDelegate:(CycleScrollView *)cycleScrollView didSelectImageView:(int)index{
