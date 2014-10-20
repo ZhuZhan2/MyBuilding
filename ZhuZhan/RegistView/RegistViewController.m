@@ -88,6 +88,7 @@ static bool IsVerify =NO;
     passWordField.placeholder=@"请填写密码";
     passWordField.returnKeyType=UIReturnKeyDone;
     passWordField.clearButtonMode =YES;
+    passWordField.secureTextEntry = YES;
     [panView addSubview:passWordField];
     
     //确认密码的文本框
@@ -97,6 +98,7 @@ static bool IsVerify =NO;
     verifyPassWordField.placeholder=@"请重复填写密码";
     verifyPassWordField.returnKeyType=UIReturnKeyDone;
     verifyPassWordField.clearButtonMode =YES;
+    verifyPassWordField.secureTextEntry = YES;
     [panView addSubview:verifyPassWordField];
 
     UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -112,9 +114,7 @@ static bool IsVerify =NO;
     cancelBtn.frame = CGRectMake(134, 220, 128, 40);
     [cancelBtn setBackgroundImage:[GetImagePath getImagePath:@"注册_09"] forState:UIControlStateNormal];
     [cancelBtn setTitle:@"取   消" forState:UIControlStateNormal];
-    [cancelBtn setTitle:@"取   消" forState:UIControlStateHighlighted];
-    [cancelBtn setTitle:@"取   消" forState:UIControlStateSelected];
-    cancelBtn.titleLabel.textColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"注册_07"]];
+    [cancelBtn setTitleColor:BlueColor forState:UIControlStateNormal];
     [cancelBtn addTarget:self action:@selector(cancelRegister) forControlEvents:UIControlEventTouchUpInside];
     [panView addSubview:cancelBtn];
     

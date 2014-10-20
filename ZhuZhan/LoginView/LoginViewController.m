@@ -196,21 +196,22 @@
                 [LoginSqlite insertData:[item objectForKey:@"userId"] datakey:@"userId"];
                 [LoginSqlite insertData:[item objectForKey:@"deviceToken"] datakey:@"deviceToken"];
                 
-                 NSString *isFaceRegister = [item objectForKey:@"isFaceRegister"];
-                NSString *firstPassWordLogin = [LoginSqlite getdata:@"firstPassWordLogin" defaultdata:@""];
-                NSLog(@"NNNNNNN%@",firstPassWordLogin);
-                if([[LoginSqlite getdata:@"firstPassWordLogin" defaultdata:@""] isEqualToString:@""] &&![[NSString stringWithFormat:@"%@",isFaceRegister] isEqualToString:@"1"]){//判断用户是否是第一次登陆并判断用户脸部识别的状态
-                    [LoginSqlite insertData:@"firstLogin" datakey:@"firstPassWordLogin"];
-                    NSString *firstPassWordLogin = [LoginSqlite getdata:@"firstPassWordLogin" defaultdata:@""];
-                    NSLog(@"NNNNNNN%@",firstPassWordLogin);
-                    
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否要进行脸部识别的注册" delegate:self cancelButtonTitle:@"是" otherButtonTitles:@"否", nil];
-                    
-                    [alert show];
-                }else{
-                    NSLog(@"登录成功！");
-                    [self loginSuccess];
-                }
+                 //NSString *isFaceRegister = [item objectForKey:@"isFaceRegister"];
+                //NSString *firstPassWordLogin = [LoginSqlite getdata:@"firstPassWordLogin" defaultdata:@""];
+//                NSLog(@"NNNNNNN%@",firstPassWordLogin);
+//                if([[LoginSqlite getdata:@"firstPassWordLogin" defaultdata:@""] isEqualToString:@""] &&![[NSString stringWithFormat:@"%@",isFaceRegister] isEqualToString:@"1"]){//判断用户是否是第一次登陆并判断用户脸部识别的状态
+//                    [LoginSqlite insertData:@"firstLogin" datakey:@"firstPassWordLogin"];
+//                    NSString *firstPassWordLogin = [LoginSqlite getdata:@"firstPassWordLogin" defaultdata:@""];
+//                    NSLog(@"NNNNNNN%@",firstPassWordLogin);
+//                    
+//                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否要进行脸部识别的注册" delegate:self cancelButtonTitle:@"是" otherButtonTitles:@"否", nil];
+//                    
+//                    [alert show];
+//                }else{
+//                    NSLog(@"登录成功！");
+//                    [self loginSuccess];
+//                }
+                [self loginSuccess];
             }
         }else{
             NSLog(@"登录失败！");
