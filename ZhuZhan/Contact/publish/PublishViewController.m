@@ -33,7 +33,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
 {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = RGBCOLOR(237, 237, 237);
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 5, 29, 28.5)];
     [leftButton setBackgroundImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
@@ -54,28 +54,30 @@ static int PublishNum =1;//1 发布动态  2，发布产品
 
 
 
-    inputView = [[UITextView alloc] initWithFrame:CGRectMake(10, 42, 300, 220)];
+    inputView = [[UITextView alloc] initWithFrame:CGRectMake(15, 10, 290, 220)];
     inputView.delegate = self;
+    inputView.backgroundColor=[UIColor clearColor];
     inputView.returnKeyType = UIReturnKeySend;
-    inputView.font = [UIFont systemFontOfSize:16];
-    inputView.text =@"             ";
+    inputView.font = [UIFont systemFontOfSize:17];
     [inputView becomeFirstResponder];
     [self.view addSubview:inputView];
     
-    alertLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 110, 120, 30)];
+    alertLabel = [[UILabel alloc] initWithFrame:CGRectMake(67, 38, 120, 30)];
     alertLabel.text = @"您在做什么?";
     alertLabel.textColor = GrayColor;
     alertLabel.alpha = 0.6;
     alertLabel.textAlignment =NSTextAlignmentLeft;
-    [self.view addSubview:alertLabel];
+    [inputView addSubview:alertLabel];
     
 
     publishImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 74.5, 60, 60)];
+    publishImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 6, 60, 60)];
     publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
     publishImage.userInteractionEnabled =YES;
-    [self.view addSubview:publishImage];
+    [inputView addSubview:publishImage];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(beginToAddImage)];
     [publishImage addGestureRecognizer:tap];
+    inputView.textContainer.exclusionPaths=@[[UIBezierPath bezierPathWithRect:[inputView convertRect:publishImage.frame fromView:inputView]]];
     
     toolBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 312, 320, 40)];
     toolBar.image = [GetImagePath getImagePath:@"人脉－发布动态_15a"];
@@ -151,6 +153,8 @@ static int PublishNum =1;//1 发布动态  2，发布产品
 -(void)publshActivities
 {
     NSLog(@"想说些什么");
+    NSLog(@"%@",NSStringFromCGRect([inputView.subviews[0] frame]));
+    return;
     leftBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_07a"];
     rightBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_13a"];
     PublishNum =1;
@@ -203,49 +207,17 @@ static int PublishNum =1;//1 发布动态  2，发布产品
 -(void)clearAll
 {
     publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
-    inputView.text =@"             ";
+    inputView.text =@"";
     publishImageStr = @"";
 }
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text; {
-    
-//    NSLog(@"Text **%@mm",text);
-
-    alertLabel.hidden = YES;
-    if ([@"\n" isEqualToString:text] == YES) { //发送的操作
-
-        inputView.text = [inputView.text substringFromIndex:13];
-        [self goToPublish];
-        
-        return NO;
+-(void)textViewDidChange:(UITextView *)textView{
+    if (textView.text.length) {
+        [alertLabel removeFromSuperview];
+    }else{
+        [inputView addSubview:alertLabel];
     }
-    if ([@"" isEqualToString:text] == YES) {
-        CGPoint cursorPosition = [textView caretRectForPosition:textView.selectedTextRange.start].origin;
-        NSLog(@"===%lf,%f",cursorPosition.x,cursorPosition.y);
-        if ((cursorPosition.x==58.720001 &&cursorPosition.y==7)||(cursorPosition.x==63.279999 &&cursorPosition.y==7)) {
-            
-            
-            if ([inputView.text length] <14) {
-               inputView.text =@"             ";
-                return NO;
-            }
-            
-            [@" " stringByAppendingString:inputView.text];
-            return NO;
-
-        }
-
-        else if(cursorPosition.x<63.281014 && cursorPosition.y==7){
-            NSLog(@"韩海龙");
-            [@" " stringByAppendingString:inputView.text];
-            return NO;
-        }
-        
-    }
-    
-    return YES;
 }
-
 
 -(void)goToPublish
 {
