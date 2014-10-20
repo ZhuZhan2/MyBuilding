@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MoreCompanyViewController : UIViewController
+@interface MoreCompanyViewController : UIViewController{
+    int startIndex;
+}
 -(id)initWithMemberNumber:(NSInteger)number;
 @end

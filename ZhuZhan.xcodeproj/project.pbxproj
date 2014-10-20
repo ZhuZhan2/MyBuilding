@@ -966,6 +966,8 @@
 		5BF08A3A19B86C5D00782976 /* MoreCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */; };
 		5BF08A3D19B8779D00782976 /* MoreCompanyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */; };
 		D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */; };
+		D36040E619F51E8600E9727D /* CompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D36040E519F51E8600E9727D /* CompanyModel.m */; };
+		D36040E919F51E9F00E9727D /* CompanyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D36040E819F51E9F00E9727D /* CompanyApi.m */; };
 		D3A4281019C1749E00BAB6C7 /* ErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4280F19C1749E00BAB6C7 /* ErrorView.m */; };
 		D3A4281519C19A3E00BAB6C7 /* BirthDay.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281419C19A3E00BAB6C7 /* BirthDay.m */; };
 		D3A4281B19C1A2E700BAB6C7 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281819C1A2E700BAB6C7 /* GTMBase64.m */; };
@@ -2370,6 +2372,10 @@
 		5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCompanyViewCell.m; sourceTree = "<group>"; };
 		D32C88CD19D79E0800D1BA1D /* PersonalCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterModel.h; sourceTree = "<group>"; };
 		D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterModel.m; sourceTree = "<group>"; };
+		D36040E419F51E8600E9727D /* CompanyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyModel.h; sourceTree = "<group>"; };
+		D36040E519F51E8600E9727D /* CompanyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyModel.m; sourceTree = "<group>"; };
+		D36040E719F51E9F00E9727D /* CompanyApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyApi.h; sourceTree = "<group>"; };
+		D36040E819F51E9F00E9727D /* CompanyApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyApi.m; sourceTree = "<group>"; };
 		D3A4280819C16F2400BAB6C7 /* ErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorView.h; sourceTree = "<group>"; };
 		D3A4280F19C1749E00BAB6C7 /* ErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorView.m; sourceTree = "<group>"; };
 		D3A4281319C19A3E00BAB6C7 /* BirthDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirthDay.h; sourceTree = "<group>"; };
@@ -4304,6 +4310,17 @@
 			path = MD5;
 			sourceTree = "<group>";
 		};
+		D36040E319F51E6900E9727D /* CompanyModel */ = {
+			isa = PBXGroup;
+			children = (
+				D36040E419F51E8600E9727D /* CompanyModel.h */,
+				D36040E519F51E8600E9727D /* CompanyModel.m */,
+				D36040E719F51E9F00E9727D /* CompanyApi.h */,
+				D36040E819F51E9F00E9727D /* CompanyApi.m */,
+			);
+			path = CompanyModel;
+			sourceTree = "<group>";
+		};
 		D3A427FF19C16E5100BAB6C7 /* ErrorView */ = {
 			isa = PBXGroup;
 			children = (
@@ -4336,6 +4353,7 @@
 		D3AC618B19B6BF930015B62F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D36040E319F51E6900E9727D /* CompanyModel */,
 				04248B0219C67C1D000FB8A9 /* ProductModel */,
 				04BF13A519C4162A002E02C9 /* ProjectModel */,
 				D3AC618C19B6BF930015B62F /* ConditionsModel */,
@@ -5400,6 +5418,7 @@
 				04D10BD919AE016A0097C0C6 /* ContactViewController.m in Sources */,
 				0426C23419922D5A00CD8822 /* RegistViewController.m in Sources */,
 				D3AD60A219AC574A001FD483 /* Reachability.m in Sources */,
+				D36040E619F51E8600E9727D /* CompanyModel.m in Sources */,
 				0426C25B19922D5A00CD8822 /* GPUImageCrosshairGenerator.m in Sources */,
 				5B13C71919B70699008EA7A0 /* AddCommentViewController.m in Sources */,
 				D3AD609519AC56CB001FD483 /* MJRefreshHeaderView.m in Sources */,
@@ -5451,6 +5470,7 @@
 				04D10C3019AF3C120097C0C6 /* ShowViewController.m in Sources */,
 				D3AC86AB19CBD3E30009673C /* GetImagePath.m in Sources */,
 				0426C25C19922D5A00CD8822 /* GPUImageCrosshatchFilter.m in Sources */,
+				D36040E919F51E9F00E9727D /* CompanyApi.m in Sources */,
 				042D9CFB19B40C4C00689C5D /* DKCircleButton.m in Sources */,
 				5B18B46F19BFFC3700551F82 /* GradientView.m in Sources */,
 				D3AC61D019B849920015B62F /* PorjectCommentTableViewController.m in Sources */,
