@@ -52,9 +52,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     
     self.title = @"发布";
 
-
-
-    inputView = [[UITextView alloc] initWithFrame:CGRectMake(15, 10, 290, 220)];
+    inputView = [[UITextView alloc] initWithFrame:CGRectMake(15, 16, 290, 220)];
     inputView.delegate = self;
     inputView.backgroundColor=[UIColor clearColor];
     inputView.returnKeyType = UIReturnKeySend;
@@ -62,7 +60,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     [inputView becomeFirstResponder];
     [self.view addSubview:inputView];
     
-    alertLabel = [[UILabel alloc] initWithFrame:CGRectMake(67, 38, 120, 30)];
+    alertLabel = [[UILabel alloc] initWithFrame:CGRectMake(67, 32, 120, 30)];
     alertLabel.text = @"您在做什么?";
     alertLabel.textColor = GrayColor;
     alertLabel.alpha = 0.6;
@@ -70,8 +68,8 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     [inputView addSubview:alertLabel];
     
 
-    publishImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 74.5, 60, 60)];
-    publishImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 6, 60, 60)];
+    publishImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 74.5, 52, 52)];
+    publishImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
     publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
     publishImage.userInteractionEnabled =YES;
     [inputView addSubview:publishImage];
