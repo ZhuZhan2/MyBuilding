@@ -43,35 +43,35 @@
    [toolView setBackgroundColor:RGBCOLOR(229, 229, 229)];
     
     contactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [contactBtn setFrame:CGRectMake(25, 10, 25, 36)];
+    [contactBtn setFrame:CGRectMake(27.5, 10, 25, 36)];
     [contactBtn setBackgroundImage:[GetImagePath getImagePath:@"项目－项目专题_11a-20"] forState:UIControlStateNormal];
     contactBtn.tag = 0;
     [contactBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:contactBtn];
     
     projectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [projectBtn setFrame:CGRectMake(82, 10, 25, 36)];
+    [projectBtn setFrame:CGRectMake(107.5, 10, 25, 36)];
     [projectBtn setBackgroundImage:[GetImagePath getImagePath:@"项目－项目专题_14a"] forState:UIControlStateNormal];
     projectBtn.tag = 1;
     [projectBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:projectBtn];
     
     companyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [companyBtn setFrame:CGRectMake(210, 10, 25, 36)];
+    [companyBtn setFrame:CGRectMake(187.5, 10, 25, 36)];
     [companyBtn setBackgroundImage:[GetImagePath getImagePath:@"项目－项目专题_17a"] forState:UIControlStateNormal];
     companyBtn.tag = 3;
     [companyBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:companyBtn];
     
     tradeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [tradeBtn setFrame:CGRectMake(270, 10, 25, 36)];
+    [tradeBtn setFrame:CGRectMake(267.5, 10, 25, 36)];
     [tradeBtn setBackgroundImage:[GetImagePath getImagePath:@"项目－项目专题_23a"] forState:UIControlStateNormal];
     tradeBtn.tag = 4;
     [tradeBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:tradeBtn];
     [self.view addSubview:toolView];
     
-    
+    /*
     //更多按钮的实现
     UIImage *storyMenuItemImage = [GetImagePath getImagePath:@"bg-menuitem"];
     UIImage *storyMenuItemImagePressed = [GetImagePath getImagePath:@"bg-menuitem-highlighted"];
@@ -108,6 +108,7 @@
     //menu.backgroundColor=[UIColor greenColor];
     menu.delegate = self;
     [self.view addSubview:menu];
+     */
 }
 
 - (void)didReceiveMemoryWarning
@@ -197,20 +198,20 @@
     }
 }
 
-
-//更多按钮的委托方法
-- (void)quadCurveMenu:(QuadCurveMenu *)menu didSelectIndex:(NSInteger)idx
-{
-    if(idx == 0){
-        NSLog(@"推荐信");
-    }else if(idx == 1){
-        NSLog(@"添加好友");
-    }else if(idx == 2){
-        NSLog(@"拓展人脉");
-    }else if (idx == 3){
-        NSLog(@"聊天");
-    }else{
-        NSLog(@"通讯录");
-    }
-}
+//
+////更多按钮的委托方法
+//- (void)quadCurveMenu:(QuadCurveMenu *)menu didSelectIndex:(NSInteger)idx
+//{
+//    if(idx == 0){
+//        NSLog(@"推荐信");
+//    }else if(idx == 1){
+//        NSLog(@"添加好友");
+//    }else if(idx == 2){
+//        NSLog(@"拓展人脉");
+//    }else if (idx == 3){
+//        NSLog(@"聊天");
+//    }else{
+//        NSLog(@"通讯录");
+//    }
+//}
 @end

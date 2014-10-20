@@ -66,7 +66,6 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     alertLabel.alpha = 0.6;
     alertLabel.textAlignment =NSTextAlignmentLeft;
     [inputView addSubview:alertLabel];
-    
 
     publishImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 74.5, 52, 52)];
     publishImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, -24, 52, 52)];
@@ -76,12 +75,10 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(beginToAddImage)];
     [publishImage addGestureRecognizer:tap];
     inputView.textContainer.exclusionPaths=@[[UIBezierPath bezierPathWithRect:CGRectMake(0, -24, 52, 40)]];
-    NSLog(@"%@",NSStringFromCGRect([inputView convertRect:publishImage.frame fromView:inputView]));
     toolBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 312, 320, 40)];
     toolBar.image = [GetImagePath getImagePath:@"人脉－发布动态_15a"];
     toolBar.userInteractionEnabled = YES;
     [self.view addSubview:toolBar];
-
 
     UIButton *textBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     textBtn.frame = CGRectMake(0, 0, 158, 40);
@@ -108,11 +105,18 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     [photoBtn addTarget:self action:@selector(publshProduct) forControlEvents:UIControlEventTouchUpInside];
     [toolBar addSubview:photoBtn];
     
-    
     leftBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_07a"];
     rightBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_13a"];
     publishImageStr =@"";
 
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([@"\n" isEqualToString:text] == YES) { //发送的操作
+        [self goToPublish];
+        return NO;
+    }
+    return YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -136,7 +140,6 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     [homeVC homePageTabBarRestore];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 }
-
 
 //当键盘出现或改变时调用
 - (void)keyboardWillShow:(NSNotification *)aNotification
@@ -169,13 +172,9 @@ static int PublishNum =1;//1 发布动态  2，发布产品
   NSLog(@"发布产品信息");
     leftBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_09a"];
     rightBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_11a"];
-    
     PublishNum =2;
-    
-    
-
-    
 }
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     [inputView resignFirstResponder];
     camera = [[Camera alloc] init];
@@ -184,9 +183,6 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     [camera modifyUserIconWithButtonIndex:buttonIndex WithButtonTag:110120];
     
 }
-
-
-
 
 -(void)publishImage:(NSString *)imageStr andImage:(UIImage *)image;
 {
@@ -205,8 +201,6 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-
 
 -(void)clearAll
 {
@@ -227,21 +221,18 @@ static int PublishNum =1;//1 发布动态  2，发布产品
 {
 
     NSString *userIdStr = [LoginSqlite getdata:@"userId" defaultdata:@""];
-NSLog(@"******publishImageStr******%@&&",publishImageStr);
 
     if ([inputView.text isEqualToString:@""]&&[publishImageStr isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布内容不能为空" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
         [alert show];
-        inputView.text =@"             ";
+        inputView.text =@"";
         return;
     }
 
     if (PublishNum ==1) {
-        NSLog(@"publishImageStr ==> %@",publishImageStr);
         NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",inputView.text,@"ActiveText",@"Personal",@"Category",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
-            NSLog(@"******dic****** %@",dic);
-        NSString *headBlankStr =@"             ";
-        inputView.text = [NSString stringWithFormat:@"%@%@",headBlankStr,inputView.text];
+        //NSString *headBlankStr =@"             ";
+        //inputView.text = [NSString stringWithFormat:@"%@%@",headBlankStr,inputView.text];
         
         [CommentApi SendActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
@@ -250,7 +241,7 @@ NSLog(@"******publishImageStr******%@&&",publishImageStr);
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
                 [alert show];
                 publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
-                inputView.text =@"             ";
+                inputView.text =@"";
                 publishImageStr =@"";
             }else{
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
@@ -264,10 +255,10 @@ NSLog(@"******publishImageStr******%@&&",publishImageStr);
     if (PublishNum ==2) {
         NSLog(@"publishImageStr ==> %@",publishImageStr);
         NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"21344",@"ProductName",inputView.text,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
-            NSLog(@"******dic****** %@",dic);
-        NSString *headBlankStr =@"             ";
-        inputView.text = [NSString stringWithFormat:@"%@%@",headBlankStr,inputView.text];
-          NSLog(@"******userId****** %@",userIdStr);
+//            NSLog(@"******dic****** %@",dic);
+//        NSString *headBlankStr =@"             ";
+//        inputView.text = [NSString stringWithFormat:@"%@%@",headBlankStr,inputView.text];
+//          NSLog(@"******userId****** %@",userIdStr);
         [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 NSDictionary *dic = [posts objectAtIndex:0];
@@ -281,7 +272,7 @@ NSLog(@"******publishImageStr******%@&&",publishImageStr);
                         [alert show];
                         
                         publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
-                        inputView.text =@"             ";
+                        inputView.text =@"";
                         publishImageStr =@"";
                     }else{
                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
