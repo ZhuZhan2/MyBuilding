@@ -162,6 +162,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
 -(void)publshActivities
 {
     NSLog(@"想说些什么");
+    NSLog(@"%@",NSStringFromCGRect([inputView.subviews[0] frame]));
     leftBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_07a"];
     rightBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_13a"];
     PublishNum =1;

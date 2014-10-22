@@ -11,6 +11,7 @@
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
 #import "CompanyDetailViewController.h"
+#import "CompanyApi.h"
 @interface MoreCompanyViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UIScrollViewDelegate>
 @property(nonatomic)NSInteger memberNumber;
 @property(nonatomic,strong)UITableView* tableView;
@@ -44,6 +45,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    startIndex = 0;
+    [CompanyApi GetCompanyListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+        
+        }
+    } startIndex:startIndex];
     self.memberNumber=25;
     [self initSearchView];
     [self initMyTableViewAndNavi];
