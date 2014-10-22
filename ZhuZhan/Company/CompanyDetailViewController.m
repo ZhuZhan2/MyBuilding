@@ -10,6 +10,9 @@
 #import "MoreCompanyViewController.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
+#import "EGOImageView.h"
+#import "CompanyApi.h"
+#import "LoginSqlite.h"
 @interface CompanyDetailViewController ()
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @end
@@ -40,7 +43,8 @@
     [self scrollViewAddView:view];
     
     //公司图标
-    UIImageView* companyImageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"公司－我的公司_02a"]];
+    EGOImageView* companyImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"公司－我的公司_02a"]];
+    companyImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.model.a_companyLocation]];
     [view addSubview:companyImageView];
     
     //公司名称label
@@ -48,14 +52,14 @@
     //companyLabel.backgroundColor=[UIColor yellowColor];
     companyLabel.numberOfLines=2;
     companyLabel.textColor=RGBCOLOR(62, 127, 226);
-    NSString* companyName=@"公司名称显示在这里显示在这里里显示在这里里里";
+    NSString* companyName=self.model.a_companyName;
     companyLabel.text=companyName;
     companyLabel.font=[UIFont boldSystemFontOfSize:17];
     [view addSubview:companyLabel];
     
     //公司行业label
     UILabel* businessLabel=[[UILabel alloc]initWithFrame:CGRectMake(105, 70, 300, 20)];
-    NSString* businessName=@"建筑";
+    NSString* businessName=self.model.a_companyIndustry;
     businessLabel.text=[NSString stringWithFormat:@"公司行业：%@",businessName];
     businessLabel.font=[UIFont boldSystemFontOfSize:15];
     businessLabel.textColor=RGBCOLOR(168, 168, 168);
@@ -90,7 +94,7 @@
 }
 
 -(void)initThirdView{
-    NSString* str=@"asdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmfla=====smdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasn=====fmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflas=====mdlasmdalsdmasldasl;da";
+    NSString* str=self.model.a_companyDescription;
     CGRect bounds=[str boundingRectWithSize:CGSizeMake(280, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(20, 15, 280, bounds.size.height)];
     label.numberOfLines=0;
@@ -127,6 +131,14 @@
 
 -(void)applyForCertification{
     NSLog(@"用户选择了 申请关注");
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"employeeId"];
+    [dic setValue:self.model.a_id forKey:@"companyId"];
+    [CompanyApi AddCompanyEmployeeWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            NSLog(@"成功");
+        }
+    } dic:dic];
 }
 
 

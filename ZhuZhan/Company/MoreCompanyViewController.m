@@ -12,19 +12,14 @@
 #import "AppDelegate.h"
 #import "CompanyDetailViewController.h"
 #import "CompanyApi.h"
+#import "CompanyModel.h"
 @interface MoreCompanyViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UIScrollViewDelegate>
-@property(nonatomic)NSInteger memberNumber;
+@property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)UISearchBar* searchBar;
 @end
 
 @implementation MoreCompanyViewController
--(id)initWithMemberNumber:(NSInteger)number{
-    if ([self init]) {
-        self.memberNumber=number;
-    }
-    return self;
-}
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -48,10 +43,10 @@
     startIndex = 0;
     [CompanyApi GetCompanyListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-        
+            self.showArr = posts;
+            [self.tableView reloadData];
         }
     } startIndex:startIndex];
-    self.memberNumber=25;
     [self initSearchView];
     [self initMyTableViewAndNavi];
 }
@@ -92,13 +87,14 @@
 //===========================================================================
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    CompanyModel *model = self.showArr[indexPath.row-1];
     CompanyDetailViewController* vc=[[CompanyDetailViewController alloc]init];
+    vc.model = model;
     [self.navigationController pushViewController:vc animated:YES];
-    NSLog(@"%d",indexPath.row-1);
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.memberNumber+1;
+    return self.showArr.count+1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -123,12 +119,13 @@
     }
     //公司内容部分
     if (indexPath.row!=0) {
+        CompanyModel *model = self.showArr[indexPath.row-1];
         UIView* separatorLine=[self getSeparatorLine];
         [cell.contentView addSubview:separatorLine];
-        cell.myImageView.image=[GetImagePath getImagePath:@"公司－公司组织_12a"];
-        cell.companyNameLabel.text=[NSString stringWithFormat:@"公司名称:上海%d有限公司",indexPath.row];
-        cell.companyBusiness.text=[NSString stringWithFormat:@"公司行业:%d建筑",indexPath.row];
-        cell.companyIntroduce.text=[NSString stringWithFormat:@"000%d位关注者",indexPath.row];
+        cell.myImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_companyLocation]];
+        cell.companyNameLabel.text=[NSString stringWithFormat:@"公司名称:%@",model.a_companyName];
+        cell.companyBusiness.text=[NSString stringWithFormat:@"公司行业:%@",model.a_companyIndustry];
+        cell.companyIntroduce.text=[NSString stringWithFormat:@"%@位关注者",model.a_companyFocusNumber];
         cell.accessoryView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"公司－公司组织_03a"]];
     }
     cell.selectionStyle=UITableViewCellSelectionStyleNone;

@@ -10,6 +10,8 @@
 #import "CompanyMemberViewController.h"
 #import "MoreCompanyViewController.h"
 #import "ProjectApi.h"
+#import "CompanyApi.h"
+#import "CompanyModel.h"
 @interface CompanyViewController ()
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic)NSInteger memberNumber;
@@ -20,6 +22,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [CompanyApi GetMyCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            
+        }
+    }];
     [self initMyScrollViewAndNavi];//scollview和navi初始
     [self initFirstView];//第一个文字view初始
     [self initSecondView];//第二个文字view初始
@@ -141,7 +148,7 @@
 }
 
 -(void)more{
-    MoreCompanyViewController* moreVC=[[MoreCompanyViewController alloc]initWithMemberNumber:0];
+    MoreCompanyViewController* moreVC=[[MoreCompanyViewController alloc]init];
     [self.navigationController pushViewController:moreVC animated:YES];
 }
 

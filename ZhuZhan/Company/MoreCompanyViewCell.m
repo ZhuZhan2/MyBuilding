@@ -30,7 +30,8 @@
     
     if (!cell.myImageView) {
         //公司图片
-        cell.myImageView=[[UIImageView alloc]initWithFrame:CGRectMake(5, 0, 94, 94)];
+        cell.myImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"公司－公司组织_12a"]];
+        cell.myImageView.frame = CGRectMake(5, 0, 94, 94);
         
         //公司名称
         cell.companyNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(99, 18, 210, 15)];
