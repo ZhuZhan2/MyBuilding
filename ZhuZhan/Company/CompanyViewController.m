@@ -12,9 +12,11 @@
 #import "ProjectApi.h"
 #import "CompanyApi.h"
 #import "CompanyModel.h"
+#import "EGOImageView.h"
 @interface CompanyViewController ()
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic)NSInteger memberNumber;
+@property(nonatomic,strong)CompanyModel *model;
 @end
 
 @implementation CompanyViewController
@@ -24,13 +26,17 @@
     [super viewDidLoad];
     [CompanyApi GetMyCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            NSLog(@"posts=====%d",posts.count);
+            if([posts[0] isKindOfClass:[CompanyModel class]]){
+                self.model = posts[0];
+                [self initFirstView];//第一个文字view初始
+                [self initSecondView];//第二个文字view初始
+                [self initThirdView];
+            }else{
+                NSLog(@"没有公司");
+            }
         }
     }];
     [self initMyScrollViewAndNavi];//scollview和navi初始
-    [self initFirstView];//第一个文字view初始
-    [self initSecondView];//第二个文字view初始
-    [self initThirdView];
 }
 
 //给MyScrollView的contentSize加高度
@@ -49,7 +55,8 @@
     
     UIImage *appleImage = [GetImagePath getImagePath:@"公司－我的公司_02a"] ;
     //公司图标
-    UIImageView* companyImageView=[[UIImageView alloc]initWithImage:appleImage];
+    EGOImageView* companyImageView=[[EGOImageView alloc]initWithPlaceholderImage:appleImage];
+    companyImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.model.a_companyLogo]];
     companyImageView.frame=CGRectMake(15, 20, 75, 75);
     [view addSubview:companyImageView];
 
@@ -58,15 +65,14 @@
     //companyLabel.backgroundColor=[UIColor yellowColor];
     companyLabel.numberOfLines=2;
     companyLabel.textColor=RGBCOLOR(62, 127, 226);
-    NSString* companyName=@"公司名称显示在这里显示在这里里显示在这里里里";
+    NSString* companyName=self.model.a_companyName;
     companyLabel.text=companyName;
     companyLabel.font=[UIFont boldSystemFontOfSize:17];
     [view addSubview:companyLabel];
     
     //公司行业label
     UILabel* businessLabel=[[UILabel alloc]initWithFrame:CGRectMake(105, 70, 300, 20)];
-    NSString* businessName=@"建筑";
-    businessLabel.text=[NSString stringWithFormat:@"公司行业：%@",businessName];
+    businessLabel.text=[NSString stringWithFormat:@"公司行业：%@",self.model.a_companyIndustry];
     businessLabel.font=[UIFont boldSystemFontOfSize:15];
     businessLabel.textColor=RGBCOLOR(168, 168, 168);
     [view addSubview:businessLabel];
@@ -91,7 +97,7 @@
     [view addSubview:noticeBtn];
     
     UILabel* memberCountLabel=[[UILabel alloc]initWithFrame:CGRectMake(165, 16, 150, 20)];
-    memberCountLabel.text=@"公司员工10110人";
+    memberCountLabel.text=[NSString stringWithFormat:@"公司员工%@人",self.model.a_companyEmployeeNumber];
     memberCountLabel.font=[UIFont boldSystemFontOfSize:16];
     memberCountLabel.textColor=RGBCOLOR(62, 127, 226);
     [view addSubview:memberCountLabel];
@@ -102,7 +108,7 @@
 }
 
 -(void)initThirdView{
-    NSString* str=@"asdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmfla=====smdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasn=====fmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflasmdlasmdalsdmasldasl;daasdasnfmalsmflas=====mdlasmdalsdmasldasl;da";
+    NSString* str=self.model.a_companyDescription;
     CGRect bounds=[str boundingRectWithSize:CGSizeMake(280, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(20, 15, 280, bounds.size.height)];
     label.numberOfLines=0;
