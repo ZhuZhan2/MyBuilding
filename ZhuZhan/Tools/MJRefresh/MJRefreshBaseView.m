@@ -34,7 +34,7 @@
         statusLabel.textColor = MJRefreshLabelTextColor;
         statusLabel.backgroundColor = [UIColor clearColor];
         statusLabel.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:_statusLabel = statusLabel];
+        //[self addSubview:_statusLabel = statusLabel];
     }
     return _statusLabel;
 }

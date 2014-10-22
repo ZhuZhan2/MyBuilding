@@ -49,6 +49,73 @@
     } companyId:self.companyId startIndex:self.startIndex];
     [self initSearchView];
     [self initMyTableViewAndNavi];
+    
+    //集成刷新控件
+    [self setupRefresh];
+}
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    //[_tableView headerBeginRefreshing];
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.removeFromSuperViewOnHide =YES;
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"当前网络不可用，请检查网络连接！";
+        hud.labelFont = [UIFont fontWithName:nil size:14];
+        hud.minSize = CGSizeMake(132.f, 108.0f);
+        [hud hide:YES afterDelay:3];
+        [self.tableView footerEndRefreshing];
+        [self.tableView headerEndRefreshing];
+    }else{
+        self.startIndex = 0;
+        [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                self.showArr = posts;
+                [self.tableView footerEndRefreshing];
+                [self.tableView headerEndRefreshing];
+                [self.tableView reloadData];
+            }
+        } companyId:self.companyId startIndex:self.startIndex];
+    }
+}
+
+- (void)footerRereshing
+{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.removeFromSuperViewOnHide =YES;
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"当前网络不可用，请检查网络连接！";
+        hud.labelFont = [UIFont fontWithName:nil size:14];
+        hud.minSize = CGSizeMake(132.f, 108.0f);
+        [hud hide:YES afterDelay:3];
+        [self.tableView footerEndRefreshing];
+        [self.tableView headerEndRefreshing];
+    }else{
+        self.startIndex = self.startIndex +1;
+        [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                [self.showArr addObjectsFromArray:posts];
+                [self.tableView footerEndRefreshing];
+                [self.tableView headerEndRefreshing];
+                [self.tableView reloadData];
+            }
+        } companyId:self.companyId startIndex:self.startIndex];
+    }
 }
 
 - (UIImage *)imageWithColor:(UIColor *)color{
