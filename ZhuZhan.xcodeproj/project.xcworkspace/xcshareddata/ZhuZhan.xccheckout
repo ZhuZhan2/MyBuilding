@@ -14,7 +14,7 @@
 		<string>https://github.com/ZhuZhanDeveloper/ZhuZhanDev.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ZhuZhan.xcodeproj/project.xcworkspace</string>
+	<string>ZhuZhan.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>B6E33D63AE6254BE1BB51185B52C78B84D5B50B6</key>
