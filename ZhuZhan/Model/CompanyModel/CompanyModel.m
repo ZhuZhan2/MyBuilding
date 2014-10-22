@@ -17,6 +17,6 @@
     self.a_companyFocusNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"companyFocusNumber"]]];
     self.a_companyEmployeeNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"companyEmployeeNumber"]]];
     self.a_companyDescription = [ProjectStage ProjectStrStage:dict[@"companyDescription"]];
-    self.a_companyLocation = [ProjectStage ProjectStrStage:dict[@"companyLocation"]];
+    self.a_companyLogo = [ProjectStage ProjectStrStage:dict[@"companyLogo"]];
 }
 @end

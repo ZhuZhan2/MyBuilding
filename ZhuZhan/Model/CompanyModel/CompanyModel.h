@@ -22,7 +22,7 @@
 //公司简介
 @property (nonatomic,copy) NSString *a_companyDescription;
 //公司图片
-@property (nonatomic,copy) NSString *a_companyLocation;
+@property (nonatomic,copy) NSString *a_companyLogo;
 
 @property (nonatomic, copy) NSDictionary *dict;
 @end
