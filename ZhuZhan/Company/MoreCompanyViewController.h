@@ -11,5 +11,4 @@
 @interface MoreCompanyViewController : UIViewController{
     int startIndex;
 }
--(id)initWithMemberNumber:(NSInteger)number;
 @end
