@@ -47,10 +47,10 @@
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 115)];
     [self scrollViewAddView:view];
     
-    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"公司－我的公司_02a" ofType:@"png"];
-    UIImage *appleImage = [[UIImage alloc] initWithContentsOfFile:imagePath];
+    UIImage *appleImage = [GetImagePath getImagePath:@"公司－我的公司_02a"] ;
     //公司图标
     UIImageView* companyImageView=[[UIImageView alloc]initWithImage:appleImage];
+    companyImageView.frame=CGRectMake(15, 20, 75, 75);
     [view addSubview:companyImageView];
 
     //公司名称label
