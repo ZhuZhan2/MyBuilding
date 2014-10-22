@@ -44,7 +44,7 @@
     
     //公司图标
     EGOImageView* companyImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"公司－我的公司_02a"]];
-    companyImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.model.a_companyLocation]];
+    companyImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.model.a_companyLogo]];
     [view addSubview:companyImageView];
     
     //公司名称label

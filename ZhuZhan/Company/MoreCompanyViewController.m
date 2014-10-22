@@ -122,7 +122,7 @@
         CompanyModel *model = self.showArr[indexPath.row-1];
         UIView* separatorLine=[self getSeparatorLine];
         [cell.contentView addSubview:separatorLine];
-        cell.myImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_companyLocation]];
+        cell.myImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_companyLogo]];
         cell.companyNameLabel.text=[NSString stringWithFormat:@"公司名称:%@",model.a_companyName];
         cell.companyBusiness.text=[NSString stringWithFormat:@"公司行业:%@",model.a_companyIndustry];
         cell.companyIntroduce.text=[NSString stringWithFormat:@"%@位关注者",model.a_companyFocusNumber];
