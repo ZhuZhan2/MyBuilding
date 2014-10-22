@@ -24,7 +24,7 @@
     [super viewDidLoad];
     [CompanyApi GetMyCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            
+            NSLog(@"posts=====%d",posts.count);
         }
     }];
     [self initMyScrollViewAndNavi];//scollview和navi初始

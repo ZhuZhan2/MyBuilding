@@ -55,36 +55,32 @@
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
     CGContextSetFillColorWithColor(context, [color CGColor]);
     CGContextFillRect(context, rect);
-    
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
     return image;
 }
 
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
-    
 }
 
 -(void)changeButtonImage:(UIButton*)button{
     [button setImage:[GetImagePath getImagePath:@"bg-addbutton-highlighted"] forState:UIControlStateNormal];
 }
-//===========================================================================
+//======================================================================
 //UIScrollViewDelegate
-//===========================================================================
+//======================================================================
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     if ([self.searchBar isFirstResponder]) {
         [self.searchBar resignFirstResponder];
     }
 }
 
-//===========================================================================
+//======================================================================
 //UITableViewDataSource,UITableViewDelegate
-//===========================================================================
+//======================================================================
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     CompanyModel *model = self.showArr[indexPath.row-1];
@@ -116,12 +112,13 @@
         cell.companyBusiness.text=nil;
         cell.companyIntroduce.text=nil;
         cell.accessoryView=nil;
-    }
+    
     //公司内容部分
-    if (indexPath.row!=0) {
+    }else{
         CompanyModel *model = self.showArr[indexPath.row-1];
         UIView* separatorLine=[self getSeparatorLine];
         [cell.contentView addSubview:separatorLine];
+        NSLog(@"location=====%@",model.a_companyLocation);
         cell.myImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_companyLocation]];
         cell.companyNameLabel.text=[NSString stringWithFormat:@"公司名称:%@",model.a_companyName];
         cell.companyBusiness.text=[NSString stringWithFormat:@"公司行业:%@",model.a_companyIndustry];
@@ -139,9 +136,9 @@
     return separatorLine;
 }
 
-//===========================================================================
-//===========================================================================
-//===========================================================================
+//======================================================================
+//======================================================================
+//======================================================================
 
 -(void)initSearchView{
     self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
