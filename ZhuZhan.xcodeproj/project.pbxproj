@@ -1023,6 +1023,7 @@
 		D3B8F53F19D92716008F6164 /* RecognizerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B8F53E19D92716008F6164 /* RecognizerFactory.m */; };
 		D3B8F54719D94789008F6164 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B8F54619D94789008F6164 /* iflyMSC.framework */; };
 		D3B8F54919D9483B008F6164 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B8F54819D9483B008F6164 /* libz.dylib */; };
+		D3D2E60119F7A79500908D8B /* EmployeesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2E60019F7A79500908D8B /* EmployeesModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2485,6 +2486,8 @@
 		D3B8F53E19D92716008F6164 /* RecognizerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecognizerFactory.m; sourceTree = "<group>"; };
 		D3B8F54619D94789008F6164 /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iflyMSC.framework; path = ZhuZhan/Project/SearchView/voice/iflyMSC.framework; sourceTree = "<group>"; };
 		D3B8F54819D9483B008F6164 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D3D2E5FF19F7A79500908D8B /* EmployeesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeesModel.h; sourceTree = "<group>"; };
+		D3D2E60019F7A79500908D8B /* EmployeesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeesModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4317,6 +4320,8 @@
 				D36040E519F51E8600E9727D /* CompanyModel.m */,
 				D36040E719F51E9F00E9727D /* CompanyApi.h */,
 				D36040E819F51E9F00E9727D /* CompanyApi.m */,
+				D3D2E5FF19F7A79500908D8B /* EmployeesModel.h */,
+				D3D2E60019F7A79500908D8B /* EmployeesModel.m */,
 			);
 			path = CompanyModel;
 			sourceTree = "<group>";
@@ -5674,6 +5679,7 @@
 				0426C27E19922D5A00CD8822 /* GPUImageHueBlendFilter.m in Sources */,
 				0426C2F219922D5A00CD8822 /* CJSONSerializedData.m in Sources */,
 				D3B8F53F19D92716008F6164 /* RecognizerFactory.m in Sources */,
+				D3D2E60119F7A79500908D8B /* EmployeesModel.m in Sources */,
 				0426C29C19922D5A00CD8822 /* GPUImageOpeningFilter.m in Sources */,
 				042D9E1819B559FC00689C5D /* ScrollViewController.m in Sources */,
 				0426C2C819922D5A00CD8822 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,

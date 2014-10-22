@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CompanyMemberViewController : UIViewController
--(id)initWithMemberNumber:(NSInteger)number;
+@property(nonatomic,strong)NSString *companyId;
 @end

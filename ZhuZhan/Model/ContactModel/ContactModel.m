@@ -80,14 +80,25 @@
 //{
 //    "userId": ":"用户Id" 必填
 //    "focusId":"关注的用户Id" 必填
+//    "FocusType":"Company",
+//    "UserType":"Company"
 //}
 + (NSURLSessionDataTask *)AddfocusWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
-    NSString *urlStr = [NSString stringWithFormat:@"api/networking/addfocus"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/networking/addUserFocus"];
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-        
-        if (block) {
-            block([NSMutableArray arrayWithArray:mutablePosts], nil);
+        NSLog(@"json====>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            //[mutablePosts addObject:JSON[@"d"][@"data"]];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1308"]){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已关注" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);

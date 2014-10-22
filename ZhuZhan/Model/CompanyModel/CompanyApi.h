@@ -18,5 +18,6 @@
 //我的公司
 + (NSURLSessionDataTask *)GetMyCompanyWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block;
 
-
+//获取员工列表
++ (NSURLSessionDataTask *)GetCompanyEmployeesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block companyId:(NSString *)companyId startIndex:(int)startIndex;
 @end

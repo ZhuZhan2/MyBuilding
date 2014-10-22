@@ -13,6 +13,8 @@
 #import "CompanyApi.h"
 #import "CompanyModel.h"
 #import "EGOImageView.h"
+#import "ContactModel.h"
+#import "LoginSqlite.h"
 @interface CompanyViewController ()
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic)NSInteger memberNumber;
@@ -142,14 +144,22 @@
 }
 
 -(void)gotoNoticeView{
-//    [ProjectApi AddUserFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
-//        NSLog(@"notice sucess");
-//    } dic:[@{@"UserId":@"f483bcfc-3726-445a-97ff-ac7f207dd888",@"ProjectId":self.model.a_id,@"CreateTime":[NSDate date],@"IsDelted":@"true"} mutableCopy]];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"UserId"];
+    [dic setValue:self.model.a_id forKey:@"FocusId"];
+    [dic setValue:@"Company" forKey:@"FocusType"];
+    [dic setValue:@"Personal" forKey:@"UserType"];
+    [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+        
+        }
+    } dic:dic];
     NSLog(@"用户选择了关注");
 }
 
 -(void)gotoMemberView{
-    CompanyMemberViewController* memberVC=[[CompanyMemberViewController alloc]initWithMemberNumber:self.memberNumber];
+    CompanyMemberViewController* memberVC=[[CompanyMemberViewController alloc]init];
+    memberVC.companyId = self.model.a_id;
     [self.navigationController pushViewController:memberVC animated:YES];
 }
 

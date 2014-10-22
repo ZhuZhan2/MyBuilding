@@ -13,6 +13,7 @@
 #import "EGOImageView.h"
 #import "CompanyApi.h"
 #import "LoginSqlite.h"
+#import "ContactModel.h"
 @interface CompanyDetailViewController ()
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @end
@@ -127,6 +128,17 @@
 }
 
 -(void)gotoNoticeView{
+    NSLog(@"用户选择了关注");
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"UserId"];
+    [dic setValue:self.model.a_id forKey:@"FocusId"];
+    [dic setValue:@"Company" forKey:@"FocusType"];
+    [dic setValue:@"Personal" forKey:@"UserType"];
+    [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            
+        }
+    } dic:dic];
     NSLog(@"用户选择了关注");
 }
 

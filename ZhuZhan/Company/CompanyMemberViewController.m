@@ -9,20 +9,17 @@
 #import "CompanyMemberViewController.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
+#import "CompanyApi.h"
+#import "EmployeesModel.h"
+#import "ContactModel.h"
 @interface CompanyMemberViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>//,UIScrollViewDelegate>
-@property(nonatomic)NSInteger memberNumber;
+@property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)UISearchBar* searchBar;
+@property(nonatomic)int startIndex;
 @end
 
 @implementation CompanyMemberViewController
--(id)initWithMemberNumber:(NSInteger)number{
-    if ([self init]) {
-        self.memberNumber=number;
-    }
-    return self;
-}
-
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     //恢复tabBar
@@ -42,7 +39,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.memberNumber=25;
+    self.startIndex = 0;
+    [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.showArr = posts;
+            [self.tableView reloadData];
+        }
+    } companyId:self.companyId startIndex:self.startIndex];
     [self initSearchView];
     [self initMyTableViewAndNavi];
 }
@@ -84,7 +87,7 @@
 //===========================================================================
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.memberNumber+1;
+    return self.showArr.count+1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -109,15 +112,16 @@
     }
     //公司认证员工部分
     if (indexPath.row!=0) {
+        EmployeesModel *model = self.showArr[indexPath.row-1];
         UIView* separatorLine=[self getSeparatorLine];
         [cell.contentView addSubview:separatorLine];
-        cell.textLabel.text=[NSString stringWithFormat:@"用户名显示%d",indexPath.row-1];
+        cell.textLabel.text=[NSString stringWithFormat:@"%@",model.a_userName];
         cell.textLabel.font=[UIFont boldSystemFontOfSize:16];
         cell.imageView.image=[GetImagePath getImagePath:@"公司认证员工_03a"];
-        cell.detailTextLabel.text=[NSString stringWithFormat:@"部门职位"];
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"%@",model.a_duties];
         cell.detailTextLabel.textColor=RGBCOLOR(155, 155, 155);
         cell.detailTextLabel.font=[UIFont boldSystemFontOfSize:13];
-        cell.accessoryView=[[UIImageView alloc]initWithImage:indexPath.row%2?[GetImagePath getImagePath:@"公司认证员工_08a"]:[GetImagePath getImagePath:@"公司认证员工_18a"]];
+        cell.accessoryView=[[UIImageView alloc]initWithImage:[model.a_isFocused isEqualToString:@"Yes"]?[GetImagePath getImagePath:@"公司认证员工_08a"]:[GetImagePath getImagePath:@"公司认证员工_18a"]];
     }
     return cell;
 }
@@ -160,6 +164,7 @@
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
 }
+
 
 -(void)dealloc{
     NSLog(@"member dealloc");
