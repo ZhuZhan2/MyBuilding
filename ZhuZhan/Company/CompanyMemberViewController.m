@@ -12,7 +12,8 @@
 #import "CompanyApi.h"
 #import "EmployeesModel.h"
 #import "ContactModel.h"
-@interface CompanyMemberViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>//,UIScrollViewDelegate>
+#import "CompanyMemberCell.h"
+@interface CompanyMemberViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)UISearchBar* searchBar;
@@ -91,39 +92,58 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return indexPath.row?60:50;
+    return indexPath.row?60:43;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    CompanyMemberCell* cell=[tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) {
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
+        cell=[[CompanyMemberCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
+        [cell.rightBtn addTarget:self action:@selector(chooseApprove:) forControlEvents:UIControlEventTouchUpInside];
     }
     if (cell.contentView.subviews.count) {
         [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     }
+
     //搜索栏
     if (indexPath.row==0) {
         [cell.contentView addSubview:self.searchBar];
         cell.textLabel.text=nil;
         cell.imageView.image=nil;
         cell.detailTextLabel.text=nil;
-        cell.accessoryView=nil;
-    }
+        [cell.rightBtn removeFromSuperview];
+        
     //公司认证员工部分
-    if (indexPath.row!=0) {
-        EmployeesModel *model = self.showArr[indexPath.row-1];
+    }else{
+        //分割线
         UIView* separatorLine=[self getSeparatorLine];
         [cell.contentView addSubview:separatorLine];
+        
+        //数据
+        EmployeesModel *model = self.showArr[indexPath.row-1];
+        
         cell.textLabel.text=[NSString stringWithFormat:@"%@",model.a_userName];
-        cell.textLabel.font=[UIFont boldSystemFontOfSize:16];
+        cell.textLabel.font=[UIFont boldSystemFontOfSize:15];
         cell.imageView.image=[GetImagePath getImagePath:@"公司认证员工_03a"];
         cell.detailTextLabel.text=[NSString stringWithFormat:@"%@",model.a_duties];
         cell.detailTextLabel.textColor=RGBCOLOR(155, 155, 155);
-        cell.detailTextLabel.font=[UIFont boldSystemFontOfSize:13];
-        cell.accessoryView=[[UIImageView alloc]initWithImage:[model.a_isFocused isEqualToString:@"Yes"]?[GetImagePath getImagePath:@"公司认证员工_08a"]:[GetImagePath getImagePath:@"公司认证员工_18a"]];
+        cell.detailTextLabel.font=[UIFont boldSystemFontOfSize:12];
+        [cell.contentView addSubview:cell.rightBtn];
+        [cell.rightBtn setImage:[model.a_isFocused isEqualToString:@"Yes"]?[GetImagePath getImagePath:@"公司认证员工_08a"]:[GetImagePath getImagePath:@"公司认证员工_18a"] forState:UIControlStateNormal];
+        if ([model.a_isFocused isEqualToString:@"Yes"]) {
+            cell.rightBtn.tag=0;
+        }else{
+            cell.rightBtn.tag=indexPath.row;
+        }
     }
     return cell;
+}
+
+-(void)chooseApprove:(UIButton*)btn{
+    if (btn.tag) {
+        NSInteger number=btn.tag-1;
+        NSLog(@"%d",number);
+    }
 }
 
 -(UIView*)getSeparatorLine{
@@ -133,12 +153,12 @@
     return separatorLine;
 }
 
-//===========================================================================
-//===========================================================================
-//===========================================================================
+//======================================================================
+//======================================================================
+//======================================================================
 
 -(void)initSearchView{
-    self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 320, 43)];
     self.searchBar.placeholder = @"搜索";
     self.searchBar.backgroundColor=[UIColor redColor];
     self.searchBar.tintColor = [UIColor grayColor];

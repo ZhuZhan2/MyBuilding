@@ -94,7 +94,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return indexPath.row?94:50;
+    return indexPath.row?94:43;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -140,7 +140,7 @@
 //======================================================================
 
 -(void)initSearchView{
-    self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 320, 43)];
     self.searchBar.placeholder = @"搜索";
     self.searchBar.backgroundColor=[UIColor redColor];
     self.searchBar.tintColor = [UIColor grayColor];
