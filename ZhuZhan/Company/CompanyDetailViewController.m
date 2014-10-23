@@ -16,6 +16,7 @@
 #import "ContactModel.h"
 @interface CompanyDetailViewController ()
 @property(nonatomic,strong)UIScrollView* myScrollView;
+@property(nonatomic,strong)UIImageView* noticeImageViewBack;
 @end
 
 @implementation CompanyDetailViewController
@@ -69,10 +70,10 @@
 }
 
 -(void)initSecondView{
-    UIImageView* imageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"公司－公司详情_05a"]];
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, self.myScrollView.contentSize.height, imageView.frame.size.width, imageView.frame.size.height)];
+    self.noticeImageViewBack=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"公司－公司详情_05a"]];
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, self.myScrollView.contentSize.height, self.noticeImageViewBack.frame.size.width, self.noticeImageViewBack.frame.size.height)];
     [self scrollViewAddView:view];
-    [view addSubview:imageView];
+    [view addSubview:self.noticeImageViewBack];
     
     UILabel* noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(70, 16, 100, 20)];
     noticeLabel.text=@"加关注";
@@ -136,7 +137,7 @@
     [dic setValue:@"Personal" forKey:@"UserType"];
     [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            
+            self.noticeImageViewBack.image=[GetImagePath getImagePath:@"公司－公司详情_05b"];
         }
     } dic:dic];
     NSLog(@"用户选择了关注");
