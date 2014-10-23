@@ -157,7 +157,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     CompanyModel *model = self.showArr[indexPath.row-1];
     CompanyDetailViewController* vc=[[CompanyDetailViewController alloc]init];
-    vc.model = model;
+    vc.companyId = model.a_id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

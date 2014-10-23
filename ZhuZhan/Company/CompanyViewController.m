@@ -72,17 +72,21 @@
 }
 
 -(void)initSecondView{
-    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"公司－我的公司_05a" ofType:@"png"];
-    UIImage *appleImage = [[UIImage alloc] initWithContentsOfFile:imagePath];
-    self.imageView=[[UIImageView alloc]initWithImage:appleImage];
+    self.noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(45, 16, 100, 20)];
+    if([self.model.a_focused isEqualToString:@"0"]){
+        self.imageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"公司－我的公司_05a"]];
+        self.noticeLabel.text=@"加关注";
+        self.noticeLabel.textColor=RGBCOLOR(226, 97, 97);
+    }else{
+        self.imageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"公司－我的公司_05b"]];
+        self.noticeLabel.text=@"已关注";
+        self.noticeLabel.textColor=RGBCOLOR(141, 196, 62);
+    }
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, self.myScrollView.contentSize.height, self.imageView.frame.size.width, self.imageView.frame.size.height)];
     [self scrollViewAddView:view];
     [view addSubview:self.imageView];
     
-    self.noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(45, 16, 100, 20)];
-    self.noticeLabel.text=@"加关注";
     self.noticeLabel.font=[UIFont boldSystemFontOfSize:16];
-    self.noticeLabel.textColor=RGBCOLOR(226, 97, 97);
     [view addSubview:self.noticeLabel];
     
     UIButton* noticeBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 116, 49)];

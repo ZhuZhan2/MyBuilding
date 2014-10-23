@@ -24,10 +24,15 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
+    [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.model = posts[0];
+            [self initFirstView];//第一个文字view初始
+            [self initSecondView];//第二个文字view初始
+            [self initThirdView];
+        }
+    } companyId:self.companyId];
     [self initMyScrollViewAndNavi];//scollview和navi初始
-    [self initFirstView];//第一个文字view初始
-    [self initSecondView];//第二个文字view初始
-    [self initThirdView];
 }
 
 //给MyScrollView的contentSize加高度
@@ -75,11 +80,8 @@
     [self scrollViewAddView:view];
     [view addSubview:self.noticeImageViewBack];
     
-    UILabel* noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(70, 16, 100, 20)];
-    noticeLabel.text=@"加关注";
-    noticeLabel.font=[UIFont boldSystemFontOfSize:16];
-    noticeLabel.textColor=RGBCOLOR(226, 97, 97);
-    [view addSubview:noticeLabel];
+    self.noticeLabel.font=[UIFont boldSystemFontOfSize:16];
+    [view addSubview:self.noticeLabel];
     
     UIButton* noticeBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 116, 49)];
     [noticeBtn addTarget:self action:@selector(gotoNoticeView) forControlEvents:UIControlEventTouchUpInside];
