@@ -28,7 +28,9 @@
                 self.companyVC.navigationItem.hidesBackButton=YES;
                 [self.navigationController pushViewController:self.companyVC animated:NO];
             }else{
-                NSLog(@"没有公司");
+                self.moreCompanyVC=[[MoreCompanyViewController alloc]init];
+                self.moreCompanyVC.navigationItem.hidesBackButton=YES;
+                [self.navigationController pushViewController:self.moreCompanyVC animated:NO];
             }
         }
     }];

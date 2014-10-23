@@ -17,6 +17,8 @@
 @interface CompanyViewController ()
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic)NSInteger memberNumber;
+@property(nonatomic,strong)UIImageView* imageView;
+@property(nonatomic,strong)UILabel* noticeLabel;
 @end
 
 @implementation CompanyViewController
@@ -156,6 +158,7 @@
 
 -(void)more{
     MoreCompanyViewController* moreVC=[[MoreCompanyViewController alloc]init];
+    moreVC.isCompanyIdentify=YES;
     [self.navigationController pushViewController:moreVC animated:YES];
 }
 
