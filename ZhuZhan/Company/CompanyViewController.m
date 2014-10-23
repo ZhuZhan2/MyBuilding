@@ -11,14 +11,12 @@
 #import "MoreCompanyViewController.h"
 #import "ProjectApi.h"
 #import "CompanyApi.h"
-#import "CompanyModel.h"
 #import "EGOImageView.h"
 #import "ContactModel.h"
 #import "LoginSqlite.h"
 @interface CompanyViewController ()
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic)NSInteger memberNumber;
-@property(nonatomic,strong)CompanyModel *model;
 @property(nonatomic,strong)UIImageView* imageView;
 @property(nonatomic,strong)UILabel* noticeLabel;
 @end
@@ -28,19 +26,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [CompanyApi GetMyCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            if([posts[0] isKindOfClass:[CompanyModel class]]){
-                self.model = posts[0];
-                [self initFirstView];//第一个文字view初始
-                [self initSecondView];//第二个文字view初始
-                [self initThirdView];
-            }else{
-                NSLog(@"没有公司");
-            }
-        }
-    }];
     [self initMyScrollViewAndNavi];//scollview和navi初始
+    [self initFirstView];//第一个文字view初始
+    [self initSecondView];//第二个文字view初始
+    [self initThirdView];
 }
 
 //给MyScrollView的contentSize加高度
@@ -169,6 +158,7 @@
 
 -(void)more{
     MoreCompanyViewController* moreVC=[[MoreCompanyViewController alloc]init];
+    moreVC.isCompanyIdentify=YES;
     [self.navigationController pushViewController:moreVC animated:YES];
 }
 

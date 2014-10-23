@@ -11,4 +11,5 @@
 @interface MoreCompanyViewController : UIViewController{
     int startIndex;
 }
+@property(nonatomic)BOOL isCompanyIdentify;
 @end
