@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "CompanyModel.h"
 @interface CompanyDetailViewController : UIViewController
+@property(nonatomic,strong)NSString *companyId;
 @property(nonatomic,strong)CompanyModel *model;
 @end

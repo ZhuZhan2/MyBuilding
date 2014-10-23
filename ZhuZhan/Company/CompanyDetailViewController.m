@@ -16,6 +16,8 @@
 #import "ContactModel.h"
 @interface CompanyDetailViewController ()
 @property(nonatomic,strong)UIScrollView* myScrollView;
+@property(nonatomic,strong)UIImageView* imageView;
+@property(nonatomic,strong)UILabel* noticeLabel;
 @end
 
 @implementation CompanyDetailViewController
@@ -23,10 +25,15 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
+    [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.model = posts[0];
+            [self initFirstView];//第一个文字view初始
+            [self initSecondView];//第二个文字view初始
+            [self initThirdView];
+        }
+    } companyId:self.companyId];
     [self initMyScrollViewAndNavi];//scollview和navi初始
-    [self initFirstView];//第一个文字view初始
-    [self initSecondView];//第二个文字view初始
-    [self initThirdView];
 }
 
 //给MyScrollView的contentSize加高度
@@ -69,16 +76,22 @@
 }
 
 -(void)initSecondView{
-    UIImageView* imageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"公司－公司详情_05a"]];
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, self.myScrollView.contentSize.height, imageView.frame.size.width, imageView.frame.size.height)];
+    self.noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(70, 16, 100, 20)];
+    if([self.model.a_focused isEqualToString:@"0"]){
+        self.imageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"公司－公司详情_05a"]];
+        self.noticeLabel.text=@"加关注";
+        self.noticeLabel.textColor=RGBCOLOR(226, 97, 97);
+    }else{
+        self.imageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"公司－公司详情_05b"]];
+        self.noticeLabel.text=@"已关注";
+        self.noticeLabel.textColor=RGBCOLOR(141, 196, 62);
+    }
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, self.myScrollView.contentSize.height, self.imageView.frame.size.width, self.imageView.frame.size.height)];
     [self scrollViewAddView:view];
-    [view addSubview:imageView];
+    [view addSubview:self.imageView];
     
-    UILabel* noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(70, 16, 100, 20)];
-    noticeLabel.text=@"加关注";
-    noticeLabel.font=[UIFont boldSystemFontOfSize:16];
-    noticeLabel.textColor=RGBCOLOR(226, 97, 97);
-    [view addSubview:noticeLabel];
+    self.noticeLabel.font=[UIFont boldSystemFontOfSize:16];
+    [view addSubview:self.noticeLabel];
     
     UIButton* noticeBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 116, 49)];
     [noticeBtn addTarget:self action:@selector(gotoNoticeView) forControlEvents:UIControlEventTouchUpInside];
@@ -136,7 +149,9 @@
     [dic setValue:@"Personal" forKey:@"UserType"];
     [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            
+            self.imageView.image = [GetImagePath getImagePath:@"公司－公司详情_05b"];
+            self.noticeLabel.text=@"加关注";
+            self.noticeLabel.textColor=RGBCOLOR(141, 196, 62);
         }
     } dic:dic];
     NSLog(@"用户选择了关注");
