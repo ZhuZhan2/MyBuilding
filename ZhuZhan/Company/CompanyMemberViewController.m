@@ -65,7 +65,6 @@
 {
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
     [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
-    //[_tableView headerBeginRefreshing];
     
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
     [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
@@ -75,15 +74,7 @@
 - (void)headerRereshing
 {
     if (![ConnectionAvailable isConnectionAvailable]) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.removeFromSuperViewOnHide =YES;
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"当前网络不可用，请检查网络连接！";
-        hud.labelFont = [UIFont fontWithName:nil size:14];
-        hud.minSize = CGSizeMake(132.f, 108.0f);
-        [hud hide:YES afterDelay:3];
-        [self.tableView footerEndRefreshing];
-        [self.tableView headerEndRefreshing];
+        [self judgeConnect];
     }else{
         self.startIndex = 0;
         [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -97,18 +88,22 @@
     }
 }
 
+-(void)judgeConnect{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.removeFromSuperViewOnHide =YES;
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"当前网络不可用，请检查网络连接！";
+    hud.labelFont = [UIFont fontWithName:nil size:14];
+    hud.minSize = CGSizeMake(132.f, 108.0f);
+    [hud hide:YES afterDelay:3];
+    [self.tableView footerEndRefreshing];
+    [self.tableView headerEndRefreshing];
+}
+
 - (void)footerRereshing
 {
     if (![ConnectionAvailable isConnectionAvailable]) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.removeFromSuperViewOnHide =YES;
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"当前网络不可用，请检查网络连接！";
-        hud.labelFont = [UIFont fontWithName:nil size:14];
-        hud.minSize = CGSizeMake(132.f, 108.0f);
-        [hud hide:YES afterDelay:3];
-        [self.tableView footerEndRefreshing];
-        [self.tableView headerEndRefreshing];
+        [self judgeConnect];
     }else{
         self.startIndex = self.startIndex +1;
         [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -130,13 +125,11 @@
     CGContextFillRect(context, rect);
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
     return image;
 }
 
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
-     
 }
 
 //======================================================================
@@ -158,7 +151,6 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60;
-    return indexPath.row?60:43;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -166,24 +158,13 @@
     if (!cell) {
         cell=[[CompanyMemberCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
         [cell.rightBtn addTarget:self action:@selector(chooseApprove:) forControlEvents:UIControlEventTouchUpInside];
-        UIView* separatorLine=[self getSeparatorLine];
-        [cell.contentView addSubview:separatorLine];
     }
-    //数据
-    EmployeesModel *model = self.showArr[indexPath.row];
-    BOOL isFocesed=[model.a_isFocused isEqualToString:@"Yes"];
-    [cell setModelWithUserImageUrl:model.a_userIamge userName:model.a_userName userBussniess:model.a_duties btnImage:isFocesed?[GetImagePath getImagePath:@"公司认证员工_08a"]:[GetImagePath getImagePath:@"公司认证员工_18a"]];
-    if (isFocesed) {
-        cell.rightBtn.tag=-1;
-    }else{
-        cell.rightBtn.tag=indexPath.row;
-    }
+    [cell setModel:self.showArr[indexPath.row] indexPathRow:indexPath.row];
     return cell;
 }
 
 -(void)chooseApprove:(UIButton*)btn{
     if (btn.tag>=0) {
-        NSLog(@"%d",btn.tag);
         EmployeesModel *model = self.showArr[btn.tag];
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"UserId"];
@@ -192,17 +173,11 @@
         [dic setValue:@"Personal" forKey:@"UserType"];
         [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                
+                model.a_isFocused=@"1";
+                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:NO];
             }
         } dic:dic];
     }
-}
-
--(UIView*)getSeparatorLine{
-    UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 1)];
-    separatorLine.backgroundColor=RGBCOLOR(229, 229, 229);
-    separatorLine.center=CGPointMake(160, 59.5);
-    return separatorLine;
 }
 
 //======================================================================
@@ -230,14 +205,12 @@
     self.title = @"公司员工";
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
     
-    
     //左back button
     UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,0,29,28.5)];
     [button setImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
 }
-
 
 -(void)dealloc{
     NSLog(@"member dealloc");
@@ -246,6 +219,5 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 @end
