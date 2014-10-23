@@ -52,7 +52,7 @@
     
     
     
-    self.model.a_content=@"sadasd的大声的撒的卡里打卡上了罚款了；阿费莱；萨菲拉斯；麻烦了；爱似麻烦；拉什么疯了；爱似麻烦；爱似麻烦；爱似麻烦；ASF；拉什么疯了；阿萨姆；阿拉是魔法师；浪费马上；发来撒明法审令；fdasdasdasdasdasdassdadadadadadadsdasdasdasdas";
+    //self.model.a_content=@"sadasd的大声的撒的卡里打卡上了罚款了；阿费莱；萨菲拉斯；麻烦了；爱似麻烦；拉什么疯了；爱似麻烦；爱似麻烦；爱似麻烦；ASF；拉什么疯了；阿萨姆；阿拉是魔法师；浪费马上；发来撒明法审令；fdasdasdasdasdasdassdadadadadadadsdasdasdasdas";
 }
 
 - (void)didReceiveMemoryWarning
@@ -156,7 +156,7 @@
     ProgramDetailViewController* vc=[[ProgramDetailViewController alloc]init];
     projectModel *model = showArr[indexPath.row-2];
     vc.model=model;
-    
+    vc.projectId = model.a_id;
     //[self.delegate homePageTabBarHide];
     [self.navigationController pushViewController:vc animated:YES];
 }

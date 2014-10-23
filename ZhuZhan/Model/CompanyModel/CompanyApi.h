@@ -10,7 +10,7 @@
 
 @interface CompanyApi : NSObject
 //获取所有公司列表
-+ (NSURLSessionDataTask *)GetCompanyListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex;
++ (NSURLSessionDataTask *)GetCompanyListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex keyWords:(NSString *)keyWords;
 
 //申请认证
 + (NSURLSessionDataTask *)AddCompanyEmployeeWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic;
@@ -21,6 +21,4 @@
 //获取员工列表
 + (NSURLSessionDataTask *)GetCompanyEmployeesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block companyId:(NSString *)companyId startIndex:(int)startIndex;
 
-//搜索公司
-+ (NSURLSessionDataTask *)SearchCompanyWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block keyWords:(NSString *)keyWords startIndex:(int)startIndex;
 @end

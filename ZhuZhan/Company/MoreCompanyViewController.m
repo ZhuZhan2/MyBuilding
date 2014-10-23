@@ -20,6 +20,7 @@
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)UISearchBar* searchBar;
+@property(nonatomic,strong)NSString *keywords;
 @end
 
 @implementation MoreCompanyViewController
@@ -49,7 +50,7 @@
             self.showArr = posts;
             [self.tableView reloadData];
         }
-    } startIndex:startIndex];
+    } startIndex:startIndex keyWords:@""];
     [self initSearchView];
     [self initMyTableViewAndNavi];
     //集成刷新控件
@@ -91,7 +92,7 @@
                 [self.tableView headerEndRefreshing];
                 [self.tableView reloadData];
             }
-        } startIndex:startIndex];
+        } startIndex:startIndex keyWords:@""];
     }
 }
 
@@ -116,7 +117,7 @@
                 [self.tableView headerEndRefreshing];
                 [self.tableView reloadData];
             }
-        } startIndex:startIndex];
+        } startIndex:startIndex keyWords:self.keywords];
     }
 }
 
@@ -250,11 +251,26 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     startIndex = 0;
-    [CompanyApi SearchCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
+    self.keywords = searchBar.text;
+    [CompanyApi GetCompanyListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.showArr = posts;
             [self.tableView reloadData];
+            self.searchBar.showsCancelButton = YES;
         }
-    } keyWords:[NSString stringWithFormat:@"%@",searchBar.text] startIndex:startIndex];
+    }startIndex:startIndex keyWords:[NSString stringWithFormat:@"%@",searchBar.text]];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    startIndex = 0;
+    self.keywords = @"";
+    self.searchBar.text = nil;
+    [CompanyApi GetCompanyListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.showArr = posts;
+            [self.tableView reloadData];
+            self.searchBar.showsCancelButton = NO;
+        }
+    } startIndex:startIndex keyWords:@""];
 }
 @end
