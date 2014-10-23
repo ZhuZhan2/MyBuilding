@@ -21,6 +21,7 @@
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)UISearchBar* searchBar;
+@property(nonatomic,strong)NSString *keyKords;
 @property(nonatomic)int startIndex;
 @end
 
@@ -45,12 +46,13 @@
 {
     [super viewDidLoad];
     self.startIndex = 0;
+    self.keyKords = @"";
     [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.showArr = posts;
             [self.tableView reloadData];
         }
-    } companyId:self.companyId startIndex:self.startIndex];
+    } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords];
     [self initSearchView];
     [self initMyTableViewAndNavi];
     
@@ -84,7 +86,7 @@
                 [self.tableView headerEndRefreshing];
                 [self.tableView reloadData];
             }
-        } companyId:self.companyId startIndex:self.startIndex];
+        } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords];
     }
 }
 
@@ -113,7 +115,7 @@
                 [self.tableView headerEndRefreshing];
                 [self.tableView reloadData];
             }
-        } companyId:self.companyId startIndex:self.startIndex];
+        } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords];
     }
 }
 
@@ -219,5 +221,30 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    self.startIndex = 0;
+    self.keyKords = searchBar.text;
+    [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.showArr = posts;
+            [self.tableView reloadData];
+            self.searchBar.showsCancelButton = YES;
+        }
+    } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    self.startIndex = 0;
+    self.keyKords = @"";
+    self.searchBar.text = nil;
+    [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.showArr = posts;
+            [self.tableView reloadData];
+            self.searchBar.showsCancelButton = NO;
+        }
+    } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords];
 }
 @end

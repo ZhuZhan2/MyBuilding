@@ -12,7 +12,8 @@
 @implementation CompanyApi
 //获取所有公司列表
 + (NSURLSessionDataTask *)GetCompanyListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex keyWords:(NSString *)keyWords{
-    NSString *urlStr = [NSString stringWithFormat:@"api/CompanyBaseInformation/GetCompanyBaseInformation?KeyWords=%@&pageSize=5&pageIndex=%d",keyWords,startIndex];
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)keyWords, NULL, NULL,  kCFStringEncodingUTF8 ));
+    NSString *urlStr = [NSString stringWithFormat:@"api/CompanyBaseInformation/GetCompanyBaseInformation?KeyWords=%@&pageSize=5&pageIndex=%d",encodedString,startIndex];
     
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
@@ -95,8 +96,9 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)GetCompanyEmployeesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block companyId:(NSString *)companyId startIndex:(int)startIndex{
-    NSString *urlStr = [NSString stringWithFormat:@"api/CompanyBaseInformation/GetCompanyEmployees?CompanyId=%@&PageSize=15&PageIndex=%d",companyId,startIndex];
++ (NSURLSessionDataTask *)GetCompanyEmployeesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block companyId:(NSString *)companyId startIndex:(int)startIndex keyWords:(NSString *)keyWords{
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)keyWords, NULL, NULL,  kCFStringEncodingUTF8 ));
+    NSString *urlStr = [NSString stringWithFormat:@"api/CompanyBaseInformation/GetCompanyEmployees?Keywords=%@&CompanyId=%@&PageSize=15&PageIndex=%d",encodedString,companyId,startIndex];
     NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
