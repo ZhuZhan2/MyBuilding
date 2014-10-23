@@ -180,46 +180,47 @@
     NSLog(@"%@",parameters);
     [LoginModel LoginWithBlock:^(NSMutableArray *posts, NSError *error) {
         NSLog(@"JSON: %@", posts);
-        NSDictionary *responseObject = [posts objectAtIndex:0];
-        NSNumber *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
-        if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]){
-            NSArray *a = [[responseObject objectForKey:@"d"] objectForKey:@"data"];
-            NSLog(@"bdsfdfdggggyrt  %@",a);
-            for(NSDictionary *item in a){
-                
-                [LoginSqlite opensql];
-                [LoginSqlite insertData:[item objectForKey:@"isFaceRegister"] datakey:@"isFaceRegister"];
-                [LoginSqlite insertData:[item objectForKey:@"faceCount"] datakey:@"faceCount"];
-                NSString *userName =[NSString stringWithFormat:@"%@",[item objectForKey:@"userName"]];
-                userName = [ProjectStage ProjectStrStage:userName];
-                [LoginSqlite insertData:userName datakey:@"userName"];//待会跟岳志强沟通
-                [LoginSqlite insertData:[item objectForKey:@"userId"] datakey:@"userId"];
-                [LoginSqlite insertData:[item objectForKey:@"deviceToken"] datakey:@"deviceToken"];
-                
-                 //NSString *isFaceRegister = [item objectForKey:@"isFaceRegister"];
-                //NSString *firstPassWordLogin = [LoginSqlite getdata:@"firstPassWordLogin" defaultdata:@""];
-//                NSLog(@"NNNNNNN%@",firstPassWordLogin);
-//                if([[LoginSqlite getdata:@"firstPassWordLogin" defaultdata:@""] isEqualToString:@""] &&![[NSString stringWithFormat:@"%@",isFaceRegister] isEqualToString:@"1"]){//判断用户是否是第一次登陆并判断用户脸部识别的状态
-//                    [LoginSqlite insertData:@"firstLogin" datakey:@"firstPassWordLogin"];
-//                    NSString *firstPassWordLogin = [LoginSqlite getdata:@"firstPassWordLogin" defaultdata:@""];
-//                    NSLog(@"NNNNNNN%@",firstPassWordLogin);
-//                    
-//                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否要进行脸部识别的注册" delegate:self cancelButtonTitle:@"是" otherButtonTitles:@"否", nil];
-//                    
-//                    [alert show];
-//                }else{
-//                    NSLog(@"登录成功！");
-//                    [self loginSuccess];
-//                }
-                [self loginSuccess];
+        if(!error){
+            NSDictionary *responseObject = [posts objectAtIndex:0];
+            NSNumber *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
+            if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]){
+                NSArray *a = [[responseObject objectForKey:@"d"] objectForKey:@"data"];
+                NSLog(@"bdsfdfdggggyrt  %@",a);
+                for(NSDictionary *item in a){
+                    
+                    [LoginSqlite opensql];
+                    [LoginSqlite insertData:[item objectForKey:@"isFaceRegister"] datakey:@"isFaceRegister"];
+                    [LoginSqlite insertData:[item objectForKey:@"faceCount"] datakey:@"faceCount"];
+                    NSString *userName =[NSString stringWithFormat:@"%@",[item objectForKey:@"userName"]];
+                    userName = [ProjectStage ProjectStrStage:userName];
+                    [LoginSqlite insertData:userName datakey:@"userName"];//待会跟岳志强沟通
+                    [LoginSqlite insertData:[item objectForKey:@"userId"] datakey:@"userId"];
+                    [LoginSqlite insertData:[item objectForKey:@"deviceToken"] datakey:@"deviceToken"];
+                    
+                    //NSString *isFaceRegister = [item objectForKey:@"isFaceRegister"];
+                    //NSString *firstPassWordLogin = [LoginSqlite getdata:@"firstPassWordLogin" defaultdata:@""];
+                    //                NSLog(@"NNNNNNN%@",firstPassWordLogin);
+                    //                if([[LoginSqlite getdata:@"firstPassWordLogin" defaultdata:@""] isEqualToString:@""] &&![[NSString stringWithFormat:@"%@",isFaceRegister] isEqualToString:@"1"]){//判断用户是否是第一次登陆并判断用户脸部识别的状态
+                    //                    [LoginSqlite insertData:@"firstLogin" datakey:@"firstPassWordLogin"];
+                    //                    NSString *firstPassWordLogin = [LoginSqlite getdata:@"firstPassWordLogin" defaultdata:@""];
+                    //                    NSLog(@"NNNNNNN%@",firstPassWordLogin);
+                    //
+                    //                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否要进行脸部识别的注册" delegate:self cancelButtonTitle:@"是" otherButtonTitles:@"否", nil];
+                    //
+                    //                    [alert show];
+                    //                }else{
+                    //                    NSLog(@"登录成功！");
+                    //                    [self loginSuccess];
+                    //                }
+                    [self loginSuccess];
+                }
+            }else{
+                NSLog(@"登录失败！");
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"登录失败！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                alert.tag = 1;
+                [alert show];
             }
-        }else{
-            NSLog(@"登录失败！");
-            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"登录失败！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-            alert.tag = 1;
-            [alert show];
         }
-
     } dic:parameters];
 
 }
