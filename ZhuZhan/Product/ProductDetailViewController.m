@@ -365,7 +365,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [self.delegate finishAddCommentFromDetailWithPosts:posts];
             }
         }
-    } dic:[@{@"EntityId":self.entityID,@"CommentContents":comment,@"EntityType":self.category,@"CreatedBy":[LoginSqlite getdata:@"userId" defaultdata:@"userId"]} mutableCopy]];
+    } dic:[@{@"EntityId":self.entityID,@"CommentContents":comment,@"EntityType":self.category,@"CreatedBy":[LoginSqlite getdata:@"userId" defaultdata:@""]} mutableCopy]];
 }
 
 //添加产品详情的评论
@@ -374,7 +374,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if (!error) {
             [self finishAddComment:comment];
         }
-    } dic:[@{@"EntityId":self.productModel.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId" defaultdata:@"userId"]} mutableCopy]];
+    } dic:[@{@"EntityId":self.productModel.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId" defaultdata:@""]} mutableCopy]];
 }
 
 //给tableView添加数据

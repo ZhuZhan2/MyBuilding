@@ -120,7 +120,7 @@
 -(void)confirmBtnClick{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:nameTextField.text forKey:@"SearchName"];
-    [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@"userId"] forKey:@"CreateBy"];
+    [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"CreateBy"];
     [dic setValue:newstring forKey:@"SearchConditions"];
     [ProjectApi SearchConditionWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
