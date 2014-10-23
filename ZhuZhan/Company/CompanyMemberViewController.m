@@ -75,15 +75,7 @@
 - (void)headerRereshing
 {
     if (![ConnectionAvailable isConnectionAvailable]) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.removeFromSuperViewOnHide =YES;
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"当前网络不可用，请检查网络连接！";
-        hud.labelFont = [UIFont fontWithName:nil size:14];
-        hud.minSize = CGSizeMake(132.f, 108.0f);
-        [hud hide:YES afterDelay:3];
-        [self.tableView footerEndRefreshing];
-        [self.tableView headerEndRefreshing];
+        [self judgeConnect];
     }else{
         self.startIndex = 0;
         [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -97,18 +89,22 @@
     }
 }
 
+-(void)judgeConnect{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.removeFromSuperViewOnHide =YES;
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"当前网络不可用，请检查网络连接！";
+    hud.labelFont = [UIFont fontWithName:nil size:14];
+    hud.minSize = CGSizeMake(132.f, 108.0f);
+    [hud hide:YES afterDelay:3];
+    [self.tableView footerEndRefreshing];
+    [self.tableView headerEndRefreshing];
+}
+
 - (void)footerRereshing
 {
     if (![ConnectionAvailable isConnectionAvailable]) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.removeFromSuperViewOnHide =YES;
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"当前网络不可用，请检查网络连接！";
-        hud.labelFont = [UIFont fontWithName:nil size:14];
-        hud.minSize = CGSizeMake(132.f, 108.0f);
-        [hud hide:YES afterDelay:3];
-        [self.tableView footerEndRefreshing];
-        [self.tableView headerEndRefreshing];
+        [self judgeConnect];
     }else{
         self.startIndex = self.startIndex +1;
         [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -130,7 +126,6 @@
     CGContextFillRect(context, rect);
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
     return image;
 }
 
@@ -158,7 +153,6 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60;
-    return indexPath.row?60:43;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
