@@ -960,6 +960,7 @@
 		5B3AD9E419F7CA7B008132B2 /* CompanyMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3AD9E319F7CA7B008132B2 /* CompanyMemberCell.m */; };
 		5B43E9B019F7892A00FBB613 /* 公司－我的公司_02a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B43E9AE19F7892A00FBB613 /* 公司－我的公司_02a.png */; };
 		5B43E9B119F7892A00FBB613 /* 公司－我的公司_02a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B43E9AF19F7892A00FBB613 /* 公司－我的公司_02a@2x.png */; };
+		5B4E8A5819F8EA9800EA9AFF /* CompanyTotalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E8A5719F8EA9800EA9AFF /* CompanyTotalViewController.m */; };
 		5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
 		5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF819932E36007D79A8 /* QuadCurveMenu.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5B656CFC19932E36007D79A8 /* QuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CFA19932E36007D79A8 /* QuadCurveMenuItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -2362,6 +2363,8 @@
 		5B3AD9E319F7CA7B008132B2 /* CompanyMemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyMemberCell.m; sourceTree = "<group>"; };
 		5B43E9AE19F7892A00FBB613 /* 公司－我的公司_02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_02a.png"; sourceTree = "<group>"; };
 		5B43E9AF19F7892A00FBB613 /* 公司－我的公司_02a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_02a@2x.png"; sourceTree = "<group>"; };
+		5B4E8A5619F8EA9800EA9AFF /* CompanyTotalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyTotalViewController.h; sourceTree = "<group>"; };
+		5B4E8A5719F8EA9800EA9AFF /* CompanyTotalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyTotalViewController.m; sourceTree = "<group>"; };
 		5B656CF419931275007D79A8 /* CompanyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMemberViewController.h; sourceTree = "<group>"; };
 		5B656CF519931275007D79A8 /* CompanyMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyMemberViewController.m; sourceTree = "<group>"; };
 		5B656CF719932E36007D79A8 /* QuadCurveMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadCurveMenu.h; sourceTree = "<group>"; };
@@ -2652,6 +2655,8 @@
 		0426C01919922D5900CD8822 /* Company */ = {
 			isa = PBXGroup;
 			children = (
+				5B4E8A5619F8EA9800EA9AFF /* CompanyTotalViewController.h */,
+				5B4E8A5719F8EA9800EA9AFF /* CompanyTotalViewController.m */,
 				0426C01A19922D5900CD8822 /* CompanyViewController.h */,
 				0426C01B19922D5900CD8822 /* CompanyViewController.m */,
 				5B656CF419931275007D79A8 /* CompanyMemberViewController.h */,
@@ -5411,6 +5416,7 @@
 				0426C28319922D5A00CD8822 /* GPUImageLanczosResamplingFilter.m in Sources */,
 				D3AD619B19AEEE30001FD483 /* DatePickerView.m in Sources */,
 				0426C24A19922D5A00CD8822 /* GPUImageBoxBlurFilter.m in Sources */,
+				5B4E8A5819F8EA9800EA9AFF /* CompanyTotalViewController.m in Sources */,
 				042D9E2019B559FC00689C5D /* PopupView.m in Sources */,
 				0426C2B019922D5A00CD8822 /* GPUImageSaturationBlendFilter.m in Sources */,
 				0426C2D419922D5A00CD8822 /* GPUImageVideoCamera.m in Sources */,

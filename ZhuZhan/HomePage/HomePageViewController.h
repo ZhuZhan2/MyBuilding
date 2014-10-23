@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ContactViewController.h"
 #import "ProjectTableViewController.h"
-#import "CompanyViewController.h"
+#import "CompanyTotalViewController.h"
 #import "QuadCurveMenu.h"
 #import "ProductViewController.h"
 @interface HomePageViewController : UIViewController<QuadCurveMenuDelegate>{
@@ -22,7 +22,7 @@
     UIView *toolView;
     ContactViewController *contactview;
     ProjectTableViewController *projectview;
-    CompanyViewController *companyview;
+    CompanyTotalViewController *companyview;
     ProductViewController *productView;
     UIViewController* testVC;
     UINavigationController *nav;
