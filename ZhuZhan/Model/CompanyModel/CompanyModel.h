@@ -23,6 +23,8 @@
 @property (nonatomic,copy) NSString *a_companyDescription;
 //公司图片
 @property (nonatomic,copy) NSString *a_companyLogo;
+//是否被关注
+@property (nonatomic,copy) NSString *a_focused;
 
 @property (nonatomic, copy) NSDictionary *dict;
 @end
