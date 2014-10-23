@@ -247,4 +247,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    startIndex = 0;
+    [CompanyApi SearchCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.showArr = posts;
+            [self.tableView reloadData];
+        }
+    } keyWords:[NSString stringWithFormat:@"%@",searchBar.text] startIndex:startIndex];
+}
 @end

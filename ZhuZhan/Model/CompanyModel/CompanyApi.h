@@ -20,4 +20,7 @@
 
 //获取员工列表
 + (NSURLSessionDataTask *)GetCompanyEmployeesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block companyId:(NSString *)companyId startIndex:(int)startIndex;
+
+//搜索公司
++ (NSURLSessionDataTask *)SearchCompanyWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block keyWords:(NSString *)keyWords startIndex:(int)startIndex;
 @end
