@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EGOImageView.h"
+#import "EmployeesModel.h"
 @interface CompanyMemberCell : UITableViewCell
 @property(nonatomic,strong)UIButton* rightBtn;
-@property(nonatomic,strong)EGOImageView* userImageView;
-@property(nonatomic,strong)UILabel* userNameLabel;
-@property(nonatomic,strong)UILabel* userBussniessLabel;
--(void)setModelWithUserImageUrl:(NSString*)url userName:(NSString*)name userBussniess:(NSString*)bussniess btnImage:(UIImage*)image;
+-(void)setModel:(EmployeesModel*)model indexPathRow:(NSInteger)indexPathRow;
 @end

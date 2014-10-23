@@ -7,7 +7,13 @@
 //
 
 #import "CompanyMemberCell.h"
-
+#import "EGOImageView.h"
+@interface CompanyMemberCell()
+@property(nonatomic,strong)EGOImageView* userImageView;
+@property(nonatomic,strong)UILabel* userNameLabel;
+@property(nonatomic,strong)UILabel* userBussniessLabel;
+@property(nonatomic,strong)UIView* separatorLine;
+@end
 @implementation CompanyMemberCell
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -30,15 +36,26 @@
         
         self.rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(272, 17, 26, 26)];
         [self addSubview:self.rightBtn];
+        
+        self.separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 59, 320, 1)];
+        self.separatorLine.backgroundColor=RGBCOLOR(229, 229, 229);
+        [self addSubview:self.separatorLine];
     }
     return self;
 }
 
--(void)setModelWithUserImageUrl:(NSString*)url userName:(NSString*)name userBussniess:(NSString*)bussniess btnImage:(UIImage*)image{
-    self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,url]];
-    self.userNameLabel.text=name;
-    self.userBussniessLabel.text=bussniess;
-    [self.rightBtn setBackgroundImage:image forState:UIControlStateNormal];
+-(void)setModel:(EmployeesModel*)model indexPathRow:(NSInteger)indexPathRow{
+    BOOL isFocesed=[model.a_isFocused isEqualToString:@"1"];
+
+    self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_userIamge]];
+    self.userNameLabel.text=model.a_userName;
+    self.userBussniessLabel.text=model.a_duties;
+    [self.rightBtn setBackgroundImage:isFocesed?[GetImagePath getImagePath:@"公司认证员工_08a"]:[GetImagePath getImagePath:@"公司认证员工_18a"] forState:UIControlStateNormal];
+    if (isFocesed) {
+        self.rightBtn.tag=-1;
+    }else{
+        self.rightBtn.tag=indexPathRow;
+    }
 }
 
 @end
