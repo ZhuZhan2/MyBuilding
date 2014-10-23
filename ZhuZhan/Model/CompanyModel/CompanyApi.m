@@ -99,7 +99,6 @@
 + (NSURLSessionDataTask *)GetCompanyEmployeesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block companyId:(NSString *)companyId startIndex:(int)startIndex keyWords:(NSString *)keyWords{
     NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)keyWords, NULL, NULL,  kCFStringEncodingUTF8 ));
     NSString *urlStr = [NSString stringWithFormat:@"api/CompanyBaseInformation/GetCompanyEmployees?Keywords=%@&CompanyId=%@&PageSize=15&PageIndex=%d",encodedString,companyId,startIndex];
-    NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
@@ -125,6 +124,32 @@
         if (block) {
             block([NSMutableArray array], error);
         }
+    }];
+}
+
++(NSURLSessionDataTask *)DeleteFocusWithBlock:(void(^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary*)dic{
+    NSString *urlStr = [NSString stringWithFormat:@"api/networking/DeleteFocus"];
+    
+    return [[AFAppDotNetAPIClient sharedNewClient]POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id JSON) {
+        NSLog(@"JSON==>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            NSLog(@"1300");
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1308"]){
+            NSLog(@"1308");
+            if (block) {
+                block(nil, nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
     }];
 }
 @end

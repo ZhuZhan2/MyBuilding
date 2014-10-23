@@ -21,4 +21,6 @@
 //获取员工列表
 + (NSURLSessionDataTask *)GetCompanyEmployeesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block companyId:(NSString *)companyId startIndex:(int)startIndex keyWords:(NSString *)keyWords;
 
+//取消关注
++(NSURLSessionDataTask *)DeleteFocusWithBlock:(void(^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary*)dic;
 @end
