@@ -96,7 +96,7 @@
 }
 
 + (NSURLSessionDataTask *)GetCompanyEmployeesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block companyId:(NSString *)companyId startIndex:(int)startIndex{
-    NSString *urlStr = [NSString stringWithFormat:@"api/CompanyBaseInformation/GetCompanyEmployees?CompanyId=%@&PageSize=5&PageIndex=%d",companyId,startIndex];
+    NSString *urlStr = [NSString stringWithFormat:@"api/CompanyBaseInformation/GetCompanyEmployees?CompanyId=%@&PageSize=15&PageIndex=%d",companyId,startIndex];
     NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);

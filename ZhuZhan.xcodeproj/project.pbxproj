@@ -957,6 +957,7 @@
 		5B18B46F19BFFC3700551F82 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B18B46E19BFFC3700551F82 /* GradientView.m */; };
 		5B1AC4B019BEE4DC006CA4F4 /* CompanyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */; };
 		5B2D232B19D93373007C2C29 /* NBLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D232A19D93373007C2C29 /* NBLabel.m */; };
+		5B3AD9E419F7CA7B008132B2 /* CompanyMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3AD9E319F7CA7B008132B2 /* CompanyMemberCell.m */; };
 		5B43E9B019F7892A00FBB613 /* 公司－我的公司_02a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B43E9AE19F7892A00FBB613 /* 公司－我的公司_02a.png */; };
 		5B43E9B119F7892A00FBB613 /* 公司－我的公司_02a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B43E9AF19F7892A00FBB613 /* 公司－我的公司_02a@2x.png */; };
 		5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
@@ -2357,6 +2358,8 @@
 		5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyDetailViewController.m; sourceTree = "<group>"; };
 		5B2D232919D93373007C2C29 /* NBLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBLabel.h; path = NBLabel/NBLabel.h; sourceTree = "<group>"; };
 		5B2D232A19D93373007C2C29 /* NBLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBLabel.m; path = NBLabel/NBLabel.m; sourceTree = "<group>"; };
+		5B3AD9E219F7CA7B008132B2 /* CompanyMemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMemberCell.h; sourceTree = "<group>"; };
+		5B3AD9E319F7CA7B008132B2 /* CompanyMemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyMemberCell.m; sourceTree = "<group>"; };
 		5B43E9AE19F7892A00FBB613 /* 公司－我的公司_02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_02a.png"; sourceTree = "<group>"; };
 		5B43E9AF19F7892A00FBB613 /* 公司－我的公司_02a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_02a@2x.png"; sourceTree = "<group>"; };
 		5B656CF419931275007D79A8 /* CompanyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMemberViewController.h; sourceTree = "<group>"; };
@@ -2651,6 +2654,8 @@
 				0426C01B19922D5900CD8822 /* CompanyViewController.m */,
 				5B656CF419931275007D79A8 /* CompanyMemberViewController.h */,
 				5B656CF519931275007D79A8 /* CompanyMemberViewController.m */,
+				5B3AD9E219F7CA7B008132B2 /* CompanyMemberCell.h */,
+				5B3AD9E319F7CA7B008132B2 /* CompanyMemberCell.m */,
 				5BF08A3819B86C5D00782976 /* MoreCompanyViewController.h */,
 				5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */,
 				5BF08A3B19B8779D00782976 /* MoreCompanyViewCell.h */,
@@ -5409,6 +5414,7 @@
 				D3A4281519C19A3E00BAB6C7 /* BirthDay.m in Sources */,
 				042D9E1B19B559FC00689C5D /* AdvancedSearchConditionsTableViewCell.m in Sources */,
 				042D9E1919B559FC00689C5D /* ProjectTableViewCell.m in Sources */,
+				5B3AD9E419F7CA7B008132B2 /* CompanyMemberCell.m in Sources */,
 				0426C2A919922D5A00CD8822 /* GPUImageRawDataInput.m in Sources */,
 				0426C28B19922D5A00CD8822 /* GPUImageLowPassFilter.m in Sources */,
 				0426C23719922D5A00CD8822 /* AFHTTPRequestOperationManager.m in Sources */,
