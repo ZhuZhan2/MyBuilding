@@ -16,7 +16,7 @@
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "CompanyMemberCell.h"
-
+#import "LoginSqlite.h"
 @interface CompanyMemberViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
@@ -178,6 +178,17 @@
 -(void)chooseApprove:(UIButton*)btn{
     if (btn.tag>=0) {
         NSLog(@"%d",btn.tag);
+        EmployeesModel *model = self.showArr[btn.tag];
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"UserId"];
+        [dic setValue:model.a_id forKey:@"FocusId"];
+        [dic setValue:@"Personal" forKey:@"FocusType"];
+        [dic setValue:@"Personal" forKey:@"UserType"];
+        [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                
+            }
+        } dic:dic];
     }
 }
 
