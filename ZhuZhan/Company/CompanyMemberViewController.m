@@ -12,7 +12,11 @@
 #import "CompanyApi.h"
 #import "EmployeesModel.h"
 #import "ContactModel.h"
+#import "MJRefresh.h"
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
 #import "CompanyMemberCell.h"
+
 @interface CompanyMemberViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
@@ -122,10 +126,8 @@
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
     CGContextSetFillColorWithColor(context, [color CGColor]);
     CGContextFillRect(context, rect);
-    
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
@@ -137,28 +139,25 @@
      
 }
 
--(void)changeButtonImage:(UIButton*)button{
-    [button setImage:[GetImagePath getImagePath:@"bg-addbutton-highlighted"] forState:UIControlStateNormal];
-}
-
-//===========================================================================
+//======================================================================
 //UIScrollViewDelegate
-//===========================================================================
+//======================================================================
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     if ([self.searchBar isFirstResponder]) {
         [self.searchBar resignFirstResponder];
     }
 }
 
-//===========================================================================
+//======================================================================
 //UITableViewDataSource,UITableViewDelegate
-//===========================================================================
+//======================================================================
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.showArr.count+1;
+    return self.showArr.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
     return indexPath.row?60:43;
 }
 
@@ -167,49 +166,24 @@
     if (!cell) {
         cell=[[CompanyMemberCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
         [cell.rightBtn addTarget:self action:@selector(chooseApprove:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    if (cell.contentView.subviews.count) {
-        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    }
-
-    //搜索栏
-    if (indexPath.row==0) {
-        [cell.contentView addSubview:self.searchBar];
-        cell.textLabel.text=nil;
-        cell.imageView.image=nil;
-        cell.detailTextLabel.text=nil;
-        [cell.rightBtn removeFromSuperview];
-        
-    //公司认证员工部分
-    }else{
-        //分割线
         UIView* separatorLine=[self getSeparatorLine];
         [cell.contentView addSubview:separatorLine];
-        
-        //数据
-        EmployeesModel *model = self.showArr[indexPath.row-1];
-        
-        cell.textLabel.text=[NSString stringWithFormat:@"%@",model.a_userName];
-        cell.textLabel.font=[UIFont boldSystemFontOfSize:15];
-        cell.imageView.image=[GetImagePath getImagePath:@"公司认证员工_03a"];
-        cell.detailTextLabel.text=[NSString stringWithFormat:@"%@",model.a_duties];
-        cell.detailTextLabel.textColor=RGBCOLOR(155, 155, 155);
-        cell.detailTextLabel.font=[UIFont boldSystemFontOfSize:12];
-        [cell.contentView addSubview:cell.rightBtn];
-        [cell.rightBtn setImage:[model.a_isFocused isEqualToString:@"Yes"]?[GetImagePath getImagePath:@"公司认证员工_08a"]:[GetImagePath getImagePath:@"公司认证员工_18a"] forState:UIControlStateNormal];
-        if ([model.a_isFocused isEqualToString:@"Yes"]) {
-            cell.rightBtn.tag=0;
-        }else{
-            cell.rightBtn.tag=indexPath.row;
-        }
+    }
+    //数据
+    EmployeesModel *model = self.showArr[indexPath.row];
+    BOOL isFocesed=[model.a_isFocused isEqualToString:@"Yes"];
+    [cell setModelWithUserImageUrl:model.a_userIamge userName:model.a_userName userBussniess:model.a_duties btnImage:isFocesed?[GetImagePath getImagePath:@"公司认证员工_08a"]:[GetImagePath getImagePath:@"公司认证员工_18a"]];
+    if (isFocesed) {
+        cell.rightBtn.tag=-1;
+    }else{
+        cell.rightBtn.tag=indexPath.row;
     }
     return cell;
 }
 
 -(void)chooseApprove:(UIButton*)btn{
-    if (btn.tag) {
-        NSInteger number=btn.tag-1;
-        NSLog(@"%d",number);
+    if (btn.tag>=0) {
+        NSLog(@"%d",btn.tag);
     }
 }
 
@@ -240,6 +214,7 @@
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection=NO;
     self.tableView.showsVerticalScrollIndicator=NO;
+    self.tableView.tableHeaderView=self.searchBar;
     [self.view addSubview:self.tableView];
     self.title = @"公司员工";
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
