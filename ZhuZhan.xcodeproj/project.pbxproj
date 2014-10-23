@@ -1025,6 +1025,8 @@
 		D3B8F53F19D92716008F6164 /* RecognizerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B8F53E19D92716008F6164 /* RecognizerFactory.m */; };
 		D3B8F54719D94789008F6164 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B8F54619D94789008F6164 /* iflyMSC.framework */; };
 		D3B8F54919D9483B008F6164 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B8F54819D9483B008F6164 /* libz.dylib */; };
+		D3D1A7B719F8E9B40006F954 /* 公司－我的公司_05b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B519F8E9B40006F954 /* 公司－我的公司_05b.png */; };
+		D3D1A7B819F8E9B40006F954 /* 公司－我的公司_05b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B619F8E9B40006F954 /* 公司－我的公司_05b@2x.png */; };
 		D3D2E60119F7A79500908D8B /* EmployeesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2E60019F7A79500908D8B /* EmployeesModel.m */; };
 /* End PBXBuildFile section */
 
@@ -2494,6 +2496,8 @@
 		D3B8F54819D9483B008F6164 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D3D1A7B319F8A68F0006F954 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D3D1A7B419F8A68F0006F954 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D3D1A7B519F8E9B40006F954 /* 公司－我的公司_05b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_05b.png"; sourceTree = "<group>"; };
+		D3D1A7B619F8E9B40006F954 /* 公司－我的公司_05b@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_05b@2x.png"; sourceTree = "<group>"; };
 		D3D2E5FF19F7A79500908D8B /* EmployeesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeesModel.h; sourceTree = "<group>"; };
 		D3D2E60019F7A79500908D8B /* EmployeesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeesModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -3477,6 +3481,8 @@
 		04BC3E5D19D7E5B0006B5C7B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3D1A7B519F8E9B40006F954 /* 公司－我的公司_05b.png */,
+				D3D1A7B619F8E9B40006F954 /* 公司－我的公司_05b@2x.png */,
 				04BC3E5E19D7E5B0006B5C7B /* +人脉2_03a.png */,
 				04BC3E5F19D7E5B0006B5C7B /* +人脉2_03a@2x.png */,
 				04BC3E6019D7E5B0006B5C7B /* +人脉2_05a.png */,
@@ -5038,6 +5044,7 @@
 				04BC41AF19D7E5B3006B5C7B /* 人脉－人的详情1_25a.png in Resources */,
 				04BC418719D7E5B3006B5C7B /* 人脉_42a.png in Resources */,
 				04BC42BA19D7E5B3006B5C7B /* 项目-首页_03a.png in Resources */,
+				D3D1A7B819F8E9B40006F954 /* 公司－我的公司_05b@2x.png in Resources */,
 				04BC432319D7E5B3006B5C7B /* 项目－搜索_11a@2x.png in Resources */,
 				04BC411519D7E5B3006B5C7B /* 04@2x.png in Resources */,
 				04BC434319D7E5B3006B5C7B /* 项目－项目专题详情_07a@2x.png in Resources */,
@@ -5280,6 +5287,7 @@
 				04BC412719D7E5B3006B5C7B /* bg-menuitem-highlighted@2x.png in Resources */,
 				04BC42C819D7E5B3006B5C7B /* 项目详情-2_07a.png in Resources */,
 				04BC431219D7E5B3006B5C7B /* 项目阶段_10a.png in Resources */,
+				D3D1A7B719F8E9B40006F954 /* 公司－我的公司_05b.png in Resources */,
 				04BC424019D7E5B3006B5C7B /* 地图搜索结果_15a@2x.png in Resources */,
 				04BC41F419D7E5B3006B5C7B /* 全部项目_14@2x.png in Resources */,
 				04BC432719D7E5B3006B5C7B /* 项目－搜索_21a@2x.png in Resources */,
