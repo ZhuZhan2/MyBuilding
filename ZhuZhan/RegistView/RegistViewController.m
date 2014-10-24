@@ -45,76 +45,111 @@ static bool IsVerify =NO;
     self.navigationController.navigationBar.hidden=YES;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self initNavi];
-    self.view.backgroundColor=RGBCOLOR(242, 242, 242);
-    
-    UIView *panView = [[UIView alloc] initWithFrame:CGRectMake(28,140,264,260)];
-    panView.tag = 2014080103;
-    [self.view addSubview:panView];
-    
+-(void)loadFirstView{
+    UIView* firstView=[[UIView alloc]initWithFrame:CGRectMake(0, 80, 320, 94)];
+    firstView.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:firstView];
+    [self addSeparatorLineInView:firstView];
     //新建电话号码文本框
-    _phoneNumberTextField = [[UITextField alloc] initWithFrame:CGRectMake(10,0,255,45)];
+    _phoneNumberTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,0,255,47)];
     _phoneNumberTextField.delegate = self;
     _phoneNumberTextField.textAlignment=NSTextAlignmentLeft;
-    _phoneNumberTextField.placeholder=@"请填写手机号";
+    _phoneNumberTextField.placeholder=@"填写手机号";
     _phoneNumberTextField.returnKeyType=UIReturnKeyDone;
     _phoneNumberTextField.keyboardType =UIKeyboardTypePhonePad;
     _phoneNumberTextField.clearButtonMode =YES;
-    [panView addSubview:_phoneNumberTextField];
+    [firstView addSubview:_phoneNumberTextField];
     
     //新建验证码文本框
-    _yzmTextField = [[UITextField alloc] initWithFrame:CGRectMake(10,45,255,45)];
+    _yzmTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,47,255,47)];
     _yzmTextField.delegate = self;
     _yzmTextField.textAlignment=NSTextAlignmentLeft;
-    _yzmTextField.placeholder=@"请填输入验证码";
+    _yzmTextField.placeholder=@"填写验证码";
     _yzmTextField.returnKeyType=UIReturnKeyDone;
-    [panView addSubview:_yzmTextField];
+    [firstView addSubview:_yzmTextField];
+}
+
+-(void)addSeparatorLineInView:(UIView*)view{
+    NSInteger number=view.frame.size.height/47-1;
+    for (int i=0; i<number; i++) {
+        UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(20, 47*(i+1), 280, 1)];
+        separatorLine.backgroundColor=RGBCOLOR(242, 242, 242);
+        [view addSubview:separatorLine];
+    }
+}
+
+-(void)loadSecondView{
+    UIView* secondView=[[UIView alloc]initWithFrame:CGRectMake(0, 194, 320, 141)];
+    secondView.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:secondView];
     
-    UIButton *getCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    getCodeBtn.frame = CGRectMake(200,50,50,40);
-    [getCodeBtn setImage:[GetImagePath getImagePath:@"注册_03"] forState:UIControlStateNormal];
-    [getCodeBtn addTarget:self action:@selector(getVerifitionCode) forControlEvents:UIControlEventTouchUpInside];
-    [panView addSubview:getCodeBtn];
+    //账号文本框
+    accountField = [[UITextField alloc] initWithFrame:CGRectMake(22,0,255,47)];
+    accountField.delegate = self;
+    accountField.textAlignment=NSTextAlignmentLeft;
+    accountField.placeholder=@"请填写密码";
+    accountField.returnKeyType=UIReturnKeyDone;
+    accountField.clearButtonMode =YES;
+    [secondView addSubview:accountField];
+    
     
     //新建密码文本框
-    passWordField = [[UITextField alloc] initWithFrame:CGRectMake(10,110,255,45)];
+    passWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,47,255,47)];
     passWordField.delegate = self;
     passWordField.textAlignment=NSTextAlignmentLeft;
     passWordField.placeholder=@"请填写密码";
     passWordField.returnKeyType=UIReturnKeyDone;
     passWordField.clearButtonMode =YES;
     passWordField.secureTextEntry = YES;
-    [panView addSubview:passWordField];
+    [secondView addSubview:passWordField];
     
     //确认密码的文本框
-    verifyPassWordField = [[UITextField alloc] initWithFrame:CGRectMake(10,155,255,45)];
+    verifyPassWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,94,255,47)];
     verifyPassWordField.delegate = self;
     verifyPassWordField.textAlignment=NSTextAlignmentLeft;
     verifyPassWordField.placeholder=@"请重复填写密码";
     verifyPassWordField.returnKeyType=UIReturnKeyDone;
     verifyPassWordField.clearButtonMode =YES;
     verifyPassWordField.secureTextEntry = YES;
-    [panView addSubview:verifyPassWordField];
+    [secondView addSubview:verifyPassWordField];
+
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self initNavi];
+    self.view.backgroundColor=RGBCOLOR(242, 242, 242);
+    [self loadFirstView];
+    [self loadSecondView];
+//    UIView *panView = [[UIView alloc] initWithFrame:CGRectMake(28,140,264,260)];
+//    panView.tag = 2014080103;
+//    [self.view addSubview:panView];
+    
+    
+    UIButton *getCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    getCodeBtn.frame = CGRectMake(200,150,50,40);
+    [getCodeBtn setImage:[GetImagePath getImagePath:@"注册_03"] forState:UIControlStateNormal];
+    [getCodeBtn addTarget:self action:@selector(getVerifitionCode) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:getCodeBtn];
+    
     
     UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    registerBtn.frame = CGRectMake(0, 220, 128, 40);
+    registerBtn.frame = CGRectMake(0, 420, 128, 40);
     [registerBtn setBackgroundImage:[GetImagePath getImagePath:@"注册_07"] forState:UIControlStateNormal];
     [registerBtn setTitle:@"注   册" forState:UIControlStateNormal];
     [registerBtn addTarget:self action:@selector(beginToCollect) forControlEvents:UIControlEventTouchUpInside];
     registerBtn.tag =2014072401;
-    [panView addSubview:registerBtn];
+    [self.view addSubview:registerBtn];
     
     
     UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    cancelBtn.frame = CGRectMake(134, 220, 128, 40);
+    cancelBtn.frame = CGRectMake(134, 420, 128, 40);
     [cancelBtn setBackgroundImage:[GetImagePath getImagePath:@"注册_09"] forState:UIControlStateNormal];
     [cancelBtn setTitle:@"取   消" forState:UIControlStateNormal];
     [cancelBtn setTitleColor:BlueColor forState:UIControlStateNormal];
     [cancelBtn addTarget:self action:@selector(cancelRegister) forControlEvents:UIControlEventTouchUpInside];
-    [panView addSubview:cancelBtn];
+    [self.view addSubview:cancelBtn];
     
 }
 
