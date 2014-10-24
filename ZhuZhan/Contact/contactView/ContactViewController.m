@@ -134,11 +134,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if ([deviceToken isEqualToString:@""]) {
         
         LoginViewController *loginVC = [[LoginViewController alloc] init];
-        [self presentViewController:loginVC animated:YES completion:nil];
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }else{
+        PublishViewController *publishVC = [[PublishViewController alloc] init];
+        [self.navigationController pushViewController:publishVC animated:YES];
     }
-    
-    PublishViewController *publishVC = [[PublishViewController alloc] init];
-    [self.navigationController pushViewController:publishVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -370,13 +371,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
 
     if ([deviceToken isEqualToString:@""]) {
-        
         LoginViewController *loginVC = [[LoginViewController alloc] init];
-        [self presentViewController:loginVC animated:YES completion:nil];
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }else{
+        PersonalCenterViewController *personalVC = [[PersonalCenterViewController alloc] init];
+        [self.navigationController pushViewController:personalVC animated:YES];
     }
-    
-    PersonalCenterViewController *personalVC = [[PersonalCenterViewController alloc] init];
-    [self.navigationController pushViewController:personalVC animated:YES];
 }
 
 -(void)HeadImageAction:(UIButton *)button{
@@ -443,11 +444,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if ([deviceToken isEqualToString:@""]) {
         
         LoginViewController *loginVC = [[LoginViewController alloc] init];
-        [self presentViewController:loginVC animated:YES completion:nil];
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }else{
+        addCommentView = [[AddCommentViewController alloc] init];
+        addCommentView.delegate = self;
+        [self presentPopupViewController:addCommentView animationType:MJPopupViewAnimationFade flag:2];
     }
-    addCommentView = [[AddCommentViewController alloc] init];
-    addCommentView.delegate = self;
-    [self presentPopupViewController:addCommentView animationType:MJPopupViewAnimationFade flag:2];
 }
 
 -(void)sureFromAddCommentWithComment:(NSString*)comment{

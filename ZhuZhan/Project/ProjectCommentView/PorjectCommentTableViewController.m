@@ -88,12 +88,13 @@
     if ([deviceToken isEqualToString:@""]) {
         
         LoginViewController *loginVC = [[LoginViewController alloc] init];
-        [self presentViewController:loginVC animated:YES completion:nil];
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }else{
+        addCommentView = [[AddCommentViewController alloc] init];
+        addCommentView.delegate = self;
+        [self presentPopupViewController:addCommentView animationType:MJPopupViewAnimationFade flag:2];
     }
-    
-    addCommentView = [[AddCommentViewController alloc] init];
-    addCommentView.delegate = self;
-    [self presentPopupViewController:addCommentView animationType:MJPopupViewAnimationFade flag:2];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

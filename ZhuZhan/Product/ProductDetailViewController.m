@@ -287,7 +287,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //判断是否有deviceToken,没有则进登录界面
     if ([deviceToken isEqualToString:@""]) {
         LoginViewController *loginVC = [[LoginViewController alloc] init];
-        [self presentViewController:loginVC animated:YES completion:nil];
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }else{
         self.vc=[[AddCommentViewController alloc]init];
         self.vc.delegate=self;

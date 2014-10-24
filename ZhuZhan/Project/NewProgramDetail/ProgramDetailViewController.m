@@ -262,13 +262,13 @@
         
         if ([deviceToken isEqualToString:@""]) {
             LoginViewController *loginVC = [[LoginViewController alloc] init];
-            [self presentViewController:loginVC animated:YES completion:nil];
+            UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+            [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+        }else{
+            self.addCommentVC=[[AddCommentViewController alloc]init];
+            self.addCommentVC.delegate=self;
+            [self presentPopupViewController:self.addCommentVC animationType:MJPopupViewAnimationFade flag:2];
         }
-        
-        self.addCommentVC=[[AddCommentViewController alloc]init];
-        self.addCommentVC.delegate=self;
-        [self presentPopupViewController:self.addCommentVC animationType:MJPopupViewAnimationFade flag:2];
-        
     }else{
         NSLog(@"取消");
     }
