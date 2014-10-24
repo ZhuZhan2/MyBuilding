@@ -11,13 +11,5 @@
 @interface LoginViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate>{
     UITextField *_userNameTextField;
     UITextField *_passWordTextField;
-    NSString *userToken;
-    UIButton *bgBtn;
-    BOOL _isSelect;
-    UIImageView *rememberView;
-    NSMutableArray *imgArr;
-
 }
-@property(retain,nonatomic)NSString *userToken;
-@property(nonatomic, assign) BOOL isLogin;
 @end

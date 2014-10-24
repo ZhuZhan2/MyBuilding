@@ -261,18 +261,14 @@
         NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
         
         if ([deviceToken isEqualToString:@""]) {
-            
             LoginViewController *loginVC = [[LoginViewController alloc] init];
-            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
-            [[AppDelegate instance] window].rootViewController = naVC;
-            [[[AppDelegate instance] window] makeKeyAndVisible];
-            return;
+            UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+            [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+        }else{
+            self.addCommentVC=[[AddCommentViewController alloc]init];
+            self.addCommentVC.delegate=self;
+            [self presentPopupViewController:self.addCommentVC animationType:MJPopupViewAnimationFade flag:2];
         }
-        
-        self.addCommentVC=[[AddCommentViewController alloc]init];
-        self.addCommentVC.delegate=self;
-        [self presentPopupViewController:self.addCommentVC animationType:MJPopupViewAnimationFade flag:2];
-        
     }else{
         NSLog(@"取消");
     }
