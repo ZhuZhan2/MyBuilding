@@ -66,7 +66,7 @@
 	if (!ret) {
 		NSLog(@"manager start failed!");
 	}
-    
+    NSLog(@"asdfasdfasdf");
     [LoginSqlite opensql];
     [RecordSqlite opensql];
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
