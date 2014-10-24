@@ -372,10 +372,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
 
     if ([deviceToken isEqualToString:@""]) {
-#warning 测试用
-        RegistViewController* vc=[[RegistViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-        return;
         LoginViewController *loginVC = [[LoginViewController alloc] init];
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];

@@ -28,7 +28,7 @@
 static bool IsVerify =NO;
 -(void)initNavi{
     //navi的影藏和颜色
-    //self.navigationController.navigationBar.hidden=NO;
+    self.navigationController.navigationBar.hidden=NO;
     self.navigationController.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
     //返还按钮
     UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,5,29,28.5)];
@@ -42,7 +42,7 @@ static bool IsVerify =NO;
 
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
-    //self.navigationController.navigationBar.hidden=YES;
+    self.navigationController.navigationBar.hidden=YES;
 }
 
 -(void)loadFirstView{
