@@ -94,12 +94,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
         [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                [LoginModel GetUserImagesWithBlock:^(NSMutableArray *posts, NSError *error) {
-                    if(!error){
-                        [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0]]];
-                        [LoginSqlite insertData:posts[0] datakey:@"userImageUrl"];
-                    }
-                } userId:[LoginSqlite getdata:@"userId" defaultdata:@""]];
+                if(![[LoginSqlite getdata:@"userId" defaultdata:@""] isEqualToString:@""]){
+                    [LoginModel GetUserImagesWithBlock:^(NSMutableArray *posts, NSError *error) {
+                        if(!error){
+                            [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0]]];
+                            [LoginSqlite insertData:posts[0] datakey:@"userImageUrl"];
+                        }
+                    } userId:[LoginSqlite getdata:@"userId" defaultdata:@""]];
+                }
                 
                 showArr = posts;
                 for(int i=0;i<showArr.count;i++){
