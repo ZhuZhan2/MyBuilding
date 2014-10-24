@@ -32,6 +32,10 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.hidden = YES;
     self.view.backgroundColor = RGBCOLOR(85, 103, 166);
+    UIButton *closeKeyBoard = [UIButton buttonWithType:UIButtonTypeCustom];
+    [closeKeyBoard setFrame:self.view.frame];
+    [closeKeyBoard addTarget:self action:@selector(closeKeyBoard) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:closeKeyBoard];
     
     UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [cancelBtn setBackgroundImage:[GetImagePath getImagePath:@"登录_03"] forState:UIControlStateNormal];
@@ -39,25 +43,68 @@
     [cancelBtn addTarget:self action:@selector(cancelClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancelBtn];
     
-    UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 110, 74, 77)];
+    UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(50.5, 110, 219, 77)];
     [bgImage setImage:[GetImagePath getImagePath:@"登录_07"]];
     [self.view addSubview:bgImage];
     
-    UIImageView *bgImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(21.5, 230, 277, 200)];
-    [bgImage2 setBackgroundColor:[UIColor redColor]];
-    [self.view addSubview:bgImage2];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(21.5, 230, 277, 200)];
+    [self.view addSubview:bgView];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 277, 41)];
     [imageView setImage:[GetImagePath getImagePath:@"登录_19"]];
-    [bgImage2 addSubview:imageView];
+    [bgView addSubview:imageView];
     
     UIImageView *imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 42, 277, 41)];
     [imageView2 setImage:[GetImagePath getImagePath:@"登录_19"]];
-    [bgImage2 addSubview:imageView2];
+    [bgView addSubview:imageView2];
     
-    //UIImageView *imageView3
+    UIImageView *imageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(7, 11, 19, 19)];
+    [imageView3 setImage:[GetImagePath getImagePath:@"登录_14"]];
+    [bgView addSubview:imageView3];
     
+    UIImageView *imageView4 = [[UIImageView alloc] initWithFrame:CGRectMake(10, 52, 15, 20)];
+    [imageView4 setImage:[GetImagePath getImagePath:@"登录_11"]];
+    [bgView addSubview:imageView4];
     
+    _userNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 0, 240, 41)];
+    _userNameTextField.delegate = self;
+    _userNameTextField.textAlignment=NSTextAlignmentLeft;
+    _userNameTextField.placeholder=@"用户名";
+    _userNameTextField.returnKeyType=UIReturnKeyDone;
+    _userNameTextField.clearButtonMode = UITextFieldViewModeAlways;
+    [bgView addSubview:_userNameTextField];
+    
+    _passWordTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 42, 240, 41)];
+    _passWordTextField.delegate = self;
+    _passWordTextField.textAlignment=NSTextAlignmentLeft;
+    _passWordTextField.placeholder=@"密码";
+    _passWordTextField.returnKeyType=UIReturnKeyDone;
+    _passWordTextField.clearButtonMode = UITextFieldViewModeAlways;
+    [bgView addSubview:_passWordTextField];
+    
+    UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [loginBtn setBackgroundImage:[GetImagePath getImagePath:@"登录_22"] forState:UIControlStateNormal];
+    [loginBtn setFrame:CGRectMake(0, 100, 277, 42)];
+    [bgView addSubview:loginBtn];
+    
+    UIButton *registBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [registBtn setBackgroundImage:[GetImagePath getImagePath:@"登录_24"] forState:UIControlStateNormal];
+    [registBtn setFrame:CGRectMake(0, 150, 277, 42)];
+    [registBtn addTarget:self action:@selector(gotoRegist) forControlEvents:UIControlEventTouchUpInside];
+    [bgView addSubview:registBtn];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(80, 530, 100, 30)];
+    label.text = @"忘记密码了吗？";
+    label.font = [UIFont systemFontOfSize:14];
+    label.textColor = [UIColor whiteColor];
+    label.alpha = 0.5;
+    [self.view addSubview:label];
+    
+    UIButton *findPassWordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [findPassWordBtn setFrame:CGRectMake(160, 530, 100, 30)];
+    [findPassWordBtn setTitle:@"找回密码" forState:UIControlStateNormal];
+    findPassWordBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [self.view addSubview:findPassWordBtn];
 }
 
 
@@ -69,8 +116,23 @@
 }
 
 -(void)cancelClick{
+    [_userNameTextField resignFirstResponder];
+    [_passWordTextField resignFirstResponder];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void)closeKeyBoard{
+    [_userNameTextField resignFirstResponder];
+    [_passWordTextField resignFirstResponder];
+}
 
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+-(void)gotoRegist{
+    RegistViewController *registView = [[RegistViewController alloc] init];
+    [self.navigationController pushViewController:registView animated:YES];
+}
 @end
