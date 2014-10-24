@@ -166,9 +166,21 @@
 }
 
 -(void)chooseApprove:(UIButton*)btn{
-    if (btn.tag>=0) {
-        EmployeesModel *model = self.showArr[btn.tag];
-        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    btn.enabled=NO;
+    EmployeesModel *model = self.showArr[btn.tag];
+    BOOL isFocused=[model.a_isFocused isEqualToString:@"1"];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    if (isFocused) {
+        [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"UserId"];
+        [dic setValue:model.a_id forKey:@"FocusId"];
+        [CompanyApi DeleteFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                model.a_isFocused=@"0";
+                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+            }
+            btn.enabled=YES;
+        } dic:dic];
+    }else{
         [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"UserId"];
         [dic setValue:model.a_id forKey:@"FocusId"];
         [dic setValue:@"Personal" forKey:@"FocusType"];
@@ -176,8 +188,9 @@
         [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 model.a_isFocused=@"1";
-                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:NO];
+                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
             }
+            btn.enabled=YES;
         } dic:dic];
     }
 }

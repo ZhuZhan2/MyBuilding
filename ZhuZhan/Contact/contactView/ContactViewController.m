@@ -242,9 +242,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         return cell;
     }else if([model.a_category isEqualToString:@"Personal"]){
         if([model.a_eventType isEqualToString:@"Actives"]){
-            
-            
-            
             NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if(!cell){

@@ -18,9 +18,13 @@
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic,strong)UIImageView* imageView;
 @property(nonatomic,strong)UILabel* noticeLabel;
+@property(nonatomic)BOOL isFocused;
 @end
-
 @implementation CompanyDetailViewController
+-(BOOL)isFocused{
+    return [self.model.a_focused isEqualToString:@"1"];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -75,17 +79,20 @@
     [view addSubview:businessLabel];
 }
 
+-(void)handleContent{
+    UIImage* image=[GetImagePath getImagePath:self.isFocused?@"公司－公司详情_05b":@"公司－公司详情_05a"];
+    if (!self.imageView){
+        self.imageView=[[UIImageView alloc]initWithImage:image];
+    }else{
+        self.imageView.image=image;
+    }
+    self.noticeLabel.text=self.isFocused?@"已关注":@"加关注";
+    self.noticeLabel.textColor=self.isFocused?RGBCOLOR(141, 196, 62):RGBCOLOR(226, 97, 97);
+}
+
 -(void)initSecondView{
     self.noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(70, 16, 100, 20)];
-    if([self.model.a_focused isEqualToString:@"0"]){
-        self.imageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"公司－公司详情_05a"]];
-        self.noticeLabel.text=@"加关注";
-        self.noticeLabel.textColor=RGBCOLOR(226, 97, 97);
-    }else{
-        self.imageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"公司－公司详情_05b"]];
-        self.noticeLabel.text=@"已关注";
-        self.noticeLabel.textColor=RGBCOLOR(141, 196, 62);
-    }
+    [self handleContent];
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, self.myScrollView.contentSize.height, self.imageView.frame.size.width, self.imageView.frame.size.height)];
     [self scrollViewAddView:view];
     [view addSubview:self.imageView];
@@ -141,19 +148,28 @@
 }
 
 -(void)gotoNoticeView{
-    NSLog(@"用户选择了关注");
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"UserId"];
-    [dic setValue:self.model.a_id forKey:@"FocusId"];
-    [dic setValue:@"Company" forKey:@"FocusType"];
-    [dic setValue:@"Personal" forKey:@"UserType"];
-    [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            self.imageView.image = [GetImagePath getImagePath:@"公司－公司详情_05b"];
-            self.noticeLabel.text=@"加关注";
-            self.noticeLabel.textColor=RGBCOLOR(141, 196, 62);
-        }
-    } dic:dic];
+    if (self.isFocused) {
+        [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"UserId"];
+        [dic setValue:self.model.a_id forKey:@"FocusId"];
+        [CompanyApi DeleteFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                self.model.a_focused=@"0";
+                [self handleContent];
+            }
+        } dic:dic];
+    }else{
+        [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"UserId"];
+        [dic setValue:self.model.a_id forKey:@"FocusId"];
+        [dic setValue:@"Company" forKey:@"FocusType"];
+        [dic setValue:@"Personal" forKey:@"UserType"];
+        [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                self.model.a_focused=@"1";
+                [self handleContent];
+            }
+        } dic:dic];
+    }
     NSLog(@"用户选择了关注");
 }
 

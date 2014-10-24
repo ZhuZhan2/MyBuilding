@@ -51,11 +51,7 @@
     self.userNameLabel.text=model.a_userName;
     self.userBussniessLabel.text=model.a_duties;
     [self.rightBtn setBackgroundImage:isFocesed?[GetImagePath getImagePath:@"公司认证员工_08a"]:[GetImagePath getImagePath:@"公司认证员工_18a"] forState:UIControlStateNormal];
-    if (isFocesed) {
-        self.rightBtn.tag=-1;
-    }else{
-        self.rightBtn.tag=indexPathRow;
-    }
+    self.rightBtn.tag=indexPathRow;
 }
 
 @end
