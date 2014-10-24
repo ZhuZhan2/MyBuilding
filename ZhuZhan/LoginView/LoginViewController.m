@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "RegistViewController.h"
 #import "LoginSqlite.h"
+#import "LoginModel.h"
 #import "MD5.h"
 #import "ForgetPasswordViewController.h"
 @interface LoginViewController ()
@@ -80,12 +81,14 @@
     _passWordTextField.textAlignment=NSTextAlignmentLeft;
     _passWordTextField.placeholder=@"密码";
     _passWordTextField.returnKeyType=UIReturnKeyDone;
+    _passWordTextField.secureTextEntry = YES;
     _passWordTextField.clearButtonMode = UITextFieldViewModeAlways;
     [bgView addSubview:_passWordTextField];
     
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [loginBtn setBackgroundImage:[GetImagePath getImagePath:@"登录_22"] forState:UIControlStateNormal];
     [loginBtn setFrame:CGRectMake(0, 100, 277, 42)];
+    [loginBtn addTarget:self action:@selector(gotoLogin) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:loginBtn];
     
     UIButton *registBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -131,7 +134,7 @@
     [_passWordTextField resignFirstResponder];
 }
 
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
 }
@@ -139,5 +142,21 @@
 -(void)gotoRegist{
     RegistViewController *registView = [[RegistViewController alloc] init];
     [self.navigationController pushViewController:registView animated:YES];
+}
+
+-(void)gotoLogin{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:_userNameTextField.text forKey:@"userName"];
+    [dic setValue:[MD5 md5HexDigest:_passWordTextField.text] forKey:@"password"];
+    [dic setValue:@"mobile" forKey:@"deviceType"];
+    [LoginModel LoginWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            LoginModel *model = posts[0];
+            NSLog(@"%@",model.a_deviceToken);
+            [LoginSqlite insertData:model.a_deviceToken datakey:@"deviceToken"];
+            [LoginSqlite insertData:model.a_userId datakey:@"userId"];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    } dic:dic];
 }
 @end

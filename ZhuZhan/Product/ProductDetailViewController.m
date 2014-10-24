@@ -57,14 +57,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(NSString*)myName{
     if (!_myName) {
-        _myName=[LoginSqlite getdata:@"userName" defaultdata:@""];
+        _myName=[LoginSqlite getdata:@"userName"];
     }
     return _myName;
 }
 
 -(NSString*)myImageUrl{
     if (!_myImageUrl) {
-        _myImageUrl=[LoginSqlite getdata:@"userImageUrl" defaultdata:@""];
+        _myImageUrl=[LoginSqlite getdata:@"userImageUrl"];
         NSLog(@"%@",_myImageUrl);
     }
     return _myImageUrl;
@@ -283,7 +283,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)chooseComment:(UIButton*)button{
-    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken"];
     //判断是否有deviceToken,没有则进登录界面
     if ([deviceToken isEqualToString:@""]) {
         LoginViewController *loginVC = [[LoginViewController alloc] init];
@@ -364,7 +364,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [self.delegate finishAddCommentFromDetailWithPosts:posts];
             }
         }
-    } dic:[@{@"EntityId":self.entityID,@"CommentContents":comment,@"EntityType":self.category,@"CreatedBy":[LoginSqlite getdata:@"userId" defaultdata:@""]} mutableCopy]];
+    } dic:[@{@"EntityId":self.entityID,@"CommentContents":comment,@"EntityType":self.category,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy]];
 }
 
 //添加产品详情的评论
@@ -373,7 +373,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if (!error) {
             [self finishAddComment:comment];
         }
-    } dic:[@{@"EntityId":self.productModel.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId" defaultdata:@""]} mutableCopy]];
+    } dic:[@{@"EntityId":self.productModel.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy]];
 }
 
 //给tableView添加数据

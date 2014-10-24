@@ -99,7 +99,7 @@ static int chanceToLoginByFace =3;
 
     if (count==1)
     {//判断image的张数
-        person_id = [LoginSqlite getdata:@"userId" defaultdata:@""];
+        person_id = [LoginSqlite getdata:@"userId"];
         NSLog(@"********personId%@",person_id);
         
              NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
@@ -218,7 +218,7 @@ static int chanceToLoginByFace =3;
 {
     NSLog(@"detectWithImageArray");
     NSLog(@"WWWWW  %@",faceArray);
-    person_id = [LoginSqlite getdata:@"userId" defaultdata:@""];
+    person_id = [LoginSqlite getdata:@"userId"];
     NSLog(@"********personId%@",person_id);
     
     for (int i =0; i<faceArray.count; i++) {

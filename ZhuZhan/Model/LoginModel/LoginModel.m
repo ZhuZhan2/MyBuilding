@@ -9,12 +9,16 @@
 #import "LoginModel.h"
 #import "AFAppDotNetAPIClient.h"
 #import "ContactModel.h"
+#import "ProjectStage.h"
 @implementation LoginModel
 - (void)setDict:(NSDictionary *)dict{
     _dict = dict;
-     self.a_id = dict[@"userId"];
-     self.a_userToken = dict[@"userToken"];
-     self.a_deviceToken = dict[@"devicetoken"];
+    self.a_userId = [ProjectStage ProjectStrStage:dict[@"userId"]];
+    self.a_deviceToken = [ProjectStage ProjectStrStage:dict[@"deviceToken"]];
+    self.a_userName = [ProjectStage ProjectStrStage:dict[@"userName"]];
+    self.a_userType = [ProjectStage ProjectStrStage:dict[@"userType"]];
+    self.a_loginStatus = [ProjectStage ProjectStrStage:dict[@"loginStatus"]];
+    self.a_hasCompany = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"hasCompany"]]];
 }
 
 
@@ -124,13 +128,20 @@
     NSString *urlStr = [NSString stringWithFormat:@"api/account/login"];
     NSLog(@"dic===>%@",dic);
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON);
+        NSLog(@"JSON==>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON];
+            LoginModel *model = [[LoginModel alloc] init];
+            [model setDict:JSON[@"d"][@"data"][0]];
+            [mutablePosts addObject:model];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
-        } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {
             block([NSMutableArray array], error);

@@ -171,7 +171,7 @@
     BOOL isFocused=[model.a_isFocused isEqualToString:@"1"];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     if (isFocused) {
-        [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"UserId"];
+        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
         [dic setValue:model.a_id forKey:@"FocusId"];
         [CompanyApi DeleteFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
@@ -181,7 +181,7 @@
             btn.enabled=YES;
         } dic:dic];
     }else{
-        [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"UserId"];
+        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
         [dic setValue:model.a_id forKey:@"FocusId"];
         [dic setValue:@"Personal" forKey:@"FocusType"];
         [dic setValue:@"Personal" forKey:@"UserType"];

@@ -254,11 +254,11 @@
         NSLog(@"关注");
         [ProjectApi AddUserFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
             NSLog(@"notice sucess");
-        } dic:[@{@"UserId":[LoginSqlite getdata:@"userId" defaultdata:@""],@"ProjectId":self.model.a_id} mutableCopy]];
+        } dic:[@{@"UserId":[LoginSqlite getdata:@"userId"],@"ProjectId":self.model.a_id} mutableCopy]];
         
     }else if (buttonIndex==1){
         NSLog(@"评论");
-        NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+        NSString *deviceToken = [LoginSqlite getdata:@"deviceToken"];
         
         if ([deviceToken isEqualToString:@""]) {
             LoginViewController *loginVC = [[LoginViewController alloc] init];
@@ -292,7 +292,7 @@
         if (!error) {
             NSLog(@"sucess");
         }
-    } dic:[@{@"EntityId":self.model.a_id,@"entityType":@"Project",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId" defaultdata:@""]} mutableCopy]];
+    } dic:[@{@"EntityId":self.model.a_id,@"entityType":@"Project",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy]];
 }
 
 //**********************************************************************

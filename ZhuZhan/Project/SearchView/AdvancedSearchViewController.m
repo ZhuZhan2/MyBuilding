@@ -81,7 +81,7 @@
             }
             [_tableView reloadData];
         }
-    }userId:[LoginSqlite getdata:@"userId" defaultdata:@""]];
+    }userId:[LoginSqlite getdata:@"userId"]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -347,7 +347,7 @@
             }
             [_tableView reloadData];
         }
-    }userId:[LoginSqlite getdata:@"userId" defaultdata:@""]];
+    }userId:[LoginSqlite getdata:@"userId"]];
 }
 
 -(void)backView{

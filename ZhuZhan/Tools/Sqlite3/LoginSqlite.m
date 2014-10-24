@@ -7,7 +7,7 @@
 //
 
 #import "LoginSqlite.h"
-
+#import "SqliteHelper.h"
 @implementation LoginSqlite
 +(void)opensql
 {
@@ -16,12 +16,12 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documents = [paths objectAtIndex:0];
     NSString *database_path = [documents stringByAppendingPathComponent:DataBaseName];
-    //  NSLog(@"%@,=========%@",paths,database_path);
+    NSLog(@"%@,=========%@",paths,database_path);
     if (sqlite3_open([database_path UTF8String], &zhuZhanDB)==SQLITE_OK) {
         NSLog(@"打开数据库成功!");
         
         
-        NSString *createSQL = @"CREATE TABLE IF NOT EXISTS Login (primarykey INTEGER PRIMARY KEY  AUTOINCREMENT, data Varchar ,datakey Varchar);";
+        NSString *createSQL = @"CREATE TABLE IF NOT EXISTS Login (data Text ,datakey Text);";
         
         if (sqlite3_exec(zhuZhanDB, [createSQL UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK) {
             sqlite3_close(zhuZhanDB);
@@ -40,150 +40,29 @@
     
 }
 
-+(NSString *)getdata:(NSString *)datakey defaultdata:(NSString *)defaultdata
++(NSString *)getdata:(NSString *)datakey
 {
-    sqlite3 *zhuZhanDB;
-    char *errorMsg;
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    
-    NSString *documents = [paths objectAtIndex:0];
-    
-    NSString *database_path = [documents stringByAppendingPathComponent:DataBaseName];
-    
-    if (sqlite3_open([database_path UTF8String], &zhuZhanDB)==SQLITE_OK) {
-        
-        NSString *createSQL = @"CREATE TABLE IF NOT EXISTS Login (primarykey INTEGER PRIMARY KEY  AUTOINCREMENT, data Varchar,datakey Varchar);";
-        if (sqlite3_exec(zhuZhanDB, [createSQL UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK) {
-            sqlite3_close(zhuZhanDB);
-            NSAssert(0, @"创建数据库表错误: %s", errorMsg);
+    NSString *str = nil;
+    SqliteHelper *sqlite = [[SqliteHelper alloc] init];
+    if ([sqlite open:DataBaseName]) {
+        NSArray *results = [sqlite executeQuery:[NSString stringWithFormat:@"select data from Login where datakey='%@'",datakey]];
+        if(results.count !=0){
+            for(NSDictionary *item in results){
+                str = item[@"data"];
+            }
+        }else{
+            str = @"";
         }
-        
-    }
-    else
-    {
-        NSLog(@"打开数据库失败！");
-        
     }
     
-    char *name;
-    NSString *data=[[NSString alloc]initWithString:defaultdata];
-    sqlite3_stmt *statement;
-    NSString *sql=[[NSString alloc]initWithFormat:@"select datakey,data from Login where datakey='%@'",datakey];
-    const char *selectSql=[sql UTF8String];
-    if (sqlite3_prepare_v2(zhuZhanDB, selectSql, -1, &statement, nil)==SQLITE_OK) {
-        //NSLog(@"select ok.!!!!!!");
-        //查询成功
-    }
-    
-    while (sqlite3_step(statement)==SQLITE_ROW) {
-        name=(char *)sqlite3_column_text(statement, 1);
-        data=[[NSString alloc]initWithUTF8String:name];
-        
-    }
-    
-    
-    sqlite3_finalize(statement);
-    if(sqlite3_close(zhuZhanDB)==SQLITE_OK)
-    {  // NSLog(@"关闭数据库成功!");
-    }
-    return data;
+    return str;
 }
 
-+(void)insertData:(NSString *)data datakey:(NSString *)datakey
-{
-    sqlite3 *zhuZhanDB;
-    char *errorMsg;
-    sqlite3_stmt *stmt;
-    int i=0;
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documents = [paths objectAtIndex:0];
-    NSString *database_path = [documents stringByAppendingPathComponent:DataBaseName];
-    if (sqlite3_open([database_path UTF8String], &zhuZhanDB)==SQLITE_OK) {
-        
-        NSString *createSQL = @"CREATE TABLE IF NOT EXISTS Login (primarykey INTEGER PRIMARY KEY  AUTOINCREMENT, data Varchar,datakey Varchar);";
-        
-        if (sqlite3_exec(zhuZhanDB, [createSQL UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK) {
-            sqlite3_close(zhuZhanDB);
-            NSAssert(0, @"创建数据库表错误: %s", errorMsg);
-        }
-        
-    }
-    else
-    {
-        NSLog(@"打开数据库失败！");
-        
-    }
-    
-    
-    
-    
-    NSString *sql=[NSString stringWithFormat:@"select primarykey,datakey,data from Login where datakey='%@'",datakey];
-    const char *selectSql=[sql UTF8String];
-    
-    if (sqlite3_prepare_v2(zhuZhanDB, selectSql, -1, &stmt, nil)==SQLITE_OK) {
-        
-        //查询成功
-    }
-    else
-    {
-        
-    }
-    while (sqlite3_step(stmt)==SQLITE_ROW) {
-        i=sqlite3_column_int(stmt, 0);
-        
-    }
-    
-    
-    //如果之前的数据不存在 则主键加1新添一条记录
-    
-    if (i==0)
-    {
-        
-        NSString *sql=[NSString stringWithFormat:@"select primarykey,datakey,data from Login where primarykey=0"];
-        const char *selectSql=[sql UTF8String];
-        if (sqlite3_prepare_v2(zhuZhanDB, selectSql, -1, &stmt, nil)==SQLITE_OK) {
-            
-            //查询成功
-        }
-        
-        while (sqlite3_step(stmt)==SQLITE_ROW)
-        {
-            
-            i=sqlite3_column_int(stmt, 2);
-        }
-        i=i+1;
-        
-    }
-    
-    
-    char *update = "INSERT OR REPLACE INTO Login (primarykey,datakey, data) VALUES (?,?,?);";
-    if (sqlite3_prepare_v2(zhuZhanDB, update, -1, &stmt, nil) == SQLITE_OK) {
-        sqlite3_bind_int(stmt, 1, i);
-        sqlite3_bind_text(stmt,2, [datakey UTF8String],-1,NULL);
-        data=[NSString stringWithFormat:@"%@",data];
-        sqlite3_bind_text(stmt,3, [data UTF8String], -1, NULL);
-    }
-    
-    if (sqlite3_step(stmt) != SQLITE_DONE)
-        //NSAssert(0, @"更新数据库表FIELDS出错: %s", errorMsg);
-        sqlite3_finalize(stmt);
-    
-    
-    if (sqlite3_prepare_v2(zhuZhanDB, update, -1, &stmt, nil) == SQLITE_OK) {
-        sqlite3_bind_int(stmt, 1, 0);
-        sqlite3_bind_text(stmt,2, [@"primarykey" UTF8String],-1,NULL);
-        sqlite3_bind_int(stmt, 3, i);
-        
-    }
-    if (sqlite3_step(stmt) != SQLITE_DONE)
-        //NSAssert(0, @"更新数据库表FIELDS出错: %s", errorMsg);
-        sqlite3_finalize(stmt);
-    
-    
-    if(sqlite3_close(zhuZhanDB)==SQLITE_OK)
-    {  // NSLog(@"关闭数据库成功!");
-        
++(void)insertData:(NSString *)data datakey:(NSString *)datakey{
+    SqliteHelper *sqlite = [[SqliteHelper alloc] init];
+    if ([sqlite open:DataBaseName]) {
+        [sqlite executeQuery:@"INSERT INTO Login(data,datakey ) VALUES (?,?);",
+         data,datakey];
     }
 }
 

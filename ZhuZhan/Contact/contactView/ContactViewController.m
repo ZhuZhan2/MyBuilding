@@ -91,17 +91,17 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [errorview removeFromSuperview];
         errorview = nil;
         self.tableView.scrollEnabled = YES;
-        NSLog(@"====>%@",[LoginSqlite getdata:@"userId" defaultdata:@""]);
+        NSLog(@"====>%@",[LoginSqlite getdata:@"userId"]);
 
         [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                if(![[LoginSqlite getdata:@"userId" defaultdata:@""] isEqualToString:@""]){
+                if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
                     [LoginModel GetUserImagesWithBlock:^(NSMutableArray *posts, NSError *error) {
                         if(!error){
                             [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0]]];
                             [LoginSqlite insertData:posts[0] datakey:@"userImageUrl"];
                         }
-                    } userId:[LoginSqlite getdata:@"userId" defaultdata:@""]];
+                    } userId:[LoginSqlite getdata:@"userId"]];
                 }
                 
                 showArr = posts;
@@ -120,7 +120,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 
                 [self.tableView reloadData];
             }
-        } userId:[LoginSqlite getdata:@"userId" defaultdata:@""] startIndex:startIndex];
+        } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex];
     }
 }
 
@@ -130,7 +130,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 {
     NSLog(@"发布产品");
     
-    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken"];
     
     if ([deviceToken isEqualToString:@""]) {
         
@@ -194,7 +194,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     _timeScroller.hidden=NO;
                 });
             }
-        } userId:[LoginSqlite getdata:@"userId" defaultdata:@""] startIndex:startIndex];
+        } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex];
     }
 }
 
@@ -369,7 +369,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)gotoMyCenter{
     NSLog(@"gotoMyCenter");
 
-    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken"];
 
     if ([deviceToken isEqualToString:@""]) {
         LoginViewController *loginVC = [[LoginViewController alloc] init];
@@ -405,7 +405,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
         NSLog(@"关注好友");
        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-    NSString *userId = [LoginSqlite getdata:@"userId" defaultdata:@""];
+    NSString *userId = [LoginSqlite getdata:@"userId"];
     NSLog(@"*******%@",userId);
        NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithObjectsAndKeys:userId,@"userId",@"bfc78202-8ac9-447a-a99d-783606d25668",@"focusId", nil];
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -440,7 +440,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)addCommentView:(NSIndexPath *)indexPath{
     indexpath = indexPath;
     NSLog(@"%d",indexpath.row);
-    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken"];
     NSLog(@"********deviceToken***%@",deviceToken);
     if ([deviceToken isEqualToString:@""]) {
         
@@ -461,7 +461,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [dic setValue:model.a_id forKey:@"EntityId"];
     [dic setValue:[NSString stringWithFormat:@"%@",comment] forKey:@"CommentContents"];
     [dic setValue:model.a_category forKey:@"EntityType"];
-    [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"CreatedBy"];
+    [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"CreatedBy"];
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             [self finishPostCommentWithPosts:posts activesModel:model];
@@ -529,7 +529,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 __weak ContactViewController *wself = self;
                 [wself.pathCover stopRefresh];
             }
-        } userId:[LoginSqlite getdata:@"userId" defaultdata:@""] startIndex:startIndex];
+        } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex];
     }
 }
 
