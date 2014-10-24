@@ -26,32 +26,34 @@
 @implementation RegistViewController
 
 static bool IsVerify =NO;
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+-(void)initNavi{
+    //navi的影藏和颜色
+    self.navigationController.navigationBar.hidden=NO;
+    self.navigationController.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
+    //返还按钮
+    UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,5,29,28.5)];
+    [button setImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
+    //标题和标题设置
+    self.title = @"注册";
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
+}
+
+-(void)back{
+    [self.navigationController popViewControllerAnimated:YES];
+    self.navigationController.navigationBar.hidden=YES;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.navigationController.navigationBar.hidden =YES;
-    UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:self.view.frame];
-    [bgImgView setImage:[GetImagePath getImagePath:@"注册"]];
-    bgImgView.userInteractionEnabled =YES;
-    [self.view addSubview:bgImgView];
+    [self initNavi];
+    self.view.backgroundColor=RGBCOLOR(242, 242, 242);
     
     UIView *panView = [[UIView alloc] initWithFrame:CGRectMake(28,140,264,260)];
     panView.tag = 2014080103;
     [self.view addSubview:panView];
-    
-    UIImageView *bgImgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,264,91)];
-    [bgImgView2 setImage:[GetImagePath getImagePath:@"登录_07"]];
-    [panView addSubview:bgImgView2];
     
     //新建电话号码文本框
     _phoneNumberTextField = [[UITextField alloc] initWithFrame:CGRectMake(10,0,255,45)];
@@ -77,10 +79,6 @@ static bool IsVerify =NO;
     [getCodeBtn addTarget:self action:@selector(getVerifitionCode) forControlEvents:UIControlEventTouchUpInside];
     [panView addSubview:getCodeBtn];
     
-    UIImageView *bgImgView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0,110,264,91)];
-    [bgImgView3 setImage:[GetImagePath getImagePath:@"登录_07"]];
-    [panView addSubview:bgImgView3];
-    
     //新建密码文本框
     passWordField = [[UITextField alloc] initWithFrame:CGRectMake(10,110,255,45)];
     passWordField.delegate = self;
@@ -100,7 +98,7 @@ static bool IsVerify =NO;
     verifyPassWordField.clearButtonMode =YES;
     verifyPassWordField.secureTextEntry = YES;
     [panView addSubview:verifyPassWordField];
-
+    
     UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     registerBtn.frame = CGRectMake(0, 220, 128, 40);
     [registerBtn setBackgroundImage:[GetImagePath getImagePath:@"注册_07"] forState:UIControlStateNormal];
@@ -120,43 +118,20 @@ static bool IsVerify =NO;
     
 }
 
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-//    //恢复tabBar
-//    AppDelegate* app=[AppDelegate instance];
-//    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-//    [homeVC homePageTabBarRestore];
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    //隐藏tabBar
-//    AppDelegate* app=[AppDelegate instance];
-//    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-//    [homeVC homePageTabBarHide];
-}
-
-
-
 #pragma mark UITextFieldDelegate
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [textField becomeFirstResponder];
-
-
-    
 }
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    
-        if ([textField.text length]==0) {
+    if ([textField.text length]==0) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"输入不能为空"delegate:nil cancelButtonTitle:@"是"otherButtonTitles: nil];
         [alert show];
-        
-        
     }
-   
+    
     [textField resignFirstResponder];
     return YES;
 }
@@ -172,7 +147,7 @@ static bool IsVerify =NO;
     [passWordField resignFirstResponder];
     [verifyPassWordField resignFirstResponder];
     [_yzmTextField resignFirstResponder];
-   
+    
 }
 
 
@@ -184,7 +159,7 @@ static bool IsVerify =NO;
     if (numberOfMatches!=1) {
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"手机号码不正确，请重新输入" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
-
+        
         return NO;
     }
     return YES;
@@ -193,39 +168,39 @@ static bool IsVerify =NO;
 
 
 -(void)getVerifitionCode{
-
-//    NSLog(@"获取验证码！！");
-//    NSMutableDictionary *parameters =[[NSMutableDictionary alloc] initWithObjectsAndKeys:_phoneNumberTextField.text,@"cellPhone",nil];
-//    NSLog(@"nininiiinmmmmmmmmmmmm%@",parameters);
-//    
-//    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"%s/api/code/generate",kAPIAdress] parameters:parameters error:nil];
-//
-//    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//    op.responseSerializer = [AFJSONResponseSerializer serializer];
-//    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"responseJSON12123%@",responseObject);
-//        
-//        NSNumber *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
-//        if ([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]) {
-//            IsVerify =YES;
-//            NSLog(@"手机号码提交成功");
-//            
-//        }else{
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"系统错误" delegate:nil cancelButtonTitle: @"是" otherButtonTitles: nil];
-//            [alert show];
-//        }
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"kokokoko%@",error);
-//    }];
-//         [[NSOperationQueue mainQueue] addOperation:op];
-//
+    
+    //    NSLog(@"获取验证码！！");
+    //    NSMutableDictionary *parameters =[[NSMutableDictionary alloc] initWithObjectsAndKeys:_phoneNumberTextField.text,@"cellPhone",nil];
+    //    NSLog(@"nininiiinmmmmmmmmmmmm%@",parameters);
+    //
+    //    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"%s/api/code/generate",kAPIAdress] parameters:parameters error:nil];
+    //
+    //    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    //    op.responseSerializer = [AFJSONResponseSerializer serializer];
+    //    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    //        NSLog(@"responseJSON12123%@",responseObject);
+    //
+    //        NSNumber *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
+    //        if ([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]) {
+    //            IsVerify =YES;
+    //            NSLog(@"手机号码提交成功");
+    //
+    //        }else{
+    //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"系统错误" delegate:nil cancelButtonTitle: @"是" otherButtonTitles: nil];
+    //            [alert show];
+    //        }
+    //
+    //    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    //        NSLog(@"kokokoko%@",error);
+    //    }];
+    //         [[NSOperationQueue mainQueue] addOperation:op];
+    //
 }
 
 -(void)cancelRegister
 {
     [self.navigationController popViewControllerAnimated:YES];
-
+    
     NSLog(@"取消注册");
 }
 
@@ -241,23 +216,23 @@ static bool IsVerify =NO;
 {
     
     if (buttonIndex==0) {
-
-            [self faceCollect];//开始采集照片
-
+        
+        [self faceCollect];//开始采集照片
+        
     }
     else if (buttonIndex==1){//直接登录
         [self recognizeSuccess];
-
+        
     }
     
 }
 
 -(void)faceCollect//进行脸部信息采集
 {
-
+    
     PanViewController *panVC = [[PanViewController alloc] init];
     [self.navigationController pushViewController:panVC animated:NO];
-
+    
 }
 
 - (void)commomRegister//账号密码的注册
@@ -267,20 +242,20 @@ static bool IsVerify =NO;
     if (![self phoneNoErr:_phoneNumberTextField.text]) {
         return;
     }
-   
-//    if (!IsVerify) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请单击获取手机验证码" delegate:nil cancelButtonTitle:@"是" otherButtonTitles:nil];
-//        [alert show];
-//        return;
-//    }
-//
-//    if ([_yzmTextField.text length]==0) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"手机验证码不能为空" delegate:nil cancelButtonTitle:@"是" otherButtonTitles:nil];
-//        [alert show];
-//        return;
-//        
-//    }
-
+    
+    //    if (!IsVerify) {
+    //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请单击获取手机验证码" delegate:nil cancelButtonTitle:@"是" otherButtonTitles:nil];
+    //        [alert show];
+    //        return;
+    //    }
+    //
+    //    if ([_yzmTextField.text length]==0) {
+    //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"手机验证码不能为空" delegate:nil cancelButtonTitle:@"是" otherButtonTitles:nil];
+    //        [alert show];
+    //        return;
+    //
+    //    }
+    
     if (![passWordField.text isEqualToString:verifyPassWordField.text]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"两次输入的密码不一致，请重新输入！" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil];
         [alert show];
@@ -294,15 +269,15 @@ static bool IsVerify =NO;
         return;
     }
     
-
-
-       //进行注册
+    
+    
+    //进行注册
     //**********************************
-
-
+    
+    
     NSMutableDictionary *parameters =[[NSMutableDictionary alloc] initWithObjectsAndKeys:_phoneNumberTextField.text,@"cellPhone",[MD5 md5HexDigest:passWordField.text],@"password",@"mobile",@"deviceType",_yzmTextField.text,@"barCode",nil];
     NSLog(@"nininiiinmmmmmmmmmmmm%@",parameters);
-
+    
     [LoginModel RegisterWithBlock:^(NSMutableArray *posts, NSError *error) {
         NSDictionary *responseObject = [posts objectAtIndex:0];
         NSNumber *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
@@ -318,10 +293,10 @@ static bool IsVerify =NO;
                 [LoginSqlite opensql];
                 [LoginSqlite insertData:[item objectForKey:@"isFaceRegister"] datakey:@"isFaceRegister"];
                 [LoginSqlite insertData:[item objectForKey:@"faceCount"] datakey:@"faceCount"];
-                 NSLog(@"***********%@",[item objectForKey:@"userName"]);
+                NSLog(@"***********%@",[item objectForKey:@"userName"]);
                 NSString *userName =[NSString stringWithFormat:@"%@",[item objectForKey:@"userName"]];
                 if ([userName isEqualToString:@"(null)"]||[userName isEqualToString:@"<null>"]) {
-                userName = @"";
+                    userName = @"";
                 }
                 [LoginSqlite insertData:userName datakey:@"userName"];//待会跟岳志强沟通
                 [LoginSqlite insertData:[item objectForKey:@"userId"] datakey:@"userId"];
@@ -343,9 +318,9 @@ static bool IsVerify =NO;
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:responseObject[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
-
+        
     } dic:parameters];
-
+    
 }
 
 
@@ -367,7 +342,7 @@ static bool IsVerify =NO;
     
     [[AppDelegate instance] window].rootViewController = homepage;
     [[[AppDelegate instance] window] makeKeyAndVisible];
-
+    
 }
 
 - (void)didReceiveMemoryWarning
