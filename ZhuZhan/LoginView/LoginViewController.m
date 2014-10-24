@@ -31,18 +31,33 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.hidden = YES;
-    UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 321, 568)];
-    [bgImgView setImage:[GetImagePath getImagePath:@"注册"]];
-    [self.view addSubview:bgImgView];
+    self.view.backgroundColor = RGBCOLOR(85, 103, 166);
     
-    UIImageView *headerImgView = [[UIImageView alloc] initWithFrame:CGRectMake(111, 80, 98.5, 98.5)];
-    [headerImgView setImage:[GetImagePath getImagePath:@"登录_03"]];
-    UIImageView *roundView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 89, 89)];
-    roundView.layer.masksToBounds = YES;
-    roundView.layer.cornerRadius = 45;
-    [roundView setImage:nil];
-    [headerImgView addSubview:roundView];
-    [self.view addSubview:headerImgView];
+    UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cancelBtn setBackgroundImage:[GetImagePath getImagePath:@"登录_03"] forState:UIControlStateNormal];
+    [cancelBtn setFrame:CGRectMake(20, 30, 26, 26)];
+    [cancelBtn addTarget:self action:@selector(cancelClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:cancelBtn];
+    
+    UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 110, 74, 77)];
+    [bgImage setImage:[GetImagePath getImagePath:@"登录_07"]];
+    [self.view addSubview:bgImage];
+    
+    UIImageView *bgImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(21.5, 230, 277, 200)];
+    [bgImage2 setBackgroundColor:[UIColor redColor]];
+    [self.view addSubview:bgImage2];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 277, 41)];
+    [imageView setImage:[GetImagePath getImagePath:@"登录_19"]];
+    [bgImage2 addSubview:imageView];
+    
+    UIImageView *imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 42, 277, 41)];
+    [imageView2 setImage:[GetImagePath getImagePath:@"登录_19"]];
+    [bgImage2 addSubview:imageView2];
+    
+    //UIImageView *imageView3
+    
+    
 }
 
 
@@ -52,4 +67,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)cancelClick{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 @end
