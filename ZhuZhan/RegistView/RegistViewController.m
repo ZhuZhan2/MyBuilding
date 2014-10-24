@@ -19,6 +19,7 @@
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
 #import "MD5.h"
+#import "ClauseViewController.h"
 @interface RegistViewController ()
 
 @end
@@ -49,6 +50,9 @@ static bool IsVerify =NO;
     UIView* firstView=[[UIView alloc]initWithFrame:CGRectMake(0, 80, 320, 94)];
     firstView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:firstView];
+    UIImageView* backView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"注册_02"]];
+    [firstView addSubview:backView];
+    
     [self addSeparatorLineInView:firstView];
     //新建电话号码文本框
     _phoneNumberTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,0,276,47)];
@@ -80,8 +84,9 @@ static bool IsVerify =NO;
 -(void)addSeparatorLineInView:(UIView*)view{
     NSInteger number=view.frame.size.height/47-1;
     for (int i=0; i<number; i++) {
+        NSLog(@"number==%d",number);
         UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(20, 47*(i+1), 280, 1)];
-        separatorLine.backgroundColor=RGBCOLOR(242, 242, 242);
+        separatorLine.backgroundColor=RGBCOLOR(222, 222, 222);
         [view addSubview:separatorLine];
     }
 }
@@ -90,6 +95,9 @@ static bool IsVerify =NO;
     UIView* secondView=[[UIView alloc]initWithFrame:CGRectMake(0, 194, 320, 141)];
     secondView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:secondView];
+    UIImageView* backView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"注册_04"]];
+    [secondView addSubview:backView];
+    
     [self addSeparatorLineInView:secondView];
 
     //账号文本框
@@ -126,7 +134,7 @@ static bool IsVerify =NO;
 {
     [super viewDidLoad];
     [self initNavi];
-    self.view.backgroundColor=RGBCOLOR(242, 242, 242);
+    self.view.backgroundColor=RGBCOLOR(245, 246, 248);
     [self loadFirstView];
     [self loadSecondView];
     [self loadRegisterBtn];
@@ -145,7 +153,8 @@ static bool IsVerify =NO;
 }
 
 -(void)chooseClause{
-    NSLog(@"选择了条款");
+    ClauseViewController* vc=[[ClauseViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)loadRegisterBtn{

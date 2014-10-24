@@ -966,6 +966,11 @@
 		5B4C197A19FA4ACC00C6C57D /* 注册_02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4C197619FA4ACC00C6C57D /* 注册_02@2x.png */; };
 		5B4C197B19FA4ACC00C6C57D /* 注册_04.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4C197719FA4ACC00C6C57D /* 注册_04.png */; };
 		5B4C197C19FA4ACC00C6C57D /* 注册_04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4C197819FA4ACC00C6C57D /* 注册_04@2x.png */; };
+		5B4C197F19FA515700C6C57D /* 用户条款_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4C197D19FA515700C6C57D /* 用户条款_02.png */; };
+		5B4C198019FA515700C6C57D /* 用户条款_02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4C197E19FA515700C6C57D /* 用户条款_02@2x.png */; };
+		5B4C198319FA518800C6C57D /* ClauseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4C198219FA518800C6C57D /* ClauseViewController.m */; };
+		5B4C198619FA543C00C6C57D /* 用户条款_05.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4C198419FA543C00C6C57D /* 用户条款_05.png */; };
+		5B4C198719FA543C00C6C57D /* 用户条款_05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4C198519FA543C00C6C57D /* 用户条款_05@2x.png */; };
 		5B4E8A5819F8EA9800EA9AFF /* CompanyTotalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E8A5719F8EA9800EA9AFF /* CompanyTotalViewController.m */; };
 		5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
 		5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF819932E36007D79A8 /* QuadCurveMenu.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -2429,6 +2434,12 @@
 		5B4C197619FA4ACC00C6C57D /* 注册_02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_02@2x.png"; sourceTree = "<group>"; };
 		5B4C197719FA4ACC00C6C57D /* 注册_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_04.png"; sourceTree = "<group>"; };
 		5B4C197819FA4ACC00C6C57D /* 注册_04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_04@2x.png"; sourceTree = "<group>"; };
+		5B4C197D19FA515700C6C57D /* 用户条款_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "用户条款_02.png"; sourceTree = "<group>"; };
+		5B4C197E19FA515700C6C57D /* 用户条款_02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "用户条款_02@2x.png"; sourceTree = "<group>"; };
+		5B4C198119FA518800C6C57D /* ClauseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClauseViewController.h; sourceTree = "<group>"; };
+		5B4C198219FA518800C6C57D /* ClauseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClauseViewController.m; sourceTree = "<group>"; };
+		5B4C198419FA543C00C6C57D /* 用户条款_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "用户条款_05.png"; sourceTree = "<group>"; };
+		5B4C198519FA543C00C6C57D /* 用户条款_05@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "用户条款_05@2x.png"; sourceTree = "<group>"; };
 		5B4E8A5619F8EA9800EA9AFF /* CompanyTotalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyTotalViewController.h; sourceTree = "<group>"; };
 		5B4E8A5719F8EA9800EA9AFF /* CompanyTotalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyTotalViewController.m; sourceTree = "<group>"; };
 		5B656CF419931275007D79A8 /* CompanyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMemberViewController.h; sourceTree = "<group>"; };
@@ -2824,6 +2835,8 @@
 				0426C05219922D5900CD8822 /* PanViewController.m */,
 				0426C05319922D5900CD8822 /* RegistViewController.h */,
 				0426C05419922D5900CD8822 /* RegistViewController.m */,
+				5B4C198119FA518800C6C57D /* ClauseViewController.h */,
+				5B4C198219FA518800C6C57D /* ClauseViewController.m */,
 			);
 			path = RegistView;
 			sourceTree = "<group>";
@@ -4800,6 +4813,10 @@
 				5B4C197019FA444800C6C57D /* 注册_07@2x.png */,
 				04BC3FFE19D7E5B1006B5C7B /* 注册_09.png */,
 				04BC3FFF19D7E5B1006B5C7B /* 注册_09@2x.png */,
+				5B4C197D19FA515700C6C57D /* 用户条款_02.png */,
+				5B4C197E19FA515700C6C57D /* 用户条款_02@2x.png */,
+				5B4C198419FA543C00C6C57D /* 用户条款_05.png */,
+				5B4C198519FA543C00C6C57D /* 用户条款_05@2x.png */,
 				04BC400019D7E5B1006B5C7B /* 登录1_03.png */,
 				04BC400119D7E5B1006B5C7B /* 登录1_03@2x.png */,
 				04BC400219D7E5B1006B5C7B /* 登录1_07.png */,
@@ -5201,6 +5218,7 @@
 				04BC41EA19D7E5B3006B5C7B /* 人脉－账号设置_10a@2x.png in Resources */,
 				04BC428F19D7E5B3006B5C7B /* 登录_15@2x.png in Resources */,
 				04BC412F19D7E5B3006B5C7B /* circle@2x.png in Resources */,
+				5B4C198019FA515700C6C57D /* 用户条款_02@2x.png in Resources */,
 				04BC42E319D7E5B3006B5C7B /* 项目详情-筛选_03@2x.png in Resources */,
 				04BC417F19D7E5B3006B5C7B /* 人脉_27a.png in Resources */,
 				D3D74E8919FA2FEC00ED8B62 /* 登录_24.png in Resources */,
@@ -5338,6 +5356,7 @@
 				04BC435A19D7E5B3006B5C7B /* 高级搜索-多选_07a.png in Resources */,
 				04BC433619D7E5B3006B5C7B /* 项目－项目专题_11a-20.png in Resources */,
 				5B4C197C19FA4ACC00C6C57D /* 注册_04@2x.png in Resources */,
+				5B4C197F19FA515700C6C57D /* 用户条款_02.png in Resources */,
 				04BC417719D7E5B3006B5C7B /* 人脉_03a.png in Resources */,
 				0426BFF519922CE400CD8822 /* InfoPlist.strings in Resources */,
 				04BC425219D7E5B3006B5C7B /* 搜索_05@2x.png in Resources */,
@@ -5440,6 +5459,7 @@
 				04BC41BE19D7E5B3006B5C7B /* 人脉－人的详情_09a@2x.png in Resources */,
 				04BC41AE19D7E5B3006B5C7B /* 人脉－人的详情1_23a@2x.png in Resources */,
 				04BC412419D7E5B3006B5C7B /* bg-addbutton.png in Resources */,
+				5B4C198619FA543C00C6C57D /* 用户条款_05.png in Resources */,
 				04BC42D319D7E5B3006B5C7B /* 项目详情-3_14a@2x.png in Resources */,
 				04BC41EB19D7E5B3006B5C7B /* 人脉－账号设置_14a.png in Resources */,
 				04BC41C419D7E5B3006B5C7B /* 人脉－人的详情_23a@2x.png in Resources */,
@@ -5547,6 +5567,7 @@
 				04BC426219D7E5B3006B5C7B /* 数据加载失败_03a@2x.png in Resources */,
 				04BC425019D7E5B3006B5C7B /* 搜索_03@2x.png in Resources */,
 				04BC430619D7E5B3006B5C7B /* 项目详情-筛选_50a.png in Resources */,
+				5B4C198719FA543C00C6C57D /* 用户条款_05@2x.png in Resources */,
 				04BC42A419D7E5B3006B5C7B /* 语音搜索_04.png in Resources */,
 				04BC424819D7E5B3006B5C7B /* 地图搜索结果_33a@2x.png in Resources */,
 				D3D74EC619FA308000ED8B62 /* 密码找回_23.png in Resources */,
@@ -5836,6 +5857,7 @@
 				0426C28819922D5A00CD8822 /* GPUImageLineGenerator.m in Sources */,
 				5B13C70919B6E53A008EA7A0 /* ProductCommentView.m in Sources */,
 				042D9E1519B559FC00689C5D /* MyView.m in Sources */,
+				5B4C198319FA518800C6C57D /* ClauseViewController.m in Sources */,
 				D3AD60A619AC5769001FD483 /* MBProgressHUD.m in Sources */,
 				D3A4281019C1749E00BAB6C7 /* ErrorView.m in Sources */,
 				04BF13B719C4162A002E02C9 /* ProjectContactModel.m in Sources */,
