@@ -29,6 +29,7 @@
 #import "LoginSqlite.h"
 #import "ProgramDetailViewController.h"
 #import "MJRefresh.h"
+#import "RegistViewController.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
