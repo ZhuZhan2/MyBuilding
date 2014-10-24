@@ -29,7 +29,7 @@
     BOOL imageUrlExist=![model.a_imageUrl isEqualToString:@""];
     //动态图像
     if(imageUrlExist){
-        imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
+        imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001"]];
         imageView.frame = CGRectMake(0, 0, 310,[model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310);
         imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
         [forCornerView addSubview:imageView];
@@ -86,7 +86,7 @@
 
     //用户头像
     tempHeight=imageView?imageView.frame.origin.y+5:contentTotalView.frame.origin.y+10;
-    EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
+    EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"公司认证员工_05a"]];
     userImageView.layer.masksToBounds = YES;
     userImageView.layer.cornerRadius = 3;
     userImageView.frame=CGRectMake(5,tempHeight,37,37);

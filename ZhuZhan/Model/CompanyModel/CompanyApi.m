@@ -166,12 +166,12 @@
         NSLog(@"JSON==>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            NSLog(@"1300");
+            NSLog(@"成功取消");
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1308"]){
-            NSLog(@"1308");
+        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1306"]){
+            NSLog(@"已经取消");
             if (block) {
                 block(nil, nil);
             }
@@ -181,7 +181,10 @@
         }
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
     }];
 }
 @end

@@ -241,7 +241,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     //用户头像
     tempHeight=imageView?imageView.frame.origin.y:contentTotalView.frame.origin.y;
-    EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001.png"]];
+    EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"公司认证员工_05a"]];
     userImageView.layer.masksToBounds = YES;
     userImageView.layer.cornerRadius = 3;
     userImageView.frame=CGRectMake(5,tempHeight+5,37,37);
