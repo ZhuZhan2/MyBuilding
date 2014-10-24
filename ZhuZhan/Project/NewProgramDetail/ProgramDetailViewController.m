@@ -261,12 +261,8 @@
         NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
         
         if ([deviceToken isEqualToString:@""]) {
-            
             LoginViewController *loginVC = [[LoginViewController alloc] init];
-            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
-            [[AppDelegate instance] window].rootViewController = naVC;
-            [[[AppDelegate instance] window] makeKeyAndVisible];
-            return;
+            [self presentViewController:loginVC animated:YES completion:nil];
         }
         
         self.addCommentVC=[[AddCommentViewController alloc]init];

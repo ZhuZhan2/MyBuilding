@@ -134,10 +134,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if ([deviceToken isEqualToString:@""]) {
         
         LoginViewController *loginVC = [[LoginViewController alloc] init];
-        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
-        [[AppDelegate instance] window].rootViewController = naVC;
-        [[[AppDelegate instance] window] makeKeyAndVisible];
-        return;
+        [self presentViewController:loginVC animated:YES completion:nil];
     }
     
     PublishViewController *publishVC = [[PublishViewController alloc] init];
@@ -375,10 +372,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if ([deviceToken isEqualToString:@""]) {
         
         LoginViewController *loginVC = [[LoginViewController alloc] init];
-        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
-        [[AppDelegate instance] window].rootViewController = naVC;
-        [[[AppDelegate instance] window] makeKeyAndVisible];
-        return;
+        [self presentViewController:loginVC animated:YES completion:nil];
     }
     
     PersonalCenterViewController *personalVC = [[PersonalCenterViewController alloc] init];
@@ -449,10 +443,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if ([deviceToken isEqualToString:@""]) {
         
         LoginViewController *loginVC = [[LoginViewController alloc] init];
-        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
-        [[AppDelegate instance] window].rootViewController = naVC;
-        [[[AppDelegate instance] window] makeKeyAndVisible];
-        return;
+        [self presentViewController:loginVC animated:YES completion:nil];
     }
     addCommentView = [[AddCommentViewController alloc] init];
     addCommentView.delegate = self;
