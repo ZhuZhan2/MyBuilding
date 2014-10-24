@@ -221,7 +221,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
 -(void)goToPublish
 {
 
-    NSString *userIdStr = [LoginSqlite getdata:@"userId" defaultdata:@""];
+    NSString *userIdStr = [LoginSqlite getdata:@"userId"];
 
     if ([inputView.text isEqualToString:@""]&&[publishImageStr isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布内容不能为空" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];

@@ -70,7 +70,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154)];
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"首页_16"]];
-    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,[LoginSqlite getdata:@"userImageUrl" defaultdata:@""]]];
+    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,[LoginSqlite getdata:@"userImageUrl"]]];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadImageFrame:CGRectMake(125, -20, 70, 70)];
     [_pathCover.headImage.layer setMasksToBounds:YES];
@@ -128,7 +128,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 block();
             }
         }
-    } userId:[LoginSqlite getdata:@"userId" defaultdata:@""] startIndex:startIndex];
+    } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex];
 }
 
 /**
@@ -166,7 +166,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [self.tableView reloadData];
                 _timeScroller.hidden=NO;
             }
-        } userId:[LoginSqlite getdata:@"userId" defaultdata:@""] startIndex:startIndex];
+        } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex];
 
     }
 }

@@ -142,11 +142,15 @@
 -(void)gotoLogin{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:_userNameTextField.text forKey:@"userName"];
-    [dic setValue:_passWordTextField.text forKey:@"password"];
+    [dic setValue:[MD5 md5HexDigest:_passWordTextField.text] forKey:@"password"];
     [dic setValue:@"mobile" forKey:@"deviceType"];
     [LoginModel LoginWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-        
+            LoginModel *model = posts[0];
+            NSLog(@"%@",model.a_deviceToken);
+            [LoginSqlite insertData:model.a_deviceToken datakey:@"deviceToken"];
+            [LoginSqlite insertData:model.a_userId datakey:@"userId"];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
     } dic:dic];
 }

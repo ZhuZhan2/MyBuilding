@@ -150,7 +150,7 @@
     btn.userInteractionEnabled=NO;
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     if (self.isFocused) {
-        [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"UserId"];
+        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
         [dic setValue:self.model.a_id forKey:@"FocusId"];
         [CompanyApi DeleteFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
@@ -160,7 +160,7 @@
             btn.userInteractionEnabled=YES;
         } dic:dic];
     }else{
-        [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"UserId"];
+        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
         [dic setValue:self.model.a_id forKey:@"FocusId"];
         [dic setValue:@"Company" forKey:@"FocusType"];
         [dic setValue:@"Personal" forKey:@"UserType"];

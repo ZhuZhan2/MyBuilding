@@ -267,7 +267,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 {
     People++;//传入的image的数量
     if (isBeginToCutFace ==YES) {
-        NSLog(@"asdf12323233dsaf");
         isBeginToCutFace =NO;
         [_session stopRunning];
         _session = nil;
@@ -277,7 +276,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         _device = nil;
         _imageView.image = image;
         
-        if([[LoginSqlite getdata:@"isFaceRegister" defaultdata:@""] isEqualToString:@"1"]){//识别登录
+        if([[LoginSqlite getdata:@"isFaceRegister"] isEqualToString:@"1"]){//识别登录
                 [event detectWithImage:image With:People];
             
         }else{

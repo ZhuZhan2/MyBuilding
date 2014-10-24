@@ -150,7 +150,7 @@
 -(void)gotoNoticeView{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     if (self.isFocused) {
-        [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"UserId"];
+        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
         [dic setValue:self.model.a_id forKey:@"FocusId"];
         [CompanyApi DeleteFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
@@ -159,7 +159,7 @@
             }
         } dic:dic];
     }else{
-        [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"UserId"];
+        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
         [dic setValue:self.model.a_id forKey:@"FocusId"];
         [dic setValue:@"Company" forKey:@"FocusType"];
         [dic setValue:@"Personal" forKey:@"UserType"];
@@ -176,7 +176,7 @@
 -(void)applyForCertification{
     NSLog(@"用户选择了 申请关注");
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"employeeId"];
+    [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"employeeId"];
     [dic setValue:self.model.a_id forKey:@"companyId"];
     [CompanyApi AddCompanyEmployeeWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){

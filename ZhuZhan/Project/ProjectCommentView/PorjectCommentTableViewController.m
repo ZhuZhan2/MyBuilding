@@ -83,7 +83,7 @@
 }
 
 -(void)rightBtnClick{
-    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken" defaultdata:@""];
+    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken"];
     
     if ([deviceToken isEqualToString:@""]) {
         
@@ -206,7 +206,7 @@
     [dic setValue:self.projectId forKey:@"EntityId"];
     [dic setValue:[NSString stringWithFormat:@"%@",comment] forKey:@"CommentContents"];
     [dic setValue:@"Project" forKey:@"EntityType"];
-    [dic setValue:[LoginSqlite getdata:@"userId" defaultdata:@""] forKey:@"CreatedBy"];
+    [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"CreatedBy"];
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             ContactCommentModel *model = [[ContactCommentModel alloc] init];

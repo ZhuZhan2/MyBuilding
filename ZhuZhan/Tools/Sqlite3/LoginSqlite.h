@@ -10,7 +10,7 @@
 #import "SqliteHelper.h"
 @interface LoginSqlite : NSObject
 +(void)opensql;
-+(NSString *)getdata:(NSString *)datakey defaultdata:(NSString *)defaultdata;
++(NSString *)getdata:(NSString *)datakey;
 +(void)insertData:(NSString *)data datakey:(NSString *)datakey;
 +(void)dropTable;
 @end
