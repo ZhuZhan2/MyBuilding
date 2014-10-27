@@ -93,6 +93,11 @@
     userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_avatarUrl]];
     [forCornerView addSubview:userImageView];
     
+    UIButton *uesrImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    uesrImageBtn.frame = CGRectMake(5,tempHeight,37,37);
+    [uesrImageBtn addTarget:commentView action:@selector(gotoShowViewClick) forControlEvents:UIControlEventTouchUpInside];
+    [forCornerView addSubview:uesrImageBtn];
+    
     forCornerView.frame=CGRectMake(5, 5, 310, height-5);
     
     //评论tableView
@@ -218,5 +223,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 50;
+}
+
+-(void)gotoShowViewClick{
+    if([self.delegate respondsToSelector:@selector(gotoShowView:)]){
+        [self.delegate gotoShowView:_indexpath];
+    }
 }
 @end

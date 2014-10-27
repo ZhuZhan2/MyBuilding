@@ -270,7 +270,22 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }
     }else if([model.a_category isEqualToString:@"Company"]){
         if([model.a_eventType isEqualToString:@"Actives"]){
-            
+            NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if(!cell){
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            cell.selectionStyle = NO;
+            for(int i=0;i<cell.contentView.subviews.count;i++) {
+                [((UIView*)[cell.contentView.subviews objectAtIndex:i]) removeFromSuperview];
+            }
+            commentView = viewArr[indexPath.row];
+            commentView.indexpath = indexpath;
+            commentView.delegate = self;
+            commentView.indexpath = indexPath;
+            commentView.showArr = model.a_commentsArr;
+            [cell.contentView addSubview:commentView];
+            return cell;
         }else{
             NSString *CellIdentifier = [NSString stringWithFormat:@"ContactTableViewCell"];
             ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -310,7 +325,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }
     }else if([model.a_category isEqualToString:@"Company"]){
         if([model.a_eventType isEqualToString:@"Actives"]){
-            return 100;
+            commentView = viewArr[indexPath.row];
+            return commentView.frame.size.height;
         }else{
             return 50;
         }
@@ -335,13 +351,19 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [self.navigationController pushViewController:vc animated:YES];
     }else if([model.a_category isEqualToString:@"Personal"]){
         if([model.a_eventType isEqualToString:@"Actives"]){
-            
+            ActivesModel *model = showArr[indexPath.row];
+            NSLog(@"==>%@",model.a_entityUrl);
+            ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+            [self.navigationController pushViewController:vc animated:YES];
         }else{
             
         }
     }else if([model.a_category isEqualToString:@"Company"]){
         if([model.a_eventType isEqualToString:@"Actives"]){
-            
+            ActivesModel *model = showArr[indexPath.row];
+            NSLog(@"==>%@",model.a_entityUrl);
+            ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+            [self.navigationController pushViewController:vc animated:YES];
         }else{
             
         }
@@ -388,6 +410,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
     showVC.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
     
+    [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
+}
+
+-(void)gotoShowView:(NSIndexPath *)indexPath{
+    showVC = [[ShowViewController alloc] init];
+    showVC.delegate =self;
+    [showVC.view setFrame:CGRectMake(40, 70, 220, 240)];
+    showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
+    showVC.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
     [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
 }
 
