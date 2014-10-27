@@ -16,4 +16,5 @@
 @end
 @interface ErrorView : UIView
 @property(nonatomic,weak)id<ErrorViewDelegate>delegate;
++(ErrorView*)errorViewWithFrame:(CGRect)frame superView:(UIView*)superView reloadBlock:(void(^)())reloadBlock;
 @end

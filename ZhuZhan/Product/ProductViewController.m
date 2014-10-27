@@ -50,6 +50,10 @@
     [self loadQtmquitView];
     [self loadIndicatorView];
     startIndex = 0;
+    [self firstNetWork];
+}
+
+-(void)firstNetWork{
     [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             showArr = posts;
@@ -58,7 +62,11 @@
             //初始化刷新视图
             [self setupRefresh];
         }
-    } startIndex:startIndex noNetWork:nil];
+    } startIndex:0 noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-49-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 -(void)loadQtmquitView{
@@ -77,11 +85,9 @@
 //=====================================================================
 //初始化刷新视图
 //=====================================================================
-- (void)setupRefresh
-{
+- (void)setupRefresh{
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
     [qtmquitView addHeaderWithTarget:self action:@selector(headerRereshing)];
-    
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
     [qtmquitView addFooterWithTarget:self action:@selector(footerRereshing)];
 }
@@ -94,49 +100,40 @@
     }
 }
 
-//无网络时做的操作
--(void)noNetWork{
-    if (!self.errorView) {
-        self.errorView = [[ErrorView alloc] initWithFrame:CGRectMake(0, 64, 320, 568-49-64)];
-    }
-    [self.view addSubview:self.errorView];
-    self.errorView.delegate=self;
-    [qtmquitView headerEndRefreshing];
-    [qtmquitView footerEndRefreshing];
-}
-
 //头刷新
 - (void)headerRereshing
 {
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        [self noNetWork];
-    }else{
-        startIndex=0;
-        [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                showArr = posts;
-                [qtmquitView headerEndRefreshing];
-                [qtmquitView reloadData];
-            }
-        } startIndex:startIndex noNetWork:nil];
-    }
+    [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [qtmquitView headerEndRefreshing];
+        if(!error){
+            startIndex=0;
+            showArr = posts;
+            [qtmquitView reloadData];
+        }
+    } startIndex:0 noNetWork:^{
+        [qtmquitView headerEndRefreshing];
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-49-64) superView:self.view reloadBlock:^{
+            [self headerRereshing];
+        }];
+    }];
 }
 
 //尾刷新
 - (void)footerRereshing
 {
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        [self noNetWork];
-    }else{
-        startIndex++;
-        [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                [showArr addObjectsFromArray:posts];
-                [qtmquitView footerEndRefreshing];
-                [qtmquitView reloadData];
-            }
-        } startIndex:startIndex noNetWork:nil];
-    }
+    [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [qtmquitView footerEndRefreshing];
+        if(!error){
+            startIndex++;
+            [showArr addObjectsFromArray:posts];
+            [qtmquitView reloadData];
+        }
+    } startIndex:startIndex+1 noNetWork:^{
+        [qtmquitView footerEndRefreshing];
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-49-64) superView:self.view reloadBlock:^{
+            [self footerRereshing];
+        }];
+    }];
 }
 
 //=====================================================================
