@@ -21,11 +21,13 @@
 #import "MD5.h"
 #import "ClauseViewController.h"
 @interface RegistViewController ()
-
+@property(nonatomic,strong)UIFont* font;
 @end
 
 @implementation RegistViewController
-
+-(UIFont *)font{
+    return [UIFont systemFontOfSize:15];
+}
 static bool IsVerify =NO;
 -(void)initNavi{
     //navi的影藏和颜色
@@ -57,6 +59,7 @@ static bool IsVerify =NO;
     //新建电话号码文本框
     _phoneNumberTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,0,276,47)];
     _phoneNumberTextField.delegate = self;
+    _phoneNumberTextField.font=self.font;
     _phoneNumberTextField.textAlignment=NSTextAlignmentLeft;
     _phoneNumberTextField.placeholder=@"填写手机号";
     _phoneNumberTextField.returnKeyType=UIReturnKeyDone;
@@ -67,6 +70,7 @@ static bool IsVerify =NO;
     //新建验证码文本框
     _yzmTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,47,170,47)];
     _yzmTextField.delegate = self;
+    _yzmTextField.font=self.font;
     _yzmTextField.textAlignment=NSTextAlignmentLeft;
     _yzmTextField.placeholder=@"填写验证码";
     _yzmTextField.returnKeyType=UIReturnKeyDone;
@@ -103,6 +107,7 @@ static bool IsVerify =NO;
     //账号文本框
     accountField = [[UITextField alloc] initWithFrame:CGRectMake(22,0,276,47)];
     accountField.delegate = self;
+    accountField.font=self.font;
     accountField.textAlignment=NSTextAlignmentLeft;
     accountField.placeholder=@"填写用户名";
     accountField.returnKeyType=UIReturnKeyDone;
@@ -112,6 +117,7 @@ static bool IsVerify =NO;
     //新建密码文本框
     passWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,47,276,47)];
     passWordField.delegate = self;
+    passWordField.font=self.font;
     passWordField.textAlignment=NSTextAlignmentLeft;
     passWordField.placeholder=@"填写密码";
     passWordField.returnKeyType=UIReturnKeyDone;
@@ -122,6 +128,7 @@ static bool IsVerify =NO;
     //确认密码的文本框
     verifyPassWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,94,276,47)];
     verifyPassWordField.delegate = self;
+    verifyPassWordField.font=self.font;
     verifyPassWordField.textAlignment=NSTextAlignmentLeft;
     verifyPassWordField.placeholder=@"确认密码";
     verifyPassWordField.returnKeyType=UIReturnKeyDone;
@@ -130,9 +137,15 @@ static bool IsVerify =NO;
     [secondView addSubview:verifyPassWordField];
 }
 
+-(void)endEdit{
+    UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self.view action:@selector(endEditing:)];
+    [self.view addGestureRecognizer:tap];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self endEdit];
     [self initNavi];
     self.view.backgroundColor=RGBCOLOR(245, 246, 248);
     [self loadFirstView];
@@ -216,7 +229,7 @@ static bool IsVerify =NO;
 
 
 -(void)getVerifitionCode{
-    
+    NSLog(@"用户申请发送验证码");
     //    NSLog(@"获取验证码！！");
     //    NSMutableDictionary *parameters =[[NSMutableDictionary alloc] initWithObjectsAndKeys:_phoneNumberTextField.text,@"cellPhone",nil];
     //    NSLog(@"nininiiinmmmmmmmmmmmm%@",parameters);

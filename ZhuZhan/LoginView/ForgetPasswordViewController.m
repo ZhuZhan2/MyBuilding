@@ -9,10 +9,14 @@
 #import "ForgetPasswordViewController.h"
 
 @interface ForgetPasswordViewController ()<UITextFieldDelegate>
-
+@property(nonatomic,strong)UIFont* font;
 @end
 
 @implementation ForgetPasswordViewController
+-(UIFont *)font{
+    return [UIFont systemFontOfSize:15];
+}
+
 -(void)initNavi{
     //navi的影藏和颜色
     self.navigationController.navigationBar.hidden=NO;
@@ -43,6 +47,7 @@
     //新建电话号码文本框
     _phoneNumberTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,0,276,47)];
     _phoneNumberTextField.delegate = self;
+    _phoneNumberTextField.font=self.font;
     _phoneNumberTextField.textAlignment=NSTextAlignmentLeft;
     _phoneNumberTextField.placeholder=@"填写手机号";
     _phoneNumberTextField.returnKeyType=UIReturnKeyDone;
@@ -53,6 +58,7 @@
     //新建验证码文本框
     _yzmTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,47,170,47)];
     _yzmTextField.delegate = self;
+    _yzmTextField.font=self.font;
     _yzmTextField.textAlignment=NSTextAlignmentLeft;
     _yzmTextField.placeholder=@"填写验证码";
     _yzmTextField.returnKeyType=UIReturnKeyDone;
@@ -67,6 +73,10 @@
     
 }
 
+-(void)getVerifitionCode{
+    NSLog(@"用户申请发送验证码");
+}
+
 -(void)addSeparatorLineInView:(UIView*)view{
     NSInteger number=view.frame.size.height/47-1;
     for (int i=0; i<number; i++) {
@@ -78,36 +88,39 @@
 }
 
 -(void)loadSecondView{
-    UIView* secondView=[[UIView alloc]initWithFrame:CGRectMake(0, 194, 320, 141)];
+    UIView* secondView=[[UIView alloc]initWithFrame:CGRectMake(0, 194, 320, 94)];
     secondView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:secondView];
-    UIImageView* backView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"注册_04"]];
+    UIImageView* backView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"注册_02"]];
     [secondView addSubview:backView];
     
     [self addSeparatorLineInView:secondView];
     
-    //账号文本框
-    accountField = [[UITextField alloc] initWithFrame:CGRectMake(22,0,276,47)];
-    accountField.delegate = self;
-    accountField.textAlignment=NSTextAlignmentLeft;
-    accountField.placeholder=@"填写用户名";
-    accountField.returnKeyType=UIReturnKeyDone;
-    accountField.clearButtonMode =YES;
-    [secondView addSubview:accountField];
+//    //账号文本框
+//    accountField = [[UITextField alloc] initWithFrame:CGRectMake(22,0,276,47)];
+//    accountField.delegate = self;
+//    accountField.font=self.font;
+//    accountField.textAlignment=NSTextAlignmentLeft;
+//    accountField.placeholder=@"填写用户名";
+//    accountField.returnKeyType=UIReturnKeyDone;
+//    accountField.clearButtonMode =YES;
+//    [secondView addSubview:accountField];
     
     //新建密码文本框
-    passWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,47,276,47)];
+    passWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,0,276,47)];
     passWordField.delegate = self;
+    passWordField.font=self.font;
     passWordField.textAlignment=NSTextAlignmentLeft;
-    passWordField.placeholder=@"填写密码";
+    passWordField.placeholder=@"填写新密码";
     passWordField.returnKeyType=UIReturnKeyDone;
     passWordField.clearButtonMode =YES;
     passWordField.secureTextEntry = YES;
     [secondView addSubview:passWordField];
     
     //确认密码的文本框
-    verifyPassWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,94,276,47)];
+    verifyPassWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,47,276,47)];
     verifyPassWordField.delegate = self;
+    verifyPassWordField.font=self.font;
     verifyPassWordField.textAlignment=NSTextAlignmentLeft;
     verifyPassWordField.placeholder=@"确认密码";
     verifyPassWordField.returnKeyType=UIReturnKeyDone;
@@ -116,38 +129,34 @@
     [secondView addSubview:verifyPassWordField];
 }
 
+-(void)endEdit{
+    UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self.view action:@selector(endEditing:)];
+    [self.view addGestureRecognizer:tap];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self endEdit];
     [self initNavi];
     self.view.backgroundColor=RGBCOLOR(245, 246, 248);
     [self loadFirstView];
     [self loadSecondView];
     [self loadRegisterBtn];
-    [self loadClauseView];
 }
-
--(void)loadClauseView{
-    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 350, 320, 18)];
-    imageView.image=[GetImagePath getImagePath:@"注册_05"];
-    [self.view addSubview:imageView];
-    
-    UIButton* button=[[UIButton alloc]init];
-    button.frame=CGRectMake(143, 350, 30, 20);
-    [button addTarget:self action:@selector(chooseClause) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
-}
-
 
 -(void)loadRegisterBtn{
     UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     registerBtn.frame = CGRectMake(22, 500, 276, 42);
-    [registerBtn setBackgroundImage:[GetImagePath getImagePath:@"注册_07"] forState:UIControlStateNormal];
+    [registerBtn setBackgroundImage:[GetImagePath getImagePath:@"密码找回_23"] forState:UIControlStateNormal];
     [registerBtn addTarget:self action:@selector(beginToCollect) forControlEvents:UIControlEventTouchUpInside];
     registerBtn.tag =2014072401;
     [self.view addSubview:registerBtn];
 }
 
+-(void)beginToCollect{
+    NSLog(@"用户确认");
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
