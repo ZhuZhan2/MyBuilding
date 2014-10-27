@@ -24,7 +24,7 @@
 
 // post参数：
 // {"cellPhone": ":@“143123123”}
-// 
+//
 // RESPONSE:
 //     {
 //         "d": {
@@ -65,8 +65,9 @@
 // "password": ":”password",
 // "deviceType": ":mobile || web",
 // "barCode": ":“123123"
+// "userName": "userName"
 // }
-// 
+//
 //
 //RESPONSE:
 //{
@@ -88,13 +89,17 @@
     NSString *urlStr = [NSString stringWithFormat:@"api/account/register2"];
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
- 
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON];
+            [mutablePosts addObject:JSON[@"d"][@"data"][0]];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
-     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {
             block([NSMutableArray array], error);
@@ -175,12 +180,12 @@
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         
-            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON];
-            if (block) {
-                block([NSMutableArray arrayWithArray:mutablePosts], nil);
-            }
-        } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+        [mutablePosts addObject:JSON];
+        if (block) {
+            block([NSMutableArray arrayWithArray:mutablePosts], nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {
             block([NSMutableArray array], error);
@@ -206,13 +211,13 @@
     NSString *urlStr = [NSString stringWithFormat:@"api/Account/LogOut"];
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
-
-            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON];
-            if (block) {
-                block([NSMutableArray arrayWithArray:mutablePosts], nil);
-            }
-
+        
+        NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+        [mutablePosts addObject:JSON];
+        if (block) {
+            block([NSMutableArray arrayWithArray:mutablePosts], nil);
+        }
+        
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {
@@ -223,21 +228,21 @@
 
 
 + (NSURLSessionDataTask *)RegisterFaceWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
-NSString *urlStr = [NSString stringWithFormat:@"api/account/faceregister"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/faceregister"];
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
-       
+        
         NSLog(@"JSON===>%@",JSON);
-            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON];
-            if (block) {
-                block([NSMutableArray arrayWithArray:mutablePosts], nil);
-            }
+        NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+        [mutablePosts addObject:JSON];
+        if (block) {
+            block([NSMutableArray arrayWithArray:mutablePosts], nil);
+        }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {
             block([NSMutableArray array], error);
         }
-
+        
     }];
 }
 
