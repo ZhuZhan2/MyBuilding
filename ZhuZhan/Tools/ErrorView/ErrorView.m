@@ -7,15 +7,21 @@
 //
 
 #import "ErrorView.h"
+#import "ConnectionAvailable.h"
+@interface ErrorView()
+@property(nonatomic,strong)void(^reloadBlock)();
+@end
+
 @implementation ErrorView
 
-+(ErrorView*)errorViewWithFrame:(CGRect)frame superView:(UIView*)superView target:(id)target action:(SEL)action{
-    return [[ErrorView alloc]initWithFrame:frame superView:superView target:target action:action];
++(ErrorView*)errorViewWithFrame:(CGRect)frame superView:(UIView*)superView reloadBlock:(void(^)())reloadBlock{
+    return [[ErrorView alloc]initWithFrame:frame superView:superView reloadBlock:reloadBlock];
 }
 
--(instancetype)initWithFrame:(CGRect)frame superView:(UIView*)superView target:(id)target action:(SEL)action{
+-(instancetype)initWithFrame:(CGRect)frame superView:(UIView*)superView reloadBlock:(void(^)())reloadBlock{
     self = [super initWithFrame:frame];
     if (self) {
+        self.reloadBlock=reloadBlock;
         self.backgroundColor = RGBCOLOR(245, 245, 245);
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(84, 100, 152, 102)];
@@ -39,12 +45,21 @@
         UIButton *reloadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [reloadBtn setFrame:CGRectMake(103, 332, 114, 32)];
         [reloadBtn setBackgroundImage:[GetImagePath getImagePath:@"数据加载失败_07a"] forState:UIControlStateNormal];
-        [reloadBtn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+        [reloadBtn addTarget:self action:@selector(judgeConnection) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:reloadBtn];
         
         [superView addSubview:self];
     }
     return self;
+}
+
+-(void)judgeConnection{
+    if ([ConnectionAvailable isConnectionAvailable]) {
+        if (self.reloadBlock) {
+            self.reloadBlock();
+        }
+        [self removeFromSuperview];
+    }
 }
 
 - (id)initWithFrame:(CGRect)frame
