@@ -36,7 +36,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 @end
 
 @implementation ContactViewController
-@synthesize showVC,transparent;
+@synthesize transparent;
 
 - (void)viewDidLoad
 {
@@ -107,7 +107,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 showArr = posts;
                 for(int i=0;i<showArr.count;i++){
                     ActivesModel *model = showArr[i];
-                    NSLog(@"===>%@",model.a_eventType);
                     if([model.a_eventType isEqualToString:@"Actives"]){
                         commentView = [CommentView setFram:model];
                         [viewArr addObject:commentView];
@@ -253,6 +252,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             commentView = viewArr[indexPath.row];
             commentView.indexpath = indexpath;
             commentView.delegate = self;
+            commentView.headImageDelegate = self;
             commentView.indexpath = indexPath;
             commentView.showArr = model.a_commentsArr;
             [cell.contentView addSubview:commentView];
@@ -282,6 +282,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             commentView = viewArr[indexPath.row];
             commentView.indexpath = indexpath;
             commentView.delegate = self;
+            commentView.headImageDelegate = self;
             commentView.indexpath = indexPath;
             commentView.showArr = model.a_commentsArr;
             [cell.contentView addSubview:commentView];
@@ -403,59 +404,38 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
 }
 
--(void)HeadImageAction:(UIButton *)button{
+-(void)HeadImageAction:(NSIndexPath *)indexPath{
+    ActivesModel *model = showArr[indexPath.row];
     showVC = [[ShowViewController alloc] init];
     showVC.delegate =self;
-    [showVC.view setFrame:CGRectMake(40, 70, 220, 240)];
+    showVC.iconUrl = model.a_avatarUrl;
+    showVC.userNameStr = model.a_userName;
+    [showVC.view setFrame:CGRectMake(20, 70, 280, 300)];
     showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
-    showVC.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
-    
+    showVC.view.layer.masksToBounds = YES;
     [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
 }
 
--(void)gotoShowView:(NSIndexPath *)indexPath{
-    showVC = [[ShowViewController alloc] init];
-    showVC.delegate =self;
-    [showVC.view setFrame:CGRectMake(40, 70, 220, 240)];
-    showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
-    showVC.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
-    [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
-}
-
-- (void)jumpToGoToDetail:(UIButton *)button
-{
-        NSLog(@"访问个人详情");
-    
+-(void)gotoContactDetailView{
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
     [self.navigationController pushViewController:personalVC animated:YES];
 }
 
-- (void)jumpToGotoConcern:(UIButton *)button
-{
-
-        NSLog(@"关注好友");
-       [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-    NSString *userId = [LoginSqlite getdata:@"userId"];
-    NSLog(@"*******%@",userId);
-       NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithObjectsAndKeys:userId,@"userId",@"bfc78202-8ac9-447a-a99d-783606d25668",@"focusId", nil];
-    [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
-        NSDictionary *responseObject = [posts objectAtIndex:0];
-        NSString *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
-        if ([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"添加关注成功" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
-            [alert show];
-        }
-        else if ([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1308"]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已经添加关注" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
-            [alert show];
-        }
-        else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"关注失败" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
-            [alert show];
-        }
-        
-    } dic:parameter];
+- (void)addfocus{
+//    ActivesModel *model = showArr[indexpath.row];
+//    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+//    [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
+//    [dic setValue:model.a_id forKey:@"FocusId"];
+//    [dic setValue:@"Personal" forKey:@"FocusType"];
+//    [dic setValue:@"Personal" forKey:@"UserType"];
+//    [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+//        if(!error){
+//            model.a_isFocused=@"1";
+//            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+//        }
+//        btn.enabled=YES;
+//    } dic:dic];
 }
 
 -(void)jumpToGetRecommend:(NSDictionary *)dic

@@ -7,7 +7,6 @@
 //
 
 #import "ShowViewController.h"
-
 @interface ShowViewController ()
 
 @end
@@ -26,46 +25,35 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-//    self.view.frame = CGRectMake(30, 80, 260, 300);
-//    self.view.backgroundColor = [UIColor whiteColor];
-//    self.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
-//    self.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
-
-   
     
-    
-    UIImageView  *tempImageView= [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 260, 240)];
-    tempImageView.image = [GetImagePath getImagePath:@"首页_16"];
-    tempImageView.userInteractionEnabled = YES;
+    UIImageView  *tempImageView= [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 280, 300)];
+    tempImageView.image = [GetImagePath getImagePath:@"bg001"];
     [self.view addSubview:tempImageView];
     
     
-    UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
-    icon.image = [GetImagePath getImagePath:@"面部识别登录1_03"];
-    icon.center = CGPointMake(110, 80);
+    EGOImageView *icon = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_29a"]];
+    icon.frame = CGRectMake(107.5, 50, 65, 65);
+    icon.layer.cornerRadius = 32.5;//设置那个圆角的有多圆
+    icon.layer.masksToBounds = YES;
+    icon.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.iconUrl]];
     icon.userInteractionEnabled = YES;
     [tempImageView addSubview:icon];
     
     UIButton *visitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    visitBtn.frame =CGRectMake(0, 0, 70, 70);
-    visitBtn.center = CGPointMake(110, 80);
-    
-    [visitBtn addTarget:self action:@selector(beginToVisitDetail:) forControlEvents:UIControlEventTouchUpInside];
-    [tempImageView addSubview:visitBtn];
+    visitBtn.frame =CGRectMake(107.5, 50, 65, 65);
+    [visitBtn addTarget:self action:@selector(beginToVisitDetail) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:visitBtn];
     
     
-    UILabel *userName = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-    userName.center = CGPointMake(110, 130);
-    userName.text = @"用户名显示";
+    UILabel *userName = [[UILabel alloc] initWithFrame:CGRectMake(0, 115, 280, 40)];
     userName.textAlignment = NSTextAlignmentCenter;
     userName.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:18];
+    userName.text = self.userNameStr;
     userName.textColor = [UIColor whiteColor];
     [tempImageView addSubview:userName];
     
     UILabel *message = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, 30)];
     message.center = CGPointMake(110, 150);
-    message.text = @"512个项目，7条动态";
     message.textAlignment = NSTextAlignmentCenter;
     message.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:12];
     message.textColor = [UIColor whiteColor];
@@ -73,21 +61,19 @@
     
 
     
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(150, 200, 100, 25)];
-    bgView.center = CGPointMake(110, 200);
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(90, 200, 100, 25)];
     bgView.backgroundColor = [UIColor blackColor];
-    bgView.alpha = 0.7;
+    bgView.alpha = 0.9;
     bgView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     bgView.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
-    [tempImageView addSubview:bgView];
+    //[tempImageView addSubview:bgView];
     
     UIButton *concernBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    concernBtn.frame = CGRectMake(150, 200, 100, 25);
-    concernBtn.center = CGPointMake(110, 200);
+    concernBtn.frame = CGRectMake(90, 200, 100, 25);
     [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
     concernBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [concernBtn addTarget:self action:@selector(gotoConcern:) forControlEvents:UIControlEventTouchUpInside];
-    [tempImageView addSubview:concernBtn];
+    [concernBtn addTarget:self action:@selector(gotoConcern) forControlEvents:UIControlEventTouchUpInside];
+    //[tempImageView addSubview:concernBtn];
     
 }
 
@@ -104,13 +90,16 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)beginToVisitDetail:(UIButton *)button
-{
-    [_delegate jumpToGoToDetail:button];
+-(void)beginToVisitDetail{
+    if([self.delegate respondsToSelector:@selector(gotoContactDetailView)]){
+        [self.delegate gotoContactDetailView];
+    }
 }
-- (void)gotoConcern:(UIButton *)button
-{
-    [_delegate jumpToGotoConcern:button];
+
+- (void)gotoConcern{
+    if([self.delegate respondsToSelector:@selector(addfocus)]){
+        [self.delegate addfocus];
+    }
 }
 
 @end

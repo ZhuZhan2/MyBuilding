@@ -8,19 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "ActivesModel.h"
-
+#import "HeadImageDelegate.h"
 @protocol CommentViewDelegate <NSObject>
 
 -(void)addCommentView:(NSIndexPath *)indexPath;
 -(void)gotoDetailView:(NSIndexPath *)indexPath;
--(void)gotoShowView:(NSIndexPath *)indexPath;
 @end
 @interface CommentView : UIView<UITableViewDelegate,UITableViewDataSource>{
     NSIndexPath *indexpath;
     NSMutableArray *showArr;
 }
+@property(nonatomic,strong)NSIndexPath *indexpath;
 @property(nonatomic,weak)id<CommentViewDelegate>delegate;
+@property(nonatomic,weak)id<HeadImageDelegate>headImageDelegate;
 @property(nonatomic,strong)NSMutableArray *showArr;
 +(CommentView *)setFram:(ActivesModel *)model;
-@property(nonatomic,strong)NSIndexPath *indexpath;
 @end

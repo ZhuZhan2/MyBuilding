@@ -226,8 +226,8 @@
 }
 
 -(void)gotoShowViewClick{
-    if([self.delegate respondsToSelector:@selector(gotoShowView:)]){
-        [self.delegate gotoShowView:_indexpath];
+    if([self.headImageDelegate respondsToSelector:@selector(HeadImageAction:)]){
+        [self.headImageDelegate HeadImageAction:_indexpath];
     }
 }
 @end

@@ -24,6 +24,7 @@
 @property (nonatomic, copy) NSDate *a_time;
 @property (nonatomic, copy) NSString *a_category;
 @property (nonatomic, copy) NSString *a_eventType;
+@property (nonatomic, copy) NSString *a_createdBy;
 @property (nonatomic, strong) NSMutableArray *a_commentsArr;
 @property (nonatomic, copy) NSDictionary *dict;
 @end

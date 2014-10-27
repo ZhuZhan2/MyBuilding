@@ -23,4 +23,7 @@
 
 //获取个人中心详情
 + (NSURLSessionDataTask *)PersonalActiveWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId startIndex:(int)startIndex;
+
+//获取人的统计
++ (NSURLSessionDataTask *)UserBriefInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId noNetWork:(void (^)())noNetWork;
 @end
