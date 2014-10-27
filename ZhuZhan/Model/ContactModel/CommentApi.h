@@ -22,7 +22,7 @@
 + (NSURLSessionDataTask *)CommentUrlWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block url:(NSString *)url noNetWork:(void(^)())noNetWork;
 
 //获取个人中心详情
-+ (NSURLSessionDataTask *)PersonalActiveWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId startIndex:(int)startIndex;
++ (NSURLSessionDataTask *)PersonalActiveWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
 
 //获取人的统计
 + (NSURLSessionDataTask *)UserBriefInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId noNetWork:(void (^)())noNetWork;

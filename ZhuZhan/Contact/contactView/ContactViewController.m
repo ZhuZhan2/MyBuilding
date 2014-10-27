@@ -408,8 +408,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     ActivesModel *model = showArr[indexPath.row];
     showVC = [[ShowViewController alloc] init];
     showVC.delegate =self;
-    showVC.iconUrl = model.a_avatarUrl;
-    showVC.userNameStr = model.a_userName;
+    showVC.createdBy = model.a_createdBy;
     [showVC.view setFrame:CGRectMake(20, 70, 280, 300)];
     showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
     showVC.view.layer.masksToBounds = YES;

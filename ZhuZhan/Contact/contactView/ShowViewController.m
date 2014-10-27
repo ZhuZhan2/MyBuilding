@@ -7,6 +7,8 @@
 //
 
 #import "ShowViewController.h"
+#import "CommentApi.h"
+#import "ProjectStage.h"
 @interface ShowViewController ()
 
 @end
@@ -35,7 +37,6 @@
     icon.frame = CGRectMake(107.5, 50, 65, 65);
     icon.layer.cornerRadius = 32.5;//设置那个圆角的有多圆
     icon.layer.masksToBounds = YES;
-    icon.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.iconUrl]];
     icon.userInteractionEnabled = YES;
     [tempImageView addSubview:icon];
     
@@ -48,18 +49,22 @@
     UILabel *userName = [[UILabel alloc] initWithFrame:CGRectMake(0, 115, 280, 40)];
     userName.textAlignment = NSTextAlignmentCenter;
     userName.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:18];
-    userName.text = self.userNameStr;
     userName.textColor = [UIColor whiteColor];
     [tempImageView addSubview:userName];
     
-    UILabel *message = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, 30)];
-    message.center = CGPointMake(110, 150);
+    UILabel *message = [[UILabel alloc] initWithFrame:CGRectMake(0, 155, 280, 30)];
     message.textAlignment = NSTextAlignmentCenter;
-    message.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:12];
+    message.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
     message.textColor = [UIColor whiteColor];
     [tempImageView addSubview:message];
     
-
+    [CommentApi UserBriefInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            icon.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:posts[0][@"userIamge"]]]];
+            userName.text = [ProjectStage ProjectStrStage:posts[0][@"realName"]];
+            message.text = [NSString stringWithFormat:@"%@项目，%@动态",[ProjectStage ProjectStrStage:posts[0][@"projectsCount"]],[ProjectStage ProjectStrStage:posts[0][@"activesCount"]]];
+        }
+    } userId:self.createdBy noNetWork:nil];
     
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(90, 200, 100, 25)];
     bgView.backgroundColor = [UIColor blackColor];
