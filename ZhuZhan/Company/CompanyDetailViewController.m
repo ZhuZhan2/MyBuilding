@@ -36,7 +36,7 @@
             [self initSecondView];//第二个文字view初始
             [self initThirdView];
         }
-    } companyId:self.companyId];
+    } companyId:self.companyId noNetWork:nil];
     [self initMyScrollViewAndNavi];//scollview和navi初始
 }
 
@@ -157,7 +157,7 @@
                 self.model.a_focused=@"0";
                 [self handleContent];
             }
-        } dic:dic];
+        } dic:dic noNetWork:nil];
     }else{
         [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
         [dic setValue:self.model.a_id forKey:@"FocusId"];
@@ -168,7 +168,7 @@
                 self.model.a_focused=@"1";
                 [self handleContent];
             }
-        } dic:dic];
+        } dic:dic noNetWork:nil];
     }
     NSLog(@"用户选择了关注");
 }
@@ -182,7 +182,7 @@
         if(!error){
             NSLog(@"成功");
         }
-    } dic:dic];
+    } dic:dic noNetWork:nil];
 }
 
 

@@ -9,9 +9,17 @@
 #import "CompanyApi.h"
 #import "CompanyModel.h"
 #import "EmployeesModel.h"
+#import "ConnectionAvailable.h"
 @implementation CompanyApi
+
 //获取所有公司列表
-+ (NSURLSessionDataTask *)GetCompanyListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex keyWords:(NSString *)keyWords{
++ (NSURLSessionDataTask *)GetCompanyListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex keyWords:(NSString *)keyWords noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
     NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)keyWords, NULL, NULL,  kCFStringEncodingUTF8 ));
     NSString *urlStr = [NSString stringWithFormat:@"api/CompanyBaseInformation/GetCompanyBaseInformation?KeyWords=%@&pageSize=5&pageIndex=%d",encodedString,startIndex];
     
@@ -43,7 +51,13 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)AddCompanyEmployeeWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
++ (NSURLSessionDataTask *)AddCompanyEmployeeWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
     NSString *urlStr = [NSString stringWithFormat:@"api/CompanyBaseInformation/AddCompanyEmployees"];
     NSLog(@"%@",dic);
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
@@ -63,7 +77,13 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)GetMyCompanyWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block{
++ (NSURLSessionDataTask *)GetMyCompanyWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
     NSString *urlStr = [NSString stringWithFormat:@"api/CompanyBaseInformation/GetMyCompany"];
     
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
@@ -96,7 +116,13 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)GetCompanyDetailWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block companyId:(NSString *)companyId{
++ (NSURLSessionDataTask *)GetCompanyDetailWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block companyId:(NSString *)companyId noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
     NSString *urlStr = [NSString stringWithFormat:@"api/CompanyBaseInformation/GetCompanyBaseInformation?companyId=%@",companyId];
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
@@ -128,7 +154,13 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)GetCompanyEmployeesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block companyId:(NSString *)companyId startIndex:(int)startIndex keyWords:(NSString *)keyWords{
++ (NSURLSessionDataTask *)GetCompanyEmployeesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block companyId:(NSString *)companyId startIndex:(int)startIndex keyWords:(NSString *)keyWords noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
     NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)keyWords, NULL, NULL,  kCFStringEncodingUTF8 ));
     NSString *urlStr = [NSString stringWithFormat:@"api/CompanyBaseInformation/GetCompanyEmployees?Keywords=%@&CompanyId=%@&PageSize=15&PageIndex=%d",encodedString,companyId,startIndex];
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
@@ -159,7 +191,13 @@
     }];
 }
 
-+(NSURLSessionDataTask *)DeleteFocusWithBlock:(void(^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary*)dic{
++(NSURLSessionDataTask *)DeleteFocusWithBlock:(void(^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary*)dic noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
     NSString *urlStr = [NSString stringWithFormat:@"api/networking/DeleteFocus"];
     
     return [[AFAppDotNetAPIClient sharedNewClient]POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id JSON) {

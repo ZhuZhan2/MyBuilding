@@ -119,7 +119,7 @@ static int projectNum =0;
         if(!error){
         
         }
-    } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0"];
+    } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0" noNetWork:nil];
     
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
 }

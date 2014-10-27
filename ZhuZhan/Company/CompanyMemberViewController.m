@@ -52,7 +52,7 @@
             self.showArr = posts;
             [self.tableView reloadData];
         }
-    } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords];
+    } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:nil];
     [self initSearchView];
     [self initMyTableViewAndNavi];
     
@@ -86,7 +86,7 @@
                 [self.tableView headerEndRefreshing];
                 [self.tableView reloadData];
             }
-        } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords];
+        } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:nil];
     }
 }
 
@@ -115,7 +115,7 @@
                 [self.tableView headerEndRefreshing];
                 [self.tableView reloadData];
             }
-        } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords];
+        } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:nil];
     }
 }
 
@@ -179,7 +179,7 @@
                 [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
             }
             btn.enabled=YES;
-        } dic:dic];
+        } dic:dic noNetWork:nil];
     }else{
         [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
         [dic setValue:model.a_id forKey:@"FocusId"];
@@ -191,7 +191,7 @@
                 [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
             }
             btn.enabled=YES;
-        } dic:dic];
+        } dic:dic noNetWork:nil];
     }
 }
 
@@ -245,7 +245,7 @@
             [self.tableView reloadData];
             self.searchBar.showsCancelButton = YES;
         }
-    } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords];
+    } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:nil];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
@@ -258,6 +258,6 @@
             [self.tableView reloadData];
             self.searchBar.showsCancelButton = NO;
         }
-    } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords];
+    } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:nil];
 }
 @end

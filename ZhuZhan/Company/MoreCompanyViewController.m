@@ -52,7 +52,7 @@
             self.showArr = posts;
             [self.tableView reloadData];
         }
-    } startIndex:startIndex keyWords:@""];
+    } startIndex:startIndex keyWords:@"" noNetWork:nil];
     [self initSearchView];
     [self initMyTableViewAndNavi];
     //集成刷新控件
@@ -94,7 +94,7 @@
                 [self.tableView headerEndRefreshing];
                 [self.tableView reloadData];
             }
-        } startIndex:startIndex keyWords:@""];
+        } startIndex:startIndex keyWords:@"" noNetWork:nil];
     }
 }
 
@@ -119,7 +119,7 @@
                 [self.tableView headerEndRefreshing];
                 [self.tableView reloadData];
             }
-        } startIndex:startIndex keyWords:self.keywords];
+        } startIndex:startIndex keyWords:self.keywords noNetWork:nil];
     }
 }
 
@@ -261,7 +261,7 @@
             [self.tableView reloadData];
             self.searchBar.showsCancelButton = YES;
         }
-    }startIndex:startIndex keyWords:[NSString stringWithFormat:@"%@",searchBar.text]];
+    }startIndex:startIndex keyWords:[NSString stringWithFormat:@"%@",searchBar.text] noNetWork:nil];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
@@ -274,6 +274,6 @@
             [self.tableView reloadData];
             self.searchBar.showsCancelButton = NO;
         }
-    } startIndex:startIndex keyWords:@""];
+    } startIndex:startIndex keyWords:@"" noNetWork:nil];
 }
 @end

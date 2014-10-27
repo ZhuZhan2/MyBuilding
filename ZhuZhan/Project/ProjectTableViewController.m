@@ -78,7 +78,7 @@
             showArr = posts;
             [self.tableView reloadData];
         }
-    } startIndex:startIndex];
+    } startIndex:startIndex noNetWork:nil];
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     self.tableView.separatorStyle = NO;
     
@@ -134,7 +134,7 @@
                 [self.tableView headerEndRefreshing];
                 [self.tableView reloadData];
             }
-        }startIndex:startIndex];
+        }startIndex:startIndex noNetWork:nil];
     }
 }
 
@@ -159,7 +159,7 @@
                 [self.tableView headerEndRefreshing];
                 [self.tableView reloadData];
             }
-        }startIndex:startIndex];
+        }startIndex:startIndex noNetWork:nil];
     }
 }
 

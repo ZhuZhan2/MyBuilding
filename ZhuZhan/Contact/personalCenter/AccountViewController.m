@@ -112,7 +112,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
     [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         model = posts[0];
         [self.tableView reloadData];
-    } userId:userIdStr];
+    } userId:userIdStr noNetWork:nil];
 }
 
 
@@ -250,7 +250,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
         
         [_pathCover addImageHead:image];
         
-    } dic:parameter];
+    } dic:parameter noNetWork:nil];
     
 }
 
@@ -298,7 +298,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
             [alert show];
         }
         
-    } dic:parameter];
+    } dic:parameter noNetWork:nil];
     
 }
 

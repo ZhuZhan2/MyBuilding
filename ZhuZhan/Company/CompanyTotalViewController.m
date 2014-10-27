@@ -33,7 +33,7 @@
                 [self.navigationController pushViewController:self.moreCompanyVC animated:NO];
             }
         }
-    }];
+    } noNetWork:nil];
 
     // Do any additional setup after loading the view.
 }

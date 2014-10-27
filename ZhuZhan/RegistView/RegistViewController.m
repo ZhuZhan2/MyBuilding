@@ -237,7 +237,7 @@
             [LoginSqlite insertData:[item objectForKey:@"deviceToken"] datakey:@"deviceToken"];
             [self.navigationController.viewControllers[0] dismissViewControllerAnimated:YES completion:nil];
         }
-    } dic:parameters];
+    } dic:parameters noNetWork:nil];
 }
 
 - (void)didReceiveMemoryWarning

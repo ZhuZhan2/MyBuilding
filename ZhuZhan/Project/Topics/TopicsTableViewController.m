@@ -60,7 +60,7 @@
                 showArr = posts;
                 [self.tableView reloadData];
             }
-        } startIndex:startIndex];
+        } startIndex:startIndex noNetWork:nil];
     }
     
     //集成刷新控件
@@ -113,7 +113,7 @@
                 [self.tableView headerEndRefreshing];
                 [self.tableView reloadData];
             }
-        }startIndex:startIndex];
+        }startIndex:startIndex noNetWork:nil];
     }
 }
 
@@ -139,7 +139,7 @@
                 [self.tableView headerEndRefreshing];
                 [self.tableView reloadData];
             }
-        }startIndex:startIndex];
+        }startIndex:startIndex noNetWork:nil];
     }
 }
 

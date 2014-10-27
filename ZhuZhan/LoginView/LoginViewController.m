@@ -157,6 +157,6 @@
             [LoginSqlite insertData:model.a_userId datakey:@"userId"];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
-    } dic:dic];
+    } dic:dic noNetWork:nil];
 }
 @end

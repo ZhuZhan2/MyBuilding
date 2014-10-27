@@ -112,7 +112,7 @@
             NSLog(@"=====%@",error);
         }
         [self endIndicatorView];
-    } projectId:self.projectId];
+    } projectId:self.projectId noNetWork:nil];
 }
 
 -(void)loadSelf{
@@ -254,7 +254,7 @@
         NSLog(@"关注");
         [ProjectApi AddUserFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
             NSLog(@"notice sucess");
-        } dic:[@{@"UserId":[LoginSqlite getdata:@"userId"],@"ProjectId":self.model.a_id} mutableCopy]];
+        } dic:[@{@"UserId":[LoginSqlite getdata:@"userId"],@"ProjectId":self.model.a_id} mutableCopy] noNetWork:nil];
         
     }else if (buttonIndex==1){
         NSLog(@"评论");
@@ -292,7 +292,7 @@
         if (!error) {
             NSLog(@"sucess");
         }
-    } dic:[@{@"EntityId":self.model.a_id,@"entityType":@"Project",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy]];
+    } dic:[@{@"EntityId":self.model.a_id,@"entityType":@"Project",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy] noNetWork:nil];
 }
 
 //**********************************************************************
