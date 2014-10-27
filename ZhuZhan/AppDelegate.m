@@ -26,7 +26,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    NSLog(@"asdfasfasf");
     //设置log等级，此处log为默认在documents目录下的msc.log文件
     [IFlySetting setLogFile:LVL_NONE];
     
