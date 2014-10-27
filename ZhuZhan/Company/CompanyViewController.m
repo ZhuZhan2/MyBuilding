@@ -158,7 +158,7 @@
                 [self handleContent];
             }
             btn.userInteractionEnabled=YES;
-        } dic:dic];
+        } dic:dic noNetWork:nil];
     }else{
         [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
         [dic setValue:self.model.a_id forKey:@"FocusId"];
@@ -170,7 +170,7 @@
                 [self handleContent];
             }
             btn.userInteractionEnabled=YES;
-        } dic:dic];
+        } dic:dic noNetWork:nil];
     }
 
     NSLog(@"用户选择了关注");

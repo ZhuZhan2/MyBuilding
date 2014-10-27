@@ -129,7 +129,7 @@
                 [self.delegate finshSave];
             }
         }
-    } dic:dic];
+    } dic:dic noNetWork:nil];
 }
 
 -(void)cancelBtnClick{

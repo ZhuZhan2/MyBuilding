@@ -128,7 +128,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 block();
             }
         }
-    } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex];
+    } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex noNetWork:nil];
 }
 
 /**
@@ -166,7 +166,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [self.tableView reloadData];
                 _timeScroller.hidden=NO;
             }
-        } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex];
+        } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex noNetWork:nil];
 
     }
 }

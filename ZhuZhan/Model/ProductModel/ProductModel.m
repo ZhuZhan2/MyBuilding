@@ -8,6 +8,8 @@
 
 #import "ProductModel.h"
 #import "ProjectStage.h"
+#import "ConnectionAvailable.h"
+
 @implementation ProductModel
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
@@ -29,7 +31,13 @@
     return _a_commentNumber;
 }
 
-+ (NSURLSessionDataTask *)GetProductInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex{
++ (NSURLSessionDataTask *)GetProductInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
     NSString *urlStr = [NSString stringWithFormat:@"api/ProductInformation/ProductInformation?pageSize=10&pageIndex=%d",startIndex];
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
@@ -67,7 +75,13 @@
 //    "ProductImageStrings":"图片base64"
 //    "CreatedBy":"创建人"
 //}
-+ (NSURLSessionDataTask *)AddProductInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
++ (NSURLSessionDataTask *)AddProductInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
     NSString *urlStr = [NSString stringWithFormat:@"api/ProductInformation/AddProductInformation"];
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON==add=>%@",JSON);
@@ -97,7 +111,13 @@
 //    "productId": ":"产品Id" 必填
 //    "PublishedBy":"发布人" 必填
 //}
-+ (NSURLSessionDataTask *)PublishProductInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
++ (NSURLSessionDataTask *)PublishProductInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
     NSString *urlStr = [NSString stringWithFormat:@"api/ProductInformation/PublishProductInformation"];
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON=publish==>%@",JSON);

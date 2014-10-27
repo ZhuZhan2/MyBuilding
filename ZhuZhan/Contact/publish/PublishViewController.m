@@ -249,7 +249,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
                 [alert show];
 
             }
-        } dic:dic];
+        } dic:dic noNetWork:nil];
 
     }
     
@@ -281,12 +281,12 @@ static int PublishNum =1;//1 发布动态  2，发布产品
 
                     }
                     
-                } dic:parameters];
+                } dic:parameters noNetWork:nil];
             }else{
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
                 [alert show];
             }
-        } dic:dic];
+        } dic:dic noNetWork:nil];
 
     }
 }

@@ -64,7 +64,7 @@
             }
             [self.tableView reloadData];
         }
-    } entityId:projectId entityType:@"Project"];
+    } entityId:projectId entityType:@"Project" noNetWork:nil];
     
     //时间标签
     _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
@@ -221,7 +221,7 @@
             [_datasource insertObject:[NSDate date] atIndex:0];
             [self.tableView reloadData];
         }
-    } dic:dic];
+    } dic:dic noNetWork:nil];
 }
 
 -(void)cancelFromAddComment{

@@ -205,7 +205,7 @@ static int chanceToLoginByFace =3;
             
         }
 
-    } dic:parameters];
+    } dic:parameters noNetWork:nil];
     
 
 
@@ -327,7 +327,7 @@ static int chanceToLoginByFace =3;
             [[NSNotificationCenter defaultCenter] postNotificationName:@"faceRegister" object:nil];//返回前一个VC
         }
 
-    } dic:parameters];
+    } dic:parameters noNetWork:nil];
     
 
 

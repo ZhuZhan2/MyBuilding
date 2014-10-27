@@ -46,7 +46,7 @@
             showArr = posts;
             [self.tableView reloadData];
         }
-    } Id:self.model.a_id];
+    } Id:self.model.a_id noNetWork:nil];
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     self.tableView.separatorStyle = NO;
     

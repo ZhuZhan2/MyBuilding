@@ -58,7 +58,7 @@
             //初始化刷新视图
             [self setupRefresh];
         }
-    } startIndex:startIndex];
+    } startIndex:startIndex noNetWork:nil];
 }
 
 -(void)loadQtmquitView{
@@ -118,7 +118,7 @@
                 [qtmquitView headerEndRefreshing];
                 [qtmquitView reloadData];
             }
-        } startIndex:startIndex];
+        } startIndex:startIndex noNetWork:nil];
     }
 }
 
@@ -135,7 +135,7 @@
                 [qtmquitView footerEndRefreshing];
                 [qtmquitView reloadData];
             }
-        } startIndex:startIndex];
+        } startIndex:startIndex noNetWork:nil];
     }
 }
 

@@ -80,14 +80,14 @@
                 showArr = posts;
                 [self.tableView reloadData];
             }
-        } startIndex:startIndex keywords:self.searchStr];
+        } startIndex:startIndex keywords:self.searchStr noNetWork:nil];
     }else{
         [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 showArr = posts;
                 [self.tableView reloadData];
             }
-        } dic:self.dic startIndex:startIndex];
+        } dic:self.dic startIndex:startIndex noNetWork:nil];
     }
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     self.tableView.separatorStyle = NO;
@@ -147,7 +147,7 @@
                     [self.tableView footerEndRefreshing];
                     [self.tableView headerEndRefreshing];
                 }
-            } startIndex:startIndex keywords:self.searchStr];
+            } startIndex:startIndex keywords:self.searchStr noNetWork:nil];
         }else{
             [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
@@ -156,7 +156,7 @@
                     [self.tableView footerEndRefreshing];
                     [self.tableView headerEndRefreshing];
                 }
-            } dic:self.dic startIndex:startIndex];
+            } dic:self.dic startIndex:startIndex noNetWork:nil];
         }
     }
 }
@@ -183,7 +183,7 @@
                     [self.tableView footerEndRefreshing];
                     [self.tableView headerEndRefreshing];
                 }
-            } startIndex:startIndex keywords:self.searchStr];
+            } startIndex:startIndex keywords:self.searchStr noNetWork:nil];
         }else{
             [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
@@ -192,7 +192,7 @@
                     [self.tableView footerEndRefreshing];
                     [self.tableView headerEndRefreshing];
                 }
-            } dic:self.dic startIndex:startIndex];
+            } dic:self.dic startIndex:startIndex noNetWork:nil];
         }
     }
 }

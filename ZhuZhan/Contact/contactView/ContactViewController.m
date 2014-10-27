@@ -101,7 +101,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                             [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0]]];
                             [LoginSqlite insertData:posts[0] datakey:@"userImageUrl"];
                         }
-                    } userId:[LoginSqlite getdata:@"userId"]];
+                    } userId:[LoginSqlite getdata:@"userId"] noNetWork:nil];
                 }
                 
                 showArr = posts;
@@ -119,7 +119,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 
                 [self.tableView reloadData];
             }
-        } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex];
+        } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex noNetWork:nil];
     }
 }
 
@@ -193,7 +193,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     _timeScroller.hidden=NO;
                 });
             }
-        } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex];
+        } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex noNetWork:nil];
     }
 }
 
@@ -477,7 +477,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if(!error){
             [self finishPostCommentWithPosts:posts activesModel:model];
         }
-    } dic:dic];
+    } dic:dic noNetWork:nil];
 }
 
 //评论发送完后的页面tableView刷新
@@ -540,7 +540,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 __weak ContactViewController *wself = self;
                 [wself.pathCover stopRefresh];
             }
-        } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex];
+        } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex noNetWork:nil];
     }
 }
 

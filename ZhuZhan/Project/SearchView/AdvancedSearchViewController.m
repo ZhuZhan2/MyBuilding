@@ -81,7 +81,7 @@
             }
             [_tableView reloadData];
         }
-    }userId:[LoginSqlite getdata:@"userId"]];
+    }userId:[LoginSqlite getdata:@"userId"] noNetWork:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -185,7 +185,7 @@
             if(!error){
                 
             }
-        } dic:dic];
+        } dic:dic noNetWork:nil];
         [showArr removeObjectAtIndex:indexPath.row-2];
         NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
         [_tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
@@ -347,7 +347,7 @@
             }
             [_tableView reloadData];
         }
-    }userId:[LoginSqlite getdata:@"userId"]];
+    }userId:[LoginSqlite getdata:@"userId"] noNetWork:nil];
 }
 
 -(void)backView{
