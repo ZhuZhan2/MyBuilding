@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ContactCell.h"
-@interface CompanyCell : UITableViewCell
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(ContactModel *)model;
-
+@interface CompanyCell : UITableViewCell{
+    UILabel *companyLabel;
+    UILabel *positionLabel;
+}
+@property(nonatomic,strong)NSString *companyStr;
+@property(nonatomic,strong)NSString *positionStr;
 @end

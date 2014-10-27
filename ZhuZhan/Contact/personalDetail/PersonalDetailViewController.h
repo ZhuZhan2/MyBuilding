@@ -15,9 +15,10 @@
 #import "ContactCell.h"
 #import "ContactModel.h"
 #import "projectModel.h"
+#import "MyCenterModel.h"
 @interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate,MFMailComposeViewControllerDelegate,ContactCellDelegate,CorrelateCellDelegate>
-
+@property (nonatomic,strong) NSString *contactId;
 @property (nonatomic, strong) XHPathCover *pathCover;
-@property (nonatomic,strong) ContactModel *contactModel;
+@property (nonatomic,strong)MyCenterModel *contactModel;
 @property (nonatomic,strong) projectModel *proModel;//项目model  
 @end

@@ -57,7 +57,6 @@ static int projectNum =0;
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154)];
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"首页_16"]];
-    [_pathCover setHeadImageUrl:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg"];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadImageFrame:CGRectMake(120, -50, 70, 70)];
     _pathCover.headImage.layer.cornerRadius =35;
@@ -76,50 +75,12 @@ static int projectNum =0;
         [wself _refreshing];
     }];
     
-       [self.tableView setSeparatorInset:UIEdgeInsetsZero];//设置tableViewcell下划线的位置没有偏移
-
-
-    textStr =@"oifdjbfddgk;lkhlfgljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvvljfdgjfshrfndkjfndiosdhfdfihdiufhudhfidfudfufifhivvvvvvvv";
-    contactModel = [[ContactModel alloc] init];
-    contactModel.companyName = @"上海深集网络";
-    contactModel.projectLeader = @"项目负责人";
-    contactModel.email = @"929097264@qq.com";
-    contactModel.cellPhone =@"13938439096";
-    contactModel.beginTime =@"2012年9月";
-    contactModel.endTime = @"目前";
-    contactModel.personalBackground = textStr;
-    textHeight =[self heightForString:textStr fontSize:14 andWidth:280];
-    
-    proModel = [[projectModel alloc] init];
-    proModel.a_projectName = @"项目名称显示在这里";
-    proModel.a_district = @"华南区－上海";
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"项目名称显示在这里",@"projectName",@"华南区－上海",@"projectDistrict", nil];
-
-    proModel.projectArr = [NSMutableArray arrayWithObjects:dic,dic,dic, nil];
-    
-    if (contactModel.email) {
-        
-        isEmailExist = YES;
-        NSLog(@"num  %d",isEmailExist);
-    }
-
-    if (contactModel.personalBackground) {
-        backgroundNum = 1;
-        isPersonalBackgroundExist =YES;
-    }
-    
-    if ([proModel.projectArr count]>0) {
-        projectNum = 1;
-        isProjectExist = YES;
-    }
-    
-       self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [ContactModel UserDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-        
+            contactModel = posts[0];
         }
-    } userId:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0" noNetWork:nil];
+    } userId:self.contactId noNetWork:nil];
     
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
 }
@@ -193,21 +154,16 @@ static int projectNum =0;
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-
     if (indexPath.row==0) {
-     
-            static NSString *identifier = @"companyCell";
-            CompanyCell *companyCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-            if (!companyCell) {
-                companyCell = [[CompanyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:contactModel];
-            }
+        static NSString *identifier = @"companyCell";
+        CompanyCell *companyCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!companyCell) {
+            companyCell = [[CompanyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
+        companyCell.companyStr = contactModel.a_company;
+        companyCell.positionStr = contactModel.a_duties;
         return companyCell;
-    }
-    
-    
-
-    if (indexPath.row ==1) {
+    }else if (indexPath.row ==1) {
         static NSString *identifier = @"contactCell";
         ContactCell *contactCell =[tableView dequeueReusableCellWithIdentifier:identifier];
         if (!contactCell) {
@@ -215,18 +171,16 @@ static int projectNum =0;
         }
         contactCell.delegate = self;
         return contactCell;
-
-    }
-    
-    if (isPersonalBackgroundExist) {
-            if (indexPath.row==2) {
-                static NSString *identifier = @"backGroundCell";
-                BgCell *backGroundCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-                if (!backGroundCell) {
-                    backGroundCell = [[BgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithTextHeight:textHeight WithModel:contactModel];
-                }
-                return backGroundCell;
+        
+    }else if (isPersonalBackgroundExist) {
+        if (indexPath.row==2) {
+            static NSString *identifier = @"backGroundCell";
+            BgCell *backGroundCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+            if (!backGroundCell) {
+                backGroundCell = [[BgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithTextHeight:textHeight WithModel:contactModel];
             }
+            return backGroundCell;
+        }
     }
     
     static NSString *identifier = @"correlateCell";
@@ -236,8 +190,6 @@ static int projectNum =0;
     }
     correlateCell.delegate = self;
     return correlateCell;
-
-    
 }
 
 -(void)buttonClicked:(UIButton *)button{

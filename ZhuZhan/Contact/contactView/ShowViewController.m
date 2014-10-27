@@ -60,7 +60,7 @@
     
     [CommentApi UserBriefInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            icon.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:posts[0][@"userIamge"]]]];
+            icon.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:posts[0][@"userImage"]]]];
             userName.text = [ProjectStage ProjectStrStage:posts[0][@"realName"]];
             message.text = [NSString stringWithFormat:@"%@项目，%@动态",[ProjectStage ProjectStrStage:posts[0][@"projectsCount"]],[ProjectStage ProjectStrStage:posts[0][@"activesCount"]]];
         }
@@ -96,8 +96,8 @@
 }
 
 -(void)beginToVisitDetail{
-    if([self.delegate respondsToSelector:@selector(gotoContactDetailView)]){
-        [self.delegate gotoContactDetailView];
+    if([self.delegate respondsToSelector:@selector(gotoContactDetailView:)]){
+        [self.delegate gotoContactDetailView:self.createdBy];
     }
 }
 
