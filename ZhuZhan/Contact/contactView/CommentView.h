@@ -13,6 +13,7 @@
 
 -(void)addCommentView:(NSIndexPath *)indexPath;
 -(void)gotoDetailView:(NSIndexPath *)indexPath;
+-(void)gotoShowView:(NSIndexPath *)indexPath;
 @end
 @interface CommentView : UIView<UITableViewDelegate,UITableViewDataSource>{
     NSIndexPath *indexpath;
