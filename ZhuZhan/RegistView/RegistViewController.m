@@ -21,12 +21,13 @@
 #import "MD5.h"
 #import "ClauseViewController.h"
 @interface RegistViewController ()
-
+@property(nonatomic,strong)UIFont* font;
 @end
 
 @implementation RegistViewController
-
-static bool IsVerify =NO;
+-(UIFont *)font{
+    return [UIFont systemFontOfSize:15];
+}
 -(void)initNavi{
     //navi的影藏和颜色
     self.navigationController.navigationBar.hidden=NO;
@@ -57,6 +58,7 @@ static bool IsVerify =NO;
     //新建电话号码文本框
     _phoneNumberTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,0,276,47)];
     _phoneNumberTextField.delegate = self;
+    _phoneNumberTextField.font=self.font;
     _phoneNumberTextField.textAlignment=NSTextAlignmentLeft;
     _phoneNumberTextField.placeholder=@"填写手机号";
     _phoneNumberTextField.returnKeyType=UIReturnKeyDone;
@@ -67,6 +69,7 @@ static bool IsVerify =NO;
     //新建验证码文本框
     _yzmTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,47,170,47)];
     _yzmTextField.delegate = self;
+    _yzmTextField.font=self.font;
     _yzmTextField.textAlignment=NSTextAlignmentLeft;
     _yzmTextField.placeholder=@"填写验证码";
     _yzmTextField.returnKeyType=UIReturnKeyDone;
@@ -84,7 +87,6 @@ static bool IsVerify =NO;
 -(void)addSeparatorLineInView:(UIView*)view{
     NSInteger number=view.frame.size.height/47-1;
     for (int i=0; i<number; i++) {
-        NSLog(@"number==%d",number);
         UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(20, 47*(i+1), 280, 1)];
         separatorLine.backgroundColor=RGBCOLOR(222, 222, 222);
         [view addSubview:separatorLine];
@@ -103,6 +105,7 @@ static bool IsVerify =NO;
     //账号文本框
     accountField = [[UITextField alloc] initWithFrame:CGRectMake(22,0,276,47)];
     accountField.delegate = self;
+    accountField.font=self.font;
     accountField.textAlignment=NSTextAlignmentLeft;
     accountField.placeholder=@"填写用户名";
     accountField.returnKeyType=UIReturnKeyDone;
@@ -112,6 +115,7 @@ static bool IsVerify =NO;
     //新建密码文本框
     passWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,47,276,47)];
     passWordField.delegate = self;
+    passWordField.font=self.font;
     passWordField.textAlignment=NSTextAlignmentLeft;
     passWordField.placeholder=@"填写密码";
     passWordField.returnKeyType=UIReturnKeyDone;
@@ -122,6 +126,7 @@ static bool IsVerify =NO;
     //确认密码的文本框
     verifyPassWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,94,276,47)];
     verifyPassWordField.delegate = self;
+    verifyPassWordField.font=self.font;
     verifyPassWordField.textAlignment=NSTextAlignmentLeft;
     verifyPassWordField.placeholder=@"确认密码";
     verifyPassWordField.returnKeyType=UIReturnKeyDone;
@@ -130,9 +135,15 @@ static bool IsVerify =NO;
     [secondView addSubview:verifyPassWordField];
 }
 
+-(void)endEdit{
+    UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self.view action:@selector(endEditing:)];
+    [self.view addGestureRecognizer:tap];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self endEdit];
     [self initNavi];
     self.view.backgroundColor=RGBCOLOR(245, 246, 248);
     [self loadFirstView];
@@ -166,42 +177,8 @@ static bool IsVerify =NO;
     [self.view addSubview:registerBtn];
 }
 
-#pragma mark UITextFieldDelegate
-
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    [textField becomeFirstResponder];
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    if ([textField.text length]==0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"输入不能为空"delegate:nil cancelButtonTitle:@"是"otherButtonTitles: nil];
-        [alert show];
-    }
-    
-    [textField resignFirstResponder];
-    return YES;
-}
-#pragma mark UIResponder
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    
-    if (_phoneNumberTextField.isEditing) {//判断输入的内容是否为手机号
-        [self phoneNoErr:_phoneNumberTextField.text];
-        [_phoneNumberTextField resignFirstResponder];
-    }
-    
-    [passWordField resignFirstResponder];
-    [verifyPassWordField resignFirstResponder];
-    [_yzmTextField resignFirstResponder];
-    
-}
-
-
 -(BOOL)phoneNoErr:(NSString *)phone//正则表达式来判断是否是手机号码
 {
-    
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\b(1)[23458][0-9]{9}\\b" options:NSRegularExpressionCaseInsensitive error:nil];
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
     if (numberOfMatches!=1) {
@@ -211,69 +188,17 @@ static bool IsVerify =NO;
         return NO;
     }
     return YES;
-    
 }
 
 
 -(void)getVerifitionCode{
-    
-    //    NSLog(@"获取验证码！！");
-    //    NSMutableDictionary *parameters =[[NSMutableDictionary alloc] initWithObjectsAndKeys:_phoneNumberTextField.text,@"cellPhone",nil];
-    //    NSLog(@"nininiiinmmmmmmmmmmmm%@",parameters);
-    //
-    //    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"%s/api/code/generate",kAPIAdress] parameters:parameters error:nil];
-    //
-    //    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    //    op.responseSerializer = [AFJSONResponseSerializer serializer];
-    //    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-    //        NSLog(@"responseJSON12123%@",responseObject);
-    //
-    //        NSNumber *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
-    //        if ([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]) {
-    //            IsVerify =YES;
-    //            NSLog(@"手机号码提交成功");
-    //
-    //        }else{
-    //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"系统错误" delegate:nil cancelButtonTitle: @"是" otherButtonTitles: nil];
-    //            [alert show];
-    //        }
-    //
-    //    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    //        NSLog(@"kokokoko%@",error);
-    //    }];
-    //         [[NSOperationQueue mainQueue] addOperation:op];
-    //
+    NSLog(@"用户申请发送验证码");
 }
 
 #pragma mark  开始注册－－－－－－－－－－
--(void)beginToCollect//点击注册按钮触发的事件
-{
-    
+//点击注册按钮触发的事件
+-(void)beginToCollect{
     [self commomRegister];
-    
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-    if (buttonIndex==0) {
-        
-        [self faceCollect];//开始采集照片
-        
-    }
-    else if (buttonIndex==1){//直接登录
-        [self recognizeSuccess];
-        
-    }
-    
-}
-
--(void)faceCollect//进行脸部信息采集
-{
-    
-    PanViewController *panVC = [[PanViewController alloc] init];
-    [self.navigationController pushViewController:panVC animated:NO];
-    
 }
 
 - (void)commomRegister//账号密码的注册
@@ -283,19 +208,6 @@ static bool IsVerify =NO;
     if (![self phoneNoErr:_phoneNumberTextField.text]) {
         return;
     }
-    
-    //    if (!IsVerify) {
-    //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请单击获取手机验证码" delegate:nil cancelButtonTitle:@"是" otherButtonTitles:nil];
-    //        [alert show];
-    //        return;
-    //    }
-    //
-    //    if ([_yzmTextField.text length]==0) {
-    //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"手机验证码不能为空" delegate:nil cancelButtonTitle:@"是" otherButtonTitles:nil];
-    //        [alert show];
-    //        return;
-    //
-    //    }
     
     if (![passWordField.text isEqualToString:verifyPassWordField.text]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"两次输入的密码不一致，请重新输入！" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil];
@@ -310,87 +222,30 @@ static bool IsVerify =NO;
         return;
     }
     
-    
-    
-    //进行注册
-    //**********************************
-    
-    
     NSMutableDictionary *parameters =[[NSMutableDictionary alloc] initWithObjectsAndKeys:_phoneNumberTextField.text,@"cellPhone",[MD5 md5HexDigest:passWordField.text],@"password",@"mobile",@"deviceType",_yzmTextField.text,@"barCode",nil];
-    NSLog(@"nininiiinmmmmmmmmmmmm%@",parameters);
+    NSLog(@"parameters==%@",parameters);
     
     [LoginModel RegisterWithBlock:^(NSMutableArray *posts, NSError *error) {
-        NSDictionary *responseObject = [posts objectAtIndex:0];
-        NSNumber *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
-        if([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"])
-        {
-            NSLog(@"账号密码注册成功");
-            
-            IsVerify =NO;
-            NSArray *a = [[responseObject objectForKey:@"d"] objectForKey:@"data"];
-            for(NSDictionary *item in a){
-                
-                
-                [LoginSqlite opensql];
-                [LoginSqlite insertData:[item objectForKey:@"isFaceRegister"] datakey:@"isFaceRegister"];
-                [LoginSqlite insertData:[item objectForKey:@"faceCount"] datakey:@"faceCount"];
-                NSLog(@"***********%@",[item objectForKey:@"userName"]);
-                NSString *userName =[NSString stringWithFormat:@"%@",[item objectForKey:@"userName"]];
-                if ([userName isEqualToString:@"(null)"]||[userName isEqualToString:@"<null>"]) {
-                    userName = @"";
-                }
-                [LoginSqlite insertData:userName datakey:@"userName"];//待会跟岳志强沟通
-                [LoginSqlite insertData:[item objectForKey:@"userId"] datakey:@"userId"];
-                [LoginSqlite insertData:[item objectForKey:@"deviceToken"] datakey:@"deviceToken"];
-                
-                
-            }
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册成功，是否进行脸部识别的注册" delegate:self cancelButtonTitle:@"是" otherButtonTitles:@"否", nil];
-            [alert show];
-            
-        }else if([[NSString stringWithFormat:@"%@",statusCode]isEqualToString:@"1308"]){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"手机号码已存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
-        }else if([[NSString stringWithFormat:@"%@",statusCode]isEqualToString:@"1310"]){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"激活码无效" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
+        if (!error) {
+            NSDictionary *item = posts[0];
+//            NSString *userName =item[@"userName"];
+//            if ([userName isEqualToString:@"(null)"]||[userName isEqualToString:@"<null>"]) {
+//                userName = @"";
+//            }
+//            [LoginSqlite insertData:userName datakey:@"userName"];//待会跟岳志强沟通
+            [LoginSqlite insertData:[item objectForKey:@"userId"] datakey:@"userId"];
+            [LoginSqlite insertData:[item objectForKey:@"deviceToken"] datakey:@"deviceToken"];
+            [self.navigationController.viewControllers[0] dismissViewControllerAnimated:YES completion:nil];
         }
-        else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:responseObject[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
-        }
-        
     } dic:parameters];
-    
-}
-
-
-
--(void)recognizeSuccess//开始进行登录跳转
-{
-    HomePageViewController *homepage = [[HomePageViewController alloc] init];
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    [UIView beginAnimations:nil context:context];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:0.7];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[AppDelegate instance] window] cache:YES];
-    NSUInteger tview1 = [[self.view subviews] indexOfObject:[[AppDelegate instance] window]];
-    NSUInteger tview2 = [[self.view subviews] indexOfObject:homepage.view];
-    [self.view exchangeSubviewAtIndex:tview2 withSubviewAtIndex:tview1];
-    [UIView setAnimationDelegate:self];
-    [UIView commitAnimations];
-    
-    [[AppDelegate instance] window].rootViewController = homepage;
-    [[[AppDelegate instance] window] makeKeyAndVisible];
-    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-
+-(void)dealloc{
+    NSLog(@"注册dealloc");
+}
 @end

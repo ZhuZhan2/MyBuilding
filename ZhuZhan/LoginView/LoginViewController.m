@@ -13,6 +13,7 @@
 #import "LoginSqlite.h"
 #import "LoginModel.h"
 #import "MD5.h"
+#import "ForgetPasswordViewController.h"
 @interface LoginViewController ()
 
 @end
@@ -107,10 +108,14 @@
     [findPassWordBtn setFrame:CGRectMake(160, 530, 100, 30)];
     [findPassWordBtn setTitle:@"找回密码" forState:UIControlStateNormal];
     findPassWordBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [findPassWordBtn addTarget:self action:@selector(forgetPassword) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:findPassWordBtn];
 }
 
-
+-(void)forgetPassword{
+    ForgetPasswordViewController* vc=[[ForgetPasswordViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)didReceiveMemoryWarning
 {
