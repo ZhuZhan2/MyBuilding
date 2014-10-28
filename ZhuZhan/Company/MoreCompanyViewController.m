@@ -94,7 +94,7 @@
                 [self.tableView headerEndRefreshing];
                 [self.tableView reloadData];
             }
-        } startIndex:startIndex keyWords:@"" noNetWork:nil];
+        } startIndex:startIndex keyWords:self.keywords noNetWork:nil];
     }
 }
 
