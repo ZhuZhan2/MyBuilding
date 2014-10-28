@@ -82,13 +82,6 @@
     
 }
 
-
-
-
--(void)viewWillDisappear:(BOOL)animated{
-//    conFriendTableView =nil;
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

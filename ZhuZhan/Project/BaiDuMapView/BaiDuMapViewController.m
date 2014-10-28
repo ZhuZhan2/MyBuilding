@@ -10,6 +10,8 @@
 #import <MapKit/MapKit.h>
 #import "ProjectApi.h"
 #import "projectModel.h"
+#import "ErrorView.h"
+#import "MBProgressHUD.h"
 @interface BaiDuMapViewController ()
 
 @end
@@ -331,9 +333,6 @@ int j;
     
     NSInteger numberOfPoints = [coordinates count];
     
-    
-    
-    
     if (numberOfPoints > 2)
     {
         double maxLongitude=-9999;
@@ -360,41 +359,51 @@ int j;
         
         CLLocationCoordinate2D centerLocation=CLLocationCoordinate2DMake((maxLatitude+minLatitude)*0.5, (maxLongitude+minLongitude)*.5);
 
-        [ProjectApi GetMapSearchWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if (!error) {
-                NSLog(@"map ===== %@",posts);
-                CGPathCloseSubpath(pathRef);
-                int count = 0;
-                if(logArr.count>26){
-                    count = 26;
-                }else{
-                    count = logArr.count;
-                }
-                //地理坐标转换成点
-                for(int i=0;i<count;i++){
-                    testLocation.latitude = [[latArr objectAtIndex:i] floatValue];
-                    testLocation.longitude = [[logArr objectAtIndex:i] floatValue];
-                    locationConverToImage=[_mapView convertCoordinate:testLocation toPointToView:imageView];
-                    //NSLog(@"%f====%f",locationConverToImage.x,locationConverToImage.y);
-                    if (CGPathContainsPoint(pathRef, NULL, locationConverToImage, NO)) {
-                        
-                        NSLog(@"point in path!");
-                        projectModel *model = [showArr objectAtIndex:i];
-                        annotationPoint = [[BMKPointAnnotation alloc]init];
-                        CLLocationCoordinate2D coor;
-                        coor.latitude = testLocation.latitude;
-                        coor.longitude = testLocation.longitude;
-                        annotationPoint.coordinate = coor;
-                        annotationPoint.title = model.a_landName;
-                        annotationPoint.subtitle = model.a_landAddress;
-                        [_mapView addAnnotation:annotationPoint];
-                        topCount++;
-                    }
-                }
-            }
-        } longitude:[NSString stringWithFormat:@"%lf",centerLocation.longitude] latitude:[NSString stringWithFormat:@"%lf",centerLocation.latitude] noNetWork:nil];
+        [self getMapSearch:centerLocation];
     }
 }
+
+-(void)getMapSearch:(CLLocationCoordinate2D)centerLocation{
+    [ProjectApi GetMapSearchWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            NSLog(@"map ===== %@",posts);
+            CGPathCloseSubpath(pathRef);
+            int count = 0;
+            if(logArr.count>26){
+                count = 26;
+            }else{
+                count = logArr.count;
+            }
+            //地理坐标转换成点
+            for(int i=0;i<count;i++){
+                testLocation.latitude = [[latArr objectAtIndex:i] floatValue];
+                testLocation.longitude = [[logArr objectAtIndex:i] floatValue];
+                locationConverToImage=[_mapView convertCoordinate:testLocation toPointToView:imageView];
+                //NSLog(@"%f====%f",locationConverToImage.x,locationConverToImage.y);
+                if (CGPathContainsPoint(pathRef, NULL, locationConverToImage, NO)) {
+                    
+                    NSLog(@"point in path!");
+                    projectModel *model = [showArr objectAtIndex:i];
+                    annotationPoint = [[BMKPointAnnotation alloc]init];
+                    CLLocationCoordinate2D coor;
+                    coor.latitude = testLocation.latitude;
+                    coor.longitude = testLocation.longitude;
+                    annotationPoint.coordinate = coor;
+                    annotationPoint.title = model.a_landName;
+                    annotationPoint.subtitle = model.a_landAddress;
+                    [_mapView addAnnotation:annotationPoint];
+                    topCount++;
+                }
+            }
+        }
+    } longitude:[NSString stringWithFormat:@"%lf",centerLocation.longitude] latitude:[NSString stringWithFormat:@"%lf",centerLocation.latitude] noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view reloadBlock:^{
+            [self getMapSearch:centerLocation];
+        }];
+    }];
+    
+}
+
 
 //根据overlay生成对应的View
 - (BMKOverlayView *)mapView:(BMKMapView *)mapView viewForOverlay:(id <BMKOverlay>)overlay

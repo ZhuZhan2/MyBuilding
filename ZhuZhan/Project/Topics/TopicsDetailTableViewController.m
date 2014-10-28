@@ -41,18 +41,22 @@
     self.navigationItem.leftBarButtonItem = leftButtonItem;
     
     self.title = @"专题详情";
+    self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
+    self.tableView.separatorStyle = NO;
+    [self firstNetWork];
+}
+
+-(void)firstNetWork{
     [ProjectApi GetSeminarProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             showArr = posts;
             [self.tableView reloadData];
         }
-    } Id:self.model.a_id noNetWork:nil];
-    self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
-    self.tableView.separatorStyle = NO;
-    
-    
-    
-    //self.model.a_content=@"sadasd的大声的撒的卡里打卡上了罚款了；阿费莱；萨菲拉斯；麻烦了；爱似麻烦；拉什么疯了；爱似麻烦；爱似麻烦；爱似麻烦；ASF；拉什么疯了；阿萨姆；阿拉是魔法师；浪费马上；发来撒明法审令；fdasdasdasdasdasdassdadadadadadadsdasdasdasdas";
+    } Id:self.model.a_id noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,13 +89,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     return 2+showArr.count;
 }
 
@@ -157,7 +159,6 @@
     projectModel *model = showArr[indexPath.row-2];
     vc.model=model;
     vc.projectId = model.a_id;
-    //[self.delegate homePageTabBarHide];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

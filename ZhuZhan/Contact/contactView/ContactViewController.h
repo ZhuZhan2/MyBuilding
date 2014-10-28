@@ -26,7 +26,6 @@
     int startIndex;
     AddCommentViewController *addCommentView;
     NSIndexPath *indexpath;
-    ErrorView *errorview;
     ShowViewController *showVC;
 }
 @property (nonatomic, strong) XHPathCover *pathCover;

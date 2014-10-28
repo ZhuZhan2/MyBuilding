@@ -47,16 +47,30 @@
 {
     [super viewDidLoad];
     startIndex = 0;
+    [self initSearchView];
+    [self initMyTableViewAndNavi];
+    //集成刷新控件
+    [self setupRefresh];
+    [self firstNetWork];
+    [self addGesture];
+}
+
+-(void)addGesture{
+    UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self.view action:@selector(endEditing:)];
+    [self.view addGestureRecognizer:tap];
+}
+
+-(void)firstNetWork{
     [CompanyApi GetCompanyListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.showArr = posts;
             [self.tableView reloadData];
         }
-    } startIndex:0 keyWords:@"" noNetWork:nil];
-    [self initSearchView];
-    [self initMyTableViewAndNavi];
-    //集成刷新控件
-    [self setupRefresh];
+    } startIndex:0 keyWords:@"" noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 /**
@@ -74,46 +88,36 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
-        [self.tableView footerEndRefreshing];
+    [CompanyApi GetCompanyListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            startIndex = 0;
+            self.showArr = posts;
+            [self.tableView reloadData];
+        }
         [self.tableView headerEndRefreshing];
-    }else{
-        startIndex = 0;
-        [CompanyApi GetCompanyListWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                self.showArr = posts;
-                [self.tableView footerEndRefreshing];
-                [self.tableView headerEndRefreshing];
-                [self.tableView reloadData];
-            }
-        } startIndex:startIndex keyWords:self.keywords noNetWork:nil];
-    }
+    } startIndex:0 keyWords:self.keywords noNetWork:^{
+        [self.tableView headerEndRefreshing];
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self headerRereshing];
+        }];
+    }];
 }
 
 - (void)footerRereshing
 {
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.removeFromSuperViewOnHide =YES;
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"当前网络不可用，请检查网络连接！";
-        hud.labelFont = [UIFont fontWithName:nil size:14];
-        hud.minSize = CGSizeMake(132.f, 108.0f);
-        [hud hide:YES afterDelay:3];
+    [CompanyApi GetCompanyListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            startIndex++;
+            [self.showArr addObjectsFromArray:posts];
+            [self.tableView reloadData];
+        }
         [self.tableView footerEndRefreshing];
-        [self.tableView headerEndRefreshing];
-    }else{
-        startIndex = startIndex +1;
-        [CompanyApi GetCompanyListWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                [self.showArr addObjectsFromArray:posts];
-                [self.tableView footerEndRefreshing];
-                [self.tableView headerEndRefreshing];
-                [self.tableView reloadData];
-            }
-        } startIndex:startIndex keyWords:self.keywords noNetWork:nil];
-    }
+    } startIndex:startIndex keyWords:self.keywords noNetWork:^{
+        [self.tableView footerEndRefreshing];
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self footerRereshing];
+        }];
+    }];
 }
 
 -(UIImage*)imageWithColor:(UIColor *)color{
@@ -241,31 +245,38 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    startIndex = 0;
     self.keywords = searchBar.text;
     [CompanyApi GetCompanyListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
+            startIndex = 0;
             self.showArr = posts;
             [self.tableView reloadData];
             self.searchBar.showsCancelButton = YES;
         }
-    }startIndex:startIndex keyWords:[NSString stringWithFormat:@"%@",searchBar.text] noNetWork:nil];
+    }startIndex:0 keyWords:[NSString stringWithFormat:@"%@",searchBar.text] noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self searchBarSearchButtonClicked:searchBar];
+        }];
+    }];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    startIndex = 0;
     self.keywords = @"";
     self.searchBar.text = nil;
     [CompanyApi GetCompanyListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
+            startIndex = 0;
             self.showArr = posts;
             [self.tableView reloadData];
             self.searchBar.showsCancelButton = NO;
         }
-    } startIndex:startIndex keyWords:@"" noNetWork:nil];
+    } startIndex:0 keyWords:@"" noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self searchBarCancelButtonClicked:searchBar];
+        }];
+    }];
 }
 @end

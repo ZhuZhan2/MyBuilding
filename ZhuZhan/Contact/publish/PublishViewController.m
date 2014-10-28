@@ -166,7 +166,6 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     leftBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_07a"];
     rightBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_13a"];
     PublishNum =1;
-    
 }
 
 -(void)publshProduct{

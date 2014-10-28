@@ -35,7 +35,6 @@
     [self.view addSubview:separatorLine];
     
     self.countLabel=[[UILabel alloc]initWithFrame:CGRectMake(5, self.view.frame.size.height-30, 60, 20)];
-    //self.countLabel.backgroundColor=[UIColor greenColor];
     self.countLabel.text=@"0/100";
     self.countLabel.font=[UIFont systemFontOfSize:16];
     self.countLabel.textAlignment=NSTextAlignmentRight;

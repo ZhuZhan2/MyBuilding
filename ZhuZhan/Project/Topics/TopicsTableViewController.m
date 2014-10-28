@@ -13,6 +13,7 @@
 #import "MJRefresh.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
+#import "ErrorView.h"
 @interface TopicsTableViewController ()
 
 @end
@@ -42,29 +43,23 @@
     self.title = @"项目专题";
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     self.tableView.separatorStyle = NO;
-    
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.removeFromSuperViewOnHide =YES;
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"当前网络不可用，请检查网络连接！";
-        hud.labelFont = [UIFont fontWithName:nil size:14];
-        hud.minSize = CGSizeMake(132.f, 108.0f);
-        [hud hide:YES afterDelay:3];
-        [self.tableView footerEndRefreshing];
-        [self.tableView headerEndRefreshing];
-    }else{
-        startIndex = 0;
-        [ProjectApi GetPiProjectSeminarWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                showArr = posts;
-                [self.tableView reloadData];
-            }
-        } startIndex:startIndex noNetWork:nil];
-    }
-    
     //集成刷新控件
     [self setupRefresh];
+    startIndex = 0;
+    [self firstNetWork];
+}
+
+-(void)firstNetWork{
+    [ProjectApi GetPiProjectSeminarWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            showArr = posts;
+            [self.tableView reloadData];
+        }
+    } startIndex:startIndex noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,54 +88,37 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.removeFromSuperViewOnHide =YES;
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"当前网络不可用，请检查网络连接！";
-        hud.labelFont = [UIFont fontWithName:nil size:14];
-        hud.minSize = CGSizeMake(132.f, 108.0f);
-        [hud hide:YES afterDelay:3];
-        [self.tableView footerEndRefreshing];
+    [ProjectApi GetPiProjectSeminarWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            startIndex = 0;
+            [showArr removeAllObjects];
+            showArr = posts;
+            [self.tableView reloadData];
+        }
         [self.tableView headerEndRefreshing];
-    }else{
-        startIndex = 0;
-        [ProjectApi GetPiProjectSeminarWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                [showArr removeAllObjects];
-                showArr = posts;
-                [self.tableView footerEndRefreshing];
-                [self.tableView headerEndRefreshing];
-                [self.tableView reloadData];
-            }
-        }startIndex:startIndex noNetWork:nil];
-    }
+    }startIndex:0 noNetWork:^{
+        [self.tableView headerEndRefreshing];
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self headerRereshing];
+        }];
+    }];
 }
 
 - (void)footerRereshing
 {
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.removeFromSuperViewOnHide =YES;
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"当前网络不可用，请检查网络连接！";
-        hud.labelFont = [UIFont fontWithName:nil size:14];
-        hud.minSize = CGSizeMake(132.f, 108.0f);
-        [hud hide:YES afterDelay:3];
+    [ProjectApi GetPiProjectSeminarWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            startIndex++;
+            [showArr addObjectsFromArray:posts];
+            [self.tableView reloadData];
+        }
         [self.tableView footerEndRefreshing];
-        [self.tableView headerEndRefreshing];
-    }else{
-        startIndex = startIndex +1;
-        [ProjectApi GetPiProjectSeminarWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                [showArr addObjectsFromArray:posts];
-                [self.tableView reloadData];
-                [self.tableView footerEndRefreshing];
-                [self.tableView headerEndRefreshing];
-                [self.tableView reloadData];
-            }
-        }startIndex:startIndex noNetWork:nil];
-    }
+    }startIndex:startIndex+1 noNetWork:^{
+        [self.tableView footerEndRefreshing];
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self footerRereshing];
+        }];
+    }];
 }
 
 #pragma mark - Table view data source

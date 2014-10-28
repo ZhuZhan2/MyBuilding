@@ -106,9 +106,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)downLoad:(void(^)())block{
-    startIndex=0;
     [CommentApi PersonalActiveWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
+            startIndex=0;
             showArr = posts;
             for(int i=0;i<showArr.count;i++){
                 PersonalCenterModel *model = showArr[i];
@@ -128,7 +128,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 block();
             }
         }
-    } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex noNetWork:nil];
+    } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+            [self downLoad:block];
+        }];
+    }];
 }
 
 /**
@@ -143,32 +149,34 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 #pragma mark 开始进入刷新状态
 - (void)footerRereshing
 {
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        
-    }else{
-        startIndex ++;
-        [CommentApi PersonalActiveWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                [showArr addObjectsFromArray:posts];
-                for(int i=0;i<posts.count;i++){
-                    PersonalCenterModel *model = posts[i];
-                    [_datasource addObject:model.a_time];
-                    
-                    if (![model.a_category isEqualToString:@"Project"]) {
-                        UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:model.a_imageUrl content:model.a_content category:model.a_category];
-                        [contentViews addObject:view];
-                    }else{
-                        [contentViews addObject:@""];
-                    }
+    [CommentApi PersonalActiveWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            startIndex ++;
+            [showArr addObjectsFromArray:posts];
+            for(int i=0;i<posts.count;i++){
+                PersonalCenterModel *model = posts[i];
+                [_datasource addObject:model.a_time];
+                
+                if (![model.a_category isEqualToString:@"Project"]) {
+                    UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:model.a_imageUrl content:model.a_content category:model.a_category];
+                    [contentViews addObject:view];
+                }else{
+                    [contentViews addObject:@""];
                 }
-                _timeScroller.hidden=YES;
-                [self.tableView footerEndRefreshing];
-                [self.tableView reloadData];
-                _timeScroller.hidden=NO;
             }
-        } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex noNetWork:nil];
-
-    }
+            _timeScroller.hidden=YES;
+            [self.tableView reloadData];
+            _timeScroller.hidden=NO;
+        }
+        [self.tableView footerEndRefreshing];
+    } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex+1 noNetWork:^{
+        [self.tableView footerEndRefreshing];
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+            [self footerRereshing];
+        }];
+    }];
 }
 
 //****************************************************************
