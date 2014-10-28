@@ -720,6 +720,8 @@
 		D3D74ED719FA308000ED8B62 /* 面部识别登录_02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D74EAD19FA308000ED8B62 /* 面部识别登录_02@2x.png */; };
 		D3D7D86619FF4B9800AE5765 /* 项目－搜索_09a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7D86419FF4B9800AE5765 /* 项目－搜索_09a.png */; };
 		D3D7D86719FF4B9800AE5765 /* 项目－搜索_09a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7D86519FF4B9800AE5765 /* 项目－搜索_09a@2x.png */; };
+		D3D7D86A19FF5B3100AE5765 /* 人脉－发布动态_09a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7D86819FF5B3100AE5765 /* 人脉－发布动态_09a.png */; };
+		D3D7D86B19FF5B3100AE5765 /* 人脉－发布动态_09a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7D86919FF5B3100AE5765 /* 人脉－发布动态_09a@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1884,6 +1886,8 @@
 		D3D74EAD19FA308000ED8B62 /* 面部识别登录_02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "面部识别登录_02@2x.png"; sourceTree = "<group>"; };
 		D3D7D86419FF4B9800AE5765 /* 项目－搜索_09a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目－搜索_09a.png"; sourceTree = "<group>"; };
 		D3D7D86519FF4B9800AE5765 /* 项目－搜索_09a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目－搜索_09a@2x.png"; sourceTree = "<group>"; };
+		D3D7D86819FF5B3100AE5765 /* 人脉－发布动态_09a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－发布动态_09a.png"; sourceTree = "<group>"; };
+		D3D7D86919FF5B3100AE5765 /* 人脉－发布动态_09a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－发布动态_09a@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3030,6 +3034,8 @@
 				04BC3F4E19D7E5B0006B5C7B /* 人脉－发布动态_03a@2x.png */,
 				04BC3F4F19D7E5B0006B5C7B /* 人脉－发布动态_07a.png */,
 				04BC3F5019D7E5B0006B5C7B /* 人脉－发布动态_07a@2x.png */,
+				D3D7D86819FF5B3100AE5765 /* 人脉－发布动态_09a.png */,
+				D3D7D86919FF5B3100AE5765 /* 人脉－发布动态_09a@2x.png */,
 				04BC3F5319D7E5B0006B5C7B /* 人脉－发布动态_11a.png */,
 				04BC3F5419D7E5B0006B5C7B /* 人脉－发布动态_11a@2x.png */,
 				04BC3F5519D7E5B0006B5C7B /* 人脉－发布动态_13a.png */,
@@ -3921,6 +3927,7 @@
 				04BC417519D7E5B3006B5C7B /* 人脉_02a.png in Resources */,
 				04BC429A19D7E5B3006B5C7B /* 筛选中02.png in Resources */,
 				04BC42C119D7E5B3006B5C7B /* 项目-首页_18a@2x.png in Resources */,
+				D3D7D86A19FF5B3100AE5765 /* 人脉－发布动态_09a.png in Resources */,
 				04BC410619D7E5B3006B5C7B /* 017@2x.png in Resources */,
 				04BC410F19D7E5B3006B5C7B /* 021.png in Resources */,
 				04BC416019D7E5B3006B5C7B /* 产品－产品详情_12a@2x.png in Resources */,
@@ -3965,6 +3972,7 @@
 				04BC433C19D7E5B3006B5C7B /* 项目－项目专题_17a.png in Resources */,
 				04BC413D19D7E5B3006B5C7B /* icon-star@2x.png in Resources */,
 				04BC40F219D7E5B3006B5C7B /* +项目-首页_27a.png in Resources */,
+				D3D7D86B19FF5B3100AE5765 /* 人脉－发布动态_09a@2x.png in Resources */,
 				04BC41E419D7E5B3006B5C7B /* 人脉－引荐信_08a@2x.png in Resources */,
 				04BC41D219D7E5B3006B5C7B /* 人脉－发布动态_03a@2x.png in Resources */,
 				04BC42BA19D7E5B3006B5C7B /* 项目-首页_03a.png in Resources */,
