@@ -17,6 +17,7 @@
 #import "MBProgressHUD.h"
 #import "CompanyMemberCell.h"
 #import "LoginSqlite.h"
+#import "EndEditingGesture.h"
 @interface CompanyMemberViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
@@ -52,6 +53,7 @@
     //集成刷新控件
     [self setupRefresh];
     [self firstNetWork];
+    [EndEditingGesture addGestureToView:self.view];
 }
 
 -(void)firstNetWork{

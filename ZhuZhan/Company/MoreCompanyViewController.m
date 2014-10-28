@@ -16,6 +16,7 @@
 #import "MJRefresh.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
+#import "EndEditingGesture.h"
 @interface MoreCompanyViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UIScrollViewDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
@@ -52,7 +53,7 @@
     //集成刷新控件
     [self setupRefresh];
     [self firstNetWork];
-    [self addGesture];
+    [EndEditingGesture addGestureToView:self.view];
 }
 
 -(void)addGesture{
@@ -112,7 +113,7 @@
             [self.tableView reloadData];
         }
         [self.tableView footerEndRefreshing];
-    } startIndex:startIndex keyWords:self.keywords noNetWork:^{
+    } startIndex:startIndex+1 keyWords:self.keywords noNetWork:^{
         [self.tableView footerEndRefreshing];
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
             [self footerRereshing];
