@@ -61,6 +61,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"bg001"]];
     [_pathCover setHeadTaget];
+    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"用户名", XHUserNameKey, @"公司名字显示在这里     职位", XHBirthdayKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
     //时间标签
     _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
@@ -94,9 +95,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
             [ContactModel UserDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
-//                    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0]]];
-//                    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"用户名", XHUserNameKey, @"公司名字显示在这里     职位", XHBirthdayKey, nil]];
-//                    [LoginSqlite insertData:posts[0] datakey:@"userImageUrl"];
+                    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0]]];
+                    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"用户名", XHUserNameKey, @"公司名字显示在这里     职位", XHBirthdayKey, nil]];
+                    [LoginSqlite insertData:posts[0] datakey:@"userImageUrl"];
                 }
             } userId:[LoginSqlite getdata:@"userId"] noNetWork:nil];
         }

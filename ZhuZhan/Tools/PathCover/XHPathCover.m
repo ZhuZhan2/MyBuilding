@@ -320,8 +320,8 @@ NSString *const XHBirthdayKey = @"XHBirthday";
         
         CGPoint center =  _bannerImageView.center;
         center.y = bannerSuper.frame.size.height / 2;
-        _bannerImageView.center = center;
-        
+        //_bannerImageView.center = center;
+        _bannerImageView.frame = CGRectMake(0, 0, 320, bframe.size.height);
         if (self.isZoomingEffect) {
             _bannerImageView.center = center;
             CGFloat scale = fabsf(y) / self.parallaxHeight;
@@ -382,7 +382,7 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     _bannerView = [[UIView alloc] initWithFrame:self.bounds];
     _bannerView.clipsToBounds = YES;
     
-    _bannerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -self.parallaxHeight, CGRectGetWidth(_bannerView.frame), CGRectGetHeight(_bannerView.frame) + self.parallaxHeight * 2)];
+    _bannerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -self.parallaxHeight, CGRectGetWidth(_bannerView.frame), CGRectGetHeight(_bannerView.frame))];
     _bannerImageView.contentMode = UIViewContentModeScaleToFill;
     [_bannerView addSubview:self.bannerImageView];
     

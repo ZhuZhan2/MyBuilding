@@ -262,8 +262,8 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ConditionsModel *model = showArr[indexPath.row-2];
     if(indexPath.row>1){
+        ConditionsModel *model = showArr[indexPath.row-2];
         ResultsTableViewController *resultsView = [[ResultsTableViewController alloc] init];
         resultsView.flag = 1;
         resultsView.dic = [self setDic:model.a_searchConditions];

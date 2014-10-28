@@ -151,10 +151,6 @@
     }
 }
 
--(void)setIndexPath:(NSIndexPath *)indexPath{
-    _indexpath = indexPath;
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;

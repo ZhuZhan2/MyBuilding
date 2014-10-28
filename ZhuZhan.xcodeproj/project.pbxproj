@@ -722,6 +722,9 @@
 		D3D7D86719FF4B9800AE5765 /* 项目－搜索_09a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7D86519FF4B9800AE5765 /* 项目－搜索_09a@2x.png */; };
 		D3D7D86A19FF5B3100AE5765 /* 人脉－发布动态_09a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7D86819FF5B3100AE5765 /* 人脉－发布动态_09a.png */; };
 		D3D7D86B19FF5B3100AE5765 /* 人脉－发布动态_09a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7D86919FF5B3100AE5765 /* 人脉－发布动态_09a@2x.png */; };
+		D3D7D86D19FF710100AE5765 /* 人脉－个人中心_10a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7D86C19FF710100AE5765 /* 人脉－个人中心_10a@2x.png */; };
+		D3D7DB2519FF73B800AE5765 /* 人脉－人的详情_02a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7DB2319FF73B800AE5765 /* 人脉－人的详情_02a.png */; };
+		D3D7DB2619FF73B800AE5765 /* 人脉－人的详情_02a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7DB2419FF73B800AE5765 /* 人脉－人的详情_02a@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1888,6 +1891,9 @@
 		D3D7D86519FF4B9800AE5765 /* 项目－搜索_09a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目－搜索_09a@2x.png"; sourceTree = "<group>"; };
 		D3D7D86819FF5B3100AE5765 /* 人脉－发布动态_09a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－发布动态_09a.png"; sourceTree = "<group>"; };
 		D3D7D86919FF5B3100AE5765 /* 人脉－发布动态_09a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－发布动态_09a@2x.png"; sourceTree = "<group>"; };
+		D3D7D86C19FF710100AE5765 /* 人脉－个人中心_10a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－个人中心_10a@2x.png"; sourceTree = "<group>"; };
+		D3D7DB2319FF73B800AE5765 /* 人脉－人的详情_02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－人的详情_02a.png"; sourceTree = "<group>"; };
+		D3D7DB2419FF73B800AE5765 /* 人脉－人的详情_02a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－人的详情_02a@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2873,6 +2879,9 @@
 		04BC3E5D19D7E5B0006B5C7B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3D7DB2319FF73B800AE5765 /* 人脉－人的详情_02a.png */,
+				D3D7DB2419FF73B800AE5765 /* 人脉－人的详情_02a@2x.png */,
+				D3D7D86C19FF710100AE5765 /* 人脉－个人中心_10a@2x.png */,
 				D3D74E8B19FA302900ED8B62 /* Login */,
 				D3D1A7B919F8F6250006F954 /* 公司－公司详情_05b.png */,
 				D3D1A7BA19F8F6250006F954 /* 公司－公司详情_05b@2x.png */,
@@ -3843,6 +3852,7 @@
 				D3D74ED719FA308000ED8B62 /* 面部识别登录_02@2x.png in Resources */,
 				04BC419019D7E5B3006B5C7B /* 人脉_57a@2x.png in Resources */,
 				04BC436119D7E5B3006B5C7B /* ＋人脉－个人中心2_30a@2x.png in Resources */,
+				D3D7D86D19FF710100AE5765 /* 人脉－个人中心_10a@2x.png in Resources */,
 				04BC41A519D7E5B3006B5C7B /* 人脉－个人中心_06a.png in Resources */,
 				D3D74E8819FA2FEC00ED8B62 /* 登录_22@2x.png in Resources */,
 				04BC41FA19D7E5B3006B5C7B /* 全部项目_17@2x.png in Resources */,
@@ -4002,6 +4012,7 @@
 				04BC423619D7E5B3006B5C7B /* 地图搜索_02@2x.png in Resources */,
 				04BC421219D7E5B3006B5C7B /* 公司－公司组织_03a@2x.png in Resources */,
 				04BC419619D7E5B3006B5C7B /* 人脉_63a@2x.png in Resources */,
+				D3D7DB2619FF73B800AE5765 /* 人脉－人的详情_02a@2x.png in Resources */,
 				04BC41C319D7E5B3006B5C7B /* 人脉－人的详情_23a.png in Resources */,
 				04BC435119D7E5B3006B5C7B /* 项目－高级搜索－2_22a@2x.png in Resources */,
 				04BC40F119D7E5B3006B5C7B /* +项目-首页_25a@2x.png in Resources */,
@@ -4121,6 +4132,7 @@
 				5B4C198719FA543C00C6C57D /* 用户条款_05@2x.png in Resources */,
 				04BC42A419D7E5B3006B5C7B /* 语音搜索_04.png in Resources */,
 				D3D74EC619FA308000ED8B62 /* 密码找回_23.png in Resources */,
+				D3D7DB2519FF73B800AE5765 /* 人脉－人的详情_02a.png in Resources */,
 				04BC420219D7E5B3006B5C7B /* 公司认证员工_03a@2x.png in Resources */,
 				04BC41D919D7E5B3006B5C7B /* 人脉－发布动态_13a.png in Resources */,
 				04BC420519D7E5B3006B5C7B /* 公司认证员工_08a.png in Resources */,

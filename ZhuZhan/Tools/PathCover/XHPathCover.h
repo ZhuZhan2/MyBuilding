@@ -71,6 +71,7 @@ extern NSString *const XHBirthdayKey;
 //设置名字位置
 -(void)setNameFrame:(CGRect)newFrame font:(UIFont *)font;
 
+
 // set info, Example : NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:@"Jack", @"userName", @"1990-10-19", @"birthday", nil];
 - (void)setInfo:(NSDictionary *)info;
 

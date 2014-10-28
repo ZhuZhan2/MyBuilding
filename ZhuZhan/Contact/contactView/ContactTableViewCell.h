@@ -16,7 +16,9 @@
     UILabel *titleLabel;
     UILabel *nameLabel;
     UILabel *jobLabel;
+    NSIndexPath *indexpath;
 }
 @property(nonatomic,weak)ActivesModel *model;
 @property(nonatomic,weak)id<HeadImageDelegate>delegate;
+@property(nonatomic,strong)NSIndexPath *indexpath;
 @end

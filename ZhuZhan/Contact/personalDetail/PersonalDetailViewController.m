@@ -17,9 +17,6 @@
 @implementation PersonalDetailViewController
 
 @synthesize contactModel,proModel;
-static int backgroundNum = 0;
-static int projectNum =0;
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -37,12 +34,9 @@ static int projectNum =0;
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
     
-
-    
-
-    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154)];
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 215)];
     _pathCover.delegate = self;
-    [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"首页_16"]];
+    [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"人脉－人的详情_02a"]];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadImageFrame:CGRectMake(120, -50, 70, 70)];
     _pathCover.headImage.layer.cornerRadius =35;
@@ -50,7 +44,6 @@ static int projectNum =0;
     [_pathCover setNameFrame:CGRectMake(145, 20, 100, 20) font:[UIFont systemFontOfSize:14]];
     _pathCover.userNameLabel.textAlignment = NSTextAlignmentCenter;
     _pathCover.userNameLabel.center = CGPointMake(155, 30);
-    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
     
     
     self.tableView.tableHeaderView = self.pathCover;
@@ -65,6 +58,8 @@ static int projectNum =0;
     [ContactModel UserDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             contactModel = posts[0];
+            [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:contactModel.a_realName, XHUserNameKey, nil]];
+            [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,contactModel.a_userImage]];
             [self.tableView reloadData];
         }
     } userId:self.contactId noNetWork:nil];
@@ -150,27 +145,29 @@ static int projectNum =0;
         }
         companyCell.companyStr = contactModel.a_company;
         companyCell.positionStr = contactModel.a_duties;
+        companyCell.selectionStyle = NO;
         return companyCell;
     }else if (indexPath.row ==1) {
+        NSLog(@"%d",indexPath.row);
         static NSString *identifier = @"contactCell";
         ContactCell *contactCell =[tableView dequeueReusableCellWithIdentifier:identifier];
         if (!contactCell) {
             contactCell = [[ContactCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
         contactCell.delegate = self;
+        contactCell.model = contactModel;
+        contactCell.selectionStyle = NO;
         return contactCell;
         
-    }//else if (isPersonalBackgroundExist) {
-//        if (indexPath.row==2) {
-//            static NSString *identifier = @"backGroundCell";
-//            BgCell *backGroundCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-//            if (!backGroundCell) {
-//                backGroundCell = [[BgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithTextHeight:textHeight WithModel:contactModel];
-//            }
-//            return backGroundCell;
-//        }
-//    }
-    
+    }else if (indexPath.row == 2) {
+        static NSString *identifier = @"backGroundCell";
+        BgCell *backGroundCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!backGroundCell) {
+            backGroundCell = [[BgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
+        return backGroundCell;
+    }
+
     static NSString *identifier = @"correlateCell";
     CorrelateCell *correlateCell =[tableView dequeueReusableCellWithIdentifier:identifier];
     if (!correlateCell) {
@@ -180,48 +177,43 @@ static int projectNum =0;
     return correlateCell;
 }
 
--(void)buttonClicked:(UIButton *)button{
-
-    NSLog(@"button.tag %d",button.tag);
-    
-    if (button.tag==2014091001) {
-        [self onClickAttention:button.tag];
-    }
-    if (button.tag==2014091002) {
-        [self onClickToCall:button.tag];
-    }
-    
-    NSLog(@"跳转");
-//       ProgramDetailViewController *programDetailVC = [[ProgramDetailViewController alloc] init];
-//      [self.navigationController pushViewController:programDetailVC animated:YES];
-    
-}
-
-
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if([contactModel.a_company isEqualToString:@""] && [contactModel.a_duties isEqualToString:@""]){
-//        NSLog(@"asdfasdff");
-//        if(indexPath.row == 0){
-//            return 0;
-//        }
-//    }else{
-//        if(indexPath.row == 0){
-//            return 50;
-//        }
-//    }
+    if([contactModel.a_company isEqualToString:@""] && [contactModel.a_duties isEqualToString:@""]){
+        if(indexPath.row == 0){
+            return 0;
+        }
+    }else{
+        if(indexPath.row == 0){
+            return 50;
+        }
+    }
+    
+    if([contactModel.a_cellPhone isEqualToString:@""] && [contactModel.a_email isEqualToString:@""]){
+        if(indexPath.row == 1){
+            return 0;
+        }
+    }else{
+        if([contactModel.a_cellPhone isEqualToString:@""]||[contactModel.a_email isEqualToString:@""]){
+            if(indexPath.row == 1){
+                return 100;
+            }
+        }else{
+            if(indexPath.row == 1){
+                return 150;
+            }
+        }
+    }
     return 60;
 }
 
 
 //**************************************************************************************************************
--(void)onClickToCall:(int)indexPathRow//打电话
+-(void)gotoCallPhone:(NSString *)phone//打电话
 {
     NSLog(@"***********");
     NSString *deviceType = [UIDevice currentDevice].model;
     if ([deviceType isEqualToString:@"iPhone"]) {
-        UILabel *label = (UILabel *)[self.view viewWithTag:indexPathRow];
-        NSString *telephone = [NSString stringWithFormat:@"tel://%@",label.text];
+        NSString *telephone = [NSString stringWithFormat:@"tel://%@",phone];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telephone]];
     }
     else{
@@ -233,7 +225,7 @@ static int projectNum =0;
 }
 
 //**************************************************************************************************************
--(void)onClickAttention:(int)tag
+-(void)gotoCallEmail:(NSString *)email
 {
     
     if ([MFMailComposeViewController canSendMail]){
@@ -242,9 +234,8 @@ static int projectNum =0;
         // Email Content
         NSString *messageBody = nil;
         // To address
-        UILabel *label = (UILabel *)[self.view viewWithTag:tag];
-        NSArray *toRecipents = [NSArray arrayWithObject:label.text];
-        
+        NSArray *toRecipents = [NSArray arrayWithObject:email];
+        NSLog(@"%@",email);
         MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
         mc.mailComposeDelegate = self;
         [mc setSubject:emailTitle];

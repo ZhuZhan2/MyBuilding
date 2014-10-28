@@ -15,13 +15,13 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 5, 150, 30)];
+        companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 150, 30)];
         companyLabel.textAlignment = NSTextAlignmentLeft;
         companyLabel.font = [UIFont systemFontOfSize:16];
         [self addSubview:companyLabel];
         
         
-        positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 30, 80, 30)];
+        positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 20, 80, 30)];
         positionLabel.textAlignment = NSTextAlignmentLeft;
         positionLabel.textColor = [UIColor grayColor];
         positionLabel.font = [UIFont systemFontOfSize:14];
