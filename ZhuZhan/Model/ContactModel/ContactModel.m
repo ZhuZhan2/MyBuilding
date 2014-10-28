@@ -11,13 +11,14 @@
 #import "ProjectStage.h"
 #import "ActivesModel.h"
 #import "ConnectionAvailable.h"
+#import "MyCenterModel.h"
 @implementation ContactModel
 
 -(void)setDict:(NSDictionary *)dict
 {
     _dict = dict;
     self.userName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"userName"]]];
-    self.realName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"fullName"]]];
+    self.realName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"realName"]]];
     self.sex = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"sex"]]];
     self.locationProvice = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"locationProvince"]]];
     self.locationCity = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"locationCity"]]];
@@ -204,9 +205,10 @@
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            //for(NSDictionary *item in JSON[@"d"][@"data"]){
-                
-            //}
+            MyCenterModel *model = [[MyCenterModel alloc] init];
+            [model setDict:JSON[@"d"][@"data"][@"baseInformation"]];
+            [mutablePosts addObject:model];
+            
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EGOImageView.h"
 @protocol showControllerDelegate <NSObject>
--(void)gotoContactDetailView;
+-(void)gotoContactDetailView:(NSString *)contactId;
 -(void)addfocus;
 @end
 

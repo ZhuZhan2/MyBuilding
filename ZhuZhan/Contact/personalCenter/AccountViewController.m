@@ -286,7 +286,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
 }
 
 -(void)completePerfect{//完成修改后触发的方法
-    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.userName,@"UserName",model.realName,@"FullName",model.sex,@"Sex",model.locationCity,@"LocationCity",model.birthday,@"Birthday",model.constellation,@"Constellation",model.bloodType,@"BloodType",model.email,@"Email",model.companyName,@"Company",model.position,@"Duties",nil];
+    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.userName,@"userName",model.realName,@"realName",model.sex,@"sex",model.locationCity,@"locationCity",model.birthday,@"birthday",model.constellation,@"constellation",model.bloodType,@"bloodType",model.email,@"email",model.companyName,@"company",model.position,@"duties",nil];
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
         NSDictionary *responseObject = [posts objectAtIndex:0];
         NSString *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];

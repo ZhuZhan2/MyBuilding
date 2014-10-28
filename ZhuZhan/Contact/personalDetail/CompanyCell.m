@@ -10,26 +10,22 @@
 
 @implementation CompanyCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(ContactModel *)model
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 5, 150, 30)];
+        companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 5, 150, 30)];
         companyLabel.textAlignment = NSTextAlignmentLeft;
-        companyLabel.text = model.companyName;
         companyLabel.font = [UIFont systemFontOfSize:16];
         [self addSubview:companyLabel];
         
         
-        UILabel *positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 30, 80, 30)];
+        positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 30, 80, 30)];
         positionLabel.textAlignment = NSTextAlignmentLeft;
         positionLabel.textColor = [UIColor grayColor];
-        positionLabel.text = model.projectLeader;
         positionLabel.font = [UIFont systemFontOfSize:14];
         [self addSubview:positionLabel];
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-
     }
     return self;
 }
@@ -46,4 +42,11 @@
     // Configure the view for the selected state
 }
 
+-(void)setCompanyStr:(NSString *)companyStr{
+    companyLabel.text = companyStr;
+}
+
+-(void)setPositionStr:(NSString *)positionStr{
+    positionLabel.text = positionStr;
+}
 @end
