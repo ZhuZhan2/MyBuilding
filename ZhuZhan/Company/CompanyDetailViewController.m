@@ -14,6 +14,8 @@
 #import "CompanyApi.h"
 #import "LoginSqlite.h"
 #import "ContactModel.h"
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
 @interface CompanyDetailViewController ()
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic,strong)UIImageView* imageView;
@@ -29,6 +31,11 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
+    [self initMyScrollViewAndNavi];//scollview和navi初始
+    [self firstNetWork];
+}
+
+-(void)firstNetWork{
     [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.model = posts[0];
@@ -36,8 +43,11 @@
             [self initSecondView];//第二个文字view初始
             [self initThirdView];
         }
-    } companyId:self.companyId noNetWork:nil];
-    [self initMyScrollViewAndNavi];//scollview和navi初始
+    } companyId:self.companyId noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 //给MyScrollView的contentSize加高度
@@ -148,6 +158,11 @@
 }
 
 -(void)gotoNoticeView{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     if (self.isFocused) {
         [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
@@ -175,6 +190,11 @@
 
 -(void)applyForCertification{
     NSLog(@"用户选择了 申请关注");
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"employeeId"];
     [dic setValue:self.model.a_id forKey:@"companyId"];

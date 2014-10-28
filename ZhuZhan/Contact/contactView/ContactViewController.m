@@ -30,6 +30,7 @@
 #import "ProgramDetailViewController.h"
 #import "MJRefresh.h"
 #import "RegistViewController.h"
+#import "MBProgressHUD.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -102,26 +103,39 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             } userId:[LoginSqlite getdata:@"userId"] noNetWork:nil];
         }
 
-        [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                showArr = posts;
-                for(int i=0;i<showArr.count;i++){
-                    ActivesModel *model = showArr[i];
-                    if([model.a_eventType isEqualToString:@"Actives"]){
-                        commentView = [CommentView setFram:model];
-                        [viewArr addObject:commentView];
-                    }else{
-                        [viewArr addObject:@""];
-                    }
-                    [_datasource addObject:model.a_time];
-                }
-                [self.tableView reloadData];
-            }
-        } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex noNetWork:nil];
-    }
+//        if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+//            [ContactModel UserDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
+//                if(!error){
+//                }
+//            } userId:[LoginSqlite getdata:@"userId"] noNetWork:nil];
+//        }
+    [self firstNetWork];
 }
 
-
+-(void)firstNetWork{
+    [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            showArr = posts;
+            for(int i=0;i<showArr.count;i++){
+                ActivesModel *model = showArr[i];
+                if([model.a_eventType isEqualToString:@"Actives"]){
+                    commentView = [CommentView setFram:model];
+                    [viewArr addObject:commentView];
+                }else{
+                    [viewArr addObject:@""];
+                }
+                [_datasource addObject:model.a_time];
+            }
+            [self.tableView reloadData];
+        }
+    } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+            [self firstNetWork];
+        }];
+    }];
+}
 
 -(void)publish
 {
@@ -164,35 +178,35 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 #pragma mark 开始进入刷新状态
 - (void)footerRereshing
 {
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        
-    }else{
-        startIndex = startIndex +1;
-        [errorview removeFromSuperview];
-        errorview = nil;
-        self.tableView.scrollEnabled = YES;
-        [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                [showArr addObjectsFromArray:posts];
-                for(int i=0;i<posts.count;i++){
-                    ActivesModel *model = posts[i];
-                    if([model.a_eventType isEqualToString:@"Actives"]){
-                        commentView = [CommentView setFram:model];
-                        [viewArr addObject:commentView];
-                    }else{
-                        [viewArr addObject:@""];
-                    }
-                    [_datasource addObject:model.a_time];
+    [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            startIndex++;
+            [showArr addObjectsFromArray:posts];
+            for(int i=0;i<posts.count;i++){
+                ActivesModel *model = posts[i];
+                if([model.a_eventType isEqualToString:@"Actives"]){
+                    commentView = [CommentView setFram:model];
+                    [viewArr addObject:commentView];
+                }else{
+                    [viewArr addObject:@""];
                 }
-                _timeScroller.hidden=YES;
-                [self.tableView footerEndRefreshing];
-                [self.tableView reloadData];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 700ull *  NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
-                    _timeScroller.hidden=NO;
-                });
+                [_datasource addObject:model.a_time];
             }
-        } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex noNetWork:nil];
-    }
+            _timeScroller.hidden=YES;
+            [self.tableView reloadData];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 700ull *  NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
+                _timeScroller.hidden=NO;
+            });
+        }
+        [self.tableView footerEndRefreshing];
+    } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex+1 noNetWork:^{
+        [self.tableView footerEndRefreshing];
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+            [self footerRereshing];
+        }];
+    }];
 }
 
 /******************************************************************************************************************/
@@ -403,6 +417,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)HeadImageAction:(NSIndexPath *)indexPath{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
     ActivesModel *model = showArr[indexPath.row];
     showVC = [[ShowViewController alloc] init];
     showVC.delegate =self;
@@ -507,39 +526,36 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)reloadView{
-    startIndex = 0;
-    
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        errorview = [[ErrorView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
-        errorview.delegate = self;
-        [self.tableView addSubview:errorview];
-        self.tableView.scrollEnabled = NO;
-    }else{
-        [errorview removeFromSuperview];
-        errorview = nil;
-        self.tableView.scrollEnabled = YES;
-        [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                [showArr removeAllObjects];
-                [viewArr removeAllObjects];
-                [_datasource removeAllObjects];
-                showArr = posts;
-                for(int i=0;i<showArr.count;i++){
-                    ActivesModel *model = showArr[i];
-                    if([model.a_eventType isEqualToString:@"Actives"]){
-                        commentView = [CommentView setFram:model];
-                        [viewArr addObject:commentView];
-                    }else{
-                        [viewArr addObject:@""];
-                    }
-                    [_datasource addObject:model.a_time];
+    [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            startIndex = 0;
+            [showArr removeAllObjects];
+            [viewArr removeAllObjects];
+            [_datasource removeAllObjects];
+            showArr = posts;
+            for(int i=0;i<showArr.count;i++){
+                ActivesModel *model = showArr[i];
+                if([model.a_eventType isEqualToString:@"Actives"]){
+                    commentView = [CommentView setFram:model];
+                    [viewArr addObject:commentView];
+                }else{
+                    [viewArr addObject:@""];
                 }
-                [self.tableView reloadData];
-                __weak ContactViewController *wself = self;
-                [wself.pathCover stopRefresh];
+                [_datasource addObject:model.a_time];
             }
-        } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex noNetWork:nil];
-    }
+            [self.tableView reloadData];
+            __weak ContactViewController *wself = self;
+            [wself.pathCover stopRefresh];
+        }
+    } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
+        self.tableView.scrollEnabled=NO;
+        __weak ContactViewController *wself = self;
+        [wself.pathCover stopRefresh];
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+            [self reloadView];
+        }];
+    }];
 }
 
 -(void)gotoDetailView:(NSIndexPath *)indexPath{

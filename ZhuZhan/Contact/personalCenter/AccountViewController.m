@@ -14,6 +14,8 @@
 #import "DatePickerView.h"
 #import "BirthDay.h"
 #import "LoginSqlite.h"
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
 @interface AccountViewController ()
 
 @end
@@ -105,14 +107,19 @@ static int count =0;//记录生日textField 的时间被触发的次数
 
 - (void)getUserInformation
 {
-
     userIdStr = [LoginSqlite getdata:@"userId"];
-    
-    NSLog(@"********userId******* %@",userIdStr);
     [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-        model = posts[0];
-        [self.tableView reloadData];
-    } userId:userIdStr noNetWork:nil];
+        if (!error) {
+            model = posts[0];
+            [self.tableView reloadData];
+        }
+    } userId:userIdStr noNetWork:^{
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+            [self getUserInformation];
+        }];
+    }];
 }
 
 
@@ -215,6 +222,11 @@ static int count =0;//记录生日textField 的时间被触发的次数
 
 #pragma mark actionSheetDelegate---------------------
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
     
     if(isBirthday ==YES){
         isBirthday =NO;
@@ -242,14 +254,11 @@ static int count =0;//记录生日textField 的时间被触发的次数
 //cameraDelegate
 -(void)changeUserIcon:(NSString *)imageStr AndImage:(UIImage *)image//更该用户头像
 {
-
-    
     NSLog(@"********userId******* %@",userIdStr);
     NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0",@"userId",imageStr,@"userImageStrings", nil];
     [LoginModel AddUserImageWithBlock:^(NSMutableArray *posts, NSError *error) {
         
         [_pathCover addImageHead:image];
-        
     } dic:parameter noNetWork:nil];
     
 }
@@ -286,6 +295,11 @@ static int count =0;//记录生日textField 的时间被触发的次数
 }
 
 -(void)completePerfect{//完成修改后触发的方法
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
     NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.userName,@"userName",model.realName,@"realName",model.sex,@"sex",model.locationCity,@"locationCity",model.birthday,@"birthday",model.constellation,@"constellation",model.bloodType,@"bloodType",model.email,@"email",model.companyName,@"company",model.position,@"duties",nil];
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
         NSDictionary *responseObject = [posts objectAtIndex:0];
@@ -299,7 +313,6 @@ static int count =0;//记录生日textField 的时间被触发的次数
         }
         
     } dic:parameter noNetWork:nil];
-    
 }
 
 #pragma mark  AccountCellDelegate----------

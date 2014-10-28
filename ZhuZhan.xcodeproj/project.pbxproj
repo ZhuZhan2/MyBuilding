@@ -635,6 +635,7 @@
 		5B4C198719FA543C00C6C57D /* 用户条款_05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4C198519FA543C00C6C57D /* 用户条款_05@2x.png */; };
 		5B4C198A19FA57CC00C6C57D /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4C198919FA57CC00C6C57D /* ForgetPasswordViewController.m */; };
 		5B4E8A5819F8EA9800EA9AFF /* CompanyTotalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E8A5719F8EA9800EA9AFF /* CompanyTotalViewController.m */; };
+		5B5894F119FF9D24001CC09E /* EndEditingGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5894F019FF9D24001CC09E /* EndEditingGesture.m */; };
 		5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
 		5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF819932E36007D79A8 /* QuadCurveMenu.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5B656CFC19932E36007D79A8 /* QuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CFA19932E36007D79A8 /* QuadCurveMenuItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1739,6 +1740,8 @@
 		5B4C198919FA57CC00C6C57D /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		5B4E8A5619F8EA9800EA9AFF /* CompanyTotalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyTotalViewController.h; sourceTree = "<group>"; };
 		5B4E8A5719F8EA9800EA9AFF /* CompanyTotalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyTotalViewController.m; sourceTree = "<group>"; };
+		5B5894EF19FF9D24001CC09E /* EndEditingGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndEditingGesture.h; sourceTree = "<group>"; };
+		5B5894F019FF9D24001CC09E /* EndEditingGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndEditingGesture.m; sourceTree = "<group>"; };
 		5B656CF419931275007D79A8 /* CompanyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMemberViewController.h; sourceTree = "<group>"; };
 		5B656CF519931275007D79A8 /* CompanyMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyMemberViewController.m; sourceTree = "<group>"; };
 		5B656CF719932E36007D79A8 /* QuadCurveMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadCurveMenu.h; sourceTree = "<group>"; };
@@ -2070,6 +2073,8 @@
 				5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */,
 				5B1AC4AE19BEE4DC006CA4F4 /* CompanyDetailViewController.h */,
 				5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */,
+				5B5894EF19FF9D24001CC09E /* EndEditingGesture.h */,
+				5B5894F019FF9D24001CC09E /* EndEditingGesture.m */,
 			);
 			path = Company;
 			sourceTree = "<group>";
@@ -4269,6 +4274,7 @@
 				0426C2B619922D5A00CD8822 /* GPUImageSingleComponentFastBlurFilter.m in Sources */,
 				042D9ECD19B81BE400689C5D /* ContactCell.m in Sources */,
 				D3A4283B19C94E5E00BAB6C7 /* ActivesModel.m in Sources */,
+				5B5894F119FF9D24001CC09E /* EndEditingGesture.m in Sources */,
 				0426C2DE19922D5A00CD8822 /* GPUImageView.m in Sources */,
 				0426C25A19922D5A00CD8822 /* GPUImageCropFilter.m in Sources */,
 				0426C27819922D5A00CD8822 /* GPUImageHighlightShadowFilter.m in Sources */,

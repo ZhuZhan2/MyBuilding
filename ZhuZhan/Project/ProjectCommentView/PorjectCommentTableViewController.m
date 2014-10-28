@@ -53,6 +53,16 @@
     
     _datasource = [NSMutableArray new];
     viewArr = [[NSMutableArray alloc] init];
+    
+    //时间标签
+    _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
+    
+    [self firstNetWork];
+}
+
+-(void)firstNetWork{
     [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             showArr = posts;
@@ -64,12 +74,11 @@
             }
             [self.tableView reloadData];
         }
-    } entityId:projectId entityType:@"Project" noNetWork:nil];
-    
-    //时间标签
-    _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
-    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
+    } entityId:projectId entityType:@"Project" noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning

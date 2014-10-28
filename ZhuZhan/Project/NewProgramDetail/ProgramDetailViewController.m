@@ -27,7 +27,8 @@
 #import "LoginSqlite.h"
 #import "LoginViewController.h"
 #import "ProjectImageModel.h"
-
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
 @interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate,CycleScrollViewDelegate,UIActionSheetDelegate,AddCommentDelegate>
 @property(nonatomic,strong)UITableView* contentTableView;
 @property(nonatomic,strong)UITableView* selectTableView;
@@ -101,6 +102,10 @@
     self.view.backgroundColor=[UIColor whiteColor];
     [self initNavi];
     [self loadIndicatorView];
+    [self firstNetWork];
+}
+
+-(void)firstNetWork{
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             self.model = posts[0];
@@ -112,7 +117,11 @@
             NSLog(@"=====%@",error);
         }
         [self endIndicatorView];
-    } projectId:self.projectId noNetWork:nil];
+    } projectId:self.projectId noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 -(void)loadSelf{
@@ -250,6 +259,11 @@
 //**********************************************************************
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
     if (buttonIndex==0) {
         NSLog(@"关注");
         [ProjectApi AddUserFocusWithBlock:^(NSMutableArray *posts, NSError *error) {

@@ -9,6 +9,8 @@
 #import "SaveConditionsViewController.h"
 #import "ProjectApi.h"
 #import "LoginSqlite.h"
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
 @interface SaveConditionsViewController ()
 
 @end
@@ -118,6 +120,11 @@
 }
 
 -(void)confirmBtnClick{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:nameTextField.text forKey:@"SearchName"];
     [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"CreateBy"];

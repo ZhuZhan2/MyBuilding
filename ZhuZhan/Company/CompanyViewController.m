@@ -14,6 +14,8 @@
 #import "EGOImageView.h"
 #import "ContactModel.h"
 #import "LoginSqlite.h"
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
 @interface CompanyViewController ()
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic)NSInteger memberNumber;
@@ -149,6 +151,11 @@
 }
 
 -(void)noticeCompany:(UIButton*)btn{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
     btn.userInteractionEnabled=NO;
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     if (self.isFocused) {

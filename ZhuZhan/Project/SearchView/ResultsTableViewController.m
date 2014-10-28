@@ -14,6 +14,7 @@
 #import "MJRefresh.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
+#import "ErrorView.h"
 @interface ResultsTableViewController ()
 
 @end
@@ -74,26 +75,38 @@
     self.navigationItem.titleView = bgView;
     
     startIndex = 0;
+    self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
+    self.tableView.separatorStyle = NO;
+    
+    //集成刷新控件
+    [self setupRefresh];
+    [self firstNetWork];
+}
+
+-(void)firstNetWork{
     if(self.flag == 0){
         [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 showArr = posts;
                 [self.tableView reloadData];
             }
-        } startIndex:startIndex keywords:self.searchStr noNetWork:nil];
+        } startIndex:startIndex keywords:self.searchStr noNetWork:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                [self firstNetWork];
+            }];
+        }];
     }else{
         [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 showArr = posts;
                 [self.tableView reloadData];
             }
-        } dic:self.dic startIndex:startIndex noNetWork:nil];
+        } dic:self.dic startIndex:startIndex noNetWork:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                [self firstNetWork];
+            }];
+        }];
     }
-    self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
-    self.tableView.separatorStyle = NO;
-    
-    //集成刷新控件
-    [self setupRefresh];
 }
 
 - (void)didReceiveMemoryWarning
@@ -126,74 +139,68 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.removeFromSuperViewOnHide =YES;
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"当前网络不可用，请检查网络连接！";
-        hud.labelFont = [UIFont fontWithName:nil size:14];
-        hud.minSize = CGSizeMake(132.f, 108.0f);
-        [hud hide:YES afterDelay:3];
-        [self.tableView footerEndRefreshing];
-        [self.tableView headerEndRefreshing];
+    [showArr removeAllObjects];
+    if(self.flag == 0){
+        [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                startIndex = 0;
+                showArr = posts;
+                [self.tableView reloadData];
+            }
+            [self.tableView headerEndRefreshing];
+        } startIndex:0 keywords:self.searchStr noNetWork:^{
+            [self.tableView headerEndRefreshing];
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                [self headerRereshing];
+            }];
+        }];
     }else{
-        startIndex = 0;
-        [showArr removeAllObjects];
-        if(self.flag == 0){
-            [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
-                if(!error){
-                    showArr = posts;
-                    [self.tableView reloadData];
-                    [self.tableView footerEndRefreshing];
-                    [self.tableView headerEndRefreshing];
-                }
-            } startIndex:startIndex keywords:self.searchStr noNetWork:nil];
-        }else{
-            [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
-                if(!error){
-                    showArr = posts;
-                    [self.tableView reloadData];
-                    [self.tableView footerEndRefreshing];
-                    [self.tableView headerEndRefreshing];
-                }
-            } dic:self.dic startIndex:startIndex noNetWork:nil];
-        }
+        [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                startIndex = 0;
+                showArr = posts;
+                [self.tableView reloadData];
+            }
+            [self.tableView headerEndRefreshing];
+        } dic:self.dic startIndex:0 noNetWork:^{
+            [self.tableView headerEndRefreshing];
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                [self headerRereshing];
+            }];
+        }];
     }
 }
 
 - (void)footerRereshing
 {
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.removeFromSuperViewOnHide =YES;
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"当前网络不可用，请检查网络连接！";
-        hud.labelFont = [UIFont fontWithName:nil size:14];
-        hud.minSize = CGSizeMake(132.f, 108.0f);
-        [hud hide:YES afterDelay:3];
-        [self.tableView footerEndRefreshing];
-        [self.tableView headerEndRefreshing];
+    if(self.flag == 0){
+        [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                startIndex++;
+                [showArr addObjectsFromArray:posts];
+                [self.tableView reloadData];
+            }
+            [self.tableView footerEndRefreshing];
+        } startIndex:startIndex keywords:self.searchStr noNetWork:^{
+            [self.tableView footerEndRefreshing];
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                [self footerRereshing];
+            }];
+        }];
     }else{
-        startIndex = startIndex +1;
-        if(self.flag == 0){
-            [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
-                if(!error){
-                    [showArr addObjectsFromArray:posts];
-                    [self.tableView reloadData];
-                    [self.tableView footerEndRefreshing];
-                    [self.tableView headerEndRefreshing];
-                }
-            } startIndex:startIndex keywords:self.searchStr noNetWork:nil];
-        }else{
-            [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
-                if(!error){
-                    [showArr addObjectsFromArray:posts];
-                    [self.tableView reloadData];
-                    [self.tableView footerEndRefreshing];
-                    [self.tableView headerEndRefreshing];
-                }
-            } dic:self.dic startIndex:startIndex noNetWork:nil];
-        }
+        [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                startIndex++;
+                [showArr addObjectsFromArray:posts];
+                [self.tableView reloadData];
+            }
+            [self.tableView footerEndRefreshing];
+        } dic:self.dic startIndex:startIndex noNetWork:^{
+            [self.tableView footerEndRefreshing];
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                [self footerRereshing];
+            }];
+        }];
     }
 }
 

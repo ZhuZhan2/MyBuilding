@@ -13,6 +13,8 @@
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
 #import "LoginSqlite.h"
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
 @interface AdvancedSearchViewController ()
 
 @end
@@ -67,21 +69,24 @@
     [dataDic setValue:@" " forKey:@"projectCategory"];
     
     viewArr = [[NSMutableArray alloc] init];
+    [self firstNetWork];
+}
+
+-(void)firstNetWork{
     [ProjectApi GetSearchConditionsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             showArr = posts;
             for(int i=0;i<posts.count;i++){
-                ConditionsModel *model = posts[i];
-                NSLog(@"%@",model.a_searchName);
-                NSLog(@"%@",model.a_searchConditions);
-                
                 conditionsView = [ConditionsView setFram:posts[i]];
-
                 [viewArr addObject:conditionsView];
             }
             [_tableView reloadData];
         }
-    }userId:[LoginSqlite getdata:@"userId"] noNetWork:nil];
+    }userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -175,6 +180,11 @@
 
 //继承该方法时,左右滑动会出现删除按钮(自定义按钮),点击按钮时的操作
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
     NSLog(@"editingStyle ==> %d",editingStyle);
     if (editingStyle == UITableViewCellEditingStyleDelete){
         ConditionsModel *model = [showArr objectAtIndex:indexPath.row-2];
@@ -336,6 +346,11 @@
 }
 
 -(void)finshSave{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     [viewArr removeAllObjects];
     [ProjectApi GetSearchConditionsWithBlock:^(NSMutableArray *posts, NSError *error) {

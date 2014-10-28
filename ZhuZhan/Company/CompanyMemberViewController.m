@@ -17,6 +17,7 @@
 #import "MBProgressHUD.h"
 #import "CompanyMemberCell.h"
 #import "LoginSqlite.h"
+#import "EndEditingGesture.h"
 @interface CompanyMemberViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
@@ -51,6 +52,8 @@
     [self initMyTableViewAndNavi];
     //集成刷新控件
     [self setupRefresh];
+    [self firstNetWork];
+    [EndEditingGesture addGestureToView:self.view];
 }
 
 -(void)firstNetWork{
@@ -60,7 +63,9 @@
             [self.tableView reloadData];
         }
     } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:^{
-        [self firstNetWork];
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
     }];
 }
 
@@ -156,6 +161,11 @@
 }
 
 -(void)chooseApprove:(UIButton*)btn{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
     btn.enabled=NO;
     EmployeesModel *model = self.showArr[btn.tag];
     BOOL isFocused=[model.a_isFocused isEqualToString:@"1"];

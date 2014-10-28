@@ -20,6 +20,8 @@
 #import "HomePageViewController.h"
 #import "MD5.h"
 #import "ClauseViewController.h"
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
 @interface RegistViewController ()
 @property(nonatomic,strong)UIFont* font;
 @end
@@ -205,6 +207,11 @@
 
 {
     NSLog(@"共同注册部分");
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
     if (![self phoneNoErr:_phoneNumberTextField.text]) {
         return;
     }

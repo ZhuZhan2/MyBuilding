@@ -206,9 +206,6 @@ static int chanceToLoginByFace =3;
         }
 
     } dic:parameters noNetWork:nil];
-    
-
-
 }
 
 
