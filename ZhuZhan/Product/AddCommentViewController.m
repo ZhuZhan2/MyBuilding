@@ -7,7 +7,8 @@
 //
 
 #import "AddCommentViewController.h"
-
+#import "MBProgressHUD.h"
+#import "ConnectionAvailable.h"
 @interface AddCommentViewController ()<UITextViewDelegate>
 @property(nonatomic,strong)UILabel* countLabel;//字数label
 @property(nonatomic,strong)UILabel* aboveMaxLabel;//超过字数限制时的中文提示label
@@ -113,6 +114,11 @@
 }
 
 -(void)sure{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
     if ([self.delegate respondsToSelector:@selector(sureFromAddCommentWithComment:)]) {
         NSString* tempStr;
         if (self.textView.text.length>100) {
@@ -120,6 +126,7 @@
         }else{
             tempStr=self.textView.text;
         }
+        //用户确认发送之后不让用户重复点击
         self.sureBtn.enabled=NO;
         [self.delegate sureFromAddCommentWithComment:tempStr];
         NSLog(@"sure");

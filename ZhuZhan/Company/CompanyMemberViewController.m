@@ -91,13 +91,14 @@
 }
 
 -(void)judgeConnect{
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.removeFromSuperViewOnHide =YES;
-    hud.mode = MBProgressHUDModeText;
-    hud.labelText = @"当前网络不可用，请检查网络连接！";
-    hud.labelFont = [UIFont fontWithName:nil size:14];
-    hud.minSize = CGSizeMake(132.f, 108.0f);
-    [hud hide:YES afterDelay:3];
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    hud.removeFromSuperViewOnHide =YES;
+//    hud.mode = MBProgressHUDModeText;
+//    hud.labelText = @"当前网络不可用，请检查网络连接！";
+//    hud.labelFont = [UIFont fontWithName:nil size:14];
+//    hud.minSize = CGSizeMake(132.f, 108.0f);
+//    [hud hide:YES afterDelay:3];
+    [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
     [self.tableView footerEndRefreshing];
     [self.tableView headerEndRefreshing];
 }

@@ -20,6 +20,7 @@
 #import "ContactCommentModel.h"
 #import "ACTimeScroller.h"
 #import "LoginSqlite.h"
+#import "MBProgressHUD.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate,ACTimeScrollerDelegate>
 @property(nonatomic,strong)UITableView* tableView;
 
@@ -300,7 +301,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }else{
         self.vc=[[AddCommentViewController alloc]init];
         self.vc.delegate=self;
-        [self.navigationController presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
+        [self presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
     }
 }
 //=============================================================
@@ -372,11 +373,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [self.delegate finishAddCommentFromDetailWithPosts:posts];
             }
         }
-    } dic:[@{@"EntityId":self.entityID,@"CommentContents":comment,@"EntityType":self.category,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy] noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
-            [self addActivesComment:comment];
-        }];
-    }];
+    } dic:[@{@"EntityId":self.entityID,@"CommentContents":comment,@"EntityType":self.category,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy] noNetWork:nil];
 }
 
 //添加产品详情的评论
@@ -385,9 +382,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if (!error) {
             [self finishAddComment:comment];
         }
-    } dic:[@{@"EntityId":self.productModel.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy] noNetWork:^{
-        [self addProductComment:comment];
-    }];
+    } dic:[@{@"EntityId":self.productModel.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy] noNetWork:nil];
 }
 
 //给tableView添加数据
