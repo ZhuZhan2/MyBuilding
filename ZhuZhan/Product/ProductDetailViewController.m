@@ -20,6 +20,7 @@
 #import "ContactCommentModel.h"
 #import "ACTimeScroller.h"
 #import "LoginSqlite.h"
+#import "MBProgressHUD.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate,ACTimeScrollerDelegate>
 @property(nonatomic,strong)UITableView* tableView;
 
@@ -153,7 +154,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [self getTableViewContents];
                 [self myTableViewReloadData];
             }
-        } entityId:self.entityID entityType:@"Product" noNetWork:nil];
+        } entityId:self.entityID entityType:@"Product" noNetWork:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                [self getNetWorkData];
+            }];
+        }];
         
     //动态详情的评论 或者个人中心的个人动态
     }else if (self.activesModel||(self.personalModel&&![self.personalModel.a_entityUrl isEqualToString:@""])){
@@ -170,7 +175,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [self getTableViewContents];
                 [self myTableViewReloadData];
             }
-        } url:self.entityUrl noNetWork:nil];
+        } url:self.entityUrl noNetWork:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                [self getNetWorkData];
+            }];
+        }];
     }
 }
 
@@ -292,7 +301,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }else{
         self.vc=[[AddCommentViewController alloc]init];
         self.vc.delegate=self;
-        [self.navigationController presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
+        [self presentPopupViewController:self.vc animationType:MJPopupViewAnimationFade flag:2];
     }
 }
 //=============================================================

@@ -37,12 +37,14 @@
     [self initThirdView];
 }
 
+-(void)loadSelf{
+}
+
 //给MyScrollView的contentSize加高度
 -(void)scrollViewAddView:(UIView*)view{
     CGSize size=self.myScrollView.contentSize;
     size.height+=view.frame.size.height;
     self.myScrollView.contentSize=size;
-    
     [self.myScrollView addSubview:view];
 }
 
