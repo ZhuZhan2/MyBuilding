@@ -52,7 +52,7 @@
             self.showArr = posts;
             [self.tableView reloadData];
         }
-    } startIndex:startIndex keyWords:@"" noNetWork:nil];
+    } startIndex:0 keyWords:@"" noNetWork:nil];
     [self initSearchView];
     [self initMyTableViewAndNavi];
     //集成刷新控件
@@ -66,7 +66,6 @@
 {
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
     [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
-    //[_tableView headerBeginRefreshing];
     
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
     [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];

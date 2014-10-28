@@ -153,7 +153,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [self getTableViewContents];
                 [self myTableViewReloadData];
             }
-        } entityId:self.entityID entityType:@"Product" noNetWork:nil];
+        } entityId:self.entityID entityType:@"Product" noNetWork:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                [self getNetWorkData];
+            }];
+        }];
         
     //动态详情的评论 或者个人中心的个人动态
     }else if (self.activesModel||(self.personalModel&&![self.personalModel.a_entityUrl isEqualToString:@""])){
@@ -170,7 +174,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [self getTableViewContents];
                 [self myTableViewReloadData];
             }
-        } url:self.entityUrl noNetWork:nil];
+        } url:self.entityUrl noNetWork:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                [self getNetWorkData];
+            }];
+        }];
     }
 }
 
@@ -364,7 +372,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [self.delegate finishAddCommentFromDetailWithPosts:posts];
             }
         }
-    } dic:[@{@"EntityId":self.entityID,@"CommentContents":comment,@"EntityType":self.category,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy] noNetWork:nil];
+    } dic:[@{@"EntityId":self.entityID,@"CommentContents":comment,@"EntityType":self.category,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy] noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self addActivesComment:comment];
+        }];
+    }];
 }
 
 //添加产品详情的评论
@@ -373,7 +385,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if (!error) {
             [self finishAddComment:comment];
         }
-    } dic:[@{@"EntityId":self.productModel.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy] noNetWork:nil];
+    } dic:[@{@"EntityId":self.productModel.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy] noNetWork:^{
+        [self addProductComment:comment];
+    }];
 }
 
 //给tableView添加数据
