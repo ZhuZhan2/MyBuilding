@@ -150,7 +150,7 @@
     view.layer.masksToBounds=YES;
     view.backgroundColor=[UIColor grayColor];
     [view observeImage];
-    view.myImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,imageUrl]];
+    view.myImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]];
     
     
     //图片数量label

@@ -56,7 +56,7 @@
     UIImage *appleImage = [GetImagePath getImagePath:@"公司－我的公司_02a"] ;
     //公司图标
     EGOImageView* companyImageView=[[EGOImageView alloc]initWithPlaceholderImage:appleImage];
-    companyImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.model.a_companyLogo]];
+    companyImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.model.a_companyLogo]];
     companyImageView.frame=CGRectMake(15, 20, 75, 75);
     [view addSubview:companyImageView];
 

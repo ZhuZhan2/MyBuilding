@@ -20,6 +20,10 @@
         back.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
         [self addSubview:back];
         
+        UIImageView *topLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 5)];
+        [topLineImage setImage:[UIImage imageNamed:@"项目－高级搜索－2_15a"]];
+        [back addSubview:topLineImage];
+        
         UIImageView *imgaeView = [[UIImageView alloc] initWithFrame:CGRectMake(129, 8, 52, 34)];
         imgaeView.image = [GetImagePath getImagePath:@"人脉－人的详情_29a"];
         [back addSubview:imgaeView];

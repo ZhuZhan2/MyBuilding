@@ -70,7 +70,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154)];
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"首页_16"]];
-    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,[LoginSqlite getdata:@"userImageUrl"]]];
+    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImageUrl"]]];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadImageFrame:CGRectMake(125, -20, 70, 70)];
     [_pathCover.headImage.layer setMasksToBounds:YES];

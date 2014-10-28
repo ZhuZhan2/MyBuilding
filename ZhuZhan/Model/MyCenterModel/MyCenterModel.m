@@ -19,5 +19,9 @@
     self.a_company = [ProjectStage ProjectStrStage:dict[@"company"]];
     self.a_email = [ProjectStage ProjectStrStage:dict[@"email"]];
     self.a_userImage = [ProjectStage ProjectStrStage:dict[@"userImage"]];
+    self.a_location = [NSString stringWithFormat:@"%@ %@",[ProjectStage ProjectStrStage:dict[@"city"]],[ProjectStage ProjectStrStage:dict[@"district"]]];
+    self.a_birthday = [ProjectStage ProjectTimeStage:dict[@"birthday"]];
+    self.a_constellation = [ProjectStage ProjectStrStage:dict[@"constellation"]];
+    self.a_bloodType = [ProjectStage ProjectStrStage:dict[@"bloodType"]];
 }
 @end

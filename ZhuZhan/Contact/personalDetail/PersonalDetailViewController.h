@@ -16,6 +16,7 @@
 #import "ContactModel.h"
 #import "projectModel.h"
 #import "MyCenterModel.h"
+#import "ContactBackgroundTableViewCell.h"
 @interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate,MFMailComposeViewControllerDelegate,ContactCellDelegate,CorrelateCellDelegate>
 @property (nonatomic,strong) NSString *contactId;
 @property (nonatomic, strong) XHPathCover *pathCover;

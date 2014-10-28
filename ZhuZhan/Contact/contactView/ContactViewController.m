@@ -95,7 +95,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
             [ContactModel UserDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
-                    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0]]];
+                    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",posts[0]]];
                     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"用户名", XHUserNameKey, @"公司名字显示在这里     职位", XHBirthdayKey, nil]];
                     [LoginSqlite insertData:posts[0] datakey:@"userImageUrl"];
                 }

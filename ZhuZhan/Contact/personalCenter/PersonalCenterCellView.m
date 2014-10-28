@@ -60,7 +60,7 @@
     if (imageExist) {
         EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"公司认证员工_05a"]];
         imageView.frame=CGRectMake(10, 10, 60, 60);
-        imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,imageUrl]];
+        imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]];
         [view addSubview:imageView];
         contentX=80;
     }

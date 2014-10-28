@@ -42,7 +42,7 @@
     self.userImageView.layer.cornerRadius=5;
     self.userImageView.frame=CGRectMake(15, 20, 50, 50);
     self.userImageView.showActivityIndicator=YES;
-    self.userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,commentModel.a_avatarUrl]];
+    self.userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",commentModel.a_avatarUrl]];
     [self addSubview:self.userImageView];
     
     //用户名称label
