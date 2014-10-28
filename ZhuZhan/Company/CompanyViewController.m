@@ -14,8 +14,6 @@
 #import "EGOImageView.h"
 #import "ContactModel.h"
 #import "LoginSqlite.h"
-#import "ErrorView.h"
-#import "ConnectionAvailable.h"
 @interface CompanyViewController ()
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic)NSInteger memberNumber;
@@ -37,13 +35,6 @@
     [self initFirstView];//第一个文字view初始
     [self initSecondView];//第二个文字view初始
     [self initThirdView];
-//    if (![ConnectionAvailable isConnectionAvailable]) {
-//        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
-//            [self loadSelf];
-//        }];
-//    }else{
-//        [self loadSelf];
-//    }
 }
 
 -(void)loadSelf{
@@ -54,7 +45,6 @@
     CGSize size=self.myScrollView.contentSize;
     size.height+=view.frame.size.height;
     self.myScrollView.contentSize=size;
-    
     [self.myScrollView addSubview:view];
 }
 

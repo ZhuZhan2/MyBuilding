@@ -47,22 +47,24 @@
     [super viewDidLoad];
     self.startIndex = 0;
     self.keyKords = @"";
+    [self initSearchView];
+    [self initMyTableViewAndNavi];
+    //集成刷新控件
+    [self setupRefresh];
+}
+
+-(void)firstNetWork{
     [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.showArr = posts;
             [self.tableView reloadData];
         }
-    } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:nil];
-    [self initSearchView];
-    [self initMyTableViewAndNavi];
-    
-    //集成刷新控件
-    [self setupRefresh];
+    } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:^{
+        [self firstNetWork];
+    }];
 }
 
-/**
- *  集成刷新控件
- */
+//集成刷新控件
 - (void)setupRefresh
 {
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
@@ -75,49 +77,36 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        [self judgeConnect];
-    }else{
-        self.startIndex = 0;
-        [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                self.showArr = posts;
-                [self.tableView footerEndRefreshing];
-                [self.tableView headerEndRefreshing];
-                [self.tableView reloadData];
-            }
-        } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:nil];
-    }
-}
-
--(void)judgeConnect{
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    hud.removeFromSuperViewOnHide =YES;
-//    hud.mode = MBProgressHUDModeText;
-//    hud.labelText = @"当前网络不可用，请检查网络连接！";
-//    hud.labelFont = [UIFont fontWithName:nil size:14];
-//    hud.minSize = CGSizeMake(132.f, 108.0f);
-//    [hud hide:YES afterDelay:3];
-    [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
-    [self.tableView footerEndRefreshing];
-    [self.tableView headerEndRefreshing];
+    [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.startIndex = 0;
+            self.showArr = posts;
+            [self.tableView reloadData];
+        }
+        [self.tableView headerEndRefreshing];
+    } companyId:self.companyId startIndex:0 keyWords:self.keyKords noNetWork:^{
+        [self.tableView headerEndRefreshing];
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
+            [self headerRereshing];
+        }];
+    }];
 }
 
 - (void)footerRereshing
 {
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        [self judgeConnect];
-    }else{
-        self.startIndex = self.startIndex +1;
-        [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                [self.showArr addObjectsFromArray:posts];
-                [self.tableView footerEndRefreshing];
-                [self.tableView headerEndRefreshing];
-                [self.tableView reloadData];
-            }
-        } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:nil];
-    }
+    [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.startIndex++;
+            [self.showArr addObjectsFromArray:posts];
+            [self.tableView reloadData];
+        }
+        [self.tableView footerEndRefreshing];
+    } companyId:self.companyId startIndex:self.startIndex+1 keyWords:self.keyKords noNetWork:^{
+        [self.tableView footerEndRefreshing];
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
+            [self footerRereshing];
+        }];
+    }];
 }
 
 - (UIImage *)imageWithColor:(UIColor *)color{
@@ -238,27 +227,35 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    self.startIndex = 0;
     self.keyKords = searchBar.text;
     [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
+            self.startIndex = 0;
             self.showArr = posts;
             [self.tableView reloadData];
             self.searchBar.showsCancelButton = YES;
         }
-    } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:nil];
+    } companyId:self.companyId startIndex:0 keyWords:self.keyKords noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
+            [self searchBarSearchButtonClicked:searchBar];
+        }];
+    }];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    self.startIndex = 0;
     self.keyKords = @"";
     self.searchBar.text = nil;
     [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
+            self.startIndex = 0;
             self.showArr = posts;
             [self.tableView reloadData];
             self.searchBar.showsCancelButton = NO;
         }
-    } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:nil];
+    } companyId:self.companyId startIndex:0 keyWords:self.keyKords noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
+            [self searchBarSearchButtonClicked:searchBar];
+        }];
+    }];
 }
 @end

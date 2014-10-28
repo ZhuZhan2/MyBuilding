@@ -11,6 +11,7 @@
 #import "MoreCompanyViewController.h"
 #import "CompanyApi.h"
 #import "CompanyModel.h"
+#import "ErrorView.h"
 @interface CompanyTotalViewController ()
 @property(nonatomic,strong)CompanyViewController* companyVC;
 @property(nonatomic,strong)MoreCompanyViewController* moreCompanyVC;
@@ -20,6 +21,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self firstNetWork];
+    // Do any additional setup after loading the view.
+}
+
+-(void)firstNetWork{
     [CompanyApi GetMyCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             if([posts[0] isKindOfClass:[CompanyModel class]]){
@@ -33,24 +39,14 @@
                 [self.navigationController pushViewController:self.moreCompanyVC animated:NO];
             }
         }
-    } noNetWork:nil];
-
-    // Do any additional setup after loading the view.
+    } noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end
