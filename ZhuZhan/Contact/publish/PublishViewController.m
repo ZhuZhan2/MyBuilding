@@ -13,6 +13,8 @@
 #import "CommentApi.h"
 #import "GTMBase64.h"
 #import "LoginSqlite.h"
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
 @interface PublishViewController ()
 
 @end
@@ -219,7 +221,11 @@ static int PublishNum =1;//1 发布动态  2，发布产品
 
 -(void)goToPublish
 {
-
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
     NSString *userIdStr = [LoginSqlite getdata:@"userId"];
 
     if ([inputView.text isEqualToString:@""]&&[publishImageStr isEqualToString:@""]) {

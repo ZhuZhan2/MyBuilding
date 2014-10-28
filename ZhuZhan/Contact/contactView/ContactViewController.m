@@ -109,7 +109,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             }
             [self.tableView reloadData];
         }
-    } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex noNetWork:^{
+    } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
         self.tableView.scrollEnabled=NO;
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
             self.tableView.scrollEnabled=YES;

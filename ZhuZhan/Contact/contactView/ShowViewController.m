@@ -79,7 +79,6 @@
     concernBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [concernBtn addTarget:self action:@selector(gotoConcern) forControlEvents:UIControlEventTouchUpInside];
     //[tempImageView addSubview:concernBtn];
-    
 }
 
 - (void)didReceiveMemoryWarning

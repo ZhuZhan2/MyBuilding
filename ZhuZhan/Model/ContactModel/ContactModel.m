@@ -164,9 +164,9 @@
         return nil;
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/ActiveCenter/Actives?UserId=%@&pageSize=10&pageIndex=%d",userId,startIndex];
-    NSLog(@"%@",urlStr);
+    NSLog(@"=====%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON);
+        NSLog(@"11JSON===>%@",JSON);
         //NSLog(@"JSON===>%@",JSON[@"d"][@"data"][0][@"actives"][@"content"]);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];

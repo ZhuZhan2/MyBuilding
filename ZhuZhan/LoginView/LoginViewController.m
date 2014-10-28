@@ -14,6 +14,8 @@
 #import "LoginModel.h"
 #import "MD5.h"
 #import "ForgetPasswordViewController.h"
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
 @interface LoginViewController ()
 
 @end
@@ -145,6 +147,11 @@
 }
 
 -(void)gotoLogin{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:_userNameTextField.text forKey:@"userName"];
     [dic setValue:[MD5 md5HexDigest:_passWordTextField.text] forKey:@"password"];

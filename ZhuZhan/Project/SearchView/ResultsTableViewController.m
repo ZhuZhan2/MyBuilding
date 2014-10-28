@@ -80,6 +80,7 @@
     
     //集成刷新控件
     [self setupRefresh];
+    [self firstNetWork];
 }
 
 -(void)firstNetWork{
@@ -89,14 +90,22 @@
                 showArr = posts;
                 [self.tableView reloadData];
             }
-        } startIndex:startIndex keywords:self.searchStr noNetWork:nil];
+        } startIndex:startIndex keywords:self.searchStr noNetWork:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                [self firstNetWork];
+            }];
+        }];
     }else{
         [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 showArr = posts;
                 [self.tableView reloadData];
             }
-        } dic:self.dic startIndex:startIndex noNetWork:nil];
+        } dic:self.dic startIndex:startIndex noNetWork:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                [self firstNetWork];
+            }];
+        }];
     }
 }
 
