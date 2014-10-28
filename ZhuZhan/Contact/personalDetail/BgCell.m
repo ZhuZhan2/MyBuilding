@@ -11,7 +11,7 @@
 @implementation BgCell
 
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithTextHeight:(float)height WithModel:(ContactModel *)model
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -24,21 +24,21 @@
         imgaeView.image = [GetImagePath getImagePath:@"人脉－人的详情_29a"];
         [back addSubview:imgaeView];
         
-        AutoChangeTextView *textView = [[AutoChangeTextView alloc] initWithFrame:CGRectMake(20, 110, 280, height)];
-        textView.text = model.personalBackground;
-        [self addSubview:textView];
-        UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 60, 280, 30)];
-        companyLabel.text = model.companyName;
-        companyLabel.textAlignment = NSTextAlignmentLeft;
-        [self addSubview:companyLabel];
-        
-        UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 85, 280, 30)];
-        NSString *tempStr = [NSString stringWithFormat:@"%@————%@",model.beginTime,model.endTime];
-        timeLabel.text = tempStr;
-        timeLabel.textAlignment = NSTextAlignmentLeft;
-        timeLabel.font = [UIFont systemFontOfSize:14];
-        timeLabel.textColor =GrayColor;
-        [self addSubview:timeLabel];
+//        AutoChangeTextView *textView = [[AutoChangeTextView alloc] initWithFrame:CGRectMake(20, 110, 280, height)];
+//        textView.text = model.personalBackground;
+//        [self addSubview:textView];
+//        UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 60, 280, 30)];
+//        companyLabel.text = model.companyName;
+//        companyLabel.textAlignment = NSTextAlignmentLeft;
+//        [self addSubview:companyLabel];
+//        
+//        UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 85, 280, 30)];
+//        NSString *tempStr = [NSString stringWithFormat:@"%@————%@",model.beginTime,model.endTime];
+//        timeLabel.text = tempStr;
+//        timeLabel.textAlignment = NSTextAlignmentLeft;
+//        timeLabel.font = [UIFont systemFontOfSize:14];
+//        timeLabel.textColor =GrayColor;
+//        [self addSubview:timeLabel];
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }

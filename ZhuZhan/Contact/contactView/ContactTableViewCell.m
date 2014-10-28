@@ -9,7 +9,7 @@
 #import "ContactTableViewCell.h"
 
 @implementation ContactTableViewCell
-
+@synthesize indexpath = _indexpath;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -79,7 +79,7 @@
 
 -(void)btnClick:(UIButton *)button{
     if([self.delegate respondsToSelector:@selector(HeadImageAction:)]){
-        [self.delegate HeadImageAction:button];
+        [self.delegate HeadImageAction:_indexpath];
     }
 }
 

@@ -15,7 +15,9 @@
     UIImageView *stageImage;
     UILabel *titleLabel;
     UILabel *contentLabel;
+    NSIndexPath *indexpath;
 }
 @property(nonatomic,weak)id<HeadImageDelegate>delegate;
 @property(nonatomic,strong)ActivesModel *model;
+@property(nonatomic,strong)NSIndexPath *indexpath;
 @end

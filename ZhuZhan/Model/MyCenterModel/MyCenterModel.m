@@ -16,7 +16,7 @@
     self.a_duties = [ProjectStage ProjectStrStage:dict[@"duties"]];
     self.a_sex = [ProjectStage ProjectStrStage:dict[@"sex"]];
     self.a_cellPhone = [ProjectStage ProjectStrStage:dict[@"cellphone"]];
-    self.a_company = [ProjectStage ProjectTimeStage:dict[@"company"]];
+    self.a_company = [ProjectStage ProjectStrStage:dict[@"company"]];
     self.a_email = [ProjectStage ProjectStrStage:dict[@"email"]];
     self.a_userImage = [ProjectStage ProjectStrStage:dict[@"userImage"]];
 }
