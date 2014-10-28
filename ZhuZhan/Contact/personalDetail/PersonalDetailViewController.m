@@ -17,23 +17,9 @@
 @implementation PersonalDetailViewController
 
 @synthesize contactModel,proModel;
-static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
-static NSString *textStr=nil;
-static float textHeight =0;
-static bool isEmailExist = NO;
-static bool isPersonalBackgroundExist = NO;
-static bool isProjectExist = NO;
-
 static int backgroundNum = 0;
 static int projectNum =0;
 
--(id)init{
-    self = [super init];
-    if (self) {
-        
-    }
-    return self;
-}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -79,10 +65,12 @@ static int projectNum =0;
     [ContactModel UserDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             contactModel = posts[0];
+            [self.tableView reloadData];
         }
     } userId:self.contactId noNetWork:nil];
     
-    self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
+    self.tableView.separatorStyle = NO;
+    [self.tableView setBackgroundColor:RGBCOLOR(242, 242, 242)];
 }
 
 - (void)_refreshing {
@@ -148,7 +136,7 @@ static int projectNum =0;
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    return 2+backgroundNum+projectNum;
+    return 5;
     
 }
 
@@ -167,21 +155,21 @@ static int projectNum =0;
         static NSString *identifier = @"contactCell";
         ContactCell *contactCell =[tableView dequeueReusableCellWithIdentifier:identifier];
         if (!contactCell) {
-            contactCell = [[ContactCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:contactModel WithEmailExist:isEmailExist];
+            contactCell = [[ContactCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
         contactCell.delegate = self;
         return contactCell;
         
-    }else if (isPersonalBackgroundExist) {
-        if (indexPath.row==2) {
-            static NSString *identifier = @"backGroundCell";
-            BgCell *backGroundCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-            if (!backGroundCell) {
-                backGroundCell = [[BgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithTextHeight:textHeight WithModel:contactModel];
-            }
-            return backGroundCell;
-        }
-    }
+    }//else if (isPersonalBackgroundExist) {
+//        if (indexPath.row==2) {
+//            static NSString *identifier = @"backGroundCell";
+//            BgCell *backGroundCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+//            if (!backGroundCell) {
+//                backGroundCell = [[BgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithTextHeight:textHeight WithModel:contactModel];
+//            }
+//            return backGroundCell;
+//        }
+//    }
     
     static NSString *identifier = @"correlateCell";
     CorrelateCell *correlateCell =[tableView dequeueReusableCellWithIdentifier:identifier];
@@ -211,65 +199,18 @@ static int projectNum =0;
 
 
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    
-    if (isEmailExist) {
-        if (indexPath.row==1){
-        return 150;
-        }
-        if (isPersonalBackgroundExist) {
-            if (indexPath.row==2) {
-                return textHeight+60+50;
-            }
-            if (isProjectExist) {
-                if (indexPath.row==3) {
-                        return [proModel.projectArr count]*60+50;
-                }
-            }
-
-        }
-        if (!isPersonalBackgroundExist) {
-            if (isProjectExist) {
-                if (indexPath.row==2) {
-                    return [proModel.projectArr count]*60+50;
-                }
-                
-            }
-        }
-        
-    }
-    if (!isEmailExist) {
-        if (indexPath.row==1){
-            return 100;
-        }
-        if (isPersonalBackgroundExist) {
-            if (indexPath.row==2) {
-                return textHeight+60+50;
-            }
-            if (isProjectExist) {
-                if (indexPath.row==3) {
-                    return [proModel.projectArr count]*60+50;
-                }
-            }
-            
-        }
-        if (!isPersonalBackgroundExist) {
-            if (isProjectExist) {
-                if (indexPath.row==2) {
-                    return [proModel.projectArr count]*60+50;
-                }
-                
-            }
-        }
-
-    }
-    
-    
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if([contactModel.a_company isEqualToString:@""] && [contactModel.a_duties isEqualToString:@""]){
+//        NSLog(@"asdfasdff");
+//        if(indexPath.row == 0){
+//            return 0;
+//        }
+//    }else{
+//        if(indexPath.row == 0){
+//            return 50;
+//        }
+//    }
     return 60;
-
-    
 }
 
 
