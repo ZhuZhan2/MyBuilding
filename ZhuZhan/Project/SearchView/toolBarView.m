@@ -30,11 +30,12 @@
 */
 -(void)addContent{
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, self.frame.size.height)];
-    [bgView setBackgroundColor:[UIColor colorWithRed:(166/255.0)  green:(166/255.0)  blue:(166/255.0)  alpha:1.0]];
+    bgView.backgroundColor=[UIColor whiteColor];
+    //[bgView setBackgroundColor:[UIColor colorWithRed:(166/255.0)  green:(166/255.0)  blue:(166/255.0)  alpha:1.0]];
     [self addSubview:bgView];
     
     UIButton *yuingBtn =  [UIButton buttonWithType:UIButtonTypeCustom];
-    yuingBtn.frame = CGRectMake(40, 6, 28, 28);
+    yuingBtn.frame = CGRectMake(40, 8, 16, 23);
     yuingBtn.tag = 0;
     [yuingBtn setBackgroundImage:[GetImagePath getImagePath:@"搜索_03"] forState:UIControlStateNormal];
     [yuingBtn addTarget:self action:@selector(gotoViewClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -45,7 +46,7 @@
     [self addSubview:lineImage1];
     
     UIButton *advancedBtn =  [UIButton buttonWithType:UIButtonTypeCustom];
-    advancedBtn.frame = CGRectMake(148, 6, 28, 28);
+    advancedBtn.frame = CGRectMake(148, 8, 22, 23);
     advancedBtn.tag = 1;
     [advancedBtn setBackgroundImage:[GetImagePath getImagePath:@"搜索_05"] forState:UIControlStateNormal];
     [advancedBtn addTarget:self action:@selector(gotoViewClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -56,7 +57,7 @@
     [self addSubview:lineImage2];
     
     UIButton *mapBtn =  [UIButton buttonWithType:UIButtonTypeCustom];
-    mapBtn.frame = CGRectMake(256, 6, 28, 28);
+    mapBtn.frame = CGRectMake(256, 8, 21, 23);
     mapBtn.tag = 2;
     [mapBtn setBackgroundImage:[GetImagePath getImagePath:@"搜索_07"] forState:UIControlStateNormal];
     [mapBtn addTarget:self action:@selector(gotoViewClick:) forControlEvents:UIControlEventTouchUpInside];

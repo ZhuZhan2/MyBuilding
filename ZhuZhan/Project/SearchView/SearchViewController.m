@@ -38,13 +38,22 @@ int startIndex;
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
     
-    self.title = @"搜索";
+    UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setFrame:CGRectMake(0, 0, 50, 28.5)];
+    [rightButton setTitle:@"清空" forState:UIControlStateNormal];
+    rightButton.titleLabel.font=[UIFont systemFontOfSize:15];
+    [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
     
+    self.title = @"搜索";
+    self.view.backgroundColor=RGBCOLOR(232, 232, 232);
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0,64, 320, 40)];
-    [bgView setBackgroundColor:[UIColor lightGrayColor]];
+    [bgView setBackgroundColor:RGBCOLOR(222, 222, 222)];
     [self.view addSubview:bgView];
     
-    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(10,5, 300, 30)];
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0,5, 320, 30)];
     _searchBar.delegate =self;
     _searchBar.placeholder = @"请输入搜索内容";
 	_searchBar.tintColor = [UIColor grayColor];
@@ -56,16 +65,17 @@ int startIndex;
     // Get the instance of the UITextField of the search bar
     UITextField *searchField = [_searchBar valueForKey:@"_searchField"];
     // Change search bar text color
-    searchField.textColor = [UIColor grayColor];
+    searchField.textColor = RGBCOLOR(162, 162, 162);
     // Change the search bar placeholder text color
-    [searchField setValue:[UIColor grayColor] forKeyPath:@"_placeholderLabel.textColor"];
+    [searchField setValue:RGBCOLOR(162, 162, 162) forKeyPath:@"_placeholderLabel.textColor"];
     [bgView addSubview:_searchBar];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 104, 320, 220)];
+    _tableView.backgroundColor=RGBCOLOR(232, 232, 232);
     //[_tableView setBackgroundColor:[UIColor colorWithRed:(239/255.0)  green:(237/255.0)  blue:(237/255.0)  alpha:1.0]];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    //_tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.view addSubview:_tableView];
     
     showArr = [RecordSqlite loadList];
@@ -82,17 +92,6 @@ int startIndex;
 -(void)viewDidAppear:(BOOL)animated{
     [_searchBar becomeFirstResponder];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -125,6 +124,10 @@ int startIndex;
 
 -(void)leftBtnClick{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)rightBtnClick{
+    _searchBar.text=@"";
 }
 
 - (UIImage *)imageWithColor:(UIColor *)color
@@ -183,12 +186,14 @@ int startIndex;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellWithIdentifier];
     RecordModel *model = [showArr objectAtIndex:indexPath.row];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellWithIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellWithIdentifier];
+        UIView* view=[[UIView alloc]initWithFrame:CGRectMake(15, 43, 290, 1)];
+        view.backgroundColor=RGBCOLOR(202, 202, 202);
+        [cell.contentView addSubview:view];
     }
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 120, 30)];
-    label.text = model.a_name;
-    label.textColor = [UIColor blackColor];
-    [cell.contentView addSubview:label];
+    cell.imageView.image=[GetImagePath getImagePath:@"项目－搜索_09a"];
+    cell.textLabel.text=model.a_name;
+    cell.backgroundColor=RGBCOLOR(232, 232, 232);
     return cell;
 }
 

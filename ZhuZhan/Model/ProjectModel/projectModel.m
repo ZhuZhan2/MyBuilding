@@ -24,8 +24,8 @@
     self.a_usage = [ProjectStage ProjectStrStage:dict[@"landUsages"]];
     self.a_projectName = [ProjectStage ProjectStrStage:dict[@"projectName"]];
     self.a_description = [ProjectStage ProjectStrStage:dict[@"projectDescription"]];
-    self.a_exceptStartTime = [ProjectStage ProjectTimeStage:dict[@"exceptStartTime"]];
-    self.a_exceptFinishTime = [ProjectStage ProjectTimeStage:dict[@"exceptFinishTime"]];
+    self.a_exceptStartTime = [ProjectStage ProjectTimeStage:dict[@"expectedStartTime"]];
+    self.a_exceptFinishTime = [ProjectStage ProjectTimeStage:dict[@"expectedFinishTime"]];
     self.a_investment = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"investment"]]];
     self.a_storeyArea = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"storeyArea"]]];
     self.a_storeyHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"storeyHeight"]]];

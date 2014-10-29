@@ -82,7 +82,7 @@
         complated.frame = CGRectMake(0,225, 135, 44);
     }
     [complated setTitle:@"确认" forState:UIControlStateNormal];
-    [complated setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [complated setTitleColor:BlueColor forState:UIControlStateNormal];
     complated.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:16];
     [complated addTarget:self action:@selector(complatedClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:complated];

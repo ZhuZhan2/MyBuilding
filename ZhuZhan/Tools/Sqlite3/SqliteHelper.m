@@ -183,7 +183,7 @@
 - (BOOL)executeNonQuery:(NSString *)sql, ... {
 	va_list args;
 	va_start(args, sql);
-    
+
 	NSMutableArray *argsArray = [[NSMutableArray alloc] init];
 	NSUInteger i;
 	for (i = 0; i < [sql length]; ++i) {
