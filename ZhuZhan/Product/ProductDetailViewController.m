@@ -199,7 +199,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if(![self.imageUrl isEqualToString:@""]){
         imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001"]];
         imageView.frame = CGRectMake(0, 0, 310,[self.imageHeight floatValue]/[self.imageWidth floatValue]*310);
-        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.imageUrl]];
+        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imageUrl]];
         [forCornerView addSubview:imageView];
         height+=imageView.frame.size.height;
     }
@@ -256,7 +256,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     userImageView.frame=CGRectMake(5,tempHeight+5,37,37);
     [forCornerView addSubview:userImageView];
     
-    userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.userImageUrl]];
+    userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userImageUrl]];
     [forCornerView addSubview:userImageView];
     
     //设置总的view的frame

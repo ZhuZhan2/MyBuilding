@@ -24,6 +24,9 @@
     UIButton *cellPhoneBtn;
     UIImageView *imageView1;
     UILabel *commonLabel;
+    UIView *back;
+    UIImageView *topLineImage;
+    UIImageView *topImgaeView;
 }
 @property(nonatomic,strong)MyCenterModel *model;
 @property(nonatomic,strong)NSString *phone;

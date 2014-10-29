@@ -59,7 +59,7 @@
 }
 
 -(void)setModel:(ContactCommentModel *)model{
-    headImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_avatarUrl]];
+    headImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_avatarUrl]];
     
     NSString* tempStr = [NSString stringWithFormat:@"%@:%@",model.a_userName,model.a_commentContents];
     NSMutableAttributedString* attStr=[[NSMutableAttributedString alloc]initWithString:tempStr];

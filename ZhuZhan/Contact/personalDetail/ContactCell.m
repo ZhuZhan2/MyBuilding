@@ -14,18 +14,6 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
-        UIView *back = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
-        back.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
-        [self addSubview:back];
-        
-        UIImageView *topLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 5)];
-        [topLineImage setImage:[UIImage imageNamed:@"项目－高级搜索－2_15a"]];
-        [back addSubview:topLineImage];
-        
-        UIImageView *imgaeView = [[UIImageView alloc] initWithFrame:CGRectMake(129, 8, 52, 34)];
-        imgaeView.image = [GetImagePath getImagePath:@"人脉－人的详情_28a"];
-        [back addSubview:imgaeView];
 
     }
     return self;
@@ -62,11 +50,28 @@
     imageView1 = nil;
     [commonLabel removeFromSuperview];
     commonLabel = nil;
+    [back removeFromSuperview];
+    back = nil;
+    [topLineImage removeFromSuperview];
+    topLineImage = nil;
+    [topImgaeView removeFromSuperview];
+    topImgaeView = nil;
     if(![model.a_cellPhone isEqualToString:@""]){
+        back = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+        back.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
+        [self addSubview:back];
+        
+        topLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 5)];
+        [topLineImage setImage:[UIImage imageNamed:@"项目－高级搜索－2_15a"]];
+        [back addSubview:topLineImage];
+        
+        topImgaeView = [[UIImageView alloc] initWithFrame:CGRectMake(129, 8, 52, 34)];
+        topImgaeView.image = [GetImagePath getImagePath:@"人脉－人的详情_28a"];
+        [back addSubview:topImgaeView];
         self.phone = model.a_cellPhone;
         if(![model.a_email isEqualToString:@""]){
             self.email = model.a_email;
-            commonLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(40, 60, 150, 30)];
+            commonLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(30, 60, 150, 30)];
             commonLabel1.textAlignment = NSTextAlignmentLeft;
             commonLabel1.text = model.a_email;
             commonLabel1.font = [UIFont systemFontOfSize:14];
@@ -87,7 +92,7 @@
             [self addSubview:imageView];
             imageView.userInteractionEnabled =YES;
             
-            commonLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(40, 110, 150, 30)];
+            commonLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(30, 110, 150, 30)];
             commonLabel2.textAlignment = NSTextAlignmentLeft;
             commonLabel2.text = model.a_cellPhone;
             commonLabel2.font = [UIFont systemFontOfSize:14];
@@ -105,7 +110,7 @@
             [self addSubview:imageView1];
         }else{
             self.phone = model.a_cellPhone;
-            commonLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 60, 150, 30)];
+            commonLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 60, 150, 30)];
             commonLabel.textAlignment = NSTextAlignmentLeft;
             commonLabel.font = [UIFont systemFontOfSize:14];
             commonLabel.text = model.a_cellPhone;
@@ -123,8 +128,19 @@
         }
     }else{
         if(![model.a_email isEqualToString:@""]){
+            UIView *back = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+            back.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
+            [self addSubview:back];
+            
+            UIImageView *topLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 5)];
+            [topLineImage setImage:[UIImage imageNamed:@"项目－高级搜索－2_15a"]];
+            [back addSubview:topLineImage];
+            
+            UIImageView *imgaeView = [[UIImageView alloc] initWithFrame:CGRectMake(129, 8, 52, 34)];
+            imgaeView.image = [GetImagePath getImagePath:@"人脉－人的详情_28a"];
+            [back addSubview:imgaeView];
             self.email = model.a_email;
-            commonLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 60, 150, 30)];
+            commonLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 60, 150, 30)];
             commonLabel.textAlignment = NSTextAlignmentLeft;
             commonLabel.font = [UIFont systemFontOfSize:14];
             commonLabel.text = model.a_email;

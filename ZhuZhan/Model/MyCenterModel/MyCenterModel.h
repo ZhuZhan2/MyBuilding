@@ -26,6 +26,14 @@
 @property (nonatomic,copy) NSString *a_email;
 //头像
 @property (nonatomic,copy) NSString *a_userImage;
+//所在地
+@property (nonatomic,copy) NSString *a_location;
+//生日
+@property (nonatomic,copy) NSString *a_birthday;
+//星座
+@property (nonatomic,copy) NSString *a_constellation;
+//血型
+@property (nonatomic,copy) NSString *a_bloodType;
 
 @property (nonatomic, copy) NSDictionary *dict;
 @end

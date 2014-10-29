@@ -162,7 +162,7 @@
     }
     ProductModel *model = showArr[indexPath.row];
     
-    cell.photoView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
+    cell.photoView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_imageUrl]];
     cell.titleLabel.text = model.a_content;
     cell.commentCountLabel.text= model.a_commentNumber;
     return cell;

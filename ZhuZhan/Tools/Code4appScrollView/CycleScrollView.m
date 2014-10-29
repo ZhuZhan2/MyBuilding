@@ -68,7 +68,7 @@
         EGOImageView *imageView = [[EGOImageView alloc] initWithFrame:CGRectMake(0, 0, 320, height*320/wdith)];
         imageView.center=scrollView.center;
         imageView.userInteractionEnabled = YES;
-        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageOriginalLocation]];
+        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_imageOriginalLocation]];
         
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
         [imageView addGestureRecognizer:singleTap];

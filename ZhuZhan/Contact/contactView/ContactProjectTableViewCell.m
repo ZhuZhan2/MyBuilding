@@ -91,6 +91,6 @@
     
     titleLabel.text = model.a_title;
     contentLabel.text = model.a_content;
-    headImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_avatarUrl]];
+    headImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_avatarUrl]];
 }
 @end

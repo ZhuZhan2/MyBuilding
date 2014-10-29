@@ -726,6 +726,7 @@
 		D3D7D86D19FF710100AE5765 /* 人脉－个人中心_10a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7D86C19FF710100AE5765 /* 人脉－个人中心_10a@2x.png */; };
 		D3D7DB2519FF73B800AE5765 /* 人脉－人的详情_02a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7DB2319FF73B800AE5765 /* 人脉－人的详情_02a.png */; };
 		D3D7DB2619FF73B800AE5765 /* 人脉－人的详情_02a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7DB2419FF73B800AE5765 /* 人脉－人的详情_02a@2x.png */; };
+		D3D7DB2F19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DB2E19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1897,6 +1898,8 @@
 		D3D7D86C19FF710100AE5765 /* 人脉－个人中心_10a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－个人中心_10a@2x.png"; sourceTree = "<group>"; };
 		D3D7DB2319FF73B800AE5765 /* 人脉－人的详情_02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－人的详情_02a.png"; sourceTree = "<group>"; };
 		D3D7DB2419FF73B800AE5765 /* 人脉－人的详情_02a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－人的详情_02a@2x.png"; sourceTree = "<group>"; };
+		D3D7DB2D19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactBackgroundTableViewCell.h; sourceTree = "<group>"; };
+		D3D7DB2E19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactBackgroundTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3272,6 +3275,8 @@
 				042D9EC319B8011300689C5D /* AutoChangeTextView.m */,
 				042D9EBC19B7FB6700689C5D /* CorrelateCell.h */,
 				042D9EBD19B7FB6700689C5D /* CorrelateCell.m */,
+				D3D7DB2D19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.h */,
+				D3D7DB2E19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m */,
 			);
 			path = personalDetail;
 			sourceTree = "<group>";
@@ -4292,6 +4297,7 @@
 				D3AC86AB19CBD3E30009673C /* GetImagePath.m in Sources */,
 				0426C25C19922D5A00CD8822 /* GPUImageCrosshatchFilter.m in Sources */,
 				D36040E919F51E9F00E9727D /* CompanyApi.m in Sources */,
+				D3D7DB2F19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m in Sources */,
 				042D9CFB19B40C4C00689C5D /* DKCircleButton.m in Sources */,
 				5B18B46F19BFFC3700551F82 /* GradientView.m in Sources */,
 				D3AC61D019B849920015B62F /* PorjectCommentTableViewController.m in Sources */,

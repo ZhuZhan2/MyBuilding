@@ -12,6 +12,4 @@
 
 @interface BgCell : UITableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
-
 @end

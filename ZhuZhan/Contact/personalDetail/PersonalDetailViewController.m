@@ -59,7 +59,7 @@
         if(!error){
             contactModel = posts[0];
             [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:contactModel.a_realName, XHUserNameKey, nil]];
-            [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%s%@",serverAddress,contactModel.a_userImage]];
+            [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",contactModel.a_userImage]];
             [self.tableView reloadData];
         }
     } userId:self.contactId noNetWork:nil];
@@ -148,7 +148,6 @@
         companyCell.selectionStyle = NO;
         return companyCell;
     }else if (indexPath.row ==1) {
-        NSLog(@"%d",indexPath.row);
         static NSString *identifier = @"contactCell";
         ContactCell *contactCell =[tableView dequeueReusableCellWithIdentifier:identifier];
         if (!contactCell) {
@@ -159,13 +158,23 @@
         contactCell.selectionStyle = NO;
         return contactCell;
         
-    }else if (indexPath.row == 2) {
-        static NSString *identifier = @"backGroundCell";
-        BgCell *backGroundCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-        if (!backGroundCell) {
-            backGroundCell = [[BgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        }
-        return backGroundCell;
+//    }else if (indexPath.row == 2) {
+//        static NSString *identifier = @"contactBackgroundCell";
+//        ContactBackgroundTableViewCell *contactBackgroundCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+//        if (!contactBackgroundCell) {
+//            contactBackgroundCell = [[ContactBackgroundTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+//        }
+//        contactBackgroundCell.model = contactModel;
+//        contactBackgroundCell.selectionStyle = NO;
+//        return contactBackgroundCell;
+//    }else if(indexPath.row == 3){
+//        static NSString *identifier = @"bgCell";
+//        BgCell *bgCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+//        if (!bgCell) {
+//            bgCell = [[BgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+//        }
+//        bgCell.selectionStyle = NO;
+//        return bgCell;
     }
 
     static NSString *identifier = @"correlateCell";
@@ -201,6 +210,16 @@
             if(indexPath.row == 1){
                 return 150;
             }
+        }
+    }
+    
+    if([contactModel.a_realName isEqualToString:@""]&&[contactModel.a_sex isEqualToString:@""]&&[contactModel.a_location isEqualToString:@""]&&[contactModel.a_birthday isEqualToString:@""]&&[contactModel.a_constellation isEqualToString:@""]&&[contactModel.a_bloodType isEqualToString:@""]){
+        if(indexPath.row == 2){
+            return 0;
+        }
+    }else{
+        if(indexPath.row == 2){
+            return 285;
         }
     }
     return 60;

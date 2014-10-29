@@ -31,7 +31,7 @@
     if(imageUrlExist){
         imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001"]];
         imageView.frame = CGRectMake(0, 0, 310,[model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310);
-        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_imageUrl]];
+        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_imageUrl]];
         [forCornerView addSubview:imageView];
         height+=imageView.frame.size.height;
     }
@@ -90,7 +90,7 @@
     userImageView.layer.masksToBounds = YES;
     userImageView.layer.cornerRadius = 3;
     userImageView.frame=CGRectMake(5,tempHeight,37,37);
-    userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,model.a_avatarUrl]];
+    userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_avatarUrl]];
     [forCornerView addSubview:userImageView];
     
     UIButton *uesrImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];

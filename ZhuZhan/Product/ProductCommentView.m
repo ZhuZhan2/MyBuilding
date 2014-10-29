@@ -27,7 +27,7 @@
 -(void)loadSelfWithCommentImageUrl:(NSString*)userImageUrl userName:(NSString*)userName commentContent:(NSString*)commentContent{
     //获取用户头像
     self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"公司认证员工_05a"]];
-    self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,userImageUrl]];
+    self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",userImageUrl]];
     self.userImageView.layer.masksToBounds=YES;
     self.userImageView.layer.cornerRadius=3;
     self.userImageView.frame=CGRectMake(15, 20, 50, 50);
