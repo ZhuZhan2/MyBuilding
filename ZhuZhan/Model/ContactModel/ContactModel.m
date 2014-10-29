@@ -12,6 +12,7 @@
 #import "ActivesModel.h"
 #import "ConnectionAvailable.h"
 #import "MyCenterModel.h"
+#import "ParticularsModel.h"
 @implementation ContactModel
 
 -(void)setDict:(NSDictionary *)dict
@@ -207,8 +208,11 @@
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             MyCenterModel *model = [[MyCenterModel alloc] init];
             [model setDict:JSON[@"d"][@"data"][@"baseInformation"]];
+            ParticularsModel *parModel = [[ParticularsModel alloc] init];
+            NSLog(@"%@",[JSON[@"d"][@"data"][@"userParticulars"] class]);
+            [parModel setDict:JSON[@"d"][@"data"][@"userParticulars"]];
             [mutablePosts addObject:model];
-            
+            [mutablePosts addObject:parModel];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }

@@ -16,7 +16,7 @@
 
 @implementation PersonalDetailViewController
 
-@synthesize contactModel,proModel;
+@synthesize contactModel,proModel,parModel;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -58,6 +58,7 @@
     [ContactModel UserDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             contactModel = posts[0];
+            parModel = posts[1];
             [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:contactModel.a_realName, XHUserNameKey, nil]];
             [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",contactModel.a_userImage]];
             [self.tableView reloadData];
@@ -158,23 +159,23 @@
         contactCell.selectionStyle = NO;
         return contactCell;
         
-//    }else if (indexPath.row == 2) {
-//        static NSString *identifier = @"contactBackgroundCell";
-//        ContactBackgroundTableViewCell *contactBackgroundCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-//        if (!contactBackgroundCell) {
-//            contactBackgroundCell = [[ContactBackgroundTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-//        }
-//        contactBackgroundCell.model = contactModel;
-//        contactBackgroundCell.selectionStyle = NO;
-//        return contactBackgroundCell;
-//    }else if(indexPath.row == 3){
-//        static NSString *identifier = @"bgCell";
-//        BgCell *bgCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-//        if (!bgCell) {
-//            bgCell = [[BgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-//        }
-//        bgCell.selectionStyle = NO;
-//        return bgCell;
+    }else if (indexPath.row == 2) {
+        static NSString *identifier = @"contactBackgroundCell";
+        ContactBackgroundTableViewCell *contactBackgroundCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!contactBackgroundCell) {
+            contactBackgroundCell = [[ContactBackgroundTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
+        contactBackgroundCell.model = contactModel;
+        contactBackgroundCell.selectionStyle = NO;
+        return contactBackgroundCell;
+    }else if(indexPath.row == 3){
+        static NSString *identifier = @"bgCell";
+        UITableViewCell *bgCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!bgCell) {
+            bgCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
+        bgCell.selectionStyle = NO;
+        return bgCell;
     }
 
     static NSString *identifier = @"correlateCell";
@@ -213,14 +214,8 @@
         }
     }
     
-    if([contactModel.a_realName isEqualToString:@""]&&[contactModel.a_sex isEqualToString:@""]&&[contactModel.a_location isEqualToString:@""]&&[contactModel.a_birthday isEqualToString:@""]&&[contactModel.a_constellation isEqualToString:@""]&&[contactModel.a_bloodType isEqualToString:@""]){
-        if(indexPath.row == 2){
-            return 0;
-        }
-    }else{
-        if(indexPath.row == 2){
-            return 285;
-        }
+    if(indexPath.row == 2){
+        return 285;
     }
     return 60;
 }

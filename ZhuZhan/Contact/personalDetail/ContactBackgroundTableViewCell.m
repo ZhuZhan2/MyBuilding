@@ -25,24 +25,7 @@
         UIImageView *imgaeView = [[UIImageView alloc] initWithFrame:CGRectMake(129, 8, 52, 34)];
         imgaeView.image = [GetImagePath getImagePath:@"人脉－账号设置_10a"];
         [back addSubview:imgaeView];
-    }
-    return self;
-}
-
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
--(void)setModel:(MyCenterModel *)model{
-    if([model.a_realName isEqualToString:@""]&&[model.a_sex isEqualToString:@""]&&[model.a_location isEqualToString:@""]&&[model.a_birthday isEqualToString:@""]&&[model.a_constellation isEqualToString:@""]&&[model.a_bloodType isEqualToString:@""]){
         
-    }else{
         UILabel *realNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 55, 100, 30)];
         realNameLabel.text = @"真实姓名";
         realNameLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
@@ -127,13 +110,26 @@
         bloodType.textColor = [UIColor lightGrayColor];
         bloodType.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
         [self.contentView addSubview:bloodType];
-        
-        realName.text = model.a_realName;
-        sex.text = model.a_sex;
-        location.text = model.a_location;
-        birthday.text = model.a_birthday;
-        constellation.text = model.a_constellation;
-        bloodType.text = model.a_bloodType;
     }
+    return self;
+}
+
+- (void)awakeFromNib {
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+-(void)setModel:(MyCenterModel *)model{
+    realName.text = model.a_realName;
+    sex.text = model.a_sex;
+    location.text = model.a_location;
+    birthday.text = model.a_birthday;
+    constellation.text = model.a_constellation;
+    bloodType.text = model.a_bloodType;
 }
 @end
