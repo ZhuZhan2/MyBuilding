@@ -16,6 +16,7 @@
 #import "LoginSqlite.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
+#import "EndEditingGesture.h"
 @interface AccountViewController ()
 
 @end
@@ -102,7 +103,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
     [self getUserInformation];
         
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+    [EndEditingGesture addGestureToView:self.tableView];
 }
 
 - (void)getUserInformation
@@ -122,10 +123,6 @@ static int count =0;//记录生日textField 的时间被触发的次数
     }];
 }
 
-
-
-
-
 - (void)_refreshing {
     // refresh your data sources
     __weak AccountViewController *wself = self;
@@ -136,8 +133,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
     });
 }
 
-//***********************************************************************************************************
-
+//*********************************************************************
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -178,29 +174,29 @@ static int count =0;//记录生日textField 的时间被触发的次数
     CGRect keyboardRect = [aValue CGRectValue];
     float height = keyboardRect.size.height;
   
-    
     //用来计算键盘还有相关textField的位置，一面textField被遮挡
     float nowTextFieldFrame_Y_PlusHeight =textFieldFrame_Y_PlusHeight+200-64-self.tableView.contentOffset.y;
     if ((nowTextFieldFrame_Y_PlusHeight>kContentHeight-height) || (nowTextFieldFrame_Y_PlusHeight == kContentHeight-height)) {
         float tabViewFrame_Y =kContentHeight - height- nowTextFieldFrame_Y_PlusHeight;
         NSLog(@"********self.tableView.contentOffset.y *** %f",self.tableView.contentOffset.y);
-        self.tableView.frame = CGRectMake(0, tabViewFrame_Y- 10, 320, kScreenHeight);
+        [UIView animateWithDuration:.3 animations:^{
+            self.tableView.frame = CGRectMake(0, tabViewFrame_Y- 10, 320, kScreenHeight);
+        }];
     }
-    
-
 }
 
 
 //当键退出时调用
 - (void)keyboardWillHide:(NSNotification *)aNotification
 {
-    
-//    self.tableView.frame = CGRectMake(0, 0, 320, kScreenHeight);
+    [UIView animateWithDuration:.3 animations:^{
+        self.tableView.frame =self.view.frame;
+    }];
 }
 
 
 
-//*************************************************************************************************************
+//***********************************
 
 -(void)setbackgroundImage//设置背景颜色
 {
@@ -268,6 +264,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
 /******************************************************************************************************************/
 //滚动是触发的事件
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.view endEditing:YES];
     [_pathCover scrollViewDidScroll:scrollView];
     
 }
@@ -386,7 +383,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
     
 }
 
-/*********  tableView   *************************************************************************************************/
+//tableView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -398,7 +395,6 @@ static int count =0;//记录生日textField 的时间被触发的次数
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     NSString *CellIdentifier = [NSString stringWithFormat:@"AccountCell"];
     AccountCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     [cell removeFromSuperview];
@@ -410,13 +406,9 @@ static int count =0;//记录生日textField 的时间被触发的次数
     return cell;
 }
 
-
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     return 780;
-    
 }
 
 
