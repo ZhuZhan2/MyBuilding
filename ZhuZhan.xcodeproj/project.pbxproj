@@ -727,6 +727,7 @@
 		D3D7DB2519FF73B800AE5765 /* 人脉－人的详情_02a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7DB2319FF73B800AE5765 /* 人脉－人的详情_02a.png */; };
 		D3D7DB2619FF73B800AE5765 /* 人脉－人的详情_02a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7DB2419FF73B800AE5765 /* 人脉－人的详情_02a@2x.png */; };
 		D3D7DB2F19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DB2E19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m */; };
+		D3D7DB3219FFAD1700AE5765 /* ParticularsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DB3119FFAD1700AE5765 /* ParticularsModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1900,6 +1901,8 @@
 		D3D7DB2419FF73B800AE5765 /* 人脉－人的详情_02a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－人的详情_02a@2x.png"; sourceTree = "<group>"; };
 		D3D7DB2D19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactBackgroundTableViewCell.h; sourceTree = "<group>"; };
 		D3D7DB2E19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactBackgroundTableViewCell.m; sourceTree = "<group>"; };
+		D3D7DB3019FFAD1700AE5765 /* ParticularsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticularsModel.h; sourceTree = "<group>"; };
+		D3D7DB3119FFAD1700AE5765 /* ParticularsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticularsModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3476,6 +3479,8 @@
 			children = (
 				D3AC619619B6BF930015B62F /* MyCenterModel.h */,
 				D3AC619719B6BF930015B62F /* MyCenterModel.m */,
+				D3D7DB3019FFAD1700AE5765 /* ParticularsModel.h */,
+				D3D7DB3119FFAD1700AE5765 /* ParticularsModel.m */,
 			);
 			path = MyCenterModel;
 			sourceTree = "<group>";
@@ -4547,6 +4552,7 @@
 				D3AD609719AC56CB001FD483 /* UIScrollView+MJRefresh.m in Sources */,
 				0426C2BB19922D5A00CD8822 /* GPUImageSoftEleganceFilter.m in Sources */,
 				0426C2F419922D5A00CD8822 /* NSDictionary_JSONExtensions.m in Sources */,
+				D3D7DB3219FFAD1700AE5765 /* ParticularsModel.m in Sources */,
 				0426C26719922D5A00CD8822 /* GPUImageExposureFilter.m in Sources */,
 				0426C2E719922D5A00CD8822 /* FaceppGrouping.m in Sources */,
 				0426C2A619922D5A00CD8822 /* GPUImagePolkaDotFilter.m in Sources */,

@@ -83,32 +83,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     showArr = [[NSMutableArray alloc] init];
     viewArr = [[NSMutableArray alloc] init];
     _datasource = [[NSMutableArray alloc] init];
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        errorview = [[ErrorView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
-        errorview.delegate = self;
-        [self.tableView addSubview:errorview];
-        self.tableView.scrollEnabled = NO;
-    }else{
-        [errorview removeFromSuperview];
-        errorview = nil;
-        self.tableView.scrollEnabled = YES;
-        NSLog(@"====>%@",[LoginSqlite getdata:@"userId"]);
-        if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
-            [ContactModel UserDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
-                if(!error){
-                    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",posts[0]]];
-                    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"用户名", XHUserNameKey, @"公司名字显示在这里     职位", XHBirthdayKey, nil]];
-                    [LoginSqlite insertData:posts[0] datakey:@"userImageUrl"];
-                }
-            } userId:[LoginSqlite getdata:@"userId"] noNetWork:nil];
-        }
-
-//        if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
-//            [ContactModel UserDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
-//                if(!error){
-//                }
-//            } userId:[LoginSqlite getdata:@"userId"] noNetWork:nil];
-//        }
+    
     [self firstNetWork];
 }
 

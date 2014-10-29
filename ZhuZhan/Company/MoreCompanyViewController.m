@@ -48,6 +48,7 @@
 {
     [super viewDidLoad];
     startIndex = 0;
+    self.keywords = @"";
     [self initSearchView];
     [self initMyTableViewAndNavi];
     //集成刷新控件
