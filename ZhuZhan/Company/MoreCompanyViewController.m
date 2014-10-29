@@ -56,11 +56,6 @@
     [EndEditingGesture addGestureToView:self.view];
 }
 
--(void)addGesture{
-    UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self.view action:@selector(endEditing:)];
-    [self.view addGestureRecognizer:tap];
-}
-
 -(void)firstNetWork{
     [CompanyApi GetCompanyListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
