@@ -16,7 +16,6 @@
 
 @implementation PersonalDetailViewController
 
-@synthesize contactModel,proModel,parModel;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -55,18 +54,20 @@
     }];
     
     viewArr = [[NSMutableArray alloc] init];
+    self.showArr = [[NSMutableArray alloc] init];
     [ContactModel UserDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            contactModel = posts[0];
-            parModel = posts[1];
-            if([parModel.a_id isEqualToString:@""]&&[parModel.a_company isEqualToString:@""]&&[parModel.a_information isEqualToString:@""]&&[parModel.a_inDate isEqualToString:@""]&&[parModel.a_outDate isEqualToString:@""]){
+            self.contactModel = posts[0];
+            self.parModel = posts[1];
+            if([self.parModel.a_id isEqualToString:@""]&&[self.parModel.a_company isEqualToString:@""]&&[self.parModel.a_information isEqualToString:@""]&&[self.parModel.a_inDate isEqualToString:@""]&&[self.parModel.a_outDate isEqualToString:@""]){
                 
             }else{
-                contactbackgroundview = [ContactBackgroundView setFram:parModel];
+                contactbackgroundview = [ContactBackgroundView setFram:self.parModel];
                 [viewArr addObject:contactbackgroundview];
             }
-            [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:contactModel.a_realName, XHUserNameKey, nil]];
-            [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",contactModel.a_userImage]];
+            self.showArr = posts[2];
+            [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:self.contactModel.a_realName, XHUserNameKey, nil]];
+            [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",self.contactModel.a_userImage]];
             [self.tableView reloadData];
         }
     } userId:self.contactId noNetWork:nil];
@@ -138,7 +139,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    return 5;
+    return 5+self.showArr.count;
     
 }
 
@@ -150,8 +151,8 @@
         if (!companyCell) {
             companyCell = [[CompanyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
-        companyCell.companyStr = contactModel.a_company;
-        companyCell.positionStr = contactModel.a_duties;
+        companyCell.companyStr = self.contactModel.a_company;
+        companyCell.positionStr = self.contactModel.a_duties;
         companyCell.selectionStyle = NO;
         return companyCell;
     }else if (indexPath.row ==1) {
@@ -161,7 +162,7 @@
             contactCell = [[ContactCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
         contactCell.delegate = self;
-        contactCell.model = contactModel;
+        contactCell.model = self.contactModel;
         contactCell.selectionStyle = NO;
         return contactCell;
         
@@ -171,7 +172,7 @@
         if (!contactBackgroundCell) {
             contactBackgroundCell = [[ContactBackgroundTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
-        contactBackgroundCell.model = contactModel;
+        contactBackgroundCell.model = self.contactModel;
         contactBackgroundCell.selectionStyle = NO;
         return contactBackgroundCell;
     }else if(indexPath.row == 3){
@@ -187,19 +188,43 @@
         }
         bgCell.selectionStyle = NO;
         return bgCell;
+    }else if (indexPath.row == 4){
+        static NSString *identifier = @"Cell";
+        UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
+        if(self.showArr.count !=0){
+            UIView *back = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+            back.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
+            [cell.contentView addSubview:back];
+            
+            UIImageView *topLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 5)];
+            [topLineImage setImage:[UIImage imageNamed:@"项目－高级搜索－2_15a"]];
+            [back addSubview:topLineImage];
+            
+            UIImageView *imgaeView = [[UIImageView alloc] initWithFrame:CGRectMake(129, 8, 52, 34)];
+            imgaeView.image = [GetImagePath getImagePath:@"人脉－人的详情_30a"];
+            [back addSubview:imgaeView];
+        }
+        cell.backgroundColor = [UIColor yellowColor];
+        return cell;
+    }else{
+        static NSString *identifier = @"CorrelateCell";
+        CorrelateCell *correlateCell =[tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!correlateCell) {
+            correlateCell = [[CorrelateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
+        if(self.showArr.count !=0){
+            correlateCell.model = self.showArr[indexPath.row-5];
+        }
+        correlateCell.selectionStyle = NO;
+        return correlateCell;
     }
-
-    static NSString *identifier = @"correlateCell";
-    CorrelateCell *correlateCell =[tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!correlateCell) {
-        correlateCell = [[CorrelateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier WithModel:proModel];
-    }
-    correlateCell.delegate = self;
-    return correlateCell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if([contactModel.a_company isEqualToString:@""] && [contactModel.a_duties isEqualToString:@""]){
+    if([self.contactModel.a_company isEqualToString:@""] && [self.contactModel.a_duties isEqualToString:@""]){
         if(indexPath.row == 0){
             return 0;
         }
@@ -209,12 +234,12 @@
         }
     }
     
-    if([contactModel.a_cellPhone isEqualToString:@""] && [contactModel.a_email isEqualToString:@""]){
+    if([self.contactModel.a_cellPhone isEqualToString:@""] && [self.contactModel.a_email isEqualToString:@""]){
         if(indexPath.row == 1){
             return 0;
         }
     }else{
-        if([contactModel.a_cellPhone isEqualToString:@""]||[contactModel.a_email isEqualToString:@""]){
+        if([self.contactModel.a_cellPhone isEqualToString:@""]||[self.contactModel.a_email isEqualToString:@""]){
             if(indexPath.row == 1){
                 return 100;
             }
@@ -239,14 +264,38 @@
             return contactbackgroundview.frame.size.height;
         }
     }
+    
+    if(self.showArr.count == 0){
+        if(indexPath.row == 4){
+            return 0;
+        }else if (indexPath.row >4){
+            return 0;
+        }
+    }else{
+        if(indexPath.row == 4){
+            return 50;
+        }else if(indexPath.row>4){
+            return 50;
+        }
+    }
+
+    
     return 60;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row >4){
+        ProgramDetailViewController* vc=[[ProgramDetailViewController alloc]init];
+        projectModel *model = self.showArr[indexPath.row-5];
+        vc.projectId = model.a_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 
 //**************************************************************************************************************
 -(void)gotoCallPhone:(NSString *)phone//打电话
 {
-    NSLog(@"***********");
     NSString *deviceType = [UIDevice currentDevice].model;
     if ([deviceType isEqualToString:@"iPhone"]) {
         NSString *telephone = [NSString stringWithFormat:@"tel://%@",phone];
@@ -271,7 +320,7 @@
         NSString *messageBody = nil;
         // To address
         NSArray *toRecipents = [NSArray arrayWithObject:email];
-        NSLog(@"%@",email);
+
         MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
         mc.mailComposeDelegate = self;
         [mc setSubject:emailTitle];

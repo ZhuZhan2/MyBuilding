@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "projectModel.h"
 @interface ProgramDetailViewController : UIViewController
-@property(nonatomic,strong)projectModel* model;
 @property(nonatomic,strong)NSString *projectId;
 @end

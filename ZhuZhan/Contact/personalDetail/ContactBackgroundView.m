@@ -35,7 +35,30 @@
         height += companyLabel.frame.size.height;
     }
     
-    view.frame = CGRectMake(0, 0, 320, 89+height);
+    if(![model.a_inDate isEqualToString:@""]||![model.a_outDate isEqualToString:@""]){
+        UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 70, 150, 30)];
+        dateLabel.text = [NSString stringWithFormat:@"(%@——%@)",model.a_inDate,model.a_outDate];
+        dateLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
+        dateLabel.textColor = GrayColor;
+        [view addSubview:dateLabel];
+        
+        height += dateLabel.frame.size.height;
+    }
+    
+    if(![model.a_information isEqualToString:@""]){
+        NSString *string = [NSString stringWithFormat:@"个人简介：%@",model.a_information];
+        UILabel* contentLabel = [[UILabel alloc] init];
+        contentLabel.numberOfLines =0;
+        contentLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
+        contentLabel.text = string;
+        CGSize size =CGSizeMake(260,1000);
+        CGSize actualsize =[string boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:@"GurmukhiMN" size:12]} context:nil].size;
+        contentLabel.frame = CGRectMake(30, 100, 260, actualsize.height);
+        [view addSubview:contentLabel];
+        height += contentLabel.frame.size.height;
+    }
+    
+    view.frame = CGRectMake(0, 0, 320, 50+height);
     return view;
 }
 

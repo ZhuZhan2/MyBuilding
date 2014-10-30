@@ -32,8 +32,6 @@
 }
 
 -(void)setModel:(MyCenterModel *)model{
-    NSLog(@"==>%@",model.a_cellPhone);
-    NSLog(@"==>%@",model.a_email);
     [commonLabel1 removeFromSuperview];
     commonLabel1 = nil;
     [emailBtn removeFromSuperview];
@@ -128,17 +126,17 @@
         }
     }else{
         if(![model.a_email isEqualToString:@""]){
-            UIView *back = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+            back = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
             back.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
             [self addSubview:back];
             
-            UIImageView *topLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 5)];
+            topLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 5)];
             [topLineImage setImage:[UIImage imageNamed:@"项目－高级搜索－2_15a"]];
             [back addSubview:topLineImage];
             
-            UIImageView *imgaeView = [[UIImageView alloc] initWithFrame:CGRectMake(129, 8, 52, 34)];
-            imgaeView.image = [GetImagePath getImagePath:@"人脉－人的详情_28a"];
-            [back addSubview:imgaeView];
+            imageView = [[UIImageView alloc] initWithFrame:CGRectMake(129, 8, 52, 34)];
+            imageView.image = [GetImagePath getImagePath:@"人脉－人的详情_28a"];
+            [back addSubview:imageView];
             self.email = model.a_email;
             commonLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 60, 150, 30)];
             commonLabel.textAlignment = NSTextAlignmentLeft;

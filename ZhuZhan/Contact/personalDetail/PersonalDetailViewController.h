@@ -18,13 +18,13 @@
 #import "ContactBackgroundTableViewCell.h"
 #import "ParticularsModel.h"
 #import "ContactBackgroundView.h"
-@interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate,MFMailComposeViewControllerDelegate,ContactCellDelegate,CorrelateCellDelegate>{
+@interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate,MFMailComposeViewControllerDelegate,ContactCellDelegate>{
     NSMutableArray *viewArr;
     ContactBackgroundView *contactbackgroundview;
 }
 @property (nonatomic,strong) NSString *contactId;
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong)MyCenterModel *contactModel;
-@property (nonatomic,strong) projectModel *proModel;//项目model
 @property (nonatomic,strong)ParticularsModel *parModel;
+@property (nonatomic,strong)NSMutableArray *showArr;
 @end

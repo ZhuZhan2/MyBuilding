@@ -63,6 +63,9 @@
 @property(nonatomic,strong)AddCommentViewController* addCommentVC;
 
 @property(nonatomic,strong)UIActivityIndicatorView* indicatorView;
+
+@property(nonatomic,strong)projectModel* model;
+
 @end
 
 @implementation ProgramDetailViewController
