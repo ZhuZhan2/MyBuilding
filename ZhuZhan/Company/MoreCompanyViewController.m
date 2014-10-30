@@ -249,7 +249,9 @@
 }
 
 -(BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar{
-    [self.view removeGestureRecognizer:self.view.gestureRecognizers[0]];
+    if (self.view.gestureRecognizers.count) {
+        [self.view removeGestureRecognizer:self.view.gestureRecognizers[0]];
+    }
     return YES;
 }
 

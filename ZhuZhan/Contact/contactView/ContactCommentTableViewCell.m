@@ -33,8 +33,6 @@
 }
 
 -(void)setContent{
-    
-    
     headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_74a"]];
     headImageView.frame = CGRectMake(5, 5, 27, 27);
     headImageView.layer.masksToBounds = YES;
