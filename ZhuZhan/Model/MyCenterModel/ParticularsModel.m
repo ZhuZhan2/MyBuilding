@@ -14,6 +14,7 @@
     self.a_id = [ProjectStage ProjectStrStage:dict[@"id"]];
     self.a_company = [ProjectStage ProjectStrStage:dict[@"companyName"]];
     self.a_inDate = [ProjectStage ProjectTimeStage:dict[@"inDate"]];
+    self.a_outDate = [ProjectStage ProjectTimeStage:dict[@"outDate"]];
     self.a_information = [ProjectStage ProjectStrStage:dict[@"information"]];
 }
 @end

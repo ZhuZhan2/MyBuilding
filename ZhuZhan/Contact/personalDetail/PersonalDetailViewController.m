@@ -54,11 +54,17 @@
         [wself _refreshing];
     }];
     
-    
+    viewArr = [[NSMutableArray alloc] init];
     [ContactModel UserDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             contactModel = posts[0];
             parModel = posts[1];
+            if([parModel.a_id isEqualToString:@""]&&[parModel.a_company isEqualToString:@""]&&[parModel.a_information isEqualToString:@""]&&[parModel.a_inDate isEqualToString:@""]&&[parModel.a_outDate isEqualToString:@""]){
+                
+            }else{
+                contactbackgroundview = [ContactBackgroundView setFram:parModel];
+                [viewArr addObject:contactbackgroundview];
+            }
             [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:contactModel.a_realName, XHUserNameKey, nil]];
             [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",contactModel.a_userImage]];
             [self.tableView reloadData];
@@ -174,6 +180,11 @@
         if (!bgCell) {
             bgCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
+        [bgCell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        if(viewArr.count !=0){
+            contactbackgroundview = viewArr[0];
+            [bgCell.contentView addSubview:contactbackgroundview];
+        }
         bgCell.selectionStyle = NO;
         return bgCell;
     }
@@ -216,6 +227,17 @@
     
     if(indexPath.row == 2){
         return 285;
+    }
+    
+    if(viewArr.count ==0){
+        if(indexPath.row == 3){
+            return 0;
+        }
+    }else{
+        if(indexPath.row == 3){
+            contactbackgroundview = viewArr[0];
+            return contactbackgroundview.frame.size.height;
+        }
     }
     return 60;
 }

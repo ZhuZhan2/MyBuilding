@@ -12,8 +12,10 @@
 @property (nonatomic,copy) NSString *a_id;
 //在职单位
 @property (nonatomic,copy) NSString *a_company;
-//在职时间
+//入职时间
 @property (nonatomic,copy) NSString *a_inDate;
+//离职时间
+@property (nonatomic,copy) NSString *a_outDate;
 //个人简介
 @property (nonatomic,copy) NSString *a_information;
 

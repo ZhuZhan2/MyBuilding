@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "XHPathCover.h"
 #import <MessageUI/MessageUI.h>
-#import "BgCell.h"
 #import "CorrelateCell.h"
 #import "CompanyCell.h"
 #import "ContactCell.h"
@@ -18,7 +17,11 @@
 #import "MyCenterModel.h"
 #import "ContactBackgroundTableViewCell.h"
 #import "ParticularsModel.h"
-@interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate,MFMailComposeViewControllerDelegate,ContactCellDelegate,CorrelateCellDelegate>
+#import "ContactBackgroundView.h"
+@interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate,MFMailComposeViewControllerDelegate,ContactCellDelegate,CorrelateCellDelegate>{
+    NSMutableArray *viewArr;
+    ContactBackgroundView *contactbackgroundview;
+}
 @property (nonatomic,strong) NSString *contactId;
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong)MyCenterModel *contactModel;

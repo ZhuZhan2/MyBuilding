@@ -209,8 +209,8 @@
             MyCenterModel *model = [[MyCenterModel alloc] init];
             [model setDict:JSON[@"d"][@"data"][@"baseInformation"]];
             ParticularsModel *parModel = [[ParticularsModel alloc] init];
-            NSLog(@"%@",[JSON[@"d"][@"data"][@"userParticulars"] class]);
-            [parModel setDict:JSON[@"d"][@"data"][@"userParticulars"]];
+            NSLog(@"%@",[JSON[@"d"][@"data"][@"baseInformation"][@"userParticulars"] class]);
+            [parModel setDict:JSON[@"d"][@"data"][@"baseInformation"][@"userParticulars"]];
             [mutablePosts addObject:model];
             [mutablePosts addObject:parModel];
             if (block) {
