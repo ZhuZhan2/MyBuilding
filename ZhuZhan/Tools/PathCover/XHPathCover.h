@@ -61,7 +61,6 @@ extern NSString *const XHBirthdayKey;
 -(void)setHeadImageUrl:(NSString *)imageUrl;
 -(void)addImageHead:(UIImage *)img;
 -(void)setHeadImageFrame:(CGRect)newFrame;
--(void)setHeadFrame:(CGRect)newFrame;
 //删除点
 -(void)hidewaterDropRefresh;
 //设置头像位置

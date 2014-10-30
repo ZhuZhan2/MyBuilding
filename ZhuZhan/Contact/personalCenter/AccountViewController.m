@@ -70,14 +70,14 @@ static int count =0;//记录生日textField 的时间被触发的次数
     
     [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"首页_16"]];
     
-    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImageUrl"]]];
+    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImage"]]];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadImageFrame:CGRectMake(125, -70, 70, 70)];
     [_pathCover.headImage.layer setMasksToBounds:YES];
     [_pathCover.headImage.layer setCornerRadius:35];
-    [_pathCover setNameFrame:CGRectMake(145, 0, 100, 20) font:[UIFont systemFontOfSize:14]];
+    [_pathCover setNameFrame:CGRectMake(0, 0, 320, 20) font:[UIFont systemFontOfSize:14]];
     
-    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
+    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
     
     NSArray *colorArray = [@[[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:0.0],[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:.5]] mutableCopy];

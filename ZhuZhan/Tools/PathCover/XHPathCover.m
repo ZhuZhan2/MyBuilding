@@ -440,9 +440,6 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     self.waterDropRefresh.hidden = YES;
 }
 
--(void)setHeadFrame:(CGRect)newFrame{
-    [_headImage setFrame:newFrame];
-}
 
 -(void)setHeadImageFrame:(CGRect)newFrame{
     [_headImage setFrame:newFrame];
@@ -456,6 +453,7 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 
     [_userNameLabel setFrame:newFrame];
     _userNameLabel.font = font;
+    _userNameLabel.textAlignment = NSTextAlignmentCenter;
 
 }
 

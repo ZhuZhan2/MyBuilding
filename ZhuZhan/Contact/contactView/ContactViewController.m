@@ -91,6 +91,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             if(!error){
                 ContactModel *model = posts[0];
                 [LoginSqlite insertData:model.userImage datakey:@"userImage"];
+                [LoginSqlite insertData:model.userName datakey:@"userName"];
                 [_pathCover setHeadImageUrl:model.userImage];
                 [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
             }
@@ -564,6 +565,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if(!error){
             ContactModel *model = posts[0];
             [LoginSqlite insertData:model.userImage datakey:@"userImage"];
+            [LoginSqlite insertData:model.userName datakey:@"userName"];
             [_pathCover setHeadImageUrl:model.userImage];
              [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
         }
