@@ -54,7 +54,6 @@
     //集成刷新控件
     [self setupRefresh];
     [self firstNetWork];
-    [EndEditingGesture addGestureToView:self.view];
 }
 
 -(void)firstNetWork{
@@ -242,6 +241,16 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+    [EndEditingGesture addGestureToView:self.view];
+    return YES;
+}
+
+-(BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar{
+    [self.view removeGestureRecognizer:self.view.gestureRecognizers[0]];
+    return YES;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
