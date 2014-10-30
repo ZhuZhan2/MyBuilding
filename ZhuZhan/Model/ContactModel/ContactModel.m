@@ -209,10 +209,16 @@
             MyCenterModel *model = [[MyCenterModel alloc] init];
             [model setDict:JSON[@"d"][@"data"][@"baseInformation"]];
             ParticularsModel *parModel = [[ParticularsModel alloc] init];
-            NSLog(@"%@",[JSON[@"d"][@"data"][@"userParticulars"] class]);
-            [parModel setDict:JSON[@"d"][@"data"][@"userParticulars"]];
+            [parModel setDict:JSON[@"d"][@"data"][@"baseInformation"][@"userParticulars"]];
             [mutablePosts addObject:model];
             [mutablePosts addObject:parModel];
+            NSMutableArray *arr = [[NSMutableArray alloc] init];
+            for(NSDictionary *item in JSON[@"d"][@"data"][@"userProjects"]){
+                projectModel *model = [[projectModel alloc] init];
+                [model setDict:item];
+                [arr addObject:model];
+            }
+            [mutablePosts addObject:arr];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }

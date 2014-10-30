@@ -272,9 +272,7 @@
 		042D9E3519B55AB800689C5D /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E3119B55AB800689C5D /* UIPlaceHolderTextView.m */; };
 		042D9E3619B55AB800689C5D /* UnderstandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E3319B55AB800689C5D /* UnderstandViewController.m */; };
 		042D9EAF19B7136600689C5D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042D9EAE19B7136600689C5D /* MessageUI.framework */; };
-		042D9EBB19B7FB1B00689C5D /* BgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9EBA19B7FB1B00689C5D /* BgCell.m */; };
 		042D9EBE19B7FB6700689C5D /* CorrelateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9EBD19B7FB6700689C5D /* CorrelateCell.m */; };
-		042D9EC419B8011300689C5D /* AutoChangeTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9EC319B8011300689C5D /* AutoChangeTextView.m */; };
 		042D9ECA19B81B2C00689C5D /* CompanyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9EC919B81B2C00689C5D /* CompanyCell.m */; };
 		042D9ECD19B81BE400689C5D /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9ECC19B81BE400689C5D /* ContactCell.m */; };
 		042D9EE519B8671900689C5D /* AccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9EE419B8671900689C5D /* AccountCell.m */; };
@@ -700,6 +698,7 @@
 		D3B8F53F19D92716008F6164 /* RecognizerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B8F53E19D92716008F6164 /* RecognizerFactory.m */; };
 		D3B8F54719D94789008F6164 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B8F54619D94789008F6164 /* iflyMSC.framework */; };
 		D3B8F54919D9483B008F6164 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B8F54819D9483B008F6164 /* libz.dylib */; };
+		D3CF278A1A008EFF00DDA30D /* ContactBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF27891A008EFF00DDA30D /* ContactBackgroundView.m */; };
 		D3D1A7B719F8E9B40006F954 /* 公司－我的公司_05b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B519F8E9B40006F954 /* 公司－我的公司_05b.png */; };
 		D3D1A7B819F8E9B40006F954 /* 公司－我的公司_05b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B619F8E9B40006F954 /* 公司－我的公司_05b@2x.png */; };
 		D3D1A7BB19F8F6250006F954 /* 公司－公司详情_05b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B919F8F6250006F954 /* 公司－公司详情_05b.png */; };
@@ -1337,12 +1336,8 @@
 		042D9E3219B55AB800689C5D /* UnderstandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnderstandViewController.h; sourceTree = "<group>"; };
 		042D9E3319B55AB800689C5D /* UnderstandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnderstandViewController.m; sourceTree = "<group>"; };
 		042D9EAE19B7136600689C5D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		042D9EB919B7FB1B00689C5D /* BgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BgCell.h; sourceTree = "<group>"; };
-		042D9EBA19B7FB1B00689C5D /* BgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BgCell.m; sourceTree = "<group>"; };
 		042D9EBC19B7FB6700689C5D /* CorrelateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorrelateCell.h; sourceTree = "<group>"; };
 		042D9EBD19B7FB6700689C5D /* CorrelateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CorrelateCell.m; sourceTree = "<group>"; };
-		042D9EC219B8011300689C5D /* AutoChangeTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoChangeTextView.h; sourceTree = "<group>"; };
-		042D9EC319B8011300689C5D /* AutoChangeTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoChangeTextView.m; sourceTree = "<group>"; };
 		042D9EC819B81B2C00689C5D /* CompanyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyCell.h; sourceTree = "<group>"; };
 		042D9EC919B81B2C00689C5D /* CompanyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyCell.m; sourceTree = "<group>"; };
 		042D9ECB19B81BE400689C5D /* ContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCell.h; sourceTree = "<group>"; };
@@ -1869,6 +1864,8 @@
 		D3B8F53E19D92716008F6164 /* RecognizerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecognizerFactory.m; sourceTree = "<group>"; };
 		D3B8F54619D94789008F6164 /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iflyMSC.framework; path = ZhuZhan/Project/SearchView/voice/iflyMSC.framework; sourceTree = "<group>"; };
 		D3B8F54819D9483B008F6164 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D3CF27881A008EFF00DDA30D /* ContactBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactBackgroundView.h; sourceTree = "<group>"; };
+		D3CF27891A008EFF00DDA30D /* ContactBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactBackgroundView.m; sourceTree = "<group>"; };
 		D3D1A7B319F8A68F0006F954 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D3D1A7B419F8A68F0006F954 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D3D1A7B519F8E9B40006F954 /* 公司－我的公司_05b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_05b.png"; sourceTree = "<group>"; };
@@ -3272,14 +3269,12 @@
 				042D9EC919B81B2C00689C5D /* CompanyCell.m */,
 				042D9ECB19B81BE400689C5D /* ContactCell.h */,
 				042D9ECC19B81BE400689C5D /* ContactCell.m */,
-				042D9EB919B7FB1B00689C5D /* BgCell.h */,
-				042D9EBA19B7FB1B00689C5D /* BgCell.m */,
-				042D9EC219B8011300689C5D /* AutoChangeTextView.h */,
-				042D9EC319B8011300689C5D /* AutoChangeTextView.m */,
 				042D9EBC19B7FB6700689C5D /* CorrelateCell.h */,
 				042D9EBD19B7FB6700689C5D /* CorrelateCell.m */,
 				D3D7DB2D19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.h */,
 				D3D7DB2E19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m */,
+				D3CF27881A008EFF00DDA30D /* ContactBackgroundView.h */,
+				D3CF27891A008EFF00DDA30D /* ContactBackgroundView.m */,
 			);
 			path = personalDetail;
 			sourceTree = "<group>";
@@ -4217,7 +4212,6 @@
 				042D9EE519B8671900689C5D /* AccountCell.m in Sources */,
 				0426C23319922D5A00CD8822 /* PanViewController.m in Sources */,
 				0426C28E19922D5A00CD8822 /* GPUImageLuminosityBlendFilter.m in Sources */,
-				042D9EBB19B7FB1B00689C5D /* BgCell.m in Sources */,
 				0426C23019922D5A00CD8822 /* LoginViewController.m in Sources */,
 				0426C2F719922D5A00CD8822 /* CJSONSerializer.m in Sources */,
 				5B1AC4B019BEE4DC006CA4F4 /* CompanyDetailViewController.m in Sources */,
@@ -4284,6 +4278,7 @@
 				0426C25A19922D5A00CD8822 /* GPUImageCropFilter.m in Sources */,
 				0426C27819922D5A00CD8822 /* GPUImageHighlightShadowFilter.m in Sources */,
 				0426C2D619922D5A00CD8822 /* GPUImageVoronoiConsumerFilter.m in Sources */,
+				D3CF278A1A008EFF00DDA30D /* ContactBackgroundView.m in Sources */,
 				0426C20A19922D5A00CD8822 /* CompanyViewController.m in Sources */,
 				0426C26C19922D5A00CD8822 /* GPUImageFilterGroup.m in Sources */,
 				D3AD609819AC56CB001FD483 /* UIView+Extension.m in Sources */,
@@ -4351,7 +4346,6 @@
 				0426C25019922D5A00CD8822 /* GPUImageChromaKeyBlendFilter.m in Sources */,
 				0426C2F819922D5A00CD8822 /* XHPathCover.m in Sources */,
 				D3AD609619AC56CB001FD483 /* UIScrollView+Extension.m in Sources */,
-				042D9EC419B8011300689C5D /* AutoChangeTextView.m in Sources */,
 				0426C2F019922D5A00CD8822 /* CJSONDeserializer_BlocksExtensions.m in Sources */,
 				042D9E2919B559FC00689C5D /* TopicsDetailTableViewCell.m in Sources */,
 				042D9E3519B55AB800689C5D /* UIPlaceHolderTextView.m in Sources */,
