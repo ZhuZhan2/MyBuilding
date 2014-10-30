@@ -296,12 +296,15 @@
     NSString *urlStr = [NSString stringWithFormat:@"api/account/InformationImproved"];
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
-        NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-        [mutablePosts addObject:JSON];
-        if (block) {
-            block([NSMutableArray arrayWithArray:mutablePosts], nil);
+        NSString *statusCode = [[[JSON objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
+        if ([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"更新成功" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"更新失败" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+            [alert show];
         }
-        
+
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {

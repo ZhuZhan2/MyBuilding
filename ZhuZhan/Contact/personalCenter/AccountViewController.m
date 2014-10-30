@@ -284,9 +284,6 @@ static int count =0;//记录生日textField 的时间被触发的次数
 }
 /******************************************************************************************************************/
 
-
-
-
 -(void)leftBtnClick{//退出到前一个页面
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -299,16 +296,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
     
     NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.userName,@"userName",model.realName,@"realName",model.sex,@"sex",model.locationCity,@"locationCity",model.birthday,@"birthday",model.constellation,@"constellation",model.bloodType,@"bloodType",model.email,@"email",model.companyName,@"company",model.position,@"duties",nil];
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
-        NSDictionary *responseObject = [posts objectAtIndex:0];
-        NSString *statusCode = [[[responseObject objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
-        if ([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"更新成功" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
-            [alert show];
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"更新失败" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
-            [alert show];
-        }
-        
+               
     } dic:parameter noNetWork:nil];
 }
 
