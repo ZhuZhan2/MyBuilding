@@ -65,7 +65,7 @@
     investmentcountLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,75,140,20)];
     investmentcountLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
     investmentcountLabel.textColor = [UIColor blackColor];
-    investmentcountLabel.text = model.a_investment;
+    investmentcountLabel.text = [NSString stringWithFormat:@"￥%@",model.a_investment];
     [bgImgView addSubview:investmentcountLabel];
     
     areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(130,55,60,20)];
@@ -77,7 +77,7 @@
     areacountLabel = [[UILabel alloc] initWithFrame:CGRectMake(130,75,140,20)];
     areacountLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
     areacountLabel.textColor = [UIColor blackColor];
-    areacountLabel.text = model.a_area;
+    areacountLabel.text = [NSString stringWithFormat:@"%@㎡",model.a_area];
     [bgImgView addSubview:areacountLabel];
     
     progressImage = [[UIImageView alloc] initWithFrame:CGRectMake(215,10,52,52)];
@@ -108,15 +108,15 @@
     [bigImage setImage:[GetImagePath getImagePath:@"全部项目_37"]];
     [bgImgView addSubview:bigImage];
     
-    UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(10,225,20,20)];
+    UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(13,225,16,20)];
     [arrowImage setImage:[GetImagePath getImagePath:@"全部项目_17"]];
     [bgImgView addSubview:arrowImage];
     
     UIButton *dianBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     if(flag == 0){
-        [dianBtn setFrame:CGRectMake(275,225,21,20)];
+        [dianBtn setFrame:CGRectMake(275,225,18,20)];
     }else{
-        [dianBtn setFrame:CGRectMake(275,235,21,20)];
+        [dianBtn setFrame:CGRectMake(275,235,18,20)];
     }
     [dianBtn setBackgroundImage:[GetImagePath getImagePath:@"项目-首页_18a"] forState:UIControlStateNormal];
     [dianBtn addTarget:self action:@selector(dianBtnClick) forControlEvents:UIControlEventTouchUpInside];
@@ -146,8 +146,9 @@
 
 -(void)setModel:(projectModel *)model{
     nameLabel.text = model.a_projectName;
-    investmentcountLabel.text = model.a_investment;
-    areacountLabel.text = model.a_area;
+    investmentcountLabel.text = [NSString stringWithFormat:@"￥%@",model.a_investment];
+    areacountLabel.text = [NSString stringWithFormat:@"%@㎡",model.a_area];
+;
     
     stage = [ProjectStage JudgmentProjectStage:model];
     if([stage isEqualToString:@"1"]){

@@ -39,14 +39,14 @@
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
-    
+    self.title=@"评论列表";
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,
                                                                      nil]];
     
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton setFrame:CGRectMake(0, 0, 30, 20)];
-    [rightButton setBackgroundImage:[GetImagePath getImagePath:@"项目－评论列表_03a"] forState:UIControlStateNormal];
+    [rightButton setFrame:CGRectMake(0, 0, 21, 23)];
+    [rightButton setBackgroundImage:[GetImagePath getImagePath:@"+项目详情-3_03a"] forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
@@ -167,14 +167,14 @@
         }
         cell.backgroundColor = RGBCOLOR(239, 237, 237);
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(151.5, 10, 17, 17)];
-        [imageView setImage:[GetImagePath getImagePath:@"项目－评论列表_03a-07"]];
+        [imageView setImage:[GetImagePath getImagePath:@"项目－评论列表_03a"]];
         [cell.contentView addSubview:imageView];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 27, 320, 20)];
         label.text = self.projectName;
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:15];
-        label.textColor = [UIColor blueColor];
+        label.textColor = BlueColor;
         [cell.contentView addSubview:label];
         return cell;
     }else{

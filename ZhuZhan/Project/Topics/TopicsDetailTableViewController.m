@@ -155,6 +155,9 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row==0||indexPath.row==1) {
+        return;
+    }
     ProgramDetailViewController* vc=[[ProgramDetailViewController alloc]init];
     projectModel *model = showArr[indexPath.row-2];
     vc.model=model;

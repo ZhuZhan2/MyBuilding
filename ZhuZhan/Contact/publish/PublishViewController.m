@@ -15,7 +15,10 @@
 #import "LoginSqlite.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
-@interface PublishViewController ()
+@interface PublishViewController (){
+    UILabel *leftBtnLabel;
+    UILabel *rightBtnLabel;
+}
 
 @end
 
@@ -88,8 +91,9 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     leftBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_09a"];
     leftBtnImage.userInteractionEnabled = YES;
     [textBtn addSubview:leftBtnImage];
-    UILabel *leftBtnLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 100, 30)];
+    leftBtnLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 100, 30)];
     leftBtnLabel.text = @"想说些什么...";
+    leftBtnLabel.textColor=[UIColor blackColor];
     [textBtn addSubview:leftBtnLabel];
     
     [textBtn addTarget:self action:@selector(publshActivities) forControlEvents:UIControlEventTouchUpInside];
@@ -101,8 +105,9 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     rightBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_13a"];
     rightBtnImage.userInteractionEnabled = YES;
     [photoBtn addSubview:rightBtnImage];
-    UILabel *rightBtnLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 100, 30)];
+    rightBtnLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 100, 30)];
     rightBtnLabel.text = @"产品信息";
+    rightBtnLabel.textColor=RGBCOLOR(192, 192, 192);
     [photoBtn addSubview:rightBtnLabel];
     [photoBtn addTarget:self action:@selector(publshProduct) forControlEvents:UIControlEventTouchUpInside];
     [toolBar addSubview:photoBtn];
@@ -167,6 +172,8 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     NSLog(@"%@",NSStringFromCGRect([inputView.subviews[0] frame]));
     leftBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_07a"];
     rightBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_13a"];
+    leftBtnLabel.textColor=[UIColor blackColor];
+    rightBtnLabel.textColor=RGBCOLOR(192, 192, 192);
     PublishNum =1;
 }
 
@@ -174,6 +181,8 @@ static int PublishNum =1;//1 发布动态  2，发布产品
   NSLog(@"发布产品信息");
     leftBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_09a"];
     rightBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_11a"];
+    rightBtnLabel.textColor=[UIColor blackColor];
+    leftBtnLabel.textColor=RGBCOLOR(192, 192, 192);
     PublishNum =2;
 }
 

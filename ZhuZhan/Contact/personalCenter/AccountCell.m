@@ -155,7 +155,7 @@ static int textFieldTag =0;
         
         //星座
         UILabel *constellationLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 370, 80, 30)];
-        constellationLabel.text = @"星       座";
+        constellationLabel.text = @"星        座";
         constellationLabel.font=[UIFont systemFontOfSize:15];
         constellationLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:constellationLabel];
@@ -173,7 +173,7 @@ static int textFieldTag =0;
         
         //血型
         UILabel *bloodTypeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 420, 80, 30)];
-        bloodTypeLabel.text = @"血       型";
+        bloodTypeLabel.text = @"血        型";
         bloodTypeLabel.font=[UIFont systemFontOfSize:15];
         bloodTypeLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:bloodTypeLabel];
@@ -185,13 +185,8 @@ static int textFieldTag =0;
         bloodType.textColor=GrayColor;
         bloodType.tag = 2014091208;
         [self addSubview:bloodType];
-
-
         
-
-        
-        //*******联系方式**********************************************************************************
-        
+        //联系方式
         UIView *back12 = [[UIView alloc] initWithFrame:CGRectMake(0, 460, 320, 60)];
         back12.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
         [self addSubview:back12];
@@ -220,7 +215,7 @@ static int textFieldTag =0;
         
         //cellPhone
         UILabel *cellPhoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 580, 80, 30)];
-        cellPhoneLabel.text = @"电       话";
+        cellPhoneLabel.text = @"电        话";
         cellPhoneLabel.font=[UIFont systemFontOfSize:15];
         cellPhoneLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:cellPhoneLabel];
@@ -235,8 +230,7 @@ static int textFieldTag =0;
         
 
         
-        //*********公司信息*********************************************************************************
-        
+        //公司信息
         UIView *back13 = [[UIView alloc] initWithFrame:CGRectMake(0, 620, 320, 60)];
         back13.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
         [self addSubview:back13];

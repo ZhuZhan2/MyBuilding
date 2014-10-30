@@ -51,7 +51,7 @@
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(147, 8, 157, 30)];
     titleLabel.text = model.a_title;
     titleLabel.font = [UIFont systemFontOfSize:15];
-    titleLabel.textColor = [UIColor blueColor];
+    titleLabel.textColor = BlueColor;
     [bgView addSubview:titleLabel];
     
     contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(147, 28, 157, 50)];
@@ -60,7 +60,7 @@
     contentLabel.font = [UIFont systemFontOfSize:12];
     [bgView addSubview:contentLabel];
     
-    UIImageView *countImage = [[UIImageView alloc] initWithFrame:CGRectMake(147, 88, 17, 12)];
+    UIImageView *countImage = [[UIImageView alloc] initWithFrame:CGRectMake(147, 87, 11, 13)];
     [countImage setImage:[GetImagePath getImagePath:@"项目－项目专题_03a"]];
     [bgView addSubview:countImage];
     
