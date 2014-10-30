@@ -44,6 +44,8 @@ static NSString * const AFAppDotNetAPIBaseURLString = @serverAddress;
     if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
         //NSLog(@"=====>%@",[LoginSqlite getdata:@"deviceToken" defaultdata:@""]);
         [_sharedNewClient.requestSerializer setValue:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"deviceToken"]] forHTTPHeaderField:@"Authorization"];
+    }else{
+        [_sharedNewClient.requestSerializer setValue:@"" forHTTPHeaderField:@"Authorization"];
     }
     //[_sharedNewClient.requestSerializer setValue:[NSString stringWithFormat:@"13756154-7db5-4516-bcc6-6b7842504c81:64ae81d7-f567-4cff-ac0a-110f1326196b"] forHTTPHeaderField:@"Authorization"];
     NSLog(@"＊＊＊＊＊%@",_sharedNewClient.requestSerializer.HTTPRequestHeaders);

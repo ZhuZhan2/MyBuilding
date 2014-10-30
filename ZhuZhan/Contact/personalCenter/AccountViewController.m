@@ -428,13 +428,21 @@ static int count =0;//记录生日textField 的时间被触发的次数
 }
 
 -(void)logout{
-    [LoginSqlite deleteAll];
-    [RecordSqlite deleteAll];
-    HomePageViewController* homeVC=(HomePageViewController*)self.view.window.rootViewController;
-    UIButton* btn=[[UIButton alloc]init];
-    btn.tag=0;
-    [homeVC BtnClick:btn];
-    NSLog(@"logout");
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
+    [LoginModel LogoutWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            [LoginSqlite deleteAll];
+            [RecordSqlite deleteAll];
+            HomePageViewController* homeVC=(HomePageViewController*)self.view.window.rootViewController;
+            UIButton* btn=[[UIButton alloc]init];
+            btn.tag=0;
+            [homeVC BtnClick:btn];
+        }
+    } noNetWork:nil];    
 }
 
 -(UIView*)getSeparatorLine{
