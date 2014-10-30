@@ -430,6 +430,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
     personalVC.contactId = contactId;
     [self.navigationController pushViewController:personalVC animated:YES];
+    [showVC.view removeFromSuperview];
+    showVC = nil;
 }
 
 - (void)addfocus{
@@ -570,6 +572,29 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
              [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
         }
     } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+            [self firstNetWork];
+        }];
+    }];
+    
+    [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            showArr = posts;
+            for(int i=0;i<showArr.count;i++){
+                ActivesModel *model = showArr[i];
+                if([model.a_eventType isEqualToString:@"Actives"]){
+                    commentView = [CommentView setFram:model];
+                    [viewArr addObject:commentView];
+                }else{
+                    [viewArr addObject:@""];
+                }
+                [_datasource addObject:model.a_time];
+            }
+            [self.tableView reloadData];
+        }
+    } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
         self.tableView.scrollEnabled=NO;
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
             self.tableView.scrollEnabled=YES;
