@@ -15,6 +15,7 @@
 #import "LoginSqlite.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
+#import "LoginViewController.h"
 @interface AdvancedSearchViewController ()
 
 @end
@@ -126,12 +127,18 @@
 }
 
 -(void)rightBtnClick{
-    saveView = [[SaveConditionsViewController alloc] init];
-    [saveView.view setFrame:CGRectMake(0, 0, 271, 173)];
-    saveView.delegate = self;
-    saveView.dataDic = dataDic;
-    
-    [self presentPopupViewController:saveView animationType:MJPopupViewAnimationFade flag:1];
+    if([[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }else{
+        saveView = [[SaveConditionsViewController alloc] init];
+        [saveView.view setFrame:CGRectMake(0, 0, 271, 173)];
+        saveView.delegate = self;
+        saveView.dataDic = dataDic;
+        
+        [self presentPopupViewController:saveView animationType:MJPopupViewAnimationFade flag:1];
+    }
 }
 
 #pragma mark - Table view data source

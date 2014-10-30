@@ -235,11 +235,6 @@
     [LoginModel RegisterWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             NSDictionary *item = posts[0];
-//            NSString *userName =item[@"userName"];
-//            if ([userName isEqualToString:@"(null)"]||[userName isEqualToString:@"<null>"]) {
-//                userName = @"";
-//            }
-//            [LoginSqlite insertData:userName datakey:@"userName"];//待会跟岳志强沟通
             [LoginSqlite insertData:[item objectForKey:@"userId"] datakey:@"userId"];
             [LoginSqlite insertData:[item objectForKey:@"deviceToken"] datakey:@"deviceToken"];
             [self.navigationController.viewControllers[0] dismissViewControllerAnimated:YES completion:nil];

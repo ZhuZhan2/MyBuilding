@@ -22,7 +22,6 @@
 #import "ConnectionAvailable.h"
 #import "BirthDay.h"
 #import "LoginSqlite.h"
-#import "LoginViewController.h"
 #import "ActivesModel.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
@@ -62,7 +61,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"bg001"]];
     [_pathCover setHeadTaget];
-    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"用户名", XHUserNameKey, @"公司名字显示在这里     职位", XHBirthdayKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
     //时间标签
     _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
@@ -88,6 +86,23 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)firstNetWork{
+    if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
+        [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                ContactModel *model = posts[0];
+                [LoginSqlite insertData:model.userImage datakey:@"userImage"];
+                [_pathCover setHeadImageUrl:model.userImage];
+                [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
+            }
+        } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
+            self.tableView.scrollEnabled=NO;
+            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                self.tableView.scrollEnabled=YES;
+                [self firstNetWork];
+            }];
+        }];
+    }
+    
     [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             showArr = posts;
@@ -121,6 +136,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if ([deviceToken isEqualToString:@""]) {
         
         LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.delegate = self;
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }else{
@@ -383,6 +399,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
     if ([deviceToken isEqualToString:@""]) {
         LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.delegate = self;
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }else{
@@ -448,6 +465,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if ([deviceToken isEqualToString:@""]) {
         
         LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.delegate = self;
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }else{
@@ -539,5 +557,22 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
     vc.delegate=self;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)loginComplete{
+    [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            ContactModel *model = posts[0];
+            [LoginSqlite insertData:model.userImage datakey:@"userImage"];
+            [_pathCover setHeadImageUrl:model.userImage];
+             [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
+        }
+    } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+            [self firstNetWork];
+        }];
+    }];
 }
 @end

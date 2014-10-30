@@ -124,19 +124,22 @@
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
         return;
     }
+    if([[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
     
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setValue:nameTextField.text forKey:@"SearchName"];
-    [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"CreateBy"];
-    [dic setValue:newstring forKey:@"SearchConditions"];
-    [ProjectApi SearchConditionWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            [nameTextField resignFirstResponder];
-            if([self.delegate respondsToSelector:@selector(finshSave)]){//保存
-                [self.delegate finshSave];
+    }else{
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:nameTextField.text forKey:@"SearchName"];
+        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"CreateBy"];
+        [dic setValue:newstring forKey:@"SearchConditions"];
+        [ProjectApi SearchConditionWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                [nameTextField resignFirstResponder];
+                if([self.delegate respondsToSelector:@selector(finshSave)]){//保存
+                    [self.delegate finshSave];
+                }
             }
-        }
-    } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:nil];
+    }
 }
 
 -(void)cancelBtnClick{

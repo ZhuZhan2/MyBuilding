@@ -31,6 +31,7 @@
     self.companyName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"company"]]];
     self.position = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"duties"]]];
     self.password = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"password"]]];
+    self.userImage = [ProjectStage ProjectStrStage:dict[@"userImage"]];
 }
 
 //POST:

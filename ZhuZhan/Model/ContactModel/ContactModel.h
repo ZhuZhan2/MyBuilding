@@ -71,6 +71,8 @@
 //职位
 @property (nonatomic,strong)NSString *position;
 
+@property (nonatomic,strong)NSString *userImage;
+
 //用户信息对字典
 @property (nonatomic, copy) NSDictionary *dict;
 
