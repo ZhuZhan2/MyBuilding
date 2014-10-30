@@ -223,6 +223,7 @@ static int textFieldTag =0;
         cellPhone = [[UILabel alloc] initWithFrame:CGRectMake(110, 580, 150, 30)];
         cellPhone.textAlignment = NSTextAlignmentLeft;
         cellPhone.text = model.cellPhone;
+        NSLog(@"cellPhone==%@",model.cellPhone);
         cellPhone.font=[UIFont systemFontOfSize:15];
         cellPhone.textColor=GrayColor;
 
@@ -283,7 +284,7 @@ static int textFieldTag =0;
 }
 
 #pragma mark textFieldDelelgate----------
--(void)textFieldDidBeginEditing:(UITextField *)textField{
+-(void)textFieldDidEndEditing:(UITextField *)textField{
     int flag =0;
     if ([textField isEqual:userName]) {
         flag =0;

@@ -251,10 +251,11 @@ static int count =0;//记录生日textField 的时间被触发的次数
 -(void)changeUserIcon:(NSString *)imageStr AndImage:(UIImage *)image//更该用户头像
 {
     NSLog(@"********userId******* %@",userIdStr);
-    NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0",@"userId",imageStr,@"userImageStrings", nil];
+    NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"userId",imageStr,@"userImageStrings", nil];
     [LoginModel AddUserImageWithBlock:^(NSMutableArray *posts, NSError *error) {
-        
-        [_pathCover addImageHead:image];
+        if (!error) {
+            [_pathCover addImageHead:image];
+        }
     } dic:parameter noNetWork:nil];
     
 }
@@ -294,7 +295,8 @@ static int count =0;//记录生日textField 的时间被触发的次数
         return;
     }
     
-    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.userName,@"userName",model.realName,@"realName",model.sex,@"sex",model.locationCity,@"locationCity",model.birthday,@"birthday",model.constellation,@"constellation",model.bloodType,@"bloodType",model.email,@"email",model.companyName,@"company",model.position,@"duties",nil];
+    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.userName,@"userName",model.realName,@"realName",model.sex,@"sex",model.locationCity,@"locationCity",model.birthday,@"birthday",model.constellation,@"constellation",model.bloodType,@"bloodType",model.email,@"email",model.companyName,@"department",model.position,@"duties",nil];
+    NSLog(@"parameter==%@",parameter);
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
                
     } dic:parameter noNetWork:nil];
