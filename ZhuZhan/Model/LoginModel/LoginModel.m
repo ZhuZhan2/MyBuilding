@@ -181,7 +181,9 @@
         return nil;
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/account/logout"];
-    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:@"mobile" forKey:@"deviceType"];
+    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON==>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
