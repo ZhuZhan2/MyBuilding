@@ -13,4 +13,5 @@
 +(NSString *)getdata:(NSString *)datakey;
 +(void)insertData:(NSString *)data datakey:(NSString *)datakey;
 +(void)dropTable;
++(void)deleteAll;
 @end

@@ -15,4 +15,5 @@
 
 +(void)InsertData:(NSDictionary *)dic;
 +(NSMutableArray *)loadList;
++(void)deleteAll;
 @end

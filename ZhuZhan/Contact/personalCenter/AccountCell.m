@@ -7,10 +7,16 @@
 //
 
 #import "AccountCell.h"
-
+#import "SinglePickerView.h"
 @implementation AccountCell
 
 static int textFieldTag =0;
+-(UIView*)getSeparatorLine{
+    UIImageView* separatorLine=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 3.5)];
+    separatorLine.image=[GetImagePath getImagePath:@"Shadow-bottom"];
+    return separatorLine;
+}
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(ContactModel *)model
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -22,6 +28,9 @@ static int textFieldTag =0;
         UIView *back1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
         back1.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
         [self addSubview:back1];
+        UIView* temp0=[self getSeparatorLine];
+        [back1 addSubview:temp0];
+        
         UIImageView *imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(134, 13, 52, 34)];
         imageView1.image = [GetImagePath getImagePath:@"人脉－账号设置_10a"];
         [self addSubview:imageView1];
@@ -99,13 +108,18 @@ static int textFieldTag =0;
         sexLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:sexLabel];
         sex = [[UITextField alloc] initWithFrame:CGRectMake(110, 220, 150, 30)];
+        sex.userInteractionEnabled=NO;
         sex.textAlignment = NSTextAlignmentLeft;
-        sex.delegate =self;
         sex.text = model.sex;
         sex.font=[UIFont systemFontOfSize:15];
         sex.textColor=GrayColor;
         sex.tag = 2014091204;
         [self addSubview:sex];
+        
+        UIButton* sexBtn=[[UIButton alloc]initWithFrame:sex.frame];
+        [sexBtn addTarget:self action:@selector(addSex) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:sexBtn];
+        
         UIImageView *horizontalLine4 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 259, 280, 1)];
         horizontalLine4.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
         horizontalLine4.alpha = 0.5;
@@ -191,6 +205,9 @@ static int textFieldTag =0;
         UIView *back12 = [[UIView alloc] initWithFrame:CGRectMake(0, 460, 320, 60)];
         back12.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
         [self addSubview:back12];
+        UIView* temp1=[self getSeparatorLine];
+        [back12 addSubview:temp1];
+        
         UIImageView *imageView12 = [[UIImageView alloc] initWithFrame:CGRectMake(134, 473, 52, 34)];
         imageView12.image = [GetImagePath getImagePath:@"人脉－账号设置_14a"];
         [self addSubview:imageView12];
@@ -229,13 +246,13 @@ static int textFieldTag =0;
 
         [self addSubview:cellPhone];
 
-        
-
-        
         //公司信息
         UIView *back13 = [[UIView alloc] initWithFrame:CGRectMake(0, 620, 320, 60)];
         back13.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
         [self addSubview:back13];
+        UIView* temp2=[self getSeparatorLine];
+        [back13 addSubview:temp2];
+        
         UIImageView *imageView13 = [[UIImageView alloc] initWithFrame:CGRectMake(134, 633, 52, 34)];
         imageView13.image = [GetImagePath getImagePath:@"人脉－账号设置_18a"];
         [self addSubview:imageView13];
@@ -278,6 +295,21 @@ static int textFieldTag =0;
     return self;
 }
 
+-(void)addSex{
+    singlepickerview=[[SinglePickerView alloc]initWithTitle:CGRectMake(0, 0, 320, 260) title:nil Arr:@[@"男",@"女"] delegate:self];
+    [singlepickerview showInView:self.superview.superview.superview];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    singlepickerview = (SinglePickerView *)actionSheet;
+    if(buttonIndex == 0) {
+        NSLog(@"Cancel");
+    }else {
+        sex.text=singlepickerview.selectStr;
+        [self.delegate AddDataToModel:2 WithTextField:sex];
+    }
+}
+
 -(void)begintoModifyPassword
 {
     [self.delegate ModifyPassword:password.text];
@@ -292,9 +324,9 @@ static int textFieldTag =0;
     if ([textField isEqual:realName]) {
         flag =1;
     }
-    if ([textField isEqual:sex]) {
-        flag =2;
-    }
+//    if ([textField isEqual:sex]) {
+//        flag =2;
+//    }
     if ([textField isEqual:location]) {
         flag =3;
     }
