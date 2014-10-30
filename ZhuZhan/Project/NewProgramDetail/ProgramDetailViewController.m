@@ -774,9 +774,13 @@
 //第一行蓝，第二行黑的view
 -(NSArray*)getBlueTwoLinesWithStrsWithIndexPath:(MyIndexPath*)indexPath{
     if (indexPath.section==0) {
-        return @[[self.model.a_area stringByAppendingString:@"㎡"],[self.model.a_plotRatio stringByAppendingString:@"%"],self.model.a_usage];
+        NSString* areaExtra=[self.model.a_area stringByAppendingString:[self.model.a_area isEqualToString:@""]?@"":@"㎡"];
+        NSString* plotExtra=[self.model.a_plotRatio isEqualToString:@""]?@"":@"%";
+        return @[[self.model.a_area stringByAppendingString:areaExtra],[self.model.a_plotRatio stringByAppendingString:plotExtra],self.model.a_usage];
     }else{
-        return @[self.model.a_exceptStartTime,[self.model.a_storeyHeight stringByAppendingString:@"M"],self.model.a_foreignInvestment,self.model.a_exceptFinishTime,self.model.a_investment,[self.model.a_storeyArea stringByAppendingString:@"㎡"]];
+        NSString* storeyHeightExtra=[self.model.a_storeyHeight isEqualToString:@""]?@"":@"M";
+        NSString* storeyAreaExtra=[self.model.a_storeyArea isEqualToString:@""]?@"":@"㎡";
+        return @[self.model.a_exceptStartTime,[self.model.a_storeyHeight stringByAppendingString:storeyHeightExtra],self.model.a_foreignInvestment,self.model.a_exceptFinishTime,self.model.a_investment,[self.model.a_storeyArea stringByAppendingString:storeyAreaExtra]];
     }
 }
 

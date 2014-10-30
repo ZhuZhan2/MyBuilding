@@ -52,6 +52,7 @@ static int textFieldTag =0;
         passwordLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:passwordLabel];
         password = [[UITextField alloc] initWithFrame:CGRectMake(110, 120, 150, 30)];
+        password.userInteractionEnabled=NO;
         password.textAlignment = NSTextAlignmentLeft;
         password.font=[UIFont systemFontOfSize:15];
         password.delegate =self;
@@ -282,12 +283,9 @@ static int textFieldTag =0;
 }
 
 #pragma mark textFieldDelelgate----------
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
     int flag =0;
     if ([textField isEqual:userName]) {
-        
         flag =0;
     }
     if ([textField isEqual:realName]) {
@@ -299,7 +297,6 @@ static int textFieldTag =0;
     if ([textField isEqual:location]) {
         flag =3;
     }
-    
     if ([textField isEqual:constellation]) {
         flag =4;
     }
@@ -319,11 +316,9 @@ static int textFieldTag =0;
         flag =9;
     }
     [self.delegate AddDataToModel:flag WithTextField:textField];
-    return YES;
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-
     float y = textField.frame.size.height+textField.frame.origin.y;
     [self.delegate getTextFieldFrame_yPlusHeight:y];
     textFieldTag =textField.tag;

@@ -146,8 +146,11 @@
 
 -(void)setModel:(projectModel *)model{
     nameLabel.text = model.a_projectName;
-    investmentcountLabel.text = [NSString stringWithFormat:@"￥%@",model.a_investment];
-    areacountLabel.text = [NSString stringWithFormat:@"%@㎡",model.a_area];
+    NSString* investmentHead=[model.a_investment isEqualToString:@""]?@"":@"￥";
+    investmentcountLabel.text = [investmentHead stringByAppendingString:model.a_investment];
+    
+    NSString* areacountExtra=[model.a_area isEqualToString:@""]?@"":@"㎡";
+    areacountLabel.text = [model.a_area stringByAppendingString:areacountExtra];
 ;
     
     stage = [ProjectStage JudgmentProjectStage:model];
