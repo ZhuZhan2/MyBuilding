@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LoginViewDelegate <NSObject>
+-(void)loginComplete;
+@end
+
 @interface LoginViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate>{
     UITextField *_userNameTextField;
     UITextField *_passWordTextField;
 }
+@property(nonatomic,weak)id<LoginViewDelegate>delegate;
 @end

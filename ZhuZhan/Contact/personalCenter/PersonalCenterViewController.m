@@ -70,16 +70,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154)];
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"首页_16"]];
-    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImageUrl"]]];
+    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImage"]]];
     [_pathCover hidewaterDropRefresh];
-    [_pathCover setHeadImageFrame:CGRectMake(125, -20, 70, 70)];
+    [_pathCover setHeadImageFrame:CGRectMake(125, -30, 70, 70)];
     [_pathCover.headImage.layer setMasksToBounds:YES];
     [_pathCover.headImage.layer setCornerRadius:35];
-    [_pathCover setNameFrame:CGRectMake(145, 50, 100, 20) font:[UIFont systemFontOfSize:14]];
-    _pathCover.userNameLabel.textAlignment = NSTextAlignmentCenter;
-    _pathCover.userNameLabel.center = CGPointMake(157.5, 60);
+    [_pathCover setNameFrame:CGRectMake(0, 50, 320, 20) font:[UIFont systemFontOfSize:14]];
     
-    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Jack", XHUserNameKey, nil]];
+    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
     
     //时间标签
