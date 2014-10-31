@@ -262,7 +262,7 @@
             startIndex = 0;
             self.showArr = posts;
             [self.tableView reloadData];
-            self.searchBar.showsCancelButton = YES;
+            [self.searchBar setShowsCancelButton:YES animated:YES];
         }
     }startIndex:0 keyWords:[NSString stringWithFormat:@"%@",searchBar.text] noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -279,7 +279,7 @@
             startIndex = 0;
             self.showArr = posts;
             [self.tableView reloadData];
-            self.searchBar.showsCancelButton = NO;
+            [self.searchBar setShowsCancelButton:NO animated:YES];
         }
     } startIndex:0 keyWords:@"" noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
