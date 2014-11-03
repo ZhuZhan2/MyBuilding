@@ -9,7 +9,6 @@
 #import "ContactCommentTableViewCell.h"
 
 @implementation ContactCommentTableViewCell
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -38,6 +37,11 @@
     headImageView.layer.masksToBounds = YES;
     headImageView.layer.cornerRadius = 3;
     [self.contentView addSubview:headImageView];
+    
+    UIButton *headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [headBtn setFrame:CGRectMake(5, 5, 27, 27)];
+    [headBtn addTarget:self action:@selector(headActon) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:headBtn];
     
     contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 0, 190, 30)];
     contentLabel.numberOfLines = 2;
@@ -68,5 +72,13 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *fixString = [dateFormatter stringFromDate:model.a_time];
     timeLabel.text = fixString;
+    
+    contactId = model.a_createdBy;
+}
+
+-(void)headActon{
+    if([self.delegate respondsToSelector:@selector(contactCommentHeadAction:)]){
+        [self.delegate contactCommentHeadAction:contactId];
+    }
 }
 @end

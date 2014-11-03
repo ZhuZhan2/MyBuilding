@@ -31,6 +31,7 @@
 -(instancetype)initWithCommentModel:(ContactCommentModel *)model{
     if ([super init]) {
         [self loadSelfWithCommentModel:model];
+        contactId = model.a_createdBy;
     }
     return self;
 }
@@ -44,6 +45,11 @@
     self.userImageView.showActivityIndicator=YES;
     self.userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",commentModel.a_avatarUrl]];
     [self addSubview:self.userImageView];
+    
+    UIButton *headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [headBtn setFrame:CGRectMake(15, 20, 50, 50)];
+    [headBtn addTarget:self action:@selector(headActon) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:headBtn];
     
     //用户名称label
     self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(80, 15, 150, 20)];
@@ -69,5 +75,11 @@
     }
     self.frame=CGRectMake(6, 0, 308, height);
     self.backgroundColor=[UIColor whiteColor];
+}
+
+-(void)headActon{
+    if([self.delegate respondsToSelector:@selector(gotoContactDetail:)]){
+        [self.delegate gotoContactDetail:contactId];
+    }
 }
 @end

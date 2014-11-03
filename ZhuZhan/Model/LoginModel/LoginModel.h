@@ -21,6 +21,8 @@
 @property (nonatomic,copy) NSString *a_loginStatus;
 //是否有公司认证
 @property (nonatomic,copy) NSString *a_hasCompany;
+//是否有公司认证
+@property (nonatomic,copy) NSString *a_userImage;
 
 @property (nonatomic,copy) NSDictionary *dict;
 

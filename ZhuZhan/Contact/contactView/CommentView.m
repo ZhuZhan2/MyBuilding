@@ -9,7 +9,6 @@
 #import "CommentView.h"
 #import "EGOImageView.h"
 #import "ContactCommentModel.h"
-#import "ContactCommentTableViewCell.h"
 #import "NBLabel.h"
 @implementation CommentView
 @synthesize indexpath = _indexpath;
@@ -195,6 +194,7 @@
                 cell = [[ContactCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
             cell.selectionStyle = NO;
+            cell.delegate = self;
             cell.model = model;
             return cell;
         }
@@ -205,6 +205,7 @@
             cell = [[ContactCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.selectionStyle = NO;
+        cell.delegate = self;
         cell.model = model;
         return cell;
     }
@@ -224,6 +225,12 @@
 -(void)gotoShowViewClick{
     if([self.headImageDelegate respondsToSelector:@selector(HeadImageAction:)]){
         [self.headImageDelegate HeadImageAction:_indexpath];
+    }
+}
+
+-(void)contactCommentHeadAction:(NSString *)aid{
+    if([self.delegate respondsToSelector:@selector(gotoContactDetail:)]){
+        [self.delegate gotoContactDetail:aid];
     }
 }
 @end
