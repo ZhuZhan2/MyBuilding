@@ -634,6 +634,10 @@
 		5B4C198A19FA57CC00C6C57D /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4C198919FA57CC00C6C57D /* ForgetPasswordViewController.m */; };
 		5B4E8A5819F8EA9800EA9AFF /* CompanyTotalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E8A5719F8EA9800EA9AFF /* CompanyTotalViewController.m */; };
 		5B51212F1A0781F900A77997 /* MapContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B51212E1A0781F900A77997 /* MapContentView.m */; };
+		5B5121321A07962600A77997 /* 地图搜索1_16.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5121301A07962600A77997 /* 地图搜索1_16.png */; };
+		5B5121331A07962600A77997 /* 地图搜索1_16@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5121311A07962600A77997 /* 地图搜索1_16@2X.png */; };
+		5B5121361A07968200A77997 /* 地图搜索1_05.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5121341A07968200A77997 /* 地图搜索1_05.png */; };
+		5B5121371A07968200A77997 /* 地图搜索1_05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5121351A07968200A77997 /* 地图搜索1_05@2x.png */; };
 		5B5894F119FF9D24001CC09E /* EndEditingGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5894F019FF9D24001CC09E /* EndEditingGesture.m */; };
 		5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
 		5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF819932E36007D79A8 /* QuadCurveMenu.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1739,6 +1743,10 @@
 		5B4E8A5719F8EA9800EA9AFF /* CompanyTotalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyTotalViewController.m; sourceTree = "<group>"; };
 		5B51212D1A0781F900A77997 /* MapContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapContentView.h; sourceTree = "<group>"; };
 		5B51212E1A0781F900A77997 /* MapContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapContentView.m; sourceTree = "<group>"; };
+		5B5121301A07962600A77997 /* 地图搜索1_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图搜索1_16.png"; sourceTree = "<group>"; };
+		5B5121311A07962600A77997 /* 地图搜索1_16@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图搜索1_16@2X.png"; sourceTree = "<group>"; };
+		5B5121341A07968200A77997 /* 地图搜索1_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图搜索1_05.png"; sourceTree = "<group>"; };
+		5B5121351A07968200A77997 /* 地图搜索1_05@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图搜索1_05@2x.png"; sourceTree = "<group>"; };
 		5B5894EF19FF9D24001CC09E /* EndEditingGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndEditingGesture.h; sourceTree = "<group>"; };
 		5B5894F019FF9D24001CC09E /* EndEditingGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndEditingGesture.m; sourceTree = "<group>"; };
 		5B656CF419931275007D79A8 /* CompanyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMemberViewController.h; sourceTree = "<group>"; };
@@ -2892,6 +2900,10 @@
 		04BC3E5D19D7E5B0006B5C7B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5B5121341A07968200A77997 /* 地图搜索1_05.png */,
+				5B5121351A07968200A77997 /* 地图搜索1_05@2x.png */,
+				5B5121301A07962600A77997 /* 地图搜索1_16.png */,
+				5B5121311A07962600A77997 /* 地图搜索1_16@2X.png */,
 				5B45E61D1A00AE7800B790FB /* 全部项目_17.png */,
 				5B45E61E1A00AE7800B790FB /* 全部项目_17@2x.png */,
 				D3D7DB2319FF73B800AE5765 /* 人脉－人的详情_02a.png */,
@@ -3864,6 +3876,7 @@
 				04BC420119D7E5B3006B5C7B /* 公司认证员工_03a.png in Resources */,
 				04BC40FD19D7E5B3006B5C7B /* 013.png in Resources */,
 				04BC41D819D7E5B3006B5C7B /* 人脉－发布动态_11a@2x.png in Resources */,
+				5B5121331A07962600A77997 /* 地图搜索1_16@2X.png in Resources */,
 				D3D74ED719FA308000ED8B62 /* 面部识别登录_02@2x.png in Resources */,
 				04BC419019D7E5B3006B5C7B /* 人脉_57a@2x.png in Resources */,
 				04BC436119D7E5B3006B5C7B /* ＋人脉－个人中心2_30a@2x.png in Resources */,
@@ -3873,6 +3886,7 @@
 				04BC423519D7E5B3006B5C7B /* 地图搜索_02.png in Resources */,
 				04BC434419D7E5B3006B5C7B /* 项目－高级搜索－2_03a.png in Resources */,
 				04BC410719D7E5B3006B5C7B /* 018.png in Resources */,
+				5B5121321A07962600A77997 /* 地图搜索1_16.png in Resources */,
 				04BC426119D7E5B3006B5C7B /* 数据加载失败_03a.png in Resources */,
 				04BC42C019D7E5B3006B5C7B /* 项目-首页_18a.png in Resources */,
 				04BC433819D7E5B3006B5C7B /* 项目－项目专题_11a.png in Resources */,
@@ -4003,6 +4017,7 @@
 				D3D1A7B819F8E9B40006F954 /* 公司－我的公司_05b@2x.png in Resources */,
 				04BC411519D7E5B3006B5C7B /* 04@2x.png in Resources */,
 				04BC412619D7E5B3006B5C7B /* bg-menuitem-highlighted.png in Resources */,
+				5B5121361A07968200A77997 /* 地图搜索1_05.png in Resources */,
 				04BC40F019D7E5B3006B5C7B /* +项目-首页_25a.png in Resources */,
 				5B4C197419FA444800C6C57D /* 注册_07@2x.png in Resources */,
 				04BC429E19D7E5B3006B5C7B /* 筛选中04.png in Resources */,
@@ -4067,6 +4082,7 @@
 				04BC425919D7E5B3006B5C7B /* 搜索结果_03a.png in Resources */,
 				04BC433F19D7E5B3006B5C7B /* 项目－项目专题_23a@2x.png in Resources */,
 				D3D74E8619FA2FEC00ED8B62 /* 登录_19@2x.png in Resources */,
+				5B5121371A07968200A77997 /* 地图搜索1_05@2x.png in Resources */,
 				04BC413F19D7E5B3006B5C7B /* icon01.png in Resources */,
 				04BC427019D7E5B3006B5C7B /* 新建项目5_09@2x.png in Resources */,
 				04BC434C19D7E5B3006B5C7B /* 项目－高级搜索－2_15a.png in Resources */,
