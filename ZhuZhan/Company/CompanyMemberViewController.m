@@ -164,6 +164,9 @@
 }
 
 -(void)chooseUserImage:(UIButton*)btn{
+    if([[self.showArr[btn.superview.tag] a_id] isEqualToString:[LoginSqlite getdata:@"userId"]]){
+        return;
+    }
     PersonalDetailViewController* vc=[[PersonalDetailViewController alloc]init];
     vc.contactId=[self.showArr[btn.superview.tag] a_id];
     [self.navigationController pushViewController:vc animated:YES];
