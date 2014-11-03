@@ -40,12 +40,6 @@
     icon.userInteractionEnabled = YES;
     [tempImageView addSubview:icon];
     
-    UIButton *visitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    visitBtn.frame =CGRectMake(107.5, 50, 65, 65);
-    [visitBtn addTarget:self action:@selector(beginToVisitDetail) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:visitBtn];
-    
-    
     UILabel *userName = [[UILabel alloc] initWithFrame:CGRectMake(0, 115, 280, 40)];
     userName.textAlignment = NSTextAlignmentCenter;
     userName.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:18];
@@ -73,12 +67,18 @@
     bgView.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
     //[tempImageView addSubview:bgView];
     
+    UIButton *visitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    visitBtn.frame =CGRectMake(10, 200, 100, 25);
+    [visitBtn setTitle:@"访问" forState:UIControlStateNormal];
+    [visitBtn addTarget:self action:@selector(beginToVisitDetail) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:visitBtn];
+    
     UIButton *concernBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    concernBtn.frame = CGRectMake(90, 200, 100, 25);
+    concernBtn.frame = CGRectMake(120, 200, 100, 25);
     [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
     concernBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [concernBtn addTarget:self action:@selector(gotoConcern) forControlEvents:UIControlEventTouchUpInside];
-    //[tempImageView addSubview:concernBtn];
+    [self.view addSubview:concernBtn];
 }
 
 - (void)didReceiveMemoryWarning
