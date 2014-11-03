@@ -244,7 +244,9 @@
 }
 
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
-    [EndEditingGesture addGestureToView:self.view];
+    if (!self.view.gestureRecognizers.count) {
+        [EndEditingGesture addGestureToView:self.view];
+    }
     return YES;
 }
 

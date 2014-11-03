@@ -14,6 +14,7 @@
 #import "DatePickerView.h"
 #import "BirthDay.h"
 #import "LoginSqlite.h"
+#import "RecordSqlite.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "EndEditingGesture.h"
@@ -39,6 +40,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.backgroundColor=RGBCOLOR(237, 237, 237);
+    self.tableView.tableFooterView=[self getLogoutView];
     [self.view addSubview:self.tableView];
 
     
@@ -410,6 +412,43 @@ static int count =0;//记录生日textField 的时间被触发的次数
 
 -(void)gotoMyCenter{
 
+}
+
+-(UIView*)getLogoutView{
+    UIView* logoutView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 55+20)];
+    UIView* separatorLine=[self getSeparatorLine];
+    [logoutView addSubview:separatorLine];
+    
+    UIButton* btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 20, 320, 55)];
+    btn.backgroundColor=RGBCOLOR(235, 114, 114);
+    [btn setTitle:@"退出当前账号" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+    [logoutView addSubview:btn];
+    return logoutView;
+}
+
+-(void)logout{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
+    [LoginModel LogoutWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            [LoginSqlite deleteAll];
+            [RecordSqlite deleteAll];
+            HomePageViewController* homeVC=(HomePageViewController*)self.view.window.rootViewController;
+            UIButton* btn=[[UIButton alloc]init];
+            btn.tag=0;
+            [homeVC BtnClick:btn];
+        }
+    } noNetWork:nil];    
+}
+
+-(UIView*)getSeparatorLine{
+    UIImageView* separatorLine=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 3.5)];
+    separatorLine.image=[GetImagePath getImagePath:@"Shadow-bottom"];
+    return separatorLine;
 }
 
 -(void)dealloc{

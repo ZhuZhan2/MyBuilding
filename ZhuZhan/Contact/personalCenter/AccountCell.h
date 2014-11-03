@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ContactModel.h"
-
+#import "SinglePickerView.h"
 @protocol  AccountCellDelegate <NSObject>
 
 -(void)ModifyPassword:(NSString *)password;
@@ -18,7 +18,7 @@
 
 @end
 
-@interface AccountCell : UITableViewCell<UITextFieldDelegate>{
+@interface AccountCell : UITableViewCell<UITextFieldDelegate,UIActionSheetDelegate>{
     UITextField *userName;
     UITextField *password;
     UITextField *realName;
@@ -32,6 +32,7 @@
     UITextField *company;
     UITextField *position;
     ContactModel *_model;
+    SinglePickerView* singlepickerview;
 }
 @property (nonatomic,weak)id<AccountCellDelegate> delegate;
 

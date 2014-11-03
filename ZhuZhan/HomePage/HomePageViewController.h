@@ -31,4 +31,5 @@
 }
 -(void)homePageTabBarHide;
 -(void)homePageTabBarRestore;
+-(void)BtnClick:(UIButton *)button;
 @end

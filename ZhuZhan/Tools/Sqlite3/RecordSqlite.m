@@ -95,4 +95,11 @@
 	}
     return list;
 }
+
++(void)deleteAll{
+    SqliteHelper *sqlite = [[SqliteHelper alloc] init];
+    if ([sqlite open:DataBaseName]) {
+        [sqlite executeQuery:@"delete from Record"];
+    }
+}
 @end

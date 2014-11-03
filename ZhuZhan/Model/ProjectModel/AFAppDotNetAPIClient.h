@@ -28,5 +28,4 @@
 +(instancetype)sharedClient;
 
 +(AFAppDotNetAPIClient *)sharedNewClient;
-
 @end
