@@ -488,6 +488,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)chooseUserImage:(UIButton*)btn{
     PersonalDetailViewController* vc=[[PersonalDetailViewController alloc]init];
+    if([btn.tag?[self.commentModels[btn.tag-1] a_createdBy]:self.createdBy isEqualToString:[LoginSqlite getdata:@"userId"]]){
+        return;
+    }
     vc.contactId=btn.tag?[self.commentModels[btn.tag-1] a_createdBy]:self.createdBy;
     [self.navigationController pushViewController:vc animated:YES];
     NSLog(@"createdBy=%@",vc.contactId);

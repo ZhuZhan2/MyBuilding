@@ -419,6 +419,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if([model.a_createdBy isEqualToString:[LoginSqlite getdata:@"userId"]]){
         return;
     }
+    NSLog(@"===>%@",model.a_createdBy);
     showVC = [[ShowViewController alloc] init];
     showVC.delegate =self;
     showVC.createdBy = model.a_createdBy;
@@ -452,22 +453,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
     showVC.view.layer.masksToBounds = YES;
     [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
-}
-
-- (void)addfocus{
-//    ActivesModel *model = showArr[indexpath.row];
-//    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-//    [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
-//    [dic setValue:model.a_id forKey:@"FocusId"];
-//    [dic setValue:@"Personal" forKey:@"FocusType"];
-//    [dic setValue:@"Personal" forKey:@"UserType"];
-//    [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
-//        if(!error){
-//            model.a_isFocused=@"1";
-//            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-//        }
-//        btn.enabled=YES;
-//    } dic:dic];
 }
 
 -(void)jumpToGetRecommend:(NSDictionary *)dic

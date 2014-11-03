@@ -10,10 +10,12 @@
 #import "EGOImageView.h"
 @protocol showControllerDelegate <NSObject>
 -(void)gotoContactDetailView:(NSString *)contactId;
--(void)addfocus;
 @end
 
-@interface ShowViewController : UIViewController
+@interface ShowViewController : UIViewController{
+    UIButton *concernBtn;
+    int isFoucsed;
+}
 @property(nonatomic,strong)NSString *createdBy;
 @property(nonatomic,weak)id<showControllerDelegate>  delegate;
 
