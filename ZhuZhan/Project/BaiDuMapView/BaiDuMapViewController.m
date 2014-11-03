@@ -31,7 +31,7 @@ int j;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    NSLog(@"asdfsadf");
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 0, 29, 28.5)];
