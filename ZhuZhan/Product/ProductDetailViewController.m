@@ -481,7 +481,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         btn.tag=indexPath.row;
         [btn addTarget:self action:@selector(chooseUserImage:) forControlEvents:UIControlEventTouchUpInside];
         [cell.contentView addSubview:btn];
-        NSLog(@"asdfasdf");
+       
         return cell;
     }
 }
