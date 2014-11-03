@@ -656,9 +656,9 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/MapSearch?latitude=%@&longitude=%@&radius=1",latitude,longitude];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/MapSearch?latitude=%@&longitude=%@&radius=100",latitude,longitude];
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON);
+        NSLog(@"JSON===>%@",JSON[@"d"]);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             [mutablePosts addObject:JSON[@"d"][@"data"]];

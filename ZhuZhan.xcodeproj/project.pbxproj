@@ -633,6 +633,7 @@
 		5B4C198719FA543C00C6C57D /* 用户条款_05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4C198519FA543C00C6C57D /* 用户条款_05@2x.png */; };
 		5B4C198A19FA57CC00C6C57D /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4C198919FA57CC00C6C57D /* ForgetPasswordViewController.m */; };
 		5B4E8A5819F8EA9800EA9AFF /* CompanyTotalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E8A5719F8EA9800EA9AFF /* CompanyTotalViewController.m */; };
+		5B51212F1A0781F900A77997 /* MapContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B51212E1A0781F900A77997 /* MapContentView.m */; };
 		5B5894F119FF9D24001CC09E /* EndEditingGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5894F019FF9D24001CC09E /* EndEditingGesture.m */; };
 		5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
 		5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF819932E36007D79A8 /* QuadCurveMenu.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1736,6 +1737,8 @@
 		5B4C198919FA57CC00C6C57D /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		5B4E8A5619F8EA9800EA9AFF /* CompanyTotalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyTotalViewController.h; sourceTree = "<group>"; };
 		5B4E8A5719F8EA9800EA9AFF /* CompanyTotalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyTotalViewController.m; sourceTree = "<group>"; };
+		5B51212D1A0781F900A77997 /* MapContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapContentView.h; sourceTree = "<group>"; };
+		5B51212E1A0781F900A77997 /* MapContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapContentView.m; sourceTree = "<group>"; };
 		5B5894EF19FF9D24001CC09E /* EndEditingGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndEditingGesture.h; sourceTree = "<group>"; };
 		5B5894F019FF9D24001CC09E /* EndEditingGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndEditingGesture.m; sourceTree = "<group>"; };
 		5B656CF419931275007D79A8 /* CompanyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMemberViewController.h; sourceTree = "<group>"; };
@@ -2790,6 +2793,8 @@
 			children = (
 				042D9DCC19B559FC00689C5D /* BaiDuMapViewController.h */,
 				042D9DCD19B559FC00689C5D /* BaiDuMapViewController.m */,
+				5B51212D1A0781F900A77997 /* MapContentView.h */,
+				5B51212E1A0781F900A77997 /* MapContentView.m */,
 			);
 			path = BaiDuMapView;
 			sourceTree = "<group>";
@@ -4489,6 +4494,7 @@
 				0426C2A519922D5A00CD8822 /* GPUImagePolarPixellateFilter.m in Sources */,
 				04BF13B519C4162A002E02C9 /* ProjectApi.m in Sources */,
 				04D10BEA19AE016A0097C0C6 /* PublishViewController.m in Sources */,
+				5B51212F1A0781F900A77997 /* MapContentView.m in Sources */,
 				042D9E1319B559FC00689C5D /* MyFactory.m in Sources */,
 				D3AD60A119AC574A001FD483 /* networkConnect.m in Sources */,
 				D3AC61DF19B85CA50015B62F /* ProjectCommentView.m in Sources */,

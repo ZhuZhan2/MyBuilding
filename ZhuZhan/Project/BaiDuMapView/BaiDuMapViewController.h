@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "BMapKit.h"
+#import "MapContentView.h"
+
 @interface BaiDuMapViewController : UIViewController<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,CLLocationManagerDelegate>{
     BMKMapView* _mapView;
     BMKLocationService* _locService;
@@ -35,6 +37,7 @@
     NSMutableArray *coordinates;
     BMKPolygon* polygon;
     CLLocationManager  *locationManager;
+    MapContentView* _MapContent;
 }
 
 @end
