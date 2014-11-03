@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "ActivesModel.h"
 #import "HeadImageDelegate.h"
+#import "ContactCommentTableViewCell.h"
 @protocol CommentViewDelegate <NSObject>
 
 -(void)addCommentView:(NSIndexPath *)indexPath;
 -(void)gotoDetailView:(NSIndexPath *)indexPath;
+-(void)gotoContactDetail:(NSString *)aid;
 @end
-@interface CommentView : UIView<UITableViewDelegate,UITableViewDataSource>{
+@interface CommentView : UIView<UITableViewDelegate,UITableViewDataSource,ContactCommentTableViewDelegate>{
     NSIndexPath *indexpath;
     NSMutableArray *showArr;
 }

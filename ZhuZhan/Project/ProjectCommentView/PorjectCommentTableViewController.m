@@ -14,6 +14,7 @@
 #import "HomePageViewController.h"
 #import "LoginSqlite.h"
 #import "LoginViewController.h"
+#import "PersonalDetailViewController.h"
 @interface PorjectCommentTableViewController ()
 
 @end
@@ -69,6 +70,7 @@
             for(int i=0; i<posts.count;i++){
                 ContactCommentModel *model = posts[i];
                 projectCommentView = [[ProjectCommentView alloc] initWithCommentModel:model];
+                projectCommentView.delegate =self;
                 [viewArr addObject:projectCommentView];
                 [_datasource addObject:model.a_time];
             }
@@ -220,12 +222,13 @@
         if(!error){
             ContactCommentModel *model = [[ContactCommentModel alloc] init];
             model.a_entityId = self.projectId;
-            model.a_userName = @"";
-            model.a_avatarUrl = @"";
+            model.a_userName = [LoginSqlite getdata:@"userName"];
+            model.a_avatarUrl = [LoginSqlite getdata:@"userImage"];
             model.a_commentContents = [NSString stringWithFormat:@"%@",comment];
             model.a_time = [NSDate date];
             [showArr insertObject:model atIndex:0];
             projectCommentView = [[ProjectCommentView alloc] initWithCommentModel:model];
+            projectCommentView.delegate = self;
             [viewArr insertObject:projectCommentView atIndex:0];
             [_datasource insertObject:[NSDate date] atIndex:0];
             [self.tableView reloadData];
@@ -235,5 +238,14 @@
 
 -(void)cancelFromAddComment{
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+}
+
+-(void)gotoContactDetail:(NSString *)aid{
+    if([aid isEqualToString:[LoginSqlite getdata:@"userId"]]){
+        return;
+    }
+    PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
+    personalVC.contactId = aid;
+    [self.navigationController pushViewController:personalVC animated:YES];
 }
 @end

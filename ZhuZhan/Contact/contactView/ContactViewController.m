@@ -416,6 +416,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
     
     ActivesModel *model = showArr[indexPath.row];
+    if([model.a_createdBy isEqualToString:[LoginSqlite getdata:@"userId"]]){
+        return;
+    }
     showVC = [[ShowViewController alloc] init];
     showVC.delegate =self;
     showVC.createdBy = model.a_createdBy;
@@ -432,6 +435,23 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self.navigationController pushViewController:personalVC animated:YES];
     [showVC.view removeFromSuperview];
     showVC = nil;
+}
+
+-(void)gotoContactDetail:(NSString *)aid{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    if([aid isEqualToString:[LoginSqlite getdata:@"userId"]]){
+        return;
+    }
+    showVC = [[ShowViewController alloc] init];
+    showVC.delegate =self;
+    showVC.createdBy = aid;
+    [showVC.view setFrame:CGRectMake(20, 70, 280, 300)];
+    showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
+    showVC.view.layer.masksToBounds = YES;
+    [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
 }
 
 - (void)addfocus{
@@ -496,6 +516,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //评论发送完后的页面tableView刷新
 -(void)finishPostCommentWithPosts:(NSMutableArray*)posts activesModel:(ActivesModel*)model{
     ContactCommentModel *commentModel = [[ContactCommentModel alloc] init];
+    NSMutableDictionary *dic = posts[0];
+    NSLog(@"%@",dic);
+    //[dic setValue:[LoginSqlite getdata:@"userName"] forKey:@""];
     [commentModel setDict:posts[0]];
     if(model.a_commentsArr.count >=3){
         [model.a_commentsArr removeObjectAtIndex:1];

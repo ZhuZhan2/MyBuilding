@@ -19,6 +19,7 @@
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"userName"]];
     self.a_userType = [ProjectStage ProjectStrStage:dict[@"userType"]];
     self.a_loginStatus = [ProjectStage ProjectStrStage:dict[@"loginStatus"]];
+    self.a_userImage = [ProjectStage ProjectStrStage:dict[@"imageLocation"]];
     self.a_hasCompany = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"hasCompany"]]];
 }
 
