@@ -40,12 +40,6 @@
     icon.userInteractionEnabled = YES;
     [tempImageView addSubview:icon];
     
-    UIButton *visitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    visitBtn.frame =CGRectMake(107.5, 50, 65, 65);
-    [visitBtn addTarget:self action:@selector(beginToVisitDetail) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:visitBtn];
-    
-    
     UILabel *userName = [[UILabel alloc] initWithFrame:CGRectMake(0, 115, 280, 40)];
     userName.textAlignment = NSTextAlignmentCenter;
     userName.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:18];
@@ -66,19 +60,27 @@
         }
     } userId:self.createdBy noNetWork:nil];
     
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(90, 200, 100, 25)];
-    bgView.backgroundColor = [UIColor blackColor];
-    bgView.alpha = 0.9;
-    bgView.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    bgView.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
-    //[tempImageView addSubview:bgView];
+    UIButton *visitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    visitBtn.frame =CGRectMake(70, 220, 60, 28);
+    visitBtn.backgroundColor = [UIColor blackColor];
+    [visitBtn setTitle:@"访问" forState:UIControlStateNormal];
+    visitBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
+    visitBtn.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    visitBtn.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
+    [visitBtn addTarget:self action:@selector(beginToVisitDetail) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:visitBtn];
+    visitBtn.alpha = 0.8;
     
     UIButton *concernBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    concernBtn.frame = CGRectMake(90, 200, 100, 25);
+    concernBtn.frame = CGRectMake(150, 220, 75, 28);
     [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
-    concernBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    concernBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
     [concernBtn addTarget:self action:@selector(gotoConcern) forControlEvents:UIControlEventTouchUpInside];
-    //[tempImageView addSubview:concernBtn];
+    concernBtn.backgroundColor = [UIColor blackColor];
+    concernBtn.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    concernBtn.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
+    [self.view addSubview:concernBtn];
+    concernBtn.alpha = 0.8;
 }
 
 - (void)didReceiveMemoryWarning
