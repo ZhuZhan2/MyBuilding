@@ -21,9 +21,11 @@
 #import "ACTimeScroller.h"
 #import "LoginSqlite.h"
 #import "MBProgressHUD.h"
+#import "PersonalDetailViewController.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate,ACTimeScrollerDelegate>
 @property(nonatomic,strong)UITableView* tableView;
 
+//所有model的a_id均为产品或动态自身的id,a_entityId是自身所属的id
 @property(nonatomic,strong)ProductModel* productModel;//产品详情模型
 @property(nonatomic,strong)ActivesModel* activesModel;//动态详情模型
 @property(nonatomic,strong)PersonalCenterModel* personalModel;//个人中心评论
@@ -39,18 +41,20 @@
 
 @property(nonatomic,strong)ACTimeScroller* timeScroller;
 
+//mainView部分
 @property(nonatomic,copy)NSString* imageWidth;
 @property(nonatomic,copy)NSString* imageHeight;
 @property(nonatomic,copy)NSString* imageUrl;
 @property(nonatomic,copy)NSString* userImageUrl;
 @property(nonatomic,copy)NSString* content;
-@property(nonatomic,copy)NSString* entityID;
-@property(nonatomic,copy)NSString* entityUrl;
+@property(nonatomic,copy)NSString* entityID;//动态或者产品自身的id
+@property(nonatomic,copy)NSString* entityUrl;//获取动态时可能会用
 @property(nonatomic,copy)NSString* userName;
-@property(nonatomic,copy)NSString* category;
+@property(nonatomic,copy)NSString* category;//产品或动态的分类
+@property(nonatomic,copy)NSString* createdBy;
 
-@property(nonatomic,copy)NSString* myName;
-@property(nonatomic,copy)NSString* myImageUrl;
+@property(nonatomic,copy)NSString* myName;//登录用户的用户昵称
+@property(nonatomic,copy)NSString* myImageUrl;//登录用户的用户头像
 @end
 
 @implementation ProductDetailViewController
@@ -65,13 +69,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(NSString*)myImageUrl{
     if (!_myImageUrl) {
-        _myImageUrl=[LoginSqlite getdata:@"userImageUrl"];
+        _myImageUrl=[LoginSqlite getdata:@"userImage"];
         NSLog(@"%@",_myImageUrl);
     }
     return _myImageUrl;
 }
 
--(void)loadMyPropertyWithImgW:(NSString*)imgW imgH:(NSString*)imgH imgUrl:(NSString*)imgUrl userImgUrl:(NSString*)userImgUrl content:(NSString*)content entityID:(NSString*)entityID entityUrl:(NSString*)entityUrl userName:(NSString*)userName category:(NSString*)category{
+-(void)loadMyPropertyWithImgW:(NSString*)imgW imgH:(NSString*)imgH imgUrl:(NSString*)imgUrl userImgUrl:(NSString*)userImgUrl content:(NSString*)content entityID:(NSString*)entityID entityUrl:(NSString*)entityUrl userName:(NSString*)userName category:(NSString*)category createdBy:(NSString*)createdBy{
     self.imageWidth=imgW;
     self.imageHeight=imgH;
     self.imageUrl=imgUrl;
@@ -81,6 +85,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self.entityUrl=entityUrl;
     self.userName=userName;
     self.category=category;
+    self.createdBy=createdBy;
     self.commentViews=[[NSMutableArray alloc]init];
 }
 
@@ -88,7 +93,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.productModel=productModel;
-        [self loadMyPropertyWithImgW:productModel.a_imageWidth imgH:productModel.a_imageHeight imgUrl:productModel.a_imageUrl userImgUrl:productModel.a_avatarUrl content:productModel.a_content entityID:productModel.a_id entityUrl:@"" userName:productModel.a_name category:@""];
+        [self loadMyPropertyWithImgW:productModel.a_imageWidth imgH:productModel.a_imageHeight imgUrl:productModel.a_imageUrl userImgUrl:productModel.a_avatarUrl content:productModel.a_content entityID:productModel.a_id entityUrl:@"" userName:productModel.a_name category:@"" createdBy:productModel.a_createdBy];
     }
     return self;
 }
@@ -97,7 +102,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.activesModel=activesModel;
-        [self loadMyPropertyWithImgW:activesModel.a_imageWidth imgH:activesModel.a_imageHeight imgUrl:activesModel.a_imageUrl userImgUrl:activesModel.a_avatarUrl content:activesModel.a_content entityID:activesModel.a_entityId entityUrl:activesModel.a_entityUrl userName:activesModel.a_userName category:activesModel.a_category];
+        [self loadMyPropertyWithImgW:activesModel.a_imageWidth imgH:activesModel.a_imageHeight imgUrl:activesModel.a_imageUrl userImgUrl:activesModel.a_avatarUrl content:activesModel.a_content entityID:activesModel.a_id entityUrl:activesModel.a_entityUrl userName:activesModel.a_userName category:activesModel.a_category createdBy:nil];
     }
     return self;
 }
@@ -106,7 +111,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.personalModel=personalModel;
-        [self loadMyPropertyWithImgW:personalModel.a_imageWidth imgH:personalModel.a_imageHeight imgUrl:personalModel.a_imageUrl userImgUrl:self.myImageUrl content:personalModel.a_content entityID:personalModel.a_entityId entityUrl:personalModel.a_entityUrl userName:self.myName category:personalModel.a_category];
+        [self loadMyPropertyWithImgW:personalModel.a_imageWidth imgH:personalModel.a_imageHeight imgUrl:personalModel.a_imageUrl userImgUrl:self.myImageUrl content:personalModel.a_content entityID:personalModel.a_entityId entityUrl:personalModel.a_entityUrl userName:self.myName category:personalModel.a_category createdBy:nil];
     }
     return self;
 }
@@ -256,6 +261,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     userImageView.frame=CGRectMake(5,tempHeight+5,37,37);
     [forCornerView addSubview:userImageView];
     
+    UIButton* btn=[[UIButton alloc]initWithFrame:userImageView.frame];
+    btn.tag=0;
+    [btn addTarget:self action:@selector(chooseUserImage:) forControlEvents:UIControlEventTouchUpInside];
+    [forCornerView addSubview:btn];
+    
     userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userImageUrl]];
     [forCornerView addSubview:userImageView];
     
@@ -312,7 +322,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 - (NSDate *)timeScroller:(ACTimeScroller *)timeScroller dateForCell:(UITableViewCell *)cell{
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    if (cell.contentView.subviews[0]==self.mainView) {
+   // NSLog(@"index==%@,%d",cell.contentView.subviews,indexPath.row);
+    if (!indexPath.row) {
         timeScroller.hidden=YES;
         return [NSDate date];
     }else{
@@ -382,14 +393,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if (!error) {
             [self finishAddComment:comment];
         }
-    } dic:[@{@"EntityId":self.productModel.a_id,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy] noNetWork:nil];
+    } dic:[@{@"EntityId":self.entityID,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy] noNetWork:nil];
 }
 
 //给tableView添加数据
 -(void)addTableViewContentWithContent:(NSString*)content{
     ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:self.myImageUrl userName:self.myName commentContent:content];
 
-    ContactCommentModel* model=[[ContactCommentModel alloc]initWithID:nil entityID:nil createdBy:nil userName:self.myName commentContents:content avatarUrl:self.myImageUrl time:[NSDate date]];
+    ContactCommentModel* model=[[ContactCommentModel alloc]initWithID:nil entityID:nil createdBy:[LoginSqlite getdata:@"userId"] userName:self.myName commentContents:content avatarUrl:self.myImageUrl time:[NSDate date]];
     
     [self.commentModels insertObject:model atIndex:0];
     [self.commentViews insertObject:view atIndex:0];
@@ -464,8 +475,22 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }
         cell.backgroundColor=[UIColor clearColor];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        
+        //使头像可以被点击
+        UIButton* btn=[[UIButton alloc]initWithFrame:CGRectMake(15, 20, 50, 50)];
+        btn.tag=indexPath.row;
+        [btn addTarget:self action:@selector(chooseUserImage:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.contentView addSubview:btn];
+        
         return cell;
     }
+}
+
+-(void)chooseUserImage:(UIButton*)btn{
+    PersonalDetailViewController* vc=[[PersonalDetailViewController alloc]init];
+    vc.contactId=btn.tag?[self.commentModels[btn.tag-1] a_createdBy]:self.createdBy;
+    [self.navigationController pushViewController:vc animated:YES];
+    NSLog(@"createdBy=%@",vc.contactId);
 }
 
 -(UIView*)getCellSpaceView{
