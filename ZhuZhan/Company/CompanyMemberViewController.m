@@ -18,6 +18,7 @@
 #import "CompanyMemberCell.h"
 #import "LoginSqlite.h"
 #import "EndEditingGesture.h"
+#import "PersonalDetailViewController.h"
 @interface CompanyMemberViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
@@ -154,9 +155,19 @@
     if (!cell) {
         cell=[[CompanyMemberCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
         [cell.rightBtn addTarget:self action:@selector(chooseApprove:) forControlEvents:UIControlEventTouchUpInside];
+        UIButton* btn=[[UIButton alloc]initWithFrame:cell.userImageView.bounds];
+        [btn addTarget:self action:@selector(chooseUserImage:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.userImageView addSubview:btn];
     }
     [cell setModel:self.showArr[indexPath.row] indexPathRow:indexPath.row];
     return cell;
+}
+
+-(void)chooseUserImage:(UIButton*)btn{
+    PersonalDetailViewController* vc=[[PersonalDetailViewController alloc]init];
+    vc.contactId=[self.showArr[btn.superview.tag] a_id];
+    [self.navigationController pushViewController:vc animated:YES];
+    NSLog(@"createdBy=%@",vc.contactId);
 }
 
 -(void)chooseApprove:(UIButton*)btn{

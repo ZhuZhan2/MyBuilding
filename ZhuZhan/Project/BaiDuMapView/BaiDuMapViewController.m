@@ -13,11 +13,15 @@
 #import "ErrorView.h"
 #import "MBProgressHUD.h"
 @interface BaiDuMapViewController ()
-
+@property(nonatomic)BOOL isIOS8;
 @end
 
 @implementation BaiDuMapViewController
 int j;
+-(BOOL)isIOS8{
+    return [[UIDevice currentDevice].systemVersion floatValue] >= 8?YES:NO;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -40,6 +44,16 @@ int j;
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
     
+    if (self.isIOS8) {
+        //由于IOS8中定位的授权机制改变 需要进行手动授权
+        locationManager = [[CLLocationManager alloc] init];
+        locationManager.delegate=self;
+    }else{
+        [self loadSelf];
+    }
+}
+
+-(void)loadSelf{
     j=0;
     numberArr = [[NSArray alloc] initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z", nil];
     showArr = [[NSMutableArray alloc] init];
@@ -47,7 +61,7 @@ int j;
     latArr = [[NSMutableArray alloc] init];
     pointArr = [[NSMutableArray alloc] init];
     coordinates = [[NSMutableArray alloc] init];
-   
+    
     _mapView = [[BMKMapView alloc] initWithFrame:self.view.frame];
     _mapView.zoomEnabled = YES;//允许Zoom
     _mapView.scrollEnabled = YES;//允许Scroll
@@ -87,6 +101,12 @@ int j;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    if (!self.isIOS8) {
+        [self myViewWillAppear];
+    }
+}
+
+-(void)myViewWillAppear{
     [_mapView viewWillAppear];
     _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
     _locService.delegate = self;
@@ -447,5 +467,15 @@ int j;
     NSArray *annArray = [[NSArray alloc]initWithArray:_mapView.annotations];
     [_mapView removeAnnotations: annArray];
     [_mapView removeOverlay:polygon];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+    if (status!=kCLAuthorizationStatusAuthorizedAlways&&status!=kCLAuthorizationStatusAuthorizedWhenInUse) {
+        [locationManager requestAlwaysAuthorization];
+        [locationManager requestWhenInUseAuthorization];
+    }else{
+        [self loadSelf];
+        [self myViewWillAppear];
+    }
 }
 @end
