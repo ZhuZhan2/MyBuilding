@@ -12,6 +12,8 @@
 #import "projectModel.h"
 #import "ErrorView.h"
 #import "MBProgressHUD.h"
+#import "HomePageViewController.h"
+#import "AppDelegate.h"
 @interface BaiDuMapViewController ()
 @property(nonatomic)BOOL isIOS8;
 @end
@@ -35,7 +37,7 @@ int j;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"asdfsadf");
+    self.view.backgroundColor = [UIColor whiteColor];
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 0, 29, 28.5)];
@@ -43,7 +45,7 @@ int j;
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
-    
+    hasProject = 0;
     if (self.isIOS8) {
         //由于IOS8中定位的授权机制改变 需要进行手动授权
         locationManager = [[CLLocationManager alloc] init];
@@ -62,7 +64,7 @@ int j;
     pointArr = [[NSMutableArray alloc] init];
     coordinates = [[NSMutableArray alloc] init];
     
-    _mapView = [[BMKMapView alloc] initWithFrame:self.view.frame];
+    _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
     _mapView.zoomEnabled = YES;//允许Zoom
     _mapView.scrollEnabled = YES;//允许Scroll
     _mapView.mapType = BMKMapTypeStandard;//地图类型为标准，可以为卫星，可以开启或关闭交通
@@ -72,7 +74,6 @@ int j;
     [_locService startUserLocationService];
     
     _geocodesearch = [[BMKGeoCodeSearch alloc]init];
-    _geocodesearch.delegate = self;
     CLLocationCoordinate2D coor;
     BMKCoordinateRegion viewRegion = BMKCoordinateRegionMake(coor, BMKCoordinateSpanMake(0.02f, 0));
     //调整后适合当前地图窗口显示的经纬度范围
@@ -111,6 +112,10 @@ int j;
     _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
     _locService.delegate = self;
     _geocodesearch.delegate = self;
+    //隐藏tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarHide];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -121,6 +126,10 @@ int j;
     _mapView = nil;
     _locService = nil;
     _geocodesearch = nil;
+    //恢复tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
 }
 
 /*
@@ -192,7 +201,6 @@ int j;
 
 -(void) onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
 {
-    NSLog(@"asdfasdfasdfasf");
     annotationPoint = [[BMKPointAnnotation alloc]init];
     CLLocationCoordinate2D coor;
     coor.latitude = result.location.latitude;
@@ -260,6 +268,7 @@ int j;
 	annotationView.canShowCallout = NO;
     // 设置是否可以拖拽
     annotationView.draggable = NO;
+    annotationView.backgroundColor = [UIColor blackColor];
     j++;
     return annotationView;
 }
@@ -288,6 +297,7 @@ int j;
         CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 4);
         
         [coordinates removeAllObjects];
+        [self removeAnnotationsOnTheMap];
     }else{
         [imageView removeFromSuperview];
         imageView = nil;
@@ -477,5 +487,30 @@ int j;
         [self loadSelf];
         [self myViewWillAppear];
     }
+}
+
+- (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view{
+    NSLog(@"didSelectAnnotationView");
+//    if(showArr.count !=0){
+//        bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 64.5, 320, self.contentView.frame.size.height)];
+//        [bgView setBackgroundColor:[UIColor clearColor]];
+//        bgView.userInteractionEnabled = YES;
+//        UITapGestureRecognizer *bgViewtapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
+//        [bgViewtapGestureRecognizer addTarget:self action:@selector(closeBgview)];
+//        [bgViewtapGestureRecognizer setNumberOfTapsRequired:1];
+//        [bgViewtapGestureRecognizer setNumberOfTouchesRequired:1];
+//        [bgView addGestureRecognizer:bgViewtapGestureRecognizer];
+//        [self.view addSubview:bgView];
+//        ProjectModel *model = [showArr objectAtIndex:view.tag];
+//        NSMutableDictionary *dic = [ProjectStage JudgmentStr:model];
+//        _MapContent = [[MapContentView alloc] initWithFrame:CGRectMake(0, 568, 320, 190) dic:dic number:[numberArr objectAtIndex:view.tag]];
+//        _MapContent.userInteractionEnabled = NO;
+//        [self.view addSubview:_MapContent];
+//        [UIView animateWithDuration:0.5 animations:^{
+//            _MapContent.frame = CGRectMake(0, 378, 611, 260);
+//        }];
+//    }else{
+//        imageView.userInteractionEnabled = NO;
+//    }
 }
 @end
