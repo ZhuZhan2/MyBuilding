@@ -7,9 +7,7 @@
 //
 
 #import "CompanyMemberCell.h"
-#import "EGOImageView.h"
 @interface CompanyMemberCell()
-@property(nonatomic,strong)EGOImageView* userImageView;
 @property(nonatomic,strong)UILabel* userNameLabel;
 @property(nonatomic,strong)UILabel* userBussniessLabel;
 @property(nonatomic,strong)UIView* separatorLine;
@@ -24,6 +22,8 @@
         self.userImageView.layer.masksToBounds=YES;
         self.userImageView.frame=CGRectMake(20, 12, 36, 36);
         [self addSubview:self.userImageView];
+        self.userImageView.userInteractionEnabled=YES;
+        
         
         self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(72, 10, 200, 20)];
         self.userNameLabel.font=[UIFont boldSystemFontOfSize:15];
@@ -52,6 +52,7 @@
     self.userBussniessLabel.text=model.a_duties;
     [self.rightBtn setBackgroundImage:isFocesed?[GetImagePath getImagePath:@"公司认证员工_08a"]:[GetImagePath getImagePath:@"公司认证员工_18a"] forState:UIControlStateNormal];
     self.rightBtn.tag=indexPathRow;
+    self.userImageView.tag=indexPathRow;
 }
 
 @end

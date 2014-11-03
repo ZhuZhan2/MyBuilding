@@ -214,7 +214,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if (![self.content isEqualToString:@""]) {
         UILabel* contentTextView = [[UILabel alloc] init];
         contentTextView.numberOfLines =0;
-        UIFont * tfont = [UIFont systemFontOfSize:15];
+        UIFont * tfont = [UIFont systemFontOfSize:14];
         contentTextView.font = tfont;
         contentTextView.textColor = [UIColor blackColor];
         contentTextView.lineBreakMode =NSLineBreakByCharWrapping ;
