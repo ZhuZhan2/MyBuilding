@@ -661,7 +661,11 @@
         NSLog(@"JSON===>%@",JSON[@"d"]);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON[@"d"][@"data"]];
+            for(NSDictionary *item in JSON[@"d"][@"data"]){
+                projectModel *model = [[projectModel alloc] init];
+                [model setDict:item];
+                [mutablePosts addObject:model];
+            }
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }

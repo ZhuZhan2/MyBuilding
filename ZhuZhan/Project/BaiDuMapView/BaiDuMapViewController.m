@@ -422,24 +422,23 @@ int j;
 -(void)getMapSearch:(CLLocationCoordinate2D)centerLocation{
     [ProjectApi GetMapSearchWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            NSLog(@"map ===== %@",posts);
             CGPathCloseSubpath(pathRef);
             int count = 0;
-            if(logArr.count>26){
+            if(posts.count>26){
                 count = 26;
             }else{
-                count = logArr.count;
+                count = posts.count;
             }
             //地理坐标转换成点
             for(int i=0;i<count;i++){
-                testLocation.latitude = [[latArr objectAtIndex:i] floatValue];
-                testLocation.longitude = [[logArr objectAtIndex:i] floatValue];
+                projectModel *model = posts[i];
+                testLocation.latitude = [model.a_latitude floatValue];
+                testLocation.longitude = [model.a_longitude floatValue];
                 locationConverToImage=[_mapView convertCoordinate:testLocation toPointToView:imageView];
                 //NSLog(@"%f====%f",locationConverToImage.x,locationConverToImage.y);
                 if (CGPathContainsPoint(pathRef, NULL, locationConverToImage, NO)) {
                     
                     NSLog(@"point in path!");
-                    projectModel *model = [showArr objectAtIndex:i];
                     annotationPoint = [[BMKPointAnnotation alloc]init];
                     CLLocationCoordinate2D coor;
                     coor.latitude = testLocation.latitude;
