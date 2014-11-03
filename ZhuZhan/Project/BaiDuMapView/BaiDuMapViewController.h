@@ -38,6 +38,7 @@
     BMKPolygon* polygon;
     CLLocationManager  *locationManager;
     MapContentView* _MapContent;
+    int hasProject;
 }
 
 @end

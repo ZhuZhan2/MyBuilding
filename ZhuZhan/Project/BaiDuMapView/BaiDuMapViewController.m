@@ -13,6 +13,8 @@
 #import "ErrorView.h"
 #import "MBProgressHUD.h"
 #import "ProjectStage.h"
+#import "HomePageViewController.h"
+#import "AppDelegate.h"
 @interface BaiDuMapViewController ()
 @property(nonatomic)BOOL isIOS8;
 @end
@@ -511,30 +513,5 @@ int j;
         [self loadSelf];
         [self myViewWillAppear];
     }
-}
-
-- (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view{
-    NSLog(@"didSelectAnnotationView");
-//    if(showArr.count !=0){
-//        bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 64.5, 320, self.contentView.frame.size.height)];
-//        [bgView setBackgroundColor:[UIColor clearColor]];
-//        bgView.userInteractionEnabled = YES;
-//        UITapGestureRecognizer *bgViewtapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
-//        [bgViewtapGestureRecognizer addTarget:self action:@selector(closeBgview)];
-//        [bgViewtapGestureRecognizer setNumberOfTapsRequired:1];
-//        [bgViewtapGestureRecognizer setNumberOfTouchesRequired:1];
-//        [bgView addGestureRecognizer:bgViewtapGestureRecognizer];
-//        [self.view addSubview:bgView];
-//        ProjectModel *model = [showArr objectAtIndex:view.tag];
-//        NSMutableDictionary *dic = [ProjectStage JudgmentStr:model];
-//        _MapContent = [[MapContentView alloc] initWithFrame:CGRectMake(0, 568, 320, 190) dic:dic number:[numberArr objectAtIndex:view.tag]];
-//        _MapContent.userInteractionEnabled = NO;
-//        [self.view addSubview:_MapContent];
-//        [UIView animateWithDuration:0.5 animations:^{
-//            _MapContent.frame = CGRectMake(0, 378, 611, 260);
-//        }];
-//    }else{
-//        imageView.userInteractionEnabled = NO;
-//    }
 }
 @end
