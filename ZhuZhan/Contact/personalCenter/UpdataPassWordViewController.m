@@ -155,7 +155,6 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"二次密码不一致" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
     }else{
-        NSLog(@"asdfasdf");
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         [dic setValue:[MD5 md5HexDigest:oldPassWordTextField.text] forKey:@"oldpassword"];
         [dic setValue:[MD5 md5HexDigest:newPassWordTextField.text] forKey:@"password"];
