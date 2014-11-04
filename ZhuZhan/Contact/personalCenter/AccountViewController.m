@@ -18,6 +18,7 @@
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "EndEditingGesture.h"
+#import "UpdataPassWordViewController.h"
 @interface AccountViewController ()
 
 @end
@@ -225,7 +226,6 @@ static int count =0;//记录生日textField 的时间被触发的次数
         return;
     }
     
-    
     if(isBirthday ==YES){
         isBirthday =NO;
         if (buttonIndex==1) {
@@ -259,12 +259,9 @@ static int count =0;//记录生日textField 的时间被触发的次数
             [_pathCover addImageHead:image];
         }
     } dic:parameter noNetWork:nil];
-    
 }
 
-
-
-/******************************************************************************************************************/
+/**********************************************************************/
 //滚动是触发的事件
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.view endEditing:YES];
@@ -307,7 +304,8 @@ static int count =0;//记录生日textField 的时间被触发的次数
 #pragma mark  AccountCellDelegate----------
 -(void)ModifyPassword:(NSString *)password
 {
-    NSLog(@"开始修改密码");
+    UpdataPassWordViewController *updataPassWordView = [[UpdataPassWordViewController alloc] init];
+    [self.navigationController pushViewController:updataPassWordView animated:YES];
 }
 
 -(void)getTextFieldFrame_yPlusHeight:(float)y
