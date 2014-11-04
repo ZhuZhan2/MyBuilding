@@ -709,6 +709,11 @@
 		D3D1A7BB19F8F6250006F954 /* 公司－公司详情_05b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B919F8F6250006F954 /* 公司－公司详情_05b.png */; };
 		D3D1A7BC19F8F6250006F954 /* 公司－公司详情_05b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7BA19F8F6250006F954 /* 公司－公司详情_05b@2x.png */; };
 		D3D2E60119F7A79500908D8B /* EmployeesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2E60019F7A79500908D8B /* EmployeesModel.m */; };
+		D3D4FB301A0872770033BB34 /* CompanyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4FB2F1A0872770033BB34 /* CompanyCenterViewController.m */; };
+		D3D4FB331A087A830033BB34 /* 公司－账号设置_03a-05.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D4FB311A087A830033BB34 /* 公司－账号设置_03a-05.png */; };
+		D3D4FB341A087A830033BB34 /* 公司－账号设置_03a-05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D4FB321A087A830033BB34 /* 公司－账号设置_03a-05@2x.png */; };
+		D3D4FB371A087BBD0033BB34 /* CompanyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4FB361A087BBD0033BB34 /* CompanyTableViewCell.m */; };
+		D3D4FB3A1A08C0C90033BB34 /* UpdataPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4FB391A08C0C90033BB34 /* UpdataPassWordViewController.m */; };
 		D3D74E8319FA2FEC00ED8B62 /* 登录_14.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D74E7B19FA2FEC00ED8B62 /* 登录_14.png */; };
 		D3D74E8419FA2FEC00ED8B62 /* 登录_14@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D74E7C19FA2FEC00ED8B62 /* 登录_14@2x.png */; };
 		D3D74E8519FA2FEC00ED8B62 /* 登录_19.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D74E7D19FA2FEC00ED8B62 /* 登录_19.png */; };
@@ -1886,6 +1891,14 @@
 		D3D2E5FF19F7A79500908D8B /* EmployeesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeesModel.h; sourceTree = "<group>"; };
 		D3D2E60019F7A79500908D8B /* EmployeesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeesModel.m; sourceTree = "<group>"; };
 		D3D49EE919FE0B76002B3B99 /* HeadImageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadImageDelegate.h; sourceTree = "<group>"; };
+		D3D4FB2E1A0872770033BB34 /* CompanyCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyCenterViewController.h; sourceTree = "<group>"; };
+		D3D4FB2F1A0872770033BB34 /* CompanyCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyCenterViewController.m; sourceTree = "<group>"; };
+		D3D4FB311A087A830033BB34 /* 公司－账号设置_03a-05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－账号设置_03a-05.png"; sourceTree = "<group>"; };
+		D3D4FB321A087A830033BB34 /* 公司－账号设置_03a-05@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－账号设置_03a-05@2x.png"; sourceTree = "<group>"; };
+		D3D4FB351A087BBD0033BB34 /* CompanyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyTableViewCell.h; sourceTree = "<group>"; };
+		D3D4FB361A087BBD0033BB34 /* CompanyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyTableViewCell.m; sourceTree = "<group>"; };
+		D3D4FB381A08C0C90033BB34 /* UpdataPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdataPassWordViewController.h; sourceTree = "<group>"; };
+		D3D4FB391A08C0C90033BB34 /* UpdataPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdataPassWordViewController.m; sourceTree = "<group>"; };
 		D3D74E7B19FA2FEC00ED8B62 /* 登录_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "登录_14.png"; sourceTree = "<group>"; };
 		D3D74E7C19FA2FEC00ED8B62 /* 登录_14@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "登录_14@2x.png"; sourceTree = "<group>"; };
 		D3D74E7D19FA2FEC00ED8B62 /* 登录_19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "登录_19.png"; sourceTree = "<group>"; };
@@ -2900,6 +2913,8 @@
 		04BC3E5D19D7E5B0006B5C7B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3D4FB311A087A830033BB34 /* 公司－账号设置_03a-05.png */,
+				D3D4FB321A087A830033BB34 /* 公司－账号设置_03a-05@2x.png */,
 				5B5121341A07968200A77997 /* 地图搜索1_05.png */,
 				5B5121351A07968200A77997 /* 地图搜索1_05@2x.png */,
 				5B5121301A07962600A77997 /* 地图搜索1_16.png */,
@@ -3263,6 +3278,8 @@
 		04D10BB619AE016A0097C0C6 /* personalCenter */ = {
 			isa = PBXGroup;
 			children = (
+				D3D4FB381A08C0C90033BB34 /* UpdataPassWordViewController.h */,
+				D3D4FB391A08C0C90033BB34 /* UpdataPassWordViewController.m */,
 				04D10BB919AE016A0097C0C6 /* AccountViewController.h */,
 				04D10BBA19AE016A0097C0C6 /* AccountViewController.m */,
 				042D9EE319B8671900689C5D /* AccountCell.h */,
@@ -3273,6 +3290,10 @@
 				5B0C8AA519D79E550058C0EE /* PersonalCenterCellView.m */,
 				5B0C8AA719D7ABA30058C0EE /* PersonalProjectTableViewCell.h */,
 				5B0C8AA819D7ABA30058C0EE /* PersonalProjectTableViewCell.m */,
+				D3D4FB2E1A0872770033BB34 /* CompanyCenterViewController.h */,
+				D3D4FB2F1A0872770033BB34 /* CompanyCenterViewController.m */,
+				D3D4FB351A087BBD0033BB34 /* CompanyTableViewCell.h */,
+				D3D4FB361A087BBD0033BB34 /* CompanyTableViewCell.m */,
 			);
 			path = personalCenter;
 			sourceTree = "<group>";
@@ -3949,6 +3970,7 @@
 				04BC435719D7E5B3006B5C7B /* 高级搜索-多选_03a@2x.png in Resources */,
 				D3D1A7BC19F8F6250006F954 /* 公司－公司详情_05b@2x.png in Resources */,
 				04BC40FB19D7E5B3006B5C7B /* 012.png in Resources */,
+				D3D4FB331A087A830033BB34 /* 公司－账号设置_03a-05.png in Resources */,
 				04BC413119D7E5B3006B5C7B /* controls_03@2x.png in Resources */,
 				04BC421419D7E5B3006B5C7B /* 公司－公司组织_05a@2x.png in Resources */,
 				04BC412D19D7E5B3006B5C7B /* bg001@2x.png in Resources */,
@@ -3982,6 +4004,7 @@
 				04BC422F19D7E5B3006B5C7B /* 动态详情_14a.png in Resources */,
 				D3D7D86719FF4B9800AE5765 /* 项目－搜索_09a@2x.png in Resources */,
 				04BC414319D7E5B3006B5C7B /* icon03.png in Resources */,
+				D3D4FB341A087A830033BB34 /* 公司－账号设置_03a-05@2x.png in Resources */,
 				04BC41D419D7E5B3006B5C7B /* 人脉－发布动态_07a@2x.png in Resources */,
 				04BC435819D7E5B3006B5C7B /* 高级搜索-多选_03aA.png in Resources */,
 				04BC415F19D7E5B3006B5C7B /* 产品－产品详情_12a.png in Resources */,
@@ -4262,6 +4285,7 @@
 				04D10BD919AE016A0097C0C6 /* ContactViewController.m in Sources */,
 				0426C23419922D5A00CD8822 /* RegistViewController.m in Sources */,
 				D3AD60A219AC574A001FD483 /* Reachability.m in Sources */,
+				D3D4FB3A1A08C0C90033BB34 /* UpdataPassWordViewController.m in Sources */,
 				D36040E619F51E8600E9727D /* CompanyModel.m in Sources */,
 				0426C25B19922D5A00CD8822 /* GPUImageCrosshairGenerator.m in Sources */,
 				5B13C71919B70699008EA7A0 /* AddCommentViewController.m in Sources */,
@@ -4295,6 +4319,7 @@
 				042D9ECD19B81BE400689C5D /* ContactCell.m in Sources */,
 				D3A4283B19C94E5E00BAB6C7 /* ActivesModel.m in Sources */,
 				5B5894F119FF9D24001CC09E /* EndEditingGesture.m in Sources */,
+				D3D4FB371A087BBD0033BB34 /* CompanyTableViewCell.m in Sources */,
 				0426C2DE19922D5A00CD8822 /* GPUImageView.m in Sources */,
 				0426C25A19922D5A00CD8822 /* GPUImageCropFilter.m in Sources */,
 				0426C27819922D5A00CD8822 /* GPUImageHighlightShadowFilter.m in Sources */,
@@ -4499,6 +4524,7 @@
 				0426C24119922D5A00CD8822 /* GPUImage3x3ConvolutionFilter.m in Sources */,
 				D3AD61AE19AEF80B001FD483 /* UIViewController+MJPopupViewController.m in Sources */,
 				0426C24919922D5A00CD8822 /* GPUImageBilateralFilter.m in Sources */,
+				D3D4FB301A0872770033BB34 /* CompanyCenterViewController.m in Sources */,
 				0426C2EA19922D5A00CD8822 /* FaceppRecognition.m in Sources */,
 				042D9E0E19B559FC00689C5D /* BaiDuMapViewController.m in Sources */,
 				D3A4281B19C1A2E700BAB6C7 /* GTMBase64.m in Sources */,

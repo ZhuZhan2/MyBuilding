@@ -164,6 +164,7 @@
             [LoginSqlite insertData:model.a_userId datakey:@"userId"];
             [LoginSqlite insertData:model.a_userName datakey:@"userName"];
             [LoginSqlite insertData:model.a_userImage datakey:@"userImage"];
+            [LoginSqlite insertData:model.a_userType datakey:@"userType"];
             [self dismissViewControllerAnimated:YES completion:nil];
             if([self.delegate respondsToSelector:@selector(loginComplete)]){
                 [self.delegate loginComplete];

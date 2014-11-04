@@ -147,7 +147,6 @@ int j;
         [bgView addGestureRecognizer:bgViewtapGestureRecognizer];
         [self.view addSubview:bgView];
         projectModel *model = [showArr objectAtIndex:view.tag];
-//        NSMutableDictionary *dic = [ProjectStage judg;
         _MapContent = [[MapContentView alloc] initWithFrame:CGRectMake(0, 568, 320, 190) model:model number:[numberArr objectAtIndex:view.tag]];
         UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gotoProgramDetailView:)];
         [_MapContent addGestureRecognizer:tap];

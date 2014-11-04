@@ -389,8 +389,6 @@ static int count =0;//记录生日textField 的时间被触发的次数
 {
     NSString *CellIdentifier = [NSString stringWithFormat:@"AccountCell"];
     AccountCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    [cell removeFromSuperview];
-    cell = nil;
     if(!cell){
         cell = [[AccountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier WithModel:model];
     }
@@ -415,11 +413,12 @@ static int count =0;//记录生日textField 的时间被触发的次数
 }
 
 -(UIView*)getLogoutView{
-    UIView* logoutView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 55+20)];
+    UIView* logoutView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 55+30)];
+    logoutView.backgroundColor = RGBCOLOR(237, 237, 237);
     UIView* separatorLine=[self getSeparatorLine];
     [logoutView addSubview:separatorLine];
     
-    UIButton* btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 20, 320, 55)];
+    UIButton* btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 30, 320, 55)];
     btn.backgroundColor=RGBCOLOR(235, 114, 114);
     [btn setTitle:@"退出当前账号" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
