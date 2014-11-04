@@ -15,6 +15,7 @@
 #import "ProjectStage.h"
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
+#import "ProgramDetailViewController.h"
 @interface BaiDuMapViewController ()
 @property(nonatomic)BOOL isIOS8;
 @end
@@ -124,9 +125,9 @@ int j;
     _mapView.delegate = nil; // 不用时，置nil
     _locService.delegate = nil;
     _geocodesearch.delegate = nil;
-    _mapView = nil;
-    _locService = nil;
-    _geocodesearch = nil;
+//    _mapView = nil;
+//    _locService = nil;
+//    _geocodesearch = nil;
     //恢复tabBar
     AppDelegate* app=[AppDelegate instance];
     HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
@@ -148,7 +149,10 @@ int j;
         projectModel *model = [showArr objectAtIndex:view.tag];
 //        NSMutableDictionary *dic = [ProjectStage judg;
         _MapContent = [[MapContentView alloc] initWithFrame:CGRectMake(0, 568, 320, 190) model:model number:[numberArr objectAtIndex:view.tag]];
-        _MapContent.userInteractionEnabled = NO;
+        UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gotoProgramDetailView:)];
+        [_MapContent addGestureRecognizer:tap];
+        _MapContent.tag=view.tag;
+        _MapContent.userInteractionEnabled = YES;
         [self.view addSubview:_MapContent];
         [UIView animateWithDuration:0.5 animations:^{
             _MapContent.frame = CGRectMake(0, 378, 611, 260);
@@ -156,6 +160,23 @@ int j;
     }else{
         imageView.userInteractionEnabled = NO;
     }
+}
+
+-(void)gotoProgramDetailView:(UITapGestureRecognizer*)tap{
+    projectModel *model = [showArr objectAtIndex:tap.view.tag];
+    ProgramDetailViewController* vc=[[ProgramDetailViewController alloc]init];
+    vc.projectId=model.a_id;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)closeBgview{
+    [bgView removeFromSuperview];
+    bgView=nil;
+    [UIView animateWithDuration:0.5 animations:^{
+        _MapContent.frame = CGRectMake(0, 568, 611, 260);
+        [_MapContent removeFromSuperview];
+        _MapContent = nil;
+    }];
 }
 
 /*
@@ -294,7 +315,6 @@ int j;
 	annotationView.canShowCallout = NO;
     // 设置是否可以拖拽
     annotationView.draggable = NO;
-    annotationView.backgroundColor = [UIColor blackColor];
     j++;
     return annotationView;
 }
@@ -424,6 +444,7 @@ int j;
     [ProjectApi GetMapSearchWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             CGPathCloseSubpath(pathRef);
+            showArr=posts;
             int count = 0;
             if(posts.count>26){
                 count = 26;
@@ -435,6 +456,7 @@ int j;
                 projectModel *model = posts[i];
                 testLocation.latitude = [model.a_latitude floatValue];
                 testLocation.longitude = [model.a_longitude floatValue];
+                NSLog(@"lat==%fm,long==%f",testLocation.latitude,testLocation.longitude);
                 locationConverToImage=[_mapView convertCoordinate:testLocation toPointToView:imageView];
                 //NSLog(@"%f====%f",locationConverToImage.x,locationConverToImage.y);
                 if (CGPathContainsPoint(pathRef, NULL, locationConverToImage, NO)) {
