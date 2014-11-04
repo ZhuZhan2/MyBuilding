@@ -17,14 +17,10 @@
 #import "AppDelegate.h"
 #import "ProgramDetailViewController.h"
 @interface BaiDuMapViewController ()
-@property(nonatomic)BOOL isIOS8;
 @end
 
 @implementation BaiDuMapViewController
 int j;
--(BOOL)isIOS8{
-    return [[UIDevice currentDevice].systemVersion floatValue] >= 8?YES:NO;
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,13 +44,7 @@ int j;
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
     hasProject = 0;
-    if (self.isIOS8) {
-        //由于IOS8中定位的授权机制改变 需要进行手动授权
-        locationManager = [[CLLocationManager alloc] init];
-        locationManager.delegate=self;
-    }else{
-        [self loadSelf];
-    }
+    [self loadSelf];
 }
 
 -(void)loadSelf{
@@ -104,9 +94,7 @@ int j;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    if (!self.isIOS8) {
-        [self myViewWillAppear];
-    }
+    [self myViewWillAppear];
 }
 
 -(void)myViewWillAppear{
@@ -524,15 +512,5 @@ int j;
     NSArray *annArray = [[NSArray alloc]initWithArray:_mapView.annotations];
     [_mapView removeAnnotations: annArray];
     [_mapView removeOverlay:polygon];
-}
-
--(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
-    if (status!=kCLAuthorizationStatusAuthorizedAlways&&status!=kCLAuthorizationStatusAuthorizedWhenInUse) {
-        [locationManager requestAlwaysAuthorization];
-        [locationManager requestWhenInUseAuthorization];
-    }else{
-        [self loadSelf];
-        [self myViewWillAppear];
-    }
 }
 @end
