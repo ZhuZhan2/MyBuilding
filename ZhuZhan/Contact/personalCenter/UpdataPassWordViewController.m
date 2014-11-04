@@ -9,6 +9,9 @@
 #import "UpdataPassWordViewController.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
+#import "LoginSqlite.h"
+#import "LoginModel.h"
+#import "MD5.h"
 @interface UpdataPassWordViewController ()
 
 @end
@@ -46,7 +49,7 @@
     
     oldPassWordTextField = [[UITextField alloc] initWithFrame:CGRectMake(92, 70, 200, 30)];
     oldPassWordTextField.placeholder = @"原密码";
-    oldPassWordTextField.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+    oldPassWordTextField.font = [UIFont systemFontOfSize:14];
     oldPassWordTextField.delegate = self;
     oldPassWordTextField.secureTextEntry = YES;
     oldPassWordTextField.clearButtonMode = UITextFieldViewModeAlways;
@@ -66,7 +69,7 @@
     
     newPassWordTextField = [[UITextField alloc] initWithFrame:CGRectMake(92, 115, 200, 30)];
     newPassWordTextField.placeholder = @"新密码";
-    newPassWordTextField.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+    newPassWordTextField.font = [UIFont systemFontOfSize:14];
     newPassWordTextField.delegate = self;
     newPassWordTextField.secureTextEntry = YES;
     newPassWordTextField.clearButtonMode = UITextFieldViewModeAlways;
@@ -86,7 +89,7 @@
     
     newAgainPassWordTextField = [[UITextField alloc] initWithFrame:CGRectMake(92, 160, 200, 30)];
     newAgainPassWordTextField.placeholder = @"再次输入";
-    newAgainPassWordTextField.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+    newAgainPassWordTextField.font = [UIFont systemFontOfSize:14];
     newAgainPassWordTextField.delegate = self;
     newAgainPassWordTextField.secureTextEntry = YES;
     newAgainPassWordTextField.clearButtonMode = UITextFieldViewModeAlways;
@@ -153,10 +156,17 @@
         [alertView show];
     }else{
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        [dic setValue:oldPassWordTextField.text forKey:@"oldPassword"];
-        [dic setValue:newPassWordTextField.text forKey:@"newPassword"];
-        //[dic setValue:[LoginSqlite getdata:@"UserToken" defaultdata:@"UserToken"] forKey:@"token"];
-        
+        [dic setValue:[MD5 md5HexDigest:oldPassWordTextField.text] forKey:@"oldpassword"];
+        [dic setValue:[MD5 md5HexDigest:newPassWordTextField.text] forKey:@"password"];
+        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"userId"];
+        [dic setValue:[LoginSqlite getdata:@"deviceToken"] forKey:@"token"];
+        [LoginModel ChangePasswordWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                [self.navigationController popViewControllerAnimated:YES];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"修改成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        } dic:dic noNetWork:nil];
     }
 }
 

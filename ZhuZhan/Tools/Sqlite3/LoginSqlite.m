@@ -61,9 +61,23 @@
 +(void)insertData:(NSString *)data datakey:(NSString *)datakey{
     SqliteHelper *sqlite = [[SqliteHelper alloc] init];
     if ([sqlite open:DataBaseName]) {
-        [sqlite executeQuery:@"INSERT INTO Login(data,datakey ) VALUES (?,?);",
-         data,datakey];
+        if([[LoginSqlite loadKey:datakey] count] !=0){
+            [sqlite executeQuery:@"UPDATA Login SET data=? WHERE datakey=?;",
+             data,datakey];
+        }else{
+            [sqlite executeQuery:@"INSERT INTO Login(data,datakey ) VALUES (?,?);",
+             data,datakey];
+        }
     }
+}
+
++(NSArray *)loadKey:(NSString *)datakey{
+    NSArray *results = nil;
+    SqliteHelper *sqlite = [[SqliteHelper alloc] init];
+    if ([sqlite open:DataBaseName]) {
+        results = [sqlite executeQuery:[NSString stringWithFormat:@"SELECT datakey FROM Login where datakey='%@'",datakey]];
+    }
+    return results;
 }
 
 +(void)dropTable{
