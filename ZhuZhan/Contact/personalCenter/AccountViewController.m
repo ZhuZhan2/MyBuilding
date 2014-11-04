@@ -18,6 +18,7 @@
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "EndEditingGesture.h"
+#import "UpdataPassWordViewController.h"
 @interface AccountViewController ()
 
 @end
@@ -307,7 +308,8 @@ static int count =0;//记录生日textField 的时间被触发的次数
 #pragma mark  AccountCellDelegate----------
 -(void)ModifyPassword:(NSString *)password
 {
-    NSLog(@"开始修改密码");
+    UpdataPassWordViewController *updataPassWordView = [[UpdataPassWordViewController alloc] init];
+    [self.navigationController pushViewController:updataPassWordView animated:YES];
 }
 
 -(void)getTextFieldFrame_yPlusHeight:(float)y
