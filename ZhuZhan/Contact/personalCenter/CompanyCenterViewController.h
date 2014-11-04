@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "XHPathCover.h"
-#import "Camera.h"
 #import "CompanyTableViewCell.h"
 #import "CompanyModel.h"
-@interface CompanyCenterViewController : UIViewController<XHPathCoverDelegate,CameraDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,CompanyTableViewCellDelegate>
+@interface CompanyCenterViewController : UIViewController<XHPathCoverDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,CompanyTableViewCellDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)NSMutableDictionary *dataDic;

@@ -62,7 +62,7 @@
     SqliteHelper *sqlite = [[SqliteHelper alloc] init];
     if ([sqlite open:DataBaseName]) {
         if([[LoginSqlite loadKey:datakey] count] !=0){
-            [sqlite executeQuery:@"UPDATA Login SET data=? WHERE datakey=?;",
+            [sqlite executeQuery:@"UPDATE Login SET data=? WHERE datakey=?;",
              data,datakey];
         }else{
             [sqlite executeQuery:@"INSERT INTO Login(data,datakey ) VALUES (?,?);",

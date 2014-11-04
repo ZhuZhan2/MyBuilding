@@ -17,6 +17,8 @@
 #import "EndEditingGesture.h"
 #import "CompanyApi.h"
 #import "UpdataPassWordViewController.h"
+#import "ContactModel.h"
+#import "GTMBase64.h"
 @interface CompanyCenterViewController ()
 
 @end
@@ -48,14 +50,14 @@
     self.navigationItem.leftBarButtonItem = leftButtonItem;
     
     //RightButton设置属性
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton setFrame:CGRectMake(0, 0, 40, 19.5)];
-    [rightButton setTitle:@"完成" forState:UIControlStateNormal];
-    rightButton.titleLabel.font=[UIFont systemFontOfSize:14];
-    rightButton.titleLabel.textColor = [UIColor whiteColor];
-    [rightButton addTarget:self action:@selector(completePerfect) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
-    self.navigationItem.rightBarButtonItem = rightButtonItem;
+//    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [rightButton setFrame:CGRectMake(0, 0, 40, 19.5)];
+//    [rightButton setTitle:@"完成" forState:UIControlStateNormal];
+//    rightButton.titleLabel.font=[UIFont systemFontOfSize:14];
+//    rightButton.titleLabel.textColor = [UIColor whiteColor];
+//    [rightButton addTarget:self action:@selector(completePerfect) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+//    self.navigationItem.rightBarButtonItem = rightButtonItem;
     
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 130)];
     _pathCover.delegate = self;
@@ -72,7 +74,7 @@
     tempBtn.frame=CGRectMake(115, 100, tempImg.size.width, tempImg.size.height);
     [tempBtn setImage:tempImg forState:UIControlStateNormal];
     [_pathCover addSubview:tempBtn];
-    //[tempBtn addTarget:self action:@selector(setuserIcon)forControlEvents:UIControlEventTouchUpInside];
+    [tempBtn addTarget:self action:@selector(setuserIcon)forControlEvents:UIControlEventTouchUpInside];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [EndEditingGesture addGestureToView:self.tableView];
     
@@ -207,6 +209,83 @@
 -(void)gotoUpdataPassWord{
     UpdataPassWordViewController *updataPassWordView = [[UpdataPassWordViewController alloc] init];
     [self.navigationController pushViewController:updataPassWordView animated:YES];
+}
+
+-(void)setuserIcon{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
+    [actionSheet showInView:self.tableView.superview];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    //呼出的菜单按钮点击后的响应
+    switch (buttonIndex)
+    {
+        case 0:  //打开照相机拍照
+            [self takePhoto];
+            break;
+        case 1:  //打开本地相册
+            [self LocalPhoto];
+            break;
+    }
+}
+
+//开始拍照
+-(void)takePhoto{
+    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
+    {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        //设置拍照后的图片可被编辑
+        picker.allowsEditing = YES;
+        picker.sourceType = sourceType;
+        [self.view.window.rootViewController presentViewController:picker animated:YES completion:nil];
+    }else{
+        NSLog(@"模拟其中无法打开照相机,请在真机中使用");
+    }
+}
+
+//打开本地相册
+-(void)LocalPhoto{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    picker.delegate = self;
+    //设置选择后的图片可被编辑
+    picker.allowsEditing = YES;
+    [self.view.window.rootViewController presentViewController:picker animated:YES completion:nil];
+}
+
+//当选择一张图片后进入这里
+-(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+    
+    NSString* imageStr = [[NSString alloc] initWithData:[GTMBase64 encodeData:imageData] encoding:NSUTF8StringEncoding];
+    [self gotoAddImage:imageStr];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    NSLog(@"您取消了选择图片");
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)gotoAddImage:(NSString *)imageStr{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:imageStr forKey:@"ImageContent"];
+    [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"CompanyId"];
+    [dic setValue:@"Logo" forKey:@"ImageCategory"];
+    [ContactModel AddCompanyImages:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            
+        }
+    } dic:dic noNetWork:nil];
 }
 
 -(void)gotoMyCenter{
