@@ -132,6 +132,7 @@ int j;
     HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
     [homeVC homePageTabBarRestore];
 }
+
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view{
     NSLog(@"didSelectAnnotationView");
     if(showArr.count !=0){
