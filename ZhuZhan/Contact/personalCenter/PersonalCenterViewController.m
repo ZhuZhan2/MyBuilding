@@ -205,10 +205,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)rightBtnClick{//账户按钮触发的事件
-//    AccountViewController *accountVC = [[AccountViewController alloc] init];
-//    [self.navigationController pushViewController:accountVC animated:YES];
-    CompanyCenterViewController *companyVC = [[CompanyCenterViewController alloc] init];
-    [self.navigationController pushViewController:companyVC animated:YES];
+    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+        CompanyCenterViewController *companyVC = [[CompanyCenterViewController alloc] init];
+        [self.navigationController pushViewController:companyVC animated:YES];
+    }else{
+        AccountViewController *accountVC = [[AccountViewController alloc] init];
+        [self.navigationController pushViewController:accountVC animated:YES];
+    }
 }
 
 - (void)_refreshing {
