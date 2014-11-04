@@ -226,7 +226,6 @@ static int count =0;//记录生日textField 的时间被触发的次数
         return;
     }
     
-    
     if(isBirthday ==YES){
         isBirthday =NO;
         if (buttonIndex==1) {
@@ -260,12 +259,9 @@ static int count =0;//记录生日textField 的时间被触发的次数
             [_pathCover addImageHead:image];
         }
     } dic:parameter noNetWork:nil];
-    
 }
 
-
-
-/******************************************************************************************************************/
+/**********************************************************************/
 //滚动是触发的事件
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.view endEditing:YES];
