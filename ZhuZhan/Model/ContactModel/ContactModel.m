@@ -237,4 +237,30 @@
         
     }];
 }
+
+/**
+ 1. CompanyId 公司Id
+ 2. ImageCategory 图片的Category，比如 Logo，
+ 3. ImageContent 图片base64string
+ 4. CreatedBy 创建人
+ */
++ (NSURLSessionDataTask *)AddCompanyImages:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"api/CompanyBaseInformation/AddCompanyImages"];
+    return [[AFAppDotNetAPIClient sharedClient]POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        if (block) {
+            block([NSMutableArray array],nil);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (block) {
+            block([NSMutableArray array],error);
+        }
+    }];
+}
+
 @end
