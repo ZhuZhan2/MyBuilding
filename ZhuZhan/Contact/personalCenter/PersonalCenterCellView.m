@@ -48,6 +48,7 @@
     
     [view addSubview:contentView];
     view.frame=CGRectMake(0, 0, 320, contentView.frame.size.height+20);
+    
     return view;
 }
 
