@@ -228,9 +228,9 @@
     }
 }
 
--(void)contactCommentHeadAction:(NSString *)aid{
-    if([self.delegate respondsToSelector:@selector(gotoContactDetail:)]){
-        [self.delegate gotoContactDetail:aid];
+-(void)contactCommentHeadAction:(NSString *)aid userType:(NSString *)userType{
+    if([self.delegate respondsToSelector:@selector(gotoContactDetail:userType:)]){
+        [self.delegate gotoContactDetail:aid userType:userType];
     }
 }
 @end

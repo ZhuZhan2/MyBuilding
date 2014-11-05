@@ -17,6 +17,7 @@
     self.a_time = [ProjectStage ProjectDateStage:dict[@"createdTime"]];
     self.a_commentContents = [ProjectStage ProjectStrStage:dict[@"commentContents"]];
     self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"userImage"]];
+    self.a_userType = [ProjectStage ProjectStrStage:dict[@"userType"]];
 }
 
 -(instancetype)initWithID:(NSString*)ID entityID:(NSString*)entityID createdBy:(NSString*)createdBy userName:(NSString*)userName commentContents:(NSString*)commentContents avatarUrl:(NSString*)avatarUrl time:(NSDate*)time{

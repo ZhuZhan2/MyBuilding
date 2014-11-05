@@ -74,11 +74,12 @@
     timeLabel.text = fixString;
     
     contactId = model.a_createdBy;
+    userType = model.a_userType;
 }
 
 -(void)headActon{
-    if([self.delegate respondsToSelector:@selector(contactCommentHeadAction:)]){
-        [self.delegate contactCommentHeadAction:contactId];
+    if([self.delegate respondsToSelector:@selector(contactCommentHeadAction:userType:)]){
+        [self.delegate contactCommentHeadAction:contactId userType:userType];
     }
 }
 @end

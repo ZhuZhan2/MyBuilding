@@ -15,6 +15,7 @@
 @property (nonatomic, copy) NSString *a_createdBy;
 @property (nonatomic, copy) NSString *a_commentContents;
 @property (nonatomic, copy) NSString *a_avatarUrl;
+@property (nonatomic, copy) NSString *a_userType;
 @property (nonatomic, copy) NSDate *a_time;
 
 @property (nonatomic, copy) NSDictionary *dict;

@@ -17,6 +17,7 @@
 #import "ContactTableViewCell.h"
 #import "ProductDetailViewController.h"
 #import "LoginViewController.h"
+#import "CompanyModel.h"
 @interface ContactViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate,showControllerDelegate,HeadImageDelegate,CommentViewDelegate,AddCommentDelegate,ErrorViewDelegate,ProductDetailDelegate,LoginViewDelegate>{
     NSMutableArray *_datasource;
     ACTimeScroller *_timeScroller;

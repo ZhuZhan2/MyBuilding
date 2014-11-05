@@ -14,7 +14,7 @@
 
 -(void)addCommentView:(NSIndexPath *)indexPath;
 -(void)gotoDetailView:(NSIndexPath *)indexPath;
--(void)gotoContactDetail:(NSString *)aid;
+-(void)gotoContactDetail:(NSString *)aid userType:(NSString *)userType;
 @end
 @interface CommentView : UIView<UITableViewDelegate,UITableViewDataSource,ContactCommentTableViewDelegate>{
     NSIndexPath *indexpath;

@@ -27,6 +27,7 @@
     self.a_eventType = [ProjectStage ProjectStrStage:dict[@"actives"][@"eventType"]];
     self.a_title = [ProjectStage ProjectStrStage:dict[@"actives"][@"title"]];
     self.a_createdBy = [ProjectStage ProjectStrStage:dict[@"actives"][@"createdBy"]];
+    self.a_userType = [ProjectStage ProjectStrStage:dict[@"actives"][@"userType"]];
     self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"actives"][@"imageWidth"]]];
     self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"actives"][@"imageHeight"]]];
     

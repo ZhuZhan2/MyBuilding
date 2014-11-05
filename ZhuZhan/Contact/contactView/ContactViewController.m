@@ -31,6 +31,8 @@
 #import "RegistViewController.h"
 #import "MBProgressHUD.h"
 #import "CompanyApi.h"
+#import "CompanyModel.h"
+#import "CompanyDetailViewController.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -88,13 +90,22 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)firstNetWork{
     if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
-        if([[LoginSqlite getdata:@"Company"] isEqualToString:@"Company"]){
+        if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
             [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
-                    self.model = posts[0];
-                    [self.tableView reloadData];
+                    CompanyModel *model = posts[0];
+                    [LoginSqlite insertData:model.a_companyLogo datakey:@"userImage"];
+                    [LoginSqlite insertData:model.a_companyName datakey:@"userName"];
+                    [_pathCover setHeadImageUrl:model.a_companyLogo];
+                    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.a_companyName, XHUserNameKey, nil]];
                 }
-            } companyId:[LoginSqlite getdata:@"userId"] noNetWork:nil];
+            } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
+                self.tableView.scrollEnabled=NO;
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                    self.tableView.scrollEnabled=YES;
+                    [self firstNetWork];
+                }];
+            }];
         }else{
             [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
@@ -429,14 +440,20 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if([model.a_createdBy isEqualToString:[LoginSqlite getdata:@"userId"]]){
         return;
     }
-    NSLog(@"===>%@",model.a_createdBy);
-    showVC = [[ShowViewController alloc] init];
-    showVC.delegate =self;
-    showVC.createdBy = model.a_createdBy;
-    [showVC.view setFrame:CGRectMake(20, 70, 280, 300)];
-    showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
-    showVC.view.layer.masksToBounds = YES;
-    [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
+    NSLog(@"===>%@",model.a_userType);
+    if([model.a_userType isEqualToString:@"Personal"]){
+        showVC = [[ShowViewController alloc] init];
+        showVC.delegate =self;
+        showVC.createdBy = model.a_createdBy;
+        [showVC.view setFrame:CGRectMake(20, 70, 280, 300)];
+        showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
+        showVC.view.layer.masksToBounds = YES;
+        [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
+    }else{
+        CompanyDetailViewController *detailView = [[CompanyDetailViewController alloc] init];
+        detailView.companyId = [LoginSqlite getdata:@"userId"];
+        [self.navigationController pushViewController:detailView animated:YES];
+    }
 }
 
 -(void)gotoContactDetailView:(NSString *)contactId{
@@ -448,7 +465,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     showVC = nil;
 }
 
--(void)gotoContactDetail:(NSString *)aid{
+-(void)gotoContactDetail:(NSString *)aid userType:(NSString *)userType{
     if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
         return;
@@ -456,13 +473,20 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if([aid isEqualToString:[LoginSqlite getdata:@"userId"]]){
         return;
     }
-    showVC = [[ShowViewController alloc] init];
-    showVC.delegate =self;
-    showVC.createdBy = aid;
-    [showVC.view setFrame:CGRectMake(20, 70, 280, 300)];
-    showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
-    showVC.view.layer.masksToBounds = YES;
-    [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
+    
+    if([userType isEqualToString:@"Personal"]){
+        showVC = [[ShowViewController alloc] init];
+        showVC.delegate =self;
+        showVC.createdBy = aid;
+        [showVC.view setFrame:CGRectMake(20, 70, 280, 300)];
+        showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
+        showVC.view.layer.masksToBounds = YES;
+        [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
+    }else{
+        CompanyDetailViewController *detailView = [[CompanyDetailViewController alloc] init];
+        detailView.companyId = [LoginSqlite getdata:@"userId"];
+        [self.navigationController pushViewController:detailView animated:YES];
+    }
 }
 
 -(void)jumpToGetRecommend:(NSDictionary *)dic
@@ -581,21 +605,39 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)loginComplete{
-    [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            ContactModel *model = posts[0];
-            [LoginSqlite insertData:model.userImage datakey:@"userImage"];
-            [LoginSqlite insertData:model.userName datakey:@"userName"];
-            [_pathCover setHeadImageUrl:model.userImage];
-             [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
-        }
-    } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
-        self.tableView.scrollEnabled=NO;
-        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
-            self.tableView.scrollEnabled=YES;
-            [self firstNetWork];
+    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+        [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                CompanyModel *model = posts[0];
+                [LoginSqlite insertData:model.a_companyLogo datakey:@"userImage"];
+                [LoginSqlite insertData:model.a_companyName datakey:@"userName"];
+                [_pathCover setHeadImageUrl:model.a_companyLogo];
+                [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.a_companyName, XHUserNameKey, nil]];
+            }
+        } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
+            self.tableView.scrollEnabled=NO;
+            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                self.tableView.scrollEnabled=YES;
+                [self firstNetWork];
+            }];
         }];
-    }];
+    }else{
+        [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                ContactModel *model = posts[0];
+                [LoginSqlite insertData:model.userImage datakey:@"userImage"];
+                [LoginSqlite insertData:model.userName datakey:@"userName"];
+                [_pathCover setHeadImageUrl:model.userImage];
+                [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
+            }
+        } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
+            self.tableView.scrollEnabled=NO;
+            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                self.tableView.scrollEnabled=YES;
+                [self firstNetWork];
+            }];
+        }];
+    }
     
     [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
