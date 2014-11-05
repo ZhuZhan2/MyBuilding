@@ -612,6 +612,7 @@
 		5B13C71919B70699008EA7A0 /* AddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C71819B70699008EA7A0 /* AddCommentViewController.m */; };
 		5B18B46F19BFFC3700551F82 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B18B46E19BFFC3700551F82 /* GradientView.m */; };
 		5B1AC4B019BEE4DC006CA4F4 /* CompanyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */; };
+		5B2A42EB1A0A0D7000C04DFA /* 人脉－个人中心_10a.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BC3F2519D7E5B0006B5C7B /* 人脉－个人中心_10a.png */; };
 		5B2D232B19D93373007C2C29 /* NBLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D232A19D93373007C2C29 /* NBLabel.m */; };
 		5B3AD9E419F7CA7B008132B2 /* CompanyMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3AD9E319F7CA7B008132B2 /* CompanyMemberCell.m */; };
 		5B43E9B019F7892A00FBB613 /* 公司－我的公司_02a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B43E9AE19F7892A00FBB613 /* 公司－我的公司_02a.png */; };
@@ -3878,6 +3879,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B2A42EB1A0A0D7000C04DFA /* 人脉－个人中心_10a.png in Resources */,
 				04BC426419D7E5B3006B5C7B /* 数据加载失败_07a@2x.png in Resources */,
 				04BC411819D7E5B3006B5C7B /* 06.png in Resources */,
 				04BC413C19D7E5B3006B5C7B /* icon-star.png in Resources */,
