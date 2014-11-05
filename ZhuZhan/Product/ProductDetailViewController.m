@@ -170,6 +170,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [CommentApi CommentUrlWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 if(posts.count !=0){
+                    NSLog(@"adfasdfsf");
                     self.activesModel=posts[0];
                     if (!self.commentModels) self.commentModels=[[NSMutableArray alloc]init];
                     for (int i=0; i<self.activesModel.a_commentsArr.count; i++) {
