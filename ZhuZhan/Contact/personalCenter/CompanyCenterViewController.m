@@ -80,8 +80,10 @@
     
     [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            self.model = posts[0];
-            [self.tableView reloadData];
+            if(posts.count !=0){
+                self.model = posts[0];
+                [self.tableView reloadData];
+            }
         }
     } companyId:[LoginSqlite getdata:@"userId"] noNetWork:nil];
 }

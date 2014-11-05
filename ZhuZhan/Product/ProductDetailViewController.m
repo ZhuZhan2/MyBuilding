@@ -173,16 +173,18 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }else if (self.activesModel||(self.personalModel&&![self.personalModel.a_entityUrl isEqualToString:@""])){
         [CommentApi CommentUrlWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
-                self.activesModel=posts[0];
-                if (!self.commentModels) self.commentModels=[[NSMutableArray alloc]init];
-                for (int i=0; i<self.activesModel.a_commentsArr.count; i++) {
-                    //因为数组被处理过，当评论超过3条时会有一个字符串的元素，所以需要排除
-                    if ([self.activesModel.a_commentsArr[i] isKindOfClass:[ContactCommentModel class]] ) {
-                        [self.commentModels addObject:self.activesModel.a_commentsArr[i]];
+                if(posts.count !=0){
+                    self.activesModel=posts[0];
+                    if (!self.commentModels) self.commentModels=[[NSMutableArray alloc]init];
+                    for (int i=0; i<self.activesModel.a_commentsArr.count; i++) {
+                        //因为数组被处理过，当评论超过3条时会有一个字符串的元素，所以需要排除
+                        if ([self.activesModel.a_commentsArr[i] isKindOfClass:[ContactCommentModel class]] ) {
+                            [self.commentModels addObject:self.activesModel.a_commentsArr[i]];
+                        }
                     }
+                    [self getTableViewContents];
+                    [self myTableViewReloadData];
                 }
-                [self getTableViewContents];
-                [self myTableViewReloadData];
             }
         } url:self.entityUrl noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{

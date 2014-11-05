@@ -93,11 +93,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
             [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
-                    CompanyModel *model = posts[0];
-                    [LoginSqlite insertData:model.a_companyLogo datakey:@"userImage"];
-                    [LoginSqlite insertData:model.a_companyName datakey:@"userName"];
-                    [_pathCover setHeadImageUrl:model.a_companyLogo];
-                    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.a_companyName, XHUserNameKey, nil]];
+                    if(posts.count !=0){
+                        CompanyModel *model = posts[0];
+                        [LoginSqlite insertData:model.a_companyLogo datakey:@"userImage"];
+                        [LoginSqlite insertData:model.a_companyName datakey:@"userName"];
+                        [_pathCover setHeadImageUrl:model.a_companyLogo];
+                        [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.a_companyName, XHUserNameKey, nil]];
+                    }
                 }
             } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
                 self.tableView.scrollEnabled=NO;
@@ -109,11 +111,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }else{
             [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
-                    ContactModel *model = posts[0];
-                    [LoginSqlite insertData:model.userImage datakey:@"userImage"];
-                    [LoginSqlite insertData:model.userName datakey:@"userName"];
-                    [_pathCover setHeadImageUrl:model.userImage];
-                    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
+                    if(posts.count !=0){
+                        ContactModel *model = posts[0];
+                        [LoginSqlite insertData:model.userImage datakey:@"userImage"];
+                        [LoginSqlite insertData:model.userName datakey:@"userName"];
+                        [_pathCover setHeadImageUrl:model.userImage];
+                        [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
+                    }
                 }
             } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
                 self.tableView.scrollEnabled=NO;
@@ -606,11 +610,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
         [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                CompanyModel *model = posts[0];
-                [LoginSqlite insertData:model.a_companyLogo datakey:@"userImage"];
-                [LoginSqlite insertData:model.a_companyName datakey:@"userName"];
-                [_pathCover setHeadImageUrl:model.a_companyLogo];
-                [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.a_companyName, XHUserNameKey, nil]];
+                if(posts.count !=0){
+                    CompanyModel *model = posts[0];
+                    [LoginSqlite insertData:model.a_companyLogo datakey:@"userImage"];
+                    [LoginSqlite insertData:model.a_companyName datakey:@"userName"];
+                    [_pathCover setHeadImageUrl:model.a_companyLogo];
+                    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.a_companyName, XHUserNameKey, nil]];
+                }
             }
         } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
             self.tableView.scrollEnabled=NO;
@@ -622,11 +628,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }else{
         [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                ContactModel *model = posts[0];
-                [LoginSqlite insertData:model.userImage datakey:@"userImage"];
-                [LoginSqlite insertData:model.userName datakey:@"userName"];
-                [_pathCover setHeadImageUrl:model.userImage];
-                [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
+                if(posts.count !=0){
+                    ContactModel *model = posts[0];
+                    [LoginSqlite insertData:model.userImage datakey:@"userImage"];
+                    [LoginSqlite insertData:model.userName datakey:@"userName"];
+                    [_pathCover setHeadImageUrl:model.userImage];
+                    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
+                }
             }
         } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
             self.tableView.scrollEnabled=NO;

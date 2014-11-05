@@ -111,11 +111,13 @@
 -(void)firstNetWork{
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            self.model = posts[0];
-            [self.model getContacts:posts[1]];
-            [self.model getImages:posts[2]];
-            [self loadSelf];
-            self.stages=[ProjectStage JudgmentProjectDetailStage:self.model];
+            if(posts.count !=0){
+                self.model = posts[0];
+                [self.model getContacts:posts[1]];
+                [self.model getImages:posts[2]];
+                [self loadSelf];
+                self.stages=[ProjectStage JudgmentProjectDetailStage:self.model];
+            }
         }else{
             NSLog(@"=====%@",error);
         }

@@ -158,16 +158,18 @@
     [dic setValue:@"mobile" forKey:@"deviceType"];
     [LoginModel LoginWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            LoginModel *model = posts[0];
-            NSLog(@"%@",model.a_deviceToken);
-            [LoginSqlite insertData:model.a_deviceToken datakey:@"deviceToken"];
-            [LoginSqlite insertData:model.a_userId datakey:@"userId"];
-            [LoginSqlite insertData:model.a_userName datakey:@"userName"];
-            [LoginSqlite insertData:model.a_userImage datakey:@"userImage"];
-            [LoginSqlite insertData:model.a_userType datakey:@"userType"];
-            [self dismissViewControllerAnimated:YES completion:nil];
-            if([self.delegate respondsToSelector:@selector(loginComplete)]){
-                [self.delegate loginComplete];
+            if(posts.count !=0){
+                LoginModel *model = posts[0];
+                NSLog(@"%@",model.a_deviceToken);
+                [LoginSqlite insertData:model.a_deviceToken datakey:@"deviceToken"];
+                [LoginSqlite insertData:model.a_userId datakey:@"userId"];
+                [LoginSqlite insertData:model.a_userName datakey:@"userName"];
+                [LoginSqlite insertData:model.a_userImage datakey:@"userImage"];
+                [LoginSqlite insertData:model.a_userType datakey:@"userType"];
+                [self dismissViewControllerAnimated:YES completion:nil];
+                if([self.delegate respondsToSelector:@selector(loginComplete)]){
+                    [self.delegate loginComplete];
+                }
             }
         }
     } dic:dic noNetWork:nil];
