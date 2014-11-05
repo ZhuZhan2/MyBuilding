@@ -79,7 +79,6 @@
     [CommentApi UserBriefInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             if(posts.count !=0){
-                NSLog(@"ddfadfdf");
                 icon.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[ProjectStage ProjectStrStage:posts[0][@"userImage"]]]];
                 userName.text = [ProjectStage ProjectStrStage:posts[0][@"realName"]];
                 message.text = [NSString stringWithFormat:@"%@项目，%@动态",[ProjectStage ProjectStrStage:posts[0][@"projectsCount"]],[ProjectStage ProjectStrStage:posts[0][@"activesCount"]]];
