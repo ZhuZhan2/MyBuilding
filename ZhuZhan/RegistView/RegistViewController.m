@@ -234,10 +234,12 @@
     
     [LoginModel RegisterWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            NSDictionary *item = posts[0];
-            [LoginSqlite insertData:[item objectForKey:@"userId"] datakey:@"userId"];
-            [LoginSqlite insertData:[item objectForKey:@"deviceToken"] datakey:@"deviceToken"];
-            [self.navigationController.viewControllers[0] dismissViewControllerAnimated:YES completion:nil];
+            if(posts.count !=0){
+                NSDictionary *item = posts[0];
+                [LoginSqlite insertData:[item objectForKey:@"userId"] datakey:@"userId"];
+                [LoginSqlite insertData:[item objectForKey:@"deviceToken"] datakey:@"deviceToken"];
+                [self.navigationController.viewControllers[0] dismissViewControllerAnimated:YES completion:nil];
+            }
         }
     } dic:parameters noNetWork:nil];
 }

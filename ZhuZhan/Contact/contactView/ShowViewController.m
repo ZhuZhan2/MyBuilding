@@ -78,15 +78,17 @@
     
     [CommentApi UserBriefInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            icon.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[ProjectStage ProjectStrStage:posts[0][@"userImage"]]]];
-            userName.text = [ProjectStage ProjectStrStage:posts[0][@"realName"]];
-            message.text = [NSString stringWithFormat:@"%@项目，%@动态",[ProjectStage ProjectStrStage:posts[0][@"projectsCount"]],[ProjectStage ProjectStrStage:posts[0][@"activesCount"]]];
-            if([[ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]]] isEqualToString:@"1"]){
-                [concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
-                isFoucsed = 1;
-            }else{
-                [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
-                isFoucsed = 0;
+            if(posts.count !=0){
+                icon.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[ProjectStage ProjectStrStage:posts[0][@"userImage"]]]];
+                userName.text = [ProjectStage ProjectStrStage:posts[0][@"realName"]];
+                message.text = [NSString stringWithFormat:@"%@项目，%@动态",[ProjectStage ProjectStrStage:posts[0][@"projectsCount"]],[ProjectStage ProjectStrStage:posts[0][@"activesCount"]]];
+                if([[ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]]] isEqualToString:@"1"]){
+                    [concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+                    isFoucsed = 1;
+                }else{
+                    [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
+                    isFoucsed = 0;
+                }
             }
         }
     } userId:self.createdBy noNetWork:nil];

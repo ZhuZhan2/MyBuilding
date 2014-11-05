@@ -28,15 +28,17 @@
 -(void)firstNetWork{
     [CompanyApi GetMyCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            if([posts[0] isKindOfClass:[CompanyModel class]]){
-                self.companyVC=[[CompanyViewController alloc]init];
-                self.companyVC.model = posts[0];
-                self.companyVC.navigationItem.hidesBackButton=YES;
-                [self.navigationController pushViewController:self.companyVC animated:NO];
-            }else{
-                self.moreCompanyVC=[[MoreCompanyViewController alloc]init];
-                self.moreCompanyVC.navigationItem.hidesBackButton=YES;
-                [self.navigationController pushViewController:self.moreCompanyVC animated:NO];
+            if(posts.count !=0){
+                if([posts[0] isKindOfClass:[CompanyModel class]]){
+                    self.companyVC=[[CompanyViewController alloc]init];
+                    self.companyVC.model = posts[0];
+                    self.companyVC.navigationItem.hidesBackButton=YES;
+                    [self.navigationController pushViewController:self.companyVC animated:NO];
+                }else{
+                    self.moreCompanyVC=[[MoreCompanyViewController alloc]init];
+                    self.moreCompanyVC.navigationItem.hidesBackButton=YES;
+                    [self.navigationController pushViewController:self.moreCompanyVC animated:NO];
+                }
             }
         }
     } noNetWork:^{

@@ -39,10 +39,12 @@
 -(void)firstNetWork{
     [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            self.model = posts[0];
-            [self initFirstView];//第一个文字view初始
-            [self initSecondView];//第二个文字view初始
-            [self initThirdView];
+            if(posts.count !=0){
+                self.model = posts[0];
+                [self initFirstView];//第一个文字view初始
+                [self initSecondView];//第二个文字view初始
+                [self initThirdView];
+            }
         }
     } companyId:self.companyId noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view reloadBlock:^{

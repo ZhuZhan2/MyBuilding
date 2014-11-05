@@ -114,8 +114,10 @@ static int count =0;//记录生日textField 的时间被触发的次数
     userIdStr = [LoginSqlite getdata:@"userId"];
     [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            model = posts[0];
-            [self.tableView reloadData];
+            if(posts.count !=0){
+                model = posts[0];
+                [self.tableView reloadData];
+            }
         }
     } userId:userIdStr noNetWork:^{
         self.tableView.scrollEnabled=NO;
