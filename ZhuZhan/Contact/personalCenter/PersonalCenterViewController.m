@@ -242,6 +242,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         PersonalProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
             cell = [[PersonalProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            UIView* separatorLine=[self getSeparatorLine];
+            separatorLine.center=CGPointMake(160, 49.5);
+            [cell.contentView addSubview:separatorLine];
         }
         cell.model = model;
         cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
@@ -257,8 +260,19 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [cell.contentView addSubview:contentViews[indexPath.row]];
         cell.selectionStyle = NO;
         cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
+        
+        UIView* separatorLine=[self getSeparatorLine];
+        separatorLine.center=CGPointMake(160, [contentViews[indexPath.row] frame].size.height-0.5);
+        [cell.contentView addSubview:separatorLine];
         return cell;
     }
+}
+
+-(UIView*)getSeparatorLine{
+    UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 1)];
+    separatorLine.backgroundColor=[UIColor blackColor];
+    separatorLine.alpha=.2f;
+    return separatorLine;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
