@@ -99,8 +99,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     [self downLoad:nil];
     
-    //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
 }
 

@@ -267,6 +267,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         cell.delegate = self;
         cell.selectionStyle = NO;
         cell.model = model;
+        cell.indexpath = indexPath;
         return cell;
     }else if([model.a_category isEqualToString:@"Personal"]){
         if([model.a_eventType isEqualToString:@"Actives"]){
@@ -294,6 +295,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             cell.delegate = self;
             cell.selectionStyle = NO;
             cell.model = model;
+            cell.indexpath = indexPath;
             return cell;
         }
     }else if([model.a_category isEqualToString:@"Company"]){
@@ -335,6 +337,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         cell.delegate = self;
         cell.selectionStyle = NO;
         cell.model = model;
+        cell.indexpath = indexPath;
         return cell;
     }
     return cell;
@@ -440,6 +443,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
     
     ActivesModel *model = showArr[indexPath.row];
+    NSLog(@"===>%d",indexPath.row);
     if([model.a_createdBy isEqualToString:[LoginSqlite getdata:@"userId"]]){
         return;
     }
