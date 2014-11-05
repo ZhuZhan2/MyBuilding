@@ -23,6 +23,7 @@
 @property (nonatomic, copy) NSString *a_imageHeight;
 @property (nonatomic, copy) NSString *a_avatarUrl;
 @property (nonatomic, copy) NSString *a_userName;
+@property(nonatomic,copy)NSString* a_userType;
 @property (nonatomic, copy) NSDictionary *dict;
 
 
