@@ -439,7 +439,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if([model.a_createdBy isEqualToString:[LoginSqlite getdata:@"userId"]]){
         return;
     }
-    NSLog(@"===>%@",model.a_userType);
     if([model.a_userType isEqualToString:@"Personal"]){
         showVC = [[ShowViewController alloc] init];
         showVC.delegate =self;
