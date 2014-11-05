@@ -34,8 +34,8 @@
         self.userBussniessLabel.textColor=GrayColor;
         [self addSubview:self.userBussniessLabel];
         
-        self.rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(272, 17, 26, 26)];
-        [self addSubview:self.rightBtn];
+//        self.rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(272, 17, 26, 26)];
+//        [self addSubview:self.rightBtn];
         
         self.separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 59, 320, 1)];
         self.separatorLine.backgroundColor=RGBCOLOR(229, 229, 229);
@@ -45,13 +45,13 @@
 }
 
 -(void)setModel:(EmployeesModel*)model indexPathRow:(NSInteger)indexPathRow{
-    BOOL isFocesed=[model.a_isFocused isEqualToString:@"1"];
+    //BOOL isFocesed=[model.a_isFocused isEqualToString:@"1"];
 
     self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_userIamge]];
     self.userNameLabel.text=model.a_userName;
     self.userBussniessLabel.text=model.a_duties;
-    [self.rightBtn setBackgroundImage:isFocesed?[GetImagePath getImagePath:@"公司认证员工_08a"]:[GetImagePath getImagePath:@"公司认证员工_18a"] forState:UIControlStateNormal];
-    self.rightBtn.tag=indexPathRow;
+    //[self.rightBtn setBackgroundImage:isFocesed?[GetImagePath getImagePath:@"公司认证员工_08a"]:[GetImagePath getImagePath:@"公司认证员工_18a"] forState:UIControlStateNormal];
+    //self.rightBtn.tag=indexPathRow;
     self.userImageView.tag=indexPathRow;
 }
 
