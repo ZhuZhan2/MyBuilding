@@ -28,7 +28,8 @@
 -(void)firstNetWork{
     [CompanyApi GetMyCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            if([posts[0] isKindOfClass:[CompanyModel class]]){
+            
+            if(posts.count){
                 self.companyVC=[[CompanyViewController alloc]init];
                 self.companyVC.model = posts[0];
                 self.companyVC.navigationItem.hidesBackButton=YES;
