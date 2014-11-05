@@ -53,6 +53,7 @@
 @property(nonatomic,copy)NSString* userName;
 @property(nonatomic,copy)NSString* category;//产品或动态的分类
 @property(nonatomic,copy)NSString* createdBy;
+@property(nonatomic,copy)NSString* userType;//产品或动态的
 
 @property(nonatomic,copy)NSString* myName;//登录用户的用户昵称
 @property(nonatomic,copy)NSString* myImageUrl;//登录用户的用户头像
@@ -76,7 +77,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     return _myImageUrl;
 }
 
--(void)loadMyPropertyWithImgW:(NSString*)imgW imgH:(NSString*)imgH imgUrl:(NSString*)imgUrl userImgUrl:(NSString*)userImgUrl content:(NSString*)content entityID:(NSString*)entityID entityUrl:(NSString*)entityUrl userName:(NSString*)userName category:(NSString*)category createdBy:(NSString*)createdBy{
+-(void)loadMyPropertyWithImgW:(NSString*)imgW imgH:(NSString*)imgH imgUrl:(NSString*)imgUrl userImgUrl:(NSString*)userImgUrl content:(NSString*)content entityID:(NSString*)entityID entityUrl:(NSString*)entityUrl userName:(NSString*)userName category:(NSString*)category createdBy:(NSString*)createdBy userType:(NSString*)userType{
     self.imageWidth=imgW;
     self.imageHeight=imgH;
     self.imageUrl=imgUrl;
@@ -87,6 +88,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self.userName=userName;
     self.category=category;
     self.createdBy=createdBy;
+    self.userType=userType;
     self.commentViews=[[NSMutableArray alloc]init];
 }
 
@@ -94,7 +96,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.productModel=productModel;
-        [self loadMyPropertyWithImgW:productModel.a_imageWidth imgH:productModel.a_imageHeight imgUrl:productModel.a_imageUrl userImgUrl:productModel.a_avatarUrl content:productModel.a_content entityID:productModel.a_id entityUrl:@"" userName:productModel.a_name category:@"" createdBy:productModel.a_createdBy];
+        [self loadMyPropertyWithImgW:productModel.a_imageWidth imgH:productModel.a_imageHeight imgUrl:productModel.a_imageUrl userImgUrl:productModel.a_avatarUrl content:productModel.a_content entityID:productModel.a_id entityUrl:@"" userName:productModel.a_name category:@"" createdBy:productModel.a_createdBy userType:productModel.a_userType];
     }
     return self;
 }
@@ -103,7 +105,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.activesModel=activesModel;
-        [self loadMyPropertyWithImgW:activesModel.a_imageWidth imgH:activesModel.a_imageHeight imgUrl:activesModel.a_imageUrl userImgUrl:activesModel.a_avatarUrl content:activesModel.a_content entityID:activesModel.a_id entityUrl:activesModel.a_entityUrl userName:activesModel.a_userName category:activesModel.a_category createdBy:nil];
+        [self loadMyPropertyWithImgW:activesModel.a_imageWidth imgH:activesModel.a_imageHeight imgUrl:activesModel.a_imageUrl userImgUrl:activesModel.a_avatarUrl content:activesModel.a_content entityID:activesModel.a_id entityUrl:activesModel.a_entityUrl userName:activesModel.a_userName category:activesModel.a_category createdBy:nil userType:activesModel.a_userType];
     }
     return self;
 }
@@ -112,7 +114,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.personalModel=personalModel;
-        [self loadMyPropertyWithImgW:personalModel.a_imageWidth imgH:personalModel.a_imageHeight imgUrl:personalModel.a_imageUrl userImgUrl:self.myImageUrl content:personalModel.a_content entityID:personalModel.a_entityId entityUrl:personalModel.a_entityUrl userName:self.myName category:personalModel.a_category createdBy:nil];
+#warning 个人中心动态还需要设置
+        [self loadMyPropertyWithImgW:personalModel.a_imageWidth imgH:personalModel.a_imageHeight imgUrl:personalModel.a_imageUrl userImgUrl:self.myImageUrl content:personalModel.a_content entityID:personalModel.a_entityId entityUrl:personalModel.a_entityUrl userName:self.myName category:personalModel.a_category createdBy:nil userType:nil];
     }
     return self;
 }
@@ -500,7 +503,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         return;
     }
     
-    if ([[self.commentModels[btn.tag-1] a_userType] isEqualToString:@"Personal"]) {
+    if ([btn.tag?[self.commentModels[btn.tag-1] a_userType]:self.userType isEqualToString:@"Personal"]) {
         PersonalDetailViewController* vc=[[PersonalDetailViewController alloc]init];
         vc.contactId=btn.tag?[self.commentModels[btn.tag-1] a_createdBy]:self.createdBy;
         [self.navigationController pushViewController:vc animated:YES];

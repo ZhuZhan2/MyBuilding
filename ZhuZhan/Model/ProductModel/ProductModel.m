@@ -23,6 +23,7 @@
     self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"avatarUrl"]];
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"userName"]];
     self.a_createdBy=[ProjectStage ProjectStrStage:dict[@"createdBy"]];
+    self.a_userType=[ProjectStage ProjectStrStage:dict[@"userType"]];
 }
 
 -(NSString *)a_commentNumber{
