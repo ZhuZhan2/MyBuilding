@@ -453,7 +453,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
     }else{
         CompanyDetailViewController *detailView = [[CompanyDetailViewController alloc] init];
-        detailView.companyId = [LoginSqlite getdata:@"userId"];
+        detailView.companyId = model.a_createdBy;
         [self.navigationController pushViewController:detailView animated:YES];
     }
 }
@@ -475,7 +475,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if([aid isEqualToString:[LoginSqlite getdata:@"userId"]]){
         return;
     }
-    NSLog(@"===>%@",userType);
+    NSLog(@"===>%@",aid);
     if([userType isEqualToString:@"Personal"]){
         showVC = [[ShowViewController alloc] init];
         showVC.delegate =self;
@@ -486,7 +486,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
     }else{
         CompanyDetailViewController *detailView = [[CompanyDetailViewController alloc] init];
-        detailView.companyId = [LoginSqlite getdata:@"userId"];
+        detailView.companyId = aid;
         [self.navigationController pushViewController:detailView animated:YES];
     }
 }

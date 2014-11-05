@@ -358,7 +358,7 @@
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             ContactModel *model = [[ContactModel alloc] init];
-            [model setDict:JSON[@"d"][@"data"][0][@"baseInformation"]];
+            [model setDict:JSON[@"d"][@"data"][@"baseInformation"]];
             [mutablePosts addObject:model];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
