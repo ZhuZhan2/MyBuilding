@@ -75,6 +75,11 @@
     }
     self.frame=CGRectMake(6, 0, 308, height);
     self.backgroundColor=[UIColor whiteColor];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(-6, height-1, 320, 1)];
+    imageView.backgroundColor = [UIColor blackColor];
+    imageView.alpha = 0.2;
+    [self addSubview:imageView];
 }
 
 -(void)headActon{
