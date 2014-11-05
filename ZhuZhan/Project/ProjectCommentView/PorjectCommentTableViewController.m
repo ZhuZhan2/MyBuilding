@@ -57,7 +57,7 @@
     
     //时间标签
     _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
-    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    self.tableView.separatorStyle = NO;
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     
     [self firstNetWork];
