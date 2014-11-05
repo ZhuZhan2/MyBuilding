@@ -46,7 +46,7 @@
 
 -(void)setModel:(EmployeesModel*)model indexPathRow:(NSInteger)indexPathRow{
     //BOOL isFocesed=[model.a_isFocused isEqualToString:@"1"];
-
+    NSLog(@"'''");
     self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_userIamge]];
     self.userNameLabel.text=model.a_userName;
     self.userBussniessLabel.text=model.a_duties;
