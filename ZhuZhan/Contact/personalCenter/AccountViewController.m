@@ -388,9 +388,10 @@ static int count =0;//记录生日textField 的时间被触发的次数
     NSString *CellIdentifier = [NSString stringWithFormat:@"AccountCell"];
     AccountCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(!cell){
-        cell = [[AccountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier WithModel:model];
+        cell = [[AccountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.delegate = self;
+    cell.model = self.model;
     return cell;
 }
 

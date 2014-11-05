@@ -31,10 +31,8 @@
     UILabel *cellPhone;
     UITextField *company;
     UITextField *position;
-    ContactModel *_model;
     SinglePickerView* singlepickerview;
 }
 @property (nonatomic,weak)id<AccountCellDelegate> delegate;
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(ContactModel *)model;
+@property (nonatomic,strong)ContactModel *model;
 @end

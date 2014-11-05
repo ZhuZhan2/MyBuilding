@@ -17,13 +17,11 @@ static int textFieldTag =0;
     return separatorLine;
 }
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithModel:(ContactModel *)model
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-         NSLog(@"model.dict  ********* %@",model.dict);
-        _model =model;
         //*********账户信息**********************************************************************************
         UIView *back1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
         back1.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
@@ -43,7 +41,6 @@ static int textFieldTag =0;
         [self addSubview:userNameLabel];
         userName = [[UITextField alloc] initWithFrame:CGRectMake(110, 70, 150, 30)];
         userName.textAlignment = NSTextAlignmentLeft;
-        userName.text =model.userName;
         userName.delegate =self;
         userName.font=[UIFont systemFontOfSize:15];
         userName.textColor=GrayColor;
@@ -66,7 +63,6 @@ static int textFieldTag =0;
         password.font=[UIFont systemFontOfSize:15];
         password.delegate =self;
         password.secureTextEntry =YES;
-        password.text = model.password;
         password.tag = 2014091202;
         [self addSubview:password];
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -90,7 +86,6 @@ static int textFieldTag =0;
         realName = [[UITextField alloc] initWithFrame:CGRectMake(110, 170, 150, 30)];
         realName.textAlignment = NSTextAlignmentLeft;
         realName.delegate =self;
-        realName.text = model.realName;
         realName.font=[UIFont systemFontOfSize:15];
         realName.textColor=GrayColor;
         realName.tag = 2014091203;
@@ -110,7 +105,6 @@ static int textFieldTag =0;
         sex = [[UITextField alloc] initWithFrame:CGRectMake(110, 220, 150, 30)];
         sex.userInteractionEnabled=NO;
         sex.textAlignment = NSTextAlignmentLeft;
-        sex.text = model.sex;
         sex.font=[UIFont systemFontOfSize:15];
         sex.textColor=GrayColor;
         sex.tag = 2014091204;
@@ -134,7 +128,6 @@ static int textFieldTag =0;
         location = [[UITextField alloc] initWithFrame:CGRectMake(110, 270, 150, 30)];
         location.textAlignment = NSTextAlignmentLeft;
         location.delegate =self;
-        location.text = model.locationCity;
         location.font=[UIFont systemFontOfSize:15];
         location.textColor=GrayColor;
         location.tag = 2014091205;
@@ -152,7 +145,6 @@ static int textFieldTag =0;
         [self addSubview:birthdayLabel];
         birthday= [[UILabel alloc] initWithFrame:CGRectMake(110, 320, 150, 30)];
         birthday.textAlignment = NSTextAlignmentLeft;
-        birthday.text = model.birthday;
         birthday.font=[UIFont systemFontOfSize:15];
         birthday.textColor=GrayColor;
         birthday.tag = 2014091206;
@@ -176,7 +168,6 @@ static int textFieldTag =0;
         [self addSubview:constellationLabel];
         constellation= [[UILabel alloc] initWithFrame:CGRectMake(110, 370, 150, 30)];
         constellation.textAlignment = NSTextAlignmentLeft;
-        constellation.text = model.constellation;
         constellation.font=[UIFont systemFontOfSize:15];
         constellation.textColor=GrayColor;
         constellation.tag = 2014091207;
@@ -195,7 +186,6 @@ static int textFieldTag =0;
         bloodType= [[UITextField alloc] initWithFrame:CGRectMake(110, 420, 150, 30)];
         bloodType.textAlignment = NSTextAlignmentLeft;
         bloodType.delegate =self;
-        bloodType.text = model.bloodType;
         bloodType.font=[UIFont systemFontOfSize:15];
         bloodType.textColor=GrayColor;
         bloodType.tag = 2014091208;
@@ -221,7 +211,6 @@ static int textFieldTag =0;
         email = [[UITextField alloc] initWithFrame:CGRectMake(110, 530, 150, 30)];
         email.textAlignment = NSTextAlignmentLeft;
         email.delegate =self;
-        email.text = model.email;
         email.font=[UIFont systemFontOfSize:15];
         email.textColor=GrayColor;
         email.tag = 2014091209;
@@ -239,8 +228,6 @@ static int textFieldTag =0;
         [self addSubview:cellPhoneLabel];
         cellPhone = [[UILabel alloc] initWithFrame:CGRectMake(110, 580, 150, 30)];
         cellPhone.textAlignment = NSTextAlignmentLeft;
-        cellPhone.text = model.cellPhone;
-        NSLog(@"cellPhone==%@",model.cellPhone);
         cellPhone.font=[UIFont systemFontOfSize:15];
         cellPhone.textColor=GrayColor;
 
@@ -266,7 +253,6 @@ static int textFieldTag =0;
         company = [[UITextField alloc] initWithFrame:CGRectMake(110, 690, 200, 30)];
         company.textAlignment = NSTextAlignmentLeft;
         company.delegate =self;
-        company.text = model.companyName;
         company.font=[UIFont systemFontOfSize:15];
         company.textColor=GrayColor;
         company.tag = 2014091210;
@@ -285,7 +271,6 @@ static int textFieldTag =0;
         position = [[UITextField alloc] initWithFrame:CGRectMake(110, 740, 150, 30)];
         position.textAlignment = NSTextAlignmentLeft;
         position.delegate =self;
-        position.text = model.position;
         position.font=[UIFont systemFontOfSize:15];
         position.textColor=GrayColor;
         position.tag = 2014091211;
@@ -378,4 +363,18 @@ static int textFieldTag =0;
     // Configure the view for the selected state
 }
 
+-(void)setModel:(ContactModel *)model{
+    userName.text =model.userName;
+    password.text = @"**********";
+    realName.text = model.realName;
+    sex.text = model.sex;
+    location.text = model.locationCity;
+    birthday.text = model.birthday;
+    constellation.text = model.constellation;
+    bloodType.text = model.bloodType;
+    email.text = model.email;
+    cellPhone.text = model.cellPhone;
+    company.text = model.companyName;
+    position.text = model.position;
+}
 @end
