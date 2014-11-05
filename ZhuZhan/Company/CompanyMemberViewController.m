@@ -159,6 +159,7 @@
         [btn addTarget:self action:@selector(chooseUserImage:) forControlEvents:UIControlEventTouchUpInside];
         [cell.userImageView addSubview:btn];
     }
+    cell.rightBtn.hidden=[[self.showArr[indexPath.row] a_id] isEqualToString:[LoginSqlite getdata:@"userId"]]?YES:NO;
     [cell setModel:self.showArr[indexPath.row] indexPathRow:indexPath.row];
     return cell;
 }
