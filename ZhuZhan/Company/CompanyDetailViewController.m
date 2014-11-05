@@ -21,6 +21,7 @@
 @property(nonatomic,strong)UIImageView* imageView;
 @property(nonatomic,strong)UILabel* noticeLabel;
 @property(nonatomic)BOOL isFocused;
+@property(nonatomic,strong)CompanyModel *model;
 @end
 @implementation CompanyDetailViewController
 -(BOOL)isFocused{

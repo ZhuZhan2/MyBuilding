@@ -22,6 +22,7 @@
 #import "LoginSqlite.h"
 #import "MBProgressHUD.h"
 #import "PersonalDetailViewController.h"
+#import "CompanyDetailViewController.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate,ACTimeScrollerDelegate>
 @property(nonatomic,strong)UITableView* tableView;
 
@@ -485,15 +486,29 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         return cell;
     }
 }
-
+/**
+ if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+ CompanyCenterViewController *companyVC = [[CompanyCenterViewController alloc] init];
+ [self.navigationController pushViewController:companyVC animated:YES];
+ }else{
+ AccountViewController *accountVC = [[AccountViewController alloc] init];
+ [self.navigationController pushViewController:accountVC animated:YES];
+ }
+ */
 -(void)chooseUserImage:(UIButton*)btn{
-    PersonalDetailViewController* vc=[[PersonalDetailViewController alloc]init];
     if([btn.tag?[self.commentModels[btn.tag-1] a_createdBy]:self.createdBy isEqualToString:[LoginSqlite getdata:@"userId"]]){
         return;
     }
-    vc.contactId=btn.tag?[self.commentModels[btn.tag-1] a_createdBy]:self.createdBy;
-    [self.navigationController pushViewController:vc animated:YES];
-    NSLog(@"createdBy=%@",vc.contactId);
+    
+    if ([[self.commentModels[btn.tag-1] a_userType] isEqualToString:@"Personal"]) {
+        PersonalDetailViewController* vc=[[PersonalDetailViewController alloc]init];
+        vc.contactId=btn.tag?[self.commentModels[btn.tag-1] a_createdBy]:self.createdBy;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        CompanyDetailViewController* vc=[[CompanyDetailViewController alloc]init];
+        vc.companyId=btn.tag?[self.commentModels[btn.tag-1] a_createdBy]:self.createdBy;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 -(UIView*)getCellSpaceView{
