@@ -206,6 +206,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [_datasource addObject:model.a_time];
             }
             _timeScroller.hidden=YES;
+            NSLog(@"===>%d",showArr.count);
             [self.tableView reloadData];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 700ull *  NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
                 _timeScroller.hidden=NO;
@@ -271,9 +272,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
             cell.selectionStyle = NO;
-            for(int i=0;i<cell.contentView.subviews.count;i++) {
-                [((UIView*)[cell.contentView.subviews objectAtIndex:i]) removeFromSuperview];
-            }
+            [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
             commentView = viewArr[indexPath.row];
             commentView.indexpath = indexpath;
             commentView.delegate = self;
@@ -472,7 +471,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if([aid isEqualToString:[LoginSqlite getdata:@"userId"]]){
         return;
     }
-    
+    NSLog(@"===>%@",userType);
     if([userType isEqualToString:@"Personal"]){
         showVC = [[ShowViewController alloc] init];
         showVC.delegate =self;
@@ -637,9 +636,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             }];
         }];
     }
-    
     [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
+            [showArr removeAllObjects];
+            [viewArr removeAllObjects];
+            [_datasource removeAllObjects];
             showArr = posts;
             for(int i=0;i<showArr.count;i++){
                 ActivesModel *model = showArr[i];
