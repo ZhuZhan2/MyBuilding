@@ -22,6 +22,8 @@
 @property(nonatomic,strong)UILabel* noticeLabel;
 @property(nonatomic)BOOL isFocused;
 @property(nonatomic,strong)CompanyModel *model;
+@property(nonatomic,strong)UIButton* noticeBtn;
+@property(nonatomic,strong)UIButton* memberBtn;
 @end
 @implementation CompanyDetailViewController
 -(BOOL)isFocused{
@@ -113,9 +115,9 @@
     self.noticeLabel.font=[UIFont boldSystemFontOfSize:16];
     [view addSubview:self.noticeLabel];
     
-    UIButton* noticeBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 116, 49)];
-    [noticeBtn addTarget:self action:@selector(gotoNoticeView) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:noticeBtn];
+    self.noticeBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 116, 49)];
+    [self.noticeBtn addTarget:self action:@selector(gotoNoticeView) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:self.noticeBtn];
     
     UILabel* memberCountLabel=[[UILabel alloc]initWithFrame:CGRectMake(225, 16, 150, 20)];
     memberCountLabel.text=@"申请认证";
@@ -123,9 +125,9 @@
     memberCountLabel.textColor=RGBCOLOR(62, 127, 226);
     [view addSubview:memberCountLabel];
     
-    UIButton* memberBtn=[[UIButton alloc]initWithFrame:CGRectMake(116, 0, 204, 49)];
-    [memberBtn addTarget:self action:@selector(applyForCertification) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:memberBtn];
+    self.memberBtn=[[UIButton alloc]initWithFrame:CGRectMake(116, 0, 204, 49)];
+    [self.memberBtn addTarget:self action:@selector(applyForCertification) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:self.memberBtn];
 }
 
 -(void)initThirdView{
@@ -165,12 +167,13 @@
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
         return;
     }
-    
+    self.noticeBtn.enabled=NO;
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     if (self.isFocused) {
         [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
         [dic setValue:self.model.a_id forKey:@"FocusId"];
         [CompanyApi DeleteFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+            self.noticeBtn.enabled=YES;
             if (!error) {
                 self.model.a_focused=@"0";
                 [self handleContent];
@@ -182,6 +185,7 @@
         [dic setValue:@"Company" forKey:@"FocusType"];
         [dic setValue:@"Personal" forKey:@"UserType"];
         [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+            self.noticeBtn.enabled=YES;
             if(!error){
                 self.model.a_focused=@"1";
                 [self handleContent];
@@ -197,11 +201,12 @@
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
         return;
     }
-    
+    self.memberBtn.enabled=NO;
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"employeeId"];
     [dic setValue:self.model.a_id forKey:@"companyId"];
     [CompanyApi AddCompanyEmployeeWithBlock:^(NSMutableArray *posts, NSError *error) {
+        self.memberBtn.enabled=YES;
         if(!error){
             NSLog(@"成功");
         }

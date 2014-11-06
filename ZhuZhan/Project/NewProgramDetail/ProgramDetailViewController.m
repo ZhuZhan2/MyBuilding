@@ -308,6 +308,7 @@
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [self.addCommentVC finishNetWork];
         if (!error) {
             NSLog(@"sucess");
         }

@@ -384,6 +384,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //添加动态详情的评论
 -(void)addActivesComment:(NSString*)comment{
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [self.vc finishNetWork];
         if(!error){
             [self finishAddComment:comment];
             if ([self.delegate respondsToSelector:@selector(finishAddCommentFromDetailWithPosts:)]) {
@@ -396,6 +397,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //添加产品详情的评论
 -(void)addProductComment:(NSString*)comment{
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [self.vc finishNetWork];
         if (!error) {
             [self finishAddComment:comment];
         }

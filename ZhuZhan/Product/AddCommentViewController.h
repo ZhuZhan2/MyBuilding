@@ -16,4 +16,5 @@
 
 @interface AddCommentViewController : UIViewController
 @property(nonatomic,weak)id<AddCommentDelegate>delegate;
+-(void)finishNetWork;
 @end

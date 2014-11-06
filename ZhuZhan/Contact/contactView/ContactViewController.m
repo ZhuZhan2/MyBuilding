@@ -532,6 +532,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [dic setValue:model.a_category forKey:@"EntityType"];
     [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"CreatedBy"];
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [addCommentView finishNetWork];
         if(!error){
             [self finishPostCommentWithPosts:posts activesModel:model];
         }
