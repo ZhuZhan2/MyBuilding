@@ -343,7 +343,10 @@ static int textFieldTag =0;
     return YES;
 }
 
-
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
 
 -(void)brithdayBtnClicked
 {

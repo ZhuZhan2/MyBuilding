@@ -291,6 +291,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
 }
 
 -(void)completePerfect{//完成修改后触发的方法
+    [self.view endEditing:YES];
     if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
         return;
