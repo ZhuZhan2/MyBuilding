@@ -271,8 +271,10 @@
     
     if (buttonIndex==0) {
         NSLog(@"关注");
-        [ProjectApi AddUserFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
-            NSLog(@"notice sucess");
+        [ProjectApi AddProjectFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                NSLog(@"notice sucess");
+            }
         } dic:[@{@"UserId":[LoginSqlite getdata:@"userId"],@"ProjectId":self.model.a_id} mutableCopy] noNetWork:nil];
         
     }else if (buttonIndex==1){

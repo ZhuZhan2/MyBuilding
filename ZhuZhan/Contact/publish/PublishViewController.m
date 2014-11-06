@@ -18,6 +18,7 @@
 @interface PublishViewController (){
     UILabel *leftBtnLabel;
     UILabel *rightBtnLabel;
+    BOOL isPublish;
 }
 
 @end
@@ -243,13 +244,17 @@ static int PublishNum =1;//1 发布动态  2，发布产品
         inputView.text =@"";
         return;
     }
-
+    if (isPublish) {
+        return;
+    }
+    isPublish=YES;
     if (PublishNum ==1) {
         NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",inputView.text,@"ActiveText",@"Personal",@"Category",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
         //NSString *headBlankStr =@"             ";
         //inputView.text = [NSString stringWithFormat:@"%@%@",headBlankStr,inputView.text];
         
         [CommentApi SendActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
+            isPublish=NO;
             if(!error){
                 NSLog(@"******posts***** %@",posts);
                 
@@ -275,6 +280,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
 //        inputView.text = [NSString stringWithFormat:@"%@%@",headBlankStr,inputView.text];
 //          NSLog(@"******userId****** %@",userIdStr);
         [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+            isPublish=NO;
             if(!error){
                 NSDictionary *dic = [posts objectAtIndex:0];
                 NSString *productId = [[[dic objectForKey:@"d"] objectForKey:@"data"] objectForKey:@"id"];

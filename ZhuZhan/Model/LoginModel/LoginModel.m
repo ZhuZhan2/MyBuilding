@@ -110,6 +110,9 @@
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
         }else{
+            if (block) {
+                block([NSMutableArray array], nil);
+            }
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
@@ -163,6 +166,10 @@
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
         }else{
+            if (block) {
+                block([NSMutableArray array], nil);
+            }
+
             NSNumber *errorcode = JSON[@"d"][@"status"][@"statusCode"];
             switch ([errorcode intValue]) {
                 case 1320:
