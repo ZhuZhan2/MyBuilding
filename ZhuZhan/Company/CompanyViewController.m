@@ -35,11 +35,8 @@
     [super viewDidLoad];
     [self initMyScrollViewAndNavi];//scollview和navi初始
     [self initFirstView];//第一个文字view初始
-    [self initSecondView];//第二个文字view初始
+    if (self.needNoticeView) [self initSecondView];//第二个文字view初始
     [self initThirdView];
-}
-
--(void)loadSelf{
 }
 
 //给MyScrollView的contentSize加高度
@@ -128,6 +125,12 @@
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, self.myScrollView.contentSize.height, 320, label.frame.size.height+30)];
     [view addSubview:label];
     [self scrollViewAddView:view];
+    
+    if (!self.needNoticeView) {
+        UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 1.5)];
+        imageView.image=[GetImagePath getImagePath:@"Shadow-top"];
+        [view addSubview:imageView];
+    }
 }
 
 -(void)initMyScrollViewAndNavi{

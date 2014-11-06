@@ -45,7 +45,7 @@
             if(posts.count !=0){
                 self.model = posts[0];
                 [self initFirstView];//第一个文字view初始
-                [self initSecondView];//第二个文字view初始
+                if (![self.companyId isEqualToString:[LoginSqlite getdata:@"userId"]])[self initSecondView];//第二个文字view初始
                 [self initThirdView];
             }
         }
@@ -143,6 +143,12 @@
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, self.myScrollView.contentSize.height, 320, label.frame.size.height+30)];
     [view addSubview:label];
     [self scrollViewAddView:view];
+    
+    if ([self.companyId isEqualToString:[LoginSqlite getdata:@"userId"]]) {
+        UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 1.5)];
+        imageView.image=[GetImagePath getImagePath:@"Shadow-top"];
+        [view addSubview:imageView];
+    }
 }
 
 -(void)initMyScrollViewAndNavi{
