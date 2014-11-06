@@ -87,6 +87,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _datasource = [[NSMutableArray alloc] init];
 
     [self firstNetWork];
+    
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeHeadImage) name:@"changHead" object:nil];
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changName" object:nil];
 }
 
 -(void)firstNetWork{
@@ -680,5 +683,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             [self firstNetWork];
         }];
     }];
+}
+
+-(void)changeHeadImage{
+    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImage"]]];
+}
+
+-(void)changeUserName{
+    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
 }
 @end

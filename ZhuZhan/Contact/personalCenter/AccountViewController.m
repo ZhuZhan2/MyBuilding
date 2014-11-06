@@ -259,6 +259,8 @@ static int count =0;//记录生日textField 的时间被触发的次数
     [LoginModel AddUserImageWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [_pathCover addImageHead:image];
+            [LoginSqlite insertData:posts[0][@"imageLocation"] datakey:@"userImage"];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
         }
     } dic:parameter noNetWork:nil];
 }
@@ -299,7 +301,12 @@ static int count =0;//记录生日textField 的时间被触发的次数
     NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.userName,@"userName",model.realName,@"realName",model.sex,@"sex",model.locationCity,@"locationCity",model.birthday,@"birthday",model.constellation,@"constellation",model.bloodType,@"bloodType",model.email,@"email",model.companyName,@"department",model.position,@"duties",nil];
     NSLog(@"parameter==%@",parameter);
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
-               
+        if(!error){
+            NSLog(@"===>%@",model.userName);
+            [LoginSqlite insertData:model.userName datakey:@"userName"];
+            [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"changName" object:nil];
+        }
     } dic:parameter noNetWork:nil];
 }
 

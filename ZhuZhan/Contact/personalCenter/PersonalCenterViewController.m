@@ -42,6 +42,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [homeVC homePageTabBarHide];
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -101,6 +102,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
+    
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeHeadImage) name:@"changHead" object:nil];
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changName" object:nil];
 }
 
 -(void)downLoad:(void(^)())block{
@@ -326,4 +330,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 }
 
+-(void)changeHeadImage{
+    [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImage"]]];
+}
+
+-(void)changeUserName{
+    NSLog(@"==>%@",[LoginSqlite getdata:@"userName"]);
+    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
+}
 @end
