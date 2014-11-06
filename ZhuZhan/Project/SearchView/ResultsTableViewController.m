@@ -98,7 +98,8 @@
     }else{
         [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                showArr = posts;
+                showArr = posts[0];
+                NSLog(@"===>%d",showArr.count);
                 [self.tableView reloadData];
             }
         } dic:self.dic startIndex:startIndex noNetWork:^{

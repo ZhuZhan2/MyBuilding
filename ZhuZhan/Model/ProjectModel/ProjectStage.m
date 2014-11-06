@@ -233,7 +233,7 @@
         string = [NSString stringWithFormat:@"%@+%@+%@+%@+%@+%@",arr[0],arr[1],arr[2],arr[3],arr[4],arr[5]];
         NSMutableString *newStr = [[NSMutableString alloc] init];
         for(int i=0;i<arr.count;i++){
-            if(![arr[i] isEqualToString:@" "]){
+            if(![arr[i] isEqualToString:@""]){
                 NSString * a = [NSString stringWithFormat:@"%@+",arr[i]];
                 [newStr appendString:a];
             }

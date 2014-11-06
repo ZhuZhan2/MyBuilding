@@ -14,7 +14,7 @@
 -(void)finishAddCommentFromDetailWithPosts:(NSMutableArray*)posts;
 @end
 
-@interface ProductDetailViewController : UIViewController
+@interface ProductDetailViewController : UIViewController<UIActionSheetDelegate>
 @property(nonatomic,strong)id<ProductDetailDelegate>delegate;
 -(instancetype)initWithProductModel:(ProductModel*)productModel;
 -(instancetype)initWithActivesModel:(ActivesModel*)activesModel;

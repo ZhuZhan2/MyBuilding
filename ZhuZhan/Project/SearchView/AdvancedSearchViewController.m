@@ -62,12 +62,12 @@
     [self.view addSubview:_tableView];
     
     dataDic = [[NSMutableDictionary alloc] init];
-    [dataDic setValue:@" " forKey:@"keywords"];
-    [dataDic setValue:@" " forKey:@"companyName"];
-    [dataDic setValue:@" " forKey:@"landProvince"];
-    [dataDic setValue:@" " forKey:@"landDistrict"];
-    [dataDic setValue:@" " forKey:@"projectStage"];
-    [dataDic setValue:@" " forKey:@"projectCategory"];
+    [dataDic setValue:@"" forKey:@"keywords"];
+    [dataDic setValue:@"" forKey:@"companyName"];
+    [dataDic setValue:@"" forKey:@"landProvince"];
+    [dataDic setValue:@"" forKey:@"landDistrict"];
+    [dataDic setValue:@"" forKey:@"projectStage"];
+    [dataDic setValue:@"" forKey:@"projectCategory"];
     
     viewArr = [[NSMutableArray alloc] init];
     [self firstNetWork];
@@ -127,17 +127,21 @@
 }
 
 -(void)rightBtnClick{
-    if([[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
-        LoginViewController *loginVC = [[LoginViewController alloc] init];
-        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
-        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    if(![dataDic[@"keywords"] isEqualToString:@""]){
+        if([[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
+            LoginViewController *loginVC = [[LoginViewController alloc] init];
+            UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+            [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+        }else{
+            saveView = [[SaveConditionsViewController alloc] init];
+            [saveView.view setFrame:CGRectMake(0, 0, 271, 173)];
+            saveView.delegate = self;
+            saveView.dataDic = dataDic;
+            [self presentPopupViewController:saveView animationType:MJPopupViewAnimationFade flag:1];
+        }
     }else{
-        saveView = [[SaveConditionsViewController alloc] init];
-        [saveView.view setFrame:CGRectMake(0, 0, 271, 173)];
-        saveView.delegate = self;
-        saveView.dataDic = dataDic;
-        
-        [self presentPopupViewController:saveView animationType:MJPopupViewAnimationFade flag:1];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请填写关键字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
     }
 }
 
@@ -365,7 +369,7 @@
             showArr = posts;
             for(int i=0;i<posts.count;i++){
                 conditionsView = [ConditionsView setFram:posts[i]];
-                [viewArr insertObject:conditionsView atIndex:0];
+                [viewArr addObject:conditionsView];
             }
             [_tableView reloadData];
         }
@@ -377,9 +381,14 @@
 }
 
 -(void)startSearch{
-    ResultsTableViewController *resultView = [[ResultsTableViewController alloc] init];
-    resultView.dic = dataDic;
-    resultView.flag = 1;
-    [self.navigationController pushViewController:resultView animated:YES];
+    if(![dataDic[@"keywords"] isEqualToString:@""]){
+        ResultsTableViewController *resultView = [[ResultsTableViewController alloc] init];
+        resultView.dic = dataDic;
+        resultView.flag = 1;
+        [self.navigationController pushViewController:resultView animated:YES];
+    }else{
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请填写关键字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }
 }
 @end

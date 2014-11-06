@@ -107,31 +107,54 @@
 }
 
 - (void)gotoConcern{
-    concernBtn.enabled = NO;
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    if(isFoucsed == 0){
-        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
-        [dic setValue:self.createdBy forKey:@"FocusId"];
-        [dic setValue:@"Personal" forKey:@"FocusType"];
-        [dic setValue:@"Personal" forKey:@"UserType"];
-        [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                [concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
-                isFoucsed = 1;
-                concernBtn.enabled = YES;
-            }
-        } dic:dic noNetWork:nil];
+    if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
+        concernBtn.enabled = NO;
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        if(isFoucsed == 0){
+            [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
+            [dic setValue:self.createdBy forKey:@"FocusId"];
+            [dic setValue:@"Personal" forKey:@"FocusType"];
+            [dic setValue:@"Personal" forKey:@"UserType"];
+            [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    [concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+                    isFoucsed = 1;
+                    concernBtn.enabled = YES;
+                }
+            } dic:dic noNetWork:nil];
+        }else{
+            [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
+            [dic setValue:self.createdBy forKey:@"FocusId"];
+            [CompanyApi DeleteFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if (!error) {
+                    [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
+                    isFoucsed = 0;
+                    concernBtn.enabled = YES;
+                }
+            } dic:dic noNetWork:nil];
+        }
     }else{
-        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
-        [dic setValue:self.createdBy forKey:@"FocusId"];
-        [CompanyApi DeleteFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if (!error) {
-                [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
-                isFoucsed = 0;
-                concernBtn.enabled = YES;
-            }
-        } dic:dic noNetWork:nil];
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.delegate = self;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }
 }
 
+-(void)loginComplete{
+    NSLog(@"已登录");
+    [CommentApi UserBriefInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            if(posts.count !=0){
+                if([[ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]]] isEqualToString:@"1"]){
+                    [concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+                    isFoucsed = 1;
+                }else{
+                    [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
+                    isFoucsed = 0;
+                }
+            }
+        }
+    } userId:self.createdBy noNetWork:nil];
+}
 @end

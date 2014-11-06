@@ -16,7 +16,8 @@
 #import "ContactModel.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
-@interface CompanyDetailViewController ()
+#import "LoginViewController.h"
+@interface CompanyDetailViewController ()<LoginViewDelegate>
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic,strong)UIImageView* imageView;
 @property(nonatomic,strong)UILabel* noticeLabel;
@@ -163,54 +164,68 @@
 }
 
 -(void)gotoNoticeView{
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
-        return;
-    }
-    self.noticeBtn.enabled=NO;
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    if (self.isFocused) {
-        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
-        [dic setValue:self.model.a_id forKey:@"FocusId"];
-        [CompanyApi DeleteFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
-            self.noticeBtn.enabled=YES;
-            if (!error) {
-                self.model.a_focused=@"0";
-                [self handleContent];
-            }
-        } dic:dic noNetWork:nil];
+    if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
+        if (![ConnectionAvailable isConnectionAvailable]) {
+            [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+            return;
+        }
+        self.noticeBtn.enabled=NO;
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        if (self.isFocused) {
+            [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
+            [dic setValue:self.model.a_id forKey:@"FocusId"];
+            [CompanyApi DeleteFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+                self.noticeBtn.enabled=YES;
+                if (!error) {
+                    self.model.a_focused=@"0";
+                    [self handleContent];
+                }
+            } dic:dic noNetWork:nil];
+        }else{
+            [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
+            [dic setValue:self.model.a_id forKey:@"FocusId"];
+            [dic setValue:@"Company" forKey:@"FocusType"];
+            [dic setValue:@"Personal" forKey:@"UserType"];
+            [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+                self.noticeBtn.enabled=YES;
+                if(!error){
+                    self.model.a_focused=@"1";
+                    [self handleContent];
+                }
+            } dic:dic noNetWork:nil];
+        }
     }else{
-        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
-        [dic setValue:self.model.a_id forKey:@"FocusId"];
-        [dic setValue:@"Company" forKey:@"FocusType"];
-        [dic setValue:@"Personal" forKey:@"UserType"];
-        [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
-            self.noticeBtn.enabled=YES;
-            if(!error){
-                self.model.a_focused=@"1";
-                [self handleContent];
-            }
-        } dic:dic noNetWork:nil];
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.delegate = self;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }
     NSLog(@"用户选择了关注");
 }
 
 -(void)applyForCertification{
     NSLog(@"用户选择了 申请关注");
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
-        return;
-    }
-    self.memberBtn.enabled=NO;
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"employeeId"];
-    [dic setValue:self.model.a_id forKey:@"companyId"];
-    [CompanyApi AddCompanyEmployeeWithBlock:^(NSMutableArray *posts, NSError *error) {
-        self.memberBtn.enabled=YES;
-        if(!error){
-            NSLog(@"成功");
+    if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
+        if (![ConnectionAvailable isConnectionAvailable]) {
+            [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+            return;
         }
-    } dic:dic noNetWork:nil];
+        self.memberBtn.enabled=NO;
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"employeeId"];
+        [dic setValue:self.model.a_id forKey:@"companyId"];
+        [CompanyApi AddCompanyEmployeeWithBlock:^(NSMutableArray *posts, NSError *error) {
+            self.memberBtn.enabled=YES;
+            if(!error){
+                NSLog(@"成功");
+            }
+        } dic:dic noNetWork:nil];
+    }else{
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.delegate = self;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }
 }
 
 
@@ -237,5 +252,9 @@
 
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)loginComplete{
+
 }
 @end

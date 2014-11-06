@@ -23,7 +23,11 @@
 #import "MBProgressHUD.h"
 #import "PersonalDetailViewController.h"
 #import "CompanyDetailViewController.h"
-@interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate,ACTimeScrollerDelegate>
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
+#import "ProductModel.h"
+#import "LoginViewController.h"
+@interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate,ACTimeScrollerDelegate,LoginViewDelegate>
 @property(nonatomic,strong)UITableView* tableView;
 
 //所有model的a_id均为产品或动态自身的id,a_entityId是自身所属的id
@@ -114,7 +118,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.personalModel=personalModel;
-#warning 个人中心动态还需要设置
+// 个人中心动态还需要设置
         [self loadMyPropertyWithImgW:personalModel.a_imageWidth imgH:personalModel.a_imageHeight imgUrl:personalModel.a_imageUrl userImgUrl:self.myImageUrl content:personalModel.a_content entityID:personalModel.a_entityId entityUrl:personalModel.a_entityUrl userName:self.myName category:personalModel.a_category createdBy:nil userType:nil];
     }
     return self;
@@ -542,6 +546,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.title=self.productModel?@"产品详情":@"";
+    
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setFrame:CGRectMake(0, 0, 25, 22)];
+    [rightButton setBackgroundImage:[GetImagePath getImagePath:@"019"] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
 }
 
 -(void)back{
@@ -553,6 +564,38 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+-(void)rightBtnClick{
+    if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"关注产品", nil];
+        [actionSheet showInView:self.view];
+    }else{
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.delegate = self;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
+    if (buttonIndex==0) {
+        NSLog(@"关注");
+        [ProductModel AddProductFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"productId":self.productModel.a_id} mutableCopy] noNetWork:nil];
+        
+    }else{
+        NSLog(@"取消");
+    }
 }
 //-(void)getProductView{
 //    self.productView=[[UIView alloc]initWithFrame:CGRectZero];
