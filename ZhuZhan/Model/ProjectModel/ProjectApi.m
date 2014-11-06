@@ -617,14 +617,15 @@
 //    "UserId": ":"用户Id" 必填
 //    "ProjectId":"项目ID" 必填
 //}
-+ (NSURLSessionDataTask *)AddUserFocusWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
++ (NSURLSessionDataTask *)AddProjectFocusWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
             noNetWork();
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/AddUserFocus"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/AddProjectFocus"];
+    NSLog(@"urlStr==%@,dic==%@",urlStr,dic);
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){

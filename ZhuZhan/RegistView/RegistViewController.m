@@ -230,7 +230,7 @@
         return;
     }
     self.registerBtn.enabled=NO;
-    NSMutableDictionary *parameters =[[NSMutableDictionary alloc] initWithObjectsAndKeys:_phoneNumberTextField.text,@"cellPhone",[MD5 md5HexDigest:passWordField.text],@"password",@"mobile",@"deviceType",_yzmTextField.text,@"barCode",nil];
+    NSMutableDictionary *parameters =[[NSMutableDictionary alloc] initWithObjectsAndKeys:_phoneNumberTextField.text,@"cellPhone",[MD5 md5HexDigest:passWordField.text],@"password",@"mobile",@"deviceType",_yzmTextField.text,@"barCode",accountField.text,@"userName",nil];
     NSLog(@"parameters==%@",parameters);
     
     [LoginModel RegisterWithBlock:^(NSMutableArray *posts, NSError *error) {
