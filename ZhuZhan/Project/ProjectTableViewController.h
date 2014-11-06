@@ -11,8 +11,11 @@
 #import "SearchViewController.h"
 #import "ProjectTableViewCell.h"
 #import "PorjectCommentTableViewController.h"
+#import "LoadingView.h"
 @interface ProjectTableViewController : UITableViewController<ProjectTableViewCellDelegate>{
     NSMutableArray *showArr;
     int startIndex;
+    LoadingView *loadingView;
+    int sectionHeight;
 }
 @end

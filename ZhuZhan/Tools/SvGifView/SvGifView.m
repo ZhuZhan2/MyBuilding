@@ -73,7 +73,7 @@ void getFrameInfo(CFURLRef url, NSMutableArray *frames, NSMutableArray *delayTim
             getFrameInfo((CFURLRef)CFBridgingRetain(fileURL), _frames, _frameDelayTimes, &_totalTime, &_width, &_height);
         }
         
-        self.frame = CGRectMake(0, 0, _width, _height);
+        self.frame = CGRectMake(0, 0, 83, 21);
         self.center = center;
     }
     
@@ -112,7 +112,7 @@ void getFrameInfo(CFURLRef url, NSMutableArray *frames, NSMutableArray *delayTim
     [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
     animation.duration = _totalTime;
     animation.delegate = self;
-    animation.repeatCount = 5;
+    animation.repeatCount = 1500;
     
     [self.layer addAnimation:animation forKey:@"gifAnimation"];
 }

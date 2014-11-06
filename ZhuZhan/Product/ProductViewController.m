@@ -14,10 +14,12 @@
 #import "MJRefresh.h"
 #import "ConnectionAvailable.h"
 #import "ErrorView.h"
+#import "LoadingView.h"
 @interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate,ErrorViewDelegate>
 @property (nonatomic, strong) NSMutableArray *images;
 @property(nonatomic,strong)ErrorView* errorView;
 @property(nonatomic,strong)UIActivityIndicatorView* indicatorView;
+@property(nonatomic,strong)LoadingView *loadingView;
 @end
 
 @implementation ProductViewController
@@ -27,17 +29,13 @@
 }
 
 -(void)loadIndicatorView{
-    self.indicatorView=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    self.indicatorView.color=[UIColor blackColor];
-    self.indicatorView.center=CGPointMake(160, self.view.frame.size.height*.5);
-    [self.view addSubview:self.indicatorView];
-    [self.indicatorView startAnimating];
+    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64.5, 320, 568) superView:self.view];
 }
 
 -(void)endIndicatorView{
-    [self.indicatorView stopAnimating];
-    [self.indicatorView removeFromSuperview];
-    self.indicatorView=nil;
+    [self.loadingView.gifView stopGif];
+    [LoadingView removeLoadingView:self.loadingView];
+    self.loadingView = nil;
 }
 
 - (void)viewDidLoad
