@@ -17,7 +17,7 @@
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 @interface LoginViewController ()
-
+@property(nonatomic,strong)UIButton* loginBtn;
 @end
 
 @implementation LoginViewController
@@ -87,11 +87,11 @@
     _passWordTextField.clearButtonMode = UITextFieldViewModeAlways;
     [bgView addSubview:_passWordTextField];
     
-    UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [loginBtn setBackgroundImage:[GetImagePath getImagePath:@"登录_22"] forState:UIControlStateNormal];
-    [loginBtn setFrame:CGRectMake(0, 100, 277, 42)];
-    [loginBtn addTarget:self action:@selector(gotoLogin) forControlEvents:UIControlEventTouchUpInside];
-    [bgView addSubview:loginBtn];
+    self.loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.loginBtn setBackgroundImage:[GetImagePath getImagePath:@"登录_22"] forState:UIControlStateNormal];
+    [self.loginBtn setFrame:CGRectMake(0, 100, 277, 42)];
+    [self.loginBtn addTarget:self action:@selector(gotoLogin) forControlEvents:UIControlEventTouchUpInside];
+    [bgView addSubview:self.loginBtn];
     
     UIButton *registBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [registBtn setBackgroundImage:[GetImagePath getImagePath:@"登录_24"] forState:UIControlStateNormal];
@@ -151,12 +151,13 @@
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
         return;
     }
-    
+    self.loginBtn.enabled=NO;
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:_userNameTextField.text forKey:@"userName"];
     [dic setValue:[MD5 md5HexDigest:_passWordTextField.text] forKey:@"password"];
     [dic setValue:@"mobile" forKey:@"deviceType"];
     [LoginModel LoginWithBlock:^(NSMutableArray *posts, NSError *error) {
+        self.loginBtn.enabled=YES;
         if(!error){
             if(posts.count !=0){
                 LoginModel *model = posts[0];
