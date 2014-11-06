@@ -149,6 +149,10 @@
     self.view.layer.cornerRadius=12;
 }
 
+-(void)finishNetWork{
+    self.sureBtn.enabled=YES;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
