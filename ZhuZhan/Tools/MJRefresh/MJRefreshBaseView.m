@@ -77,7 +77,7 @@
         
         // 2.设置默认状态
         self.state = MJRefreshStateNormal;
-        NSURL *fileUrl = [[NSBundle mainBundle] URLForResource:@"欧莱凯GIF图片" withExtension:@"gif"];
+        NSURL *fileUrl = [[NSBundle mainBundle] URLForResource:@"加载中" withExtension:@"gif"];
         __gifView = [[SvGifView alloc] initWithCenter:CGPointMake(self.bounds.size.width / 2, 20) fileURL:fileUrl];
         __gifView.backgroundColor = [UIColor clearColor];
         __gifView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;

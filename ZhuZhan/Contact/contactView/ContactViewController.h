@@ -18,6 +18,7 @@
 #import "ProductDetailViewController.h"
 #import "LoginViewController.h"
 #import "CompanyModel.h"
+#import "LoadingView.h"
 @interface ContactViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate,showControllerDelegate,HeadImageDelegate,CommentViewDelegate,AddCommentDelegate,ErrorViewDelegate,ProductDetailDelegate,LoginViewDelegate>{
     NSMutableArray *_datasource;
     ACTimeScroller *_timeScroller;
@@ -29,6 +30,7 @@
     AddCommentViewController *addCommentView;
     NSIndexPath *indexpath;
     ShowViewController *showVC;
+    LoadingView *loadingView;
 }
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong) UIView *transparent;

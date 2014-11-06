@@ -33,6 +33,7 @@
 #import "CompanyApi.h"
 #import "CompanyModel.h"
 #import "CompanyDetailViewController.h"
+#import "LoadingView.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()
 
@@ -89,6 +90,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)firstNetWork{
+    self.tableView.scrollEnabled=NO;
+    loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view];
     if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
         if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
             [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -143,6 +146,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [_datasource addObject:model.a_time];
             }
             [self.tableView reloadData];
+            [LoadingView removeLoadingView:loadingView];
+            self.tableView.scrollEnabled=YES;
+            loadingView = nil;
         }
     } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
         self.tableView.scrollEnabled=NO;

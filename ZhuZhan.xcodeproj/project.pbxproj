@@ -498,7 +498,6 @@
 		04BC426419D7E5B3006B5C7B /* 数据加载失败_07a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BC3FE019D7E5B1006B5C7B /* 数据加载失败_07a@2x.png */; };
 		04BC426F19D7E5B3006B5C7B /* 新建项目5_09.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BC3FEB19D7E5B1006B5C7B /* 新建项目5_09.png */; };
 		04BC427019D7E5B3006B5C7B /* 新建项目5_09@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BC3FEC19D7E5B1006B5C7B /* 新建项目5_09@2x.png */; };
-		04BC427B19D7E5B3006B5C7B /* 欧莱凯GIF图片.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04BC3FF719D7E5B1006B5C7B /* 欧莱凯GIF图片.gif */; };
 		04BC427C19D7E5B3006B5C7B /* 注册.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BC3FF819D7E5B1006B5C7B /* 注册.png */; };
 		04BC427D19D7E5B3006B5C7B /* 注册@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BC3FF919D7E5B1006B5C7B /* 注册@2x.png */; };
 		04BC428419D7E5B3006B5C7B /* 登录1_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BC400019D7E5B1006B5C7B /* 登录1_03.png */; };
@@ -729,6 +728,9 @@
 		D3D74EC719FA308000ED8B62 /* 密码找回_23@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D74E9D19FA308000ED8B62 /* 密码找回_23@2x.png */; };
 		D3D74ED619FA308000ED8B62 /* 面部识别登录_02.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D74EAC19FA308000ED8B62 /* 面部识别登录_02.png */; };
 		D3D74ED719FA308000ED8B62 /* 面部识别登录_02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D74EAD19FA308000ED8B62 /* 面部识别登录_02@2x.png */; };
+		D3D798681A0B1DFE00194FF8 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D798671A0B1DFE00194FF8 /* LoadingView.m */; };
+		D3D7986A1A0B1ECF00194FF8 /* 加载中.gif in Resources */ = {isa = PBXBuildFile; fileRef = D3D798691A0B1ECF00194FF8 /* 加载中.gif */; };
+		D3D7986C1A0B236900194FF8 /* 欧莱凯GIF图片.gif in Resources */ = {isa = PBXBuildFile; fileRef = D3D7986B1A0B236900194FF8 /* 欧莱凯GIF图片.gif */; };
 		D3D7D86619FF4B9800AE5765 /* 项目－搜索_09a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7D86419FF4B9800AE5765 /* 项目－搜索_09a.png */; };
 		D3D7D86719FF4B9800AE5765 /* 项目－搜索_09a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7D86519FF4B9800AE5765 /* 项目－搜索_09a@2x.png */; };
 		D3D7D86A19FF5B3100AE5765 /* 人脉－发布动态_09a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7D86819FF5B3100AE5765 /* 人脉－发布动态_09a.png */; };
@@ -1579,7 +1581,6 @@
 		04BC3FE019D7E5B1006B5C7B /* 数据加载失败_07a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "数据加载失败_07a@2x.png"; sourceTree = "<group>"; };
 		04BC3FEB19D7E5B1006B5C7B /* 新建项目5_09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "新建项目5_09.png"; sourceTree = "<group>"; };
 		04BC3FEC19D7E5B1006B5C7B /* 新建项目5_09@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "新建项目5_09@2x.png"; sourceTree = "<group>"; };
-		04BC3FF719D7E5B1006B5C7B /* 欧莱凯GIF图片.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "欧莱凯GIF图片.gif"; sourceTree = "<group>"; };
 		04BC3FF819D7E5B1006B5C7B /* 注册.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册.png"; sourceTree = "<group>"; };
 		04BC3FF919D7E5B1006B5C7B /* 注册@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册@2x.png"; sourceTree = "<group>"; };
 		04BC400019D7E5B1006B5C7B /* 登录1_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "登录1_03.png"; sourceTree = "<group>"; };
@@ -1914,6 +1915,10 @@
 		D3D74E9D19FA308000ED8B62 /* 密码找回_23@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码找回_23@2x.png"; sourceTree = "<group>"; };
 		D3D74EAC19FA308000ED8B62 /* 面部识别登录_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "面部识别登录_02.png"; sourceTree = "<group>"; };
 		D3D74EAD19FA308000ED8B62 /* 面部识别登录_02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "面部识别登录_02@2x.png"; sourceTree = "<group>"; };
+		D3D798661A0B1DFE00194FF8 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
+		D3D798671A0B1DFE00194FF8 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
+		D3D798691A0B1ECF00194FF8 /* 加载中.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "加载中.gif"; sourceTree = "<group>"; };
+		D3D7986B1A0B236900194FF8 /* 欧莱凯GIF图片.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "欧莱凯GIF图片.gif"; sourceTree = "<group>"; };
 		D3D7D86419FF4B9800AE5765 /* 项目－搜索_09a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目－搜索_09a.png"; sourceTree = "<group>"; };
 		D3D7D86519FF4B9800AE5765 /* 项目－搜索_09a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目－搜索_09a@2x.png"; sourceTree = "<group>"; };
 		D3D7D86819FF5B3100AE5765 /* 人脉－发布动态_09a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－发布动态_09a.png"; sourceTree = "<group>"; };
@@ -2146,6 +2151,7 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3D798651A0B1DE600194FF8 /* LoadingView */,
 				5BAA14D319EE35AC00C7ECD9 /* MD5 */,
 				5B2D232819D9335D007C2C29 /* NBLabel */,
 				D3AC86A819CBD3D20009673C /* GetImagePath */,
@@ -2914,6 +2920,8 @@
 		04BC3E5D19D7E5B0006B5C7B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3D7986B1A0B236900194FF8 /* 欧莱凯GIF图片.gif */,
+				D3D798691A0B1ECF00194FF8 /* 加载中.gif */,
 				D3D4FB311A087A830033BB34 /* 公司－账号设置_03a-05.png */,
 				D3D4FB321A087A830033BB34 /* 公司－账号设置_03a-05@2x.png */,
 				5B5121341A07968200A77997 /* 地图搜索1_05.png */,
@@ -3158,7 +3166,6 @@
 				04BC3FE019D7E5B1006B5C7B /* 数据加载失败_07a@2x.png */,
 				04BC3FEB19D7E5B1006B5C7B /* 新建项目5_09.png */,
 				04BC3FEC19D7E5B1006B5C7B /* 新建项目5_09@2x.png */,
-				04BC3FF719D7E5B1006B5C7B /* 欧莱凯GIF图片.gif */,
 				04BC401419D7E5B1006B5C7B /* 筛选中01.png */,
 				04BC401519D7E5B1006B5C7B /* 筛选中01@2x.png */,
 				04BC401619D7E5B1006B5C7B /* 筛选中02.png */,
@@ -3782,6 +3789,15 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		D3D798651A0B1DE600194FF8 /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				D3D798661A0B1DFE00194FF8 /* LoadingView.h */,
+				D3D798671A0B1DFE00194FF8 /* LoadingView.m */,
+			);
+			path = LoadingView;
+			sourceTree = "<group>";
+		};
 		D3EACDE3199327780058FC9D /* QuadCurveMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -3949,6 +3965,7 @@
 				04BC413619D7E5B3006B5C7B /* hourhand.png in Resources */,
 				04BC410A19D7E5B3006B5C7B /* 019@2x.png in Resources */,
 				04BC41E519D7E5B3006B5C7B /* 人脉－账号设置_03a-05.png in Resources */,
+				D3D7986C1A0B236900194FF8 /* 欧莱凯GIF图片.gif in Resources */,
 				5B0D03E319B0554400518D5E /* mapapi.bundle in Resources */,
 				04BC432E19D7E5B3006B5C7B /* 项目－评论列表_03a.png in Resources */,
 				04BC415A19D7E5B3006B5C7B /* timescroll_pointer@2x.png in Resources */,
@@ -4020,6 +4037,7 @@
 				04BC42B719D7E5B3006B5C7B /* 面部采集_11@2x.png in Resources */,
 				04BC40F619D7E5B3006B5C7B /* 01.png in Resources */,
 				04BC41A419D7E5B3006B5C7B /* 人脉－个人中心_05a@2x.png in Resources */,
+				D3D7986A1A0B1ECF00194FF8 /* 加载中.gif in Resources */,
 				04BC434B19D7E5B3006B5C7B /* 项目－高级搜索－2_15a-19@2x.png in Resources */,
 				5B43E9B019F7892A00FBB613 /* 公司－我的公司_02a.png in Resources */,
 				04BC425519D7E5B3006B5C7B /* 搜索_10.png in Resources */,
@@ -4223,7 +4241,6 @@
 				04BC434D19D7E5B3006B5C7B /* 项目－高级搜索－2_15a@2x.png in Resources */,
 				04BC411A19D7E5B3006B5C7B /* 07.png in Resources */,
 				04BC419219D7E5B3006B5C7B /* 人脉_59a@2x.png in Resources */,
-				04BC427B19D7E5B3006B5C7B /* 欧莱凯GIF图片.gif in Resources */,
 				D3D74E8719FA2FEC00ED8B62 /* 登录_22.png in Resources */,
 				04BC411F19D7E5B3006B5C7B /* 09@2x.png in Resources */,
 				04BC416119D7E5B3006B5C7B /* 产品－列表_06a.png in Resources */,
@@ -4409,6 +4426,7 @@
 				0426C25319922D5A00CD8822 /* GPUImageColorBlendFilter.m in Sources */,
 				0426C24319922D5A00CD8822 /* GPUImageAdaptiveThresholdFilter.m in Sources */,
 				0426C2AD19922D5A00CD8822 /* GPUImageRGBErosionFilter.m in Sources */,
+				D3D798681A0B1DFE00194FF8 /* LoadingView.m in Sources */,
 				0426C28519922D5A00CD8822 /* GPUImageLevelsFilter.m in Sources */,
 				0426C23619922D5A00CD8822 /* AFHTTPRequestOperation.m in Sources */,
 				5B0C8AA919D7ABA30058C0EE /* PersonalProjectTableViewCell.m in Sources */,

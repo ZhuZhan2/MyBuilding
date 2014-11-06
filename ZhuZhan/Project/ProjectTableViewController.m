@@ -83,10 +83,17 @@
 }
 
 -(void)firstWork{
+    self.tableView.scrollEnabled = NO;
+    sectionHeight = 0;
+    loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view];
     [ProjectApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             showArr = posts;
+            sectionHeight = 30;
             [self.tableView reloadData];
+            [LoadingView removeLoadingView:loadingView];
+            self.tableView.scrollEnabled = YES;
+            loadingView = nil;
         }
     } startIndex:startIndex noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -199,7 +206,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if(section == 0){
-        return 30;
+        return sectionHeight;
     }
     return 5;
 }
