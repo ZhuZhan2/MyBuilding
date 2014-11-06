@@ -261,6 +261,7 @@
 }
 
 -(void)loginComplete{
-
+    [self.navigationController popViewControllerAnimated:NO];
+    [self.delegate gotoCompanyDetail:NO];
 }
 @end
