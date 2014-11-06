@@ -163,8 +163,31 @@
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
+            NSNumber *errorcode = JSON[@"d"][@"status"][@"statusCode"];
+            switch ([errorcode intValue]) {
+                case 1320:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名不存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
+                    break;
+                case 1321:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"你已经被拉黑" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
+                    break;
+                case 1322:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"你已经禁止登录" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
+                    break;
+                case 1324:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"密码错误" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
+                    break;
+                case 1325:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名已存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
+                    break;
+                default:
+                    break;
+            }
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         NSLog(@"error ==> %@",error);
