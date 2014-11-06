@@ -24,6 +24,7 @@
 #import "MBProgressHUD.h"
 @interface RegistViewController ()
 @property(nonatomic,strong)UIFont* font;
+@property(nonatomic,strong)UIButton* registerBtn;
 @end
 
 @implementation RegistViewController
@@ -171,12 +172,12 @@
 }
 
 -(void)loadRegisterBtn{
-    UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    registerBtn.frame = CGRectMake(22, 500, 276, 42);
-    [registerBtn setBackgroundImage:[GetImagePath getImagePath:@"注册_07"] forState:UIControlStateNormal];
-    [registerBtn addTarget:self action:@selector(beginToCollect) forControlEvents:UIControlEventTouchUpInside];
-    registerBtn.tag =2014072401;
-    [self.view addSubview:registerBtn];
+    self.registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.registerBtn.frame = CGRectMake(22, 500, 276, 42);
+    [self.registerBtn setBackgroundImage:[GetImagePath getImagePath:@"注册_07"] forState:UIControlStateNormal];
+    [self.registerBtn addTarget:self action:@selector(beginToCollect) forControlEvents:UIControlEventTouchUpInside];
+    self.registerBtn.tag =2014072401;
+    [self.view addSubview:self.registerBtn];
 }
 
 -(BOOL)phoneNoErr:(NSString *)phone//正则表达式来判断是否是手机号码
@@ -228,11 +229,12 @@
         [alert show];
         return;
     }
-    
+    self.registerBtn.enabled=NO;
     NSMutableDictionary *parameters =[[NSMutableDictionary alloc] initWithObjectsAndKeys:_phoneNumberTextField.text,@"cellPhone",[MD5 md5HexDigest:passWordField.text],@"password",@"mobile",@"deviceType",_yzmTextField.text,@"barCode",nil];
     NSLog(@"parameters==%@",parameters);
     
     [LoginModel RegisterWithBlock:^(NSMutableArray *posts, NSError *error) {
+        self.registerBtn.enabled=YES;
         if (!error) {
             if(posts.count !=0){
                 NSDictionary *item = posts[0];

@@ -10,6 +10,7 @@
 
 @interface ForgetPasswordViewController ()<UITextFieldDelegate>
 @property(nonatomic,strong)UIFont* font;
+@property(nonatomic,strong)UIButton* registerBtn;
 @end
 
 @implementation ForgetPasswordViewController
@@ -146,12 +147,12 @@
 }
 
 -(void)loadRegisterBtn{
-    UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    registerBtn.frame = CGRectMake(22, 500, 276, 42);
-    [registerBtn setBackgroundImage:[GetImagePath getImagePath:@"密码找回_23"] forState:UIControlStateNormal];
-    [registerBtn addTarget:self action:@selector(beginToCollect) forControlEvents:UIControlEventTouchUpInside];
-    registerBtn.tag =2014072401;
-    [self.view addSubview:registerBtn];
+    self.registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.registerBtn.frame = CGRectMake(22, 500, 276, 42);
+    [self.registerBtn setBackgroundImage:[GetImagePath getImagePath:@"密码找回_23"] forState:UIControlStateNormal];
+    [self.registerBtn addTarget:self action:@selector(beginToCollect) forControlEvents:UIControlEventTouchUpInside];
+    self.registerBtn.tag =2014072401;
+    [self.view addSubview:self.registerBtn];
 }
 
 -(void)beginToCollect{
@@ -160,17 +161,5 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end
