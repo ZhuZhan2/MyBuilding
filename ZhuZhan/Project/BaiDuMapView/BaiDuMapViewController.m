@@ -229,6 +229,7 @@ int j;
         {
             NSLog(@"反geo检索发送失败");
         }
+        NSLog(@"asfasf");
         [_locService stopUserLocationService];
     }
 }
