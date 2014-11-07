@@ -61,6 +61,7 @@
 
 @property(nonatomic,copy)NSString* myName;//登录用户的用户昵称
 @property(nonatomic,copy)NSString* myImageUrl;//登录用户的用户头像
+@property(nonatomic,copy)NSString* isFocused;;
 @end
 
 @implementation ProductDetailViewController
@@ -100,6 +101,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.productModel=productModel;
+        self.isFocused = self.productModel.a_isFocused;
         [self loadMyPropertyWithImgW:productModel.a_imageWidth imgH:productModel.a_imageHeight imgUrl:productModel.a_imageUrl userImgUrl:productModel.a_avatarUrl content:productModel.a_content entityID:productModel.a_id entityUrl:@"" userName:productModel.a_userName category:@"" createdBy:productModel.a_createdBy userType:productModel.a_userType];
     }
     return self;
@@ -568,7 +570,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)rightBtnClick{
     if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
-        UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"关注产品", nil];
+        NSString *string = nil;
+        if([self.isFocused isEqualToString:@"0"]){
+            string = @"关注产品";
+        }else{
+            string = @"取消关注";
+        }
+        UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:string, nil];
         [actionSheet showInView:self.view];
     }else{
         LoginViewController *loginVC = [[LoginViewController alloc] init];
@@ -592,10 +600,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [alertView show];
             }
         } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"productId":self.productModel.a_id} mutableCopy] noNetWork:nil];
-        
     }else{
         NSLog(@"取消");
     }
+}
+
+-(void)loginComplete{
+    
 }
 //-(void)getProductView{
 //    self.productView=[[UIView alloc]initWithFrame:CGRectZero];

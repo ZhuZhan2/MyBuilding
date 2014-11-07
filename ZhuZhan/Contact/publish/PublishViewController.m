@@ -263,9 +263,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
             }
         } dic:dic noNetWork:nil];
 
-    }
-    
-    if (PublishNum ==2) {
+    }else if (PublishNum ==2) {
         NSLog(@"publishImageStr ==> %@",publishImageStr);
         NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"21344",@"ProductName",publishContent,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
 
