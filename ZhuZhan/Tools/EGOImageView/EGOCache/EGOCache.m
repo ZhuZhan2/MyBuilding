@@ -57,7 +57,9 @@ static inline NSString* cachePathForKey(NSString* key) {
 
 static EGOCache* __instance;
 
-@interface EGOCache ()
+@interface EGOCache (){
+    NSMutableDictionary* imagesCache;
+}
 - (void)removeItemFromCache:(NSString*)key;
 - (void)performDiskWriteOperation:(NSInvocation *)invoction;
 - (void)saveCacheDictionary;
@@ -229,7 +231,16 @@ static EGOCache* __instance;
 #if TARGET_OS_IPHONE
 
 - (UIImage*)imageForKey:(NSString*)key {
-	return [UIImage imageWithContentsOfFile:cachePathForKey(key)];
+    //return [UIImage imageWithContentsOfFile:cachePathForKey(key)];
+    if (!imagesCache) {
+        imagesCache=[[NSMutableDictionary alloc]init];
+    }
+    if (!imagesCache[key]) {
+        if ([UIImage imageWithContentsOfFile:cachePathForKey(key)]) {
+            imagesCache[key]=[UIImage imageWithContentsOfFile:cachePathForKey(key)];
+        }
+    }
+    return imagesCache[key];
 }
 
 - (void)setImage:(UIImage*)anImage forKey:(NSString*)key {
