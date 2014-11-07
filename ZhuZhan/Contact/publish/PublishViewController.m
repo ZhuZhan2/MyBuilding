@@ -26,14 +26,6 @@
 @implementation PublishViewController
 @synthesize toolBar,inputView,alertLabel,leftBtnImage,rightBtnImage,publishImage,camera,publishImageStr;
 static int PublishNum =1;//1 发布动态  2，发布产品
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -66,8 +58,8 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     [inputView becomeFirstResponder];
     [self.view addSubview:inputView];
     
-    alertLabel = [[UILabel alloc] initWithFrame:CGRectMake(57, 4, 120, 30)];
-    alertLabel.text = @"您在做什么?";
+    alertLabel = [[UILabel alloc] initWithFrame:CGRectMake(57, 4, 220, 30)];
+    alertLabel.text = @"您在做什么?（限150个字）";
     alertLabel.textColor = GrayColor;
     alertLabel.alpha = 0.6;
     alertLabel.textAlignment =NSTextAlignmentLeft;
@@ -193,7 +185,6 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     camera.delegate = self;
     [self.view addSubview:camera.view];
     [camera modifyUserIconWithButtonIndex:buttonIndex WithButtonTag:110120];
-    
 }
 
 -(void)publishImage:(NSString *)imageStr andImage:(UIImage *)image;
@@ -244,12 +235,12 @@ static int PublishNum =1;//1 发布动态  2，发布产品
         inputView.text =@"";
         return;
     }
+    //防止用户重复点击，所以网络还在发送上次请求的时候，isPublish为YES
     if (isPublish) {
         return;
     }
     isPublish=YES;
-    
-    NSLog(@"===>%d",PublishNum);
+    NSString* publishContent=inputView.text.length>150?[inputView.text substringToIndex:150]:inputView.text;
     if (PublishNum ==1) {
         NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",inputView.text,@"ActiveText",@"Personal",@"Category",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
         
@@ -257,8 +248,6 @@ static int PublishNum =1;//1 发布动态  2，发布产品
             isPublish=NO;
             PublishNum = 1;
             if(!error){
-                NSLog(@"******posts***** %@",posts);
-                
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
                 [alert show];
                 publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
@@ -267,7 +256,6 @@ static int PublishNum =1;//1 发布动态  2，发布产品
             }else{
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
                 [alert show];
-
             }
         } dic:dic noNetWork:nil];
 
@@ -293,16 +281,24 @@ static int PublishNum =1;//1 发布动态  2，发布产品
                     }else{
                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
                         [alert show];
-
+                        
                     }
-                    
                 } dic:parameters noNetWork:nil];
             }else{
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
                 [alert show];
             }
+//            if(!error){
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
+//                [alert show];
+//                publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
+//                inputView.text =@"";
+//                publishImageStr =@"";
+//            }else{
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
+//                [alert show];
+//            }
         } dic:dic noNetWork:nil];
-
     }
 }
 

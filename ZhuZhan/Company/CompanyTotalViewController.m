@@ -26,7 +26,6 @@
     self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64.5, 320, 568) superView:self.view];
     [super viewDidLoad];
     [self firstNetWork];
-    // Do any additional setup after loading the view.
 }
 
 -(void)firstNetWork{
