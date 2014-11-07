@@ -385,7 +385,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ActivesModel *model = showArr[indexPath.row];
-    NSLog(@"%@",model.a_entityUrl);
+    NSLog(@"%@",model.dict);
     if([model.a_category isEqualToString:@"Project"]){
         ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
         vc.projectId = model.a_entityId;

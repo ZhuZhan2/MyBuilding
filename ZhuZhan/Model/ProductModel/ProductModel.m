@@ -86,6 +86,7 @@
         return nil;
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/ProductInformation/AddProductInformation"];
+    NSLog(@"urlStr==%@,%@",urlStr,dic);
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON==add=>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){

@@ -203,7 +203,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //获得上方主要显示的图文内容
 -(void)getMainView{
     self.mainView = [[UIView alloc] initWithFrame:CGRectZero];
-    
+
     UIView* forCornerView=[[UIView alloc]initWithFrame:CGRectZero];
     [self.mainView addSubview:forCornerView];
     forCornerView.layer.cornerRadius=2;

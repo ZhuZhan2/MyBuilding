@@ -185,7 +185,6 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     camera.delegate = self;
     [self.view addSubview:camera.view];
     [camera modifyUserIconWithButtonIndex:buttonIndex WithButtonTag:110120];
-    
 }
 
 -(void)publishImage:(NSString *)imageStr andImage:(UIImage *)image;
@@ -236,21 +235,17 @@ static int PublishNum =1;//1 发布动态  2，发布产品
         inputView.text =@"";
         return;
     }
+    //防止用户重复点击，所以网络还在发送上次请求的时候，isPublish为YES
     if (isPublish) {
         return;
     }
     isPublish=YES;
     NSString* publishContent=inputView.text.length>150?[inputView.text substringToIndex:150]:inputView.text;
     if (PublishNum ==1) {
-        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",publishContent,@"ActiveText",@"Personal",@"Category",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
-        //NSString *headBlankStr =@"             ";
-        //inputView.text = [NSString stringWithFormat:@"%@%@",headBlankStr,inputView.text];
-        
+        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",publishContent,@"ActiveText",[LoginSqlite getdata:@"userType"],@"Category",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
         [CommentApi SendActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
             isPublish=NO;
             if(!error){
-                NSLog(@"******posts***** %@",posts);
-                
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
                 [alert show];
                 publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
@@ -259,13 +254,11 @@ static int PublishNum =1;//1 发布动态  2，发布产品
             }else{
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
                 [alert show];
-
             }
         } dic:dic noNetWork:nil];
 
     }else if (PublishNum ==2) {
-        NSLog(@"publishImageStr ==> %@",publishImageStr);
-        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"21344",@"ProductName",publishContent,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
+        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:publishContent,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
 
         [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
             isPublish=NO;
@@ -273,7 +266,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
                 NSDictionary *dic = [posts objectAtIndex:0];
                 NSString *productId = [[[dic objectForKey:@"d"] objectForKey:@"data"] objectForKey:@"id"];
                 
-                NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:productId,@"id",@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0",@"PublishedBy", nil];
+                NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:productId,@"id",userIdStr,@"PublishedBy", nil];
                 
                 [ProductModel PublishProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
                     if(!error){
@@ -286,7 +279,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
                     }else{
                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
                         [alert show];
-
+                        
                     }
                     
                 } dic:parameters noNetWork:nil];
@@ -294,8 +287,17 @@ static int PublishNum =1;//1 发布动态  2，发布产品
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
                 [alert show];
             }
+//            if(!error){
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
+//                [alert show];
+//                publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
+//                inputView.text =@"";
+//                publishImageStr =@"";
+//            }else{
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
+//                [alert show];
+//            }
         } dic:dic noNetWork:nil];
-
     }
 }
 
