@@ -24,6 +24,7 @@
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"userName"]];
     self.a_createdBy=[ProjectStage ProjectStrStage:dict[@"createdBy"]];
     self.a_userType=[ProjectStage ProjectStrStage:dict[@"userType"]];
+    self.a_isFocused = [ProjectStage ProjectStrStage:dict[@"isFocused"]];
 }
 
 -(NSString *)a_commentNumber{
