@@ -169,22 +169,22 @@ static int PublishNum =1;//1 发布动态  2，发布产品
 
 -(void)publshActivities
 {
+    PublishNum =1;
     NSLog(@"想说些什么");
     NSLog(@"%@",NSStringFromCGRect([inputView.subviews[0] frame]));
     leftBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_07a"];
     rightBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_13a"];
     leftBtnLabel.textColor=[UIColor blackColor];
     rightBtnLabel.textColor=RGBCOLOR(192, 192, 192);
-    PublishNum =1;
 }
 
 -(void)publshProduct{
+    PublishNum =2;
   NSLog(@"发布产品信息");
     leftBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_09a"];
     rightBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_11a"];
     rightBtnLabel.textColor=[UIColor blackColor];
     leftBtnLabel.textColor=RGBCOLOR(192, 192, 192);
-    PublishNum =2;
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -252,11 +252,10 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     NSLog(@"===>%d",PublishNum);
     if (PublishNum ==1) {
         NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",inputView.text,@"ActiveText",@"Personal",@"Category",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
-        //NSString *headBlankStr =@"             ";
-        //inputView.text = [NSString stringWithFormat:@"%@%@",headBlankStr,inputView.text];
         
         [CommentApi SendActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
             isPublish=NO;
+            PublishNum = 1;
             if(!error){
                 NSLog(@"******posts***** %@",posts);
                 
@@ -273,19 +272,15 @@ static int PublishNum =1;//1 发布动态  2，发布产品
         } dic:dic noNetWork:nil];
 
     }else if (PublishNum ==2) {
-        NSLog(@"publishImageStr ==> %@",publishImageStr);
         NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:inputView.text,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
-//            NSLog(@"******dic****** %@",dic);
-//        NSString *headBlankStr =@"             ";
-//        inputView.text = [NSString stringWithFormat:@"%@%@",headBlankStr,inputView.text];
-//          NSLog(@"******userId****** %@",userIdStr);
         [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
             isPublish=NO;
+            PublishNum = 2;
             if(!error){
                 NSDictionary *dic = [posts objectAtIndex:0];
                 NSString *productId = [[[dic objectForKey:@"d"] objectForKey:@"data"] objectForKey:@"id"];
                 
-                NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:productId,@"id",@"a8909c12-d40e-4cdb-b834-e69b7b9e13c0",@"PublishedBy", nil];
+                NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:productId,@"id",userIdStr,@"PublishedBy", nil];
                 
                 [ProductModel PublishProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
                     if(!error){

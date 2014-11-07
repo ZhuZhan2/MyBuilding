@@ -85,10 +85,9 @@ static int BtnTag =0;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    image = [self fixOrientation:image];
+    //image = [self fixOrientation:image];
     
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
-    
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.3);
     NSString* imageStr = [[NSString alloc] initWithData:[GTMBase64 encodeData:imageData] encoding:NSUTF8StringEncoding];
     
     if (BtnTag == 2014090201) {//更换背景

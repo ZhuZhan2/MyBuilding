@@ -143,11 +143,14 @@
     
     for (id subview in [_tableView subviews])
     {
+        //NSLog(@"===>%@",[subview class]);
         if ([subview isKindOfClass:[UIImageView class]])
         {
             UIImageView *imageView = (UIImageView *)subview;
             
-            if (imageView.frame.size.width == 7.0f || imageView.frame.size.width == 5.0f || imageView.frame.size.width == 3.5f)
+            //NSLog(@"===>%f",imageView.frame.size.width);
+            
+            if (imageView.frame.size.width == 7.0f || imageView.frame.size.width == 5.0f || imageView.frame.size.width == 3.5f ||  imageView.frame.size.width == 2.5f)
             {
                 imageView.clipsToBounds = NO;
                 [imageView addSubview:self];
@@ -161,7 +164,7 @@
 - (void)updateDisplayWithCell:(UITableViewCell *)cell
 {
     NSDate *date = [self.delegate timeScroller:self dateForCell:cell];
-    NSLog(@"%@",date);
+    //NSLog(@"%@",date);
     if (!date || [date isEqualToDate:_lastDate])
     {
         return;
@@ -406,7 +409,6 @@
     }
     
     [self checkChanges];
-    
     if (!_scrollBar)
     {
         return;
@@ -414,12 +416,11 @@
     
     CGRect selfFrame = self.frame;
     CGRect scrollBarFrame = _scrollBar.frame;
-//    NSLog(@"%f,%f,%f,%f",self.frame.origin.x,self.frame.size.width,_backgroundView.frame.origin.x,_backgroundView.frame.size.width);
     self.frame = CGRectMake(CGRectGetWidth(selfFrame) * -1.0f,
                             (CGRectGetHeight(scrollBarFrame) / 2.0f) - (CGRectGetHeight(selfFrame) / 2.0f),
                             CGRectGetWidth(selfFrame),
                             CGRectGetHeight(_backgroundView.frame));
-    
+    //NSLog(@"%f,%f,%f,%f",self.frame.origin.x,self.frame.size.width,_backgroundView.frame.origin.x,_backgroundView.frame.size.width);
     CGPoint point = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
     point = [_scrollBar convertPoint:point toView:_tableView];
     
