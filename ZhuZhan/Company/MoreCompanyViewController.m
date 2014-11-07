@@ -17,11 +17,12 @@
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "EndEditingGesture.h"
-@interface MoreCompanyViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UIScrollViewDelegate>
+@interface MoreCompanyViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UIScrollViewDelegate,CompanyDetailDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)UISearchBar* searchBar;
 @property(nonatomic,strong)NSString *keywords;
+@property(nonatomic)NSInteger lastIndex;
 @end
 
 @implementation MoreCompanyViewController
@@ -148,10 +149,16 @@
 //======================================================================
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    CompanyModel *model = self.showArr[indexPath.row-1];
+    self.lastIndex=indexPath.row;
+    [self gotoCompanyDetail:YES];
+}
+
+-(void)gotoCompanyDetail:(BOOL)needAnimation{
+    CompanyModel *model = self.showArr[self.lastIndex-1];
     CompanyDetailViewController* vc=[[CompanyDetailViewController alloc]init];
+    vc.delegate=self;
     vc.companyId = model.a_id;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:vc animated:needAnimation];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

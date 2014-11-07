@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "CompanyModel.h"
+@protocol CompanyDetailDelegate <NSObject>
+
+-(void)gotoCompanyDetail:(BOOL)needAnimation;
+
+@end
 @interface CompanyDetailViewController : UIViewController
 @property(nonatomic,strong)NSString *companyId;
+@property(nonatomic,weak)id<CompanyDetailDelegate>delegate;
 @end

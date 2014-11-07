@@ -11,4 +11,5 @@
 
 @interface CompanyViewController : UIViewController
 @property(nonatomic,strong)CompanyModel *model;
+@property(nonatomic)BOOL needNoticeView;
 @end
