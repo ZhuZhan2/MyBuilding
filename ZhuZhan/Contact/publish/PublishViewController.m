@@ -248,6 +248,8 @@ static int PublishNum =1;//1 发布动态  2，发布产品
         return;
     }
     isPublish=YES;
+    
+    NSLog(@"===>%d",PublishNum);
     if (PublishNum ==1) {
         NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",inputView.text,@"ActiveText",@"Personal",@"Category",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
         //NSString *headBlankStr =@"             ";
@@ -270,11 +272,9 @@ static int PublishNum =1;//1 发布动态  2，发布产品
             }
         } dic:dic noNetWork:nil];
 
-    }
-    
-    if (PublishNum ==2) {
+    }else if (PublishNum ==2) {
         NSLog(@"publishImageStr ==> %@",publishImageStr);
-        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"21344",@"ProductName",inputView.text,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
+        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:inputView.text,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
 //            NSLog(@"******dic****** %@",dic);
 //        NSString *headBlankStr =@"             ";
 //        inputView.text = [NSString stringWithFormat:@"%@%@",headBlankStr,inputView.text];

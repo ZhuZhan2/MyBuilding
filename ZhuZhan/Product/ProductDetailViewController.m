@@ -570,7 +570,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)rightBtnClick{
     if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
-        UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"关注产品", nil];
+        NSString *string = nil;
+        if([self.isFocused isEqualToString:@"0"]){
+            string = @"关注产品";
+        }else{
+            string = @"取消关注";
+        }
+        UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:string, nil];
         [actionSheet showInView:self.view];
     }else{
         LoginViewController *loginVC = [[LoginViewController alloc] init];
@@ -594,10 +600,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [alertView show];
             }
         } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"productId":self.productModel.a_id} mutableCopy] noNetWork:nil];
-        
     }else{
         NSLog(@"取消");
     }
+}
+
+-(void)loginComplete{
+    
 }
 //-(void)getProductView{
 //    self.productView=[[UIView alloc]initWithFrame:CGRectZero];
