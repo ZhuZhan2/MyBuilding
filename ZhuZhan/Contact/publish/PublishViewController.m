@@ -26,14 +26,6 @@
 @implementation PublishViewController
 @synthesize toolBar,inputView,alertLabel,leftBtnImage,rightBtnImage,publishImage,camera,publishImageStr;
 static int PublishNum =1;//1 发布动态  2，发布产品
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -66,8 +58,8 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     [inputView becomeFirstResponder];
     [self.view addSubview:inputView];
     
-    alertLabel = [[UILabel alloc] initWithFrame:CGRectMake(57, 4, 120, 30)];
-    alertLabel.text = @"您在做什么?";
+    alertLabel = [[UILabel alloc] initWithFrame:CGRectMake(57, 4, 220, 30)];
+    alertLabel.text = @"您在做什么?（限150个字）";
     alertLabel.textColor = GrayColor;
     alertLabel.alpha = 0.6;
     alertLabel.textAlignment =NSTextAlignmentLeft;
@@ -248,8 +240,9 @@ static int PublishNum =1;//1 发布动态  2，发布产品
         return;
     }
     isPublish=YES;
+    NSString* publishContent=inputView.text.length>150?[inputView.text substringToIndex:150]:inputView.text;
     if (PublishNum ==1) {
-        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",inputView.text,@"ActiveText",@"Personal",@"Category",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
+        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",publishContent,@"ActiveText",@"Personal",@"Category",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
         //NSString *headBlankStr =@"             ";
         //inputView.text = [NSString stringWithFormat:@"%@%@",headBlankStr,inputView.text];
         
@@ -274,11 +267,8 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     
     if (PublishNum ==2) {
         NSLog(@"publishImageStr ==> %@",publishImageStr);
-        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"21344",@"ProductName",inputView.text,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
-//            NSLog(@"******dic****** %@",dic);
-//        NSString *headBlankStr =@"             ";
-//        inputView.text = [NSString stringWithFormat:@"%@%@",headBlankStr,inputView.text];
-//          NSLog(@"******userId****** %@",userIdStr);
+        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"21344",@"ProductName",publishContent,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
+
         [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
             isPublish=NO;
             if(!error){

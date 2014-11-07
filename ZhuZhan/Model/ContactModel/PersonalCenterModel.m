@@ -8,6 +8,7 @@
 
 #import "PersonalCenterModel.h"
 #import "ProjectStage.h"
+#import "LoginSqlite.h"
 @implementation PersonalCenterModel
 
 - (void)setDict:(NSDictionary *)dict{
@@ -26,5 +27,6 @@
     self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageHeight"]]];
     self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"avatarUrl"]];
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"userName"]];
+    self.a_userType=[LoginSqlite getdata:@"userType"];
 }
 @end
