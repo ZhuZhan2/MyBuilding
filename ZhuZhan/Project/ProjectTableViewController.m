@@ -186,6 +186,7 @@
     ProgramDetailViewController* vc=[[ProgramDetailViewController alloc]init];
     projectModel *model = showArr[indexPath.row];
     vc.projectId = model.a_id;
+    vc.isFocused = model.isFocused;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

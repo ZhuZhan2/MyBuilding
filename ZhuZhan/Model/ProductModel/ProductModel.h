@@ -40,4 +40,7 @@
 
 //关注产品
 + (NSURLSessionDataTask *)AddProductFocusWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
+
+//取消关注
++ (NSURLSessionDataTask *)DeleteProductionUserFocusWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 @end

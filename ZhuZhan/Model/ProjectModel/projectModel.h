@@ -100,6 +100,8 @@
 //装修 阶段 图片
 @property(nonatomic,strong)NSMutableArray* decorationImages;
 
+@property(nonatomic,strong)NSString *isFocused;
+
 @property (nonatomic, copy) NSDictionary *dict;
 
 //***********************************************************************************

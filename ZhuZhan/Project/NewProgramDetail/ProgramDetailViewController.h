@@ -10,4 +10,5 @@
 #import "projectModel.h"
 @interface ProgramDetailViewController : UIViewController
 @property(nonatomic,strong)NSString *projectId;
+@property(nonatomic,strong)NSString* isFocused;
 @end

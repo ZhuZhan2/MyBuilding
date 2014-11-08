@@ -242,8 +242,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     isPublish=YES;
     NSString* publishContent=inputView.text.length>150?[inputView.text substringToIndex:150]:inputView.text;
     if (PublishNum ==1) {
-        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",inputView.text,@"ActiveText",@"Personal",@"Category",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
-        
+        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",publishContent,@"ActiveText",[LoginSqlite getdata:@"userType"],@"Category",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
         [CommentApi SendActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
             isPublish=NO;
             PublishNum = 1;
@@ -260,7 +259,8 @@ static int PublishNum =1;//1 发布动态  2，发布产品
         } dic:dic noNetWork:nil];
 
     }else if (PublishNum ==2) {
-        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:inputView.text,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
+        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:publishContent,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
+
         [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
             isPublish=NO;
             PublishNum = 2;

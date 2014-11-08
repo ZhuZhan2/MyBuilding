@@ -29,7 +29,8 @@
 #import "ProjectImageModel.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
-@interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate,CycleScrollViewDelegate,UIActionSheetDelegate,AddCommentDelegate>
+#import "IsFocusedApi.h"
+@interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate,CycleScrollViewDelegate,UIActionSheetDelegate,AddCommentDelegate,LoginViewDelegate>
 @property(nonatomic,strong)UITableView* contentTableView;
 @property(nonatomic,strong)UITableView* selectTableView;
 
@@ -103,6 +104,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
+    NSLog(@"==========>%@",self.isFocused);
     [self initNavi];
     [self loadIndicatorView];
     [self firstNetWork];
@@ -178,9 +180,22 @@
 
 //去评论项目 关注项目
 -(void)rightBtnClick{
-    UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"关注项目",@"评论项目", nil];
-    [actionSheet showInView:self.view];
     NSLog(@"rightBtnClick");
+    if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        NSString *string = nil;
+        if([self.isFocused isEqualToString:@"0"]){
+            string = @"关注产品";
+        }else{
+            string = @"取消关注";
+        }
+        UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:string,@"评论项目", nil];
+        [actionSheet showInView:self.view];
+    }else{
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.delegate = self;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }
 }
 
 -(void)initNavi{
@@ -270,12 +285,24 @@
     }
     
     if (buttonIndex==0) {
-        NSLog(@"关注");
-        [ProjectApi AddProjectFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if (!error) {
-                NSLog(@"notice sucess");
-            }
-        } dic:[@{@"UserId":[LoginSqlite getdata:@"userId"],@"ProjectId":self.model.a_id} mutableCopy] noNetWork:nil];
+        if([self.isFocused isEqualToString:@"0"]){
+            [ProjectApi AddProjectFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if (!error) {
+                    NSLog(@"notice sucess");
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alertView show];
+                    self.isFocused = @"1";
+                }
+            } dic:[@{@"UserId":[LoginSqlite getdata:@"userId"],@"ProjectId":self.model.a_id} mutableCopy] noNetWork:nil];
+        }else{
+            [ProjectApi DeleteFocusProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alertView show];
+                    self.isFocused = @"0";
+                }
+            } dic:[@{@"UserId":[LoginSqlite getdata:@"userId"],@"ProjectId":self.model.a_id} mutableCopy] noNetWork:nil];
+        }
         
     }else if (buttonIndex==1){
         NSLog(@"评论");
@@ -830,6 +857,14 @@
 //业主类型内容
 -(NSArray*)getOwnerTypeViewWithImageAndOwnersWithIndexPath:(MyIndexPath*)indexPath{
     return [self.model.a_ownerType componentsSeparatedByString:@","];
+}
+
+-(void)loginComplete{
+    [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.isFocused = [NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
+        }
+    } userId:[LoginSqlite getdata:@"userId"] targetId:self.model.a_id EntityCategory:@"Project" noNetWork:nil];
 }
 
 - (void)didReceiveMemoryWarning{

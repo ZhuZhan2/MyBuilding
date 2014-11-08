@@ -708,6 +708,7 @@
 		D3D1A7B819F8E9B40006F954 /* 公司－我的公司_05b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B619F8E9B40006F954 /* 公司－我的公司_05b@2x.png */; };
 		D3D1A7BB19F8F6250006F954 /* 公司－公司详情_05b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B919F8F6250006F954 /* 公司－公司详情_05b.png */; };
 		D3D1A7BC19F8F6250006F954 /* 公司－公司详情_05b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7BA19F8F6250006F954 /* 公司－公司详情_05b@2x.png */; };
+		D3D29B7D1A0DB9CA00CAB1EB /* IsFocusedApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D29B7C1A0DB9CA00CAB1EB /* IsFocusedApi.m */; };
 		D3D2E60119F7A79500908D8B /* EmployeesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2E60019F7A79500908D8B /* EmployeesModel.m */; };
 		D3D4FB301A0872770033BB34 /* CompanyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4FB2F1A0872770033BB34 /* CompanyCenterViewController.m */; };
 		D3D4FB331A087A830033BB34 /* 公司－账号设置_03a-05.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D4FB311A087A830033BB34 /* 公司－账号设置_03a-05.png */; };
@@ -1890,6 +1891,8 @@
 		D3D1A7B619F8E9B40006F954 /* 公司－我的公司_05b@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_05b@2x.png"; sourceTree = "<group>"; };
 		D3D1A7B919F8F6250006F954 /* 公司－公司详情_05b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－公司详情_05b.png"; sourceTree = "<group>"; };
 		D3D1A7BA19F8F6250006F954 /* 公司－公司详情_05b@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－公司详情_05b@2x.png"; sourceTree = "<group>"; };
+		D3D29B7B1A0DB9CA00CAB1EB /* IsFocusedApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsFocusedApi.h; sourceTree = "<group>"; };
+		D3D29B7C1A0DB9CA00CAB1EB /* IsFocusedApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsFocusedApi.m; sourceTree = "<group>"; };
 		D3D2E5FF19F7A79500908D8B /* EmployeesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeesModel.h; sourceTree = "<group>"; };
 		D3D2E60019F7A79500908D8B /* EmployeesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeesModel.m; sourceTree = "<group>"; };
 		D3D49EE919FE0B76002B3B99 /* HeadImageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadImageDelegate.h; sourceTree = "<group>"; };
@@ -3468,6 +3471,7 @@
 		D3AC618B19B6BF930015B62F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D3D29B7A1A0DB9AC00CAB1EB /* IsFocused */,
 				D36040E319F51E6900E9727D /* CompanyModel */,
 				04248B0219C67C1D000FB8A9 /* ProductModel */,
 				04BF13A519C4162A002E02C9 /* ProjectModel */,
@@ -3734,6 +3738,15 @@
 				D3AD61AB19AEF80B001FD483 /* UIViewController+MJPopupViewController.m */,
 			);
 			path = PopView;
+			sourceTree = "<group>";
+		};
+		D3D29B7A1A0DB9AC00CAB1EB /* IsFocused */ = {
+			isa = PBXGroup;
+			children = (
+				D3D29B7B1A0DB9CA00CAB1EB /* IsFocusedApi.h */,
+				D3D29B7C1A0DB9CA00CAB1EB /* IsFocusedApi.m */,
+			);
+			path = IsFocused;
 			sourceTree = "<group>";
 		};
 		D3D74E8B19FA302900ED8B62 /* Login */ = {
@@ -4464,6 +4477,7 @@
 				D3AD60A619AC5769001FD483 /* MBProgressHUD.m in Sources */,
 				D3A4281019C1749E00BAB6C7 /* ErrorView.m in Sources */,
 				04BF13B719C4162A002E02C9 /* ProjectContactModel.m in Sources */,
+				D3D29B7D1A0DB9CA00CAB1EB /* IsFocusedApi.m in Sources */,
 				0426C28119922D5A00CD8822 /* GPUImageKuwaharaFilter.m in Sources */,
 				0426C25D19922D5A00CD8822 /* GPUImageDarkenBlendFilter.m in Sources */,
 				0426C2FD19922D5A00CD8822 /* UIAlertView+AFNetworking.m in Sources */,

@@ -45,6 +45,7 @@
     self.a_electorWeakInstallation = [ProjectStage ProjectStrStage:dict[@"electorWeakInstallation"]];
     self.a_decorationSituation = [ProjectStage ProjectStrStage:dict[@"decorationSituation"]];
     self.a_decorationProcess = [ProjectStage ProjectStrStage:dict[@"decorationProcess"]];
+    self.isFocused = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"isFocused"]]];
 }
 
 -(void)getContacts:(NSArray *)contacts{

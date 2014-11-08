@@ -24,7 +24,7 @@
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"userName"]];
     self.a_createdBy=[ProjectStage ProjectStrStage:dict[@"createdBy"]];
     self.a_userType=[ProjectStage ProjectStrStage:dict[@"userType"]];
-    self.a_isFocused = [ProjectStage ProjectStrStage:dict[@"isFocused"]];
+    self.a_isFocused = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"isFocused"]]];
 }
 
 -(NSString *)a_commentNumber{
@@ -42,6 +42,7 @@
         return nil;
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/ProductInformation/ProductInformation?pageSize=10&pageIndex=%d",startIndex];
+    //NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
@@ -154,6 +155,37 @@
     }
     NSLog(@"%@",dic);
     NSString *urlStr = [NSString stringWithFormat:@"api/ProductionUserFocus/AddProductionUserFocus"];
+    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            //[mutablePosts addObject:JSON[@"d"][@"data"]];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
+            
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)DeleteProductionUserFocusWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSLog(@"%@",dic);
+    NSString *urlStr = [NSString stringWithFormat:@"api/ProductionUserFocus/DeleteProductionUserFocus"];
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){

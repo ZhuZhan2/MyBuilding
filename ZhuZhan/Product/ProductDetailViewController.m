@@ -27,6 +27,7 @@
 #import "MBProgressHUD.h"
 #import "ProductModel.h"
 #import "LoginViewController.h"
+#import "IsFocusedApi.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate,ACTimeScrollerDelegate,LoginViewDelegate>
 @property(nonatomic,strong)UITableView* tableView;
 
@@ -61,7 +62,7 @@
 
 @property(nonatomic,copy)NSString* myName;//登录用户的用户昵称
 @property(nonatomic,copy)NSString* myImageUrl;//登录用户的用户头像
-@property(nonatomic,copy)NSString* isFocused;;
+@property(nonatomic,copy)NSString* isFocused;
 @end
 
 @implementation ProductDetailViewController
@@ -77,7 +78,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(NSString*)myImageUrl{
     if (!_myImageUrl) {
         _myImageUrl=[LoginSqlite getdata:@"userImage"];
-        NSLog(@"%@",_myImageUrl);
     }
     return _myImageUrl;
 }
@@ -593,20 +593,35 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
     
     if (buttonIndex==0) {
-        NSLog(@"关注");
-        [ProductModel AddProductFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alertView show];
-            }
-        } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"productId":self.productModel.a_id} mutableCopy] noNetWork:nil];
+        if([self.isFocused isEqualToString:@"0"]){
+            NSLog(@"关注");
+            [ProductModel AddProductFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alertView show];
+                    self.isFocused = @"1";
+                }
+            } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"productId":self.productModel.a_id} mutableCopy] noNetWork:nil];
+        }else{
+            [ProductModel DeleteProductionUserFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alertView show];
+                    self.isFocused = @"0";
+                }
+            } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"productId":self.productModel.a_id} mutableCopy] noNetWork:nil];
+        }
     }else{
         NSLog(@"取消");
     }
 }
 
 -(void)loginComplete{
-    
+    [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.isFocused = [NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
+        }
+    } userId:[LoginSqlite getdata:@"userId"] targetId:self.productModel.a_id EntityCategory:@"Product" noNetWork:nil];
 }
 //-(void)getProductView{
 //    self.productView=[[UIView alloc]initWithFrame:CGRectZero];
