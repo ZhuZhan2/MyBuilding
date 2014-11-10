@@ -13,7 +13,6 @@
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
 #import "LoginSqlite.h"
-#import "LoginViewController.h"
 #import "PersonalDetailViewController.h"
 @interface PorjectCommentTableViewController ()
 
@@ -99,6 +98,7 @@
     if ([deviceToken isEqualToString:@""]) {
         
         LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.delegate = self;
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }else{
@@ -248,5 +248,15 @@
     PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
     personalVC.contactId = aid;
     [self.navigationController pushViewController:personalVC animated:YES];
+}
+
+
+
+-(void)loginComplete{
+
+}
+
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
+    
 }
 @end

@@ -11,7 +11,8 @@
 #import "MultipleChoiceViewController.h"
 #import "SaveConditionsViewController.h"
 #import "ConditionsView.h"
-@interface AdvancedSearchViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,AdvancedSearchConditionsDelegate,MChoiceViewDelegate,SaveConditionsViewDelegate>{
+#import "LoginViewController.h"
+@interface AdvancedSearchViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,AdvancedSearchConditionsDelegate,MChoiceViewDelegate,SaveConditionsViewDelegate,LoginViewDelegate>{
     UITableView *_tableView;
     NSMutableDictionary *dataDic;
     MultipleChoiceViewController *multipleChoseView;

@@ -10,7 +10,8 @@
 #import "ACTimeScroller.h"
 #import "ProjectCommentView.h"
 #import "AddCommentViewController.h"
-@interface PorjectCommentTableViewController : UITableViewController<ACTimeScrollerDelegate,AddCommentDelegate,ProjectCommentViewDelegate>{
+#import "LoginViewController.h"
+@interface PorjectCommentTableViewController : UITableViewController<ACTimeScrollerDelegate,AddCommentDelegate,ProjectCommentViewDelegate,LoginViewDelegate>{
     NSString *projectId;
     NSString *projectName;
     ACTimeScroller *_timeScroller;
