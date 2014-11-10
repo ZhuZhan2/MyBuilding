@@ -418,7 +418,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         ActivesModel *model = showArr[indexPath.row];
         NSLog(@"==>%@",model.a_entityUrl);
         ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
-        vc.productId = model.a_entityId;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
@@ -444,6 +443,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if ([deviceToken isEqualToString:@""]) {
         LoginViewController *loginVC = [[LoginViewController alloc] init];
         loginVC.delegate = self;
+        loginVC.needDelayCancel = YES;
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }else{
@@ -628,6 +628,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)loginComplete{
+    
+}
+
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
     if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
         [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
@@ -680,6 +684,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     [viewArr addObject:@""];
                 }
                 [_datasource addObject:model.a_time];
+            }
+            if(block){
+                block();
             }
             [self.tableView reloadData];
         }

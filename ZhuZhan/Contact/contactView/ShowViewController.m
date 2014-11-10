@@ -136,12 +136,13 @@
     }else{
         LoginViewController *loginVC = [[LoginViewController alloc] init];
         loginVC.delegate = self;
+        loginVC.needDelayCancel = YES;
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }
 }
 
--(void)loginComplete{
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
     NSLog(@"已登录");
     [CommentApi UserBriefInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
@@ -153,6 +154,10 @@
                     [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
                     isFoucsed = 0;
                 }
+            }
+            
+            if(block){
+                block();
             }
         }
     } userId:self.createdBy noNetWork:nil];

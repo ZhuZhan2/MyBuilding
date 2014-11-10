@@ -265,4 +265,8 @@
     [self.navigationController popViewControllerAnimated:NO];
     [self.delegate gotoCompanyDetail:NO];
 }
+
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
+    
+}
 @end

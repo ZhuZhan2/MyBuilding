@@ -15,7 +15,6 @@
 #import "LoginSqlite.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
-#import "LoginViewController.h"
 @interface AdvancedSearchViewController ()
 
 @end
@@ -130,6 +129,7 @@
     if(![dataDic[@"keywords"] isEqualToString:@""]){
         if([[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
             LoginViewController *loginVC = [[LoginViewController alloc] init];
+            loginVC.delegate = self;
             UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
             [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
         }else{
@@ -390,5 +390,13 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请填写关键字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
     }
+}
+
+-(void)loginComplete{
+    
+}
+
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
+
 }
 @end
