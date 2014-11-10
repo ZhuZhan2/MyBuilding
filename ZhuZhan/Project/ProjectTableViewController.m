@@ -96,7 +96,11 @@
             loadingView = nil;
         }
     } startIndex:startIndex noNetWork:^{
+        self.tableView.scrollEnabled = NO;
+        [LoadingView removeLoadingView:loadingView];
+        loadingView = nil;
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled = YES;
             [self firstWork];
         }];
     }];

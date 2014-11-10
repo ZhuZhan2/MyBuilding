@@ -109,6 +109,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 }
             } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
                 self.tableView.scrollEnabled=NO;
+                [LoadingView removeLoadingView:loadingView];
+                loadingView = nil;
                 [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
                     self.tableView.scrollEnabled=YES;
                     [self firstNetWork];
@@ -127,6 +129,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 }
             } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
                 self.tableView.scrollEnabled=NO;
+                [LoadingView removeLoadingView:loadingView];
+                loadingView = nil;
                 [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
                     self.tableView.scrollEnabled=YES;
                     [self firstNetWork];
@@ -155,6 +159,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }
     } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
         self.tableView.scrollEnabled=NO;
+        [LoadingView removeLoadingView:loadingView];
+        loadingView = nil;
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
             self.tableView.scrollEnabled=YES;
             [self firstNetWork];
