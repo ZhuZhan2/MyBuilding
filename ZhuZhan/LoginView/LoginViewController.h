@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol LoginViewDelegate <NSObject>
+-(void)loginCompleteWithDelayBlock:(void(^)())block;
 -(void)loginComplete;
 @end
 
@@ -17,4 +18,5 @@
     UITextField *_passWordTextField;
 }
 @property(nonatomic,weak)id<LoginViewDelegate>delegate;
+@property(nonatomic)BOOL needDelayCancel;
 @end

@@ -102,7 +102,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if (self) {
         self.productModel=productModel;
         self.isFocused = self.productModel.a_isFocused;
-        [self loadMyPropertyWithImgW:productModel.a_imageWidth imgH:productModel.a_imageHeight imgUrl:productModel.a_imageUrl userImgUrl:productModel.a_avatarUrl content:productModel.a_content entityID:productModel.a_id entityUrl:@"" userName:productModel.a_userName category:@"" createdBy:productModel.a_createdBy userType:productModel.a_userType];
+        [self loadMyPropertyWithImgW:productModel.a_imageWidth imgH:productModel.a_imageHeight imgUrl:productModel.a_imageUrl userImgUrl:productModel.a_avatarUrl content:productModel.a_content entityID:productModel.a_id entityUrl:@"" userName:productModel.a_userName category:@"Product" createdBy:productModel.a_createdBy userType:productModel.a_userType];
     }
     return self;
 }
@@ -580,6 +580,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [actionSheet showInView:self.view];
     }else{
         LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.needDelayCancel=YES;
         loginVC.delegate = self;
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
@@ -616,12 +617,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
 }
 
--(void)loginComplete{
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
     [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.isFocused = [NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
+            if (block) {
+                block();
+            }
         }
-    } userId:[LoginSqlite getdata:@"userId"] targetId:self.productModel.a_id EntityCategory:@"Product" noNetWork:nil];
+    } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID EntityCategory:self.category noNetWork:nil];
 }
 //-(void)getProductView{
 //    self.productView=[[UIView alloc]initWithFrame:CGRectZero];
