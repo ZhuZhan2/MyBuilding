@@ -104,13 +104,29 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
-    NSLog(@"==========>%@",self.isFocused);
     [self initNavi];
     [self loadIndicatorView];
+    if ([LoginSqlite getdata:@"userId"]) {
+        
+    }
     [self firstNetWork];
 }
 
 -(void)firstNetWork{
+    [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            self.isFocused=posts[0][@"isFocused"];
+            NSLog(@"isFocused==%@",self.isFocused);
+            [self getContentList];
+        }
+    } userId:[LoginSqlite getdata:@"userId"] targetId:self.model.a_id EntityCategory:@"Project" noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
+}
+
+-(void)getContentList{
     [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             if(posts.count !=0){
@@ -120,8 +136,6 @@
                 [self loadSelf];
                 self.stages=[ProjectStage JudgmentProjectDetailStage:self.model];
             }
-        }else{
-            NSLog(@"=====%@",error);
         }
         [self endIndicatorView];
     } projectId:self.projectId noNetWork:^{
@@ -183,8 +197,9 @@
     NSLog(@"rightBtnClick");
     if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
         NSString *string = nil;
+        NSLog(@"=====,%@",self.isFocused);
         if([self.isFocused isEqualToString:@"0"]){
-            string = @"关注产品";
+            string = @"添加关注";
         }else{
             string = @"取消关注";
         }
@@ -192,6 +207,7 @@
         [actionSheet showInView:self.view];
     }else{
         LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.needDelayCancel=YES;
         loginVC.delegate = self;
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
@@ -306,17 +322,9 @@
         
     }else if (buttonIndex==1){
         NSLog(@"评论");
-        NSString *deviceToken = [LoginSqlite getdata:@"deviceToken"];
-        
-        if ([deviceToken isEqualToString:@""]) {
-            LoginViewController *loginVC = [[LoginViewController alloc] init];
-            UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
-            [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
-        }else{
-            self.addCommentVC=[[AddCommentViewController alloc]init];
-            self.addCommentVC.delegate=self;
-            [self presentPopupViewController:self.addCommentVC animationType:MJPopupViewAnimationFade flag:2];
-        }
+        self.addCommentVC=[[AddCommentViewController alloc]init];
+        self.addCommentVC.delegate=self;
+        [self presentPopupViewController:self.addCommentVC animationType:MJPopupViewAnimationFade flag:2];
     }else{
         NSLog(@"取消");
     }
@@ -859,12 +867,19 @@
     return [self.model.a_ownerType componentsSeparatedByString:@","];
 }
 
--(void)loginComplete{
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
     [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.isFocused = [NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
+            if (block) {
+                block();
+            }
         }
-    } userId:[LoginSqlite getdata:@"userId"] targetId:self.model.a_id EntityCategory:@"Project" noNetWork:nil];
+    } userId:[LoginSqlite getdata:@"userId"] targetId:self.model.a_id EntityCategory:@"Project" noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning{

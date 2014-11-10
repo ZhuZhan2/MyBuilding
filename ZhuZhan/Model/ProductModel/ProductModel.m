@@ -15,8 +15,8 @@
     _dict = dict;
     self.a_id = [ProjectStage ProjectStrStage:dict[@"id"]];
     self.a_name = [ProjectStage ProjectStrStage:dict[@"productName"]];
-    self.a_content = [ProjectStage ProjectStrStage:dict[@"productDescription"]];
-    self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"productImageLocation"]];
+    self.a_content = [ProjectStage ProjectStrStage:dict[@"content"]];
+    self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"imageLocation"]];
     self.a_commentNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"productCommentsNumber"]]];
     self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageWidth"]]];
     self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageHeight"]]];

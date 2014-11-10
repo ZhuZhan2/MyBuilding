@@ -126,6 +126,12 @@
 }
 
 -(void)cancelClick{
+    if (!self.needDelayCancel) {
+        [self cancelSelf];
+    }
+}
+
+-(void)cancelSelf{
     [_userNameTextField resignFirstResponder];
     [_passWordTextField resignFirstResponder];
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -167,10 +173,19 @@
                 [LoginSqlite insertData:model.a_userName datakey:@"userName"];
                 [LoginSqlite insertData:model.a_userImage datakey:@"userImage"];
                 [LoginSqlite insertData:model.a_userType datakey:@"userType"];
-                [self dismissViewControllerAnimated:YES completion:nil];
-                if([self.delegate respondsToSelector:@selector(loginComplete)]){
-                    [self.delegate loginComplete];
+                if (self.needDelayCancel) {
+                    if([self.delegate respondsToSelector:@selector(loginCompleteWithDelayBlock:)]){
+                        [self.delegate loginCompleteWithDelayBlock:^{
+                            [self cancelSelf];
+                        }];
+                    }
+                }else{
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    if([self.delegate respondsToSelector:@selector(loginComplete)]){
+                        [self.delegate loginComplete];
+                    }
                 }
+                
             }
         }
     } dic:dic noNetWork:nil];
