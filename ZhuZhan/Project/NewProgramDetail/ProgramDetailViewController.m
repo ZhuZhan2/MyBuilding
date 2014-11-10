@@ -106,9 +106,6 @@
     self.view.backgroundColor=[UIColor whiteColor];
     [self initNavi];
     [self loadIndicatorView];
-    if ([LoginSqlite getdata:@"userId"]) {
-        
-    }
     [self firstNetWork];
 }
 

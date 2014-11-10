@@ -150,13 +150,26 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self initMyTableView];
     [self getMainView];
     [self loadTimeScroller];
-    [self getNetWorkData];
+    [self firstNetWork];
 }
 
 //初始化竖直滚动导航的时间标示
 -(void)loadTimeScroller{
     self.timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:PSTableViewCellIdentifier];
+}
+
+-(void)firstNetWork{
+    [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
+            [self getNetWorkData];
+        }
+    } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID EntityCategory:self.category noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 //获取网络数据
@@ -572,7 +585,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
         NSString *string = nil;
         if([self.isFocused isEqualToString:@"0"]){
-            string = @"关注产品";
+            string = @"添加关注";
         }else{
             string = @"取消关注";
         }
