@@ -223,7 +223,8 @@
         [CompanyApi AddCompanyEmployeeWithBlock:^(NSMutableArray *posts, NSError *error) {
             self.memberBtn.enabled=YES;
             if(!error){
-                NSLog(@"成功");
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"已申请认证" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
             }
         } dic:dic noNetWork:nil];
     }else{

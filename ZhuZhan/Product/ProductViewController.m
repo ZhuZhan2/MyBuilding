@@ -61,6 +61,7 @@
             [self setupRefresh];
         }
     } startIndex:0 noNetWork:^{
+        [self endIndicatorView];
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-49-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
