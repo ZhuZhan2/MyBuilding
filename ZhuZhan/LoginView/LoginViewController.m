@@ -44,7 +44,7 @@
     UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [cancelBtn setBackgroundImage:[GetImagePath getImagePath:@"登录_03"] forState:UIControlStateNormal];
     [cancelBtn setFrame:CGRectMake(20, 30, 26, 26)];
-    [cancelBtn addTarget:self action:@selector(cancelClick) forControlEvents:UIControlEventTouchUpInside];
+    [cancelBtn addTarget:self action:@selector(cancelSelf) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancelBtn];
     
     UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(50.5, 110, 219, 77)];

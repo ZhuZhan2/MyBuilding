@@ -115,11 +115,10 @@
 -(void)firstNetWork{
     [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            self.isFocused=posts[0][@"isFocused"];
-            NSLog(@"isFocused==%@",self.isFocused);
+            self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
             [self getContentList];
         }
-    } userId:[LoginSqlite getdata:@"userId"] targetId:self.model.a_id EntityCategory:@"Project" noNetWork:^{
+    } userId:[LoginSqlite getdata:@"userId"] targetId:self.projectId EntityCategory:@"Project" noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
@@ -197,7 +196,6 @@
     NSLog(@"rightBtnClick");
     if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
         NSString *string = nil;
-        NSLog(@"=====,%@",self.isFocused);
         if([self.isFocused isEqualToString:@"0"]){
             string = @"添加关注";
         }else{
@@ -875,7 +873,7 @@
                 block();
             }
         }
-    } userId:[LoginSqlite getdata:@"userId"] targetId:self.model.a_id EntityCategory:@"Project" noNetWork:^{
+    } userId:[LoginSqlite getdata:@"userId"] targetId:self.projectId EntityCategory:@"Project" noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
