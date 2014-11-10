@@ -412,7 +412,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
             [self.navigationController pushViewController:vc animated:YES];
         }else{
-            NSLog(@"asdfasdf");
+           
         }
     }else{
         ActivesModel *model = showArr[indexPath.row];
