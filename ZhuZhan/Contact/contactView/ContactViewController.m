@@ -418,6 +418,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         ActivesModel *model = showArr[indexPath.row];
         NSLog(@"==>%@",model.a_entityUrl);
         ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+        vc.productId = model.a_entityId;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
