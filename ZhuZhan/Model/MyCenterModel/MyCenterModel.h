@@ -34,6 +34,12 @@
 @property (nonatomic,copy) NSString *a_constellation;
 //血型
 @property (nonatomic,copy) NSString *a_bloodType;
+//省
+@property (nonatomic,copy) NSString *a_province;
+//市
+@property (nonatomic,copy) NSString *a_city;
+//区
+@property (nonatomic,copy) NSString *a_district;
 
 @property (nonatomic, copy) NSDictionary *dict;
 @end

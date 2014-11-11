@@ -7,7 +7,7 @@
 //
 
 #import "ForgetPasswordViewController.h"
-
+#import "ForgetSubViewController.h"
 @interface ForgetPasswordViewController ()<UITextFieldDelegate>
 @property(nonatomic,strong)UIFont* font;
 @property(nonatomic,strong)UIButton* registerBtn;
@@ -76,6 +76,9 @@
 
 -(void)getVerifitionCode{
     NSLog(@"用户申请发送验证码");
+    if (![self phoneNoErr:_phoneNumberTextField.text]) {
+        return;
+    }
 }
 
 -(void)addSeparatorLineInView:(UIView*)view{
@@ -86,48 +89,6 @@
         separatorLine.backgroundColor=RGBCOLOR(222, 222, 222);
         [view addSubview:separatorLine];
     }
-}
-
--(void)loadSecondView{
-    UIView* secondView=[[UIView alloc]initWithFrame:CGRectMake(0, 194, 320, 94)];
-    secondView.backgroundColor=[UIColor whiteColor];
-    [self.view addSubview:secondView];
-    UIImageView* backView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"注册_02"]];
-    [secondView addSubview:backView];
-    
-    [self addSeparatorLineInView:secondView];
-    
-//    //账号文本框
-//    accountField = [[UITextField alloc] initWithFrame:CGRectMake(22,0,276,47)];
-//    accountField.delegate = self;
-//    accountField.font=self.font;
-//    accountField.textAlignment=NSTextAlignmentLeft;
-//    accountField.placeholder=@"填写用户名";
-//    accountField.returnKeyType=UIReturnKeyDone;
-//    accountField.clearButtonMode =YES;
-//    [secondView addSubview:accountField];
-    
-    //新建密码文本框
-    passWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,0,276,47)];
-    passWordField.delegate = self;
-    passWordField.font=self.font;
-    passWordField.textAlignment=NSTextAlignmentLeft;
-    passWordField.placeholder=@"填写新密码";
-    passWordField.returnKeyType=UIReturnKeyDone;
-    passWordField.clearButtonMode =YES;
-    passWordField.secureTextEntry = YES;
-    [secondView addSubview:passWordField];
-    
-    //确认密码的文本框
-    verifyPassWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,47,276,47)];
-    verifyPassWordField.delegate = self;
-    verifyPassWordField.font=self.font;
-    verifyPassWordField.textAlignment=NSTextAlignmentLeft;
-    verifyPassWordField.placeholder=@"确认密码";
-    verifyPassWordField.returnKeyType=UIReturnKeyDone;
-    verifyPassWordField.clearButtonMode =YES;
-    verifyPassWordField.secureTextEntry = YES;
-    [secondView addSubview:verifyPassWordField];
 }
 
 -(void)endEdit{
@@ -142,14 +103,20 @@
     [self initNavi];
     self.view.backgroundColor=RGBCOLOR(245, 246, 248);
     [self loadFirstView];
-    [self loadSecondView];
     [self loadRegisterBtn];
 }
 
 -(void)loadRegisterBtn{
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 470, 320, 30)];
+    label.text = @"公司账户请联系客服";
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = GrayColor;
+    label.font = [UIFont systemFontOfSize:14];
+    [self.view addSubview:label];
+    
     self.registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.registerBtn.frame = CGRectMake(22, 500, 276, 42);
-    [self.registerBtn setBackgroundImage:[GetImagePath getImagePath:@"密码找回_23"] forState:UIControlStateNormal];
+    [self.registerBtn setBackgroundImage:[GetImagePath getImagePath:@"注册_08"] forState:UIControlStateNormal];
     [self.registerBtn addTarget:self action:@selector(beginToCollect) forControlEvents:UIControlEventTouchUpInside];
     self.registerBtn.tag =2014072401;
     [self.view addSubview:self.registerBtn];
@@ -157,9 +124,24 @@
 
 -(void)beginToCollect{
     NSLog(@"用户确认");
+    ForgetSubViewController *forgetSubView = [[ForgetSubViewController alloc] init];
+    [self.navigationController pushViewController:forgetSubView animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+-(BOOL)phoneNoErr:(NSString *)phone//正则表达式来判断是否是手机号码
+{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\b(1)[23458][0-9]{9}\\b" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
+    if (numberOfMatches!=1) {
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"手机号码不正确，请重新输入" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        
+        return NO;
+    }
+    return YES;
 }
 @end

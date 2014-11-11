@@ -410,9 +410,9 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     [_headImage.layer setMasksToBounds:YES];
     [_headImage.layer setCornerRadius:23];
     
-    _avatarButton = [[UIButton alloc] initWithFrame:CGRectMake(45, 0, avatarButtonHeight, avatarButtonHeight)];
-    [_avatarButton.layer setMasksToBounds:YES];
-    [_avatarButton.layer setCornerRadius:23];
+    _avatarButton = [[UIButton alloc] initWithFrame:CGRectMake(45, 0, avatarButtonHeight+200, avatarButtonHeight+25)];
+//    [_avatarButton.layer setMasksToBounds:YES];
+//    [_avatarButton.layer setCornerRadius:23];
     
     
     _userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(92, 35, 100, 20)];

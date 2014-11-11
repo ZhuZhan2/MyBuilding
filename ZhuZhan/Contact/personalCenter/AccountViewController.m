@@ -299,7 +299,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
         return;
     }
     
-    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.userName,@"userName",model.realName,@"realName",model.sex,@"sex",model.locationCity,@"locationCity",model.birthday,@"birthday",model.constellation,@"constellation",model.bloodType,@"bloodType",model.email,@"email",model.companyName,@"department",model.position,@"duties",nil];
+    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.userName,@"userName",model.realName,@"realName",model.sex,@"sex",model.city,@"locationCity",model.birthday,@"birthday",model.constellation,@"constellation",model.bloodType,@"bloodType",model.email,@"email",model.companyName,@"department",model.position,@"duties",model.provice,@"provice",model.city,@"city",model.district,@"district",nil];
     NSLog(@"parameter==%@",parameter);
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
@@ -338,7 +338,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
             model.sex = textField.text;
             break;
         case 3:
-            model.locationCity = textField.text;
+            model.city = textField.text;
             break;
 
         case 4:
@@ -381,6 +381,12 @@ static int count =0;//记录生日textField 的时间被触发的次数
     isBirthday =YES;
     count++;
     
+}
+
+-(void)addLocation:(NSDictionary *)dic{
+    model.provice = dic[@"provice"];
+    model.city = dic[@"city"];
+    model.district = dic[@"district"];
 }
 
 //tableView

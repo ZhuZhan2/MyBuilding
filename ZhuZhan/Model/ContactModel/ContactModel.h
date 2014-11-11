@@ -55,10 +55,14 @@
 @property (nonatomic,strong)NSString *sex;
 
 //所在省份
-@property (nonatomic,strong)NSString *locationProvice;
+@property (nonatomic,strong)NSString *provice;
 
 //所在城市
-@property (nonatomic,strong)NSString *locationCity;
+@property (nonatomic,strong)NSString *city;
+
+//所在区
+@property (nonatomic,strong)NSString *district;
+
 //生日
 @property (nonatomic,strong)NSString *birthday;
 

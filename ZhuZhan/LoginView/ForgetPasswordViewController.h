@@ -11,8 +11,6 @@
 @interface ForgetPasswordViewController : UIViewController{
     UITextField *_phoneNumberTextField;
     UITextField *_yzmTextField;
-    UITextField *passWordField;
-    UITextField *verifyPassWordField;
     UITextField *accountField;
 }
 @end
