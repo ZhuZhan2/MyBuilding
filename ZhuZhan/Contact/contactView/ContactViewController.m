@@ -402,6 +402,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             ActivesModel *model = showArr[indexPath.row];
             NSLog(@"==>%@",model.a_entityUrl);
             ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+            vc.delegate = self;
+            vc.type = @"Personal";
             [self.navigationController pushViewController:vc animated:YES];
         }else{
             
@@ -411,6 +413,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             ActivesModel *model = showArr[indexPath.row];
             NSLog(@"==>%@",model.a_entityUrl);
             ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+            vc.delegate = self;
+            vc.type = @"Company";
             [self.navigationController pushViewController:vc animated:YES];
         }else{
            
@@ -419,6 +423,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         ActivesModel *model = showArr[indexPath.row];
         NSLog(@"==>%@",model.a_entityUrl);
         ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+        vc.delegate = self;
+        vc.type = @"Product";
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

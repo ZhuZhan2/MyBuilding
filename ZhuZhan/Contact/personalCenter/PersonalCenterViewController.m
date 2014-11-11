@@ -291,6 +291,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [self.navigationController pushViewController:projectCommentView animated:YES];
     }else{
         ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithPersonalCenterModel:model];
+        NSLog(@"===>%@",model.a_category);
+        vc.type = model.a_category;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

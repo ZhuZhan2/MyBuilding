@@ -187,6 +187,7 @@
 - (void)quiltView:(TMQuiltView *)quiltView didSelectCellAtIndexPath:(NSIndexPath *)indexPath{
     ProductModel* model=showArr[indexPath.row];
     ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithProductModel:model];
+    vc.type = @"Product";
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -110,10 +110,14 @@
         return;
     }
     
-    if([passWordField.text isEqualToString:@""]||[verifyPassWordField.text isEqualToString:@""])
+    if([passWordField.text isEqualToString:@""])
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"输入不完整请检查你的输入！" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil];
-        [alert show];
+        [RemindView remindViewWithContent:@"密码不能为空" superView:self.view centerY:210];
+        return;
+    }
+    
+    if([verifyPassWordField.text isEqualToString:@""]){
+        [RemindView remindViewWithContent:@"重复密码不能为空" superView:self.view centerY:210];
         return;
     }
     
