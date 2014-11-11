@@ -65,6 +65,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"bg001"]];
     [_pathCover setHeadTaget];
+    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"匿名用户", XHUserNameKey,@"想要使用更多功能请登陆",XHBirthdayKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
     //时间标签
     _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
@@ -558,10 +559,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //评论发送完后的页面tableView刷新
 -(void)finishPostCommentWithPosts:(NSMutableArray*)posts activesModel:(ActivesModel*)model{
     ContactCommentModel *commentModel = [[ContactCommentModel alloc] init];
-    NSMutableDictionary *dic = posts[0];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[LoginSqlite getdata:@"userImage"],@"userImage",[LoginSqlite getdata:@"userName"],@"userName", nil];
+    [dic setValuesForKeysWithDictionary:posts[0]];
     NSLog(@"%@",dic);
-    //[dic setValue:[LoginSqlite getdata:@"userName"] forKey:@""];
-    [commentModel setDict:posts[0]];
+    [commentModel setDict:dic];
     if(model.a_commentsArr.count >=3){
         [model.a_commentsArr removeObjectAtIndex:1];
         [model.a_commentsArr insertObject:commentModel atIndex:0];

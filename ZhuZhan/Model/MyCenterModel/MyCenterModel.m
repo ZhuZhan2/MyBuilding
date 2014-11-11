@@ -23,5 +23,8 @@
     self.a_birthday = [ProjectStage ProjectTimeStage:dict[@"birthday"]];
     self.a_constellation = [ProjectStage ProjectStrStage:dict[@"constellation"]];
     self.a_bloodType = [ProjectStage ProjectStrStage:dict[@"bloodType"]];
+    self.a_province = [ProjectStage ProjectStrStage:dict[@"province"]];
+    self.a_city = [ProjectStage ProjectStrStage:dict[@"city"]];
+    self.a_district = [ProjectStage ProjectStrStage:dict[@"district"]];
 }
 @end

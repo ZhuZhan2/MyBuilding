@@ -169,6 +169,7 @@
 {
     ContactCommentModel *model = showArr[indexPath.row];
     if(showArr.count>=3){
+        NSLog(@"111111");
         if(indexPath.row == 2){
             NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -188,6 +189,7 @@
             lineImage.alpha = 0.1;
             return cell;
         }else{
+            //NSLog(@"%@",model.a_avatarUrl);
             NSString *CellIdentifier = [NSString stringWithFormat:@"ContactCommentTableViewCell"];
             ContactCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if(!cell){
@@ -199,6 +201,7 @@
             return cell;
         }
     }else{
+        NSLog(@"222222");
         NSString *CellIdentifier = [NSString stringWithFormat:@"ContactCommentTableViewCell"];
         ContactCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){

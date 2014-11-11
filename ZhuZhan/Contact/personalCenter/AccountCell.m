@@ -78,7 +78,7 @@ static int textFieldTag =0;
         
           //真实姓名
         UILabel *realNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 170, 80, 30)];
-        realNameLabel.text = @"姓        名";
+        realNameLabel.text = @"真实姓名";
         realNameLabel.font=[UIFont systemFontOfSize:15];
 
         realNameLabel.textAlignment = NSTextAlignmentLeft;
@@ -132,6 +132,11 @@ static int textFieldTag =0;
         location.textColor=GrayColor;
         location.tag = 2014091205;
         [self addSubview:location];
+        
+        UIButton* loacationBtn=[[UIButton alloc]initWithFrame:location.frame];
+        [loacationBtn addTarget:self action:@selector(addLocation) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:loacationBtn];
+        
         UIImageView *horizontalLine5 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 309, 280, 1)];
         horizontalLine5.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
         horizontalLine5.alpha = 0.5;
@@ -282,16 +287,33 @@ static int textFieldTag =0;
 
 -(void)addSex{
     singlepickerview=[[SinglePickerView alloc]initWithTitle:CGRectMake(0, 0, 320, 260) title:nil Arr:@[@"男",@"女"] delegate:self];
+    singlepickerview.tag = 0;
     [singlepickerview showInView:self.superview.superview.superview];
 }
 
+-(void)addLocation{
+    locationview = [[LocateView alloc] initWithTitle:CGRectMake(0, 0, 320, 260) title:nil delegate:self];
+    locationview.tag = 1;
+    [locationview showInView:self.superview.superview.superview];
+}
+
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    singlepickerview = (SinglePickerView *)actionSheet;
-    if(buttonIndex == 0) {
-        NSLog(@"Cancel");
-    }else {
-        sex.text=singlepickerview.selectStr;
-        [self.delegate AddDataToModel:2 WithTextField:sex];
+    if(actionSheet.tag == 0){
+        singlepickerview = (SinglePickerView *)actionSheet;
+        if(buttonIndex == 0) {
+            NSLog(@"Cancel");
+        }else {
+            sex.text=singlepickerview.selectStr;
+            [self.delegate AddDataToModel:2 WithTextField:sex];
+        }
+    }else{
+        locationview = (LocateView *)actionSheet;
+        if(buttonIndex == 0) {
+            NSLog(@"Cancel");
+        }else {
+            NSLog(@"%@,%@,%@",locationview.proviceDictionary[@"provice"],locationview.proviceDictionary[@"city"],locationview.proviceDictionary[@"county"]);
+            [self.delegate addLocation:@{@"provice":locationview.proviceDictionary[@"provice"],@"city":locationview.proviceDictionary[@"city"],@"district":locationview.proviceDictionary[@"county"]}];
+        }
     }
 }
 
@@ -312,9 +334,9 @@ static int textFieldTag =0;
 //    if ([textField isEqual:sex]) {
 //        flag =2;
 //    }
-    if ([textField isEqual:location]) {
-        flag =3;
-    }
+//    if ([textField isEqual:location]) {
+//        flag =3;
+//    }
     if ([textField isEqual:constellation]) {
         flag =4;
     }
@@ -371,7 +393,11 @@ static int textFieldTag =0;
     password.text = @"**********";
     realName.text = model.realName;
     sex.text = model.sex;
-    location.text = model.locationCity;
+    if([model.city isEqualToString:@""]&&[model.district isEqualToString:@""]){
+        location.text = @"";
+    }else{
+        location.text = [NSString stringWithFormat:@"%@,%@",model.city,model.district];
+    }
     birthday.text = model.birthday;
     constellation.text = model.constellation;
     bloodType.text = model.bloodType;

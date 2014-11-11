@@ -267,7 +267,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
             if(!error){
                 NSDictionary *dic = [posts objectAtIndex:0];
                 NSString *productId = [[[dic objectForKey:@"d"] objectForKey:@"data"] objectForKey:@"id"];
-                
+                NSLog(@"===>%@",productId);
                 NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:productId,@"id",userIdStr,@"PublishedBy", nil];
                 
                 [ProductModel PublishProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
