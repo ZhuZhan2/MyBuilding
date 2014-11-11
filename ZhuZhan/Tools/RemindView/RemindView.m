@@ -18,11 +18,19 @@
     remindView.textAlignment=NSTextAlignmentCenter;
     [superView addSubview:remindView];
     remindView.backgroundColor=RGBCOLOR(255, 255, 203);
-    remindView.alpha=0.2;
-    [UIView animateWithDuration:3 animations:^{
+    remindView.alpha=0;
+    [UIView animateWithDuration:1 animations:^{
         remindView.alpha=1;
     } completion:^(BOOL finished) {
-        
+        [NSTimer scheduledTimerWithTimeInterval:5 target:remindView selector:@selector(endAnimation) userInfo:nil repeats:NO];
+    }];
+}
+
+-(void)endAnimation{
+    [UIView animateWithDuration:1.5 animations:^{
+        self.alpha=0;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
     }];
 }
 @end

@@ -9,6 +9,7 @@
 #import "ForgetSubViewController.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
+#import "RemindView.h"
 @interface ForgetSubViewController ()
 @property(nonatomic,strong)UIFont* font;
 @property(nonatomic,strong)UIButton* registerBtn;
@@ -105,8 +106,7 @@
     }
     
     if (![passWordField.text isEqualToString:verifyPassWordField.text]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"两次输入的密码不一致，请重新输入！" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil];
-        [alert show];
+        [RemindView remindViewWithContent:@"密码填写不一致" superView:self.view center:CGPointMake(160,210)];
         return;
     }
     
