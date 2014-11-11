@@ -127,8 +127,8 @@
     [self scrollViewAddView:view];
     
     if (!self.needNoticeView) {
-        UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 1.5)];
-        imageView.image=[GetImagePath getImagePath:@"Shadow-top"];
+        UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 4)];
+        imageView.image=[GetImagePath getImagePath:@"公司－我的公司_11a"];
         [view addSubview:imageView];
     }
 }

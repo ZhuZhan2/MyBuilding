@@ -613,6 +613,8 @@
 		5B1AC4B019BEE4DC006CA4F4 /* CompanyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */; };
 		5B2A42EB1A0A0D7000C04DFA /* 人脉－个人中心_10a.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BC3F2519D7E5B0006B5C7B /* 人脉－个人中心_10a.png */; };
 		5B2D232B19D93373007C2C29 /* NBLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D232A19D93373007C2C29 /* NBLabel.m */; };
+		5B3209F91A11CD8900D19279 /* 公司－我的公司_11a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3209F71A11CD8900D19279 /* 公司－我的公司_11a.png */; };
+		5B3209FA1A11CD8900D19279 /* 公司－我的公司_11a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3209F81A11CD8900D19279 /* 公司－我的公司_11a@2x.png */; };
 		5B3AD9E419F7CA7B008132B2 /* CompanyMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3AD9E319F7CA7B008132B2 /* CompanyMemberCell.m */; };
 		5B43E9B019F7892A00FBB613 /* 公司－我的公司_02a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B43E9AE19F7892A00FBB613 /* 公司－我的公司_02a.png */; };
 		5B43E9B119F7892A00FBB613 /* 公司－我的公司_02a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B43E9AF19F7892A00FBB613 /* 公司－我的公司_02a@2x.png */; };
@@ -1725,6 +1727,8 @@
 		5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyDetailViewController.m; sourceTree = "<group>"; };
 		5B2D232919D93373007C2C29 /* NBLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBLabel.h; path = NBLabel/NBLabel.h; sourceTree = "<group>"; };
 		5B2D232A19D93373007C2C29 /* NBLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBLabel.m; path = NBLabel/NBLabel.m; sourceTree = "<group>"; };
+		5B3209F71A11CD8900D19279 /* 公司－我的公司_11a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_11a.png"; sourceTree = "<group>"; };
+		5B3209F81A11CD8900D19279 /* 公司－我的公司_11a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_11a@2x.png"; sourceTree = "<group>"; };
 		5B3AD9E219F7CA7B008132B2 /* CompanyMemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMemberCell.h; sourceTree = "<group>"; };
 		5B3AD9E319F7CA7B008132B2 /* CompanyMemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyMemberCell.m; sourceTree = "<group>"; };
 		5B43E9AE19F7892A00FBB613 /* 公司－我的公司_02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_02a.png"; sourceTree = "<group>"; };
@@ -2923,6 +2927,8 @@
 		04BC3E5D19D7E5B0006B5C7B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5B3209F71A11CD8900D19279 /* 公司－我的公司_11a.png */,
+				5B3209F81A11CD8900D19279 /* 公司－我的公司_11a@2x.png */,
 				D3D7986B1A0B236900194FF8 /* 欧莱凯GIF图片.gif */,
 				D3D798691A0B1ECF00194FF8 /* 加载中.gif */,
 				D3D4FB311A087A830033BB34 /* 公司－账号设置_03a-05.png */,
@@ -4116,6 +4122,7 @@
 				D3D74E8319FA2FEC00ED8B62 /* 登录_14.png in Resources */,
 				04BC422519D7E5B3006B5C7B /* 关注的动态－弹框_10a.png in Resources */,
 				04BC418219D7E5B3006B5C7B /* 人脉_29a@2x.png in Resources */,
+				5B3209FA1A11CD8900D19279 /* 公司－我的公司_11a@2x.png in Resources */,
 				D3D74EC019FA308000ED8B62 /* 密码找回_15.png in Resources */,
 				04BC435A19D7E5B3006B5C7B /* 高级搜索-多选_07a.png in Resources */,
 				04BC433619D7E5B3006B5C7B /* 项目－项目专题_11a-20.png in Resources */,
@@ -4180,6 +4187,7 @@
 				04BC40F519D7E5B3006B5C7B /* +项目详情-3_03a@2x.png in Resources */,
 				04BC42A019D7E5B3006B5C7B /* 语音搜索1_05.png in Resources */,
 				04BC40ED19D7E5B3006B5C7B /* +项目-首页_21a@2x.png in Resources */,
+				5B3209F91A11CD8900D19279 /* 公司－我的公司_11a.png in Resources */,
 				04BC427C19D7E5B3006B5C7B /* 注册.png in Resources */,
 				04BC415E19D7E5B3006B5C7B /* 产品－产品详情_03a@2x.png in Resources */,
 				04BC422619D7E5B3006B5C7B /* 关注的动态－弹框_10a@2x.png in Resources */,
