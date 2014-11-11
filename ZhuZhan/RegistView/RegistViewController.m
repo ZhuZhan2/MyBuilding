@@ -22,6 +22,7 @@
 #import "ClauseViewController.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
+#import "RemindView.h"
 @interface RegistViewController ()
 @property(nonatomic,strong)UIFont* font;
 @property(nonatomic,strong)UIButton* registerBtn;
@@ -156,12 +157,12 @@
 }
 
 -(void)loadClauseView{
-    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 350, 320, 18)];
+    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(65, 470, 320, 18)];
     imageView.image=[GetImagePath getImagePath:@"注册_05"];
     [self.view addSubview:imageView];
     
     UIButton* button=[[UIButton alloc]init];
-    button.frame=CGRectMake(143, 350, 30, 20);
+    button.frame=CGRectMake(208, 470, 30, 20);
     [button addTarget:self action:@selector(chooseClause) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
 }
@@ -204,6 +205,10 @@
     [self commomRegister];
 }
 
+-(void)remindErrorView{
+    [RemindView remindViewWithContent:@"验证码填写错误/手机号码填写错误" superView:self.view centerY:375];
+}
+
 - (void)commomRegister//账号密码的注册
 
 {
@@ -218,8 +223,7 @@
     }
     
     if (![passWordField.text isEqualToString:verifyPassWordField.text]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"两次输入的密码不一致，请重新输入！" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil];
-        [alert show];
+        [self remindErrorView];
         return;
     }
     

@@ -18,7 +18,18 @@
     [super viewDidLoad];
     [self loadNaviAndSelf];
     [self loadContent];
+    [self addWhiteView];
     //[self loadSureBtn];
+}
+
+
+/**
+ *  临时加的，把切图下方的阴影挡住
+ */
+-(void)addWhiteView{
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 450, 320, 150)];
+    view.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:view];
 }
 
 //-(void)userSure{
