@@ -125,12 +125,15 @@
         [commentView addSubview:downImageView];
         
         height += 50*count+11+9;//11为上箭头线,9为下方圆角及空的地方
+    }else{
+        height+=5;
     }
     
+
     //上分割线
     UIImageView *topLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(67, 0, 2, height)];
     [topLineImage setBackgroundColor:[UIColor blackColor]];
-        [commentView insertSubview:topLineImage atIndex:0];
+    [commentView insertSubview:topLineImage atIndex:0];
     topLineImage.alpha =0.2;
     
     UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, height-1, 320, 1)];
@@ -169,7 +172,6 @@
 {
     ContactCommentModel *model = showArr[indexPath.row];
     if(showArr.count>=3){
-        NSLog(@"111111");
         if(indexPath.row == 2){
             NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];

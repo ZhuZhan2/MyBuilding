@@ -106,7 +106,7 @@
     }
     
     if (![passWordField.text isEqualToString:verifyPassWordField.text]) {
-        [RemindView remindViewWithContent:@"密码填写不一致" superView:self.view centerY:210];
+        [RemindView remindViewWithContent:@"密码输入不一致，请重新输入" superView:self.view centerY:210];
         return;
     }
     

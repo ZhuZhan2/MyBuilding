@@ -12,6 +12,7 @@
 #import "LoginSqlite.h"
 #import "LoginModel.h"
 #import "MD5.h"
+#import "RemindView.h"
 @interface UpdataPassWordViewController ()
 
 @end
@@ -152,8 +153,7 @@
 
 -(void)updataPassWordAction{
     if(![newPassWordTextField.text isEqualToString:newAgainPassWordTextField.text]){
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"二次密码不一致" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
+        [RemindView remindViewWithContent:@"密码输入不一致，请重新输入" superView:self.view centerY:230];
     }else{
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         [dic setValue:[MD5 md5HexDigest:oldPassWordTextField.text] forKey:@"oldpassword"];
