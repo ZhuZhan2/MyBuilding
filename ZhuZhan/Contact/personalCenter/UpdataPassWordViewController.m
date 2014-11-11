@@ -102,7 +102,7 @@
     lineImage3.alpha = 0.2;
     
     confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    confirmBtn.frame = CGRectMake(22, 205, 276, 42);
+    confirmBtn.frame = CGRectMake(22, 500, 276, 42);
     [confirmBtn setImage:[GetImagePath getImagePath:@"用户条款_05"] forState:UIControlStateNormal];
     [confirmBtn addTarget:self action:@selector(updataPassWordAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:confirmBtn];
