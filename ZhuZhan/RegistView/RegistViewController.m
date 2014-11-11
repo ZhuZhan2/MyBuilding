@@ -186,9 +186,7 @@
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\b(1)[23458][0-9]{9}\\b" options:NSRegularExpressionCaseInsensitive error:nil];
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
     if (numberOfMatches!=1) {
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"手机号码不正确，请重新输入" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
-        
+        [self remindErrorView:@"手机号码不正确，请重新输入"];
         return NO;
     }
     return YES;
@@ -205,8 +203,8 @@
     [self commomRegister];
 }
 
--(void)remindErrorView{
-    [RemindView remindViewWithContent:@"验证码填写错误/手机号码填写错误" superView:self.view centerY:375];
+-(void)remindErrorView:(NSString*)content{
+    [RemindView remindViewWithContent:content superView:self.view centerY:375];
 }
 
 - (void)commomRegister//账号密码的注册
@@ -223,14 +221,13 @@
     }
     
     if (![passWordField.text isEqualToString:verifyPassWordField.text]) {
-        [self remindErrorView];
+        [self remindErrorView:@"密码输入不一致，请重新输入"];
         return;
     }
     
     if([passWordField.text isEqualToString:@""]||[_phoneNumberTextField.text isEqualToString:@""]||[verifyPassWordField.text isEqualToString:@""])
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"输入不完整请检查你的输入！" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil];
-        [alert show];
+        [self remindErrorView:@"输入不完整请检查你的输入！"];
         return;
     }
     self.registerBtn.enabled=NO;
