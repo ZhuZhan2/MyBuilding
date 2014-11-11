@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface RemindView : UILabel
-+(void)remindViewWithContent:(NSString*)content superView:(UIView*)superView center:(CGPoint)center;
++(void)remindViewWithContent:(NSString*)content superView:(UIView*)superView centerY:(CGFloat)centerY;
 @end

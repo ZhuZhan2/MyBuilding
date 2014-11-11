@@ -9,12 +9,12 @@
 #import "RemindView.h"
 
 @implementation RemindView
-+(void)remindViewWithContent:(NSString*)content superView:(UIView*)superView center:(CGPoint)center{
++(void)remindViewWithContent:(NSString*)content superView:(UIView*)superView centerY:(CGFloat)centerY{
     RemindView* remindView=[[RemindView alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
     remindView.text=content;
-    remindView.font=[UIFont systemFontOfSize:15];
+    remindView.font=[UIFont systemFontOfSize:14];
     remindView.textColor=RGBCOLOR(248, 154, 28);
-    remindView.center=center;
+    remindView.center=CGPointMake(160, centerY);
     remindView.textAlignment=NSTextAlignmentCenter;
     [superView addSubview:remindView];
     remindView.backgroundColor=RGBCOLOR(255, 255, 203);
