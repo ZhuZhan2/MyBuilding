@@ -10,6 +10,13 @@
 #import "ProgramDetailViewController.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
+#import "LoginSqlite.h"
+#import "IsFocusedApi.h"
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
+#import "LoginSqlite.h"
+#import "ContactModel.h"
+#import "CompanyApi.h"
 @interface PersonalDetailViewController ()
 
 @end
@@ -33,6 +40,13 @@
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
     
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setFrame:CGRectMake(0, 0, 25, 22)];
+    [rightButton setBackgroundImage:[GetImagePath getImagePath:@"019"] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
+    
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 215)];
     _pathCover.delegate = self;
     [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"人脉－人的详情_02a"]];
@@ -55,24 +69,7 @@
     
     viewArr = [[NSMutableArray alloc] init];
     self.showArr = [[NSMutableArray alloc] init];
-    [ContactModel UserDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            if(posts.count !=0){
-                self.contactModel = posts[0];
-                self.parModel = posts[1];
-                if([self.parModel.a_id isEqualToString:@""]&&[self.parModel.a_company isEqualToString:@""]&&[self.parModel.a_information isEqualToString:@""]&&[self.parModel.a_inDate isEqualToString:@""]&&[self.parModel.a_outDate isEqualToString:@""]){
-                    
-                }else{
-                    contactbackgroundview = [ContactBackgroundView setFram:self.parModel];
-                    [viewArr addObject:contactbackgroundview];
-                }
-                self.showArr = posts[2];
-                [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:self.contactModel.a_realName, XHUserNameKey, nil]];
-                [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",self.contactModel.a_userImage]];
-                [self.tableView reloadData];
-            }
-        }
-    } userId:self.contactId noNetWork:nil];
+    [self firstNetWork];
     
     self.tableView.separatorStyle = NO;
     [self.tableView setBackgroundColor:RGBCOLOR(242, 242, 242)];
@@ -105,6 +102,89 @@
     [homeVC homePageTabBarHide];
 }
 
+-(void)rightBtnClick{
+    if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        NSString *string = nil;
+        if([self.isFocused isEqualToString:@"0"]){
+            string = @"添加关注";
+        }else{
+            string = @"取消关注";
+        }
+        UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:string, nil];
+        [actionSheet showInView:self.view];
+    }else{
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.needDelayCancel=NO;
+        loginVC.delegate = self;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }
+}
+
+-(void)firstNetWork{
+    [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
+            [self getNetWorkData];
+        }
+    } userId:[LoginSqlite getdata:@"userId"] targetId:self.contactId EntityCategory:@"Personal" noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
+}
+
+//获取网络数据
+-(void)getNetWorkData{
+    [ContactModel UserDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            if(posts.count !=0){
+                self.contactModel = posts[0];
+                self.parModel = posts[1];
+                if([self.parModel.a_id isEqualToString:@""]&&[self.parModel.a_company isEqualToString:@""]&&[self.parModel.a_information isEqualToString:@""]&&[self.parModel.a_inDate isEqualToString:@""]&&[self.parModel.a_outDate isEqualToString:@""]){
+                    
+                }else{
+                    contactbackgroundview = [ContactBackgroundView setFram:self.parModel];
+                    [viewArr addObject:contactbackgroundview];
+                }
+                self.showArr = posts[2];
+                [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:self.contactModel.a_realName, XHUserNameKey, nil]];
+                [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",self.contactModel.a_userImage]];
+                [self.tableView reloadData];
+            }
+        }
+    } userId:self.contactId noNetWork:nil];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
+    if (buttonIndex==0) {
+        if([self.isFocused isEqualToString:@"0"]){
+            NSLog(@"关注");
+            [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alertView show];
+                    self.isFocused = @"1";
+                }
+            } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"FocusId":self.contactId} mutableCopy] noNetWork:nil];
+        }else{
+            [CompanyApi DeleteFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alertView show];
+                    self.isFocused = @"0";
+                }
+            } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"FocusId":self.contactId} mutableCopy] noNetWork:nil];
+        }
+    }else{
+        NSLog(@"取消");
+    }
+}
 /******************************************************************************************************************/
 //滚动是触发的事件
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -387,6 +467,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)loginComplete{
+
+}
+
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
+
 }
 
 -(void)gotoMyCenter{

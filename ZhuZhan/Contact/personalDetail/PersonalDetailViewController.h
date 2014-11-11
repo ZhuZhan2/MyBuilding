@@ -18,7 +18,8 @@
 #import "ContactBackgroundTableViewCell.h"
 #import "ParticularsModel.h"
 #import "ContactBackgroundView.h"
-@interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate,MFMailComposeViewControllerDelegate,ContactCellDelegate>{
+#import "LoginViewController.h"
+@interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate,MFMailComposeViewControllerDelegate,ContactCellDelegate,LoginViewDelegate,UIActionSheetDelegate>{
     NSMutableArray *viewArr;
     ContactBackgroundView *contactbackgroundview;
 }
@@ -27,4 +28,5 @@
 @property (nonatomic,strong)MyCenterModel *contactModel;
 @property (nonatomic,strong)ParticularsModel *parModel;
 @property (nonatomic,strong)NSMutableArray *showArr;
+@property (nonatomic,strong)NSString *isFocused;
 @end
