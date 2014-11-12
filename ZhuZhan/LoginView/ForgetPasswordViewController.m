@@ -132,6 +132,11 @@
     [super didReceiveMemoryWarning];
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.view endEditing:YES];
+    return YES;
+}
+
 -(BOOL)phoneNoErr:(NSString *)phone//正则表达式来判断是否是手机号码
 {
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\b(1)[23458][0-9]{9}\\b" options:NSRegularExpressionCaseInsensitive error:nil];
