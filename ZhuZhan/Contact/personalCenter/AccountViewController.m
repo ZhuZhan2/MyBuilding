@@ -265,6 +265,17 @@ static int count =0;//记录生日textField 的时间被触发的次数
     } dic:parameter noNetWork:nil];
 }
 
+-(void)changeBackgroundImage:(NSString *)imageStr AndImage:(UIImage *)image{
+    NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"userId",imageStr,@"BackgroundImageString", nil];
+    [LoginModel AddBackgroundImageWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            [_pathCover setBackgroundImage:image];
+            //[LoginSqlite insertData:posts[0][@"imageLocation"] datakey:@"backgroundImage"];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"changBackground" object:nil];
+        }
+    } dic:parameter noNetWork:nil];
+}
+
 /**********************************************************************/
 //滚动是触发的事件
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

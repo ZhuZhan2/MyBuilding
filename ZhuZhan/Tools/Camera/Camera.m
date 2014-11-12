@@ -93,6 +93,7 @@ static int BtnTag =0;
     if (BtnTag == 2014090201) {//更换背景
         [picker dismissViewControllerAnimated:YES completion:nil];
         [self.view removeFromSuperview];
+        [delegate changeBackgroundImage:imageStr AndImage:image];
         
     }
     if (BtnTag == 2014090202) {//更改用户头像

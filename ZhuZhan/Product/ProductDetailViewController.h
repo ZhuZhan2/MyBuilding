@@ -15,7 +15,7 @@
 @end
 
 @interface ProductDetailViewController : UIViewController<UIActionSheetDelegate>
-@property(nonatomic,strong)id<ProductDetailDelegate>delegate;
+@property(nonatomic,weak)id<ProductDetailDelegate>delegate;
 @property(nonatomic,strong)NSString *type;//判断入口类型；
 -(instancetype)initWithProductModel:(ProductModel*)productModel;
 -(instancetype)initWithActivesModel:(ActivesModel*)activesModel;
