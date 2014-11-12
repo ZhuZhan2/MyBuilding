@@ -110,7 +110,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.activesModel=activesModel;
-        [self loadMyPropertyWithImgW:activesModel.a_imageWidth imgH:activesModel.a_imageHeight imgUrl:activesModel.a_imageUrl userImgUrl:activesModel.a_avatarUrl content:activesModel.a_content entityID:activesModel.a_id entityUrl:activesModel.a_entityUrl userName:activesModel.a_userName category:activesModel.a_category createdBy:activesModel.a_createdBy userType:activesModel.a_userType];
+        [self loadMyPropertyWithImgW:activesModel.a_imageWidth imgH:activesModel.a_imageHeight imgUrl:activesModel.a_imageUrl userImgUrl:activesModel.a_avatarUrl content:activesModel.a_content entityID:[activesModel.a_category isEqualToString:@"Product"]?activesModel.a_entityId:activesModel.a_id entityUrl:activesModel.a_entityUrl userName:activesModel.a_userName category:activesModel.a_category createdBy:activesModel.a_createdBy userType:activesModel.a_userType];
     }
     return self;
 }
@@ -119,7 +119,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.personalModel=personalModel;
-// 个人中心动态还需要设置
         [self loadMyPropertyWithImgW:personalModel.a_imageWidth imgH:personalModel.a_imageHeight imgUrl:personalModel.a_imageUrl userImgUrl:self.myImageUrl content:personalModel.a_content entityID:personalModel.a_entityId entityUrl:personalModel.a_entityUrl userName:self.myName category:personalModel.a_category createdBy:[LoginSqlite getdata:@"userId"] userType:personalModel.a_userType];
     }
     return self;
@@ -147,7 +146,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self.view.backgroundColor=[UIColor whiteColor];
     [self initNavi];
     [self initMyTableView];
-    [self getMainView];
+    //因为动态详情进来的产品model.content是评论而不是产品描述内容，所以先不出mainView，加载后会更新
+    if (!(self.activesModel&&[self.category isEqualToString:@"Product"])) {
+        [self getMainView];
+    }
     [self loadTimeScroller];
     [self firstNetWork];
 }
@@ -200,6 +202,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                         if ([self.activesModel.a_commentsArr[i] isKindOfClass:[ContactCommentModel class]] ) {
                             [self.commentModels addObject:self.activesModel.a_commentsArr[i]];
                         }
+                    }
+                    if (self.activesModel&&[self.category isEqualToString:@"Product"]) {
+                        self.content=self.activesModel.a_content;
                     }
                     [self getTableViewContents];
                     [self myTableViewReloadData];
