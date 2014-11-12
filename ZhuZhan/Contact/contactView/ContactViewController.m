@@ -411,7 +411,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }else if([model.a_category isEqualToString:@"Company"]){
         if([model.a_eventType isEqualToString:@"Actives"]){
             ActivesModel *model = showArr[indexPath.row];
-            NSLog(@"==>%@",model.a_entityUrl);
+            NSLog(@"row ==>%d",indexpath.row);
             ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
             vc.delegate = self;
             vc.type = @"Company";
@@ -585,6 +585,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)finishAddCommentFromDetailWithPosts:(NSMutableArray *)posts{
+    NSLog(@"asdfasdfa ===== %d",indexpath.row);
     ActivesModel *model = showArr[indexpath.row];
     [self finishPostCommentWithPosts:posts activesModel:model];
 }
