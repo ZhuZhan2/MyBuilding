@@ -520,7 +520,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)jumpToGetRecommend:(NSDictionary *)dic
 {
-    NSLog(@"获得推荐");
+    //NSLog(@"获得推荐");
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     RecommendLetterViewController *recommendLetterVC = [[RecommendLetterViewController alloc] init];
     [self.navigationController pushViewController:recommendLetterVC animated:YES];//跳转到推荐信页面
