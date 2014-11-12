@@ -4867,7 +4867,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZhuZhan/ZhuZhan-Prefix.pch";
 				INFOPLIST_FILE = "ZhuZhan/ZhuZhan-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ZhuZhan/Tools/BaiduMap/libs/Release$(EFFECTIVE_PLATFORM_NAME)",
@@ -4897,7 +4897,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZhuZhan/ZhuZhan-Prefix.pch";
 				INFOPLIST_FILE = "ZhuZhan/ZhuZhan-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ZhuZhan/Tools/BaiduMap/libs/Release$(EFFECTIVE_PLATFORM_NAME)",

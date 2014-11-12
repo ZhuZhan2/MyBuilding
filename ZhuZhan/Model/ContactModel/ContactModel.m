@@ -255,8 +255,10 @@
     NSString *urlStr = [NSString stringWithFormat:@"api/CompanyBaseInformation/AddCompanyImages"];
     return [[AFAppDotNetAPIClient sharedClient]POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"responseObject ==> %@",responseObject);
+        NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+        [mutablePosts addObject:responseObject[@"d"][@"data"]];
         if (block) {
-            block([NSMutableArray array],nil);
+            block(mutablePosts,nil);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         if (block) {
