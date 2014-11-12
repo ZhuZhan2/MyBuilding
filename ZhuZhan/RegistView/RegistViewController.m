@@ -208,7 +208,6 @@
 }
 
 - (void)commomRegister//账号密码的注册
-
 {
     NSLog(@"共同注册部分");
     if (![ConnectionAvailable isConnectionAvailable]) {
@@ -241,12 +240,19 @@
                 NSDictionary *item = posts[0];
                 [LoginSqlite insertData:[item objectForKey:@"userId"] datakey:@"userId"];
                 [LoginSqlite insertData:[item objectForKey:@"deviceToken"] datakey:@"deviceToken"];
+                [LoginSqlite insertData:item[@"userName"] datakey:@"userName"];
+                [LoginSqlite insertData:@"Personal" datakey:@"userType"];
                 if([self.delegate respondsToSelector:@selector(registComplete)]){
                     [self.delegate registComplete];
                 }
             }
         }
     } dic:parameters noNetWork:nil];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.view endEditing:YES];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
