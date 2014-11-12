@@ -90,6 +90,11 @@
     [self.view addGestureRecognizer:tap];
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.view endEditing:YES];
+    return YES;
+}
+
 -(void)loadRegisterBtn{
     self.registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.registerBtn.frame = CGRectMake(22, 500, 276, 42);
