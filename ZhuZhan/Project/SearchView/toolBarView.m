@@ -35,7 +35,7 @@
     [self addSubview:bgView];
     
     UIButton *yuingBtn =  [UIButton buttonWithType:UIButtonTypeCustom];
-    yuingBtn.frame = CGRectMake(40, 8, 16, 23);
+    yuingBtn.frame = CGRectMake(40, 7, 18, 23);
     yuingBtn.tag = 0;
     [yuingBtn setBackgroundImage:[GetImagePath getImagePath:@"搜索_03"] forState:UIControlStateNormal];
     [yuingBtn addTarget:self action:@selector(gotoViewClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -46,7 +46,7 @@
     [self addSubview:lineImage1];
     
     UIButton *advancedBtn =  [UIButton buttonWithType:UIButtonTypeCustom];
-    advancedBtn.frame = CGRectMake(148, 8, 22, 23);
+    advancedBtn.frame = CGRectMake(148, 7.5, 23, 23);
     advancedBtn.tag = 1;
     [advancedBtn setBackgroundImage:[GetImagePath getImagePath:@"搜索_05"] forState:UIControlStateNormal];
     [advancedBtn addTarget:self action:@selector(gotoViewClick:) forControlEvents:UIControlEventTouchUpInside];

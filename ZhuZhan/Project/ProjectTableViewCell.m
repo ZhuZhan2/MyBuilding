@@ -114,16 +114,16 @@
     
     UIButton *dianBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     if(flag == 0){
-        [dianBtn setFrame:CGRectMake(275,225,18,20)];
+        [dianBtn setFrame:CGRectMake(270,220,27,30)];
     }else{
-        [dianBtn setFrame:CGRectMake(275,235,18,20)];
+        [dianBtn setFrame:CGRectMake(270,230,27,30)];
     }
     [dianBtn setBackgroundImage:[GetImagePath getImagePath:@"项目-首页_18a"] forState:UIControlStateNormal];
     [dianBtn addTarget:self action:@selector(dianBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:dianBtn];
     
     
-    UILabel *zoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(35,225,60,20)];
+    zoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(35,225,60,20)];
     zoneLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
     zoneLabel.textColor = BlueColor;
     zoneLabel.text = @"华南区 -";
@@ -167,5 +167,6 @@
     startdateLabel.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     enddateLabel.text = [model.a_exceptFinishTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     addressLabel.text = model.a_landAddress;
+    zoneLabel.text = model.a_district;
 }
 @end

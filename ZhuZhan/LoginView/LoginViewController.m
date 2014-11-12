@@ -9,7 +9,6 @@
 #import "LoginViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "AppDelegate.h"
-#import "RegistViewController.h"
 #import "LoginSqlite.h"
 #import "LoginModel.h"
 #import "MD5.h"
@@ -149,6 +148,7 @@
 
 -(void)gotoRegist{
     RegistViewController *registView = [[RegistViewController alloc] init];
+    registView.delegate = self;
     [self.navigationController pushViewController:registView animated:YES];
 }
 
@@ -189,5 +189,13 @@
             }
         }
     } dic:dic noNetWork:nil];
+}
+
+-(void)registComplete{
+    if([self.delegate respondsToSelector:@selector(loginCompleteWithDelayBlock:)]){
+        [self.delegate loginCompleteWithDelayBlock:^{
+            [self cancelSelf];
+        }];
+    }
 }
 @end

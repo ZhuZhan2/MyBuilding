@@ -25,6 +25,7 @@
     UILabel *startdateLabel;
     UILabel *enddateLabel;
     UILabel *addressLabel;
+    UILabel *zoneLabel;
     int flag;
 }
 @property(nonatomic,weak)projectModel *model;

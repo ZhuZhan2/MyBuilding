@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "RegistViewController.h"
 @protocol LoginViewDelegate <NSObject>
 -(void)loginCompleteWithDelayBlock:(void(^)())block;
 -(void)loginComplete;
 @end
 
-@interface LoginViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate>{
+@interface LoginViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate,registViewDelegate>{
     UITextField *_userNameTextField;
     UITextField *_passWordTextField;
 }

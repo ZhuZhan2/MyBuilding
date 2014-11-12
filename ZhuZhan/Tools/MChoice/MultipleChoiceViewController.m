@@ -42,7 +42,7 @@
     self.view.layer.cornerRadius = 8;//设置那个圆角的有多圆
     self.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
     UIImageView *bgimageView = [[UIImageView alloc] init];
-    if(self.flag == 0){
+    if(self.flag == 1){
         bgimageView.frame = CGRectMake(0, 0, 272, 350);
         [bgimageView setImage:[GetImagePath getImagePath:@"高级搜索-多选_03a"]];
     }else{
@@ -62,7 +62,7 @@
     }
     
     _tableView = [[UITableView alloc] init];
-    if(self.flag == 0){
+    if(self.flag == 1){
         _tableView.frame = CGRectMake(1, 55, 269, 247);
     }else{
         _tableView.frame = CGRectMake(1, 55, 269, 157);
@@ -76,7 +76,7 @@
     [self.view addSubview:_tableView];
     
     UIButton *complated = [UIButton buttonWithType:UIButtonTypeCustom];
-    if(self.flag == 0){
+    if(self.flag == 1){
         complated.frame = CGRectMake(0,305, 135, 44);
     }else{
         complated.frame = CGRectMake(0,225, 135, 44);
@@ -88,7 +88,7 @@
     [self.view addSubview:complated];
     
     UIButton *cancel = [UIButton buttonWithType:UIButtonTypeCustom];
-    if(self.flag == 0){
+    if(self.flag == 1){
         cancel.frame = CGRectMake(136,305, 135, 44);
     }else{
         cancel.frame = CGRectMake(136,225, 135, 44);

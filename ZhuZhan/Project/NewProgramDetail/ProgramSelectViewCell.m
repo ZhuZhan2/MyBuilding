@@ -45,7 +45,7 @@
         
         if (stageLight) {
             //右边三个小icon的最右边那个，必显示，但是图不同
-            UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(270, 6, 16, 16)];
+            UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(269, 4.5, 19, 18)];
             imageView.image= thirdIcon?[GetImagePath getImagePath:@"016"]:[GetImagePath getImagePath:@"05"];//1则是勾的图，0则是没勾的图
             [cell.contentView addSubview:imageView];
             

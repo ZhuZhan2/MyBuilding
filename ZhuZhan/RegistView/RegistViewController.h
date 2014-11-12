@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol registViewDelegate <NSObject>
+
+-(void)registComplete;
+
+@end
+
 @interface RegistViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate>{
     UITextField *_phoneNumberTextField;
     UITextField *_yzmTextField;
@@ -15,5 +21,5 @@
     UITextField *verifyPassWordField;
     UITextField *accountField;
 }
-
+@property(nonatomic,strong)id<registViewDelegate>delegate;
 @end

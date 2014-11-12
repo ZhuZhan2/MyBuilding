@@ -28,7 +28,6 @@
 #import "LoginSqlite.h"
 #import "ProgramDetailViewController.h"
 #import "MJRefresh.h"
-#import "RegistViewController.h"
 #import "MBProgressHUD.h"
 #import "CompanyApi.h"
 #import "CompanyModel.h"
@@ -51,7 +50,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton setFrame:CGRectMake(0, 0, 21, 21)];
+    [rightButton setFrame:CGRectMake(0, 0, 21, 22)];
     [rightButton setImage:[GetImagePath getImagePath:@"人脉_02a"] forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(publish) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
@@ -107,6 +106,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                         [_pathCover setHeadImageUrl:model.a_companyLogo];
                         [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.a_companyName, XHUserNameKey, nil]];
                     }
+                }else{
+                    [LoadingView removeLoadingView:loadingView];
+                    loadingView = nil;
                 }
             } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
                 self.tableView.scrollEnabled=NO;
@@ -127,6 +129,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                         [_pathCover setHeadImageUrl:model.userImage];
                         [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
                     }
+                }else{
+                    [LoadingView removeLoadingView:loadingView];
+                    loadingView = nil;
                 }
             } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
                 self.tableView.scrollEnabled=NO;
@@ -648,6 +653,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     [_pathCover setHeadImageUrl:model.a_companyLogo];
                     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.a_companyName, XHUserNameKey, nil]];
                 }
+            }else{
+                [LoadingView removeLoadingView:loadingView];
+                loadingView = nil;
             }
         } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
             self.tableView.scrollEnabled=NO;
@@ -666,6 +674,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     [_pathCover setHeadImageUrl:model.userImage];
                     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
                 }
+            }else{
+                [LoadingView removeLoadingView:loadingView];
+                loadingView = nil;
             }
         } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
             self.tableView.scrollEnabled=NO;
@@ -704,6 +715,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }];
     }];
 }
+
 
 -(void)changeHeadImage{
     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImage"]]];
