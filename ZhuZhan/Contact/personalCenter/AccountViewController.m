@@ -336,7 +336,6 @@ static int count =0;//记录生日textField 的时间被触发的次数
 
 -(void)AddDataToModel:(int)flag WithTextField:(UITextField *)textField
 {
-    
     NSLog(@"textField*******%@",textField.text);
     switch (flag) {
         case 0:
@@ -351,7 +350,6 @@ static int count =0;//记录生日textField 的时间被触发的次数
         case 3:
             model.city = textField.text;
             break;
-
         case 4:
             model.constellation = textField.text;
             break;
@@ -367,11 +365,8 @@ static int count =0;//记录生日textField 的时间被触发的次数
         case 8:
             model.position = textField.text;
             break;
-            
         default:
             break;
-           
-            
     }
 }
 
