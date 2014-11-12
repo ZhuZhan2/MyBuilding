@@ -44,7 +44,7 @@
     
     contactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [contactBtn setFrame:CGRectMake(25, 8, 30, 40)];
-    [contactBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单01a"] forState:UIControlStateNormal];
+    [contactBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单01b"] forState:UIControlStateNormal];
     contactBtn.tag = 0;
     [contactBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:contactBtn];
