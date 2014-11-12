@@ -43,29 +43,29 @@
    [toolView setBackgroundColor:RGBCOLOR(229, 229, 229)];
     
     contactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [contactBtn setFrame:CGRectMake(27.5, 10, 25, 36)];
-    [contactBtn setBackgroundImage:[GetImagePath getImagePath:@"项目－项目专题_11a-20"] forState:UIControlStateNormal];
+    [contactBtn setFrame:CGRectMake(25, 8, 30, 40)];
+    [contactBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单01a"] forState:UIControlStateNormal];
     contactBtn.tag = 0;
     [contactBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:contactBtn];
     
     projectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [projectBtn setFrame:CGRectMake(107.5, 10, 25, 36)];
-    [projectBtn setBackgroundImage:[GetImagePath getImagePath:@"项目－项目专题_14a"] forState:UIControlStateNormal];
+    [projectBtn setFrame:CGRectMake(105, 8, 30, 40)];
+    [projectBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单02a"] forState:UIControlStateNormal];
     projectBtn.tag = 1;
     [projectBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:projectBtn];
     
     companyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [companyBtn setFrame:CGRectMake(187.5, 10, 25, 36)];
-    [companyBtn setBackgroundImage:[GetImagePath getImagePath:@"项目－项目专题_17a"] forState:UIControlStateNormal];
+    [companyBtn setFrame:CGRectMake(185, 8, 30, 40)];
+    [companyBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单03a"] forState:UIControlStateNormal];
     companyBtn.tag = 3;
     [companyBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:companyBtn];
     
     tradeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [tradeBtn setFrame:CGRectMake(267.5, 10, 25, 36)];
-    [tradeBtn setBackgroundImage:[GetImagePath getImagePath:@"项目－项目专题_23a"] forState:UIControlStateNormal];
+    [tradeBtn setFrame:CGRectMake(265, 8, 30, 40)];
+    [tradeBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单04a"] forState:UIControlStateNormal];
     tradeBtn.tag = 4;
     [tradeBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:tradeBtn];
@@ -155,6 +155,10 @@
             [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
+            [contactBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单01b"] forState:UIControlStateNormal];
+            [projectBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单02a"] forState:UIControlStateNormal];
+            [companyBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单03a"] forState:UIControlStateNormal];
+            [tradeBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单04a"] forState:UIControlStateNormal];
             contactview = nil;
             break;
         case 1:
@@ -164,6 +168,10 @@
             [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
+            [contactBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单01a"] forState:UIControlStateNormal];
+            [projectBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单02b"] forState:UIControlStateNormal];
+            [companyBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单03a"] forState:UIControlStateNormal];
+            [tradeBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单04a"] forState:UIControlStateNormal];
             projectview = nil;
             break;
         case 2:
@@ -176,6 +184,10 @@
             [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
+            [contactBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单01a"] forState:UIControlStateNormal];
+            [projectBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单02a"] forState:UIControlStateNormal];
+            [companyBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单03b"] forState:UIControlStateNormal];
+            [tradeBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单04a"] forState:UIControlStateNormal];
             companyview = nil;
             break;
         case 4:
@@ -190,6 +202,10 @@
             [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
+            [contactBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单01a"] forState:UIControlStateNormal];
+            [projectBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单02a"] forState:UIControlStateNormal];
+            [companyBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单03a"] forState:UIControlStateNormal];
+            [tradeBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单04b"] forState:UIControlStateNormal];
             productView = nil;
             testVC=nil;
             break;
