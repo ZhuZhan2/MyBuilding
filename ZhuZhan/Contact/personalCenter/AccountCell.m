@@ -45,6 +45,7 @@ static int textFieldTag =0;
         userName.font=[UIFont systemFontOfSize:15];
         userName.textColor=GrayColor;
         userName.tag = 2014091201;
+        userName.enabled = NO;
         [self addSubview:userName];
         UIImageView *horizontalLine1 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 109, 280, 1)];
         horizontalLine1.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];

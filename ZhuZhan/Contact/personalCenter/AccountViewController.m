@@ -447,16 +447,23 @@ static int count =0;//记录生日textField 的时间被触发的次数
         return;
     }
     
-    [LoginModel LogoutWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            [LoginSqlite deleteAll];
-            [RecordSqlite deleteAll];
-            HomePageViewController* homeVC=(HomePageViewController*)self.view.window.rootViewController;
-            UIButton* btn=[[UIButton alloc]init];
-            btn.tag=0;
-            [homeVC BtnClick:btn];
-        }
-    } noNetWork:nil];    
+    [LoginSqlite deleteAll];
+    [RecordSqlite deleteAll];
+    HomePageViewController* homeVC=(HomePageViewController*)self.view.window.rootViewController;
+    UIButton* btn=[[UIButton alloc]init];
+    btn.tag=0;
+    [homeVC BtnClick:btn];
+    
+//    [LoginModel LogoutWithBlock:^(NSMutableArray *posts, NSError *error) {
+//        if (!error) {
+//            [LoginSqlite deleteAll];
+//            [RecordSqlite deleteAll];
+//            HomePageViewController* homeVC=(HomePageViewController*)self.view.window.rootViewController;
+//            UIButton* btn=[[UIButton alloc]init];
+//            btn.tag=0;
+//            [homeVC BtnClick:btn];
+//        }
+//    } noNetWork:nil];    
 }
 
 -(UIView*)getSeparatorLine{

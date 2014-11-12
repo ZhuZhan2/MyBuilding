@@ -241,7 +241,9 @@
                 NSDictionary *item = posts[0];
                 [LoginSqlite insertData:[item objectForKey:@"userId"] datakey:@"userId"];
                 [LoginSqlite insertData:[item objectForKey:@"deviceToken"] datakey:@"deviceToken"];
-                [self.navigationController.viewControllers[0] dismissViewControllerAnimated:YES completion:nil];
+                if([self.delegate respondsToSelector:@selector(registComplete)]){
+                    [self.delegate registComplete];
+                }
             }
         }
     } dic:parameters noNetWork:nil];
