@@ -59,7 +59,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     [self.view addSubview:inputView];
     
     alertLabel = [[UILabel alloc] initWithFrame:CGRectMake(57, 4, 220, 30)];
-    alertLabel.text = @"您在做什么?（限100个字）";
+    alertLabel.text = @"您在做什么?（限150个字）";
     alertLabel.textColor = GrayColor;
     alertLabel.alpha = 0.6;
     alertLabel.textAlignment =NSTextAlignmentLeft;
@@ -240,7 +240,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
         return;
     }
     isPublish=YES;
-    NSString* publishContent=inputView.text.length>100?[inputView.text substringToIndex:100]:inputView.text;
+    NSString* publishContent=inputView.text.length>150?[inputView.text substringToIndex:150]:inputView.text;
     if (PublishNum ==1) {
         NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",publishContent,@"ActiveText",[LoginSqlite getdata:@"userType"],@"Category",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
         [CommentApi SendActivesWithBlock:^(NSMutableArray *posts, NSError *error) {

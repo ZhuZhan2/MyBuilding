@@ -392,6 +392,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ActivesModel *model = showArr[indexPath.row];
+    indexpath=indexPath;
     NSLog(@"%@",model.dict);
     if([model.a_category isEqualToString:@"Project"]){
         ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
@@ -525,8 +526,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     RecommendLetterViewController *recommendLetterVC = [[RecommendLetterViewController alloc] init];
     [self.navigationController pushViewController:recommendLetterVC animated:YES];//跳转到推荐信页面
 }
-
-
 
 -(void)addCommentView:(NSIndexPath *)indexPath{
     indexpath = indexPath;
