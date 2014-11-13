@@ -13,7 +13,8 @@
 #import "LoginSqlite.h"
 #import "ContactModel.h"
 @interface ShowViewController ()
-
+@property(nonatomic,strong)UIActivityIndicatorView* indicatorView;
+@property(nonatomic,strong)UIView* bgVIew;
 @end
 
 @implementation ShowViewController
@@ -76,11 +77,14 @@
     [self.view addSubview:concernBtn];
     concernBtn.alpha = 0.8;
     
+    [self loadIndicatorView];
+    
     [CommentApi UserBriefInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             if(posts.count !=0){
+                contactId = posts[0][@"userId"];
                 icon.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[ProjectStage ProjectStrStage:posts[0][@"userImage"]]]];
-                userName.text = [ProjectStage ProjectStrStage:posts[0][@"realName"]];
+                userName.text = [ProjectStage ProjectStrStage:posts[0][@"userName"]];
                 message.text = [NSString stringWithFormat:@"%@项目，%@动态",[ProjectStage ProjectStrStage:posts[0][@"projectsCount"]],[ProjectStage ProjectStrStage:posts[0][@"activesCount"]]];
                 if([[ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]]] isEqualToString:@"1"]){
                     [concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
@@ -89,6 +93,7 @@
                     [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
                     isFoucsed = 0;
                 }
+                [self endIndicatorView];
             }
         }
     } userId:self.createdBy noNetWork:nil];
@@ -100,9 +105,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)loadIndicatorView{
+    self.bgVIew = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 300)];
+    self.bgVIew.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.bgVIew];
+    self.indicatorView=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.indicatorView.color=[UIColor blackColor];
+    self.indicatorView.center=CGPointMake(140, self.bgVIew.frame.size.height*.5);
+    [self.bgVIew addSubview:self.indicatorView];
+    [self.indicatorView startAnimating];
+}
+
+-(void)endIndicatorView{
+    [self.indicatorView stopAnimating];
+    [self.indicatorView removeFromSuperview];
+    self.indicatorView=nil;
+    [self.bgVIew removeFromSuperview];
+    self.bgVIew = nil;
+}
+
 -(void)beginToVisitDetail{
     if([self.delegate respondsToSelector:@selector(gotoContactDetailView:)]){
-        [self.delegate gotoContactDetailView:self.createdBy];
+        [self.delegate gotoContactDetailView:contactId];
     }
 }
 
@@ -161,5 +185,9 @@
             }
         }
     } userId:self.createdBy noNetWork:nil];
+}
+
+-(void)loginComplete{
+
 }
 @end

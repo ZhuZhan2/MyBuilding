@@ -16,6 +16,7 @@
 @interface ShowViewController : UIViewController<LoginViewDelegate>{
     UIButton *concernBtn;
     int isFoucsed;
+    NSString *contactId;
 }
 @property(nonatomic,strong)NSString *createdBy;
 @property(nonatomic,weak)id<showControllerDelegate>  delegate;
