@@ -195,7 +195,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             if (!error) {
                 if(posts.count !=0){
                     self.activesModel=posts[0];
-                    NSLog(@"====>%@",self.activesModel.a_content);
+                    NSLog(@"====>%@",self.activesModel.a_imageUrl);
                     if (!self.commentModels) self.commentModels=[[NSMutableArray alloc]init];
                     for (int i=0; i<self.activesModel.a_commentsArr.count; i++) {
                         //因为数组被处理过，当评论超过3条时会有一个字符串的元素，所以需要排除

@@ -136,6 +136,7 @@
 
 //获取网络数据
 -(void)getNetWorkData{
+    NSLog(@"%@",self.contactId);
     [ContactModel UserDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             if(posts.count !=0){
@@ -148,7 +149,7 @@
                     [viewArr addObject:contactbackgroundview];
                 }
                 self.showArr = posts[2];
-                [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:self.contactModel.a_realName, XHUserNameKey, nil]];
+                [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:self.contactModel.a_userName, XHUserNameKey, nil]];
                 [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",self.contactModel.a_userImage]];
                 [self.tableView reloadData];
             }
