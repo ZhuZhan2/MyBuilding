@@ -118,6 +118,12 @@
         return;
     }
     
+    if (!self.textView.text.length) {
+        UIAlertView* alertView=[[UIAlertView alloc]initWithTitle:@"提醒" message:@"请填写评论内容" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alertView show];
+        return;
+    }
+    
     if ([self.delegate respondsToSelector:@selector(sureFromAddCommentWithComment:)]) {
         NSString* tempStr;
         if (self.textView.text.length>100) {
