@@ -50,8 +50,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    startIndex = 0;
-    self.keywords = @"";
     [self initSearchView];
     [self initMyTableViewAndNavi];
     //集成刷新控件
@@ -221,6 +219,8 @@
 //======================================================================
 
 -(void)initSearchView{
+    startIndex = 0;
+    self.keywords = @"";
     self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 320, 43)];
     self.searchBar.placeholder = @"搜索";
     self.searchBar.tintColor = [UIColor grayColor];

@@ -60,9 +60,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     
     //上拉刷新界面
-    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154)];
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154) bannerPlaceholderImageName:@"bg001"];
     _pathCover.delegate = self;
-    [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"bg001"]];
     [_pathCover setHeadTaget];
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"匿名用户", XHUserNameKey,@"想要使用更多功能请登陆",XHBirthdayKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
@@ -90,6 +89,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeHeadImage) name:@"changHead" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changName" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeBackgroundImage) name:@"changBackground" object:nil];
 }
 
 -(void)firstNetWork{
@@ -126,7 +126,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                         ContactModel *model = posts[0];
                         [LoginSqlite insertData:model.userImage datakey:@"userImage"];
                         [LoginSqlite insertData:model.userName datakey:@"userName"];
+                        [LoginSqlite insertData:model.personalBackground datakey:@"backgroundImage"];
+                        
                         [_pathCover setHeadImageUrl:model.userImage];
+                        [_pathCover setBackgroundImageUrlString:model.personalBackground];
+
                         [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
                     }
                 }else{
@@ -671,7 +675,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     ContactModel *model = posts[0];
                     [LoginSqlite insertData:model.userImage datakey:@"userImage"];
                     [LoginSqlite insertData:model.userName datakey:@"userName"];
+                    [LoginSqlite insertData:model.personalBackground datakey:@"backgroundImage"];
+                    
                     [_pathCover setHeadImageUrl:model.userImage];
+                    [_pathCover setBackgroundImageUrlString:model.personalBackground];
                     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
                 }
             }else{
@@ -723,5 +730,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)changeUserName{
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
+}
+
+-(void)changeBackgroundImage{
+    [_pathCover setBackgroundImageUrlString:[LoginSqlite getdata:@"backgroundImage"]];
 }
 @end

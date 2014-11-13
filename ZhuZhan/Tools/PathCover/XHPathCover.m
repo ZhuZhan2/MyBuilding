@@ -190,14 +190,14 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 // background
 - (void)setBackgroundImage:(UIImage *)backgroundImage {
     if (backgroundImage) {
-        _bannerImageView.image = backgroundImage;
+        //_bannerImageView.image = backgroundImage;
         //_bannerImageViewWithImageEffects.image = [backgroundImage applyLightEffect];
     }
 }
 
 - (void)setBackgroundImageUrlString:(NSString *)backgroundImageUrlString {
     if (backgroundImageUrlString) {
-        
+        _bannerImageView.imageURL=[NSURL URLWithString:backgroundImageUrlString];
     }
 }
 
@@ -355,10 +355,11 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 
 #pragma mark - Life cycle
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame bannerPlaceholderImageName:(NSString*)backgroundImageName{
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.bannerPlaceholderImageName=backgroundImageName;
         [self _setup];
     }
     return self;
@@ -382,7 +383,9 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     _bannerView = [[UIView alloc] initWithFrame:self.bounds];
     _bannerView.clipsToBounds = YES;
     
-    _bannerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -self.parallaxHeight, CGRectGetWidth(_bannerView.frame), CGRectGetHeight(_bannerView.frame))];
+    _bannerImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:self.bannerPlaceholderImageName]];
+    NSLog(@"%@",self.bannerPlaceholderImageName);
+    _bannerImageView.frame=CGRectMake(0, -self.parallaxHeight, CGRectGetWidth(_bannerView.frame), CGRectGetHeight(_bannerView.frame));
     _bannerImageView.contentMode = UIViewContentModeScaleToFill;
     [_bannerView addSubview:self.bannerImageView];
     

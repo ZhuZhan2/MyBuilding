@@ -59,9 +59,8 @@
 //    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
 //    self.navigationItem.rightBarButtonItem = rightButtonItem;
     
-    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 130)];
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 130) bannerPlaceholderImageName:@"首页_16"];
     _pathCover.delegate = self;
-    //[_pathCover setBackgroundImage:[GetImagePath getImagePath:@"首页_16"]];
     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImage"]]];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadImageFrame:CGRectMake(125, -40, 70, 70)];

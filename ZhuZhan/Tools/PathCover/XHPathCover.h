@@ -21,7 +21,8 @@ extern NSString *const XHBirthdayKey;
 @interface XHPathCover : UIView
 @property (nonatomic, weak) id<XHPathCoverDelegate>delegate;
 // parallax background
-@property (nonatomic, strong) UIImageView *bannerImageView;
+@property (nonatomic, strong) EGOImageView *bannerImageView;
+@property(nonatomic,copy)NSString* bannerPlaceholderImageName;
 @property (nonatomic, strong) UIImageView *bannerImageViewWithImageEffects;
 
 // user info
@@ -49,7 +50,7 @@ extern NSString *const XHBirthdayKey;
 - (void)stopRefresh;
 
 // background image
-- (void)setBackgroundImage:(UIImage *)backgroundImage;
+//- (void)setBackgroundImage:(UIImage *)backgroundImage;
 // custom set url for subClass， There is not work
 - (void)setBackgroundImageUrlString:(NSString *)backgroundImageUrlString;
 
@@ -77,6 +78,7 @@ extern NSString *const XHBirthdayKey;
 //设置button的位置
 - (void)setButton:(UIButton *)button WithFrame:(CGRect)frame WithBackgroundImage:(UIImage *)image AddTarget:(id)target WithAction:(SEL)selector WithTitle:(NSString *)title;
 
+- (id)initWithFrame:(CGRect)frame bannerPlaceholderImageName:(NSString*)backgroundImageName;
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;

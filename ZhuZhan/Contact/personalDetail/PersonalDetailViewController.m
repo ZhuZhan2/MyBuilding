@@ -47,9 +47,9 @@
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
-    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 215)];
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 215) bannerPlaceholderImageName:@"人脉－人的详情_02a"];
     _pathCover.delegate = self;
-    [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"人脉－人的详情_02a"]];
+    //[_pathCover setBackgroundImage:[GetImagePath getImagePath:@"人脉－人的详情_02a"]];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadImageFrame:CGRectMake(120, -50, 70, 70)];
     _pathCover.headImage.layer.cornerRadius =35;
@@ -151,6 +151,7 @@
                 self.showArr = posts[2];
                 [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:self.contactModel.a_userName, XHUserNameKey, nil]];
                 [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",self.contactModel.a_userImage]];
+                [_pathCover setBackgroundImageUrlString:self.contactModel.a_backgroundImage];
                 [self.tableView reloadData];
             }
         }

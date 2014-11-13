@@ -40,7 +40,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    //    //隐藏tabBar
+    //隐藏tabBar
     AppDelegate* app=[AppDelegate instance];
     HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
     [homeVC homePageTabBarHide];
@@ -49,8 +49,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.startIndex = 0;
-    self.keyKords = @"";
     [self initSearchView];
     [self initMyTableViewAndNavi];
     //集成刷新控件
@@ -225,6 +223,8 @@
 //======================================================================
 
 -(void)initSearchView{
+    self.startIndex = 0;
+    self.keyKords = @"";
     self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 320, 43)];
     self.searchBar.placeholder = @"搜索";
     self.searchBar.tintColor = [UIColor grayColor];
