@@ -190,7 +190,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }];
         
     //动态详情的评论 或者个人中心的个人动态
-    }else if (self.activesModel||(self.personalModel)){
+    }else if (self.activesModel||(self.personalModel||!([self.category isEqualToString:@"Product"]))){
         [CommentApi CommentUrlWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 if(posts.count !=0){
@@ -205,6 +205,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     }
                     if (self.activesModel&&[self.category isEqualToString:@"Product"]) {
                         self.content=self.activesModel.a_content;
+                        self.imageUrl=self.activesModel.a_imageUrl;
+                        self.imageWidth=self.activesModel.a_imageWidth;
+                        self.imageHeight=self.activesModel.a_imageHeight;
                     }
                     [self getTableViewContents];
                     [self myTableViewReloadData];
