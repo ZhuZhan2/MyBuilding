@@ -23,8 +23,8 @@
 @implementation CompanyTotalViewController
 
 - (void)viewDidLoad {
-    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64.5, 320, 568) superView:self.view];
     [super viewDidLoad];
+    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view];
     [self firstNetWork];
 }
 
@@ -46,7 +46,6 @@
     }else{
         [CompanyApi GetMyCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                
                 if(posts.count){
                     self.companyVC=[[CompanyViewController alloc]init];
                     self.companyVC.model = posts[0];
@@ -58,15 +57,19 @@
                     self.moreCompanyVC.navigationItem.hidesBackButton=YES;
                     [self.navigationController pushViewController:self.moreCompanyVC animated:NO];
                 }
-                [LoadingView removeLoadingView:self.loadingView];
-                self.loadingView = nil;
             }
+            [self removeMyLoadingView];
         } noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
                 [self firstNetWork];
             }];
         }];
     }
+}
+
+-(void)removeMyLoadingView{
+    [LoadingView removeLoadingView:self.loadingView];
+    self.loadingView = nil;
 }
 
 - (void)didReceiveMemoryWarning {
