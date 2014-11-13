@@ -241,7 +241,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
         return;
     }
     isPublish=YES;
-//范俊说以后如果这个被枪毙了，可以考虑当超出150字的时候提示alertView超出字数，并只出现一次
+    //范俊说以后如果这个被枪毙了，可以考虑当超出150字的时候提示alertView超出字数，并只出现一次
     NSString* publishContent=inputView.text.length>150?[inputView.text substringToIndex:150]:inputView.text;
     if (PublishNum ==1) {
         NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",publishContent,@"ActiveText",[LoginSqlite getdata:@"userType"],@"Category",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
