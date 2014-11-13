@@ -273,7 +273,7 @@
     NSData *imageData = UIImageJPEGRepresentation(image, 0.3);
     
     NSString* imageStr = [[NSString alloc] initWithData:[GTMBase64 encodeData:imageData] encoding:NSUTF8StringEncoding];
-    [self gotoAddImage:imageStr];
+    [self gotoAddImage:imageStr image:image];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -283,14 +283,16 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)gotoAddImage:(NSString *)imageStr{
+-(void)gotoAddImage:(NSString *)imageStr image:(UIImage *)image{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:imageStr forKey:@"ImageContent"];
     [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"CompanyId"];
     [dic setValue:@"Logo" forKey:@"ImageCategory"];
     [ContactModel AddCompanyImages:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            
+            [_pathCover addImageHead:image];
+            [LoginSqlite insertData:posts[0][@"imageLocation"] datakey:@"userImage"];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
         }
     } dic:dic noNetWork:nil];
 }
