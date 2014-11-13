@@ -17,12 +17,14 @@
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "EndEditingGesture.h"
+#import "LoadingView.h"
 @interface MoreCompanyViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UIScrollViewDelegate,CompanyDetailDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)UISearchBar* searchBar;
 @property(nonatomic,strong)NSString *keywords;
 @property(nonatomic)NSInteger lastIndex;
+@property(nonatomic,strong)LoadingView *loadingView;
 @end
 
 @implementation MoreCompanyViewController
@@ -54,7 +56,13 @@
     [self initMyTableViewAndNavi];
     //集成刷新控件
     [self setupRefresh];
+    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view];
     [self firstNetWork];
+}
+
+-(void)removeMyLoadingView{
+    [LoadingView removeLoadingView:self.loadingView];
+    self.loadingView = nil;
 }
 
 -(void)firstNetWork{
@@ -63,6 +71,7 @@
             self.showArr = posts;
             [self.tableView reloadData];
         }
+        [self removeMyLoadingView];
     } startIndex:0 keyWords:@"" noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
             [self firstNetWork];

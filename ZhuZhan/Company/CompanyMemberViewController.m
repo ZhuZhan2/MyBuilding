@@ -19,12 +19,14 @@
 #import "LoginSqlite.h"
 #import "EndEditingGesture.h"
 #import "PersonalDetailViewController.h"
+#import "LoadingView.h"
 @interface CompanyMemberViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)UISearchBar* searchBar;
 @property(nonatomic,strong)NSString *keyKords;
 @property(nonatomic)int startIndex;
+@property(nonatomic,strong)LoadingView *loadingView;
 @end
 
 @implementation CompanyMemberViewController
@@ -53,6 +55,7 @@
     [self initMyTableViewAndNavi];
     //集成刷新控件
     [self setupRefresh];
+    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view];
     [self firstNetWork];
 }
 
@@ -62,11 +65,17 @@
             self.showArr = posts;
             [self.tableView reloadData];
         }
+        [self removeMyLoadingView];
     } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];
+}
+
+-(void)removeMyLoadingView{
+    [LoadingView removeLoadingView:self.loadingView];
+    self.loadingView = nil;
 }
 
 //集成刷新控件

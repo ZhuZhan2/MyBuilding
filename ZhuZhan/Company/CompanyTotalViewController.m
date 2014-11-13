@@ -38,6 +38,7 @@
                 self.companyVC.navigationItem.hidesBackButton=YES;
                 [self.navigationController pushViewController:self.companyVC animated:NO];
             }
+            [self removeMyLoadingView];
         } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
                 [self firstNetWork];
