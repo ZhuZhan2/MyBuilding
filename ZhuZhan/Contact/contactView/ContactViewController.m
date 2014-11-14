@@ -104,7 +104,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                         [LoginSqlite insertData:model.a_companyLogo datakey:@"userImage"];
                         [LoginSqlite insertData:model.a_companyName datakey:@"userName"];
                         [_pathCover setHeadImageUrl:model.a_companyLogo];
-                        [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.a_companyName, XHUserNameKey, nil]];
+                        [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.a_companyName, XHUserNameKey,@"", XHBirthdayKey, nil]];
                     }
                 }else{
                     [LoadingView removeLoadingView:loadingView];
@@ -655,7 +655,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     [LoginSqlite insertData:model.a_companyLogo datakey:@"userImage"];
                     [LoginSqlite insertData:model.a_companyName datakey:@"userName"];
                     [_pathCover setHeadImageUrl:model.a_companyLogo];
-                    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.a_companyName, XHUserNameKey, nil]];
+                    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.a_companyName, XHUserNameKey,@"", XHBirthdayKey, nil]];
                 }
             }else{
                 [LoadingView removeLoadingView:loadingView];
