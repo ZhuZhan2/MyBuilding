@@ -19,12 +19,14 @@
 #import "LoginSqlite.h"
 #import "EndEditingGesture.h"
 #import "PersonalDetailViewController.h"
+#import "LoadingView.h"
 @interface CompanyMemberViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)UISearchBar* searchBar;
 @property(nonatomic,strong)NSString *keyKords;
 @property(nonatomic)int startIndex;
+@property(nonatomic,strong)LoadingView *loadingView;
 @end
 
 @implementation CompanyMemberViewController
@@ -38,7 +40,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    //    //隐藏tabBar
+    //隐藏tabBar
     AppDelegate* app=[AppDelegate instance];
     HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
     [homeVC homePageTabBarHide];
@@ -47,12 +49,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.startIndex = 0;
-    self.keyKords = @"";
     [self initSearchView];
     [self initMyTableViewAndNavi];
     //集成刷新控件
     [self setupRefresh];
+    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view];
     [self firstNetWork];
 }
 
@@ -62,11 +63,17 @@
             self.showArr = posts;
             [self.tableView reloadData];
         }
+        [self removeMyLoadingView];
     } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];
+}
+
+-(void)removeMyLoadingView{
+    [LoadingView removeLoadingView:self.loadingView];
+    self.loadingView = nil;
 }
 
 //集成刷新控件
@@ -216,6 +223,8 @@
 //======================================================================
 
 -(void)initSearchView{
+    self.startIndex = 0;
+    self.keyKords = @"";
     self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 320, 43)];
     self.searchBar.placeholder = @"搜索";
     self.searchBar.tintColor = [UIColor grayColor];

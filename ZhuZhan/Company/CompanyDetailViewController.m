@@ -17,6 +17,7 @@
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "LoginViewController.h"
+#import "LoadingView.h"
 @interface CompanyDetailViewController ()<LoginViewDelegate>
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic,strong)UIImageView* imageView;
@@ -25,6 +26,7 @@
 @property(nonatomic,strong)CompanyModel *model;
 @property(nonatomic,strong)UIButton* noticeBtn;
 @property(nonatomic,strong)UIButton* memberBtn;
+@property(nonatomic,strong)LoadingView *loadingView;
 @end
 @implementation CompanyDetailViewController
 -(BOOL)isFocused{
@@ -36,6 +38,7 @@
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
     [self initMyScrollViewAndNavi];//scollview和navi初始
+    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view];
     [self firstNetWork];
 }
 
@@ -49,11 +52,17 @@
                 [self initThirdView];
             }
         }
+        [self removeMyLoadingView];
     } companyId:self.companyId noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];
+}
+
+-(void)removeMyLoadingView{
+    [LoadingView removeLoadingView:self.loadingView];
+    self.loadingView = nil;
 }
 
 //给MyScrollView的contentSize加高度

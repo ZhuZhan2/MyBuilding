@@ -68,10 +68,9 @@ static int count =0;//记录生日textField 的时间被触发的次数
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
-    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 200)];
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 200) bannerPlaceholderImageName:@"首页_16"];
     _pathCover.delegate = self;
-    
-    [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"首页_16"]];
+    [_pathCover setBackgroundImageUrlString:[LoginSqlite getdata:@"backgroundImage"]];
     
     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImage"]]];
     [_pathCover hidewaterDropRefresh];
@@ -269,8 +268,8 @@ static int count =0;//记录生日textField 的时间被触发的次数
     NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"userId",imageStr,@"BackgroundImageString", nil];
     [LoginModel AddBackgroundImageWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            [_pathCover setBackgroundImage:image];
-            //[LoginSqlite insertData:posts[0][@"imageLocation"] datakey:@"backgroundImage"];
+            [LoginSqlite insertData:posts[0][@"backgroundImage"] datakey:@"backgroundImage"];
+            [_pathCover setBackgroundImageUrlString:posts[0][@"backgroundImage"]];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changBackground" object:nil];
         }
     } dic:parameter noNetWork:nil];

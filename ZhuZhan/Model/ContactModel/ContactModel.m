@@ -33,6 +33,7 @@
     self.provice = [ProjectStage ProjectStrStage:dict[@"provice"]];
     self.city = [ProjectStage ProjectStrStage:dict[@"city"]];
     self.district = [ProjectStage ProjectStrStage:dict[@"district"]];
+    self.personalBackground=[ProjectStage ProjectStrStage:dict[@"backgroundImage"]];
 }
 
 //POST:

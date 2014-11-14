@@ -27,5 +27,6 @@
     self.a_city = [ProjectStage ProjectStrStage:dict[@"city"]];
     self.a_district = [ProjectStage ProjectStrStage:dict[@"district"]];
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"userName"]];
+    self.a_backgroundImage=[ProjectStage ProjectStrStage:dict[@"backgroundImage"]];
 }
 @end

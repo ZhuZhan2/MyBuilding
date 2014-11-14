@@ -23,7 +23,7 @@
 @property (nonatomic,copy) NSString *a_hasCompany;
 //是否有公司认证
 @property (nonatomic,copy) NSString *a_userImage;
-
+@property(nonatomic,copy)NSString* a_backgroundImage;
 @property (nonatomic,copy) NSDictionary *dict;
 
 

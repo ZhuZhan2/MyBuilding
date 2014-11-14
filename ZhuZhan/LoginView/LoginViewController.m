@@ -172,6 +172,7 @@
                 [LoginSqlite insertData:model.a_userId datakey:@"userId"];
                 [LoginSqlite insertData:model.a_userName datakey:@"userName"];
                 [LoginSqlite insertData:model.a_userImage datakey:@"userImage"];
+                [LoginSqlite insertData:model.a_backgroundImage datakey:@"backgroundImage"];
                 [LoginSqlite insertData:model.a_userType datakey:@"userType"];
                 if (self.needDelayCancel) {
                     if([self.delegate respondsToSelector:@selector(loginCompleteWithDelayBlock:)]){

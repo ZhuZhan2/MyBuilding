@@ -40,6 +40,6 @@
 @property (nonatomic,copy) NSString *a_city;
 //区
 @property (nonatomic,copy) NSString *a_district;
-
+@property(nonatomic,copy)NSString* a_backgroundImage;
 @property (nonatomic, copy) NSDictionary *dict;
 @end

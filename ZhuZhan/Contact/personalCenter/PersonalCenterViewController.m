@@ -69,9 +69,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self.title = @"个人中心";
 
     
-    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154)];
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154) bannerPlaceholderImageName:@"首页_16"];
     _pathCover.delegate = self;
-    [_pathCover setBackgroundImage:[GetImagePath getImagePath:@"首页_16"]];
+    [_pathCover setBackgroundImageUrlString:[LoginSqlite getdata:@"backgroundImage"]];
     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImage"]]];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadImageFrame:CGRectMake(125, -30, 70, 70)];
@@ -105,6 +105,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeHeadImage) name:@"changHead" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changName" object:nil];
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changBackground" object:nil];
+    
 }
 
 -(void)downLoad:(void(^)())block{
@@ -339,5 +341,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)changeUserName{
     NSLog(@"==>%@",[LoginSqlite getdata:@"userName"]);
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
+}
+
+-(void)changeBackgroundImage{
+    [_pathCover setBackgroundImageUrlString:[LoginSqlite getdata:@"backgroundImage"]];
 }
 @end

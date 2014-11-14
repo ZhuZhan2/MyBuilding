@@ -28,6 +28,7 @@
 #import "ProductModel.h"
 #import "LoginViewController.h"
 #import "IsFocusedApi.h"
+#import "LoadingView.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate,ACTimeScrollerDelegate,LoginViewDelegate>
 @property(nonatomic,strong)UITableView* tableView;
 
@@ -63,6 +64,8 @@
 @property(nonatomic,copy)NSString* myName;//登录用户的用户昵称
 @property(nonatomic,copy)NSString* myImageUrl;//登录用户的用户头像
 @property(nonatomic,copy)NSString* isFocused;
+
+@property(nonatomic,strong)LoadingView *loadingView;
 @end
 
 @implementation ProductDetailViewController
@@ -145,7 +148,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
     [self initNavi];
+
     [self initMyTableView];
+    self.loadingView=[LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view];
+
     //因为动态详情进来的产品model.content是评论而不是产品描述内容，所以先不出mainView，加载后会更新
     if (!(self.activesModel&&[self.category isEqualToString:@"Product"])) {
         [self getMainView];
@@ -173,11 +179,17 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }];
 }
 
+-(void)removeMyLoadingView{
+    [LoadingView removeLoadingView:self.loadingView];
+    self.loadingView=nil;
+}
+
 //获取网络数据
 -(void)getNetWorkData{
     //产品详情的评论 或者个人中心的产品详情
     if (self.productModel||(self.personalModel&&[self.category isEqualToString:@"Product"])) {
         [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+            [self removeMyLoadingView];
             if (!error) {
                 self.commentModels=posts;
                 [self getTableViewContents];
@@ -192,6 +204,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //动态详情的评论 或者个人中心的个人动态
     }else if (self.activesModel||(self.personalModel||!([self.category isEqualToString:@"Product"]))){
         [CommentApi CommentUrlWithBlock:^(NSMutableArray *posts, NSError *error) {
+            [self removeMyLoadingView];
             if (!error) {
                 if(posts.count !=0){
                     self.activesModel=posts[0];

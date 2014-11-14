@@ -203,7 +203,6 @@
             return cell;
         }
     }else{
-        NSLog(@"222222");
         NSString *CellIdentifier = [NSString stringWithFormat:@"ContactCommentTableViewCell"];
         ContactCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
