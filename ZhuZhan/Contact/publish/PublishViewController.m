@@ -59,7 +59,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     [self.view addSubview:inputView];
     
     alertLabel = [[UILabel alloc] initWithFrame:CGRectMake(57, 4, 220, 30)];
-    alertLabel.text = @"您在做什么?（限150个字）";
+    alertLabel.text = @"您在做什么?（限150字）";
     alertLabel.textColor = GrayColor;
     alertLabel.alpha = 0.6;
     alertLabel.textAlignment =NSTextAlignmentLeft;
