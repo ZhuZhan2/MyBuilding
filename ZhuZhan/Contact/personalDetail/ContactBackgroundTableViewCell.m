@@ -61,7 +61,7 @@
         locationLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
         [self.contentView addSubview:locationLabel];
         
-        location = [[UILabel alloc] initWithFrame:CGRectMake(110, 135, 100, 30)];
+        location = [[UILabel alloc] initWithFrame:CGRectMake(110, 135, 150, 30)];
         location.textColor = [UIColor lightGrayColor];
         location.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
         [self.contentView addSubview:location];

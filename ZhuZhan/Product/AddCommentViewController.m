@@ -84,15 +84,17 @@
     [self.view addSubview:titleLabel];
     
     self.cancelBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    self.cancelBtn.frame=CGRectMake(10, 10, 50, 20);
+    self.cancelBtn.frame=CGRectMake(10, 2.5, 50, 35);
     [self.cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
     [self.cancelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.cancelBtn.titleLabel.font=[UIFont boldSystemFontOfSize:17];
     [self.cancelBtn addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.cancelBtn];
     
+    
     self.sureBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    self.sureBtn.frame=CGRectMake(220, 10, 50, 20);
+    self.sureBtn.frame=CGRectMake(220, 2.5, 50, 35);
+    //self.sureBtn.backgroundColor = [UIColor redColor];
     [self.sureBtn setTitle:@"确认" forState:UIControlStateNormal];
     [self.sureBtn setTitleColor:BlueColor forState:UIControlStateNormal];
     self.sureBtn.titleLabel.font=[UIFont boldSystemFontOfSize:17];
@@ -118,7 +120,8 @@
         return;
     }
     
-    if (!self.textView.text.length) {
+    NSString *str = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (!str.length) {
         UIAlertView* alertView=[[UIAlertView alloc]initWithTitle:@"提醒" message:@"请填写评论内容" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alertView show];
         return;

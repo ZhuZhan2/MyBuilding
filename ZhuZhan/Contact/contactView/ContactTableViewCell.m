@@ -59,19 +59,19 @@
     [stageImage setImage:[GetImagePath getImagePath:@"人脉－个人中心_05a"]];
     [self.contentView addSubview:stageImage];
     
-    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 5, 200, 20)];
-    titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
+    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 5, 200, 20)];
+    titleLabel.font = [UIFont fontWithName:nil size:14];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:titleLabel];
     
-    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 25, 150, 20)];
-    nameLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
+    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 25, 150, 20)];
+    nameLabel.font = [UIFont fontWithName:nil size:12];
     nameLabel.textAlignment = NSTextAlignmentLeft;
     nameLabel.textColor = [UIColor lightGrayColor];
     [self.contentView addSubview:nameLabel];
     
-    jobLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 25, 100, 20)];
-    jobLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
+    jobLabel = [[UILabel alloc] initWithFrame:CGRectMake(150, 25, 100, 20)];
+    jobLabel.font = [UIFont fontWithName:nil size:12];
     jobLabel.textAlignment = NSTextAlignmentLeft;
     jobLabel.textColor = [UIColor lightGrayColor];
     [self.contentView addSubview:jobLabel];

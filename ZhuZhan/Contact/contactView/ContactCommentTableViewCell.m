@@ -43,13 +43,13 @@
     [headBtn addTarget:self action:@selector(headActon) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:headBtn];
     
-    contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 0, 190, 30)];
+    contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 190, 30)];
     contentLabel.numberOfLines = 2;
     contentLabel.font = [UIFont systemFontOfSize:12];
     contentLabel.lineBreakMode =NSLineBreakByTruncatingTail ;
     [self.contentView addSubview:contentLabel];
     
-    timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 25, 190, 30)];
+    timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 25, 190, 30)];
     timeLabel.textColor = [UIColor lightGrayColor];
     timeLabel.font = [UIFont systemFontOfSize:12];
     [self.contentView addSubview:timeLabel];

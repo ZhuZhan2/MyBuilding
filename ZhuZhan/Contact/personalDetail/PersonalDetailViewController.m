@@ -290,7 +290,7 @@
             imgaeView.image = [GetImagePath getImagePath:@"人脉－人的详情_30a"];
             [back addSubview:imgaeView];
         }
-        cell.backgroundColor = [UIColor yellowColor];
+        cell.selectionStyle = NO;
         return cell;
     }else{
         static NSString *identifier = @"CorrelateCell";

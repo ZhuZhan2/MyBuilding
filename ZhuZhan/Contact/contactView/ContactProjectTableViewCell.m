@@ -58,13 +58,13 @@
     stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(53.5, 11.5, 27, 27)];
     [self.contentView addSubview:stageImage];
     
-    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 5, 200, 20)];
-    titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
+    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 5, 200, 20)];
+    titleLabel.font = [UIFont fontWithName:nil size:14];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:titleLabel];
     
-    contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 25, 200, 20)];
-    contentLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
+    contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 25, 200, 20)];
+    contentLabel.font = [UIFont fontWithName:nil size:12];
     contentLabel.textAlignment = NSTextAlignmentLeft;
     contentLabel.textColor = [UIColor lightGrayColor];
     [self.contentView addSubview:contentLabel];

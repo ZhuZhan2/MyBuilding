@@ -55,7 +55,7 @@
 }
 
 -(void)setModel:(PersonalCenterModel *)model{
-    contentLabel.text = model.a_content;
+    contentLabel.text = @"项目有新评论";
     titleLabel.text = model.a_entityName;
     if([model.a_projectStage isEqualToString:@"LandStage"]){
         [stageImage setImage:[GetImagePath getImagePath:@"人脉_57a"]];
