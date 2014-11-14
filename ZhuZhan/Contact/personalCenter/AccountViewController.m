@@ -268,8 +268,8 @@ static int count =0;//记录生日textField 的时间被触发的次数
     NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"userId",imageStr,@"BackgroundImageString", nil];
     [LoginModel AddBackgroundImageWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            [LoginSqlite insertData:posts[0][@"backgroundImage"] datakey:@"backgroundImage"];
-            [_pathCover setBackgroundImageUrlString:posts[0][@"backgroundImage"]];
+            [LoginSqlite insertData:posts[0][@"imageLocation"] datakey:@"backgroundImage"];
+            [_pathCover setBackgroundImageUrlString:posts[0][@"imageLocation"]];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changBackground" object:nil];
         }
     } dic:parameter noNetWork:nil];
