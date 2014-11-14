@@ -472,7 +472,7 @@
 }
 
 -(void)loginComplete{
-
+    NSLog(@"asfasdf");
 }
 
 -(void)loginCompleteWithDelayBlock:(void (^)())block{
