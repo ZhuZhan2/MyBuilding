@@ -105,7 +105,12 @@
 }
 
 -(void)handleContent{
-    UIImage* image=[GetImagePath getImagePath:self.isFocused?@"公司－公司详情_05b":@"公司－公司详情_05a"];
+    UIImage* image= nil;
+    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+        image=[GetImagePath getImagePath:self.isFocused?@"公司－公司详情_05d":@"公司－公司详情_05c"];
+    }else{
+        image=[GetImagePath getImagePath:self.isFocused?@"公司－公司详情_05b":@"公司－公司详情_05a"];
+    }
     if (!self.imageView){
         self.imageView=[[UIImageView alloc]initWithImage:image];
     }else{
@@ -132,11 +137,20 @@
     UILabel* memberCountLabel=[[UILabel alloc]initWithFrame:CGRectMake(225, 16, 150, 20)];
     memberCountLabel.text=@"申请认证";
     memberCountLabel.font=[UIFont boldSystemFontOfSize:16];
-    memberCountLabel.textColor=RGBCOLOR(62, 127, 226);
+    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+        memberCountLabel.textColor=RGBCOLOR(170, 170, 170);
+    }else{
+        memberCountLabel.textColor=RGBCOLOR(62, 127, 226);
+    }
     [view addSubview:memberCountLabel];
     
     self.memberBtn=[[UIButton alloc]initWithFrame:CGRectMake(116, 0, 204, 49)];
     [self.memberBtn addTarget:self action:@selector(applyForCertification) forControlEvents:UIControlEventTouchUpInside];
+    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+        self.memberBtn.enabled = NO;
+    }else{
+        self.memberBtn.enabled = YES;
+    }
     [view addSubview:self.memberBtn];
 }
 
