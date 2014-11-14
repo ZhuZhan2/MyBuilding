@@ -105,7 +105,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeHeadImage) name:@"changHead" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changName" object:nil];
-    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changBackground" object:nil];
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeBackgroundImage) name:@"changBackground" object:nil];
     
 }
 
