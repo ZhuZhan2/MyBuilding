@@ -11,7 +11,7 @@
 #import "ConnectionAvailable.h"
 @interface AddCommentViewController ()<UITextViewDelegate>
 @property(nonatomic,strong)UILabel* countLabel;//字数label
-@property(nonatomic,strong)UILabel* aboveMaxLabel;//超过字数限制时的中文提示label
+//@property(nonatomic,strong)UILabel* aboveMaxLabel;//超过字数限制时的中文提示label
 @property(nonatomic,strong)UITextView* textView;
 
 @property(nonatomic,strong)UIButton* sureBtn;
@@ -19,7 +19,7 @@
 @end
 
 @implementation AddCommentViewController
-
+#define kCommentLimitNumber 100
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -41,9 +41,9 @@
     self.countLabel.textColor=RGBCOLOR(155, 155, 155);
     [self.view addSubview:self.countLabel];
     
-    self.aboveMaxLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 140, 20)];
-    self.aboveMaxLabel.center=CGPointMake(167, self.view.frame.size.height-20);
-    [self.view addSubview:self.aboveMaxLabel];
+//    self.aboveMaxLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 140, 20)];
+//    self.aboveMaxLabel.center=CGPointMake(167, self.view.frame.size.height-20);
+//    [self.view addSubview:self.aboveMaxLabel];
     
     
 }
@@ -64,17 +64,53 @@
     [self.textView becomeFirstResponder];
 }
 
--(void)textViewDidChange:(UITextView *)textView{
-    //该判断用于联想输入
-    if (textView.text.length<=100) {
-        self.countLabel.text=[NSString stringWithFormat:@"%d/100",textView.text.length];
-        self.aboveMaxLabel.text=nil;
-    }else{
-        self.countLabel.text=@"100/100";
-        self.aboveMaxLabel.text=[NSString stringWithFormat:@"已经超过%d字",textView.text.length-100];
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    self.countLabel.text=[NSString stringWithFormat:@"%d/100",textView.text.length];
+    if (range.length == 0 && textView.text.length >= kCommentLimitNumber) {
+        return NO;
     }
+    return YES;
 }
 
+
+-(void)textViewDidChange:(UITextView *)textView{
+    NSArray *array = [UITextInputMode activeInputModes];
+    if (array.count > 0) {
+        UITextInputMode *textInputMode = [array firstObject];
+        NSString *lang = [textInputMode primaryLanguage];
+        if ([lang isEqualToString:@"zh-Hans"]) {
+            if (textView.text.length != 0) {
+                int a = [textView.text characterAtIndex:textView.text.length - 1];
+                if( a > 0x4e00 && a < 0x9fff) { // PINYIN 手写的时候 才做处理
+                    if (textView.text.length >= kCommentLimitNumber) {
+                        textView.text = [textView.text substringToIndex:kCommentLimitNumber];
+                    }
+                }
+            }
+        } else {
+            if (textView.text.length >= kCommentLimitNumber) {
+                textView.text = [textView.text substringToIndex:kCommentLimitNumber];
+            }
+        }
+    }
+
+    
+    //该判断用于联想输入
+//    if (textView.text.length<=100) {
+        self.countLabel.text=[NSString stringWithFormat:@"%d/100",textView.text.length];
+        //self.aboveMaxLabel.text=nil;
+//    }else{
+//        self.countLabel.text=@"100/100";
+//        self.aboveMaxLabel.text=[NSString stringWithFormat:@"已经超过%d字",textView.text.length-100];
+//    }
+}
+
+-(void)paste:(id)sender{
+    [super paste:sender];
+    if (self.textView.text.length > kCommentLimitNumber) {
+        self.textView.text = [self.textView.text substringToIndex:kCommentLimitNumber];
+    }
+}
 
 -(void)initTitlePart{
     UILabel* titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
