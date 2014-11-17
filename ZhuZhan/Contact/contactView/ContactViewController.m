@@ -403,9 +403,17 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     ActivesModel *model = showArr[indexPath.row];
     indexpath=indexPath;
     if([model.a_category isEqualToString:@"Project"]){
-        ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
-        vc.projectId = model.a_entityId;
-        [self.navigationController pushViewController:vc animated:YES];
+        if ([model.a_eventType isEqualToString:@"AutomaticUpdate"]) {
+            ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
+            vc.projectId = model.a_entityId;
+            [self.navigationController pushViewController:vc animated:YES];
+
+        }else{
+            PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
+            projectCommentView.projectId = model.a_entityId;
+            projectCommentView.projectName = model.a_projectName;
+            [self.navigationController pushViewController:projectCommentView animated:YES];
+        }
     }else if([model.a_category isEqualToString:@"Personal"]){
         if([model.a_eventType isEqualToString:@"Actives"]){
             ActivesModel *model = showArr[indexPath.row];

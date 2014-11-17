@@ -145,6 +145,7 @@
     self.memberBtn=[[UIButton alloc]initWithFrame:CGRectMake(116, 0, 204, 49)];
     [self.memberBtn addTarget:self action:@selector(applyForCertification) forControlEvents:UIControlEventTouchUpInside];
     self.memberBtn.enabled = ![[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"];
+    NSLog(@"%d",self.memberBtn.enabled);
     [view addSubview:self.memberBtn];
 }
 
@@ -227,7 +228,7 @@
 }
 
 -(void)applyForCertification{
-    NSLog(@"用户选择了 申请关注");
+    NSLog(@"用户选择了 申请认证");
     if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
         if (![ConnectionAvailable isConnectionAvailable]) {
             [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];

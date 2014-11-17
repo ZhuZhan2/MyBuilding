@@ -69,6 +69,10 @@
             if (block) {
                 block(nil, nil);
             }
+        }else{
+            if (block) {
+                block(nil,[NSError new]);
+            }
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         NSLog(@"error ==> %@",error);
@@ -216,6 +220,9 @@
                 block(nil, nil);
             }
         }else{
+            if (block) {
+                block(nil,[NSError new]);
+            }
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }

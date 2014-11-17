@@ -19,18 +19,18 @@
     UILabel *leftBtnLabel;
     UILabel *rightBtnLabel;
     BOOL isPublish;
+    int PublishNum;//1 发布动态  2，发布产品
 }
 
 @end
-
+#define kPublishLimitNumber 150
 @implementation PublishViewController
 @synthesize toolBar,inputView,alertLabel,leftBtnImage,rightBtnImage,publishImage,camera,publishImageStr;
-static int PublishNum =1;//1 发布动态  2，发布产品
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    PublishNum=1;
     self.view.backgroundColor = RGBCOLOR(237, 237, 237);
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 5, 29, 28.5)];
@@ -59,7 +59,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     [self.view addSubview:inputView];
     
     alertLabel = [[UILabel alloc] initWithFrame:CGRectMake(57, 4, 220, 30)];
-    alertLabel.text = @"您在做什么?（限150字）";
+    alertLabel.text = [NSString stringWithFormat:@"您在做什么?（限%d字）",kPublishLimitNumber];
     alertLabel.textColor = GrayColor;
     alertLabel.alpha = 0.6;
     alertLabel.textAlignment =NSTextAlignmentLeft;
@@ -111,14 +111,6 @@ static int PublishNum =1;//1 发布动态  2，发布产品
 
 }
 
-//范俊说以后如果这个被枪毙了，可以考虑当超出150字的时候提示alertView超出字数，并只出现一次
--(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-    if ([@"\n" isEqualToString:text] == YES) { //发送的操作
-        [self goToPublish];
-        return NO;
-    }
-    return YES;
-}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -213,7 +205,49 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     publishImageStr = @"";
 }
 
+//范俊说以后如果这个被枪毙了，可以考虑当超出150字的时候提示alertView超出字数，并只出现一次
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([@"\n" isEqualToString:text] == YES) { //发送的操作
+        [self goToPublish];
+        return NO;
+    }
+    
+    if (range.length == 0 && textView.text.length >= kPublishLimitNumber) {
+        return NO;
+    }
+    return YES;
+}
+
+
+-(void)paste:(id)sender{
+    [super paste:sender];
+    
+    if (inputView.text.length > kPublishLimitNumber) {
+        inputView.text = [inputView.text substringToIndex:kPublishLimitNumber];
+    }
+}
+
 -(void)textViewDidChange:(UITextView *)textView{
+    NSArray *array = [UITextInputMode activeInputModes];
+    if (array.count > 0) {
+        UITextInputMode *textInputMode = [array firstObject];
+        NSString *lang = [textInputMode primaryLanguage];
+        if ([lang isEqualToString:@"zh-Hans"]) {
+            if (textView.text.length != 0) {
+                int a = [textView.text characterAtIndex:textView.text.length - 1];
+                if( a > 0x4e00 && a < 0x9fff) { // PINYIN 手写的时候 才做处理
+                    if (textView.text.length >= kPublishLimitNumber) {
+                        textView.text = [textView.text substringToIndex:kPublishLimitNumber];
+                    }
+                }
+            }
+        } else {
+            if (textView.text.length >= kPublishLimitNumber) {
+                textView.text = [textView.text substringToIndex:kPublishLimitNumber];
+            }
+        }
+    }
+
     if (textView.text.length) {
         [alertLabel removeFromSuperview];
     }else{
@@ -242,7 +276,7 @@ static int PublishNum =1;//1 发布动态  2，发布产品
     }
     isPublish=YES;
     //范俊说以后如果这个被枪毙了，可以考虑当超出150字的时候提示alertView超出字数，并只出现一次
-    NSString* publishContent=inputView.text.length>150?[inputView.text substringToIndex:150]:inputView.text;
+    NSString* publishContent=inputView.text.length>kPublishLimitNumber?[inputView.text substringToIndex:kPublishLimitNumber]:inputView.text;
     if (PublishNum ==1) {
         NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",publishContent,@"ActiveText",[LoginSqlite getdata:@"userType"],@"Category",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
         [CommentApi SendActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
