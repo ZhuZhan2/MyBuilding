@@ -283,6 +283,7 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     y += fixAdaptorPadding;
     _offsetY = y;
     CGRect frame = _showView.frame;
+    NSLog(@"y==%f",y);
     if(y < 0) {
         if((_waterDropRefresh.isRefreshing) || hasStop) {
             if(normal && paste == NO) {
@@ -318,14 +319,19 @@ NSString *const XHBirthdayKey = @"XHBirthday";
         bframe.size.height = -y + bannerSuper.superview.frame.size.height;
         bannerSuper.frame = bframe;
         
-        CGPoint center =  _bannerImageView.center;
-        center.y = bannerSuper.frame.size.height / 2;
+        //CGPoint center =  _bannerImageView.center;
+        //center.y = bannerSuper.frame.size.height / 2;
         //_bannerImageView.center = center;
-        _bannerImageView.frame = CGRectMake(0, 0, 320, bframe.size.height);
+        //_bannerImageView.frame = CGRectMake(0, 0, 320, bframe.size.height);
+        //_bannerImageView.frame=CGRectMake(0, 0, 320, 320);
+        CGPoint center=self.center;
+        center.y-=y*.5;
+        _bannerImageView.center=center;
         if (self.isZoomingEffect) {
-            _bannerImageView.center = center;
-            CGFloat scale = fabsf(y) / self.parallaxHeight;
-            _bannerImageView.transform = CGAffineTransformMakeScale(1+scale, 1+scale);
+            
+            //_bannerImageView.center = center;
+            //CGFloat scale = fabsf(y) / self.parallaxHeight;
+            //_bannerImageView.transform = CGAffineTransformMakeScale(1+scale, 1+scale);
         }
     } else {
         if(bframe.origin.y != 0) {
@@ -334,9 +340,9 @@ NSString *const XHBirthdayKey = @"XHBirthday";
             bannerSuper.frame = bframe;
         }
         if(y < bframe.size.height) {
-            CGPoint center =  _bannerImageView.center;
-            center.y = bannerSuper.frame.size.height/2 + 0.5 * y;
-            _bannerImageView.center = center;
+            //CGPoint center =  _bannerImageView.center;
+            //center.y = bannerSuper.frame.size.height/2 + 0.5 * y;
+            //_bannerImageView.center = center;
         }
     }
     
@@ -385,7 +391,9 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     
     _bannerImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:self.bannerPlaceholderImageName]];
     NSLog(@"%@",self.bannerPlaceholderImageName);
-    _bannerImageView.frame=CGRectMake(0, -self.parallaxHeight, CGRectGetWidth(_bannerView.frame), CGRectGetHeight(_bannerView.frame));
+//    _bannerImageView.frame=CGRectMake(0, -self.parallaxHeight, CGRectGetWidth(_bannerView.frame), CGRectGetHeight(_bannerView.frame));
+    _bannerImageView.frame=CGRectMake(0, 0, 320, 320);
+    _bannerImageView.center=self.center;
     _bannerImageView.contentMode = UIViewContentModeScaleToFill;
     [_bannerView addSubview:self.bannerImageView];
     
