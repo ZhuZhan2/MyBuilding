@@ -221,6 +221,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                         self.imageUrl=self.activesModel.a_imageUrl;
                         self.imageWidth=self.activesModel.a_imageWidth;
                         self.imageHeight=self.activesModel.a_imageHeight;
+                        self.userName=self.activesModel.a_userName;
                     }
                     [self getTableViewContents];
                     [self myTableViewReloadData];
