@@ -403,7 +403,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     ActivesModel *model = showArr[indexPath.row];
     indexpath=indexPath;
     if([model.a_category isEqualToString:@"Project"]){
-        if ([model.a_eventType isEqualToString:@"AutomaticUpdate"]) {
+        if (![model.a_eventType isEqualToString:@"Automatic"]) {
             ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
             vc.projectId = model.a_entityId;
             [self.navigationController pushViewController:vc animated:YES];
