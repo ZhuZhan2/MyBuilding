@@ -112,6 +112,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)downLoad:(void(^)())block{
     [CommentApi PersonalActiveWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
+            [_datasource removeAllObjects];
+            [contentViews removeAllObjects];
+            [showArr removeAllObjects];
             startIndex=0;
             showArr = posts;
             for(int i=0;i<showArr.count;i++){
