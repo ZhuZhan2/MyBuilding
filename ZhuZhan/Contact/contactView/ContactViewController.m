@@ -34,7 +34,7 @@
 #import "CompanyDetailViewController.h"
 #import "LoadingView.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
-@interface ContactViewController ()
+@interface ContactViewController ()<CompanyDetailDelegate>
 
 @end
 
@@ -498,9 +498,17 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [self presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
     }else{
         CompanyDetailViewController *detailView = [[CompanyDetailViewController alloc] init];
+        detailView.delegate=self;
         detailView.companyId = model.a_createdBy;
+        lasetCompanyID=model.a_createdBy;
         [self.navigationController pushViewController:detailView animated:YES];
     }
+}
+
+-(void)gotoCompanyDetail:(BOOL)needAnimation{
+    CompanyDetailViewController *detailView = [[CompanyDetailViewController alloc] init];
+    detailView.companyId = lasetCompanyID;
+    [self.navigationController pushViewController:detailView animated:NO];
 }
 
 -(void)gotoContactDetailView:(NSString *)contactId{
@@ -532,6 +540,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }else{
         CompanyDetailViewController *detailView = [[CompanyDetailViewController alloc] init];
         detailView.companyId = aid;
+        detailView.delegate=self;
+        lasetCompanyID=aid;
         [self.navigationController pushViewController:detailView animated:YES];
     }
 }

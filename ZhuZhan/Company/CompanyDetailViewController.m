@@ -281,7 +281,9 @@
 
 -(void)loginComplete{
     [self.navigationController popViewControllerAnimated:NO];
-    [self.delegate gotoCompanyDetail:NO];
+    if ([self.delegate respondsToSelector:@selector(gotoCompanyDetail:)]) {
+        [self.delegate gotoCompanyDetail:NO];
+    }
 }
 
 -(void)loginCompleteWithDelayBlock:(void (^)())block{

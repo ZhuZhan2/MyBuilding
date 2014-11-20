@@ -31,6 +31,7 @@
     NSIndexPath *indexpath;
     ShowViewController *showVC;
     LoadingView *loadingView;
+    NSString* lasetCompanyID;
 }
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong) UIView *transparent;
