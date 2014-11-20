@@ -13,6 +13,7 @@
 #import "ConnectionAvailable.h"
 #import "MyCenterModel.h"
 #import "ParticularsModel.h"
+#import "LoginSqlite.h"
 @implementation ContactModel
 
 -(void)setDict:(NSDictionary *)dict
@@ -104,6 +105,9 @@
         if (noNetWork) {
             noNetWork();
         }
+        return nil;
+    }
+    if ([dic[@"FocusId"] isEqualToString:[LoginSqlite getdata:@"userId"]] ) {
         return nil;
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/networking/addUserFocus"];
