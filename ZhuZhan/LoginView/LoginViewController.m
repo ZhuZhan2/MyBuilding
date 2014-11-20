@@ -174,6 +174,7 @@
                 [LoginSqlite insertData:model.a_userImage datakey:@"userImage"];
                 [LoginSqlite insertData:model.a_backgroundImage datakey:@"backgroundImage"];
                 [LoginSqlite insertData:model.a_userType datakey:@"userType"];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"updataUser" object:nil];
                 if (self.needDelayCancel) {
                     if([self.delegate respondsToSelector:@selector(loginCompleteWithDelayBlock:)]){
                         [self.delegate loginCompleteWithDelayBlock:^{
@@ -199,4 +200,11 @@
         }];
     }
 }
+
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)string{
+//    if ([[[UITextInputMode currentInputMode]primaryLanguage] isEqualToString:@"emoji"]) {
+//        return NO;
+//    }
+//    return YES;
+//}
 @end

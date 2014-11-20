@@ -90,6 +90,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeHeadImage) name:@"changHead" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changName" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeBackgroundImage) name:@"changBackground" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updataUser) name:@"updataUser" object:nil];
 }
 
 -(void)firstNetWork{
@@ -742,5 +743,31 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)changeBackgroundImage{
     [_pathCover setBackgroundImageUrlString:[LoginSqlite getdata:@"backgroundImage"]];
+}
+
+-(void)updataUser{
+    [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            if(posts.count !=0){
+                ContactModel *model = posts[0];
+                [LoginSqlite insertData:model.userImage datakey:@"userImage"];
+                [LoginSqlite insertData:model.userName datakey:@"userName"];
+                [LoginSqlite insertData:model.personalBackground datakey:@"backgroundImage"];
+                
+                [_pathCover setHeadImageUrl:model.userImage];
+                [_pathCover setBackgroundImageUrlString:model.personalBackground];
+                [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
+            }
+        }else{
+            [LoadingView removeLoadingView:loadingView];
+            loadingView = nil;
+        }
+    } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+            [self firstNetWork];
+        }];
+    }];
 }
 @end

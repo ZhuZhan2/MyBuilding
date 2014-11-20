@@ -12,6 +12,7 @@
 #import "ProjectStage.h"
 #import "LoginSqlite.h"
 #import "ContactModel.h"
+#import "EGOImageView.h"
 @interface ShowViewController ()
 @property(nonatomic,strong)UIActivityIndicatorView* indicatorView;
 @property(nonatomic,strong)UIView* bgVIew;
@@ -32,8 +33,9 @@
 {
     [super viewDidLoad];
     
-    UIImageView  *tempImageView= [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 280, 300)];
-    tempImageView.image = [GetImagePath getImagePath:@"bg001"];
+    EGOImageView  *tempImageView= [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001"]];
+    tempImageView.frame = CGRectMake(0, 0, 280, 300);
+    tempImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"backgroundImage"]]];
     [self.view addSubview:tempImageView];
     
     
