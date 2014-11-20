@@ -178,6 +178,7 @@
         label.font = [UIFont systemFontOfSize:15];
         label.textColor = BlueColor;
         [cell.contentView addSubview:label];
+        cell.selectionStyle = NO;
         return cell;
     }else{
         NSString *CellIdentifier = [NSString stringWithFormat:@"cell2"];
@@ -189,7 +190,7 @@
             [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         }
         [cell.contentView addSubview:viewArr[indexPath.row-1]];
-        
+        cell.selectionStyle = NO;
         return cell;
     }
     return nil;

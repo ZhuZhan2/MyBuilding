@@ -48,6 +48,7 @@
     self.userCommentContent.text=commentContent;
     self.userCommentContent.textColor=RGBCOLOR(86, 86, 86);
     [self addSubview:self.userCommentContent];
+    NSLog(@"=====>%@",commentContent);
     
     CGFloat height=0;
     if (self.userCommentContent.frame.size.height>=25) {
