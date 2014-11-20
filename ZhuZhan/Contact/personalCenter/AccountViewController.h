@@ -11,7 +11,6 @@
 #import "AccountCell.h"
 #import "Camera.h"
 
-
 @interface AccountViewController : UIViewController<XHPathCoverDelegate,UIActionSheetDelegate,UITextFieldDelegate,AccountCellDelegate,CameraDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) XHPathCover *pathCover;

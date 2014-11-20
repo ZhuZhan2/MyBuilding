@@ -287,12 +287,14 @@ static int textFieldTag =0;
 }
 
 -(void)addSex{
+    [self addBgBtn];
     singlepickerview=[[SinglePickerView alloc]initWithTitle:CGRectMake(0, 0, 320, 260) title:nil Arr:@[@"男",@"女"] delegate:self];
     singlepickerview.tag = 0;
     [singlepickerview showInView:self.superview.superview.superview];
 }
 
 -(void)addLocation{
+    [self addBgBtn];
     locationview = [[LocateView alloc] initWithTitle:CGRectMake(0, 0, 320, 260) title:nil delegate:self];
     locationview.tag = 1;
     [locationview showInView:self.superview.superview.superview];
@@ -317,6 +319,9 @@ static int textFieldTag =0;
             [self.delegate addLocation:@{@"provice":locationview.proviceDictionary[@"provice"],@"city":locationview.proviceDictionary[@"city"],@"district":locationview.proviceDictionary[@"county"]}];
         }
     }
+    
+    [bgBtn removeFromSuperview];
+    bgBtn = nil;
 }
 
 -(void)begintoModifyPassword
@@ -409,5 +414,19 @@ static int textFieldTag =0;
     cellPhone.text = model.cellPhone;
     company.text = model.companyName;
     position.text = model.position;
+}
+
+-(void)addBgBtn{
+    bgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    bgBtn.frame = self.superview.superview.superview.frame;
+    [bgBtn addTarget:self action:@selector(closeView) forControlEvents:UIControlEventTouchUpInside];
+    [self.superview.superview.superview addSubview:bgBtn];
+}
+
+-(void)closeView{
+    [singlepickerview cancelClick];
+    [locationview cancelClick];
+    [bgBtn removeFromSuperview];
+    bgBtn = nil;
 }
 @end
