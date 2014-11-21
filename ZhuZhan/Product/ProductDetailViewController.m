@@ -640,7 +640,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     [alertView show];
                     self.isFocused = @"1";
                 }
-            } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"productId":self.productModel.a_id} mutableCopy] noNetWork:nil];
+            } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"productId":self.entityID} mutableCopy] noNetWork:nil];
         }else{
             [ProductModel DeleteProductionUserFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
@@ -648,7 +648,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     [alertView show];
                     self.isFocused = @"0";
                 }
-            } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"productId":self.productModel.a_id} mutableCopy] noNetWork:nil];
+            } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"productId":self.entityID} mutableCopy] noNetWork:nil];
         }
     }else{
         NSLog(@"取消");
