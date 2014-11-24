@@ -131,7 +131,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                         
                         [_pathCover setHeadImageUrl:model.userImage];
                         [_pathCover setBackgroundImageUrlString:model.personalBackground];
-
+                        NSLog(@"====>%@",model.companyName);
                         [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
                     }
                 }else{

@@ -21,7 +21,7 @@
         [self addSubview:companyLabel];
         
         
-        positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 20, 80, 30)];
+        positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 20, 150, 30)];
         positionLabel.textAlignment = NSTextAlignmentLeft;
         positionLabel.textColor = [UIColor grayColor];
         positionLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
