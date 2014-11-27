@@ -68,6 +68,8 @@
         if(str.length !=0){
             string = [str substringToIndex:([str length]-1)];
         }
+        
+        string =  [string stringByReplacingOccurrencesOfString:@"+" withString:@","];
         label.text = string;
     }
     label.font = [UIFont systemFontOfSize:16];
@@ -96,6 +98,7 @@
             }];
         }];
     }else{
+        NSLog(@"==>%@",self.dic);
         [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 showArr = posts[0];

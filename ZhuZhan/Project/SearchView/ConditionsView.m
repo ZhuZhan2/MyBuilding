@@ -39,6 +39,7 @@
     contentLabel.font = tfont;
     contentLabel.textColor = [UIColor blackColor];
     contentLabel.lineBreakMode =NSLineBreakByCharWrapping ;
+    //NSLog(@"%@",model.a_searchConditions);
     contentLabel.text = [ProjectStage SearchProjectStage:model.a_searchConditions];
     //给一个比较大的高度，宽度不变
     CGSize size =CGSizeMake(230,1000);
