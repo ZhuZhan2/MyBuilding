@@ -19,6 +19,7 @@
 #import "LoginViewController.h"
 #import "CompanyModel.h"
 #import "LoadingView.h"
+#import "MyTableView.h"
 @interface ContactViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate,showControllerDelegate,HeadImageDelegate,CommentViewDelegate,AddCommentDelegate,ErrorViewDelegate,ProductDetailDelegate,LoginViewDelegate>{
     NSMutableArray *_datasource;
     ACTimeScroller *_timeScroller;
