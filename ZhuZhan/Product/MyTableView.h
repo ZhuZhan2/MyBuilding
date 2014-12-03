@@ -9,4 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MyTableView : UITableView
++(void)reloadDataWithTableView:(UITableView*)tableView;
 @end
