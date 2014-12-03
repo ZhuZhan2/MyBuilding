@@ -14,6 +14,6 @@
    
 }
 @property(nonatomic,strong)NSString *searchStr;
-@property(nonatomic,weak)NSMutableDictionary *dic;
+@property(nonatomic,strong)NSMutableDictionary *dic;
 @property(nonatomic)int flag;
 @end

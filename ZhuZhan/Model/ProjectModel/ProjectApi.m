@@ -239,7 +239,11 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/AdvanceSearchProjects?pageSize=5&pageIndex=%d&keywords=%@&landDistrict=%@&landProvince=%@&ProjectCategory=%@&ProjectStage=%@&ProjectCompany=%@",startIndex,dic[@"keywords"],dic[@"landDistrict"],dic[@"landProvince"],dic[@"projectCategory"],dic[@"projectStage"],dic[@"companyName"]];
+    NSString *stage = dic[@"projectStage"];
+    stage = [stage stringByReplacingOccurrencesOfString:@"+" withString:@","];
+    NSString *category = dic[@"projectCategory"];
+    category = [category stringByReplacingOccurrencesOfString:@"+" withString:@","];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/AdvanceSearchProjects?pageSize=5&pageIndex=%d&keywords=%@&landDistrict=%@&landProvince=%@&ProjectCategory=%@&ProjectStage=%@&ProjectCompany=%@",startIndex,dic[@"keywords"],dic[@"landDistrict"],dic[@"landProvince"],category,stage,dic[@"companyName"]];
     NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)urlStr, NULL, NULL,  kCFStringEncodingUTF8 ));
     NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:encodedString parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {

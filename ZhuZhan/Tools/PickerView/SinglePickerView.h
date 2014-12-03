@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface SinglePickerView : UIActionSheet<UIPickerViewDelegate, UIPickerViewDataSource>{
     UIPickerView *pickerview;
     NSMutableArray *dataArr;
@@ -16,4 +15,5 @@
 @property(retain,nonatomic)NSString *selectStr;
 - (id)initWithTitle:(CGRect)frame title:(NSString *)title Arr:(NSArray *)Arr delegate:(id /*<UIActionSheetDelegate>*/)delegate;
 - (void)showInView:(UIView *)view;
+-(void)cancelClick;
 @end

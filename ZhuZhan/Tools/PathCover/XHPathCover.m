@@ -492,6 +492,7 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 - (void)initWaterView {
     __weak XHPathCover *wself =self;
     [_waterDropRefresh setHandleRefreshEvent:^{
+        NSLog(@"initWaterView");
         [wself setIsRefreshed:YES];
         if(wself.handleRefreshEvent) {
             wself.handleRefreshEvent();

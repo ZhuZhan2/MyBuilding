@@ -287,6 +287,8 @@
         ConditionsModel *model = showArr[indexPath.row-2];
         ResultsTableViewController *resultsView = [[ResultsTableViewController alloc] init];
         resultsView.flag = 1;
+        NSLog(@"%@",[self setDic:model.a_searchConditions][@"projectCategory"]);
+        //return;
         resultsView.dic = [self setDic:model.a_searchConditions];
         [self.navigationController pushViewController:resultsView animated:YES];
     }
@@ -296,11 +298,11 @@
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     NSArray *arr = [str componentsSeparatedByString:@","];
     [dic setValue:arr[0] forKey:@"keywords"];
-    [dataDic setValue:arr[1] forKey:@"companyName"];
-    [dataDic setValue:arr[2] forKey:@"landProvince"];
-    [dataDic setValue:arr[3] forKey:@"landDistrict"];
-    [dataDic setValue:arr[4] forKey:@"projectStage"];
-    [dataDic setValue:arr[5] forKey:@"projectCategory"];
+    [dic setValue:arr[1] forKey:@"companyName"];
+    [dic setValue:arr[2] forKey:@"landProvince"];
+    [dic setValue:arr[3] forKey:@"landDistrict"];
+    [dic setValue:arr[4] forKey:@"projectStage"];
+    [dic setValue:arr[5] forKey:@"projectCategory"];
     return dic;
 }
 
@@ -336,7 +338,7 @@
     NSString *aStr = nil;
     for(int i=0;i<arr.count;i++){
         if(![[arr objectAtIndex:i] isEqualToString:@""]){
-            [string appendString:[NSString stringWithFormat:@"%@,",[arr objectAtIndex:i]]];
+            [string appendString:[NSString stringWithFormat:@"%@+",[arr objectAtIndex:i]]];
         }
     }
     if(string.length !=0){

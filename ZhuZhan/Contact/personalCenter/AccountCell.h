@@ -34,6 +34,8 @@
     UITextField *position;
     SinglePickerView* singlepickerview;
     LocateView *locationview;
+    
+    UIButton *bgBtn;
 }
 @property (nonatomic,weak)id<AccountCellDelegate> delegate;
 @property (nonatomic,strong)ContactModel *model;

@@ -19,4 +19,5 @@
 @property (nonatomic, strong) NSMutableDictionary *proviceDictionary;
 - (id)initWithTitle:(CGRect)frame title:(NSString *)title delegate:(id /*<UIActionSheetDelegate>*/)delegate;
 - (void)showInView:(UIView *)view;
+-(void)cancelClick;
 @end
