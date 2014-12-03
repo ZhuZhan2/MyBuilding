@@ -10,17 +10,22 @@
 @implementation MyTableView
 -(void)reloadData{
     [super reloadData];
-    [self contentFooter];
+    [MyTableView contentFooter:self];
 }
 
--(void)contentFooter{
-    CGFloat orginFooterHeight=self.tableFooterView.frame.size.height;
-    CGFloat contentHeightWithOutFooter=self.contentSize.height-orginFooterHeight;
-    CGFloat reduce=self.frame.size.height-contentHeightWithOutFooter-64+6;
++(void)contentFooter:(UITableView*)tableView{
+    CGFloat orginFooterHeight=tableView.tableFooterView.frame.size.height;
+    CGFloat contentHeightWithOutFooter=tableView.contentSize.height-orginFooterHeight;
+    CGFloat reduce=tableView.frame.size.height-contentHeightWithOutFooter-64+6;
     if (reduce>=0) {
-        self.tableFooterView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, reduce)];
+        tableView.tableFooterView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, reduce)];
     }else{
-        self.tableFooterView=nil;
+        tableView.tableFooterView=nil;
     }
+}
+
++(void)reloadDataWithTableView:(UITableView*)tableView{
+    [tableView reloadData];
+    [MyTableView contentFooter:tableView];
 }
 @end
