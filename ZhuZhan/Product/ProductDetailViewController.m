@@ -29,8 +29,9 @@
 #import "LoginViewController.h"
 #import "IsFocusedApi.h"
 #import "LoadingView.h"
+#import "MyTableView.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate,ACTimeScrollerDelegate,LoginViewDelegate>
-@property(nonatomic,strong)UITableView* tableView;
+@property(nonatomic,strong)MyTableView* tableView;
 
 //所有model的a_id均为产品或动态自身的id,a_entityId是自身所属的id
 @property(nonatomic,strong)ProductModel* productModel;//产品详情模型
@@ -208,7 +209,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             if (!error) {
                 if(posts.count !=0){
                     self.activesModel=posts[0];
-                    NSLog(@"====>%@",self.activesModel.a_imageUrl);
+
                     if (!self.commentModels) self.commentModels=[[NSMutableArray alloc]init];
                     for (int i=0; i<self.activesModel.a_commentsArr.count; i++) {
                         //因为数组被处理过，当评论超过3条时会有一个字符串的元素，所以需要排除
@@ -379,7 +380,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
 }
 
-//滚动是触发的事件
+//滚动时触发的事件
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [_timeScroller scrollViewDidScroll];
 }
@@ -569,7 +570,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //=============================================================
 //=============================================================
 -(void)initMyTableView{
-    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
+    self.tableView=[[MyTableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
@@ -584,7 +585,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.title=self.productModel?@"产品详情":@"";
     
-    NSLog(@"===>%@",self.type);
     if([self.type isEqualToString:@"Product"]){
         UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [rightButton setFrame:CGRectMake(0, 0, 25, 22)];

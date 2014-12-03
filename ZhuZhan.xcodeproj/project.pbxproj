@@ -641,6 +641,7 @@
 		5B5121331A07962600A77997 /* 地图搜索1_16@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5121311A07962600A77997 /* 地图搜索1_16@2X.png */; };
 		5B5121361A07968200A77997 /* 地图搜索1_05.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5121341A07968200A77997 /* 地图搜索1_05.png */; };
 		5B5121371A07968200A77997 /* 地图搜索1_05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5121351A07968200A77997 /* 地图搜索1_05@2x.png */; };
+		5B553BF31A2EE97C00527E45 /* MyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B553BF21A2EE97C00527E45 /* MyTableView.m */; };
 		5B5894F119FF9D24001CC09E /* EndEditingGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5894F019FF9D24001CC09E /* EndEditingGesture.m */; };
 		5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
 		5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF819932E36007D79A8 /* QuadCurveMenu.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1786,6 +1787,8 @@
 		5B5121311A07962600A77997 /* 地图搜索1_16@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图搜索1_16@2X.png"; sourceTree = "<group>"; };
 		5B5121341A07968200A77997 /* 地图搜索1_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图搜索1_05.png"; sourceTree = "<group>"; };
 		5B5121351A07968200A77997 /* 地图搜索1_05@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图搜索1_05@2x.png"; sourceTree = "<group>"; };
+		5B553BF11A2EE97C00527E45 /* MyTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableView.h; sourceTree = "<group>"; };
+		5B553BF21A2EE97C00527E45 /* MyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableView.m; sourceTree = "<group>"; };
 		5B5894EF19FF9D24001CC09E /* EndEditingGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndEditingGesture.h; sourceTree = "<group>"; };
 		5B5894F019FF9D24001CC09E /* EndEditingGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndEditingGesture.m; sourceTree = "<group>"; };
 		5B656CF419931275007D79A8 /* CompanyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMemberViewController.h; sourceTree = "<group>"; };
@@ -3442,6 +3445,8 @@
 				5B13C6FF19B6AB0C008EA7A0 /* ProductDetailViewController.m */,
 				5B13C70719B6E53A008EA7A0 /* ProductCommentView.h */,
 				5B13C70819B6E53A008EA7A0 /* ProductCommentView.m */,
+				5B553BF11A2EE97C00527E45 /* MyTableView.h */,
+				5B553BF21A2EE97C00527E45 /* MyTableView.m */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -4737,6 +4742,7 @@
 				D3A4283819C9401C00BAB6C7 /* LoginSqlite.m in Sources */,
 				042D9E1019B559FC00689C5D /* LandInfo.m in Sources */,
 				0426C29719922D5A00CD8822 /* GPUImageMultiplyBlendFilter.m in Sources */,
+				5B553BF31A2EE97C00527E45 /* MyTableView.m in Sources */,
 				0426C26519922D5A00CD8822 /* GPUImageErosionFilter.m in Sources */,
 				0426C2D219922D5A00CD8822 /* GPUImageUIElement.m in Sources */,
 				0426C23F19922D5A00CD8822 /* BaseViewController.m in Sources */,
