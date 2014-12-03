@@ -27,7 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 519)];
     contactview = [[ContactViewController alloc] init];
