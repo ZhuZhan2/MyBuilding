@@ -40,6 +40,7 @@
     [self initMyScrollViewAndNavi];//scollview和navi初始
     self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view];
     [self firstNetWork];
+    NSLog(@"asdfsadf");
 }
 
 -(void)firstNetWork{
