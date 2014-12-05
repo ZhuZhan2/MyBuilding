@@ -33,6 +33,7 @@
 #import "CompanyModel.h"
 #import "CompanyDetailViewController.h"
 #import "LoadingView.h"
+#import "MyTableView.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()<CompanyDetailDelegate>
 
@@ -163,7 +164,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 }
                 [_datasource addObject:model.a_time];
             }
-            [self.tableView reloadData];
+            [MyTableView reloadDataWithTableView:self.tableView];
             [LoadingView removeLoadingView:loadingView];
             self.tableView.scrollEnabled=YES;
             loadingView = nil;
@@ -237,7 +238,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             }
             _timeScroller.hidden=YES;
             NSLog(@"===>%d",showArr.count);
-            [self.tableView reloadData];
+            [MyTableView reloadDataWithTableView:self.tableView];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 700ull *  NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
                 _timeScroller.hidden=NO;
             });
@@ -607,7 +608,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     commentView = [CommentView setFram:model];
     [showArr replaceObjectAtIndex:indexpath.row withObject:model];
     [viewArr replaceObjectAtIndex:indexpath.row withObject:commentView];
-    [self.tableView reloadData];
+    [MyTableView reloadDataWithTableView:self.tableView];
 }
 
 -(void)finishAddCommentFromDetailWithPosts:(NSMutableArray *)posts{
@@ -638,7 +639,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 }
                 [_datasource addObject:model.a_time];
             }
-            [self.tableView reloadData];
+            [MyTableView reloadDataWithTableView:self.tableView];
             __weak ContactViewController *wself = self;
             [wself.pathCover stopRefresh];
         }
@@ -731,7 +732,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             if(block){
                 block();
             }
-            [self.tableView reloadData];
+            [MyTableView reloadDataWithTableView:self.tableView];
         }
     } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
         self.tableView.scrollEnabled=NO;

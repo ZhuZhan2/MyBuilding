@@ -216,10 +216,14 @@
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             MyCenterModel *model = [[MyCenterModel alloc] init];
             [model setDict:JSON[@"d"][@"data"][@"baseInformation"]];
-            ParticularsModel *parModel = [[ParticularsModel alloc] init];
-            [parModel setDict:JSON[@"d"][@"data"][@"baseInformation"][@"userParticulars"]];
             [mutablePosts addObject:model];
-            [mutablePosts addObject:parModel];
+            ParticularsModel *parModel = [[ParticularsModel alloc] init];
+            if(![[NSString stringWithFormat:@"%@",JSON[@"d"][@"data"][@"baseInformation"][@"userParticulars"]] isEqualToString:@"<null>"]){
+                [parModel setDict:JSON[@"d"][@"data"][@"baseInformation"][@"userParticulars"]];
+                [mutablePosts addObject:parModel];
+            }else{
+                [mutablePosts addObject:@"null"];
+            }
             NSMutableArray *arr = [[NSMutableArray alloc] init];
             for(NSDictionary *item in JSON[@"d"][@"data"][@"userProjects"]){
                 projectModel *model = [[projectModel alloc] init];

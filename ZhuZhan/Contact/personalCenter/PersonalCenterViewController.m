@@ -20,6 +20,7 @@
 #import "ConnectionAvailable.h"
 #import "PersonalProjectTableViewCell.h"
 #import "CompanyCenterViewController.h"
+#import "MyTableView.h"
 @interface PersonalCenterViewController ()
 
 @end
@@ -129,7 +130,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 }
             }
             _timeScroller.hidden=YES;
-            [self.tableView reloadData];
+            [MyTableView reloadDataWithTableView:self.tableView];
             _timeScroller.hidden=NO;
             if (block) {
                 block();
@@ -172,7 +173,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 }
             }
             _timeScroller.hidden=YES;
-            [self.tableView reloadData];
+            [MyTableView reloadDataWithTableView:self.tableView];
             _timeScroller.hidden=NO;
         }
         [self.tableView footerEndRefreshing];

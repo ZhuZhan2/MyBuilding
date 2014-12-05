@@ -140,14 +140,15 @@
     [ContactModel UserDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             if(posts.count !=0){
+                NSLog(@"%d",posts.count);
                 self.contactModel = posts[0];
-                self.parModel = posts[1];
-                if([self.parModel.a_id isEqualToString:@""]&&[self.parModel.a_company isEqualToString:@""]&&[self.parModel.a_information isEqualToString:@""]&&[self.parModel.a_inDate isEqualToString:@""]&&[self.parModel.a_outDate isEqualToString:@""]){
-                    
-                }else{
+                NSLog(@"%@",posts);
+                if([posts[1] isKindOfClass:[ParticularsModel class]]){
+                    self.parModel = posts[1];
                     contactbackgroundview = [ContactBackgroundView setFram:self.parModel];
                     [viewArr addObject:contactbackgroundview];
                 }
+                
                 self.showArr = posts[2];
                 [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:self.contactModel.a_userName, XHUserNameKey, nil]];
                 [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",self.contactModel.a_userImage]];
