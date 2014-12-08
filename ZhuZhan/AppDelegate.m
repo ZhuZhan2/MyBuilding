@@ -18,6 +18,7 @@
 #import "iflyMSC/IFlySpeechUtility.h"
 #import "PersonalDetailViewController.h"
 #import "LoginSqlite.h"
+#import "FirstAnimationViewController.h"
 @implementation AppDelegate
 
 + (AppDelegate *)instance {
@@ -44,8 +45,6 @@
     //所有服务启动前，需要确保执行createUtility
     [IFlySpeechUtility createUtility:initString];
     
-
-    
     
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
@@ -67,12 +66,17 @@
 	}
     [LoginSqlite opensql];
     [RecordSqlite opensql];
+    
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;
     [self.window makeKeyAndVisible];
-    
+    if(1||![[NSUserDefaults standardUserDefaults] objectForKey:@"firstLaunch"]){
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+        NSLog(@"第一次启动");
+        FirstAnimationViewController* vc=[[FirstAnimationViewController alloc]init];
+        [homeVC presentViewController:vc animated:NO completion:nil];
+    }
     return YES;
-     
 }
 
 
