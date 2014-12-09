@@ -51,6 +51,7 @@ static int j;
     }else{
         self.inViewBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         self.inViewBtn.frame = CGRectMake(110, 500, 98, 32);
+        self.inViewBtn.backgroundColor=[UIColor yellowColor];
         [self.inViewBtn addTarget:self action:@selector(dismis) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.inViewBtn];
         [self.delegate endAnimation];

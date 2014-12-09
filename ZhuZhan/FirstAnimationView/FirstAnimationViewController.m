@@ -45,11 +45,11 @@
     [self loadScrollViewWithPage:0];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setBoolen) name:@"addbool" object:nil];
 //    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notMove) name:@"notMove" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismis) name:@"dismis" object:nil];
 }
 
--(void)notMove{
-    self.scrollview.userInteractionEnabled=NO;
+-(void)dismis{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,6 +102,9 @@
     int page = floor((self.scrollview.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     NSLog(@"%d",page);
     if (self.scrollview.contentOffset.x>=960) {
+        
+        
+        
         [self.views[3] startAnimation];
     }else if (self.scrollview.contentOffset.x>=640) {
         [self.views[2] startAnimation];
