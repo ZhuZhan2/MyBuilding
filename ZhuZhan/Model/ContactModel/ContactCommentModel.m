@@ -16,7 +16,11 @@
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"userName"]];
     self.a_time = [ProjectStage ProjectDateStage:dict[@"createdTime"]];
     self.a_commentContents = [ProjectStage ProjectStrStage:dict[@"commentContents"]];
-    self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"userImage"]];
+    if(![[ProjectStage ProjectStrStage:dict[@"userImage"]] isEqualToString:@""]){
+        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"userImage"]]];
+    }else{
+        self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"userImage"]];
+    }
     self.a_userType = [ProjectStage ProjectStrStage:dict[@"userType"]];
 }
 

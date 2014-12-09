@@ -85,7 +85,7 @@
         if(!error){
             if(posts.count !=0){
                 contactId = posts[0][@"userId"];
-                icon.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[ProjectStage ProjectStrStage:posts[0][@"userImage"]]]];
+                icon.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:posts[0][@"userImage"]]]];
                 userName.text = [ProjectStage ProjectStrStage:posts[0][@"userName"]];
                 message.text = [NSString stringWithFormat:@"%@项目，%@动态",[ProjectStage ProjectStrStage:posts[0][@"projectsCount"]],[ProjectStage ProjectStrStage:posts[0][@"activesCount"]]];
                 if([[ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]]] isEqualToString:@"1"]){

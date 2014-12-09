@@ -319,7 +319,7 @@
         multipleChoseView.arr = [[NSMutableArray alloc] initWithObjects:@"工业",@"酒店及餐饮",@"商务办公",@"住宅/经济适用房",@"公用事业设施（教育、医疗、科研、基础建设等）",@"其他", nil];
         multipleChoseView.flag = 1;
         multipleChoseView.delegate = self;
-        [multipleChoseView.view setFrame:CGRectMake(0, 0, 272, 350)];
+        [multipleChoseView.view setFrame:CGRectMake(0, 0, 272, 370)];
         [self presentPopupViewController:multipleChoseView animationType:MJPopupViewAnimationFade flag:0];
     }
 }

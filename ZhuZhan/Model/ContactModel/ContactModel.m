@@ -30,11 +30,19 @@
     self.companyName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"company"]]];
     self.position = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"duties"]]];
     self.password = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"password"]]];
-    self.userImage = [ProjectStage ProjectStrStage:dict[@"userImage"]];
+    if(![[ProjectStage ProjectStrStage:dict[@"userImage"]] isEqualToString:@""]){
+        self.userImage = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"userImage"]]];
+    }else{
+        self.userImage = [ProjectStage ProjectStrStage:dict[@"userImage"]];
+    }
     self.provice = [ProjectStage ProjectStrStage:dict[@"provice"]];
     self.city = [ProjectStage ProjectStrStage:dict[@"city"]];
     self.district = [ProjectStage ProjectStrStage:dict[@"district"]];
-    self.personalBackground=[ProjectStage ProjectStrStage:dict[@"backgroundImage"]];
+    if(![[ProjectStage ProjectStrStage:dict[@"backgroundImage"]] isEqualToString:@""]){
+        self.personalBackground=[NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"backgroundImage"]]];
+    }else{
+        self.personalBackground=[ProjectStage ProjectStrStage:dict[@"backgroundImage"]];
+    }
 }
 
 //POST:
@@ -216,10 +224,14 @@
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             MyCenterModel *model = [[MyCenterModel alloc] init];
             [model setDict:JSON[@"d"][@"data"][@"baseInformation"]];
-            ParticularsModel *parModel = [[ParticularsModel alloc] init];
-            [parModel setDict:JSON[@"d"][@"data"][@"baseInformation"][@"userParticulars"]];
             [mutablePosts addObject:model];
-            [mutablePosts addObject:parModel];
+            ParticularsModel *parModel = [[ParticularsModel alloc] init];
+            if(![[NSString stringWithFormat:@"%@",JSON[@"d"][@"data"][@"baseInformation"][@"userParticulars"]] isEqualToString:@"<null>"]){
+                [parModel setDict:JSON[@"d"][@"data"][@"baseInformation"][@"userParticulars"]];
+                [mutablePosts addObject:parModel];
+            }else{
+                [mutablePosts addObject:@"null"];
+            }
             NSMutableArray *arr = [[NSMutableArray alloc] init];
             for(NSDictionary *item in JSON[@"d"][@"data"][@"userProjects"]){
                 projectModel *model = [[projectModel alloc] init];

@@ -14,6 +14,7 @@
 #import "HomePageViewController.h"
 #import "LoginSqlite.h"
 #import "PersonalDetailViewController.h"
+#import "MyTableView.h"
 @interface PorjectCommentTableViewController ()
 
 @end
@@ -73,7 +74,7 @@
                 [viewArr addObject:projectCommentView];
                 [_datasource addObject:model.a_time];
             }
-            [self.tableView reloadData];
+            [MyTableView reloadDataWithTableView:self.tableView];
         }
     } entityId:projectId entityType:@"Project" noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -233,7 +234,7 @@
             projectCommentView.delegate = self;
             [viewArr insertObject:projectCommentView atIndex:0];
             [_datasource insertObject:[NSDate date] atIndex:0];
-            [self.tableView reloadData];
+            [MyTableView reloadDataWithTableView:self.tableView];
         }
     } dic:dic noNetWork:nil];
 }

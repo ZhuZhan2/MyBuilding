@@ -13,4 +13,5 @@
 	BOOL			m_checked;
 }
 - (void) setChecked:(BOOL)checked;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier index:(int)index;
 @end

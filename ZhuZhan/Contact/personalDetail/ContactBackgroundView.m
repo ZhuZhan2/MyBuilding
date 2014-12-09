@@ -35,6 +35,7 @@
         height += companyLabel.frame.size.height;
     }
     
+    NSLog(@"===>%@",model.a_inDate);
     if(![model.a_inDate isEqualToString:@""]||![model.a_outDate isEqualToString:@""]){
         UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 70, 150, 30)];
         dateLabel.text = [NSString stringWithFormat:@"(%@——%@)",model.a_inDate,model.a_outDate];
@@ -53,7 +54,7 @@
         contentLabel.text = string;
         CGSize size =CGSizeMake(260,1000);
         CGSize actualsize =[string boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:@"GurmukhiMN" size:12]} context:nil].size;
-        contentLabel.frame = CGRectMake(30, 75, 260, actualsize.height);
+        contentLabel.frame = CGRectMake(30, 100, 260, actualsize.height);
         [view addSubview:contentLabel];
         height += contentLabel.frame.size.height;
     }
