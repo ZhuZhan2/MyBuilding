@@ -16,11 +16,19 @@
     self.a_id = [ProjectStage ProjectStrStage:_dict[@"id"]];
     self.a_name = [ProjectStage ProjectStrStage:_dict[@"productName"]];
     self.a_content = [ProjectStage ProjectStrStage:_dict[@"content"]];
-    self.a_imageUrl = [ProjectStage ProjectStrStage:_dict[@"imageLocation"]];
+    if(![[ProjectStage ProjectStrStage:_dict[@"imageLocation"]] isEqualToString:@""]){
+        self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:_dict[@"imageLocation"]]];
+    }else{
+        self.a_imageUrl = [ProjectStage ProjectStrStage:_dict[@"imageLocation"]];
+    }
     self.a_commentNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"productCommentsNumber"]]];
     self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"imageWidth"]]];
     self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"imageHeight"]]];
-    self.a_avatarUrl = [ProjectStage ProjectStrStage:_dict[@"avatarUrl"]];
+    if(![[ProjectStage ProjectStrStage:_dict[@"avatarUrl"]] isEqualToString:@""]){
+        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:_dict[@"avatarUrl"]]];
+    }else{
+        self.a_avatarUrl = [ProjectStage ProjectStrStage:_dict[@"avatarUrl"]];
+    }
     self.a_userName = [ProjectStage ProjectStrStage:_dict[@"userName"]];
     self.a_createdBy=[ProjectStage ProjectStrStage:_dict[@"createdBy"]];
     self.a_userType=[ProjectStage ProjectStrStage:_dict[@"userType"]];

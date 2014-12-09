@@ -10,12 +10,15 @@
 
 @implementation MChoiceTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier index:(int)index
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
         m_checkImageView = [[UIImageView alloc] initWithFrame:CGRectMake(230, 11.5, 21, 21)];
+        if(index == 4){
+            m_checkImageView.frame = CGRectMake(230, 15, 21, 21);
+        }
         [m_checkImageView setImage:[GetImagePath getImagePath:@"高级搜索-多选_09a"]];
         [self addSubview:m_checkImageView];
     }

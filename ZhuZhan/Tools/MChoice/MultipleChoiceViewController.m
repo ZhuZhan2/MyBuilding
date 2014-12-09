@@ -43,7 +43,7 @@
     self.view.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
     UIImageView *bgimageView = [[UIImageView alloc] init];
     if(self.flag == 1){
-        bgimageView.frame = CGRectMake(0, 0, 272, 350);
+        bgimageView.frame = CGRectMake(0, 0, 272, 370);
         [bgimageView setImage:[GetImagePath getImagePath:@"高级搜索-多选_03a"]];
     }else{
         bgimageView.frame = CGRectMake(0, 0, 272, 270);
@@ -63,7 +63,7 @@
     
     _tableView = [[UITableView alloc] init];
     if(self.flag == 1){
-        _tableView.frame = CGRectMake(1, 55, 269, 247);
+        _tableView.frame = CGRectMake(1, 55, 269, 267);
     }else{
         _tableView.frame = CGRectMake(1, 55, 269, 157);
     }
@@ -77,7 +77,7 @@
     
     UIButton *complated = [UIButton buttonWithType:UIButtonTypeCustom];
     if(self.flag == 1){
-        complated.frame = CGRectMake(0,305, 135, 44);
+        complated.frame = CGRectMake(0,325, 135, 44);
     }else{
         complated.frame = CGRectMake(0,225, 135, 44);
     }
@@ -89,7 +89,7 @@
     
     UIButton *cancel = [UIButton buttonWithType:UIButtonTypeCustom];
     if(self.flag == 1){
-        cancel.frame = CGRectMake(136,305, 135, 44);
+        cancel.frame = CGRectMake(136,325, 135, 44);
     }else{
         cancel.frame = CGRectMake(136,225, 135, 44);
     }
@@ -139,13 +139,19 @@
     
     MChoiceTableViewCell *cell = (MChoiceTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[MChoiceTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        cell = [[MChoiceTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier index:indexPath.row];
     }
 	cell.accessoryType = UITableViewCellAccessoryNone;
 	cell.textLabel.textColor = [UIColor blackColor];
     Item* item = [self.showArr objectAtIndex:indexPath.row];
     
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 200, 30)];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 200, 40)];
+    if(self.flag == 1){
+        if(indexPath.row == 4){
+            title.frame = CGRectMake(20, 5, 200, 40);
+        }
+    }
+    title.numberOfLines = 2;
     title.text = item.title;
     title.font = [UIFont systemFontOfSize:14];
 	[cell addSubview:title];
@@ -153,6 +159,11 @@
     
     if(indexPath.row != self.showArr.count-1){
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 41, 229, 1)];
+        if(self.flag == 1){
+            if(indexPath.row == 4){
+                imageView.frame = CGRectMake(20, 51, 229, 1);
+            }
+        }
         [imageView setBackgroundColor:[UIColor blackColor]];
         [cell addSubview:imageView];
         imageView.alpha = 0.2;
@@ -173,6 +184,15 @@
     }else{
         [self.dataArr removeObjectAtIndex:indexPath.row];
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(self.flag == 1){
+        if(indexPath.row == 4){
+            return 54;
+        }
+    }
+    return 44;
 }
 
 -(void)CancelClick{

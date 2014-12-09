@@ -101,7 +101,7 @@
         NSLog(@"==>%@",self.dic);
         [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                showArr = posts[0];
+                showArr = posts;
                 NSLog(@"===>%d",showArr.count);
                 [self.tableView reloadData];
             }

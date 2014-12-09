@@ -19,8 +19,16 @@
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"userName"]];
     self.a_userType = [ProjectStage ProjectStrStage:dict[@"userType"]];
     self.a_loginStatus = [ProjectStage ProjectStrStage:dict[@"loginStatus"]];
-    self.a_userImage = [ProjectStage ProjectStrStage:dict[@"imageLocation"]];
-    self.a_backgroundImage=[ProjectStage ProjectStrStage:dict[@"backgroundImage"]];
+    if(![[ProjectStage ProjectStrStage:dict[@"imageLocation"]] isEqualToString:@""]){
+        self.a_userImage = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"imageLocation"]]];
+    }else{
+        self.a_userImage = [ProjectStage ProjectStrStage:dict[@"imageLocation"]];
+    }
+    if(![[ProjectStage ProjectStrStage:dict[@"backgroundImage"]] isEqualToString:@""]){
+        self.a_backgroundImage=[NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"backgroundImage"]]];
+    }else{
+        self.a_backgroundImage=[ProjectStage ProjectStrStage:dict[@"backgroundImage"]];
+    }
     self.a_hasCompany = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"hasCompany"]]];
 }
 

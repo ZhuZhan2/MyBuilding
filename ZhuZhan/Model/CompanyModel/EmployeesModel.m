@@ -13,7 +13,11 @@
     _dict = dict;
     self.a_id = [ProjectStage ProjectStrStage:dict[@"userId"]];
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"userName"]];
-    self.a_userIamge = [ProjectStage ProjectStrStage:dict[@"userIamge"]];
+    if(![[ProjectStage ProjectStrStage:dict[@"userIamge"]] isEqualToString:@""]){
+        self.a_userIamge = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"userIamge"]]];
+    }else{
+        self.a_userIamge = [ProjectStage ProjectStrStage:dict[@"userIamge"]];
+    }
     self.a_isFocused = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"isFocused"]]];
     self.a_duties = [ProjectStage ProjectStrStage:dict[@"duties"]];
     self.a_department = [ProjectStage ProjectBoolStage:dict[@"department"]];
