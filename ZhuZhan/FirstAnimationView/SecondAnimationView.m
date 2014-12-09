@@ -27,7 +27,6 @@ static int j;
 -(void)startAnimation{
     if (!self.animationEnd) {
         [self.delegate startAnimation];
-
         self.animationEnd=YES;
         j=1;
         [self addImage:j];

@@ -18,7 +18,7 @@
 #import "iflyMSC/IFlySpeechUtility.h"
 #import "PersonalDetailViewController.h"
 #import "LoginSqlite.h"
-#import "FirstAnimationViewController.h"
+#import "FirstOpenAppAnimationView.h"
 @implementation AppDelegate
 
 + (AppDelegate *)instance {
@@ -67,15 +67,18 @@
     [LoginSqlite opensql];
     [RecordSqlite opensql];
     
+
+    
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;
     [self.window makeKeyAndVisible];
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"firstLaunch"]){
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
         NSLog(@"第一次启动");
-        FirstAnimationViewController* vc=[[FirstAnimationViewController alloc]init];
-        [homeVC presentViewController:vc animated:NO completion:nil];
+        FirstOpenAppAnimationView* firstAnimationView=[[FirstOpenAppAnimationView alloc]initWithFrame:self.window.frame];
+        [self.window addSubview:firstAnimationView];
     }
+
     return YES;
 }
 
