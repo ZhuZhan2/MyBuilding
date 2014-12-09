@@ -70,7 +70,7 @@
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;
     [self.window makeKeyAndVisible];
-    if(1||![[NSUserDefaults standardUserDefaults] objectForKey:@"firstLaunch"]){
+    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"firstLaunch"]){
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
         NSLog(@"第一次启动");
         FirstAnimationViewController* vc=[[FirstAnimationViewController alloc]init];
