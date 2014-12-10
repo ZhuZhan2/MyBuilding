@@ -52,7 +52,14 @@
 }
 
 -(void)dismis{
-    [self removeFromSuperview];
+    CGRect frame=self.frame;
+    frame.origin.y+=568;
+    [UIView animateWithDuration:.3 animations:^{
+        self.frame=frame;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+    }];
 }
 
 - (void)loadScrollViewWithPage:(int)page
