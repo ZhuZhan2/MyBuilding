@@ -69,7 +69,7 @@
     [RecordSqlite opensql];
     [ProjectSqlite opensql];
 
-    
+    NSLog(@"asdfasdfasf");
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;
     [self.window makeKeyAndVisible];
