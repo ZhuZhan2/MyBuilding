@@ -19,6 +19,7 @@
 #import "PersonalDetailViewController.h"
 #import "LoginSqlite.h"
 #import "FirstOpenAppAnimationView.h"
+#import "ProjectSqlite.h"
 @implementation AppDelegate
 
 + (AppDelegate *)instance {
@@ -66,7 +67,7 @@
 	}
     [LoginSqlite opensql];
     [RecordSqlite opensql];
-    
+    [ProjectSqlite opensql];
 
     
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];

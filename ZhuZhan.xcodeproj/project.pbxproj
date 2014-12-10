@@ -1009,6 +1009,8 @@
 		D3D1A7B819F8E9B40006F954 /* 公司－我的公司_05b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B619F8E9B40006F954 /* 公司－我的公司_05b@2x.png */; };
 		D3D1A7BB19F8F6250006F954 /* 公司－公司详情_05b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B919F8F6250006F954 /* 公司－公司详情_05b.png */; };
 		D3D1A7BC19F8F6250006F954 /* 公司－公司详情_05b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7BA19F8F6250006F954 /* 公司－公司详情_05b@2x.png */; };
+		D3D21EB11A36F77C00ADD653 /* ProjectSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D21EB01A36F77C00ADD653 /* ProjectSqlite.m */; };
+		D3D21EB71A36F9C700ADD653 /* LocalProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D21EB61A36F9C700ADD653 /* LocalProjectModel.m */; };
 		D3D29B7D1A0DB9CA00CAB1EB /* IsFocusedApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D29B7C1A0DB9CA00CAB1EB /* IsFocusedApi.m */; };
 		D3D2E60119F7A79500908D8B /* EmployeesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2E60019F7A79500908D8B /* EmployeesModel.m */; };
 		D3D4FB301A0872770033BB34 /* CompanyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4FB2F1A0872770033BB34 /* CompanyCenterViewController.m */; };
@@ -2525,6 +2527,10 @@
 		D3D1A7B619F8E9B40006F954 /* 公司－我的公司_05b@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_05b@2x.png"; sourceTree = "<group>"; };
 		D3D1A7B919F8F6250006F954 /* 公司－公司详情_05b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－公司详情_05b.png"; sourceTree = "<group>"; };
 		D3D1A7BA19F8F6250006F954 /* 公司－公司详情_05b@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－公司详情_05b@2x.png"; sourceTree = "<group>"; };
+		D3D21EAF1A36F77C00ADD653 /* ProjectSqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectSqlite.h; sourceTree = "<group>"; };
+		D3D21EB01A36F77C00ADD653 /* ProjectSqlite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectSqlite.m; sourceTree = "<group>"; };
+		D3D21EB51A36F9C700ADD653 /* LocalProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalProjectModel.h; sourceTree = "<group>"; };
+		D3D21EB61A36F9C700ADD653 /* LocalProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalProjectModel.m; sourceTree = "<group>"; };
 		D3D29B7B1A0DB9CA00CAB1EB /* IsFocusedApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsFocusedApi.h; sourceTree = "<group>"; };
 		D3D29B7C1A0DB9CA00CAB1EB /* IsFocusedApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsFocusedApi.m; sourceTree = "<group>"; };
 		D3D2E5FF19F7A79500908D8B /* EmployeesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeesModel.h; sourceTree = "<group>"; };
@@ -4738,6 +4744,10 @@
 				D3AD616A19ADB9F7001FD483 /* RecordSqlite.m */,
 				D3AD616219ADB918001FD483 /* SqliteHelper.h */,
 				D3AD616319ADB918001FD483 /* SqliteHelper.m */,
+				D3D21EAF1A36F77C00ADD653 /* ProjectSqlite.h */,
+				D3D21EB01A36F77C00ADD653 /* ProjectSqlite.m */,
+				D3D21EB51A36F9C700ADD653 /* LocalProjectModel.h */,
+				D3D21EB61A36F9C700ADD653 /* LocalProjectModel.m */,
 			);
 			path = Sqlite3;
 			sourceTree = "<group>";
@@ -5689,6 +5699,7 @@
 				0426C2D819922D5A00CD8822 /* GPUImageWhiteBalanceFilter.m in Sources */,
 				0426C2CD19922D5A00CD8822 /* GPUImageTransformFilter.m in Sources */,
 				0426C25E19922D5A00CD8822 /* GPUImageDifferenceBlendFilter.m in Sources */,
+				D3D21EB11A36F77C00ADD653 /* ProjectSqlite.m in Sources */,
 				0426C2E019922D5A00CD8822 /* FaceppClient.m in Sources */,
 				D3AD616C19ADB9F7001FD483 /* RecordSqlite.m in Sources */,
 				5B0A008B19B587B200500C05 /* EGORefreshTableHeaderView.m in Sources */,
@@ -5897,6 +5908,7 @@
 				0426C2F619922D5A00CD8822 /* CJSONScanner.m in Sources */,
 				0426C2EE19922D5A00CD8822 /* CDataScanner.m in Sources */,
 				0426C28719922D5A00CD8822 /* GPUImageLinearBurnBlendFilter.m in Sources */,
+				D3D21EB71A36F9C700ADD653 /* LocalProjectModel.m in Sources */,
 				0426C2A219922D5A00CD8822 /* GPUImagePixellateFilter.m in Sources */,
 				0426C2BD19922D5A00CD8822 /* GPUImageSolidColorGenerator.m in Sources */,
 				0426C24D19922D5A00CD8822 /* GPUImageBulgeDistortionFilter.m in Sources */,

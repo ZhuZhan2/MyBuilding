@@ -113,11 +113,7 @@
     [bgImgView addSubview:arrowImage];
     
     UIButton *dianBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    if(flag == 0){
-        [dianBtn setFrame:CGRectMake(270,220,27,30)];
-    }else{
-        [dianBtn setFrame:CGRectMake(270,230,27,30)];
-    }
+    [dianBtn setFrame:CGRectMake(270,230,18,20)];
     [dianBtn setBackgroundImage:[GetImagePath getImagePath:@"项目-首页_18a"] forState:UIControlStateNormal];
     [dianBtn addTarget:self action:@selector(dianBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:dianBtn];
