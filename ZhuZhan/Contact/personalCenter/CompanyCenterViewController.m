@@ -290,7 +290,7 @@
     [ContactModel AddCompanyImages:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             [_pathCover addImageHead:image];
-            [LoginSqlite insertData:posts[0][@"imageLocation"] datakey:@"userImage"];
+            [LoginSqlite insertData:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0][@"imageLocation"]] datakey:@"userImage"];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
         }
     } dic:dic noNetWork:nil];

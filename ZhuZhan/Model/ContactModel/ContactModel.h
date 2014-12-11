@@ -77,6 +77,8 @@
 
 @property (nonatomic,strong)NSString *userImage;
 
+@property (nonatomic,copy)NSString *userParticularsId;
+
 //用户信息对字典
 @property (nonatomic, copy) NSDictionary *dict;
 
