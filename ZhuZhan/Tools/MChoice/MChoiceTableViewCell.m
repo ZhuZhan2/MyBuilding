@@ -15,7 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        m_checkImageView = [[UIImageView alloc] initWithFrame:CGRectMake(230, 11.5, 21, 21)];
+        m_checkImageView = [[UIImageView alloc] initWithFrame:CGRectMake(230, 8, 21, 21)];
         if(index == 4){
             m_checkImageView.frame = CGRectMake(230, 15, 21, 21);
         }
