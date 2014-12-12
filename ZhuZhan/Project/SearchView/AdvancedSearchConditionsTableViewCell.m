@@ -68,7 +68,8 @@
     [bgView addSubview:companyName];
     
     districtBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [districtBtn setFrame:CGRectMake(15, 105, 50, 40)];
+    [districtBtn setFrame:CGRectMake(15, 105, 295, 40)];
+    //[districtBtn setBackgroundColor:[UIColor yellowColor]];
     [districtBtn setTitle:@"区域" forState:UIControlStateNormal];
     [districtBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     districtBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -86,7 +87,7 @@
     [self addSubview:arrowImage];
     
     provinceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [provinceBtn setFrame:CGRectMake(15, 155, 50, 40)];
+    [provinceBtn setFrame:CGRectMake(15, 155, 295, 40)];
     [provinceBtn setTitle:@"省份" forState:UIControlStateNormal];
     [provinceBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     provinceBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -104,7 +105,7 @@
     [self addSubview:arrowImage2];
     
     projectStageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [projectStageBtn setFrame:CGRectMake(15, 205, 80, 40)];
+    [projectStageBtn setFrame:CGRectMake(15, 205, 295, 40)];
     [projectStageBtn setTitle:@"项目阶段" forState:UIControlStateNormal];
     [projectStageBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     projectStageBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -116,6 +117,7 @@
     projectStageLabel.text = @"";
     projectStageLabel.numberOfLines = 2;
     projectStageLabel.font = font;
+    projectStageLabel.textAlignment = NSTextAlignmentRight;
     [bgView addSubview:projectStageLabel];
     
     UIImageView *arrowImage3 = [[UIImageView alloc] initWithFrame:CGRectMake(290,220, 8, 12.5)];
@@ -123,7 +125,7 @@
     [self addSubview:arrowImage3];
     
     projectCategoryBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [projectCategoryBtn setFrame:CGRectMake(15, 255, 80, 40)];
+    [projectCategoryBtn setFrame:CGRectMake(15, 255, 295, 40)];
     [projectCategoryBtn setTitle:@"项目类别" forState:UIControlStateNormal];
     [projectCategoryBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     projectCategoryBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -135,6 +137,7 @@
     projectCategoryLabel.text = @"";
     projectCategoryLabel.numberOfLines = 2;
     projectCategoryLabel.font = font;
+    projectCategoryLabel.textAlignment = NSTextAlignmentRight;
     [bgView addSubview:projectCategoryLabel];
     
     UIImageView *arrowImage4 = [[UIImageView alloc] initWithFrame:CGRectMake(290,270, 8, 12.5)];

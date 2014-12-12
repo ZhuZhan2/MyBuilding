@@ -65,7 +65,7 @@
     if(self.flag == 1){
         _tableView.frame = CGRectMake(1, 55, 269, 267);
     }else{
-        _tableView.frame = CGRectMake(1, 55, 269, 157);
+        _tableView.frame = CGRectMake(1, 55, 269, 167);
     }
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -145,7 +145,7 @@
 	cell.textLabel.textColor = [UIColor blackColor];
     Item* item = [self.showArr objectAtIndex:indexPath.row];
     
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 200, 40)];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 3, 200, 35)];
     if(self.flag == 1){
         if(indexPath.row == 4){
             title.frame = CGRectMake(20, 5, 200, 40);
