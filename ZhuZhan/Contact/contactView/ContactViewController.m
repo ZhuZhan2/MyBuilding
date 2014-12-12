@@ -92,7 +92,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changName" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeBackgroundImage) name:@"changBackground" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstNetWork) name:@"reloadData" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCompany) name:@"changeCompany" object:nil];
 }
 
 -(void)firstNetWork{
@@ -806,40 +805,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)changeBackgroundImage{
     [_pathCover setBackgroundImageUrlString:[LoginSqlite getdata:@"backgroundImage"]];
-}
-
--(void)changeCompany{
-    if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
-        if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
-            [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
-                if(!error){
-                    if(posts.count !=0){
-                        CompanyModel *model = posts[0];
-                        [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.a_companyName, XHUserNameKey,@"", XHBirthdayKey, nil]];
-                    }
-                }
-            } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
-                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
-                    self.tableView.scrollEnabled=YES;
-                    [self firstNetWork];
-                }];
-            }];
-        }else{
-            [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-                if(!error){
-                    if(posts.count !=0){
-                        ContactModel *model = posts[0];
-                        [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
-                    }
-                }
-            } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
-                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
-                    self.tableView.scrollEnabled=YES;
-                    [self firstNetWork];
-                }];
-            }];
-        }
-    }
 }
 
 @end

@@ -318,13 +318,6 @@ static int count =0;//记录生日textField 的时间被触发的次数
             [LoginSqlite insertData:model.userName datakey:@"userName"];
             [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changName" object:nil];
-            NSMutableDictionary  *parameter2 = [[NSMutableDictionary alloc] initWithObjectsAndKeys:model.userParticularsId,@"Id",model.companyName,@"companyName",model.position,@"duties",nil];
-            NSLog(@"parameter2==%@",parameter2);
-            [LoginModel UpdateUserParticularsWithBlock:^(NSMutableArray *posts, NSError *error) {
-                if(!error){
-                    [[NSNotificationCenter defaultCenter]postNotificationName:@"changeCompany" object:nil];
-                }
-            } dic:parameter2 noNetWork:nil];
         }
     } dic:parameter noNetWork:nil];
 }

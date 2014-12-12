@@ -10,6 +10,8 @@
 
 @interface ContactModel : NSObject
 
+@property(nonatomic,copy) NSString *userId;
+
 //公司名称
 @property (nonatomic,copy) NSString *companyName;
 

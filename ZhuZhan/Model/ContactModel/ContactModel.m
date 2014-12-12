@@ -19,6 +19,7 @@
 -(void)setDict:(NSDictionary *)dict
 {
     _dict = dict;
+    self.userId = [ProjectStage ProjectStrStage:_dict[@"userId"]];
     self.userName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"userName"]]];
     self.realName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"realName"]]];
     self.sex = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"sex"]]];
@@ -27,9 +28,15 @@
     self.bloodType = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"bloodType"]]];
     self.email = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"email"]]];
     self.cellPhone = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"cellphone"]]];
-    self.companyName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"userParticulars"][@"companyName"]]];
-    self.position = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"userParticulars"][@"duties"]]];
-    self.userParticularsId = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"userParticulars"][@"id"]]];
+    if(![[NSString stringWithFormat:@"%@",_dict[@"userParticulars"]]isEqualToString:@"<null>"]){
+        self.companyName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"userParticulars"][@"companyName"]]];
+        self.position = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"userParticulars"][@"duties"]]];
+        self.userParticularsId = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"userParticulars"][@"id"]]];
+    }else{
+        self.companyName = @"";
+        self.position = @"";
+        self.userParticularsId = @"";
+    }
     self.password = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"password"]]];
     if(![[ProjectStage ProjectStrStage:dict[@"userImage"]] isEqualToString:@""]){
         self.userImage = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"userImage"]]];

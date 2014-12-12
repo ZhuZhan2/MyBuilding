@@ -262,6 +262,7 @@ static int textFieldTag =0;
         company.font=[UIFont systemFontOfSize:15];
         company.textColor=GrayColor;
         company.tag = 2014091210;
+        company.enabled = NO;
         [self addSubview:company];
         UIImageView *horizontalLine10 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 729, 280, 1)];
         horizontalLine10.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
@@ -280,6 +281,7 @@ static int textFieldTag =0;
         position.font=[UIFont systemFontOfSize:15];
         position.textColor=GrayColor;
         position.tag = 2014091211;
+        position.enabled = NO;
         [self addSubview:position];
     }
     self.selectionStyle = UITableViewCellSelectionStyleNone;
