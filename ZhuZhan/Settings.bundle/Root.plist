@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>StringsTable</key>
+	<string>Root</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Values</key>
+			<array>
+				<string>VERSION</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>1.0</string>
+			</array>
+			<key>DefaultValue</key>
+			<string>VERSION</string>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Pilot</string>
+			<key>Key</key>
+			<string>VERSION_INFO_LABEL</string>
+		</dict>
+	</array>
+</dict>
+</plist>

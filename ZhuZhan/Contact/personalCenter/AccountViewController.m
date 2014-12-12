@@ -310,7 +310,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
         return;
     }
     
-    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.userName,@"userName",model.realName,@"realName",model.sex,@"sex",model.city,@"locationCity",model.birthday,@"birthday",model.constellation,@"constellation",model.bloodType,@"bloodType",model.email,@"email",model.companyName,@"department",model.position,@"duties",model.provice,@"provice",model.city,@"city",model.district,@"district",nil];
+    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.userName,@"userName",model.realName,@"realName",model.sex,@"sex",model.city,@"locationCity",model.birthday,@"birthday",model.constellation,@"constellation",model.bloodType,@"bloodType",model.email,@"email",model.provice,@"provice",model.city,@"city",model.district,@"district",nil];
     NSLog(@"parameter==%@",parameter);
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
@@ -318,6 +318,13 @@ static int count =0;//记录生日textField 的时间被触发的次数
             [LoginSqlite insertData:model.userName datakey:@"userName"];
             [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changName" object:nil];
+            NSMutableDictionary  *parameter2 = [[NSMutableDictionary alloc] initWithObjectsAndKeys:model.userParticularsId,@"Id",model.companyName,@"companyName",model.position,@"duties",nil];
+            NSLog(@"parameter2==%@",parameter2);
+            [LoginModel UpdateUserParticularsWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"changeCompany" object:nil];
+                }
+            } dic:parameter2 noNetWork:nil];
         }
     } dic:parameter noNetWork:nil];
 }

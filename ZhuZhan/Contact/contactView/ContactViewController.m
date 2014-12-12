@@ -91,7 +91,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeHeadImage) name:@"changHead" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changName" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeBackgroundImage) name:@"changBackground" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updataUser) name:@"updataUser" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstNetWork) name:@"reloadData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCompany) name:@"changeCompany" object:nil];
 }
 
 -(void)firstNetWork{
@@ -430,7 +431,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }else if([model.a_category isEqualToString:@"Company"]){
         if([model.a_eventType isEqualToString:@"Actives"]){
             ActivesModel *model = showArr[indexPath.row];
-            NSLog(@"row ==>%d",indexpath.row);
             ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
             vc.delegate = self;
             vc.type = @"Company";
@@ -462,8 +462,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 //点击自己头像去个人中心
 -(void)gotoMyCenter{
-    NSLog(@"gotoMyCenter");
-
     NSString *deviceToken = [LoginSqlite getdata:@"deviceToken"];
 
     if ([deviceToken isEqualToString:@""]) {
@@ -485,7 +483,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
     
     ActivesModel *model = showArr[indexPath.row];
-    NSLog(@"===>%d",indexPath.row);
     if([model.a_createdBy isEqualToString:[LoginSqlite getdata:@"userId"]]){
         return;
     }
@@ -529,7 +526,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if([aid isEqualToString:[LoginSqlite getdata:@"userId"]]){
         return;
     }
-    NSLog(@"===>%@",aid);
     if([userType isEqualToString:@"Personal"]){
         showVC = [[ShowViewController alloc] init];
         showVC.delegate =self;
@@ -557,7 +553,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)addCommentView:(NSIndexPath *)indexPath{
     indexpath = indexPath;
-    NSLog(@"%d",indexpath.row);
     NSString *deviceToken = [LoginSqlite getdata:@"deviceToken"];
     NSLog(@"********deviceToken***%@",deviceToken);
     if ([deviceToken isEqualToString:@""]) {
@@ -622,6 +617,60 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)reloadView{
+    if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
+        if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+            [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    if(posts.count !=0){
+                        CompanyModel *model = posts[0];
+                        [LoginSqlite insertData:model.a_companyLogo datakey:@"userImage"];
+                        [LoginSqlite insertData:model.a_companyName datakey:@"userName"];
+                        [_pathCover setHeadImageUrl:model.a_companyLogo];
+                        [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.a_companyName, XHUserNameKey,@"", XHBirthdayKey, nil]];
+                    }
+                }else{
+                    [LoadingView removeLoadingView:loadingView];
+                    loadingView = nil;
+                }
+            } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
+                self.tableView.scrollEnabled=NO;
+                [LoadingView removeLoadingView:loadingView];
+                loadingView = nil;
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                    self.tableView.scrollEnabled=YES;
+                    [self firstNetWork];
+                }];
+            }];
+        }else{
+            [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    if(posts.count !=0){
+                        ContactModel *model = posts[0];
+                        [LoginSqlite insertData:model.userImage datakey:@"userImage"];
+                        [LoginSqlite insertData:model.userName datakey:@"userName"];
+                        [LoginSqlite insertData:model.personalBackground datakey:@"backgroundImage"];
+                        
+                        [_pathCover setHeadImageUrl:model.userImage];
+                        [_pathCover setBackgroundImageUrlString:model.personalBackground];
+                        NSLog(@"====>%@",model.companyName);
+                        [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
+                    }
+                }else{
+                    [LoadingView removeLoadingView:loadingView];
+                    loadingView = nil;
+                }
+            } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
+                self.tableView.scrollEnabled=NO;
+                [LoadingView removeLoadingView:loadingView];
+                loadingView = nil;
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                    self.tableView.scrollEnabled=YES;
+                    [self firstNetWork];
+                }];
+            }];
+        }
+    }
+    
     [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             startIndex = 0;
@@ -667,80 +716,83 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)loginCompleteWithDelayBlock:(void (^)())block{
-    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
-        [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                if(posts.count !=0){
-                    CompanyModel *model = posts[0];
-                    [LoginSqlite insertData:model.a_companyLogo datakey:@"userImage"];
-                    [LoginSqlite insertData:model.a_companyName datakey:@"userName"];
-                    [_pathCover setHeadImageUrl:model.a_companyLogo];
-                    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.a_companyName, XHUserNameKey,@"", XHBirthdayKey, nil]];
-                }
-            }else{
-                [LoadingView removeLoadingView:loadingView];
-                loadingView = nil;
-            }
-        } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
-            self.tableView.scrollEnabled=NO;
-            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
-                self.tableView.scrollEnabled=YES;
-                [self firstNetWork];
-            }];
-        }];
-    }else{
-        [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                if(posts.count !=0){
-                    ContactModel *model = posts[0];
-                    [LoginSqlite insertData:model.userImage datakey:@"userImage"];
-                    [LoginSqlite insertData:model.userName datakey:@"userName"];
-                    [LoginSqlite insertData:model.personalBackground datakey:@"backgroundImage"];
-                    
-                    [_pathCover setHeadImageUrl:model.userImage];
-                    [_pathCover setBackgroundImageUrlString:model.personalBackground];
-                    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
-                }
-            }else{
-                [LoadingView removeLoadingView:loadingView];
-                loadingView = nil;
-            }
-        } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
-            self.tableView.scrollEnabled=NO;
-            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
-                self.tableView.scrollEnabled=YES;
-                [self firstNetWork];
-            }];
-        }];
+    if(block){
+        block();
     }
-    [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            [showArr removeAllObjects];
-            [viewArr removeAllObjects];
-            [_datasource removeAllObjects];
-            showArr = posts;
-            for(int i=0;i<showArr.count;i++){
-                ActivesModel *model = showArr[i];
-                if([model.a_eventType isEqualToString:@"Actives"]){
-                    commentView = [CommentView setFram:model];
-                    [viewArr addObject:commentView];
-                }else{
-                    [viewArr addObject:@""];
-                }
-                [_datasource addObject:model.a_time];
-            }
-            if(block){
-                block();
-            }
-            [MyTableView reloadDataWithTableView:self.tableView];
-        }
-    } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
-        self.tableView.scrollEnabled=NO;
-        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
-            self.tableView.scrollEnabled=YES;
-            [self firstNetWork];
-        }];
-    }];
+//    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+//        [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+//            if(!error){
+//                if(posts.count !=0){
+//                    CompanyModel *model = posts[0];
+//                    [LoginSqlite insertData:model.a_companyLogo datakey:@"userImage"];
+//                    [LoginSqlite insertData:model.a_companyName datakey:@"userName"];
+//                    [_pathCover setHeadImageUrl:model.a_companyLogo];
+//                    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.a_companyName, XHUserNameKey,@"", XHBirthdayKey, nil]];
+//                }
+//            }else{
+//                [LoadingView removeLoadingView:loadingView];
+//                loadingView = nil;
+//            }
+//        } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
+//            self.tableView.scrollEnabled=NO;
+//            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+//                self.tableView.scrollEnabled=YES;
+//                [self firstNetWork];
+//            }];
+//        }];
+//    }else{
+//        [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+//            if(!error){
+//                if(posts.count !=0){
+//                    ContactModel *model = posts[0];
+//                    [LoginSqlite insertData:model.userImage datakey:@"userImage"];
+//                    [LoginSqlite insertData:model.userName datakey:@"userName"];
+//                    [LoginSqlite insertData:model.personalBackground datakey:@"backgroundImage"];
+//                    
+//                    [_pathCover setHeadImageUrl:model.userImage];
+//                    [_pathCover setBackgroundImageUrlString:model.personalBackground];
+//                    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
+//                }
+//            }else{
+//                [LoadingView removeLoadingView:loadingView];
+//                loadingView = nil;
+//            }
+//        } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
+//            self.tableView.scrollEnabled=NO;
+//            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+//                self.tableView.scrollEnabled=YES;
+//                [self firstNetWork];
+//            }];
+//        }];
+//    }
+//    [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
+//        if(!error){
+//            [showArr removeAllObjects];
+//            [viewArr removeAllObjects];
+//            [_datasource removeAllObjects];
+//            showArr = posts;
+//            for(int i=0;i<showArr.count;i++){
+//                ActivesModel *model = showArr[i];
+//                if([model.a_eventType isEqualToString:@"Actives"]){
+//                    commentView = [CommentView setFram:model];
+//                    [viewArr addObject:commentView];
+//                }else{
+//                    [viewArr addObject:@""];
+//                }
+//                [_datasource addObject:model.a_time];
+//            }
+//            if(block){
+//                block();
+//            }
+//            [MyTableView reloadDataWithTableView:self.tableView];
+//        }
+//    } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
+//        self.tableView.scrollEnabled=NO;
+//        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+//            self.tableView.scrollEnabled=YES;
+//            [self firstNetWork];
+//        }];
+//    }];
 }
 
 
@@ -756,29 +808,38 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setBackgroundImageUrlString:[LoginSqlite getdata:@"backgroundImage"]];
 }
 
--(void)updataUser{
-    [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            if(posts.count !=0){
-                ContactModel *model = posts[0];
-                [LoginSqlite insertData:model.userImage datakey:@"userImage"];
-                [LoginSqlite insertData:model.userName datakey:@"userName"];
-                [LoginSqlite insertData:model.personalBackground datakey:@"backgroundImage"];
-                
-                [_pathCover setHeadImageUrl:model.userImage];
-                [_pathCover setBackgroundImageUrlString:model.personalBackground];
-                [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
-            }
+-(void)changeCompany{
+    if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
+        if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+            [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    if(posts.count !=0){
+                        CompanyModel *model = posts[0];
+                        [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.a_companyName, XHUserNameKey,@"", XHBirthdayKey, nil]];
+                    }
+                }
+            } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                    self.tableView.scrollEnabled=YES;
+                    [self firstNetWork];
+                }];
+            }];
         }else{
-            [LoadingView removeLoadingView:loadingView];
-            loadingView = nil;
+            [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    if(posts.count !=0){
+                        ContactModel *model = posts[0];
+                        [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
+                    }
+                }
+            } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                    self.tableView.scrollEnabled=YES;
+                    [self firstNetWork];
+                }];
+            }];
         }
-    } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
-        self.tableView.scrollEnabled=NO;
-        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
-            self.tableView.scrollEnabled=YES;
-            [self firstNetWork];
-        }];
-    }];
+    }
 }
+
 @end
