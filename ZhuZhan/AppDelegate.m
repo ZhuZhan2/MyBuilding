@@ -73,7 +73,6 @@
     self.window.rootViewController = homeVC;
     [self.window makeKeyAndVisible];
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"firstLaunch"]){
-        //[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
         NSLog(@"第一次启动");
         FirstOpenAppAnimationView* firstAnimationView=[[FirstOpenAppAnimationView alloc]initWithFrame:self.window.frame];
         [self.window addSubview:firstAnimationView];
