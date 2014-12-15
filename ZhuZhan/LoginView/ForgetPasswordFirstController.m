@@ -72,10 +72,10 @@
     _yzmTextField.tag = 1;
     [firstView addSubview:_yzmTextField];
     
-    UIButton *getCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    getCodeBtn.frame = CGRectMake(208,57,91,28);
-    [getCodeBtn setImage:[GetImagePath getImagePath:@"密码找回_15"] forState:UIControlStateNormal];
-    [getCodeBtn addTarget:self action:@selector(getVerifitionCode) forControlEvents:UIControlEventTouchUpInside];
+//    UIButton *getCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    getCodeBtn.frame = CGRectMake(208,57,91,28);
+//    [getCodeBtn setImage:[GetImagePath getImagePath:@"密码找回_15"] forState:UIControlStateNormal];
+//    [getCodeBtn addTarget:self action:@selector(getVerifitionCode) forControlEvents:UIControlEventTouchUpInside];
     //[firstView addSubview:getCodeBtn];
     self.codeView = [[PooCodeView alloc] initWithFrame:CGRectMake(208,57,91,28)];
     [firstView addSubview:self.codeView];
