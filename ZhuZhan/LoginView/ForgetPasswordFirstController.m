@@ -145,7 +145,7 @@
         
     }else{
         if([_yzmTextField.text compare:self.codeView.changeString options:NSCaseInsensitiveSearch|NSNumericSearch]==-1){
-            [RemindView remindViewWithContent:@"验证码不正确" superView:self.view centerY:220];
+            [RemindView remindViewWithContent:@"验证码错误" superView:self.view centerY:220];
         }
     }
     return YES;

@@ -37,7 +37,7 @@
 
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
-    self.navigationController.navigationBar.hidden=YES;
+    //self.navigationController.navigationBar.hidden=YES;
 }
 
 -(void)loadFirstView{
@@ -149,19 +149,6 @@
     }
     return YES;
 }
-
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
-//{
-//    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-//    if (_yzmTextField)
-//    {
-//        if ([toBeString length] > 4) {
-//            _yzmTextField.text = [toBeString substringToIndex:4];
-//            return NO;
-//        }
-//    }
-//    return YES;
-//}
 
 -(BOOL)phoneNoErr:(NSString *)phone//正则表达式来判断是否是手机号码
 {
