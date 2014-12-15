@@ -12,7 +12,7 @@
 #import "LoginSqlite.h"
 #import "LoginModel.h"
 #import "MD5.h"
-#import "ForgetPasswordViewController.h"
+#import "ForgetPasswordSecondController.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 @interface LoginViewController ()
@@ -114,7 +114,7 @@
 }
 
 -(void)forgetPassword{
-    ForgetPasswordViewController* vc=[[ForgetPasswordViewController alloc]init];
+    ForgetPasswordSecondController* vc=[[ForgetPasswordSecondController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

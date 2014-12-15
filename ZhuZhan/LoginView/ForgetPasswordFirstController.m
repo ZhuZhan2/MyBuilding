@@ -1,22 +1,23 @@
 //
-//  ForgetPasswordViewController.m
+//  ForgetPasswordFirstController.m
 //  ZhuZhan
 //
-//  Created by 孙元侃 on 14/10/24.
+//  Created by 孙元侃 on 14/12/15.
 //
 //
 
-#import "ForgetPasswordViewController.h"
-#import "ForgetSubViewController.h"
-#import "PooCodeView.h"
+#import "ForgetPasswordFirstController.h"
+#import "ForgetPasswordSecondController.h"
+//#import "PooCodeView.h"
 #import "RemindView.h"
-@interface ForgetPasswordViewController ()<UITextFieldDelegate>
+@interface ForgetPasswordFirstController ()<UITextFieldDelegate>
 @property(nonatomic,strong)UIFont* font;
 @property(nonatomic,strong)UIButton* registerBtn;
-@property (nonatomic, retain) PooCodeView *codeView;
+//@property (nonatomic, retain) PooCodeView *codeView;
 @end
 
-@implementation ForgetPasswordViewController
+@implementation ForgetPasswordFirstController
+
 -(UIFont *)font{
     return [UIFont systemFontOfSize:15];
 }
@@ -141,7 +142,7 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.view endEditing:YES];
     if(textField ==0){
-    
+        
     }else{
         if([_yzmTextField.text compare:self.codeView.changeString options:NSCaseInsensitiveSearch|NSNumericSearch]==-1){
             [RemindView remindViewWithContent:@"验证码不正确" superView:self.view centerY:220];
@@ -149,19 +150,6 @@
     }
     return YES;
 }
-
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
-//{
-//    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-//    if (_yzmTextField)
-//    {
-//        if ([toBeString length] > 4) {
-//            _yzmTextField.text = [toBeString substringToIndex:4];
-//            return NO;
-//        }
-//    }
-//    return YES;
-//}
 
 -(BOOL)phoneNoErr:(NSString *)phone//正则表达式来判断是否是手机号码
 {

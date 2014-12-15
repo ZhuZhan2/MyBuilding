@@ -1,16 +1,17 @@
 //
-//  ForgetPasswordViewController.h
+//  ForgetPasswordSecondController.h
 //  ZhuZhan
 //
-//  Created by 孙元侃 on 14/10/24.
+//  Created by 孙元侃 on 14/12/15.
 //
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ForgetPasswordViewController : UIViewController{
+@interface ForgetPasswordSecondController : UIViewController{
     UITextField *_phoneNumberTextField;
     UITextField *_yzmTextField;
     UITextField *accountField;
 }
+
 @end

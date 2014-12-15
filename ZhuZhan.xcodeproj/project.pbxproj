@@ -634,7 +634,6 @@
 		5B4C198319FA518800C6C57D /* ClauseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4C198219FA518800C6C57D /* ClauseViewController.m */; };
 		5B4C198619FA543C00C6C57D /* 用户条款_05.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4C198419FA543C00C6C57D /* 用户条款_05.png */; };
 		5B4C198719FA543C00C6C57D /* 用户条款_05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4C198519FA543C00C6C57D /* 用户条款_05@2x.png */; };
-		5B4C198A19FA57CC00C6C57D /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4C198919FA57CC00C6C57D /* ForgetPasswordViewController.m */; };
 		5B4E8A5819F8EA9800EA9AFF /* CompanyTotalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E8A5719F8EA9800EA9AFF /* CompanyTotalViewController.m */; };
 		5B51212F1A0781F900A77997 /* MapContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B51212E1A0781F900A77997 /* MapContentView.m */; };
 		5B5121321A07962600A77997 /* 地图搜索1_16.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5121301A07962600A77997 /* 地图搜索1_16.png */; };
@@ -643,6 +642,9 @@
 		5B5121371A07968200A77997 /* 地图搜索1_05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5121351A07968200A77997 /* 地图搜索1_05@2x.png */; };
 		5B5173A21A368F8E0009E0AE /* FirstOpenAppAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5173A11A368F8E0009E0AE /* FirstOpenAppAnimationView.m */; };
 		5B553BF31A2EE97C00527E45 /* MyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B553BF21A2EE97C00527E45 /* MyTableView.m */; };
+		5B55D57B1A3EB5FD00CAEF8B /* ForgetPasswordFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D57A1A3EB5FD00CAEF8B /* ForgetPasswordFirstController.m */; };
+		5B55D57E1A3EB63200CAEF8B /* ForgetPasswordSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D57D1A3EB63200CAEF8B /* ForgetPasswordSecondController.m */; };
+		5B55D5811A3EB64C00CAEF8B /* ForgetPasswordThirdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D5801A3EB64C00CAEF8B /* ForgetPasswordThirdController.m */; };
 		5B5894F119FF9D24001CC09E /* EndEditingGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5894F019FF9D24001CC09E /* EndEditingGesture.m */; };
 		5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
 		5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF819932E36007D79A8 /* QuadCurveMenu.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1069,7 +1071,6 @@
 		D3E0E94B1A398A3600A41D42 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3E0E94A1A398A3600A41D42 /* Settings.bundle */; };
 		D3E2F4701A11E4D500CF2785 /* 注册_08.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E2F46E1A11E4D500CF2785 /* 注册_08.png */; };
 		D3E2F4711A11E4D500CF2785 /* 注册_08@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E2F46F1A11E4D500CF2785 /* 注册_08@2x.png */; };
-		D3E2F4741A11E68900CF2785 /* ForgetSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E2F4731A11E68900CF2785 /* ForgetSubViewController.m */; };
 		D3E621E61A10AC3000EF8A90 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3E621E51A10AC3000EF8A90 /* area.plist */; };
 /* End PBXBuildFile section */
 
@@ -2079,8 +2080,6 @@
 		5B4C198219FA518800C6C57D /* ClauseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClauseViewController.m; sourceTree = "<group>"; };
 		5B4C198419FA543C00C6C57D /* 用户条款_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "用户条款_05.png"; sourceTree = "<group>"; };
 		5B4C198519FA543C00C6C57D /* 用户条款_05@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "用户条款_05@2x.png"; sourceTree = "<group>"; };
-		5B4C198819FA57CC00C6C57D /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
-		5B4C198919FA57CC00C6C57D /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		5B4E8A5619F8EA9800EA9AFF /* CompanyTotalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyTotalViewController.h; sourceTree = "<group>"; };
 		5B4E8A5719F8EA9800EA9AFF /* CompanyTotalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyTotalViewController.m; sourceTree = "<group>"; };
 		5B51212D1A0781F900A77997 /* MapContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapContentView.h; sourceTree = "<group>"; };
@@ -2093,6 +2092,12 @@
 		5B5173A11A368F8E0009E0AE /* FirstOpenAppAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstOpenAppAnimationView.m; sourceTree = "<group>"; };
 		5B553BF11A2EE97C00527E45 /* MyTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableView.h; sourceTree = "<group>"; };
 		5B553BF21A2EE97C00527E45 /* MyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableView.m; sourceTree = "<group>"; };
+		5B55D5791A3EB5FD00CAEF8B /* ForgetPasswordFirstController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordFirstController.h; sourceTree = "<group>"; };
+		5B55D57A1A3EB5FD00CAEF8B /* ForgetPasswordFirstController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordFirstController.m; sourceTree = "<group>"; };
+		5B55D57C1A3EB63200CAEF8B /* ForgetPasswordSecondController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordSecondController.h; sourceTree = "<group>"; };
+		5B55D57D1A3EB63200CAEF8B /* ForgetPasswordSecondController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordSecondController.m; sourceTree = "<group>"; };
+		5B55D57F1A3EB64C00CAEF8B /* ForgetPasswordThirdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordThirdController.h; sourceTree = "<group>"; };
+		5B55D5801A3EB64C00CAEF8B /* ForgetPasswordThirdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordThirdController.m; sourceTree = "<group>"; };
 		5B5894EF19FF9D24001CC09E /* EndEditingGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndEditingGesture.h; sourceTree = "<group>"; };
 		5B5894F019FF9D24001CC09E /* EndEditingGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndEditingGesture.m; sourceTree = "<group>"; };
 		5B656CF419931275007D79A8 /* CompanyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMemberViewController.h; sourceTree = "<group>"; };
@@ -2602,8 +2607,6 @@
 		D3E0E94A1A398A3600A41D42 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D3E2F46E1A11E4D500CF2785 /* 注册_08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_08.png"; sourceTree = "<group>"; };
 		D3E2F46F1A11E4D500CF2785 /* 注册_08@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_08@2x.png"; sourceTree = "<group>"; };
-		D3E2F4721A11E68900CF2785 /* ForgetSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetSubViewController.h; sourceTree = "<group>"; };
-		D3E2F4731A11E68900CF2785 /* ForgetSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetSubViewController.m; sourceTree = "<group>"; };
 		D3E621E51A10AC3000EF8A90 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2806,10 +2809,12 @@
 				0426C04819922D5900CD8822 /* LoginEvent.m */,
 				0426C04919922D5900CD8822 /* LoginViewController.h */,
 				0426C04A19922D5900CD8822 /* LoginViewController.m */,
-				5B4C198819FA57CC00C6C57D /* ForgetPasswordViewController.h */,
-				5B4C198919FA57CC00C6C57D /* ForgetPasswordViewController.m */,
-				D3E2F4721A11E68900CF2785 /* ForgetSubViewController.h */,
-				D3E2F4731A11E68900CF2785 /* ForgetSubViewController.m */,
+				5B55D5791A3EB5FD00CAEF8B /* ForgetPasswordFirstController.h */,
+				5B55D57A1A3EB5FD00CAEF8B /* ForgetPasswordFirstController.m */,
+				5B55D57C1A3EB63200CAEF8B /* ForgetPasswordSecondController.h */,
+				5B55D57D1A3EB63200CAEF8B /* ForgetPasswordSecondController.m */,
+				5B55D57F1A3EB64C00CAEF8B /* ForgetPasswordThirdController.h */,
+				5B55D5801A3EB64C00CAEF8B /* ForgetPasswordThirdController.m */,
 			);
 			path = LoginView;
 			sourceTree = "<group>";
@@ -5759,8 +5764,6 @@
 				0426C27319922D5A00CD8822 /* GPUImageGrayscaleFilter.m in Sources */,
 				0426C2C419922D5A00CD8822 /* GPUImageTextureInput.m in Sources */,
 				D3AD60F919AC7CC5001FD483 /* EGOCache.m in Sources */,
-				D3E2F4741A11E68900CF2785 /* ForgetSubViewController.m in Sources */,
-				5B4C198A19FA57CC00C6C57D /* ForgetPasswordViewController.m in Sources */,
 				0426C2DB19922D5A00CD8822 /* GPUImageContext.m in Sources */,
 				0426C26A19922D5A00CD8822 /* GPUImageFASTCornerDetectionFilter.m in Sources */,
 				0426C24E19922D5A00CD8822 /* GPUImageCannyEdgeDetectionFilter.m in Sources */,
@@ -5813,6 +5816,7 @@
 				5BE08ED51A35900000495EEB /* SecondAnimationView.m in Sources */,
 				0426C28219922D5A00CD8822 /* GPUImageKuwaharaRadius3Filter.m in Sources */,
 				D3AD61A419AEF0A2001FD483 /* MultipleChoiceViewController.m in Sources */,
+				5B55D5811A3EB64C00CAEF8B /* ForgetPasswordThirdController.m in Sources */,
 				04BF13B819C4162A002E02C9 /* ProjectImageModel.m in Sources */,
 				0426C2B819922D5A00CD8822 /* GPUImageSketchFilter.m in Sources */,
 				5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */,
@@ -5844,6 +5848,7 @@
 				0426C2B219922D5A00CD8822 /* GPUImageScreenBlendFilter.m in Sources */,
 				0426C2B419922D5A00CD8822 /* GPUImageSharpenFilter.m in Sources */,
 				0426C2FB19922D5A00CD8822 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				5B55D57B1A3EB5FD00CAEF8B /* ForgetPasswordFirstController.m in Sources */,
 				04248B0519C67C1D000FB8A9 /* ProductModel.m in Sources */,
 				D3AC61A919B6BF930015B62F /* ContactModel.m in Sources */,
 				5BF08A3D19B8779D00782976 /* MoreCompanyViewCell.m in Sources */,
@@ -5936,6 +5941,7 @@
 				0426C24D19922D5A00CD8822 /* GPUImageBulgeDistortionFilter.m in Sources */,
 				042D9DC719B4A1C600689C5D /* JSONKit.m in Sources */,
 				D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */,
+				5B55D57E1A3EB63200CAEF8B /* ForgetPasswordSecondController.m in Sources */,
 				0426C24C19922D5A00CD8822 /* GPUImageBuffer.m in Sources */,
 				0426C24019922D5A00CD8822 /* GLProgram.m in Sources */,
 				0426BFFB19922CE400CD8822 /* AppDelegate.m in Sources */,
