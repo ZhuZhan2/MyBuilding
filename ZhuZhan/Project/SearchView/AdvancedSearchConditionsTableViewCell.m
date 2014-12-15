@@ -71,14 +71,14 @@
     [districtBtn setFrame:CGRectMake(15, 105, 295, 40)];
     //[districtBtn setBackgroundColor:[UIColor yellowColor]];
     [districtBtn setTitle:@"区域" forState:UIControlStateNormal];
+    districtBtn.tag = 2;
     [districtBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     districtBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [districtBtn addTarget:self action:@selector(districtBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [districtBtn addTarget:self action:@selector(districtBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:districtBtn];
     
-    districtLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 105, 65, 40)];
+    districtLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 105, 185, 40)];
     districtLabel.textAlignment = NSTextAlignmentRight;
-    districtLabel.text = @"华南区";
     districtLabel.font = font;
     [bgView addSubview:districtLabel];
     
@@ -89,14 +89,14 @@
     provinceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [provinceBtn setFrame:CGRectMake(15, 155, 295, 40)];
     [provinceBtn setTitle:@"省份" forState:UIControlStateNormal];
+    provinceBtn.tag = 3;
     [provinceBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     provinceBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [provinceBtn addTarget:self action:@selector(provinceBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [provinceBtn addTarget:self action:@selector(provinceBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:provinceBtn];
     
-    provinceLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 155, 65, 40)];
+    provinceLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 155, 185, 40)];
     provinceLabel.textAlignment = NSTextAlignmentRight;
-    provinceLabel.text = @"asdfsadfsadfsdfsadf";
     provinceLabel.font = font;
     [bgView addSubview:provinceLabel];
     
@@ -154,16 +154,22 @@
     }
 }
 
--(void)districtBtnClick{
+-(void)districtBtnClick:(UIButton *)button{
     NSLog(@"districtBtnClick");
     [keyWord resignFirstResponder];
     [companyName resignFirstResponder];
+    if([self.delegate respondsToSelector:@selector(multipleChose:)]){
+        [self.delegate multipleChose:button.tag];
+    }
 }
 
--(void)provinceBtnClick{
+-(void)provinceBtnClick:(UIButton *)button{
     NSLog(@"provinceBtnClick");
     [keyWord resignFirstResponder];
     [companyName resignFirstResponder];
+    if([self.delegate respondsToSelector:@selector(multipleChose:)]){
+        [self.delegate multipleChose:button.tag];
+    }
 }
 
 -(void)projectStageBtnClick:(UIButton *)button{
@@ -194,6 +200,8 @@
 }
 
 -(void)setDic:(NSMutableDictionary *)dic{
+    districtLabel.text = dic[@"landProvince"];
+    provinceLabel.text = dic[@"landDistrict"];
     projectStageLabel.text = dic[@"projectStage"];
     projectCategoryLabel.text = dic[@"projectCategory"];
 }

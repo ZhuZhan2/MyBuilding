@@ -314,13 +314,39 @@
         multipleChoseView.delegate = self;
         [multipleChoseView.view setFrame:CGRectMake(0, 0, 272, 270)];
         [self presentPopupViewController:multipleChoseView animationType:MJPopupViewAnimationFade flag:0];
-    }else{
+    }else if(index == 1){
         multipleChoseView = [[MultipleChoiceViewController alloc] init];
         multipleChoseView.arr = [[NSMutableArray alloc] initWithObjects:@"工业",@"酒店及餐饮",@"商务办公",@"住宅/经济适用房",@"公用事业设施（教育、医疗、科研、基础建设等）",@"其他", nil];
         multipleChoseView.flag = 1;
         multipleChoseView.delegate = self;
         [multipleChoseView.view setFrame:CGRectMake(0, 0, 272, 370)];
         [self presentPopupViewController:multipleChoseView animationType:MJPopupViewAnimationFade flag:0];
+    }else if (index == 2){
+        NSString *path = [[NSBundle mainBundle]pathForResource:@"AreaList" ofType:@"plist"];
+        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
+        if(singleView == nil){
+            singleView = [[SinglePickerView alloc]initWithTitle:CGRectMake(0, 0, 320, 260) title:nil Arr:[dict allKeys] delegate:self];
+            singleView.tag = 0;
+            [singleView showInView:self.view];
+        }
+    }else{
+        NSMutableArray *arr = [[NSMutableArray alloc] init];
+        NSString *path = [[NSBundle mainBundle]pathForResource:@"AreaList" ofType:@"plist"];
+        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
+        if([dataDic[@"landProvince"] isEqualToString:@""]){
+            for (NSString *key in [dict allKeys]) {
+                for(NSString *string in dict[key]){
+                    [arr addObject:string];
+                }
+            }
+        }else{
+            [arr addObjectsFromArray:dict[dataDic[@"landProvince"]]];
+        }
+        if(singleView == nil){
+            singleView = [[SinglePickerView alloc]initWithTitle:CGRectMake(0, 0, 320, 260) title:nil Arr:arr delegate:self];
+            singleView.tag = 1;
+            [singleView showInView:self.view];
+        }
     }
 }
 
@@ -392,6 +418,33 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请填写关键字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
     }
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(actionSheet.tag == 0){
+        singleView = (SinglePickerView *)actionSheet;
+        if(buttonIndex == 0) {
+            NSLog(@"Cancel");
+            [singleView removeFromSuperview];
+            singleView = nil;
+        }else {
+            [dataDic setValue:singleView.selectStr forKey:@"landProvince"];
+            [singleView removeFromSuperview];
+            singleView = nil;
+        }
+    }else{
+        singleView = (SinglePickerView *)actionSheet;
+        if(buttonIndex == 0){
+            NSLog(@"Cancel");
+            [singleView removeFromSuperview];
+            singleView = nil;
+        }else{
+            [dataDic setValue:singleView.selectStr forKey:@"landDistrict"];
+            [singleView removeFromSuperview];
+            singleView = nil;
+        }
+    }
+    [_tableView reloadData];
 }
 
 -(void)loginComplete{

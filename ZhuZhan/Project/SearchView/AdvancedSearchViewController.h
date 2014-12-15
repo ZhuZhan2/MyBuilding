@@ -12,10 +12,12 @@
 #import "SaveConditionsViewController.h"
 #import "ConditionsView.h"
 #import "LoginViewController.h"
-@interface AdvancedSearchViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,AdvancedSearchConditionsDelegate,MChoiceViewDelegate,SaveConditionsViewDelegate,LoginViewDelegate>{
+#import "SinglePickerView.h"
+@interface AdvancedSearchViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,AdvancedSearchConditionsDelegate,MChoiceViewDelegate,SaveConditionsViewDelegate,LoginViewDelegate,UIActionSheetDelegate>{
     UITableView *_tableView;
     NSMutableDictionary *dataDic;
     MultipleChoiceViewController *multipleChoseView;
+    SinglePickerView *singleView;
     SaveConditionsViewController *saveView;
     ConditionsView *conditionsView;
     NSMutableArray *viewArr;
