@@ -1,22 +1,22 @@
 //
-//  ForgetSubViewController.m
+//  ForgetPasswordThirdController.m
 //  ZhuZhan
 //
-//  Created by 汪洋 on 14/11/11.
+//  Created by 孙元侃 on 14/12/15.
 //
 //
 
-#import "ForgetSubViewController.h"
+#import "ForgetPasswordThirdController.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "RemindView.h"
-@interface ForgetSubViewController ()
+@interface ForgetPasswordThirdController ()
 @property(nonatomic,strong)UIFont* font;
 @property(nonatomic,strong)UIButton* registerBtn;
 @property(nonatomic,strong)UIView *errorView;
 @end
 
-@implementation ForgetSubViewController
+@implementation ForgetPasswordThirdController
 -(UIFont *)font{
     return [UIFont systemFontOfSize:15];
 }
@@ -129,3 +129,4 @@
     
 }
 @end
+

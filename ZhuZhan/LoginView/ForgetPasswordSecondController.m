@@ -1,19 +1,20 @@
 //
-//  ForgetPasswordViewController.m
+//  ForgetPasswordSecondController.m
 //  ZhuZhan
 //
-//  Created by 孙元侃 on 14/10/24.
+//  Created by 孙元侃 on 14/12/15.
 //
 //
 
-#import "ForgetPasswordViewController.h"
-#import "ForgetSubViewController.h"
-@interface ForgetPasswordViewController ()<UITextFieldDelegate>
+#import "ForgetPasswordSecondController.h"
+#import "ForgetPasswordThirdController.h"
+@interface ForgetPasswordSecondController ()<UITextFieldDelegate>
 @property(nonatomic,strong)UIFont* font;
 @property(nonatomic,strong)UIButton* registerBtn;
 @end
 
-@implementation ForgetPasswordViewController
+@implementation ForgetPasswordSecondController
+
 -(UIFont *)font{
     return [UIFont systemFontOfSize:15];
 }
@@ -124,7 +125,7 @@
 
 -(void)beginToCollect{
     NSLog(@"用户确认");
-    ForgetSubViewController *forgetSubView = [[ForgetSubViewController alloc] init];
+    ForgetPasswordThirdController *forgetSubView = [[ForgetPasswordThirdController alloc] init];
     [self.navigationController pushViewController:forgetSubView animated:YES];
 }
 
@@ -149,4 +150,5 @@
     }
     return YES;
 }
+
 @end
