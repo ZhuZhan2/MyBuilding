@@ -34,7 +34,7 @@
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     //标题和标题设置
-    self.title = @"密码找回";
+    self.title = @"修改密码";
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
     
     [self endEdit];
@@ -98,13 +98,16 @@
 -(void)loadRegisterBtn{
     self.registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.registerBtn.frame = CGRectMake(22, 500, 276, 42);
-    [self.registerBtn setBackgroundImage:[GetImagePath getImagePath:@"密码找回_23"] forState:UIControlStateNormal];
+    [self.registerBtn setBackgroundImage:[GetImagePath getImagePath:@"密码找回z"] forState:UIControlStateNormal];
     [self.registerBtn addTarget:self action:@selector(beginToCollect) forControlEvents:UIControlEventTouchUpInside];
     self.registerBtn.tag =2014072401;
     [self.view addSubview:self.registerBtn];
 }
 
 -(void)beginToCollect{
+    self.navigationController.navigationBar.hidden=YES;
+    [self.navigationController popToRootViewControllerAnimated:YES];
+
     if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
         return;
