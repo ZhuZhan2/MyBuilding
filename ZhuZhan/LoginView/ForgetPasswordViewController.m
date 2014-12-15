@@ -8,9 +8,12 @@
 
 #import "ForgetPasswordViewController.h"
 #import "ForgetSubViewController.h"
+#import "PooCodeView.h"
+#import "RemindView.h"
 @interface ForgetPasswordViewController ()<UITextFieldDelegate>
 @property(nonatomic,strong)UIFont* font;
 @property(nonatomic,strong)UIButton* registerBtn;
+@property (nonatomic, retain) PooCodeView *codeView;
 @end
 
 @implementation ForgetPasswordViewController
@@ -50,10 +53,11 @@
     _phoneNumberTextField.delegate = self;
     _phoneNumberTextField.font=self.font;
     _phoneNumberTextField.textAlignment=NSTextAlignmentLeft;
-    _phoneNumberTextField.placeholder=@"填写手机号";
+    _phoneNumberTextField.placeholder=@"填写手机号/用户名";
     _phoneNumberTextField.returnKeyType=UIReturnKeyDone;
     _phoneNumberTextField.keyboardType =UIKeyboardTypePhonePad;
     _phoneNumberTextField.clearButtonMode =YES;
+    _phoneNumberTextField.tag = 0;
     [firstView addSubview:_phoneNumberTextField];
     
     //新建验证码文本框
@@ -61,17 +65,19 @@
     _yzmTextField.delegate = self;
     _yzmTextField.font=self.font;
     _yzmTextField.textAlignment=NSTextAlignmentLeft;
-    _yzmTextField.placeholder=@"填写验证码";
+    _yzmTextField.placeholder=@"验证码";
     _yzmTextField.returnKeyType=UIReturnKeyDone;
     _yzmTextField.clearButtonMode =YES;
+    _yzmTextField.tag = 1;
     [firstView addSubview:_yzmTextField];
     
     UIButton *getCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     getCodeBtn.frame = CGRectMake(208,57,91,28);
     [getCodeBtn setImage:[GetImagePath getImagePath:@"密码找回_15"] forState:UIControlStateNormal];
     [getCodeBtn addTarget:self action:@selector(getVerifitionCode) forControlEvents:UIControlEventTouchUpInside];
-    [firstView addSubview:getCodeBtn];
-    
+    //[firstView addSubview:getCodeBtn];
+    self.codeView = [[PooCodeView alloc] initWithFrame:CGRectMake(208,57,91,28)];
+    [firstView addSubview:self.codeView];
 }
 
 -(void)getVerifitionCode{
@@ -134,8 +140,28 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.view endEditing:YES];
+    if(textField ==0){
+    
+    }else{
+        if([_yzmTextField.text compare:self.codeView.changeString options:NSCaseInsensitiveSearch|NSNumericSearch]==-1){
+            [RemindView remindViewWithContent:@"验证码不正确" superView:self.view centerY:220];
+        }
+    }
     return YES;
 }
+
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
+//{
+//    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+//    if (_yzmTextField)
+//    {
+//        if ([toBeString length] > 4) {
+//            _yzmTextField.text = [toBeString substringToIndex:4];
+//            return NO;
+//        }
+//    }
+//    return YES;
+//}
 
 -(BOOL)phoneNoErr:(NSString *)phone//正则表达式来判断是否是手机号码
 {
