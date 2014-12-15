@@ -8,12 +8,12 @@
 
 #import "ForgetPasswordFirstController.h"
 #import "ForgetPasswordSecondController.h"
-//#import "PooCodeView.h"
+#import "PooCodeView.h"
 #import "RemindView.h"
 @interface ForgetPasswordFirstController ()<UITextFieldDelegate>
 @property(nonatomic,strong)UIFont* font;
 @property(nonatomic,strong)UIButton* registerBtn;
-//@property (nonatomic, retain) PooCodeView *codeView;
+@property (nonatomic, retain) PooCodeView *codeView;
 @end
 
 @implementation ForgetPasswordFirstController
@@ -131,8 +131,8 @@
 
 -(void)beginToCollect{
     NSLog(@"用户确认");
-    ForgetSubViewController *forgetSubView = [[ForgetSubViewController alloc] init];
-    [self.navigationController pushViewController:forgetSubView animated:YES];
+    ForgetPasswordSecondController *forgetSecondView = [[ForgetPasswordSecondController alloc] init];
+    [self.navigationController pushViewController:forgetSecondView animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
