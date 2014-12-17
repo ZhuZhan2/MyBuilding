@@ -135,7 +135,7 @@
 
 //POST:
 //{
-//    "cellPhone": "13812312314",
+//    "userName": "13812312314",
 //    "password": "1234",
 //    "deviceType": ":mobile || web"
 //}

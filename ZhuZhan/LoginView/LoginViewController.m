@@ -196,6 +196,7 @@
 -(void)registComplete{
     if([self.delegate respondsToSelector:@selector(loginCompleteWithDelayBlock:)]){
         [self.delegate loginCompleteWithDelayBlock:^{
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
             [self cancelSelf];
         }];
     }

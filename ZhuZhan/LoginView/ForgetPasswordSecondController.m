@@ -38,6 +38,7 @@
 
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
+    //self.navigationController.navigationBar.hidden=YES;
 }
 
 -(void)loadFirstView{
