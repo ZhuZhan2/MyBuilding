@@ -26,6 +26,8 @@
 @interface RegistViewController ()
 @property(nonatomic,strong)UIFont* font;
 @property(nonatomic,strong)UIButton* registerBtn;
+@property(nonatomic,strong)UIButton *selectBtn;
+@property(nonatomic)BOOL isSelect;
 @end
 
 @implementation RegistViewController
@@ -147,6 +149,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.isSelect = YES;
     [self endEdit];
     [self initNavi];
     self.view.backgroundColor=RGBCOLOR(245, 246, 248);
@@ -159,12 +162,29 @@
 -(void)loadClauseView{
     UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(65, 470, 320, 18)];
     imageView.image=[GetImagePath getImagePath:@"注册_05"];
-    [self.view addSubview:imageView];
+    //[self.view addSubview:imageView];
+    
+    self.selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.selectBtn.frame = CGRectMake(65, 470, 320, 18);
+    [self.selectBtn setImage:[GetImagePath getImagePath:@"注册_05"] forState:UIControlStateNormal];
+    [self.selectBtn addTarget:self action:@selector(selectBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    self.selectBtn.adjustsImageWhenHighlighted = NO;
+    [self.view addSubview:self.selectBtn];
     
     UIButton* button=[[UIButton alloc]init];
     button.frame=CGRectMake(208, 470, 30, 20);
     [button addTarget:self action:@selector(chooseClause) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
+}
+
+-(void)selectBtnAction:(UIButton *)button{
+    if(self.isSelect){
+        [self.selectBtn setImage:[GetImagePath getImagePath:@"注册_03"] forState:UIControlStateNormal];
+        self.isSelect = NO;
+    }else{
+        [self.selectBtn setImage:[GetImagePath getImagePath:@"注册_05"] forState:UIControlStateNormal];
+        self.isSelect = YES;
+    }
 }
 
 -(void)chooseClause{
@@ -200,7 +220,11 @@
 #pragma mark  开始注册－－－－－－－－－－
 //点击注册按钮触发的事件
 -(void)beginToCollect{
-    [self commomRegister];
+    if(self.isSelect){
+        [self commomRegister];
+    }else{
+        [self remindErrorView:@"请先阅读条款，并同意"];
+    }
 }
 
 -(void)remindErrorView:(NSString*)content{
