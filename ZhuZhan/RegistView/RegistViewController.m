@@ -243,6 +243,11 @@
         return;
     }
     
+    if (!accountField.text.length) {
+        [self remindErrorView:@"请输入用户名"];
+        return;
+    }
+    
     if (![passWordField.text isEqualToString:verifyPassWordField.text]) {
         [self remindErrorView:@"密码输入不一致，请重新输入"];
         return;
