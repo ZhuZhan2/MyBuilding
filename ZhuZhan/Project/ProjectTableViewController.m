@@ -93,7 +93,7 @@
         [ProjectApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 showArr = posts;
-                sectionHeight = 30;
+                sectionHeight = 50;
                 [self.tableView reloadData];
                 [LoadingView removeLoadingView:loadingView];
                 self.tableView.scrollEnabled = YES;
@@ -125,7 +125,7 @@
         [ProjectApi LocalProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 showArr = posts;
-                sectionHeight = 30;
+                sectionHeight = 50;
                 [self.tableView reloadData];
                 [LoadingView removeLoadingView:loadingView];
                 self.tableView.scrollEnabled = YES;
@@ -286,12 +286,20 @@
     if(section == 0){
         UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 291.5, 50)];
         [bgView setBackgroundColor:RGBCOLOR(239, 237, 237)];
-        UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 10, 160, 20)];
-        countLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
-        countLabel.textColor = GrayColor;
+
+        UILabel* countLabel=[[UILabel alloc] initWithFrame:CGRectMake(80, 10, 160, 20)];
+        countLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:17];
+        countLabel.textColor = BlueColor;
         countLabel.textAlignment = NSTextAlignmentCenter;
-        countLabel.text = [NSString stringWithFormat:@"共计%d条",showArr.count];
+        countLabel.text = [NSString stringWithFormat:@"%d",showArr.count];
         [bgView addSubview:countLabel];
+        
+        UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 27, 160, 20)];
+        tempLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
+        tempLabel.textColor = GrayColor;
+        tempLabel.textAlignment = NSTextAlignmentCenter;
+        tempLabel.text = [NSString stringWithFormat:@"历史游览记录"];
+        [bgView addSubview:tempLabel];
         return bgView;
     }
     return nil;
