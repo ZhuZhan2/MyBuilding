@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface RecommendProjectViewController : UIViewController
+#import "RecommendProjectTableViewCell.h"
+@interface RecommendProjectViewController : UIViewController<RecommendProjectTableViewCellDelegate>
 
 @end

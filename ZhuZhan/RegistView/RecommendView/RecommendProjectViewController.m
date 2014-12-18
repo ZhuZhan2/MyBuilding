@@ -8,8 +8,8 @@
 
 #import "RecommendProjectViewController.h"
 #import "RecommendContactViewController.h"
-@interface RecommendProjectViewController ()
-
+@interface RecommendProjectViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property(nonatomic,strong)UITableView *tableView;
 @end
 
 @implementation RecommendProjectViewController
@@ -31,6 +31,12 @@
     [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
+    
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,6 +47,55 @@
 -(void)rightBtnClick{
     RecommendContactViewController *recContactView = [[RecommendContactViewController alloc] init];
     [self.navigationController pushViewController:recContactView animated:YES];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 10;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row == 0){
+        return 77;
+    }else{
+        return 107;
+    }
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row == 0){
+        UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+        if (!cell) {
+            cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
+        }
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(59, 18, 61, 50)];
+        imageView.image = [GetImagePath getImagePath:@"推荐页面03a"];
+        [cell.contentView addSubview:imageView];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(130, 20, 130, 23)];
+        label.text = @"关注你感兴趣的项目，";
+        label.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
+        label.textColor = RGBCOLOR(163, 163, 163);
+        [cell.contentView addSubview:label];
+        
+        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(130, 40, 130, 23)];
+        label2.text = @"来随时了解项目进程！";
+        label2.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
+        label2.textColor = RGBCOLOR(163, 163, 163);
+        [cell.contentView addSubview:label2];
+        
+        UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 73, 320, 5)];
+        lineImage.image = [GetImagePath getImagePath:@"推荐页面06a"];
+        [cell.contentView addSubview:lineImage];
+        cell.contentView.backgroundColor = RGBCOLOR(235, 235, 235);
+        return cell;
+    }else{
+        RecommendProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecommendProjectTableViewCell"];
+        if(!cell){
+            cell=[[RecommendProjectTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"RecommendProjectTableViewCell"];
+        }
+        cell.delegate = self;
+        return cell;
+    }
 }
 
 @end
