@@ -111,6 +111,8 @@
     findPassWordBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [findPassWordBtn addTarget:self action:@selector(forgetPassword) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:findPassWordBtn];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(registComplete) name:@"registComplete" object:nil];
 }
 
 -(void)forgetPassword{

@@ -7,17 +7,147 @@
 //
 
 #import "RecommendContactViewController.h"
-
-@interface RecommendContactViewController ()
+#import "WelcomeViewController.h"
+#import "LoadingView.h"
+#import "CompanyApi.h"
+#import "CompanyMemberCell.h"
+#import "EmployeesModel.h"
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
+@interface RecommendContactViewController ()<UITableViewDataSource,UITableViewDelegate>
+@property(nonatomic,strong)NSMutableArray *showArr;
+@property(nonatomic,strong)UITableView* tableView;
+@property(nonatomic,strong)LoadingView *loadingView;
 
 @end
 
 @implementation RecommendContactViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    [self initNaviBar];
+    [self initMyTableView];
+
+//    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view];
+    [self firstNetWork];
+}
+
+-(void)firstNetWork{
+    self.showArr=[NSMutableArray array];
+    for (int i=0; i<20; i++) {
+        EmployeesModel* model=[[EmployeesModel alloc]init];
+        //model.a_id = ;
+        model.a_userName = [NSString stringWithFormat:@"userName%d",i];
+        model.a_userIamge=@"http://www.baidu.com/img/bd_logo1.png";
+        model.a_isFocused = i%2?@"0":@"1";
+        model.a_duties = @"职位";
+        model.a_department = @"部门";
+        
+        [self.showArr addObject:model];
+    }
+    [self.tableView reloadData];
+    [self removeMyLoadingView];
+
+//    [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
+//        if(!error){
+//            self.showArr = posts;
+//            [self.tableView reloadData];
+//        }
+//        [self removeMyLoadingView];
+//    } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:^{
+//        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+//            [self firstNetWork];
+//        }];
+//    }];
+}
+
+-(void)removeMyLoadingView{
+    [LoadingView removeLoadingView:self.loadingView];
+    self.loadingView = nil;
+}
+
+- (UIImage *)imageWithColor:(UIColor *)color{
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+//===============================================================
+//UITableViewDataSource,UITableViewDelegate
+//===============================================================
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.showArr.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CompanyMemberCell* cell=[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (!cell) {
+        cell=[[CompanyMemberCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
+        //暂时移除，目前版本不需要右边的符号
+        [cell.rightBtn addTarget:self action:@selector(chooseApprove:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    [cell setModel:self.showArr[indexPath.row] indexPathRow:indexPath.row];
+    return cell;
+}
+
+//暂时移除，目前版本不需要右边的符号
+-(void)chooseApprove:(UIButton*)btn{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+
+    btn.enabled=NO;
+    EmployeesModel *model = self.showArr[btn.tag];
+    BOOL isFocused=[model.a_isFocused isEqualToString:@"1"];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    if (isFocused) {
+        model.a_isFocused=@"0";
+        btn.enabled=YES;
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+//        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
+//        [dic setValue:model.a_id forKey:@"FocusId"];
+//        [CompanyApi DeleteFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+//            if (!error) {
+//                model.a_isFocused=@"0";
+//                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+//            }
+//            btn.enabled=YES;
+//        } dic:dic noNetWork:nil];
+    }else{
+        model.a_isFocused=@"1";
+        btn.enabled=YES;
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+//        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
+//        [dic setValue:model.a_id forKey:@"FocusId"];
+//        [dic setValue:@"Personal" forKey:@"FocusType"];
+//        [dic setValue:@"Personal" forKey:@"UserType"];
+//        [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+//            if(!error){
+//                model.a_isFocused=@"1";
+//                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+//            }
+//            btn.enabled=YES;
+//        } dic:dic noNetWork:nil];
+    }
+}
+
+//===============================================================
+//===============================================================
+//===============================================================
+-(void)initNaviBar{
     self.title = @"推荐联系人";
     //返还按钮
     UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,5,29,28.5)];
@@ -35,16 +165,50 @@
     self.navigationItem.rightBarButtonItem = rightButtonItem;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)rightBtnClick{
+    WelcomeViewController* vc=[[WelcomeViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
+-(void)initMyTableView{
+    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
+    self.tableView.delegate=self;
+    self.tableView.dataSource=self;
+    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    self.tableView.allowsSelection=NO;
+    self.tableView.showsVerticalScrollIndicator=NO;
+    self.tableView.tableHeaderView=[self headerView];
+    [self.view addSubview:self.tableView];
+}
+
+-(UIView*)headerView{
+    UIView* headerView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 77)];
+    headerView.backgroundColor=RGBCOLOR(235,235,235);
+    
+    UIImageView* imageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"推荐页面02a"]];
+    imageView.center=CGPointMake(66, 39);
+    [headerView addSubview:imageView];
+    
+    for (int i=0; i<2; i++) {
+        UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake( 95, 22+(i?19:0), 400, 15)];
+        label.font=[UIFont systemFontOfSize:15];
+        label.text=i?@"关注他们随时查看个人动态!":@"找到你感兴趣的人，";
+        label.textColor=RGBCOLOR(163, 163, 163);
+        [headerView addSubview:label];
+    }
+
+    UIImageView* lineImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 73, 320, 5)];
+    lineImageView.image=[GetImagePath getImagePath:@"推荐页面06a"];
+    [headerView addSubview:lineImageView];
+    return headerView;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
 }
 @end
