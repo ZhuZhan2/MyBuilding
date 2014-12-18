@@ -35,7 +35,12 @@
     UIButton* btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame=CGRectMake(20, 410, 280, 45);
     [btn setBackgroundImage:[GetImagePath getImagePath:@"推荐页面05a"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(postRegistCompleteNoti) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
+}
+
+-(void)postRegistCompleteNoti{
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"registComplete" object:nil];
 }
 
 -(void)initNaviBar{
