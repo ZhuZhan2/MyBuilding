@@ -17,6 +17,8 @@
 #import "MBProgressHUD.h"
 #import "ProgramDetailViewController.h"
 #import "ErrorView.h"
+#import "ProjectSqlite.h"
+#import "LocalProjectModel.h"
 @interface ProjectTableViewController ()
 
 @end
@@ -83,27 +85,58 @@
 }
 
 -(void)firstWork{
-    self.tableView.scrollEnabled = NO;
-    sectionHeight = 0;
-    loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view];
-    [ProjectApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            showArr = posts;
-            sectionHeight = 30;
-            [self.tableView reloadData];
-            [LoadingView removeLoadingView:loadingView];
-            self.tableView.scrollEnabled = YES;
-            loadingView = nil;
-        }
-    } startIndex:startIndex noNetWork:^{
+    NSMutableArray* localDatas=[ProjectSqlite loadList];
+    if (!localDatas.count) {
         self.tableView.scrollEnabled = NO;
-        [LoadingView removeLoadingView:loadingView];
-        loadingView = nil;
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
-            self.tableView.scrollEnabled = YES;
-            [self firstWork];
+        sectionHeight = 0;
+        loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view];
+        [ProjectApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                showArr = posts;
+                sectionHeight = 30;
+                [self.tableView reloadData];
+                [LoadingView removeLoadingView:loadingView];
+                self.tableView.scrollEnabled = YES;
+                loadingView = nil;
+            }
+        } startIndex:startIndex noNetWork:^{
+            self.tableView.scrollEnabled = NO;
+            [LoadingView removeLoadingView:loadingView];
+            loadingView = nil;
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                self.tableView.scrollEnabled = YES;
+                [self firstWork];
+            }];
         }];
-    }];
+    }else{
+        self.tableView.scrollEnabled = NO;
+        sectionHeight = 0;
+        loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view];
+        [self requestSingleProgram:[ProjectSqlite loadList]];
+    }
+}
+
+-(void)requestSingleProgram:(NSMutableArray*)datas{
+    NSLog(@"=====%@",datas);
+    NSString* projectIds=@"";
+    for (int i=0; i<datas.count; i++) {
+        projectIds=[[NSString stringWithFormat:i?@"%@,":@"%@",projectIds] stringByAppendingString:[datas[i] a_projectId]];
+    }
+    if (datas.count) {
+        [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                NSLog(@"posts==%@",posts);
+            }
+        } projectId:projectIds noNetWork:^{
+            self.tableView.scrollEnabled = NO;
+            [LoadingView removeLoadingView:loadingView];
+            loadingView = nil;
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                self.tableView.scrollEnabled = YES;
+                [self firstWork];
+            }];
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -127,7 +160,7 @@
     //[_tableView headerBeginRefreshing];
     
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
-    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+    //[self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
 }
 
 #pragma mark 开始进入刷新状态
