@@ -23,6 +23,7 @@
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "RemindView.h"
+#import "RecommendProjectViewController.h"
 @interface RegistViewController ()
 @property(nonatomic,strong)UIFont* font;
 @property(nonatomic,strong)UIButton* registerBtn;
@@ -233,6 +234,9 @@
 
 - (void)commomRegister//账号密码的注册
 {
+    RecommendProjectViewController *recProjectView = [[RecommendProjectViewController alloc] init];
+    [self.navigationController pushViewController:recProjectView animated:YES];
+    return;
     NSLog(@"共同注册部分");
     if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
@@ -271,9 +275,11 @@
                 [LoginSqlite insertData:[item objectForKey:@"deviceToken"] datakey:@"deviceToken"];
                 [LoginSqlite insertData:item[@"userName"] datakey:@"userName"];
                 [LoginSqlite insertData:@"Personal" datakey:@"userType"];
-                if([self.delegate respondsToSelector:@selector(registComplete)]){
-                    [self.delegate registComplete];
-                }
+//                if([self.delegate respondsToSelector:@selector(registComplete)]){
+//                    [self.delegate registComplete];
+//                }
+                RecommendProjectViewController *recProjectView = [[RecommendProjectViewController alloc] init];
+                [self.navigationController pushViewController:recProjectView animated:YES];
             }
         }
     } dic:parameters noNetWork:nil];
