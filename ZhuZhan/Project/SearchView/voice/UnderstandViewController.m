@@ -21,7 +21,7 @@
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
 #import "JSONKit.h"
-
+#import "RecordSqlite.h"
 
 
 @implementation UnderstandViewController
@@ -171,12 +171,20 @@ static bool startListen =YES;
 
 
 - (void)rightAction{
-    
-    ResultsTableViewController *resultVC = [[ResultsTableViewController alloc] init];
-
-    resultVC.searchStr = _textView.text;
-    NSLog(@"***resultVC.searchStr****%@",_textView.text);
-    [self.navigationController pushViewController:resultVC animated:YES];
+    if(![[ _textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]){
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSString *time = [dateFormatter stringFromDate:[NSDate date]];
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:_textView.text forKey:@"name"];
+        [dic setValue:time forKey:@"time"];
+        [RecordSqlite InsertData:dic];
+        
+        ResultsTableViewController *resultVC = [[ResultsTableViewController alloc] init];
+        resultVC.searchStr = _textView.text;
+        NSLog(@"***resultVC.searchStr****%@",_textView.text);
+        [self.navigationController pushViewController:resultVC animated:YES];
+    }
 }
 
 

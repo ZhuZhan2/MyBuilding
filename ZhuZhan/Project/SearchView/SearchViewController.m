@@ -206,18 +206,20 @@ int startIndex;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *time = [dateFormatter stringFromDate:[NSDate date]];
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setValue:_searchBar.text forKey:@"name"];
-    [dic setValue:time forKey:@"time"];
-    [RecordSqlite InsertData:dic];
-    
-    ResultsTableViewController *resultView = [[ResultsTableViewController alloc] init];
-    resultView.searchStr = _searchBar.text;
-    resultView.flag = 0;
-    [self.navigationController pushViewController:resultView animated:YES];
+    if(![[_searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]){
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSString *time = [dateFormatter stringFromDate:[NSDate date]];
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:_searchBar.text forKey:@"name"];
+        [dic setValue:time forKey:@"time"];
+        [RecordSqlite InsertData:dic];
+        
+        ResultsTableViewController *resultView = [[ResultsTableViewController alloc] init];
+        resultView.searchStr = _searchBar.text;
+        resultView.flag = 0;
+        [self.navigationController pushViewController:resultView animated:YES];
+    }
 }
 
 

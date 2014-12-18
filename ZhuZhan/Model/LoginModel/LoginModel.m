@@ -627,11 +627,28 @@
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
+            NSNumber *errorcode = JSON[@"d"][@"status"][@"statusCode"];
+            switch ([errorcode intValue]) {
+                case 1301:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"参数异常" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
+                    break;
+                case 1314:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"系统异常" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
+                    break;
+                case 1318:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"token 失效或者不存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
+                    break;
+                case 1319:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"原密码不一致" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
+                    break;
+                default:
+                    break;
+            }
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);
