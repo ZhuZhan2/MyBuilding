@@ -957,6 +957,11 @@
 		D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */; };
 		D36040E619F51E8600E9727D /* CompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D36040E519F51E8600E9727D /* CompanyModel.m */; };
 		D36040E919F51E9F00E9727D /* CompanyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D36040E819F51E9F00E9727D /* CompanyApi.m */; };
+		D39937BE1A42B428007081C1 /* RecommendProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937BD1A42B428007081C1 /* RecommendProjectViewController.m */; };
+		D39937C11A42B453007081C1 /* RecommendContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937C01A42B453007081C1 /* RecommendContactViewController.m */; };
+		D39937C41A42B470007081C1 /* RecommendProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937C31A42B470007081C1 /* RecommendProjectTableViewCell.m */; };
+		D39937C71A42B481007081C1 /* RecommendContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937C61A42B481007081C1 /* RecommendContactTableViewCell.m */; };
+		D39937CA1A42B49A007081C1 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937C91A42B49A007081C1 /* WelcomeViewController.m */; };
 		D3A4281019C1749E00BAB6C7 /* ErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4280F19C1749E00BAB6C7 /* ErrorView.m */; };
 		D3A4281519C19A3E00BAB6C7 /* BirthDay.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281419C19A3E00BAB6C7 /* BirthDay.m */; };
 		D3A4281B19C1A2E700BAB6C7 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281819C1A2E700BAB6C7 /* GTMBase64.m */; };
@@ -2433,6 +2438,16 @@
 		D36040E519F51E8600E9727D /* CompanyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyModel.m; sourceTree = "<group>"; };
 		D36040E719F51E9F00E9727D /* CompanyApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyApi.h; sourceTree = "<group>"; };
 		D36040E819F51E9F00E9727D /* CompanyApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyApi.m; sourceTree = "<group>"; };
+		D39937BC1A42B428007081C1 /* RecommendProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendProjectViewController.h; sourceTree = "<group>"; };
+		D39937BD1A42B428007081C1 /* RecommendProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendProjectViewController.m; sourceTree = "<group>"; };
+		D39937BF1A42B453007081C1 /* RecommendContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendContactViewController.h; sourceTree = "<group>"; };
+		D39937C01A42B453007081C1 /* RecommendContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendContactViewController.m; sourceTree = "<group>"; };
+		D39937C21A42B470007081C1 /* RecommendProjectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendProjectTableViewCell.h; sourceTree = "<group>"; };
+		D39937C31A42B470007081C1 /* RecommendProjectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendProjectTableViewCell.m; sourceTree = "<group>"; };
+		D39937C51A42B481007081C1 /* RecommendContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendContactTableViewCell.h; sourceTree = "<group>"; };
+		D39937C61A42B481007081C1 /* RecommendContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendContactTableViewCell.m; sourceTree = "<group>"; };
+		D39937C81A42B49A007081C1 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		D39937C91A42B49A007081C1 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		D3A4280819C16F2400BAB6C7 /* ErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorView.h; sourceTree = "<group>"; };
 		D3A4280F19C1749E00BAB6C7 /* ErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorView.m; sourceTree = "<group>"; };
 		D3A4281319C19A3E00BAB6C7 /* BirthDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirthDay.h; sourceTree = "<group>"; };
@@ -2838,6 +2853,7 @@
 		0426C04E19922D5900CD8822 /* RegistView */ = {
 			isa = PBXGroup;
 			children = (
+				D39937BB1A42B3E3007081C1 /* RecommendView */,
 				0426C04F19922D5900CD8822 /* FaceViewController.h */,
 				0426C05019922D5900CD8822 /* FaceViewController.m */,
 				0426C05119922D5900CD8822 /* PanViewController.h */,
@@ -4515,6 +4531,23 @@
 			path = CompanyModel;
 			sourceTree = "<group>";
 		};
+		D39937BB1A42B3E3007081C1 /* RecommendView */ = {
+			isa = PBXGroup;
+			children = (
+				D39937BC1A42B428007081C1 /* RecommendProjectViewController.h */,
+				D39937BD1A42B428007081C1 /* RecommendProjectViewController.m */,
+				D39937BF1A42B453007081C1 /* RecommendContactViewController.h */,
+				D39937C01A42B453007081C1 /* RecommendContactViewController.m */,
+				D39937C21A42B470007081C1 /* RecommendProjectTableViewCell.h */,
+				D39937C31A42B470007081C1 /* RecommendProjectTableViewCell.m */,
+				D39937C51A42B481007081C1 /* RecommendContactTableViewCell.h */,
+				D39937C61A42B481007081C1 /* RecommendContactTableViewCell.m */,
+				D39937C81A42B49A007081C1 /* WelcomeViewController.h */,
+				D39937C91A42B49A007081C1 /* WelcomeViewController.m */,
+			);
+			path = RecommendView;
+			sourceTree = "<group>";
+		};
 		D3A427FF19C16E5100BAB6C7 /* ErrorView */ = {
 			isa = PBXGroup;
 			children = (
@@ -5727,6 +5760,7 @@
 				0426C2D419922D5A00CD8822 /* GPUImageVideoCamera.m in Sources */,
 				D3A4281519C19A3E00BAB6C7 /* BirthDay.m in Sources */,
 				042D9E1B19B559FC00689C5D /* AdvancedSearchConditionsTableViewCell.m in Sources */,
+				D39937CA1A42B49A007081C1 /* WelcomeViewController.m in Sources */,
 				042D9E1919B559FC00689C5D /* ProjectTableViewCell.m in Sources */,
 				5BE08ED41A35900000495EEB /* FourthAnimationView.m in Sources */,
 				5B3AD9E419F7CA7B008132B2 /* CompanyMemberCell.m in Sources */,
@@ -5810,6 +5844,7 @@
 				D3AC61D019B849920015B62F /* PorjectCommentTableViewController.m in Sources */,
 				0426C23C19922D5A00CD8822 /* AFURLRequestSerialization.m in Sources */,
 				0426C26419922D5A00CD8822 /* GPUImageEmbossFilter.m in Sources */,
+				D39937BE1A42B428007081C1 /* RecommendProjectViewController.m in Sources */,
 				D3AD61AD19AEF80B001FD483 /* NIDropDown.m in Sources */,
 				042D9EBE19B7FB6700689C5D /* CorrelateCell.m in Sources */,
 				042D9E2C19B559FC00689C5D /* TopicsTableViewController.m in Sources */,
@@ -5937,6 +5972,7 @@
 				0426C2A719922D5A00CD8822 /* GPUImagePosterizeFilter.m in Sources */,
 				0426C2FE19922D5A00CD8822 /* UIButton+AFNetworking.m in Sources */,
 				0426C26E19922D5A00CD8822 /* GPUImageGammaFilter.m in Sources */,
+				D39937C71A42B481007081C1 /* RecommendContactTableViewCell.m in Sources */,
 				0426C29919922D5A00CD8822 /* GPUImageNonMaximumSuppressionFilter.m in Sources */,
 				D3AC61B219B6BF930015B62F /* TopicsModel.m in Sources */,
 				0426C2C019922D5A00CD8822 /* GPUImageStillCamera.m in Sources */,
@@ -5960,6 +5996,7 @@
 				0426C28F19922D5A00CD8822 /* GPUImageMaskFilter.m in Sources */,
 				0426C25919922D5A00CD8822 /* GPUImageContrastFilter.m in Sources */,
 				D3AD609219AC56CB001FD483 /* MJRefreshBaseView.m in Sources */,
+				D39937C41A42B470007081C1 /* RecommendProjectTableViewCell.m in Sources */,
 				D3AC61AA19B6BF930015B62F /* LoginModel.m in Sources */,
 				0426C2D119922D5A00CD8822 /* GPUImageTwoPassTextureSamplingFilter.m in Sources */,
 				5B0A00A319B587CD00500C05 /* TMQuiltView.m in Sources */,
@@ -6056,6 +6093,7 @@
 				0426C29719922D5A00CD8822 /* GPUImageMultiplyBlendFilter.m in Sources */,
 				5B553BF31A2EE97C00527E45 /* MyTableView.m in Sources */,
 				0426C26519922D5A00CD8822 /* GPUImageErosionFilter.m in Sources */,
+				D39937C11A42B453007081C1 /* RecommendContactViewController.m in Sources */,
 				0426C2D219922D5A00CD8822 /* GPUImageUIElement.m in Sources */,
 				0426C23F19922D5A00CD8822 /* BaseViewController.m in Sources */,
 				042D9E2B19B559FC00689C5D /* TopicsTableViewCell.m in Sources */,
