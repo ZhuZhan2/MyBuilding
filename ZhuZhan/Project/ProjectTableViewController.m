@@ -117,17 +117,21 @@
 }
 
 -(void)requestSingleProgram:(NSMutableArray*)datas{
-    NSLog(@"=====%@",datas);
     NSString* projectIds=@"";
     for (int i=0; i<datas.count; i++) {
         projectIds=[[NSString stringWithFormat:i?@"%@,":@"%@",projectIds] stringByAppendingString:[datas[i] a_projectId]];
     }
     if (datas.count) {
-        [ProjectApi SingleProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                NSLog(@"posts==%@",posts);
+        [ProjectApi LocalProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                showArr = posts;
+                sectionHeight = 30;
+                [self.tableView reloadData];
+                [LoadingView removeLoadingView:loadingView];
+                self.tableView.scrollEnabled = YES;
+                loadingView = nil;
             }
-        } projectId:projectIds noNetWork:^{
+        } projectIds:projectIds noNetWork:^{
             self.tableView.scrollEnabled = NO;
             [LoadingView removeLoadingView:loadingView];
             loadingView = nil;
@@ -166,20 +170,45 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
-    [ProjectApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            startIndex = 0;
-            [showArr removeAllObjects];
-            showArr = posts;
-            [self.tableView reloadData];
-        }
-        [self.tableView headerEndRefreshing];
-    }startIndex:0 noNetWork:^{
-        [self.tableView headerEndRefreshing];
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
-            [self headerRereshing];
+    NSMutableArray* localDatas=[ProjectSqlite loadList];
+    if (!localDatas.count) {
+        [ProjectApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                startIndex = 0;
+                [showArr removeAllObjects];
+                showArr = posts;
+                [self.tableView reloadData];
+            }
+            [self.tableView headerEndRefreshing];
+        }startIndex:0 noNetWork:^{
+            [self.tableView headerEndRefreshing];
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                [self headerRereshing];
+            }];
         }];
-    }];
+    }else{
+        NSArray* datas=[ProjectSqlite loadList];
+        NSString* projectIds=@"";
+        for (int i=0; i<datas.count; i++) {
+            projectIds=[[NSString stringWithFormat:i?@"%@,":@"%@",projectIds] stringByAppendingString:[datas[i] a_projectId]];
+        }
+        if (datas.count) {
+            [ProjectApi LocalProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    startIndex = 0;
+                    [showArr removeAllObjects];
+                    showArr = posts;
+                    [self.tableView reloadData];
+                }
+                [self.tableView headerEndRefreshing];
+            } projectIds:projectIds noNetWork:^{
+                [self.tableView headerEndRefreshing];
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                    [self headerRereshing];
+                }];
+            }];
+        }
+    }
 }
 
 - (void)footerRereshing
