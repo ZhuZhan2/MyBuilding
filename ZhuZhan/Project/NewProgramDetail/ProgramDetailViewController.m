@@ -30,6 +30,7 @@
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "IsFocusedApi.h"
+#import "ProjectSqlite.h"
 @interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate,CycleScrollViewDelegate,UIActionSheetDelegate,AddCommentDelegate,LoginViewDelegate>
 @property(nonatomic,strong)UITableView* contentTableView;
 @property(nonatomic,strong)UITableView* selectTableView;
@@ -104,9 +105,20 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
+    [self insertData];
     [self initNavi];
     [self loadIndicatorView];
     [self firstNetWork];
+}
+
+-(void)insertData{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *time = [dateFormatter stringFromDate:[NSDate date]];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:self.projectId forKey:@"projectId"];
+    [dic setValue:time forKey:@"time"];
+    [ProjectSqlite InsertData:dic];
 }
 
 -(void)firstNetWork{
