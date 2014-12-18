@@ -454,8 +454,6 @@ static int count =0;//记录生日textField 的时间被触发的次数
     }
     
     [LoginSqlite deleteAll];
-    [RecordSqlite deleteAll];
-    [ProjectSqlite deleteAll];
     HomePageViewController* homeVC=(HomePageViewController*)self.view.window.rootViewController;
     UIButton* btn=[[UIButton alloc]init];
     btn.tag=0;

@@ -122,8 +122,32 @@
             if (block) {
                 block([NSMutableArray array], nil);
             }
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
+            NSNumber *errorcode = JSON[@"d"][@"status"][@"statusCode"];
+            switch ([errorcode intValue]) {
+                case 1308:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"手机号已存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
+                    break;
+                case 1325:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名已经存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
+                    break;
+                case 1310:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"激活码无效" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
+                    break;
+                case 1303:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败，系统异常" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
+                    break;
+                case 1301:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败，系统异常" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
+                    //参数异常信息提示（具体见返回信息）
+                    break;
+                default:
+                    break;
+            }
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         NSLog(@"error ==> %@",error);
