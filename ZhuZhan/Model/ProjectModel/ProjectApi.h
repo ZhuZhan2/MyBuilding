@@ -15,6 +15,9 @@
 //获取单个项目
 + (NSURLSessionDataTask *)SingleProjectWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block projectId:(NSString *)projectId noNetWork:(void(^)())noNetWork;
 
+//获取本地项目
++ (NSURLSessionDataTask *)LocalProjectWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block projectIds:(NSString *)projectIds noNetWork:(void(^)())noNetWork;
+
 //添加项目
 + (NSURLSessionDataTask *)AddProjectWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 
