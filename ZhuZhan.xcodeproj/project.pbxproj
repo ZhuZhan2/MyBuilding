@@ -4553,10 +4553,10 @@
 			children = (
 				D39937BC1A42B428007081C1 /* RecommendProjectViewController.h */,
 				D39937BD1A42B428007081C1 /* RecommendProjectViewController.m */,
-				D39937BF1A42B453007081C1 /* RecommendContactViewController.h */,
-				D39937C01A42B453007081C1 /* RecommendContactViewController.m */,
 				D39937C21A42B470007081C1 /* RecommendProjectTableViewCell.h */,
 				D39937C31A42B470007081C1 /* RecommendProjectTableViewCell.m */,
+				D39937BF1A42B453007081C1 /* RecommendContactViewController.h */,
+				D39937C01A42B453007081C1 /* RecommendContactViewController.m */,
 				D39937C51A42B481007081C1 /* RecommendContactTableViewCell.h */,
 				D39937C61A42B481007081C1 /* RecommendContactTableViewCell.m */,
 				D39937C81A42B49A007081C1 /* WelcomeViewController.h */,

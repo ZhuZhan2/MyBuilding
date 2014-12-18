@@ -16,22 +16,43 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self initNaviBar];
+    self.view.backgroundColor=RGBCOLOR(235, 235, 235);
+    [self initWelcomeLabel];
+    [self initEnterIntoBtn];
+}
+
+-(void)initWelcomeLabel{
+    UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 30)];
+    label.text=@"欢迎加入布丁网";
+    label.textAlignment=NSTextAlignmentCenter;
+    label.font=[UIFont boldSystemFontOfSize:25];
+    label.center=CGPointMake(160, 264);
+    [self.view addSubview:label];
+}
+
+-(void)initEnterIntoBtn{
+    UIButton* btn=[UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame=CGRectMake(20, 410, 280, 45);
+    [btn setBackgroundImage:[GetImagePath getImagePath:@"推荐页面05a"] forState:UIControlStateNormal];
+    [self.view addSubview:btn];
+}
+
+-(void)initNaviBar{
+    self.title = @"欢迎";
+    //返还按钮
+    UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,5,29,28.5)];
+    [button setImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
+}
+
+-(void)back{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end
