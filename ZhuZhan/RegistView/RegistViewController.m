@@ -245,9 +245,7 @@
         return;
     }
     
-    if ([self isAllNumber:accountField.text]) {
-        return;
-    }
+    
     
     if (![self phoneNoErr:_phoneNumberTextField.text]) {
         return;
@@ -258,8 +256,7 @@
         return;
     }
     
-    if (![passWordField.text isEqualToString:verifyPassWordField.text]) {
-        [self remindErrorView:@"密码输入不一致，请重新输入"];
+    if ([self isAllNumber:accountField.text]) {
         return;
     }
     
@@ -268,6 +265,13 @@
         [self remindErrorView:@"输入不完整请检查你的输入！"];
         return;
     }
+    
+    if (![passWordField.text isEqualToString:verifyPassWordField.text]) {
+        [self remindErrorView:@"密码输入不一致，请重新输入"];
+        return;
+    }
+    
+    
     self.registerBtn.enabled=NO;
     NSMutableDictionary *parameters =[[NSMutableDictionary alloc] initWithObjectsAndKeys:_phoneNumberTextField.text,@"cellPhone",[MD5 md5HexDigest:passWordField.text],@"password",@"mobile",@"deviceType",_yzmTextField.text,@"barCode",accountField.text,@"userName",nil];
     NSLog(@"parameters==%@",parameters);
