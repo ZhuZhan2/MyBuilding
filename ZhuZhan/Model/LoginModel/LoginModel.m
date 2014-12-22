@@ -11,6 +11,7 @@
 #import "ContactModel.h"
 #import "ProjectStage.h"
 #import "ConnectionAvailable.h"
+#import "EmployeesModel.h"
 @implementation LoginModel
 - (void)setDict:(NSDictionary *)dict{
     _dict = dict;
@@ -206,7 +207,7 @@
             NSNumber *errorcode = JSON[@"d"][@"status"][@"statusCode"];
             switch ([errorcode intValue]) {
                 case 1320:
-                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名不存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名或手机号不存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alert show];}
                     break;
                 case 1321:
@@ -656,6 +657,44 @@
             block([NSMutableArray array], error);
         }
         
+    }];
+}
+
++ (NSURLSessionDataTask *)GetRecommendUsersWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    
+    NSString *urlStr = [NSString stringWithFormat:@"api/Recommend/RecommendUsers?pageSize=50&pageIndex=%d",startIndex];
+    NSLog(@"=====%@",urlStr);
+    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            for(NSDictionary *item in JSON[@"d"][@"data"]){
+                EmployeesModel *model = [[EmployeesModel alloc] init];
+                [model setDict:item];
+                [mutablePosts addObject:model];
+            }
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
+            if (block) {
+                block(nil, nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
     }];
 }
 @end

@@ -46,6 +46,7 @@
     self.a_decorationSituation = [ProjectStage ProjectStrStage:dict[@"decorationSituation"]];
     self.a_decorationProcess = [ProjectStage ProjectStrStage:dict[@"decorationProcess"]];
     self.isFocused = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"isFocused"]]];
+    self.a_projectstage = [ProjectStage ProjectStrStage:dict[@"projectStage"]];
 }
 
 -(void)getContacts:(NSArray *)contacts{

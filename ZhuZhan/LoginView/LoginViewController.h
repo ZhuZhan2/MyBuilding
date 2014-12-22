@@ -8,16 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "RegistViewController.h"
-#import "WelcomeViewController.h"
 @protocol LoginViewDelegate <NSObject>
 -(void)loginCompleteWithDelayBlock:(void(^)())block;
 -(void)loginComplete;
 @end
 
-@interface LoginViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate,registViewDelegate,WelcomeViewControllerdelegate>{
+@interface LoginViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate,registViewDelegate>{
     UITextField *_userNameTextField;
     UITextField *_passWordTextField;
-    WelcomeViewController *wel;
 }
 @property(nonatomic,weak)id<LoginViewDelegate>delegate;
 @property(nonatomic)BOOL needDelayCancel;

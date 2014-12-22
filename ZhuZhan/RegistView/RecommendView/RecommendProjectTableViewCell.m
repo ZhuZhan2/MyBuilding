@@ -92,6 +92,13 @@
 
 -(void)setModel:(projectModel *)model{
     projectId = model.a_id;
+    projectName.text = model.a_projectName;
+    area.text = [NSString stringWithFormat:@"%@M²",model.a_area];
+    investment.text = [NSString stringWithFormat:@"¥%@百万",model.a_investment];
+    zone.text = model.a_district;
+    address.text = model.a_landAddress;
+    startDate.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+    endDate.text = [model.a_exceptFinishTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
 }
 
 -(void)attentionBtnAction{

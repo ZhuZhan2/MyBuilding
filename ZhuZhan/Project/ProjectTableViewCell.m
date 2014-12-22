@@ -81,11 +81,11 @@
     [bgImgView addSubview:areacountLabel];
     
     progressImage = [[UIImageView alloc] initWithFrame:CGRectMake(215,10,52,52)];
-    if([stage isEqualToString:@"1"]||[stage isEqualToString:@"0"]){
+    if([model.a_projectstage isEqualToString:@"1"]){
         [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];
-    }else if([stage isEqualToString:@"2"]){
+    }else if([model.a_projectstage isEqualToString:@"2"]){
         [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_25a"]];
-    }else if([stage isEqualToString:@"3"]){
+    }else if([model.a_projectstage isEqualToString:@"3"]){
         [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_27a"]];
     }else{
         [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_23a"]];
@@ -148,13 +148,12 @@
     NSString* areacountExtra=[model.a_area isEqualToString:@""]?@"":@"㎡";
     areacountLabel.text = [model.a_area stringByAppendingString:areacountExtra];
 ;
-    
-    stage = [ProjectStage JudgmentProjectStage:model];
-    if([stage isEqualToString:@"1"]){
+    NSLog(@"%@",model.a_projectstage);
+    if([model.a_projectstage isEqualToString:@"1"]){
         [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];
-    }else if([stage isEqualToString:@"2"]){
+    }else if([model.a_projectstage isEqualToString:@"2"]){
         [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_25a"]];
-    }else if([stage isEqualToString:@"3"]){
+    }else if([model.a_projectstage isEqualToString:@"3"]){
         [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_27a"]];
     }else{
         [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_23a"]];
