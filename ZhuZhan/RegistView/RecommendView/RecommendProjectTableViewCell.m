@@ -7,7 +7,8 @@
 //
 
 #import "RecommendProjectTableViewCell.h"
-
+#import "ProjectApi.h"
+#import "LoginSqlite.h"
 @implementation RecommendProjectTableViewCell
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -102,8 +103,29 @@
 }
 
 -(void)attentionBtnAction{
-    if([self.delegate respondsToSelector:@selector(attentionProject:)]){
-        [self.delegate attentionProject:projectId];
+//    if([self.delegate respondsToSelector:@selector(attentionProject:)]){
+//        [self.delegate attentionProject:projectId];
+//    }
+    if(isFocused == 0){
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:[LoginSqlite getdata:@"uerId"] forKey:@"UserId"];
+        [dic setValue:projectId forKey:@"ProjectId"];
+        [ProjectApi AddProjectFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                isFocused = 1;
+                [attentionBtn setBackgroundImage:[GetImagePath getImagePath:@"公司认证员工_08a"] forState:UIControlStateNormal];
+            }
+        } dic:dic noNetWork:nil];
+    }else{
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:[LoginSqlite getdata:@"uerId"] forKey:@"UserId"];
+        [dic setValue:projectId forKey:@"ProjectId"];
+        [ProjectApi DeleteFocusProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                isFocused = 0;
+                [attentionBtn setBackgroundImage:[GetImagePath getImagePath:@"公司认证员工_18a"] forState:UIControlStateNormal];
+            }
+        } dic:dic noNetWork:nil];
     }
 }
 @end

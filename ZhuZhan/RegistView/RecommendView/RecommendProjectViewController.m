@@ -10,6 +10,7 @@
 #import "RecommendContactViewController.h"
 #import "ProjectApi.h"
 #import "projectModel.h"
+#import "MJRefresh.h"
 @interface RecommendProjectViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *showArr;
@@ -41,8 +42,10 @@
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    
+    startIndex = 0;
     [self loadList];
+    //集成刷新控件
+    [self setupRefresh];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,6 +56,19 @@
 -(void)rightBtnClick{
     RecommendContactViewController *recContactView = [[RecommendContactViewController alloc] init];
     [self.navigationController pushViewController:recContactView animated:YES];
+}
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    //[_tableView headerBeginRefreshing];
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -112,6 +128,27 @@
             self.showArr = posts;
             [self.tableView reloadData];
         }
-    } startIndex:0 noNetWork:nil];
+        [self.tableView headerEndRefreshing];
+    } startIndex:startIndex noNetWork:nil];
 }
+
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    [self.showArr removeAllObjects];
+    [self loadList];
+}
+
+- (void)footerRereshing
+{
+    [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            startIndex++;
+            [self.showArr addObjectsFromArray:posts];
+            [self.tableView reloadData];
+        }
+        [self.tableView footerEndRefreshing];
+    }startIndex:startIndex+1 noNetWork:nil];
+}
+
 @end

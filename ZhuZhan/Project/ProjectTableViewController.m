@@ -90,7 +90,7 @@
         self.tableView.scrollEnabled = NO;
         sectionHeight = 0;
         loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view];
-        [ProjectApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 showArr = posts;
                 sectionHeight = 50;
@@ -163,8 +163,11 @@
     [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
     //[_tableView headerBeginRefreshing];
     
-    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
-    //[self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+    NSMutableArray* localDatas=[ProjectSqlite loadList];
+    if(localDatas.count ==0){
+        //2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+        [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+    }
 }
 
 #pragma mark 开始进入刷新状态
@@ -172,7 +175,7 @@
 {
     NSMutableArray* localDatas=[ProjectSqlite loadList];
     if (!localDatas.count) {
-        [ProjectApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 startIndex = 0;
                 [showArr removeAllObjects];
@@ -213,19 +216,22 @@
 
 - (void)footerRereshing
 {
-    [ProjectApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            startIndex++;
-            [showArr addObjectsFromArray:posts];
-            [self.tableView reloadData];
-        }
-        [self.tableView footerEndRefreshing];
-    }startIndex:startIndex+1 noNetWork:^{
-        [self.tableView footerEndRefreshing];
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
-            [self footerRereshing];
+    NSMutableArray* localDatas=[ProjectSqlite loadList];
+    if(localDatas.count ==0){
+        [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                startIndex++;
+                [showArr addObjectsFromArray:posts];
+                [self.tableView reloadData];
+            }
+            [self.tableView footerEndRefreshing];
+        }startIndex:startIndex+1 noNetWork:^{
+            [self.tableView footerEndRefreshing];
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                [self footerRereshing];
+            }];
         }];
-    }];
+    }
 }
 
 -(void)rightBtnClick{
@@ -298,7 +304,12 @@
         tempLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
         tempLabel.textColor = GrayColor;
         tempLabel.textAlignment = NSTextAlignmentCenter;
-        tempLabel.text = [NSString stringWithFormat:@"历史游览记录"];
+        NSMutableArray* localDatas=[ProjectSqlite loadList];
+        if(localDatas.count !=0){
+            tempLabel.text = [NSString stringWithFormat:@"历史游览记录"];
+        }else{
+            tempLabel.text = [NSString stringWithFormat:@"推荐项目"];
+        }
         [bgView addSubview:tempLabel];
         return bgView;
     }

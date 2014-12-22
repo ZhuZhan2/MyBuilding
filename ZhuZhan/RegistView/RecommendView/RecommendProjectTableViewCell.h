@@ -25,6 +25,7 @@
     UILabel *address;
     UIButton *attentionBtn;
     NSString *projectId;
+    int isFocused;
 }
 @property(nonatomic,strong)projectModel *model;
 @property(nonatomic,weak)id<RecommendProjectTableViewCellDelegate>delegate;
