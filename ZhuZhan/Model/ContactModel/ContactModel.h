@@ -10,39 +10,39 @@
 
 @interface ContactModel : NSObject
 
-@property(nonatomic,copy) NSString *userId;
+@property(nonatomic,strong) NSString *userId;
 
 //公司名称
-@property (nonatomic,copy) NSString *companyName;
+@property (nonatomic,strong) NSString *companyName;
 
 //项目负责人
-@property (nonatomic,copy) NSString *projectLeader;
+@property (nonatomic,strong) NSString *projectLeader;
 
 //电子邮件
-@property (nonatomic,copy) NSString * email;
+@property (nonatomic,strong) NSString * email;
 
 //手机号码
-@property (nonatomic,copy) NSString * cellPhone;
+@property (nonatomic,strong) NSString * cellPhone;
 
 //联系方式图标数组
-@property (nonatomic,copy) NSArray * contactImageIconArr;
+@property (nonatomic,strong) NSArray * contactImageIconArr;
 
 //beginTime
-@property (nonatomic,copy) NSString * beginTime;
+@property (nonatomic,strong) NSString * beginTime;
 //endtime
-@property (nonatomic,copy) NSString * endTime;
+@property (nonatomic,strong) NSString * endTime;
 //个人背景
-@property (nonatomic,copy) NSString * personalBackground;
+@property (nonatomic,strong) NSString * personalBackground;
 
 
 //新添加的好友数组
-@property (nonatomic,copy) NSArray * addFriendArr;
+@property (nonatomic,strong) NSArray * addFriendArr;
 
 //用户更新心情
-@property (nonatomic,copy) NSString * userMood;
+@property (nonatomic,strong) NSString * userMood;
 
 //用户更新图片
-@property (nonatomic,copy) UIImage * updatePicture;
+@property (nonatomic,strong) UIImage * updatePicture;
 
 //用户名
 @property (nonatomic,strong)NSString  *userName;
@@ -79,10 +79,10 @@
 
 @property (nonatomic,strong)NSString *userImage;
 
-@property (nonatomic,copy)NSString *userParticularsId;
+@property (nonatomic,strong)NSString *userParticularsId;
 
 //用户信息对字典
-@property (nonatomic, copy) NSDictionary *dict;
+@property (nonatomic, strong) NSDictionary *dict;
 
 //***********************************************************************************
 

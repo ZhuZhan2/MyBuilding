@@ -10,21 +10,21 @@
 
 @interface LoginModel : NSObject
 //用户id
-@property (nonatomic,copy) NSString *a_userId;
+@property (nonatomic,strong) NSString *a_userId;
 //deviceToken
-@property (nonatomic,copy) NSString *a_deviceToken;
+@property (nonatomic,strong) NSString *a_deviceToken;
 //userType
-@property (nonatomic,copy) NSString *a_userType;
+@property (nonatomic,strong) NSString *a_userType;
 //userName
-@property (nonatomic,copy) NSString *a_userName;
+@property (nonatomic,strong) NSString *a_userName;
 //loginStatus
-@property (nonatomic,copy) NSString *a_loginStatus;
+@property (nonatomic,strong) NSString *a_loginStatus;
 //是否有公司认证
-@property (nonatomic,copy) NSString *a_hasCompany;
+@property (nonatomic,strong) NSString *a_hasCompany;
 //是否有公司认证
-@property (nonatomic,copy) NSString *a_userImage;
-@property(nonatomic,copy)NSString* a_backgroundImage;
-@property (nonatomic,copy) NSDictionary *dict;
+@property (nonatomic,strong) NSString *a_userImage;
+@property(nonatomic,strong)NSString* a_backgroundImage;
+@property (nonatomic,strong) NSDictionary *dict;
 
 
 //生成验证码

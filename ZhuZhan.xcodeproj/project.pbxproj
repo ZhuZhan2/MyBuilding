@@ -954,6 +954,7 @@
 		5BE08ED61A35900000495EEB /* ThirdAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE08ED11A35900000495EEB /* ThirdAnimationView.m */; };
 		5BF08A3A19B86C5D00782976 /* MoreCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */; };
 		5BF08A3D19B8779D00782976 /* MoreCompanyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */; };
+		D3049A681A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3049A671A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m */; };
 		D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */; };
 		D36040E619F51E8600E9727D /* CompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D36040E519F51E8600E9727D /* CompanyModel.m */; };
 		D36040E919F51E9F00E9727D /* CompanyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D36040E819F51E9F00E9727D /* CompanyApi.m */; };
@@ -2440,6 +2441,8 @@
 		5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCompanyViewController.m; sourceTree = "<group>"; };
 		5BF08A3B19B8779D00782976 /* MoreCompanyViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCompanyViewCell.h; sourceTree = "<group>"; };
 		5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCompanyViewCell.m; sourceTree = "<group>"; };
+		D3049A661A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterCompanyTableViewCell.h; sourceTree = "<group>"; };
+		D3049A671A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterCompanyTableViewCell.m; sourceTree = "<group>"; };
 		D32C88CD19D79E0800D1BA1D /* PersonalCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterModel.h; sourceTree = "<group>"; };
 		D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterModel.m; sourceTree = "<group>"; };
 		D36040E419F51E8600E9727D /* CompanyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyModel.h; sourceTree = "<group>"; };
@@ -4065,6 +4068,8 @@
 				D3D4FB2F1A0872770033BB34 /* CompanyCenterViewController.m */,
 				D3D4FB351A087BBD0033BB34 /* CompanyTableViewCell.h */,
 				D3D4FB361A087BBD0033BB34 /* CompanyTableViewCell.m */,
+				D3049A661A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.h */,
+				D3049A671A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m */,
 			);
 			path = personalCenter;
 			sourceTree = "<group>";
@@ -6068,6 +6073,7 @@
 				042D9E1E19B559FC00689C5D /* ConditionsView.m in Sources */,
 				0426C2DA19922D5A00CD8822 /* GPUImageZoomBlurFilter.m in Sources */,
 				042D9E1219B559FC00689C5D /* MainDesign.m in Sources */,
+				D3049A681A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m in Sources */,
 				0426C28A19922D5A00CD8822 /* GPUImageLookupFilter.m in Sources */,
 				0426C24119922D5A00CD8822 /* GPUImage3x3ConvolutionFilter.m in Sources */,
 				D3AD61AE19AEF80B001FD483 /* UIViewController+MJPopupViewController.m in Sources */,

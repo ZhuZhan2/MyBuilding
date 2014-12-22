@@ -109,6 +109,8 @@
         lineImage.image = [GetImagePath getImagePath:@"推荐页面06a"];
         [cell.contentView addSubview:lineImage];
         cell.contentView.backgroundColor = RGBCOLOR(235, 235, 235);
+        
+        cell.selectionStyle = NO;
         return cell;
     }else{
         projectModel *model = self.showArr[indexPath.row-1];
@@ -118,6 +120,7 @@
         }
         cell.delegate = self;
         cell.model = model;
+        cell.selectionStyle = NO;
         return cell;
     }
 }

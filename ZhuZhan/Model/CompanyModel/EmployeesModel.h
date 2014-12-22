@@ -10,17 +10,17 @@
 
 @interface EmployeesModel : NSObject
 //ID
-@property (nonatomic,copy) NSString *a_id;
+@property (nonatomic,strong) NSString *a_id;
 //名字
-@property (nonatomic,copy) NSString *a_userName;
+@property (nonatomic,strong) NSString *a_userName;
 //职位
-@property (nonatomic,copy) NSString *a_duties;
+@property (nonatomic,strong) NSString *a_duties;
 //是否关注过这个人
-@property (nonatomic,copy) NSString *a_isFocused;
+@property (nonatomic,strong) NSString *a_isFocused;
 //头像
-@property (nonatomic,copy) NSString *a_userIamge;
+@property (nonatomic,strong) NSString *a_userIamge;
 //部门
-@property (nonatomic,copy) NSString *a_department;
+@property (nonatomic,strong) NSString *a_department;
 
-@property (nonatomic, copy) NSDictionary *dict;
+@property (nonatomic, strong) NSDictionary *dict;
 @end

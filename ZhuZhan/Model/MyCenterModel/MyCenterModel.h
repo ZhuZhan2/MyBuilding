@@ -9,37 +9,37 @@
 #import <Foundation/Foundation.h>
 
 @interface MyCenterModel : NSObject
-@property (nonatomic,copy) NSString *a_id;
+@property (nonatomic,strong) NSString *a_id;
 //用户名
-@property (nonatomic,copy) NSString *a_userName;
+@property (nonatomic,strong) NSString *a_userName;
 //真是姓名
-@property (nonatomic,copy) NSString *a_realName;
+@property (nonatomic,strong) NSString *a_realName;
 //职位
-@property (nonatomic,copy) NSString *a_duties;
+@property (nonatomic,strong) NSString *a_duties;
 //性别
-@property (nonatomic,copy) NSString *a_sex;
+@property (nonatomic,strong) NSString *a_sex;
 //电话
-@property (nonatomic,copy) NSString *a_cellPhone;
+@property (nonatomic,strong) NSString *a_cellPhone;
 //在职单位
-@property (nonatomic,copy) NSString *a_company;
+@property (nonatomic,strong) NSString *a_company;
 //邮件
-@property (nonatomic,copy) NSString *a_email;
+@property (nonatomic,strong) NSString *a_email;
 //头像
-@property (nonatomic,copy) NSString *a_userImage;
+@property (nonatomic,strong) NSString *a_userImage;
 //所在地
-@property (nonatomic,copy) NSString *a_location;
+@property (nonatomic,strong) NSString *a_location;
 //生日
-@property (nonatomic,copy) NSString *a_birthday;
+@property (nonatomic,strong) NSString *a_birthday;
 //星座
-@property (nonatomic,copy) NSString *a_constellation;
+@property (nonatomic,strong) NSString *a_constellation;
 //血型
-@property (nonatomic,copy) NSString *a_bloodType;
+@property (nonatomic,strong) NSString *a_bloodType;
 //省
-@property (nonatomic,copy) NSString *a_province;
+@property (nonatomic,strong) NSString *a_province;
 //市
-@property (nonatomic,copy) NSString *a_city;
+@property (nonatomic,strong) NSString *a_city;
 //区
-@property (nonatomic,copy) NSString *a_district;
-@property(nonatomic,copy)NSString* a_backgroundImage;
-@property (nonatomic, copy) NSDictionary *dict;
+@property (nonatomic,strong) NSString *a_district;
+@property(nonatomic,strong)NSString* a_backgroundImage;
+@property (nonatomic, strong) NSDictionary *dict;
 @end
