@@ -72,6 +72,9 @@
 //修改密码
 + (NSURLSessionDataTask *)ChangePasswordWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 
+//获取推荐的人
++ (NSURLSessionDataTask *)GetRecommendUsersWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
+
 //查看手机号/用户名是否存在于我们服务器
 + (NSURLSessionDataTask *)GetIsExistWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userName:(NSString*)userName cellPhone:(NSString*)cellPhone noNetWork:(void(^)())noNetWork;
 @end
