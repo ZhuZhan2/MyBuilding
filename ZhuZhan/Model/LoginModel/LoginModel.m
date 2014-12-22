@@ -11,6 +11,7 @@
 #import "ContactModel.h"
 #import "ProjectStage.h"
 #import "ConnectionAvailable.h"
+#import "EmployeesModel.h"
 @implementation LoginModel
 - (void)setDict:(NSDictionary *)dict{
     _dict = dict;
@@ -206,7 +207,7 @@
             NSNumber *errorcode = JSON[@"d"][@"status"][@"statusCode"];
             switch ([errorcode intValue]) {
                 case 1320:
-                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名不存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名或手机号不存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alert show];}
                     break;
                 case 1321:

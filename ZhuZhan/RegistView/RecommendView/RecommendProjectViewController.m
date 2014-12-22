@@ -8,8 +8,11 @@
 
 #import "RecommendProjectViewController.h"
 #import "RecommendContactViewController.h"
+#import "ProjectApi.h"
+#import "projectModel.h"
 @interface RecommendProjectViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
+@property(nonatomic,strong)NSMutableArray *showArr;
 @end
 
 @implementation RecommendProjectViewController
@@ -18,6 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    self.showArr = [[NSMutableArray alloc] init];
     //返还按钮
     UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,5,29,28.5)];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
@@ -37,6 +41,8 @@
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    
+    [self loadList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,7 +56,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.showArr.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -89,13 +95,23 @@
         cell.contentView.backgroundColor = RGBCOLOR(235, 235, 235);
         return cell;
     }else{
+        projectModel *model = self.showArr[indexPath.row-1];
         RecommendProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecommendProjectTableViewCell"];
         if(!cell){
             cell=[[RecommendProjectTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"RecommendProjectTableViewCell"];
         }
         cell.delegate = self;
+        cell.model = model;
         return cell;
     }
 }
 
+-(void)loadList{
+    [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.showArr = posts;
+            [self.tableView reloadData];
+        }
+    } startIndex:0 noNetWork:nil];
+}
 @end

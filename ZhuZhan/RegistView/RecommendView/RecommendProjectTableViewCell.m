@@ -22,7 +22,7 @@
     stageImage.image = [GetImagePath getImagePath:@"+项目-首页_21a"];
     [self.contentView addSubview:stageImage];
     
-    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 107, 320, 1)];
+    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 106, 320, 1)];
     lineImage.backgroundColor = [UIColor blackColor];
     lineImage.alpha = 0.2;
     [self.contentView addSubview:lineImage];
@@ -55,7 +55,7 @@
     
     area = [[UILabel alloc] initWithFrame:CGRectMake(145, 35, 120, 30)];
     area.text = @"16000M²";
-    area.textColor = [UIColor blackColor];
+    area.textColor = RGBCOLOR(106, 106, 106);
     area.font = [UIFont systemFontOfSize:13];
     [self.contentView addSubview:area];
     
@@ -67,7 +67,7 @@
     
     investment = [[UILabel alloc] initWithFrame:CGRectMake(130, 55, 140, 30)];
     investment.text = @"￥16000000百万";
-    investment.textColor = [UIColor blackColor];
+    investment.textColor = RGBCOLOR(106, 106, 106);
     investment.font = [UIFont systemFontOfSize:13];
     [self.contentView addSubview:investment];
     
@@ -92,6 +92,13 @@
 
 -(void)setModel:(projectModel *)model{
     projectId = model.a_id;
+    projectName.text = model.a_projectName;
+    area.text = [NSString stringWithFormat:@"%@M²",model.a_area];
+    investment.text = [NSString stringWithFormat:@"¥%@百万",model.a_investment];
+    zone.text = model.a_district;
+    address.text = model.a_landAddress;
+    startDate.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+    endDate.text = [model.a_exceptFinishTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
 }
 
 -(void)attentionBtnAction{
