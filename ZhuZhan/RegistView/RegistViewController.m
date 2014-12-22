@@ -234,12 +234,19 @@
 
 - (void)commomRegister//账号密码的注册
 {
+
     RecommendProjectViewController *recProjectView = [[RecommendProjectViewController alloc] init];
     [self.navigationController pushViewController:recProjectView animated:YES];
     return;
     NSLog(@"共同注册部分");
+    
+    
     if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
+    if ([self isAllNumber:accountField.text]) {
         return;
     }
     
@@ -288,6 +295,18 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.view endEditing:YES];
     return YES;
+}
+
+-(BOOL)isAllNumber:(NSString*)numbers{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\D" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:numbers options:0 range:NSMakeRange(0, [numbers length])];
+    NSLog(@"===%d",numberOfMatches);
+    if (numberOfMatches) {
+        return NO;
+    }else{
+        [self remindErrorView:@"用户名不能为纯数字"];
+        return YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning
