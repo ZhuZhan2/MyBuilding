@@ -14,6 +14,7 @@
 #import "EmployeesModel.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
+#import "LoginModel.h"
 @interface RecommendContactViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
@@ -35,32 +36,29 @@
 }
 
 -(void)firstNetWork{
-    self.showArr=[NSMutableArray array];
-    for (int i=0; i<20; i++) {
-        EmployeesModel* model=[[EmployeesModel alloc]init];
-        //model.a_id = ;
-        model.a_userName = [NSString stringWithFormat:@"userName%d",i];
-        model.a_userIamge=@"http://www.baidu.com/img/bd_logo1.png";
-        model.a_isFocused = i%2?@"0":@"1";
-        model.a_duties = @"职位";
-        model.a_department = @"部门";
-        
-        [self.showArr addObject:model];
-    }
-    [self.tableView reloadData];
-    [self removeMyLoadingView];
+    if (!self.showArr) self.showArr=[NSMutableArray array];
+//    for (int i=0; i<20; i++) {
+//        EmployeesModel* model=[[EmployeesModel alloc]init];
+//        model.a_userName = [NSString stringWithFormat:@"userName%d",i];
+//        model.a_userIamge=@"http://www.baidu.com/img/bd_logo1.png";
+//        model.a_isFocused = i%2?@"0":@"1";
+//        model.a_duties = @"职位";
+//        model.a_department = @"部门";
+//        
+//        [self.showArr addObject:model];
+//    }
 
-//    [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
-//        if(!error){
-//            self.showArr = posts;
-//            [self.tableView reloadData];
-//        }
-//        [self removeMyLoadingView];
-//    } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:^{
-//        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
-//            [self firstNetWork];
-//        }];
-//    }];
+    
+    [LoginModel GetRecommendUsersWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            [self.showArr addObjectsFromArray:posts];
+            [self.tableView reloadData];
+            [self removeMyLoadingView];
+            NSLog(@"showArray====%@",self.showArr);
+        }
+    } startIndex:0 noNetWork:^{
+        [self firstNetWork];
+    }];
 }
 
 -(void)removeMyLoadingView{
@@ -190,12 +188,12 @@
     headerView.backgroundColor=RGBCOLOR(235,235,235);
     
     UIImageView* imageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"推荐页面02a"]];
-    imageView.center=CGPointMake(66, 39);
+    imageView.center=CGPointMake(59, 39);
     [headerView addSubview:imageView];
     
     for (int i=0; i<2; i++) {
-        UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake( 95, 22+(i?19:0), 400, 15)];
-        label.font=[UIFont systemFontOfSize:15];
+        UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake( 96, 22+(i?19:0), 200, 15)];
+        label.font=[UIFont systemFontOfSize:14];
         label.text=i?@"关注他们随时查看个人动态!":@"找到你感兴趣的人，";
         label.textColor=RGBCOLOR(163, 163, 163);
         [headerView addSubview:label];
