@@ -658,4 +658,39 @@
         
     }];
 }
+
++ (NSURLSessionDataTask *)GetIsExistWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userName:(NSString*)userName cellPhone:(NSString*)cellPhone noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    userName=userName?userName:@"";
+    cellPhone=cellPhone?cellPhone:@"";
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/IsExist?userName=%@&cellphone=%@",userName,cellPhone];
+    NSLog(@"urlStr==%@",urlStr);
+    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+            if (block) {
+                block([NSMutableArray arrayWithObjects:@"1300", nil],nil);
+            }
+        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1308"]){
+            if(block){
+                block([NSMutableArray arrayWithObjects:@"1308", nil],nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+        
+    }];
+
+}
 @end

@@ -10,6 +10,7 @@
 #import "ForgetPasswordSecondController.h"
 #import "PooCodeView.h"
 #import "RemindView.h"
+#import "LoginModel.h"
 @interface ForgetPasswordFirstController ()<UITextFieldDelegate>
 @property(nonatomic,strong)UIFont* font;
 @property(nonatomic,strong)UIButton* registerBtn;
@@ -91,7 +92,6 @@
 -(void)addSeparatorLineInView:(UIView*)view{
     NSInteger number=view.frame.size.height/47-1;
     for (int i=0; i<number; i++) {
-        NSLog(@"number==%d",number);
         UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(20, 47*(i+1), 280, 1)];
         separatorLine.backgroundColor=RGBCOLOR(222, 222, 222);
         [view addSubview:separatorLine];
@@ -131,8 +131,43 @@
 
 -(void)beginToCollect{
     NSLog(@"用户确认");
-    ForgetPasswordSecondController *forgetSecondView = [[ForgetPasswordSecondController alloc] init];
-    [self.navigationController pushViewController:forgetSecondView animated:YES];
+    NSString* originStr=self.codeView.changeString;
+    [self.codeView change];
+    [self.codeView setNeedsDisplay];
+    
+    if (!_phoneNumberTextField.text.length) {
+        [RemindView remindViewWithContent:@"请填写手机号/用户名" superView:self.view centerY:220];
+        return;
+    }
+    
+    NSLog(@"%@,%@",_yzmTextField.text,originStr);
+    if(!([_yzmTextField.text compare:originStr options:NSCaseInsensitiveSearch|NSNumericSearch]==0)){
+        [RemindView remindViewWithContent:@"验证码错误" superView:self.view centerY:220];
+        return;
+    }
+    
+    BOOL isPhone=[self isAllNumber:_phoneNumberTextField.text];
+    NSString* userName=isPhone?nil:_phoneNumberTextField.text;
+    NSString* cellPhone=isPhone?_phoneNumberTextField.text:nil;
+    
+    [LoginModel GetIsExistWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            if ([posts[0] isEqualToString:@"1308"]) {
+                ForgetPasswordSecondController *forgetSecondView = [[ForgetPasswordSecondController alloc] init];
+                [self.navigationController pushViewController:forgetSecondView animated:YES];
+            }else if ([posts[0] isEqualToString:@"1300"]){
+                [RemindView remindViewWithContent:@"该手机号/用户名未注册" superView:self.view centerY:220];
+            }
+        }
+    } userName:userName cellPhone:cellPhone noNetWork:nil];
+    
+}
+
+-(BOOL)isAllNumber:(NSString*)numbers{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\D" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:numbers options:0 range:NSMakeRange(0, [numbers length])];
+    NSLog(@"===%d",numberOfMatches);
+    return !numberOfMatches;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -141,13 +176,6 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.view endEditing:YES];
-    if(textField ==0){
-        
-    }else{
-        if([_yzmTextField.text compare:self.codeView.changeString options:NSCaseInsensitiveSearch|NSNumericSearch]==-1){
-            [RemindView remindViewWithContent:@"验证码错误" superView:self.view centerY:220];
-        }
-    }
     return YES;
 }
 
@@ -160,6 +188,19 @@
         [alert show];
         
         return NO;
+    }
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
+{
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if (textField.tag)
+    {
+        if ([toBeString length] > 4) {
+            _yzmTextField.text = [toBeString substringToIndex:4];
+            return NO;
+        }
     }
     return YES;
 }
