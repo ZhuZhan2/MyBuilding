@@ -359,9 +359,9 @@
     } dic:[@{@"EntityId":self.model.a_id,@"entityType":@"Project",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy] noNetWork:nil];
 }
 
-//**********************************************************************
-//**********************************************************************
-//**********************************************************************
+//***************************************************************
+//***************************************************************
+//***************************************************************
 
 -(void)change{
     NSLog(@"用户选择了筛选");
@@ -521,9 +521,9 @@
     }];
 }
 
-//**********************************************************************
-//**********************************************************************
-//**********************************************************************
+//***************************************************************
+//***************************************************************
+//***************************************************************
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView==self.contentTableView) {
@@ -544,7 +544,6 @@
             //为了让sectionHeader可以被点击,所以将cell被点击之后实现的跳转加载功能封装到其他方法
             [self didchangeStageSection:indexPath.section row:indexPath.row];
         }
-        
     }
 }
 
@@ -789,9 +788,9 @@
     self.scrollViewBackground=nil;
 }
 
-//**********************************************************************
-//**********************************************************************
-//**********************************************************************
+//***************************************************************
+//***************************************************************
+//***************************************************************
 
 //program大块 三行
 -(NSArray*)getThreeLinesTitleViewWithThreeStrsWithIndexPath:(MyIndexPath*)indexPath{
@@ -821,8 +820,8 @@
 //第一行蓝，第二行黑的view
 -(NSArray*)getBlueTwoLinesWithStrsWithIndexPath:(MyIndexPath*)indexPath{
     if (indexPath.section==0) {
-        NSString* areaExtra=[self.model.a_area stringByAppendingString:[self.model.a_area isEqualToString:@""]?@"":@"㎡"];
-        return @[[self.model.a_area stringByAppendingString:areaExtra],self.model.a_plotRatio,self.model.a_usage];
+        NSString* area=[self.model.a_area stringByAppendingString:[self.model.a_area isEqualToString:@""]?@"":@"㎡"];
+        return @[area,self.model.a_plotRatio,self.model.a_usage];
     }else{
         NSString* storeyHeightExtra=[self.model.a_storeyHeight isEqualToString:@""]?@"":@"层";
         NSString* storeyAreaExtra=[self.model.a_storeyArea isEqualToString:@""]?@"":@"㎡";
