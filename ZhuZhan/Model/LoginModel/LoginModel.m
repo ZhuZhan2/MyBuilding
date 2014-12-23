@@ -712,12 +712,6 @@
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
-            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            for(NSDictionary *item in JSON[@"d"][@"data"]){
-                EmployeesModel *model = [[EmployeesModel alloc] init];
-                [model setDict:item];
-                [mutablePosts addObject:model];
-            }
             if (block) {
                 block([NSMutableArray arrayWithObjects:@"1300", nil],nil);
             }

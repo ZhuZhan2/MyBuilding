@@ -655,8 +655,6 @@
 		5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
 		5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF819932E36007D79A8 /* QuadCurveMenu.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5B656CFC19932E36007D79A8 /* QuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CFA19932E36007D79A8 /* QuadCurveMenuItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		5B8C138B1A49114800864342 /* 密码找回_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8C13891A49114800864342 /* 密码找回_03.png */; };
-		5B8C138C1A49114800864342 /* 密码找回_03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8C138A1A49114800864342 /* 密码找回_03@2x.png */; };
 		5BAA14D619EE35AC00C7ECD9 /* MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAA14D519EE35AC00C7ECD9 /* MD5.m */; };
 		5BE08D941A3586EA00495EEB /* 010001.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE08C6D1A3586EA00495EEB /* 010001.png */; };
 		5BE08D951A3586EA00495EEB /* 010001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE08C6E1A3586EA00495EEB /* 010001@2x.png */; };
@@ -2136,8 +2134,6 @@
 		5B656CF819932E36007D79A8 /* QuadCurveMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadCurveMenu.m; sourceTree = "<group>"; };
 		5B656CF919932E36007D79A8 /* QuadCurveMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadCurveMenuItem.h; sourceTree = "<group>"; };
 		5B656CFA19932E36007D79A8 /* QuadCurveMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadCurveMenuItem.m; sourceTree = "<group>"; };
-		5B8C13891A49114800864342 /* 密码找回_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码找回_03.png"; sourceTree = "<group>"; };
-		5B8C138A1A49114800864342 /* 密码找回_03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码找回_03@2x.png"; sourceTree = "<group>"; };
 		5BAA14D419EE35AC00C7ECD9 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5.h; sourceTree = "<group>"; };
 		5BAA14D519EE35AC00C7ECD9 /* MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5.m; sourceTree = "<group>"; };
 		5BE08C6D1A3586EA00495EEB /* 010001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 010001.png; sourceTree = "<group>"; };
@@ -4915,8 +4911,6 @@
 		D3D74E8B19FA302900ED8B62 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				5B8C13891A49114800864342 /* 密码找回_03.png */,
-				5B8C138A1A49114800864342 /* 密码找回_03@2x.png */,
 				5B5A24D71A4189CA0071BD90 /* 密码找回_03z.png */,
 				5B5A24D81A4189CA0071BD90 /* 密码找回_03z@2x.png */,
 				5B5A24D91A4189CA0071BD90 /* 密码找回01z.png */,
@@ -5265,7 +5259,6 @@
 				5BE08E9B1A3586EA00495EEB /* 040011@2x.png in Resources */,
 				5BE08EAB1A3586EA00495EEB /* 040019@2x.png in Resources */,
 				5BE08E251A3586EA00495EEB /* 020009@2x.png in Resources */,
-				5B8C138B1A49114800864342 /* 密码找回_03.png in Resources */,
 				04BC434819D7E5B3006B5C7B /* 项目－高级搜索－2_11a.png in Resources */,
 				04BC40FE19D7E5B3006B5C7B /* 013@2x.png in Resources */,
 				04BC420319D7E5B3006B5C7B /* 公司认证员工_05a.png in Resources */,
@@ -5367,7 +5360,6 @@
 				5BE08DB91A3586EA00495EEB /* 010019@2x.png in Resources */,
 				04BC42B719D7E5B3006B5C7B /* 面部采集_11@2x.png in Resources */,
 				04BC40F619D7E5B3006B5C7B /* 01.png in Resources */,
-				5B8C138C1A49114800864342 /* 密码找回_03@2x.png in Resources */,
 				04BC41A419D7E5B3006B5C7B /* 人脉－个人中心_05a@2x.png in Resources */,
 				5BE08E631A3586EA00495EEB /* 030010@2x.png in Resources */,
 				D3D7986A1A0B1ECF00194FF8 /* 加载中.gif in Resources */,
