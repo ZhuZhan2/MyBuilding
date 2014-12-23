@@ -219,6 +219,10 @@ int startIndex;
         resultView.searchStr = _searchBar.text;
         resultView.flag = 0;
         [self.navigationController pushViewController:resultView animated:YES];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请输入搜索内容" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        _searchBar.text = @"";
     }
 }
 

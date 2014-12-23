@@ -9,23 +9,23 @@
 #import <Foundation/Foundation.h>
 
 @interface ProductModel : NSObject
-@property (nonatomic,copy) NSString *a_id;
+@property (nonatomic,strong) NSString *a_id;
 //名字
-@property (nonatomic,copy) NSString *a_name;
+@property (nonatomic,strong) NSString *a_name;
 //内容
-@property (nonatomic,copy) NSString *a_content;
+@property (nonatomic,strong) NSString *a_content;
 //图片
-@property (nonatomic,copy) NSString *a_imageUrl;
+@property (nonatomic,strong) NSString *a_imageUrl;
 //评论数
-@property (nonatomic,copy) NSString *a_createdBy;
-@property (nonatomic,copy) NSString *a_commentNumber;
-@property (nonatomic, copy) NSString *a_imageWidth;
-@property (nonatomic, copy) NSString *a_imageHeight;
-@property (nonatomic, copy) NSString *a_avatarUrl;
-@property (nonatomic, copy) NSString *a_userName;
-@property (nonatomic, copy) NSString *a_isFocused;
-@property(nonatomic,copy)NSString* a_userType;
-@property (nonatomic, copy) NSDictionary *dict;
+@property (nonatomic,strong) NSString *a_createdBy;
+@property (nonatomic,strong) NSString *a_commentNumber;
+@property (nonatomic, strong) NSString *a_imageWidth;
+@property (nonatomic, strong) NSString *a_imageHeight;
+@property (nonatomic, strong) NSString *a_avatarUrl;
+@property (nonatomic, strong) NSString *a_userName;
+@property (nonatomic, strong) NSString *a_isFocused;
+@property(nonatomic,strong)NSString* a_userType;
+@property (nonatomic, strong) NSDictionary *dict;
 
 
 

@@ -21,6 +21,7 @@
 #import "PersonalProjectTableViewCell.h"
 #import "CompanyCenterViewController.h"
 #import "MyTableView.h"
+#import "PersonalCenterCompanyTableViewCell.h"
 @interface PersonalCenterViewController ()
 
 @end
@@ -260,8 +261,22 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
         cell.selectionStyle = NO;
         return cell;
+    }else if([model.a_category isEqualToString:@"CompanyAgree"]){
+        NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalCenterCompanyTableViewCell"];
+        PersonalCenterCompanyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[PersonalCenterCompanyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            UIView* separatorLine=[self getSeparatorLine];
+            separatorLine.center=CGPointMake(160, 49.5);
+            [cell.contentView addSubview:separatorLine];
+        }
+        cell.imageUrl = model.a_avatarUrl;
+        cell.companyName = model.a_userName;
+        cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
+        cell.selectionStyle = NO;
+        return cell;
     }else{
-        NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
+        NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -295,7 +310,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         projectCommentView.projectId = model.a_entityId;
         projectCommentView.projectName = model.a_entityName;
         [self.navigationController pushViewController:projectCommentView animated:YES];
-    }else{
+    }else if([model.a_category isEqualToString:@"Personal"]){
         ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithPersonalCenterModel:model];
         NSLog(@"===>%@",model.a_category);
         vc.type = model.a_category;

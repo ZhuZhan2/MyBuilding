@@ -9,17 +9,17 @@
 #import <Foundation/Foundation.h>
 
 @interface TopicsModel : NSObject
-@property (nonatomic,copy) NSString *a_id;
+@property (nonatomic,strong) NSString *a_id;
 //title
-@property (nonatomic,copy) NSString *a_title;
+@property (nonatomic,strong) NSString *a_title;
 //内容
-@property (nonatomic,copy) NSString *a_content;
+@property (nonatomic,strong) NSString *a_content;
 //图片
-@property (nonatomic,copy) NSString *a_image;
+@property (nonatomic,strong) NSString *a_image;
 //project数量
-@property (nonatomic,copy) NSString *a_projectCount;
+@property (nonatomic,strong) NSString *a_projectCount;
 //发布时间
-@property (nonatomic,copy) NSString *a_publishTime;
+@property (nonatomic,strong) NSString *a_publishTime;
 
-@property (nonatomic, copy) NSDictionary *dict;
+@property (nonatomic, strong) NSDictionary *dict;
 @end
