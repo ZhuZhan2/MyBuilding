@@ -39,17 +39,6 @@
 
 -(void)firstNetWork{
     if (!self.showArr) self.showArr=[NSMutableArray array];
-//    for (int i=0; i<20; i++) {
-//        EmployeesModel* model=[[EmployeesModel alloc]init];
-//        model.a_userName = [NSString stringWithFormat:@"userName%d",i];
-//        model.a_userIamge=@"http://www.baidu.com/img/bd_logo1.png";
-//        model.a_isFocused = i%2?@"0":@"1";
-//        model.a_duties = @"职位";
-//        model.a_department = @"部门";
-//        
-//        [self.showArr addObject:model];
-//    }
-
     
     [LoginModel GetRecommendUsersWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
