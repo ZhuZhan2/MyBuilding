@@ -110,6 +110,39 @@
     self.view.backgroundColor=RGBCOLOR(245, 246, 248);
     [self loadFirstView];
     [self loadRegisterBtn];
+    [self companyRemindView];
+    [self getCallPhoneBtn];
+}
+
+-(void)companyRemindView{
+    UIImageView* imageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"密码找回_03"]];
+    imageView.center=CGPointMake(30, 197);
+    [self.view addSubview:imageView];
+    
+    UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(43, 190, 150, 15)];
+    label.textColor=RGBCOLOR(135, 135, 135);
+    label.font=[UIFont systemFontOfSize:13.5];
+    label.text=@"公司账户请联系客服";
+    [self.view addSubview:label];
+}
+
+-(void)getCallPhoneBtn{
+    UIButton* btn=[UIButton buttonWithType:UIButtonTypeSystem];
+    [btn setTitle:@"拨打电话" forState:UIControlStateNormal];
+    [btn setTitleColor:RGBCOLOR(88, 198, 143) forState:UIControlStateNormal];
+    btn.titleLabel.font=[UIFont systemFontOfSize:13.5];
+    btn.frame=CGRectMake(210, 190, 100, 15);
+    [self.view addSubview:btn];
+    [btn addTarget:self action:@selector(callPhoneBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)callPhoneBtnClicked{
+    NSString* str=@"tel://65383309";
+    if ([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:str]]) {
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:str]];
+    }else{
+        [RemindView remindViewWithContent:@"此设备不支持拨打电话" superView:self.view centerY:240];
+    }
 }
 
 -(void)loadRegisterBtn{
@@ -135,13 +168,13 @@
     [self.codeView setNeedsDisplay];
     
     if (!_phoneNumberTextField.text.length) {
-        [RemindView remindViewWithContent:@"请填写手机号/用户名" superView:self.view centerY:220];
+        [RemindView remindViewWithContent:@"请填写手机号/用户名" superView:self.view centerY:240];
         return;
     }
     
     NSLog(@"%@,%@",_yzmTextField.text,originStr);
     if(!([_yzmTextField.text compare:originStr options:NSCaseInsensitiveSearch|NSNumericSearch]==0)){
-        [RemindView remindViewWithContent:@"验证码错误" superView:self.view centerY:220];
+        [RemindView remindViewWithContent:@"验证码错误" superView:self.view centerY:240];
         return;
     }
     
@@ -155,7 +188,7 @@
                 ForgetPasswordSecondController *forgetSecondView = [[ForgetPasswordSecondController alloc] init];
                 [self.navigationController pushViewController:forgetSecondView animated:YES];
             }else if ([posts[0] isEqualToString:@"1300"]){
-                [RemindView remindViewWithContent:@"该手机号/用户名未注册" superView:self.view centerY:220];
+                [RemindView remindViewWithContent:@"该手机号/用户名未注册" superView:self.view centerY:240];
             }
         }
     } userName:userName cellPhone:cellPhone noNetWork:nil];
