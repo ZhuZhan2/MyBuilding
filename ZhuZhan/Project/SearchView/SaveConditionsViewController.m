@@ -127,18 +127,23 @@
     if([[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
     
     }else{
-        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        [dic setValue:nameTextField.text forKey:@"SearchName"];
-        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"CreateBy"];
-        [dic setValue:newstring forKey:@"SearchConditions"];
-        [ProjectApi SearchConditionWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                [nameTextField resignFirstResponder];
-                if([self.delegate respondsToSelector:@selector(finshSave)]){//保存
-                    [self.delegate finshSave];
+        if([nameTextField.text isEqualToString:@""]){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请输入搜索组名称" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }else{
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setValue:nameTextField.text forKey:@"SearchName"];
+            [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"CreateBy"];
+            [dic setValue:newstring forKey:@"SearchConditions"];
+            [ProjectApi SearchConditionWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    [nameTextField resignFirstResponder];
+                    if([self.delegate respondsToSelector:@selector(finshSave)]){//保存
+                        [self.delegate finshSave];
+                    }
                 }
-            }
-        } dic:dic noNetWork:nil];
+            } dic:dic noNetWork:nil];
+        }
     }
 }
 

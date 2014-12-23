@@ -327,8 +327,16 @@
             return NO;
         }
         return YES;
+    }else if (textField == verifyPassWordField){
+        NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        if ([toBeString length] > 24) {
+            verifyPassWordField.text = [toBeString substringToIndex:24];
+            return NO;
+        }
+        return YES;
+    }else{
+        return YES;
     }
-    return YES;
 }
 
 

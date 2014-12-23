@@ -315,6 +315,8 @@ static int count =0;//记录生日textField 的时间被触发的次数
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             NSLog(@"===>%@",model.userName);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"修改成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
             [LoginSqlite insertData:model.userName datakey:@"userName"];
             [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changName" object:nil];
