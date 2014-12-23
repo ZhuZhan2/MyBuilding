@@ -138,7 +138,8 @@
 }
 
 -(void)callPhoneBtnClicked{
-    NSString* str=@"tel://65383309";
+    //NSString* str=@"tel://65383309";
+    NSString* str=@"tel://13641672889";
     if ([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:str]]) {
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:str]];
     }else{

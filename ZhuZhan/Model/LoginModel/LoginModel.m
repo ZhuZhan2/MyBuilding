@@ -126,24 +126,19 @@
             NSNumber *errorcode = JSON[@"d"][@"status"][@"statusCode"];
             switch ([errorcode intValue]) {
                 case 1308:
-                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"手机号已存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alert show];}
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"手机号已存在"];
                     break;
                 case 1325:
-                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名已经存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alert show];}
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"用户名已经存在"];
                     break;
                 case 1310:
-                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"激活码无效" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alert show];}
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"激活码无效"];
                     break;
                 case 1303:
-                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败，系统异常" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alert show];}
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"注册失败，系统异常"];
                     break;
                 case 1301:
-                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败，系统异常" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alert show];}
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"注册失败，系统异常"];
                     //参数异常信息提示（具体见返回信息）
                     break;
                 default:

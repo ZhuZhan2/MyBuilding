@@ -158,13 +158,14 @@
     [self loadSecondView];
     [self loadRegisterBtn];
     [self loadClauseView];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(errorCode:) name:@"register" object:nil];
+}
+
+-(void)errorCode:(NSNotification*)noti{
+    [self remindErrorView:noti.object];
 }
 
 -(void)loadClauseView{
-    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(65, 470, 320, 18)];
-    imageView.image=[GetImagePath getImagePath:@"注册_05"];
-    //[self.view addSubview:imageView];
-    
     self.selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.selectBtn.frame = CGRectMake(65, 470, 320, 18);
     [self.selectBtn setImage:[GetImagePath getImagePath:@"注册_05"] forState:UIControlStateNormal];
