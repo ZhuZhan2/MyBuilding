@@ -424,6 +424,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             vc.delegate = self;
             vc.type = @"Personal";
             [self.navigationController pushViewController:vc animated:YES];
+        }else if([model.a_eventType isEqualToString:@"AutomaticProduct"]){
+            ActivesModel *model = showArr[indexPath.row];
+            NSLog(@"==>%@",model.a_entityUrl);
+            ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+            vc.delegate = self;
+            vc.type = @"Product";
+            [self.navigationController pushViewController:vc animated:YES];
         }else{
             
         }
