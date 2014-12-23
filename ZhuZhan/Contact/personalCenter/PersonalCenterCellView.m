@@ -10,7 +10,7 @@
 @implementation PersonalCenterCellView
 +(UIView *)getPersonalCenterCellViewWithImageUrl:(NSString *)imageUrl content:(NSString *)content category:(NSString *)category{
     UIView* view=[[UIView alloc]initWithFrame:CGRectZero];
-    
+    NSLog(@"%@",category);
     //分割线上的图片路径
     NSString* path;
     //category对应的动态名称
