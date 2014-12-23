@@ -39,7 +39,7 @@
     self.a_heating = [ProjectStage ProjectBoolStage:dict[@"heating"]];
     self.a_externalWallMeterial = [ProjectStage ProjectBoolStage:dict[@"externalWallMeterial"]];
     self.a_stealStructure = [ProjectStage ProjectBoolStage:dict[@"stealStructure"]];
-    self.a_actureStartTime = [ProjectStage ProjectTimeStage:dict[@"actualStartTime"]];
+    self.a_actureStartTime = [ProjectStage ProjectTimeStage:dict[@"actureStartTime"]];
     self.a_fireControl = [ProjectStage ProjectStrStage:dict[@"fireControl"]];
     self.a_green = [ProjectStage ProjectStrStage:dict[@"green"]];
     self.a_electorWeakInstallation = [ProjectStage ProjectStrStage:dict[@"electorWeakInstallation"]];
@@ -111,15 +111,15 @@
     //主体施工 消防/景观绿化 图片,显示在 主体施工/主体施工 阶段里
     
     NSArray* array=@[self.auctionImages,self.explorationImages,self.constructionImages,self.pileImages,self.mainBulidImages,self.decorationImages];
-    NSArray* categorys=@[@"plan",@"exploration",@"horizon",@"pileFoundation",@"mainPart",@"electroweak"];
+    NSArray* categorys=@[@"plan",@"exploration",@"horizon",@"pileFoundation",@"mainPart",@"electroweak",@"fireControl"];
     
     for(int i=0;i<images.count;i++){
         ProjectImageModel* imageModel = images[i];
         
         NSInteger index=-1;
-        for (int k=0; k<array.count; k++) {
+        for (int k=0; k<categorys.count; k++) {
             if ([imageModel.a_imageCategory isEqualToString:categorys[k]]) {
-                index=k;
+                index=k==6?4:k;
                 break;
             }
         }
