@@ -69,7 +69,7 @@
     [self.view addSubview:newPassWord];
     
     newPassWordTextField = [[UITextField alloc] initWithFrame:CGRectMake(92, 115, 200, 30)];
-    newPassWordTextField.placeholder = @"新密码";
+    newPassWordTextField.placeholder = @"新密码6-24位";
     newPassWordTextField.font = [UIFont systemFontOfSize:14];
     newPassWordTextField.delegate = self;
     newPassWordTextField.secureTextEntry = YES;
@@ -150,8 +150,25 @@
     return YES;
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
+{
+    if(textField == newPassWordTextField){
+        NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        if ([toBeString length] > 24) {
+            newPassWordTextField.text = [toBeString substringToIndex:24];
+            return NO;
+        }
+        return YES;
+    }
+    return YES;
+}
+
 
 -(void)updataPassWordAction{
+    if(newPassWordTextField.text.length<6){
+        [RemindView remindViewWithContent:@"密码大于6位" superView:self.view centerY:230];
+        return;
+    }
     if(![newPassWordTextField.text isEqualToString:newAgainPassWordTextField.text]){
         [RemindView remindViewWithContent:@"密码输入不一致，请重新输入" superView:self.view centerY:230];
     }else{

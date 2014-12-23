@@ -57,7 +57,6 @@
     _phoneNumberTextField.textAlignment=NSTextAlignmentLeft;
     _phoneNumberTextField.placeholder=@"填写手机号/用户名";
     _phoneNumberTextField.returnKeyType=UIReturnKeyDone;
-    _phoneNumberTextField.keyboardType =UIKeyboardTypePhonePad;
     _phoneNumberTextField.clearButtonMode =YES;
     _phoneNumberTextField.tag = 0;
     [firstView addSubview:_phoneNumberTextField];
