@@ -13,10 +13,10 @@
     _dict = dict;
     self.a_id = [ProjectStage ProjectStrStage:dict[@"userId"]];
     self.a_realName = [ProjectStage ProjectStrStage:dict[@"realName"]];
-    self.a_duties = [ProjectStage ProjectStrStage:dict[@"duties"]];
+    self.a_duties = [ProjectStage ProjectStrStage:dict[@"userParticulars"][@"duties"]];
     self.a_sex = [ProjectStage ProjectStrStage:dict[@"sex"]];
     self.a_cellPhone = [ProjectStage ProjectStrStage:dict[@"cellphone"]];
-    self.a_company = [ProjectStage ProjectStrStage:dict[@"company"]];
+    self.a_company = [ProjectStage ProjectStrStage:dict[@"userParticulars"][@"companyName"]];
     self.a_email = [ProjectStage ProjectStrStage:dict[@"email"]];
     if(![[ProjectStage ProjectStrStage:dict[@"userImage"]] isEqualToString:@""]){
         self.a_userImage = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"userImage"]]];

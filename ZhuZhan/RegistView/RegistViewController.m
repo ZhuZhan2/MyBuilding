@@ -124,7 +124,7 @@
     passWordField.delegate = self;
     passWordField.font=self.font;
     passWordField.textAlignment=NSTextAlignmentLeft;
-    passWordField.placeholder=@"填写密码";
+    passWordField.placeholder=@"填写密码6-24位";
     passWordField.returnKeyType=UIReturnKeyDone;
     passWordField.clearButtonMode =YES;
     passWordField.secureTextEntry = YES;
@@ -261,6 +261,11 @@
         return;
     }
     
+    if(passWordField.text.length<6){
+        [self remindErrorView:@"密码大于6位！"];
+        return;
+    }
+    
     if([passWordField.text isEqualToString:@""]||[_phoneNumberTextField.text isEqualToString:@""]||[verifyPassWordField.text isEqualToString:@""])
     {
         [self remindErrorView:@"输入不完整请检查你的输入！"];
@@ -312,6 +317,20 @@
         return YES;
     }
 }
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
+{
+    if(textField == passWordField){
+        NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        if ([toBeString length] > 24) {
+            passWordField.text = [toBeString substringToIndex:24];
+            return NO;
+        }
+        return YES;
+    }
+    return YES;
+}
+
 
 - (void)didReceiveMemoryWarning
 {
