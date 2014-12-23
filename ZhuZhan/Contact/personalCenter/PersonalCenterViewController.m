@@ -310,7 +310,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         projectCommentView.projectId = model.a_entityId;
         projectCommentView.projectName = model.a_entityName;
         [self.navigationController pushViewController:projectCommentView animated:YES];
-    }else if([model.a_category isEqualToString:@"Personal"]){
+    }else if([model.a_category isEqualToString:@"Personal"]||[model.a_category isEqualToString:@"Product"]){
         ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithPersonalCenterModel:model];
         NSLog(@"===>%@",model.a_category);
         vc.type = model.a_category;
@@ -324,7 +324,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if(showArr.count !=0){
         model = showArr[indexPath.row];
     }
-    if([model.a_category isEqualToString:@"Project"]){
+    if([model.a_category isEqualToString:@"Project"]||[model.a_category isEqualToString:@"CompanyAgree"]){
         return 50;
     }else{
         return [contentViews[indexPath.row] frame].size.height;
