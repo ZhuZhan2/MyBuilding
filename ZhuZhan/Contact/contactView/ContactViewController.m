@@ -355,6 +355,17 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             commentView.showArr = model.a_commentsArr;
             [cell.contentView addSubview:commentView];
             return cell;
+        }else if([model.a_eventType isEqualToString:@"AutomaticProject"]){
+            NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
+            ContactProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if(!cell){
+                cell = [[ContactProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            cell.delegate = self;
+            cell.selectionStyle = NO;
+            cell.model = model;
+            cell.indexpath = indexPath;
+            return cell;
         }else{
             NSString *CellIdentifier = [NSString stringWithFormat:@"ContactTableViewCell"];
             ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -442,8 +453,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             vc.delegate = self;
             vc.type = @"Product";
             [self.navigationController pushViewController:vc animated:YES];
-        }else{
-            
+        }else if([model.a_eventType isEqualToString:@"AutomaticProject"]){
+            ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
+            vc.projectId = model.a_entityId;
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }else if([model.a_category isEqualToString:@"Company"]){
         if([model.a_eventType isEqualToString:@"Actives"]){
@@ -459,8 +472,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             vc.delegate = self;
             vc.type = @"Product";
             [self.navigationController pushViewController:vc animated:YES];
-        }else{
-            
+        }else if([model.a_eventType isEqualToString:@"AutomaticProject"]){
+            ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
+            vc.projectId = model.a_entityId;
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }else{
         ActivesModel *model = showArr[indexPath.row];
