@@ -34,6 +34,7 @@
 #import "CompanyDetailViewController.h"
 #import "LoadingView.h"
 #import "MyTableView.h"
+#import "ContactProductView.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()<CompanyDetailDelegate>
 
@@ -159,6 +160,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 if([model.a_eventType isEqualToString:@"Actives"]){
                     commentView = [CommentView setFram:model];
                     [viewArr addObject:commentView];
+                }else if([model.a_category isEqualToString:@"Product"]){
+                    ContactProductView* productView=[[ContactProductView alloc]initWithUsrImgUrl:model.a_avatarUrl productImgUrl:model.a_productImage productContent:model.a_content];
+                    [viewArr addObject:productView];
                 }else{
                     [viewArr addObject:@""];
                 }
@@ -231,6 +235,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 if([model.a_eventType isEqualToString:@"Actives"]){
                     commentView = [CommentView setFram:model];
                     [viewArr addObject:commentView];
+                }else if([model.a_category isEqualToString:@"Product"]){
+                    ContactProductView* productView=[[ContactProductView alloc]initWithUsrImgUrl:model.a_avatarUrl productImgUrl:model.a_productImage productContent:model.a_content];
+                    [viewArr addObject:productView];
                 }else{
                     [viewArr addObject:@""];
                 }
@@ -377,6 +384,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             cell.model = model;
             return cell;
         }
+    }else if ([model.a_category isEqualToString:@"Product"]){
+        NSString* cellIdentifier = [NSString stringWithFormat:@"productCell"];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(!cell){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        cell.selectionStyle = NO;
+        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [cell.contentView addSubview:viewArr[indexPath.row]];
+        return cell;
     }else{
         NSString *CellIdentifier = [NSString stringWithFormat:@"ContactTableViewCell"];
         ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -411,6 +428,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }else{
             return 50;
         }
+    }else if ([model.a_category isEqualToString:@"Product"]) {
+        return [viewArr[indexPath.row] frame].size.height;
     }else{
         return 50;
     }
@@ -722,6 +741,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 if([model.a_eventType isEqualToString:@"Actives"]){
                     commentView = [CommentView setFram:model];
                     [viewArr addObject:commentView];
+                }else if([model.a_category isEqualToString:@"Product"]){
+                    ContactProductView* productView=[[ContactProductView alloc]initWithUsrImgUrl:model.a_avatarUrl productImgUrl:model.a_productImage productContent:model.a_content];
+                    [viewArr addObject:productView];
                 }else{
                     [viewArr addObject:@""];
                 }
