@@ -275,7 +275,7 @@ int j;
 - (BMKAnnotationView *)mapView:(BMKMapView *)view viewForAnnotation:(id <BMKAnnotation>)annotation
 {
     // 生成重用标示identifier
-    NSString *AnnotationViewID = @"xidanMark";
+    NSString *AnnotationViewID = [NSString stringWithFormat:@"xidanMark%d",j];
 	
     // 检查是否有重用的缓存
     BMKAnnotationView* annotationView = [view dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
@@ -340,6 +340,7 @@ int j;
             [self.view addSubview:topBgView];
             topBgView.alpha = 0.5;
             countLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 69.5, 160, 30)];
+            NSLog(@"%d",topCount);
             countLabel.text = [NSString stringWithFormat:@"%d条结果",topCount];
             countLabel.textColor = [UIColor blackColor];
             countLabel.textAlignment = NSTextAlignmentCenter;
@@ -458,8 +459,10 @@ int j;
                     annotationPoint.subtitle = model.a_landAddress;
                     [_mapView addAnnotation:annotationPoint];
                     topCount++;
+    
                 }
             }
+            [self drawFunction];
         }
     } longitude:[NSString stringWithFormat:@"%lf",centerLocation.longitude] latitude:[NSString stringWithFormat:@"%lf",centerLocation.latitude] noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view reloadBlock:^{
@@ -496,7 +499,6 @@ int j;
         polygonView.strokeColor = [[UIColor redColor] colorWithAlphaComponent:1];
         polygonView.fillColor = [[UIColor cyanColor] colorWithAlphaComponent:0.2];
         polygonView.lineWidth =3.5;
-        [self drawFunction];
 		return polygonView;
     }
     if ([overlay isKindOfClass:[BMKGroundOverlay class]])
