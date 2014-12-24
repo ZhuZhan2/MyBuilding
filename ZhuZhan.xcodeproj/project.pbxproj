@@ -655,8 +655,13 @@
 		5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
 		5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF819932E36007D79A8 /* QuadCurveMenu.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5B656CFC19932E36007D79A8 /* QuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CFA19932E36007D79A8 /* QuadCurveMenuItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5B6A1D661A4A65280072B916 /* 主站－人脉03.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6A1D641A4A65280072B916 /* 主站－人脉03.png */; };
+		5B6A1D671A4A65280072B916 /* 主站－人脉03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6A1D651A4A65280072B916 /* 主站－人脉03@2x.png */; };
+		5B6A1D6A1A4A67170072B916 /* ContactEGOView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A1D691A4A67170072B916 /* ContactEGOView.m */; };
 		5BA938A61A4935FF00BB8A96 /* 密码找回_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA938A41A4935FF00BB8A96 /* 密码找回_03.png */; };
 		5BA938A71A4935FF00BB8A96 /* 密码找回_03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA938A51A4935FF00BB8A96 /* 密码找回_03@2x.png */; };
+		5BA938AD1A49720300BB8A96 /* ContactProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA938AC1A49720300BB8A96 /* ContactProductView.m */; };
+		5BA938B01A4972B200BB8A96 /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA938AF1A4972B200BB8A96 /* ContactTableViewCell.m */; };
 		5BAA14D619EE35AC00C7ECD9 /* MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAA14D519EE35AC00C7ECD9 /* MD5.m */; };
 		5BE08D941A3586EA00495EEB /* 010001.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE08C6D1A3586EA00495EEB /* 010001.png */; };
 		5BE08D951A3586EA00495EEB /* 010001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE08C6E1A3586EA00495EEB /* 010001@2x.png */; };
@@ -979,7 +984,6 @@
 		D3A4283819C9401C00BAB6C7 /* LoginSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4283719C9401C00BAB6C7 /* LoginSqlite.m */; };
 		D3A4283B19C94E5E00BAB6C7 /* ActivesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4283A19C94E5E00BAB6C7 /* ActivesModel.m */; };
 		D3AC612B19B5C7D10015B62F /* ContactProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC612A19B5C7D10015B62F /* ContactProjectTableViewCell.m */; };
-		D3AC613819B6A3B40015B62F /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC613719B6A3B40015B62F /* ContactTableViewCell.m */; };
 		D3AC61A819B6BF930015B62F /* ConditionsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC618E19B6BF930015B62F /* ConditionsModel.m */; };
 		D3AC61A919B6BF930015B62F /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC619119B6BF930015B62F /* ContactModel.m */; };
 		D3AC61AA19B6BF930015B62F /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC619419B6BF930015B62F /* LoginModel.m */; };
@@ -2136,8 +2140,16 @@
 		5B656CF819932E36007D79A8 /* QuadCurveMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadCurveMenu.m; sourceTree = "<group>"; };
 		5B656CF919932E36007D79A8 /* QuadCurveMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadCurveMenuItem.h; sourceTree = "<group>"; };
 		5B656CFA19932E36007D79A8 /* QuadCurveMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadCurveMenuItem.m; sourceTree = "<group>"; };
+		5B6A1D641A4A65280072B916 /* 主站－人脉03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主站－人脉03.png"; sourceTree = "<group>"; };
+		5B6A1D651A4A65280072B916 /* 主站－人脉03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主站－人脉03@2x.png"; sourceTree = "<group>"; };
+		5B6A1D681A4A67170072B916 /* ContactEGOView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactEGOView.h; sourceTree = "<group>"; };
+		5B6A1D691A4A67170072B916 /* ContactEGOView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactEGOView.m; sourceTree = "<group>"; };
 		5BA938A41A4935FF00BB8A96 /* 密码找回_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码找回_03.png"; sourceTree = "<group>"; };
 		5BA938A51A4935FF00BB8A96 /* 密码找回_03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码找回_03@2x.png"; sourceTree = "<group>"; };
+		5BA938AB1A49720300BB8A96 /* ContactProductView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactProductView.h; sourceTree = "<group>"; };
+		5BA938AC1A49720300BB8A96 /* ContactProductView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactProductView.m; sourceTree = "<group>"; };
+		5BA938AE1A4972B200BB8A96 /* ContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCell.h; sourceTree = "<group>"; };
+		5BA938AF1A4972B200BB8A96 /* ContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
 		5BAA14D419EE35AC00C7ECD9 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5.h; sourceTree = "<group>"; };
 		5BAA14D519EE35AC00C7ECD9 /* MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5.m; sourceTree = "<group>"; };
 		5BE08C6D1A3586EA00495EEB /* 010001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 010001.png; sourceTree = "<group>"; };
@@ -2485,8 +2497,6 @@
 		D3A4283A19C94E5E00BAB6C7 /* ActivesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivesModel.m; sourceTree = "<group>"; };
 		D3AC612919B5C7D10015B62F /* ContactProjectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactProjectTableViewCell.h; sourceTree = "<group>"; };
 		D3AC612A19B5C7D10015B62F /* ContactProjectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactProjectTableViewCell.m; sourceTree = "<group>"; };
-		D3AC613619B6A3B40015B62F /* ContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCell.h; sourceTree = "<group>"; };
-		D3AC613719B6A3B40015B62F /* ContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
 		D3AC618D19B6BF930015B62F /* ConditionsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionsModel.h; sourceTree = "<group>"; };
 		D3AC618E19B6BF930015B62F /* ConditionsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionsModel.m; sourceTree = "<group>"; };
 		D3AC619019B6BF930015B62F /* ContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactModel.h; sourceTree = "<group>"; };
@@ -3825,6 +3835,8 @@
 				04BC3EDE19D7E5B0006B5C7B /* 产品－列表_06a@2x.png */,
 				04BC3EDF19D7E5B0006B5C7B /* 产品－列表_10a.png */,
 				04BC3EE019D7E5B0006B5C7B /* 产品－列表_10a@2x.png */,
+				5B6A1D641A4A65280072B916 /* 主站－人脉03.png */,
+				5B6A1D651A4A65280072B916 /* 主站－人脉03@2x.png */,
 				04BC3EF119D7E5B0006B5C7B /* 人脉_02a.png */,
 				04BC3EF219D7E5B0006B5C7B /* 人脉_02a@2x.png */,
 				04BC3EF519D7E5B0006B5C7B /* 人脉_06a.png */,
@@ -4047,8 +4059,12 @@
 				04D10C2F19AF3C120097C0C6 /* ShowViewController.m */,
 				D3AC612919B5C7D10015B62F /* ContactProjectTableViewCell.h */,
 				D3AC612A19B5C7D10015B62F /* ContactProjectTableViewCell.m */,
-				D3AC613619B6A3B40015B62F /* ContactTableViewCell.h */,
-				D3AC613719B6A3B40015B62F /* ContactTableViewCell.m */,
+				5BA938AB1A49720300BB8A96 /* ContactProductView.h */,
+				5BA938AC1A49720300BB8A96 /* ContactProductView.m */,
+				5BA938AE1A4972B200BB8A96 /* ContactTableViewCell.h */,
+				5BA938AF1A4972B200BB8A96 /* ContactTableViewCell.m */,
+				5B6A1D681A4A67170072B916 /* ContactEGOView.h */,
+				5B6A1D691A4A67170072B916 /* ContactEGOView.m */,
 			);
 			path = contactView;
 			sourceTree = "<group>";
@@ -5436,6 +5452,7 @@
 				D3D74E8A19FA2FEC00ED8B62 /* 登录_24@2x.png in Resources */,
 				5BE08D941A3586EA00495EEB /* 010001.png in Resources */,
 				04BC419419D7E5B3006B5C7B /* 人脉_61a@2x.png in Resources */,
+				5B6A1D661A4A65280072B916 /* 主站－人脉03.png in Resources */,
 				5B5A24DF1A4189CA0071BD90 /* 密码找回01z.png in Resources */,
 				04BC415619D7E5B3006B5C7B /* timescroll_hourhand@2x.png in Resources */,
 				04BC415819D7E5B3006B5C7B /* timescroll_minutehand@2x.png in Resources */,
@@ -5676,6 +5693,7 @@
 				5BE08E5A1A3586EA00495EEB /* 030006.png in Resources */,
 				5BE08E1A1A3586EA00495EEB /* 020004.png in Resources */,
 				5BE08E181A3586EA00495EEB /* 020003.png in Resources */,
+				5B6A1D671A4A65280072B916 /* 主站－人脉03@2x.png in Resources */,
 				04BC414C19D7E5B3006B5C7B /* minutehand.png in Resources */,
 				5BE08DF71A3586EA00495EEB /* 010050@2x.png in Resources */,
 				5BE08E091A3586EA00495EEB /* 010059@2x.png in Resources */,
@@ -5956,6 +5974,7 @@
 				0426C28619922D5A00CD8822 /* GPUImageLightenBlendFilter.m in Sources */,
 				0426C30219922D5A00CD8822 /* UIWebView+AFNetworking.m in Sources */,
 				0426C26319922D5A00CD8822 /* GPUImageDivideBlendFilter.m in Sources */,
+				5BA938B01A4972B200BB8A96 /* ContactTableViewCell.m in Sources */,
 				0426C25319922D5A00CD8822 /* GPUImageColorBlendFilter.m in Sources */,
 				0426C24319922D5A00CD8822 /* GPUImageAdaptiveThresholdFilter.m in Sources */,
 				0426C2AD19922D5A00CD8822 /* GPUImageRGBErosionFilter.m in Sources */,
@@ -5975,6 +5994,7 @@
 				042D9E2319B559FC00689C5D /* SaveConditionsViewController.m in Sources */,
 				0426C2AC19922D5A00CD8822 /* GPUImageRGBDilationFilter.m in Sources */,
 				0426C2C519922D5A00CD8822 /* GPUImageTextureOutput.m in Sources */,
+				5BA938AD1A49720300BB8A96 /* ContactProductView.m in Sources */,
 				0426C2D719922D5A00CD8822 /* GPUImageWeakPixelInclusionFilter.m in Sources */,
 				D3AD616419ADB918001FD483 /* SqliteHelper.m in Sources */,
 				D3AD61A319AEF0A2001FD483 /* MChoiceTableViewCell.m in Sources */,
@@ -6054,6 +6074,7 @@
 				0426C2D119922D5A00CD8822 /* GPUImageTwoPassTextureSamplingFilter.m in Sources */,
 				5B0A00A319B587CD00500C05 /* TMQuiltView.m in Sources */,
 				D3AD609419AC56CB001FD483 /* MJRefreshFooterView.m in Sources */,
+				5B6A1D6A1A4A67170072B916 /* ContactEGOView.m in Sources */,
 				0426C2F619922D5A00CD8822 /* CJSONScanner.m in Sources */,
 				0426C2EE19922D5A00CD8822 /* CDataScanner.m in Sources */,
 				0426C28719922D5A00CD8822 /* GPUImageLinearBurnBlendFilter.m in Sources */,
@@ -6119,7 +6140,6 @@
 				0426C24819922D5A00CD8822 /* GPUImageAverageLuminanceThresholdFilter.m in Sources */,
 				0426C2C719922D5A00CD8822 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
 				0426C2E619922D5A00CD8822 /* FaceppGroup.m in Sources */,
-				D3AC613819B6A3B40015B62F /* ContactTableViewCell.m in Sources */,
 				0426C2DF19922D5A00CD8822 /* FaceppAPI.m in Sources */,
 				0426C30319922D5A00CD8822 /* TFIndicatorView.m in Sources */,
 				0426C27C19922D5A00CD8822 /* GPUImageHoughTransformLineDetector.m in Sources */,

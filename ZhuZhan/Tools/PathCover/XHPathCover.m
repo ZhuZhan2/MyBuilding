@@ -283,7 +283,6 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     y += fixAdaptorPadding;
     _offsetY = y;
     CGRect frame = _showView.frame;
-    NSLog(@"y==%f",y);
     if(y < 0) {
         if((_waterDropRefresh.isRefreshing) || hasStop) {
             if(normal && paste == NO) {

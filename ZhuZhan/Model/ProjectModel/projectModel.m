@@ -42,7 +42,7 @@
     self.a_actureStartTime = [ProjectStage ProjectTimeStage:dict[@"actureStartTime"]];
     self.a_fireControl = [ProjectStage ProjectStrStage:dict[@"fireControl"]];
     self.a_green = [ProjectStage ProjectStrStage:dict[@"green"]];
-    self.a_electorWeakInstallation = [ProjectStage ProjectStrStage:dict[@"electorWeakInstallation"]];
+    self.a_electorWeakInstallation = [ProjectStage ProjectStrStage:dict[@"electroWeakInstallation"]];
     self.a_decorationSituation = [ProjectStage ProjectStrStage:dict[@"decorationSituation"]];
     self.a_decorationProcess = [ProjectStage ProjectStrStage:dict[@"decorationProcess"]];
     self.isFocused = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"isFocused"]]];

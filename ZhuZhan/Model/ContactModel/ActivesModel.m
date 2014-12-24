@@ -39,6 +39,12 @@
     self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"actives"][@"imageWidth"]]];
     self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"actives"][@"imageHeight"]]];
     
+    if(![[ProjectStage ProjectStrStage:dict[@"actives"][@"productImage"]] isEqualToString:@""]){
+        self.a_productImage = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"actives"][@"productImage"]]];
+    }else{
+        self.a_productImage = [ProjectStage ProjectStrStage:dict[@"actives"][@"productImage"]];
+    }
+
     self.a_commentsArr = [[NSMutableArray alloc] init];
     if([dict[@"comments"] count] !=0){
         for(NSDictionary *item in dict[@"comments"]){
