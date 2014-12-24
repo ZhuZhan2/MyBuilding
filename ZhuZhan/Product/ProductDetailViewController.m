@@ -50,21 +50,21 @@
 @property(nonatomic,strong)ACTimeScroller* timeScroller;
 
 //mainView部分
-@property(nonatomic,copy)NSString* imageWidth;
-@property(nonatomic,copy)NSString* imageHeight;
-@property(nonatomic,copy)NSString* imageUrl;
-@property(nonatomic,copy)NSString* userImageUrl;
-@property(nonatomic,copy)NSString* content;
-@property(nonatomic,copy)NSString* entityID;//动态或者产品自身的id
-@property(nonatomic,copy)NSString* entityUrl;//获取动态时可能会用
-@property(nonatomic,copy)NSString* userName;
-@property(nonatomic,copy)NSString* category;//产品或动态的分类
-@property(nonatomic,copy)NSString* createdBy;
-@property(nonatomic,copy)NSString* userType;//产品或动态的
+@property(nonatomic,strong)NSString* imageWidth;
+@property(nonatomic,strong)NSString* imageHeight;
+@property(nonatomic,strong)NSString* imageUrl;
+@property(nonatomic,strong)NSString* userImageUrl;
+@property(nonatomic,strong)NSString* content;
+@property(nonatomic,strong)NSString* entityID;//动态或者产品自身的id
+@property(nonatomic,strong)NSString* entityUrl;//获取动态时可能会用
+@property(nonatomic,strong)NSString* userName;
+@property(nonatomic,strong)NSString* category;//产品或动态的分类
+@property(nonatomic,strong)NSString* createdBy;
+@property(nonatomic,strong)NSString* userType;//产品或动态的
 
-@property(nonatomic,copy)NSString* myName;//登录用户的用户昵称
-@property(nonatomic,copy)NSString* myImageUrl;//登录用户的用户头像
-@property(nonatomic,copy)NSString* isFocused;
+@property(nonatomic,strong)NSString* myName;//登录用户的用户昵称
+@property(nonatomic,strong)NSString* myImageUrl;//登录用户的用户头像
+@property(nonatomic,strong)NSString* isFocused;
 
 @property(nonatomic,strong)LoadingView *loadingView;
 @end

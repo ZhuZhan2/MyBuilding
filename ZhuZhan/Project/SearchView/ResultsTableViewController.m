@@ -89,8 +89,13 @@
     if(self.flag == 0){
         [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                showArr = posts;
-                [self.tableView reloadData];
+                if(posts.count !=0){
+                    showArr = posts;
+                    [self.tableView reloadData];
+                }else{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有符合条件的内容" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];
+                }
             }
         } startIndex:startIndex keywords:self.searchStr noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
@@ -101,9 +106,13 @@
         NSLog(@"==>%@",self.dic);
         [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                showArr = posts;
-                NSLog(@"===>%d",showArr.count);
-                [self.tableView reloadData];
+                if(posts.count !=0){
+                    showArr = posts;
+                    [self.tableView reloadData];
+                }else{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有符合条件的内容" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];
+                }
             }
         } dic:self.dic startIndex:startIndex noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{

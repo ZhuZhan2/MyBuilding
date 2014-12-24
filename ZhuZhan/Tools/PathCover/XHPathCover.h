@@ -22,7 +22,7 @@ extern NSString *const XHBirthdayKey;
 @property (nonatomic, weak) id<XHPathCoverDelegate>delegate;
 // parallax background
 @property (nonatomic, strong) EGOImageView *bannerImageView;
-@property(nonatomic,copy)NSString* bannerPlaceholderImageName;
+@property(nonatomic,strong)NSString* bannerPlaceholderImageName;
 @property (nonatomic, strong) UIImageView *bannerImageViewWithImageEffects;
 
 // user info
