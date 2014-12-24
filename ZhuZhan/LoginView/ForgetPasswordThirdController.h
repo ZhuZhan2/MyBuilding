@@ -12,5 +12,7 @@
     UITextField *passWordField;
     UITextField *verifyPassWordField;
 }
-
+@property(nonatomic,strong)NSString *userId;
+@property(nonatomic,strong)NSString *cellPhone;
+@property(nonatomic,strong)NSString *barCode;
 @end

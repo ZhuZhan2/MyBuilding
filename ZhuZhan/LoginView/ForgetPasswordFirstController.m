@@ -179,20 +179,23 @@
         return;
     }
     
-    BOOL isPhone=[self isAllNumber:_phoneNumberTextField.text];
-    NSString* userName=isPhone?nil:_phoneNumberTextField.text;
-    NSString* cellPhone=isPhone?_phoneNumberTextField.text:nil;
+ //   BOOL isPhone=[self isAllNumber:_phoneNumberTextField.text];
+//    NSString* userName=isPhone?nil:_phoneNumberTextField.text;
+//    NSString* cellPhone=isPhone?_phoneNumberTextField.text:nil;
     
     [LoginModel GetIsExistWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            if ([posts[0] isEqualToString:@"1308"]) {
+            NSLog(@"%@",posts[0][@"data"][@"userId"]);
+            if ([[NSString stringWithFormat:@"%@",posts[0][@"status"][@"statusCode"]] isEqualToString:@"1300"]) {
                 ForgetPasswordSecondController *forgetSecondView = [[ForgetPasswordSecondController alloc] init];
+                forgetSecondView.userId = posts[0][@"data"][@"userId"];
+                forgetSecondView.cellPhone = posts[0][@"data"][@"cellPhone"];
                 [self.navigationController pushViewController:forgetSecondView animated:YES];
-            }else if ([posts[0] isEqualToString:@"1300"]){
+            }else if ([[NSString stringWithFormat:@"%@",posts[0][@"status"][@"statusCode"]] isEqualToString:@"1308"]){
                 [RemindView remindViewWithContent:@"该手机号/用户名未注册" superView:self.view centerY:240];
             }
         }
-    } userName:userName cellPhone:cellPhone noNetWork:nil];
+    } userName:_phoneNumberTextField.text noNetWork:nil];
     
 }
 

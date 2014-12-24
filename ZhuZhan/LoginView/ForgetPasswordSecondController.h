@@ -13,5 +13,6 @@
     UITextField *_yzmTextField;
     UITextField *accountField;
 }
-
+@property(nonatomic,strong)NSString *userId;
+@property(nonatomic,strong)NSString *cellPhone;
 @end

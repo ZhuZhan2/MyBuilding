@@ -29,6 +29,8 @@
 @property(nonatomic,strong)UIButton* registerBtn;
 @property(nonatomic,strong)UIButton *selectBtn;
 @property(nonatomic)BOOL isSelect;
+@property(nonatomic)int timeCount;
+@property(nonatomic,strong)UIButton *getCodeBtn;
 @end
 
 @implementation RegistViewController
@@ -83,11 +85,11 @@
     _yzmTextField.clearButtonMode =YES;
     [firstView addSubview:_yzmTextField];
     
-    UIButton *getCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    getCodeBtn.frame = CGRectMake(208,57,91,28);
-    [getCodeBtn setImage:[GetImagePath getImagePath:@"密码找回_15"] forState:UIControlStateNormal];
-    [getCodeBtn addTarget:self action:@selector(getVerifitionCode) forControlEvents:UIControlEventTouchUpInside];
-    [firstView addSubview:getCodeBtn];
+    self.getCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.getCodeBtn.frame = CGRectMake(208,57,91,28);
+    [self.getCodeBtn setBackgroundImage:[GetImagePath getImagePath:@"密码找回_15"] forState:UIControlStateNormal];
+    [self.getCodeBtn addTarget:self action:@selector(getVerifitionCode:) forControlEvents:UIControlEventTouchUpInside];
+    [firstView addSubview:self.getCodeBtn];
 
 }
 
@@ -215,8 +217,39 @@
 }
 
 
--(void)getVerifitionCode{
+-(void)getVerifitionCode:(UIButton*)btn{
     NSLog(@"用户申请发送验证码");
+    if (![self phoneNoErr:_phoneNumberTextField.text]) {
+        return;
+    }
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:_phoneNumberTextField.text forKey:@"cellPhone"];
+    [dic setValue:@"UserRegister" forKey:@"type"];
+    [LoginModel GenerateWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+            btn.enabled=NO;
+            self.timeCount=0;
+            [btn setBackgroundImage:[GetImagePath getImagePath:@"密码找回_03z"] forState:UIControlStateNormal];
+            [btn setTitle:@"60秒" forState:UIControlStateNormal];
+            [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countDownTime:) userInfo:nil repeats:YES];
+            
+        }
+    } dic:dic noNetWork:nil];
+}
+
+-(void)countDownTime:(NSTimer*)timer{
+    self.timeCount++;
+    if (self.timeCount==60) {
+        [self.getCodeBtn setBackgroundImage:[GetImagePath getImagePath:@"密码找回_15"] forState:UIControlStateNormal];
+        [self.getCodeBtn setTitle:nil forState:UIControlStateNormal];
+        self.getCodeBtn.enabled=YES;
+        [timer invalidate];
+    }else{
+        NSString* surplusTime=[NSString stringWithFormat:@"%d秒",60-self.timeCount];
+        [self.getCodeBtn setTitle:surplusTime forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark  开始注册－－－－－－－－－－
@@ -252,6 +285,11 @@
         return;
     }
     
+    if([_yzmTextField.text isEqualToString:@""]){
+        [self remindErrorView:@"请输入验证码！"];
+        return;
+    }
+    
     if (!accountField.text.length) {
         [self remindErrorView:@"请输入用户名"];
         return;
@@ -260,6 +298,7 @@
     if ([self isAllNumber:accountField.text]) {
         return;
     }
+    
     
     if(passWordField.text.length<6){
         [self remindErrorView:@"密码大于6位！"];

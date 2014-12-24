@@ -10,6 +10,8 @@
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "RemindView.h"
+#import "LoginModel.h"
+#import "MD5.h"
 @interface ForgetPasswordThirdController ()
 @property(nonatomic,strong)UIFont* font;
 @property(nonatomic,strong)UIButton* registerBtn;
@@ -67,7 +69,7 @@
     passWordField.delegate = self;
     passWordField.font=self.font;
     passWordField.textAlignment=NSTextAlignmentLeft;
-    passWordField.placeholder=@"填写新密码";
+    passWordField.placeholder=@"填写新密码6-24位";
     passWordField.returnKeyType=UIReturnKeyDone;
     passWordField.clearButtonMode =YES;
     passWordField.secureTextEntry = YES;
@@ -113,6 +115,11 @@
         return;
     }
     
+    if(passWordField.text.length<6){
+        [RemindView remindViewWithContent:@"密码大于6位！" superView:self.view centerY:210];
+        return;
+    }
+    
     if (![passWordField.text isEqualToString:verifyPassWordField.text]) {
         [RemindView remindViewWithContent:@"密码输入不一致，请重新输入" superView:self.view centerY:210];
         return;
@@ -129,7 +136,39 @@
         return;
     }
     
-    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:self.userId forKey:@"userId"];
+    [dic setValue:self.barCode forKey:@"barCode"];
+    [dic setValue:[MD5 md5HexDigest:passWordField.text] forKey:@"password"];
+    [dic setValue:self.cellPhone forKey:@"cellphone"];
+    [LoginModel FindPasswordWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self.navigationController popViewControllerAnimated:YES];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"修改成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
+    } dic:dic noNetWork:nil];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
+{
+    if(textField == passWordField){
+        NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        if ([toBeString length] > 24) {
+            passWordField.text = [toBeString substringToIndex:24];
+            return NO;
+        }
+        return YES;
+    }else if (textField == verifyPassWordField){
+        NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        if ([toBeString length] > 24) {
+            verifyPassWordField.text = [toBeString substringToIndex:24];
+            return NO;
+        }
+        return YES;
+    }else{
+        return YES;
+    }
 }
 @end
 

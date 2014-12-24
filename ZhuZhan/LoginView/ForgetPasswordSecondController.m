@@ -8,7 +8,7 @@
 
 #import "ForgetPasswordSecondController.h"
 #import "ForgetPasswordThirdController.h"
-
+#import "LoginModel.h"
 @interface ForgetPasswordSecondController ()<UITextFieldDelegate>
 @property(nonatomic,strong)UIFont* font;
 @property(nonatomic,strong)UIButton* registerBtn;
@@ -55,9 +55,11 @@
     _phoneNumberTextField.font=self.font;
     _phoneNumberTextField.textAlignment=NSTextAlignmentLeft;
     _phoneNumberTextField.placeholder=@"填写手机号";
+    _phoneNumberTextField.text = self.cellPhone;
     _phoneNumberTextField.returnKeyType=UIReturnKeyDone;
     _phoneNumberTextField.keyboardType =UIKeyboardTypePhonePad;
     _phoneNumberTextField.clearButtonMode =YES;
+    _phoneNumberTextField.enabled = NO;
     [firstView addSubview:_phoneNumberTextField];
     
     //新建验证码文本框
@@ -83,11 +85,22 @@
     if (![self phoneNoErr:_phoneNumberTextField.text]) {
         return;
     }
-    btn.enabled=NO;
-    self.timeCount=0;
-    [btn setBackgroundImage:[GetImagePath getImagePath:@"密码找回_03z"] forState:UIControlStateNormal];
-    [btn setTitle:@"60秒" forState:UIControlStateNormal];
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countDownTime:) userInfo:nil repeats:YES];
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:_phoneNumberTextField.text forKey:@"cellPhone"];
+    [dic setValue:@"FindPassword" forKey:@"type"];
+    [LoginModel GenerateWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+            btn.enabled=NO;
+            self.timeCount=0;
+            [btn setBackgroundImage:[GetImagePath getImagePath:@"密码找回_03z"] forState:UIControlStateNormal];
+            [btn setTitle:@"60秒" forState:UIControlStateNormal];
+            [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countDownTime:) userInfo:nil repeats:YES];
+            
+        }
+    } dic:dic noNetWork:nil];
 }
 
 -(void)countDownTime:(NSTimer*)timer{
@@ -126,6 +139,7 @@
     self.view.backgroundColor=RGBCOLOR(245, 246, 248);
     [self loadFirstView];
     [self loadRegisterBtn];
+    NSLog(@"%@",self.userId);
 }
 
 -(void)loadRegisterBtn{
@@ -139,8 +153,31 @@
 
 -(void)beginToCollect{
     NSLog(@"用户确认");
-    ForgetPasswordThirdController *forgetSubView = [[ForgetPasswordThirdController alloc] init];
-    [self.navigationController pushViewController:forgetSubView animated:YES];
+    if([_phoneNumberTextField.text isEqualToString:@""]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请填写手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
+    
+    if([_yzmTextField.text isEqualToString:@""]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请填写验证码" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:_phoneNumberTextField.text forKey:@"cellPhone"];
+    [dic setValue:_yzmTextField.text forKey:@"code"];
+    [dic setValue:@"FindPassword" forKey:@"type"];
+    [LoginModel VerifyCodeWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            ForgetPasswordThirdController *forgetSubView = [[ForgetPasswordThirdController alloc] init];
+            forgetSubView.userId = self.userId;
+            forgetSubView.cellPhone = _phoneNumberTextField.text;
+            forgetSubView.barCode = _yzmTextField.text;
+            [self.navigationController pushViewController:forgetSubView animated:YES];
+        }
+    } dic:dic noNetWork:nil];
 }
 
 - (void)didReceiveMemoryWarning {

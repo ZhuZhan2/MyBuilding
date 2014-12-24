@@ -22,7 +22,7 @@
     [UIView animateWithDuration:1 animations:^{
         remindView.alpha=1;
     } completion:^(BOOL finished) {
-        [NSTimer scheduledTimerWithTimeInterval:5 target:remindView selector:@selector(endAnimation) userInfo:nil repeats:NO];
+        [NSTimer scheduledTimerWithTimeInterval:2 target:remindView selector:@selector(endAnimation) userInfo:nil repeats:NO];
     }];
 }
 
