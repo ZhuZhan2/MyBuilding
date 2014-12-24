@@ -317,6 +317,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
             NSLog(@"===>%@",model.userName);
             [LoginSqlite insertData:model.userName datakey:@"userName"];
             [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
+            [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"保存成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil]show];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changName" object:nil];
         }
     } dic:parameter noNetWork:nil];
