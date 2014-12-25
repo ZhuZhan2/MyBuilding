@@ -29,7 +29,7 @@
     BOOL imageUrlExist=![model.a_imageUrl isEqualToString:@""];
     //动态图像
     if(imageUrlExist){
-        imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001"]];
+        imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"主站－人脉03"]];
         imageView.frame = CGRectMake(0, 0, 310,[model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310);
         imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_imageUrl]];
         [forCornerView addSubview:imageView];

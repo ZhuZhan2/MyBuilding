@@ -190,7 +190,6 @@
         {
             // 开始转圈圈
 			//[self.activityView startAnimating];
-            NSLog(@"afasdfasdfasdfasf");
             [__gifView startGif];
             // 隐藏箭头
 			self.arrowImage.hidden = YES;
