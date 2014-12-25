@@ -225,18 +225,26 @@
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:_phoneNumberTextField.text forKey:@"cellPhone"];
     [dic setValue:@"UserRegister" forKey:@"type"];
-    [LoginModel GenerateWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alertView show];
-            btn.enabled=NO;
-            self.timeCount=0;
-            [btn setBackgroundImage:[GetImagePath getImagePath:@"密码找回_03z"] forState:UIControlStateNormal];
-            [btn setTitle:@"60秒" forState:UIControlStateNormal];
-            [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countDownTime:) userInfo:nil repeats:YES];
-            
+    [LoginModel GetIsExistWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            if ([[NSString stringWithFormat:@"%@",posts[0][@"status"][@"statusCode"]] isEqualToString:@"1300"]) {
+                [self remindErrorView:@"手机号/用户名已存在请登陆"];
+            }else if ([[NSString stringWithFormat:@"%@",posts[0][@"status"][@"statusCode"]] isEqualToString:@"1308"]){
+                [LoginModel GenerateWithBlock:^(NSMutableArray *posts, NSError *error) {
+                    if(!error){
+                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                        [alertView show];
+                        btn.enabled=NO;
+                        self.timeCount=0;
+                        [btn setBackgroundImage:[GetImagePath getImagePath:@"密码找回_03z"] forState:UIControlStateNormal];
+                        [btn setTitle:@"60秒" forState:UIControlStateNormal];
+                        [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countDownTime:) userInfo:nil repeats:YES];
+                    }
+                } dic:dic noNetWork:nil];
+            }
         }
-    } dic:dic noNetWork:nil];
+    } userName:_phoneNumberTextField.text noNetWork:nil];
+   
 }
 
 -(void)countDownTime:(NSTimer*)timer{
@@ -330,9 +338,6 @@
                 [LoginSqlite insertData:[item objectForKey:@"deviceToken"] datakey:@"deviceToken"];
                 [LoginSqlite insertData:item[@"userName"] datakey:@"userName"];
                 [LoginSqlite insertData:@"Personal" datakey:@"userType"];
-//                if([self.delegate respondsToSelector:@selector(registComplete)]){
-//                    [self.delegate registComplete];
-//                }
                 RecommendProjectViewController *recProjectView = [[RecommendProjectViewController alloc] init];
                 [self.navigationController pushViewController:recProjectView animated:YES];
             }
