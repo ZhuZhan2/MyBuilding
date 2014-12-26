@@ -60,6 +60,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     self.title = @"人脉";
     
+    //NavigationItem设置属性
+     UIImageView *titleview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 103, 20)];
+     [titleview setImage:[GetImagePath getImagePath:@"主站－人脉04"]];
+     self.navigationItem.titleView = titleview;
+    
     
     //上拉刷新界面
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154) bannerPlaceholderImageName:@"bg001"];

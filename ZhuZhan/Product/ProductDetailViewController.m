@@ -256,7 +256,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [forCornerView addSubview:imageView];
         height+=imageView.frame.size.height;
     }
-    
     UIView* contentTotalView;
     //动态描述
     if (![self.content isEqualToString:@""]) {
