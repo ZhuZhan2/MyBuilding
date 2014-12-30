@@ -280,9 +280,9 @@
 
 - (void)commomRegister//账号密码的注册
 {
-    RecommendProjectViewController *recProjectView = [[RecommendProjectViewController alloc] init];
-    [self.navigationController pushViewController:recProjectView animated:YES];
-    return;
+//    RecommendProjectViewController *recProjectView = [[RecommendProjectViewController alloc] init];
+//    [self.navigationController pushViewController:recProjectView animated:YES];
+//    return;
     NSLog(@"共同注册部分");
     
     
@@ -314,6 +314,14 @@
     
     if(passWordField.text.length<6){
         [self remindErrorView:@"密码大于6位！"];
+        return;
+    }
+    
+    if(![self LetterNoErr:passWordField.text]){
+        return;
+    }
+    
+    if(![self NumberNoErr:passWordField.text]){
         return;
     }
     
@@ -370,15 +378,15 @@
 {
     if(textField == passWordField){
         NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        if ([toBeString length] > 24) {
-            passWordField.text = [toBeString substringToIndex:24];
+        if ([toBeString length] > 20) {
+            passWordField.text = [toBeString substringToIndex:20];
             return NO;
         }
         return YES;
     }else if (textField == verifyPassWordField){
         NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        if ([toBeString length] > 24) {
-            verifyPassWordField.text = [toBeString substringToIndex:24];
+        if ([toBeString length] > 20) {
+            verifyPassWordField.text = [toBeString substringToIndex:20];
             return NO;
         }
         return YES;
@@ -388,49 +396,29 @@
 }
 
 -(void)textFiledEditChanged:(NSNotification *)obj{
-    int MAX_CHARS = 20;
     UITextField *textField = (UITextField *)obj.object;
     NSString *toBeString = textField.text;
-    [self countTheStrLength:toBeString];
-    //NSLog(@"%d",[self countTheStrLength:toBeString]);
-//    NSString *lang = [[UITextInputMode currentInputMode] primaryLanguage]; // 键盘输入模式
-//    if ([lang isEqualToString:@"zh-Hans"]) { // 简体中文输入，包括简体拼音，健体五笔，简体手写
-//        UITextRange *selectedRange = [textField markedTextRange];
-//        //获取高亮部分
-//        UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
-//        // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
-//        if (!position) {
-//            if (toBeString.length > 20) {
-//                textField.text = [toBeString substringToIndex:20];
-//            }
-//        }
-//        // 有高亮选择的字符串，则暂不对文字进行统计和限制
-//        else{
-//            
-//        }
-//    }else{
-//        // 中文输入法以外的直接对其统计限制即可，不考虑其他语种情况
-//        if (toBeString.length > 20) {
-//            textField.text = [toBeString substringToIndex:20];
-//        }
-//    }
-}
-
-- (int)countTheStrLength:(NSString*)strtemp {
-    NSLog(@"%@",strtemp);
-    int strlength = 0;
-    char* p = (char*)[strtemp cStringUsingEncoding:NSUnicodeStringEncoding];
-    NSLog(@"%d",[strtemp lengthOfBytesUsingEncoding:NSUnicodeStringEncoding]);
-    for (int i=0 ; i<[strtemp lengthOfBytesUsingEncoding:NSUnicodeStringEncoding] ;i++) {
-        if (*p) {
-            p++;
-            strlength++;
+    NSString *lang = [[UITextInputMode currentInputMode] primaryLanguage]; // 键盘输入模式
+    if ([lang isEqualToString:@"zh-Hans"]) { // 简体中文输入，包括简体拼音，健体五笔，简体手写
+        UITextRange *selectedRange = [textField markedTextRange];
+        //获取高亮部分
+        UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+        // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
+        if (!position) {
+            if (toBeString.length > 20) {
+                textField.text = [toBeString substringToIndex:20];
+            }
         }
-        else {
-            p++;
+        // 有高亮选择的字符串，则暂不对文字进行统计和限制
+        else{
+            
+        }
+    }else{
+        // 中文输入法以外的直接对其统计限制即可，不考虑其他语种情况
+        if (toBeString.length > 20) {
+            textField.text = [toBeString substringToIndex:20];
         }
     }
-    return (strlength+1)/2;
 }
 
 
@@ -441,5 +429,33 @@
 
 -(void)dealloc{
     NSLog(@"注册dealloc");
+}
+
+-(BOOL)LetterNoErr:(NSString *)phone
+{
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
+    NSLog(@"%d",numberOfMatches);
+    if (numberOfMatches ==20) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"密码不能为全英文" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL)NumberNoErr:(NSString *)phone
+{
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[0-9]" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
+    NSLog(@"%d",numberOfMatches);
+    if (numberOfMatches ==20) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"密码不能为全数字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return NO;
+    }
+    return YES;
 }
 @end

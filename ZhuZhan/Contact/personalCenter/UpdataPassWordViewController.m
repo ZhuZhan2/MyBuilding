@@ -154,15 +154,15 @@
 {
     if(textField == newPassWordTextField){
         NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        if ([toBeString length] > 24) {
-            newPassWordTextField.text = [toBeString substringToIndex:24];
+        if ([toBeString length] > 20) {
+            newPassWordTextField.text = [toBeString substringToIndex:20];
             return NO;
         }
         return YES;
     }else if (textField == newAgainPassWordTextField){
         NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        if ([toBeString length] > 24) {
-            newAgainPassWordTextField.text = [toBeString substringToIndex:24];
+        if ([toBeString length] > 20) {
+            newAgainPassWordTextField.text = [toBeString substringToIndex:20];
             return NO;
         }
         return YES;
@@ -177,6 +177,15 @@
         [RemindView remindViewWithContent:@"密码大于6位" superView:self.view centerY:230];
         return;
     }
+    
+    if(![self LetterNoErr:newPassWordTextField.text]){
+        return;
+    }
+    
+    if(![self NumberNoErr:newPassWordTextField.text]){
+        return;
+    }
+    
     if(![newPassWordTextField.text isEqualToString:newAgainPassWordTextField.text]){
         [RemindView remindViewWithContent:@"密码输入不一致，请重新输入" superView:self.view centerY:230];
     }else{
@@ -197,5 +206,33 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(BOOL)LetterNoErr:(NSString *)phone
+{
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
+    NSLog(@"%d",numberOfMatches);
+    if (numberOfMatches ==20) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"密码不能为全英文" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL)NumberNoErr:(NSString *)phone
+{
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[0-9]" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
+    NSLog(@"%d",numberOfMatches);
+    if (numberOfMatches ==20) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"密码不能为全数字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return NO;
+    }
+    return YES;
 }
 @end
