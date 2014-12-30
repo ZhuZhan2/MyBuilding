@@ -429,6 +429,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }else if([model.a_category isEqualToString:@"Company"]){
         if([model.a_eventType isEqualToString:@"Actives"]){
             commentView = viewArr[indexPath.row];
+            NSLog(@"%d",indexPath.row);
             return commentView.frame.size.height;
         }else{
             return 50;

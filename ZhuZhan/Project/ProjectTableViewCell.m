@@ -62,7 +62,7 @@
     investmentLabel.text = @"投资额";
     [bgImgView addSubview:investmentLabel];
     
-    investmentcountLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,75,140,20)];
+    investmentcountLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,75,90,20)];
     investmentcountLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
     investmentcountLabel.textColor = [UIColor blackColor];
     investmentcountLabel.text = [NSString stringWithFormat:@"￥%@",model.a_investment];
@@ -74,7 +74,7 @@
     areaLabel.text = @"建筑面积";
     [bgImgView addSubview:areaLabel];
     
-    areacountLabel = [[UILabel alloc] initWithFrame:CGRectMake(130,75,140,20)];
+    areacountLabel = [[UILabel alloc] initWithFrame:CGRectMake(130,75,90,20)];
     areacountLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
     areacountLabel.textColor = [UIColor blackColor];
     areacountLabel.text = [NSString stringWithFormat:@"%@㎡",model.a_area];

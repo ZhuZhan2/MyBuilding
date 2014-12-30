@@ -107,9 +107,6 @@
 }
 
 -(void)beginToCollect{
-    self.navigationController.navigationBar.hidden=YES;
-    [self.navigationController popToRootViewControllerAnimated:YES];
-
     if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
         return;
@@ -143,7 +140,9 @@
     [dic setValue:self.cellPhone forKey:@"cellphone"];
     [LoginModel FindPasswordWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            [self.navigationController popViewControllerAnimated:YES];
+            self.navigationController.navigationBar.hidden=YES;
+            [self.navigationController popToRootViewControllerAnimated:YES];
+
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"修改成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
         }
