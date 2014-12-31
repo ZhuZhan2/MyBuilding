@@ -142,6 +142,10 @@
     verifyPassWordField.clearButtonMode =YES;
     verifyPassWordField.secureTextEntry = YES;
     [secondView addSubview:verifyPassWordField];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFiledEditChanged:)
+                                                name:@"UITextFieldTextDidChangeNotification"
+                                              object:accountField];
 }
 
 -(void)endEdit{
@@ -313,6 +317,14 @@
         return;
     }
     
+    if(![self LetterNoErr:passWordField.text]){
+        return;
+    }
+    
+    if(![self NumberNoErr:passWordField.text]){
+        return;
+    }
+    
     if([passWordField.text isEqualToString:@""]||[_phoneNumberTextField.text isEqualToString:@""]||[verifyPassWordField.text isEqualToString:@""])
     {
         [self remindErrorView:@"输入不完整请检查你的输入！"];
@@ -366,20 +378,46 @@
 {
     if(textField == passWordField){
         NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        if ([toBeString length] > 24) {
-            passWordField.text = [toBeString substringToIndex:24];
+        if ([toBeString length] > 20) {
+            passWordField.text = [toBeString substringToIndex:20];
             return NO;
         }
         return YES;
     }else if (textField == verifyPassWordField){
         NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        if ([toBeString length] > 24) {
-            verifyPassWordField.text = [toBeString substringToIndex:24];
+        if ([toBeString length] > 20) {
+            verifyPassWordField.text = [toBeString substringToIndex:20];
             return NO;
         }
         return YES;
     }else{
         return YES;
+    }
+}
+
+-(void)textFiledEditChanged:(NSNotification *)obj{
+    UITextField *textField = (UITextField *)obj.object;
+    NSString *toBeString = textField.text;
+    NSString *lang = [[UITextInputMode currentInputMode] primaryLanguage]; // 键盘输入模式
+    if ([lang isEqualToString:@"zh-Hans"]) { // 简体中文输入，包括简体拼音，健体五笔，简体手写
+        UITextRange *selectedRange = [textField markedTextRange];
+        //获取高亮部分
+        UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+        // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
+        if (!position) {
+            if (toBeString.length > 20) {
+                textField.text = [toBeString substringToIndex:20];
+            }
+        }
+        // 有高亮选择的字符串，则暂不对文字进行统计和限制
+        else{
+            
+        }
+    }else{
+        // 中文输入法以外的直接对其统计限制即可，不考虑其他语种情况
+        if (toBeString.length > 20) {
+            textField.text = [toBeString substringToIndex:20];
+        }
     }
 }
 
@@ -391,5 +429,33 @@
 
 -(void)dealloc{
     NSLog(@"注册dealloc");
+}
+
+-(BOOL)LetterNoErr:(NSString *)phone
+{
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
+    NSLog(@"%d",numberOfMatches);
+    if (numberOfMatches ==20) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"密码不能为全英文" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL)NumberNoErr:(NSString *)phone
+{
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[0-9]" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
+    NSLog(@"%d",numberOfMatches);
+    if (numberOfMatches ==20) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"密码不能为全数字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return NO;
+    }
+    return YES;
 }
 @end

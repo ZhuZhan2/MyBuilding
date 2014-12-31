@@ -137,8 +137,9 @@
 }
 
 -(void)callPhoneBtnClicked{
-    //NSString* str=@"tel://65383309";
-    NSString* str=@"tel://13641672889";
+    //NSString* str=@"tel://65383309";//前台
+    NSString* str=@"tel://13641672889";//gll
+    //NSString* str=@"tel://18755481541";//wxp
     if ([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:str]]) {
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:str]];
     }else{

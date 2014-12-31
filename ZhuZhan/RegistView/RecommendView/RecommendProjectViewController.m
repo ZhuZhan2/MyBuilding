@@ -45,7 +45,7 @@
     startIndex = 0;
     [self loadList];
     //集成刷新控件
-    [self setupRefresh];
+    //[self setupRefresh];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -132,7 +132,7 @@
             [self.tableView reloadData];
         }
         [self.tableView headerEndRefreshing];
-    } startIndex:startIndex noNetWork:nil];
+    } startIndex:0 noNetWork:nil];
 }
 
 #pragma mark 开始进入刷新状态

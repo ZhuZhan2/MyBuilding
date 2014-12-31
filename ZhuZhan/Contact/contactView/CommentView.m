@@ -23,9 +23,9 @@
     forCornerView.layer.masksToBounds=YES;
     
     CGFloat height=0;
-    
     EGOImageView *imageView;
-    NSLog(@"===>%@",model.a_imageUrl);
+    NSLog(@"Url===>%@",model.a_imageUrl);
+    NSLog(@"%@",model.a_id);
     BOOL imageUrlExist=![model.a_imageUrl isEqualToString:@""];
     //动态图像
     if(imageUrlExist){

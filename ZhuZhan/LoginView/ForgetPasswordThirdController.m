@@ -107,9 +107,6 @@
 }
 
 -(void)beginToCollect{
-    self.navigationController.navigationBar.hidden=YES;
-    [self.navigationController popToRootViewControllerAnimated:YES];
-
     if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
         return;
@@ -117,6 +114,14 @@
     
     if(passWordField.text.length<6){
         [RemindView remindViewWithContent:@"密码大于6位！" superView:self.view centerY:210];
+        return;
+    }
+    
+    if(![self LetterNoErr:passWordField.text]){
+        return;
+    }
+    
+    if(![self NumberNoErr:passWordField.text]){
         return;
     }
     
@@ -143,7 +148,9 @@
     [dic setValue:self.cellPhone forKey:@"cellphone"];
     [LoginModel FindPasswordWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            [self.navigationController popViewControllerAnimated:YES];
+            self.navigationController.navigationBar.hidden=YES;
+            [self.navigationController popToRootViewControllerAnimated:YES];
+
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"修改成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
         }
@@ -154,21 +161,49 @@
 {
     if(textField == passWordField){
         NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        if ([toBeString length] > 24) {
-            passWordField.text = [toBeString substringToIndex:24];
+        if ([toBeString length] > 20) {
+            passWordField.text = [toBeString substringToIndex:20];
             return NO;
         }
         return YES;
     }else if (textField == verifyPassWordField){
         NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        if ([toBeString length] > 24) {
-            verifyPassWordField.text = [toBeString substringToIndex:24];
+        if ([toBeString length] > 20) {
+            verifyPassWordField.text = [toBeString substringToIndex:20];
             return NO;
         }
         return YES;
     }else{
         return YES;
     }
+}
+
+-(BOOL)LetterNoErr:(NSString *)phone
+{
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
+    NSLog(@"%d",numberOfMatches);
+    if (numberOfMatches ==20) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"密码不能为全英文" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL)NumberNoErr:(NSString *)phone
+{
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[0-9]" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
+    NSLog(@"%d",numberOfMatches);
+    if (numberOfMatches ==20) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"密码不能为全数字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return NO;
+    }
+    return YES;
 }
 @end
 
