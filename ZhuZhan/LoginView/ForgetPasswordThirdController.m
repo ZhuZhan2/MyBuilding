@@ -183,10 +183,8 @@
     
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:nil];
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
-    NSLog(@"%d",numberOfMatches);
     if (numberOfMatches ==20) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"密码不能为全英文" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
+        [RemindView remindViewWithContent:@"密码不能为全英文" superView:self.view centerY:210];
         return NO;
     }
     return YES;
@@ -197,10 +195,8 @@
     
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[0-9]" options:NSRegularExpressionCaseInsensitive error:nil];
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
-    NSLog(@"%d",numberOfMatches);
     if (numberOfMatches ==20) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"密码不能为全数字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
+        [RemindView remindViewWithContent:@"密码不能为全数字" superView:self.view centerY:210];
         return NO;
     }
     return YES;
