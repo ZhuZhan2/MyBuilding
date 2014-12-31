@@ -11,6 +11,7 @@
 #import "PooCodeView.h"
 #import "RemindView.h"
 #import "LoginModel.h"
+#import "MBProgressHUD.h"
 @interface ForgetPasswordFirstController ()<UITextFieldDelegate>
 @property(nonatomic,strong)UIFont* font;
 @property(nonatomic,strong)UIButton* registerBtn;
@@ -196,7 +197,9 @@
                 [RemindView remindViewWithContent:@"该手机号/用户名未注册" superView:self.view centerY:240];
             }
         }
-    } userName:_phoneNumberTextField.text noNetWork:nil];
+    } userName:_phoneNumberTextField.text noNetWork:^{
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+    }];
     
 }
 

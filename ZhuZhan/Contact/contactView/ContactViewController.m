@@ -159,6 +159,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
+            [showArr removeAllObjects];
+            [viewArr removeAllObjects];
+            [_datasource removeAllObjects];
             showArr = posts;
             for(int i=0;i<showArr.count;i++){
                 ActivesModel *model = showArr[i];

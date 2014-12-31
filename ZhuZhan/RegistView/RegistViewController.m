@@ -244,10 +244,14 @@
                         [btn setTitle:@"60秒" forState:UIControlStateNormal];
                         [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countDownTime:) userInfo:nil repeats:YES];
                     }
-                } dic:dic noNetWork:nil];
+                } dic:dic noNetWork:^{
+                    [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+                }];
             }
         }
-    } userName:_phoneNumberTextField.text noNetWork:nil];
+    } userName:_phoneNumberTextField.text noNetWork:^{
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+    }];
    
 }
 
@@ -354,7 +358,9 @@
                 [self.navigationController pushViewController:recProjectView animated:YES];
             }
         }
-    } dic:parameters noNetWork:nil];
+    } dic:parameters noNetWork:^{
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+    }];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{

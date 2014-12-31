@@ -13,6 +13,7 @@
 #import "LoginModel.h"
 #import "MD5.h"
 #import "RemindView.h"
+#import "MBProgressHUD.h"
 @interface UpdataPassWordViewController ()
 
 @end
@@ -200,7 +201,9 @@
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"修改成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertView show];
             }
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        }];
     }
 }
 
