@@ -782,6 +782,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)loginCompleteWithDelayBlock:(void (^)())block{
+    HomePageViewController* homeVC=(HomePageViewController*)[[[[UIApplication sharedApplication]delegate]window]rootViewController];
+    UIButton* btn=[[UIButton alloc]init];
+    btn.tag=0;
+    [homeVC BtnClick:btn];
     if(block){
         block();
     }
