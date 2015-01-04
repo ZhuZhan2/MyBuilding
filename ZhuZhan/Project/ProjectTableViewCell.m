@@ -40,7 +40,6 @@
 
 
 -(void)addContent:(projectModel *)model{
-    stage = [ProjectStage JudgmentProjectStage:model];
     UIImageView *bgImgView = [[UIImageView alloc] init];
     if(flag == 0){
         [bgImgView setFrame:CGRectMake(15,0,291.5,260)];
@@ -112,9 +111,13 @@
     [arrowImage setImage:[GetImagePath getImagePath:@"全部项目_17"]];
     [bgImgView addSubview:arrowImage];
     
+    UIImageView *dianImage = [[UIImageView alloc] initWithFrame:CGRectMake(275,225,18,20)];
+    [dianImage setImage:[UIImage imageNamed:@"项目-首页_18a"]];
+    [self addSubview:dianImage];
+    
     UIButton *dianBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [dianBtn setFrame:CGRectMake(270,230,18,20)];
-    [dianBtn setBackgroundImage:[GetImagePath getImagePath:@"项目-首页_18a"] forState:UIControlStateNormal];
+    [dianBtn setFrame:CGRectMake(265,220,30,30)];
+    //dianBtn.backgroundColor = [UIColor redColor];
     [dianBtn addTarget:self action:@selector(dianBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:dianBtn];
     
@@ -152,11 +155,11 @@
     if([model.a_projectstage isEqualToString:@"1"]){
         [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];
     }else if([model.a_projectstage isEqualToString:@"2"]){
-        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_25a"]];
-    }else if([model.a_projectstage isEqualToString:@"3"]){
-        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_27a"]];
-    }else{
         [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_23a"]];
+    }else if([model.a_projectstage isEqualToString:@"3"]){
+        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_25a"]];
+    }else{
+        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_27a"]];
     }
     
     startdateLabel.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
