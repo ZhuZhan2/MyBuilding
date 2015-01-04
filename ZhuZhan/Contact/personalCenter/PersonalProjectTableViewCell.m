@@ -57,13 +57,13 @@
 -(void)setModel:(PersonalCenterModel *)model{
     contentLabel.text = @"项目有新评论";
     titleLabel.text = model.a_entityName;
-    if([model.a_projectStage isEqualToString:@"LandStage"]){
+    if([model.a_projectStage isEqualToString:@"1"]){
         [stageImage setImage:[GetImagePath getImagePath:@"人脉_57a"]];
-    }else if([model.a_projectStage isEqualToString:@"MainDesignStage"]){
+    }else if([model.a_projectStage isEqualToString:@"2"]){
         [stageImage setImage:[GetImagePath getImagePath:@"人脉_59a"]];
-    }else if([model.a_projectStage isEqualToString:@"MainConstructStage"]){
+    }else if([model.a_projectStage isEqualToString:@"3"]){
         [stageImage setImage:[GetImagePath getImagePath:@"人脉_61a"]];
-    }else if([model.a_projectStage isEqualToString:@"DecorateStage"]){
+    }else if([model.a_projectStage isEqualToString:@"4"]){
         [stageImage setImage:[GetImagePath getImagePath:@"人脉_63a"]];
     }else{
         [stageImage setImage:[GetImagePath getImagePath:@"人脉_57a"]];

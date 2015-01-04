@@ -57,8 +57,10 @@
         [imageView setImage:[GetImagePath getImagePath:@"人的详情88-02"]];
     }else if([model.a_projectstage isEqualToString:@"3"]){
         [imageView setImage:[GetImagePath getImagePath:@"人的详情88-03"]];
-    }else{
+    }else if([model.a_projectstage isEqualToString:@"4"]){
         [imageView setImage:[GetImagePath getImagePath:@"人的详情88-04"]];
+    }else{
+        [imageView setImage:[GetImagePath getImagePath:@"人的详情88-01"]];
     }
     ProjectLabel.text = model.a_projectName;
     addressLabel.text = model.a_landAddress;
