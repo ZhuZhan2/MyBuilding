@@ -245,7 +245,7 @@
     
     //大标题左边的大阶段图片
     UIImage* image=[GetImagePath getImagePath:@"筛选中01"];
-    CGRect frame=CGRectMake(20, 12, image.size.width, image.size.height);
+    CGRect frame=CGRectMake(20, 15, image.size.width, image.size.height);
     self.bigStageImageView=[[UIImageView alloc]initWithFrame:frame];
     self.bigStageImageView.image=image;
     [themeView addSubview:self.bigStageImageView];
@@ -559,7 +559,7 @@
             break;
         }
     }
-    
+
     NSArray* path=stageLight?@[@"筛选中01",@"筛选中02",@"筛选中03",@"筛选中04"]:@[@"01",@"02",@"03",@"04"];
     
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 37.5)];
@@ -567,7 +567,7 @@
     UIImage* image=[GetImagePath getImagePath:path[section]];
     CGRect frame=CGRectMake(0, 0, image.size.width, image.size.height);
     UIImageView* imageView=[[UIImageView alloc]initWithFrame:frame];
-    imageView.center=CGPointMake(23.5, 37.5*.5);
+    imageView.center=CGPointMake(23.5, 39.5*.5);
     imageView.image=image;
     [view addSubview:imageView];
     
