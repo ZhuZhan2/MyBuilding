@@ -83,8 +83,10 @@
         [stageImage setImage:[GetImagePath getImagePath:@"人脉_59a"]];
     }else if([model.a_projectStage isEqualToString:@"3"]){
         [stageImage setImage:[GetImagePath getImagePath:@"人脉_61a"]];
-    }else{
+    }else if([model.a_projectStage isEqualToString:@"4"]){
         [stageImage setImage:[GetImagePath getImagePath:@"人脉_63a"]];
+    }else{
+        [stageImage setImage:[GetImagePath getImagePath:@"人脉_57a"]];
     }
     
     titleLabel.text = model.a_title;

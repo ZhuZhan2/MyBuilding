@@ -158,13 +158,15 @@
         [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_23a"]];
     }else if([model.a_projectstage isEqualToString:@"3"]){
         [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_25a"]];
-    }else{
+    }else if([model.a_projectstage isEqualToString:@"4"]){
         [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_27a"]];
+    }else{
+        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];
     }
     
     startdateLabel.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     enddateLabel.text = [model.a_exceptFinishTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     addressLabel.text = model.a_landAddress;
-    zoneLabel.text = model.a_district;
+    zoneLabel.text = [model.a_district isEqualToString:@""]?model.a_district:[NSString stringWithFormat:@"%@ - ",model.a_district];
 }
 @end
