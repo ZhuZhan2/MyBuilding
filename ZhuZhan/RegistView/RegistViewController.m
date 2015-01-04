@@ -311,6 +311,13 @@
         return;
     }
     
+    NSRange accountFieldRange = [accountField.text rangeOfString:@" "];
+    if (accountFieldRange.location != NSNotFound) {
+        //有空格
+        [self remindErrorView:@"用户名不能包含空格"];
+        return;
+    }
+    
     if ([self isAllNumber:accountField.text]) {
         return;
     }
@@ -318,6 +325,13 @@
     
     if(passWordField.text.length<6){
         [self remindErrorView:@"密码大于6位！"];
+        return;
+    }
+    
+    NSRange passWordFieldRange = [passWordField.text rangeOfString:@" "];
+    if (passWordFieldRange.location != NSNotFound) {
+        //有空格
+        [self remindErrorView:@"密码不能包含空格"];
         return;
     }
     

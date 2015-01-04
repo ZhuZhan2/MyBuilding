@@ -1032,6 +1032,14 @@
 		D3B8F53F19D92716008F6164 /* RecognizerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B8F53E19D92716008F6164 /* RecognizerFactory.m */; };
 		D3B8F54719D94789008F6164 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B8F54619D94789008F6164 /* iflyMSC.framework */; };
 		D3B8F54919D9483B008F6164 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B8F54819D9483B008F6164 /* libz.dylib */; };
+		D3BAA7B21A58CB9A008E613F /* 人的详情88-01.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BAA7AA1A58CB99008E613F /* 人的详情88-01.png */; };
+		D3BAA7B31A58CB9A008E613F /* 人的详情88-01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BAA7AB1A58CB99008E613F /* 人的详情88-01@2x.png */; };
+		D3BAA7B41A58CB9A008E613F /* 人的详情88-02.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BAA7AC1A58CB9A008E613F /* 人的详情88-02.png */; };
+		D3BAA7B51A58CB9A008E613F /* 人的详情88-02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BAA7AD1A58CB9A008E613F /* 人的详情88-02@2x.png */; };
+		D3BAA7B61A58CB9A008E613F /* 人的详情88-03.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BAA7AE1A58CB9A008E613F /* 人的详情88-03.png */; };
+		D3BAA7B71A58CB9A008E613F /* 人的详情88-03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BAA7AF1A58CB9A008E613F /* 人的详情88-03@2x.png */; };
+		D3BAA7B81A58CB9A008E613F /* 人的详情88-04.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BAA7B01A58CB9A008E613F /* 人的详情88-04.png */; };
+		D3BAA7B91A58CB9A008E613F /* 人的详情88-04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BAA7B11A58CB9A008E613F /* 人的详情88-04@2x.png */; };
 		D3CF278A1A008EFF00DDA30D /* ContactBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF27891A008EFF00DDA30D /* ContactBackgroundView.m */; };
 		D3D1A7B719F8E9B40006F954 /* 公司－我的公司_05b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B519F8E9B40006F954 /* 公司－我的公司_05b.png */; };
 		D3D1A7B819F8E9B40006F954 /* 公司－我的公司_05b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B619F8E9B40006F954 /* 公司－我的公司_05b@2x.png */; };
@@ -2591,6 +2599,14 @@
 		D3B8F53E19D92716008F6164 /* RecognizerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecognizerFactory.m; sourceTree = "<group>"; };
 		D3B8F54619D94789008F6164 /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iflyMSC.framework; path = ZhuZhan/Project/SearchView/voice/iflyMSC.framework; sourceTree = "<group>"; };
 		D3B8F54819D9483B008F6164 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D3BAA7AA1A58CB99008E613F /* 人的详情88-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人的详情88-01.png"; sourceTree = "<group>"; };
+		D3BAA7AB1A58CB99008E613F /* 人的详情88-01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人的详情88-01@2x.png"; sourceTree = "<group>"; };
+		D3BAA7AC1A58CB9A008E613F /* 人的详情88-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人的详情88-02.png"; sourceTree = "<group>"; };
+		D3BAA7AD1A58CB9A008E613F /* 人的详情88-02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人的详情88-02@2x.png"; sourceTree = "<group>"; };
+		D3BAA7AE1A58CB9A008E613F /* 人的详情88-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人的详情88-03.png"; sourceTree = "<group>"; };
+		D3BAA7AF1A58CB9A008E613F /* 人的详情88-03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人的详情88-03@2x.png"; sourceTree = "<group>"; };
+		D3BAA7B01A58CB9A008E613F /* 人的详情88-04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人的详情88-04.png"; sourceTree = "<group>"; };
+		D3BAA7B11A58CB9A008E613F /* 人的详情88-04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人的详情88-04@2x.png"; sourceTree = "<group>"; };
 		D3CF27881A008EFF00DDA30D /* ContactBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactBackgroundView.h; sourceTree = "<group>"; };
 		D3CF27891A008EFF00DDA30D /* ContactBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactBackgroundView.m; sourceTree = "<group>"; };
 		D3D1A7B319F8A68F0006F954 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -3740,6 +3756,14 @@
 				04BC3E6F19D7E5B0006B5C7B /* +项目-首页_27a@2x.png */,
 				04BC3E7019D7E5B0006B5C7B /* +项目详情-3_03a.png */,
 				04BC3E7119D7E5B0006B5C7B /* +项目详情-3_03a@2x.png */,
+				D3BAA7AA1A58CB99008E613F /* 人的详情88-01.png */,
+				D3BAA7AB1A58CB99008E613F /* 人的详情88-01@2x.png */,
+				D3BAA7AC1A58CB9A008E613F /* 人的详情88-02.png */,
+				D3BAA7AD1A58CB9A008E613F /* 人的详情88-02@2x.png */,
+				D3BAA7AE1A58CB9A008E613F /* 人的详情88-03.png */,
+				D3BAA7AF1A58CB9A008E613F /* 人的详情88-03@2x.png */,
+				D3BAA7B01A58CB9A008E613F /* 人的详情88-04.png */,
+				D3BAA7B11A58CB9A008E613F /* 人的详情88-04@2x.png */,
 				04BC3E7219D7E5B0006B5C7B /* 01.png */,
 				04BC3E7319D7E5B0006B5C7B /* 010.png */,
 				04BC3E7419D7E5B0006B5C7B /* 010@2x.png */,
@@ -5206,6 +5230,7 @@
 				04BC40F319D7E5B3006B5C7B /* +项目-首页_27a@2x.png in Resources */,
 				5B43E9B119F7892A00FBB613 /* 公司－我的公司_02a@2x.png in Resources */,
 				5BE08DC81A3586EA00495EEB /* 010027.png in Resources */,
+				D3BAA7B21A58CB9A008E613F /* 人的详情88-01.png in Resources */,
 				04BC40EC19D7E5B3006B5C7B /* +项目-首页_21a.png in Resources */,
 				D3D9C9211A13446B001D3A64 /* 主菜单04a@2x.png in Resources */,
 				5BE08E391A3586EA00495EEB /* 020019@2x.png in Resources */,
@@ -5311,6 +5336,7 @@
 				04BC421419D7E5B3006B5C7B /* 公司－公司组织_05a@2x.png in Resources */,
 				04BC412D19D7E5B3006B5C7B /* bg001@2x.png in Resources */,
 				04BC41EE19D7E5B3006B5C7B /* 人脉－账号设置_18a@2x.png in Resources */,
+				D3BAA7B91A58CB9A008E613F /* 人的详情88-04@2x.png in Resources */,
 				5BE08DF21A3586EA00495EEB /* 010048.png in Resources */,
 				04BC419519D7E5B3006B5C7B /* 人脉_63a.png in Resources */,
 				5BE08E611A3586EA00495EEB /* 030009@2x.png in Resources */,
@@ -5318,6 +5344,7 @@
 				5BE08E7F1A3586EA00495EEB /* 030024@2x.png in Resources */,
 				5BE08DB61A3586EA00495EEB /* 010018.png in Resources */,
 				04BC412E19D7E5B3006B5C7B /* circle.png in Resources */,
+				D3BAA7B71A58CB9A008E613F /* 人的详情88-03@2x.png in Resources */,
 				5BE08E751A3586EA00495EEB /* 030019@2x.png in Resources */,
 				5BE08DAC1A3586EA00495EEB /* 010013.png in Resources */,
 				04BC420619D7E5B3006B5C7B /* 公司认证员工_08a@2x.png in Resources */,
@@ -5454,6 +5481,7 @@
 				04BC40F019D7E5B3006B5C7B /* +项目-首页_25a.png in Resources */,
 				5BE08E991A3586EA00495EEB /* 040010@2x.png in Resources */,
 				5B4C197419FA444800C6C57D /* 注册_07@2x.png in Resources */,
+				D3BAA7B61A58CB9A008E613F /* 人的详情88-03.png in Resources */,
 				5BE08DE71A3586EA00495EEB /* 010042@2x.png in Resources */,
 				04BC429E19D7E5B3006B5C7B /* 筛选中04.png in Resources */,
 				D3D74E8A19FA2FEC00ED8B62 /* 登录_24@2x.png in Resources */,
@@ -5537,6 +5565,7 @@
 				5B3209FA1A11CD8900D19279 /* 公司－我的公司_11a@2x.png in Resources */,
 				5BE08DEC1A3586EA00495EEB /* 010045.png in Resources */,
 				D3D3212F1A3ED4340009AEEA /* 注册_03@2x.png in Resources */,
+				D3BAA7B41A58CB9A008E613F /* 人的详情88-02.png in Resources */,
 				5BE08E581A3586EA00495EEB /* 030005.png in Resources */,
 				D3D74EC019FA308000ED8B62 /* 密码找回_15.png in Resources */,
 				5BE08E2A1A3586EA00495EEB /* 020012.png in Resources */,
@@ -5570,6 +5599,7 @@
 				04BC410919D7E5B3006B5C7B /* 019.png in Resources */,
 				5BE08E591A3586EA00495EEB /* 030005@2x.png in Resources */,
 				04BC412919D7E5B3006B5C7B /* bg-menuitem@2x.png in Resources */,
+				D3BAA7B51A58CB9A008E613F /* 人的详情88-02@2x.png in Resources */,
 				04BC425919D7E5B3006B5C7B /* 搜索结果_03a.png in Resources */,
 				04BC433F19D7E5B3006B5C7B /* 项目－项目专题_23a@2x.png in Resources */,
 				5BE08DFB1A3586EA00495EEB /* 010052@2x.png in Resources */,
@@ -5740,6 +5770,7 @@
 				04BC413E19D7E5B3006B5C7B /* icon.png in Resources */,
 				04BC418F19D7E5B3006B5C7B /* 人脉_57a.png in Resources */,
 				04BC415219D7E5B3006B5C7B /* Shadow-top.png in Resources */,
+				D3BAA7B31A58CB9A008E613F /* 人的详情88-01@2x.png in Resources */,
 				04BC411019D7E5B3006B5C7B /* 021@2x.png in Resources */,
 				04BC42BE19D7E5B3006B5C7B /* 项目-首页_08a.png in Resources */,
 				04BC414919D7E5B3006B5C7B /* icon__09@2x.png in Resources */,
@@ -5776,6 +5807,7 @@
 				D39937DA1A42B539007081C1 /* 推荐页面06a.png in Resources */,
 				5BE08E051A3586EA00495EEB /* 010057@2x.png in Resources */,
 				04BC429819D7E5B3006B5C7B /* 筛选中01.png in Resources */,
+				D3BAA7B81A58CB9A008E613F /* 人的详情88-04.png in Resources */,
 				04BC425B19D7E5B3006B5C7B /* 搜索结果_09a.png in Resources */,
 				04BC41A319D7E5B3006B5C7B /* 人脉－个人中心_05a.png in Resources */,
 				04BC42AC19D7E5B3006B5C7B /* 面部识别登录_07.png in Resources */,

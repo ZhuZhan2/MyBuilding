@@ -84,11 +84,11 @@
     if([model.a_projectstage isEqualToString:@"1"]){
         [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];
     }else if([model.a_projectstage isEqualToString:@"2"]){
-        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_25a"]];
-    }else if([model.a_projectstage isEqualToString:@"3"]){
-        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_27a"]];
-    }else{
         [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_23a"]];
+    }else if([model.a_projectstage isEqualToString:@"3"]){
+        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_25a"]];
+    }else{
+        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_27a"]];
     }
     [bgImgView addSubview:progressImage];
     

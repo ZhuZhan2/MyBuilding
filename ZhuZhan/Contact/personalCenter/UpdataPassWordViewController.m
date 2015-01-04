@@ -179,6 +179,13 @@
         return;
     }
     
+    NSRange newPassWordTextFieldRange = [newPassWordTextField.text rangeOfString:@" "];
+    if (newPassWordTextFieldRange.location != NSNotFound) {
+        //有空格
+        [RemindView remindViewWithContent:@"密码不能包含空格" superView:self.view centerY:230];
+        return;
+    }
+    
     if(![self LetterNoErr:newPassWordTextField.text]){
         return;
     }

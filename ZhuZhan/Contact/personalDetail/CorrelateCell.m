@@ -51,15 +51,14 @@
 }
 
 -(void)setModel:(projectModel *)model{
-    stage = [ProjectStage JudgmentProjectStage:model];
-    if([stage isEqualToString:@"1"]){
-        [imageView setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];
-    }else if([stage isEqualToString:@"2"]){
-        [imageView setImage:[GetImagePath getImagePath:@"+项目-首页_25a"]];
-    }else if([stage isEqualToString:@"3"]){
-        [imageView setImage:[GetImagePath getImagePath:@"+项目-首页_27a"]];
+    if([model.a_projectstage isEqualToString:@"1"]){
+        [imageView setImage:[GetImagePath getImagePath:@"人的详情88-01"]];
+    }else if([model.a_projectstage isEqualToString:@"2"]){
+        [imageView setImage:[GetImagePath getImagePath:@"人的详情88-02"]];
+    }else if([model.a_projectstage isEqualToString:@"3"]){
+        [imageView setImage:[GetImagePath getImagePath:@"人的详情88-03"]];
     }else{
-        [imageView setImage:[GetImagePath getImagePath:@"+项目-首页_23a"]];
+        [imageView setImage:[GetImagePath getImagePath:@"人的详情88-04"]];
     }
     ProjectLabel.text = model.a_projectName;
     addressLabel.text = model.a_landAddress;
