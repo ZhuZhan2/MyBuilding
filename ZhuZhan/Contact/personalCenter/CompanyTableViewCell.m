@@ -173,7 +173,7 @@
 -(void)setModel:(CompanyModel *)model{
     companyNameTextField.text = model.a_companyName;
     passWordTextField.text = @"**********";
-    addressTextField.text = model.a_companyLocation;
+    addressTextField.text = [NSString stringWithFormat:@"%@,%@,%@",model.a_companyProvince,model.a_companyCity,model.a_companyLocation];
     industryTextField.text = model.a_companyIndustry;
     contactTextField.text = model.a_companyContactName;
     phoneTextField.text = model.a_companyContactCellphone;

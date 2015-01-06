@@ -43,7 +43,7 @@
     }else{
         self.userImage = [ProjectStage ProjectStrStage:dict[@"userImage"]];
     }
-    self.provice = [ProjectStage ProjectStrStage:dict[@"provice"]];
+    self.provice = [ProjectStage ProjectStrStage:dict[@"province"]];
     self.city = [ProjectStage ProjectStrStage:dict[@"city"]];
     self.district = [ProjectStage ProjectStrStage:dict[@"district"]];
     if(![[ProjectStage ProjectStrStage:dict[@"backgroundImage"]] isEqualToString:@""]){

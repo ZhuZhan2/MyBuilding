@@ -107,6 +107,8 @@ static bool startListen =YES;
     
     _iFlySpeechUnderstander = [IFlySpeechUnderstander sharedInstance];
     _iFlySpeechUnderstander.delegate = self;
+    
+    [self startListening1];
 }
 
 -(void)leftBtnClick{

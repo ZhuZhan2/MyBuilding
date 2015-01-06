@@ -33,6 +33,10 @@
 @property (nonatomic,strong) NSString *a_companyContactEmail;
 //公司所在地
 @property (nonatomic,strong) NSString *a_companyLocation;
+//省
+@property (nonatomic,strong) NSString *a_companyProvince;
+//市
+@property (nonatomic,strong) NSString *a_companyCity;
 
 @property (nonatomic, strong) NSDictionary *dict;
 @end
