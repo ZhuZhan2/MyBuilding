@@ -155,6 +155,6 @@
 }
 
 -(void)setDataDic:(NSMutableDictionary *)dataDic{
-    newstring = [NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@",dataDic[@"keywords"],dataDic[@"companyName"],dataDic[@"landProvince"],dataDic[@"landDistrict"],dataDic[@"projectStage"],dataDic[@"projectCategory"]];
+    newstring = [NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@,%@",dataDic[@"keywords"],dataDic[@"companyName"],dataDic[@"landProvince"],dataDic[@"landCity"],dataDic[@"landDistrict"],dataDic[@"projectStage"],dataDic[@"projectCategory"]];
 }
 @end

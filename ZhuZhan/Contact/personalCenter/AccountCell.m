@@ -317,7 +317,7 @@ static int textFieldTag =0;
             NSLog(@"Cancel");
         }else {
             NSLog(@"%@,%@,%@",locationview.proviceDictionary[@"provice"],locationview.proviceDictionary[@"city"],locationview.proviceDictionary[@"county"]);
-            location.text = [NSString stringWithFormat:@"%@,%@",locationview.proviceDictionary[@"city"],locationview.proviceDictionary[@"county"]];
+            location.text = [NSString stringWithFormat:@"%@,%@,%@",locationview.proviceDictionary[@"provice"],locationview.proviceDictionary[@"city"],locationview.proviceDictionary[@"county"]];
             [self.delegate addLocation:@{@"provice":locationview.proviceDictionary[@"provice"],@"city":locationview.proviceDictionary[@"city"],@"district":locationview.proviceDictionary[@"county"]}];
         }
     }
@@ -398,17 +398,20 @@ static int textFieldTag =0;
 }
 
 -(void)setModel:(ContactModel *)model{
+    NSLog(@"asdfasdfasdfasdfasdfasdfsadf");
     userName.text =model.userName;
     password.text = @"**********";
     realName.text = model.realName;
     sex.text = model.sex;
-    if([model.city isEqualToString:@""]&&[model.district isEqualToString:@""]){
-        location.text = @"";
-    }else if([[NSString stringWithFormat:@"%@",model.city] isEqualToString:@"(null)"]&&[[NSString stringWithFormat:@"%@",model.district] isEqualToString:@"(null)"]){
-        location.text = @"";
-    }else{
-        location.text = [NSString stringWithFormat:@"%@,%@",model.city,model.district];
-    }
+//    if([model.city isEqualToString:@""]&&[model.district isEqualToString:@""]){
+//        location.text = @"";
+//    }else if([[NSString stringWithFormat:@"%@",model.city] isEqualToString:@"(null)"]&&[[NSString stringWithFormat:@"%@",model.district] isEqualToString:@"(null)"]){
+//        location.text = @"";
+//    }else{
+//        location.text = [NSString stringWithFormat:@"%@,%@",model.city,model.district];
+//    }
+    NSLog(@"%@,%@,%@",model.provice,model.city,model.district);
+    location.text = [NSString stringWithFormat:@"%@,%@,%@",model.provice,model.city,model.district];
     birthday.text = model.birthday;
     constellation.text = model.constellation;
     bloodType.text = model.bloodType;

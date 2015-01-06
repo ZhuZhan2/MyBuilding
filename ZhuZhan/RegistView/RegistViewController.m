@@ -288,7 +288,17 @@
 //    [self.navigationController pushViewController:recProjectView animated:YES];
 //    return;
     NSLog(@"共同注册部分");
+    if(![self LetterNoErr:passWordField.text]){
+        return;
+    }
     
+    if(![self NumberNoErr:passWordField.text]){
+        return;
+    }
+    
+    if(![self SymbolNoErr:passWordField.text]){
+        return;
+    }
     
     if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
@@ -488,5 +498,21 @@
         return NO;
     }
     return YES;
+}
+
+-(BOOL)SymbolNoErr:(NSString *)phone
+{
+    NSString *regex = @"[_@-]";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    BOOL isValid = [predicate evaluateWithObject:phone];
+    NSLog(@"%d",isValid);
+//    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[@-_]+" options:NSRegularExpressionCaseInsensitive error:nil];
+//    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
+//    NSLog(@"%d",numberOfMatches);
+//    if (numberOfMatches ==20) {
+//        [self remindErrorView:@"密码不能为全数字"];
+//        return NO;
+//    }
+    return isValid;
 }
 @end

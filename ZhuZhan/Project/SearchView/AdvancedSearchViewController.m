@@ -64,6 +64,7 @@
     [dataDic setValue:@"" forKey:@"keywords"];
     [dataDic setValue:@"" forKey:@"companyName"];
     [dataDic setValue:@"" forKey:@"landProvince"];
+    [dataDic setValue:@"" forKey:@"landCity"];
     [dataDic setValue:@"" forKey:@"landDistrict"];
     [dataDic setValue:@"" forKey:@"projectStage"];
     [dataDic setValue:@"" forKey:@"projectCategory"];
@@ -161,7 +162,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row == 0){
-        return  350;
+        return  300;
     }else if (indexPath.row == 1){
         return 44;
     }else{
@@ -300,14 +301,17 @@
     [dic setValue:arr[0] forKey:@"keywords"];
     [dic setValue:arr[1] forKey:@"companyName"];
     [dic setValue:arr[2] forKey:@"landProvince"];
-    [dic setValue:arr[3] forKey:@"landDistrict"];
-    [dic setValue:arr[4] forKey:@"projectStage"];
-    [dic setValue:arr[5] forKey:@"projectCategory"];
+    [dic setValue:arr[3] forKey:@"landCity"];
+    [dic setValue:arr[4] forKey:@"landDistrict"];
+    [dic setValue:arr[5] forKey:@"projectStage"];
+    [dic setValue:arr[6] forKey:@"projectCategory"];
     return dic;
 }
 
 -(void)multipleChose:(int)index{
     if(index == 0){
+        [locationview removeFromSuperview];
+        locationview = nil;
         multipleChoseView = [[MultipleChoiceViewController alloc] init];
         multipleChoseView.arr = [[NSMutableArray alloc] initWithObjects:@"土地信息阶段",@"主体设计阶段",@"主体施工阶段",@"装修阶段", nil];
         multipleChoseView.flag = 0;
@@ -315,6 +319,8 @@
         [multipleChoseView.view setFrame:CGRectMake(0, 0, 272, 270)];
         [self presentPopupViewController:multipleChoseView animationType:MJPopupViewAnimationFade flag:0];
     }else if(index == 1){
+        [locationview removeFromSuperview];
+        locationview = nil;
         multipleChoseView = [[MultipleChoiceViewController alloc] init];
         multipleChoseView.arr = [[NSMutableArray alloc] initWithObjects:@"工业",@"酒店及餐饮",@"商务办公",@"住宅/经济适用房",@"公用事业设施（教育、医疗、科研、基础建设等）",@"其他", nil];
         multipleChoseView.flag = 1;
@@ -322,30 +328,9 @@
         [multipleChoseView.view setFrame:CGRectMake(0, 0, 272, 370)];
         [self presentPopupViewController:multipleChoseView animationType:MJPopupViewAnimationFade flag:0];
     }else if (index == 2){
-        NSString *path = [[NSBundle mainBundle]pathForResource:@"AreaList" ofType:@"plist"];
-        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
-        if(singleView == nil){
-            singleView = [[SinglePickerView alloc]initWithTitle:CGRectMake(0, 0, 320, 260) title:nil Arr:[dict allKeys] delegate:self];
-            singleView.tag = 0;
-            [singleView showInView:self.view];
-        }
-    }else{
-        NSMutableArray *arr = [[NSMutableArray alloc] init];
-        NSString *path = [[NSBundle mainBundle]pathForResource:@"AreaList" ofType:@"plist"];
-        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
-        if([dataDic[@"landProvince"] isEqualToString:@""]){
-            for (NSString *key in [dict allKeys]) {
-                for(NSString *string in dict[key]){
-                    [arr addObject:string];
-                }
-            }
-        }else{
-            [arr addObjectsFromArray:dict[dataDic[@"landProvince"]]];
-        }
-        if(singleView == nil){
-            singleView = [[SinglePickerView alloc]initWithTitle:CGRectMake(0, 0, 320, 260) title:nil Arr:arr delegate:self];
-            singleView.tag = 1;
-            [singleView showInView:self.view];
+        if(locationview == nil){
+            locationview = [[LocateView alloc] initWithTitle:CGRectMake(0, 0, 320, 260) title:nil delegate:self];
+            [locationview showInView:self.view];
         }
     }
 }
@@ -421,28 +406,17 @@
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(actionSheet.tag == 0){
-        singleView = (SinglePickerView *)actionSheet;
-        if(buttonIndex == 0) {
-            NSLog(@"Cancel");
-            [singleView removeFromSuperview];
-            singleView = nil;
-        }else {
-            [dataDic setValue:singleView.selectStr forKey:@"landProvince"];
-            [singleView removeFromSuperview];
-            singleView = nil;
-        }
-    }else{
-        singleView = (SinglePickerView *)actionSheet;
-        if(buttonIndex == 0){
-            NSLog(@"Cancel");
-            [singleView removeFromSuperview];
-            singleView = nil;
-        }else{
-            [dataDic setValue:singleView.selectStr forKey:@"landDistrict"];
-            [singleView removeFromSuperview];
-            singleView = nil;
-        }
+    locationview = (LocateView *)actionSheet;
+    if(buttonIndex == 0) {
+        NSLog(@"Cancel");
+        [locationview removeFromSuperview];
+        locationview = nil;
+    }else {
+        [dataDic setValue:locationview.proviceDictionary[@"provice"] forKey:@"landProvince"];
+        [dataDic setValue:locationview.proviceDictionary[@"city"] forKey:@"landCity"];
+        [dataDic setValue:locationview.proviceDictionary[@"county"] forKey:@"landDistrict"];
+        [locationview removeFromSuperview];
+        locationview = nil;
     }
     [_tableView reloadData];
 }

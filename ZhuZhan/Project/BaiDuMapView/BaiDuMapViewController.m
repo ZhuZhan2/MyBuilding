@@ -479,7 +479,6 @@ int j;
     [ProjectApi GetMapSearchWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             CGPathCloseSubpath(pathRef);
-            showArr=posts;
             int count = 0;
             if(posts.count>26){
                 count = 26;
@@ -497,6 +496,7 @@ int j;
                 if (CGPathContainsPoint(pathRef, NULL, locationConverToImage, NO)) {
                     
                     NSLog(@"point in path!");
+                    [showArr addObject:model];
                     annotationPoint = [[BMKPointAnnotation alloc]init];
                     CLLocationCoordinate2D coor;
                     coor.latitude = testLocation.latitude;
