@@ -42,7 +42,7 @@
     }
     
     NSArray* secondStrs=[self.delegate getBlueTwoLinesWithStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
-    UIView* view2=[MyFactory getBlueThreeTypesTwoLinesWithFirstStr:@[@"土地面积",@"土地容积率",@"地块用途"] secondStr:secondStrs];
+    UIView* view2=[MyFactory getBlueThreeTypesTwoLinesWithFirstStr:@[@"土地面积(㎡)",@"土地容积率",@"地块用途"] secondStr:secondStrs];
     
     NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     UIView* view3=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];
@@ -69,7 +69,7 @@
     UIView* view0=[MyFactory getThreeLinesTitleViewWithTitle:@"项目立项" titleImage:[GetImagePath getImagePath:@"icon01"] dataThreeStrs:threeStrs];
     
     NSArray* sixStrs=[self.delegate getBlueTwoLinesWithStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
-    UIView* view1=[MyFactory getBlueTwoLinesWithFirstStr:@[@"预计开工时间",@"建筑层高",@"外资参与",@"预计竣工时间",@"投资额",@"建筑面积"] secondStr:sixStrs];
+    UIView* view1=[MyFactory getBlueTwoLinesWithFirstStr:@[@"预计开工时间",@"建筑层高(层)",@"外资参与",@"预计竣工时间",@"投资额(百万)",@"建筑面积(㎡)"] secondStr:sixStrs];
     
     NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
     UIView* view2=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];

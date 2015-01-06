@@ -334,6 +334,10 @@
         return;
     }
     
+    if (![self isRule:passWordField.text]) {
+        return;
+    }
+    
     if(![self LetterNoErr:passWordField.text]){
         return;
     }
@@ -379,6 +383,17 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.view endEditing:YES];
     return YES;
+}
+
+-(BOOL)isRule:(NSString*)phone{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z0-9@_-]" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
+    if (numberOfMatches ==phone.length) {
+        return YES;
+    }else{
+        [self remindErrorView:@"密码不符合规则"];
+        return NO;
+    }
 }
 
 -(BOOL)isAllNumber:(NSString*)numbers{
@@ -455,8 +470,7 @@
     
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:nil];
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
-    NSLog(@"英文 ==> %d",numberOfMatches);
-    if (numberOfMatches ==20) {
+    if (numberOfMatches ==phone.length) {
         [self remindErrorView:@"密码不能为全英文"];
         return NO;
     }
@@ -468,8 +482,7 @@
     
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[0-9]" options:NSRegularExpressionCaseInsensitive error:nil];
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
-    NSLog(@"数字 ==> %d",numberOfMatches);
-    if (numberOfMatches ==20) {
+    if (numberOfMatches ==phone.length) {
         [self remindErrorView:@"密码不能为全数字"];
         return NO;
     }
