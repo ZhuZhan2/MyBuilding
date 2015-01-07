@@ -397,81 +397,84 @@ int j;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    
-    UITouch *touch = [touches anyObject];
-    
-    CGPoint location = [touch locationInView:imageView];
-    
-    //创建path
-    
-    pathRef=CGPathCreateMutable();
-    
-    CGPathMoveToPoint(pathRef, NULL, location.x, location.y);
-    
-    CLLocationCoordinate2D coordinate = [_mapView convertPoint:location toCoordinateFromView:_mapView];
-    [coordinates addObject:[NSValue valueWithMKCoordinate:coordinate]];
-    
+    if(imageView){
+        UITouch *touch = [touches anyObject];
+        
+        CGPoint location = [touch locationInView:imageView];
+        
+        //创建path
+        
+        pathRef=CGPathCreateMutable();
+        
+        CGPathMoveToPoint(pathRef, NULL, location.x, location.y);
+        
+        CLLocationCoordinate2D coordinate = [_mapView convertPoint:location toCoordinateFromView:_mapView];
+        [coordinates addObject:[NSValue valueWithMKCoordinate:coordinate]];
+    }
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-    
-    UITouch *touch = [touches anyObject];
-    
-    CGPoint location = [touch locationInView:imageView];
-    
-    CGPoint pastLocation = [touch previousLocationInView:imageView];
-    
-    //画线
-    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), pastLocation.x, pastLocation.y);
-    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), location.x, location.y);
-    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1.0, 0.0, 0.0, 1.0);  //颜色
-    CGContextDrawPath(UIGraphicsGetCurrentContext(), kCGPathFillStroke);
-    imageView.image=UIGraphicsGetImageFromCurrentImageContext();
-    
-    //更新Path
-    
-    CGPathAddLineToPoint(pathRef, NULL, location.x, location.y);
-    
-    CLLocationCoordinate2D coordinate = [_mapView convertPoint:location toCoordinateFromView:_mapView];
-    [coordinates addObject:[NSValue valueWithMKCoordinate:coordinate]];
+    if(imageView){
+        UITouch *touch = [touches anyObject];
+        
+        CGPoint location = [touch locationInView:imageView];
+        
+        CGPoint pastLocation = [touch previousLocationInView:imageView];
+        
+        //画线
+        CGContextMoveToPoint(UIGraphicsGetCurrentContext(), pastLocation.x, pastLocation.y);
+        CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), location.x, location.y);
+        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1.0, 0.0, 0.0, 1.0);  //颜色
+        CGContextDrawPath(UIGraphicsGetCurrentContext(), kCGPathFillStroke);
+        imageView.image=UIGraphicsGetImageFromCurrentImageContext();
+        
+        //更新Path
+        
+        CGPathAddLineToPoint(pathRef, NULL, location.x, location.y);
+        
+        CLLocationCoordinate2D coordinate = [_mapView convertPoint:location toCoordinateFromView:_mapView];
+        [coordinates addObject:[NSValue valueWithMKCoordinate:coordinate]];
+    }
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    UITouch *touch = [touches anyObject];
-    CGPoint location = [touch locationInView:imageView];
-    CLLocationCoordinate2D coordinate = [_mapView convertPoint:location toCoordinateFromView:_mapView];
-    [coordinates addObject:[NSValue valueWithMKCoordinate:coordinate]];
-    
-    NSInteger numberOfPoints = [coordinates count];
-    
-    if (numberOfPoints > 2)
-    {
-        double maxLongitude=-9999;
-        double minLongitude=9999;
-        double maxLatitude=-9999;
-        double minLatitude=9999;
+    if(imageView){
+        UITouch *touch = [touches anyObject];
+        CGPoint location = [touch locationInView:imageView];
+        CLLocationCoordinate2D coordinate = [_mapView convertPoint:location toCoordinateFromView:_mapView];
+        [coordinates addObject:[NSValue valueWithMKCoordinate:coordinate]];
         
-        CLLocationCoordinate2D points[numberOfPoints];
-        for (NSInteger i = 0; i < numberOfPoints; i++) {
-            points[i] = [coordinates[i] MKCoordinateValue];
-            if (points[i].longitude>maxLongitude) {
-                maxLongitude=points[i].longitude;
-            }else if (points[i].longitude<minLongitude){
-                minLongitude=points[i].longitude;
+        NSInteger numberOfPoints = [coordinates count];
+        
+        if (numberOfPoints > 2)
+        {
+            double maxLongitude=-9999;
+            double minLongitude=9999;
+            double maxLatitude=-9999;
+            double minLatitude=9999;
+            
+            CLLocationCoordinate2D points[numberOfPoints];
+            for (NSInteger i = 0; i < numberOfPoints; i++) {
+                points[i] = [coordinates[i] MKCoordinateValue];
+                if (points[i].longitude>maxLongitude) {
+                    maxLongitude=points[i].longitude;
+                }else if (points[i].longitude<minLongitude){
+                    minLongitude=points[i].longitude;
+                }
+                if (points[i].latitude>maxLatitude){
+                    maxLatitude=points[i].latitude;
+                }else if (points[i].latitude<minLatitude){
+                    minLatitude=points[i].latitude;
+                }
+                
             }
-            if (points[i].latitude>maxLatitude){
-                maxLatitude=points[i].latitude;
-            }else if (points[i].latitude<minLatitude){
-                minLatitude=points[i].latitude;
-            }
-
+            polygon = [BMKPolygon polygonWithCoordinates:points count:numberOfPoints];
+            [_mapView addOverlay:polygon];
+            
+            CLLocationCoordinate2D centerLocation=CLLocationCoordinate2DMake((maxLatitude+minLatitude)*0.5, (maxLongitude+minLongitude)*.5);
+            
+            [self getMapSearch:centerLocation];
         }
-        polygon = [BMKPolygon polygonWithCoordinates:points count:numberOfPoints];
-        [_mapView addOverlay:polygon];
-        
-        CLLocationCoordinate2D centerLocation=CLLocationCoordinate2DMake((maxLatitude+minLatitude)*0.5, (maxLongitude+minLongitude)*.5);
-
-        [self getMapSearch:centerLocation];
     }
 }
 

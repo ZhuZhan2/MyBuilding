@@ -288,17 +288,6 @@
 //    [self.navigationController pushViewController:recProjectView animated:YES];
 //    return;
     NSLog(@"共同注册部分");
-    if(![self LetterNoErr:passWordField.text]){
-        return;
-    }
-    
-    if(![self NumberNoErr:passWordField.text]){
-        return;
-    }
-    
-    if(![self SymbolNoErr:passWordField.text]){
-        return;
-    }
     
     if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];

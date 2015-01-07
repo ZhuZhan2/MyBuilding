@@ -400,7 +400,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }
         cell.selectionStyle = NO;
         [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [cell.contentView addSubview:viewArr[indexPath.row]];
+        productView = viewArr[indexPath.row];
+        productView.indexpath = indexPath;
+        productView.delegate = self;
+        [cell.contentView addSubview:productView];
         return cell;
     }else{
         NSString *CellIdentifier = [NSString stringWithFormat:@"ContactTableViewCell"];

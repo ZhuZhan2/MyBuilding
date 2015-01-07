@@ -20,6 +20,7 @@
 #import "CompanyModel.h"
 #import "LoadingView.h"
 #import "MyTableView.h"
+#import "ContactProductView.h"
 @interface ContactViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate,showControllerDelegate,HeadImageDelegate,CommentViewDelegate,AddCommentDelegate,ErrorViewDelegate,ProductDetailDelegate,LoginViewDelegate>{
     NSMutableArray *_datasource;
     ACTimeScroller *_timeScroller;
@@ -27,6 +28,7 @@
     NSMutableArray *showArr;
     NSMutableArray *viewArr;
     CommentView *commentView;
+    ContactProductView *productView;
     int startIndex;
     AddCommentViewController *addCommentView;
     NSIndexPath *indexpath;

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "HeadImageDelegate.h"
 @interface ContactProductView : UIView
+@property(nonatomic,weak)id<HeadImageDelegate>delegate;
+@property(nonatomic,strong)NSIndexPath *indexpath;
 -(instancetype)initWithUsrImgUrl:(NSString*)usrImgUrl productImgUrl:(NSString*)productImgUrl productContent:(NSString*)productContent;
 @end
