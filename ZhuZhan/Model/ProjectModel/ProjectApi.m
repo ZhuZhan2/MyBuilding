@@ -275,6 +275,10 @@
         return nil;
     }
     NSString *stage = dic[@"projectStage"];
+    stage = [stage stringByReplacingOccurrencesOfString:@"土地信息阶段" withString:@"1"];
+    stage = [stage stringByReplacingOccurrencesOfString:@"主体设计阶段" withString:@"2"];
+    stage = [stage stringByReplacingOccurrencesOfString:@"主体施工阶段" withString:@"3"];
+    stage = [stage stringByReplacingOccurrencesOfString:@"装修阶段" withString:@"4"];
     stage = [stage stringByReplacingOccurrencesOfString:@"+" withString:@","];
     NSString *category = dic[@"projectCategory"];
     category = [category stringByReplacingOccurrencesOfString:@"+" withString:@","];

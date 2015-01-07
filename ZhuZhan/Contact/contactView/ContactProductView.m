@@ -40,10 +40,16 @@
 
 -(void)setUp{
     EGOImageView* userImageView=[[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a"]];
+    userImageView.imageURL = [NSURL URLWithString:self.usrImgUrl];
     [userImageView setFrame:CGRectMake(10, 6.5, 37, 37)];
     userImageView.layer.masksToBounds = YES;
     userImageView.layer.cornerRadius = 3;
     [self addSubview:userImageView];
+    
+    UIButton *headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [headBtn setFrame:CGRectMake(10, 6.5, 37, 37)];
+    [headBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:headBtn];
     
     UIImageView* stageImageView=[[UIImageView alloc]initWithFrame:CGRectMake(62, 18.5, 12, 13)];
     stageImageView.image=[GetImagePath getImagePath:@"人脉－个人中心_06a"];
@@ -82,5 +88,11 @@
     remindLabel.textColor=RGBCOLOR(155, 155, 155);
     height=remindLabel.frame.origin.y+remindLabel.frame.size.height;
     self.frame=CGRectMake(0, 0, 320, height+10);
+}
+
+-(void)btnClick:(UIButton *)button{
+    if([self.delegate respondsToSelector:@selector(HeadImageAction:)]){
+        [self.delegate HeadImageAction:_indexpath];
+    }
 }
 @end

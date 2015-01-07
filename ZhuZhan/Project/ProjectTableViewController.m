@@ -306,7 +306,7 @@
         tempLabel.textAlignment = NSTextAlignmentCenter;
         NSMutableArray* localDatas=[ProjectSqlite loadList];
         if(localDatas.count !=0){
-            tempLabel.text = [NSString stringWithFormat:@"历史游览记录"];
+            tempLabel.text = [NSString stringWithFormat:@"历史浏览记录"];
         }else{
             tempLabel.text = [NSString stringWithFormat:@"推荐项目"];
         }
