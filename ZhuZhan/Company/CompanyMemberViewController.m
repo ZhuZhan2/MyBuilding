@@ -163,9 +163,9 @@
         cell=[[CompanyMemberCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
         //暂时移除，目前版本不需要右边的符号
         //[cell.rightBtn addTarget:self action:@selector(chooseApprove:) forControlEvents:UIControlEventTouchUpInside];
-        UIButton* btn=[[UIButton alloc]initWithFrame:cell.userImageView.bounds];
-        [btn addTarget:self action:@selector(chooseUserImage:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.userImageView addSubview:btn];
+//        UIButton* btn=[[UIButton alloc]initWithFrame:cell.userImageView.bounds];
+//        [btn addTarget:self action:@selector(chooseUserImage:) forControlEvents:UIControlEventTouchUpInside];
+//        [cell.userImageView addSubview:btn];
     }
     //cell.rightBtn.hidden=[[self.showArr[indexPath.row] a_id] isEqualToString:[LoginSqlite getdata:@"userId"]]?YES:NO;
     [cell setModel:self.showArr[indexPath.row] indexPathRow:indexPath.row];

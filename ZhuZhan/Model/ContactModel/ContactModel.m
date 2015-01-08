@@ -240,13 +240,6 @@
             }else{
                 [mutablePosts addObject:@"null"];
             }
-            NSMutableArray *arr = [[NSMutableArray alloc] init];
-            for(NSDictionary *item in JSON[@"d"][@"data"][@"userProjects"]){
-                projectModel *model = [[projectModel alloc] init];
-                [model setDict:item];
-                [arr addObject:model];
-            }
-            [mutablePosts addObject:arr];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }

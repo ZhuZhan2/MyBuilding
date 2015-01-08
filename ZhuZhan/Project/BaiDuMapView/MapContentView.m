@@ -45,10 +45,10 @@
     nameLabel.text = model.a_projectName;
     [bgImgView addSubview:nameLabel];
     
-    UILabel *investmentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,51,50,20)];
+    UILabel *investmentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,51,85,20)];
     investmentLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
     investmentLabel.textColor = BlueColor;
-    investmentLabel.text = @"投资额";
+    investmentLabel.text = @"投资额(百万)";
     [bgImgView addSubview:investmentLabel];
     
     UILabel *investmentcountLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,71,140,20)];
@@ -57,10 +57,10 @@
     investmentcountLabel.text = model.a_investment;
     [bgImgView addSubview:investmentcountLabel];
     
-    UILabel *areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(120,51,60,20)];
+    UILabel *areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(120,51,75,20)];
     areaLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
     areaLabel.textColor = BlueColor;
-    areaLabel.text = @"建筑面积";
+    areaLabel.text = @"建筑面积㎡";
     [bgImgView addSubview:areaLabel];
     
     UILabel *areacountLabel = [[UILabel alloc] initWithFrame:CGRectMake(120,71,140,20)];

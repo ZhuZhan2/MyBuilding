@@ -16,7 +16,7 @@
 /*
  * @brief desingated initializer
  */
-- (id)initWithCenter:(CGPoint)center fileURL:(NSURL*)fileURL;
+- (id)initWithCenter:(CGPoint)center fileURL:(NSURL*)fileURL flag:(int)flag;
 
 /*
  * @brief start Gif Animation

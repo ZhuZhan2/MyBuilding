@@ -68,4 +68,7 @@
 
 //获取推荐项目
 + (NSURLSessionDataTask *)GetRecommenddProjectsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
+
+//我的项目
++ (NSURLSessionDataTask *)GetMyProjectsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
 @end

@@ -34,8 +34,8 @@
         self.userBussniessLabel.textColor=GrayColor;
         [self addSubview:self.userBussniessLabel];
         
-        self.rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(272, 17, 26, 26)];
-        [self addSubview:self.rightBtn];
+//        self.rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(272, 17, 26, 26)];
+//        [self addSubview:self.rightBtn];
         
         self.separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 59, 320, 1)];
         self.separatorLine.backgroundColor=RGBCOLOR(229, 229, 229);

@@ -22,6 +22,7 @@
 @interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate,MFMailComposeViewControllerDelegate,ContactCellDelegate,LoginViewDelegate,UIActionSheetDelegate>{
     NSMutableArray *viewArr;
     ContactBackgroundView *contactbackgroundview;
+    int startIndex;
 }
 @property (nonatomic,strong) NSString *contactId;
 @property (nonatomic, strong) XHPathCover *pathCover;

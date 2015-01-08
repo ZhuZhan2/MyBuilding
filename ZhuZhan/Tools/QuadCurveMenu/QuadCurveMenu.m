@@ -112,7 +112,7 @@
              坐标算法就是 圆的极坐标方程
              x = a+r*cos(@)
              y = b+r*sin(@)
-             因为该动画 是从上到下的 把 cos 和 sin 换了个位置  有兴趣的 可以把他们换回来  看看效果
+             因为该动画 是从上到下的 把 cos 和 sin 换了个位置
              */
             
             item.center = item.startPoint;

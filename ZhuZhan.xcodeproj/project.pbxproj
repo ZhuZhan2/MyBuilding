@@ -965,6 +965,8 @@
 		D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */; };
 		D36040E619F51E8600E9727D /* CompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D36040E519F51E8600E9727D /* CompanyModel.m */; };
 		D36040E919F51E9F00E9727D /* CompanyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D36040E819F51E9F00E9727D /* CompanyApi.m */; };
+		D38D6B4E1A5CC1C30020CCBF /* 读取中icon.gif in Resources */ = {isa = PBXBuildFile; fileRef = D38D6B4D1A5CC1C30020CCBF /* 读取中icon.gif */; };
+		D38D6B501A5CC2920020CCBF /* 锯子.gif in Resources */ = {isa = PBXBuildFile; fileRef = D38D6B4F1A5CC2920020CCBF /* 锯子.gif */; };
 		D39937BE1A42B428007081C1 /* RecommendProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937BD1A42B428007081C1 /* RecommendProjectViewController.m */; };
 		D39937C11A42B453007081C1 /* RecommendContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937C01A42B453007081C1 /* RecommendContactViewController.m */; };
 		D39937C41A42B470007081C1 /* RecommendProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937C31A42B470007081C1 /* RecommendProjectTableViewCell.m */; };
@@ -2475,6 +2477,8 @@
 		D36040E519F51E8600E9727D /* CompanyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyModel.m; sourceTree = "<group>"; };
 		D36040E719F51E9F00E9727D /* CompanyApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyApi.h; sourceTree = "<group>"; };
 		D36040E819F51E9F00E9727D /* CompanyApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyApi.m; sourceTree = "<group>"; };
+		D38D6B4D1A5CC1C30020CCBF /* 读取中icon.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "读取中icon.gif"; sourceTree = "<group>"; };
+		D38D6B4F1A5CC2920020CCBF /* 锯子.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "锯子.gif"; sourceTree = "<group>"; };
 		D39937BC1A42B428007081C1 /* RecommendProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendProjectViewController.h; sourceTree = "<group>"; };
 		D39937BD1A42B428007081C1 /* RecommendProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendProjectViewController.m; sourceTree = "<group>"; };
 		D39937BF1A42B453007081C1 /* RecommendContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendContactViewController.h; sourceTree = "<group>"; };
@@ -3740,6 +3744,8 @@
 				5B3209F81A11CD8900D19279 /* 公司－我的公司_11a@2x.png */,
 				D3D7986B1A0B236900194FF8 /* 欧莱凯GIF图片.gif */,
 				D3D798691A0B1ECF00194FF8 /* 加载中.gif */,
+				D38D6B4D1A5CC1C30020CCBF /* 读取中icon.gif */,
+				D38D6B4F1A5CC2920020CCBF /* 锯子.gif */,
 				D3D4FB311A087A830033BB34 /* 公司－账号设置_03a-05.png */,
 				D3D4FB321A087A830033BB34 /* 公司－账号设置_03a-05@2x.png */,
 				5B5121341A07968200A77997 /* 地图搜索1_05.png */,
@@ -5311,6 +5317,7 @@
 				04BC434919D7E5B3006B5C7B /* 项目－高级搜索－2_11a@2x.png in Resources */,
 				04BC421119D7E5B3006B5C7B /* 公司－公司组织_03a.png in Resources */,
 				04BC41E619D7E5B3006B5C7B /* 人脉－账号设置_03a-05@2x.png in Resources */,
+				D38D6B4E1A5CC1C30020CCBF /* 读取中icon.gif in Resources */,
 				5BE08DF81A3586EA00495EEB /* 010051.png in Resources */,
 				04BC433419D7E5B3006B5C7B /* 项目－项目专题_03a.png in Resources */,
 				04BC428D19D7E5B3006B5C7B /* 登录_11@2x.png in Resources */,
@@ -5574,6 +5581,7 @@
 				04BC435A19D7E5B3006B5C7B /* 高级搜索-多选_07a.png in Resources */,
 				04BC433619D7E5B3006B5C7B /* 项目－项目专题_11a-20.png in Resources */,
 				5B4C197C19FA4ACC00C6C57D /* 注册_04@2x.png in Resources */,
+				D38D6B501A5CC2920020CCBF /* 锯子.gif in Resources */,
 				5BE08DCC1A3586EA00495EEB /* 010029.png in Resources */,
 				5BE08DD51A3586EA00495EEB /* 010033@2x.png in Resources */,
 				5BE08E081A3586EA00495EEB /* 010059.png in Resources */,

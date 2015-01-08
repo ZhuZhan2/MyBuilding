@@ -62,7 +62,7 @@ void getFrameInfo(CFURLRef url, NSMutableArray *frames, NSMutableArray *delayTim
 @implementation SvGifView
 
 
-- (id)initWithCenter:(CGPoint)center fileURL:(NSURL*)fileURL;
+- (id)initWithCenter:(CGPoint)center fileURL:(NSURL*)fileURL flag:(int)flag;
 {
     self = [super initWithFrame:CGRectZero];
     if (self) {
@@ -77,7 +77,11 @@ void getFrameInfo(CFURLRef url, NSMutableArray *frames, NSMutableArray *delayTim
             getFrameInfo((CFURLRef)CFBridgingRetain(fileURL), _frames, _frameDelayTimes, &_totalTime, &_width, &_height);
         }
         
-        self.frame = CGRectMake(0, 0, 83, 21);
+        if(flag == 0){
+            self.frame = CGRectMake(0, 0, 47, 27);
+        }else{
+            self.frame = CGRectMake(0, 0, 156, 149);
+        }
         self.center = center;
     }
     

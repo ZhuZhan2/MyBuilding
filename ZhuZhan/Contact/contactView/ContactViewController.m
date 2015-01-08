@@ -169,7 +169,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     commentView = [CommentView setFram:model];
                     [viewArr addObject:commentView];
                 }else if([model.a_category isEqualToString:@"Product"]){
-                    ContactProductView* productView=[[ContactProductView alloc]initWithUsrImgUrl:model.a_avatarUrl productImgUrl:model.a_productImage productContent:model.a_content];
+                    productView=[[ContactProductView alloc]initWithUsrImgUrl:model.a_avatarUrl productImgUrl:model.a_productImage productContent:model.a_content];
                     [viewArr addObject:productView];
                 }else{
                     [viewArr addObject:@""];
@@ -244,7 +244,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     commentView = [CommentView setFram:model];
                     [viewArr addObject:commentView];
                 }else if([model.a_category isEqualToString:@"Product"]){
-                    ContactProductView* productView=[[ContactProductView alloc]initWithUsrImgUrl:model.a_avatarUrl productImgUrl:model.a_productImage productContent:model.a_content];
+                    productView=[[ContactProductView alloc]initWithUsrImgUrl:model.a_avatarUrl productImgUrl:model.a_productImage productContent:model.a_content];
                     [viewArr addObject:productView];
                 }else{
                     [viewArr addObject:@""];
@@ -754,7 +754,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     commentView = [CommentView setFram:model];
                     [viewArr addObject:commentView];
                 }else if([model.a_category isEqualToString:@"Product"]){
-                    ContactProductView* productView=[[ContactProductView alloc]initWithUsrImgUrl:model.a_avatarUrl productImgUrl:model.a_productImage productContent:model.a_content];
+                    productView=[[ContactProductView alloc]initWithUsrImgUrl:model.a_avatarUrl productImgUrl:model.a_productImage productContent:model.a_content];
                     [viewArr addObject:productView];
                 }else{
                     [viewArr addObject:@""];

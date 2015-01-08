@@ -45,6 +45,7 @@
     headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"＋项目－项目专题_11a"]];
     [headImageView setFrame:CGRectMake(3, 2, 132, 106)];
     headImageView.showActivityIndicator = YES;
+    NSLog(@"%@",model.a_image);
     headImageView.imageURL = [NSURL URLWithString:model.a_image];
     [bgView addSubview:headImageView];
     

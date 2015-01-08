@@ -17,6 +17,8 @@
 #import "LoginSqlite.h"
 #import "ContactModel.h"
 #import "CompanyApi.h"
+#import "MJRefresh.h"
+#import "ProjectApi.h"
 @interface PersonalDetailViewController ()
 
 @end
@@ -26,7 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    startIndex = 0;
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,
                                                                      nil]];
     
@@ -58,9 +60,10 @@
     _pathCover.userNameLabel.textAlignment = NSTextAlignmentCenter;
     _pathCover.userNameLabel.center = CGPointMake(155, 30);
     
-    
     self.tableView.tableHeaderView = self.pathCover;
-
+    
+    //集成刷新控件
+    [self setupRefresh];
     
     __weak PersonalDetailViewController *wself = self;
     [_pathCover setHandleRefreshEvent:^{
@@ -83,6 +86,28 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [wself.pathCover stopRefresh];
     });
+}
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+#pragma mark 开始进入刷新状态
+- (void)footerRereshing
+{
+    startIndex++;
+    [ProjectApi GetMyProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self.showArr addObjectsFromArray:posts];
+            [self.tableView footerEndRefreshing];
+            [self.tableView reloadData];
+        }
+    } userId:self.contactId startIndex:startIndex noNetWork:nil];
 }
 /******************************************************************************************************************/
 
@@ -148,12 +173,15 @@
                     contactbackgroundview = [ContactBackgroundView setFram:self.parModel];
                     [viewArr addObject:contactbackgroundview];
                 }
-                
-                self.showArr = posts[2];
                 [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:self.contactModel.a_userName, XHUserNameKey, nil]];
                 [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",self.contactModel.a_userImage]];
                 [_pathCover setBackgroundImageUrlString:self.contactModel.a_backgroundImage];
-                [self.tableView reloadData];
+                [ProjectApi GetMyProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+                    if(!error){
+                        self.showArr = posts;
+                        [self.tableView reloadData];
+                    }
+                } userId:self.contactId startIndex:startIndex noNetWork:nil];
             }
         }
     } userId:self.contactId noNetWork:nil];
@@ -288,7 +316,7 @@
             [topLineImage setImage:[UIImage imageNamed:@"项目－高级搜索－2_15a"]];
             [back addSubview:topLineImage];
             
-            UIImageView *imgaeView = [[UIImageView alloc] initWithFrame:CGRectMake(129, 8, 52, 34)];
+            UIImageView *imgaeView = [[UIImageView alloc] initWithFrame:CGRectMake(123, 8, 64, 34)];
             imgaeView.image = [GetImagePath getImagePath:@"人脉－人的详情_30a"];
             [back addSubview:imgaeView];
         }
