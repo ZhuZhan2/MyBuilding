@@ -133,7 +133,10 @@
     }
     NSInteger imagesCount=images?images.count:0;
     
+    //查非联系人非图片
     NSString* temp=[self JudgmentContentIsPartOfAll:[detailStage subarrayWithRange:NSMakeRange(0, detailStage.count-count)]];
+    
+    //查联系人
     NSString* tempContect=@"none";
     if (contacts.count) {
         if (contacts.count<=2) {
@@ -156,8 +159,9 @@
     }else{
         tempContect=@"none";
     }
-    
-    if ([temp isEqualToString:@"all"]&&(contacts?[tempContect isEqualToString:@"all"]:1)&&(images?imagesCount:1)) {
+
+    //配合图片字段出最终结果
+    if (((detailStage.count-count)?[temp isEqualToString:@"all"]:1)&&(contacts?[tempContect isEqualToString:@"all"]:1)&&(images?imagesCount:1)) {
         return @"all";
     }else if ([temp isEqualToString:@"none"]&&(contacts?[tempContect isEqualToString:@"none"]:1)&&(images?(!imagesCount):1)){
         return @"none";

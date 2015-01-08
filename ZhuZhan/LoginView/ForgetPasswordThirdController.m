@@ -112,8 +112,8 @@
         return;
     }
     
-    if(passWordField.text.length<6){
-        [RemindView remindViewWithContent:@"密码大于6位！" superView:self.view centerY:210];
+    if(passWordField.text.length<6||passWordField.text.length>20){
+        [RemindView remindViewWithContent:@"密码需要在6-20位之间" superView:self.view centerY:210];
         return;
     }
     
@@ -124,6 +124,10 @@
         return;
     }
     
+    if (![self isRule:passWordField.text]) {
+        return;
+    }
+    
     if(![self LetterNoErr:passWordField.text]){
         return;
     }
@@ -131,6 +135,11 @@
     if(![self NumberNoErr:passWordField.text]){
         return;
     }
+    
+    if (![self SymbolNoErr:passWordField.text]) {
+        return;
+    }
+
     
     if (![passWordField.text isEqualToString:verifyPassWordField.text]) {
         [RemindView remindViewWithContent:@"密码输入不一致，请重新输入" superView:self.view centerY:210];
@@ -185,12 +194,35 @@
     }
 }
 
+-(BOOL)isRule:(NSString*)phone{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z0-9@_-]" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
+    if (numberOfMatches ==phone.length) {
+        return YES;
+    }else{
+        [RemindView remindViewWithContent:@"密码不符合规则" superView:self.view centerY:210];
+        return NO;
+    }
+}
+
+-(BOOL)isAllNumber:(NSString*)numbers{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\D" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:numbers options:0 range:NSMakeRange(0, [numbers length])];
+    NSLog(@"===%d",numberOfMatches);
+    if (numberOfMatches) {
+        return NO;
+    }else{
+        [RemindView remindViewWithContent:@"用户名不能为纯数字" superView:self.view centerY:210];
+        return YES;
+    }
+}
+
 -(BOOL)LetterNoErr:(NSString *)phone
 {
     
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:nil];
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
-    if (numberOfMatches ==20) {
+    if (numberOfMatches ==phone.length) {
         [RemindView remindViewWithContent:@"密码不能为全英文" superView:self.view centerY:210];
         return NO;
     }
@@ -202,8 +234,19 @@
     
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[0-9]" options:NSRegularExpressionCaseInsensitive error:nil];
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
-    if (numberOfMatches ==20) {
+    if (numberOfMatches ==phone.length) {
         [RemindView remindViewWithContent:@"密码不能为全数字" superView:self.view centerY:210];
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL)SymbolNoErr:(NSString *)phone
+{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[-@_]" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
+    if (numberOfMatches ==phone.length) {
+        [RemindView remindViewWithContent:@"密码不能为全符号" superView:self.view centerY:210];
         return NO;
     }
     return YES;
