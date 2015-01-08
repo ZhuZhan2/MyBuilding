@@ -284,9 +284,6 @@
 
 - (void)commomRegister//账号密码的注册
 {
-//    RecommendProjectViewController *recProjectView = [[RecommendProjectViewController alloc] init];
-//    [self.navigationController pushViewController:recProjectView animated:YES];
-//    return;
     NSLog(@"共同注册部分");
     
     if (![ConnectionAvailable isConnectionAvailable]) {
@@ -321,9 +318,8 @@
         return;
     }
     
-    
-    if(passWordField.text.length<6){
-        [self remindErrorView:@"密码大于6位！"];
+    if(passWordField.text.length<6||passWordField.text.length>20){
+        [self remindErrorView:@"密码需要在6-20位之间"];
         return;
     }
     
@@ -343,6 +339,10 @@
     }
     
     if(![self NumberNoErr:passWordField.text]){
+        return;
+    }
+    
+    if (![self SymbolNoErr:passWordField.text]) {
         return;
     }
     
@@ -408,6 +408,41 @@
     }
 }
 
+-(BOOL)LetterNoErr:(NSString *)phone
+{
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
+    if (numberOfMatches ==phone.length) {
+        [self remindErrorView:@"密码不能为全英文"];
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL)NumberNoErr:(NSString *)phone
+{
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[0-9]" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
+    if (numberOfMatches ==phone.length) {
+        [self remindErrorView:@"密码不能为全数字"];
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL)SymbolNoErr:(NSString *)phone
+{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[-@_]" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
+    if (numberOfMatches ==phone.length) {
+        [self remindErrorView:@"密码不能为全符号"];
+        return NO;
+    }
+    return YES;
+}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
 {
     if(textField == passWordField){
@@ -465,43 +500,5 @@
     NSLog(@"注册dealloc");
 }
 
--(BOOL)LetterNoErr:(NSString *)phone
-{
-    
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:nil];
-    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
-    if (numberOfMatches ==phone.length) {
-        [self remindErrorView:@"密码不能为全英文"];
-        return NO;
-    }
-    return YES;
-}
 
--(BOOL)NumberNoErr:(NSString *)phone
-{
-    
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[0-9]" options:NSRegularExpressionCaseInsensitive error:nil];
-    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
-    if (numberOfMatches ==phone.length) {
-        [self remindErrorView:@"密码不能为全数字"];
-        return NO;
-    }
-    return YES;
-}
-
--(BOOL)SymbolNoErr:(NSString *)phone
-{
-    NSString *regex = @"[_@-]";
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    BOOL isValid = [predicate evaluateWithObject:phone];
-    NSLog(@"%d",isValid);
-//    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[@-_]+" options:NSRegularExpressionCaseInsensitive error:nil];
-//    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
-//    NSLog(@"%d",numberOfMatches);
-//    if (numberOfMatches ==20) {
-//        [self remindErrorView:@"密码不能为全数字"];
-//        return NO;
-//    }
-    return isValid;
-}
 @end
