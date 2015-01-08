@@ -985,6 +985,7 @@
 		D3A4281B19C1A2E700BAB6C7 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281819C1A2E700BAB6C7 /* GTMBase64.m */; };
 		D3A4283819C9401C00BAB6C7 /* LoginSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4283719C9401C00BAB6C7 /* LoginSqlite.m */; };
 		D3A4283B19C94E5E00BAB6C7 /* ActivesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4283A19C94E5E00BAB6C7 /* ActivesModel.m */; };
+		D3A8713A1A5E7A1600C0B83C /* LoginAgain.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A871391A5E7A1600C0B83C /* LoginAgain.m */; };
 		D3AC612B19B5C7D10015B62F /* ContactProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC612A19B5C7D10015B62F /* ContactProjectTableViewCell.m */; };
 		D3AC61A819B6BF930015B62F /* ConditionsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC618E19B6BF930015B62F /* ConditionsModel.m */; };
 		D3AC61A919B6BF930015B62F /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC619119B6BF930015B62F /* ContactModel.m */; };
@@ -2509,6 +2510,8 @@
 		D3A4283719C9401C00BAB6C7 /* LoginSqlite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSqlite.m; sourceTree = "<group>"; };
 		D3A4283919C94E5E00BAB6C7 /* ActivesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivesModel.h; sourceTree = "<group>"; };
 		D3A4283A19C94E5E00BAB6C7 /* ActivesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivesModel.m; sourceTree = "<group>"; };
+		D3A871381A5E7A1600C0B83C /* LoginAgain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAgain.h; sourceTree = "<group>"; };
+		D3A871391A5E7A1600C0B83C /* LoginAgain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginAgain.m; sourceTree = "<group>"; };
 		D3AC612919B5C7D10015B62F /* ContactProjectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactProjectTableViewCell.h; sourceTree = "<group>"; };
 		D3AC612A19B5C7D10015B62F /* ContactProjectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactProjectTableViewCell.m; sourceTree = "<group>"; };
 		D3AC618D19B6BF930015B62F /* ConditionsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionsModel.h; sourceTree = "<group>"; };
@@ -2903,6 +2906,8 @@
 				5B55D57D1A3EB63200CAEF8B /* ForgetPasswordSecondController.m */,
 				5B55D57F1A3EB64C00CAEF8B /* ForgetPasswordThirdController.h */,
 				5B55D5801A3EB64C00CAEF8B /* ForgetPasswordThirdController.m */,
+				D3A871381A5E7A1600C0B83C /* LoginAgain.h */,
+				D3A871391A5E7A1600C0B83C /* LoginAgain.m */,
 			);
 			path = LoginView;
 			sourceTree = "<group>";
@@ -5938,6 +5943,7 @@
 				0426C2DE19922D5A00CD8822 /* GPUImageView.m in Sources */,
 				0426C25A19922D5A00CD8822 /* GPUImageCropFilter.m in Sources */,
 				0426C27819922D5A00CD8822 /* GPUImageHighlightShadowFilter.m in Sources */,
+				D3A8713A1A5E7A1600C0B83C /* LoginAgain.m in Sources */,
 				0426C2D619922D5A00CD8822 /* GPUImageVoronoiConsumerFilter.m in Sources */,
 				D3CF278A1A008EFF00DDA30D /* ContactBackgroundView.m in Sources */,
 				0426C20A19922D5A00CD8822 /* CompanyViewController.m in Sources */,

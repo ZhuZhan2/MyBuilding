@@ -168,6 +168,8 @@
             if (!error) {
                 self.model.a_focused=@"0";
                 [self handleContent];
+            }else{
+                
             }
             btn.userInteractionEnabled=YES;
         } dic:dic noNetWork:nil];
