@@ -75,6 +75,8 @@
                 [_datasource addObject:model.a_time];
             }
             [MyTableView reloadDataWithTableView:self.tableView];
+        }else{
+            [LoginAgain AddLoginView];
         }
     } entityId:projectId entityType:@"Project" noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -235,6 +237,8 @@
             [viewArr insertObject:projectCommentView atIndex:0];
             [_datasource insertObject:[NSDate date] atIndex:0];
             [MyTableView reloadDataWithTableView:self.tableView];
+        }else{
+            [LoginAgain AddLoginView];
         }
     } dic:dic noNetWork:nil];
 }

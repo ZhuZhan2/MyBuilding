@@ -638,6 +638,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alertView show];
                     self.isFocused = @"1";
+                }else{
+                    [LoginAgain AddLoginView];
                 }
             } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"productId":self.entityID} mutableCopy] noNetWork:nil];
         }else{
@@ -646,6 +648,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alertView show];
                     self.isFocused = @"0";
+                }else{
+                    [LoginAgain AddLoginView];
                 }
             } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"productId":self.entityID} mutableCopy] noNetWork:nil];
         }
@@ -661,6 +665,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             if (block) {
                 block();
             }
+        }else{
+            [LoginAgain AddLoginView];
         }
     } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID EntityCategory:self.category noNetWork:nil];
 }

@@ -59,6 +59,8 @@
             [self endIndicatorView];
             //初始化刷新视图
             [self setupRefresh];
+        }else{
+            [LoginAgain AddLoginView];
         }
     } startIndex:0 noNetWork:^{
         [self endIndicatorView];
@@ -108,6 +110,8 @@
             startIndex=0;
             showArr = posts;
             [qtmquitView reloadData];
+        }else{
+            [LoginAgain AddLoginView];
         }
     } startIndex:0 noNetWork:^{
         [qtmquitView headerEndRefreshing];
@@ -126,6 +130,8 @@
             startIndex++;
             [showArr addObjectsFromArray:posts];
             [qtmquitView reloadData];
+        }else{
+            [LoginAgain AddLoginView];
         }
     } startIndex:startIndex+1 noNetWork:^{
         [qtmquitView footerEndRefreshing];

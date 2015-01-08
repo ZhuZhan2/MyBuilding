@@ -51,6 +51,8 @@
                 if (![self.companyId isEqualToString:[LoginSqlite getdata:@"userId"]])[self initSecondView];//第二个文字view初始
                 [self initThirdView];
             }
+        }else{
+            [LoginAgain AddLoginView];
         }
         [self removeMyLoadingView];
     } companyId:self.companyId noNetWork:^{
@@ -203,6 +205,8 @@
                 if (!error) {
                     self.model.a_focused=@"0";
                     [self handleContent];
+                }else{
+                    [LoginAgain AddLoginView];
                 }
             } dic:dic noNetWork:nil];
         }else{
@@ -243,6 +247,8 @@
             if(!error){
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"已申请认证" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertView show];
+            }else{
+                [LoginAgain AddLoginView];
             }
         } dic:dic noNetWork:nil];
     }else{

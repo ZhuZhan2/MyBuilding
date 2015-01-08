@@ -62,6 +62,8 @@
         if(!error){
             self.showArr = posts;
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView];
         }
         [self removeMyLoadingView];
     } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:^{
@@ -94,6 +96,8 @@
             self.startIndex = 0;
             self.showArr = posts;
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView];
         }
         [self.tableView headerEndRefreshing];
     } companyId:self.companyId startIndex:0 keyWords:self.keyKords noNetWork:^{
@@ -111,6 +115,8 @@
             self.startIndex++;
             [self.showArr addObjectsFromArray:posts];
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView];
         }
         [self.tableView footerEndRefreshing];
     } companyId:self.companyId startIndex:self.startIndex+1 keyWords:self.keyKords noNetWork:^{
@@ -278,6 +284,8 @@
             self.showArr = posts;
             [self.tableView reloadData];
             self.searchBar.showsCancelButton = YES;
+        }else{
+            [LoginAgain AddLoginView];
         }
     } companyId:self.companyId startIndex:0 keyWords:self.keyKords noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
@@ -295,6 +303,8 @@
             self.showArr = posts;
             [self.tableView reloadData];
             self.searchBar.showsCancelButton = NO;
+        }else{
+            [LoginAgain AddLoginView];
         }
     } companyId:self.companyId startIndex:0 keyWords:self.keyKords noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{

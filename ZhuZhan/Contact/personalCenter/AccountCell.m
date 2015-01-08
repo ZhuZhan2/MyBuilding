@@ -411,7 +411,7 @@ static int textFieldTag =0;
 //        location.text = [NSString stringWithFormat:@"%@,%@",model.city,model.district];
 //    }
     NSLog(@"%@,%@,%@",model.provice,model.city,model.district);
-    location.text = [NSString stringWithFormat:@"%@,%@,%@",model.provice,model.city,model.district];
+    location.text = [NSString stringWithFormat:@"%@ %@ %@",model.provice,model.city,model.district];
     birthday.text = model.birthday;
     constellation.text = model.constellation;
     bloodType.text = model.bloodType;

@@ -68,6 +68,8 @@
         if(!error){
             self.showArr = posts;
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView];
         }
         [self removeMyLoadingView];
     } startIndex:0 keyWords:@"" noNetWork:^{
@@ -97,6 +99,8 @@
             startIndex = 0;
             self.showArr = posts;
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView];
         }
         [self.tableView headerEndRefreshing];
     } startIndex:0 keyWords:self.keywords noNetWork:^{
@@ -114,6 +118,8 @@
             startIndex++;
             [self.showArr addObjectsFromArray:posts];
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView];
         }
         [self.tableView footerEndRefreshing];
     } startIndex:startIndex+1 keyWords:self.keywords noNetWork:^{
@@ -281,6 +287,8 @@
             self.showArr = posts;
             [self.tableView reloadData];
             [self.searchBar setShowsCancelButton:YES animated:YES];
+        }else{
+            [LoginAgain AddLoginView];
         }
     }startIndex:0 keyWords:[NSString stringWithFormat:@"%@",searchBar.text] noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -298,6 +306,8 @@
             self.showArr = posts;
             [self.tableView reloadData];
             [self.searchBar setShowsCancelButton:NO animated:YES];
+        }else{
+            [LoginAgain AddLoginView];
         }
     } startIndex:0 keyWords:@"" noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
