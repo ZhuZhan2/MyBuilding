@@ -246,7 +246,7 @@
     
     //左back button
     UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,0,29,28.5)];
-    [button setImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
+    [button setImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
 }

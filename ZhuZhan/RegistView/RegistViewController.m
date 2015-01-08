@@ -330,21 +330,21 @@
         return;
     }
     
-    if (![self isRule:passWordField.text]) {
-        return;
-    }
-    
-    if(![self LetterNoErr:passWordField.text]){
-        return;
-    }
-    
-    if(![self NumberNoErr:passWordField.text]){
-        return;
-    }
-    
-    if (![self SymbolNoErr:passWordField.text]) {
-        return;
-    }
+//    if (![self isRule:passWordField.text]) {
+//        return;
+//    }
+//    
+//    if(![self LetterNoErr:passWordField.text]){
+//        return;
+//    }
+//    
+//    if(![self NumberNoErr:passWordField.text]){
+//        return;
+//    }
+//    
+//    if (![self SymbolNoErr:passWordField.text]) {
+//        return;
+//    }
     
     if([passWordField.text isEqualToString:@""]||[_phoneNumberTextField.text isEqualToString:@""]||[verifyPassWordField.text isEqualToString:@""])
     {

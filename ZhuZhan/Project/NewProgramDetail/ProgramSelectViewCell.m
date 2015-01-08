@@ -37,28 +37,28 @@
         NSArray* arrayTotal=@[ary0,ary1,ary2];
         
         //小阶段名称label
-        cell.stageLabel=[[UILabel alloc]initWithFrame:CGRectMake(47, 4, 150, 20)];
+        cell.stageLabel=[[UILabel alloc]initWithFrame:CGRectMake(47, 8, 150, 20)];
         cell.stageLabel.text=arrayTotal[indexPath.section][indexPath.row];
-        cell.stageLabel.font=[UIFont systemFontOfSize:14];
+        cell.stageLabel.font=[UIFont fontWithName:@"GurmukhiMN" size:14];;
         cell.stageLabel.textColor=textColor;
         [cell.contentView addSubview:cell.stageLabel];
         
         if (stageLight) {
             //右边三个小icon的最右边那个，必显示，但是图不同
-            UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(269, 4.5, 19, 18)];
+            UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(269, 8.5, 19, 18)];
             imageView.image= thirdIcon?[GetImagePath getImagePath:@"016"]:[GetImagePath getImagePath:@"05"];//1则是勾的图，0则是没勾的图
             [cell.contentView addSubview:imageView];
             
             //右边三个小icon的左边2个，选择性显示，图同
             CGFloat tempX=245;
             if (secondIcon) {
-                UIImageView* tempImageView=[[UIImageView alloc]initWithFrame:CGRectMake(tempX, 6, 16, 16)];
+                UIImageView* tempImageView=[[UIImageView alloc]initWithFrame:CGRectMake(tempX, 10, 16, 16)];
                 tempImageView.image=[GetImagePath getImagePath:@"06"];
                 [cell.contentView addSubview:tempImageView];
                 tempX-=25;
             }
             if (firstIcon) {
-                UIImageView* tempImageView=[[UIImageView alloc]initWithFrame:CGRectMake(tempX, 6, 16, 16)];
+                UIImageView* tempImageView=[[UIImageView alloc]initWithFrame:CGRectMake(tempX, 10, 16, 16)];
                 tempImageView.image=[GetImagePath getImagePath:@"017"];
                 [cell.contentView addSubview:tempImageView];
             }

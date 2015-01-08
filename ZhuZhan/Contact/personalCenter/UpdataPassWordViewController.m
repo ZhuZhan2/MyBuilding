@@ -38,7 +38,7 @@
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 0, 29, 28.5)];
-    [leftButton setBackgroundImage:[GetImagePath getImagePath:@"icon_04"] forState:UIControlStateNormal];
+    [leftButton setBackgroundImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
@@ -186,13 +186,13 @@
         return;
     }
     
-    if(![self LetterNoErr:newPassWordTextField.text]){
-        return;
-    }
-    
-    if(![self NumberNoErr:newPassWordTextField.text]){
-        return;
-    }
+//    if(![self LetterNoErr:newPassWordTextField.text]){
+//        return;
+//    }
+//    
+//    if(![self NumberNoErr:newPassWordTextField.text]){
+//        return;
+//    }
     
     if(![newPassWordTextField.text isEqualToString:newAgainPassWordTextField.text]){
         [RemindView remindViewWithContent:@"密码输入不一致，请重新输入" superView:self.view centerY:230];
@@ -223,9 +223,8 @@
     
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:nil];
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
-    if (numberOfMatches ==20) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"密码不能为全英文" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
+    if (numberOfMatches ==phone.length) {
+        [RemindView remindViewWithContent:@"密码不能为全英文" superView:self.view centerY:210];
         return NO;
     }
     return YES;
@@ -236,9 +235,19 @@
     
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[0-9]" options:NSRegularExpressionCaseInsensitive error:nil];
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
-    if (numberOfMatches ==20) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"密码不能为全数字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
+    if (numberOfMatches ==phone.length) {
+        [RemindView remindViewWithContent:@"密码不能为全数字" superView:self.view centerY:210];
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL)SymbolNoErr:(NSString *)phone
+{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[-@_]" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
+    if (numberOfMatches ==phone.length) {
+        [RemindView remindViewWithContent:@"密码不能为全符号" superView:self.view centerY:210];
         return NO;
     }
     return YES;

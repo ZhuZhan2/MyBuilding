@@ -279,7 +279,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if(section == 0){
-        return sectionHeight;
+        return 30;
     }
     return 5;
 }
@@ -290,7 +290,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if(section == 0){
-        UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 291.5, 50)];
+        UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 291.5, 30)];
         [bgView setBackgroundColor:RGBCOLOR(239, 237, 237)];
 
         UILabel* countLabel=[[UILabel alloc] initWithFrame:CGRectMake(80, 10, 160, 20)];
@@ -298,9 +298,9 @@
         countLabel.textColor = BlueColor;
         countLabel.textAlignment = NSTextAlignmentCenter;
         countLabel.text = [NSString stringWithFormat:@"%d",showArr.count];
-        [bgView addSubview:countLabel];
+        //[bgView addSubview:countLabel];
         
-        UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 27, 160, 20)];
+        UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 10, 160, 20)];
         tempLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
         tempLabel.textColor = GrayColor;
         tempLabel.textAlignment = NSTextAlignmentCenter;

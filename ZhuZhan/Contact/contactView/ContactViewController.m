@@ -180,6 +180,17 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             [LoadingView removeLoadingView:loadingView];
             self.tableView.scrollEnabled=YES;
             loadingView = nil;
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"在其他设备中登录，请退出重新登录"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:nil,nil];
+            [alert show];
+            LoginViewController *loginVC = [[LoginViewController alloc] init];
+            loginVC.delegate = self;
+            UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+            [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
         }
     } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
         self.tableView.scrollEnabled=NO;
