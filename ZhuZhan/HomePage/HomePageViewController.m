@@ -9,7 +9,10 @@
 #import "HomePageViewController.h"
 #import "LoginModel.h"
 #import "AppDelegate.h"
-@interface HomePageViewController ()
+#import "LoginSqlite.h"
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
+@interface HomePageViewController ()<LoginViewDelegate>
 
 @end
 
@@ -69,6 +72,8 @@
     [tradeBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:tradeBtn];
     [self.view addSubview:toolView];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(gotoLogin) name:@"LoginAgain" object:nil];
     
     /*
     //更多按钮的实现
@@ -213,6 +218,29 @@
     }
 }
 
+-(void)gotoLogin{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
+    [LoginSqlite deleteAll];
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    loginVC.needDelayCancel=YES;
+    loginVC.delegate=self;
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+}
+
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
+    HomePageViewController* homeVC=(HomePageViewController*)self.view.window.rootViewController;
+    UIButton* btn=[[UIButton alloc]init];
+    btn.tag=0;
+    [homeVC BtnClick:btn];
+    if (block) {
+        block();
+    }
+}
 //
 ////更多按钮的委托方法
 //- (void)quadCurveMenu:(QuadCurveMenu *)menu didSelectIndex:(NSInteger)idx
