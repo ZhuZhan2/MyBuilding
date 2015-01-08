@@ -78,11 +78,14 @@
     
     //评论图标
     CGFloat tempHeight=imageView?imageView.frame.origin.y+imageView.frame.size.height-3:height-6;
-    UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    commentBtn.frame = CGRectMake(267, tempHeight-40, 37, 37);
-    [commentBtn setImage:[GetImagePath getImagePath:@"人脉_66a"] forState:UIControlStateNormal];
-    [commentBtn addTarget:commentView action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
-    [forCornerView addSubview:commentBtn];
+//    UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    commentBtn.frame = CGRectMake(267, tempHeight-40, 37, 37);
+//    [commentBtn setImage:[GetImagePath getImagePath:@"人脉_66a"] forState:UIControlStateNormal];
+//    [commentBtn addTarget:commentView action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
+//    [forCornerView addSubview:commentBtn];
+    UIImageView *commentImage = [[UIImageView alloc] initWithFrame:CGRectMake(267, tempHeight-40, 37, 37)];
+    [commentImage setImage:[GetImagePath getImagePath:@"人脉_66a"]];
+    [forCornerView addSubview:commentImage];
 
     //用户头像
     tempHeight=imageView?imageView.frame.origin.y+5:contentTotalView.frame.origin.y+10;

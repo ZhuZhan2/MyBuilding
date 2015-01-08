@@ -259,6 +259,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 700ull *  NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
                 _timeScroller.hidden=NO;
             });
+        }else{
+            [LoginAgain AddLoginView];
         }
         [self.tableView footerEndRefreshing];
     } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex+1 noNetWork:^{
@@ -766,6 +768,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             [MyTableView reloadDataWithTableView:self.tableView];
             __weak ContactViewController *wself = self;
             [wself.pathCover stopRefresh];
+        }else{
+            [LoginAgain AddLoginView];
         }
     } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
         self.tableView.scrollEnabled=NO;

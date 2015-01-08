@@ -83,6 +83,8 @@
                 self.model = posts[0];
                 [self.tableView reloadData];
             }
+        }else{
+            [LoginAgain AddLoginView];
         }
     } companyId:[LoginSqlite getdata:@"userId"] noNetWork:nil];
 }
@@ -292,6 +294,8 @@
             [_pathCover addImageHead:image];
             [LoginSqlite insertData:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0][@"imageLocation"]] datakey:@"userImage"];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
+        }else{
+            [LoginAgain AddLoginView];
         }
     } dic:dic noNetWork:nil];
 }

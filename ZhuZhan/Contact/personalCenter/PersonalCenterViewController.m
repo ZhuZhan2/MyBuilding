@@ -136,6 +136,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             if (block) {
                 block();
             }
+        }else{
+            [LoginAgain AddLoginView];
         }
     } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
         self.tableView.scrollEnabled=NO;
@@ -176,6 +178,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             _timeScroller.hidden=YES;
             [MyTableView reloadDataWithTableView:self.tableView];
             _timeScroller.hidden=NO;
+        }else{
+            [LoginAgain AddLoginView];
         }
         [self.tableView footerEndRefreshing];
     } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex+1 noNetWork:^{

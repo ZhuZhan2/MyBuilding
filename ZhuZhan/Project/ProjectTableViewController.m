@@ -98,6 +98,8 @@
                 [LoadingView removeLoadingView:loadingView];
                 self.tableView.scrollEnabled = YES;
                 loadingView = nil;
+            }else{
+                [LoginAgain AddLoginView];
             }
         } startIndex:startIndex noNetWork:^{
             self.tableView.scrollEnabled = NO;
@@ -130,6 +132,8 @@
                 [LoadingView removeLoadingView:loadingView];
                 self.tableView.scrollEnabled = YES;
                 loadingView = nil;
+            }else{
+                [LoginAgain AddLoginView];
             }
         } projectIds:projectIds noNetWork:^{
             self.tableView.scrollEnabled = NO;
@@ -181,6 +185,8 @@
                 [showArr removeAllObjects];
                 showArr = posts;
                 [self.tableView reloadData];
+            }else{
+                [LoginAgain AddLoginView];
             }
             [self.tableView headerEndRefreshing];
         }startIndex:0 noNetWork:^{
@@ -202,6 +208,8 @@
                     [showArr removeAllObjects];
                     showArr = posts;
                     [self.tableView reloadData];
+                }else{
+                    [LoginAgain AddLoginView];
                 }
                 [self.tableView headerEndRefreshing];
             } projectIds:projectIds noNetWork:^{
@@ -223,6 +231,8 @@
                 startIndex++;
                 [showArr addObjectsFromArray:posts];
                 [self.tableView reloadData];
+            }else{
+                [LoginAgain AddLoginView];
             }
             [self.tableView footerEndRefreshing];
         }startIndex:startIndex+1 noNetWork:^{
