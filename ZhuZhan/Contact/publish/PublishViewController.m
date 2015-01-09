@@ -289,8 +289,7 @@
                 inputView.text =@"";
                 publishImageStr =@"";
             }else{
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
-                [alert show];
+                [LoginAgain AddLoginView];
             }
         } dic:dic noNetWork:nil];
 
@@ -315,9 +314,7 @@
                         inputView.text =@"";
                         publishImageStr =@"";
                     }else{
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
-                        [alert show];
-                        
+                        [LoginAgain AddLoginView];
                     }
                 } dic:parameters noNetWork:nil];
             }else{

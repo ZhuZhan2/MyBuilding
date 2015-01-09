@@ -97,6 +97,8 @@
                 }
                 [self endIndicatorView];
             }
+        }else{
+            [LoginAgain AddLoginView];
         }
     } userId:self.createdBy noNetWork:nil];
 }
@@ -146,6 +148,8 @@
                     [concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
                     isFoucsed = 1;
                     concernBtn.enabled = YES;
+                }else{
+                    [LoginAgain AddLoginView];
                 }
             } dic:dic noNetWork:nil];
         }else{
@@ -156,6 +160,8 @@
                     [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
                     isFoucsed = 0;
                     concernBtn.enabled = YES;
+                }else{
+                    [LoginAgain AddLoginView];
                 }
             } dic:dic noNetWork:nil];
         }
@@ -185,6 +191,8 @@
             if(block){
                 block();
             }
+        }else{
+            [LoginAgain AddLoginView];
         }
     } userId:self.createdBy noNetWork:nil];
 }

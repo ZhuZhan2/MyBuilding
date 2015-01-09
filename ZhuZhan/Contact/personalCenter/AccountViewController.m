@@ -118,6 +118,8 @@ static int count =0;//记录生日textField 的时间被触发的次数
                 model = posts[0];
                 [self.tableView reloadData];
             }
+        }else{
+            [LoginAgain AddLoginView];
         }
     } userId:userIdStr noNetWork:^{
         self.tableView.scrollEnabled=NO;
@@ -261,6 +263,8 @@ static int count =0;//记录生日textField 的时间被触发的次数
             [_pathCover addImageHead:image];
             [LoginSqlite insertData:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0][@"imageLocation"]] datakey:@"userImage"];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
+        }else{
+            [LoginAgain AddLoginView];
         }
     } dic:parameter noNetWork:nil];
 }
@@ -272,6 +276,8 @@ static int count =0;//记录生日textField 的时间被触发的次数
             [LoginSqlite insertData:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0][@"imageLocation"]] datakey:@"backgroundImage"];
             [_pathCover setBackgroundImageUrlString:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0][@"imageLocation"]]];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changBackground" object:nil];
+        }else{
+            [LoginAgain AddLoginView];
         }
     } dic:parameter noNetWork:nil];
 }
@@ -319,6 +325,8 @@ static int count =0;//记录生日textField 的时间被触发的次数
             [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
             [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"保存成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil]show];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changName" object:nil];
+        }else{
+            [LoginAgain AddLoginView];
         }
     } dic:parameter noNetWork:nil];
 }

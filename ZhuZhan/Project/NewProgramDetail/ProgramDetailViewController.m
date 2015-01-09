@@ -126,6 +126,8 @@
         if (!error) {
             self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
             [self getContentList];
+        }else{
+            [LoginAgain AddLoginView];
         }
     } userId:[LoginSqlite getdata:@"userId"] targetId:self.projectId EntityCategory:@"Project" noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -144,6 +146,8 @@
                 [self loadSelf];
                 self.stages=[ProjectStage JudgmentProjectDetailStage:self.model];
             }
+        }else{
+            [LoginAgain AddLoginView];
         }
         [self endIndicatorView];
     } projectId:self.projectId noNetWork:^{
@@ -315,6 +319,8 @@
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alertView show];
                     self.isFocused = @"1";
+                }else{
+                    [LoginAgain AddLoginView];
                 }
             } dic:[@{@"UserId":[LoginSqlite getdata:@"userId"],@"ProjectId":self.model.a_id} mutableCopy] noNetWork:nil];
         }else{
@@ -323,6 +329,8 @@
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alertView show];
                     self.isFocused = @"0";
+                }else{
+                    [LoginAgain AddLoginView];
                 }
             } dic:[@{@"UserId":[LoginSqlite getdata:@"userId"],@"ProjectId":self.model.a_id} mutableCopy] noNetWork:nil];
         }
@@ -355,6 +363,8 @@
         [self.addCommentVC finishNetWork];
         if (!error) {
             NSLog(@"sucess");
+        }else{
+            [LoginAgain AddLoginView];
         }
     } dic:[@{@"EntityId":self.model.a_id,@"entityType":@"Project",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy] noNetWork:nil];
 }
@@ -876,6 +886,8 @@
             if (block) {
                 block();
             }
+        }else{
+            [LoginAgain AddLoginView];
         }
     } userId:[LoginSqlite getdata:@"userId"] targetId:self.projectId EntityCategory:@"Project" noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{

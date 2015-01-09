@@ -82,6 +82,8 @@
                 [viewArr addObject:conditionsView];
             }
             [_tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView];
         }
     }userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -206,6 +208,8 @@
         [ProjectApi DeleteSearchConditionsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 
+            }else{
+                [LoginAgain AddLoginView];
             }
         } dic:dic noNetWork:nil];
         [showArr removeObjectAtIndex:indexPath.row-2];
@@ -385,6 +389,8 @@
                 [viewArr addObject:conditionsView];
             }
             [_tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView];
         }
     }userId:[LoginSqlite getdata:@"userId"] noNetWork:nil];
 }

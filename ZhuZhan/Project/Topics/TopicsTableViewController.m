@@ -54,6 +54,8 @@
         if(!error){
             showArr = posts;
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView];
         }
     } startIndex:startIndex noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -94,6 +96,8 @@
             [showArr removeAllObjects];
             showArr = posts;
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView];
         }
         [self.tableView headerEndRefreshing];
     }startIndex:0 noNetWork:^{
@@ -111,6 +115,8 @@
             startIndex++;
             [showArr addObjectsFromArray:posts];
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView];
         }
         [self.tableView footerEndRefreshing];
     }startIndex:startIndex+1 noNetWork:^{

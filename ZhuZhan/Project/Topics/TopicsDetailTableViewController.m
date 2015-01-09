@@ -51,6 +51,8 @@
         if(!error){
             showArr = posts;
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView];
         }
     } Id:self.model.a_id noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{

@@ -106,6 +106,8 @@
             [self.showArr addObjectsFromArray:posts];
             [self.tableView footerEndRefreshing];
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView];
         }
     } userId:self.contactId startIndex:startIndex noNetWork:nil];
 }
@@ -151,6 +153,8 @@
         if (!error) {
             self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
             [self getNetWorkData];
+        }else{
+            [LoginAgain AddLoginView];
         }
     } userId:[LoginSqlite getdata:@"userId"] targetId:self.contactId EntityCategory:@"Personal" noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -183,6 +187,8 @@
                     }
                 } userId:self.contactId startIndex:startIndex noNetWork:nil];
             }
+        }else{
+            [LoginAgain AddLoginView];
         }
     } userId:self.contactId noNetWork:nil];
 }
@@ -201,6 +207,8 @@
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alertView show];
                     self.isFocused = @"1";
+                }else{
+                    [LoginAgain AddLoginView];
                 }
             } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"FocusId":self.contactId} mutableCopy] noNetWork:nil];
         }else{
@@ -209,6 +217,8 @@
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alertView show];
                     self.isFocused = @"0";
+                }else{
+                    [LoginAgain AddLoginView];
                 }
             } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"FocusId":self.contactId} mutableCopy] noNetWork:nil];
         }

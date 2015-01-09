@@ -207,6 +207,8 @@
                 [self.navigationController popViewControllerAnimated:YES];
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"修改成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertView show];
+            }else{
+                [LoginAgain AddLoginView];
             }
         } dic:dic noNetWork:^{
             [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
