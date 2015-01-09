@@ -233,7 +233,7 @@
 }
 
 -(void)loginCompleteWithDelayBlock:(void (^)())block{
-    HomePageViewController* homeVC=(HomePageViewController*)self.view.window.rootViewController;
+    HomePageViewController* homeVC=(HomePageViewController*)[AppDelegate instance].window.rootViewController;
     UIButton* btn=[[UIButton alloc]init];
     btn.tag=0;
     [homeVC BtnClick:btn];
