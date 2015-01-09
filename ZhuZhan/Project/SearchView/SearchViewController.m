@@ -127,7 +127,10 @@ int startIndex;
 }
 
 -(void)rightBtnClick{
-    _searchBar.text=@"";
+    //_searchBar.text=@"";
+    [RecordSqlite delAll];
+    [showArr removeAllObjects];
+    [_tableView reloadData];
 }
 
 - (UIImage *)imageWithColor:(UIColor *)color
