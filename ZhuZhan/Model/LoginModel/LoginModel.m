@@ -730,8 +730,9 @@
     userName=userName?userName:@"";
 
     NSString *urlStr = [NSString stringWithFormat:@"api/account/CellPhone?UserNameOrCellPhone=%@",userName];
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)urlStr, NULL, NULL,  kCFStringEncodingUTF8 ));
     NSLog(@"urlStr==%@",urlStr);
-    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+    return [[AFAppDotNetAPIClient sharedNewClient] GET:encodedString parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if (block) {
             block([NSMutableArray arrayWithObjects:JSON[@"d"], nil],nil);
