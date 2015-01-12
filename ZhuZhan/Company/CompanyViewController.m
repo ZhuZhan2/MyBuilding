@@ -56,6 +56,8 @@
     //公司图标
     EGOImageView* companyImageView=[[EGOImageView alloc]initWithPlaceholderImage:appleImage];
     companyImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.model.a_companyLogo]];
+    companyImageView.layer.cornerRadius=37.5;
+    companyImageView.layer.masksToBounds=YES;
     companyImageView.frame=CGRectMake(15, 20, 75, 75);
     [view addSubview:companyImageView];
 

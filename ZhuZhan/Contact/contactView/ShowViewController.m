@@ -35,7 +35,6 @@
     
     EGOImageView  *tempImageView= [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001"]];
     tempImageView.frame = CGRectMake(0, 0, 280, 300);
-    tempImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"backgroundImage"]]];
     [self.view addSubview:tempImageView];
     
     
@@ -85,6 +84,7 @@
         if(!error){
             if(posts.count !=0){
                 contactId = posts[0][@"userId"];
+                tempImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0][@"backgroundImage"]]];
                 icon.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:posts[0][@"userImage"]]]];
                 userName.text = [ProjectStage ProjectStrStage:posts[0][@"userName"]];
                 message.text = [NSString stringWithFormat:@"%@项目，%@动态",[ProjectStage ProjectStrStage:posts[0][@"projectsCount"]],[ProjectStage ProjectStrStage:posts[0][@"activesCount"]]];

@@ -49,7 +49,7 @@
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
-    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 215) bannerPlaceholderImageName:@"人脉－人的详情_02a"];
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 215) bannerPlaceholderImageName:@"默认主图01"];
     _pathCover.delegate = self;
     //[_pathCover setBackgroundImage:[GetImagePath getImagePath:@"人脉－人的详情_02a"]];
     [_pathCover hidewaterDropRefresh];
