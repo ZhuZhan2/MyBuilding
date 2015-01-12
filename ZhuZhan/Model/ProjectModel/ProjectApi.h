@@ -64,7 +64,7 @@
 + (NSURLSessionDataTask *)DeleteFocusProjectsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 
 //地图搜索 精度,维度
-+ (NSURLSessionDataTask *)GetMapSearchWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block longitude:(NSString*)longitude latitude:(NSString*)latitude noNetWork:(void(^)())noNetWork;
++ (NSURLSessionDataTask *)GetMapSearchWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block longitude:(NSString*)longitude latitude:(NSString*)latitude radius:(NSString *)radius startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
 
 //获取推荐项目
 + (NSURLSessionDataTask *)GetRecommenddProjectsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
