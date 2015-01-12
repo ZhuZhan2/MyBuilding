@@ -38,6 +38,11 @@
     BMKPolygon* polygon;
     MapContentView* _MapContent;
     int hasProject;
+    
+    int startIndex;
+    int allCount;
+    CLLocationDistance dis;
+    CLLocationCoordinate2D centerLocation;
 }
 
 @end

@@ -99,7 +99,7 @@
                 self.tableView.scrollEnabled = YES;
                 loadingView = nil;
             }else{
-                [LoginAgain AddLoginView];
+                //[LoginAgain AddLoginView];
             }
         } startIndex:startIndex noNetWork:^{
             self.tableView.scrollEnabled = NO;

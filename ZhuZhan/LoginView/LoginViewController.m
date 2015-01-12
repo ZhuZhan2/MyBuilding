@@ -159,6 +159,11 @@
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
         return;
     }
+    
+//    if([self isContainsEmoji:_userNameTextField.text]){
+//        UIAlertView *alertView = [UIAlertView alloc] initWithTitle:@"提醒" message:@"用户名不能" delegate:<#(id)#> cancelButtonTitle:<#(NSString *)#> otherButtonTitles:<#(NSString *), ...#>, nil
+//        return;
+//    }
     self.loginBtn.enabled=NO;
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:_userNameTextField.text forKey:@"userName"];
@@ -205,9 +210,14 @@
 }
 
 //- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)string{
-//    if ([[[UITextInputMode currentInputMode]primaryLanguage] isEqualToString:@"emoji"]) {
+////    NSLog(@"====. %@",[[UITextInputMode currentInputMode]primaryLanguage]);
+////    if ([[[UITextInputMode currentInputMode]primaryLanguage] isEqualToString:@"emoji"]) {
+////        return NO;
+////    }
+//    if([self isContainsEmoji:string]){
 //        return NO;
 //    }
 //    return YES;
 //}
+
 @end

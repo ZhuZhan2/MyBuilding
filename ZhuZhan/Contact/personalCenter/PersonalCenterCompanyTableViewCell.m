@@ -29,8 +29,7 @@
     
     headImage = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"公司－我的公司_02a"]];
     [headImage setFrame:CGRectMake(17.5, 6.5, 37, 37)];
-    headImage.layer.masksToBounds = YES;
-    headImage.layer.cornerRadius = 18.5;
+    headImage.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:headImage];
     
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 25, 200, 20)];

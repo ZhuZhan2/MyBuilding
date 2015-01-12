@@ -92,7 +92,7 @@
             
             commonLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(30, 110, 150, 30)];
             commonLabel2.textAlignment = NSTextAlignmentLeft;
-            commonLabel2.text = model.a_cellPhone;
+            commonLabel2.text = [NSString stringWithFormat:@"%@****%@",[model.a_cellPhone substringToIndex:2],[model.a_cellPhone substringWithRange:NSMakeRange(7,4)]];
             commonLabel2.font = [UIFont systemFontOfSize:14];
             [self addSubview:commonLabel2];
             
