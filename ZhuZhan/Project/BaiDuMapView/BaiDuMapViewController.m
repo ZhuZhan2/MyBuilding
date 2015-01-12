@@ -692,7 +692,6 @@ int j;
 }
 
 -(void)judgeBtnEnable{
-    NSLog(@"%d,%d,%d",startIndex,allCount,self.pageCount);
     self.nextBtn.enabled=(startIndex<allCount-1);
     self.lastBtn.enabled=(self.pageCount>1);
 }
