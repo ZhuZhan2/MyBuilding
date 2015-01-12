@@ -581,6 +581,10 @@
 		5B0D03A419B054FB00518D5E /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD614F19ADA1A9001FD483 /* libbaidumapapi.a */; };
 		5B0D03A519B0550900518D5E /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD615119ADA1A9001FD483 /* libbaidumapapi.a */; };
 		5B0D03E319B0554400518D5E /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B0D03E219B0554400518D5E /* mapapi.bundle */; };
+		5B112E6E1A63BA9200009CD3 /* 项目地图搜索01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B112E6A1A63BA9200009CD3 /* 项目地图搜索01.png */; };
+		5B112E6F1A63BA9200009CD3 /* 项目地图搜索01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B112E6B1A63BA9200009CD3 /* 项目地图搜索01@2x.png */; };
+		5B112E701A63BA9200009CD3 /* 项目地图搜索02.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B112E6C1A63BA9200009CD3 /* 项目地图搜索02.png */; };
+		5B112E711A63BA9200009CD3 /* 项目地图搜索02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B112E6D1A63BA9200009CD3 /* 项目地图搜索02@2x.png */; };
 		5B13C70019B6AB0C008EA7A0 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C6FF19B6AB0C008EA7A0 /* ProductDetailViewController.m */; };
 		5B13C70919B6E53A008EA7A0 /* ProductCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C70819B6E53A008EA7A0 /* ProductCommentView.m */; };
 		5B13C70C19B6E8A5008EA7A0 /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C70B19B6E8A5008EA7A0 /* CommentView.m */; };
@@ -2059,6 +2063,10 @@
 		5B0C8AA719D7ABA30058C0EE /* PersonalProjectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProjectTableViewCell.h; sourceTree = "<group>"; };
 		5B0C8AA819D7ABA30058C0EE /* PersonalProjectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProjectTableViewCell.m; sourceTree = "<group>"; };
 		5B0D03E219B0554400518D5E /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
+		5B112E6A1A63BA9200009CD3 /* 项目地图搜索01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目地图搜索01.png"; sourceTree = "<group>"; };
+		5B112E6B1A63BA9200009CD3 /* 项目地图搜索01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目地图搜索01@2x.png"; sourceTree = "<group>"; };
+		5B112E6C1A63BA9200009CD3 /* 项目地图搜索02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目地图搜索02.png"; sourceTree = "<group>"; };
+		5B112E6D1A63BA9200009CD3 /* 项目地图搜索02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目地图搜索02@2x.png"; sourceTree = "<group>"; };
 		5B13C6FE19B6AB0C008EA7A0 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
 		5B13C6FF19B6AB0C008EA7A0 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
 		5B13C70719B6E53A008EA7A0 /* ProductCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCommentView.h; sourceTree = "<group>"; };
@@ -3702,6 +3710,10 @@
 		04BC3E5D19D7E5B0006B5C7B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5B112E6A1A63BA9200009CD3 /* 项目地图搜索01.png */,
+				5B112E6B1A63BA9200009CD3 /* 项目地图搜索01@2x.png */,
+				5B112E6C1A63BA9200009CD3 /* 项目地图搜索02.png */,
+				5B112E6D1A63BA9200009CD3 /* 项目地图搜索02@2x.png */,
 				5B7AA6CD1A58D6E4000FBFF2 /* 筛选中01.png */,
 				5B7AA6CE1A58D6E4000FBFF2 /* 筛选中01@2x.png */,
 				5B7AA6CF1A58D6E4000FBFF2 /* 筛选中02.png */,
@@ -5141,6 +5153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B2A42EB1A0A0D7000C04DFA /* 人脉－个人中心_10a.png in Resources */,
+				5B112E711A63BA9200009CD3 /* 项目地图搜索02@2x.png in Resources */,
 				04BC426419D7E5B3006B5C7B /* 数据加载失败_07a@2x.png in Resources */,
 				5B7AA6E51A58D93E000FBFF2 /* icon01.png in Resources */,
 				04BC411819D7E5B3006B5C7B /* 06.png in Resources */,
@@ -5459,6 +5472,7 @@
 				5BE08DDC1A3586EA00495EEB /* 010037.png in Resources */,
 				5B5A24DE1A4189CA0071BD90 /* 密码找回_03z@2x.png in Resources */,
 				5BE08DB71A3586EA00495EEB /* 010018@2x.png in Resources */,
+				5B112E6E1A63BA9200009CD3 /* 项目地图搜索01.png in Resources */,
 				5B7AA6C81A58D6B0000FBFF2 /* 02@2x.png in Resources */,
 				5BE08E191A3586EA00495EEB /* 020003@2x.png in Resources */,
 				5BE08E481A3586EA00495EEB /* 020027.png in Resources */,
@@ -5511,6 +5525,7 @@
 				D3D5DDD21A4C18940093E60F /* 主站－人脉04@2x.png in Resources */,
 				04BC41E919D7E5B3006B5C7B /* 人脉－账号设置_10a.png in Resources */,
 				5BE08DDB1A3586EA00495EEB /* 010036@2x.png in Resources */,
+				5B112E6F1A63BA9200009CD3 /* 项目地图搜索01@2x.png in Resources */,
 				5BE08E7E1A3586EA00495EEB /* 030024.png in Resources */,
 				5B7AA6DC1A58D6E4000FBFF2 /* 筛选中04@2x.png in Resources */,
 				5BE08E841A3586EA00495EEB /* 030027.png in Resources */,
@@ -5817,6 +5832,7 @@
 				04BC40FF19D7E5B3006B5C7B /* 014.png in Resources */,
 				D3D9C90C1A1343CF001D3A64 /* 主菜单02b.png in Resources */,
 				5BE08DE01A3586EA00495EEB /* 010039.png in Resources */,
+				5B112E701A63BA9200009CD3 /* 项目地图搜索02.png in Resources */,
 				D39937DA1A42B539007081C1 /* 推荐页面06a.png in Resources */,
 				5BE08E051A3586EA00495EEB /* 010057@2x.png in Resources */,
 				D3BAA7B81A58CB9A008E613F /* 人的详情88-04.png in Resources */,

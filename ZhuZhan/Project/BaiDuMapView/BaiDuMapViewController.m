@@ -90,14 +90,14 @@ int j;
     [self.view addSubview:btnView];
     
     self.nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.nextBtn.frame = CGRectMake(20,150, 40, 40);
+    self.nextBtn.frame = CGRectMake(10,150, 40, 40);
     [self.nextBtn setBackgroundImage:[GetImagePath getImagePath:@"项目地图搜索01"] forState:UIControlStateNormal];
     [self.nextBtn addTarget:self action:@selector(nextPage) forControlEvents:UIControlEventTouchUpInside];
     self.nextBtn.enabled=NO;
     [self.view addSubview:self.nextBtn];
     
     self.lastBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.lastBtn.frame = CGRectMake(20,200, 40, 40);
+    self.lastBtn.frame = CGRectMake(10,200, 40, 40);
     [self.lastBtn setBackgroundImage:[GetImagePath getImagePath:@"项目地图搜索02"] forState:UIControlStateNormal];
     [self.lastBtn addTarget:self action:@selector(lastPage) forControlEvents:UIControlEventTouchUpInside];
     self.lastBtn.enabled=NO;
@@ -492,7 +492,10 @@ int j;
                 BMKMapPoint mp2 = BMKMapPointForCoordinate(centerLocation);
                 dis = BMKMetersBetweenMapPoints(mp1, mp2);
                 NSLog(@"%f",dis);
-                [self getMapSearch:centerLocation startIndex:YES dis:[NSString stringWithFormat:@"%f",dis/1000]];
+                self.pageCount=0;
+                allCount=1;
+                startIndex=-1;
+               [self getMapSearch:centerLocation startIndex:YES dis:[NSString stringWithFormat:@"%f",dis/1000]];
             }
         }
     }
@@ -516,10 +519,10 @@ int j;
     [ProjectApi GetMapSearchWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             CGPathCloseSubpath(pathRef);
-            if([posts[1] intValue]%26 == 0){
-                allCount = [posts[1] intValue]/26;
+            if([posts[1] intValue]%5 == 0){
+                allCount = [posts[1] intValue]/5;
             }else{
-                allCount = ([posts[1] intValue]/26)+1;
+                allCount = ([posts[1] intValue]/5)+1;
             }
             
             if (isNext) {
@@ -574,20 +577,21 @@ int j;
     }
     [imageView removeFromSuperview];
     imageView = nil;
-//    if(showArr.count == 0){
-//        if (isNext) {
-//            [self aaa];
-//        }else{
-//            [self bbb];
-//        }
-//    }else{
-//        if (isNext) {
-//            self.pageCount++;
-//        }else{
-//            self.pageCount--;
-//        }
-//    }
-//    [self judgeBtnEnable];
+    [self judgeBtnEnable];
+    if(showArr.count == 0){
+        if (isNext) {
+            [self nextPage];
+        }else{
+            [self lastPage];
+        }
+    }else{
+        if (isNext) {
+            self.pageCount++;
+        }else{
+            self.pageCount--;
+        }
+    }
+    [self judgeBtnEnable];
 }
 
 -(void)nextPage{
@@ -688,6 +692,7 @@ int j;
 }
 
 -(void)judgeBtnEnable{
+    NSLog(@"%d,%d,%d",startIndex,allCount,self.pageCount);
     self.nextBtn.enabled=(startIndex<allCount-1);
     self.lastBtn.enabled=(self.pageCount>1);
 }
