@@ -18,6 +18,11 @@
 #import "ProgramDetailViewController.h"
 @interface BaiDuMapViewController ()
 @property(nonatomic)BOOL isSelect;
+
+@property(nonatomic,strong)UIButton* nextBtn;
+@property(nonatomic,strong)UIButton* lastBtn;
+
+@property(nonatomic)NSInteger pageCount;
 @end
 
 @implementation BaiDuMapViewController
@@ -83,6 +88,20 @@ int j;
     [btnView addSubview:drawBtn];
     
     [self.view addSubview:btnView];
+    
+    self.nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.nextBtn.frame = CGRectMake(10,150, 40, 40);
+    [self.nextBtn setBackgroundImage:[GetImagePath getImagePath:@"项目地图搜索01"] forState:UIControlStateNormal];
+    [self.nextBtn addTarget:self action:@selector(nextPage) forControlEvents:UIControlEventTouchUpInside];
+    self.nextBtn.enabled=NO;
+    [self.view addSubview:self.nextBtn];
+    
+    self.lastBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.lastBtn.frame = CGRectMake(10,200, 40, 40);
+    [self.lastBtn setBackgroundImage:[GetImagePath getImagePath:@"项目地图搜索02"] forState:UIControlStateNormal];
+    [self.lastBtn addTarget:self action:@selector(lastPage) forControlEvents:UIControlEventTouchUpInside];
+    self.lastBtn.enabled=NO;
+    [self.view addSubview:self.lastBtn];
 }
 
 - (void)didReceiveMemoryWarning
@@ -473,7 +492,10 @@ int j;
                 BMKMapPoint mp2 = BMKMapPointForCoordinate(centerLocation);
                 dis = BMKMetersBetweenMapPoints(mp1, mp2);
                 NSLog(@"%f",dis);
-                [self getMapSearch:centerLocation startIndex:YES dis:[NSString stringWithFormat:@"%f",dis/1000]];
+                self.pageCount=0;
+                allCount=1;
+                startIndex=-1;
+               [self getMapSearch:centerLocation startIndex:YES dis:[NSString stringWithFormat:@"%f",dis/1000]];
             }
         }
     }
@@ -555,20 +577,50 @@ int j;
     }
     [imageView removeFromSuperview];
     imageView = nil;
-//    if(showArr.count == 0){
-//        if (isNext) {
-//            [self aaa];
-//        }else{
-//            [self bbb];
-//        }
-//    }else{
-//        if (isNext) {
-//            self.pageCount++;
-//        }else{
-//            self.pageCount--;
-//        }
-//    }
-//    [self judgeBtnEnable];
+    [self judgeBtnEnable];
+    if(showArr.count == 0){
+        if (isNext) {
+            [self nextPage];
+        }else{
+            [self lastPage];
+        }
+    }else{
+        if (isNext) {
+            self.pageCount++;
+        }else{
+            self.pageCount--;
+        }
+    }
+    [self judgeBtnEnable];
+}
+
+-(void)nextPage{
+    if (!self.nextBtn.enabled) {
+        [[[UIAlertView alloc] initWithTitle:@"提示" message:@"没有找到项目" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil,nil]show];
+        self.pageCount++;
+        [self judgeBtnEnable];
+        return;
+    }
+    j = 0;
+    [showArr removeAllObjects];
+    [logArr removeAllObjects];
+    [latArr removeAllObjects];
+    NSArray *annArray = [[NSArray alloc]initWithArray:_mapView.annotations];
+    [_mapView removeAnnotations: annArray];
+    annotationPoint = nil;
+    [self getMapSearch:centerLocation startIndex:1 dis:[NSString stringWithFormat:@"%f",dis/1000]];
+}
+
+-(void)lastPage{
+    NSLog(@"222");
+    j = 0;
+    [showArr removeAllObjects];
+    [logArr removeAllObjects];
+    [latArr removeAllObjects];
+    NSArray *annArray = [[NSArray alloc]initWithArray:_mapView.annotations];
+    [_mapView removeAnnotations: annArray];
+    annotationPoint = nil;
+    [self getMapSearch:centerLocation startIndex:0 dis:[NSString stringWithFormat:@"%f",dis/1000]];
 }
 
 -(BOOL)PtInPolygon:(CLLocationCoordinate2D)p{
@@ -637,5 +689,11 @@ int j;
     NSArray *annArray = [[NSArray alloc]initWithArray:_mapView.annotations];
     [_mapView removeAnnotations: annArray];
     [_mapView removeOverlay:polygon];
+}
+
+-(void)judgeBtnEnable{
+    NSLog(@"%d,%d,%d",startIndex,allCount,self.pageCount);
+    self.nextBtn.enabled=(startIndex<allCount-1);
+    self.lastBtn.enabled=(self.pageCount>1);
 }
 @end
