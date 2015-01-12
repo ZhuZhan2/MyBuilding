@@ -166,7 +166,7 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     CompanyMemberCell* cell=[tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) {
-        cell=[[CompanyMemberCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
+        cell=[[CompanyMemberCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell" needRightBtn:NO];
         //暂时移除，目前版本不需要右边的符号
         //[cell.rightBtn addTarget:self action:@selector(chooseApprove:) forControlEvents:UIControlEventTouchUpInside];
         UIButton* btn=[[UIButton alloc]initWithFrame:cell.userImageView.bounds];
@@ -224,9 +224,9 @@
 //    }
 //}
 
-//======================================================================
-//======================================================================
-//======================================================================
+//==================================================================
+//==================================================================
+//==================================================================
 
 -(void)initSearchView{
     self.startIndex = 0;
