@@ -18,6 +18,11 @@
 #import "ProgramDetailViewController.h"
 @interface BaiDuMapViewController ()
 @property(nonatomic)BOOL isSelect;
+
+@property(nonatomic,strong)UIButton* nextBtn;
+@property(nonatomic,strong)UIButton* lastBtn;
+
+@property(nonatomic)NSInteger pageCount;
 @end
 
 @implementation BaiDuMapViewController
@@ -83,6 +88,20 @@ int j;
     [btnView addSubview:drawBtn];
     
     [self.view addSubview:btnView];
+    
+    self.nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.nextBtn.frame = CGRectMake(20,150, 40, 40);
+    [self.nextBtn setBackgroundImage:[GetImagePath getImagePath:@"项目地图搜索01"] forState:UIControlStateNormal];
+    [self.nextBtn addTarget:self action:@selector(nextPage) forControlEvents:UIControlEventTouchUpInside];
+    self.nextBtn.enabled=NO;
+    [self.view addSubview:self.nextBtn];
+    
+    self.lastBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.lastBtn.frame = CGRectMake(20,200, 40, 40);
+    [self.lastBtn setBackgroundImage:[GetImagePath getImagePath:@"项目地图搜索02"] forState:UIControlStateNormal];
+    [self.lastBtn addTarget:self action:@selector(lastPage) forControlEvents:UIControlEventTouchUpInside];
+    self.lastBtn.enabled=NO;
+    [self.view addSubview:self.lastBtn];
 }
 
 - (void)didReceiveMemoryWarning
@@ -571,6 +590,35 @@ int j;
 //    [self judgeBtnEnable];
 }
 
+-(void)nextPage{
+    if (!self.nextBtn.enabled) {
+        [[[UIAlertView alloc] initWithTitle:@"提示" message:@"没有找到项目" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil,nil]show];
+        self.pageCount++;
+        [self judgeBtnEnable];
+        return;
+    }
+    j = 0;
+    [showArr removeAllObjects];
+    [logArr removeAllObjects];
+    [latArr removeAllObjects];
+    NSArray *annArray = [[NSArray alloc]initWithArray:_mapView.annotations];
+    [_mapView removeAnnotations: annArray];
+    annotationPoint = nil;
+    [self getMapSearch:centerLocation startIndex:1 dis:[NSString stringWithFormat:@"%f",dis/1000]];
+}
+
+-(void)lastPage{
+    NSLog(@"222");
+    j = 0;
+    [showArr removeAllObjects];
+    [logArr removeAllObjects];
+    [latArr removeAllObjects];
+    NSArray *annArray = [[NSArray alloc]initWithArray:_mapView.annotations];
+    [_mapView removeAnnotations: annArray];
+    annotationPoint = nil;
+    [self getMapSearch:centerLocation startIndex:0 dis:[NSString stringWithFormat:@"%f",dis/1000]];
+}
+
 -(BOOL)PtInPolygon:(CLLocationCoordinate2D)p{
     int nCross = 0;
     NSInteger numberOfPoints = [coordinates count];
@@ -637,5 +685,10 @@ int j;
     NSArray *annArray = [[NSArray alloc]initWithArray:_mapView.annotations];
     [_mapView removeAnnotations: annArray];
     [_mapView removeOverlay:polygon];
+}
+
+-(void)judgeBtnEnable{
+    self.nextBtn.enabled=(startIndex<allCount-1);
+    self.lastBtn.enabled=(self.pageCount>1);
 }
 @end
