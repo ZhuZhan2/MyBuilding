@@ -84,7 +84,6 @@
     CompanyMemberCell* cell=[tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) {
         cell=[[CompanyMemberCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
-        //暂时移除，目前版本不需要右边的符号
         [cell.rightBtn addTarget:self action:@selector(chooseApprove:) forControlEvents:UIControlEventTouchUpInside];
     }
     [cell setModel:self.showArr[indexPath.row] indexPathRow:indexPath.row];

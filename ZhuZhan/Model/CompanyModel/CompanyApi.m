@@ -69,6 +69,10 @@
             if (block) {
                 block(nil, nil);
             }
+        }else if ([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1308"]){
+            if (block) {
+                block(nil, nil);
+            }
         }else{
             if (block) {
                 block(nil,[NSError new]);
