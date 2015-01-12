@@ -11,12 +11,15 @@
 @property(nonatomic,strong)UILabel* userNameLabel;
 @property(nonatomic,strong)UILabel* userBussniessLabel;
 @property(nonatomic,strong)UIView* separatorLine;
+@property(nonatomic)BOOL needRightBtn;
 @end
 @implementation CompanyMemberCell
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier needRightBtn:(BOOL)needRightBtn{
     self=[super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.needRightBtn=needRightBtn;
+        
         self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"公司认证员工_03a"]];
         self.userImageView.layer.cornerRadius=3;
         self.userImageView.layer.masksToBounds=YES;
@@ -34,8 +37,10 @@
         self.userBussniessLabel.textColor=GrayColor;
         [self addSubview:self.userBussniessLabel];
         
-//        self.rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(272, 17, 26, 26)];
-//        [self addSubview:self.rightBtn];
+        if (self.needRightBtn) {
+            self.rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(272, 17, 26, 26)];
+            [self addSubview:self.rightBtn];
+        }
         
         self.separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 59, 320, 1)];
         self.separatorLine.backgroundColor=RGBCOLOR(229, 229, 229);
@@ -49,7 +54,9 @@
     self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_userIamge]];
     self.userNameLabel.text=model.a_userName;
     self.userBussniessLabel.text=model.a_duties;
-    [self.rightBtn setBackgroundImage:isFocesed?[GetImagePath getImagePath:@"公司认证员工_08a"]:[GetImagePath getImagePath:@"公司认证员工_18a"] forState:UIControlStateNormal];
+    if (self.needRightBtn) {
+        [self.rightBtn setBackgroundImage:isFocesed?[GetImagePath getImagePath:@"公司认证员工_08a"]:[GetImagePath getImagePath:@"公司认证员工_18a"] forState:UIControlStateNormal];
+    }
     self.rightBtn.tag=indexPathRow;
     self.userImageView.tag=indexPathRow;
 }

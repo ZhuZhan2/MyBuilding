@@ -83,7 +83,7 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     CompanyMemberCell* cell=[tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) {
-        cell=[[CompanyMemberCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
+        cell=[[CompanyMemberCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell" needRightBtn:YES];
         [cell.rightBtn addTarget:self action:@selector(chooseApprove:) forControlEvents:UIControlEventTouchUpInside];
     }
     [cell setModel:self.showArr[indexPath.row] indexPathRow:indexPath.row];

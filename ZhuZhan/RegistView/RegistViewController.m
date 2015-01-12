@@ -293,8 +293,6 @@
         return;
     }
     
-    
-    
     if (![self phoneNoErr:_phoneNumberTextField.text]) {
         return;
     }
