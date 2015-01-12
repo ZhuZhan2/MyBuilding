@@ -519,10 +519,10 @@ int j;
     [ProjectApi GetMapSearchWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             CGPathCloseSubpath(pathRef);
-            if([posts[1] intValue]%5 == 0){
-                allCount = [posts[1] intValue]/5;
+            if([posts[1] intValue]%26 == 0){
+                allCount = [posts[1] intValue]/26;
             }else{
-                allCount = ([posts[1] intValue]/5)+1;
+                allCount = ([posts[1] intValue]/26)+1;
             }
             
             if (isNext) {
