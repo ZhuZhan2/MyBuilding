@@ -31,6 +31,8 @@
     if (!cell.myImageView) {
         //公司图片
         cell.myImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"公司－公司组织_05a"]];
+        cell.myImageView.layer.cornerRadius=30.5;
+        cell.myImageView.layer.masksToBounds=YES;
         cell.myImageView.frame = CGRectMake(19, 16.5, 61, 61);
         
         //公司名称
