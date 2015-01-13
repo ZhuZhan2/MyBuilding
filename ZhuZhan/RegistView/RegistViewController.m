@@ -223,6 +223,8 @@
 
 -(void)getVerifitionCode:(UIButton*)btn{
     NSLog(@"用户申请发送验证码");
+    [self.view endEditing:YES];
+
     if (![self phoneNoErr:_phoneNumberTextField.text]) {
         return;
     }
