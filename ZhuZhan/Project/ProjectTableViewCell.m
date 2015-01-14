@@ -125,7 +125,6 @@
     zoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(35,225,60,20)];
     zoneLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
     zoneLabel.textColor = BlueColor;
-    zoneLabel.text = @"华南区 -";
     [bgImgView addSubview:zoneLabel];
     
     addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(90,225,160,20)];
@@ -145,12 +144,9 @@
 
 -(void)setModel:(projectModel *)model{
     nameLabel.text = model.a_projectName;
-    NSString* investmentHead=[model.a_investment isEqualToString:@""]?@"":@"￥";
-    investmentcountLabel.text = [investmentHead stringByAppendingString:model.a_investment];
+    investmentcountLabel.text = model.a_investment;
+    areacountLabel.text = model.a_storeyArea;
     
-    NSString* areacountExtra=[model.a_area isEqualToString:@""]?@"":@"㎡";
-    areacountLabel.text = [model.a_area stringByAppendingString:areacountExtra];
-;
     NSLog(@"%@",model.a_projectstage);
     if([model.a_projectstage isEqualToString:@"1"]){
         [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];

@@ -29,7 +29,7 @@
     self.navigationController.navigationBar.hidden=NO;
     self.navigationController.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
     //返还按钮
-    UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,5,29,28.5)];
+    UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,5,25,22)];
     [button setImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
