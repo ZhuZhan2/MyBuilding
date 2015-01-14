@@ -582,7 +582,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [button setImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
-    self.navigationItem.title=self.productModel?@"产品详情":@"";
+    self.navigationItem.title=@"详情";//self.productModel?@"产品详情":@"动态详情";
     
     if([self.type isEqualToString:@"Product"]){
         UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
