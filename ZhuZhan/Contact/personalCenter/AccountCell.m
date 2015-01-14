@@ -34,8 +34,10 @@ static int textFieldTag =0;
         [self addSubview:imageView1];
         
         //用户名
+        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:@"用户名" attributes:@{NSKernAttributeName : @(10.0f)}];
         UILabel *userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 70, 80, 30)];
-        userNameLabel.text = @"用  户  名";
+        //userNameLabel.text = @"用  户  名";
+        [userNameLabel setAttributedText:attributedString];
         userNameLabel.textAlignment = NSTextAlignmentLeft;
         userNameLabel.font=[UIFont systemFontOfSize:15];
         [self addSubview:userNameLabel];

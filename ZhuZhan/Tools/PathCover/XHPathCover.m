@@ -441,8 +441,8 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     
     [self addSubview:self.showView];
     
-//    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(74.5, 140, 2, 13)];
-//    [lineImage setBackgroundColor:[UIColor lightGrayColor]];
+//    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(67, 140, 2, 14)];
+//    [lineImage setBackgroundColor:[UIColor whiteColor]];
 //    [self addSubview:lineImage];
 }
 

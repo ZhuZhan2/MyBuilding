@@ -214,7 +214,7 @@
         }else{
             string = @"取消关注";
         }
-        UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:string,@"评论项目", nil];
+        UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:string,@"评论项目",@"评论列表", nil];
         [actionSheet showInView:self.view];
     }else{
         LoginViewController *loginVC = [[LoginViewController alloc] init];
@@ -226,7 +226,7 @@
 }
 
 -(void)initNavi{
-    UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,5,29,28.5)];
+    UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,5,25,22)];
     [button setImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
@@ -340,6 +340,11 @@
         self.addCommentVC=[[AddCommentViewController alloc]init];
         self.addCommentVC.delegate=self;
         [self presentPopupViewController:self.addCommentVC animationType:MJPopupViewAnimationFade flag:2];
+    }else if (buttonIndex==2){
+        PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
+        projectCommentView.projectId = self.projectId;
+        projectCommentView.projectName = self.model.a_projectName;
+        [self.navigationController pushViewController:projectCommentView animated:YES];
     }else{
         NSLog(@"取消");
     }

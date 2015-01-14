@@ -171,6 +171,10 @@
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"激活码不正确"];
                     //参数异常信息提示（具体见返回信息）
                     break;
+                case 1330:
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"验证码错误"];
+                    //参数异常信息提示（具体见返回信息）
+                    break;
                 default:
                     break;
             }
@@ -669,7 +673,7 @@
                     [alert show];}
                     break;
                 case 1319:
-                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"原密码不一致" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"原密码错误" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alert show];}
                     break;
                 default:
