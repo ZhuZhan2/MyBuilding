@@ -223,6 +223,8 @@
 
 -(void)getVerifitionCode:(UIButton*)btn{
     NSLog(@"用户申请发送验证码");
+    [self.view endEditing:YES];
+
     if (![self phoneNoErr:_phoneNumberTextField.text]) {
         return;
     }
@@ -285,9 +287,6 @@
 - (void)commomRegister//账号密码的注册
 {
     NSLog(@"共同注册部分");
-//    RecommendProjectViewController *recProjectView = [[RecommendProjectViewController alloc] init];
-//    [self.navigationController pushViewController:recProjectView animated:YES];
-//    return;
     if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
         return;

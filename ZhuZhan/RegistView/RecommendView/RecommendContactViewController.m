@@ -90,7 +90,6 @@
     return cell;
 }
 
-//暂时移除，目前版本不需要右边的符号
 -(void)chooseApprove:(UIButton*)btn{
     if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
@@ -192,5 +191,10 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+-(void)dealloc{
+    self.tableView.delegate=nil;
+    self.tableView.dataSource=nil;
 }
 @end
