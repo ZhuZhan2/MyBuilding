@@ -49,6 +49,7 @@
         
         //动态文字内容
         UIView* contentTextView;
+        
         if (imageUrlExist) {
             UILabel* contentLabel = [[UILabel alloc] init];
             contentLabel.numberOfLines =0;

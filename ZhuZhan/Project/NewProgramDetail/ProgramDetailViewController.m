@@ -301,9 +301,9 @@
     self.sectionButtonArray=[NSMutableArray array];
 }
 
-//**********************************************************************
+//******************************************************************
 //UIActionSheetDelegate,AddCommentDelegate
-//**********************************************************************
+//******************************************************************
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (![ConnectionAvailable isConnectionAvailable]) {
@@ -354,14 +354,13 @@
     NSLog(@"cancelFromAddComment");
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
-//// "EntityId": ":entity ID", （项目，产品，公司，动态等）
+// "EntityId": ":entity ID", （项目，产品，公司，动态等）
 // "entityType": ":”entityType", Personal,Company,Project,Product 之一
 // "CommentContents": "评论内容",
 // "CreatedBy": ":“评论人"
-// }
 -(void)sureFromAddCommentWithComment:(NSString *)comment{
     NSLog(@"sureFromAddCommentWithCommentModel:");
-    NSLog(@"%@",comment);
+
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
