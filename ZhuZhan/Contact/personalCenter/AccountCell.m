@@ -34,12 +34,13 @@ static int textFieldTag =0;
         [self addSubview:imageView1];
         
         //用户名
-        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:@"用户名" attributes:@{NSKernAttributeName : @(10.0f)}];
+        NSAttributedString *userNameString = [[NSAttributedString alloc] initWithString:@"用户名" attributes:@{NSKernAttributeName : @(8.5f)}];
         UILabel *userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 70, 80, 30)];
         //userNameLabel.text = @"用  户  名";
-        [userNameLabel setAttributedText:attributedString];
+        [userNameLabel setAttributedText:userNameString];
         userNameLabel.textAlignment = NSTextAlignmentLeft;
         userNameLabel.font=[UIFont systemFontOfSize:15];
+        //userNameLabel.backgroundColor = [UIColor yellowColor];
         [self addSubview:userNameLabel];
         userName = [[UITextField alloc] initWithFrame:CGRectMake(110, 70, 150, 30)];
         userName.textAlignment = NSTextAlignmentLeft;
@@ -55,10 +56,13 @@ static int textFieldTag =0;
         [self addSubview:horizontalLine1];
         
         //密码
-        UILabel *passwordLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 120, 80, 30)];
-        passwordLabel.text = @"密        码";
+        NSAttributedString *passwordString = [[NSAttributedString alloc] initWithString:@"密码" attributes:@{NSKernAttributeName : @(31.0f)}];
+        UILabel *passwordLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 120, 100, 30)];
+        [passwordLabel setAttributedText:passwordString];
+        //passwordLabel.text = @"密        码";
         passwordLabel.font=[UIFont systemFontOfSize:15];
         passwordLabel.textAlignment = NSTextAlignmentLeft;
+        //passwordLabel.backgroundColor = [UIColor yellowColor];
         [self addSubview:passwordLabel];
         password = [[UITextField alloc] initWithFrame:CGRectMake(110, 120, 150, 30)];
         password.userInteractionEnabled=NO;
@@ -80,8 +84,10 @@ static int textFieldTag =0;
         [self addSubview:horizontalLine2];
         
           //真实姓名
+        NSAttributedString *realNameString = [[NSAttributedString alloc] initWithString:@"真实姓名" attributes:@{NSKernAttributeName : @(0.8f)}];
         UILabel *realNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 170, 80, 30)];
-        realNameLabel.text = @"真实姓名";
+        //realNameLabel.text = @"真实姓名";
+        [realNameLabel setAttributedText:realNameString];
         realNameLabel.font=[UIFont systemFontOfSize:15];
 
         realNameLabel.textAlignment = NSTextAlignmentLeft;
@@ -99,8 +105,10 @@ static int textFieldTag =0;
         [self addSubview:horizontalLine3];
         
         //性别
-        UILabel *sexLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 220, 80, 30)];
-        sexLabel.text = @"性        别";
+        NSAttributedString *sexString = [[NSAttributedString alloc] initWithString:@"性别" attributes:@{NSKernAttributeName : @(32.5f)}];
+        UILabel *sexLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 220, 100, 30)];
+        [sexLabel setAttributedText:sexString];
+        //sexLabel.text = @"性        别";
         sexLabel.font=[UIFont systemFontOfSize:15];
 
         sexLabel.textAlignment = NSTextAlignmentLeft;
@@ -123,8 +131,10 @@ static int textFieldTag =0;
         [self addSubview:horizontalLine4];
         
         //所在地
+        NSAttributedString *locationString = [[NSAttributedString alloc] initWithString:@"所在地" attributes:@{NSKernAttributeName : @(8.5f)}];
         UILabel *locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 270, 80, 30)];
-        locationLabel.text = @"所   在  地";
+        //locationLabel.text = @"所   在  地";
+        [locationLabel setAttributedText:locationString];
         locationLabel.font=[UIFont systemFontOfSize:15];
         locationLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:locationLabel];
@@ -146,8 +156,10 @@ static int textFieldTag =0;
         [self addSubview:horizontalLine5];
         
         //生日
-        UILabel *birthdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 320, 80, 30)];
-        birthdayLabel.text = @"生        日";
+        NSAttributedString *birthdayString = [[NSAttributedString alloc] initWithString:@"生日" attributes:@{NSKernAttributeName : @(34.0f)}];
+        UILabel *birthdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 320, 100, 30)];
+        [birthdayLabel setAttributedText:birthdayString];
+        //birthdayLabel.text = @"生        日";
         birthdayLabel.font=[UIFont systemFontOfSize:15];
         birthdayLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:birthdayLabel];
@@ -169,8 +181,10 @@ static int textFieldTag =0;
         [self addSubview:horizontalLine6];
         
         //星座
-        UILabel *constellationLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 370, 80, 30)];
-        constellationLabel.text = @"星        座";
+        NSAttributedString *constellationString = [[NSAttributedString alloc] initWithString:@"星座" attributes:@{NSKernAttributeName : @(33.0f)}];
+        UILabel *constellationLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 370, 100, 30)];
+        [constellationLabel setAttributedText:constellationString];
+        //constellationLabel.text = @"星        座";
         constellationLabel.font=[UIFont systemFontOfSize:15];
         constellationLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:constellationLabel];
@@ -186,8 +200,10 @@ static int textFieldTag =0;
         [self addSubview:horizontalLine7];
         
         //血型
-        UILabel *bloodTypeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 420, 80, 30)];
-        bloodTypeLabel.text = @"血        型";
+        NSAttributedString *bloodTypeString = [[NSAttributedString alloc] initWithString:@"血型" attributes:@{NSKernAttributeName : @(33.0f)}];
+        UILabel *bloodTypeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 420, 100, 30)];
+        //bloodTypeLabel.text = @"血        型";
+        [bloodTypeLabel setAttributedText:bloodTypeString];
         bloodTypeLabel.font=[UIFont systemFontOfSize:15];
         bloodTypeLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:bloodTypeLabel];
@@ -211,8 +227,10 @@ static int textFieldTag =0;
         [self addSubview:imageView12];
         
         //email
+        NSAttributedString *emailString = [[NSAttributedString alloc] initWithString:@"邮箱地址" attributes:@{NSKernAttributeName : @(0.8f)}];
         UILabel *emailLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 530, 80, 30)];
-        emailLabel.text = @"邮箱地址";
+        //emailLabel.text = @"邮箱地址";
+        [emailLabel setAttributedText:emailString];
         emailLabel.font=[UIFont systemFontOfSize:15];
         emailLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:emailLabel];
@@ -229,8 +247,10 @@ static int textFieldTag =0;
         [self addSubview:horizontalLine9];
         
         //cellPhone
-        UILabel *cellPhoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 580, 80, 30)];
-        cellPhoneLabel.text = @"电        话";
+        NSAttributedString *cellPhoneString = [[NSAttributedString alloc] initWithString:@"电话" attributes:@{NSKernAttributeName : @(32.5f)}];
+        UILabel *cellPhoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 580, 100, 30)];
+        [cellPhoneLabel setAttributedText:cellPhoneString];
+        //cellPhoneLabel.text = @"电        话";
         cellPhoneLabel.font=[UIFont systemFontOfSize:15];
         cellPhoneLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:cellPhoneLabel];
@@ -253,8 +273,10 @@ static int textFieldTag =0;
         [self addSubview:imageView13];
         
         //在职公司
+        NSAttributedString *companyString = [[NSAttributedString alloc] initWithString:@"在职公司" attributes:@{NSKernAttributeName : @(0.8f)}];
         UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 690, 80, 30)];
-        companyLabel.text = @"在职公司";
+        //companyLabel.text = @"在职公司";
+        [companyLabel setAttributedText:companyString];
         companyLabel.font=[UIFont systemFontOfSize:15];
         companyLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:companyLabel];
@@ -272,8 +294,10 @@ static int textFieldTag =0;
         [self addSubview:horizontalLine10];
         
         //职位
-        UILabel *positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 740, 80, 30)];
-        positionLabel.text = @"职        位";
+        NSAttributedString *positionString = [[NSAttributedString alloc] initWithString:@"职位" attributes:@{NSKernAttributeName : @(32.5f)}];
+        UILabel *positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 740, 100, 30)];
+        //positionLabel.text = @"职        位";
+        [positionLabel setAttributedText:positionString];
         positionLabel.font=[UIFont systemFontOfSize:15];
         positionLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:positionLabel];

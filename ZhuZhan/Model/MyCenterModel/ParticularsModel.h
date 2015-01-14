@@ -18,6 +18,8 @@
 @property (nonatomic,strong) NSString *a_outDate;
 //个人简介
 @property (nonatomic,strong) NSString *a_information;
+//是否在职
+@property (nonatomic,strong) NSString *a_isIn;
 
 @property (nonatomic, strong) NSDictionary *dict;
 @end

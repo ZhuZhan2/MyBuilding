@@ -834,6 +834,7 @@
 
 //第一行蓝，第二行黑的view
 -(NSArray*)getBlueTwoLinesWithStrsWithIndexPath:(MyIndexPath*)indexPath{
+    //NSLog(@"------> %@,%@",self.model.a_area,self.model.a_storeyArea);
     if (indexPath.section==0) {
         return @[self.model.a_area,self.model.a_plotRatio,self.model.a_usage];
     }else{

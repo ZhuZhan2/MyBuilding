@@ -25,22 +25,22 @@
     UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(35, 0, 2, 50)];
     [lineImage2 setBackgroundColor:[UIColor blackColor]];
     [self.contentView addSubview:lineImage2];
-    lineImage2.alpha = 0.2;
+    lineImage2.alpha = 0.08;
     
     headImage = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"公司－我的公司_02a"]];
-    [headImage setFrame:CGRectMake(17.5, 6.5, 37, 37)];
-    headImage.layer.cornerRadius=17.5;
+    [headImage setFrame:CGRectMake(20.5, 9.5, 30, 30)];
+    headImage.layer.cornerRadius=15;
     headImage.layer.masksToBounds=YES;
     //headImage.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:headImage];
     
-    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 25, 200, 20)];
+    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 25, 200, 20)];
     titleLabel.font = [UIFont fontWithName:nil size:14];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     titleLabel.textColor = [UIColor lightGrayColor];
     [self.contentView addSubview:titleLabel];
     
-    contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 5, 200, 20)];
+    contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 5, 200, 20)];
     contentLabel.font = [UIFont fontWithName:nil size:12];
     contentLabel.textAlignment = NSTextAlignmentLeft;
     contentLabel.textColor = [UIColor blackColor];

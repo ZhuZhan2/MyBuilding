@@ -33,6 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self initMyScrollViewAndNavi];//scollview和navi初始
     [self initFirstView];//第一个文字view初始
     if (self.needNoticeView) [self initSecondView];//第二个文字view初始

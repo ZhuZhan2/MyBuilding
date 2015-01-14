@@ -63,7 +63,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setFrame:CGRectMake(0, 0, 40, 19.5)];
     [rightButton setTitle:@"完成" forState:UIControlStateNormal];
-    rightButton.titleLabel.font=[UIFont systemFontOfSize:14];
+    rightButton.titleLabel.font=[UIFont systemFontOfSize:16];
     rightButton.titleLabel.textColor = [UIColor whiteColor];
     [rightButton addTarget:self action:@selector(completePerfect) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
