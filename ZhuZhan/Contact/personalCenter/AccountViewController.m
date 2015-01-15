@@ -346,6 +346,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
 -(void)AddDataToModel:(int)flag WithTextField:(UITextField *)textField
 {
     NSLog(@"textField*******%@",textField.text);
+    NSLog(@"===>%d",flag);
     switch (flag) {
         case 0:
             model.userName = textField.text;

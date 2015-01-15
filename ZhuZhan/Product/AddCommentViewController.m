@@ -59,18 +59,24 @@
     self.textView.delegate=self;
     self.textView.backgroundColor=[UIColor clearColor];
     self.textView.font=[UIFont systemFontOfSize:18];
+    self.textView.returnKeyType = UIReturnKeyDone;
     [self.view addSubview:self.textView];
     
     [self.textView becomeFirstResponder];
 }
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
     self.countLabel.text=[NSString stringWithFormat:@"%d/100",textView.text.length];
     if (range.length == 0 && textView.text.length >= kCommentLimitNumber) {
         return NO;
     }
     return YES;
 }
+
 
 
 -(void)textViewDidChange:(UITextView *)textView{

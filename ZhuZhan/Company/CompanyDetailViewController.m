@@ -189,7 +189,7 @@
             [self.authenticationImageView setImage:[GetImagePath getImagePath:@"公司详情图标03"]];
         }else{
             self.memberCountLabel.text=@"申请认证";
-            [self.authenticationImageView setImage:[GetImagePath getImagePath:@"公司详情图标02"]];
+            [self.authenticationImageView setImage:[[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]?[GetImagePath getImagePath:@"公司详情图标03"]:[GetImagePath getImagePath:@"公司详情图标02"]];
             self.memberCountLabel.textColor=[[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]?RGBCOLOR(170, 170, 170):RGBCOLOR(62, 127, 226);
             self.memberBtn.enabled = ![[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"];
         }

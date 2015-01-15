@@ -215,6 +215,10 @@ static int textFieldTag =0;
         bloodType.tag = 2014091208;
         [self addSubview:bloodType];
         
+        UIButton* bloodBtn=[[UIButton alloc]initWithFrame:bloodType.frame];
+        [bloodBtn addTarget:self action:@selector(addBlood) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:bloodBtn];
+        
         //联系方式
         UIView *back12 = [[UIView alloc] initWithFrame:CGRectMake(0, 460, 320, 60)];
         back12.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
@@ -328,6 +332,13 @@ static int textFieldTag =0;
     [locationview showInView:self.superview.superview.superview];
 }
 
+-(void)addBlood{
+    [self addBgBtn];
+    singlepickerview=[[SinglePickerView alloc]initWithTitle:CGRectMake(0, 0, 320, 260) title:nil Arr:@[@"A型",@"AB型",@"B型",@"O型",@"其他"] delegate:self];
+    singlepickerview.tag = 2;
+    [singlepickerview showInView:self.superview.superview.superview];
+}
+
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(actionSheet.tag == 0){
         singlepickerview = (SinglePickerView *)actionSheet;
@@ -337,7 +348,7 @@ static int textFieldTag =0;
             sex.text=singlepickerview.selectStr;
             [self.delegate AddDataToModel:2 WithTextField:sex];
         }
-    }else{
+    }else if(actionSheet.tag == 1){
         locationview = (LocateView *)actionSheet;
         if(buttonIndex == 0) {
             NSLog(@"Cancel");
@@ -345,6 +356,14 @@ static int textFieldTag =0;
             NSLog(@"%@,%@,%@",locationview.proviceDictionary[@"provice"],locationview.proviceDictionary[@"city"],locationview.proviceDictionary[@"county"]);
             location.text = [NSString stringWithFormat:@"%@,%@,%@",locationview.proviceDictionary[@"provice"],locationview.proviceDictionary[@"city"],locationview.proviceDictionary[@"county"]];
             [self.delegate addLocation:@{@"provice":locationview.proviceDictionary[@"provice"],@"city":locationview.proviceDictionary[@"city"],@"district":locationview.proviceDictionary[@"county"]}];
+        }
+    }else{
+        singlepickerview = (SinglePickerView *)actionSheet;
+        if(buttonIndex == 0) {
+            NSLog(@"Cancel");
+        }else {
+            bloodType.text=singlepickerview.selectStr;
+            [self.delegate AddDataToModel:5 WithTextField:bloodType];
         }
     }
     
