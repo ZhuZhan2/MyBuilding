@@ -29,6 +29,8 @@
     //动态图像
     if(imageUrlExist){
         imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"主站－人脉03"] delegate:commentView];
+        //imageView = [[EGOImageView alloc] initWithFrame:CGRectMake(0, 0, 310,[model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310)];
+        //imageView.backgroundColor = RGBCOLOR(219, 219, 219);
         imageView.frame = CGRectMake(0, 0, 310,[model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310);
         imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_imageUrl]];
         [forCornerView addSubview:imageView];
