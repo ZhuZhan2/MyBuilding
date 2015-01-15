@@ -166,10 +166,10 @@
         cell = [[TMPhotoQuiltViewCell alloc] initWithReuseIdentifier:@"PhotoCell"];
     }
     ProductModel *model = showArr[indexPath.row];
-    
-    cell.photoView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_imageUrl]];
     cell.titleLabel.text = model.a_content;
     cell.commentCountLabel.text= model.a_commentNumber;
+    cell.imageSize = [self imageAtIndexPath:indexPath];
+    cell.photoView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_imageUrl]];
     return cell;
 }
 

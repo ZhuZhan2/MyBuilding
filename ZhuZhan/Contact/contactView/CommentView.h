@@ -17,7 +17,7 @@
 -(void)gotoDetailView:(NSIndexPath *)indexPath;
 -(void)gotoContactDetail:(NSString *)aid userType:(NSString *)userType;
 @end
-@interface CommentView : UIView<UITableViewDelegate,UITableViewDataSource,ContactCommentTableViewDelegate,EGOImageViewDelegate>{
+@interface CommentView : UIView<UITableViewDelegate,UITableViewDataSource,ContactCommentTableViewDelegate>{
     NSIndexPath *indexpath;
     NSMutableArray *showArr;
 }
