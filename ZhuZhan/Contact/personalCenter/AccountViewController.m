@@ -76,6 +76,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImage"]]];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadImageFrame:CGRectMake(125, -70, 70, 70)];
+    [_pathCover setFootViewFrame:CGRectMake(0, 120, 320, 80)];
     [_pathCover.headImage.layer setMasksToBounds:YES];
     [_pathCover.headImage.layer setCornerRadius:35];
     [_pathCover setNameFrame:CGRectMake(0, 0, 320, 20) font:[UIFont systemFontOfSize:14]];
@@ -83,7 +84,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
     
-    NSArray *colorArray = [@[[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:0.0],[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:.5]] mutableCopy];
+    NSArray *colorArray = [@[[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:0.0],[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:0]] mutableCopy];
     GradientView *footView = [[GradientView alloc] initWithFrame:CGRectMake(0, 100, 320, 100) colorArr:colorArray];
     [_pathCover addSubview:footView];
     

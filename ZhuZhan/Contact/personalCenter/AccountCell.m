@@ -443,19 +443,10 @@ static int textFieldTag =0;
 }
 
 -(void)setModel:(ContactModel *)model{
-    NSLog(@"asdfasdfasdfasdfasdfasdfsadf");
     userName.text =model.userName;
     password.text = @"**********";
     realName.text = model.realName;
     sex.text = model.sex;
-//    if([model.city isEqualToString:@""]&&[model.district isEqualToString:@""]){
-//        location.text = @"";
-//    }else if([[NSString stringWithFormat:@"%@",model.city] isEqualToString:@"(null)"]&&[[NSString stringWithFormat:@"%@",model.district] isEqualToString:@"(null)"]){
-//        location.text = @"";
-//    }else{
-//        location.text = [NSString stringWithFormat:@"%@,%@",model.city,model.district];
-//    }
-    NSLog(@"%@,%@,%@",model.provice,model.city,model.district);
     location.text = [NSString stringWithFormat:@"%@ %@ %@",model.provice,model.city,model.district];
     birthday.text = model.birthday;
     constellation.text = model.constellation;

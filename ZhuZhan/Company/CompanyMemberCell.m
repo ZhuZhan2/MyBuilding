@@ -20,10 +20,10 @@
     if (self) {
         self.needRightBtn=needRightBtn;
         
-        self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"公司认证员工_03a"]];
+        self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
         self.userImageView.layer.cornerRadius=3;
         self.userImageView.layer.masksToBounds=YES;
-        self.userImageView.frame=CGRectMake(20, 12, 36, 36);
+        self.userImageView.frame=CGRectMake(20, 12, 37, 37);
         [self addSubview:self.userImageView];
         self.userImageView.userInteractionEnabled=YES;
         

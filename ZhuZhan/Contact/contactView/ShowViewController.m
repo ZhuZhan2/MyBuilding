@@ -33,12 +33,17 @@
 {
     [super viewDidLoad];
     
-    EGOImageView  *tempImageView= [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001"]];
+    EGOImageView  *tempImageView= [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"默认主图01"]];
     tempImageView.frame = CGRectMake(0, 0, 280, 300);
     [self.view addSubview:tempImageView];
     
+    UIImageView *bgImage = [[UIImageView alloc] initWithFrame:tempImageView.frame];
+    bgImage.backgroundColor = [UIColor blackColor];
+    bgImage.alpha = 0.3;
+    [tempImageView insertSubview:bgImage atIndex:0];
     
-    EGOImageView *icon = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_29a"]];
+    
+    EGOImageView *icon = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_超大2"]];
     icon.frame = CGRectMake(107.5, 50, 65, 65);
     icon.layer.cornerRadius = 32.5;//设置那个圆角的有多圆
     icon.layer.masksToBounds = YES;

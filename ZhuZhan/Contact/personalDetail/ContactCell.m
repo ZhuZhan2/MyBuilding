@@ -77,6 +77,7 @@
             
             emailBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             emailBtn.frame = CGRectMake(270, 66, 21, 18);
+            emailBtn.backgroundColor = [UIColor yellowColor];
             [emailBtn addTarget:self action:@selector(CallEmail) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:emailBtn];
             
@@ -125,6 +126,7 @@
             [self addSubview:imageView];
         }
     }else{
+        self.email = model.a_email;
         if(![model.a_email isEqualToString:@""]){
             back = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
             back.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
@@ -164,6 +166,7 @@
 }
 
 -(void)CallEmail{
+    NSLog(@"asdfasdfasdfaf");
     if([self.delegate respondsToSelector:@selector(gotoCallEmail:)]){
         [self.delegate gotoCallEmail:self.email];
     }

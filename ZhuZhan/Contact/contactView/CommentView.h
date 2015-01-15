@@ -10,13 +10,14 @@
 #import "ActivesModel.h"
 #import "HeadImageDelegate.h"
 #import "ContactCommentTableViewCell.h"
+#import "EGOImageView.h"
 @protocol CommentViewDelegate <NSObject>
 
 -(void)addCommentView:(NSIndexPath *)indexPath;
 -(void)gotoDetailView:(NSIndexPath *)indexPath;
 -(void)gotoContactDetail:(NSString *)aid userType:(NSString *)userType;
 @end
-@interface CommentView : UIView<UITableViewDelegate,UITableViewDataSource,ContactCommentTableViewDelegate>{
+@interface CommentView : UIView<UITableViewDelegate,UITableViewDataSource,ContactCommentTableViewDelegate,EGOImageViewDelegate>{
     NSIndexPath *indexpath;
     NSMutableArray *showArr;
 }
