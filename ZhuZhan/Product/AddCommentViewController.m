@@ -114,7 +114,8 @@
 
 -(void)initTitlePart{
     UILabel* titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
-    titleLabel.center=CGPointMake(155, 19);
+    titleLabel.center=CGPointMake(140, 19);
+    titleLabel.textAlignment=NSTextAlignmentCenter;
     titleLabel.text=@"评论动态";
     titleLabel.font=[UIFont boldSystemFontOfSize:18];
     [self.view addSubview:titleLabel];

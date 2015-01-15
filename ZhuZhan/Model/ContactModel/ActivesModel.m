@@ -19,9 +19,8 @@
     self.a_projectName = [ProjectStage ProjectStrStage:dict[@"actives"][@"projectName"]];
     self.a_projectStage = [ProjectStage ProjectStrStage:dict[@"actives"][@"projectStage"]];
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"actives"][@"userName"]];
-    if ([self.a_userName containsString:@"\n"]) {
-        self.a_userName=[self.a_userName stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
-    }
+    NSLog(@"=====%@",self.a_userName.class);
+    self.a_userName=[self.a_userName stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
     if(![[ProjectStage ProjectStrStage:dict[@"actives"][@"avatarUrl"]] isEqualToString:@""]){
         self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"actives"][@"avatarUrl"]]];
     }else{
@@ -29,9 +28,7 @@
     }
     self.a_time = [ProjectStage ProjectDateStage:dict[@"actives"][@"createdTime"]];
     self.a_content = [ProjectStage ProjectStrStage:dict[@"actives"][@"content"]];
-    if ([self.a_content containsString:@"\n"]) {
-        self.a_content=[self.a_content stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
-    }
+    self.a_content=[self.a_content stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
     if(![[ProjectStage ProjectStrStage:dict[@"actives"][@"imageLocation"]] isEqualToString:@""]){
         self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"actives"][@"imageLocation"]]];
     }else{
