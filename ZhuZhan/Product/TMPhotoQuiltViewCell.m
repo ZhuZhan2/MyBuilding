@@ -44,10 +44,12 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 
 - (EGOImageView *)photoView {
     if (!_photoView) {
-        //_photoView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"产品－列表_10a"]];
-        _photoView = [[EGOImageView alloc] init];
+        _photoView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"动态产品评论02"]];
+        //_photoView = [[EGOImageView alloc] init];
         _photoView.delegate = self;
+        //_photoView.showActivityIndicator=YES;
         _photoView.backgroundColor = RGBCOLOR(219, 219, 219);
+        _photoView.contentMode=UIViewContentModeScaleAspectFit;
         [self addSubview:_photoView];
     }
     return _photoView;
@@ -99,6 +101,10 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 
     //产品图片
     self.photoView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height-(productContentExist?80:30));
+    
+    if ([self.model.a_imageUrl isEqualToString:@""]) {
+        self.photoView.image=[GetImagePath getImagePath:@"动态产品评论02"];
+    }
     
     //判断cell中是否包含产品描述内容
     BOOL isContainContent=[self.subviews containsObject:self.titleLabel];
