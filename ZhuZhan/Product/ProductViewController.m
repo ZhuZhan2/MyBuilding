@@ -170,6 +170,7 @@
     cell.commentCountLabel.text= model.a_commentNumber;
     cell.imageSize = [self imageAtIndexPath:indexPath];
     cell.photoView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_imageUrl]];
+    cell.model = model;
     return cell;
 }
 
