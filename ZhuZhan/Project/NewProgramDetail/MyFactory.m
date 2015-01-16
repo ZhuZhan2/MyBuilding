@@ -272,7 +272,7 @@ static NSString* hasUserTypeContent(NSString* string){
         }else{
             label.text=(i==owners.count-1)?owners[i]:[owners[i] stringByAppendingString:@"，"];
         }
-        label.textColor=contentColor(hasData);
+        label.textColor=hasData?[UIColor blackColor]:NoDataColor;
         label.font=ContentFont;
         [view addSubview:label];
     }
@@ -528,7 +528,7 @@ static NSString* hasUserTypeContent(NSString* string){
         label.font=ContentFont;
         label.textAlignment=NSTextAlignmentRight;
         label.textColor=hasContentBool(boolStrs[i])?([boolStrs[i] isEqualToString:@"Yes"]?[UIColor redColor]:[UIColor grayColor]):NoDataColor;
-        [view addSubview:label];                                                                                             
+        [view addSubview:label];
     }
     
     return view;
