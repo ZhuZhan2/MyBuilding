@@ -51,7 +51,7 @@
     [bgImgView addSubview:investmentLabel];
     
     UILabel *investmentcountLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,71,140,20)];
-    investmentcountLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+    investmentcountLabel.font = [UIFont systemFontOfSize:14];
     investmentcountLabel.textColor = [UIColor blackColor];
     investmentcountLabel.text = model.a_investment;
     [bgImgView addSubview:investmentcountLabel];
@@ -63,7 +63,7 @@
     [bgImgView addSubview:areaLabel];
     
     UILabel *areacountLabel = [[UILabel alloc] initWithFrame:CGRectMake(120,71,140,20)];
-    areacountLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+    areacountLabel.font = [UIFont systemFontOfSize:14];
     areacountLabel.textColor = [UIColor blackColor];
     //areacountLabel.text = @"16,000M²";
     areacountLabel.text = [NSString stringWithFormat:@"%@",model.a_storeyArea];
@@ -87,13 +87,13 @@
     [bgImgView addSubview:progressImage];
     
     UILabel *startdateLabel = [[UILabel alloc] initWithFrame:CGRectMake(210,57,65,20)];
-    startdateLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
+    startdateLabel.font = [UIFont systemFontOfSize:12];
     startdateLabel.textColor = GrayColor;
     startdateLabel.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     [bgImgView addSubview:startdateLabel];
     
     UILabel *enddateLabel = [[UILabel alloc] initWithFrame:CGRectMake(210,71,65,20)];
-    enddateLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
+    enddateLabel.font = [UIFont systemFontOfSize:12];
     enddateLabel.textColor = [UIColor orangeColor];
     enddateLabel.text = [model.a_exceptFinishTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     [bgImgView addSubview:enddateLabel];

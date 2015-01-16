@@ -51,6 +51,7 @@
     }else{
         self.personalBackground=[ProjectStage ProjectStrStage:dict[@"backgroundImage"]];
     }
+    self.industry = [ProjectStage ProjectStrStage:dict[@"industry"]];
 }
 
 //POST:

@@ -366,6 +366,12 @@
         }else{
             [dataDic setObject:aStr forKey:@"projectCategory"];
         }
+    }else{
+        if(index == 0){
+            [dataDic setObject:@"" forKey:@"projectStage"];
+        }else{
+            [dataDic setObject:@"" forKey:@"projectCategory"];
+        }
     }
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     [_tableView reloadData];

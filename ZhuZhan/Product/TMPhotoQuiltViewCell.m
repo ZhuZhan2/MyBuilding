@@ -136,14 +136,14 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 }
 
 - (void)imageViewLoadedImage:(EGOImageView*)imageView{
-//    [_defaultImageView removeFromSuperview];
-//    _defaultImageView = nil;
+    [_defaultImageView removeFromSuperview];
+    _defaultImageView = nil;
 }
 
 - (void)imageViewFailedToLoadImage:(EGOImageView*)imageView error:(NSError*)error{
     NSLog(@"imageViewFailedToLoadImage");
-//    _defaultImageView = [[UIImageView alloc] initWithImage:[GetImagePath getImagePath:@"产品－列表_10a"]];
-//    _defaultImageView.frame = CGRectMake((self.imageSize.width-60)/2-2, (self.imageSize.height-60)/2-2, 61, 61);
-//    [self addSubview:_defaultImageView];
+    _defaultImageView = [[UIImageView alloc] initWithImage:[GetImagePath getImagePath:@"产品－列表_10a"]];
+    _defaultImageView.frame = CGRectMake((self.imageSize.width-60)/2-2, (self.imageSize.height-60)/2-2, 61, 61);
+    [self addSubview:_defaultImageView];
 }
 @end
