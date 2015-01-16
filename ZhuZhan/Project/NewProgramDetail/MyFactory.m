@@ -175,14 +175,14 @@ static NSString* hasUserTypeContent(NSString* string){
     height+=areaLabel.frame.size.height+5;
     
     //第三行str
-    font=[UIFont systemFontOfSize:13];
+    font=[UIFont systemFontOfSize:14];
     size=[datas[2] boundingRectWithSize:CGSizeMake(280, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
     
     UILabel* areaDetailLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, height, 280, isFirst?(size.height>20?32:size.height):size.height)];
     areaDetailLabel.text=isFirst?hasAreaAddress(datas[2]):hasProgramDescribe(datas[2]);
     areaDetailLabel.numberOfLines=0;
     areaDetailLabel.textColor=contentColor(hasContentBool(datas[2]));
-    areaDetailLabel.font=[UIFont systemFontOfSize:13];
+    areaDetailLabel.font=font;
     areaDetailLabel.textAlignment=NSTextAlignmentCenter;
     [view addSubview:areaDetailLabel];
     height+=areaDetailLabel.frame.size.height+10;
@@ -504,30 +504,31 @@ static NSString* hasUserTypeContent(NSString* string){
 
 //硬件设备以及yes和no  电梯,空调,供暖方式,外墙材料,钢结构,yes or no的几个view
 +(UIView*)getDeviceAndBoolWithDevic:(NSArray*)devices boolStrs:(NSArray*)boolStrs{
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, devices.count*30)];
+    CGFloat cellHeight=35;
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, devices.count*cellHeight)];
     view.backgroundColor=[UIColor whiteColor];
     
     //电梯,空调,供暖方式,外墙材料,钢结构 的label
     for (int i=0; i<devices.count; i++) {
-        UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(20, 5+i*30, 150, 20)];
+        UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(20, i*cellHeight, 150, cellHeight)];
         label.text=devices[i];
-        label.font=[UIFont systemFontOfSize:14];
+        label.font=ContentFont;
         [view addSubview:label];
         
         //分割线
         UIView* separatorLine=[self getSeperatedLine];
-        separatorLine.center=CGPointMake(160, .5+i*30);
+        separatorLine.center=CGPointMake(160, .5+i*cellHeight);
         [view addSubview:separatorLine];
     }
     
     //yes or no的label
     for (int i=0; i<boolStrs.count; i++) {
-        UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(250, 5+i*30, 50, 20)];
-        label.text=boolStrs[i];
-        label.font=[UIFont systemFontOfSize:14];
+        UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(250, i*cellHeight, 50, cellHeight)];
+        label.text=hasContent(boolStrs[i]);
+        label.font=ContentFont;
         label.textAlignment=NSTextAlignmentRight;
-        label.textColor=[boolStrs[i] isEqualToString:@"Yes"]?[UIColor redColor]:[UIColor grayColor];
-        [view addSubview:label];
+        label.textColor=hasContentBool(boolStrs[i])?([boolStrs[i] isEqualToString:@"Yes"]?[UIColor redColor]:[UIColor grayColor]):NoDataColor;
+        [view addSubview:label];                                                                                             
     }
     
     return view;
