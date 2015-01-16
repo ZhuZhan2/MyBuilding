@@ -169,7 +169,9 @@
     cell.titleLabel.text = model.a_content;
     cell.commentCountLabel.text= model.a_commentNumber;
     cell.imageSize = [self imageAtIndexPath:indexPath];
-    cell.photoView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_imageUrl]];
+    if (model.a_imageUrl&&![model.a_imageUrl isEqualToString:@""]) {
+        cell.photoView.imageURL = [NSURL URLWithString:model.a_imageUrl];
+    }
     cell.model = model;
     return cell;
 }

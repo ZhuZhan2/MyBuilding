@@ -41,7 +41,7 @@
 	if((self = [super initWithImage:anImage])) {
 		self.placeholderImage = anImage;
 		self.delegate = aDelegate;
-        [self.layer setCornerRadius:7];
+        //[self.layer setCornerRadius:7];
         
 //        // 透明的button。
 //        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
