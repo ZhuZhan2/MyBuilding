@@ -33,6 +33,8 @@
     //地勘阶段
     self.firstView=[[UIView alloc]initWithFrame:CGRectZero];
     
+    UIView* view2=[MyFactory getNoLineTitleViewWithTitle:@"地勘阶段" titleImage:[GetImagePath getImagePath:@"icon02"]];
+    
     NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     UIView* view0=[MyFactory getImageViewWithImageUrl:images.count?images[0]:@"No" count:images.count];
     if (images.count) {
@@ -42,9 +44,10 @@
 
     
     NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
-    UIView* view1=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];
+
+    UIView* view1=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs withContactCategory:@"地勘公司："];
     
-    NSArray* tempAry=@[view0,view1];
+    NSArray* tempAry=@[view2,view0,view1];
     CGFloat height=0;
     for (int i=0; i<tempAry.count; i++) {
         CGRect frame=[tempAry[i] frame];
@@ -66,8 +69,7 @@
     UIView* view0=[MyFactory getTwoLinesTitleViewWithTitle:@"设计阶段" titleImage:[GetImagePath getImagePath:@"icon02"] firstStrs:@[@"主体设计阶段"] secondStrs:secondStrs];
     
     NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
-    
-    UIView* view1=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];
+    UIView* view1=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs withContactCategory:@"设计院："];
     
     
     NSArray* tempAry=@[view0,view1];
@@ -91,7 +93,7 @@
     UIView* view0=[MyFactory getTwoLinesTitleViewWithTitle:@"出图阶段" titleImage:[GetImagePath getImagePath:@"icon02"] firstStrs:@[@"预计施工时间",@"预计竣工时间"] secondStrs:secondStrs];
     
     NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:2]];
-    UIView* view1=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];
+    UIView* view1=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs withContactCategory:@"业主单位："];
 
     NSArray* boolStrs=[self.delegate getDeviceAndBoolWithDevicesAndBoolStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:2]];
     UIView* view2=[MyFactory getDeviceAndBoolWithDevic:@[@"电梯",@"空调",@"供暖方式",@"外墙材料",@"钢结构"] boolStrs:boolStrs];

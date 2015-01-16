@@ -32,18 +32,19 @@
 -(void)getFirstView{
     self.firstView=[[UIView alloc]initWithFrame:CGRectZero];
     
+    UIView* view2=[MyFactory getNoLineTitleViewWithTitle:@"装修阶段" titleImage:[GetImagePath getImagePath:@"icon04"]];
+    
     NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     UIView* view0=[MyFactory getImageViewWithImageUrl:images.count?images[0]:@"No" count:images.count];
     if (images.count) {
         view0.tag=0;
         [MyFactory addButtonToView:view0 target:self action:@selector(chooseImageView:) forControlEvents:UIControlEventTouchUpInside];
     }
-
     
     NSArray* secondStrs=[self.delegate getBlackTwoLinesWithStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     UIView* view1=[MyFactory getBlackTwoLinesWithFirstStr:@[@"弱电安装",@"装修情况",@"装修进度"] secondStr:secondStrs];
     
-    NSArray* tempAry=@[view0,view1];
+    NSArray* tempAry=@[view2,view0,view1];
     CGFloat height=0;
     for (int i=0; i<tempAry.count; i++) {
         CGRect frame=[tempAry[i] frame];
