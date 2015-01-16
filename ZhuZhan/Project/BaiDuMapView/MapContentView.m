@@ -40,8 +40,13 @@
     
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,5,160,36)];
     nameLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:15];
-    nameLabel.textColor = [UIColor blackColor];
-    nameLabel.text = model.a_projectName;
+    if([model.a_projectName isEqualToString:@""]){
+        nameLabel.text = @"项目名称";
+        nameLabel.textColor = RGBCOLOR(166, 166, 166);
+    }else{
+        nameLabel.text = model.a_projectName;
+        nameLabel.textColor = [UIColor blackColor];
+    }
     [bgImgView addSubview:nameLabel];
     
     UILabel *investmentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,51,85,20)];
@@ -52,8 +57,18 @@
     
     UILabel *investmentcountLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,71,140,20)];
     investmentcountLabel.font = [UIFont systemFontOfSize:14];
-    investmentcountLabel.textColor = [UIColor blackColor];
-    investmentcountLabel.text = model.a_investment;
+    if([[NSString stringWithFormat:@"%@",model.a_investment] isEqualToString:@""]){
+        investmentcountLabel.text = @"－";
+        investmentcountLabel.textColor = RGBCOLOR(166, 166, 166);
+    }else{
+        if([[NSString stringWithFormat:@"%@",model.a_investment] isEqualToString:@"0"]){
+            investmentcountLabel.text = @"－";
+            investmentcountLabel.textColor = RGBCOLOR(166, 166, 166);
+        }else{
+            investmentcountLabel.text = [NSString stringWithFormat:@"%@",model.a_investment];
+            investmentcountLabel.textColor = [UIColor blackColor];
+        }
+    }
     [bgImgView addSubview:investmentcountLabel];
     
     UILabel *areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(120,51,75,20)];
@@ -64,9 +79,18 @@
     
     UILabel *areacountLabel = [[UILabel alloc] initWithFrame:CGRectMake(120,71,140,20)];
     areacountLabel.font = [UIFont systemFontOfSize:14];
-    areacountLabel.textColor = [UIColor blackColor];
-    //areacountLabel.text = @"16,000M²";
-    areacountLabel.text = [NSString stringWithFormat:@"%@",model.a_storeyArea];
+    if([[NSString stringWithFormat:@"%@",model.a_storeyArea] isEqualToString:@""]){
+        areacountLabel.text = @"－";
+        areacountLabel.textColor = RGBCOLOR(166, 166, 166);
+    }else{
+        if([[NSString stringWithFormat:@"%@",model.a_storeyArea] isEqualToString:@"0"]){
+            areacountLabel.text = @"－";
+            areacountLabel.textColor = RGBCOLOR(166, 166, 166);
+        }else{
+            areacountLabel.text = [NSString stringWithFormat:@"%@",model.a_storeyArea];
+            areacountLabel.textColor = [UIColor blackColor];
+        }
+    }
     [bgImgView addSubview:areacountLabel];
     
     UIImageView *progressImage = [[UIImageView alloc] initWithFrame:CGRectMake(220,5,52,52)];
@@ -88,14 +112,26 @@
     
     UILabel *startdateLabel = [[UILabel alloc] initWithFrame:CGRectMake(210,57,65,20)];
     startdateLabel.font = [UIFont systemFontOfSize:12];
-    startdateLabel.textColor = GrayColor;
-    startdateLabel.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+    startdateLabel.textAlignment = NSTextAlignmentCenter;
+    if([model.a_exceptStartTime isEqualToString:@""]){
+        startdateLabel.text = @"开工日期";
+        startdateLabel.textColor = RGBCOLOR(166, 166, 166);
+    }else{
+        startdateLabel.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+        startdateLabel.textColor = GrayColor;
+    }
     [bgImgView addSubview:startdateLabel];
     
     UILabel *enddateLabel = [[UILabel alloc] initWithFrame:CGRectMake(210,71,65,20)];
     enddateLabel.font = [UIFont systemFontOfSize:12];
-    enddateLabel.textColor = [UIColor orangeColor];
-    enddateLabel.text = [model.a_exceptFinishTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+    enddateLabel.textAlignment = NSTextAlignmentCenter;
+    if([model.a_exceptFinishTime isEqualToString:@""]){
+        enddateLabel.text = @"竣工日期";
+        enddateLabel.textColor = RGBCOLOR(166, 166, 166);
+    }else{
+        enddateLabel.text = [model.a_exceptFinishTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+        enddateLabel.textColor = [UIColor orangeColor];
+    }
     [bgImgView addSubview:enddateLabel];
     
     UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(20,115,20,20)];
@@ -108,14 +144,26 @@
     
     UILabel *zoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(50,115,60,20)];
     zoneLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
-    zoneLabel.textColor = BlueColor;
-    zoneLabel.text = [model.a_city isEqualToString:@""]?model.a_city:[NSString stringWithFormat:@"%@ - ",model.a_city];
+    if([model.a_city isEqualToString:@""]){
+        zoneLabel.text = @"区域 -";
+        zoneLabel.textColor = RGBCOLOR(166, 166, 166);
+        zoneLabel.textAlignment = NSTextAlignmentCenter;
+    }else{
+        zoneLabel.text = [NSString stringWithFormat:@"%@ - ",model.a_city];
+        zoneLabel.textColor = BlueColor;
+        zoneLabel.textAlignment = NSTextAlignmentLeft;
+    }
     [bgImgView addSubview:zoneLabel];
     
     UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(100,115,160,20)];
     addressLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
-    addressLabel.textColor = [UIColor blackColor];
-    addressLabel.text =model.a_landAddress;
+    if([model.a_landAddress isEqualToString:@""]){
+        addressLabel.text = @"地址";
+        addressLabel.textColor = RGBCOLOR(166, 166, 166);
+    }else{
+        addressLabel.text = model.a_landAddress;
+        addressLabel.textColor = [UIColor blackColor];
+    }
     [bgImgView addSubview:addressLabel];
     
     [grayBgView addSubview:bgImgView];
