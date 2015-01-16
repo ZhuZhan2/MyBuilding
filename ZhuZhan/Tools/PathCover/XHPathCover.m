@@ -9,6 +9,7 @@
 #import "XHPathCover.h"
 #import "XHWaterDropRefresh.h"
 #import "EGOCache.h"
+
 NSString *const XHUserNameKey = @"XHUserName";
 NSString *const XHBirthdayKey = @"XHBirthday";
 
@@ -402,6 +403,10 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     
     [self addSubview:self.bannerView];
     
+    NSArray *colorArray = [@[[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:0.0],[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:.8]] mutableCopy];
+    self.footView = [[GradientView alloc] initWithFrame:CGRectMake(0, 75, 320, 80) colorArr:colorArray];
+    [self addSubview:self.footView];
+    
     CGFloat waterDropRefreshHeight = 100;
     CGFloat waterDropRefreshWidth = 20;
     _waterDropRefresh = [[XHWaterDropRefresh alloc] initWithFrame:CGRectMake(52.5, CGRectGetHeight(self.bounds) - waterDropRefreshHeight+5, waterDropRefreshWidth, waterDropRefreshHeight)];
@@ -415,7 +420,7 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     _showView = [[UIView alloc] initWithFrame:CGRectMake(0, self.showUserInfoViewOffsetHeight, CGRectGetWidth(self.bounds), waterDropRefreshHeight)];
     _showView.backgroundColor = [UIColor clearColor];
     
-    _headImage = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_29a"]];
+    _headImage = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_大"]];
     _headImage.frame = CGRectMake(45, 0, avatarButtonHeight, avatarButtonHeight);
     [_headImage.layer setMasksToBounds:YES];
     [_headImage.layer setCornerRadius:23];
@@ -433,6 +438,12 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     _birthdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(92, 47, 207, 24)];
     _birthdayLabel.textColor = [UIColor whiteColor];
     _birthdayLabel.font = [UIFont systemFontOfSize:12];
+    
+//    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
+//    imageView.backgroundColor = [UIColor yellowColor];
+//    [_showView addSubview:imageView];
+    
+    //_showView.backgroundColor = [UIColor blackColor];
     
     [_showView addSubview:self.headImage];
     [_showView addSubview:self.avatarButton];
@@ -537,5 +548,9 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     [button addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:button];
     
+}
+
+-(void)setFootViewFrame:(CGRect)newFrame{
+    self.footView.frame = newFrame;
 }
 @end

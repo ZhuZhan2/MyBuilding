@@ -35,10 +35,14 @@
         height += companyLabel.frame.size.height;
     }
     
-    NSLog(@"===>%@",model.a_inDate);
+    NSLog(@"===>%@",model.a_isIn);
     if(![model.a_inDate isEqualToString:@""]||![model.a_outDate isEqualToString:@""]){
-        UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 70, 150, 30)];
-        dateLabel.text = [NSString stringWithFormat:@"(%@——%@)",model.a_inDate,model.a_outDate];
+        UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 70, 180, 30)];
+        if([model.a_isIn isEqualToString:@"1"]){
+            dateLabel.text = [NSString stringWithFormat:@"(%@——目前)",model.a_inDate];
+        }else{
+            dateLabel.text = [NSString stringWithFormat:@"(%@——%@)",model.a_inDate,model.a_outDate];
+        }
         dateLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
         dateLabel.textColor = GrayColor;
         [view addSubview:dateLabel];

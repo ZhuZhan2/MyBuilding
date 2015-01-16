@@ -302,7 +302,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     //用户头像
     tempHeight=imageView?imageView.frame.origin.y:contentTotalView.frame.origin.y;
-    EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"公司认证员工_05a"]];
+    EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     userImageView.layer.masksToBounds = YES;
     userImageView.layer.cornerRadius = 3;
     userImageView.frame=CGRectMake(5,tempHeight+5,37,37);
@@ -526,7 +526,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         
         //使头像可以被点击
-        UIButton* btn=[[UIButton alloc]initWithFrame:CGRectMake(15, 20, 50, 50)];
+        UIButton* btn=[[UIButton alloc]initWithFrame:CGRectMake(15, 15, 37, 37)];
         btn.tag=indexPath.row;
         [btn addTarget:self action:@selector(chooseUserImage:) forControlEvents:UIControlEventTouchUpInside];
         [cell.contentView addSubview:btn];

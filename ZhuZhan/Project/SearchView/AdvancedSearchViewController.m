@@ -46,6 +46,7 @@
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setFrame:CGRectMake(0, 0, 50, 19.5)];
     [rightButton setTitle:@"保存" forState:UIControlStateNormal];
+    rightButton.titleLabel.font=[UIFont systemFontOfSize:16];
     [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
@@ -74,22 +75,24 @@
 }
 
 -(void)firstNetWork{
-    [ProjectApi GetSearchConditionsWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            showArr = posts;
-            for(int i=0;i<posts.count;i++){
-                conditionsView = [ConditionsView setFram:posts[i]];
-                [viewArr addObject:conditionsView];
+    if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        [ProjectApi GetSearchConditionsWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                showArr = posts;
+                for(int i=0;i<posts.count;i++){
+                    conditionsView = [ConditionsView setFram:posts[i]];
+                    [viewArr addObject:conditionsView];
+                }
+                [_tableView reloadData];
+            }else{
+                [LoginAgain AddLoginView];
             }
-            [_tableView reloadData];
-        }else{
-            [LoginAgain AddLoginView];
-        }
-    }userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
-            [self firstNetWork];
+        }userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                [self firstNetWork];
+            }];
         }];
-    }];
+    }
 }
 
 - (void)didReceiveMemoryWarning

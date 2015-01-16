@@ -37,9 +37,9 @@
     UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(35, 0, 2, 50)];
     [lineImage2 setBackgroundColor:[UIColor blackColor]];
     [self.contentView addSubview:lineImage2];
-    lineImage2.alpha = 0.2;
+    lineImage2.alpha = 0.08;
     
-    stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(22.5, 11.5, 27, 27)];
+    stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(23, 12, 26, 26)];
     [self.contentView addSubview:stageImage];
     
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 5, 200, 20)];

@@ -26,15 +26,15 @@
 
 -(void)loadSelfWithCommentImageUrl:(NSString*)userImageUrl userName:(NSString*)userName commentContent:(NSString*)commentContent{
     //获取用户头像
-    self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"公司认证员工_05a"]];
+    self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",userImageUrl]];
     self.userImageView.layer.masksToBounds=YES;
     self.userImageView.layer.cornerRadius=3;
-    self.userImageView.frame=CGRectMake(15, 20, 50, 50);
+    self.userImageView.frame=CGRectMake(15, 15, 37, 37);
     [self addSubview:self.userImageView];
     
     //用户名称label
-    self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(80, 15, 200, 20)];
+    self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(70, 7, 200, 20)];
     self.userNameLabel.text=userName;
     self.userNameLabel.font=[UIFont systemFontOfSize:16];
     //self.userNameLabel.backgroundColor=[UIColor redColor];
@@ -42,7 +42,7 @@
     
     //用户评论内容label
     CGRect bounds=[commentContent boundingRectWithSize:CGSizeMake(213, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil];
-    self.userCommentContent=[[UILabel alloc]initWithFrame:CGRectMake(80, 40, 213, bounds.size.height)];
+    self.userCommentContent=[[UILabel alloc]initWithFrame:CGRectMake(70, 30, 213, bounds.size.height)];
     self.userCommentContent.numberOfLines=0;
     self.userCommentContent.font=[UIFont systemFontOfSize:13];
     self.userCommentContent.text=commentContent;
@@ -52,9 +52,9 @@
     
     CGFloat height=0;
     if (self.userCommentContent.frame.size.height>=25) {
-        height=bounds.size.height+40+20;
+        height=bounds.size.height+40;
     }else{
-        height=90;
+        height=70;
     }
     
     self.frame=CGRectMake(5, 0, 310, height);

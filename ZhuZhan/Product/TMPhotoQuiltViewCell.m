@@ -43,8 +43,12 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 }
 
 - (EGOImageView *)photoView {
+    NSLog(@"photoView");
     if (!_photoView) {
-        _photoView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"产品－列表_10a"]];
+        //_photoView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"产品－列表_10a"]];
+        _photoView = [[EGOImageView alloc] init];
+        _photoView.delegate = self;
+        _photoView.backgroundColor = RGBCOLOR(219, 219, 219);
         [self addSubview:_photoView];
     }
     return _photoView;
@@ -91,6 +95,7 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 }
 
 - (void)layoutSubviews {
+    NSLog(@"layoutSubviews");
     //产品描述内容是否存在
     BOOL productContentExist=![self.titleLabel.text isEqualToString:@""];
 
@@ -128,4 +133,18 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 
 }
 
+-(void)setImageSize:(CGSize)imageSize{
+    _imageSize = imageSize;
+}
+
+- (void)imageViewLoadedImage:(EGOImageView*)imageView{
+    //[_defaultImageView removeFromSuperview];
+    //_defaultImageView = nil;
+}
+
+- (void)imageViewFailedToLoadImage:(EGOImageView*)imageView error:(NSError*)error{
+    //_defaultImageView = [[UIImageView alloc] initWithImage:[GetImagePath getImagePath:@"产品－列表_10a"]];
+    //_defaultImageView.frame = CGRectMake((self.imageSize.width-60)/2-2, (self.imageSize.height-60)/2-2, 61, 61);
+    //[self addSubview:_defaultImageView];
+}
 @end

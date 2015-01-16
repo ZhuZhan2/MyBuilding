@@ -35,7 +35,6 @@
     UIImageView *grayBgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 190)];
     [grayBgView setImage:[GetImagePath getImagePath:@"地图搜索1_16"]];
     
-    NSString *stage = [ProjectStage JudgmentProjectStage:model];
     UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(15,25,291.5,151.5)];
     [bgImgView setImage:[GetImagePath getImagePath:@"地图搜索1_05"]];
     
@@ -67,18 +66,20 @@
     areacountLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
     areacountLabel.textColor = [UIColor blackColor];
     //areacountLabel.text = @"16,000M²";
-    areacountLabel.text = [NSString stringWithFormat:@"%@",model.a_area];
+    areacountLabel.text = [NSString stringWithFormat:@"%@",model.a_storeyArea];
     [bgImgView addSubview:areacountLabel];
     
     UIImageView *progressImage = [[UIImageView alloc] initWithFrame:CGRectMake(220,5,52,52)];
-    if([stage isEqualToString:@"1"]){
-        [progressImage setImage:[GetImagePath getImagePath:@"全部项目_16"]];
-    }else if([stage isEqualToString:@"2"]){
-        [progressImage setImage:[GetImagePath getImagePath:@"全部项目_15"]];
-    }else if([stage isEqualToString:@"3"]){
-        [progressImage setImage:[GetImagePath getImagePath:@"全部项目_14"]];
+    if([model.a_projectstage isEqualToString:@"1"]){
+        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];
+    }else if([model.a_projectstage isEqualToString:@"2"]){
+        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_23a"]];
+    }else if([model.a_projectstage isEqualToString:@"3"]){
+        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_25a"]];
+    }else if([model.a_projectstage isEqualToString:@"4"]){
+        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_27a"]];
     }else{
-        [progressImage setImage:[GetImagePath getImagePath:@"全部项目_13"]];
+        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];
     }
     UIImageView *smailImage = [[UIImageView alloc] initWithFrame:CGRectMake(15,17,24.5,18.5)];
     [smailImage setImage:[GetImagePath getImagePath:@"全部项目_21"]];
@@ -88,19 +89,13 @@
     UILabel *startdateLabel = [[UILabel alloc] initWithFrame:CGRectMake(210,57,65,20)];
     startdateLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
     startdateLabel.textColor = GrayColor;
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy/MM/dd"];
-    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.a_exceptStartTime intValue]];
-    NSString *confromTimespStr = [formatter stringFromDate:confromTimesp];
-    startdateLabel.text = confromTimespStr;
+    startdateLabel.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     [bgImgView addSubview:startdateLabel];
     
     UILabel *enddateLabel = [[UILabel alloc] initWithFrame:CGRectMake(210,71,65,20)];
     enddateLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
     enddateLabel.textColor = [UIColor orangeColor];
-    NSDate *confromTimesp2 = [NSDate dateWithTimeIntervalSince1970:[model.a_exceptFinishTime intValue]];
-    NSString *confromTimespStr2 = [formatter stringFromDate:confromTimesp2];
-    enddateLabel.text = confromTimespStr2;
+    enddateLabel.text = [model.a_exceptFinishTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     [bgImgView addSubview:enddateLabel];
     
     UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(20,115,20,20)];
@@ -114,7 +109,7 @@
     UILabel *zoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(50,115,60,20)];
     zoneLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
     zoneLabel.textColor = BlueColor;
-    zoneLabel.text = [model.a_district isEqualToString:@""]?model.a_district:[NSString stringWithFormat:@"%@ - ",model.a_district];
+    zoneLabel.text = [model.a_city isEqualToString:@""]?model.a_city:[NSString stringWithFormat:@"%@ - ",model.a_city];
     [bgImgView addSubview:zoneLabel];
     
     UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(100,115,160,20)];

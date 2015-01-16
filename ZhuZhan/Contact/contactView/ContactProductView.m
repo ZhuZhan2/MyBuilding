@@ -39,7 +39,7 @@
 }
 
 -(void)setUp{
-    EGOImageView* userImageView=[[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a"]];
+    EGOImageView* userImageView=[[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     userImageView.imageURL = [NSURL URLWithString:self.usrImgUrl];
     [userImageView setFrame:CGRectMake(10, 6.5, 37, 37)];
     userImageView.layer.masksToBounds = YES;

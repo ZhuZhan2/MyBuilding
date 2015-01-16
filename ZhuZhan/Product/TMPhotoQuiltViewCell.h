@@ -20,8 +20,9 @@
 #import <UIKit/UIKit.h>
 #import "TMQuiltViewCell.h"
 #import "EGOImageView.h"
-@interface TMPhotoQuiltViewCell : TMQuiltViewCell
-
+@interface TMPhotoQuiltViewCell : TMQuiltViewCell<EGOImageViewDelegate>
+@property (nonatomic, strong) UIImageView *defaultImageView;
+@property (nonatomic) CGSize imageSize;
 @property (nonatomic, strong) EGOImageView *photoView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel* commentCountLabel;

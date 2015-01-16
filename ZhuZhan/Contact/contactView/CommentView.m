@@ -7,7 +7,6 @@
 //
 
 #import "CommentView.h"
-#import "EGOImageView.h"
 #import "ContactCommentModel.h"
 #import "NBLabel.h"
 @implementation CommentView
@@ -29,8 +28,9 @@
     BOOL imageUrlExist=![model.a_imageUrl isEqualToString:@""];
     //动态图像
     if(imageUrlExist){
-        imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"主站－人脉03"]];
-        imageView.frame = CGRectMake(0, 0, 310,[model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310);
+        imageView = [[EGOImageView alloc] initWithFrame:CGRectMake(0, 0, 310,[model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310)];
+        imageView.backgroundColor = RGBCOLOR(219, 219, 219);
+        imageView.showActivityIndicator = YES;
         imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_imageUrl]];
         [forCornerView addSubview:imageView];
         height+=imageView.frame.size.height;
@@ -90,7 +90,7 @@
 
     //用户头像
     tempHeight=imageView?imageView.frame.origin.y+5:contentTotalView.frame.origin.y+10;
-    EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_74a"]];
+    EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     userImageView.layer.masksToBounds = YES;
     userImageView.layer.cornerRadius = 3;
     userImageView.frame=CGRectMake(5,tempHeight,37,37);

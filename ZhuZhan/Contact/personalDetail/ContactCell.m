@@ -75,8 +75,13 @@
             commonLabel1.font = [UIFont systemFontOfSize:14];
             [self addSubview:commonLabel1];
             
+            imageView = [[UIImageView alloc] initWithFrame:CGRectMake(270, 66, 21, 18)];
+            [imageView setImage:[GetImagePath getImagePath:@"人脉－人的详情_21a"]];
+            [self addSubview:imageView];
+            
             emailBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             emailBtn.frame = CGRectMake(270, 66, 21, 18);
+            //emailBtn.backgroundColor = [UIColor yellowColor];
             [emailBtn addTarget:self action:@selector(CallEmail) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:emailBtn];
             
@@ -85,46 +90,39 @@
             [self addSubview:line];
             line.alpha = 0.2;
             
-            imageView = [[UIImageView alloc] initWithFrame:CGRectMake(270, 66, 21, 18)];
-            [imageView setImage:[GetImagePath getImagePath:@"人脉－人的详情_21a"]];
-            [self addSubview:imageView];
-            imageView.userInteractionEnabled =YES;
-            
             commonLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(30, 110, 150, 30)];
             commonLabel2.textAlignment = NSTextAlignmentLeft;
-            commonLabel2.text = [NSString stringWithFormat:@"%@****%@",[model.a_cellPhone substringToIndex:2],[model.a_cellPhone substringWithRange:NSMakeRange(7,4)]];
+            commonLabel2.text = [NSString stringWithFormat:@"%@****%@",[model.a_cellPhone substringToIndex:3],[model.a_cellPhone substringWithRange:NSMakeRange(7,4)]];
             commonLabel2.font = [UIFont systemFontOfSize:14];
             [self addSubview:commonLabel2];
+            
+            imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(270, 116, 21, 18)];
+            [imageView1 setImage:[GetImagePath getImagePath:@"人脉－人的详情_23a"]];
+            [self addSubview:imageView1];
             
             cellPhoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             cellPhoneBtn.frame = CGRectMake(270, 116, 21, 18);
             [cellPhoneBtn addTarget:self action:@selector(CallPhone) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:cellPhoneBtn];
-            
-            
-            
-            imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(270, 116, 21, 18)];
-            [imageView1 setImage:[GetImagePath getImagePath:@"人脉－人的详情_23a"]];
-            [self addSubview:imageView1];
         }else{
             self.phone = model.a_cellPhone;
             commonLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 60, 150, 30)];
             commonLabel.textAlignment = NSTextAlignmentLeft;
             commonLabel.font = [UIFont systemFontOfSize:14];
-            commonLabel.text = model.a_cellPhone;
+            commonLabel.text = [NSString stringWithFormat:@"%@****%@",[model.a_cellPhone substringToIndex:3],[model.a_cellPhone substringWithRange:NSMakeRange(7,4)]];
             [self addSubview:commonLabel];
+            
+            imageView = [[UIImageView alloc] initWithFrame:CGRectMake(270, 66, 21, 18)];
+            [imageView setImage:[GetImagePath getImagePath:@"人脉－人的详情_23a"]];
+            [self addSubview:imageView];
             
             cellPhoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             cellPhoneBtn.frame = CGRectMake(270, 66, 21, 18);
             [cellPhoneBtn addTarget:self action:@selector(CallPhone) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:cellPhoneBtn];
-            
-            
-            imageView = [[UIImageView alloc] initWithFrame:CGRectMake(270, 66, 21, 18)];
-            [imageView setImage:[GetImagePath getImagePath:@"人脉－人的详情_23a"]];
-            [self addSubview:imageView];
         }
     }else{
+        self.email = model.a_email;
         if(![model.a_email isEqualToString:@""]){
             back = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
             back.backgroundColor = [UIColor colorWithPatternImage:[GetImagePath getImagePath:@"grayColor"]];
@@ -144,15 +142,14 @@
             commonLabel.text = model.a_email;
             [self addSubview:commonLabel];
             
+            imageView = [[UIImageView alloc] initWithFrame:CGRectMake(270, 66, 21, 18)];
+            [imageView setImage:[GetImagePath getImagePath:@"人脉－人的详情_21a"]];
+            [self addSubview:imageView];
+            
             emailBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             emailBtn.frame = CGRectMake(270, 66, 21, 18);
             [emailBtn addTarget:self action:@selector(CallEmail) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:emailBtn];
-            
-            
-            imageView = [[UIImageView alloc] initWithFrame:CGRectMake(270, 66, 21, 18)];
-            [imageView setImage:[GetImagePath getImagePath:@"人脉－人的详情_21a"]];
-            [self addSubview:imageView];
         }
     }
 }

@@ -139,7 +139,7 @@
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setFrame:CGRectMake(0, 0, 50, 30)];
-    rightButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    rightButton.titleLabel.font = [UIFont systemFontOfSize:16];
     [rightButton setTitle:@"继续" forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];

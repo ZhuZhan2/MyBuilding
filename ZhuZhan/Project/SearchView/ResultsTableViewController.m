@@ -152,11 +152,11 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
+    startIndex = 0;
     [showArr removeAllObjects];
     if(self.flag == 0){
         [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                startIndex = 0;
                 showArr = posts;
                 [self.tableView reloadData];
             }
@@ -170,7 +170,6 @@
     }else{
         [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                startIndex = 0;
                 showArr = posts;
                 [self.tableView reloadData];
             }
@@ -186,14 +185,14 @@
 
 - (void)footerRereshing
 {
+    startIndex++;
     if(self.flag == 0){
         [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                startIndex++;
                 [showArr addObjectsFromArray:posts];
                 [self.tableView reloadData];
+                [self.tableView footerEndRefreshing];
             }
-            [self.tableView footerEndRefreshing];
         } startIndex:startIndex keywords:self.searchStr noNetWork:^{
             [self.tableView footerEndRefreshing];
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -203,11 +202,10 @@
     }else{
         [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                startIndex++;
                 [showArr addObjectsFromArray:posts];
                 [self.tableView reloadData];
+                [self.tableView footerEndRefreshing];
             }
-            [self.tableView footerEndRefreshing];
         } dic:self.dic startIndex:startIndex noNetWork:^{
             [self.tableView footerEndRefreshing];
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -252,6 +250,7 @@
     }
     cell.indexRow=indexPath.row;
     cell.delegate = self;
+    cell.model = model;
     cell.selectionStyle = NO;
     return cell;
 }

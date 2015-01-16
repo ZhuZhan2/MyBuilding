@@ -26,4 +26,7 @@
 
 //取消关注
 +(NSURLSessionDataTask *)DeleteFocusWithBlock:(void(^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary*)dic noNetWork:(void(^)())noNetWork;
+
+//是否有公司
++(NSURLSessionDataTask *)HasCompanyWithBlock:(void(^)(NSMutableArray *posts, NSError *error))block noNetWork:(void(^)())noNetWork;
 @end

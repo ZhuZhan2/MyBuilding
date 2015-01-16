@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "EGOImageView.h"
+#import "GradientView.h"
 // user info key for Dictionary
 extern NSString *const XHUserNameKey;
 extern NSString *const XHBirthdayKey;
@@ -30,6 +31,7 @@ extern NSString *const XHBirthdayKey;
 @property (nonatomic, strong) UILabel *userNameLabel;
 @property (nonatomic, strong) UILabel *birthdayLabel;
 @property (nonatomic, strong) EGOImageView *headImage;
+@property (nonatomic, strong) GradientView *footView;
 
 
 //scrollView call back
@@ -70,7 +72,8 @@ extern NSString *const XHBirthdayKey;
 -(void)setHeadTaget;
 //设置名字位置
 -(void)setNameFrame:(CGRect)newFrame font:(UIFont *)font;
-
+//设置黑色背景位置
+-(void)setFootViewFrame:(CGRect)newFrame;
 
 // set info, Example : NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:@"Jack", @"userName", @"1990-10-19", @"birthday", nil];
 - (void)setInfo:(NSDictionary *)info;

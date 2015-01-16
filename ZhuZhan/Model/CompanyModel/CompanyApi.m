@@ -10,6 +10,7 @@
 #import "CompanyModel.h"
 #import "EmployeesModel.h"
 #import "ConnectionAvailable.h"
+#import "LoginSqlite.h"
 @implementation CompanyApi
 
 //获取所有公司列表
@@ -231,6 +232,42 @@
             [alert show];
         }
 
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+
+//是否有公司
++(NSURLSessionDataTask *)HasCompanyWithBlock:(void(^)(NSMutableArray *posts, NSError *error))block noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/HasCompany?userId=%@",[LoginSqlite getdata:@"userId"]];
+    NSLog(@"%@",urlStr);
+    return [[AFAppDotNetAPIClient sharedNewClient]GET:urlStr parameters:nil success:^(NSURLSessionDataTask *task, id JSON) {
+        NSLog(@"JSON==>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            NSLog(@"%@",JSON[@"d"][@"data"][@"hasCompany"]);
+            [mutablePosts addObject:JSON[@"d"][@"data"][@"hasCompany"]];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            if (block) {
+                block(nil,[NSError new]);
+            }
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {

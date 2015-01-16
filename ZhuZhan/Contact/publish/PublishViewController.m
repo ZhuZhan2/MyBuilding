@@ -43,6 +43,7 @@
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setFrame:CGRectMake(0, 0, 50, 19.5)];
     [rightButton setTitle:@"清空" forState:UIControlStateNormal];
+    rightButton.titleLabel.font=[UIFont systemFontOfSize:16];
     rightButton.titleLabel.textColor = [UIColor whiteColor];
     [rightButton addTarget:self action:@selector(clearAll) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];

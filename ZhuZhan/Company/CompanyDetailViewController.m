@@ -18,7 +18,7 @@
 #import "MBProgressHUD.h"
 #import "LoginViewController.h"
 #import "LoadingView.h"
-@interface CompanyDetailViewController ()<LoginViewDelegate>
+@interface CompanyDetailViewController ()<LoginViewDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic,strong)UIImageView* imageView;
 @property(nonatomic,strong)UILabel* noticeLabel;
@@ -27,6 +27,10 @@
 @property(nonatomic,strong)UIButton* noticeBtn;
 @property(nonatomic,strong)UIButton* memberBtn;
 @property(nonatomic,strong)LoadingView *loadingView;
+@property(nonatomic,strong)NSString *hasCompany;
+@property(nonatomic,strong)UILabel* memberCountLabel;
+@property(nonatomic,strong)UIImageView *focusedImage;
+@property(nonatomic,strong)UIImageView *authenticationImageView;
 @end
 @implementation CompanyDetailViewController
 -(BOOL)isFocused{
@@ -43,20 +47,29 @@
 }
 
 -(void)firstNetWork{
-    [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+    [CompanyApi HasCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            if(posts.count !=0){
-                self.model = posts[0];
-                [self initFirstView];//第一个文字view初始
-                if (![self.companyId isEqualToString:[LoginSqlite getdata:@"userId"]])[self initSecondView];//第二个文字view初始
-                [self initThirdView];
-            }
-        }else{
-            [LoginAgain AddLoginView];
+            self.hasCompany = [NSString stringWithFormat:@"%@",posts[0]];
+            [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    if(posts.count !=0){
+                        self.model = posts[0];
+                        [self initFirstView];//第一个文字view初始
+                        if (![self.companyId isEqualToString:[LoginSqlite getdata:@"userId"]])[self initSecondView];//第二个文字view初始
+                        [self initThirdView];
+                    }
+                }else{
+                    [LoginAgain AddLoginView];
+                }
+                [self removeMyLoadingView];
+            } companyId:self.companyId noNetWork:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }];
         }
-        [self removeMyLoadingView];
-    } companyId:self.companyId noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view reloadBlock:^{
+    } noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];
@@ -109,13 +122,13 @@
 }
 
 -(void)handleContent{
-    NSString* imageName;
-    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
-        imageName=self.isFocused?@"公司－公司详情_05d":@"公司－公司详情_05c";
-    }else{
-        imageName=self.isFocused?@"公司－公司详情_05b":@"公司－公司详情_05a";
-    }
-    UIImage* image=[GetImagePath getImagePath:imageName];
+//    NSString* imageName;
+//    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+//        imageName=self.isFocused?@"公司－公司详情_05d":@"公司－公司详情_05c";
+//    }else{
+//        imageName=self.isFocused?@"公司－公司详情_05b":@"公司－公司详情_05a";
+//    }
+    UIImage* image=[GetImagePath getImagePath:@"公司详情图标bg"];
     if (!self.imageView){
         self.imageView=[[UIImageView alloc]initWithImage:image];
     }else{
@@ -123,6 +136,14 @@
     }
     self.noticeLabel.text=self.isFocused?@"已关注":@"加关注";
     self.noticeLabel.textColor=self.isFocused?RGBCOLOR(141, 196, 62):RGBCOLOR(226, 97, 97);
+
+    if(!self.focusedImage){
+        self.focusedImage = [[UIImageView alloc] initWithFrame:CGRectMake(45, 18, 18, 18)];
+        self.focusedImage.image = [GetImagePath getImagePath:self.isFocused?@"公司详情图标04":@"公司详情图标01"];
+        [self.imageView addSubview:self.focusedImage];
+    }else{
+        self.focusedImage.image = [GetImagePath getImagePath:self.isFocused?@"公司详情图标04":@"公司详情图标01"];
+    }
 }
 
 -(void)initSecondView{
@@ -139,16 +160,40 @@
     [self.noticeBtn addTarget:self action:@selector(gotoNoticeView) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:self.noticeBtn];
     
-    UILabel* memberCountLabel=[[UILabel alloc]initWithFrame:CGRectMake(225, 16, 150, 20)];
-    memberCountLabel.text=@"申请认证";
-    memberCountLabel.font=[UIFont boldSystemFontOfSize:16];
-    memberCountLabel.textColor=[[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]?RGBCOLOR(170, 170, 170):RGBCOLOR(62, 127, 226);
-
-    [view addSubview:memberCountLabel];
+    self.memberCountLabel=[[UILabel alloc]initWithFrame:CGRectMake(225, 16, 150, 20)];
+    NSLog(@"%@",self.model.a_reviewStatus);
+    self.memberCountLabel.font=[UIFont boldSystemFontOfSize:16];
+    [view addSubview:self.memberCountLabel];
+    
+    self.authenticationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(200, 18, 18, 18)];
+    [view addSubview:self.authenticationImageView];
     
     self.memberBtn=[[UIButton alloc]initWithFrame:CGRectMake(116, 0, 204, 49)];
     [self.memberBtn addTarget:self action:@selector(applyForCertification) forControlEvents:UIControlEventTouchUpInside];
-    self.memberBtn.enabled = ![[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"];
+    if([self.hasCompany isEqualToString:@"1"]){
+        self.memberCountLabel.textColor=[UIColor lightGrayColor];
+        self.memberBtn.enabled = NO;
+        [self.authenticationImageView setImage:[GetImagePath getImagePath:@"公司详情图标03"]];
+        if([self.model.a_reviewStatus isEqualToString:@"Success"]){
+            self.memberCountLabel.text=@"已认证";
+        }else if ([self.model.a_reviewStatus isEqualToString:@"Apply"]){
+            self.memberCountLabel.text=@"已申请";
+        }else{
+            self.memberCountLabel.text=@"申请认证";
+        }
+    }else{
+        if ([self.model.a_reviewStatus isEqualToString:@"Apply"]){
+            self.memberCountLabel.text=@"已申请";
+            self.memberCountLabel.textColor=[UIColor lightGrayColor];
+            self.memberBtn.enabled = NO;
+            [self.authenticationImageView setImage:[GetImagePath getImagePath:@"公司详情图标03"]];
+        }else{
+            self.memberCountLabel.text=@"申请认证";
+            [self.authenticationImageView setImage:[[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]?[GetImagePath getImagePath:@"公司详情图标03"]:[GetImagePath getImagePath:@"公司详情图标02"]];
+            self.memberCountLabel.textColor=[[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]?RGBCOLOR(170, 170, 170):RGBCOLOR(62, 127, 226);
+            self.memberBtn.enabled = ![[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"];
+        }
+    }
     NSLog(@"%d",self.memberBtn.enabled);
     [view addSubview:self.memberBtn];
 }
@@ -236,23 +281,8 @@
 -(void)applyForCertification{
     NSLog(@"用户选择了 申请认证");
     if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
-        if (![ConnectionAvailable isConnectionAvailable]) {
-            [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
-            return;
-        }
-        self.memberBtn.enabled=NO;
-        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"employeeId"];
-        [dic setValue:self.model.a_id forKey:@"companyId"];
-        [CompanyApi AddCompanyEmployeeWithBlock:^(NSMutableArray *posts, NSError *error) {
-            self.memberBtn.enabled=YES;
-            if(!error){
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"已申请认证" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alertView show];
-            }else{
-                [LoginAgain AddLoginView];
-            }
-        } dic:dic noNetWork:nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"是否申请公司认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+        [alertView show];
     }else{
         LoginViewController *loginVC = [[LoginViewController alloc] init];
         loginVC.delegate = self;
@@ -299,5 +329,30 @@
 //    if ([self.delegate respondsToSelector:@selector(gotoCompanyDetail:)]) {
 //        [self.delegate gotoCompanyDetail:NO];
 //    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 1){
+        if (![ConnectionAvailable isConnectionAvailable]) {
+            [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+            return;
+        }
+        self.memberBtn.enabled=NO;
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"employeeId"];
+        [dic setValue:self.model.a_id forKey:@"companyId"];
+        [CompanyApi AddCompanyEmployeeWithBlock:^(NSMutableArray *posts, NSError *error) {
+            self.memberCountLabel.text=@"已申请";
+            self.memberCountLabel.textColor = [UIColor lightGrayColor];
+            [self.authenticationImageView setImage:[GetImagePath getImagePath:@"公司详情图标03"]];
+            if(!error){
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"已申请认证" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+
+            }else{
+                [LoginAgain AddLoginView];
+            }
+        } dic:dic noNetWork:nil];
+    }
 }
 @end

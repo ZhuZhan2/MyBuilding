@@ -33,7 +33,7 @@
     UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(35, 0, 2, contentView.frame.size.height+20)];
     [lineImage setBackgroundColor:[UIColor blackColor]];
     [view addSubview:lineImage];
-    lineImage.alpha = 0.2;
+    lineImage.alpha = 0.08;
     
     //小icon
     UIImageView *stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(30, 18.5, 12, 13)];

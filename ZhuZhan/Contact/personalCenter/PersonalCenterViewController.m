@@ -62,7 +62,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setFrame:CGRectMake(0, 0, 70, 19.5)];
     [rightButton setTitle:@"账号设置" forState:UIControlStateNormal];
-    rightButton.titleLabel.font=[UIFont systemFontOfSize:14];
+    rightButton.titleLabel.font=[UIFont systemFontOfSize:16];
     rightButton.titleLabel.textColor = [UIColor whiteColor];
     [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
@@ -102,7 +102,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     [self downLoad:nil];
     
-    //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeHeadImage) name:@"changHead" object:nil];
@@ -298,9 +298,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(UIView*)getSeparatorLine{
-    UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 1)];
+    UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 0.5)];
     separatorLine.backgroundColor=[UIColor blackColor];
-    separatorLine.alpha=.2f;
+    separatorLine.alpha=.1f;
     return separatorLine;
 }
 

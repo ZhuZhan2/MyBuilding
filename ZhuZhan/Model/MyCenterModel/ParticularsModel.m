@@ -16,5 +16,6 @@
     self.a_inDate = [ProjectStage ProjectTimeStage:dict[@"inDate"]];
     self.a_outDate = [ProjectStage ProjectTimeStage:dict[@"outDate"]];
     self.a_information = [ProjectStage ProjectStrStage:dict[@"information"]];
+    self.a_isIn = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"isIn"]]];
 }
 @end

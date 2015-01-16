@@ -145,6 +145,7 @@
 -(void)setModel:(projectModel *)model{
     nameLabel.text = model.a_projectName;
     investmentcountLabel.text = model.a_investment;
+    NSLog(@"=----->%@",model.a_storeyArea);
     areacountLabel.text = model.a_storeyArea;
     
     NSLog(@"%@",model.a_projectstage);
@@ -163,6 +164,6 @@
     startdateLabel.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     enddateLabel.text = [model.a_exceptFinishTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     addressLabel.text = model.a_landAddress;
-    zoneLabel.text = [model.a_district isEqualToString:@""]?model.a_district:[NSString stringWithFormat:@"%@ - ",model.a_district];
+    zoneLabel.text = [model.a_city isEqualToString:@""]?model.a_city:[NSString stringWithFormat:@"%@ - ",model.a_city];
 }
 @end
