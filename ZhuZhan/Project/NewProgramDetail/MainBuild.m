@@ -49,7 +49,7 @@
 
 
     NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
-    UIView* view2=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];
+    UIView* view2=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs withContactCategory:@"施工总承包单位："];
     
     NSArray* tempAry=@[view0,view1,view2];
     CGFloat height=0;
@@ -77,7 +77,7 @@
 
     
     NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
-    UIView* view2=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs];
+    UIView* view2=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs withContactCategory:@"桩基分包单位："];
     
     NSArray* tempAry=@[view0,view1,view2];
     CGFloat height=0;
