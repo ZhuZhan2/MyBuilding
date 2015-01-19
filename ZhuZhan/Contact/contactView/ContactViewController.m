@@ -177,6 +177,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [_datasource addObject:model.a_time];
             }
             [MyTableView reloadDataWithTableView:self.tableView];
+            if(showArr.count == 0){
+                [MyTableView hasData:self.tableView];
+            }
             [LoadingView removeLoadingView:loadingView];
             self.tableView.scrollEnabled=YES;
             loadingView = nil;
@@ -256,6 +259,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             _timeScroller.hidden=YES;
             NSLog(@"===>%d",showArr.count);
             [MyTableView reloadDataWithTableView:self.tableView];
+            if(showArr.count == 0){
+                [MyTableView hasData:self.tableView];
+            }
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 700ull *  NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
                 _timeScroller.hidden=NO;
             });
@@ -678,6 +684,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [showArr replaceObjectAtIndex:indexpath.row withObject:model];
     [viewArr replaceObjectAtIndex:indexpath.row withObject:commentView];
     [MyTableView reloadDataWithTableView:self.tableView];
+    if(showArr.count == 0){
+        [MyTableView hasData:self.tableView];
+    }
 }
 
 -(void)finishAddCommentFromDetailWithPosts:(NSMutableArray *)posts{
@@ -766,6 +775,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [_datasource addObject:model.a_time];
             }
             [MyTableView reloadDataWithTableView:self.tableView];
+            if(showArr.count == 0){
+                [MyTableView hasData:self.tableView];
+            }
             __weak ContactViewController *wself = self;
             [wself.pathCover stopRefresh];
         }else{

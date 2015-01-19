@@ -14,6 +14,7 @@
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "ErrorView.h"
+#import "MyTableView.h"
 @interface TopicsTableViewController ()
 
 @end
@@ -53,7 +54,13 @@
     [ProjectApi GetPiProjectSeminarWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             showArr = posts;
-            [self.tableView reloadData];
+            if(showArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             [LoginAgain AddLoginView];
         }
@@ -95,7 +102,13 @@
             startIndex = 0;
             [showArr removeAllObjects];
             showArr = posts;
-            [self.tableView reloadData];
+            if(showArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             [LoginAgain AddLoginView];
         }
@@ -114,7 +127,13 @@
         if(!error){
             startIndex++;
             [showArr addObjectsFromArray:posts];
-            [self.tableView reloadData];
+            if(showArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             [LoginAgain AddLoginView];
         }

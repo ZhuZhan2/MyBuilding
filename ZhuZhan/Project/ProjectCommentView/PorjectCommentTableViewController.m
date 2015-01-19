@@ -75,6 +75,12 @@
                 [_datasource addObject:model.a_time];
             }
             [MyTableView reloadDataWithTableView:self.tableView];
+            if(showArr.count == 0){
+                [MyTableView hasData:self.tableView];
+            }
+            if(showArr.count == 0){
+                [MyTableView hasData:self.tableView];
+            }
         }else{
             [LoginAgain AddLoginView];
         }
@@ -237,6 +243,9 @@
             [viewArr insertObject:projectCommentView atIndex:0];
             [_datasource insertObject:[NSDate date] atIndex:0];
             [MyTableView reloadDataWithTableView:self.tableView];
+            if(showArr.count == 0){
+                [MyTableView hasData:self.tableView];
+            }
         }else{
             [LoginAgain AddLoginView];
         }

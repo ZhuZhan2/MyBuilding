@@ -132,6 +132,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             }
             _timeScroller.hidden=YES;
             [MyTableView reloadDataWithTableView:self.tableView];
+            if(showArr.count == 0){
+                [MyTableView hasData:self.tableView];
+            }
             _timeScroller.hidden=NO;
             if (block) {
                 block();
@@ -177,6 +180,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             }
             _timeScroller.hidden=YES;
             [MyTableView reloadDataWithTableView:self.tableView];
+            if(showArr.count == 0){
+                [MyTableView hasData:self.tableView];
+            }
             _timeScroller.hidden=NO;
         }else{
             [LoginAgain AddLoginView];

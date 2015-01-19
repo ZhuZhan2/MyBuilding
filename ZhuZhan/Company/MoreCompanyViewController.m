@@ -18,6 +18,7 @@
 #import "MBProgressHUD.h"
 #import "EndEditingGesture.h"
 #import "LoadingView.h"
+#import "MyTableView.h"
 @interface MoreCompanyViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UIScrollViewDelegate,CompanyDetailDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
@@ -67,7 +68,13 @@
     [CompanyApi GetCompanyListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.showArr = posts;
-            [self.tableView reloadData];
+            if(self.showArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             [LoginAgain AddLoginView];
         }
@@ -98,7 +105,13 @@
         if(!error){
             startIndex = 0;
             self.showArr = posts;
-            [self.tableView reloadData];
+            if(self.showArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             [LoginAgain AddLoginView];
         }
@@ -117,7 +130,13 @@
         if(!error){
             startIndex++;
             [self.showArr addObjectsFromArray:posts];
-            [self.tableView reloadData];
+            if(self.showArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             [LoginAgain AddLoginView];
         }
@@ -285,7 +304,13 @@
         if(!error){
             startIndex = 0;
             self.showArr = posts;
-            [self.tableView reloadData];
+            if(self.showArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
             [self.searchBar setShowsCancelButton:YES animated:YES];
         }else{
             [LoginAgain AddLoginView];
@@ -304,7 +329,13 @@
         if(!error){
             startIndex = 0;
             self.showArr = posts;
-            [self.tableView reloadData];
+            if(self.showArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
             [self.searchBar setShowsCancelButton:NO animated:YES];
         }else{
             [LoginAgain AddLoginView];
