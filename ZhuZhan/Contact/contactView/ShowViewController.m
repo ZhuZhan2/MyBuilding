@@ -52,13 +52,13 @@
     
     UILabel *userName = [[UILabel alloc] initWithFrame:CGRectMake(0, 115, 280, 40)];
     userName.textAlignment = NSTextAlignmentCenter;
-    userName.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:18];
+    userName.font = [UIFont boldSystemFontOfSize:18];
     userName.textColor = [UIColor whiteColor];
     [tempImageView addSubview:userName];
     
     UILabel *message = [[UILabel alloc] initWithFrame:CGRectMake(0, 155, 280, 30)];
     message.textAlignment = NSTextAlignmentCenter;
-    message.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
+    message.font = [UIFont boldSystemFontOfSize:14];
     message.textColor = [UIColor whiteColor];
     [tempImageView addSubview:message];
     

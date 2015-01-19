@@ -432,12 +432,12 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     
     _userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(92, 35, 100, 20)];
     _userNameLabel.textColor = [UIColor whiteColor];
-    _userNameLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
+    _userNameLabel.font = [UIFont boldSystemFontOfSize:14];
     
     
     _birthdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(92, 47, 207, 24)];
     _birthdayLabel.textColor = [UIColor whiteColor];
-    _birthdayLabel.font = [UIFont systemFontOfSize:12];
+    _birthdayLabel.font = [UIFont boldSystemFontOfSize:12];
     
 //    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
 //    imageView.backgroundColor = [UIColor yellowColor];
