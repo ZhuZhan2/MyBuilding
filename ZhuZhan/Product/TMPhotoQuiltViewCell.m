@@ -45,9 +45,7 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 - (EGOImageView *)photoView {
     if (!_photoView) {
         _photoView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"动态产品评论02"]];
-        //_photoView = [[EGOImageView alloc] init];
         _photoView.delegate = self;
-        //_photoView.showActivityIndicator=YES;
         _photoView.backgroundColor = RGBCOLOR(219, 219, 219);
         _photoView.contentMode=UIViewContentModeScaleAspectFit;
         [self addSubview:_photoView];
