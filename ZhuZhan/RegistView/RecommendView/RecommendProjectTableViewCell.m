@@ -100,6 +100,17 @@
     address.text = model.a_landAddress;
     startDate.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     endDate.text = [model.a_exceptFinishTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+    if([model.a_projectstage isEqualToString:@"1"]){
+        [stageImage setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];
+    }else if([model.a_projectstage isEqualToString:@"2"]){
+        [stageImage setImage:[GetImagePath getImagePath:@"+项目-首页_23a"]];
+    }else if([model.a_projectstage isEqualToString:@"3"]){
+        [stageImage setImage:[GetImagePath getImagePath:@"+项目-首页_25a"]];
+    }else if([model.a_projectstage isEqualToString:@"4"]){
+        [stageImage setImage:[GetImagePath getImagePath:@"+项目-首页_27a"]];
+    }else{
+        [stageImage setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];
+    }
 }
 
 -(void)attentionBtnAction{

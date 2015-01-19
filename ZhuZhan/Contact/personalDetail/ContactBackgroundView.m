@@ -29,7 +29,7 @@
     if(![model.a_company isEqualToString:@""]){
         UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 50, 150, 30)];
         companyLabel.text = model.a_company;
-        companyLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+        companyLabel.font = [UIFont boldSystemFontOfSize:14];
         [view addSubview:companyLabel];
         
         height += companyLabel.frame.size.height;
@@ -39,11 +39,11 @@
     if(![model.a_inDate isEqualToString:@""]||![model.a_outDate isEqualToString:@""]){
         UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 70, 180, 30)];
         if([model.a_isIn isEqualToString:@"1"]){
-            dateLabel.text = [NSString stringWithFormat:@"(%@——目前)",model.a_inDate];
+            dateLabel.text = [NSString stringWithFormat:@"(%@—目前)",model.a_inDate];
         }else{
-            dateLabel.text = [NSString stringWithFormat:@"(%@——%@)",model.a_inDate,model.a_outDate];
+            dateLabel.text = [NSString stringWithFormat:@"(%@—%@)",model.a_inDate,model.a_outDate];
         }
-        dateLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
+        dateLabel.font = [UIFont systemFontOfSize:12];
         dateLabel.textColor = GrayColor;
         [view addSubview:dateLabel];
         
@@ -54,10 +54,10 @@
         NSString *string = [NSString stringWithFormat:@"个人简介：%@",model.a_information];
         UILabel* contentLabel = [[UILabel alloc] init];
         contentLabel.numberOfLines =0;
-        contentLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
+        contentLabel.font = [UIFont systemFontOfSize:12];
         contentLabel.text = string;
         CGSize size =CGSizeMake(260,1000);
-        CGSize actualsize =[string boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:@"GurmukhiMN" size:12]} context:nil].size;
+        CGSize actualsize =[string boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
         contentLabel.frame = CGRectMake(30, 100, 260, actualsize.height);
         [view addSubview:contentLabel];
         height += contentLabel.frame.size.height;

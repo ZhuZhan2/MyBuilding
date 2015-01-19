@@ -102,7 +102,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row == 0){
         CGRect bounds=[self.model.a_content boundingRectWithSize:CGSizeMake(288, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
-        return 278+bounds.size.height+5-10;//5像素为原始版本遗留下来的高度
+        
+        CGRect bounds2=[self.model.a_title boundingRectWithSize:CGSizeMake(288, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:15]} context:nil];
+        return 278+bounds.size.height+5-10+bounds2.size.height;//5像素为原始版本遗留下来的高度
     }else if(indexPath.row == 1){
         return 45;
     }

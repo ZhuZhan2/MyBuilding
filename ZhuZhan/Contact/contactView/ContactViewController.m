@@ -401,6 +401,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             cell.delegate = self;
             cell.selectionStyle = NO;
             cell.model = model;
+            cell.indexpath = indexPath;
             return cell;
         }
     }else if ([model.a_category isEqualToString:@"Product"]){
@@ -567,6 +568,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if([model.a_createdBy isEqualToString:[LoginSqlite getdata:@"userId"]]){
         return;
     }
+    NSLog(@"a_userType ===> %@",model.a_userType);
     if([model.a_userType isEqualToString:@"Personal"]){
         showVC = [[ShowViewController alloc] init];
         showVC.delegate =self;

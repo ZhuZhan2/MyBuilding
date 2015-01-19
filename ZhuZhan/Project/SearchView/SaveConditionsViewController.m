@@ -156,5 +156,6 @@
 
 -(void)setDataDic:(NSMutableDictionary *)dataDic{
     newstring = [NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@,%@",dataDic[@"keywords"],dataDic[@"companyName"],dataDic[@"landProvince"],dataDic[@"landCity"],dataDic[@"landDistrict"],dataDic[@"projectStage"],dataDic[@"projectCategory"]];
+    NSLog(@"%@",newstring);
 }
 @end

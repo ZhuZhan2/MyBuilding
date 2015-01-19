@@ -1127,6 +1127,7 @@
 		D3D7DB2619FF73B800AE5765 /* 人脉－人的详情_02a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7DB2419FF73B800AE5765 /* 人脉－人的详情_02a@2x.png */; };
 		D3D7DB2F19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DB2E19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m */; };
 		D3D7DB3219FFAD1700AE5765 /* ParticularsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DB3119FFAD1700AE5765 /* ParticularsModel.m */; };
+		D3D946A91A6CDD33003A68D5 /* YLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D946A81A6CDD33003A68D5 /* YLLabel.m */; };
 		D3D9C90A1A1343CF001D3A64 /* 主菜单01b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9021A1343CE001D3A64 /* 主菜单01b.png */; };
 		D3D9C90B1A1343CF001D3A64 /* 主菜单01b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9031A1343CE001D3A64 /* 主菜单01b@2x.png */; };
 		D3D9C90C1A1343CF001D3A64 /* 主菜单02b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9041A1343CF001D3A64 /* 主菜单02b.png */; };
@@ -2747,6 +2748,8 @@
 		D3D7DB2E19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactBackgroundTableViewCell.m; sourceTree = "<group>"; };
 		D3D7DB3019FFAD1700AE5765 /* ParticularsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticularsModel.h; sourceTree = "<group>"; };
 		D3D7DB3119FFAD1700AE5765 /* ParticularsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticularsModel.m; sourceTree = "<group>"; };
+		D3D946A71A6CDD33003A68D5 /* YLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLLabel.h; sourceTree = "<group>"; };
+		D3D946A81A6CDD33003A68D5 /* YLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLLabel.m; sourceTree = "<group>"; };
 		D3D9C9021A1343CE001D3A64 /* 主菜单01b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单01b.png"; sourceTree = "<group>"; };
 		D3D9C9031A1343CE001D3A64 /* 主菜单01b@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单01b@2x.png"; sourceTree = "<group>"; };
 		D3D9C9041A1343CF001D3A64 /* 主菜单02b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单02b.png"; sourceTree = "<group>"; };
@@ -2999,6 +3002,7 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3D946A61A6CDD33003A68D5 /* YLLabel */,
 				D3D321241A3EAE200009AEEA /* AuthCode */,
 				5B3209FB1A11E75000D19279 /* RemindView */,
 				D3D798651A0B1DE600194FF8 /* LoadingView */,
@@ -5161,6 +5165,15 @@
 			path = LoadingView;
 			sourceTree = "<group>";
 		};
+		D3D946A61A6CDD33003A68D5 /* YLLabel */ = {
+			isa = PBXGroup;
+			children = (
+				D3D946A71A6CDD33003A68D5 /* YLLabel.h */,
+				D3D946A81A6CDD33003A68D5 /* YLLabel.m */,
+			);
+			path = YLLabel;
+			sourceTree = "<group>";
+		};
 		D3EACDE3199327780058FC9D /* QuadCurveMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -6119,6 +6132,7 @@
 				042D9CFB19B40C4C00689C5D /* DKCircleButton.m in Sources */,
 				5B18B46F19BFFC3700551F82 /* GradientView.m in Sources */,
 				D3AC61D019B849920015B62F /* PorjectCommentTableViewController.m in Sources */,
+				D3D946A91A6CDD33003A68D5 /* YLLabel.m in Sources */,
 				0426C23C19922D5A00CD8822 /* AFURLRequestSerialization.m in Sources */,
 				0426C26419922D5A00CD8822 /* GPUImageEmbossFilter.m in Sources */,
 				D39937BE1A42B428007081C1 /* RecommendProjectViewController.m in Sources */,
