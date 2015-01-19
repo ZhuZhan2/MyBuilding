@@ -39,7 +39,7 @@
     [bgView addSubview:bgImage];
     [self.contentView addSubview:bgView];
     
-    headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"首页_16"]];
+    headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"项目详情默认"]];
     [headImageView setFrame:CGRectMake(0, 0, 320, 202)];
     headImageView.imageURL = [NSURL URLWithString:model.a_image];
     [bgView addSubview:headImageView];
