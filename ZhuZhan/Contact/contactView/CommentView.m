@@ -113,7 +113,7 @@
             count = model.a_commentsArr.count;
         }
         //评论内容上箭头图片
-        UIImageView* upImageView=[[UIImageView alloc]initWithFrame:CGRectMake(320-251, height, 251, 11)];
+        UIImageView* upImageView=[[UIImageView alloc]initWithFrame:CGRectMake(320-251, height+1, 251, 11)];
         upImageView.image=[GetImagePath getImagePath:@"+人脉2_03a"];
         [commentView addSubview:upImageView];
         
