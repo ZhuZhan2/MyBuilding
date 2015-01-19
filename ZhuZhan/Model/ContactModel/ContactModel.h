@@ -81,6 +81,9 @@
 
 @property (nonatomic,strong)NSString *userParticularsId;
 
+//行业
+@property (nonatomic,strong)NSString *industry;
+
 //用户信息对字典
 @property (nonatomic, strong) NSDictionary *dict;
 

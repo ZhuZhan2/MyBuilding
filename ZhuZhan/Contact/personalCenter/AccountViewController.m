@@ -117,6 +117,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
         if (!error) {
             if(posts.count !=0){
                 model = posts[0];
+                NSLog(@"industry ==> %@",model.industry);
                 [self.tableView reloadData];
             }
         }else{
@@ -317,7 +318,8 @@ static int count =0;//记录生日textField 的时间被触发的次数
         return;
     }
     
-    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.userName,@"userName",model.realName,@"realName",model.sex,@"sex",model.city,@"locationCity",model.birthday,@"birthday",model.constellation,@"constellation",model.bloodType,@"bloodType",model.email,@"email",model.provice,@"province",model.city,@"city",model.district,@"district",nil];
+    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.userName,@"userName",model.realName,@"realName",model.sex,@"sex",model.city,@"locationCity",model.birthday,@"birthday",model.constellation,@"constellation",model.bloodType,@"bloodType",model.email,@"email",model.provice,@"province",model.city,@"city",model.district,@"district",model.industry,@"industry",nil];
+    NSLog(@"industry ===> %@",model.industry);
     NSLog(@"parameter==%@",parameter);
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
