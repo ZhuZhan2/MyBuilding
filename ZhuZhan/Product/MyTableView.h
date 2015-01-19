@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface MyTableView : UITableView
+@property(nonatomic,strong)NSString *className;
 +(void)reloadDataWithTableView:(UITableView*)tableView;
++(void)hasData:(UITableView*)tableView;
++(void)removeFootView:(UITableView*)tableView;
 @end

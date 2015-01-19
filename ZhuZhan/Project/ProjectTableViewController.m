@@ -19,6 +19,7 @@
 #import "ErrorView.h"
 #import "ProjectSqlite.h"
 #import "LocalProjectModel.h"
+#import "MyTableView.h"
 @interface ProjectTableViewController ()
 
 @end
@@ -57,19 +58,19 @@
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 155, 30)];
     [bgView setBackgroundColor:[UIColor clearColor]];
     UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [searchBtn setFrame:CGRectMake(15, 0, 169, 31)];
+    [searchBtn setFrame:CGRectMake(0, 0, 155, 30)];
     [searchBtn setBackgroundImage:[GetImagePath getImagePath:@"项目-首页_08a"] forState:UIControlStateNormal];
     [searchBtn addTarget:self action:@selector(serachClick) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:searchBtn];
     
-    UIImageView *searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(35, 8, 15, 15)];
+    UIImageView *searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 8, 15, 15)];
     [searchImage setImage:[GetImagePath getImagePath:@"搜索结果_09a"]];
     [bgView addSubview:searchImage];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(55, 0, 120, 30)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 120, 30)];
     label.textColor = [UIColor whiteColor];
     label.text = @"寻找项目，发现机会";
     label.font = [UIFont systemFontOfSize:12];
@@ -96,7 +97,13 @@
             if(!error){
                 showArr = posts;
                 sectionHeight = 50;
-                [self.tableView reloadData];
+                if(showArr.count == 0){
+                    [MyTableView reloadDataWithTableView:self.tableView];
+                    [MyTableView hasData:self.tableView];
+                }else{
+                    [MyTableView removeFootView:self.tableView];
+                    [self.tableView reloadData];
+                }
                 [LoadingView removeLoadingView:loadingView];
                 self.tableView.scrollEnabled = YES;
                 loadingView = nil;
@@ -130,7 +137,13 @@
             if (!error) {
                 showArr = posts;
                 sectionHeight = 50;
-                [self.tableView reloadData];
+                if(showArr.count == 0){
+                    [MyTableView reloadDataWithTableView:self.tableView];
+                    [MyTableView hasData:self.tableView];
+                }else{
+                    [MyTableView removeFootView:self.tableView];
+                    [self.tableView reloadData];
+                }
                 [LoadingView removeLoadingView:loadingView];
                 self.tableView.scrollEnabled = YES;
                 loadingView = nil;
@@ -186,7 +199,13 @@
                 startIndex = 0;
                 [showArr removeAllObjects];
                 showArr = posts;
-                [self.tableView reloadData];
+                if(showArr.count == 0){
+                    [MyTableView reloadDataWithTableView:self.tableView];
+                    [MyTableView hasData:self.tableView];
+                }else{
+                    [MyTableView removeFootView:self.tableView];
+                    [self.tableView reloadData];
+                }
             }else{
                 [LoginAgain AddLoginView];
             }
@@ -209,7 +228,13 @@
                     startIndex = 0;
                     [showArr removeAllObjects];
                     showArr = posts;
-                    [self.tableView reloadData];
+                    if(showArr.count == 0){
+                        [MyTableView reloadDataWithTableView:self.tableView];
+                        [MyTableView hasData:self.tableView];
+                    }else{
+                        [MyTableView removeFootView:self.tableView];
+                        [self.tableView reloadData];
+                    }
                 }else{
                     [LoginAgain AddLoginView];
                 }
@@ -232,7 +257,13 @@
             if(!error){
                 startIndex++;
                 [showArr addObjectsFromArray:posts];
-                [self.tableView reloadData];
+                if(showArr.count == 0){
+                    [MyTableView reloadDataWithTableView:self.tableView];
+                    [MyTableView hasData:self.tableView];
+                }else{
+                    [MyTableView removeFootView:self.tableView];
+                    [self.tableView reloadData];
+                }
             }else{
                 [LoginAgain AddLoginView];
             }

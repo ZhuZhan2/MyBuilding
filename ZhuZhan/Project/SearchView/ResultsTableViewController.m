@@ -15,6 +15,7 @@
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "ErrorView.h"
+#import "MyTableView.h"
 @interface ResultsTableViewController ()
 
 @end
@@ -91,7 +92,13 @@
             if(!error){
                 if(posts.count !=0){
                     showArr = posts;
-                    [self.tableView reloadData];
+                    if(showArr.count == 0){
+                        [MyTableView reloadDataWithTableView:self.tableView];
+                        [MyTableView hasData:self.tableView];
+                    }else{
+                        [MyTableView removeFootView:self.tableView];
+                        [self.tableView reloadData];
+                    }
                 }else{
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有符合条件的内容" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alert show];
@@ -108,7 +115,13 @@
             if(!error){
                 if(posts.count !=0){
                     showArr = posts;
-                    [self.tableView reloadData];
+                    if(showArr.count == 0){
+                        [MyTableView reloadDataWithTableView:self.tableView];
+                        [MyTableView hasData:self.tableView];
+                    }else{
+                        [MyTableView removeFootView:self.tableView];
+                        [self.tableView reloadData];
+                    }
                 }else{
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有符合条件的内容" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alert show];
@@ -158,7 +171,13 @@
         [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 showArr = posts;
-                [self.tableView reloadData];
+                if(showArr.count == 0){
+                    [MyTableView reloadDataWithTableView:self.tableView];
+                    [MyTableView hasData:self.tableView];
+                }else{
+                    [MyTableView removeFootView:self.tableView];
+                    [self.tableView reloadData];
+                }
             }
             [self.tableView headerEndRefreshing];
         } startIndex:0 keywords:self.searchStr noNetWork:^{
@@ -171,7 +190,13 @@
         [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 showArr = posts;
-                [self.tableView reloadData];
+                if(showArr.count == 0){
+                    [MyTableView reloadDataWithTableView:self.tableView];
+                    [MyTableView hasData:self.tableView];
+                }else{
+                    [MyTableView removeFootView:self.tableView];
+                    [self.tableView reloadData];
+                }
             }
             [self.tableView headerEndRefreshing];
         } dic:self.dic startIndex:0 noNetWork:^{
@@ -190,7 +215,13 @@
         [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 [showArr addObjectsFromArray:posts];
-                [self.tableView reloadData];
+                if(showArr.count == 0){
+                    [MyTableView reloadDataWithTableView:self.tableView];
+                    [MyTableView hasData:self.tableView];
+                }else{
+                    [MyTableView removeFootView:self.tableView];
+                    [self.tableView reloadData];
+                }
                 [self.tableView footerEndRefreshing];
             }
         } startIndex:startIndex keywords:self.searchStr noNetWork:^{
@@ -203,7 +234,13 @@
         [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 [showArr addObjectsFromArray:posts];
-                [self.tableView reloadData];
+                if(showArr.count == 0){
+                    [MyTableView reloadDataWithTableView:self.tableView];
+                    [MyTableView hasData:self.tableView];
+                }else{
+                    [MyTableView removeFootView:self.tableView];
+                    [self.tableView reloadData];
+                }
                 [self.tableView footerEndRefreshing];
             }
         } dic:self.dic startIndex:startIndex noNetWork:^{
