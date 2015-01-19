@@ -431,9 +431,7 @@
         }
         return nil;
     }
-    for (int i=0; i<dic.count; i++) {
-        NSLog(@"=====%@",dic.allValues[i]);
-    }
+    NSLog(@"dic==%@",dic);
     NSString *urlStr = [NSString stringWithFormat:@"api/Projects/SearchCondition"];
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
