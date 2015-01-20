@@ -116,7 +116,7 @@ static NSString* hasUserTypeContent(NSString* string){
 
 //获得titleView部分
 +(UIView*)getTitleViewWithTitleImage:(UIImage*)titleImage title:(NSString*)title{
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 65)];
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 55)];
     
     UIImageView* shadow=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 3.5)];
     shadow.image=[GetImagePath getImagePath:@"Shadow-bottom"];
@@ -128,9 +128,9 @@ static NSString* hasUserTypeContent(NSString* string){
     [view addSubview:imageView];
     
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 50)];
-    label.center=CGPointMake(160, 45);
+    label.center=CGPointMake(160, 36);
     label.text=title;
-    label.font=[UIFont systemFontOfSize:16];
+    label.font=[UIFont systemFontOfSize:15];
     label.textAlignment=NSTextAlignmentCenter;
     label.textColor=RGBCOLOR(82, 125, 237);
     [view addSubview:label];
@@ -158,7 +158,7 @@ static NSString* hasUserTypeContent(NSString* string){
     programName.textColor=hasContentBool(datas[0])?[UIColor blackColor]:NoDataColor;
     programName.textAlignment=NSTextAlignmentCenter;
     [view addSubview:programName];
-    height+=programName.frame.size.height+5;
+    height+=programName.frame.size.height+12;
     
     //第二行str
     font=[UIFont systemFontOfSize:14];
@@ -172,7 +172,7 @@ static NSString* hasUserTypeContent(NSString* string){
     areaLabel.textColor=![datas[1] isEqualToString:@"  "]?[UIColor blackColor]:NoDataColor;
     areaLabel.textAlignment=NSTextAlignmentCenter;
     [view addSubview:areaLabel];
-    height+=areaLabel.frame.size.height+5;
+    height+=areaLabel.frame.size.height+4;
     
     //第三行str
     font=[UIFont systemFontOfSize:14];
@@ -238,10 +238,11 @@ static NSString* hasUserTypeContent(NSString* string){
     
     
     //图片数量label
-    UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 180, 70, 30)];
+    UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 164, 58, 26)];
     label.text=[NSString stringWithFormat:@"%d张",count];
     label.textAlignment=NSTextAlignmentCenter;
     label.textColor=[UIColor whiteColor];
+    label.font=[UIFont systemFontOfSize:14.5];
     label.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:.7];
     [view addSubview:label];
     
@@ -381,7 +382,7 @@ static NSString* hasUserTypeContent(NSString* string){
         UILabel* firstLabel=[[UILabel alloc]initWithFrame:CGRectMake(i*320*1.0/count, 15, 320*1.0/count, 20)];
         firstLabel.text=firstStrs[i];
         firstLabel.textColor=[UIColor blackColor];
-        firstLabel.font=[UIFont systemFontOfSize:16];
+        firstLabel.font=TitleFont;
         firstLabel.textAlignment=NSTextAlignmentCenter;
         [view addSubview:firstLabel];
     }
@@ -390,7 +391,7 @@ static NSString* hasUserTypeContent(NSString* string){
         UILabel* secondLabel=[[UILabel alloc]initWithFrame:CGRectMake(i*320*1.0/count, 35, 320*1.0/count, 20)];
         secondLabel.text=hasContent(secondStrs[i]);
         secondLabel.textColor=contentColor(hasContentBool(secondStrs[i]));
-        secondLabel.font=[UIFont systemFontOfSize:14];
+        secondLabel.font=ContentFont;
         secondLabel.textAlignment=NSTextAlignmentCenter;
         [view addSubview:secondLabel];
     }
@@ -504,7 +505,7 @@ static NSString* hasUserTypeContent(NSString* string){
 
 //硬件设备以及yes和no  电梯,空调,供暖方式,外墙材料,钢结构,yes or no的几个view
 +(UIView*)getDeviceAndBoolWithDevic:(NSArray*)devices boolStrs:(NSArray*)boolStrs{
-    CGFloat cellHeight=35;
+    CGFloat cellHeight=40;
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, devices.count*cellHeight)];
     view.backgroundColor=[UIColor whiteColor];
     
