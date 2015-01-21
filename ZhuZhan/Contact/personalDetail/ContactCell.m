@@ -69,7 +69,7 @@
         self.phone = model.a_cellPhone;
         if(![model.a_email isEqualToString:@""]){
             self.email = model.a_email;
-            commonLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(30, 60, 150, 30)];
+            commonLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(30, 60, 200, 30)];
             commonLabel1.textAlignment = NSTextAlignmentLeft;
             commonLabel1.text = model.a_email;
             commonLabel1.font = [UIFont systemFontOfSize:14];
@@ -84,6 +84,11 @@
             //emailBtn.backgroundColor = [UIColor yellowColor];
             [emailBtn addTarget:self action:@selector(CallEmail) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:emailBtn];
+            
+            UIButton* tempBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(emailBtn.frame)*3.5, CGRectGetHeight(emailBtn.frame)*2.5)];
+            tempBtn.center=emailBtn.center;
+            [tempBtn addTarget:self action:@selector(CallEmail) forControlEvents:UIControlEventTouchUpInside];
+            [self addSubview:tempBtn];
             
             line = [[UIImageView alloc] initWithFrame:CGRectMake(20, 99, 280, 1)];
             line.backgroundColor = [UIColor blackColor];
@@ -106,7 +111,7 @@
             [self addSubview:cellPhoneBtn];
         }else{
             self.phone = model.a_cellPhone;
-            commonLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 60, 150, 30)];
+            commonLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 60, 200, 30)];
             commonLabel.textAlignment = NSTextAlignmentLeft;
             commonLabel.font = [UIFont systemFontOfSize:14];
             commonLabel.text = [NSString stringWithFormat:@"%@****%@",[model.a_cellPhone substringToIndex:3],[model.a_cellPhone substringWithRange:NSMakeRange(7,4)]];
@@ -150,6 +155,11 @@
             emailBtn.frame = CGRectMake(270, 66, 21, 18);
             [emailBtn addTarget:self action:@selector(CallEmail) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:emailBtn];
+            
+            UIButton* tempBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(emailBtn.frame)*3.5, CGRectGetHeight(emailBtn.frame)*2.5)];
+            tempBtn.center=emailBtn.center;
+            [tempBtn addTarget:self action:@selector(CallEmail) forControlEvents:UIControlEventTouchUpInside];
+            [self addSubview:tempBtn];
         }
     }
 }
