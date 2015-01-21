@@ -16,5 +16,6 @@
     UILabel *projectCount;
     UILabel *dateLabel;
 }
+@property(nonatomic,strong)TopicsModel *model;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(TopicsModel *)model;
 @end

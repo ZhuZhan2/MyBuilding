@@ -108,7 +108,7 @@
     }else if(indexPath.row == 1){
         return 45;
     }
-    return 280;
+    return 290;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

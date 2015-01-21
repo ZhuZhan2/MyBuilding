@@ -289,11 +289,14 @@
         NSLog(@"JSON===>%@",[JSON[@"d"][@"data"] class]);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            NSMutableArray *arr = [[NSMutableArray alloc] init];
             for(NSDictionary *item in JSON[@"d"][@"data"]){
                 projectModel *model = [[projectModel alloc] init];
                 [model setDict:item];
                 [mutablePosts addObject:model];
             }
+            [arr addObject:mutablePosts];
+            [arr addObject:JSON[@"d"][@"status"][@"totalCount"]];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
@@ -540,13 +543,16 @@
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            NSMutableArray *arr = [[NSMutableArray alloc] init];
             for(NSDictionary *item in JSON[@"d"][@"data"]){
                 projectModel *model = [[projectModel alloc] init];
                 [model setDict:item];
                 [mutablePosts addObject:model];
             }
+            [arr addObject:mutablePosts];
+            [arr addObject:JSON[@"d"][@"status"][@"totalCount"]];
             if (block) {
-                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+                block([NSMutableArray arrayWithArray:arr], nil);
             }
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有符合条件的内容" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

@@ -69,7 +69,7 @@
     passWordField.delegate = self;
     passWordField.font=self.font;
     passWordField.textAlignment=NSTextAlignmentLeft;
-    passWordField.placeholder=@"填写新密码6-24位";
+    passWordField.placeholder=@"填写新密码6-20位";
     passWordField.returnKeyType=UIReturnKeyDone;
     passWordField.clearButtonMode =YES;
     passWordField.secureTextEntry = YES;

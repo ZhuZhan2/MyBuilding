@@ -11,7 +11,7 @@
 @interface ResultsTableViewController : UITableViewController<ProjectTableViewCellDelegate>{
     NSMutableArray *showArr;
     int startIndex;
-   
+    NSString *allCount;
 }
 @property(nonatomic,strong)NSString *searchStr;
 @property(nonatomic,strong)NSMutableDictionary *dic;

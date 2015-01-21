@@ -42,6 +42,7 @@ int j;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"地图搜索";
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 0, 25, 22)];

@@ -43,21 +43,17 @@
     [self.contentView addSubview:bgView];
     
     headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"项目详情默认0"]];
-    [headImageView setFrame:CGRectMake(3, 2, 132, 106)];
+    [headImageView setFrame:CGRectMake(3, 2.7, 132, 105)];
     headImageView.showActivityIndicator = YES;
-    NSLog(@"%@",model.a_image);
-    headImageView.imageURL = [NSURL URLWithString:model.a_image];
     [bgView addSubview:headImageView];
     
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(147, 8, 157, 30)];
-    titleLabel.text = model.a_title;
     titleLabel.font = [UIFont systemFontOfSize:15];
     titleLabel.textColor = BlueColor;
     [bgView addSubview:titleLabel];
     
     contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(147, 28, 157, 50)];
     contentLabel.numberOfLines = 2;
-    contentLabel.text = model.a_content;
     contentLabel.font = [UIFont systemFontOfSize:12];
     [bgView addSubview:contentLabel];
     
@@ -66,15 +62,21 @@
     [bgView addSubview:countImage];
     
     projectCount = [[UILabel alloc] initWithFrame:CGRectMake(170, 83, 100, 20)];
-    projectCount.text = model.a_projectCount;
     projectCount.font = [UIFont systemFontOfSize:14];
     projectCount.textColor = [UIColor redColor];
     [bgView addSubview:projectCount];
     
     dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(225, 83, 100, 20)];
-    dateLabel.text = model.a_publishTime;
     dateLabel.font = [UIFont systemFontOfSize:14];
     dateLabel.textColor = [UIColor grayColor];
     [bgView addSubview:dateLabel];
+}
+
+-(void)setModel:(TopicsModel *)model{
+    headImageView.imageURL = [NSURL URLWithString:model.a_image];
+    titleLabel.text = model.a_title;
+    contentLabel.text = model.a_content;
+    projectCount.text = model.a_projectCount;
+    dateLabel.text = model.a_publishTime;
 }
 @end

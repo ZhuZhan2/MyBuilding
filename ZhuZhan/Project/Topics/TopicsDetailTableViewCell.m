@@ -58,7 +58,7 @@
     
     contentLabel = [[YLLabel alloc] initWithFrame:CGRectMake(15, 253, 288, 80)];
     CGRect bounds=[model.a_content boundingRectWithSize:CGSizeMake(288, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
-    contentLabel.frame=CGRectMake(15, 223+bounds2.size.height, 288, bounds.size.height);
+    contentLabel.frame=CGRectMake(15, 223+bounds2.size.height, 288, bounds.size.height+10);
     [contentLabel setText:model.a_content];
     contentLabel.textColor=GrayColor;
     contentLabel.font = [UIFont systemFontOfSize:14];

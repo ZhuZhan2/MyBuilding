@@ -91,7 +91,13 @@
         [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 if(posts.count !=0){
-                    showArr = posts;
+                    if(posts.count !=0){
+                        showArr = posts[0];
+                        allCount = posts[1];
+                    }else{
+                        showArr = posts[0];
+                        allCount = @"0";
+                    }
                     if(showArr.count == 0){
                         [MyTableView reloadDataWithTableView:self.tableView];
                         [MyTableView hasData:self.tableView];
@@ -114,7 +120,13 @@
         [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 if(posts.count !=0){
-                    showArr = posts;
+                    if(posts.count !=0){
+                        showArr = posts[0];
+                        allCount = posts[1];
+                    }else{
+                        showArr = posts[0];
+                        allCount = @"0";
+                    }
                     if(showArr.count == 0){
                         [MyTableView reloadDataWithTableView:self.tableView];
                         [MyTableView hasData:self.tableView];
@@ -170,7 +182,13 @@
     if(self.flag == 0){
         [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                showArr = posts;
+                if(posts.count !=0){
+                    showArr = posts[0];
+                    allCount = posts[1];
+                }else{
+                    showArr = posts[0];
+                    allCount = @"0";
+                }
                 if(showArr.count == 0){
                     [MyTableView reloadDataWithTableView:self.tableView];
                     [MyTableView hasData:self.tableView];
@@ -189,7 +207,13 @@
     }else{
         [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                showArr = posts;
+                if(posts.count !=0){
+                    showArr = posts[0];
+                    allCount = posts[1];
+                }else{
+                    showArr = posts[0];
+                    allCount = @"0";
+                }
                 if(showArr.count == 0){
                     [MyTableView reloadDataWithTableView:self.tableView];
                     [MyTableView hasData:self.tableView];
@@ -214,7 +238,13 @@
     if(self.flag == 0){
         [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                [showArr addObjectsFromArray:posts];
+                if(posts.count !=0){
+                    [showArr addObjectsFromArray:posts[0]];
+                    allCount = posts[1];
+                }else{
+                    [showArr addObjectsFromArray:posts[0]];
+                    allCount = @"0";
+                }
                 if(showArr.count == 0){
                     [MyTableView reloadDataWithTableView:self.tableView];
                     [MyTableView hasData:self.tableView];
@@ -233,7 +263,13 @@
     }else{
         [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                [showArr addObjectsFromArray:posts];
+                if(posts.count !=0){
+                    [showArr addObjectsFromArray:posts[0]];
+                    allCount = posts[1];
+                }else{
+                    [showArr addObjectsFromArray:posts[0]];
+                    allCount = @"0";
+                }
                 if(showArr.count == 0){
                     [MyTableView reloadDataWithTableView:self.tableView];
                     [MyTableView hasData:self.tableView];
@@ -300,7 +336,7 @@
         countLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
         countLabel.textColor = GrayColor;
         countLabel.textAlignment = NSTextAlignmentCenter;
-        countLabel.text = [NSString stringWithFormat:@"共计%d条",showArr.count];
+        countLabel.text = [NSString stringWithFormat:@"共计%@条",allCount];
         [bgView addSubview:countLabel];
         return bgView;
     }
