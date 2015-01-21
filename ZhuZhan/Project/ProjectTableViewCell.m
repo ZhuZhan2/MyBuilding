@@ -50,7 +50,7 @@
     [self addSubview:bgImgView];
     
     nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,5,160,36)];
-    nameLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:15];
+    nameLabel.font = [UIFont boldSystemFontOfSize:15];
     [bgImgView addSubview:nameLabel];
     
     investmentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,55,85,20)];
@@ -66,7 +66,7 @@
     areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(130,55,75,20)];
     areaLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
     areaLabel.textColor = BlueColor;
-    areaLabel.text = @"建筑面积㎡";
+    areaLabel.text = @"建筑面积(㎡)";
     [bgImgView addSubview:areaLabel];
     
     areacountLabel = [[UILabel alloc] initWithFrame:CGRectMake(130,75,90,20)];
@@ -108,6 +108,9 @@
     [bgImgView addSubview:arrowImage];
     
     UIImageView *dianImage = [[UIImageView alloc] initWithFrame:CGRectMake(275,225,18,20)];
+    if(flag == 1){
+        dianImage.frame = CGRectMake(275,235,18,20);
+    }
     [dianImage setImage:[UIImage imageNamed:@"项目-首页_18a"]];
     [self addSubview:dianImage];
     
@@ -124,7 +127,7 @@
     [bgImgView addSubview:zoneLabel];
     
     addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(90,225,160,20)];
-    addressLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+    addressLabel.font = [UIFont systemFontOfSize:14];
     addressLabel.textColor = [UIColor blackColor];
     addressLabel.text = model.a_landAddress;
     [bgImgView addSubview:addressLabel];

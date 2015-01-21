@@ -39,7 +39,7 @@
     [bgImgView setImage:[GetImagePath getImagePath:@"地图搜索1_05"]];
     
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,5,160,36)];
-    nameLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:15];
+    nameLabel.font = [UIFont boldSystemFontOfSize:15];
     if([model.a_projectName isEqualToString:@""]){
         nameLabel.text = @"项目名称";
         nameLabel.textColor = RGBCOLOR(166, 166, 166);
@@ -74,7 +74,7 @@
     UILabel *areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(120,51,75,20)];
     areaLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
     areaLabel.textColor = BlueColor;
-    areaLabel.text = @"建筑面积㎡";
+    areaLabel.text = @"建筑面积(㎡)";
     [bgImgView addSubview:areaLabel];
     
     UILabel *areacountLabel = [[UILabel alloc] initWithFrame:CGRectMake(120,71,140,20)];
@@ -156,7 +156,7 @@
     [bgImgView addSubview:zoneLabel];
     
     UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(100,115,160,20)];
-    addressLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+    addressLabel.font = [UIFont systemFontOfSize:14];
     if([model.a_landAddress isEqualToString:@""]){
         addressLabel.text = @"地址";
         addressLabel.textColor = RGBCOLOR(166, 166, 166);

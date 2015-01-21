@@ -26,13 +26,14 @@
         imgaeView.image = [GetImagePath getImagePath:@"人脉－账号设置_10a"];
         [back addSubview:imgaeView];
         
+        NSAttributedString *realNameString = [[NSAttributedString alloc] initWithString:@"真实姓名" attributes:@{NSKernAttributeName : @(0.8f)}];
         UILabel *realNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 55, 100, 30)];
-        realNameLabel.text = @"真实姓名";
-        realNameLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+        realNameLabel.attributedText = realNameString;
+        realNameLabel.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:realNameLabel];
         
         realName = [[UILabel alloc] initWithFrame:CGRectMake(110, 55, 100, 30)];
-        realName.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+        realName.font = [UIFont systemFontOfSize:14];
         realName.textColor = [UIColor lightGrayColor];
         [self.contentView addSubview:realName];
         
@@ -41,14 +42,15 @@
         [self addSubview:line];
         line.alpha = 0.2;
         
+        NSAttributedString *sexString = [[NSAttributedString alloc] initWithString:@"性别" attributes:@{NSKernAttributeName : @(30.0f)}];
         UILabel *sexLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 95, 100, 30)];
-        sexLabel.text = @"性       别";
-        sexLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+        sexLabel.attributedText = sexString;
+        sexLabel.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:sexLabel];
         
         sex = [[UILabel alloc] initWithFrame:CGRectMake(110, 95, 100, 30)];
         sex.textColor = [UIColor lightGrayColor];
-        sex.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+        sex.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:sex];
         
         UIImageView *line2 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 130, 280, 1)];
@@ -56,14 +58,15 @@
         [self addSubview:line2];
         line2.alpha = 0.2;
         
+        NSAttributedString *locationString = [[NSAttributedString alloc] initWithString:@"所在地" attributes:@{NSKernAttributeName : @(8.5f)}];
         UILabel *locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 135, 100, 30)];
-        locationLabel.text = @"所  在  地";
-        locationLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+        locationLabel.attributedText = locationString;
+        locationLabel.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:locationLabel];
         
         location = [[UILabel alloc] initWithFrame:CGRectMake(110, 135, 150, 30)];
         location.textColor = [UIColor lightGrayColor];
-        location.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+        location.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:location];
         
         UIImageView *line3 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 170, 280, 1)];
@@ -71,14 +74,15 @@
         [self addSubview:line3];
         line3.alpha = 0.2;
         
+        NSAttributedString *birthdayString = [[NSAttributedString alloc] initWithString:@"生日" attributes:@{NSKernAttributeName : @(32.0f)}];
         UILabel *birthdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 175, 100, 30)];
-        birthdayLabel.text = @"生        日";
-        birthdayLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+        birthdayLabel.attributedText = birthdayString;
+        birthdayLabel.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:birthdayLabel];
         
         birthday = [[UILabel alloc] initWithFrame:CGRectMake(110, 175, 100, 30)];
         birthday.textColor = [UIColor lightGrayColor];
-        birthday.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+        birthday.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:birthday];
         
         UIImageView *line4 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 210, 280, 1)];
@@ -86,14 +90,15 @@
         [self addSubview:line4];
         line4.alpha = 0.2;
         
+        NSAttributedString *constellationString = [[NSAttributedString alloc] initWithString:@"星座" attributes:@{NSKernAttributeName : @(31.0f)}];
         UILabel *constellationLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 215, 100, 30)];
-        constellationLabel.text = @"星        座";
-        constellationLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+        constellationLabel.attributedText = constellationString;
+        constellationLabel.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:constellationLabel];
         
         constellation = [[UILabel alloc] initWithFrame:CGRectMake(110, 215, 100, 30)];
         constellation.textColor = [UIColor lightGrayColor];
-        constellation.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+        constellation.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:constellation];
         
         UIImageView *line5 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 245, 280, 1)];
@@ -101,14 +106,15 @@
         [self addSubview:line5];
         line5.alpha = 0.2;
         
+        NSAttributedString *bloodTypeString = [[NSAttributedString alloc] initWithString:@"血型" attributes:@{NSKernAttributeName : @(31.0f)}];
         UILabel *bloodTypeLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 250, 100, 30)];
-        bloodTypeLabel.text = @"血        型";
-        bloodTypeLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+        bloodTypeLabel.attributedText = bloodTypeString;
+        bloodTypeLabel.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:bloodTypeLabel];
         
         bloodType = [[UILabel alloc] initWithFrame:CGRectMake(110, 250, 100, 30)];
         bloodType.textColor = [UIColor lightGrayColor];
-        bloodType.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+        bloodType.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:bloodType];
     }
     return self;

@@ -7,7 +7,6 @@
 //
 
 #import "TopicsDetailTableViewCell.h"
-
 @implementation TopicsDetailTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(TopicsModel *)model
@@ -45,23 +44,22 @@
     headImageView.imageURL = [NSURL URLWithString:model.a_image];
     [bgView addSubview:headImageView];
     
-    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 212, 320, 30)];
+    CGRect bounds2=[model.a_title boundingRectWithSize:CGSizeMake(288, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:15]} context:nil];
+    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 212, 288, bounds2.size.height)];
+    titleLabel.numberOfLines = 0;
     titleLabel.text = model.a_title;
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.font = [UIFont boldSystemFontOfSize:15];
     [bgView addSubview:titleLabel];
     
-    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(30, 245, 260, 1)];
+    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(30,217+bounds2.size.height, 260, 1)];
     [lineImage setBackgroundColor:RGBCOLOR(222, 222, 222)];
     [bgView addSubview:lineImage];
     
-    contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 253, 288, 80)];
-    
-    
+    contentLabel = [[YLLabel alloc] initWithFrame:CGRectMake(15, 253, 288, 80)];
     CGRect bounds=[model.a_content boundingRectWithSize:CGSizeMake(288, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
-    contentLabel.frame=CGRectMake(15, 253, 288, bounds.size.height);
-    contentLabel.numberOfLines = 0;
-    contentLabel.text = model.a_content;
+    contentLabel.frame=CGRectMake(15, 223+bounds2.size.height, 288, bounds.size.height);
+    [contentLabel setText:model.a_content];
     contentLabel.textColor=GrayColor;
     contentLabel.font = [UIFont systemFontOfSize:14];
     [bgView addSubview:contentLabel];

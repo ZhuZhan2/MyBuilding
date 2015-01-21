@@ -17,14 +17,14 @@
         
         companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 150, 30)];
         companyLabel.textAlignment = NSTextAlignmentLeft;
-        companyLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:16];
+        companyLabel.font = [UIFont boldSystemFontOfSize:16];
         [self addSubview:companyLabel];
         
         
         positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 20, 150, 30)];
         positionLabel.textAlignment = NSTextAlignmentLeft;
         positionLabel.textColor = [UIColor grayColor];
-        positionLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+        positionLabel.font = [UIFont systemFontOfSize:14];
         [self addSubview:positionLabel];
     }
     return self;

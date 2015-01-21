@@ -162,7 +162,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row == 0){
-        return 55;
+        CGRect bounds=[self.projectName boundingRectWithSize:CGSizeMake(288, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
+        return 30+bounds.size.height;
     }else{
         return [viewArr[indexPath.row-1] frame].size.height;
     }
@@ -181,13 +182,16 @@
         [imageView setImage:[GetImagePath getImagePath:@"项目－评论列表_03a"]];
         [cell.contentView addSubview:imageView];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 27, 320, 20)];
-        label.text = self.projectName;
+        CGRect bounds=[self.projectName boundingRectWithSize:CGSizeMake(288, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 27, 290, bounds.size.height)];
         label.textAlignment = NSTextAlignmentCenter;
+        label.numberOfLines = 0;
+        label.text = self.projectName;
         label.font = [UIFont systemFontOfSize:15];
         label.textColor = BlueColor;
         [cell.contentView addSubview:label];
         cell.selectionStyle = NO;
+        //cell.backgroundColor = [UIColor yellowColor];
         return cell;
     }else{
         NSString *CellIdentifier = [NSString stringWithFormat:@"cell2"];

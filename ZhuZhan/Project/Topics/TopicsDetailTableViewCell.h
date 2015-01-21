@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "TopicsModel.h"
 #import "EGOImageView.h"
+#import "YLLabel.h"
 @interface TopicsDetailTableViewCell : UITableViewCell{
     EGOImageView *headImageView;
     UILabel *titleLabel;
-    UILabel *contentLabel;
+    //UILabel *contentLabel;
     UIButton *moreBtn;
     UIImageView *arrow;
+    YLLabel *contentLabel;
 }
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(TopicsModel *)model;
 @end
