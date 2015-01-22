@@ -224,7 +224,7 @@
         [cell.contentView addSubview:separatorLine];
         cell.myImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_companyLogo]];
         cell.companyNameLabel.text=[NSString stringWithFormat:@"%@",model.a_companyName];
-        cell.companyBusiness.text=[NSString stringWithFormat:@"公司行业:%@",model.a_companyIndustry];
+        cell.companyBusiness.text=[NSString stringWithFormat:@"公司行业：%@",model.a_companyIndustry];
         cell.companyIntroduce.text=[NSString stringWithFormat:@"%@位关注者",model.a_companyFocusNumber];
         cell.accessoryView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"公司－公司组织_03a"]];
     }
