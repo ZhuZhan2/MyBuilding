@@ -167,7 +167,6 @@
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection=NO;
     self.tableView.showsVerticalScrollIndicator=NO;
-    //self.tableView.tableHeaderView=[self headerView];
     [self.view addSubview:self.tableView];
 }
 
