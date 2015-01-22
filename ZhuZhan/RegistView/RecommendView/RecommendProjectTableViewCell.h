@@ -8,12 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "projectModel.h"
-
-@protocol RecommendProjectTableViewCellDelegate <NSObject>
-
--(void)attentionProject:(NSString *)projectId;
-
-@end
 @interface RecommendProjectTableViewCell : UITableViewCell{
     UIImageView *stageImage;
     UILabel *startDate;
@@ -28,6 +22,5 @@
     int isFocused;
 }
 @property(nonatomic,strong)projectModel *model;
-@property(nonatomic,weak)id<RecommendProjectTableViewCellDelegate>delegate;
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 @end

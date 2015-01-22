@@ -49,31 +49,31 @@
     [bgImgView setImage:[GetImagePath getImagePath:@"全部项目_10"]];
     [self addSubview:bgImgView];
     
-    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,18,190,16)];
+    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,18,190,16)];
     nameLabel.font = [UIFont boldSystemFontOfSize:17];
     [bgImgView addSubview:nameLabel];
     
-    investmentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,62,85,20)];
+    investmentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,62,85,20)];
     investmentLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
     investmentLabel.textColor = BlueColor;
     investmentLabel.text = @"投资额(百万)";
     [bgImgView addSubview:investmentLabel];
     
-    investmentcountLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,83,90,14)];
+    investmentcountLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,83,90,14)];
     investmentcountLabel.font = [UIFont systemFontOfSize:14];
     [bgImgView addSubview:investmentcountLabel];
     
-    areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(120,62,85,20)];
+    areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(115,62,85,20)];
     areaLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
     areaLabel.textColor = BlueColor;
     areaLabel.text = @"建筑面积(㎡)";
     [bgImgView addSubview:areaLabel];
     
-    areacountLabel = [[UILabel alloc] initWithFrame:CGRectMake(120,83,90,14)];
+    areacountLabel = [[UILabel alloc] initWithFrame:CGRectMake(115,83,90,14)];
     areacountLabel.font = [UIFont systemFontOfSize:14];
     [bgImgView addSubview:areacountLabel];
     
-    progressImage = [[UIImageView alloc] initWithFrame:CGRectMake(215,16,52,52)];
+    progressImage = [[UIImageView alloc] initWithFrame:CGRectMake(220,16,52,52)];
     if([model.a_projectstage isEqualToString:@"1"]){
         [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];
     }else if([model.a_projectstage isEqualToString:@"2"]){
@@ -85,14 +85,14 @@
     }
     [bgImgView addSubview:progressImage];
     
-    startdateLabel = [[UILabel alloc] initWithFrame:CGRectMake(210,72,65,12)];
+    startdateLabel = [[UILabel alloc] initWithFrame:CGRectMake(215,72,65,12)];
     startdateLabel.font = [UIFont systemFontOfSize:12];
     startdateLabel.textColor = GrayColor;
     startdateLabel.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     startdateLabel.textAlignment = NSTextAlignmentCenter;
     [bgImgView addSubview:startdateLabel];
     
-    enddateLabel = [[UILabel alloc] initWithFrame:CGRectMake(210,85,65,12)];
+    enddateLabel = [[UILabel alloc] initWithFrame:CGRectMake(215,85,65,12)];
     enddateLabel.font = [UIFont systemFontOfSize:12];
     enddateLabel.textColor = [UIColor orangeColor];
     enddateLabel.textAlignment = NSTextAlignmentCenter;

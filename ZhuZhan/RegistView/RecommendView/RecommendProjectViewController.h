@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RecommendProjectTableViewCell.h"
-@interface RecommendProjectViewController : UIViewController<RecommendProjectTableViewCellDelegate>{
+@interface RecommendProjectViewController : UIViewController{
     int startIndex;
 }
 

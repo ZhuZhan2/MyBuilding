@@ -1085,6 +1085,7 @@
 		D3D4FB341A087A830033BB34 /* 公司－账号设置_03a-05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D4FB321A087A830033BB34 /* 公司－账号设置_03a-05@2x.png */; };
 		D3D4FB371A087BBD0033BB34 /* CompanyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4FB361A087BBD0033BB34 /* CompanyTableViewCell.m */; };
 		D3D4FB3A1A08C0C90033BB34 /* UpdataPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4FB391A08C0C90033BB34 /* UpdataPassWordViewController.m */; };
+		D3D511AF1A70923E000104E9 /* NoProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D511AE1A70923E000104E9 /* NoProductView.m */; };
 		D3D5AAD71A690292009C2803 /* 暂无内容.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5AAD51A690292009C2803 /* 暂无内容.png */; };
 		D3D5AAD81A690292009C2803 /* 暂无内容@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5AAD61A690292009C2803 /* 暂无内容@2x.png */; };
 		D3D5D9A11A668FC80077C8C9 /* 公司详情图标bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5D99F1A668FC80077C8C9 /* 公司详情图标bg.png */; };
@@ -2705,6 +2706,8 @@
 		D3D4FB361A087BBD0033BB34 /* CompanyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyTableViewCell.m; sourceTree = "<group>"; };
 		D3D4FB381A08C0C90033BB34 /* UpdataPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdataPassWordViewController.h; sourceTree = "<group>"; };
 		D3D4FB391A08C0C90033BB34 /* UpdataPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdataPassWordViewController.m; sourceTree = "<group>"; };
+		D3D511AD1A70923E000104E9 /* NoProductView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoProductView.h; sourceTree = "<group>"; };
+		D3D511AE1A70923E000104E9 /* NoProductView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoProductView.m; sourceTree = "<group>"; };
 		D3D5AAD51A690292009C2803 /* 暂无内容.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "暂无内容.png"; sourceTree = "<group>"; };
 		D3D5AAD61A690292009C2803 /* 暂无内容@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "暂无内容@2x.png"; sourceTree = "<group>"; };
 		D3D5D99F1A668FC80077C8C9 /* 公司详情图标bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司详情图标bg.png"; sourceTree = "<group>"; };
@@ -4276,6 +4279,8 @@
 				5B13C70819B6E53A008EA7A0 /* ProductCommentView.m */,
 				5B553BF11A2EE97C00527E45 /* MyTableView.h */,
 				5B553BF21A2EE97C00527E45 /* MyTableView.m */,
+				D3D511AD1A70923E000104E9 /* NoProductView.h */,
+				D3D511AE1A70923E000104E9 /* NoProductView.m */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -6042,6 +6047,7 @@
 				D3AC61EA19B961120015B62F /* SvGifView.m in Sources */,
 				D3AC61D319B84F770015B62F /* CommentApi.m in Sources */,
 				042D9EE519B8671900689C5D /* AccountCell.m in Sources */,
+				D3D511AF1A70923E000104E9 /* NoProductView.m in Sources */,
 				0426C23319922D5A00CD8822 /* PanViewController.m in Sources */,
 				0426C28E19922D5A00CD8822 /* GPUImageLuminosityBlendFilter.m in Sources */,
 				0426C23019922D5A00CD8822 /* LoginViewController.m in Sources */,

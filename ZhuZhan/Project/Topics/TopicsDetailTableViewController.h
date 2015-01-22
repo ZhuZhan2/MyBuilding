@@ -11,6 +11,7 @@
 #import "ProjectTableViewCell.h"
 @interface TopicsDetailTableViewController : UITableViewController<ProjectTableViewCellDelegate>{
     NSMutableArray *showArr;
+    int startIndex;
 }
 @property (nonatomic,retain) TopicsModel *model;
 @end

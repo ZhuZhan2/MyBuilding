@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
 #import "ProgramDetailViewController.h"
+#import "MJRefresh.h"
 @interface TopicsDetailTableViewController ()
 
 @end
@@ -43,7 +44,61 @@
     self.title = @"专题详情";
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     self.tableView.separatorStyle = NO;
+    startIndex = 0;
+    //集成刷新控件
+    [self setupRefresh];
     [self firstNetWork];
+}
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    //[self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    //[_tableView headerBeginRefreshing];
+    
+    //2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    [showArr removeAllObjects];
+    startIndex = 0;
+    [ProjectApi GetSeminarProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            showArr = posts;
+            [self.tableView reloadData];
+            [self.tableView headerEndRefreshing];
+        }else{
+            [LoginAgain AddLoginView];
+        }
+    } Id:self.model.a_id startIndex:startIndex noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
+}
+
+- (void)footerRereshing
+{
+    startIndex ++;
+    [ProjectApi GetSeminarProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [showArr addObjectsFromArray:posts];
+            [self.tableView reloadData];
+            [self.tableView footerEndRefreshing];
+        }else{
+            [LoginAgain AddLoginView];
+        }
+    } Id:self.model.a_id startIndex:startIndex noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 -(void)firstNetWork{
@@ -54,7 +109,7 @@
         }else{
             [LoginAgain AddLoginView];
         }
-    } Id:self.model.a_id noNetWork:^{
+    } Id:self.model.a_id startIndex:startIndex noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];

@@ -15,11 +15,13 @@
 #import "ConnectionAvailable.h"
 #import "ErrorView.h"
 #import "LoadingView.h"
+#import "NoProductView.h"
 @interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate,ErrorViewDelegate>
 @property (nonatomic, strong) NSMutableArray *images;
 @property(nonatomic,strong)ErrorView* errorView;
 @property(nonatomic,strong)UIActivityIndicatorView* indicatorView;
 @property(nonatomic,strong)LoadingView *loadingView;
+@property(nonatomic,strong)NoProductView *noProductView;
 @end
 
 @implementation ProductViewController
@@ -56,9 +58,15 @@
         if(!error){
             showArr = posts;
             [qtmquitView reloadData];
+            if(showArr.count !=0){
+                //初始化刷新视图
+                [self.noProductView removeFromSuperview];
+                self.noProductView = nil;
+                [self setupRefresh];
+            }else{
+                [self addNoProductView];
+            }
             [self endIndicatorView];
-            //初始化刷新视图
-            [self setupRefresh];
         }else{
             [LoginAgain AddLoginView];
         }
@@ -68,6 +76,17 @@
             [self firstNetWork];
         }];
     }];
+}
+
+-(void)addNoProductView{
+    if(self.noProductView == nil){
+        self.noProductView = [[NoProductView alloc] initWithFrame:CGRectMake(0, 64, 320, 568-49-64)];
+        [self.view addSubview:self.noProductView];
+    }
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.noProductView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.noProductView addFooterWithTarget:self action:@selector(footerRereshing)];
 }
 
 -(void)loadQtmquitView{
@@ -106,10 +125,19 @@
 {
     [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         [qtmquitView headerEndRefreshing];
+        [self.noProductView headerEndRefreshing];
         if(!error){
             startIndex=0;
             showArr = posts;
             [qtmquitView reloadData];
+            if(showArr.count !=0){
+                //初始化刷新视图
+                [self.noProductView removeFromSuperview];
+                self.noProductView = nil;
+                [self setupRefresh];
+            }else{
+                [self addNoProductView];
+            }
         }else{
             [LoginAgain AddLoginView];
         }
@@ -126,10 +154,19 @@
 {
     [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         [qtmquitView footerEndRefreshing];
+        [self.noProductView footerEndRefreshing];
         if(!error){
             startIndex++;
             [showArr addObjectsFromArray:posts];
             [qtmquitView reloadData];
+            if(showArr.count !=0){
+                //初始化刷新视图
+                [self.noProductView removeFromSuperview];
+                self.noProductView = nil;
+                [self setupRefresh];
+            }else{
+                [self addNoProductView];
+            }
         }else{
             [LoginAgain AddLoginView];
         }

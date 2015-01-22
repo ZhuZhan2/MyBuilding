@@ -42,46 +42,40 @@
     endDate.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:endDate];
     
-    projectName = [[UILabel alloc] initWithFrame:CGRectMake(83, 15, 150, 30)];
-    projectName.text = @"上海中技桩业项目名称";
-    projectName.textColor = [UIColor blackColor];
-    projectName.font = [UIFont fontWithName:@"Helvetica-Bold" size:15];
+    projectName = [[UILabel alloc] initWithFrame:CGRectMake(83, 17, 150, 17)];
+    projectName.font = [UIFont systemFontOfSize:17];
     [self.contentView addSubview:projectName];
     
-    UILabel *areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(83, 35, 60, 30)];
+    UILabel *areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(83, 42, 60, 14)];
     areaLabel.textColor = RGBCOLOR(40, 134, 247);
     areaLabel.text = @"建筑面积";
-    areaLabel.font = [UIFont systemFontOfSize:13];
+    areaLabel.font = [UIFont systemFontOfSize:14];
     [self.contentView addSubview:areaLabel];
     
-    area = [[UILabel alloc] initWithFrame:CGRectMake(145, 35, 120, 30)];
-    area.text = @"16000M²";
+    area = [[UILabel alloc] initWithFrame:CGRectMake(145, 42, 120, 14)];
     area.textColor = RGBCOLOR(106, 106, 106);
-    area.font = [UIFont systemFontOfSize:13];
+    area.font = [UIFont systemFontOfSize:14];
     [self.contentView addSubview:area];
     
-    UILabel *investmentLabel = [[UILabel alloc] initWithFrame:CGRectMake(83, 55, 50, 30)];
+    UILabel *investmentLabel = [[UILabel alloc] initWithFrame:CGRectMake(83, 62, 50, 14)];
     investmentLabel.textColor = RGBCOLOR(40, 134, 247);
     investmentLabel.text = @"投资额";
-    investmentLabel.font = [UIFont systemFontOfSize:13];
+    investmentLabel.font = [UIFont systemFontOfSize:14];
     [self.contentView addSubview:investmentLabel];
     
-    investment = [[UILabel alloc] initWithFrame:CGRectMake(130, 55, 140, 30)];
-    investment.text = @"￥16000000百万";
+    investment = [[UILabel alloc] initWithFrame:CGRectMake(130, 62, 140, 14)];
     investment.textColor = RGBCOLOR(106, 106, 106);
-    investment.font = [UIFont systemFontOfSize:13];
+    investment.font = [UIFont systemFontOfSize:14];
     [self.contentView addSubview:investment];
     
-    zone = [[UILabel alloc] initWithFrame:CGRectMake(83, 75, 70, 30)];
-    zone.text = @"华东区 — ";
+    zone = [[UILabel alloc] initWithFrame:CGRectMake(83, 82, 70, 14)];
     zone.textColor = RGBCOLOR(40, 134, 247);
-    zone.font = [UIFont systemFontOfSize:13];
+    zone.font = [UIFont systemFontOfSize:14];
     [self.contentView addSubview:zone];
     
-    address = [[UILabel alloc] initWithFrame:CGRectMake(140, 75, 140, 30)];
-    address.text = @"上海市";
+    address = [[UILabel alloc] initWithFrame:CGRectMake(140, 82, 140, 14)];
     address.textColor = RGBCOLOR(106, 106, 106);
-    address.font = [UIFont systemFontOfSize:13];
+    address.font = [UIFont systemFontOfSize:14];
     [self.contentView addSubview:address];
     
     attentionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -93,10 +87,20 @@
 
 -(void)setModel:(projectModel *)model{
     projectId = model.a_id;
-    projectName.text = model.a_projectName;
+    if([model.a_projectName isEqualToString:@""]){
+        projectName.text = @"项目名称";
+        projectName.textColor = GrayColor;
+    }else{
+        projectName.text = model.a_projectName;
+        projectName.textColor = [UIColor blackColor];
+    }
+    
+    if([model.a_area isEqualToString:@""]){
+    
+    }
     area.text = [NSString stringWithFormat:@"%@M²",model.a_area];
     investment.text = [NSString stringWithFormat:@"¥%@百万",model.a_investment];
-    zone.text = model.a_district;
+    zone.text = model.a_city;
     address.text = model.a_landAddress;
     startDate.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     endDate.text = [model.a_exceptFinishTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];

@@ -573,7 +573,8 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/Seminars?pageSize=5&pageIndex=%d&SeminarName=&SeminarId=&SeminarDescription=",startIndex];
+    //NSString *urlStr = [NSString stringWithFormat:@"api/Projects/Seminars?pageSize=5&pageIndex=%d",startIndex];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/Seminars"];
     NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
@@ -601,14 +602,14 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)GetSeminarProjectsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block Id:(NSString *)Id noNetWork:(void(^)())noNetWork{
++ (NSURLSessionDataTask *)GetSeminarProjectsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block Id:(NSString *)Id startIndex:(int)startIndex noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
             noNetWork();
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/SeminarProjects?seminarId=%@",Id];
+    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/SeminarProjects?seminarId=%@&pageSize=5&pageIndex=%d",Id,startIndex];
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){

@@ -34,7 +34,7 @@
     [self addSubview:self.userImageView];
     
     //用户名称label
-    self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(70, 7, 200, 20)];
+    self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(70, 10, 200, 20)];
     self.userNameLabel.text=userName;
     self.userNameLabel.font=[UIFont systemFontOfSize:16];
     //self.userNameLabel.backgroundColor=[UIColor redColor];
@@ -42,9 +42,9 @@
     
     //用户评论内容label
     CGRect bounds=[commentContent boundingRectWithSize:CGSizeMake(213, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil];
-    self.userCommentContent=[[UILabel alloc]initWithFrame:CGRectMake(70, 30, 213, bounds.size.height)];
+    self.userCommentContent=[[UILabel alloc]initWithFrame:CGRectMake(70, 33, 213, bounds.size.height)];
     self.userCommentContent.numberOfLines=0;
-    self.userCommentContent.font=[UIFont systemFontOfSize:13];
+    self.userCommentContent.font=[UIFont systemFontOfSize:14];
     self.userCommentContent.text=commentContent;
     self.userCommentContent.textColor=RGBCOLOR(86, 86, 86);
     [self addSubview:self.userCommentContent];
