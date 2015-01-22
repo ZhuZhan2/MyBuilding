@@ -29,12 +29,13 @@
         
         
         self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(72, 10, 200, 20)];
-        self.userNameLabel.font=[UIFont boldSystemFontOfSize:15];
+        self.userNameLabel.font=[UIFont boldSystemFontOfSize:16];
+        self.userNameLabel.textColor=RGBCOLOR(89, 89, 89);
         [self addSubview:self.userNameLabel];
         
         self.userBussniessLabel=[[UILabel alloc]initWithFrame:CGRectMake(72, 30, 200, 20)];
-        self.userBussniessLabel.font=[UIFont boldSystemFontOfSize:12];
-        self.userBussniessLabel.textColor=GrayColor;
+        self.userBussniessLabel.font=[UIFont systemFontOfSize:14];
+        self.userBussniessLabel.textColor=RGBCOLOR(149, 149, 149);
         [self addSubview:self.userBussniessLabel];
         
         if (self.needRightBtn) {

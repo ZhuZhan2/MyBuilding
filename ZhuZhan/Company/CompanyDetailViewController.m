@@ -109,11 +109,11 @@
     companyLabel.textColor=RGBCOLOR(62, 127, 226);
     NSString* companyName=self.model.a_companyName;
     companyLabel.text=companyName;
-    companyLabel.font=[UIFont boldSystemFontOfSize:17];
+    companyLabel.font=[UIFont boldSystemFontOfSize:19];
     [view addSubview:companyLabel];
     
     //公司行业label
-    UILabel* businessLabel=[[UILabel alloc]initWithFrame:CGRectMake(105, 70, 300, 20)];
+    UILabel* businessLabel=[[UILabel alloc]initWithFrame:CGRectMake(105, 72, 300, 20)];
     NSString* businessName=self.model.a_companyIndustry;
     businessLabel.text=[NSString stringWithFormat:@"公司行业：%@",businessName];
     businessLabel.font=[UIFont boldSystemFontOfSize:15];
