@@ -286,10 +286,11 @@
 
 - (void)commomRegister//账号密码的注册
 {
-    NSLog(@"共同注册部分");
 //    RecommendProjectViewController *recProjectView = [[RecommendProjectViewController alloc] init];
 //    [self.navigationController pushViewController:recProjectView animated:YES];
 //    return;
+    
+    NSLog(@"共同注册部分");
     if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
         return;
@@ -551,7 +552,6 @@
     }];
     return isEomji;
 }
-
 
 - (void)didReceiveMemoryWarning
 {

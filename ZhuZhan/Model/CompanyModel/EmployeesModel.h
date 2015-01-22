@@ -21,6 +21,7 @@
 @property (nonatomic,strong) NSString *a_userIamge;
 //部门
 @property (nonatomic,strong) NSString *a_department;
-
+//公司名称
+@property (nonatomic,strong) NSString *a_company;
 @property (nonatomic, strong) NSDictionary *dict;
 @end

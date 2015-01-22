@@ -193,7 +193,7 @@
         [cell.userImageView addSubview:btn];
     }
     //cell.rightBtn.hidden=[[self.showArr[indexPath.row] a_id] isEqualToString:[LoginSqlite getdata:@"userId"]]?YES:NO;
-    [cell setModel:self.showArr[indexPath.row] indexPathRow:indexPath.row];
+    [cell setModel:self.showArr[indexPath.row] indexPathRow:indexPath.row needCompanyName:NO];
     return cell;
 }
 
@@ -250,21 +250,22 @@
 -(void)initSearchView{
     self.startIndex = 0;
     self.keyKords = @"";
-    self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 320, 43)];
+    self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, 320, 43)];
     self.searchBar.placeholder = @"搜索";
     self.searchBar.tintColor = [UIColor grayColor];
     self.searchBar.backgroundImage=[self imageWithColor:RGBCOLOR(223, 223, 223)];
     self.searchBar.delegate=self;
+    [self.view addSubview:self.searchBar];
 }
 
 -(void)initMyTableViewAndNavi{
-    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
+    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, self.searchBar.frame.origin.y+self.searchBar.frame.size.height, 320, 568-43-64) style:UITableViewStylePlain];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection=NO;
     self.tableView.showsVerticalScrollIndicator=NO;
-    self.tableView.tableHeaderView=self.searchBar;
+    //self.tableView.tableHeaderView=self.searchBar;
     [self.view addSubview:self.tableView];
     self.title = @"公司员工";
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];

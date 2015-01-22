@@ -86,7 +86,7 @@
         cell=[[CompanyMemberCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell" needRightBtn:YES];
         [cell.rightBtn addTarget:self action:@selector(chooseApprove:) forControlEvents:UIControlEventTouchUpInside];
     }
-    [cell setModel:self.showArr[indexPath.row] indexPathRow:indexPath.row];
+    [cell setModel:self.showArr[indexPath.row] indexPathRow:indexPath.row needCompanyName:YES];
     return cell;
 }
 
@@ -156,18 +156,23 @@
 }
 
 -(void)initMyTableView{
-    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
+    //headView部分
+    UIView* headView=[self headerView];
+    [self.view addSubview:headView];
+    
+    //tableView部分
+    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, headView.frame.origin.y+headView.frame.size.height, 320, 568-headView.frame.size.height-64) style:UITableViewStylePlain];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection=NO;
     self.tableView.showsVerticalScrollIndicator=NO;
-    self.tableView.tableHeaderView=[self headerView];
+    //self.tableView.tableHeaderView=[self headerView];
     [self.view addSubview:self.tableView];
 }
 
 -(UIView*)headerView{
-    UIView* headerView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 77)];
+    UIView* headerView=[[UIView alloc]initWithFrame:CGRectMake(0, 64, 320, 77)];
     headerView.backgroundColor=RGBCOLOR(235,235,235);
     
     UIImageView* imageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"推荐页面02a"]];

@@ -186,7 +186,7 @@
 }
 
 -(void)gotoCompanyDetail:(BOOL)needAnimation{
-    CompanyModel *model = self.showArr[self.lastIndex-1];
+    CompanyModel *model = self.showArr[self.lastIndex];
     CompanyDetailViewController* vc=[[CompanyDetailViewController alloc]init];
     vc.delegate=self;
     vc.companyId = model.a_id;
@@ -194,48 +194,31 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.showArr.count+1;
+    return self.showArr.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return indexPath.row?94:43;
+    return 94;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     MoreCompanyViewCell* cell=[MoreCompanyViewCell getCellWithTableView:tableView style:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-    
-    if (cell.contentView.subviews.count) {
-        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    }
-    //搜索栏
-    if (indexPath.row==0) {
-        [cell.contentView addSubview:self.searchBar];
-        cell.myImageView.image=nil;
-        cell.companyNameLabel.text=nil;
-        cell.companyBusiness.text=nil;
-        cell.companyIntroduce.text=nil;
-        cell.accessoryView=nil;
-    
+
     //公司内容部分
-    }else{
-        CompanyModel *model = self.showArr[indexPath.row-1];
-        UIView* separatorLine=[self getSeparatorLine];
-        [cell.contentView addSubview:separatorLine];
-        cell.myImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_companyLogo]];
-        cell.companyNameLabel.text=[NSString stringWithFormat:@"%@",model.a_companyName];
-        cell.companyBusiness.text=[NSString stringWithFormat:@"公司行业：%@",model.a_companyIndustry];
-        cell.companyIntroduce.text=[NSString stringWithFormat:@"%@位关注者",model.a_companyFocusNumber];
-        cell.accessoryView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"公司－公司组织_03a"]];
-    }
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    CompanyModel *model = self.showArr[indexPath.row];
+    cell.myImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_companyLogo]];
+    cell.companyNameLabel.text=[NSString stringWithFormat:@"%@",model.a_companyName];
+    cell.companyBusiness.text=[NSString stringWithFormat:@"公司行业：%@",model.a_companyIndustry];
+    cell.companyIntroduce.text=[NSString stringWithFormat:@"%@位关注者",model.a_companyFocusNumber];
+    cell.accessoryView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"公司－公司组织_03a"]];
+    
     return cell;
 }
 
 -(UIView*)getSeparatorLine{
     UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 1)];
     separatorLine.backgroundColor=RGBCOLOR(229, 229, 229);
-    separatorLine.center=CGPointMake(160, 93.5);
     return separatorLine;
 }
 
@@ -246,15 +229,16 @@
 -(void)initSearchView{
     startIndex = 0;
     self.keywords = @"";
-    self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 320, 43)];
+    self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, 320, 43)];
     self.searchBar.placeholder = @"搜索";
     self.searchBar.tintColor = [UIColor grayColor];
     self.searchBar.backgroundImage=[self imageWithColor:RGBCOLOR(223, 223, 223)];
     self.searchBar.delegate=self;
+    [self.view addSubview:self.searchBar];
 }
 
 -(void)initMyTableViewAndNavi{
-    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.isCompanyIdentify?568:568-49) style:UITableViewStylePlain];
+    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, self.searchBar.frame.origin.y+self.searchBar.frame.size.height, 320, self.isCompanyIdentify?568-43-64:568-49-43-64) style:UITableViewStylePlain];
     [self.tableView registerClass:[MoreCompanyViewCell class] forCellReuseIdentifier:@"Cell"];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
