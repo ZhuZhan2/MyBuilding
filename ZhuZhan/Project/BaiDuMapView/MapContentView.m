@@ -71,7 +71,7 @@
     }
     [bgImgView addSubview:investmentcountLabel];
     
-    UILabel *areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(120,51,75,20)];
+    UILabel *areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(120,51,85,20)];
     areaLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
     areaLabel.textColor = BlueColor;
     areaLabel.text = @"建筑面积(㎡)";

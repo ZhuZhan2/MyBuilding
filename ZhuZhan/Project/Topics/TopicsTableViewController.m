@@ -175,7 +175,7 @@
         cell = [[TopicsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:model];
     }
     cell.selectionStyle = NO;
-    
+    cell.model = model;
     return cell;
 }
 
