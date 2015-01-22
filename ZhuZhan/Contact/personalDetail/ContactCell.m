@@ -92,7 +92,7 @@
             
             commonLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(30, 110, 150, 30)];
             commonLabel2.textAlignment = NSTextAlignmentLeft;
-            commonLabel2.text = [NSString stringWithFormat:@"%@****%@",[model.a_cellPhone substringToIndex:3],[model.a_cellPhone substringWithRange:NSMakeRange(7,4)]];
+            commonLabel2.text = [NSString stringWithFormat:@"%@****%@",[model.a_cellPhone substringToIndex:3],[model.a_cellPhone substringWithRange:NSMakeRange((model.a_cellPhone.length-4),4)]];
             commonLabel2.font = [UIFont systemFontOfSize:14];
             [self addSubview:commonLabel2];
             
@@ -109,7 +109,7 @@
             commonLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 60, 150, 30)];
             commonLabel.textAlignment = NSTextAlignmentLeft;
             commonLabel.font = [UIFont systemFontOfSize:14];
-            commonLabel.text = [NSString stringWithFormat:@"%@****%@",[model.a_cellPhone substringToIndex:3],[model.a_cellPhone substringWithRange:NSMakeRange(7,4)]];
+            commonLabel.text = [NSString stringWithFormat:@"%@****%@",[model.a_cellPhone substringToIndex:3],[model.a_cellPhone substringWithRange:NSMakeRange((model.a_cellPhone.length-4),4)]];
             [self addSubview:commonLabel];
             
             imageView = [[UIImageView alloc] initWithFrame:CGRectMake(270, 66, 21, 18)];
