@@ -50,30 +50,9 @@
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
     self.title = @"发布";
-
-    inputView = [[UITextView alloc] initWithFrame:CGRectMake(15, 42, 290, 220)];
-    inputView.delegate = self;
-    inputView.backgroundColor=[UIColor clearColor];
-    inputView.returnKeyType = UIReturnKeySend;
-    inputView.font = [UIFont systemFontOfSize:16];
-    [inputView becomeFirstResponder];
-    [self.view addSubview:inputView];
+    isFirst=NO;
+    [self initInputView];
     
-    alertLabel = [[UILabel alloc] initWithFrame:CGRectMake(57, 4, 220, 30)];
-    alertLabel.text = [NSString stringWithFormat:@"您在做什么?（限%d字）",kPublishLimitNumber];
-    alertLabel.textColor = GrayColor;
-    alertLabel.alpha = 0.6;
-    alertLabel.textAlignment =NSTextAlignmentLeft;
-    [inputView addSubview:alertLabel];
-
-    publishImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 74.5, 52, 52)];
-    publishImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, -24, 52, 52)];
-    publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
-    publishImage.userInteractionEnabled =YES;
-    [inputView addSubview:publishImage];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(beginToAddImage)];
-    [publishImage addGestureRecognizer:tap];
-    inputView.textContainer.exclusionPaths=@[[UIBezierPath bezierPathWithRect:CGRectMake(0, -24, 52, 40)]];
     toolBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 312, 320, 40)];
     toolBar.image = [GetImagePath getImagePath:@"人脉－发布动态_15a"];
     toolBar.userInteractionEnabled = YES;
@@ -109,9 +88,48 @@
     leftBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_07a"];
     rightBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_13a"];
     publishImageStr =@"";
-
 }
 
+static BOOL isFirst;
+-(void)initInputView{
+    inputView = [[UITextView alloc] initWithFrame:CGRectMake(15, 42-24+(isFirst?64:0), 290, 220+24-(isFirst?64:0))];
+    isFirst=YES;
+    UIEdgeInsets tempInsets=inputView.textContainerInset;
+    inputView.textContainerInset=UIEdgeInsetsMake(tempInsets.top+24, tempInsets.left, tempInsets.bottom, tempInsets.right);
+    inputView.delegate = self;
+    inputView.backgroundColor=[UIColor clearColor];
+    inputView.returnKeyType = UIReturnKeySend;
+    inputView.font = [UIFont systemFontOfSize:16];
+    [self.view addSubview:inputView];
+    [inputView becomeFirstResponder];
+    
+    alertLabel = [[UILabel alloc] initWithFrame:CGRectMake(57, 4+24, 220, 30)];
+    alertLabel.text = [NSString stringWithFormat:@"您在做什么?（限%d字）",kPublishLimitNumber];
+    alertLabel.textColor = GrayColor;
+    alertLabel.alpha = 0.6;
+    alertLabel.textAlignment =NSTextAlignmentLeft;
+    [inputView addSubview:alertLabel];
+    
+    publishImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, -24+24, 52, 52)];
+    publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
+    publishImage.userInteractionEnabled =YES;
+    [inputView addSubview:publishImage];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(beginToAddImage)];
+    [publishImage addGestureRecognizer:tap];
+    inputView.textContainer.exclusionPaths=@[[UIBezierPath bezierPathWithRect:CGRectMake(0, -24, 52, 40)]];
+}
+
+-(void)clearInputView{
+    [inputView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    alertLabel=nil;
+    publishImage=nil;
+    inputView=nil;
+}
+
+-(void)inputViewGetNew{
+    [self clearInputView];
+    [self initInputView];
+}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -201,9 +219,7 @@
 
 -(void)clearAll
 {
-    publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
-    inputView.text =@"";
-    publishImageStr = @"";
+    [self inputViewGetNew];
 }
 
 //范俊说以后如果这个被枪毙了，可以考虑当超出150字的时候提示alertView超出字数，并只出现一次
@@ -286,9 +302,10 @@
             if(!error){
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
                 [alert show];
-                publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
-                inputView.text =@"";
-                publishImageStr =@"";
+                [self inputViewGetNew];
+//                publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
+//                inputView.text =@"";
+//                publishImageStr =@"";
             }else{
                 [LoginAgain AddLoginView];
             }
@@ -310,10 +327,10 @@
                     if(!error){
                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
                         [alert show];
-                        
-                        publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
-                        inputView.text =@"";
-                        publishImageStr =@"";
+                        [self inputViewGetNew];
+//                        publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
+//                        inputView.text =@"";
+//                        publishImageStr =@"";
                     }else{
                         [LoginAgain AddLoginView];
                     }
@@ -322,16 +339,6 @@
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
                 [alert show];
             }
-//            if(!error){
-//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
-//                [alert show];
-//                publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
-//                inputView.text =@"";
-//                publishImageStr =@"";
-//            }else{
-//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
-//                [alert show];
-//            }
         } dic:dic noNetWork:nil];
     }
 }

@@ -51,12 +51,24 @@
         cell.companyIntroduce.textColor=RGBCOLOR(98, 98, 98);
         cell.companyIntroduce.numberOfLines=2;
         
+        //分割线
+        UIView* separatorLine=[self getSeparatorLine];
+        
         [cell addSubview:cell.myImageView];
         [cell addSubview:cell.companyNameLabel];
         [cell addSubview:cell.companyBusiness];
         [cell addSubview:cell.companyIntroduce];
-
+        [cell addSubview:separatorLine];
+        
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
     }
     return cell;
+}
+
++(UIView*)getSeparatorLine{
+    UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 1)];
+    separatorLine.backgroundColor=RGBCOLOR(229, 229, 229);
+    separatorLine.center=CGPointMake(160, 93.5);
+    return separatorLine;
 }
 @end

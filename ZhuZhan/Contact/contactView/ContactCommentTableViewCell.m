@@ -63,7 +63,7 @@
 -(void)setModel:(ContactCommentModel *)model{
     headImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_avatarUrl]];
     
-    NSString* tempStr = [NSString stringWithFormat:@"%@:%@",model.a_userName,model.a_commentContents];
+    NSString* tempStr = [NSString stringWithFormat:@"%@：%@",model.a_userName,model.a_commentContents];
     NSMutableAttributedString* attStr=[[NSMutableAttributedString alloc]initWithString:tempStr];
     [attStr addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(242, 66, 146) range:NSMakeRange(0, model.a_userName.length+1)];
     contentLabel.attributedText = attStr;

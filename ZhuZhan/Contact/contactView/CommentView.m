@@ -41,7 +41,7 @@
     if (![model.a_content isEqualToString:@""]) {
         UIFont * tfont = [UIFont systemFontOfSize:15];
         //用户名颜色
-        NSString * text = [NSString stringWithFormat:@"%@:%@",model.a_userName,model.a_content];
+        NSString * text = [NSString stringWithFormat:@"%@：%@",model.a_userName,model.a_content];
         NSMutableAttributedString* attributedText=[[NSMutableAttributedString alloc]initWithString:text];
         NSRange range=NSMakeRange(0, model.a_userName.length+1);
         [attributedText addAttributes:@{NSForegroundColorAttributeName:BlueColor} range:range];

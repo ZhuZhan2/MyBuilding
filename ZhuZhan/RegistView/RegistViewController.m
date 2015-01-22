@@ -552,7 +552,6 @@
     return isEomji;
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

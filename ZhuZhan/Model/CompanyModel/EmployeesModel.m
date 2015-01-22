@@ -21,5 +21,6 @@
     self.a_isFocused = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"isFocused"]]];
     self.a_duties = [ProjectStage ProjectStrStage:dict[@"duties"]];
     self.a_department = [ProjectStage ProjectBoolStage:dict[@"department"]];
+    self.a_company = [ProjectStage ProjectStrStage:dict[@"company"]];
 }
 @end

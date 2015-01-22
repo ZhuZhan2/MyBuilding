@@ -267,7 +267,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         contentTextView.lineBreakMode =NSLineBreakByCharWrapping ;
         
         //用户名颜色
-        NSString * text = [NSString stringWithFormat:@"%@:%@",self.userName,self.content];
+        NSString * text = [NSString stringWithFormat:@"%@：%@",self.userName,self.content];
         NSMutableAttributedString* attributedText=[[NSMutableAttributedString alloc]initWithString:text];
         NSRange range=NSMakeRange(0, self.userName.length+1);
         [attributedText addAttributes:@{NSForegroundColorAttributeName:BlueColor} range:range];
