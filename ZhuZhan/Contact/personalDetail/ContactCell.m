@@ -80,15 +80,15 @@
             [self addSubview:imageView];
             
             emailBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            emailBtn.frame = CGRectMake(270, 66, 21, 18);
+            emailBtn.frame = CGRectMake(260, 57, 42, 36);
             //emailBtn.backgroundColor = [UIColor yellowColor];
             [emailBtn addTarget:self action:@selector(CallEmail) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:emailBtn];
             
-            UIButton* tempBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(emailBtn.frame)*3.5, CGRectGetHeight(emailBtn.frame)*2.5)];
-            tempBtn.center=emailBtn.center;
-            [tempBtn addTarget:self action:@selector(CallEmail) forControlEvents:UIControlEventTouchUpInside];
-            [self addSubview:tempBtn];
+//            UIButton* tempBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(emailBtn.frame)*3.5, CGRectGetHeight(emailBtn.frame)*2.5)];
+//            tempBtn.center=emailBtn.center;
+//            [tempBtn addTarget:self action:@selector(CallEmail) forControlEvents:UIControlEventTouchUpInside];
+//            [self addSubview:tempBtn];
             
             line = [[UIImageView alloc] initWithFrame:CGRectMake(20, 99, 280, 1)];
             line.backgroundColor = [UIColor blackColor];
@@ -106,7 +106,8 @@
             [self addSubview:imageView1];
             
             cellPhoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            cellPhoneBtn.frame = CGRectMake(270, 116, 21, 18);
+            cellPhoneBtn.frame = CGRectMake(260, 110, 42, 36);
+            //cellPhoneBtn.backgroundColor = [UIColor yellowColor];
             [cellPhoneBtn addTarget:self action:@selector(CallPhone) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:cellPhoneBtn];
         }else{
@@ -122,7 +123,8 @@
             [self addSubview:imageView];
             
             cellPhoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            cellPhoneBtn.frame = CGRectMake(270, 66, 21, 18);
+            cellPhoneBtn.frame = CGRectMake(260, 57, 42, 36);
+            //cellPhoneBtn.backgroundColor = [UIColor yellowColor];
             [cellPhoneBtn addTarget:self action:@selector(CallPhone) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:cellPhoneBtn];
         }
@@ -152,14 +154,14 @@
             [self addSubview:imageView];
             
             emailBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            emailBtn.frame = CGRectMake(270, 66, 21, 18);
+            emailBtn.frame = CGRectMake(260, 57, 42, 36);
             [emailBtn addTarget:self action:@selector(CallEmail) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:emailBtn];
             
-            UIButton* tempBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(emailBtn.frame)*3.5, CGRectGetHeight(emailBtn.frame)*2.5)];
-            tempBtn.center=emailBtn.center;
-            [tempBtn addTarget:self action:@selector(CallEmail) forControlEvents:UIControlEventTouchUpInside];
-            [self addSubview:tempBtn];
+//            UIButton* tempBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(emailBtn.frame)*3.5, CGRectGetHeight(emailBtn.frame)*2.5)];
+//            tempBtn.center=emailBtn.center;
+//            [tempBtn addTarget:self action:@selector(CallEmail) forControlEvents:UIControlEventTouchUpInside];
+//            [self addSubview:tempBtn];
         }
     }
 }
