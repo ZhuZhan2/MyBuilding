@@ -35,7 +35,7 @@
 
 @implementation RegistViewController
 -(UIFont *)font{
-    return [UIFont systemFontOfSize:15];
+    return [UIFont systemFontOfSize:16];
 }
 -(void)initNavi{
     //navi的影藏和颜色
@@ -63,9 +63,9 @@
     UIImageView* backView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"注册_02"]];
     [firstView addSubview:backView];
     
-    [self addSeparatorLineInView:firstView];
+    [self addSeparatorLineInView:firstView isFirst:YES];
     //新建电话号码文本框
-    _phoneNumberTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,0,276,47)];
+    _phoneNumberTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,4,276,47)];
     _phoneNumberTextField.delegate = self;
     _phoneNumberTextField.font=self.font;
     _phoneNumberTextField.textAlignment=NSTextAlignmentLeft;
@@ -76,7 +76,7 @@
     [firstView addSubview:_phoneNumberTextField];
     
     //新建验证码文本框
-    _yzmTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,47,170,47)];
+    _yzmTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,51,170,47)];
     _yzmTextField.delegate = self;
     _yzmTextField.font=self.font;
     _yzmTextField.textAlignment=NSTextAlignmentLeft;
@@ -86,21 +86,22 @@
     [firstView addSubview:_yzmTextField];
     
     self.getCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.getCodeBtn.frame = CGRectMake(208,57,91,28);
+    self.getCodeBtn.frame = CGRectMake(208,61,91,28);
     [self.getCodeBtn setBackgroundImage:[GetImagePath getImagePath:@"密码找回_15"] forState:UIControlStateNormal];
     [self.getCodeBtn addTarget:self action:@selector(getVerifitionCode:) forControlEvents:UIControlEventTouchUpInside];
     [firstView addSubview:self.getCodeBtn];
 
 }
 
--(void)addSeparatorLineInView:(UIView*)view{
+-(void)addSeparatorLineInView:(UIView*)view isFirst:(BOOL)isFirst{
     NSInteger number=view.frame.size.height/47-1;
     for (int i=0; i<number; i++) {
-        UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(20, 47*(i+1), 280, 1)];
+        UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(20, 47*(i+1)+(isFirst?4:2), 280, 1)];
         separatorLine.backgroundColor=RGBCOLOR(222, 222, 222);
         [view addSubview:separatorLine];
     }
 }
+
 
 -(void)loadSecondView{
     UIView* secondView=[[UIView alloc]initWithFrame:CGRectMake(0, 194, 320, 141)];
@@ -109,10 +110,10 @@
     UIImageView* backView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"注册_04"]];
     [secondView addSubview:backView];
     
-    [self addSeparatorLineInView:secondView];
+    [self addSeparatorLineInView:secondView isFirst:NO];
 
     //账号文本框
-    accountField = [[UITextField alloc] initWithFrame:CGRectMake(22,0,276,47)];
+    accountField = [[UITextField alloc] initWithFrame:CGRectMake(22,4,276,47)];
     accountField.delegate = self;
     accountField.font=self.font;
     accountField.textAlignment=NSTextAlignmentLeft;
@@ -122,18 +123,18 @@
     [secondView addSubview:accountField];
     
     //新建密码文本框
-    passWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,47,276,47)];
+    passWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,54,276,47)];
     passWordField.delegate = self;
     passWordField.font=self.font;
     passWordField.textAlignment=NSTextAlignmentLeft;
-    passWordField.placeholder=@"填写密码6-24位";
+    passWordField.placeholder=@"填写密码6-20位";
     passWordField.returnKeyType=UIReturnKeyDone;
     passWordField.clearButtonMode =YES;
     passWordField.secureTextEntry = YES;
     [secondView addSubview:passWordField];
     
     //确认密码的文本框
-    verifyPassWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,94,276,47)];
+    verifyPassWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,101,276,47)];
     verifyPassWordField.delegate = self;
     verifyPassWordField.font=self.font;
     verifyPassWordField.textAlignment=NSTextAlignmentLeft;
@@ -202,8 +203,8 @@
 
 -(void)loadRegisterBtn{
     self.registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.registerBtn.frame = CGRectMake(22, 500, 276, 42);
-    [self.registerBtn setBackgroundImage:[GetImagePath getImagePath:@"注册_07"] forState:UIControlStateNormal];
+    self.registerBtn.frame = CGRectMake(22.5, 500, 275, 42);
+    [self.registerBtn setBackgroundImage:[GetImagePath getImagePath:@"注-----册"] forState:UIControlStateNormal];
     [self.registerBtn addTarget:self action:@selector(beginToCollect) forControlEvents:UIControlEventTouchUpInside];
     self.registerBtn.tag =2014072401;
     [self.view addSubview:self.registerBtn];
