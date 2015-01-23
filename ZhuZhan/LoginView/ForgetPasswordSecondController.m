@@ -19,7 +19,7 @@
 @implementation ForgetPasswordSecondController
 
 -(UIFont *)font{
-    return [UIFont systemFontOfSize:15];
+    return [UIFont systemFontOfSize:16];
 }
 
 -(void)initNavi{
@@ -50,7 +50,7 @@
     
     [self addSeparatorLineInView:firstView];
     //新建电话号码文本框
-    _phoneNumberTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,0,170,47)];
+    _phoneNumberTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,5,170,47)];
     _phoneNumberTextField.delegate = self;
     _phoneNumberTextField.font=self.font;
     _phoneNumberTextField.textAlignment=NSTextAlignmentLeft;
@@ -63,7 +63,7 @@
     [firstView addSubview:_phoneNumberTextField];
     
     //新建验证码文本框
-    _yzmTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,47,276,47)];
+    _yzmTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,52,276,47)];
     _yzmTextField.delegate = self;
     _yzmTextField.font=self.font;
     _yzmTextField.textAlignment=NSTextAlignmentLeft;
@@ -73,7 +73,7 @@
     [firstView addSubview:_yzmTextField];
     
     self.getCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.getCodeBtn.frame = CGRectMake(208,10,91,28);
+    self.getCodeBtn.frame = CGRectMake(208,13,91,28);
     self.getCodeBtn.titleLabel.font=[UIFont systemFontOfSize:13.5f];
     [self.getCodeBtn setBackgroundImage:[GetImagePath getImagePath:@"密码找回_15"] forState:UIControlStateNormal];
     [self.getCodeBtn addTarget:self action:@selector(getVerifitionCode:) forControlEvents:UIControlEventTouchUpInside];
@@ -120,7 +120,7 @@
     NSInteger number=view.frame.size.height/47-1;
     for (int i=0; i<number; i++) {
         NSLog(@"number==%d",number);
-        UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(20, 47*(i+1), 280, 1)];
+        UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(20, 47*(i+1)+4, 280, 1)];
         separatorLine.backgroundColor=RGBCOLOR(222, 222, 222);
         [view addSubview:separatorLine];
     }
@@ -144,14 +144,18 @@
 
 -(void)loadRegisterBtn{
     self.registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.registerBtn.frame = CGRectMake(22, 500, 276, 42);
-    [self.registerBtn setBackgroundImage:[GetImagePath getImagePath:@"密码找回01z"] forState:UIControlStateNormal];
+    self.registerBtn.frame = CGRectMake(22.5, 500, 275, 42);
+    [self.registerBtn setBackgroundImage:[GetImagePath getImagePath:@"验-----证"] forState:UIControlStateNormal];
     [self.registerBtn addTarget:self action:@selector(beginToCollect) forControlEvents:UIControlEventTouchUpInside];
     self.registerBtn.tag =2014072401;
     [self.view addSubview:self.registerBtn];
 }
 
 -(void)beginToCollect{
+    ForgetPasswordThirdController *forgetSubView = [[ForgetPasswordThirdController alloc] init];
+    [self.navigationController pushViewController:forgetSubView animated:YES];
+    return;
+    
     NSLog(@"用户确认");
     if([_phoneNumberTextField.text isEqualToString:@""]){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请填写手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

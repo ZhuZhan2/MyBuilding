@@ -20,7 +20,7 @@
 
 @implementation ForgetPasswordThirdController
 -(UIFont *)font{
-    return [UIFont systemFontOfSize:15];
+    return [UIFont systemFontOfSize:16];
 }
 
 - (void)viewDidLoad {
@@ -60,12 +60,12 @@
     UIImageView* backView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"注册_02"]];
     [secondView addSubview:backView];
     
-    UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(20, 47, 280, 1)];
+    UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(20, 47+4, 280, 1)];
     separatorLine.backgroundColor=RGBCOLOR(222, 222, 222);
     [secondView addSubview:separatorLine];
     
     //新建密码文本框
-    passWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,0,276,47)];
+    passWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,5,276,47)];
     passWordField.delegate = self;
     passWordField.font=self.font;
     passWordField.textAlignment=NSTextAlignmentLeft;
@@ -76,7 +76,7 @@
     [secondView addSubview:passWordField];
     
     //确认密码的文本框
-    verifyPassWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,47,276,47)];
+    verifyPassWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,52,276,47)];
     verifyPassWordField.delegate = self;
     verifyPassWordField.font=self.font;
     verifyPassWordField.textAlignment=NSTextAlignmentLeft;
