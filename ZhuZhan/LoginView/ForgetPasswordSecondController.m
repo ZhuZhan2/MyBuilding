@@ -73,7 +73,7 @@
     [firstView addSubview:_yzmTextField];
     
     self.getCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.getCodeBtn.frame = CGRectMake(208,13,91,28);
+    self.getCodeBtn.frame = CGRectMake(208,14,91,28);
     self.getCodeBtn.titleLabel.font=[UIFont systemFontOfSize:13.5f];
     [self.getCodeBtn setBackgroundImage:[GetImagePath getImagePath:@"密码找回_15"] forState:UIControlStateNormal];
     [self.getCodeBtn addTarget:self action:@selector(getVerifitionCode:) forControlEvents:UIControlEventTouchUpInside];
