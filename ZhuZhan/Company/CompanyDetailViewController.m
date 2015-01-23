@@ -59,7 +59,7 @@
                         [self initThirdView];
                     }
                 }else{
-                    [LoginAgain AddLoginView];
+                    [LoginAgain AddLoginView:NO];
                 }
                 [self removeMyLoadingView];
             } companyId:self.companyId noNetWork:^{
@@ -253,7 +253,7 @@
                     self.model.a_focused=@"0";
                     [self handleContent];
                 }else{
-                    [LoginAgain AddLoginView];
+                    [LoginAgain AddLoginView:NO];
                 }
             } dic:dic noNetWork:nil];
         }else{
@@ -350,7 +350,7 @@
                 [alertView show];
 
             }else{
-                [LoginAgain AddLoginView];
+                [LoginAgain AddLoginView:NO];
             }
         } dic:dic noNetWork:nil];
     }

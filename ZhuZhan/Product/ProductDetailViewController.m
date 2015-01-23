@@ -639,7 +639,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     [alertView show];
                     self.isFocused = @"1";
                 }else{
-                    [LoginAgain AddLoginView];
+                    [LoginAgain AddLoginView:NO];
                 }
             } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"productId":self.entityID} mutableCopy] noNetWork:nil];
         }else{
@@ -649,7 +649,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     [alertView show];
                     self.isFocused = @"0";
                 }else{
-                    [LoginAgain AddLoginView];
+                    [LoginAgain AddLoginView:NO];
                 }
             } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"productId":self.entityID} mutableCopy] noNetWork:nil];
         }
@@ -666,7 +666,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 block();
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID EntityCategory:self.category noNetWork:nil];
 }

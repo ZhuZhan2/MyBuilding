@@ -85,7 +85,7 @@
                 [self.tableView reloadData];
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } companyId:[LoginSqlite getdata:@"userId"] noNetWork:nil];
 }
@@ -296,7 +296,7 @@
             [LoginSqlite insertData:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0][@"imageLocation"]] datakey:@"userImage"];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } dic:dic noNetWork:nil];
 }

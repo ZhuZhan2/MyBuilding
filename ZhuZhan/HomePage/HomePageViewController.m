@@ -73,7 +73,7 @@
     [toolView addSubview:tradeBtn];
     [self.view addSubview:toolView];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(gotoLogin) name:@"LoginAgain" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(gotoLogin:) name:@"LoginAgain" object:nil];
     
     /*
     //更多按钮的实现
@@ -218,7 +218,8 @@
     }
 }
 
--(void)gotoLogin{
+-(void)gotoLogin:(NSNotification*)notification{
+    NSDictionary *nameDictionary = [notification userInfo];
     if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
         return;
@@ -228,6 +229,7 @@
     LoginViewController *loginVC = [[LoginViewController alloc] init];
     loginVC.needDelayCancel=YES;
     loginVC.delegate=self;
+    loginVC.isContactView = nameDictionary[@"isContactView"];
     UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
     [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
 }

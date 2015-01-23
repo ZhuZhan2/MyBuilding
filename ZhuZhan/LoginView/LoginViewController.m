@@ -69,20 +69,24 @@
     [imageView4 setImage:[GetImagePath getImagePath:@"登录_11"]];
     [bgView addSubview:imageView4];
     
-    _userNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 0, 240, 41)];
+    _userNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 2, 240, 39)];
     _userNameTextField.delegate = self;
     _userNameTextField.textAlignment=NSTextAlignmentLeft;
     _userNameTextField.placeholder=@"用户名";
+    [_userNameTextField setValue:[UIFont systemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
     _userNameTextField.returnKeyType=UIReturnKeyDone;
+    //_userNameTextField.backgroundColor = [UIColor yellowColor];
     _userNameTextField.clearButtonMode = UITextFieldViewModeAlways;
     [bgView addSubview:_userNameTextField];
     
-    _passWordTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 42, 240, 41)];
+    _passWordTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 43, 240, 39)];
     _passWordTextField.delegate = self;
     _passWordTextField.textAlignment=NSTextAlignmentLeft;
     _passWordTextField.placeholder=@"密码";
+    [_passWordTextField setValue:[UIFont systemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
     _passWordTextField.returnKeyType=UIReturnKeyDone;
     _passWordTextField.secureTextEntry = YES;
+    //_passWordTextField.backgroundColor = [UIColor yellowColor];
     _passWordTextField.clearButtonMode = UITextFieldViewModeAlways;
     [bgView addSubview:_passWordTextField];
     
@@ -136,6 +140,13 @@
     [_userNameTextField resignFirstResponder];
     [_passWordTextField resignFirstResponder];
     [self dismissViewControllerAnimated:YES completion:nil];
+    if([self.isContactView isEqualToString:@"1"]){
+        if([self.delegate respondsToSelector:@selector(loginCompleteWithDelayBlock:)]){
+            [self.delegate loginCompleteWithDelayBlock:^{
+            
+            }];
+        }
+    }
 }
 
 -(void)closeKeyBoard{

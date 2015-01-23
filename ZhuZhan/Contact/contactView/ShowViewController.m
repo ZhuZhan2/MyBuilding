@@ -103,7 +103,7 @@
                 [self endIndicatorView];
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } userId:self.createdBy noNetWork:nil];
 }
@@ -154,7 +154,7 @@
                     isFoucsed = 1;
                     concernBtn.enabled = YES;
                 }else{
-                    [LoginAgain AddLoginView];
+                    [LoginAgain AddLoginView:NO];
                 }
             } dic:dic noNetWork:nil];
         }else{
@@ -166,7 +166,7 @@
                     isFoucsed = 0;
                     concernBtn.enabled = YES;
                 }else{
-                    [LoginAgain AddLoginView];
+                    [LoginAgain AddLoginView:NO];
                 }
             } dic:dic noNetWork:nil];
         }
@@ -197,7 +197,7 @@
                 block();
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } userId:self.createdBy noNetWork:nil];
 }

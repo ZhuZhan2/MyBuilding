@@ -109,7 +109,7 @@
             [self.tableView footerEndRefreshing];
             [self.tableView reloadData];
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } userId:self.contactId startIndex:startIndex noNetWork:nil];
 }
@@ -156,7 +156,7 @@
             self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
             [self getNetWorkData];
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } userId:[LoginSqlite getdata:@"userId"] targetId:self.contactId EntityCategory:@"Personal" noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -190,7 +190,7 @@
                 } userId:self.contactId startIndex:startIndex noNetWork:nil];
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } userId:self.contactId noNetWork:nil];
 }
@@ -210,7 +210,7 @@
                     [alertView show];
                     self.isFocused = @"1";
                 }else{
-                    [LoginAgain AddLoginView];
+                    [LoginAgain AddLoginView:NO];
                 }
             } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"FocusId":self.contactId} mutableCopy] noNetWork:nil];
         }else{
@@ -220,7 +220,7 @@
                     [alertView show];
                     self.isFocused = @"0";
                 }else{
-                    [LoginAgain AddLoginView];
+                    [LoginAgain AddLoginView:NO];
                 }
             } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"FocusId":self.contactId} mutableCopy] noNetWork:nil];
         }

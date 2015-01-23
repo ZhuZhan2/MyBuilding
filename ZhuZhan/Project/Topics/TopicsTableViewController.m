@@ -62,7 +62,7 @@
                 [self.tableView reloadData];
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } startIndex:startIndex noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -110,7 +110,7 @@
                 [self.tableView reloadData];
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
         [self.tableView headerEndRefreshing];
     }startIndex:0 noNetWork:^{
@@ -135,7 +135,7 @@
                 [self.tableView reloadData];
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
         [self.tableView footerEndRefreshing];
     }startIndex:startIndex+1 noNetWork:^{
