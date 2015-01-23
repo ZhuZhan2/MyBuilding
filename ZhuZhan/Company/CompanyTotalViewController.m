@@ -39,7 +39,6 @@
                 [self.navigationController pushViewController:self.companyVC animated:NO];
             }else{
                 [LoginAgain AddLoginView:NO];
-                [self firstNetWork];
             }
             [self removeMyLoadingView];
         } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
@@ -63,7 +62,6 @@
                 }
             }else{
                 [LoginAgain AddLoginView:NO];
-                [self firstNetWork];
             }
             [self removeMyLoadingView];
         } noNetWork:^{

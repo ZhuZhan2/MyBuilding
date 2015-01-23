@@ -69,7 +69,6 @@
             [self endIndicatorView];
         }else{
             [LoginAgain AddLoginView:NO];
-            [self firstNetWork];
         }
     } startIndex:0 noNetWork:^{
         [self endIndicatorView];
