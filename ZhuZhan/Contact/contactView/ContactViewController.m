@@ -184,7 +184,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             self.tableView.scrollEnabled=YES;
             loadingView = nil;
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:YES];
         }
     } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
         self.tableView.scrollEnabled=NO;
@@ -266,7 +266,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 _timeScroller.hidden=NO;
             });
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:YES];
         }
         [self.tableView footerEndRefreshing];
     } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex+1 noNetWork:^{
@@ -784,7 +784,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             __weak ContactViewController *wself = self;
             [wself.pathCover stopRefresh];
         }else{
-            [LoginAgain AddLoginView];
+            __weak ContactViewController *wself = self;
+            [wself.pathCover stopRefresh];
+            [LoginAgain AddLoginView:YES];
         }
     } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
         self.tableView.scrollEnabled=NO;

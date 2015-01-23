@@ -38,7 +38,8 @@
                 self.companyVC.navigationItem.hidesBackButton=YES;
                 [self.navigationController pushViewController:self.companyVC animated:NO];
             }else{
-                [LoginAgain AddLoginView];
+                [LoginAgain AddLoginView:NO];
+                [self firstNetWork];
             }
             [self removeMyLoadingView];
         } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
@@ -61,7 +62,8 @@
                     [self.navigationController pushViewController:self.moreCompanyVC animated:NO];
                 }
             }else{
-                [LoginAgain AddLoginView];
+                [LoginAgain AddLoginView:NO];
+                [self firstNetWork];
             }
             [self removeMyLoadingView];
         } noNetWork:^{

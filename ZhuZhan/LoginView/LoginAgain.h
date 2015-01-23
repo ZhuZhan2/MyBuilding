@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface LoginAgain : NSObject
-+(void)AddLoginView;
++(void)AddLoginView:(BOOL)isContactView;
 @end

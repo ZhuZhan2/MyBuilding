@@ -70,7 +70,7 @@
                 [self.tableView reloadData];
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
         [self removeMyLoadingView];
     } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:^{
@@ -110,7 +110,7 @@
                 [self.tableView reloadData];
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
         [self.tableView headerEndRefreshing];
     } companyId:self.companyId startIndex:0 keyWords:self.keyKords noNetWork:^{
@@ -135,7 +135,7 @@
                 [self.tableView reloadData];
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
         [self.tableView footerEndRefreshing];
     } companyId:self.companyId startIndex:self.startIndex+1 keyWords:self.keyKords noNetWork:^{
@@ -311,7 +311,7 @@
             }
             self.searchBar.showsCancelButton = YES;
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } companyId:self.companyId startIndex:0 keyWords:self.keyKords noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
@@ -336,7 +336,7 @@
             }
             self.searchBar.showsCancelButton = NO;
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } companyId:self.companyId startIndex:0 keyWords:self.keyKords noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{

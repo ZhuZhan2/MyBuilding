@@ -127,7 +127,7 @@
             self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
             [self getContentList];
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } userId:[LoginSqlite getdata:@"userId"] targetId:self.projectId EntityCategory:@"Project" noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -147,7 +147,7 @@
                 self.stages=[ProjectStage JudgmentProjectDetailStage:self.model];
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
         [self endIndicatorView];
     } projectId:self.projectId noNetWork:^{
@@ -320,7 +320,7 @@
                     [alertView show];
                     self.isFocused = @"1";
                 }else{
-                    [LoginAgain AddLoginView];
+                    [LoginAgain AddLoginView:NO];
                 }
             } dic:[@{@"UserId":[LoginSqlite getdata:@"userId"],@"ProjectId":self.model.a_id} mutableCopy] noNetWork:nil];
         }else{
@@ -330,7 +330,7 @@
                     [alertView show];
                     self.isFocused = @"0";
                 }else{
-                    [LoginAgain AddLoginView];
+                    [LoginAgain AddLoginView:NO];
                 }
             } dic:[@{@"UserId":[LoginSqlite getdata:@"userId"],@"ProjectId":self.model.a_id} mutableCopy] noNetWork:nil];
         }
@@ -368,7 +368,7 @@
         if (!error) {
             NSLog(@"sucess");
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } dic:[@{@"EntityId":self.model.a_id,@"entityType":@"Project",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy] noNetWork:nil];
 }
@@ -892,7 +892,7 @@
                 block();
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } userId:[LoginSqlite getdata:@"userId"] targetId:self.projectId EntityCategory:@"Project" noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{

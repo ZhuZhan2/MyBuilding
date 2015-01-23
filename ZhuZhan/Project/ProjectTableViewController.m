@@ -145,10 +145,13 @@
                     [self.tableView reloadData];
                 }
                 [LoadingView removeLoadingView:loadingView];
-                self.tableView.scrollEnabled = YES;
                 loadingView = nil;
+                self.tableView.scrollEnabled = YES;
             }else{
-                [LoginAgain AddLoginView];
+                [LoginAgain AddLoginView:NO];
+                [LoadingView removeLoadingView:loadingView];
+                loadingView = nil;
+                [self firstWork];
             }
         } projectIds:projectIds noNetWork:^{
             self.tableView.scrollEnabled = NO;
@@ -207,7 +210,10 @@
                     [self.tableView reloadData];
                 }
             }else{
-                [LoginAgain AddLoginView];
+                [LoginAgain AddLoginView:NO];
+                [LoadingView removeLoadingView:loadingView];
+                loadingView = nil;
+                [self firstWork];
             }
             [self.tableView headerEndRefreshing];
         }startIndex:0 noNetWork:^{
@@ -236,7 +242,10 @@
                         [self.tableView reloadData];
                     }
                 }else{
-                    [LoginAgain AddLoginView];
+                    [LoginAgain AddLoginView:NO];
+                    [LoadingView removeLoadingView:loadingView];
+                    loadingView = nil;
+                    [self firstWork];
                 }
                 [self.tableView headerEndRefreshing];
             } projectIds:projectIds noNetWork:^{
@@ -265,7 +274,10 @@
                     [self.tableView reloadData];
                 }
             }else{
-                [LoginAgain AddLoginView];
+                [LoginAgain AddLoginView:NO];
+                [LoadingView removeLoadingView:loadingView];
+                loadingView = nil;
+                [self firstWork];
             }
             [self.tableView footerEndRefreshing];
         }startIndex:startIndex+1 noNetWork:^{

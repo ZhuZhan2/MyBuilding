@@ -17,6 +17,7 @@
     UITextField *_userNameTextField;
     UITextField *_passWordTextField;
 }
+@property(nonatomic,strong)NSString *isContactView;
 @property(nonatomic,weak)id<LoginViewDelegate>delegate;
 @property(nonatomic)BOOL needDelayCancel;
 @end

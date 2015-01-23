@@ -76,7 +76,7 @@
                 [self.tableView reloadData];
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
         [self removeMyLoadingView];
     } startIndex:0 keyWords:@"" noNetWork:^{
@@ -113,7 +113,7 @@
                 [self.tableView reloadData];
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
         [self.tableView headerEndRefreshing];
     } startIndex:0 keyWords:self.keywords noNetWork:^{
@@ -138,7 +138,7 @@
                 [self.tableView reloadData];
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
         [self.tableView footerEndRefreshing];
     } startIndex:startIndex+1 keyWords:self.keywords noNetWork:^{
@@ -297,7 +297,7 @@
             }
             [self.searchBar setShowsCancelButton:YES animated:YES];
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     }startIndex:0 keyWords:[NSString stringWithFormat:@"%@",searchBar.text] noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -322,7 +322,7 @@
             }
             [self.searchBar setShowsCancelButton:NO animated:YES];
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } startIndex:0 keyWords:@"" noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{

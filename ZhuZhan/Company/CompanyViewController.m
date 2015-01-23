@@ -172,7 +172,7 @@
                 self.model.a_focused=@"0";
                 [self handleContent];
             }else{
-                [LoginAgain AddLoginView];
+                [LoginAgain AddLoginView:NO];
             }
             btn.userInteractionEnabled=YES;
         } dic:dic noNetWork:nil];
@@ -186,7 +186,7 @@
                 self.model.a_focused=@"1";
                 [self handleContent];
             }else{
-                [LoginAgain AddLoginView];
+                [LoginAgain AddLoginView:NO];
             }
             btn.userInteractionEnabled=YES;
         } dic:dic noNetWork:nil];

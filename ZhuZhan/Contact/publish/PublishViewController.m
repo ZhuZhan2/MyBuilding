@@ -307,7 +307,7 @@ static BOOL isFirst;
 //                inputView.text =@"";
 //                publishImageStr =@"";
             }else{
-                [LoginAgain AddLoginView];
+                [LoginAgain AddLoginView:NO];
             }
         } dic:dic noNetWork:nil];
 
@@ -332,7 +332,7 @@ static BOOL isFirst;
 //                        inputView.text =@"";
 //                        publishImageStr =@"";
                     }else{
-                        [LoginAgain AddLoginView];
+                        [LoginAgain AddLoginView:NO];
                     }
                 } dic:parameters noNetWork:nil];
             }else{

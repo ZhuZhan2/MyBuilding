@@ -82,7 +82,7 @@
                 [MyTableView hasData:self.tableView];
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } entityId:projectId entityType:@"Project" noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -251,7 +251,7 @@
                 [MyTableView hasData:self.tableView];
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } dic:dic noNetWork:nil];
 }

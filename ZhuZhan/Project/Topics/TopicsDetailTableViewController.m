@@ -74,7 +74,7 @@
             [self.tableView reloadData];
             [self.tableView headerEndRefreshing];
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } Id:self.model.a_id startIndex:startIndex noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -92,7 +92,7 @@
             [self.tableView reloadData];
             [self.tableView footerEndRefreshing];
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } Id:self.model.a_id startIndex:startIndex noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -107,7 +107,7 @@
             showArr = posts;
             [self.tableView reloadData];
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } Id:self.model.a_id startIndex:startIndex noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{

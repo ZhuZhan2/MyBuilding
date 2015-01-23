@@ -68,7 +68,8 @@
             }
             [self endIndicatorView];
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
+            [self firstNetWork];
         }
     } startIndex:0 noNetWork:^{
         [self endIndicatorView];
@@ -139,7 +140,7 @@
                 [self addNoProductView];
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } startIndex:0 noNetWork:^{
         [qtmquitView headerEndRefreshing];
@@ -168,7 +169,7 @@
                 [self addNoProductView];
             }
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     } startIndex:startIndex+1 noNetWork:^{
         [qtmquitView footerEndRefreshing];

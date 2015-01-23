@@ -85,7 +85,7 @@
                 }
                 [_tableView reloadData];
             }else{
-                [LoginAgain AddLoginView];
+                [LoginAgain AddLoginView:NO];
             }
         }userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -212,7 +212,7 @@
             if(!error){
                 
             }else{
-                [LoginAgain AddLoginView];
+                [LoginAgain AddLoginView:NO];
             }
         } dic:dic noNetWork:nil];
         [showArr removeObjectAtIndex:indexPath.row-2];
@@ -399,7 +399,7 @@
             }
             [_tableView reloadData];
         }else{
-            [LoginAgain AddLoginView];
+            [LoginAgain AddLoginView:NO];
         }
     }userId:[LoginSqlite getdata:@"userId"] noNetWork:nil];
 }
