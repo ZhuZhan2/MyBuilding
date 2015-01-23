@@ -11,7 +11,7 @@
 @implementation LoginAgain
 +(void)AddLoginView:(BOOL)isContactView{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                    message:@"在其他设备中登录，请退出重新登录"
+                                                    message:@"账号已在其他地方登录，请重新登录"
                                                    delegate:self
                                           cancelButtonTitle:@"确定"
                                           otherButtonTitles:nil,nil];
