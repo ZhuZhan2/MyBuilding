@@ -226,12 +226,10 @@
     }
     
     [LoginSqlite deleteAll];
-    LoginViewController *loginVC = [[LoginViewController alloc] init];
-    loginVC.needDelayCancel=YES;
-    loginVC.delegate=self;
-    loginVC.isContactView = nameDictionary[@"isContactView"];
-    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
-    [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    
+    UIButton* btn=[UIButton new];
+    btn.tag=0;
+    [self BtnClick:btn];
 }
 
 -(void)loginCompleteWithDelayBlock:(void (^)())block{

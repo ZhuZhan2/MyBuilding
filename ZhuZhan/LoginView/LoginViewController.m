@@ -140,13 +140,6 @@
     [_userNameTextField resignFirstResponder];
     [_passWordTextField resignFirstResponder];
     [self dismissViewControllerAnimated:YES completion:nil];
-    if([self.isContactView isEqualToString:@"1"]){
-        if([self.delegate respondsToSelector:@selector(loginCompleteWithDelayBlock:)]){
-            [self.delegate loginCompleteWithDelayBlock:^{
-            
-            }];
-        }
-    }
 }
 
 -(void)closeKeyBoard{
