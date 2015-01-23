@@ -117,10 +117,10 @@
 
 -(void)companyRemindView{
     UIImageView* imageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"密码找回_03"]];
-    imageView.center=CGPointMake(30, 197);
+    imageView.center=CGPointMake(30, 200.5);
     [self.view addSubview:imageView];
     
-    UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(43, 190, 150, 15)];
+    UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(43, 193, 150, 15)];
     label.textColor=RGBCOLOR(135, 135, 135);
     label.font=[UIFont systemFontOfSize:13.5];
     label.text=@"公司账户请联系客服";
@@ -132,7 +132,7 @@
     [btn setTitle:@"拨打电话" forState:UIControlStateNormal];
     [btn setTitleColor:RGBCOLOR(88, 198, 143) forState:UIControlStateNormal];
     btn.titleLabel.font=[UIFont systemFontOfSize:13.5];
-    btn.frame=CGRectMake(210, 190, 100, 15);
+    btn.frame=CGRectMake(210, 193, 100, 15);
     [self.view addSubview:btn];
     [btn addTarget:self action:@selector(callPhoneBtnClicked) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -150,12 +150,12 @@
 }
 
 -(void)loadRegisterBtn{
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 470, 320, 30)];
-    label.text = @"公司账户请联系客服";
-    label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = GrayColor;
-    label.font = [UIFont systemFontOfSize:14];
-    [self.view addSubview:label];
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 470, 320, 30)];
+//    label.text = @"公司账户请联系客服";
+//    label.textAlignment = NSTextAlignmentCenter;
+//    label.textColor = GrayColor;
+//    label.font = [UIFont systemFontOfSize:14];
+//    [self.view addSubview:label];
     
     self.registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.registerBtn.frame = CGRectMake(22, 500, 276, 42);
