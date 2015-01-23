@@ -21,7 +21,7 @@
 @implementation ForgetPasswordFirstController
 
 -(UIFont *)font{
-    return [UIFont systemFontOfSize:15];
+    return [UIFont systemFontOfSize:16];
 }
 
 -(void)initNavi{
@@ -52,7 +52,7 @@
     
     [self addSeparatorLineInView:firstView];
     //新建电话号码文本框
-    _phoneNumberTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,3,276,47)];
+    _phoneNumberTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,5,276,47)];
     _phoneNumberTextField.delegate = self;
     _phoneNumberTextField.font=self.font;
     _phoneNumberTextField.textAlignment=NSTextAlignmentLeft;
@@ -63,7 +63,7 @@
     [firstView addSubview:_phoneNumberTextField];
     
     //新建验证码文本框
-    _yzmTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,50,170,47)];
+    _yzmTextField = [[UITextField alloc] initWithFrame:CGRectMake(22,52,170,47)];
     _yzmTextField.delegate = self;
     _yzmTextField.font=self.font;
     _yzmTextField.textAlignment=NSTextAlignmentLeft;
@@ -78,7 +78,7 @@
 //    [getCodeBtn setImage:[GetImagePath getImagePath:@"密码找回_15"] forState:UIControlStateNormal];
 //    [getCodeBtn addTarget:self action:@selector(getVerifitionCode) forControlEvents:UIControlEventTouchUpInside];
     //[firstView addSubview:getCodeBtn];
-    self.codeView = [[PooCodeView alloc] initWithFrame:CGRectMake(208,60,91,28)];
+    self.codeView = [[PooCodeView alloc] initWithFrame:CGRectMake(208,62,91,28)];
     [firstView addSubview:self.codeView];
 }
 
@@ -92,7 +92,7 @@
 -(void)addSeparatorLineInView:(UIView*)view{
     NSInteger number=view.frame.size.height/47-1;
     for (int i=0; i<number; i++) {
-        UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(20, 47*(i+1)+2, 280, 1)];
+        UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(20, 47*(i+1)+4, 280, 1)];
         separatorLine.backgroundColor=RGBCOLOR(222, 222, 222);
         [view addSubview:separatorLine];
     }
@@ -139,8 +139,9 @@
 
 -(void)callPhoneBtnClicked{
     //NSString* str=@"tel://65383309";//前台
-    NSString* str=@"tel://13641672889";//gll
+    //NSString* str=@"tel://13641672889";//gll
     //NSString* str=@"tel://18755481541";//wxp
+    NSString* str=@"tel://4006697262";//客服电话
     if ([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:str]]) {
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:str]];
     }else{
@@ -165,6 +166,9 @@
 }
 
 -(void)beginToCollect{
+    ForgetPasswordSecondController *forgetSecondView = [[ForgetPasswordSecondController alloc] init];
+    [self.navigationController pushViewController:forgetSecondView animated:YES];
+    return;
     NSLog(@"用户确认");
     NSString* originStr=self.codeView.changeString;
     [self.codeView change];
@@ -180,10 +184,6 @@
         [RemindView remindViewWithContent:@"验证码错误" superView:self.view centerY:240];
         return;
     }
-    
- //   BOOL isPhone=[self isAllNumber:_phoneNumberTextField.text];
-//    NSString* userName=isPhone?nil:_phoneNumberTextField.text;
-//    NSString* cellPhone=isPhone?_phoneNumberTextField.text:nil;
     
     [LoginModel GetIsExistWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
