@@ -12,7 +12,7 @@
 // user info key for Dictionary
 extern NSString *const XHUserNameKey;
 extern NSString *const XHBirthdayKey;
-
+extern NSString *const XHTitkeKey;
 @protocol XHPathCoverDelegate <NSObject>
 
 -(void)gotoMyCenter;
@@ -30,6 +30,7 @@ extern NSString *const XHBirthdayKey;
 @property (nonatomic, strong) UIButton *avatarButton;
 @property (nonatomic, strong) UILabel *userNameLabel;
 @property (nonatomic, strong) UILabel *birthdayLabel;
+@property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) EGOImageView *headImage;
 @property (nonatomic, strong) GradientView *footView;
 

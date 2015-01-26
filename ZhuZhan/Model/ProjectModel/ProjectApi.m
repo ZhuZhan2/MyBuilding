@@ -286,7 +286,7 @@
     NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)urlStr, NULL, NULL,  kCFStringEncodingUTF8 ));
     NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:encodedString parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",[JSON[@"d"][@"data"] class]);
+        NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             NSMutableArray *arr = [[NSMutableArray alloc] init];
@@ -298,7 +298,7 @@
             [arr addObject:mutablePosts];
             [arr addObject:JSON[@"d"][@"status"][@"totalCount"]];
             if (block) {
-                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+                block([NSMutableArray arrayWithArray:arr], nil);
             }
         }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
             

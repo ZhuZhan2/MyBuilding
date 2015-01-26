@@ -14,24 +14,28 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(30, 5, 40, 40)];
-        imageView.image = [GetImagePath getImagePath:@"人脉_57a"];
-        imageView.userInteractionEnabled =YES;
+        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(30, 12, 44, 44)];
+        imageView.image = [GetImagePath getImagePath:@"人的详情88-01"];
         [self addSubview:imageView];
         
-        ProjectLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 150, 30)];
+        ProjectLabel = [[UILabel alloc] initWithFrame:CGRectMake(103, 15, 170, 16)];
         ProjectLabel.textAlignment = NSTextAlignmentLeft;
         ProjectLabel.font = [UIFont systemFontOfSize:16];
         [self addSubview:ProjectLabel];
         
+        zoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(103, 37, 120, 14)];
+        zoneLabel.textAlignment = NSTextAlignmentLeft;
+        zoneLabel.textColor = [UIColor grayColor];
+        zoneLabel.font = [UIFont systemFontOfSize:14];
+        [self addSubview:zoneLabel];
         
-        addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 20, 120, 30)];
+        addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 37, 120, 14)];
         addressLabel.textAlignment = NSTextAlignmentLeft;
         addressLabel.textColor = [UIColor grayColor];
         addressLabel.font = [UIFont systemFontOfSize:14];
         [self addSubview:addressLabel];
         
-        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(20, 49, 280, 1)];
+        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(13.5, 67, 294, 1)];
         line.image = [GetImagePath getImagePath:@"人脉－引荐信_08a"];
         [self addSubview:line];
     }
@@ -64,5 +68,10 @@
     }
     ProjectLabel.text = model.a_projectName;
     addressLabel.text = model.a_landAddress;
+    if([model.a_city isEqualToString:@""]){
+        zoneLabel.text = @"";
+    }else{
+        zoneLabel.text = [NSString stringWithFormat:@"%@ - ",model.a_city];
+    }
 }
 @end
