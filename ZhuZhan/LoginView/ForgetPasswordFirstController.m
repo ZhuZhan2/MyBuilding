@@ -167,6 +167,9 @@
 
 -(void)beginToCollect{
     NSLog(@"用户确认");
+//    ForgetPasswordSecondController *forgetSecondView = [[ForgetPasswordSecondController alloc] init];
+//    [self.navigationController pushViewController:forgetSecondView animated:YES];
+//    return;
     NSString* originStr=self.codeView.changeString;
     [self.codeView change];
     [self.codeView setNeedsDisplay];

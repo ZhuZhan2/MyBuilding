@@ -123,7 +123,7 @@
     [secondView addSubview:accountField];
     
     //新建密码文本框
-    passWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,54,276,47)];
+    passWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,51,276,47)];
     passWordField.delegate = self;
     passWordField.font=self.font;
     passWordField.textAlignment=NSTextAlignmentLeft;
@@ -134,7 +134,7 @@
     [secondView addSubview:passWordField];
     
     //确认密码的文本框
-    verifyPassWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,101,276,47)];
+    verifyPassWordField = [[UITextField alloc] initWithFrame:CGRectMake(22,99,276,47)];
     verifyPassWordField.delegate = self;
     verifyPassWordField.font=self.font;
     verifyPassWordField.textAlignment=NSTextAlignmentLeft;

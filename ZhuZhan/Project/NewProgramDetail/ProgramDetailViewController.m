@@ -32,6 +32,7 @@
 #import "IsFocusedApi.h"
 #import "ProjectSqlite.h"
 @interface ProgramDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ShowPageDelegate,UIScrollViewDelegate,ProgramSelectViewCellDelegate,CycleScrollViewDelegate,UIActionSheetDelegate,AddCommentDelegate,LoginViewDelegate>
+@property(nonatomic,strong)UIView* themeView;
 @property(nonatomic,strong)UITableView* contentTableView;
 @property(nonatomic,strong)UITableView* selectTableView;
 
@@ -197,7 +198,7 @@
         
         self.contentTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
         self.contentTableView.showsVerticalScrollIndicator=NO;
-        [self.view addSubview:self.contentTableView];
+        [self.view insertSubview:self.contentTableView belowSubview:self.themeView];
 }
 
 -(void)back{
@@ -243,22 +244,22 @@
 
 -(void)initThemeView{
     //画布themeView初始
-    UIView* themeView=[[UIView alloc]initWithFrame:CGRectMake(0, 64, 320, 50)];
-    themeView.backgroundColor=[UIColor whiteColor];
-    [self.view addSubview:themeView];
+    self.themeView=[[UIView alloc]initWithFrame:CGRectMake(0, 64, 320, 50)];
+    self.themeView.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:self.themeView];
     
     //大标题左边的大阶段图片
     UIImage* image=[GetImagePath getImagePath:@"筛选中01"];
     CGRect frame=CGRectMake(20, 15, image.size.width, image.size.height);
     self.bigStageImageView=[[UIImageView alloc]initWithFrame:frame];
     self.bigStageImageView.image=image;
-    [themeView addSubview:self.bigStageImageView];
+    [self.themeView addSubview:self.bigStageImageView];
     
     //大阶段标题label
     self.bigStageLabel=[[UILabel alloc]initWithFrame:CGRectMake(50, 10, 150, 30)];
     self.bigStageLabel.text=@"土地信息";
     self.bigStageLabel.font=[UIFont systemFontOfSize:16];
-    [themeView addSubview:self.bigStageLabel];
+    [self.themeView addSubview:self.bigStageLabel];
     
     //小阶段标题label
     self.smallStageLabel=[[UILabel alloc]initWithFrame:CGRectMake(170, 10, 110, 30)];
@@ -266,23 +267,23 @@
     self.smallStageLabel.textColor=[UIColor grayColor];
     self.smallStageLabel.font=[UIFont systemFontOfSize:14];
     self.smallStageLabel.textAlignment=NSTextAlignmentRight;
-    [themeView addSubview:self.smallStageLabel];
+    [self.themeView addSubview:self.smallStageLabel];
     
     //右箭头imageView
     UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(280, 14, 25, 22)];
     imageView.image=[GetImagePath getImagePath:@"012"];
-    [themeView addSubview:imageView];
+    [self.themeView addSubview:imageView];
     
     //上导航栏themeView第二部分,上导航下方阴影
-    UIImageView* shadowView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 48.5, 320, 1.5)];
+    UIImageView* shadowView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 50, 320, 3)];
     shadowView.image=[GetImagePath getImagePath:@"Shadow-top"];
-    shadowView.alpha=.5;
-    [themeView addSubview:shadowView];
+    //shadowView.alpha=.5;
+    [self.themeView addSubview:shadowView];
     
     //使该view被点击可以触发
     UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
     [button addTarget:self action:@selector(change) forControlEvents:UIControlEventTouchUpInside];
-    [themeView addSubview:button];
+    [self.themeView addSubview:button];
 }
 
 -(void)initSelectTableView{
