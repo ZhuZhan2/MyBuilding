@@ -167,7 +167,7 @@
                 case 1301:
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"注册失败，系统异常"];
                     break;
-                case 1330:
+                case 1329:
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"验证码错误"];
                     //参数异常信息提示（具体见返回信息）
                     break;

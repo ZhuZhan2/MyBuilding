@@ -145,13 +145,10 @@
                     [self.tableView reloadData];
                 }
                 [LoadingView removeLoadingView:loadingView];
-                loadingView = nil;
                 self.tableView.scrollEnabled = YES;
+                loadingView = nil;
             }else{
                 [LoginAgain AddLoginView:NO];
-                [LoadingView removeLoadingView:loadingView];
-                loadingView = nil;
-                [self firstWork];
             }
         } projectIds:projectIds noNetWork:^{
             self.tableView.scrollEnabled = NO;
@@ -211,9 +208,6 @@
                 }
             }else{
                 [LoginAgain AddLoginView:NO];
-                [LoadingView removeLoadingView:loadingView];
-                loadingView = nil;
-                [self firstWork];
             }
             [self.tableView headerEndRefreshing];
         }startIndex:0 noNetWork:^{
@@ -243,9 +237,6 @@
                     }
                 }else{
                     [LoginAgain AddLoginView:NO];
-                    [LoadingView removeLoadingView:loadingView];
-                    loadingView = nil;
-                    [self firstWork];
                 }
                 [self.tableView headerEndRefreshing];
             } projectIds:projectIds noNetWork:^{
@@ -275,9 +266,6 @@
                 }
             }else{
                 [LoginAgain AddLoginView:NO];
-                [LoadingView removeLoadingView:loadingView];
-                loadingView = nil;
-                [self firstWork];
             }
             [self.tableView footerEndRefreshing];
         }startIndex:startIndex+1 noNetWork:^{

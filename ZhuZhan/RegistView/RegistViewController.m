@@ -310,6 +310,11 @@
         return;
     }
     
+    if (accountField.text.length<6||accountField.text.length>20) {
+        [self remindErrorView:@"用户名6-20位"];
+        return;
+    }
+    
     NSRange accountFieldRange = [accountField.text rangeOfString:@" "];
     if (accountFieldRange.location != NSNotFound) {
         //有空格
@@ -342,22 +347,6 @@
         [self remindErrorView:@"密码不能包含空格"];
         return;
     }
-    
-//    if (![self isRule:passWordField.text]) {
-//        return;
-//    }
-//    
-//    if(![self LetterNoErr:passWordField.text]){
-//        return;
-//    }
-//    
-//    if(![self NumberNoErr:passWordField.text]){
-//        return;
-//    }
-//    
-//    if (![self SymbolNoErr:passWordField.text]) {
-//        return;
-//    }
     
     if([passWordField.text isEqualToString:@""]||[_phoneNumberTextField.text isEqualToString:@""]||[verifyPassWordField.text isEqualToString:@""])
     {
