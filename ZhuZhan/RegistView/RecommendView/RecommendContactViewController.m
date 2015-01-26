@@ -17,6 +17,7 @@
 #import "LoginModel.h"
 #import "LoginSqlite.h"
 #import "ContactModel.h"
+#import "RecommendContactTableViewCell.h"
 @interface RecommendContactViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
@@ -33,7 +34,7 @@
     [self initNaviBar];
     [self initMyTableView];
 
-//    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view];
+    //self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view];
     [self firstNetWork];
 }
 
@@ -44,7 +45,7 @@
         if (!error) {
             [self.showArr addObjectsFromArray:posts];
             [self.tableView reloadData];
-            [self removeMyLoadingView];
+            //[self removeMyLoadingView];
             NSLog(@"showArray====%@",self.showArr);
         }
     } startIndex:0 noNetWork:^{
@@ -52,10 +53,10 @@
     }];
 }
 
--(void)removeMyLoadingView{
-    [LoadingView removeLoadingView:self.loadingView];
-    self.loadingView = nil;
-}
+//-(void)removeMyLoadingView{
+//    [LoadingView removeLoadingView:self.loadingView];
+//    self.loadingView = nil;
+//}
 
 - (UIImage *)imageWithColor:(UIColor *)color{
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
@@ -77,13 +78,13 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 62;
+    return 81;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CompanyMemberCell* cell=[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    RecommendContactTableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) {
-        cell=[[CompanyMemberCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell" needRightBtn:YES];
+        cell=[[RecommendContactTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell" needRightBtn:YES];
         [cell.rightBtn addTarget:self action:@selector(chooseApprove:) forControlEvents:UIControlEventTouchUpInside];
     }
     [cell setModel:self.showArr[indexPath.row] indexPathRow:indexPath.row needCompanyName:YES];
