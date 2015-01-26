@@ -239,7 +239,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //获得上方主要显示的图文内容
 -(void)getMainView{
     self.mainView = [[UIView alloc] initWithFrame:CGRectZero];
-
     UIView* forCornerView=[[UIView alloc]initWithFrame:CGRectZero];
     [self.mainView addSubview:forCornerView];
     forCornerView.layer.cornerRadius=2;
@@ -251,10 +250,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //动态图像
     if(![self.imageUrl isEqualToString:@""]){
         imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001"]];
-        imageView.frame = CGRectMake(0, 0, 310,[self.imageHeight floatValue]/[self.imageWidth floatValue]*310);
+        if([self.imageHeight floatValue]/[self.imageWidth floatValue]*310<50){
+            imageView.frame = CGRectMake(0, 0, 310,50);
+            //imageView.contentMode = UIViewContentModeScaleAspectFit;
+            height+=50;
+        }else{
+            imageView.frame = CGRectMake(0, 0, 310,[self.imageHeight floatValue]/[self.imageWidth floatValue]*310);
+            height+=imageView.frame.size.height;
+        }
         imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imageUrl]];
         [forCornerView addSubview:imageView];
-        height+=imageView.frame.size.height;
     }
     UIView* contentTotalView;
     //动态描述
@@ -333,6 +338,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //设置总的frame
     self.mainView.frame = CGRectMake(0, 0, 320, height);
     [self.mainView setBackgroundColor:RGBCOLOR(235, 235, 235)];
+    //[self.mainView setBackgroundColor:[UIColor yellowColor]];
 }
 
 -(void)myTableViewReloadData{

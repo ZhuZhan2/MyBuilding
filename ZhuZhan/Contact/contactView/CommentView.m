@@ -28,12 +28,23 @@
     BOOL imageUrlExist=![model.a_imageUrl isEqualToString:@""];
     //动态图像
     if(imageUrlExist){
-        imageView = [[EGOImageView alloc] initWithFrame:CGRectMake(0, 0, 310,[model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310)];
+        if([model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310<50){
+            imageView = [[EGOImageView alloc] initWithFrame:CGRectMake(0, 0, 310,50)];
+            height+=50;
+        }else{
+            if([model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310>=568){
+                imageView = [[EGOImageView alloc] initWithFrame:CGRectMake(0, 0, 310,568)];
+                height+=568;
+                imageView.contentMode = UIViewContentModeScaleAspectFill;
+            }else{
+                imageView = [[EGOImageView alloc] initWithFrame:CGRectMake(0, 0, 310,[model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310)];
+                height+=imageView.frame.size.height;
+            }
+        }
         imageView.backgroundColor = RGBCOLOR(219, 219, 219);
         imageView.showActivityIndicator = YES;
         imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_imageUrl]];
         [forCornerView addSubview:imageView];
-        height+=imageView.frame.size.height;
     }
     
     UIView* contentTotalView;

@@ -166,6 +166,7 @@
 }
 
 -(void)beginToCollect{
+    NSLog(@"beginToCollect");
     ForgetPasswordSecondController *forgetSecondView = [[ForgetPasswordSecondController alloc] init];
     [self.navigationController pushViewController:forgetSecondView animated:YES];
     return;
@@ -187,7 +188,7 @@
     
     [LoginModel GetIsExistWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            NSLog(@"%@",posts[0][@"data"][@"userId"]);
+            NSLog(@"======>%@",posts[0][@"data"][@"userId"]);
             if ([[NSString stringWithFormat:@"%@",posts[0][@"status"][@"statusCode"]] isEqualToString:@"1300"]) {
                 ForgetPasswordSecondController *forgetSecondView = [[ForgetPasswordSecondController alloc] init];
                 forgetSecondView.userId = posts[0][@"data"][@"userId"];
