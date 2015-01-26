@@ -13,6 +13,7 @@
     UIImageView *imageView;
     UILabel *ProjectLabel;
     UILabel *addressLabel;
+    UILabel *zoneLabel;
 }
 @property(nonatomic,strong)projectModel *model;
 @end

@@ -400,12 +400,12 @@
         if(indexPath.row == 4){
             return 50;
         }else if(indexPath.row>4){
-            return 50;
+            return 68;
         }
     }
 
     
-    return 60;
+    return 68;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

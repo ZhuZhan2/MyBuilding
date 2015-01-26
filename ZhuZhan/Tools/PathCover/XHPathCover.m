@@ -12,7 +12,7 @@
 
 NSString *const XHUserNameKey = @"XHUserName";
 NSString *const XHBirthdayKey = @"XHBirthday";
-
+NSString *const XHTitkeKey = @"XHTitkeKey";
 #import <Accelerate/Accelerate.h>
 #import <float.h>
 
@@ -238,6 +238,11 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     if (birthday) {
         self.birthdayLabel.text = birthday;
     }
+    
+    NSString *title = [info valueForKey:XHTitkeKey];
+    if (title) {
+        self.titleLabel.text = title;
+    }
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -430,14 +435,20 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 //    [_avatarButton.layer setCornerRadius:23];
     
     
-    _userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(92, 35, 100, 20)];
+    _userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 12, 100, 20)];
     _userNameLabel.textColor = [UIColor whiteColor];
     _userNameLabel.font = [UIFont boldSystemFontOfSize:14];
     
     
-    _birthdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(92, 47, 207, 24)];
+    _birthdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 35, 207, 12)];
     _birthdayLabel.textColor = [UIColor whiteColor];
+    //_birthdayLabel.backgroundColor = [UIColor yellowColor];
     _birthdayLabel.font = [UIFont boldSystemFontOfSize:12];
+    
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 52, 207, 12)];
+    _titleLabel.textColor = [UIColor whiteColor];
+    //_titleLabel.backgroundColor = [UIColor yellowColor];
+    _titleLabel.font = [UIFont boldSystemFontOfSize:12];
     
 //    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
 //    imageView.backgroundColor = [UIColor yellowColor];
@@ -449,6 +460,7 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     [_showView addSubview:self.avatarButton];
     [_showView addSubview:self.userNameLabel];
     [_showView addSubview:self.birthdayLabel];
+    [_showView addSubview:self.titleLabel];
     
     [self addSubview:self.showView];
     
@@ -485,6 +497,7 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     self.avatarButton = nil;
     self.userNameLabel = nil;
     self.birthdayLabel = nil;
+    self.titleLabel = nil;
     
     self.bannerView = nil;
     self.showView = nil;
