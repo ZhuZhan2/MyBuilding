@@ -257,7 +257,7 @@
     
     //大阶段标题label
     self.bigStageLabel=[[UILabel alloc]initWithFrame:CGRectMake(50, 10, 150, 30)];
-    self.bigStageLabel.text=@"土地信息";
+    self.bigStageLabel.text=@"土地信息阶段";
     self.bigStageLabel.font=[UIFont systemFontOfSize:16];
     [self.themeView addSubview:self.bigStageLabel];
     
@@ -414,7 +414,7 @@
     }
     
     NSArray* smallTitles=@[@"土地规划/拍卖",@"项目立项",@"地勘阶段",@"设计阶段",@"出图阶段",@"地平",@"桩基基坑",@"主体施工",@"消防/景观绿化",@""];
-    NSArray* bigTitles=@[@"土地信息",@"主体设计阶段",@"主体施工阶段",@"装修阶段"];
+    NSArray* bigTitles=@[@"土地信息阶段",@"主体设计阶段",@"主体施工阶段",@"装修阶段"];
     NSArray* bigStageImageNames=@[@"筛选中01",@"筛选中02",@"筛选中03",@"筛选中04"];
     
     for (int i=0; i<self.bigStageStandardY.count; i++) {
