@@ -70,7 +70,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154) bannerPlaceholderImageName:@"默认主图"];
     _pathCover.delegate = self;
     [_pathCover setHeadTaget];
-    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"匿名用户", XHUserNameKey,@"想要使用更多功能请登陆",XHBirthdayKey, nil]];
+    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"匿名用户", XHUserNameKey,@"想要使用更多功能请登录",XHBirthdayKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
     //时间标签
     _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
