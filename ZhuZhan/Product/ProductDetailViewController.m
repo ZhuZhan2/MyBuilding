@@ -249,7 +249,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     EGOImageView *imageView;
     //动态图像
     if(![self.imageUrl isEqualToString:@""]){
-        imageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"bg001"]];
+        imageView = [[EGOImageView alloc] init];
+        imageView.backgroundColor=RGBCOLOR(219, 219, 219);
         if([self.imageHeight floatValue]/[self.imageWidth floatValue]*310<50){
             imageView.frame = CGRectMake(0, 0, 310,50);
             //imageView.contentMode = UIViewContentModeScaleAspectFit;
