@@ -16,13 +16,12 @@
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
 #import "ProgramDetailViewController.h"
-@interface BaiDuMapViewController ()
+@interface BaiDuMapViewController ()<LocationErrorViewDelegate>
 @property(nonatomic)BOOL isSelect;
-
 @property(nonatomic,strong)UIButton* nextBtn;
 @property(nonatomic,strong)UIButton* lastBtn;
-
 @property(nonatomic)NSInteger pageCount;
+@property(nonatomic,strong)LocationErrorView *errorView;
 @end
 
 @implementation BaiDuMapViewController
@@ -53,6 +52,7 @@ int j;
     hasProject = 0;
     startIndex = 0;
     [self loadSelf];
+    [self isLocation];
 }
 
 -(void)loadSelf{
@@ -176,33 +176,6 @@ int j;
         imageView.userInteractionEnabled = NO;
     }
 }
-
-//- (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view{
-//    NSLog(@"didSelectAnnotationView");
-//    if(showArr.count !=0){
-//        bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, 320, 568-64)];
-//        [bgView setBackgroundColor:[UIColor clearColor]];
-//        bgView.userInteractionEnabled = YES;
-//        UITapGestureRecognizer *bgViewtapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
-//        [bgViewtapGestureRecognizer addTarget:self action:@selector(closeBgview)];
-//        [bgViewtapGestureRecognizer setNumberOfTapsRequired:1];
-//        [bgViewtapGestureRecognizer setNumberOfTouchesRequired:1];
-//        [bgView addGestureRecognizer:bgViewtapGestureRecognizer];
-//        [self.view addSubview:bgView];
-//        projectModel *model = [showArr objectAtIndex:view.tag];
-//        _MapContent = [[MapContentView alloc] initWithFrame:CGRectMake(0, 568, 320, 190) model:model number:[numberArr objectAtIndex:view.tag]];
-//        UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gotoProgramDetailView:)];
-//        [_MapContent addGestureRecognizer:tap];
-//        _MapContent.tag=view.tag;
-//        _MapContent.userInteractionEnabled = YES;
-//        [self.view addSubview:_MapContent];
-//        [UIView animateWithDuration:0.5 animations:^{
-//            _MapContent.frame = CGRectMake(0, 378, 611, 260);
-//        }];
-//    }else{
-//        imageView.userInteractionEnabled = NO;
-//    }
-//}
 
 -(void)gotoProgramDetailView:(UITapGestureRecognizer*)tap{
     projectModel *model = [showArr objectAtIndex:tap.view.tag];
@@ -695,5 +668,64 @@ int j;
 -(void)judgeBtnEnable{
     self.nextBtn.enabled=(startIndex<allCount-1);
     self.lastBtn.enabled=(self.pageCount>1);
+}
+
+- (void)didFailToLocateUserWithError:(NSError *)error{
+    NSLog(@"didFailToLocateUserWithError");
+    [self addErrorView];
+}
+
+-(void)reloadMap{
+    NSLog(@"reloadMap");
+    [self isLocation];
+}
+
+-(void)isLocation{
+    if([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+        NSLog(@"没打开");
+        [self addErrorView];
+    }else{
+        NSLog(@"打开");
+        [self.errorView removeFromSuperview];
+        self.errorView = nil;
+    }
+}
+
+-(void)addErrorView{
+    if(self.errorView == nil){
+        self.errorView = [[LocationErrorView alloc] initWithFrame:self.view.frame];
+        self.errorView.delegate = self;
+        [self.view addSubview:self.errorView];
+    }
+}
+@end
+
+//没有定位的页面
+@implementation LocationErrorView
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = RGBCOLOR(245, 245, 245);
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(73, 154, 173, 206)];
+        imageView.image = [GetImagePath getImagePath:@"Shape-1"];
+        [self addSubview:imageView];
+        
+        UIImageView *btnImage = [[UIImageView alloc] initWithFrame:CGRectMake(107, 384, 105, 34)];
+        btnImage.image = [GetImagePath getImagePath:@"重新加载"];
+        [self addSubview:btnImage];
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(107, 384, 105, 34);
+        [button addTarget:self action:@selector(reloadMap) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:button];
+    }
+    return self;
+}
+
+-(void)reloadMap{
+    if([self.delegate respondsToSelector:@selector(reloadMap)]){
+        [self.delegate reloadMap];
+    }
 }
 @end

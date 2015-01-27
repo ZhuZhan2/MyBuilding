@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BMapKit.h"
 #import "MapContentView.h"
-
 @interface BaiDuMapViewController : UIViewController<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>{
     BMKMapView* _mapView;
     BMKLocationService* _locService;
@@ -45,4 +44,13 @@
     CLLocationCoordinate2D centerLocation;
 }
 
+@end
+
+//没有定位的页面
+@protocol LocationErrorViewDelegate <NSObject>
+-(void)reloadMap;
+@end
+@interface LocationErrorView : UIView
+@property(nonatomic,weak)id<LocationErrorViewDelegate> delegate;
+- (id)initWithFrame:(CGRect)frame;
 @end
