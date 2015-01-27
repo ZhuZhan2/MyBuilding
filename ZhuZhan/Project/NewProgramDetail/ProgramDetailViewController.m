@@ -53,9 +53,6 @@
 
 @property(nonatomic)CGFloat loadNewViewStandardY;//判断是否需要加载新大阶段view的标准线
 
-//以下4属性用于sectionHeader被点击时所需要传参数时用的东西
-@property(nonatomic,strong)NSMutableArray* sectionButtonArray;
-
 @property(nonatomic,strong)NSMutableArray* bigStageStandardY;
 @property(nonatomic,strong)NSMutableArray* smallStageStandardY;
 
@@ -299,7 +296,7 @@
     
     [self.view addSubview:self.selectTableView];
     //用于存放使sectionHeader可以被点击的button的array
-    self.sectionButtonArray=[NSMutableArray array];
+    //self.sectionButtonArray=[NSMutableArray array];
 }
 
 //******************************************************************
@@ -600,17 +597,16 @@
     //使该sectionHeader可以被点击
     if (stageLight) {
         UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 320, 37.5)];
+        button.tag=section;
         [button addTarget:self action:@selector(selectSection:) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:button];
-        [self.sectionButtonArray addObject:button];
     }
     return view;
 }
 
 //判断用户点击的是哪个sectionHeader,然后将section传过去
--(void)selectSection:(id)button{
-    NSLog(@"%d",[self.sectionButtonArray indexOfObject:button]);
-    [self didchangeStageSection:[self.sectionButtonArray indexOfObject:button] row:0];
+-(void)selectSection:(UIButton*)button{
+    [self didchangeStageSection:button.tag row:0];
 }
 
 -(void)didchangeStageSection:(NSInteger)section row:(NSInteger)row{
