@@ -70,7 +70,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154) bannerPlaceholderImageName:@"默认主图"];
     _pathCover.delegate = self;
     [_pathCover setHeadTaget];
-    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"匿名用户", XHUserNameKey,@"想要使用更多功能请登陆",XHBirthdayKey, nil]];
+    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"匿名用户", XHUserNameKey,@"想要使用更多功能请登录",XHBirthdayKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
     //时间标签
     _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
@@ -739,7 +739,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                         [_pathCover setHeadImageUrl:model.userImage];
                         [_pathCover setBackgroundImageUrlString:model.personalBackground];
                         NSLog(@"====>%@",model.companyName);
-                        [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,[NSString stringWithFormat:@"%@     %@",model.companyName,model.position], XHBirthdayKey, nil]];
+                        [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,model.companyName,XHBirthdayKey,model.position, XHTitkeKey, nil]];
                     }
                 }else{
                     [LoadingView removeLoadingView:loadingView];
