@@ -739,7 +739,7 @@
         NSLog(@"JSON===>%@",JSON);
         if (block) {
 //            NSString* str=[JSON[@"d"][@"data"][@"loginType"] isEqualToString:@"Company"]?JSON[@"d"][@"data"][@"loginType"]:JSON[@"d"];
-            block([NSMutableArray arrayWithObjects:JSON[@"d"][@"data"][@"loginType"],JSON[@"d"], nil],nil);
+            block([NSMutableArray arrayWithObjects:JSON[@"d"],JSON[@"d"][@"data"][@"loginType"], nil],nil);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);
