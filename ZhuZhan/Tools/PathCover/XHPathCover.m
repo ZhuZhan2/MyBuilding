@@ -332,9 +332,9 @@ NSString *const XHTitkeKey = @"XHTitkeKey";
             _bannerImageView.center = CGPointMake(center.x, center.y+(bframe.size.height-320)/2);
         }
         //_bannerImageView.frame = CGRectMake(0, 0, 320, bframe.size.height);
-        //        CGPoint center=self.center;
-        //        center.y-=y*.5;
-        //        _bannerImageView.center=center;
+//        CGPoint center=self.center;
+//        center.y-=y*.5;
+//        _bannerImageView.center=center;
         if (self.isZoomingEffect) {
             
             //_bannerImageView.center = center;

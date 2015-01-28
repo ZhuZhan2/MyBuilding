@@ -91,23 +91,18 @@
         [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 if(posts.count !=0){
-                    if(posts.count !=0){
-                        showArr = posts[0];
-                        allCount = posts[1];
-                    }else{
-                        showArr = posts[0];
-                        allCount = @"0";
-                    }
-                    if(showArr.count == 0){
-                        [MyTableView reloadDataWithTableView:self.tableView];
-                        [MyTableView hasData:self.tableView];
-                    }else{
-                        [MyTableView removeFootView:self.tableView];
-                        [self.tableView reloadData];
-                    }
+                    showArr = posts[0];
+                    allCount = posts[1];
                 }else{
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有符合条件的内容" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alert show];
+                    showArr = posts[0];
+                    allCount = @"0";
+                }
+                if(showArr.count == 0){
+                    [MyTableView reloadDataWithTableView:self.tableView];
+                    [MyTableView hasData:self.tableView];
+                }else{
+                    [MyTableView removeFootView:self.tableView];
+                    [self.tableView reloadData];
                 }
             }
         } startIndex:startIndex keywords:self.searchStr noNetWork:^{
@@ -120,23 +115,18 @@
         [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 if(posts.count !=0){
-                    if(posts.count !=0){
-                        showArr = posts[0];
-                        allCount = posts[1];
-                    }else{
-                        showArr = posts[0];
-                        allCount = @"0";
-                    }
-                    if(showArr.count == 0){
-                        [MyTableView reloadDataWithTableView:self.tableView];
-                        [MyTableView hasData:self.tableView];
-                    }else{
-                        [MyTableView removeFootView:self.tableView];
-                        [self.tableView reloadData];
-                    }
+                    showArr = posts[0];
+                    allCount = posts[1];
                 }else{
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有符合条件的内容" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alert show];
+                    showArr = posts[0];
+                    allCount = @"0";
+                }
+                if(showArr.count == 0){
+                    [MyTableView reloadDataWithTableView:self.tableView];
+                    [MyTableView hasData:self.tableView];
+                }else{
+                    [MyTableView removeFootView:self.tableView];
+                    [self.tableView reloadData];
                 }
             }
         } dic:self.dic startIndex:startIndex noNetWork:^{
