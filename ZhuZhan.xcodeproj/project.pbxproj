@@ -966,6 +966,10 @@
 		5BE08ED41A35900000495EEB /* FourthAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE08ECD1A35900000495EEB /* FourthAnimationView.m */; };
 		5BE08ED51A35900000495EEB /* SecondAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE08ECF1A35900000495EEB /* SecondAnimationView.m */; };
 		5BE08ED61A35900000495EEB /* ThirdAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE08ED11A35900000495EEB /* ThirdAnimationView.m */; };
+		5BE264DE1A78BF9500EF7D1B /* 背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE264DC1A78BF9500EF7D1B /* 背景.png */; };
+		5BE264DF1A78BF9500EF7D1B /* 背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE264DD1A78BF9500EF7D1B /* 背景@2x.png */; };
+		5BE264E21A78C34600EF7D1B /* mblogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE264E01A78C34600EF7D1B /* mblogo.png */; };
+		5BE264E31A78C34600EF7D1B /* mblogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE264E11A78C34600EF7D1B /* mblogo@2x.png */; };
 		5BF08A3A19B86C5D00782976 /* MoreCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */; };
 		5BF08A3D19B8779D00782976 /* MoreCompanyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */; };
 		D3049A681A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3049A671A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m */; };
@@ -2520,6 +2524,10 @@
 		5BE08ED01A35900000495EEB /* ThirdAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdAnimationView.h; sourceTree = "<group>"; };
 		5BE08ED11A35900000495EEB /* ThirdAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdAnimationView.m; sourceTree = "<group>"; };
 		5BE08EDB1A35A9FF00495EEB /* AnimationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationDelegate.h; sourceTree = "<group>"; };
+		5BE264DC1A78BF9500EF7D1B /* 背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "背景.png"; sourceTree = "<group>"; };
+		5BE264DD1A78BF9500EF7D1B /* 背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "背景@2x.png"; sourceTree = "<group>"; };
+		5BE264E01A78C34600EF7D1B /* mblogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mblogo.png; sourceTree = "<group>"; };
+		5BE264E11A78C34600EF7D1B /* mblogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mblogo@2x.png"; sourceTree = "<group>"; };
 		5BF08A3819B86C5D00782976 /* MoreCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCompanyViewController.h; sourceTree = "<group>"; };
 		5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCompanyViewController.m; sourceTree = "<group>"; };
 		5BF08A3B19B8779D00782976 /* MoreCompanyViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCompanyViewCell.h; sourceTree = "<group>"; };
@@ -3799,6 +3807,10 @@
 		04BC3E5D19D7E5B0006B5C7B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5BE264DC1A78BF9500EF7D1B /* 背景.png */,
+				5BE264DD1A78BF9500EF7D1B /* 背景@2x.png */,
+				5BE264E01A78C34600EF7D1B /* mblogo.png */,
+				5BE264E11A78C34600EF7D1B /* mblogo@2x.png */,
 				D3E1AAFF1A7649D900BFC6E1 /* 重新加载.png */,
 				D3E1AB001A7649D900BFC6E1 /* 重新加载@2x.png */,
 				D3E1AAFB1A7648FC00BFC6E1 /* Shape-1.png */,
@@ -5889,6 +5901,7 @@
 				04BC414E19D7E5B3006B5C7B /* pointer.png in Resources */,
 				5BE08DA81A3586EA00495EEB /* 010011.png in Resources */,
 				04BC412419D7E5B3006B5C7B /* bg-addbutton.png in Resources */,
+				5BE264E31A78C34600EF7D1B /* mblogo@2x.png in Resources */,
 				5B4C198619FA543C00C6C57D /* 用户条款_05.png in Resources */,
 				5BE08EA81A3586EA00495EEB /* 040018.png in Resources */,
 				04BC41EB19D7E5B3006B5C7B /* 人脉－账号设置_14a.png in Resources */,
@@ -5935,6 +5948,7 @@
 				D3D3212E1A3ED4340009AEEA /* 注册_03.png in Resources */,
 				5B4E6C9D1A68DB140008E5D5 /* 动态产品评论02@2x.png in Resources */,
 				04BC424E19D7E5B3006B5C7B /* 扫描页面_03@2x.png in Resources */,
+				5BE264DE1A78BF9500EF7D1B /* 背景.png in Resources */,
 				D3D9C9201A13446B001D3A64 /* 主菜单04a.png in Resources */,
 				5BE08E2C1A3586EA00495EEB /* 020013.png in Resources */,
 				0426BFFD19922CE400CD8822 /* Images.xcassets in Resources */,
@@ -5963,6 +5977,7 @@
 				04BC40FA19D7E5B3006B5C7B /* 011@2x.png in Resources */,
 				04BC415519D7E5B3006B5C7B /* timescroll_hourhand.png in Resources */,
 				5BE08DAA1A3586EA00495EEB /* 010012.png in Resources */,
+				5BE264DF1A78BF9500EF7D1B /* 背景@2x.png in Resources */,
 				04BC40F419D7E5B3006B5C7B /* +项目详情-3_03a.png in Resources */,
 				04BC42B619D7E5B3006B5C7B /* 面部采集_11.png in Resources */,
 				04BC41C119D7E5B3006B5C7B /* 人脉－人的详情_21a.png in Resources */,
@@ -6012,6 +6027,7 @@
 				5BE08EB51A3586EA00495EEB /* 040024@2x.png in Resources */,
 				5B7AA6C71A58D6B0000FBFF2 /* 02.png in Resources */,
 				D35163EF1A67903F000051F4 /* 公司－我的公司_02a@2x.png in Resources */,
+				5BE264E21A78C34600EF7D1B /* mblogo.png in Resources */,
 				5BE08DD31A3586EA00495EEB /* 010032@2x.png in Resources */,
 				04BC434519D7E5B3006B5C7B /* 项目－高级搜索－2_03a@2x.png in Resources */,
 				04BC416219D7E5B3006B5C7B /* 产品－列表_06a@2x.png in Resources */,

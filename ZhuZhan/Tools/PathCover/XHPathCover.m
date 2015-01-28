@@ -323,15 +323,18 @@ NSString *const XHTitkeKey = @"XHTitkeKey";
         bframe.origin.y = y;
         bframe.size.height = -y + bannerSuper.superview.frame.size.height;
         bannerSuper.frame = bframe;
-        
-        //CGPoint center =  _bannerImageView.center;
-        //center.y = bannerSuper.frame.size.height / 2;
-        //_bannerImageView.center = center;
+        CGPoint center =  _bannerImageView.center;
+        center.y = bannerSuper.frame.size.height / 2;
+        NSLog(@"%f",bframe.size.height);
+        if(bframe.size.height<=320){
+            _bannerImageView.center = center;
+        }else{
+            _bannerImageView.center = CGPointMake(center.x, center.y+(bframe.size.height-320)/2);
+        }
         //_bannerImageView.frame = CGRectMake(0, 0, 320, bframe.size.height);
-        //_bannerImageView.frame=CGRectMake(0, 0, 320, 320);
-        CGPoint center=self.center;
-        center.y-=y*.5;
-        _bannerImageView.center=center;
+        //        CGPoint center=self.center;
+        //        center.y-=y*.5;
+        //        _bannerImageView.center=center;
         if (self.isZoomingEffect) {
             
             //_bannerImageView.center = center;

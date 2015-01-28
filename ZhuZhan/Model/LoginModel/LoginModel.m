@@ -738,7 +738,8 @@
     return [[AFAppDotNetAPIClient sharedNewClient] GET:encodedString parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if (block) {
-            block([NSMutableArray arrayWithObjects:JSON[@"d"], nil],nil);
+//            NSString* str=[JSON[@"d"][@"data"][@"loginType"] isEqualToString:@"Company"]?JSON[@"d"][@"data"][@"loginType"]:JSON[@"d"];
+            block([NSMutableArray arrayWithObjects:JSON[@"d"][@"data"][@"loginType"],JSON[@"d"], nil],nil);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);
