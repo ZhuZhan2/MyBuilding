@@ -287,6 +287,16 @@ static BOOL isFirst;
         inputView.text =@"";
         return;
     }
+    
+    //如果没有图片，则保证用户的文字内容不能为全空格
+    if ([publishImageStr isEqualToString:@""]) {
+        if ([self isAllSpace:inputView.text]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布内容不能为空" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
+            [alert show];
+            return;
+        }
+    }
+    
     //防止用户重复点击，所以网络还在发送上次请求的时候，isPublish为YES
     if (isPublish) {
         return;
@@ -343,7 +353,12 @@ static BOOL isFirst;
     }
 }
 
-
+-(BOOL)isAllSpace:(NSString*)content{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@" " options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:content options:0 range:NSMakeRange(0, [content length])];
+    NSLog(@"===%d",numberOfMatches);
+    return numberOfMatches==content.length;
+}
 
 - (void)didReceiveMemoryWarning
 {

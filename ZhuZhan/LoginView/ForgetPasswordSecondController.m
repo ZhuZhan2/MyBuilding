@@ -152,9 +152,9 @@
 }
 
 -(void)beginToCollect{
-    ForgetPasswordThirdController *forgetSubView = [[ForgetPasswordThirdController alloc] init];
-    [self.navigationController pushViewController:forgetSubView animated:YES];
-    return;
+//    ForgetPasswordThirdController *forgetSubView = [[ForgetPasswordThirdController alloc] init];
+//    [self.navigationController pushViewController:forgetSubView animated:YES];
+//    return;
     
     NSLog(@"用户确认");
     if([_phoneNumberTextField.text isEqualToString:@""]){

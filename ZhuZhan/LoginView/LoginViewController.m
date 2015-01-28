@@ -34,7 +34,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.hidden = YES;
-    self.view.backgroundColor = RGBCOLOR(85, 103, 166);
+    //self.view.backgroundColor = RGBCOLOR(85, 103, 166);
+    UIImageView* bgImageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"背景"]];
+    [self.view addSubview:bgImageView];
+    
     UIButton *closeKeyBoard = [UIButton buttonWithType:UIButtonTypeCustom];
     [closeKeyBoard setFrame:self.view.frame];
     [closeKeyBoard addTarget:self action:@selector(closeKeyBoard) forControlEvents:UIControlEventTouchUpInside];
@@ -92,13 +95,13 @@
     
     self.loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.loginBtn setBackgroundImage:[GetImagePath getImagePath:@"登录_22"] forState:UIControlStateNormal];
-    [self.loginBtn setFrame:CGRectMake(0, 100, 277, 42)];
+    [self.loginBtn setFrame:CGRectMake(0, 104, 277, 42)];
     [self.loginBtn addTarget:self action:@selector(gotoLogin) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:self.loginBtn];
     
     UIButton *registBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [registBtn setBackgroundImage:[GetImagePath getImagePath:@"登录_24"] forState:UIControlStateNormal];
-    [registBtn setFrame:CGRectMake(0, 150, 277, 42)];
+    [registBtn setFrame:CGRectMake(0, 154, 277, 42)];
     [registBtn addTarget:self action:@selector(gotoRegist) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:registBtn];
     
