@@ -49,11 +49,11 @@
     [cancelBtn addTarget:self action:@selector(cancelSelf) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancelBtn];
     
-    UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(97, 103, 127, 127)];
-    [bgImage setImage:[GetImagePath getImagePath:@"登录_07"]];
+    UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(60.5, 110, 199, 124)];
+    [bgImage setImage:[GetImagePath getImagePath:@"mblogo"]];
     [self.view addSubview:bgImage];
     
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(21.5, 264, 277, 200)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(21.5, 290, 277, 200)];
     [self.view addSubview:bgView];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 277, 41)];

@@ -458,7 +458,7 @@
     [UIView animateWithDuration:0 delay:1.0f options:UIViewAnimationOptionBeginFromCurrentState  animations:^{
         
         self.alpha = 0.0f;
-        self.transform = CGAffineTransformMakeTranslation(10.0f, 0.0f);
+//        self.transform = CGAffineTransformMakeTranslation(10.0f, 0.0f);
         
     } completion:nil];
 }
@@ -489,7 +489,7 @@
     [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState  animations:^{
         
         self.alpha = 1.0f;
-        self.transform = CGAffineTransformIdentity;
+        //self.transform = CGAffineTransformIdentity;
         
     } completion:nil];
     
