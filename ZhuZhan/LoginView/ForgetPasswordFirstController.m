@@ -142,7 +142,8 @@
     //NSString* str=@"tel://13641672889";//gll
     //NSString* str=@"tel://18755481541";//wxp
     NSString* str=@"tel://4006697262";//客服电话
-    if ([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:str]]) {
+    NSString* deviceType=[UIDevice currentDevice].model;
+    if ([deviceType isEqualToString:@"iPhone"]) {
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:str]];
     }else{
         [RemindView remindViewWithContent:@"此设备不支持拨打电话" superView:self.view centerY:240];
