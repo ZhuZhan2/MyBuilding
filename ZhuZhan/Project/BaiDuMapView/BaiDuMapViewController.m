@@ -209,7 +209,7 @@ int j;
  */
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
 {
-    [_mapView updateLocationData:userLocation];
+    //[_mapView updateLocationData:userLocation];
     //NSLog(@"heading is %@",userLocation.heading);
 }
 
@@ -238,6 +238,7 @@ int j;
          }*/
         BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
         reverseGeocodeSearchOption.reverseGeoPoint = pt;
+        NSLog(@"%f",pt.latitude);
         BOOL flag = [_geocodesearch reverseGeoCode:reverseGeocodeSearchOption];
         if(flag)
         {

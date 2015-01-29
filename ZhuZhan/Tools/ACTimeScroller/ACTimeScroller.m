@@ -456,7 +456,7 @@
     self.frame = newFrame;
     [_tableView.superview addSubview:self];
     
-    [UIView animateWithDuration:0 delay:1.0f options:UIViewAnimationOptionBeginFromCurrentState  animations:^{
+    [UIView animateWithDuration:0.2f delay:0.5f options:UIViewAnimationOptionBeginFromCurrentState  animations:^{
         
         self.alpha = 0.0f;
 //        self.transform = CGAffineTransformMakeTranslation(10.0f, 0.0f);
