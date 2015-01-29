@@ -80,6 +80,11 @@
     attentionBtn.frame = CGRectMake(272, 41, 26, 26);
     [attentionBtn addTarget:self action:@selector(attentionBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:attentionBtn];
+    
+    UIButton* btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 52, 52)];
+    btn.center=attentionBtn.center;
+    [btn addTarget:self action:@selector(attentionBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:btn];
 }
 
 -(void)setModel:(projectModel *)model{
