@@ -80,6 +80,11 @@
     attentionBtn.frame = CGRectMake(272, 41, 26, 26);
     [attentionBtn addTarget:self action:@selector(attentionBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:attentionBtn];
+    
+    UIButton* btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 52, 52)];
+    btn.center=attentionBtn.center;
+    [btn addTarget:self action:@selector(attentionBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:btn];
 }
 
 -(void)setModel:(projectModel *)model{
@@ -92,11 +97,11 @@
         projectName.textColor = [UIColor blackColor];
     }
     
-    if([model.a_area isEqualToString:@""]){
+    if([model.a_storeyArea isEqualToString:@""]){
         area.text = @"-";
         area.textColor = GrayColor;
     }else{
-        area.text = [NSString stringWithFormat:@"%@M²",model.a_area];
+        area.text = [NSString stringWithFormat:@"%@㎡",model.a_storeyArea];
         area.textColor = RGBCOLOR(106, 106, 106);
     }
     

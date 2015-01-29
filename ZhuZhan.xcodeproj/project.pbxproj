@@ -970,6 +970,8 @@
 		5BE264DF1A78BF9500EF7D1B /* 背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE264DD1A78BF9500EF7D1B /* 背景@2x.png */; };
 		5BE264E21A78C34600EF7D1B /* mblogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE264E01A78C34600EF7D1B /* mblogo.png */; };
 		5BE264E31A78C34600EF7D1B /* mblogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE264E11A78C34600EF7D1B /* mblogo@2x.png */; };
+		5BEBAC701A79DB6100E29ADA /* 点-copy-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BEBAC6E1A79DB6100E29ADA /* 点-copy-3.png */; };
+		5BEBAC711A79DB6100E29ADA /* 点-copy-3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BEBAC6F1A79DB6100E29ADA /* 点-copy-3@2x.png */; };
 		5BF08A3A19B86C5D00782976 /* MoreCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */; };
 		5BF08A3D19B8779D00782976 /* MoreCompanyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */; };
 		D3049A681A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3049A671A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m */; };
@@ -2528,6 +2530,8 @@
 		5BE264DD1A78BF9500EF7D1B /* 背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "背景@2x.png"; sourceTree = "<group>"; };
 		5BE264E01A78C34600EF7D1B /* mblogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mblogo.png; sourceTree = "<group>"; };
 		5BE264E11A78C34600EF7D1B /* mblogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mblogo@2x.png"; sourceTree = "<group>"; };
+		5BEBAC6E1A79DB6100E29ADA /* 点-copy-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "点-copy-3.png"; sourceTree = "<group>"; };
+		5BEBAC6F1A79DB6100E29ADA /* 点-copy-3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "点-copy-3@2x.png"; sourceTree = "<group>"; };
 		5BF08A3819B86C5D00782976 /* MoreCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCompanyViewController.h; sourceTree = "<group>"; };
 		5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCompanyViewController.m; sourceTree = "<group>"; };
 		5BF08A3B19B8779D00782976 /* MoreCompanyViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCompanyViewCell.h; sourceTree = "<group>"; };
@@ -3807,6 +3811,8 @@
 		04BC3E5D19D7E5B0006B5C7B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5BEBAC6E1A79DB6100E29ADA /* 点-copy-3.png */,
+				5BEBAC6F1A79DB6100E29ADA /* 点-copy-3@2x.png */,
 				5BE264DC1A78BF9500EF7D1B /* 背景.png */,
 				5BE264DD1A78BF9500EF7D1B /* 背景@2x.png */,
 				5BE264E01A78C34600EF7D1B /* mblogo.png */,
@@ -5368,6 +5374,7 @@
 				5BE08E401A3586EA00495EEB /* 020023.png in Resources */,
 				04BC428B19D7E5B3006B5C7B /* 登录_07@2x.png in Resources */,
 				5BE08DB51A3586EA00495EEB /* 010017@2x.png in Resources */,
+				5BEBAC711A79DB6100E29ADA /* 点-copy-3@2x.png in Resources */,
 				5B7AA6C61A58D6B0000FBFF2 /* 01@2x.png in Resources */,
 				04BC40FC19D7E5B3006B5C7B /* 012@2x.png in Resources */,
 				5BE08DE41A3586EA00495EEB /* 010041.png in Resources */,
@@ -5401,6 +5408,7 @@
 				5BE08DE31A3586EA00495EEB /* 010040@2x.png in Resources */,
 				5BE08DBB1A3586EA00495EEB /* 010020@2x.png in Resources */,
 				5BE08EA01A3586EA00495EEB /* 040014.png in Resources */,
+				5BEBAC701A79DB6100E29ADA /* 点-copy-3.png in Resources */,
 				5BE08DC11A3586EA00495EEB /* 010023@2x.png in Resources */,
 				D3D6C7951A15D75D001D2071 /* 公司－公司详情_05d.png in Resources */,
 				04BC42C019D7E5B3006B5C7B /* 项目-首页_18a.png in Resources */,
@@ -6528,7 +6536,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yao YuLong (P9HT3W7WH6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: hua ye (JG3N8X8YM7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -6547,6 +6555,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "d8ebbbb0-b642-4928-a269-22f59d5e7c38";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -6567,7 +6576,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yao YuLong (P9HT3W7WH6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: hua ye (JG3N8X8YM7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -6579,6 +6588,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PROVISIONING_PROFILE = "d8ebbbb0-b642-4928-a269-22f59d5e7c38";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -6589,7 +6599,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: hua ye (JG3N8X8YM7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6608,7 +6618,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "d8ebbbb0-b642-4928-a269-22f59d5e7c38";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -6619,7 +6629,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: hua ye (JG3N8X8YM7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6637,7 +6647,7 @@
 					"$(PROJECT_DIR)/ZhuZhan/Tools/BaiduMap/libs/Release-iphonesimulator",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "d8ebbbb0-b642-4928-a269-22f59d5e7c38";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};

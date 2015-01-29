@@ -302,7 +302,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     CGFloat tempHeight=imageView?imageView.frame.origin.y+imageView.frame.size.height:height;
     UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     commentBtn.frame = CGRectMake(265, tempHeight-40, 37, 37);
-    [commentBtn setImage:[GetImagePath getImagePath:@"人脉_66a"] forState:UIControlStateNormal];
+    [commentBtn setImage:[GetImagePath getImagePath:@"点-copy-3"] forState:UIControlStateNormal];
     [commentBtn addTarget:self action:@selector(chooseComment:) forControlEvents:UIControlEventTouchUpInside];
     [forCornerView addSubview:commentBtn];
     

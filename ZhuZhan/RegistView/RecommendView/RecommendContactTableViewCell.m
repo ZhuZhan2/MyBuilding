@@ -45,7 +45,8 @@
         [self addSubview:self.userBussniessLabel];
         
         if (self.needRightBtn) {
-            self.rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(272, 27.5, 26, 26)];
+            self.rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 52, 52)];
+            self.rightBtn.center=CGPointMake(285, 40.5);
             [self addSubview:self.rightBtn];
         }
         
@@ -65,7 +66,7 @@
     self.userBussniessLabel.text=[model.a_duties isEqualToString:@""]?@"职位":model.a_duties;
     
     if (self.needRightBtn) {
-        [self.rightBtn setBackgroundImage:isFocesed?[GetImagePath getImagePath:@"公司认证员工_08a"]:[GetImagePath getImagePath:@"公司认证员工_18a"] forState:UIControlStateNormal];
+        [self.rightBtn setImage:[GetImagePath getImagePath:isFocesed?@"公司认证员工_08a":@"公司认证员工_18a"] forState:UIControlStateNormal];
         self.rightBtn.tag=indexPathRow;
     }
     self.userImageView.tag=indexPathRow;
