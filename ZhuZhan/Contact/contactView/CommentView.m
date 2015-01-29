@@ -96,7 +96,7 @@
 //    [commentBtn addTarget:commentView action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
 //    [forCornerView addSubview:commentBtn];
     UIImageView *commentImage = [[UIImageView alloc] initWithFrame:CGRectMake(267, tempHeight-40, 37, 37)];
-    [commentImage setImage:[GetImagePath getImagePath:@"人脉_66a"]];
+    [commentImage setImage:[GetImagePath getImagePath:@"点-copy-3"]];
     [forCornerView addSubview:commentImage];
 
     //用户头像

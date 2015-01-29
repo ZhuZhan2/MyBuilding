@@ -92,11 +92,11 @@
         projectName.textColor = [UIColor blackColor];
     }
     
-    if([model.a_area isEqualToString:@""]){
+    if([model.a_storeyArea isEqualToString:@""]){
         area.text = @"-";
         area.textColor = GrayColor;
     }else{
-        area.text = [NSString stringWithFormat:@"%@M²",model.a_area];
+        area.text = [NSString stringWithFormat:@"%@㎡",model.a_storeyArea];
         area.textColor = RGBCOLOR(106, 106, 106);
     }
     
