@@ -187,16 +187,16 @@
     
     [LoginModel GetIsExistWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            if ([[NSString stringWithFormat:@"%@",posts[1][@"status"][@"statusCode"]] isEqualToString:@"1300"]) {
-                if ([posts[0] isEqualToString:@"Company"]) {
+            if ([[NSString stringWithFormat:@"%@",posts[0][@"status"][@"statusCode"]] isEqualToString:@"1300"]) {
+                if ([posts[1] isEqualToString:@"Company"]) {
                     [RemindView remindViewWithContent:@"公司账户请联系客服" superView:self.view centerY:240];
                 }else{
                     ForgetPasswordSecondController *forgetSecondView = [[ForgetPasswordSecondController alloc] init];
-                    forgetSecondView.userId = posts[1][@"data"][@"userId"];
-                    forgetSecondView.cellPhone = posts[1][@"data"][@"cellPhone"];
+                    forgetSecondView.userId = posts[0][@"data"][@"userId"];
+                    forgetSecondView.cellPhone = posts[0][@"data"][@"cellPhone"];
                     [self.navigationController pushViewController:forgetSecondView animated:YES];
                 }
-            }else if ([[NSString stringWithFormat:@"%@",posts[1][@"status"][@"statusCode"]] isEqualToString:@"1308"]){
+            }else if ([[NSString stringWithFormat:@"%@",posts[0][@"status"][@"statusCode"]] isEqualToString:@"1308"]){
                 [RemindView remindViewWithContent:@"该手机号/用户名未注册" superView:self.view centerY:240];
             }
         }

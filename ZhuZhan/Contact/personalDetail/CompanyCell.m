@@ -15,7 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 150, 30)];
+        companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 260, 30)];
         companyLabel.textAlignment = NSTextAlignmentLeft;
         companyLabel.font = [UIFont boldSystemFontOfSize:16];
         [self addSubview:companyLabel];
