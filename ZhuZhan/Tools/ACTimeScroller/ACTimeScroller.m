@@ -53,6 +53,7 @@
         self.transform = CGAffineTransformMakeTranslation(10.0f, 0.0f);
         
         _backgroundView = [[UIImageView alloc] init];
+        NSLog(@"frame3====>%f",CGRectGetWidth(self.frame) - 118.0f);
         _backgroundView.frame = CGRectMake(CGRectGetWidth(self.frame) - 118.0f, 0.0f, 118.0f, CGRectGetHeight(self.frame));
         [_backgroundView setImage:[GetImagePath getImagePath:@"＋人脉－个人中心2_30a"]];
         [self addSubview:_backgroundView];
@@ -458,7 +459,7 @@
     [UIView animateWithDuration:0 delay:1.0f options:UIViewAnimationOptionBeginFromCurrentState  animations:^{
         
         self.alpha = 0.0f;
-        self.transform = CGAffineTransformMakeTranslation(10.0f, 0.0f);
+        //self.transform = CGAffineTransformMakeTranslation(10.0f, 0.0f);
         
     } completion:nil];
 }
@@ -477,7 +478,6 @@
     }
     CGRect selfFrame = self.frame;
     CGRect scrollBarFrame = _scrollBar.frame;
-    
     
     self.frame = CGRectIntegral(CGRectMake(CGRectGetWidth(selfFrame) * -1.0f,
                                            (CGRectGetHeight(scrollBarFrame) / 2.0f) - (CGRectGetHeight(selfFrame) / 2.0f),

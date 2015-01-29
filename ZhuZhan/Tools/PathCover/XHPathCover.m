@@ -326,7 +326,7 @@ NSString *const XHTitkeKey = @"XHTitkeKey";
         CGPoint center =  _bannerImageView.center;
         center.y = bannerSuper.frame.size.height / 2;
         NSLog(@"%f",bframe.size.height);
-        if(bframe.size.height<=320){
+        if(bframe.size.height<320){
             _bannerImageView.center = center;
         }else{
             _bannerImageView.center = CGPointMake(center.x, center.y+(bframe.size.height-320)/2);
