@@ -5290,7 +5290,7 @@
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					0426BFE619922CE400CD8822 = {
-						DevelopmentTeam = MP445UC26E;
+						DevelopmentTeam = AU89D3J45E;
 					};
 					0426C00119922CE400CD8822 = {
 						TestTargetID = 0426BFE619922CE400CD8822;
