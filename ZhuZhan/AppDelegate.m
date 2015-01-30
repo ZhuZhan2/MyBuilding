@@ -27,6 +27,26 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    if ([CLLocationManager locationServicesEnabled]) {
+        
+        self.locationManager = [[CLLocationManager alloc] init];
+        
+        _locationManager.delegate = self;
+        
+//        _locationManager.desiredAccuracy = kCLLocationAccuracyBest; //控制定位精度,越高耗电量越大。
+//        
+//        _locationManager.distanceFilter = 100; //控制定位服务更新频率。单位是“米”
+//        
+        [_locationManager startUpdatingLocation];
+        
+        //在ios 8.0下要授权
+        
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+            
+            [_locationManager requestWhenInUseAuthorization];  //调用了这句,就会弹出允许框了.
+        
+    }
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     //设置log等级，此处log为默认在documents目录下的msc.log文件
     [IFlySetting setLogFile:LVL_NONE];

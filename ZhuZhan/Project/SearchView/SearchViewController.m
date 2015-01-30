@@ -238,8 +238,13 @@ int startIndex;
         AdvancedSearchViewController *advancedSearchView = [[AdvancedSearchViewController alloc] init];
         [self.navigationController pushViewController:advancedSearchView animated:YES];
     }else if(index == 2){
-        BaiDuMapViewController *baiduMapView = [[BaiDuMapViewController alloc] init];
-        [self.navigationController pushViewController:baiduMapView animated:YES];
+        if([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请先打开定位功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }else{
+            BaiDuMapViewController *baiduMapView = [[BaiDuMapViewController alloc] init];
+            [self.navigationController pushViewController:baiduMapView animated:YES];
+        }
     }
 }
 

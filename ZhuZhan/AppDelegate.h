@@ -10,11 +10,11 @@
 #import "BMapKit.h"
 #define KAPI_KEY @"25d987b4f4f915bf02aaecde055db243"//face++
 #define KAPI_SECRET @"S_rg7gvJpWXO4OJS4m7yaQt_VtTwszC7"
-@interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate>{
+@interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate,CLLocationManagerDelegate>{
     BMKMapManager* _mapManager;
 }
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (nonatomic,strong)CLLocationManager *locationManager;
 + (AppDelegate *)instance;
 @end
