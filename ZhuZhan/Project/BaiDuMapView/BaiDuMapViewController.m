@@ -218,7 +218,7 @@ int j;
  *@param userLocation 新的用户位置
  */
 //6跟新用户当前位置的代理方法  (地图用的时内部子程序时定位的)
-- (void)didUpdateUserLocation:(BMKUserLocation *)userLocation{
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
     NSLog(@"定位跟新");
     BMKCoordinateRegion region;
     region.center.latitude = userLocation.location.coordinate.latitude;

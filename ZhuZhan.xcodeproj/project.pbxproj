@@ -569,8 +569,6 @@
 		5B0A00A519B587CD00500C05 /* TMQuiltViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A00A219B587CD00500C05 /* TMQuiltViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5B0C8AA619D79E550058C0EE /* PersonalCenterCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C8AA519D79E550058C0EE /* PersonalCenterCellView.m */; };
 		5B0C8AA919D7ABA30058C0EE /* PersonalProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C8AA819D7ABA30058C0EE /* PersonalProjectTableViewCell.m */; };
-		5B0D03A419B054FB00518D5E /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD614F19ADA1A9001FD483 /* libbaidumapapi.a */; };
-		5B0D03A519B0550900518D5E /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD615119ADA1A9001FD483 /* libbaidumapapi.a */; };
 		5B0D03E319B0554400518D5E /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B0D03E219B0554400518D5E /* mapapi.bundle */; };
 		5B112E6E1A63BA9200009CD3 /* 项目地图搜索01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B112E6A1A63BA9200009CD3 /* 项目地图搜索01.png */; };
 		5B112E6F1A63BA9200009CD3 /* 项目地图搜索01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B112E6B1A63BA9200009CD3 /* 项目地图搜索01@2x.png */; };
@@ -659,6 +657,8 @@
 		5B7AA6EA1A58D93E000FBFF2 /* icon03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6E21A58D93E000FBFF2 /* icon03@2x.png */; };
 		5B7AA6EB1A58D93E000FBFF2 /* icon04.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6E31A58D93E000FBFF2 /* icon04.png */; };
 		5B7AA6EC1A58D93E000FBFF2 /* icon04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6E41A58D93E000FBFF2 /* icon04@2x.png */; };
+		5B8DAED41A7F1EBD003C7E41 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8DAED11A7F1EBD003C7E41 /* libbaidumapapi.a */; };
+		5B8DAED51A7F1EBD003C7E41 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8DAED31A7F1EBD003C7E41 /* libbaidumapapi.a */; };
 		5B9FDE9F1A6CD47000215485 /* 项目详情默认0.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9FDE9D1A6CD47000215485 /* 项目详情默认0.png */; };
 		5B9FDEA01A6CD47000215485 /* 项目详情默认0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9FDE9E1A6CD47000215485 /* 项目详情默认0@2x.png */; };
 		5BA181A61A76170500191D31 /* Shadow-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA181A41A76170500191D31 /* Shadow-top.png */; };
@@ -1655,67 +1655,6 @@
 		0426C31C19922E9C00CD8822 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		042D9CF919B40C4C00689C5D /* DKCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKCircleButton.h; sourceTree = "<group>"; };
 		042D9CFA19B40C4C00689C5D /* DKCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKCircleButton.m; sourceTree = "<group>"; };
-		042D9D0519B42A9B00689C5D /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
-		042D9D0619B42A9B00689C5D /* BMKActionPaopaoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKActionPaopaoView.h; sourceTree = "<group>"; };
-		042D9D0719B42A9B00689C5D /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
-		042D9D0819B42A9B00689C5D /* BMKAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotationView.h; sourceTree = "<group>"; };
-		042D9D0919B42A9B00689C5D /* BMKArcline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKArcline.h; sourceTree = "<group>"; };
-		042D9D0A19B42A9B00689C5D /* BMKArclineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKArclineView.h; sourceTree = "<group>"; };
-		042D9D0B19B42A9B00689C5D /* BMKBaseComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKBaseComponent.h; sourceTree = "<group>"; };
-		042D9D0C19B42A9B00689C5D /* BMKBusLineSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKBusLineSearch.h; sourceTree = "<group>"; };
-		042D9D0D19B42A9B00689C5D /* BMKBusLineSearchOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKBusLineSearchOption.h; sourceTree = "<group>"; };
-		042D9D0E19B42A9B00689C5D /* BMKCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKCircle.h; sourceTree = "<group>"; };
-		042D9D0F19B42A9B00689C5D /* BMKCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKCircleView.h; sourceTree = "<group>"; };
-		042D9D1019B42A9B00689C5D /* BMKCloudPOIList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKCloudPOIList.h; sourceTree = "<group>"; };
-		042D9D1119B42A9B00689C5D /* BMKCloudSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKCloudSearch.h; sourceTree = "<group>"; };
-		042D9D1219B42A9B00689C5D /* BMKCloudSearchComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKCloudSearchComponent.h; sourceTree = "<group>"; };
-		042D9D1319B42A9B00689C5D /* BMKCloudSearchInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKCloudSearchInfo.h; sourceTree = "<group>"; };
-		042D9D1419B42A9B00689C5D /* BMKGeneralDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKGeneralDelegate.h; sourceTree = "<group>"; };
-		042D9D1519B42A9B00689C5D /* BMKGeocodeSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKGeocodeSearch.h; sourceTree = "<group>"; };
-		042D9D1619B42A9B00689C5D /* BMKGeocodeSearchOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKGeocodeSearchOption.h; sourceTree = "<group>"; };
-		042D9D1719B42A9B00689C5D /* BMKGeocodeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKGeocodeType.h; sourceTree = "<group>"; };
-		042D9D1819B42A9B00689C5D /* BMKGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKGeometry.h; sourceTree = "<group>"; };
-		042D9D1919B42A9B00689C5D /* BMKGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKGradient.h; sourceTree = "<group>"; };
-		042D9D1A19B42A9B00689C5D /* BMKGroundOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKGroundOverlay.h; sourceTree = "<group>"; };
-		042D9D1B19B42A9B00689C5D /* BMKGroundOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKGroundOverlayView.h; sourceTree = "<group>"; };
-		042D9D1C19B42A9B00689C5D /* BMKHeatMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKHeatMap.h; sourceTree = "<group>"; };
-		042D9D1D19B42A9B00689C5D /* BMKLocationComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKLocationComponent.h; sourceTree = "<group>"; };
-		042D9D1E19B42A9B00689C5D /* BMKLocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKLocationService.h; sourceTree = "<group>"; };
-		042D9D1F19B42A9B00689C5D /* BMKLocationViewDisplayParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKLocationViewDisplayParam.h; sourceTree = "<group>"; };
-		042D9D2019B42A9B00689C5D /* BMKMapComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKMapComponent.h; sourceTree = "<group>"; };
-		042D9D2119B42A9B00689C5D /* BMKMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKMapManager.h; sourceTree = "<group>"; };
-		042D9D2219B42A9B00689C5D /* BMKMapStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKMapStatus.h; sourceTree = "<group>"; };
-		042D9D2319B42A9B00689C5D /* BMKMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKMapView.h; sourceTree = "<group>"; };
-		042D9D2419B42A9B00689C5D /* BMKMultiPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKMultiPoint.h; sourceTree = "<group>"; };
-		042D9D2519B42A9B00689C5D /* BMKNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKNavigation.h; sourceTree = "<group>"; };
-		042D9D2619B42A9B00689C5D /* BMKOfflineMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKOfflineMap.h; sourceTree = "<group>"; };
-		042D9D2719B42A9B00689C5D /* BMKOfflineMapType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKOfflineMapType.h; sourceTree = "<group>"; };
-		042D9D2819B42A9B00689C5D /* BMKOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKOverlay.h; sourceTree = "<group>"; };
-		042D9D2919B42A9B00689C5D /* BMKOverlayGLBasicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKOverlayGLBasicView.h; sourceTree = "<group>"; };
-		042D9D2A19B42A9B00689C5D /* BMKOverlayPathView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKOverlayPathView.h; sourceTree = "<group>"; };
-		042D9D2B19B42A9B00689C5D /* BMKOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKOverlayView.h; sourceTree = "<group>"; };
-		042D9D2C19B42A9B00689C5D /* BMKPinAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKPinAnnotationView.h; sourceTree = "<group>"; };
-		042D9D2D19B42A9B00689C5D /* BMKPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKPointAnnotation.h; sourceTree = "<group>"; };
-		042D9D2E19B42A9B00689C5D /* BMKPoiSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKPoiSearch.h; sourceTree = "<group>"; };
-		042D9D2F19B42A9B00689C5D /* BMKPoiSearchOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKPoiSearchOption.h; sourceTree = "<group>"; };
-		042D9D3019B42A9B00689C5D /* BMKPoiSearchType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKPoiSearchType.h; sourceTree = "<group>"; };
-		042D9D3119B42A9B00689C5D /* BMKPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKPolygon.h; sourceTree = "<group>"; };
-		042D9D3219B42A9B00689C5D /* BMKPolygonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKPolygonView.h; sourceTree = "<group>"; };
-		042D9D3319B42A9B00689C5D /* BMKPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKPolyline.h; sourceTree = "<group>"; };
-		042D9D3419B42A9B00689C5D /* BMKPolylineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKPolylineView.h; sourceTree = "<group>"; };
-		042D9D3519B42A9B00689C5D /* BMKRouteSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKRouteSearch.h; sourceTree = "<group>"; };
-		042D9D3619B42A9B00689C5D /* BMKRouteSearchOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKRouteSearchOption.h; sourceTree = "<group>"; };
-		042D9D3719B42A9B00689C5D /* BMKRouteSearchType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKRouteSearchType.h; sourceTree = "<group>"; };
-		042D9D3819B42A9B00689C5D /* BMKSearchComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKSearchComponent.h; sourceTree = "<group>"; };
-		042D9D3919B42A9B00689C5D /* BMKShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKShape.h; sourceTree = "<group>"; };
-		042D9D3A19B42A9B00689C5D /* BMKShareURLSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKShareURLSearch.h; sourceTree = "<group>"; };
-		042D9D3B19B42A9B00689C5D /* BMKShareUrlSearchOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKShareUrlSearchOption.h; sourceTree = "<group>"; };
-		042D9D3C19B42A9B00689C5D /* BMKSuggestionSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKSuggestionSearch.h; sourceTree = "<group>"; };
-		042D9D3D19B42A9B00689C5D /* BMKSuggestionSearchOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKSuggestionSearchOption.h; sourceTree = "<group>"; };
-		042D9D3E19B42A9B00689C5D /* BMKTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKTypes.h; sourceTree = "<group>"; };
-		042D9D3F19B42A9B00689C5D /* BMKUserLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKUserLocation.h; sourceTree = "<group>"; };
-		042D9D4019B42A9B00689C5D /* BMKUtilsComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKUtilsComponent.h; sourceTree = "<group>"; };
-		042D9D4119B42A9B00689C5D /* BMKVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKVersion.h; sourceTree = "<group>"; };
 		042D9DC519B4A1C600689C5D /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		042D9DC619B4A1C600689C5D /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		042D9DCC19B559FC00689C5D /* BaiDuMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiDuMapViewController.h; sourceTree = "<group>"; };
@@ -2211,6 +2150,69 @@
 		5B7AA6E21A58D93E000FBFF2 /* icon03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon03@2x.png"; sourceTree = "<group>"; };
 		5B7AA6E31A58D93E000FBFF2 /* icon04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon04.png; sourceTree = "<group>"; };
 		5B7AA6E41A58D93E000FBFF2 /* icon04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon04@2x.png"; sourceTree = "<group>"; };
+		5B8DAE931A7F1EA9003C7E41 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
+		5B8DAE941A7F1EA9003C7E41 /* BMKActionPaopaoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKActionPaopaoView.h; sourceTree = "<group>"; };
+		5B8DAE951A7F1EA9003C7E41 /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
+		5B8DAE961A7F1EA9003C7E41 /* BMKAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotationView.h; sourceTree = "<group>"; };
+		5B8DAE971A7F1EA9003C7E41 /* BMKArcline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKArcline.h; sourceTree = "<group>"; };
+		5B8DAE981A7F1EA9003C7E41 /* BMKArclineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKArclineView.h; sourceTree = "<group>"; };
+		5B8DAE991A7F1EA9003C7E41 /* BMKBaseComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKBaseComponent.h; sourceTree = "<group>"; };
+		5B8DAE9A1A7F1EA9003C7E41 /* BMKBusLineSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKBusLineSearch.h; sourceTree = "<group>"; };
+		5B8DAE9B1A7F1EA9003C7E41 /* BMKBusLineSearchOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKBusLineSearchOption.h; sourceTree = "<group>"; };
+		5B8DAE9C1A7F1EA9003C7E41 /* BMKCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKCircle.h; sourceTree = "<group>"; };
+		5B8DAE9D1A7F1EA9003C7E41 /* BMKCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKCircleView.h; sourceTree = "<group>"; };
+		5B8DAE9E1A7F1EA9003C7E41 /* BMKCloudPOIList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKCloudPOIList.h; sourceTree = "<group>"; };
+		5B8DAE9F1A7F1EA9003C7E41 /* BMKCloudSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKCloudSearch.h; sourceTree = "<group>"; };
+		5B8DAEA01A7F1EA9003C7E41 /* BMKCloudSearchComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKCloudSearchComponent.h; sourceTree = "<group>"; };
+		5B8DAEA11A7F1EA9003C7E41 /* BMKCloudSearchInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKCloudSearchInfo.h; sourceTree = "<group>"; };
+		5B8DAEA21A7F1EA9003C7E41 /* BMKGeneralDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKGeneralDelegate.h; sourceTree = "<group>"; };
+		5B8DAEA31A7F1EA9003C7E41 /* BMKGeocodeSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKGeocodeSearch.h; sourceTree = "<group>"; };
+		5B8DAEA41A7F1EA9003C7E41 /* BMKGeocodeSearchOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKGeocodeSearchOption.h; sourceTree = "<group>"; };
+		5B8DAEA51A7F1EA9003C7E41 /* BMKGeocodeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKGeocodeType.h; sourceTree = "<group>"; };
+		5B8DAEA61A7F1EA9003C7E41 /* BMKGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKGeometry.h; sourceTree = "<group>"; };
+		5B8DAEA71A7F1EA9003C7E41 /* BMKGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKGradient.h; sourceTree = "<group>"; };
+		5B8DAEA81A7F1EA9003C7E41 /* BMKGroundOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKGroundOverlay.h; sourceTree = "<group>"; };
+		5B8DAEA91A7F1EA9003C7E41 /* BMKGroundOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKGroundOverlayView.h; sourceTree = "<group>"; };
+		5B8DAEAA1A7F1EA9003C7E41 /* BMKHeatMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKHeatMap.h; sourceTree = "<group>"; };
+		5B8DAEAB1A7F1EA9003C7E41 /* BMKLocationComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKLocationComponent.h; sourceTree = "<group>"; };
+		5B8DAEAC1A7F1EA9003C7E41 /* BMKLocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKLocationService.h; sourceTree = "<group>"; };
+		5B8DAEAD1A7F1EA9003C7E41 /* BMKLocationViewDisplayParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKLocationViewDisplayParam.h; sourceTree = "<group>"; };
+		5B8DAEAE1A7F1EA9003C7E41 /* BMKMapComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKMapComponent.h; sourceTree = "<group>"; };
+		5B8DAEAF1A7F1EA9003C7E41 /* BMKMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKMapManager.h; sourceTree = "<group>"; };
+		5B8DAEB01A7F1EA9003C7E41 /* BMKMapStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKMapStatus.h; sourceTree = "<group>"; };
+		5B8DAEB11A7F1EA9003C7E41 /* BMKMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKMapView.h; sourceTree = "<group>"; };
+		5B8DAEB21A7F1EA9003C7E41 /* BMKMultiPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKMultiPoint.h; sourceTree = "<group>"; };
+		5B8DAEB31A7F1EA9003C7E41 /* BMKNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKNavigation.h; sourceTree = "<group>"; };
+		5B8DAEB41A7F1EA9003C7E41 /* BMKOfflineMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKOfflineMap.h; sourceTree = "<group>"; };
+		5B8DAEB51A7F1EA9003C7E41 /* BMKOfflineMapType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKOfflineMapType.h; sourceTree = "<group>"; };
+		5B8DAEB61A7F1EA9003C7E41 /* BMKOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKOverlay.h; sourceTree = "<group>"; };
+		5B8DAEB71A7F1EA9003C7E41 /* BMKOverlayGLBasicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKOverlayGLBasicView.h; sourceTree = "<group>"; };
+		5B8DAEB81A7F1EA9003C7E41 /* BMKOverlayPathView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKOverlayPathView.h; sourceTree = "<group>"; };
+		5B8DAEB91A7F1EA9003C7E41 /* BMKOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKOverlayView.h; sourceTree = "<group>"; };
+		5B8DAEBA1A7F1EA9003C7E41 /* BMKPinAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKPinAnnotationView.h; sourceTree = "<group>"; };
+		5B8DAEBB1A7F1EA9003C7E41 /* BMKPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKPointAnnotation.h; sourceTree = "<group>"; };
+		5B8DAEBC1A7F1EA9003C7E41 /* BMKPoiSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKPoiSearch.h; sourceTree = "<group>"; };
+		5B8DAEBD1A7F1EA9003C7E41 /* BMKPoiSearchOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKPoiSearchOption.h; sourceTree = "<group>"; };
+		5B8DAEBE1A7F1EA9003C7E41 /* BMKPoiSearchType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKPoiSearchType.h; sourceTree = "<group>"; };
+		5B8DAEBF1A7F1EA9003C7E41 /* BMKPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKPolygon.h; sourceTree = "<group>"; };
+		5B8DAEC01A7F1EA9003C7E41 /* BMKPolygonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKPolygonView.h; sourceTree = "<group>"; };
+		5B8DAEC11A7F1EA9003C7E41 /* BMKPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKPolyline.h; sourceTree = "<group>"; };
+		5B8DAEC21A7F1EA9003C7E41 /* BMKPolylineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKPolylineView.h; sourceTree = "<group>"; };
+		5B8DAEC31A7F1EA9003C7E41 /* BMKRouteSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKRouteSearch.h; sourceTree = "<group>"; };
+		5B8DAEC41A7F1EA9003C7E41 /* BMKRouteSearchOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKRouteSearchOption.h; sourceTree = "<group>"; };
+		5B8DAEC51A7F1EA9003C7E41 /* BMKRouteSearchType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKRouteSearchType.h; sourceTree = "<group>"; };
+		5B8DAEC61A7F1EA9003C7E41 /* BMKSearchComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKSearchComponent.h; sourceTree = "<group>"; };
+		5B8DAEC71A7F1EA9003C7E41 /* BMKShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKShape.h; sourceTree = "<group>"; };
+		5B8DAEC81A7F1EA9003C7E41 /* BMKShareURLSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKShareURLSearch.h; sourceTree = "<group>"; };
+		5B8DAEC91A7F1EA9003C7E41 /* BMKShareUrlSearchOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKShareUrlSearchOption.h; sourceTree = "<group>"; };
+		5B8DAECA1A7F1EA9003C7E41 /* BMKSuggestionSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKSuggestionSearch.h; sourceTree = "<group>"; };
+		5B8DAECB1A7F1EA9003C7E41 /* BMKSuggestionSearchOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKSuggestionSearchOption.h; sourceTree = "<group>"; };
+		5B8DAECC1A7F1EA9003C7E41 /* BMKTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKTypes.h; sourceTree = "<group>"; };
+		5B8DAECD1A7F1EA9003C7E41 /* BMKUserLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKUserLocation.h; sourceTree = "<group>"; };
+		5B8DAECE1A7F1EA9003C7E41 /* BMKUtilsComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKUtilsComponent.h; sourceTree = "<group>"; };
+		5B8DAECF1A7F1EA9003C7E41 /* BMKVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKVersion.h; sourceTree = "<group>"; };
+		5B8DAED11A7F1EBD003C7E41 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
+		5B8DAED31A7F1EBD003C7E41 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		5B9FDE9D1A6CD47000215485 /* 项目详情默认0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情默认0.png"; sourceTree = "<group>"; };
 		5B9FDE9E1A6CD47000215485 /* 项目详情默认0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情默认0@2x.png"; sourceTree = "<group>"; };
 		5BA181A41A76170500191D31 /* Shadow-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shadow-top.png"; sourceTree = "<group>"; };
@@ -2658,8 +2660,6 @@
 		D3AD60F619AC7CC5001FD483 /* EGOImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageLoader.m; sourceTree = "<group>"; };
 		D3AD60F719AC7CC5001FD483 /* EGOImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageView.h; sourceTree = "<group>"; };
 		D3AD60F819AC7CC5001FD483 /* EGOImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageView.m; sourceTree = "<group>"; };
-		D3AD614F19ADA1A9001FD483 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
-		D3AD615119ADA1A9001FD483 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		D3AD615A19ADA487001FD483 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D3AD615C19ADA4A4001FD483 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		D3AD615E19ADA4CA001FD483 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
@@ -2817,9 +2817,8 @@
 				D3B8F54919D9483B008F6164 /* libz.dylib in Frameworks */,
 				D3B8F54719D94789008F6164 /* iflyMSC.framework in Frameworks */,
 				042D9EAF19B7136600689C5D /* MessageUI.framework in Frameworks */,
-				5B0D03A519B0550900518D5E /* libbaidumapapi.a in Frameworks */,
-				5B0D03A419B054FB00518D5E /* libbaidumapapi.a in Frameworks */,
 				D3AD618319ADCCC0001FD483 /* MapKit.framework in Frameworks */,
+				5B8DAED41A7F1EBD003C7E41 /* libbaidumapapi.a in Frameworks */,
 				D3AD616619ADB981001FD483 /* libsqlite3.0.dylib in Frameworks */,
 				D3AD615D19ADA4A4001FD483 /* Security.framework in Frameworks */,
 				D3AD615B19ADA487001FD483 /* CoreLocation.framework in Frameworks */,
@@ -2834,6 +2833,7 @@
 				0426C30919922E2E00CD8822 /* AddressBook.framework in Frameworks */,
 				0426C30719922E2500CD8822 /* AdSupport.framework in Frameworks */,
 				0426BFED19922CE400CD8822 /* CoreGraphics.framework in Frameworks */,
+				5B8DAED51A7F1EBD003C7E41 /* libbaidumapapi.a in Frameworks */,
 				0426BFEF19922CE400CD8822 /* UIKit.framework in Frameworks */,
 				0426BFEB19922CE400CD8822 /* Foundation.framework in Frameworks */,
 			);
@@ -3614,74 +3614,6 @@
 			path = DKCircleButton;
 			sourceTree = "<group>";
 		};
-		042D9D0419B42A9B00689C5D /* inc */ = {
-			isa = PBXGroup;
-			children = (
-				042D9D0519B42A9B00689C5D /* BMapKit.h */,
-				042D9D0619B42A9B00689C5D /* BMKActionPaopaoView.h */,
-				042D9D0719B42A9B00689C5D /* BMKAnnotation.h */,
-				042D9D0819B42A9B00689C5D /* BMKAnnotationView.h */,
-				042D9D0919B42A9B00689C5D /* BMKArcline.h */,
-				042D9D0A19B42A9B00689C5D /* BMKArclineView.h */,
-				042D9D0B19B42A9B00689C5D /* BMKBaseComponent.h */,
-				042D9D0C19B42A9B00689C5D /* BMKBusLineSearch.h */,
-				042D9D0D19B42A9B00689C5D /* BMKBusLineSearchOption.h */,
-				042D9D0E19B42A9B00689C5D /* BMKCircle.h */,
-				042D9D0F19B42A9B00689C5D /* BMKCircleView.h */,
-				042D9D1019B42A9B00689C5D /* BMKCloudPOIList.h */,
-				042D9D1119B42A9B00689C5D /* BMKCloudSearch.h */,
-				042D9D1219B42A9B00689C5D /* BMKCloudSearchComponent.h */,
-				042D9D1319B42A9B00689C5D /* BMKCloudSearchInfo.h */,
-				042D9D1419B42A9B00689C5D /* BMKGeneralDelegate.h */,
-				042D9D1519B42A9B00689C5D /* BMKGeocodeSearch.h */,
-				042D9D1619B42A9B00689C5D /* BMKGeocodeSearchOption.h */,
-				042D9D1719B42A9B00689C5D /* BMKGeocodeType.h */,
-				042D9D1819B42A9B00689C5D /* BMKGeometry.h */,
-				042D9D1919B42A9B00689C5D /* BMKGradient.h */,
-				042D9D1A19B42A9B00689C5D /* BMKGroundOverlay.h */,
-				042D9D1B19B42A9B00689C5D /* BMKGroundOverlayView.h */,
-				042D9D1C19B42A9B00689C5D /* BMKHeatMap.h */,
-				042D9D1D19B42A9B00689C5D /* BMKLocationComponent.h */,
-				042D9D1E19B42A9B00689C5D /* BMKLocationService.h */,
-				042D9D1F19B42A9B00689C5D /* BMKLocationViewDisplayParam.h */,
-				042D9D2019B42A9B00689C5D /* BMKMapComponent.h */,
-				042D9D2119B42A9B00689C5D /* BMKMapManager.h */,
-				042D9D2219B42A9B00689C5D /* BMKMapStatus.h */,
-				042D9D2319B42A9B00689C5D /* BMKMapView.h */,
-				042D9D2419B42A9B00689C5D /* BMKMultiPoint.h */,
-				042D9D2519B42A9B00689C5D /* BMKNavigation.h */,
-				042D9D2619B42A9B00689C5D /* BMKOfflineMap.h */,
-				042D9D2719B42A9B00689C5D /* BMKOfflineMapType.h */,
-				042D9D2819B42A9B00689C5D /* BMKOverlay.h */,
-				042D9D2919B42A9B00689C5D /* BMKOverlayGLBasicView.h */,
-				042D9D2A19B42A9B00689C5D /* BMKOverlayPathView.h */,
-				042D9D2B19B42A9B00689C5D /* BMKOverlayView.h */,
-				042D9D2C19B42A9B00689C5D /* BMKPinAnnotationView.h */,
-				042D9D2D19B42A9B00689C5D /* BMKPointAnnotation.h */,
-				042D9D2E19B42A9B00689C5D /* BMKPoiSearch.h */,
-				042D9D2F19B42A9B00689C5D /* BMKPoiSearchOption.h */,
-				042D9D3019B42A9B00689C5D /* BMKPoiSearchType.h */,
-				042D9D3119B42A9B00689C5D /* BMKPolygon.h */,
-				042D9D3219B42A9B00689C5D /* BMKPolygonView.h */,
-				042D9D3319B42A9B00689C5D /* BMKPolyline.h */,
-				042D9D3419B42A9B00689C5D /* BMKPolylineView.h */,
-				042D9D3519B42A9B00689C5D /* BMKRouteSearch.h */,
-				042D9D3619B42A9B00689C5D /* BMKRouteSearchOption.h */,
-				042D9D3719B42A9B00689C5D /* BMKRouteSearchType.h */,
-				042D9D3819B42A9B00689C5D /* BMKSearchComponent.h */,
-				042D9D3919B42A9B00689C5D /* BMKShape.h */,
-				042D9D3A19B42A9B00689C5D /* BMKShareURLSearch.h */,
-				042D9D3B19B42A9B00689C5D /* BMKShareUrlSearchOption.h */,
-				042D9D3C19B42A9B00689C5D /* BMKSuggestionSearch.h */,
-				042D9D3D19B42A9B00689C5D /* BMKSuggestionSearchOption.h */,
-				042D9D3E19B42A9B00689C5D /* BMKTypes.h */,
-				042D9D3F19B42A9B00689C5D /* BMKUserLocation.h */,
-				042D9D4019B42A9B00689C5D /* BMKUtilsComponent.h */,
-				042D9D4119B42A9B00689C5D /* BMKVersion.h */,
-			);
-			path = inc;
-			sourceTree = "<group>";
-		};
 		042D9DC419B4A1C600689C5D /* JSONKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -4388,6 +4320,90 @@
 			path = RemindView;
 			sourceTree = "<group>";
 		};
+		5B8DAE921A7F1EA9003C7E41 /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				5B8DAE931A7F1EA9003C7E41 /* BMapKit.h */,
+				5B8DAE941A7F1EA9003C7E41 /* BMKActionPaopaoView.h */,
+				5B8DAE951A7F1EA9003C7E41 /* BMKAnnotation.h */,
+				5B8DAE961A7F1EA9003C7E41 /* BMKAnnotationView.h */,
+				5B8DAE971A7F1EA9003C7E41 /* BMKArcline.h */,
+				5B8DAE981A7F1EA9003C7E41 /* BMKArclineView.h */,
+				5B8DAE991A7F1EA9003C7E41 /* BMKBaseComponent.h */,
+				5B8DAE9A1A7F1EA9003C7E41 /* BMKBusLineSearch.h */,
+				5B8DAE9B1A7F1EA9003C7E41 /* BMKBusLineSearchOption.h */,
+				5B8DAE9C1A7F1EA9003C7E41 /* BMKCircle.h */,
+				5B8DAE9D1A7F1EA9003C7E41 /* BMKCircleView.h */,
+				5B8DAE9E1A7F1EA9003C7E41 /* BMKCloudPOIList.h */,
+				5B8DAE9F1A7F1EA9003C7E41 /* BMKCloudSearch.h */,
+				5B8DAEA01A7F1EA9003C7E41 /* BMKCloudSearchComponent.h */,
+				5B8DAEA11A7F1EA9003C7E41 /* BMKCloudSearchInfo.h */,
+				5B8DAEA21A7F1EA9003C7E41 /* BMKGeneralDelegate.h */,
+				5B8DAEA31A7F1EA9003C7E41 /* BMKGeocodeSearch.h */,
+				5B8DAEA41A7F1EA9003C7E41 /* BMKGeocodeSearchOption.h */,
+				5B8DAEA51A7F1EA9003C7E41 /* BMKGeocodeType.h */,
+				5B8DAEA61A7F1EA9003C7E41 /* BMKGeometry.h */,
+				5B8DAEA71A7F1EA9003C7E41 /* BMKGradient.h */,
+				5B8DAEA81A7F1EA9003C7E41 /* BMKGroundOverlay.h */,
+				5B8DAEA91A7F1EA9003C7E41 /* BMKGroundOverlayView.h */,
+				5B8DAEAA1A7F1EA9003C7E41 /* BMKHeatMap.h */,
+				5B8DAEAB1A7F1EA9003C7E41 /* BMKLocationComponent.h */,
+				5B8DAEAC1A7F1EA9003C7E41 /* BMKLocationService.h */,
+				5B8DAEAD1A7F1EA9003C7E41 /* BMKLocationViewDisplayParam.h */,
+				5B8DAEAE1A7F1EA9003C7E41 /* BMKMapComponent.h */,
+				5B8DAEAF1A7F1EA9003C7E41 /* BMKMapManager.h */,
+				5B8DAEB01A7F1EA9003C7E41 /* BMKMapStatus.h */,
+				5B8DAEB11A7F1EA9003C7E41 /* BMKMapView.h */,
+				5B8DAEB21A7F1EA9003C7E41 /* BMKMultiPoint.h */,
+				5B8DAEB31A7F1EA9003C7E41 /* BMKNavigation.h */,
+				5B8DAEB41A7F1EA9003C7E41 /* BMKOfflineMap.h */,
+				5B8DAEB51A7F1EA9003C7E41 /* BMKOfflineMapType.h */,
+				5B8DAEB61A7F1EA9003C7E41 /* BMKOverlay.h */,
+				5B8DAEB71A7F1EA9003C7E41 /* BMKOverlayGLBasicView.h */,
+				5B8DAEB81A7F1EA9003C7E41 /* BMKOverlayPathView.h */,
+				5B8DAEB91A7F1EA9003C7E41 /* BMKOverlayView.h */,
+				5B8DAEBA1A7F1EA9003C7E41 /* BMKPinAnnotationView.h */,
+				5B8DAEBB1A7F1EA9003C7E41 /* BMKPointAnnotation.h */,
+				5B8DAEBC1A7F1EA9003C7E41 /* BMKPoiSearch.h */,
+				5B8DAEBD1A7F1EA9003C7E41 /* BMKPoiSearchOption.h */,
+				5B8DAEBE1A7F1EA9003C7E41 /* BMKPoiSearchType.h */,
+				5B8DAEBF1A7F1EA9003C7E41 /* BMKPolygon.h */,
+				5B8DAEC01A7F1EA9003C7E41 /* BMKPolygonView.h */,
+				5B8DAEC11A7F1EA9003C7E41 /* BMKPolyline.h */,
+				5B8DAEC21A7F1EA9003C7E41 /* BMKPolylineView.h */,
+				5B8DAEC31A7F1EA9003C7E41 /* BMKRouteSearch.h */,
+				5B8DAEC41A7F1EA9003C7E41 /* BMKRouteSearchOption.h */,
+				5B8DAEC51A7F1EA9003C7E41 /* BMKRouteSearchType.h */,
+				5B8DAEC61A7F1EA9003C7E41 /* BMKSearchComponent.h */,
+				5B8DAEC71A7F1EA9003C7E41 /* BMKShape.h */,
+				5B8DAEC81A7F1EA9003C7E41 /* BMKShareURLSearch.h */,
+				5B8DAEC91A7F1EA9003C7E41 /* BMKShareUrlSearchOption.h */,
+				5B8DAECA1A7F1EA9003C7E41 /* BMKSuggestionSearch.h */,
+				5B8DAECB1A7F1EA9003C7E41 /* BMKSuggestionSearchOption.h */,
+				5B8DAECC1A7F1EA9003C7E41 /* BMKTypes.h */,
+				5B8DAECD1A7F1EA9003C7E41 /* BMKUserLocation.h */,
+				5B8DAECE1A7F1EA9003C7E41 /* BMKUtilsComponent.h */,
+				5B8DAECF1A7F1EA9003C7E41 /* BMKVersion.h */,
+			);
+			path = inc;
+			sourceTree = "<group>";
+		};
+		5B8DAED01A7F1EBD003C7E41 /* Release-iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				5B8DAED11A7F1EBD003C7E41 /* libbaidumapapi.a */,
+			);
+			path = "Release-iphoneos";
+			sourceTree = "<group>";
+		};
+		5B8DAED21A7F1EBD003C7E41 /* Release-iphonesimulator */ = {
+			isa = PBXGroup;
+			children = (
+				5B8DAED31A7F1EBD003C7E41 /* libbaidumapapi.a */,
+			);
+			path = "Release-iphonesimulator";
+			sourceTree = "<group>";
+		};
 		5BAA14D319EE35AC00C7ECD9 /* MD5 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5022,7 +5038,7 @@
 		D3AD611019ADA105001FD483 /* BaiduMap */ = {
 			isa = PBXGroup;
 			children = (
-				042D9D0419B42A9B00689C5D /* inc */,
+				5B8DAE921A7F1EA9003C7E41 /* inc */,
 				5B0D03E219B0554400518D5E /* mapapi.bundle */,
 				D3AD614D19ADA1A9001FD483 /* libs */,
 			);
@@ -5032,26 +5048,10 @@
 		D3AD614D19ADA1A9001FD483 /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				D3AD614E19ADA1A9001FD483 /* Release-iphoneos */,
-				D3AD615019ADA1A9001FD483 /* Release-iphonesimulator */,
+				5B8DAED01A7F1EBD003C7E41 /* Release-iphoneos */,
+				5B8DAED21A7F1EBD003C7E41 /* Release-iphonesimulator */,
 			);
 			path = libs;
-			sourceTree = "<group>";
-		};
-		D3AD614E19ADA1A9001FD483 /* Release-iphoneos */ = {
-			isa = PBXGroup;
-			children = (
-				D3AD614F19ADA1A9001FD483 /* libbaidumapapi.a */,
-			);
-			path = "Release-iphoneos";
-			sourceTree = "<group>";
-		};
-		D3AD615019ADA1A9001FD483 /* Release-iphonesimulator */ = {
-			isa = PBXGroup;
-			children = (
-				D3AD615119ADA1A9001FD483 /* libbaidumapapi.a */,
-			);
-			path = "Release-iphonesimulator";
 			sourceTree = "<group>";
 		};
 		D3AD616119ADB918001FD483 /* Sqlite3 */ = {
