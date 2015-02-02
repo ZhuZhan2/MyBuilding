@@ -252,6 +252,7 @@ int j;
     }
 }
 
+
 -(void) onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
 {
     annotationPoint = [[BMKPointAnnotation alloc]init];
