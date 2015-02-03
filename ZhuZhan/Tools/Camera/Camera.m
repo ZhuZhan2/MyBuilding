@@ -45,7 +45,7 @@ static int BtnTag =0;
             UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"此设备无摄像头" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
             return;
-    }
+        }
         
         //拍照
         sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -53,7 +53,7 @@ static int BtnTag =0;
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
         imagePicker.sourceType = sourceType;
         imagePicker.delegate = self;
-        imagePicker.allowsEditing = YES;
+        imagePicker.allowsEditing = BtnTag != 110120;
 
         [self.view.window.rootViewController presentViewController:imagePicker animated:YES completion:nil];
     }
@@ -84,7 +84,7 @@ static int BtnTag =0;
 #pragma mark ----UIImagePickerController delegate----
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *image = [info objectForKey:BtnTag==110120?UIImagePickerControllerOriginalImage:UIImagePickerControllerEditedImage];
     //image = [self fixOrientation:image];
     
     NSData *imageData = UIImageJPEGRepresentation(image, 0.3);
@@ -104,10 +104,10 @@ static int BtnTag =0;
         
     }
     if (BtnTag == 110120) {//发布时获取照片
-                [delegate publishImage:imageStr andImage:image];
+        [delegate publishImage:imageStr andImage:image];
         [picker dismissViewControllerAnimated:YES completion:nil];
         [self.view removeFromSuperview];
-
+        
     }
     
 }
@@ -116,7 +116,7 @@ static int BtnTag =0;
     
     [picker dismissViewControllerAnimated:YES completion:nil];
     if (BtnTag == 110120) {//发布时获取照片
-           [delegate openKeyBoard];
+        [delegate openKeyBoard];
     }
     
     [self.view removeFromSuperview];
@@ -208,15 +208,15 @@ static int BtnTag =0;
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 -(void)dealloc{
     NSLog(@"camera dealloc");
     
