@@ -64,7 +64,7 @@ static int BtnTag =0;
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
         imagePicker.sourceType = sourceType;
         imagePicker.delegate = self;
-        imagePicker.allowsEditing = YES;
+        imagePicker.allowsEditing = BtnTag != 110120;
 
         [self.view.window.rootViewController presentViewController:imagePicker animated:YES completion:nil];
         

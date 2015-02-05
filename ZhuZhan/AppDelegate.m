@@ -90,7 +90,7 @@
     [LoginSqlite opensql];
     [RecordSqlite opensql];
     [ProjectSqlite opensql];
-
+    
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;
     [self.window makeKeyAndVisible];
@@ -99,6 +99,21 @@
         FirstOpenAppAnimationView* firstAnimationView=[[FirstOpenAppAnimationView alloc]initWithFrame:self.window.frame];
         [self.window addSubview:firstAnimationView];
     }
+
+//    [UIView animateWithDuration:1.5 animations:^{
+//        imageView.alpha = 0;
+//    }];
+//    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+//        self.window.rootViewController = homeVC;
+//        [self.window makeKeyAndVisible];
+//        if(![[NSUserDefaults standardUserDefaults] objectForKey:@"firstLaunch"]){
+//            NSLog(@"第一次启动程序");
+//            FirstOpenAppAnimationView* firstAnimationView=[[FirstOpenAppAnimationView alloc]initWithFrame:self.window.frame];
+//            [self.window addSubview:firstAnimationView];
+//        }
+//    });
 
     return YES;
 }

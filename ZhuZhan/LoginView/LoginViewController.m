@@ -51,9 +51,9 @@
     
     UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(60.5, 110, 199, 124)];
     [bgImage setImage:[GetImagePath getImagePath:@"mblogo"]];
-    [self.view addSubview:bgImage];
+    //[self.view addSubview:bgImage];
     
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(21.5, 290, 277, 200)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(21.5, 85, 277, 200)];
     [self.view addSubview:bgView];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 277, 41)];
@@ -81,6 +81,7 @@
     //_userNameTextField.backgroundColor = [UIColor yellowColor];
     _userNameTextField.clearButtonMode = UITextFieldViewModeAlways;
     [bgView addSubview:_userNameTextField];
+    [_userNameTextField becomeFirstResponder];
     
     _passWordTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 43, 240, 39)];
     _passWordTextField.delegate = self;
@@ -105,7 +106,7 @@
     [registBtn addTarget:self action:@selector(gotoRegist) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:registBtn];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(80, 530, 100, 30)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(80, 282, 100, 30)];
     label.text = @"忘记密码了吗？";
     label.font = [UIFont systemFontOfSize:14];
     label.textColor = [UIColor whiteColor];
@@ -113,7 +114,7 @@
     [self.view addSubview:label];
     
     UIButton *findPassWordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [findPassWordBtn setFrame:CGRectMake(160, 530, 100, 30)];
+    [findPassWordBtn setFrame:CGRectMake(160, 282, 100, 30)];
     [findPassWordBtn setTitle:@"找回密码" forState:UIControlStateNormal];
     findPassWordBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [findPassWordBtn addTarget:self action:@selector(forgetPassword) forControlEvents:UIControlEventTouchUpInside];

@@ -30,17 +30,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    imageView.image = [GetImagePath getImagePath:@"loading"];
+    [self.view addSubview:imageView];
+    self.view.backgroundColor = RGBCOLOR(240, 240, 240);
     contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 519)];
     contactview = [[ContactViewController alloc] init];
     nav = [[UINavigationController alloc] initWithRootViewController:contactview];
     [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
     nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
     [contentView addSubview:nav.view];
-    
-    [self.view addSubview:contentView];
 
-    
     toolView = [[UIView alloc] initWithFrame:CGRectMake(0, 519, 320, 49)];
    [toolView setBackgroundColor:RGBCOLOR(229, 229, 229)];
     
@@ -71,7 +71,6 @@
     tradeBtn.tag = 4;
     [tradeBtn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:tradeBtn];
-    [self.view addSubview:toolView];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(gotoLogin:) name:@"LoginAgain" object:nil];
     
@@ -113,6 +112,16 @@
     menu.delegate = self;
     [self.view addSubview:menu];
      */
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.5 animations:^{
+            imageView.alpha = 0;
+        } completion:^(BOOL finished) {
+            [imageView removeFromSuperview];
+            [self.view addSubview:contentView];
+            [self.view addSubview:toolView];
+        }];
+    });
 }
 
 - (void)didReceiveMemoryWarning
