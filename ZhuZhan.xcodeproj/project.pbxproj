@@ -974,6 +974,8 @@
 		5BEBAC711A79DB6100E29ADA /* 点-copy-3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BEBAC6F1A79DB6100E29ADA /* 点-copy-3@2x.png */; };
 		5BF08A3A19B86C5D00782976 /* MoreCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */; };
 		5BF08A3D19B8779D00782976 /* MoreCompanyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */; };
+		D300F40B1A84AE7A002AFAC0 /* mapdef.png in Resources */ = {isa = PBXBuildFile; fileRef = D300F4091A84AE7A002AFAC0 /* mapdef.png */; };
+		D300F40C1A84AE7A002AFAC0 /* mapdef@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D300F40A1A84AE7A002AFAC0 /* mapdef@2x.png */; };
 		D3049A681A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3049A671A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m */; };
 		D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */; };
 		D35163E01A67903F000051F4 /* 产品－产品详情_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D35163D01A67903F000051F4 /* 产品－产品详情_03a.png */; };
@@ -2540,6 +2542,8 @@
 		5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCompanyViewController.m; sourceTree = "<group>"; };
 		5BF08A3B19B8779D00782976 /* MoreCompanyViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCompanyViewCell.h; sourceTree = "<group>"; };
 		5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCompanyViewCell.m; sourceTree = "<group>"; };
+		D300F4091A84AE7A002AFAC0 /* mapdef.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapdef.png; sourceTree = "<group>"; };
+		D300F40A1A84AE7A002AFAC0 /* mapdef@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapdef@2x.png"; sourceTree = "<group>"; };
 		D3049A661A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterCompanyTableViewCell.h; sourceTree = "<group>"; };
 		D3049A671A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterCompanyTableViewCell.m; sourceTree = "<group>"; };
 		D32C88CD19D79E0800D1BA1D /* PersonalCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterModel.h; sourceTree = "<group>"; };
@@ -4760,6 +4764,8 @@
 		D35163CF1A67903F000051F4 /* 默认图像 */ = {
 			isa = PBXGroup;
 			children = (
+				D300F4091A84AE7A002AFAC0 /* mapdef.png */,
+				D300F40A1A84AE7A002AFAC0 /* mapdef@2x.png */,
 				D35163F01A6796E2000051F4 /* 人脉_超大2.png */,
 				D35163F11A6796E2000051F4 /* 人脉_超大2@2x.png */,
 				D35163D01A67903F000051F4 /* 产品－产品详情_03a.png */,
@@ -5573,6 +5579,7 @@
 				D3BAA7B71A58CB9A008E613F /* 人的详情88-03@2x.png in Resources */,
 				5BE08E751A3586EA00495EEB /* 030019@2x.png in Resources */,
 				5BE08DAC1A3586EA00495EEB /* 010013.png in Resources */,
+				D300F40C1A84AE7A002AFAC0 /* mapdef@2x.png in Resources */,
 				04BC420619D7E5B3006B5C7B /* 公司认证员工_08a@2x.png in Resources */,
 				5BE08E1E1A3586EA00495EEB /* 020006.png in Resources */,
 				5BE08D9E1A3586EA00495EEB /* 010006.png in Resources */,
@@ -5899,6 +5906,7 @@
 				04BC420019D7E5B3006B5C7B /* 全部项目_37@2x.png in Resources */,
 				5BE08E651A3586EA00495EEB /* 030011@2x.png in Resources */,
 				5BE08E3F1A3586EA00495EEB /* 020022@2x.png in Resources */,
+				D300F40B1A84AE7A002AFAC0 /* mapdef.png in Resources */,
 				04BC42AD19D7E5B3006B5C7B /* 面部识别登录_07@2x.png in Resources */,
 				04BC412219D7E5B3006B5C7B /* bg-addbutton-highlighted.png in Resources */,
 				04BC428A19D7E5B3006B5C7B /* 登录_07.png in Resources */,

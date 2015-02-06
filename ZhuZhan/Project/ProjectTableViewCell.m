@@ -99,7 +99,7 @@
     enddateLabel.text = [model.a_exceptFinishTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     [bgImgView addSubview:enddateLabel];
     
-    bigImage = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"全部项目_37"]];
+    bigImage = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"mapdef"]];
     bigImage.frame = CGRectMake(2.2,110,288,110);
     bigImage.delegate = self;
     [bgImgView addSubview:bigImage];
