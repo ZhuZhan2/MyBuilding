@@ -17,5 +17,6 @@
     int startIndex;
     LoadingView *loadingView;
     int sectionHeight;
+    BOOL isReload;
 }
 @end

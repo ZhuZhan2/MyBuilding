@@ -78,6 +78,7 @@
     self.navigationItem.titleView = bgView;
     
     startIndex = 0;
+    isReload = NO;
     showArr = [[NSMutableArray alloc] init];
     
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
@@ -97,6 +98,7 @@
             if(!error){
                 showArr = posts;
                 sectionHeight = 50;
+                isReload = NO;
                 if(showArr.count == 0){
                     [MyTableView reloadDataWithTableView:self.tableView];
                     [MyTableView hasData:self.tableView];
@@ -122,6 +124,7 @@
     }else{
         self.tableView.scrollEnabled = NO;
         sectionHeight = 0;
+        isReload = YES;
         loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view];
         [self requestSingleProgram:[ProjectSqlite loadList]];
     }
@@ -199,6 +202,7 @@
                 startIndex = 0;
                 [showArr removeAllObjects];
                 showArr = posts;
+                isReload = NO;
                 if(showArr.count == 0){
                     [MyTableView reloadDataWithTableView:self.tableView];
                     [MyTableView hasData:self.tableView];
@@ -216,7 +220,9 @@
                 [self headerRereshing];
             }];
         }];
+        [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
     }else{
+        [self.tableView removeFooter];
         NSArray* datas=[ProjectSqlite loadList];
         NSString* projectIds=@"";
         for (int i=0; i<datas.count; i++) {
@@ -228,6 +234,7 @@
                     startIndex = 0;
                     [showArr removeAllObjects];
                     showArr = posts;
+                    isReload = YES;
                     if(showArr.count == 0){
                         [MyTableView reloadDataWithTableView:self.tableView];
                         [MyTableView hasData:self.tableView];
@@ -251,8 +258,7 @@
 
 - (void)footerRereshing
 {
-    NSMutableArray* localDatas=[ProjectSqlite loadList];
-    if(localDatas.count ==0){
+    if(!isReload){
         [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 startIndex++;
@@ -274,6 +280,31 @@
                 [self footerRereshing];
             }];
         }];
+    }else{
+        NSMutableArray* localDatas=[ProjectSqlite loadList];
+        if(localDatas.count ==0){
+            [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    startIndex++;
+                    [showArr addObjectsFromArray:posts];
+                    if(showArr.count == 0){
+                        [MyTableView reloadDataWithTableView:self.tableView];
+                        [MyTableView hasData:self.tableView];
+                    }else{
+                        [MyTableView removeFootView:self.tableView];
+                        [self.tableView reloadData];
+                    }
+                }else{
+                    [LoginAgain AddLoginView:NO];
+                }
+                [self.tableView footerEndRefreshing];
+            }startIndex:startIndex+1 noNetWork:^{
+                [self.tableView footerEndRefreshing];
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                    [self footerRereshing];
+                }];
+            }];
+        }
     }
 }
 
@@ -349,7 +380,11 @@
         tempLabel.textAlignment = NSTextAlignmentCenter;
         NSMutableArray* localDatas=[ProjectSqlite loadList];
         if(localDatas.count !=0){
-            tempLabel.text = [NSString stringWithFormat:@"历史浏览记录"];
+            if(isReload){
+                tempLabel.text = [NSString stringWithFormat:@"历史浏览记录"];
+            }else{
+                tempLabel.text = [NSString stringWithFormat:@"推荐项目"];
+            }
         }else{
             tempLabel.text = [NSString stringWithFormat:@"推荐项目"];
         }
