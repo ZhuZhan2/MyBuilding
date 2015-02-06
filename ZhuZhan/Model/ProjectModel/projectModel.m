@@ -47,6 +47,13 @@
     self.a_decorationProcess = [ProjectStage ProjectStrStage:dict[@"decorationProcess"]];
     self.isFocused = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"isFocused"]]];
     self.a_projectstage = [ProjectStage ProjectStrStage:dict[@"projectStage"]];
+    if(![[ProjectStage ProjectStrStage:dict[@"imageLocation"]] isEqualToString:@""]){
+        self.a_imageLocation = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"imageLocation"]]];
+    }else{
+        self.a_imageLocation = [ProjectStage ProjectStrStage:dict[@"imageLocation"]];
+    }
+    self.a_imageHeight = [ProjectStage ProjectStrStage:dict[@"imageHeight"]];
+    self.a_imageWidth = [ProjectStage ProjectStrStage:dict[@"imageWidth"]];
 }
 
 -(void)getContacts:(NSArray *)contacts{

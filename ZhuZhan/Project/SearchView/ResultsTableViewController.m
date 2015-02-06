@@ -78,6 +78,7 @@
     self.navigationItem.titleView = bgView;
     
     startIndex = 0;
+    allCount = @"0";
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     self.tableView.separatorStyle = NO;
     
@@ -168,12 +169,13 @@
 - (void)headerRereshing
 {
     startIndex = 0;
-    [showArr removeAllObjects];
     if(self.flag == 0){
         [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
+                [showArr removeAllObjects];
                 if(posts.count !=0){
                     showArr = posts[0];
+                    NSLog(@"%@",showArr);
                     allCount = posts[1];
                 }else{
                     showArr = posts[0];
@@ -197,6 +199,7 @@
     }else{
         [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
+                [showArr removeAllObjects];
                 if(posts.count !=0){
                     showArr = posts[0];
                     allCount = posts[1];

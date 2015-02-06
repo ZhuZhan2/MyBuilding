@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface projectModel : NSObject
+//列表显示图片
+@property (nonatomic,strong) NSString *a_imageLocation;
+@property (nonatomic,strong) NSString *a_imageHeight;
+@property (nonatomic,strong) NSString *a_imageWidth;
 //项目ID
 @property (nonatomic,strong) NSString *a_id;
 //地块名称

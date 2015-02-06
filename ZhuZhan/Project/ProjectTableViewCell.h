@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "projectModel.h"
-
+#import "EGOImageView.h"
 @protocol ProjectTableViewCellDelegate <NSObject>
 
 -(void)addProjectCommentView:(int)index;
 
 @end
-@interface ProjectTableViewCell : UITableViewCell{
+@interface ProjectTableViewCell : UITableViewCell<EGOImageViewDelegate>{
     NSString *stage;
     UILabel *nameLabel;
     UILabel *investmentLabel;
@@ -26,6 +26,9 @@
     UILabel *enddateLabel;
     UILabel *addressLabel;
     UILabel *zoneLabel;
+    EGOImageView *bigImage;
+    float imageHight;
+    float imageWidth;
     int flag;
 }
 @property(nonatomic,weak)projectModel *model;

@@ -99,8 +99,9 @@
     enddateLabel.text = [model.a_exceptFinishTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     [bgImgView addSubview:enddateLabel];
     
-    UIImageView *bigImage = [[UIImageView alloc] initWithFrame:CGRectMake(2.2,110,287.7,109.5)];
-    [bigImage setImage:[GetImagePath getImagePath:@"全部项目_37"]];
+    bigImage = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"全部项目_37"]];
+    bigImage.frame = CGRectMake(2.2,110,288,110);
+    bigImage.delegate = self;
     [bgImgView addSubview:bigImage];
     
     UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(13,232,18,23)];
@@ -222,5 +223,18 @@
         addressLabel.text = model.a_landAddress;
         addressLabel.textColor = [UIColor blackColor];
     }
+    
+    imageHight = [model.a_imageHeight floatValue];
+    imageWidth = [model.a_imageWidth floatValue];
+    bigImage.imageURL = [NSURL URLWithString:model.a_imageLocation];
+}
+
+- (void)imageViewLoadedImage:(EGOImageView*)imageView{
+    //图片裁剪
+    UIImage *srcimg = imageView.image;
+    CGRect rect =  CGRectMake((imageWidth-288)/2, (imageHight-110)/2, 288, 110);//要裁剪的图片区域，按照原图的像素大小来，超过原图大小的边自动适配
+    CGImageRef cgimg = CGImageCreateWithImageInRect([srcimg CGImage], rect);
+    bigImage.image = [UIImage imageWithCGImage:cgimg];
+    CGImageRelease(cgimg);//用完一定要释放，否则内存泄露
 }
 @end

@@ -19,10 +19,12 @@
 #import "ParticularsModel.h"
 #import "ContactBackgroundView.h"
 #import "LoginViewController.h"
+#import "LoadingView.h"
 @interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate,MFMailComposeViewControllerDelegate,ContactCellDelegate,LoginViewDelegate,UIActionSheetDelegate>{
     NSMutableArray *viewArr;
     ContactBackgroundView *contactbackgroundview;
     int startIndex;
+    LoadingView *loadingView;
 }
 @property (nonatomic,strong) NSString *contactId;
 @property (nonatomic, strong) XHPathCover *pathCover;

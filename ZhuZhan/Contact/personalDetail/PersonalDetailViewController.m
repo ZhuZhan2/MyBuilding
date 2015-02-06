@@ -151,6 +151,7 @@
 }
 
 -(void)firstNetWork{
+    loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view];
     [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
@@ -189,6 +190,7 @@
                     }
                 } userId:self.contactId startIndex:startIndex noNetWork:nil];
             }
+            [LoadingView removeLoadingView:loadingView];
         }else{
             [LoginAgain AddLoginView:NO];
         }
