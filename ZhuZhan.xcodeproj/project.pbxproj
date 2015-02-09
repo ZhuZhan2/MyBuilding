@@ -5311,6 +5311,7 @@
 						DevelopmentTeam = AU89D3J45E;
 					};
 					0426C00119922CE400CD8822 = {
+						DevelopmentTeam = AU89D3J45E;
 						TestTargetID = 0426BFE619922CE400CD8822;
 					};
 				};
@@ -6673,6 +6674,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ZhuZhan.app/ZhuZhan";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -6686,6 +6689,7 @@
 				);
 				INFOPLIST_FILE = "ZhuZhanTests/ZhuZhanTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -6695,6 +6699,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ZhuZhan.app/ZhuZhan";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -6704,6 +6710,7 @@
 				GCC_PREFIX_HEADER = "ZhuZhan/ZhuZhan-Prefix.pch";
 				INFOPLIST_FILE = "ZhuZhanTests/ZhuZhanTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};

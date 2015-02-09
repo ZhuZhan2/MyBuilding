@@ -22,9 +22,9 @@
 #endif
 
 //#define serverAddress "http://203.114.247.211:82/"
-#define  serverAddress "http://203.114.247.212:21202/"
+//#define  serverAddress "http://203.114.247.212:21202/"
 //#define  serverAddress "http://www.shenjigroup.com:2192/"
-//#define  serverAddress "http://192.168.222.95:801/"
+#define  serverAddress "http://192.168.222.95:801/"
 //#define  serverAddress "http://192.168.222.96:96/"
 #define  kScreenWidth  [[UIScreen mainScreen] bounds].size.width
 #define  kScreenHeight [[UIScreen mainScreen] bounds].size.height
