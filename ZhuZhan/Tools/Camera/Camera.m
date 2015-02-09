@@ -85,6 +85,11 @@ static int BtnTag =0;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = [info objectForKey:BtnTag==110120?UIImagePickerControllerOriginalImage:UIImagePickerControllerEditedImage];
+    
+    UIImageView *preview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width/2, image.size.height/2)];
+    [preview setImage:image];
+    image = [self convertViewAsImage:preview];
+    
     //image = [self fixOrientation:image];
     
     NSData *imageData = UIImageJPEGRepresentation(image, 0.3);
@@ -220,5 +225,13 @@ static int BtnTag =0;
 -(void)dealloc{
     NSLog(@"camera dealloc");
     
+}
+
+- (UIImage *)convertViewAsImage:(UIView *)aview {
+    UIGraphicsBeginImageContext(aview.bounds.size);
+    [aview.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 @end
