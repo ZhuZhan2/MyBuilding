@@ -74,7 +74,7 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(gotoLogin:) name:@"LoginAgain" object:nil];
     
-    /*
+    
     //更多按钮的实现
     UIImage *storyMenuItemImage = [GetImagePath getImagePath:@"bg-menuitem"];
     UIImage *storyMenuItemImagePressed = [GetImagePath getImagePath:@"bg-menuitem-highlighted"];
@@ -110,8 +110,8 @@
     menu = [[QuadCurveMenu alloc] initWithFrame:self.view.bounds menus:menus];
     //menu.backgroundColor=[UIColor greenColor];
     menu.delegate = self;
-    [self.view addSubview:menu];
-     */
+    
+     
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:0.5 animations:^{
@@ -120,6 +120,7 @@
             [imageView removeFromSuperview];
             [self.view addSubview:contentView];
             [self.view addSubview:toolView];
+            //[self.view addSubview:menu];
         }];
     });
 }
