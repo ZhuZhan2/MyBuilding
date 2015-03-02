@@ -22,6 +22,7 @@
 @property(nonatomic,strong)UIActivityIndicatorView* indicatorView;
 @property(nonatomic,strong)LoadingView *loadingView;
 @property(nonatomic,strong)NoProductView *noProductView;
+@property(nonatomic,strong)UISearchBar* searchBar;
 @end
 
 @implementation ProductViewController
@@ -46,11 +47,23 @@
 	  
     //初始化navi
     [self loadNavi];
+    
+    [self initSearchView];
+    
 	//初始化瀑布流视图
     [self loadQtmquitView];
     [self loadIndicatorView];
     startIndex = 0;
     [self firstNetWork];
+}
+
+-(void)initSearchView{
+    self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, 320, 43)];
+    self.searchBar.placeholder = @"搜索";
+    self.searchBar.tintColor = [UIColor grayColor];
+    self.searchBar.backgroundImage=[self imageWithColor:RGBCOLOR(223, 223, 223)];
+    //self.searchBar.delegate=self;
+    [self.view addSubview:self.searchBar];
 }
 
 -(void)firstNetWork{
@@ -90,7 +103,7 @@
 }
 
 -(void)loadQtmquitView{
-    qtmquitView = [[TMQuiltView alloc] initWithFrame:CGRectMake(0, 0, 320, 568-49)];
+    qtmquitView = [[TMQuiltView alloc] initWithFrame:CGRectMake(0, 64+43, 320, 568-49-43-64)];
 	qtmquitView.delegate = self;
 	qtmquitView.dataSource = self;
 	qtmquitView.showsVerticalScrollIndicator=NO;
@@ -203,6 +216,7 @@
         cell = [[TMPhotoQuiltViewCell alloc] initWithReuseIdentifier:@"PhotoCell"];
     }
     ProductModel *model = showArr[indexPath.row];
+    cell.nameLabel.text = @"产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称";
     cell.titleLabel.text = model.a_content;
     cell.commentCountLabel.text= model.a_commentNumber;
     cell.imageSize = [self imageAtIndexPath:indexPath];
@@ -223,9 +237,29 @@
     CGFloat scroll=[quiltView cellWidth]/size.width;
     
     ProductModel *model = showArr[indexPath.row];
-    BOOL productContentExist=![model.a_content isEqualToString:@""];
     
-    return [self imageAtIndexPath:indexPath].height *scroll+(productContentExist?80:30);
+    CGFloat height=0;
+    NSString* name=@"产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称";
+    if (![name isEqualToString:@""]) {
+        height+=5;
+        CGFloat tempHeight=[name boundingRectWithSize:CGSizeMake([quiltView cellWidth]-10, 9999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:nameFont} context:nil].size.height;
+        tempHeight=tempHeight>=20?40:20;
+        height+=tempHeight;
+        height+=5;
+    }
+    
+    if (![model.a_content isEqualToString:@""]) {
+         CGFloat tempHeight=[model.a_content boundingRectWithSize:CGSizeMake([quiltView cellWidth]-10, 9999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:titleFont} context:nil].size.height;
+        tempHeight=tempHeight>=18?36:18;
+        height+=tempHeight;
+        height+=5;
+    }
+    
+   // BOOL productContentExist=![model.a_content isEqualToString:@""];
+    
+    
+    
+    return size.height *scroll+height+30;
 }
 
 //选中cell调用的方法
@@ -236,7 +270,14 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)didReceiveMemoryWarning{
-    [super didReceiveMemoryWarning];
+-(UIImage*)imageWithColor:(UIColor *)color{
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 @end

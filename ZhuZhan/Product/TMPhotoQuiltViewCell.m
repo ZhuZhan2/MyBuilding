@@ -53,12 +53,25 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
     return _photoView;
 }
 
+- (UILabel*)nameLabel{
+    if (!_nameLabel) {
+        _nameLabel = [[UILabel alloc]init];
+        _nameLabel.numberOfLines = 0;
+        _nameLabel.font = nameFont;
+        _nameLabel.textColor=BlueColor;
+       // _nameLabel.backgroundColor=[UIColor greenColor];
+        [self addSubview:_nameLabel];
+    }
+    return _nameLabel;
+}
+
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.numberOfLines=2;
-        _titleLabel.font=[UIFont systemFontOfSize:14];
+        _titleLabel.font=titleFont;
         _titleLabel.textColor=GrayColor;
+       // _titleLabel.backgroundColor=[UIColor blueColor];
         [self addSubview:_titleLabel];
     }
     return _titleLabel;
@@ -93,22 +106,37 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
     return _separatorLine;
 }
 
+CGFloat returnOriginY(CGRect frame){
+    return frame.origin.y+frame.size.height;
+}
+
 - (void)layoutSubviews {
     //产品描述内容是否存在
     BOOL productContentExist=![self.titleLabel.text isEqualToString:@""];
 
     //产品图片
-    self.photoView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height-(productContentExist?80:30));
-    
+    self.photoView.frame = CGRectMake(0, 0, self.bounds.size.width, [self.model.a_imageHeight floatValue]*self.bounds.size.width/[self.model.a_imageWidth floatValue]);
+
     if ([self.model.a_imageUrl isEqualToString:@""]) {
         self.photoView.image=[GetImagePath getImagePath:@"动态产品评论02"];
     }
     
+    NSString* name=@"产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称";
+    //name=@"";
+    CGFloat height=[name boundingRectWithSize:CGSizeMake(self.bounds.size.width-10, 9999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.nameLabel.font} context:nil].size.height;
+    CGFloat tempHeight=[name boundingRectWithSize:CGSizeMake(self.bounds.size.width-10, 9999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:nameFont} context:nil].size.height;
+    tempHeight=tempHeight>=20?40:20;
+    self.nameLabel.frame=CGRectMake(5, returnOriginY(self.photoView.frame)+5, self.bounds.size.width-10, tempHeight);
+    NSLog(@"height==%lf",height);
+    
+    
     //判断cell中是否包含产品描述内容
+    tempHeight=[self.titleLabel.text boundingRectWithSize:CGSizeMake(self.bounds.size.width-10, 9999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:titleFont} context:nil].size.height;
+    tempHeight=tempHeight>=18?36:18;
     BOOL isContainContent=[self.subviews containsObject:self.titleLabel];
     if (productContentExist) {
         if (!isContainContent) [self addSubview:self.titleLabel];
-        self.titleLabel.frame = CGRectMake(10, self.bounds.size.height - 75,self.bounds.size.width-20,40);
+        self.titleLabel.frame = CGRectMake(5, returnOriginY(self.nameLabel.frame),self.bounds.size.width-10,tempHeight);
     }else{
         if (isContainContent) [self.titleLabel removeFromSuperview];
     }
@@ -120,13 +148,13 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
     self.commentIcon.center=CGPointMake(20, self.bounds.size.height-15);
     
     //判断cell是否包含分割线
-    BOOL isContainSeparatorLine=[self.subviews containsObject:self.separatorLine];
-    if (productContentExist) {
-        if (!isContainSeparatorLine) [self addSubview:self.separatorLine];
+    //BOOL isContainSeparatorLine=[self.subviews containsObject:self.separatorLine];
+    //if (productContentExist) {
+        //if (!isContainSeparatorLine) [self addSubview:self.separatorLine];
         self.separatorLine.center=CGPointMake(self.bounds.size.width*.5, self.bounds.size.height-30);
-    }else{
-        if (isContainSeparatorLine) [self.separatorLine removeFromSuperview];
-    }
+   // }else{
+       // if (isContainSeparatorLine) [self.separatorLine removeFromSuperview];
+    //}
   
     //cell的阴影
     self.layer.shadowColor=[[UIColor grayColor]CGColor];

@@ -154,9 +154,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self.loadingView=[LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view];
 
     //因为动态详情进来的产品model.content是评论而不是产品描述内容，所以先不出mainView，加载后会更新
-    if (!(self.activesModel&&[self.category isEqualToString:@"Product"])) {
-        [self getMainView];
-    }
+    //暂时先取消，因为网络请求后会再次加载的，如果出现BUG，再次重新打开查看是否还存在BUG
+    //if (!(self.activesModel&&[self.category isEqualToString:@"Product"])) {
+       // [self getMainView];
+    //}
     [self loadTimeScroller];
     [self firstNetWork];
 }

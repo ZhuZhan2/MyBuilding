@@ -25,7 +25,10 @@
 @property (nonatomic, strong) UIImageView *defaultImageView;
 @property (nonatomic) CGSize imageSize;
 @property (nonatomic, strong) EGOImageView *photoView;
+@property (nonatomic, strong) UILabel* nameLabel;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel* commentCountLabel;
 @property (nonatomic, strong) ProductModel *model;
 @end
+#define nameFont [UIFont systemFontOfSize:15]
+#define titleFont [UIFont systemFontOfSize:14]
