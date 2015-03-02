@@ -103,7 +103,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)firstNetWork{
     self.tableView.scrollEnabled=NO;
     loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view];
-    if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
+    if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
         if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
             [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
@@ -201,7 +201,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 {
     NSLog(@"发布产品");
     
-    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken"];
+    NSString *deviceToken = [LoginSqlite getdata:@"token"];
     
     if ([deviceToken isEqualToString:@""]) {
         
@@ -544,7 +544,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 //点击自己头像去个人中心
 -(void)gotoMyCenter{
-    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken"];
+    NSString *deviceToken = [LoginSqlite getdata:@"token"];
 
     if ([deviceToken isEqualToString:@""]) {
         LoginViewController *loginVC = [[LoginViewController alloc] init];
@@ -636,7 +636,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)addCommentView:(NSIndexPath *)indexPath{
     indexpath = indexPath;
-    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken"];
+    NSString *deviceToken = [LoginSqlite getdata:@"token"];
     NSLog(@"********deviceToken***%@",deviceToken);
     if ([deviceToken isEqualToString:@""]) {
         
@@ -703,7 +703,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)reloadView{
-    if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
+    if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
         if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
             [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){

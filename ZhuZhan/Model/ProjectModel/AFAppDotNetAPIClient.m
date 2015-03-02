@@ -41,9 +41,9 @@ static NSString * const AFAppDotNetAPIBaseURLString = @serverAddress;
 +(AFAppDotNetAPIClient *)sharedNewClient{
     AFAppDotNetAPIClient *_sharedNewClient = [AFAppDotNetAPIClient sharedClient];
     NSLog(@"%@",_sharedNewClient);
-    if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
-        //NSLog(@"=====>%@",[LoginSqlite getdata:@"deviceToken" defaultdata:@""]);
-        [_sharedNewClient.requestSerializer setValue:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"deviceToken"]] forHTTPHeaderField:@"Authorization"];
+    if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
+        //NSLog(@"=====>%@",[LoginSqlite getdata:@"token" defaultdata:@""]);
+        [_sharedNewClient.requestSerializer setValue:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forHTTPHeaderField:@"Authorization"];
     }else{
         [_sharedNewClient.requestSerializer setValue:@"" forHTTPHeaderField:@"Authorization"];
     }

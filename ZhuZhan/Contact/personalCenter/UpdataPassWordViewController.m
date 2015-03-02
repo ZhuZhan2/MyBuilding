@@ -202,7 +202,7 @@
         [dic setValue:[MD5 md5HexDigest:oldPassWordTextField.text] forKey:@"oldpassword"];
         [dic setValue:[MD5 md5HexDigest:newPassWordTextField.text] forKey:@"password"];
         [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"userId"];
-        [dic setValue:[LoginSqlite getdata:@"deviceToken"] forKey:@"token"];
+        [dic setValue:[LoginSqlite getdata:@"token"] forKey:@"token"];
         [LoginModel ChangePasswordWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 [self.navigationController popViewControllerAnimated:YES];

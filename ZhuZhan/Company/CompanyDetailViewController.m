@@ -237,7 +237,7 @@
 }
 
 -(void)gotoNoticeView{
-    if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
+    if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
         if (![ConnectionAvailable isConnectionAvailable]) {
             [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
             return;
@@ -280,7 +280,7 @@
 
 -(void)applyForCertification{
     NSLog(@"用户选择了 申请认证");
-    if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
+    if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"是否申请公司认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
         [alertView show];
     }else{

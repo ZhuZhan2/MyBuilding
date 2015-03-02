@@ -102,7 +102,7 @@
 }
 
 -(void)rightBtnClick{
-    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken"];
+    NSString *deviceToken = [LoginSqlite getdata:@"token"];
     
     if ([deviceToken isEqualToString:@""]) {
         

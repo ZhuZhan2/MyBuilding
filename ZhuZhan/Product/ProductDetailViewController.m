@@ -356,8 +356,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)chooseComment:(UIButton*)button{
-    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken"];
-    //判断是否有deviceToken,没有则进登录界面
+    NSString *deviceToken = [LoginSqlite getdata:@"token"];
+    //判断是否有token,没有则进登录界面
     if ([deviceToken isEqualToString:@""]) {
         LoginViewController *loginVC = [[LoginViewController alloc] init];
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];

@@ -174,16 +174,16 @@
 //    }
     self.loginBtn.enabled=NO;
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setValue:_userNameTextField.text forKey:@"userName"];
+    [dic setValue:_userNameTextField.text forKey:@"userNameOrCellPhone"];
     [dic setValue:[MD5 md5HexDigest:_passWordTextField.text] forKey:@"password"];
-    [dic setValue:@"mobile" forKey:@"deviceType"];
+    [dic setValue:@"02" forKey:@"deviceType"];
     [LoginModel LoginWithBlock:^(NSMutableArray *posts, NSError *error) {
         self.loginBtn.enabled=YES;
         if(!error){
             if(posts.count !=0){
                 LoginModel *model = posts[0];
                 NSLog(@"%@",model.a_deviceToken);
-                [LoginSqlite insertData:model.a_deviceToken datakey:@"deviceToken"];
+                [LoginSqlite insertData:model.a_deviceToken datakey:@"token"];
                 [LoginSqlite insertData:model.a_userId datakey:@"userId"];
                 [LoginSqlite insertData:model.a_userName datakey:@"userName"];
                 [LoginSqlite insertData:model.a_userImage datakey:@"userImage"];
