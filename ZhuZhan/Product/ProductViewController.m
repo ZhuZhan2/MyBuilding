@@ -211,15 +211,15 @@
 //=====================================================================
 
 - (CGSize)imageAtIndexPath:(NSIndexPath *)indexPath {
-    ProductModel* model=showArr[indexPath.row];
-    CGSize size;
-    if ([model.a_imageUrl isEqualToString:@""]) {
-        size=CGSizeMake(151, 113);
-    }else{
-    size=CGSizeMake([model.a_imageWidth floatValue]*.5, [model.a_imageHeight floatValue]*.5);
-    }
-    return size;
-    //return CGSizeMake(151, 113);
+//    ProductModel* model=showArr[indexPath.row];
+//    CGSize size;
+//    if ([model.a_imageUrl isEqualToString:@""]) {
+//        size=CGSizeMake(151, 113);
+//    }else{
+//    size=CGSizeMake([model.a_imageWidth floatValue]*.5, [model.a_imageHeight floatValue]*.5);
+//    }
+//    return size;
+    return CGSizeMake(151, 113);
 }
 
 - (NSInteger)quiltViewNumberOfCells:(TMQuiltView *)TMQuiltView {
