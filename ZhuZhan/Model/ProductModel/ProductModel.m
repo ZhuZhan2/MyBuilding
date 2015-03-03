@@ -13,15 +13,15 @@
 @implementation ProductModel
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
-    self.a_id = [ProjectStage ProjectStrStage:_dict[@"id"]];
+    self.a_id = [ProjectStage ProjectStrStage:_dict[@"productId"]];
     self.a_name = [ProjectStage ProjectStrStage:_dict[@"productName"]];
-    self.a_content = [ProjectStage ProjectStrStage:_dict[@"content"]];
-    if(![[ProjectStage ProjectStrStage:_dict[@"imageLocation"]] isEqualToString:@""]){
-        self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:_dict[@"imageLocation"]]];
+    self.a_content = [ProjectStage ProjectStrStage:_dict[@"productDesc"]];
+    if(![[ProjectStage ProjectStrStage:_dict[@"imageSrc"]] isEqualToString:@""]){
+        self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:_dict[@"imageSrc"]]];
     }else{
-        self.a_imageUrl = [ProjectStage ProjectStrStage:_dict[@"imageLocation"]];
+        self.a_imageUrl = [ProjectStage ProjectStrStage:_dict[@"imageSrc"]];
     }
-    self.a_commentNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"productCommentsNumber"]]];
+    self.a_commentNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"commetNum"]]];
     self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"imageWidth"]]];
     self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"imageHeight"]]];
     if(![[ProjectStage ProjectStrStage:_dict[@"avatarUrl"]] isEqualToString:@""]){
@@ -42,20 +42,22 @@
     return _a_commentNumber;
 }
 
-+ (NSURLSessionDataTask *)GetProductInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex noNetWork:(void(^)())noNetWork{
++ (NSURLSessionDataTask *)GetProductInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex keyWords:(NSString *)keyWords noNetWork:(void (^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
             noNetWork();
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/ProductInformation/ProductInformation?pageSize=10&pageIndex=%d",startIndex];
+    NSString *urlStr = [NSString stringWithFormat:@"api/productInfo/getProductInfoPage?pageSize=10&pageIndex=%d&productDesc=%@",startIndex,keyWords];
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)urlStr, NULL, NULL,  kCFStringEncodingUTF8 ));
     //NSLog(@"%@",urlStr);
-    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+    return [[AFAppDotNetAPIClient sharedNewClient] GET:encodedString parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+        NSLog(@"%@",JSON[@"status"][@"errorMsg"]);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            for(NSDictionary *item in JSON[@"d"][@"data"]){
+            for(NSDictionary *item in JSON[@"data"][@"rows"]){
                 ProductModel *model = [[ProductModel alloc] init];
                 [model setDict:item];
                 [mutablePosts addObject:model];

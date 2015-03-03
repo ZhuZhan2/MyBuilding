@@ -257,32 +257,32 @@ static int count =0;//记录生日textField 的时间被触发的次数
 }
 
 //cameraDelegate
--(void)changeUserIcon:(NSString *)imageStr AndImage:(UIImage *)image//更该用户头像
+-(void)changeUserIcon:(NSString *)imageStr AndImage:(UIImage *)image imageData:(NSData *)imageData//更该用户头像
 {
     NSLog(@"********userId******* %@",userIdStr);
     NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"userId",imageStr,@"userImageStrings", nil];
     [LoginModel AddUserImageWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [_pathCover addImageHead:image];
-            [LoginSqlite insertData:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0][@"imageLocation"]] datakey:@"userImage"];
+            [LoginSqlite insertData:posts[0] datakey:@"userImage"];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } dic:parameter noNetWork:nil];
+    }data:nil dic:parameter noNetWork:nil];
 }
 
--(void)changeBackgroundImage:(NSString *)imageStr AndImage:(UIImage *)image{
+-(void)changeBackgroundImage:(NSString *)imageStr AndImage:(UIImage *)image imageData:(NSData *)imageData{
     NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"userId",imageStr,@"BackgroundImageString", nil];
     [LoginModel AddBackgroundImageWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            [LoginSqlite insertData:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0][@"imageLocation"]] datakey:@"backgroundImage"];
-            [_pathCover setBackgroundImageUrlString:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0][@"imageLocation"]]];
+            [LoginSqlite insertData:posts[0] datakey:@"backgroundImage"];
+            [_pathCover setBackgroundImageUrlString:posts[0]];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changBackground" object:nil];
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } dic:parameter noNetWork:nil];
+    }data:nil dic:parameter noNetWork:nil];
 }
 
 /**********************************************************************/
@@ -319,12 +319,21 @@ static int count =0;//记录生日textField 的时间被触发的次数
         return;
     }
     
-    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userIdStr,@"userId",model.userName,@"userName",model.realName,@"realName",model.sex,@"sex",model.city,@"locationCity",model.birthday,@"birthday",model.constellation,@"constellation",model.bloodType,@"bloodType",model.email,@"email",model.provice,@"province",model.city,@"city",model.district,@"district",model.industry,@"industry",nil];
-    NSLog(@"industry ===> %@",model.industry);
-    NSLog(@"parameter==%@",parameter);
+    NSMutableDictionary  *parameter = [[NSMutableDictionary alloc] init];
+    [parameter setValue:model.realName forKey:@"realName"];
+    [parameter setValue:model.email forKey:@"email"];
+    if([model.sex isEqualToString:@"男"]){
+        [parameter setValue:@"00" forKey:@"sex"];
+    }else if([model.sex isEqualToString:@"女"]){
+        [parameter setValue:@"01" forKey:@"sex"];
+    }
+    [parameter setValue:model.constellation forKey:@"constellation"];
+    [parameter setValue:model.birthday forKey:@"birthday"];
+    [parameter setValue:model.bloodType forKey:@"bloodType"];
+    [parameter setValue:[NSString stringWithFormat:@"%@,%@,%@",model.provice,model.city,model.district] forKey:@"areaCode"];
+    [parameter setValue:model.industry forKey:@"industry"];
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            NSLog(@"===>%@",model.userName);
             [LoginSqlite insertData:model.userName datakey:@"userName"];
             [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
             [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"保存成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil]show];

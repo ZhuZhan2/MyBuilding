@@ -158,10 +158,9 @@
     }
     
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setValue:self.userId forKey:@"userId"];
     [dic setValue:self.barCode forKey:@"barCode"];
     [dic setValue:[MD5 md5HexDigest:passWordField.text] forKey:@"password"];
-    [dic setValue:self.cellPhone forKey:@"cellphone"];
+    [dic setValue:self.cellPhone forKey:@"cellPhone"];
     [LoginModel FindPasswordWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.navigationController.navigationBar.hidden=YES;

@@ -84,7 +84,7 @@
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } startIndex:0 noNetWork:^{
+    } startIndex:0 keyWords:@"" noNetWork:^{
         [self endIndicatorView];
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-49-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
@@ -169,7 +169,7 @@
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } startIndex:0 noNetWork:^{
+    } startIndex:0 keyWords:@"" noNetWork:^{
         [qtmquitView headerEndRefreshing];
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-49-64) superView:self.view reloadBlock:^{
             [self headerRereshing];
@@ -198,7 +198,7 @@
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } startIndex:startIndex+1 noNetWork:^{
+    } startIndex:startIndex+1 keyWords:@"" noNetWork:^{
         [qtmquitView footerEndRefreshing];
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-49-64) superView:self.view reloadBlock:^{
             [self footerRereshing];
@@ -219,6 +219,7 @@
     size=CGSizeMake([model.a_imageWidth floatValue]*.5, [model.a_imageHeight floatValue]*.5);
     }
     return size;
+    //return CGSizeMake(151, 113);
 }
 
 - (NSInteger)quiltViewNumberOfCells:(TMQuiltView *)TMQuiltView {
@@ -236,6 +237,7 @@
     cell.commentCountLabel.text= model.a_commentNumber;
     cell.imageSize = [self imageAtIndexPath:indexPath];
     BOOL imageExist=model.a_imageUrl&&![model.a_imageUrl isEqualToString:@""];
+    NSLog(@"%@",model.a_imageUrl);
     cell.photoView.imageURL = [NSURL URLWithString:imageExist?model.a_imageUrl:@""];
     cell.model = model;
     return cell;

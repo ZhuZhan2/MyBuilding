@@ -104,7 +104,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)firstNetWork{
     self.tableView.scrollEnabled=NO;
     loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view];
-    if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
+    if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
         if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
             [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
@@ -202,7 +202,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 {
     NSLog(@"发布产品");
     
-    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken"];
+    NSString *deviceToken = [LoginSqlite getdata:@"token"];
     
     if ([deviceToken isEqualToString:@""]) {
         
@@ -259,7 +259,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [_datasource addObject:model.a_time];
             }
             _timeScroller.hidden=YES;
-            NSLog(@"===>%d",showArr.count);
             [MyTableView reloadDataWithTableView:self.tableView];
             if(showArr.count == 0){
                 [MyTableView hasData:self.tableView];
@@ -449,7 +448,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }else if([model.a_category isEqualToString:@"Company"]){
         if([model.a_eventType isEqualToString:@"Actives"]){
             commentView = viewArr[indexPath.row];
-            NSLog(@"%d",indexPath.row);
             return commentView.frame.size.height;
         }else{
             return 50;
@@ -546,7 +544,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 //点击自己头像去个人中心
 -(void)gotoMyCenter{
-    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken"];
+    NSString *deviceToken = [LoginSqlite getdata:@"token"];
 
     if ([deviceToken isEqualToString:@""]) {
         LoginViewController *loginVC = [[LoginViewController alloc] init];
@@ -638,7 +636,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)addCommentView:(NSIndexPath *)indexPath{
     indexpath = indexPath;
-    NSString *deviceToken = [LoginSqlite getdata:@"deviceToken"];
+    NSString *deviceToken = [LoginSqlite getdata:@"token"];
     NSLog(@"********deviceToken***%@",deviceToken);
     if ([deviceToken isEqualToString:@""]) {
         
@@ -695,7 +693,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)finishAddCommentFromDetailWithPosts:(NSMutableArray *)posts{
-    NSLog(@"asdfasdfa ===== %d",indexpath.row);
     ActivesModel *model = showArr[indexpath.row];
     [self finishPostCommentWithPosts:posts activesModel:model];
 }
@@ -705,7 +702,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)reloadView{
-    if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
+    if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
         if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
             [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){

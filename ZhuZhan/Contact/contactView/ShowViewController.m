@@ -140,7 +140,7 @@
 }
 
 - (void)gotoConcern{
-    if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
+    if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
         concernBtn.enabled = NO;
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         if(isFoucsed == 0){

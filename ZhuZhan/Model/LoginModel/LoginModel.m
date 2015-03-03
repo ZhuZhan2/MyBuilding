@@ -16,35 +16,22 @@
 - (void)setDict:(NSDictionary *)dict{
     _dict = dict;
     self.a_userId = [ProjectStage ProjectStrStage:dict[@"userId"]];
-    self.a_deviceToken = [ProjectStage ProjectStrStage:dict[@"deviceToken"]];
-    self.a_userName = [ProjectStage ProjectStrStage:dict[@"userName"]];
+    self.a_deviceToken = [ProjectStage ProjectStrStage:dict[@"token"]];
+    self.a_userName = [ProjectStage ProjectStrStage:dict[@"loginName"]];
     self.a_userType = [ProjectStage ProjectStrStage:dict[@"userType"]];
-    self.a_loginStatus = [ProjectStage ProjectStrStage:dict[@"loginStatus"]];
-    if(![[ProjectStage ProjectStrStage:dict[@"imageLocation"]] isEqualToString:@""]){
-        self.a_userImage = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"imageLocation"]]];
-    }else{
-        self.a_userImage = [ProjectStage ProjectStrStage:dict[@"imageLocation"]];
-    }
-    if(![[ProjectStage ProjectStrStage:dict[@"backgroundImage"]] isEqualToString:@""]){
-        self.a_backgroundImage=[NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"backgroundImage"]]];
-    }else{
-        self.a_backgroundImage=[ProjectStage ProjectStrStage:dict[@"backgroundImage"]];
-    }
-    self.a_hasCompany = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"hasCompany"]]];
+    //self.a_loginStatus = [ProjectStage ProjectStrStage:dict[@"loginStatus"]];
+//    if(![[ProjectStage ProjectStrStage:dict[@"imageLocation"]] isEqualToString:@""]){
+//        self.a_userImage = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"imageLocation"]]];
+//    }else{
+//        self.a_userImage = [ProjectStage ProjectStrStage:dict[@"imageLocation"]];
+//    }
+//    if(![[ProjectStage ProjectStrStage:dict[@"backgroundImage"]] isEqualToString:@""]){
+//        self.a_backgroundImage=[NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"backgroundImage"]]];
+//    }else{
+//        self.a_backgroundImage=[ProjectStage ProjectStrStage:dict[@"backgroundImage"]];
+//    }
+//    self.a_hasCompany = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"hasCompany"]]];
 }
-
-
-// post参数：
-// {"cellPhone": ":@“143123123”}
-//
-// RESPONSE:
-//     {
-//         "d": {
-//             "status": {
-//                 "statusCode": 1300
-//             }
-//         }
-//     }
 
 + (NSURLSessionDataTask *)GenerateWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
@@ -53,15 +40,15 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/code/generate?cellPhone=%@&type=%@",dic[@"cellPhone"],dic[@"type"]];
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/generate"];
     NSLog(@"%@",urlStr);
-    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             if (block) {
                 block(nil, nil);
             }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1331"]){
+        }else if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"1331"]){
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发送太频繁请稍后再试" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }else{
@@ -103,33 +90,6 @@
     }];
 }
 
-
-// post参数：
-// {
-// "cellPhone": ":cellPhone",
-// "password": ":”password",
-// "deviceType": ":mobile || web",
-// "barCode": ":“123123"
-// "userName": "userName"
-// }
-//
-//
-//RESPONSE:
-//{
-//    "d": {
-//        "status": {
-//            "statusCode": 1300
-//        },
-//        "data": [
-//                 {
-//                     "userId": "618e491f-2541-4467-80a8-6e0c6eb561ae",
-//                     "userToken": "40f0571e-1764-4967-8808-8bd0bba6b471",
-//                     "isFaceRegister": false,
-//                     "faceCount": 0
-//                 }
-//                ]
-//    }
-//}
 + (NSURLSessionDataTask *)RegisterWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
@@ -137,12 +97,13 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/account/register2"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/register"];
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+        NSLog(@"JSON===>%@",JSON[@"status"][@"errorMsg"]);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON[@"d"][@"data"][0]];
+            [mutablePosts addObject:JSON[@"data"]];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
@@ -150,7 +111,7 @@
             if (block) {
                 block([NSMutableArray array], nil);
             }
-            NSNumber *errorcode = JSON[@"d"][@"status"][@"statusCode"];
+            NSNumber *errorcode = JSON[@"status"][@"statusCode"];
             switch ([errorcode intValue]) {
                 case 1308:
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"手机号已存在"];
@@ -183,28 +144,6 @@
     }];
 }
 
-//POST:
-//{
-//    "userName": "13812312314",
-//    "password": "1234",
-//    "deviceType": ":mobile || web"
-//}
-//
-//RESPONSE:
-//{
-//    "d": {
-//        "status": {
-//            "statusCode": 1300
-//        },
-//        "data": [
-//                 {
-//                     "userId": "d85b740b-f5ca-432b-86a6-422a0569f0d1",
-//                     "userToken": "0b3af34d-e9b8-4455-9220-737e68470711",
-//                     "devicetoken": null
-//                 }
-//                 ]
-//    }
-//}
 + (NSURLSessionDataTask *)LoginWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
@@ -216,10 +155,10 @@
     NSLog(@"dic===>%@",dic);
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON==>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             LoginModel *model = [[LoginModel alloc] init];
-            [model setDict:JSON[@"d"][@"data"][0]];
+            [model setDict:JSON[@"data"]];
             [mutablePosts addObject:model];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
@@ -292,27 +231,6 @@
     }];
 }
 
-//POST:
-//{
-//  "userId":"用户id",
-//  "faceId":"face++id"
-//}
-//RESPONSE:
-//{
-//    "d": {
-//        "status": {
-//            "statusCode": 1300
-//        },
-//        "data": [
-//                 {
-//                     "userId": "d85b740b-f5ca-432b-86a6-422a0569f0d1",
-//                     "userToken": "0b3af34d-e9b8-4455-9220-737e68470711",
-//                     "IsFaceRegister": "0",
-//                     "FaceCount":"注册脸的个数"
-//                 }
-//                 ]
-//    }
-//}
 + (NSURLSessionDataTask *)PostFaceLoginWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
@@ -337,20 +255,6 @@
     }];
 }
 
-//POST:
-//{
-//    "userId": "d85b740b-f5ca-432b-86a6-422a0569f0d1",
-//    "deviceType": "web"
-//}
-//
-//RESPONSE:
-//{
-//    "d": {
-//        "status": {
-//            "statusCode": 1300
-//        }
-//    }
-//}
 + (NSURLSessionDataTask *)PostLogOutWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
@@ -412,11 +316,10 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/account/InformationImproved"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/updateInformation"];
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
-        NSString *statusCode = [[[JSON objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"statusCode"];
-        if ([[NSString stringWithFormat:@"%@",statusCode] isEqualToString:@"1300"]) {
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]] isEqualToString:@"200"]){
             if(block){
                 block(nil,nil);
             }
@@ -499,23 +402,20 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/networking/UserDetails?userId=%@",userId];
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/userDetails?userId=%@",userId];
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"获取用户信息");
         NSLog(@"JSON===>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             ContactModel *model = [[ContactModel alloc] init];
-            NSLog(@"%@",JSON[@"d"][@"data"][@"baseInformation"]);
-            [model setDict:JSON[@"d"][@"data"][@"baseInformation"]];
+            [model setDict:JSON[@"data"]];
             [mutablePosts addObject:model];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -527,80 +427,49 @@
     }];
 }
 
-//POST:
-//{
-//    "userId": "d85b740b-f5ca-432b-86a6-422a0569f0d1",
-//    "UserImageStrings": "base64"
-//}
-//
-//RESPONSE:
-//{
-//    "d": {
-//        "status": {
-//            "statusCode": 1300
-//        }
-//    }
-//}
-+ (NSURLSessionDataTask *)AddUserImageWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
++ (NSURLSessionDataTask *)AddUserImageWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block data:(NSData *)data dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
             noNetWork();
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/account/AddUserImage"];
-    NSLog(@"dic==%@",dic);
-    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
-            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON[@"d"][@"data"]];
-            if (block) {
-                block([NSMutableArray arrayWithArray:mutablePosts], nil);
-            }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/addUserImage"];
+    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:data name:@"userImageStrings" fileName:@"userAvatar.jpg" mimeType:@"image/jpg"];
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"responseObject ==> %@",responseObject);
+        if (block) {
+            block([NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%s%@",serverAddress,responseObject[@"data"]], nil], nil);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {
             block([NSMutableArray array], error);
         }
-        
     }];
 }
 
-+ (NSURLSessionDataTask *)AddBackgroundImageWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
++ (NSURLSessionDataTask *)AddBackgroundImageWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block data:(NSData *)data dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
             noNetWork();
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/account/AddBackgroundImage"];
-    NSLog(@"=====%@",dic);
-    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"=====%@",dic);
-        NSLog(@"封面JSON===>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
-            if (block) {
-                block([NSMutableArray arrayWithObject:JSON[@"d"][@"data"]], nil);
-            }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/addBackgroundImage"];
+    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:data name:@"backgroundImageString" fileName:@"userBackground.jpg" mimeType:@"image/jpg"];
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"responseObject ==> %@",responseObject);
+        if (block) {
+            block([NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%s%@",serverAddress,responseObject[@"data"]], nil], nil);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {
             block([NSMutableArray array], error);
         }
-        
     }];
 }
 
@@ -612,27 +481,17 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/account/UserImages?userId=%@",userId];
-    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
-            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON[@"d"][@"data"][@"imageLocation"]];
-            if (block) {
-                block([NSMutableArray arrayWithArray:mutablePosts], nil);
-            }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/userImages"];
+    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@",responseObject[@"data"]);
+        if (block) {
+            block([NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%s%@",serverAddress,responseObject[@"data"]], nil], nil);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {
             block([NSMutableArray array], error);
         }
-        
     }];
 }
 
@@ -643,18 +502,18 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/account/ChangePassword"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/changePassword"];
     NSLog(@"dic==%@",dic);
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             [mutablePosts addObject:JSON];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
         }else{
-            NSNumber *errorcode = JSON[@"d"][@"status"][@"statusCode"];
+            NSNumber *errorcode = JSON[@"status"][@"statusCode"];
             switch ([errorcode intValue]) {
                 case 1301:
                 {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"参数异常" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -732,14 +591,13 @@
     }
     userName=userName?userName:@"";
 
-    NSString *urlStr = [NSString stringWithFormat:@"api/account/CellPhone?UserNameOrCellPhone=%@",userName];
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/isExist?userNameOrCellPhone=%@",userName];
     NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)urlStr, NULL, NULL,  kCFStringEncodingUTF8 ));
     NSLog(@"urlStr==%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:encodedString parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if (block) {
-//            NSString* str=[JSON[@"d"][@"data"][@"loginType"] isEqualToString:@"Company"]?JSON[@"d"][@"data"][@"loginType"]:JSON[@"d"];
-            block([NSMutableArray arrayWithObjects:JSON[@"d"],JSON[@"d"][@"data"][@"loginType"], nil],nil);
+            block([NSMutableArray arrayWithObjects:JSON[@"status"] ,nil],nil);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);
@@ -756,18 +614,18 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/account/FindPassword"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/resetPassword"];
     NSLog(@"dic==%@",dic);
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             [mutablePosts addObject:JSON];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

@@ -133,7 +133,7 @@
 
 -(void)rightBtnClick{
     if(![dataDic[@"keywords"] isEqualToString:@""]){
-        if([[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
+        if([[LoginSqlite getdata:@"token"] isEqualToString:@""]){
             LoginViewController *loginVC = [[LoginViewController alloc] init];
             loginVC.delegate = self;
             UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];

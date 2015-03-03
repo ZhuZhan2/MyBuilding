@@ -124,7 +124,7 @@
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
         return;
     }
-    if([[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
+    if([[LoginSqlite getdata:@"token"] isEqualToString:@""]){
     
     }else{
         if([nameTextField.text isEqualToString:@""]){

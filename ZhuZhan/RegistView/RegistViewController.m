@@ -231,12 +231,12 @@
     }
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:_phoneNumberTextField.text forKey:@"cellPhone"];
-    [dic setValue:@"UserRegister" forKey:@"type"];
+    [dic setValue:@"00" forKey:@"codeType"]; //00注册，01密码找回
     [LoginModel GetIsExistWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            if ([[NSString stringWithFormat:@"%@",posts[0][@"status"][@"statusCode"]] isEqualToString:@"1300"]) {
+            if ([[NSString stringWithFormat:@"%@",posts[0][@"statusCode"]] isEqualToString:@"11017"]) {
                 [self remindErrorView:@"手机号/用户名已存在请登陆"];
-            }else if ([[NSString stringWithFormat:@"%@",posts[0][@"status"][@"statusCode"]] isEqualToString:@"1308"]){
+            }else if ([[NSString stringWithFormat:@"%@",posts[0][@"statusCode"]] isEqualToString:@"200"]){
                 [LoginModel GenerateWithBlock:^(NSMutableArray *posts, NSError *error) {
                     if(!error){
                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -361,7 +361,8 @@
     
     
     self.registerBtn.enabled=NO;
-    NSMutableDictionary *parameters =[[NSMutableDictionary alloc] initWithObjectsAndKeys:_phoneNumberTextField.text,@"cellPhone",[MD5 md5HexDigest:passWordField.text],@"password",@"mobile",@"deviceType",_yzmTextField.text,@"barCode",accountField.text,@"userName",nil];
+    NSMutableDictionary *parameters =[[NSMutableDictionary alloc] initWithObjectsAndKeys:_phoneNumberTextField.text,@"cellPhone",[MD5 md5HexDigest:passWordField.text],@"password",@"02",@"deviceType",_yzmTextField.text,@"barCode",accountField.text,@"username",nil];
+    //01网页,02移动
     NSLog(@"parameters==%@",parameters);
     
     [LoginModel RegisterWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -370,9 +371,9 @@
             if(posts.count !=0){
                 NSDictionary *item = posts[0];
                 [LoginSqlite insertData:[item objectForKey:@"userId"] datakey:@"userId"];
-                [LoginSqlite insertData:[item objectForKey:@"deviceToken"] datakey:@"deviceToken"];
-                [LoginSqlite insertData:item[@"userName"] datakey:@"userName"];
-                [LoginSqlite insertData:@"Personal" datakey:@"userType"];
+                [LoginSqlite insertData:[item objectForKey:@"token"] datakey:@"token"];
+                [LoginSqlite insertData:item[@"loginName"] datakey:@"userName"];
+                [LoginSqlite insertData:@"01" datakey:@"userType"];
                 RecommendProjectViewController *recProjectView = [[RecommendProjectViewController alloc] init];
                 [self.navigationController pushViewController:recProjectView animated:YES];
             }

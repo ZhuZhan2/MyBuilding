@@ -199,10 +199,8 @@
         [RemindView remindViewWithContent:@"密码输入不一致，请重新输入" superView:self.view centerY:260];
     }else{
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        [dic setValue:[MD5 md5HexDigest:oldPassWordTextField.text] forKey:@"oldpassword"];
-        [dic setValue:[MD5 md5HexDigest:newPassWordTextField.text] forKey:@"password"];
-        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"userId"];
-        [dic setValue:[LoginSqlite getdata:@"deviceToken"] forKey:@"token"];
+        [dic setValue:[MD5 md5HexDigest:oldPassWordTextField.text] forKey:@"oldPassword"];
+        [dic setValue:[MD5 md5HexDigest:newPassWordTextField.text] forKey:@"newPassword"];
         [LoginModel ChangePasswordWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 [self.navigationController popViewControllerAnimated:YES];
@@ -223,7 +221,6 @@
 
 -(BOOL)LetterNoErr:(NSString *)phone
 {
-    
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:nil];
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:phone options:0 range:NSMakeRange(0, [phone length])];
     if (numberOfMatches ==phone.length) {
