@@ -191,6 +191,7 @@
     size=CGSizeMake([model.a_imageWidth floatValue]*.5, [model.a_imageHeight floatValue]*.5);
     }
     return size;
+    //return CGSizeMake(151, 113);
 }
 
 - (NSInteger)quiltViewNumberOfCells:(TMQuiltView *)TMQuiltView {
@@ -207,6 +208,7 @@
     cell.commentCountLabel.text= model.a_commentNumber;
     cell.imageSize = [self imageAtIndexPath:indexPath];
     BOOL imageExist=model.a_imageUrl&&![model.a_imageUrl isEqualToString:@""];
+    NSLog(@"%@",model.a_imageUrl);
     cell.photoView.imageURL = [NSURL URLWithString:imageExist?model.a_imageUrl:@""];
     cell.model = model;
     return cell;

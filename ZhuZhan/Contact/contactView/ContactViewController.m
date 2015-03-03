@@ -257,7 +257,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [_datasource addObject:model.a_time];
             }
             _timeScroller.hidden=YES;
-            NSLog(@"===>%d",showArr.count);
             [MyTableView reloadDataWithTableView:self.tableView];
             if(showArr.count == 0){
                 [MyTableView hasData:self.tableView];
@@ -447,7 +446,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }else if([model.a_category isEqualToString:@"Company"]){
         if([model.a_eventType isEqualToString:@"Actives"]){
             commentView = viewArr[indexPath.row];
-            NSLog(@"%d",indexPath.row);
             return commentView.frame.size.height;
         }else{
             return 50;
@@ -693,7 +691,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)finishAddCommentFromDetailWithPosts:(NSMutableArray *)posts{
-    NSLog(@"asdfasdfa ===== %d",indexpath.row);
     ActivesModel *model = showArr[indexpath.row];
     [self finishPostCommentWithPosts:posts activesModel:model];
 }

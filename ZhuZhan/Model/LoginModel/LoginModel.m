@@ -431,49 +431,23 @@
     }];
 }
 
-//POST:
-//{
-//    "userId": "d85b740b-f5ca-432b-86a6-422a0569f0d1",
-//    "UserImageStrings": "base64"
-//}
-//
-//RESPONSE:
-//{
-//    "d": {
-//        "status": {
-//            "statusCode": 1300
-//        }
-//    }
-//}
-+ (NSURLSessionDataTask *)AddUserImageWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
++ (NSURLSessionDataTask *)AddUserImageWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block data:(NSData *)data dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
             noNetWork();
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/account/AddUserImage"];
-    NSLog(@"dic==%@",dic);
-    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
-            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON[@"d"][@"data"]];
-            if (block) {
-                block([NSMutableArray arrayWithArray:mutablePosts], nil);
-            }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
-        }
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/addUserImage"];
+    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:data name:@"userImageStrings" fileName:@"userAvatar.jpg" mimeType:@"image/jpg"];
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"responseObject ==> %@",responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {
             block([NSMutableArray array], error);
         }
-        
     }];
 }
 
@@ -516,27 +490,17 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/account/UserImages?userId=%@",userId];
-    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
-            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON[@"d"][@"data"][@"imageLocation"]];
-            if (block) {
-                block([NSMutableArray arrayWithArray:mutablePosts], nil);
-            }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/userImages"];
+    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@",responseObject[@"data"]);
+        if (block) {
+            block([NSMutableArray arrayWithObject:responseObject[@"data"]], nil);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {
             block([NSMutableArray array], error);
         }
-        
     }];
 }
 

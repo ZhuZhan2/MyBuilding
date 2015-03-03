@@ -269,7 +269,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } dic:parameter noNetWork:nil];
+    }data:nil dic:parameter noNetWork:nil];
 }
 
 -(void)changeBackgroundImage:(NSString *)imageStr AndImage:(UIImage *)image{
