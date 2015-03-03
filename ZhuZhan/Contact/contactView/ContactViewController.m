@@ -11,7 +11,7 @@
 #import "PersonalCenterViewController.h"
 #import "PersonalDetailViewController.h"
 #import "LoginModel.h"
-#import "PublishViewController.h"
+#import "ActivePublishController.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "RecommendLetterViewController.h"
 #import "ContactProjectTableViewCell.h"
@@ -210,7 +210,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }else{
-        PublishViewController *publishVC = [[PublishViewController alloc] init];
+        ActivePublishController *publishVC = [[ActivePublishController alloc] init];
         [self.navigationController pushViewController:publishVC animated:YES];
     }
 }

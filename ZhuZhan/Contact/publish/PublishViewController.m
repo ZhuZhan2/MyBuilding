@@ -228,7 +228,7 @@ static BOOL isFirst;
         [self goToPublish];
         return NO;
     }
-    
+    NSLog(@"range.length=%ld",range.length);
     if (range.length == 0 && textView.text.length >= kPublishLimitNumber) {
         return NO;
     }

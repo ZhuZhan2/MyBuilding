@@ -16,6 +16,7 @@
 #import "ErrorView.h"
 #import "LoadingView.h"
 #import "NoProductView.h"
+#import "ProductPublishController.h"
 @interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate,ErrorViewDelegate>
 @property (nonatomic, strong) NSMutableArray *images;
 @property(nonatomic,strong)ErrorView* errorView;
@@ -113,6 +114,20 @@
 -(void)loadNavi{
     self.title = @"产品";
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
+    
+    UIButton* btn=[UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setBackgroundImage:[GetImagePath getImagePath:@"＋"] forState:UIControlStateNormal];
+    btn.frame=CGRectMake(0, 0, 19, 19);
+    [btn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem* rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:btn];
+    
+    self.navigationItem.rightBarButtonItem=rightBarButtonItem;
+}
+
+-(void)rightBtnClicked{
+    UIViewController* vc=[[ProductPublishController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //=====================================================================
