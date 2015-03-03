@@ -115,7 +115,7 @@ CGFloat returnOriginY(CGRect frame){
     BOOL productContentExist=![self.titleLabel.text isEqualToString:@""];
 
     //产品图片
-    self.photoView.frame = CGRectMake(0, 0, self.bounds.size.width, [self.model.a_imageHeight floatValue]*self.bounds.size.width/[self.model.a_imageWidth floatValue]);
+    self.photoView.frame = CGRectMake(0, 0, self.bounds.size.width, [self.model.a_imageUrl isEqualToString:@""]?113:[self.model.a_imageHeight floatValue]*self.bounds.size.width/[self.model.a_imageWidth floatValue]);
 
     if ([self.model.a_imageUrl isEqualToString:@""]) {
         self.photoView.image=[GetImagePath getImagePath:@"动态产品评论02"];

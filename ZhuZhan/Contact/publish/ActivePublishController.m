@@ -9,7 +9,7 @@
 #import "ActivePublishController.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
-@interface ActivePublishController ()<UITextViewDelegate>
+@interface ActivePublishController ()<UITextViewDelegate,UIActionSheetDelegate>
 @property(nonatomic,strong)UIButton* imageBtn;
 @property(nonatomic,strong)UITextView* contentTextView;
 
@@ -45,6 +45,7 @@
         UIImage* image=[GetImagePath getImagePath:@"人脉－发布动态_03a"];
         _imageBtn.frame=CGRectMake(13, 64+13, image.size.width, image.size.height);
         [_imageBtn setBackgroundImage:image forState:UIControlStateNormal];
+        [_imageBtn addTarget:self action:@selector(cameraBtmClicked) forControlEvents:UIControlEventTouchUpInside];
     }
     return _imageBtn;
 }
@@ -91,8 +92,8 @@
 }
 
 -(void)setUp{
-    [self.view addSubview:self.imageBtn];
     [self.view addSubview:self.contentTextView];
+    [self.view addSubview:self.imageBtn];
     [self.contentTextView addSubview:self.contentPlaceLabel];
 }
 
@@ -162,6 +163,15 @@
     }
     
     self.contentPlaceLabel.alpha=!self.contentTextView.text.length;
+}
+
+-(void)cameraBtmClicked{
+    UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册",nil];
+    [actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSLog(@"%ld",buttonIndex);
 }
 @end
 

@@ -9,7 +9,7 @@
 #import "ProductPublishController.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
-@interface ProductPublishController ()<UITextViewDelegate>
+@interface ProductPublishController ()<UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property(nonatomic,strong)UIButton* imageBtn;
 @property(nonatomic,strong)UITextView* titleTextView;
 @property(nonatomic,strong)UITextView* contentTextView;
@@ -62,6 +62,7 @@
         UIImage* image=[GetImagePath getImagePath:@"人脉－发布动态_03a"];
         _imageBtn.frame=CGRectMake(13, 64+13, image.size.width, image.size.height);
         [_imageBtn setBackgroundImage:image forState:UIControlStateNormal];
+        [_imageBtn addTarget:self action:@selector(cameraBtmClicked) forControlEvents:UIControlEventTouchUpInside];
     }
     return _imageBtn;
 }
@@ -200,5 +201,23 @@
     
     self.titlePlaceLabel.alpha=!self.titleTextView.text.length;
     self.contentPlaceLabel.alpha=!self.contentTextView.text.length;
+}
+
+-(void)cameraBtmClicked{
+    UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册",nil];
+    [actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==actionSheet.cancelButtonIndex) return;
+    UIImagePickerController* imagePickerController=[[UIImagePickerController alloc]init];
+    imagePickerController.sourceType=!buttonIndex;
+    imagePickerController.delegate=self;
+    [self.view.window.rootViewController presentViewController:imagePickerController animated:NO completion:nil];
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    [self.imageBtn setBackgroundImage:info[UIImagePickerControllerOriginalImage] forState:UIControlStateNormal];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 @end
