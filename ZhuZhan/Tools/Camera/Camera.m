@@ -98,18 +98,18 @@ static int BtnTag =0;
     if (BtnTag == 2014090201) {//更换背景
         [picker dismissViewControllerAnimated:YES completion:nil];
         [self.view removeFromSuperview];
-        [delegate changeBackgroundImage:imageStr AndImage:image];
+        [delegate changeBackgroundImage:imageStr AndImage:image imageData:imageData];
         
     }
     if (BtnTag == 2014090202) {//更改用户头像
         
         [picker dismissViewControllerAnimated:YES completion:nil];
         [self.view removeFromSuperview];
-        [delegate changeUserIcon:imageStr AndImage:image];
+        [delegate changeUserIcon:imageStr AndImage:image imageData:imageData];
         
     }
     if (BtnTag == 110120) {//发布时获取照片
-        [delegate publishImage:imageStr andImage:image];
+        [delegate publishImage:imageStr andImage:image imageData:imageData];
         [picker dismissViewControllerAnimated:YES completion:nil];
         [self.view removeFromSuperview];
         

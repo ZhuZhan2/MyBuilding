@@ -117,32 +117,32 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/Projects?projectId=%@",projectId];
+    NSString *urlStr = [NSString stringWithFormat:@"api/projects/info?projectId=%@",projectId];
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             NSMutableArray *contactArr = [[NSMutableArray alloc] init];
             NSMutableArray *imageArr = [[NSMutableArray alloc] init];
             
             projectModel *proModel = [[projectModel alloc] init];
             NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] init];
-            [dataDic setValuesForKeysWithDictionary:JSON[@"d"][@"data"][@"projectBaseInfomation"]];
-            [dataDic setValuesForKeysWithDictionary:JSON[@"d"][@"data"][@"projectDecorateStage"]];
-            [dataDic setValuesForKeysWithDictionary:JSON[@"d"][@"data"][@"projectLandStage"]];
-            [dataDic setValuesForKeysWithDictionary:JSON[@"d"][@"data"][@"projectMainConstructStage"]];
-            [dataDic setValuesForKeysWithDictionary:JSON[@"d"][@"data"][@"projectMainDesignStage"]];
+            [dataDic setValuesForKeysWithDictionary:JSON[@"data"][@"info"]];
+            [dataDic setValuesForKeysWithDictionary:JSON[@"data"][@"firstStage"]];
+            [dataDic setValuesForKeysWithDictionary:JSON[@"data"][@"secondStage"]];
+            [dataDic setValuesForKeysWithDictionary:JSON[@"data"][@"thirdStage"]];
+            [dataDic setValuesForKeysWithDictionary:JSON[@"data"][@"forthStage"]];
             [proModel setDict:dataDic];
             [mutablePosts addObject:proModel];
             
-            for(NSDictionary *item in JSON[@"d"][@"data"][@"projectBaseContacts"]){
+            for(NSDictionary *item in JSON[@"data"][@"contacts"]){
                 ProjectContactModel *model = [[ProjectContactModel alloc] init];
                 [model setDict:item];
                 [contactArr addObject:model];
             }
             
             //NSLog(@"project images==>%@",JSON[@"d"][@"data"][@"projectImages"]);
-            for(NSDictionary *item in JSON[@"d"][@"data"][@"projectImages"]){
+            for(NSDictionary *item in JSON[@"data"][@"images"]){
                 ProjectImageModel *model = [[ProjectImageModel alloc] init];
                 [model setDict:item];
                 [imageArr addObject:model];
@@ -152,10 +152,8 @@
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {

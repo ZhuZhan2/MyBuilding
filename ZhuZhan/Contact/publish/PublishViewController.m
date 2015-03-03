@@ -199,7 +199,7 @@ static BOOL isFirst;
     [camera modifyUserIconWithButtonIndex:buttonIndex WithButtonTag:110120];
 }
 
--(void)publishImage:(NSString *)imageStr andImage:(UIImage *)image;
+-(void)publishImage:(NSString *)imageStr andImage:(UIImage *)image imageData:(NSData *)imageData;
 {
     [inputView becomeFirstResponder];
     publishImageStr = imageStr;
