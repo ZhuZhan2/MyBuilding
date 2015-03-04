@@ -16,6 +16,7 @@
 #import "MBProgressHUD.h"
 #import "ErrorView.h"
 #import "MyTableView.h"
+#import "PorjectCommentTableViewController.h"
 @interface ResultsTableViewController ()
 
 @end
@@ -346,5 +347,10 @@
 
 -(void)addProjectCommentView:(int)index{
     NSLog(@"%d",index);
+    projectModel *model = showArr[index];
+    PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
+    projectCommentView.projectId = model.a_id;
+    projectCommentView.projectName = model.a_projectName;
+    [self.navigationController pushViewController:projectCommentView animated:YES];
 }
 @end

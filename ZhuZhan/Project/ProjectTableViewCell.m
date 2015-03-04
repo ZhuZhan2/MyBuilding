@@ -132,8 +132,6 @@
     addressLabel.textColor = [UIColor blackColor];
     addressLabel.text = model.a_landAddress;
     [bgImgView addSubview:addressLabel];
-    
-    NSLog(@"%f",dianBtn.frame.origin.y);
 }
 
 -(void)dianBtnClick{

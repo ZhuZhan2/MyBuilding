@@ -344,7 +344,7 @@
     if(!cell){
         cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:model fromView:@"project"];
     }
-    cell.indexRow=indexPath.row;
+    cell.indexRow=(int)indexPath.row;
     cell.delegate = self;
     cell.model = model;
     cell.selectionStyle = NO;
@@ -371,7 +371,7 @@
         countLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:17];
         countLabel.textColor = BlueColor;
         countLabel.textAlignment = NSTextAlignmentCenter;
-        countLabel.text = [NSString stringWithFormat:@"%d",showArr.count];
+        countLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)showArr.count];
         //[bgView addSubview:countLabel];
         
         UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 10, 160, 20)];

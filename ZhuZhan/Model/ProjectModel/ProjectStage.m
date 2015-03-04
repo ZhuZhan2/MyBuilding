@@ -24,7 +24,7 @@
     if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@" "]){
         string = @"";
     }else{
-        NSArray *arr = [str componentsSeparatedByString:@"T"];
+        NSArray *arr = [str componentsSeparatedByString:@" "];
         string = arr[0];
     }
     return string;
@@ -248,4 +248,30 @@
     }
     return string;
 }
+
+////判断业主类型
+//+(NSString *)JudgeOwenType:(NSString *)str{
+//    NSMutableString *owenType = [[NSMutableString alloc] init];
+//    NSArray *arr = [str componentsSeparatedByString:@","];
+//    [arr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//        if([obj isEqualToString:@"01"]){
+//            [owenType appendString:@"外商独资,"];
+//        }else if ([obj isEqualToString:@"02"]){
+//            [owenType appendString:@"中外合资,"];
+//        }else if ([obj isEqualToString:@"03"]){
+//            [owenType appendString:@"私人企业,"];
+//        }else if ([obj isEqualToString:@"04"]){
+//            [owenType appendString:@"政府机关,"];
+//        }else if ([obj isEqualToString:@"05"]){
+//            [owenType appendString:@"国有企业,"];
+//        }else if ([obj isEqualToString:@"00"]){
+//            [owenType appendString:@"其他,"];
+//        }
+//    }];
+//    NSString *newStr = nil;
+//    if(owenType.length !=0){
+//        newStr = [owenType substringToIndex:([owenType length]-1)];
+//    }
+//    return newStr;
+//}
 @end

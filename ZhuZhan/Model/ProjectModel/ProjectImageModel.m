@@ -11,17 +11,18 @@
 @implementation ProjectImageModel
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
-    self.a_id = [ProjectStage ProjectStrStage:dict[@"id"]];
+    self.a_id = [ProjectStage ProjectStrStage:dict[@"projectImagesId"]];
     self.a_projectId = [ProjectStage ProjectStrStage:dict[@"projectId"]];
-    if(![[ProjectStage ProjectStrStage:dict[@"imageCompressLocation"]] isEqualToString:@""]){
-        self.a_imageCompressLocation = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"imageCompressLocation"]]];
+    if(![[ProjectStage ProjectStrStage:dict[@"imageUrl"]] isEqualToString:@""]){
+        self.a_imageCompressLocation = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"imageUrl"]]];
     }else{
-        self.a_imageCompressLocation = [ProjectStage ProjectStrStage:dict[@"imageCompressLocation"]];
+        self.a_imageCompressLocation = [ProjectStage ProjectStrStage:dict[@"imageUrl"]];
     }
-    if(![[ProjectStage ProjectStrStage:dict[@"imageOriginalLocation"]] isEqualToString:@""]){
-        self.a_imageOriginalLocation = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"imageOriginalLocation"]]];
+    if(![[ProjectStage ProjectStrStage:dict[@"imageUrl"]] isEqualToString:@""]){
+        self.a_imageOriginalLocation = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"imageUrl"]]];
+        NSLog(@"%@",[NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"imageUrl"]]]);
     }else{
-        self.a_imageOriginalLocation = [ProjectStage ProjectStrStage:dict[@"imageOriginalLocation"]];
+        self.a_imageOriginalLocation = [ProjectStage ProjectStrStage:dict[@"imageUrl"]];
     }
     self.a_imageCategory = [ProjectStage ProjectStrStage:dict[@"imageCategory"]];
     self.a_imageHeight=[ProjectStage ProjectStrStage:dict[@"imageHeight"]];;

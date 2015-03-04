@@ -1140,6 +1140,8 @@
 		D3D798681A0B1DFE00194FF8 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D798671A0B1DFE00194FF8 /* LoadingView.m */; };
 		D3D7986A1A0B1ECF00194FF8 /* 加载中.gif in Resources */ = {isa = PBXBuildFile; fileRef = D3D798691A0B1ECF00194FF8 /* 加载中.gif */; };
 		D3D7986C1A0B236900194FF8 /* 欧莱凯GIF图片.gif in Resources */ = {isa = PBXBuildFile; fileRef = D3D7986B1A0B236900194FF8 /* 欧莱凯GIF图片.gif */; };
+		D3D799081AA6EC9D00586087 /* delComment.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D799061AA6EC9C00586087 /* delComment.png */; };
+		D3D799091AA6EC9D00586087 /* delComment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D799071AA6EC9D00586087 /* delComment@2x.png */; };
 		D3D7D86619FF4B9800AE5765 /* 项目－搜索_09a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7D86419FF4B9800AE5765 /* 项目－搜索_09a.png */; };
 		D3D7D86719FF4B9800AE5765 /* 项目－搜索_09a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7D86519FF4B9800AE5765 /* 项目－搜索_09a@2x.png */; };
 		D3D7D86A19FF5B3100AE5765 /* 人脉－发布动态_09a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7D86819FF5B3100AE5765 /* 人脉－发布动态_09a.png */; };
@@ -2788,6 +2790,8 @@
 		D3D798671A0B1DFE00194FF8 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		D3D798691A0B1ECF00194FF8 /* 加载中.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "加载中.gif"; sourceTree = "<group>"; };
 		D3D7986B1A0B236900194FF8 /* 欧莱凯GIF图片.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "欧莱凯GIF图片.gif"; sourceTree = "<group>"; };
+		D3D799061AA6EC9C00586087 /* delComment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delComment.png; sourceTree = "<group>"; };
+		D3D799071AA6EC9D00586087 /* delComment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delComment@2x.png"; sourceTree = "<group>"; };
 		D3D7D86419FF4B9800AE5765 /* 项目－搜索_09a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目－搜索_09a.png"; sourceTree = "<group>"; };
 		D3D7D86519FF4B9800AE5765 /* 项目－搜索_09a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目－搜索_09a@2x.png"; sourceTree = "<group>"; };
 		D3D7D86819FF5B3100AE5765 /* 人脉－发布动态_09a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉－发布动态_09a.png"; sourceTree = "<group>"; };
@@ -3761,6 +3765,8 @@
 		04BC3E5D19D7E5B0006B5C7B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3D799061AA6EC9C00586087 /* delComment.png */,
+				D3D799071AA6EC9D00586087 /* delComment@2x.png */,
 				5B71323B1AA44F7E0043E37D /* ＋.png */,
 				5B71323C1AA44F7E0043E37D /* ＋@2x.png */,
 				D3D51BC71A80D1D400B52A04 /* loading.png */,
@@ -5697,6 +5703,7 @@
 				04BC41C919D7E5B3006B5C7B /* 人脉－人的详情_30a.png in Resources */,
 				5BE08EA21A3586EA00495EEB /* 040015.png in Resources */,
 				04BC42A719D7E5B3006B5C7B /* 面部识别登录1_03.png in Resources */,
+				D3D799081AA6EC9D00586087 /* delComment.png in Resources */,
 				5BE08DDC1A3586EA00495EEB /* 010037.png in Resources */,
 				5B5A24DE1A4189CA0071BD90 /* 密码找回_03z@2x.png in Resources */,
 				5BE08DB71A3586EA00495EEB /* 010018@2x.png in Resources */,
@@ -5866,6 +5873,7 @@
 				04BC410919D7E5B3006B5C7B /* 019.png in Resources */,
 				5BE08E591A3586EA00495EEB /* 030005@2x.png in Resources */,
 				04BC412919D7E5B3006B5C7B /* bg-menuitem@2x.png in Resources */,
+				D3D799091AA6EC9D00586087 /* delComment@2x.png in Resources */,
 				D3BAA7B51A58CB9A008E613F /* 人的详情88-02@2x.png in Resources */,
 				04BC425919D7E5B3006B5C7B /* 搜索结果_03a.png in Resources */,
 				04BC433F19D7E5B3006B5C7B /* 项目－项目专题_23a@2x.png in Resources */,
