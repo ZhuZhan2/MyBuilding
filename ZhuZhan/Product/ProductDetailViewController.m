@@ -154,9 +154,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self.loadingView=[LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view];
 
     //因为动态详情进来的产品model.content是评论而不是产品描述内容，所以先不出mainView，加载后会更新
-    if (!(self.activesModel&&[self.category isEqualToString:@"Product"])) {
-        [self getMainView];
-    }
+    //暂时先取消，因为网络请求后会再次加载的，如果出现BUG，再次重新打开查看是否还存在BUG
+    //if (!(self.activesModel&&[self.category isEqualToString:@"Product"])) {
+       // [self getMainView];
+    //}
     [self loadTimeScroller];
     [self firstNetWork];
 }
@@ -238,6 +239,193 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 //获得上方主要显示的图文内容
 -(void)getMainView{
+    if (self.productModel||(self.personalModel&&[self.category isEqualToString:@"Product"])) {
+        [self getProductMainView];
+    }else if (self.activesModel||(self.personalModel||!([self.category isEqualToString:@"Product"]))){
+        [self getActiveMainView];
+    }
+}
+
+-(void)getProductMainView{
+    //self.content=@"顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶";
+    //self.content=@"";
+    //self.imageUrl=@"";
+    self.mainView = [[UIView alloc] initWithFrame:CGRectZero];
+    UIView* forCornerView=[[UIView alloc]initWithFrame:CGRectZero];
+    [self.mainView addSubview:forCornerView];
+    forCornerView.layer.cornerRadius=2;
+    forCornerView.layer.masksToBounds=YES;
+    
+    CGFloat height=0;
+    
+    EGOImageView *imageView;
+    //动态图像
+    if(![self.imageUrl isEqualToString:@""]){
+        imageView = [[EGOImageView alloc] init];
+        imageView.backgroundColor=RGBCOLOR(219, 219, 219);
+        if([self.imageHeight floatValue]/[self.imageWidth floatValue]*310<50){
+            imageView.frame = CGRectMake(0, 0, 310,50);
+            //imageView.contentMode = UIViewContentModeScaleAspectFit;
+            height+=50;
+        }else{
+            imageView.frame = CGRectMake(0, 0, 310,[self.imageHeight floatValue]/[self.imageWidth floatValue]*310);
+            height+=imageView.frame.size.height;
+        }
+        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imageUrl]];
+        [forCornerView addSubview:imageView];
+    }
+    
+    //产品名称
+    NSString* productNameStr=@"产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称";
+    CGFloat tempHeight=0;
+    UIFont* productNameFont=[UIFont systemFontOfSize:16];
+    CGFloat productNameWidth=[self.imageUrl isEqualToString:@""]?250:290;
+    CGFloat productNameAreaHieght=[productNameStr boundingRectWithSize:CGSizeMake(productNameWidth, 9999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:productNameFont} context:nil].size.height;
+    UIView* productNameArea=[[UIView alloc]initWithFrame:CGRectMake(0, height, 310, productNameAreaHieght+3)];
+    productNameArea.backgroundColor=[UIColor whiteColor];
+    [forCornerView addSubview:productNameArea];
+    UILabel* productNameLabel=[[UILabel alloc]initWithFrame:CGRectMake([self.imageUrl isEqualToString:@""]?60:10, 3, productNameWidth, productNameAreaHieght)];
+    productNameLabel.text=productNameStr;
+    productNameLabel.font=productNameFont;
+    productNameLabel.textColor=BlueColor;
+    productNameLabel.numberOfLines=0;
+    [productNameArea addSubview:productNameLabel];
+    tempHeight+=productNameLabel.frame.size.height+3;
+    
+    //用户名称
+    UILabel* userNameLabel;
+    if (!([self.imageUrl isEqualToString:@""]&&![self.content isEqualToString:@""])) {
+        userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(productNameLabel.frame.origin.x, productNameLabel.frame.origin.y+productNameLabel.frame.size.height, 200, 20)];
+        userNameLabel.text=self.userName;
+        userNameLabel.textColor=BlueColor;
+        userNameLabel.font=[UIFont systemFontOfSize:14];
+        [productNameArea addSubview:userNameLabel];
+        
+        
+        tempHeight+=userNameLabel.frame.size.height;
+    }
+    
+    
+    productNameArea.frame=CGRectMake(0, height, 310, tempHeight);
+    height+=productNameArea.frame.size.height;
+    
+    
+    
+    UIView* contentTotalView;
+    //动态描述
+    if (![self.content isEqualToString:@""]) {
+        UILabel* contentTextView = [[UILabel alloc] init];
+        contentTextView.numberOfLines =0;
+        UIFont * tfont = [UIFont systemFontOfSize:14];
+        contentTextView.font = tfont;
+        contentTextView.textColor = [UIColor blackColor];
+        contentTextView.lineBreakMode =NSLineBreakByCharWrapping ;
+        
+        NSString * text;
+        if ([self.imageUrl isEqualToString:@""]&&![self.content isEqualToString:@""]) {
+            //用户名颜色
+            text = [NSString stringWithFormat:@"%@：%@",self.userName,self.content];
+            NSMutableAttributedString* attributedText=[[NSMutableAttributedString alloc]initWithString:text];
+            NSRange range=NSMakeRange(0, self.userName.length+1);
+            [attributedText addAttributes:@{NSForegroundColorAttributeName:BlueColor} range:range];
+            [attributedText addAttributes:@{NSFontAttributeName:tfont} range:NSMakeRange(0, text.length)];
+            
+            //动态文字内容
+            contentTextView.attributedText=attributedText;
+        }else{
+            text=self.content;
+            contentTextView.text=text;
+        }
+        
+        BOOL imageUrlExist=YES;
+        //给一个比较大的高度，宽度不变
+        CGSize size =CGSizeMake(imageUrlExist?290:250,CGFLOAT_MAX);
+        // 获取当前文本的属性
+        NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:tfont,NSFontAttributeName,nil];
+        //ios7方法，获取文本需要的size，限制宽度
+        CGSize actualsize =[text boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin |NSStringDrawingUsesFontLeading attributes:tdic context:nil].size;
+        contentTextView.frame =CGRectMake(imageUrlExist?10:60,5, actualsize.width, actualsize.height);
+        
+        contentTotalView=[[UIView alloc]initWithFrame:CGRectMake(0, height, 310, imageView?contentTextView.frame.size.height+20:contentTextView.frame.size.height+20+40)];
+        contentTotalView.backgroundColor=[UIColor whiteColor];
+        [contentTotalView addSubview:contentTextView];
+        [forCornerView addSubview:contentTotalView];
+        height+=contentTotalView.frame.size.height;
+    }
+    
+    //评论图标
+    //初始化tempHeight
+    tempHeight=0;
+    BOOL isNoImageNoContent=[self.imageUrl isEqualToString:@""]&&[self.content isEqualToString:@""];
+    BOOL isNoImageHasContent=[self.imageUrl isEqualToString:@""]&&![self.content isEqualToString:@""];
+    if (isNoImageNoContent) {
+        tempHeight=userNameLabel.frame.origin.y+40;
+        
+        CGRect frame=productNameArea.frame;
+        frame.size.height+=(40-userNameLabel.frame.size.height);
+        height+=(40-userNameLabel.frame.size.height);
+        productNameArea.frame=frame;
+    }else if (isNoImageHasContent){
+        CGFloat extraReduceHeight=15;
+        tempHeight=imageView?imageView.frame.origin.y+imageView.frame.size.height:height-extraReduceHeight;
+        height-=extraReduceHeight;
+    }else{
+        tempHeight=imageView?imageView.frame.origin.y+imageView.frame.size.height:height;
+    }
+    
+    
+    UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    commentBtn.frame = CGRectMake(265, tempHeight-40, 37, 37);
+    [commentBtn setImage:[GetImagePath getImagePath:@"点-copy-3"] forState:UIControlStateNormal];
+    [commentBtn addTarget:self action:@selector(chooseComment:) forControlEvents:UIControlEventTouchUpInside];
+    [isNoImageNoContent?productNameArea:forCornerView addSubview:commentBtn];
+    
+    //用户头像
+    tempHeight=imageView?imageView.frame.origin.y:productNameArea.frame.origin.y;
+    EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+    userImageView.layer.masksToBounds = YES;
+    userImageView.layer.cornerRadius = 3;
+    userImageView.frame=CGRectMake(5,tempHeight+5,37,37);
+    [forCornerView addSubview:userImageView];
+    
+    UIButton* btn=[[UIButton alloc]initWithFrame:userImageView.frame];
+    btn.tag=0;
+    [btn addTarget:self action:@selector(chooseUserImage:) forControlEvents:UIControlEventTouchUpInside];
+    [forCornerView addSubview:btn];
+    
+    userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userImageUrl]];
+    [forCornerView addSubview:userImageView];
+    
+    //调节有图无文字时候的下方留白高度
+    BOOL isHasImageNoContent=[self.content isEqualToString:@""]&&![self.imageUrl isEqualToString:@""];
+    if (isHasImageNoContent) {
+        CGRect frame=productNameArea.frame;
+        frame.size.height+=10;
+        productNameArea.frame=frame;
+        height+=10;
+    }
+    
+    //设置总的view的frame
+    forCornerView.frame=CGRectMake(5, 5, 310, height);
+    height+=5;
+    
+    //与下方tableView的分割部分
+    if (self.commentViews.count) {
+        UIImage* separatorImage=[GetImagePath getImagePath:@"动态详情_14a"];
+        CGRect frame=CGRectMake(0, height, separatorImage.size.width, separatorImage.size.height);
+        UIImageView* separatorImageView=[[UIImageView alloc]initWithFrame:frame];
+        separatorImageView.image=separatorImage;
+        [self.mainView addSubview:separatorImageView];
+        
+        height+=frame.size.height;
+    }
+    
+    //设置总的frame
+    self.mainView.frame = CGRectMake(0, 0, 320, height);
+    [self.mainView setBackgroundColor:RGBCOLOR(235, 235, 235)];
+}
+
+-(void)getActiveMainView{
     self.mainView = [[UIView alloc] initWithFrame:CGRectZero];
     UIView* forCornerView=[[UIView alloc]initWithFrame:CGRectZero];
     [self.mainView addSubview:forCornerView];
@@ -298,8 +486,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         height+=contentTotalView.frame.size.height;
     }
     
+    
     //评论图标
-    CGFloat tempHeight=imageView?imageView.frame.origin.y+imageView.frame.size.height:height;
+    CGFloat tempHeight=imageView?imageView.frame.origin.y+imageView.frame.size.height:height+40;
     UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     commentBtn.frame = CGRectMake(265, tempHeight-40, 37, 37);
     [commentBtn setImage:[GetImagePath getImagePath:@"点-copy-3"] forState:UIControlStateNormal];
@@ -339,7 +528,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //设置总的frame
     self.mainView.frame = CGRectMake(0, 0, 320, height);
     [self.mainView setBackgroundColor:RGBCOLOR(235, 235, 235)];
-    //[self.mainView setBackgroundColor:[UIColor yellowColor]];
 }
 
 -(void)myTableViewReloadData{

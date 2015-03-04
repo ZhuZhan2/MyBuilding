@@ -26,7 +26,12 @@ static int BtnTag =0;
     }
     return self;
 }
-
+/**
+ *  -(void)changeUserIcon:(NSString *)imageStr AndImage:(UIImage *)image;
+ -(void)changeBackgroundImage:(NSString*)imageStr AndImage:(UIImage*)image;
+ -(void)publishImage:(NSString *)imageStr andImage:(UIImage *)image;
+ -(void)openKeyBoard;
+ */
 - (void)viewDidLoad
 {
     [super viewDidLoad];
