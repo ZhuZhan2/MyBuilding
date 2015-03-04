@@ -20,8 +20,8 @@
 @end
 #define ProductTitleFont [UIFont systemFontOfSize:16]
 #define ProductContentFont [UIFont systemFontOfSize:15]
-#define kProductTitleNumber 40
-#define kProductContentNumber 150
+#define kProductTitleNumber 18
+#define kProductContentNumber 450
 #define kProductLimitNumber(isContentTextView) isContentTextView?kProductContentNumber:kProductTitleNumber
 
 @implementation ProductPublishController

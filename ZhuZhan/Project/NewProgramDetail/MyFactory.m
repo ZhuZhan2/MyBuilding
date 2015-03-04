@@ -399,37 +399,44 @@ static NSString* hasUserTypeContent(NSString* string){
     return view;
 }
 
+//2015年3月3日，该方法暂时取消，因为不需要当联系人数量不足3个的时候再用默认数据填充了，可直接使用原数据进行操作
 //处理model中的联系人,如果不满3个则补默认格式的联系人过去显示
-+(NSArray*)loadContacts:(NSMutableArray*)contacts withContactCategory:(NSString*)contactCategory{
-    NSMutableArray* array=[NSMutableArray array];
-    for (int i=0; i<contacts.count; i++) {
-        NSMutableArray* tempArray=[contacts[i] mutableCopy];
-        [tempArray addObject:contactCategory];
-        [array addObject:tempArray];
-    }
-    for (int i=0; i<3-contacts.count; i++) {
-        NSArray* tempAry=@[@"",@"",@"",@"",@"",contactCategory];
-        [array addObject:tempAry];
-    }
-    return array;
-}
+/**
+ *  @param contacts        中每个元素为一个@[@"",@"",@"",@"",@""]的数组
+ *
+ */
+//+(NSArray*)loadContacts:(NSMutableArray*)contacts withContactCategory:(NSString*)contactCategory{
+//    NSMutableArray* array=[NSMutableArray array];
+//    for (int i=0; i<contacts.count; i++) {
+//        NSMutableArray* tempArray=[contacts[i] mutableCopy];
+//        [tempArray addObject:contactCategory];
+//        [array addObject:tempArray];
+//    }
+//    for (int i=0; i<3-contacts.count; i++) {
+//        NSArray* tempAry=@[@"",@"",@"",@"",@"",contactCategory];
+//        [array addObject:tempAry];
+//    }
+//    return array;
+//}
 
-#define lingHeight 145
+#define lineHeight 145
 #define leftWidth 15
 #define lineWidth 290
 //联系人view
 +(UIView*)getThreeContactsViewThreeTypesFiveStrs:(NSMutableArray*)dataAry withContactCategory:(NSString*)contactCategory{
-    NSArray* datas=[[self loadContacts:dataAry withContactCategory:contactCategory] copy];
+    //2015年3月3日，该方法暂时取消，因为不需要当联系人数量不足3个的时候再用默认数据填充了，可直接使用原数据进行操作
+    //NSArray* datas=[[self loadContacts:dataAry withContactCategory:contactCategory] copy];
     
+    NSArray* datas=[dataAry copy];
     
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, datas.count*lingHeight)];
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, datas.count*lineHeight)];
     view.backgroundColor=[UIColor whiteColor];
     
     for (int i=0; i<datas.count; i++) {
         NSArray* array=datas[i];
         
         //名字
-        UILabel* labelName=[[UILabel alloc]initWithFrame:CGRectMake(leftWidth, 14+i*lingHeight, 280, 20)];
+        UILabel* labelName=[[UILabel alloc]initWithFrame:CGRectMake(leftWidth, 14+i*lineHeight, 280, 20)];
         labelName.text=hasName(array[0]);
         labelName.textAlignment=NSTextAlignmentLeft;
         labelName.textColor=nameColor(hasContentBool(array[0]));
@@ -437,7 +444,7 @@ static NSString* hasUserTypeContent(NSString* string){
         [view addSubview:labelName];
         
         //职位
-        UILabel* jobLabel=[[UILabel alloc]initWithFrame:CGRectMake(leftWidth, 40+i*lingHeight, 150, 20)];
+        UILabel* jobLabel=[[UILabel alloc]initWithFrame:CGRectMake(leftWidth, 40+i*lineHeight, 150, 20)];
         jobLabel.text=hasPosition(array[1]);
         jobLabel.textColor=positionColor(hasContentBool(array[1]));
         jobLabel.font=ContentFont;
@@ -445,7 +452,7 @@ static NSString* hasUserTypeContent(NSString* string){
         
         //单位名称
         CGSize size=[array[5] boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:ContentFont} context:nil].size;
-        UILabel* companyName=[[UILabel alloc]initWithFrame:CGRectMake(leftWidth, 60+i*lingHeight, size.width, 20)];
+        UILabel* companyName=[[UILabel alloc]initWithFrame:CGRectMake(leftWidth, 60+i*lineHeight, size.width, 20)];
         companyName.text=array[5];
         companyName.font=ContentFont;
         companyName.textColor=contentColor(YES);
@@ -454,7 +461,7 @@ static NSString* hasUserTypeContent(NSString* string){
         //单位名称具体内容
         CGFloat tempWidth=290-companyName.frame.size.width;
         BOOL isTwoLine=([array[2] boundingRectWithSize:CGSizeMake(tempWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:ContentFont} context:nil].size.height>23);
-        UILabel* companyNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(leftWidth+companyName.frame.size.width, 60+i*lingHeight, tempWidth, isTwoLine?40:20)];
+        UILabel* companyNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(leftWidth+companyName.frame.size.width, 60+i*lineHeight, tempWidth, isTwoLine?40:20)];
         companyNameLabel.numberOfLines=isTwoLine?2:1;
         companyNameLabel.text=hasContent(array[2]);
         companyNameLabel.textColor=contentColor(hasContentBool(array[2]));
@@ -464,7 +471,7 @@ static NSString* hasUserTypeContent(NSString* string){
         
         //地址名称
         size=[@"单位地址：" boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:ContentFont} context:nil].size;
-        UILabel* addressName=[[UILabel alloc]initWithFrame:CGRectMake(leftWidth, 100+i*lingHeight, size.width, 20)];
+        UILabel* addressName=[[UILabel alloc]initWithFrame:CGRectMake(leftWidth, 100+i*lineHeight, size.width, 20)];
         addressName.text=@"单位地址：";
         addressName.font=ContentFont;
         addressName.textColor=contentColor(YES);
@@ -473,7 +480,7 @@ static NSString* hasUserTypeContent(NSString* string){
         //地址具体内容
         tempWidth=290-addressName.frame.size.width;
         isTwoLine=([array[3] boundingRectWithSize:CGSizeMake(tempWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:ContentFont} context:nil].size.height>23);
-        UILabel* addressLabel=[[UILabel alloc]initWithFrame:CGRectMake(leftWidth+addressName.frame.size.width, 100+i*lingHeight, tempWidth, isTwoLine?40:20)];
+        UILabel* addressLabel=[[UILabel alloc]initWithFrame:CGRectMake(leftWidth+addressName.frame.size.width, 100+i*lineHeight, tempWidth, isTwoLine?40:20)];
         addressLabel.numberOfLines=isTwoLine?2:1;
         addressLabel.text=hasContent(array[3]);
         addressLabel.textColor=contentColor(hasContentBool(array[3]));
@@ -482,12 +489,12 @@ static NSString* hasUserTypeContent(NSString* string){
         [view addSubview:addressLabel];
         
         //电话图标
-        UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(142, 46+i*lingHeight, 12.5, 12.5)];
+        UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(142, 46+i*lineHeight, 12.5, 12.5)];
         imageView.image=[GetImagePath getImagePath:@"021"];
         [view addSubview:imageView];
         
         //电话号码
-        UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(160, 41+i*lingHeight, 160, 20)];
+        UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(160, 41+i*lineHeight, 160, 20)];
         label.text=hasContent(array[4]);
         label.font=ContentFont;
         label.textColor=contentColor(hasContentBool(array[4]));
@@ -496,7 +503,7 @@ static NSString* hasUserTypeContent(NSString* string){
         if (i!=datas.count-1) {
             //分割线1
             UIView* line1=[self getSeperatedLine];
-            line1.center=CGPointMake(160, lingHeight-0.5+i*lingHeight);
+            line1.center=CGPointMake(160, lineHeight-0.5+i*lineHeight);
             [view addSubview:line1];
         }
     }
