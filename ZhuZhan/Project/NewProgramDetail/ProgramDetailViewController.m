@@ -120,18 +120,19 @@
 }
 
 -(void)firstNetWork{
-    [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
-            [self getContentList];
-        }else{
-            [LoginAgain AddLoginView:NO];
-        }
-    } userId:[LoginSqlite getdata:@"userId"] targetId:self.projectId EntityCategory:@"Project" noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
-            [self firstNetWork];
-        }];
-    }];
+    [self getContentList];
+//    [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+//        if (!error) {
+//            self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
+//            [self getContentList];
+//        }else{
+//            [LoginAgain AddLoginView:NO];
+//        }
+//    } userId:[LoginSqlite getdata:@"userId"] targetId:self.projectId EntityCategory:@"Project" noNetWork:^{
+//        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+//            [self firstNetWork];
+//        }];
+//    }];
 }
 
 -(void)getContentList{

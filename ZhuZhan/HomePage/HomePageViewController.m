@@ -5,7 +5,6 @@
 //  Created by 汪洋 on 14-8-5.
 //  Copyright (c) 2014年 zpzchina. All rights reserved.
 //
-
 #import "HomePageViewController.h"
 #import "LoginModel.h"
 #import "AppDelegate.h"
@@ -30,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"image ==> %@",image(@"111", @"222", @"333", @"444", @"555"));
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageView.image = [GetImagePath getImagePath:@"loading"];
     [self.view addSubview:imageView];

@@ -49,9 +49,9 @@
     if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@" "]){
         string = @"";
     }else{
-        if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"0"]){
+        if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"00"]){
             string = @"No";
-        }else if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"1"]){
+        }else if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"01"]){
             string = @"Yes";
         }
     }

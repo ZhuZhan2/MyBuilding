@@ -13,7 +13,7 @@
 @implementation projectModel
 - (void)setDict:(NSDictionary *)dict{
     _dict = dict;
-    self.a_id = [ProjectStage ProjectStrStage:dict[@"id"]];
+    self.a_id = [ProjectStage ProjectStrStage:dict[@"projectId"]];
     self.a_landName = [ProjectStage ProjectStrStage:dict[@"landName"]];
     self.a_district = [ProjectStage ProjectStrStage:dict[@"landDistrict"]];
     self.a_province = [ProjectStage ProjectStrStage:dict[@"landProvince"]];
@@ -23,9 +23,9 @@
     self.a_plotRatio = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"landPlotRatio"]]];
     self.a_usage = [ProjectStage ProjectStrStage:dict[@"landUsages"]];
     self.a_projectName = [ProjectStage ProjectStrStage:dict[@"projectName"]];
-    self.a_description = [ProjectStage ProjectStrStage:dict[@"projectDescription"]];
-    self.a_exceptStartTime = [ProjectStage ProjectTimeStage:dict[@"expectedStartTime"]];
-    self.a_exceptFinishTime = [ProjectStage ProjectTimeStage:dict[@"expectedFinishTime"]];
+    self.a_description = [ProjectStage ProjectStrStage:dict[@"projectDesc"]];
+    self.a_exceptStartTime = [ProjectStage ProjectTimeStage:dict[@"startTime"]];
+    self.a_exceptFinishTime = [ProjectStage ProjectTimeStage:dict[@"endTime"]];
     self.a_investment = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"investment"]]];
     self.a_storeyArea = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"storeyArea"]]];
     self.a_storeyHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"storeyHeight"]]];
@@ -45,12 +45,12 @@
     self.a_electorWeakInstallation = [ProjectStage ProjectStrStage:dict[@"electroWeakInstallation"]];
     self.a_decorationSituation = [ProjectStage ProjectStrStage:dict[@"decorationSituation"]];
     self.a_decorationProcess = [ProjectStage ProjectStrStage:dict[@"decorationProcess"]];
-    self.isFocused = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"isFocused"]]];
+    self.isFocused = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"isFocus"]]];
     self.a_projectstage = [ProjectStage ProjectStrStage:dict[@"projectStage"]];
-    if(![[ProjectStage ProjectStrStage:dict[@"imageLocation"]] isEqualToString:@""]){
-        self.a_imageLocation = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"imageLocation"]]];
+    if(![[ProjectStage ProjectStrStage:dict[@"imageUrl"]] isEqualToString:@""]){
+        self.a_imageLocation = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"imageUrl"]]];
     }else{
-        self.a_imageLocation = [ProjectStage ProjectStrStage:dict[@"imageLocation"]];
+        self.a_imageLocation = [ProjectStage ProjectStrStage:dict[@"imageUrl"]];
     }
     self.a_imageHeight = [ProjectStage ProjectStrStage:dict[@"imageHeight"]];
     self.a_imageWidth = [ProjectStage ProjectStrStage:dict[@"imageWidth"]];
