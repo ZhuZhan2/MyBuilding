@@ -39,4 +39,4 @@
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
 
 //图片参数
-#define image(imgId,type,width,height,iscut) [NSString stringWithFormat:@"/image?imageId=%@&type=%@&width=%@&height=%@&cut=%@",imgId,type,width,height,iscut]
+#define image(imgId,type,width,height,iscut) [NSString stringWithFormat:@"/image/show?imageId=%@&type=%@&width=%@&height=%@&cut=%@",imgId,type,width,height,iscut]

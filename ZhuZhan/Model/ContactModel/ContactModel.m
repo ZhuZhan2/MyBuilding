@@ -20,7 +20,7 @@
 {
     _dict = dict;
     self.userId = [ProjectStage ProjectStrStage:_dict[@"userId"]];
-    self.userName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"userName"]]];
+    self.userName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"loginName"]]];
     self.realName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"realName"]]];
     self.sex = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"sex"]]];
     self.birthday = [ProjectStage ProjectTimeStage:[_dict objectForKey:@"birthday"]];
@@ -38,18 +38,18 @@
         self.userParticularsId = @"";
     }
     self.password = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"password"]]];
-    if(![[ProjectStage ProjectStrStage:dict[@"userImage"]] isEqualToString:@""]){
-        self.userImage = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"userImage"]]];
+    if(![[ProjectStage ProjectStrStage:dict[@"head"]] isEqualToString:@""]){
+        self.userImage = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"head"]], @"login", @"", @"", @"")];
     }else{
         self.userImage = [ProjectStage ProjectStrStage:dict[@"userImage"]];
     }
     self.provice = [ProjectStage ProjectStrStage:dict[@"province"]];
     self.city = [ProjectStage ProjectStrStage:dict[@"city"]];
     self.district = [ProjectStage ProjectStrStage:dict[@"district"]];
-    if(![[ProjectStage ProjectStrStage:dict[@"backgroundImage"]] isEqualToString:@""]){
-        self.personalBackground=[NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"backgroundImage"]]];
+    if(![[ProjectStage ProjectStrStage:dict[@"background"]] isEqualToString:@""]){
+        self.personalBackground=[NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"background"]], @"login", @"", @"", @"")];
     }else{
-        self.personalBackground=[ProjectStage ProjectStrStage:dict[@"backgroundImage"]];
+        self.personalBackground=[ProjectStage ProjectStrStage:dict[@"background"]];
     }
     self.industry = [ProjectStage ProjectStrStage:dict[@"industry"]];
 }

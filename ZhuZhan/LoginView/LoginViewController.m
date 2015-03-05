@@ -182,7 +182,7 @@
         if(!error){
             if(posts.count !=0){
                 LoginModel *model = posts[0];
-                NSLog(@"%@",model.a_deviceToken);
+                NSLog(@" ==> %@",model.a_userImage);
                 [LoginSqlite insertData:model.a_deviceToken datakey:@"token"];
                 [LoginSqlite insertData:model.a_userId datakey:@"userId"];
                 [LoginSqlite insertData:model.a_userName datakey:@"userName"];

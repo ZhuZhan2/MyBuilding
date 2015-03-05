@@ -613,8 +613,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 //post完成之后的操作
--(void)finishAddComment:(NSString*)comment{
-    [self addTableViewContentWithContent:comment];
+-(void)finishAddComment:(NSString*)comment aid:(NSString *)aid{
+    [self addTableViewContentWithContent:comment aid:aid];
     [self myTableViewReloadData];
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
@@ -624,7 +624,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         [self.vc finishNetWork];
         if(!error){
-            [self finishAddComment:comment];
+            [self finishAddComment:comment aid:@""];
             if ([self.delegate respondsToSelector:@selector(finishAddCommentFromDetailWithPosts:)]) {
                 [self.delegate finishAddCommentFromDetailWithPosts:posts];
             }
@@ -637,16 +637,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         [self.vc finishNetWork];
         if (!error) {
-            [self finishAddComment:comment];
+            [self finishAddComment:comment aid:posts[0]];
         }
     } dic:[@{@"paramId":self.entityID,@"commentType":@"01",@"content":comment} mutableCopy] noNetWork:nil];
 }
 
 //给tableView添加数据
--(void)addTableViewContentWithContent:(NSString*)content{
+-(void)addTableViewContentWithContent:(NSString*)content aid:(NSString *)aid{
     ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:self.myImageUrl userName:self.myName commentContent:content];
 
-    ContactCommentModel* model=[[ContactCommentModel alloc]initWithID:nil entityID:nil createdBy:[LoginSqlite getdata:@"userId"] userName:self.myName commentContents:content avatarUrl:self.myImageUrl time:[NSDate date]];
+    ContactCommentModel* model=[[ContactCommentModel alloc]initWithID:aid entityID:nil createdBy:[LoginSqlite getdata:@"userId"] userName:self.myName commentContents:content avatarUrl:self.myImageUrl time:[NSDate date]];
     
     [self.commentModels insertObject:model atIndex:0];
     [self.commentViews insertObject:view atIndex:0];
@@ -892,6 +892,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         UITableViewCell * cell = (UITableViewCell *)[[self.button superview] superview];
         NSIndexPath * path = [self.tableView indexPathForCell:cell];
         ContactCommentModel *model = self.commentModels[path.row-1];
+        NSLog(@"a_id==> %@",model.a_id);
         [CommentApi DelEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 [self.commentModels removeObjectAtIndex:path.row-1];

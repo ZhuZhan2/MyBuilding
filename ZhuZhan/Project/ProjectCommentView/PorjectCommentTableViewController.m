@@ -248,7 +248,9 @@
         [addCommentView finishNetWork];
         if(!error){
             ContactCommentModel *model = [[ContactCommentModel alloc] init];
+            model.a_id = posts[0];
             model.a_entityId = self.projectId;
+            NSLog(@"userImage ==> %@",[LoginSqlite getdata:@"userImage"]);
             model.a_userName = [LoginSqlite getdata:@"userName"];
             model.a_avatarUrl = [LoginSqlite getdata:@"userImage"];
             model.a_commentContents = [NSString stringWithFormat:@"%@",comment];

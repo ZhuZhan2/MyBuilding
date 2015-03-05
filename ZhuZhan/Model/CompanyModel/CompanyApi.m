@@ -94,7 +94,7 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/CompanyBaseInformation/GetMyCompany"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/companyInfo/getCompanyBaseInformation?companyId"];
     
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);

@@ -61,13 +61,14 @@
 +(void)insertData:(NSString *)data datakey:(NSString *)datakey{
     SqliteHelper *sqlite = [[SqliteHelper alloc] init];
     if ([sqlite open:DataBaseName]) {
-        NSLog(@"===>%d",[[LoginSqlite loadKey:datakey] count]);
+        //NSLog(@"===>%d",[[LoginSqlite loadKey:datakey] count]);
         if([[LoginSqlite loadKey:datakey] count] !=0){
             [sqlite executeQuery:@"UPDATE Login SET data=? WHERE datakey=?;",
              data,datakey];
         }else{
-            [sqlite executeQuery:@"INSERT INTO Login(data,datakey ) VALUES (?,?);",
-             data,datakey];
+            NSLog(@"data==>%@",data);
+            [sqlite executeQuery:@"INSERT INTO Login(data,datakey ) VALUES (?,?);",data,datakey];
+            //[sqlite executeQuery:[NSString stringWithFormat:@"INSERT INTO Login(data,datakey) VALUES ('%@','%@');",data,datakey]];
         }
     }
 }

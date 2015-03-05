@@ -18,19 +18,23 @@
     self.a_userId = [ProjectStage ProjectStrStage:dict[@"userId"]];
     self.a_deviceToken = [ProjectStage ProjectStrStage:dict[@"token"]];
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"loginName"]];
-    self.a_userType = [ProjectStage ProjectStrStage:dict[@"userType"]];
+    if([dict[@"userType"] isEqualToString:@"01"]){
+        self.a_userType = @"Personal";
+    }else{
+        self.a_userType = @"Company";
+    }
     //self.a_loginStatus = [ProjectStage ProjectStrStage:dict[@"loginStatus"]];
-//    if(![[ProjectStage ProjectStrStage:dict[@"imageLocation"]] isEqualToString:@""]){
-//        self.a_userImage = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"imageLocation"]]];
-//    }else{
-//        self.a_userImage = [ProjectStage ProjectStrStage:dict[@"imageLocation"]];
-//    }
-//    if(![[ProjectStage ProjectStrStage:dict[@"backgroundImage"]] isEqualToString:@""]){
-//        self.a_backgroundImage=[NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"backgroundImage"]]];
-//    }else{
-//        self.a_backgroundImage=[ProjectStage ProjectStrStage:dict[@"backgroundImage"]];
-//    }
-//    self.a_hasCompany = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"hasCompany"]]];
+    if(![[ProjectStage ProjectStrStage:dict[@"head"]] isEqualToString:@""]){
+        self.a_userImage = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"head"]], @"login", @"", @"", @"")];
+    }else{
+        self.a_userImage = [ProjectStage ProjectStrStage:dict[@"head"]];
+    }
+    if(![[ProjectStage ProjectStrStage:dict[@"background"]] isEqualToString:@""]){
+        self.a_backgroundImage=[NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"background"]], @"login", @"", @"", @"")];
+    }else{
+        self.a_backgroundImage=[ProjectStage ProjectStrStage:dict[@"background"]];
+    }
+    //self.a_hasCompany = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"hasCompany"]]];
 }
 
 + (NSURLSessionDataTask *)GenerateWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
