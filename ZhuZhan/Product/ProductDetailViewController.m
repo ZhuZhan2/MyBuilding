@@ -169,16 +169,17 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)firstNetWork{
-    [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
-            [self getNetWorkData];
-        }
-    } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID EntityCategory:self.category noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
-            [self firstNetWork];
-        }];
-    }];
+    [self getNetWorkData];
+//    [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+//        if (!error) {
+//            self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
+//            [self getNetWorkData];
+//        }
+//    } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID EntityCategory:self.category noNetWork:^{
+//        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+//            [self firstNetWork];
+//        }];
+//    }];
 }
 
 -(void)removeMyLoadingView{
@@ -197,7 +198,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [self getTableViewContents];
                 [self myTableViewReloadData];
             }
-        } entityId:self.entityID entityType:@"Product" noNetWork:^{
+        } entityId:self.entityID entityType:@"01" noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
                 [self getNetWorkData];
             }];
@@ -627,7 +628,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [self.delegate finishAddCommentFromDetailWithPosts:posts];
             }
         }
-    } dic:[@{@"EntityId":self.entityID,@"CommentContents":comment,@"EntityType":self.category,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy] noNetWork:nil];
+    } dic:[@{@"paramId":self.entityID,@"content":comment,@"commentType":self.category} mutableCopy] noNetWork:nil];
 }
 
 //添加产品详情的评论
@@ -637,7 +638,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if (!error) {
             [self finishAddComment:comment];
         }
-    } dic:[@{@"EntityId":self.entityID,@"entityType":@"Product",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy] noNetWork:nil];
+    } dic:[@{@"paramId":self.entityID,@"commentType":@"01",@"content":comment} mutableCopy] noNetWork:nil];
 }
 
 //给tableView添加数据

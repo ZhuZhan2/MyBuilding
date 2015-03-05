@@ -10,16 +10,16 @@
 #import "ProjectStage.h"
 @implementation ContactCommentModel
 -(void)setDict:(NSDictionary *)dict{
-    self.a_id = [ProjectStage ProjectStrStage:dict[@"id"]];
-    self.a_entityId = [ProjectStage ProjectStrStage:dict[@"entityId"]];
-    self.a_createdBy = [ProjectStage ProjectStrStage:dict[@"createdBy"]];
-    self.a_userName = [ProjectStage ProjectStrStage:dict[@"userName"]];
+    self.a_id = [ProjectStage ProjectStrStage:dict[@"commentId"]];
+    self.a_entityId = [ProjectStage ProjectStrStage:dict[@"paramId"]];
+    self.a_createdBy = [ProjectStage ProjectStrStage:dict[@"createdUser"]];
+    self.a_userName = [ProjectStage ProjectStrStage:dict[@"loginName"]];
     self.a_time = [ProjectStage ProjectDateStage:dict[@"createdTime"]];
-    self.a_commentContents = [ProjectStage ProjectStrStage:dict[@"commentContents"]];
-    if(![[ProjectStage ProjectStrStage:dict[@"userImage"]] isEqualToString:@""]){
-        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"userImage"]]];
+    self.a_commentContents = [ProjectStage ProjectStrStage:dict[@"content"]];
+    if(![[ProjectStage ProjectStrStage:dict[@"imageUrl"]] isEqualToString:@""]){
+        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"imageUrl"]]];
     }else{
-        self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"userImage"]];
+        self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"imageUrl"]];
     }
     self.a_userType = [ProjectStage ProjectStrStage:dict[@"userType"]];
 }
@@ -36,5 +36,4 @@
     }
     return self;
 }
-
 @end

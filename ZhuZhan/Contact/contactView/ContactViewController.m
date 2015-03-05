@@ -655,10 +655,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     ActivesModel *model = showArr[indexpath.row];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setValue:model.a_id forKey:@"EntityId"];
-    [dic setValue:[NSString stringWithFormat:@"%@",comment] forKey:@"CommentContents"];
-    [dic setValue:model.a_category forKey:@"EntityType"];
-    [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"CreatedBy"];
+    [dic setValue:model.a_id forKey:@"paramId"];
+    [dic setValue:[NSString stringWithFormat:@"%@",comment] forKey:@"content"];
+    [dic setValue:model.a_category forKey:@"commentType"];
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         [addCommentView finishNetWork];
         if(!error){

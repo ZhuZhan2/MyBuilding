@@ -35,6 +35,7 @@ static NSString * const AFAppDotNetAPIBaseURLString = @serverAddress;
         //_sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         _sharedClient.responseSerializer = [AFJSONResponseSerializer serializer];
     });
+    [_sharedClient.requestSerializer setValue:@"" forHTTPHeaderField:@"Authorization"];
     return _sharedClient;
 }
 
@@ -42,12 +43,10 @@ static NSString * const AFAppDotNetAPIBaseURLString = @serverAddress;
     AFAppDotNetAPIClient *_sharedNewClient = [AFAppDotNetAPIClient sharedClient];
     NSLog(@"%@",_sharedNewClient);
     if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
-        //NSLog(@"=====>%@",[LoginSqlite getdata:@"token" defaultdata:@""]);
         [_sharedNewClient.requestSerializer setValue:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forHTTPHeaderField:@"Authorization"];
     }else{
         [_sharedNewClient.requestSerializer setValue:@"" forHTTPHeaderField:@"Authorization"];
     }
-    //[_sharedNewClient.requestSerializer setValue:[NSString stringWithFormat:@"13756154-7db5-4516-bcc6-6b7842504c81:64ae81d7-f567-4cff-ac0a-110f1326196b"] forHTTPHeaderField:@"Authorization"];
     NSLog(@"＊＊＊＊＊%@",_sharedNewClient.requestSerializer.HTTPRequestHeaders);
     return _sharedNewClient;
 }

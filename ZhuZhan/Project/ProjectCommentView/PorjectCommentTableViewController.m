@@ -228,10 +228,9 @@
 -(void)sureFromAddCommentWithComment:(NSString*)comment{
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setValue:self.projectId forKey:@"EntityId"];
-    [dic setValue:[NSString stringWithFormat:@"%@",comment] forKey:@"CommentContents"];
-    [dic setValue:@"Project" forKey:@"EntityType"];
-    [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"CreatedBy"];
+    [dic setValue:self.projectId forKey:@"paramId"];
+    [dic setValue:[NSString stringWithFormat:@"%@",comment] forKey:@"content"];
+    [dic setValue:@"02" forKey:@"commentType"];
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         [addCommentView finishNetWork];
         if(!error){

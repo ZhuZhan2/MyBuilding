@@ -369,7 +369,7 @@
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } dic:[@{@"EntityId":self.model.a_id,@"entityType":@"Project",@"CommentContents":comment,@"CreatedBy":[LoginSqlite getdata:@"userId"]} mutableCopy] noNetWork:nil];
+    } dic:[@{@"paramId":self.model.a_id,@"commentType":@"02",@"content":comment} mutableCopy] noNetWork:nil];
 }
 
 //***************************************************************
