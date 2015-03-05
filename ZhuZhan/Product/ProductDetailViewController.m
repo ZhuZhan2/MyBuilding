@@ -250,6 +250,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)getProductMainView{
     //self.content=@"顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶";
+    //self.userName=@"一二三四五六七八九十一二三四五六七八九十";
     //self.content=@"";
     //self.imageUrl=@"";
     self.mainView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -279,6 +280,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     //产品名称
     NSString* productNameStr=@"产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称";
+    productNameStr=@"产品名称";
     CGFloat tempHeight=0;
     UIFont* productNameFont=[UIFont systemFontOfSize:16];
     CGFloat productNameWidth=[self.imageUrl isEqualToString:@""]?250:290;
@@ -297,17 +299,28 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //用户名称
     UILabel* userNameLabel;
     if (!([self.imageUrl isEqualToString:@""]&&![self.content isEqualToString:@""])) {
-        userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(productNameLabel.frame.origin.x, productNameLabel.frame.origin.y+productNameLabel.frame.size.height, 200, 20)];
+        CGFloat userNameLabelWidth=productNameWidth;
+        if ([self.imageUrl isEqualToString:@""]) {
+            userNameLabelWidth-=50;
+        }
+        UIFont* nameFont=[UIFont systemFontOfSize:14];
+        
+        CGFloat userNameLabelHeight=[self.userName boundingRectWithSize:CGSizeMake(userNameLabelWidth, 9999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:nameFont} context:nil].size.height;
+        
+        userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(productNameLabel.frame.origin.x, productNameLabel.frame.origin.y+productNameLabel.frame.size.height+3, userNameLabelWidth, userNameLabelHeight)];
+        userNameLabel.numberOfLines=0;
         userNameLabel.text=self.userName;
         userNameLabel.textColor=BlueColor;
-        userNameLabel.font=[UIFont systemFontOfSize:14];
+        userNameLabel.font=nameFont;
         [productNameArea addSubview:userNameLabel];
         
         
-        tempHeight+=userNameLabel.frame.size.height;
+        tempHeight+=userNameLabel.frame.size.height+3;
     }
     
-    
+    if ([self.imageUrl isEqualToString:@""]) {
+        tempHeight=tempHeight<=45?45:tempHeight;
+    }
     productNameArea.frame=CGRectMake(0, height, 310, tempHeight);
     height+=productNameArea.frame.size.height;
     

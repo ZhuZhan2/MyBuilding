@@ -233,6 +233,7 @@
     }
     ProductModel *model = showArr[indexPath.row];
     cell.nameLabel.text = @"产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称";
+    cell.nameLabel.text=@"产品名称";
     cell.titleLabel.text = model.a_content;
     cell.commentCountLabel.text= model.a_commentNumber;
     cell.imageSize = [self imageAtIndexPath:indexPath];
@@ -257,6 +258,7 @@
     
     CGFloat height=0;
     NSString* name=@"产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称";
+    name=@"产品名称";
     if (![name isEqualToString:@""]) {
         height+=5;
         CGFloat tempHeight=[name boundingRectWithSize:CGSizeMake([quiltView cellWidth]-10, 9999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:nameFont} context:nil].size.height;

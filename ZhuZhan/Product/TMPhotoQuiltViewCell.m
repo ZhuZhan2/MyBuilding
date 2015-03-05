@@ -124,7 +124,7 @@ CGFloat returnOriginY(CGRect frame){
     }
     
     NSString* name=@"产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称";
-    //name=@"";
+    name=@"产品名称";
     CGFloat height=[name boundingRectWithSize:CGSizeMake(self.bounds.size.width-10, 9999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.nameLabel.font} context:nil].size.height;
     CGFloat tempHeight=[name boundingRectWithSize:CGSizeMake(self.bounds.size.width-10, 9999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:nameFont} context:nil].size.height;
     tempHeight=tempHeight>=20?40:20;
