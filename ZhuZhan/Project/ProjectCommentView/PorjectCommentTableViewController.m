@@ -203,10 +203,10 @@
             [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         }
         [cell.contentView addSubview:viewArr[indexPath.row-1]];
-        
+        ProjectCommentView *view = viewArr[indexPath.row-1];
         ContactCommentModel *commentModel = showArr[indexPath.row-1];
         if([commentModel.a_createdBy isEqualToString:[LoginSqlite getdata:@"userId"]]){
-            UIImageView *delImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, (projectCommentView.frame.size.height-20)/2, 21, 20)];
+            UIImageView *delImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, (view.frame.size.height-20)/2, 21, 20)];
             delImage.image = [GetImagePath getImagePath:@"delComment"];
             [cell.contentView addSubview:delImage];
             
