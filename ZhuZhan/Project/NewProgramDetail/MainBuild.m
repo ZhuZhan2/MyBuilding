@@ -46,8 +46,8 @@
         view1.tag=0;
         [MyFactory addButtonToView:view1 target:self action:@selector(chooseImageView:) forControlEvents:UIControlEventTouchUpInside];
     }
-
-
+    
+    
     NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     UIView* view2=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs withContactCategory:@"施工总承包单位："];
     
@@ -74,7 +74,7 @@
         view1.tag=1;
         [MyFactory addButtonToView:view1 target:self action:@selector(chooseImageView:) forControlEvents:UIControlEventTouchUpInside];
     }
-
+    
     
     NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
     UIView* view2=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs withContactCategory:@"桩基分包单位："];
@@ -102,7 +102,7 @@
         view1.tag=2;
         [MyFactory addButtonToView:view1 target:self action:@selector(chooseImageView:) forControlEvents:UIControlEventTouchUpInside];
     }
-
+    
     
     NSArray* tempAry=@[view0,view1];
     CGFloat height=0;

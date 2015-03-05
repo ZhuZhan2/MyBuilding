@@ -15,11 +15,11 @@
 +(UIView*)getThreeContactsViewThreeTypesFiveStrs:(NSMutableArray*)datas withContactCategory:(NSString*)contactCategory;//联系人view
 +(UIView*)getTwoLinesTitleViewWithTitle:(NSString*)title titleImage:(UIImage*)titleImage firstStrs:(NSArray*)firstStrs secondStrs:(NSArray*)secondStrs;//program大块 二行
 +(UIView*)getNoLineTitleViewWithTitle:(NSString*)title titleImage:(UIImage*)titleImage;//program大块 零行
-+(UIView*)getDeviceAndBoolWithDevic:(NSArray*)devices boolStrs:(NSArray*)boolStrs;//硬件设备以及yes和no
++(UIView*)getDeviceAndBoolWithDevic:(NSArray*)devices boolStrs:(NSArray*)boolStrs hideFirstSeparatorLine:(BOOL)hideFirstSeparatorLine;//硬件设备以及yes和no
 +(UIView*)getBlackTwoLinesWithFirstStr:(NSArray*)firstStrs secondStr:(NSArray*)secondStrs;//第一行黑，第二行灰的view
 +(UIView*)getSeperatedLine;//分割线
 +(UIView*)getBlueThreeTypesTwoLinesWithFirstStr:(NSArray*)firstStrs secondStr:(NSArray*)secondStrs;//第一行蓝，第二行黑，专门为土地信息做的view
-+(UIView*)getOwnerTypeViewWithImage:(UIImage*)image owners:(NSArray*)owners;
++(UIView*)getOwnerTypeViewWithImage:(UIImage*)image owners:(NSArray*)owners extraDownHeight:(CGFloat)extraDownHeight;
 
 +(void)addButtonToView:(UIView*)view target:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
 

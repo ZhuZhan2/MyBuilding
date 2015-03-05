@@ -46,9 +46,8 @@
     
     NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     
-    NSLog(@"fivestrs==%@",fiveStrs);
     UIView* view3=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs withContactCategory:@"拍卖单位："];
-    [view3 addSubview:[MyFactory getSeperatedLine]];
+    if (fiveStrs.count)[view3 addSubview:[MyFactory getSeperatedLine]];
     
     NSArray* tempAry=@[view0,view1,view2,view3];
     CGFloat height=0;
@@ -77,7 +76,9 @@
     UIView* view2=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs withContactCategory:@"业主单位："];
     [view2 addSubview:[MyFactory getSeperatedLine]];
     
-    UIView* view3=[MyFactory getOwnerTypeViewWithImage:[GetImagePath getImagePath:@"07"] owners:[self.delegate getOwnerTypeViewWithImageAndOwnersWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]]];
+    UIView* view3=[MyFactory getOwnerTypeViewWithImage:[GetImagePath getImagePath:@"07"] owners:[self.delegate getOwnerTypeViewWithImageAndOwnersWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]] extraDownHeight:15];
+    if (!fiveStrs.count)[view3 addSubview:[MyFactory getSeperatedLine]];
+    
     
     NSArray* tempAry=@[view0,view1,view2,view3];
     CGFloat height=0;

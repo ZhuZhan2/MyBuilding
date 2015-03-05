@@ -256,17 +256,17 @@ static NSString* hasUserTypeContent(NSString* string){
     [view addSubview:button];
 }
 
-+(UIView*)getOwnerTypeViewWithImage:(UIImage*)image owners:(NSArray*)owners{
++(UIView*)getOwnerTypeViewWithImage:(UIImage*)image owners:(NSArray*)owners extraDownHeight:(CGFloat)extraDownHeight{
     UIView* view=[[UIView alloc]initWithFrame:CGRectZero];
     view.backgroundColor=[UIColor whiteColor];
     
-    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(15, 0, 20, 20)];
+    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(15, extraDownHeight, 20, 20)];
     imageView.image=image;
     [view addSubview:imageView];
     
     BOOL hasData=YES;
     for (int i=0; i<owners.count; i++) {
-        UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(45+i%4*((320-45)*1.0/4), i/4*30, 200, 20)];
+        UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(45+i%4*((320-45)*1.0/4), extraDownHeight+i/4*30, 200, 20)];
         if ((owners.count==1)&[owners[0] isEqualToString:@""]) {
             label.text=hasUserTypeContent(owners[0]);
             hasData=NO;
@@ -278,7 +278,7 @@ static NSString* hasUserTypeContent(NSString* string){
         [view addSubview:label];
     }
     
-    view.frame=CGRectMake(0, 0, 320, 35+(owners.count>0?(owners.count-1)/4*30:0));
+    view.frame=CGRectMake(0, 0, 320, extraDownHeight+35+(owners.count>0?(owners.count-1)/4*30:0));
     return view;
 }
 
@@ -288,9 +288,9 @@ static NSString* hasUserTypeContent(NSString* string){
     view.backgroundColor=[UIColor whiteColor];
     
     //土地面积
-        //计算土地面积名称Label的宽
+    //计算土地面积名称Label的宽
     CGSize size=[firstStrs[0] boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:TitleFont} context:nil].size;
-        //开始初始化土地面积label
+    //开始初始化土地面积label
     UILabel* areaFirstLabel=[[UILabel alloc]initWithFrame:CGRectMake(15, 10, size.width, 20)];
     areaFirstLabel.text=firstStrs[0];
     areaFirstLabel.textColor=NameColor;
@@ -305,7 +305,7 @@ static NSString* hasUserTypeContent(NSString* string){
     areaSecondLabel.font=ContentFont;
     areaSecondLabel.textAlignment=NSTextAlignmentCenter;
     [view addSubview:areaSecondLabel];
-
+    
     //土地容积率
     UILabel* plotFirstLabel=[[UILabel alloc]initWithFrame:CGRectMake(200, 10, 120, 20)];
     plotFirstLabel.text=firstStrs[1];
@@ -405,19 +405,19 @@ static NSString* hasUserTypeContent(NSString* string){
  *  @param contacts        中每个元素为一个@[@"",@"",@"",@"",@""]的数组
  *
  */
-//+(NSArray*)loadContacts:(NSMutableArray*)contacts withContactCategory:(NSString*)contactCategory{
-//    NSMutableArray* array=[NSMutableArray array];
-//    for (int i=0; i<contacts.count; i++) {
-//        NSMutableArray* tempArray=[contacts[i] mutableCopy];
-//        [tempArray addObject:contactCategory];
-//        [array addObject:tempArray];
-//    }
-//    for (int i=0; i<3-contacts.count; i++) {
-//        NSArray* tempAry=@[@"",@"",@"",@"",@"",contactCategory];
-//        [array addObject:tempAry];
-//    }
-//    return array;
-//}
++(NSArray*)loadContacts:(NSMutableArray*)contacts withContactCategory:(NSString*)contactCategory{
+    NSMutableArray* array=[NSMutableArray array];
+    for (int i=0; i<contacts.count; i++) {
+        NSMutableArray* tempArray=[contacts[i] mutableCopy];
+        [tempArray addObject:contactCategory];
+        [array addObject:tempArray];
+    }
+    //    for (int i=0; i<3-contacts.count; i++) {
+    //        NSArray* tempAry=@[@"",@"",@"",@"",@"",contactCategory];
+    //        [array addObject:tempAry];
+    //    }
+    return [array copy];
+}
 
 #define lineHeight 145
 #define leftWidth 15
@@ -425,9 +425,9 @@ static NSString* hasUserTypeContent(NSString* string){
 //联系人view
 +(UIView*)getThreeContactsViewThreeTypesFiveStrs:(NSMutableArray*)dataAry withContactCategory:(NSString*)contactCategory{
     //2015年3月3日，该方法暂时取消，因为不需要当联系人数量不足3个的时候再用默认数据填充了，可直接使用原数据进行操作
-    //NSArray* datas=[[self loadContacts:dataAry withContactCategory:contactCategory] copy];
+    NSArray* datas=[self loadContacts:dataAry withContactCategory:contactCategory];
     
-    NSArray* datas=[dataAry copy];
+    //NSArray* datas=[dataAry copy];
     
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, datas.count*lineHeight)];
     view.backgroundColor=[UIColor whiteColor];
@@ -511,7 +511,7 @@ static NSString* hasUserTypeContent(NSString* string){
 }
 
 //硬件设备以及yes和no  电梯,空调,供暖方式,外墙材料,钢结构,yes or no的几个view
-+(UIView*)getDeviceAndBoolWithDevic:(NSArray*)devices boolStrs:(NSArray*)boolStrs{
++(UIView*)getDeviceAndBoolWithDevic:(NSArray*)devices boolStrs:(NSArray*)boolStrs hideFirstSeparatorLine:(BOOL)hideFirstSeparatorLine{
     CGFloat cellHeight=40;
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, devices.count*cellHeight)];
     view.backgroundColor=[UIColor whiteColor];
@@ -527,6 +527,9 @@ static NSString* hasUserTypeContent(NSString* string){
         UIView* separatorLine=[self getSeperatedLine];
         separatorLine.center=CGPointMake(160, .5+i*cellHeight);
         [view addSubview:separatorLine];
+        if (i==0&&hideFirstSeparatorLine) {
+            separatorLine.hidden=YES;
+        }
     }
     
     //yes or no的label
