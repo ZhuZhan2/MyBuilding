@@ -84,7 +84,7 @@
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } entityId:projectId entityType:@"Project" noNetWork:^{
+    } entityId:projectId entityType:@"02" noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
