@@ -6645,7 +6645,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: hua ye (JG3N8X8YM7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ZhuZhan/Project/SearchView",
@@ -6663,7 +6663,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d8ebbbb0-b642-4928-a269-22f59d5e7c38";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
@@ -6675,7 +6675,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: hua ye (JG3N8X8YM7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ZhuZhan/Project/SearchView",
@@ -6692,7 +6692,7 @@
 					"$(PROJECT_DIR)/ZhuZhan/Tools/BaiduMap/libs/Release-iphonesimulator",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d8ebbbb0-b642-4928-a269-22f59d5e7c38";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
