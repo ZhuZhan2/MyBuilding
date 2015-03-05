@@ -58,7 +58,7 @@
 
 @property(nonatomic,strong)UIView* scrollViewBackground;
 
-@property(nonatomic,strong)NSArray* stages;//判断阶段的数组
+@property(nonatomic,strong)NSArray* allStages;//判断阶段的数组,包括所有阶段的数组
 
 @property(nonatomic,strong)AddCommentViewController* addCommentVC;
 
@@ -66,9 +66,155 @@
 
 @property(nonatomic,strong)projectModel* model;
 
+@property(nonatomic,strong)NSArray* bigStages;//不要直接访问该属性，请直接调用以下宏
+#define BigStages(section) [self.bigStages[section] boolValue]
+
+@property(nonatomic,strong)NSArray* stageIsNeedLoad;//不要直接访问该属性，请直接调用以下宏
+#define StageIsNeedLoad(section) [self.stageIsNeedLoad[section] boolValue]
+
+@property(nonatomic)BOOL needReloadStageIsNeedLoad;
+
+@property(nonatomic,weak)UIView* lastStageView;
+
+@property(nonatomic,strong)NSArray* smallTitles;
+@property(nonatomic,strong)NSArray* bigTitles;
+@property(nonatomic,strong)NSArray* bigStageImageNames;
 @end
 
 @implementation ProgramDetailViewController
+
+-(NSArray *)bigStageImageNames{
+    if (!_bigStageImageNames) {
+        NSString* firstStage=@"筛选中01";
+        NSString* secondStage=@"筛选中02";
+        NSString* thirdStage=@"筛选中03";
+        NSString* fourthStage=@"筛选中04";
+        NSArray* allStages=@[firstStage,secondStage,thirdStage,fourthStage];
+        NSMutableArray* tempArray=[NSMutableArray array];
+        for (int i=0; i<4; i++) {
+            if (BigStages(i)) {
+                [tempArray addObject:allStages[i]];
+            }
+        }
+        _bigStageImageNames=[tempArray copy];
+    }
+    return _bigStageImageNames;
+}
+
+-(NSArray *)bigTitles{
+    if (!_bigTitles) {
+        NSString* firstStage=@"土地信息阶段";
+        NSString* secondStage=@"主体设计阶段";
+        NSString* thirdStage=@"主体施工阶段";
+        NSString* fourthStage=@"装修阶段";
+        NSArray* allStages=@[firstStage,secondStage,thirdStage,fourthStage];
+        NSMutableArray* tempArray=[NSMutableArray array];
+        for (int i=0; i<4; i++) {
+            if (BigStages(i)) {
+                [tempArray addObject:allStages[i]];
+            }
+        }
+        _bigTitles=[tempArray copy];
+    }
+    return _bigTitles;
+}
+
+-(NSArray *)smallTitles{
+    if (!_smallTitles) {
+        NSArray* firstStage=@[@"土地规划/拍卖",@"项目立项"];
+        NSArray* secondStage=@[@"地勘阶段",@"设计阶段",@"出图阶段"];
+        NSArray* thirdStage=@[@"地平",@"桩基基坑",@"主体施工",@"消防/景观绿化"];
+        NSArray* fourthStage=@[@""];
+        NSArray* allStages=@[firstStage,secondStage,thirdStage,fourthStage];
+        NSMutableArray* tempArray=[NSMutableArray array];
+        for (int i=0; i<4; i++) {
+            if (BigStages(i)) {
+                [tempArray addObjectsFromArray:allStages[i]];
+            }
+        }
+        _smallTitles=[tempArray copy];
+    }
+    return _smallTitles;
+}
+
+-(UIView *)lastStageView{
+    if (!_lastStageView) {
+        for (NSInteger i=self.bigStages.count-1; i>=0; i--) {
+            if (BigStages(i)) {
+                switch (i) {
+                    case 0:
+                        _lastStageView=self.landInfo;
+                        break;
+                    case 1:
+                        _lastStageView=self.mainDesign;
+                        break;
+                    case 2:
+                        _lastStageView=self.mainBuild;
+                        break;
+                    case 3:
+                        _lastStageView=self.decorationProject;
+                        break;
+                }
+                return _lastStageView;
+            }
+        }
+    }
+    return _lastStageView;
+}
+
+-(NSArray *)stageIsNeedLoad{
+    if (self.needReloadStageIsNeedLoad) {
+        NSMutableArray* tempArray=[NSMutableArray arrayWithObject:@YES];
+        for (int i=1; i<4; i++) {
+            BOOL needLoad=YES;
+            switch (i) {
+                case 1:{
+                    if (self.mainDesign||!BigStages(i)) {
+                        needLoad=NO;
+                    }
+                }
+                    break;
+                case 2:{
+                    if (self.mainBuild||!BigStages(i)) {
+                        needLoad=NO;
+                    }
+                }
+                    break;
+                case 3:{
+                    if (self.decorationProject||!BigStages(i)) {
+                        needLoad=NO;
+                    }
+                }
+            }
+            [tempArray addObject:[NSNumber numberWithBool:needLoad]];
+        }
+        _stageIsNeedLoad=[tempArray copy];
+        self.needReloadStageIsNeedLoad=NO;
+    }
+    return _stageIsNeedLoad;
+}
+
+-(NSArray *)bigStages{
+    if (!_bigStages) {
+        NSMutableArray* tempArray=[NSMutableArray array];
+        int stagesCount[4]={2,3,4,1};
+        int temp[4]={0,2,5,9};
+        
+        for (int i=0; i<4; i++) {
+            BOOL stageLight=NO;
+            for (NSString* str in [self.allStages subarrayWithRange:NSMakeRange(temp[i], stagesCount[i])]) {
+                
+                if (![str isEqualToString:@"none"]) {
+                    stageLight=YES;
+                    break;
+                }
+            }
+            [tempArray addObject:[NSNumber numberWithBool:stageLight]];
+        }
+        _bigStages=[tempArray copy];
+    }
+    return _bigStages;
+}
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -80,7 +226,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    //隐藏tabBar
+    //隐藏tabBar
     AppDelegate* app=[AppDelegate instance];
     HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
     [homeVC homePageTabBarHide];
@@ -103,6 +249,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
+    self.needReloadStageIsNeedLoad=YES;
     [self insertData];
     [self initNavi];
     [self loadIndicatorView];
@@ -142,8 +289,8 @@
                 self.model = posts[0];
                 [self.model getContacts:posts[1]];
                 [self.model getImages:posts[2]];
+                self.allStages=[ProjectStage JudgmentProjectDetailStage:self.model];
                 [self loadSelf];
-                self.stages=[ProjectStage JudgmentProjectDetailStage:self.model];
             }
         }else{
             [LoginAgain AddLoginView:NO];
@@ -183,20 +330,20 @@
 }
 
 -(void)initContentTableView{
-        self.landInfo=[LandInfo getLandInfoWithDelegate:self part:0];
-        [[[self.landInfo.firstView.subviews[0] subviews][0]subviews][0] removeFromSuperview];
-        
-        self.contents=[[NSMutableArray alloc]init];
-        [self contentsAddObject:self.landInfo];
-        
-        self.contentTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 64+50, 320, 568-64-50) style:UITableViewStylePlain];
-        self.contentTableView.dataSource=self;
-        self.contentTableView.delegate=self;
-        self.contentTableView.backgroundColor=RGBCOLOR(229, 229, 229);
-        
-        self.contentTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-        self.contentTableView.showsVerticalScrollIndicator=NO;
-        [self.view insertSubview:self.contentTableView belowSubview:self.themeView];
+    self.landInfo=[LandInfo getLandInfoWithDelegate:self part:0];
+    [[[self.landInfo.firstView.subviews[0] subviews][0]subviews][0] removeFromSuperview];
+    
+    self.contents=[[NSMutableArray alloc]init];
+    [self contentsAddObject:self.landInfo];
+    
+    self.contentTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 64+50, 320, 568-64-50) style:UITableViewStylePlain];
+    self.contentTableView.dataSource=self;
+    self.contentTableView.delegate=self;
+    self.contentTableView.backgroundColor=RGBCOLOR(229, 229, 229);
+    
+    self.contentTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    self.contentTableView.showsVerticalScrollIndicator=NO;
+    [self.view insertSubview:self.contentTableView belowSubview:self.themeView];
 }
 
 -(void)back{
@@ -359,7 +506,7 @@
 // "CreatedBy": ":“评论人"
 -(void)sureFromAddCommentWithComment:(NSString *)comment{
     NSLog(@"sureFromAddCommentWithCommentModel:");
-
+    
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -386,42 +533,48 @@
 }
 
 -(CGFloat)loadNewViewStandardY{
-    if (!self.mainDesign) {
-        return self.landInfo.frame.size.height+56;
-    }else if (!self.mainBuild){
-        return self.landInfo.frame.size.height+self.mainDesign.frame.size.height+56;
-    }else if (!self.decorationProject){
-        return  self.landInfo.frame.size.height+self.mainDesign.frame.size.height+self.mainBuild.frame.size.height+56;
+    if (1) {
+        if (StageIsNeedLoad(1)) {
+            return self.landInfo.frame.size.height+56;
+        }else if (StageIsNeedLoad(2)){
+            return self.landInfo.frame.size.height+self.mainDesign.frame.size.height+56;
+        }else if (StageIsNeedLoad(3)){
+            return  self.landInfo.frame.size.height+self.mainDesign.frame.size.height+self.mainBuild.frame.size.height+56;
+        }else{
+            return CGFLOAT_MAX;
+        }
     }else{
-        return CGFLOAT_MAX;
+        if (!self.mainDesign) {
+            return self.landInfo.frame.size.height+56;
+        }else if (!self.mainBuild){
+            return self.landInfo.frame.size.height+self.mainDesign.frame.size.height+56;
+        }else if (!self.decorationProject){
+            return  self.landInfo.frame.size.height+self.mainDesign.frame.size.height+self.mainBuild.frame.size.height+56;
+        }else{
+            return CGFLOAT_MAX;
+        }
     }
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView.contentOffset.y+568-64-50>=self.loadNewViewStandardY) {
-        if (!self.mainDesign) {
-            self.mainDesign=[MainDesign getMainDesignWithDelegate:self part:1];
-            [self addNewView:self.mainDesign scrollView:scrollView];
-        }else if (!self.mainBuild){
-            self.mainBuild=[MainBuild getMainBuildWithDelegate:self part:2];
-            [self addNewView:self.mainBuild scrollView:scrollView];
-        }else if(!self.decorationProject){
-            self.decorationProject=[DecorationProject getDecorationProjectWithDelegate:self part:3];
-            [self addNewView:self.decorationProject scrollView:scrollView];
+        for (int i=1; i<4; i++) {
+            BOOL sucess=[self addNewViewWithStage:i scrollView:scrollView];
+            if(sucess) break;
         }
     }
     
-    NSArray* smallTitles=@[@"土地规划/拍卖",@"项目立项",@"地勘阶段",@"设计阶段",@"出图阶段",@"地平",@"桩基基坑",@"主体施工",@"消防/景观绿化",@""];
-    NSArray* bigTitles=@[@"土地信息阶段",@"主体设计阶段",@"主体施工阶段",@"装修阶段"];
-    NSArray* bigStageImageNames=@[@"筛选中01",@"筛选中02",@"筛选中03",@"筛选中04"];
+    // NSArray* smallTitles=@[@"土地规划/拍卖",@"项目立项",@"地勘阶段",@"设计阶段",@"出图阶段",@"地平",@"桩基基坑",@"主体施工",@"消防/景观绿化",@""];
+    // NSArray* bigTitles=@[@"土地信息阶段",@"主体设计阶段",@"主体施工阶段",@"装修阶段"];
+    //NSArray* bigStageImageNames=@[@"筛选中01",@"筛选中02",@"筛选中03",@"筛选中04"];
     
     for (int i=0; i<self.bigStageStandardY.count; i++) {
         if (scrollView.contentOffset.y+568-64-50<[self.bigStageStandardY[i] floatValue]) {
             //大阶段名称
-            self.bigStageLabel.text=bigTitles[i];
+            self.bigStageLabel.text=self.bigTitles[i];
             
             //大阶段左边图标
-            UIImage* image=[GetImagePath getImagePath:bigStageImageNames[i]];
+            UIImage* image=[GetImagePath getImagePath:self.bigStageImageNames[i]];
             CGPoint center=self.bigStageImageView.center;
             CGRect frame=CGRectMake(0, 0, image.size.width, image.size.height);
             self.bigStageImageView.frame=frame;
@@ -435,13 +588,36 @@
     for (int i=0; i<self.smallStageStandardY.count; i++) {
         //小阶段名称
         if (scrollView.contentOffset.y+568-64-50<[self.smallStageStandardY[i] floatValue]) {
-            self.smallStageLabel.text=smallTitles[i];
+            self.smallStageLabel.text=self.smallTitles[i];
             break;
         }
     }
 }
 
--(void)addNewView:(UIView*)view scrollView:(UIScrollView*)scrollView{
+-(UIView*)loadSpecifiedViewWithStage:(NSInteger)stage{
+    if (!StageIsNeedLoad(stage)) return nil;
+    self.needReloadStageIsNeedLoad=YES;
+    UIView* view;
+    switch (stage) {
+        case 1:{
+            view=self.mainDesign=[MainDesign getMainDesignWithDelegate:self part:stage];
+        }
+            break;
+        case 2:{
+            view=self.mainBuild=[MainBuild getMainBuildWithDelegate:self part:stage];
+        }
+            break;
+        case 3:{
+            view=self.decorationProject=[DecorationProject getDecorationProjectWithDelegate:self part:stage];
+        }
+            break;
+    }
+    return view;
+}
+
+-(BOOL)addNewViewWithStage:(NSInteger)stage scrollView:(UIScrollView*)scrollView{
+    UIView* view=[self loadSpecifiedViewWithStage:stage];
+    if (!view) return NO;
     //根据是否需要动画情况进行加载
     if (self.isNeedAnimation) {
         self.animationView.center=CGPointMake(160, scrollView.contentSize.height-40);
@@ -487,6 +663,7 @@
         //将内容添加进cell的内容数组
         [self contentsAddObject:view];
     }
+    return YES;
 }
 
 -(void)contentsAddObject:(UIView*)view{
@@ -516,7 +693,7 @@
     for (int i=0; i<view.subviews.count; i++) {
         [self.contents addObject:view.subviews[i]];
     }
-    if (view!=self.decorationProject) {
+    if (view!=self.lastStageView) {
         [self.contents addObject:self.loadingView];
     }
     if (view!=self.landInfo) {
@@ -541,19 +718,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView==self.contentTableView) {
     }else{
-        int stagesCount[4]={2,3,4,1};
-        BOOL stageLight=NO;
-        int temp[4]={0,2,5,9};
-        
-        for (NSString* str in [self.stages subarrayWithRange:NSMakeRange(temp[indexPath.section], stagesCount[indexPath.section])]) {
+        if (BigStages(indexPath.section)) {
             
-            if (![str isEqualToString:@"none"]) {
-                stageLight=YES;
-                break;
-            }
-        }
-        
-        if (stageLight) {
             //为了让sectionHeader可以被点击,所以将cell被点击之后实现的跳转加载功能封装到其他方法
             [self didchangeStageSection:indexPath.section row:indexPath.row];
         }
@@ -561,18 +727,8 @@
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    int stagesCount[4]={2,3,4,1};
-    BOOL stageLight=NO;
-    int temp[4]={0,2,5,9};
     
-    for (NSString* str in [self.stages subarrayWithRange:NSMakeRange(temp[section], stagesCount[section])]) {
-        
-        if (![str isEqualToString:@"none"]) {
-            stageLight=YES;
-            break;
-        }
-    }
-
+    BOOL stageLight=BigStages(section);
     NSArray* path=stageLight?@[@"筛选中01",@"筛选中02",@"筛选中03",@"筛选中04"]:@[@"01",@"02",@"03",@"04"];
     
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 37.5)];
@@ -611,34 +767,45 @@
 }
 
 -(void)didchangeStageSection:(NSInteger)section row:(NSInteger)row{
+#warning 考虑以下for循环是否可优化
     for (int i=1; i<=section; i++) {//土地信息阶段必存在，不用判断和操作
-        if (!self.mainDesign&&i==1) {
-            //加载主体设计
-            self.mainDesign=[MainDesign getMainDesignWithDelegate:self part:1];
-            [self addNewView:self.mainDesign scrollView:self.contentTableView];
-            
-        }else if(!self.mainBuild&&i==2){
-            //加载主体施工
-            self.mainBuild=[MainBuild getMainBuildWithDelegate:self part:2];
-            [self addNewView:self.mainBuild scrollView:self.contentTableView];
-        }else if(!self.decorationProject&&i==3){
-            //加载装修
-            self.decorationProject=[DecorationProject getDecorationProjectWithDelegate:self part:3];
-            [self addNewView:self.decorationProject scrollView:self.contentTableView];
-        }
+        [self addNewViewWithStage:i scrollView:self.contentTableView];
+        
+        //        if (!self.mainDesign&&i==1) {
+        //            //加载主体设计
+        //            self.mainDesign=[MainDesign getMainDesignWithDelegate:self part:1];
+        //            [self addNewView:self.mainDesign scrollView:self.contentTableView];
+        //
+        //        }else if(!self.mainBuild&&i==2){
+        //            //加载主体施工
+        //            self.mainBuild=[MainBuild getMainBuildWithDelegate:self part:2];
+        //            [self addNewView:self.mainBuild scrollView:self.contentTableView];
+        //        }else if(!self.decorationProject&&i==3){
+        //            //加载装修
+        //            self.decorationProject=[DecorationProject getDecorationProjectWithDelegate:self part:3];
+        //            [self addNewView:self.decorationProject scrollView:self.contentTableView];
+        //        }
     }
     //如果导致装修的界面需要被动画加载出来，则进行无动画加载装修view
     if (!self.decorationProject&&section==2&&row==3) {//计算坐标比较复杂，直接从结果中判断是否需要加载装修页面,判断下来,当用户点击第三大阶段第四小阶段时,需要无动画加载装修
-        self.decorationProject=[DecorationProject getDecorationProjectWithDelegate:self part:3];
-        [self addNewView:self.decorationProject scrollView:self.contentTableView];
+        //[self addNewViewWithStage:3 scrollView:self.contentTableView];
+        //        self.decorationProject=[DecorationProject getDecorationProjectWithDelegate:self part:3];
+        //        [self addNewView:self.decorationProject scrollView:self.contentTableView];
+    }
+    NSInteger smallStageCount[4]={2,3,4,1};
+    NSInteger sumSmallStage=0;
+    for (int i=0; i<section; i++) {
+        if (BigStages(i)) {
+            sumSmallStage+=smallStageCount[i];
+        }
+    }
+    sumSmallStage+=row;
+    
+    CGFloat height=0;
+    for (int j=0; j<sumSmallStage; j++) {
+        height+=[self.contents[j] frame].size.height;
     }
     
-    NSInteger count[4]={0,2,5,9};
-    CGFloat height=0;
-    NSInteger sum=count[section]+row;
-    for (int i=0; i<sum; i++) {
-        height+=[self.contents[i] frame].size.height;
-    }
     [self.contentTableView setContentOffset:CGPointMake(0, height) animated:YES];
     [self selectCancel];
 }
@@ -650,18 +817,7 @@
         if (indexPath.section==3) {
             return NO;
         }else{
-            int stagesCount[4]={2,3,4,1};
-            BOOL stageLight=NO;
-            int temp[4]={0,2,5,9};
-            
-            for (NSString* str in [self.stages subarrayWithRange:NSMakeRange(temp[indexPath.section], stagesCount[indexPath.section])]) {
-                
-                if (![str isEqualToString:@"none"]) {
-                    stageLight=YES;
-                    break;
-                }
-            }
-            return stageLight;
+            return BigStages(indexPath.section);
         }
     }
 }
@@ -693,60 +849,50 @@
         return cell;
     }else{
         BOOL first,second,third;
-        int stagesCount[4]={2,3,4,1};
-        BOOL stageLight=NO;
+        BOOL stageLight=BigStages(indexPath.section);
         int temp[4]={0,2,5,9};
-        
-        //NSLog(@"%@",self.stages);
-        for (NSString* str in [self.stages subarrayWithRange:NSMakeRange(temp[indexPath.section], stagesCount[indexPath.section])]) {
-            
-            if (![str isEqualToString:@"none"]) {
-                stageLight=YES;
-                break;
-            }
-        }
         
         if (indexPath.section==0) {
             if (indexPath.row==0) {
                 first=self.model.auctionContacts.count?YES:NO;
                 second=self.model.auctionImages.count?YES:NO;
-                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
+                third=[self.allStages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }else{
                 first=self.model.ownerContacts.count?YES:NO;
                 second=NO;
-                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
+                third=[self.allStages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }
         }else if (indexPath.section==1){
             if (indexPath.row==0) {
                 first=self.model.explorationContacts.count?YES:NO;
                 second=self.model.explorationImages.count?YES:NO;
-                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
+                third=[self.allStages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }else if (indexPath.row==1){
                 first=self.model.designContacts.count?YES:NO;
                 second=NO;
-                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
+                third=[self.allStages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }else{
                 first=self.model.ownerContacts.count?YES:NO;
                 second=NO;
-                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
+                third=[self.allStages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }
         }else{
             if (indexPath.row==0){
                 first=self.model.constructionContacts.count?YES:NO;
                 second=self.model.constructionImages.count?YES:NO;
-                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
+                third=[self.allStages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }else if (indexPath.row==1){
                 first=self.model.pileContacts.count?YES:NO;
                 second=self.model.pileImages.count?YES:NO;
-                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
+                third=[self.allStages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }else if (indexPath.row==2){
                 first=NO;
                 second=self.model.mainBulidImages.count?YES:NO;
-                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
+                third=[self.allStages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }else{
                 first=NO;
                 second=NO;
-                third=[self.stages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
+                third=[self.allStages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }
         }
         
@@ -779,7 +925,7 @@
     NSArray* part2=@[self.model.constructionImages,self.model.pileImages,self.model.mainBulidImages];
     NSArray* part3=@[self.model.decorationImages];
     NSArray* array=@[part0,part1,part2,part3];
-
+    
     [self addScrollViewWithUrls:array[indexPath.part][indexPath.section]];
 }
 
@@ -897,13 +1043,5 @@
             [self firstNetWork];
         }];
     }];
-}
-
-- (void)didReceiveMemoryWarning{
-    [super didReceiveMemoryWarning];
-}
-
--(void)dealloc{
-    NSLog(@"ProgramDetailViewControllerDealloc");
 }
 @end

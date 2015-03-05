@@ -41,10 +41,10 @@
         view0.tag=0;
         [MyFactory addButtonToView:view0 target:self action:@selector(chooseImageView:) forControlEvents:UIControlEventTouchUpInside];
     }
-
+    
     
     NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
-
+    
     UIView* view1=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs withContactCategory:@"地勘公司："];
     
     NSArray* tempAry=@[view2,view0,view1];
@@ -82,21 +82,21 @@
         height+=[tempAry[i] frame].size.height;
     }
     self.secondView.frame=CGRectMake(0, 0, 320,height);
-
+    
 }
 
 -(void)getThirdView{
     //出图阶段
     self.thirdView=[[UIView alloc]initWithFrame:CGRectZero];
-
+    
     NSArray* secondStrs=[self.delegate getTwoLinesTitleViewFirstStrsAndSecondStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:2]];
     UIView* view0=[MyFactory getTwoLinesTitleViewWithTitle:@"出图阶段" titleImage:[GetImagePath getImagePath:@"icon02"] firstStrs:@[@"预计施工时间",@"预计竣工时间"] secondStrs:secondStrs];
     
     NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:2]];
     UIView* view1=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs withContactCategory:@"业主单位："];
-
+    
     NSArray* boolStrs=[self.delegate getDeviceAndBoolWithDevicesAndBoolStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:2]];
-    UIView* view2=[MyFactory getDeviceAndBoolWithDevic:@[@"电梯",@"空调",@"供暖方式",@"外墙材料",@"钢结构"] boolStrs:boolStrs];
+    UIView* view2=[MyFactory getDeviceAndBoolWithDevic:@[@"电梯",@"空调",@"供暖方式",@"外墙材料",@"钢结构"] boolStrs:boolStrs hideFirstSeparatorLine:!fiveStrs.count];
     
     NSArray* tempAry=@[view0,view1,view2];
     CGFloat height=0;
