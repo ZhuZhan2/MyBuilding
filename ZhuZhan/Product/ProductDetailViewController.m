@@ -67,6 +67,7 @@
 @property(nonatomic,strong)NSString* isFocused;
 
 @property(nonatomic,strong)LoadingView *loadingView;
+@property(nonatomic,strong)UIButton *button;
 @end
 
 @implementation ProductDetailViewController
@@ -739,7 +740,20 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         btn.tag=indexPath.row;
         [btn addTarget:self action:@selector(chooseUserImage:) forControlEvents:UIControlEventTouchUpInside];
         [cell.contentView addSubview:btn];
-       
+        
+        ContactCommentModel* commentModel=self.commentModels[indexPath.row-1];
+        ProductCommentView *view = self.commentViews[indexPath.row-1];
+        if([commentModel.a_createdBy isEqualToString:[LoginSqlite getdata:@"userId"]]){
+            UIImageView *delImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, (view.frame.size.height-20)/2, 21, 20)];
+            delImage.image = [GetImagePath getImagePath:@"delComment"];
+            [cell.contentView addSubview:delImage];
+            
+            UIButton *delBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            delBtn.frame = CGRectMake(270, delImage.frame.origin.y-10, 40, 40);
+            //[delBtn setBackgroundColor:[UIColor yellowColor]];
+            [delBtn addTarget:self action:@selector(delComment:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.contentView addSubview:delBtn];
+        }
         return cell;
     }
 }
@@ -879,6 +893,32 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }
     } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID EntityCategory:self.category noNetWork:nil];
 }
+
+-(void)delComment:(UIButton *)button{
+    self.button = button;
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"是否删除评论" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 1){
+        UITableViewCell * cell = (UITableViewCell *)[[self.button superview] superview];
+        NSIndexPath * path = [self.tableView indexPathForCell:cell];
+        ContactCommentModel *model = self.commentModels[path.row-1];
+        [CommentApi DelEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                [self.commentModels removeObjectAtIndex:path.row-1];
+                [self.commentViews removeObjectAtIndex:path.row-1];
+                NSArray *indexPaths = [NSArray arrayWithObject:path];
+                [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+                if(self.commentModels.count==0){
+                    [self myTableViewReloadData];
+                }
+            }
+        } dic:[@{@"commentId":model.a_id,@"commentType":@"01"} mutableCopy] noNetWork:nil];
+    }
+}
+
 //-(void)getProductView{
 //    self.productView=[[UIView alloc]initWithFrame:CGRectZero];
 //    CGFloat tempHeight=0;

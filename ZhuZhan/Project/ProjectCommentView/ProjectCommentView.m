@@ -76,10 +76,6 @@
     self.frame=CGRectMake(6, 0, 308, height);
     self.backgroundColor=[UIColor whiteColor];
     
-    UIImageView *delImage = [[UIImageView alloc] initWithFrame:CGRectMake(200, (height-20)/2, 21, 20)];
-    delImage.image = [UIImage imageNamed:@"delComment"];
-    [self addSubview:delImage];
-    
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(-6, height-1, 320, 1)];
     imageView.backgroundColor = [UIColor blackColor];
     imageView.alpha = 0.2;

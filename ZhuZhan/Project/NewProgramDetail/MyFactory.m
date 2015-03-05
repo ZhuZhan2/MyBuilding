@@ -450,6 +450,8 @@ static NSString* hasUserTypeContent(NSString* string){
         jobLabel.font=ContentFont;
         [view addSubview:jobLabel];
         
+        
+        NSLog(@"===>%@",array);
         //单位名称
         CGSize size=[array[5] boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:ContentFont} context:nil].size;
         UILabel* companyName=[[UILabel alloc]initWithFrame:CGRectMake(leftWidth, 60+i*lineHeight, size.width, 20)];
