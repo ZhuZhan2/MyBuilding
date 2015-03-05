@@ -158,6 +158,7 @@
     self.titlePlaceLabel.alpha=1;
     self.contentPlaceLabel.alpha=1;
     [self.titleTextView becomeFirstResponder];
+    [self.imageBtn setBackgroundImage:[GetImagePath getImagePath:@"人脉－发布动态_03a"] forState:UIControlStateNormal];
     NSLog(@"右按钮点击事件");
 }
 

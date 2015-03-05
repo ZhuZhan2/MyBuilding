@@ -52,7 +52,7 @@
 
 -(UITextView *)contentTextView{
     if (!_contentTextView) {
-        _contentTextView=[[UITextView alloc]initWithFrame:CGRectMake( 8, 64+40, 300, 200)];
+        _contentTextView=[[UITextView alloc]initWithFrame:CGRectMake( 8, 64+40-64, 300, 200)];
         _contentTextView.backgroundColor=[UIColor clearColor];
         _contentTextView.font=ProductContentFont;
         _contentTextView.delegate=self;
@@ -125,6 +125,7 @@
 -(void)rightBtnClick{
     self.contentTextView.text=@"";
     self.contentPlaceLabel.alpha=1;
+    [self.imageBtn setBackgroundImage:[GetImagePath getImagePath:@"人脉－发布动态_03a"] forState:UIControlStateNormal];
     NSLog(@"右按钮点击事件");
 }
 
