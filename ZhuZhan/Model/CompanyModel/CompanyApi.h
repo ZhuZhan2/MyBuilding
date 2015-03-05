@@ -16,7 +16,7 @@
 + (NSURLSessionDataTask *)AddCompanyEmployeeWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 
 //我的公司
-+ (NSURLSessionDataTask *)GetMyCompanyWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block noNetWork:(void(^)())noNetWork;
++ (NSURLSessionDataTask *)GetMyCompanyWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block companyId:(NSString *)companyId noNetWork:(void(^)())noNetWork;
 
 //公司详情
 + (NSURLSessionDataTask *)GetCompanyDetailWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block companyId:(NSString *)companyId noNetWork:(void(^)())noNetWork;

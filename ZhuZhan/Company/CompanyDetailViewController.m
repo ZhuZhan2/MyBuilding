@@ -47,32 +47,49 @@
 }
 
 -(void)firstNetWork{
-    [CompanyApi HasCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
+    [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            self.hasCompany = [NSString stringWithFormat:@"%@",posts[0]];
-            [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
-                if(!error){
-                    if(posts.count !=0){
-                        self.model = posts[0];
-                        [self initFirstView];//第一个文字view初始
-                        if (![self.companyId isEqualToString:[LoginSqlite getdata:@"userId"]])[self initSecondView];//第二个文字view初始
-                        [self initThirdView];
-                    }
-                }else{
-                    [LoginAgain AddLoginView:NO];
-                }
-                [self removeMyLoadingView];
-            } companyId:self.companyId noNetWork:^{
-                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view reloadBlock:^{
-                    [self firstNetWork];
-                }];
-            }];
+            if(posts.count !=0){
+                self.model = posts[0];
+                [self initFirstView];//第一个文字view初始
+                if (![self.companyId isEqualToString:[LoginSqlite getdata:@"userId"]])[self initSecondView];//第二个文字view初始
+                [self initThirdView];
+            }
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
-    } noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
+        [self removeMyLoadingView];
+    } companyId:self.companyId noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];
+//    [CompanyApi HasCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
+//        if(!error){
+//            self.hasCompany = [NSString stringWithFormat:@"%@",posts[0]];
+//            [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+//                if(!error){
+//                    if(posts.count !=0){
+//                        self.model = posts[0];
+//                        [self initFirstView];//第一个文字view初始
+//                        if (![self.companyId isEqualToString:[LoginSqlite getdata:@"userId"]])[self initSecondView];//第二个文字view初始
+//                        [self initThirdView];
+//                    }
+//                }else{
+//                    [LoginAgain AddLoginView:NO];
+//                }
+//                [self removeMyLoadingView];
+//            } companyId:self.companyId noNetWork:^{
+//                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view reloadBlock:^{
+//                    [self firstNetWork];
+//                }];
+//            }];
+//        }
+//    } noNetWork:^{
+//        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
+//            [self firstNetWork];
+//        }];
+//    }];
 }
 
 -(void)removeMyLoadingView{

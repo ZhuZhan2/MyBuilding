@@ -47,7 +47,7 @@
             }];
         }];
     }else{
-        [CompanyApi GetMyCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 if(posts.count){
                     self.companyVC=[[CompanyViewController alloc]init];
@@ -64,7 +64,7 @@
                 [LoginAgain AddLoginView:NO];
             }
             [self removeMyLoadingView];
-        } noNetWork:^{
+        } companyId:@"ade6cbfe-7d83-4dfd-8181-f8cc260b0eba" noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
                 [self firstNetWork];
             }];
