@@ -16,7 +16,7 @@
 #import "PersonalDetailViewController.h"
 #import "MyTableView.h"
 @interface PorjectCommentTableViewController ()
-
+@property(nonatomic,strong)UIButton *button;
 @end
 
 @implementation PorjectCommentTableViewController
@@ -203,6 +203,19 @@
             [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         }
         [cell.contentView addSubview:viewArr[indexPath.row-1]];
+        
+        ContactCommentModel *commentModel = showArr[indexPath.row-1];
+        if([commentModel.a_createdBy isEqualToString:[LoginSqlite getdata:@"userId"]]){
+            UIImageView *delImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, (projectCommentView.frame.size.height-20)/2, 21, 20)];
+            delImage.image = [GetImagePath getImagePath:@"delComment"];
+            [cell.contentView addSubview:delImage];
+            
+            UIButton *delBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            delBtn.frame = CGRectMake(270, delImage.frame.origin.y-10, 40, 40);
+            //[delBtn setBackgroundColor:[UIColor yellowColor]];
+            [delBtn addTarget:self action:@selector(delComment:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.contentView addSubview:delBtn];
+        }
         cell.selectionStyle = NO;
         return cell;
     }
@@ -268,7 +281,28 @@
     [self.navigationController pushViewController:personalVC animated:YES];
 }
 
+-(void)delComment:(UIButton *)button{
+    self.button = button;
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"是否删除评论" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+}
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 1){
+        UITableViewCell * cell = (UITableViewCell *)[[self.button superview] superview];
+        NSIndexPath * path = [self.tableView indexPathForCell:cell];
+        ContactCommentModel *model = showArr[path.row-1];
+        [CommentApi DelEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                [showArr removeObjectAtIndex:path.row-1];
+                [viewArr removeObjectAtIndex:path.row-1];
+                [_datasource removeObjectAtIndex:path.row-1];
+                NSArray *indexPaths = [NSArray arrayWithObject:path];
+                [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            }
+        } dic:[@{@"commentId":model.a_id,@"commentType":@"02"} mutableCopy] noNetWork:nil];
+    }
+}
 
 -(void)loginComplete{
 

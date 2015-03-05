@@ -60,7 +60,7 @@
     
     //用户评论内容label
     CGRect bounds=[commentModel.a_commentContents boundingRectWithSize:CGSizeMake(213, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
-    self.userCommentContent=[[UILabel alloc]initWithFrame:CGRectMake(70, 33, 200, bounds.size.height)];
+    self.userCommentContent=[[UILabel alloc]initWithFrame:CGRectMake(70, 33, 213, bounds.size.height)];
     self.userCommentContent.numberOfLines=0;
     self.userCommentContent.font=[UIFont systemFontOfSize:14];
     self.userCommentContent.text=commentModel.a_commentContents;
@@ -75,15 +75,6 @@
     }
     self.frame=CGRectMake(6, 0, 308, height);
     self.backgroundColor=[UIColor whiteColor];
-    
-    UIImageView *delImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, (height-20)/2, 21, 20)];
-    delImage.image = [UIImage imageNamed:@"delComment"];
-    [self addSubview:delImage];
-    
-    UIButton *delBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    delBtn.frame = CGRectMake(280, delImage.frame.origin.y-10, 30, 40);
-    [delBtn setBackgroundColor:[UIColor yellowColor]];
-    [self addSubview:delBtn];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(-6, height-1, 320, 1)];
     imageView.backgroundColor = [UIColor blackColor];
