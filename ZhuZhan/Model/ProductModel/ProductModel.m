@@ -29,10 +29,10 @@
     }else{
         self.a_avatarUrl = [ProjectStage ProjectStrStage:_dict[@"avatarUrl"]];
     }
-    self.a_userName = [ProjectStage ProjectStrStage:_dict[@"userName"]];
-    self.a_createdBy=[ProjectStage ProjectStrStage:_dict[@"createdBy"]];
+    self.a_userName = [ProjectStage ProjectStrStage:_dict[@"loginName"]];
+    self.a_createdBy=[ProjectStage ProjectStrStage:_dict[@"createdUser"]];
     self.a_userType=[ProjectStage ProjectStrStage:_dict[@"userType"]];
-    self.a_isFocused = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"isFocused"]]];
+    self.a_isFocused = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"isFocus"]]];
 }
 
 -(NSString *)a_commentNumber{
