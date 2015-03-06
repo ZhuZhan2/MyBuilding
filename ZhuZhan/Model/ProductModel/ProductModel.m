@@ -89,7 +89,7 @@
 //    "ProductImageStrings":"图片base64"
 //    "CreatedBy":"创建人"
 //}
-+ (NSURLSessionDataTask *)AddProductInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic imgData:(NSData *)imgData noNetWork:(void(^)())noNetWork{
++ (NSURLSessionDataTask *)AddProductInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSDictionary *)dic imgData:(NSData *)imgData noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
             noNetWork();

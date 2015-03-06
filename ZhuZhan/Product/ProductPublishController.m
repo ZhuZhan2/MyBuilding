@@ -9,6 +9,8 @@
 #import "ProductPublishController.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
+#import "ProductModel.h"
+
 @interface ProductPublishController ()<UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property(nonatomic,strong)UIButton* imageBtn;
 @property(nonatomic,strong)UITextView* titleTextView;
@@ -166,7 +168,7 @@
     BOOL isContentTextView=[self isContentTextView:textView];
     if (isContentTextView) {
         if ([@"\n" isEqualToString:text]){
-            //[self goToPublish];
+            [self goToPublish];
             return NO;
         }
     }
@@ -175,6 +177,12 @@
         return NO;
     }
     return YES;
+}
+
+-(void)goToPublish{
+    [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+        
+    } dic:@{@"productName":self.titleTextView.text,@"productDesc":self.contentTextView.text} imgData:UIImageJPEGRepresentation([self.imageBtn backgroundImageForState:UIControlStateNormal], 0.3) noNetWork:nil];
 }
 
 -(void)textViewDidChange:(UITextView *)textView{
