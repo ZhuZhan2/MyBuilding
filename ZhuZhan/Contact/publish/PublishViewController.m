@@ -25,7 +25,9 @@
 @end
 #define kPublishLimitNumber 150
 @implementation PublishViewController
-@synthesize toolBar,inputView,alertLabel,leftBtnImage,rightBtnImage,publishImage,camera,publishImageStr;
+//@synthesize toolBar,inputView,alertLabel,leftBtnImage,rightBtnImage,publishImage,camera,publishImageStr;
+@synthesize inputView,alertLabel,leftBtnImage,rightBtnImage,publishImage,camera,publishImageStr;
+
 
 - (void)viewDidLoad
 {
@@ -53,10 +55,10 @@
     isFirst=NO;
     [self initInputView];
     
-    toolBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 312, 320, 40)];
-    toolBar.image = [GetImagePath getImagePath:@"人脉－发布动态_15a"];
-    toolBar.userInteractionEnabled = YES;
-    [self.view addSubview:toolBar];
+//    toolBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 312, 320, 40)];
+//    toolBar.image = [GetImagePath getImagePath:@"人脉－发布动态_15a"];
+//    toolBar.userInteractionEnabled = YES;
+//    [self.view addSubview:toolBar];
 
     UIButton *textBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     textBtn.frame = CGRectMake(0, 0, 158, 40);
@@ -70,7 +72,7 @@
     [textBtn addSubview:leftBtnLabel];
     
     [textBtn addTarget:self action:@selector(publshActivities) forControlEvents:UIControlEventTouchUpInside];
-    [toolBar addSubview:textBtn];
+    //[toolBar addSubview:textBtn];
     
     UIButton *photoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     photoBtn.frame = CGRectMake(162, 0, 160, 40);
@@ -83,7 +85,7 @@
     rightBtnLabel.textColor=RGBCOLOR(192, 192, 192);
     [photoBtn addSubview:rightBtnLabel];
     [photoBtn addTarget:self action:@selector(publshProduct) forControlEvents:UIControlEventTouchUpInside];
-    [toolBar addSubview:photoBtn];
+    //[toolBar addSubview:photoBtn];
     
     leftBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_07a"];
     rightBtnImage.image = [GetImagePath getImagePath:@"人脉－发布动态_13a"];
@@ -92,7 +94,7 @@
 
 static BOOL isFirst;
 -(void)initInputView{
-    inputView = [[UITextView alloc] initWithFrame:CGRectMake(15, 42-24+(isFirst?64:0), 290, 220+24-(isFirst?64:0))];
+    inputView = [[UITextView alloc] initWithFrame:CGRectMake(15, 42-24+(isFirst?64:0), 290, 220+84-(isFirst?64:0))];
     isFirst=YES;
     UIEdgeInsets tempInsets=inputView.textContainerInset;
     inputView.textContainerInset=UIEdgeInsetsMake(tempInsets.top+24, tempInsets.left, tempInsets.bottom, tempInsets.right);
@@ -161,7 +163,7 @@ static BOOL isFirst;
     NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardRect = [aValue CGRectValue];
     int height = keyboardRect.size.height;
-    toolBar.frame =CGRectMake(0, kScreenHeight-height-40, 320, 40);
+    //toolBar.frame =CGRectMake(0, kScreenHeight-height-40, 320, 40);
 }
 
 
