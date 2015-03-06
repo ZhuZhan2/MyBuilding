@@ -93,12 +93,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     viewArr = [[NSMutableArray alloc] init];
     _datasource = [[NSMutableArray alloc] init];
 
-    [self firstNetWork];
+    //[self firstNetWork];
     
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeHeadImage) name:@"changHead" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changName" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeBackgroundImage) name:@"changBackground" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstNetWork) name:@"reloadData" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstNetWork) name:@"reloadData" object:nil];
 }
 
 -(void)firstNetWork{
