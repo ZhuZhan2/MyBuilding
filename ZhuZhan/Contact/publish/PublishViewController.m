@@ -323,7 +323,7 @@ static BOOL isFirst;
 
     }else if (PublishNum ==2) {
         NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:publishContent,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
-
+/*
         [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
             isPublish=NO;
             PublishNum = 2;
@@ -350,6 +350,7 @@ static BOOL isFirst;
                 [alert show];
             }
         } dic:dic noNetWork:nil];
+        */
     }
 }
 
