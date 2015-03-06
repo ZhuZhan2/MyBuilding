@@ -444,7 +444,7 @@
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"responseObject ==> %@",responseObject);
         if (block) {
-            block([NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%s%@",serverAddress,responseObject[@"data"]], nil], nil);
+            block([NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%s%@",serverAddress,image(responseObject[@"data"], @"login", @"", @"", @"")], nil], nil);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);
@@ -467,7 +467,7 @@
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"responseObject ==> %@",responseObject);
         if (block) {
-            block([NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%s%@",serverAddress,responseObject[@"data"]], nil], nil);
+            block([NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%s%@",serverAddress,image(responseObject[@"data"], @"login", @"", @"", @"")], nil], nil);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);

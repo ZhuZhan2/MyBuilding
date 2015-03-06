@@ -274,8 +274,8 @@
     
     NSData *imageData = UIImageJPEGRepresentation(image, 0.3);
     
-    NSString* imageStr = [[NSString alloc] initWithData:[GTMBase64 encodeData:imageData] encoding:NSUTF8StringEncoding];
-    [self gotoAddImage:imageStr image:image];
+    //NSString* imageStr = [[NSString alloc] initWithData:[GTMBase64 encodeData:imageData] encoding:NSUTF8StringEncoding];
+    [self gotoAddImage:imageData image:image];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -285,20 +285,16 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)gotoAddImage:(NSString *)imageStr image:(UIImage *)image{
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setValue:imageStr forKey:@"ImageContent"];
-    [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"CompanyId"];
-    [dic setValue:@"Logo" forKey:@"ImageCategory"];
-    [ContactModel AddCompanyImages:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
+-(void)gotoAddImage:(NSData *)imageData image:(UIImage *)image{
+    [LoginModel AddUserImageWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
             [_pathCover addImageHead:image];
-            [LoginSqlite insertData:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0][@"imageLocation"]] datakey:@"userImage"];
+            [LoginSqlite insertData:posts[0] datakey:@"userImage"];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } dic:dic noNetWork:nil];
+    }data:imageData dic:nil noNetWork:nil];
 }
 
 -(void)gotoMyCenter{

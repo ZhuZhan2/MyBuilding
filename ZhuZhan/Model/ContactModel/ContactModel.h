@@ -107,7 +107,4 @@
 
 //获取人的详情
 + (NSURLSessionDataTask *)UserDetailsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId noNetWork:(void(^)())noNetWork;
-
-//上传公司图片
-+ (NSURLSessionDataTask *)AddCompanyImages:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 @end

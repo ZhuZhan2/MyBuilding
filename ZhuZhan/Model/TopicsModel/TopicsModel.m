@@ -11,15 +11,15 @@
 @implementation TopicsModel
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
-    self.a_id = [ProjectStage ProjectStrStage:dict[@"id"]];
-    self.a_title = [ProjectStage ProjectStrStage:dict[@"seminarName"]];
-    self.a_content = [ProjectStage ProjectStrStage:dict[@"seminarDescription"]];
-    if(![[ProjectStage ProjectStrStage:dict[@"seminarPictureLocation"]] isEqualToString:@""]){
-        self.a_image = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"seminarPictureLocation"]]];
+    self.a_id = [ProjectStage ProjectStrStage:dict[@"topicId"]];
+    self.a_title = [ProjectStage ProjectStrStage:dict[@"topicName"]];
+    self.a_content = [ProjectStage ProjectStrStage:dict[@"topicDesc"]];
+    if(![[ProjectStage ProjectStrStage:dict[@"topicImagesId"]] isEqualToString:@""]){
+        self.a_image = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"topicImagesId"]], @"project", @"", @"", @"")];
     }else{
-        self.a_image = [ProjectStage ProjectStrStage:dict[@"seminarPictureLocation"]];
+        self.a_image = [ProjectStage ProjectStrStage:dict[@"topicImagesId"]];
     }
     self.a_projectCount = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"projectCounts"]]];
-    self.a_publishTime = [ProjectStage ProjectTimeStage:dict[@"createTime"]];
+    self.a_publishTime = [ProjectStage ProjectTimeStage:dict[@"createdTime"]];
 }
 @end

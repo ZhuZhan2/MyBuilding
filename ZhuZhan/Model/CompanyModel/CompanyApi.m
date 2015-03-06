@@ -230,7 +230,7 @@
         return nil;
     }
     
-    NSString *urlStr = [NSString stringWithFormat:@"api/account/HasCompany?userId=%@",[LoginSqlite getdata:@"userId"]];
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/hasCompany?userId=%@",[LoginSqlite getdata:@"userId"]];
     NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient]GET:urlStr parameters:nil success:^(NSURLSessionDataTask *task, id JSON) {
         NSLog(@"JSON==>%@",JSON);

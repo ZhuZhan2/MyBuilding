@@ -45,7 +45,7 @@
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     self.tableView.separatorStyle = NO;
     //集成刷新控件
-    //[self setupRefresh];
+    [self setupRefresh];
     startIndex = 0;
     [self firstNetWork];
 }

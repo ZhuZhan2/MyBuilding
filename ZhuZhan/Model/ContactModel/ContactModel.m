@@ -24,19 +24,13 @@
     self.realName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"realName"]]];
     self.sex = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"sex"]]];
     self.birthday = [ProjectStage ProjectTimeStage:[_dict objectForKey:@"birthday"]];
-    self.constellation = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"constellation"]]];
+    self.constellation = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"constel"]]];
     self.bloodType = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"bloodType"]]];
     self.email = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"email"]]];
     self.cellPhone = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"cellphone"]]];
-    if(![[NSString stringWithFormat:@"%@",_dict[@"userParticulars"]]isEqualToString:@"<null>"]){
-        self.companyName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"userParticulars"][@"companyName"]]];
-        self.position = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"userParticulars"][@"duties"]]];
-        self.userParticularsId = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"userParticulars"][@"id"]]];
-    }else{
-        self.companyName = @"";
-        self.position = @"";
-        self.userParticularsId = @"";
-    }
+    self.companyName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"companyName"]]];
+    self.position = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"duties"]]];
+    self.userParticularsId = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"id"]]];
     self.password = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"password"]]];
     if(![[ProjectStage ProjectStrStage:dict[@"head"]] isEqualToString:@""]){
         self.userImage = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"head"]], @"login", @"", @"", @"")];
@@ -256,34 +250,6 @@
             block([NSMutableArray array], error);
         }
         
-    }];
-}
-
-/**
- 1. CompanyId 公司Id
- 2. ImageCategory 图片的Category，比如 Logo，
- 3. ImageContent 图片base64string
- 4. CreatedBy 创建人
- */
-+ (NSURLSessionDataTask *)AddCompanyImages:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        if (noNetWork) {
-            noNetWork();
-        }
-        return nil;
-    }
-    NSString *urlStr = [NSString stringWithFormat:@"api/CompanyBaseInformation/AddCompanyImages"];
-    return [[AFAppDotNetAPIClient sharedClient]POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"responseObject ==> %@",responseObject);
-        NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-        [mutablePosts addObject:responseObject[@"d"][@"data"]];
-        if (block) {
-            block(mutablePosts,nil);
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        if (block) {
-            block([NSMutableArray array],error);
-        }
     }];
 }
 

@@ -252,7 +252,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
     camera = [[Camera alloc] init];
     camera.delegate = self;
     [self.tableView.superview addSubview:camera.view];
-    [camera modifyUserIconWithButtonIndex:buttonIndex WithButtonTag:selectBtnTag];
+    [camera modifyUserIconWithButtonIndex:(int)buttonIndex WithButtonTag:selectBtnTag];
     
 }
 
@@ -260,7 +260,6 @@ static int count =0;//记录生日textField 的时间被触发的次数
 -(void)changeUserIcon:(NSString *)imageStr AndImage:(UIImage *)image imageData:(NSData *)imageData//更该用户头像
 {
     NSLog(@"********userId******* %@",userIdStr);
-    NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"userId",imageStr,@"userImageStrings", nil];
     [LoginModel AddUserImageWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [_pathCover addImageHead:image];
@@ -269,11 +268,10 @@ static int count =0;//记录生日textField 的时间被触发的次数
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    }data:nil dic:parameter noNetWork:nil];
+    }data:imageData dic:nil noNetWork:nil];
 }
 
 -(void)changeBackgroundImage:(NSString *)imageStr AndImage:(UIImage *)image imageData:(NSData *)imageData{
-    NSMutableDictionary *parameter =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"userId",imageStr,@"BackgroundImageString", nil];
     [LoginModel AddBackgroundImageWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [LoginSqlite insertData:posts[0] datakey:@"backgroundImage"];
@@ -282,7 +280,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    }data:nil dic:parameter noNetWork:nil];
+    }data:imageData dic:nil noNetWork:nil];
 }
 
 /**********************************************************************/

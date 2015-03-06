@@ -232,8 +232,7 @@
         cell = [[TMPhotoQuiltViewCell alloc] initWithReuseIdentifier:@"PhotoCell"];
     }
     ProductModel *model = showArr[indexPath.row];
-    cell.nameLabel.text = @"产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称";
-    cell.nameLabel.text=@"产品名称";
+    cell.nameLabel.text=model.a_name;
     cell.titleLabel.text = model.a_content;
     cell.commentCountLabel.text= model.a_commentNumber;
     cell.imageSize = [self imageAtIndexPath:indexPath];
