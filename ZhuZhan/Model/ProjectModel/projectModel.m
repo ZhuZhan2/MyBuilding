@@ -21,7 +21,7 @@
     self.a_landAddress = [ProjectStage ProjectStrStage:dict[@"landAddress"]];
     self.a_area = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"landArea"]]];
     self.a_plotRatio = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"landPlotRatio"]]];
-    self.a_usage = [ProjectStage ProjectStrStage:dict[@"landUsages"]];
+    self.a_usage = [ProjectStage ProjectStrStage:dict[@"landUsagesCn"]];
     self.a_projectName = [ProjectStage ProjectStrStage:dict[@"projectName"]];
     self.a_description = [ProjectStage ProjectStrStage:dict[@"projectDesc"]];
     self.a_exceptStartTime = [ProjectStage ProjectTimeStage:dict[@"startTime"]];
@@ -29,8 +29,8 @@
     self.a_investment = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"investment"]]];
     self.a_storeyArea = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"storeyArea"]]];
     self.a_storeyHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"storeyHeight"]]];
-    self.a_foreignInvestment = [ProjectStage ProjectBoolStage:dict[@"foreignInvestment"]];
-    self.a_ownerType = [ProjectStage ProjectStrStage:dict[@"ownerType"]];
+    self.a_foreignInvestment = [ProjectStage ProjectBoolStage:dict[@"isForeignIn"]];
+    self.a_ownerType = [ProjectStage ProjectStrStage:dict[@"ownerTypeCn"]];
     self.a_longitude = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"longitude"]]];
     self.a_latitude = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"latitude"]]];
     self.a_mainDesignStage = [ProjectStage ProjectStrStage:dict[@"mainDesignStage"]];

@@ -24,10 +24,10 @@
     self.a_commentNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"commetNum"]]];
     self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"imageWidth"]]];
     self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"imageHeight"]]];
-    if(![[ProjectStage ProjectStrStage:_dict[@"avatarUrl"]] isEqualToString:@""]){
-        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:_dict[@"avatarUrl"]]];
+    if(![[ProjectStage ProjectStrStage:_dict[@"loginImagesId"]] isEqualToString:@""]){
+        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"productImagesId"]], @"login", @"", @"", @"")];
     }else{
-        self.a_avatarUrl = [ProjectStage ProjectStrStage:_dict[@"avatarUrl"]];
+        self.a_avatarUrl = [ProjectStage ProjectStrStage:_dict[@"loginImagesId"]];
     }
     self.a_userName = [ProjectStage ProjectStrStage:_dict[@"loginName"]];
     self.a_createdBy=[ProjectStage ProjectStrStage:_dict[@"createdUser"]];

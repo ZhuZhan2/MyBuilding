@@ -18,7 +18,7 @@
     self.a_accountAddress = [ProjectStage ProjectStrStage:dict[@"companyAddr"]];
     self.a_projectId = [ProjectStage ProjectStrStage:dict[@"projectId"]];
     //self.a_projectName = [ProjectStage ProjectStrStage:dict[@"contactProjectName"]];
-    self.a_duties = [ProjectStage ProjectStrStage:dict[@"contactDuties"]];
+    self.a_duties = [ProjectStage ProjectStrStage:dict[@"contactDutiesCn"]];
     self.a_category = [ProjectStage ProjectStrStage:dict[@"contactCategory"]];
 }
 @end

@@ -17,13 +17,15 @@
 #import "LoadingView.h"
 #import "NoProductView.h"
 #import "ProductPublishController.h"
-@interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate,ErrorViewDelegate>
+@interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate,ErrorViewDelegate,UISearchBarDelegate>
 @property (nonatomic, strong) NSMutableArray *images;
 @property(nonatomic,strong)ErrorView* errorView;
 @property(nonatomic,strong)UIActivityIndicatorView* indicatorView;
 @property(nonatomic,strong)LoadingView *loadingView;
 @property(nonatomic,strong)NoProductView *noProductView;
 @property(nonatomic,strong)UISearchBar* searchBar;
+@property(nonatomic,strong)NSString *keyWords;
+@property(nonatomic,strong)UIButton *closeSearchBtn;
 @end
 
 @implementation ProductViewController
@@ -45,7 +47,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	  
+    self.keyWords = @"";
     //初始化navi
     [self loadNavi];
     
@@ -63,8 +65,27 @@
     self.searchBar.placeholder = @"搜索";
     self.searchBar.tintColor = [UIColor grayColor];
     self.searchBar.backgroundImage=[self imageWithColor:RGBCOLOR(223, 223, 223)];
-    //self.searchBar.delegate=self;
+    self.searchBar.delegate=self;
     [self.view addSubview:self.searchBar];
+}
+
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    [self getCloseSearchBtn];
+    [self.searchBar setShowsCancelButton:YES animated:YES];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    self.keyWords = searchBar.text;
+    [self removeCloseSearchBtn];
+    [self firstNetWork];
+    [self.searchBar setShowsCancelButton:NO animated:YES];
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    self.keyWords = @"";
+    [self removeCloseSearchBtn];
+    [self firstNetWork];
+    [self.searchBar setShowsCancelButton:NO animated:YES];
 }
 
 -(void)firstNetWork{
@@ -84,7 +105,7 @@
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } startIndex:0 keyWords:@"" noNetWork:^{
+    } startIndex:0 keyWords:self.keyWords noNetWork:^{
         [self endIndicatorView];
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-49-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
@@ -94,7 +115,7 @@
 
 -(void)addNoProductView{
     if(self.noProductView == nil){
-        self.noProductView = [[NoProductView alloc] initWithFrame:CGRectMake(0, 64, 320, 568-49-64)];
+        self.noProductView = [[NoProductView alloc] initWithFrame:CGRectMake(0, 64+self.searchBar.frame.size.height, 320, 568-49-64-self.searchBar.frame.size.height)];
         [self.view addSubview:self.noProductView];
     }
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
@@ -169,7 +190,7 @@
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } startIndex:0 keyWords:@"" noNetWork:^{
+    } startIndex:0 keyWords:self.keyWords noNetWork:^{
         [qtmquitView headerEndRefreshing];
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-49-64) superView:self.view reloadBlock:^{
             [self headerRereshing];
@@ -198,7 +219,7 @@
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } startIndex:startIndex+1 keyWords:@"" noNetWork:^{
+    } startIndex:startIndex+1 keyWords:self.keyWords noNetWork:^{
         [qtmquitView footerEndRefreshing];
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-49-64) superView:self.view reloadBlock:^{
             [self footerRereshing];
@@ -211,15 +232,15 @@
 //=====================================================================
 
 - (CGSize)imageAtIndexPath:(NSIndexPath *)indexPath {
-//    ProductModel* model=showArr[indexPath.row];
-//    CGSize size;
-//    if ([model.a_imageUrl isEqualToString:@""]) {
-//        size=CGSizeMake(151, 113);
-//    }else{
-//    size=CGSizeMake([model.a_imageWidth floatValue]*.5, [model.a_imageHeight floatValue]*.5);
-//    }
-//    return size;
-    return CGSizeMake(151, 113);
+    ProductModel* model=showArr[indexPath.row];
+    CGSize size;
+    if ([model.a_imageUrl isEqualToString:@""]) {
+        size=CGSizeMake(151, 113);
+    }else{
+    size=CGSizeMake([model.a_imageWidth floatValue]*.5, [model.a_imageHeight floatValue]*.5);
+    }
+    return size;
+    //return CGSizeMake(151, 113);
 }
 
 - (NSInteger)quiltViewNumberOfCells:(TMQuiltView *)TMQuiltView {
@@ -297,5 +318,23 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+-(void)getCloseSearchBtn{
+    if(self.closeSearchBtn == nil){
+        self.closeSearchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.closeSearchBtn.frame = qtmquitView.frame;
+        [self.closeSearchBtn addTarget:self action:@selector(removeCloseSearchBtn) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:self.closeSearchBtn];
+    }
+}
+
+-(void)removeCloseSearchBtn{
+    self.keyWords = self.searchBar.text;
+    [self.searchBar resignFirstResponder];
+    [self.closeSearchBtn removeFromSuperview];
+    self.closeSearchBtn = nil;
+    [self firstNetWork];
+    [self.searchBar setShowsCancelButton:NO animated:YES];
 }
 @end

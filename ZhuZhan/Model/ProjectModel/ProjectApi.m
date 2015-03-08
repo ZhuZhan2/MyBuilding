@@ -112,13 +112,13 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/ProjectDetails?projectId=%@",projectIds];
+    NSString *urlStr = [NSString stringWithFormat:@"api/projects/search?projectIds=%@&pageSize=8&pageIndex=0",projectIds];
     NSLog(@"projectIds==%@",projectIds);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            for(NSDictionary *item in JSON[@"d"][@"data"]){
+            for(NSDictionary *item in JSON[@"data"][@"rows"]){
                 projectModel *model = [[projectModel alloc] init];
                 [model setDict:item];
                 [mutablePosts addObject:model];

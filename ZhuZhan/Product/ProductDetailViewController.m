@@ -279,7 +279,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     //产品名称
     NSString* productNameStr=@"产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称";
-    productNameStr=@"产品名称";
+    productNameStr=self.productModel.a_name;
     CGFloat tempHeight=0;
     UIFont* productNameFont=[UIFont systemFontOfSize:16];
     CGFloat productNameWidth=[self.imageUrl isEqualToString:@""]?250:290;
