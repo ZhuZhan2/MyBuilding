@@ -11,7 +11,7 @@
 @implementation ProjectStage
 +(NSString *)ProjectStrStage:(NSString *)str{
     NSString *string = nil;
-    if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@" "]){
+    if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@""]){
         string = @"";
     }else{
         string = str;
@@ -21,7 +21,7 @@
 
 +(NSString *)ProjectTimeStage:(NSString *)str{
     NSString *string = nil;
-    if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@" "]){
+    if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@""]){
         string = @"";
     }else{
         NSArray *arr = [str componentsSeparatedByString:@" "];
@@ -32,7 +32,7 @@
 
 +(NSDate *)ProjectDateStage:(NSString *)str{
     NSDate *date = nil;
-    if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@" "]){
+    if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@""]){
         date = nil;
     }else{
         NSArray *arr = [str componentsSeparatedByString:@"."];
@@ -46,7 +46,7 @@
 
 +(NSString *)ProjectBoolStage:(NSString *)str{
     NSString *string = nil;
-    if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@" "]){
+    if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@""]){
         string = @"";
     }else{
         if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"00"]){
@@ -180,7 +180,7 @@
     [array addObject:[self getPart:auctionStage contacts:model.auctionContacts images:model.auctionImages] ];
     
     //项目立项
-    NSArray* approvalStage=@[model.a_projectName,model.a_city,model.a_district,model.a_landAddress,model.a_description,model.a_exceptStartTime,model.a_storeyHeight,model.a_foreignInvestment,model.a_exceptFinishTime,model.a_investment,model.a_storeyArea,model.a_ownerType,model.ownerContacts];
+    NSArray* approvalStage=@[model.a_projectName,model.a_city,model.a_district,model.a_landAddress,model.a_description,model.a_exceptStartTime,model.a_storeyHeight,@"",model.a_exceptFinishTime,model.a_investment,model.a_storeyArea,model.a_ownerType,model.ownerContacts];
     //model.a_projectName,model.a_city,model.a_district,model.a_landAddress,model.a_description,model.a_exceptStartTime,model.a_storeyHeight,model.a_foreignInvestment,model.a_exceptFinishTime,model.a_investment,model.a_storeyArea,model.a_ownerType,model.ownerContacts
     [array addObject:[self getPart:approvalStage contacts:model.ownerContacts images:nil]];
     
