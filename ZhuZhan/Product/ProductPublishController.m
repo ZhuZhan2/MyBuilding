@@ -10,8 +10,9 @@
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
 #import "ProductModel.h"
+#import "RKCamera.h"
 
-@interface ProductPublishController ()<UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface ProductPublishController ()<UITextViewDelegate,UIActionSheetDelegate,RKCameraDelegate>
 @property(nonatomic,strong)UIButton* imageBtn;
 @property(nonatomic,strong)UITextView* titleTextView;
 @property(nonatomic,strong)UITextView* contentTextView;
@@ -19,6 +20,11 @@
 @property(nonatomic,strong)UILabel* titlePlaceLabel;
 @property(nonatomic,strong)UILabel* contentPlaceLabel;
 
+@property(nonatomic,strong)RKCamera* cameraControl;
+
+@property(nonatomic,weak)UIResponder* lastResponder;
+
+@property(nonatomic,strong)UIImage* cameraImage;
 @end
 #define ProductTitleFont [UIFont systemFontOfSize:16]
 #define ProductContentFont [UIFont systemFontOfSize:15]
@@ -27,6 +33,11 @@
 #define kProductLimitNumber(isContentTextView) isContentTextView?kProductContentNumber:kProductTitleNumber
 
 @implementation ProductPublishController
+
+-(void)setCameraImage:(UIImage *)cameraImage{
+    _cameraImage=cameraImage;
+    [self.imageBtn setBackgroundImage:_cameraImage?_cameraImage:[GetImagePath getImagePath:@"人脉－发布动态_03a"] forState:UIControlStateNormal];
+}
 
 -(BOOL)isContentTextView:(id)object{
     return object==self.contentTextView;
@@ -77,6 +88,7 @@
         _titleTextView.font=ProductTitleFont;
         _titleTextView.scrollEnabled=NO;
         _titleTextView.delegate=self;
+        _titleTextView.returnKeyType=UIReturnKeySend;
     }
     return _titleTextView;
 }
@@ -87,6 +99,7 @@
         _contentTextView.backgroundColor=[UIColor clearColor];
         _contentTextView.font=ProductContentFont;
         _contentTextView.delegate=self;
+        _contentTextView.returnKeyType=UIReturnKeySend;
     }
     return _contentTextView;
 }
@@ -160,17 +173,20 @@
     self.titlePlaceLabel.alpha=1;
     self.contentPlaceLabel.alpha=1;
     [self.titleTextView becomeFirstResponder];
-    [self.imageBtn setBackgroundImage:[GetImagePath getImagePath:@"人脉－发布动态_03a"] forState:UIControlStateNormal];
+    self.cameraImage=nil;
     NSLog(@"右按钮点击事件");
+}
+
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+    self.lastResponder=textView;
 }
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     BOOL isContentTextView=[self isContentTextView:textView];
-    if (isContentTextView) {
-        if ([@"\n" isEqualToString:text]){
-            [self goToPublish];
-            return NO;
-        }
+    
+    if ([@"\n" isEqualToString:text]){
+        [self goToPublish];
+        return NO;
     }
     
     if (range.length == 0 && textView.text.length >= (kProductLimitNumber(isContentTextView))) {
@@ -219,14 +235,11 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==actionSheet.cancelButtonIndex) return;
-    UIImagePickerController* imagePickerController=[[UIImagePickerController alloc]init];
-    imagePickerController.sourceType=!buttonIndex;
-    imagePickerController.delegate=self;
-    [self.view.window.rootViewController presentViewController:imagePickerController animated:NO completion:nil];
+    self.cameraControl=[RKCamera cameraWithType:!buttonIndex allowEdit:YES deleate:self presentViewController:self.view.window.rootViewController];
 }
 
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    [self.imageBtn setBackgroundImage:info[UIImagePickerControllerOriginalImage] forState:UIControlStateNormal];
-    [picker dismissViewControllerAnimated:YES completion:nil];
+-(void)cameraWillFinishWithImage:(UIImage *)image isCancel:(BOOL)isCancel{
+    if (!isCancel) self.cameraImage=image;
+    [self.lastResponder becomeFirstResponder];
 }
 @end
