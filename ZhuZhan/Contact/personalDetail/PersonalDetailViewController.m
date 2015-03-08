@@ -154,7 +154,7 @@
     loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view];
     [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
+            self.isFocused=[NSString stringWithFormat:@"%@",posts[0]];
             [self getNetWorkData];
         }else{
             [LoginAgain AddLoginView:NO];
@@ -206,7 +206,10 @@
     if (buttonIndex==0) {
         if([self.isFocused isEqualToString:@"0"]){
             NSLog(@"关注");
-            [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setObject:self.contactId forKey:@"targetId"];
+            [dic setObject:@"01" forKey:@"targetCategory"];
+            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alertView show];
@@ -214,9 +217,12 @@
                 }else{
                     [LoginAgain AddLoginView:NO];
                 }
-            } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"FocusId":self.contactId} mutableCopy] noNetWork:nil];
+            } dic:dic noNetWork:nil];
         }else{
-            [CompanyApi DeleteFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setObject:self.contactId forKey:@"targetId"];
+            [dic setObject:@"01" forKey:@"targetCategory"];
+            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alertView show];
@@ -224,7 +230,7 @@
                 }else{
                     [LoginAgain AddLoginView:NO];
                 }
-            } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"FocusId":self.contactId} mutableCopy] noNetWork:nil];
+            } dic:dic noNetWork:nil];
         }
     }else{
         NSLog(@"取消");

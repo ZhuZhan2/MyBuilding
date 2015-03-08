@@ -18,6 +18,7 @@
 #import "MBProgressHUD.h"
 #import "LoginViewController.h"
 #import "LoadingView.h"
+#import "IsFocusedApi.h"
 @interface CompanyDetailViewController ()<LoginViewDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic,strong)UIImageView* imageView;
@@ -245,9 +246,10 @@
         self.noticeBtn.enabled=NO;
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         if (self.isFocused) {
-            [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
-            [dic setValue:self.model.a_id forKey:@"FocusId"];
-            [CompanyApi DeleteFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setObject:self.model.a_id forKey:@"targetId"];
+            [dic setObject:@"02" forKey:@"targetCategory"];
+            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
                 self.noticeBtn.enabled=YES;
                 if (!error) {
                     self.model.a_focused=@"0";
@@ -257,11 +259,10 @@
                 }
             } dic:dic noNetWork:nil];
         }else{
-            [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
-            [dic setValue:self.model.a_id forKey:@"FocusId"];
-            [dic setValue:@"Company" forKey:@"FocusType"];
-            [dic setValue:@"Personal" forKey:@"UserType"];
-            [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setObject:self.model.a_id forKey:@"targetId"];
+            [dic setObject:@"02" forKey:@"targetCategory"];
+            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
                 self.noticeBtn.enabled=YES;
                 if(!error){
                     self.model.a_focused=@"1";
@@ -339,7 +340,6 @@
         }
         self.memberBtn.enabled=NO;
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"employeeId"];
         [dic setValue:self.model.a_id forKey:@"companyId"];
         [CompanyApi AddCompanyEmployeeWithBlock:^(NSMutableArray *posts, NSError *error) {
             self.memberCountLabel.text=@"已申请";

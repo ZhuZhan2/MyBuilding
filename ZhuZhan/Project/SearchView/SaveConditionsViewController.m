@@ -132,9 +132,8 @@
             [alertView show];
         }else{
             NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-            [dic setValue:nameTextField.text forKey:@"SearchName"];
-            [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"CreateBy"];
-            [dic setValue:newstring forKey:@"SearchConditions"];
+            [dic setValue:nameTextField.text forKey:@"name"];
+            [dic setValue:newstring forKey:@"condition"];
             [ProjectApi SearchConditionWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
                     [nameTextField resignFirstResponder];

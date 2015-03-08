@@ -11,4 +11,7 @@
 @interface IsFocusedApi : NSObject
 //获取所有公司列表
 + (NSURLSessionDataTask *)GetIsFocusedListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId targetId:(NSString *)targetId EntityCategory:(NSString *)EntityCategory noNetWork:(void(^)())noNetWork;
+
+//添加关注
++ (NSURLSessionDataTask *)AddFocusedListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block  dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 @end

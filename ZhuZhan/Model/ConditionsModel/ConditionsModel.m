@@ -11,9 +11,9 @@
 @implementation ConditionsModel
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
-    self.a_id = [ProjectStage ProjectStrStage:dict[@"id"]];
+    self.a_id = [ProjectStage ProjectStrStage:dict[@"advSearchId"]];
     self.a_searchName = [ProjectStage ProjectStrStage:dict[@"searchName"]];
-    self.a_searchConditions = [ProjectStage ProjectStrStage:dict[@"searchConditions"]];
-    self.a_createBy = [ProjectStage ProjectStrStage:dict[@"createBy"]];
+    self.a_searchConditions = [ProjectStage ProjectStrStage:dict[@"searchCondition"]];
+    self.a_createBy = [ProjectStage ProjectStrStage:dict[@"createdUser"]];
 }
 @end

@@ -47,24 +47,33 @@
             }];
         }];
     }else{
-        [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [CompanyApi HasCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                if(posts.count){
-                    self.companyVC=[[CompanyViewController alloc]init];
-                    self.companyVC.model = posts[0];
-                    self.companyVC.needNoticeView=YES;
-                    self.companyVC.navigationItem.hidesBackButton=YES;
-                    [self.navigationController pushViewController:self.companyVC animated:NO];
-                }else{
+                NSLog(@"===>%@",posts[0][@"exists"]);
+                if([[NSString stringWithFormat:@"%@",posts[0][@"exists"]] isEqualToString:@"0"]){
                     self.moreCompanyVC=[[MoreCompanyViewController alloc]init];
                     self.moreCompanyVC.navigationItem.hidesBackButton=YES;
                     [self.navigationController pushViewController:self.moreCompanyVC animated:NO];
+                }else{
+                    [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+                        if(!error){
+                            self.companyVC=[[CompanyViewController alloc]init];
+                            self.companyVC.model = posts[0];
+                            self.companyVC.needNoticeView=YES;
+                            self.companyVC.navigationItem.hidesBackButton=YES;
+                            [self.navigationController pushViewController:self.companyVC animated:NO];
+                        }else{
+                            [LoginAgain AddLoginView:NO];
+                        }
+                        [self removeMyLoadingView];
+                    } companyId:posts[0][@"companyId"] noNetWork:^{
+                        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
+                            [self firstNetWork];
+                        }];
+                    }];
                 }
-            }else{
-                [LoginAgain AddLoginView:NO];
             }
-            [self removeMyLoadingView];
-        } companyId:@"ade6cbfe-7d83-4dfd-8181-f8cc260b0eba" noNetWork:^{
+        } noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
                 [self firstNetWork];
             }];

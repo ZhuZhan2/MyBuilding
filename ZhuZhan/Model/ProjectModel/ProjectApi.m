@@ -283,12 +283,6 @@
     }];
 }
 
-//POST:
-//{
-//    "SearchName":"ownertype",
-//    "CreateBy":"wmj",
-//    "SearchConditions":"是够大方司法局"
-//}
 + (NSURLSessionDataTask *)SearchConditionWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
@@ -297,7 +291,7 @@
         return nil;
     }
     NSLog(@"dic==%@",dic);
-    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/SearchCondition"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/projects/addCondition"];
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
@@ -306,10 +300,8 @@
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
@@ -365,12 +357,12 @@
         return nil;
     }
     NSLog(@"userId*********%@",[LoginSqlite getdata:@"userId"]);
-    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/SearchConditions?createBy=%@",userId];
+    NSString *urlStr = [NSString stringWithFormat:@"api/projects/listCondition"];
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            for(NSDictionary *item in JSON[@"d"][@"data"]){
+            for(NSDictionary *item in JSON[@"data"]){
                 ConditionsModel *model = [[ConditionsModel alloc] init];
                 [model setDict:item];
                 [mutablePosts addObject:model];
@@ -378,10 +370,8 @@
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
@@ -500,7 +490,7 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/DeleteSearchConditions"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/projects/delCondition"];
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
@@ -509,10 +499,8 @@
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
@@ -522,74 +510,6 @@
         }
     }];
 }
-
-//POST:
-//{
-//    "UserId": ":"用户Id" 必填
-//    "ProjectId":"项目ID" 必填
-//}
-+ (NSURLSessionDataTask *)AddProjectFocusWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        if (noNetWork) {
-            noNetWork();
-        }
-        return nil;
-    }
-    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/AddProjectFocus"];
-    NSLog(@"urlStr==%@,dic==%@",urlStr,dic);
-    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
-            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            //[mutablePosts addObject:JSON[@"d"][@"data"]];
-            if (block) {
-                block([NSMutableArray arrayWithArray:mutablePosts], nil);
-            }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
-        }
-    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        NSLog(@"error ==> %@",error);
-        if (block) {
-            block([NSMutableArray array], error);
-        }
-    }];
-}
-
-+ (NSURLSessionDataTask *)DeleteFocusProjectsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        if (noNetWork) {
-            noNetWork();
-        }
-        return nil;
-    }
-    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/DeleteFocusProjects"];
-    NSLog(@"urlStr==%@,dic==%@",urlStr,dic);
-    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
-            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            //[mutablePosts addObject:JSON[@"d"][@"data"]];
-            if (block) {
-                block([NSMutableArray arrayWithArray:mutablePosts], nil);
-            }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
-        }
-    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        NSLog(@"error ==> %@",error);
-        if (block) {
-            block([NSMutableArray array], error);
-        }
-    }];
-}
-
 
 //地图搜索 精度,维度
 + (NSURLSessionDataTask *)GetMapSearchWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block longitude:(NSString*)longitude latitude:(NSString*)latitude radius:(NSString *)radius startIndex:(int)startIndex noNetWork:(void(^)())noNetWork{

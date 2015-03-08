@@ -16,6 +16,7 @@
 #import "LoginSqlite.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
+#import "IsFocusedApi.h"
 @interface CompanyViewController ()
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic)NSInteger memberNumber;
@@ -163,11 +164,11 @@
     }
     
     btn.userInteractionEnabled=NO;
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     if (self.isFocused) {
-        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
-        [dic setValue:self.model.a_id forKey:@"FocusId"];
-        [CompanyApi DeleteFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:self.model.a_id forKey:@"targetId"];
+        [dic setObject:@"02" forKey:@"targetCategory"];
+        [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 self.model.a_focused=@"0";
                 [self handleContent];
@@ -177,11 +178,10 @@
             btn.userInteractionEnabled=YES;
         } dic:dic noNetWork:nil];
     }else{
-        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
-        [dic setValue:self.model.a_id forKey:@"FocusId"];
-        [dic setValue:@"Company" forKey:@"FocusType"];
-        [dic setValue:@"Personal" forKey:@"UserType"];
-        [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:self.model.a_id forKey:@"targetId"];
+        [dic setObject:@"02" forKey:@"targetCategory"];
+        [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 self.model.a_focused=@"1";
                 [self handleContent];

@@ -13,6 +13,7 @@
 #import "LoginSqlite.h"
 #import "ContactModel.h"
 #import "EGOImageView.h"
+#import "IsFocusedApi.h"
 @interface ShowViewController ()
 @property(nonatomic,strong)UIActivityIndicatorView* indicatorView;
 @property(nonatomic,strong)UIView* bgVIew;
@@ -142,13 +143,11 @@
 - (void)gotoConcern{
     if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
         concernBtn.enabled = NO;
-        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         if(isFoucsed == 0){
-            [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
-            [dic setValue:self.createdBy forKey:@"FocusId"];
-            [dic setValue:@"Personal" forKey:@"FocusType"];
-            [dic setValue:@"Personal" forKey:@"UserType"];
-            [ContactModel AddfocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setObject:self.createdBy forKey:@"targetId"];
+            [dic setObject:@"01" forKey:@"targetCategory"];
+            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
                     [concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
                     isFoucsed = 1;
@@ -158,9 +157,10 @@
                 }
             } dic:dic noNetWork:nil];
         }else{
-            [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"UserId"];
-            [dic setValue:self.createdBy forKey:@"FocusId"];
-            [CompanyApi DeleteFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setObject:self.createdBy forKey:@"targetId"];
+            [dic setObject:@"01" forKey:@"targetCategory"];
+            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if (!error) {
                     [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
                     isFoucsed = 0;

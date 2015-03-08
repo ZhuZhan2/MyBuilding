@@ -267,19 +267,18 @@
 }
 
 -(void)firstNetWork{
-    [self getContentList];
-//    [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
-//        if (!error) {
-//            self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
-//            [self getContentList];
-//        }else{
-//            [LoginAgain AddLoginView:NO];
-//        }
-//    } userId:[LoginSqlite getdata:@"userId"] targetId:self.projectId EntityCategory:@"Project" noNetWork:^{
-//        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
-//            [self firstNetWork];
-//        }];
-//    }];
+    [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            self.isFocused=[NSString stringWithFormat:@"%@",posts[0]];
+            [self getContentList];
+        }else{
+            [LoginAgain AddLoginView:NO];
+        }
+    } userId:[LoginSqlite getdata:@"userId"] targetId:self.projectId EntityCategory:@"Project" noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 -(void)getContentList{
@@ -459,18 +458,23 @@
     
     if (buttonIndex==0) {
         if([self.isFocused isEqualToString:@"0"]){
-            [ProjectApi AddProjectFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
-                if (!error) {
-                    NSLog(@"notice sucess");
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setObject:self.model.a_id forKey:@"targetId"];
+            [dic setObject:@"03" forKey:@"targetCategory"];
+            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alertView show];
                     self.isFocused = @"1";
                 }else{
                     [LoginAgain AddLoginView:NO];
                 }
-            } dic:[@{@"UserId":[LoginSqlite getdata:@"userId"],@"ProjectId":self.model.a_id} mutableCopy] noNetWork:nil];
+            } dic:dic noNetWork:nil];
         }else{
-            [ProjectApi DeleteFocusProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setObject:self.model.a_id forKey:@"targetId"];
+            [dic setObject:@"03" forKey:@"targetCategory"];
+            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alertView show];
@@ -478,7 +482,7 @@
                 }else{
                     [LoginAgain AddLoginView:NO];
                 }
-            } dic:[@{@"UserId":[LoginSqlite getdata:@"userId"],@"ProjectId":self.model.a_id} mutableCopy] noNetWork:nil];
+            } dic:dic noNetWork:nil];
         }
         
     }else if (buttonIndex==1){
@@ -1032,7 +1036,7 @@
 -(void)loginCompleteWithDelayBlock:(void (^)())block{
     [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            self.isFocused = [NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
+            self.isFocused = [NSString stringWithFormat:@"%@",posts[0]];
             if (block) {
                 block();
             }

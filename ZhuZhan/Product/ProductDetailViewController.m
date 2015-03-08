@@ -170,17 +170,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)firstNetWork{
-    [self getNetWorkData];
-//    [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
-//        if (!error) {
-//            self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
-//            [self getNetWorkData];
-//        }
-//    } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID EntityCategory:self.category noNetWork:^{
-//        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
-//            [self firstNetWork];
-//        }];
-//    }];
+    [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            self.isFocused=[NSString stringWithFormat:@"%@",posts[0]];
+            [self getNetWorkData];
+        }
+    } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID EntityCategory:self.category noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 -(void)removeMyLoadingView{
@@ -856,7 +855,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if (buttonIndex==0) {
         if([self.isFocused isEqualToString:@"0"]){
             NSLog(@"关注");
-            [ProductModel AddProductFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setObject:self.entityID forKey:@"targetId"];
+            [dic setObject:@"04" forKey:@"targetCategory"];
+            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alertView show];
@@ -864,9 +866,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 }else{
                     [LoginAgain AddLoginView:NO];
                 }
-            } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"productId":self.entityID} mutableCopy] noNetWork:nil];
+            } dic:dic noNetWork:nil];
         }else{
-            [ProductModel DeleteProductionUserFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setObject:self.entityID forKey:@"targetId"];
+            [dic setObject:@"04" forKey:@"targetCategory"];
+            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alertView show];
@@ -874,7 +879,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 }else{
                     [LoginAgain AddLoginView:NO];
                 }
-            } dic:[@{@"userId":[LoginSqlite getdata:@"userId"],@"productId":self.entityID} mutableCopy] noNetWork:nil];
+            } dic:dic noNetWork:nil];
         }
     }else{
         NSLog(@"取消");
@@ -884,7 +889,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)loginCompleteWithDelayBlock:(void (^)())block{
     [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            self.isFocused = [NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
+            self.isFocused = [NSString stringWithFormat:@"%@",posts[0]];
             if (block) {
                 block();
             }
