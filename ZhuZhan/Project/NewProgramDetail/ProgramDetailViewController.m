@@ -974,7 +974,7 @@
     NSMutableArray* imageUrls=[[NSMutableArray alloc]init];
     for (int i=0; i<temp.count; i++) {
         ProjectImageModel* model=temp[i];
-        //NSLog(@"a_imageOriginalLocation====%@",model.a_imageOriginalLocation);
+        NSLog(@"a_imageOriginalLocation====%@",model.a_imageOriginalLocation);
         [imageUrls addObject:model.a_imageOriginalLocation];
     }
     return imageUrls;

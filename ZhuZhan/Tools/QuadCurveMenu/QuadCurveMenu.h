@@ -21,6 +21,7 @@
     id<QuadCurveMenuDelegate> _delegate;
 
 }
+@property(nonatomic,strong)UIView *bgView;
 @property (nonatomic, copy) NSArray *menusArray;
 @property (nonatomic, getter = isExpanding)     BOOL expanding;
 @property (nonatomic, assign) id<QuadCurveMenuDelegate> delegate;

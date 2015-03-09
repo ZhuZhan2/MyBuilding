@@ -18,10 +18,10 @@
     self.a_companyFocusNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"companyFocusNumber"]]];
     self.a_companyEmployeeNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"employeesNum"]]];
     self.a_companyDescription = [ProjectStage ProjectStrStage:dict[@"companyDesc"]];
-    if(![[ProjectStage ProjectStrStage:dict[@"imageUrl"]] isEqualToString:@""]){
-        self.a_companyLogo = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"imageUrl"]], @"login", @"", @"", @"")];
+    if(![[ProjectStage ProjectStrStage:dict[@"loginImagesId"]] isEqualToString:@""]){
+        self.a_companyLogo = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"loginImagesId"]], @"login", @"", @"", @"")];
     }else{
-        self.a_companyLogo = [ProjectStage ProjectStrStage:dict[@"imageUrl"]];
+        self.a_companyLogo = [ProjectStage ProjectStrStage:dict[@"loginImagesId"]];
     }
     self.a_focused = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"isFocus"]]];
     self.a_companyContactName = [ProjectStage ProjectStrStage:dict[@"contactName"]];
