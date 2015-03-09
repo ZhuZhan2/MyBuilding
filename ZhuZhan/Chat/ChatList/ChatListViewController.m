@@ -8,7 +8,7 @@
 
 #import "ChatListViewController.h"
 #import "ChatListViewCell.h"
-
+#import "ChatViewController.h"
 @implementation ChatListViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,4 +46,10 @@
     [cell setModel:model];
     return cell;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ChatViewController* vc=[[ChatViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 @end
