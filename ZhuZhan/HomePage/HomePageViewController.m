@@ -266,6 +266,7 @@
         quadCurveVC=[[AddFriendViewController alloc]init];
     }else if (idx == 3){
         NSLog(@"会话");
+        quadCurveVC=[[ChatListViewController alloc]init];
     }else{
         NSLog(@"通讯录");
         quadCurveVC = [[AddressBookViewController alloc] init];
