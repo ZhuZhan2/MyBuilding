@@ -34,7 +34,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-        
+        self.bgView = [[UIView alloc] initWithFrame:frame];
+        self.bgView.backgroundColor = [UIColor clearColor];
+        [self addSubview:self.bgView];
         _menusArray = [aMenusArray copy];
         
         // add the menu buttons
@@ -60,39 +62,42 @@
             }else if (i == 1){
                 //最终停留的坐标
                 
-                item.endPoint = CGPointMake(STARTPOINT.x + ENDRADIUS * cosf(i * 3.125 / (count - 1))-20, STARTPOINT.y - ENDRADIUS * sinf(i * 3.125 / (count - 1))-10);
+                item.endPoint = CGPointMake(STARTPOINT.x + ENDRADIUS * cosf(i * 3.125 / (count - 1))-24, STARTPOINT.y - ENDRADIUS * sinf(i * 3.125 / (count - 1))-10);
                 
                 //靠近停留坐标的位置
                 
-                item.nearPoint = CGPointMake(STARTPOINT.x + NEARRADIUS * cosf(i * 3.125 / (count - 1))-20, STARTPOINT.y - NEARRADIUS * sinf(i * 3.125 / (count - 1))-10);
+                item.nearPoint = CGPointMake(STARTPOINT.x + NEARRADIUS * cosf(i * 3.125 / (count - 1))-24, STARTPOINT.y - NEARRADIUS * sinf(i * 3.125 / (count - 1))-10);
                 
                 //超过 停留坐标的位置   这些坐标用来做 物体 惯性的  使得动画看起来更自然也更美观
                 
-                item.farPoint = CGPointMake(STARTPOINT.x + FARRADIUS * cosf(i * 3.125 / (count - 1))-20, STARTPOINT.y - FARRADIUS * sinf(i * 3.125 / (count - 1))-10);
+                item.farPoint = CGPointMake(STARTPOINT.x + FARRADIUS * cosf(i * 3.125 / (count - 1))-24, STARTPOINT.y - FARRADIUS * sinf(i * 3.125 / (count - 1))-10);
             }else if (i == 2){
                 //最终停留的坐标
                 
                 item.endPoint = CGPointMake(STARTPOINT.x + ENDRADIUS * cosf(i * 3.125 / (count - 1)), STARTPOINT.y - ENDRADIUS * sinf(i * 3.125 / (count - 1)));
+                //item.endPoint = CGPointMake(160, 434);
                 
                 //靠近停留坐标的位置
                 
                 item.nearPoint = CGPointMake(STARTPOINT.x + NEARRADIUS * cosf(i * 3.125 / (count - 1)), STARTPOINT.y - NEARRADIUS * sinf(i * 3.125 / (count - 1)));
+                //item.nearPoint = CGPointMake(160,464);
                 
                 //超过 停留坐标的位置   这些坐标用来做 物体 惯性的  使得动画看起来更自然也更美观
                 
                 item.farPoint = CGPointMake(STARTPOINT.x + FARRADIUS * cosf(i * 3.125 / (count - 1)), STARTPOINT.y - FARRADIUS * sinf(i * 3.125 / (count - 1)));
+                //item.farPoint = CGPointMake(160,404);
             }else if(i == 3){
                 //最终停留的坐标
                 
-                item.endPoint = CGPointMake(STARTPOINT.x + ENDRADIUS * cosf(i * 3.125 / (count - 1))+20, STARTPOINT.y - ENDRADIUS * sinf(i * 3.125 / (count - 1))-10);
+                item.endPoint = CGPointMake(STARTPOINT.x + ENDRADIUS * cosf(i * 3.125 / (count - 1))+24, STARTPOINT.y - ENDRADIUS * sinf(i * 3.125 / (count - 1))-10);
                 
                 //靠近停留坐标的位置
                 
-                item.nearPoint = CGPointMake(STARTPOINT.x + NEARRADIUS * cosf(i * 3.125 / (count - 1))+20, STARTPOINT.y - NEARRADIUS * sinf(i * 3.125 / (count - 1))-10);
+                item.nearPoint = CGPointMake(STARTPOINT.x + NEARRADIUS * cosf(i * 3.125 / (count - 1))+24, STARTPOINT.y - NEARRADIUS * sinf(i * 3.125 / (count - 1))-10);
                 
                 //超过 停留坐标的位置   这些坐标用来做 物体 惯性的  使得动画看起来更自然也更美观
                 
-                item.farPoint = CGPointMake(STARTPOINT.x + FARRADIUS * cosf(i * 3.125 / (count - 1))+20, STARTPOINT.y - FARRADIUS * sinf(i * 3.125 / (count - 1))-10);
+                item.farPoint = CGPointMake(STARTPOINT.x + FARRADIUS * cosf(i * 3.125 / (count - 1))+24, STARTPOINT.y - FARRADIUS * sinf(i * 3.125 / (count - 1))-10);
             }else if (i == 4){
                 //最终停留的坐标
                 
@@ -121,7 +126,7 @@
         }
         
         // add the "Add" Button.
-        _addButton = [[QuadCurveMenuItem alloc] initWithImage:[GetImagePath getImagePath:@"项目－项目专题_11a"]
+        _addButton = [[QuadCurveMenuItem alloc] initWithImage:[GetImagePath getImagePath:@"Group-7"]
                                        highlightedImage:nil
                                            ContentImage:nil
                                 highlightedContentImage:nil flag:1];
@@ -158,16 +163,21 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     self.expanding = !self.isExpanding;
+    self.bgView.backgroundColor = [UIColor clearColor];
+    self.bgView.alpha = 0;
 }
 
 #pragma mark - QuadCurveMenuItem delegates
 - (void)quadCurveMenuItemTouchesBegan:(QuadCurveMenuItem *)item
 {
+    self.bgView.backgroundColor = [UIColor blackColor];
+    self.bgView.alpha = 0.5;
     if (item == _addButton) 
     {
         self.expanding = !self.isExpanding;
     }
 }
+
 - (void)quadCurveMenuItemTouchesEnd:(QuadCurveMenuItem *)item
 {
     // exclude the "add" button
@@ -202,6 +212,8 @@
     
     if ([_delegate respondsToSelector:@selector(quadCurveMenu:didSelectIndex:)])
     {
+        self.bgView.backgroundColor = [UIColor clearColor];
+        self.bgView.alpha = 0;
         [_delegate quadCurveMenu:self didSelectIndex:item.tag - 1000];
     }
 }
@@ -226,7 +238,7 @@
         }
     }
     // add the menu buttons
-    int count = [_menusArray count];
+    int count = (int)[_menusArray count];
     for (int i = 0; i < count; i ++)
     {
         QuadCurveMenuItem *item = [_menusArray objectAtIndex:i];
@@ -302,7 +314,6 @@
     item.center = item.endPoint;
     
     _flag ++;
-    
 }
 
 - (void)_close
