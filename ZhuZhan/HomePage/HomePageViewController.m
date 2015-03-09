@@ -12,6 +12,8 @@
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "AddressBookViewController.h"
+#import "AddFriendViewController.h"
+#import "ChatListViewController.h"
 @interface HomePageViewController ()<LoginViewDelegate>
 
 @end
@@ -261,16 +263,17 @@
         NSLog(@"通知");
     }else if(idx == 2){
         NSLog(@"加好友");
+        quadCurveVC=[[AddFriendViewController alloc]init];
     }else if (idx == 3){
         NSLog(@"会话");
     }else{
         NSLog(@"通讯录");
-        AddressBookViewController *addressBockView = [[AddressBookViewController alloc] init];
-        UINavigationController *navigatin = [[UINavigationController alloc] initWithRootViewController:addressBockView];
-        navigatin.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
-        [self addAnimation];
-        [self.view addSubview:navigatin.view];
+        quadCurveVC = [[AddressBookViewController alloc] init];
     }
+    UINavigationController *navigatin = [[UINavigationController alloc] initWithRootViewController:quadCurveVC];
+    navigatin.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
+    [self addAnimation];
+    [self.view addSubview:navigatin.view];
 }
 
 -(void)addAnimation{
