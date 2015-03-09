@@ -7,5 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddressBookCell.h"
 @interface AddressBookViewController : UIViewController
 @end

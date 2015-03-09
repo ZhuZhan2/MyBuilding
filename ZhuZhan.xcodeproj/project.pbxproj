@@ -1203,6 +1203,9 @@
 		D3E2F4701A11E4D500CF2785 /* 注册_08.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E2F46E1A11E4D500CF2785 /* 注册_08.png */; };
 		D3E2F4711A11E4D500CF2785 /* 注册_08@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E2F46F1A11E4D500CF2785 /* 注册_08@2x.png */; };
 		D3E621E61A10AC3000EF8A90 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3E621E51A10AC3000EF8A90 /* area.plist */; };
+		D3F787431AAD9F6F00ED754B /* AddressBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787421AAD9F6F00ED754B /* AddressBookCell.m */; };
+		D3F787471AADA40300ED754B /* AddressBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787461AADA40300ED754B /* AddressBookModel.m */; };
+		D3F7874A1AADAD3800ED754B /* AddressBookApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787491AADAD3800ED754B /* AddressBookApi.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2894,6 +2897,12 @@
 		D3E2F46E1A11E4D500CF2785 /* 注册_08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_08.png"; sourceTree = "<group>"; };
 		D3E2F46F1A11E4D500CF2785 /* 注册_08@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_08@2x.png"; sourceTree = "<group>"; };
 		D3E621E51A10AC3000EF8A90 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		D3F787411AAD9F6F00ED754B /* AddressBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookCell.h; sourceTree = "<group>"; };
+		D3F787421AAD9F6F00ED754B /* AddressBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookCell.m; sourceTree = "<group>"; };
+		D3F787451AADA40300ED754B /* AddressBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookModel.h; sourceTree = "<group>"; };
+		D3F787461AADA40300ED754B /* AddressBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookModel.m; sourceTree = "<group>"; };
+		D3F787481AADAD3800ED754B /* AddressBookApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookApi.h; sourceTree = "<group>"; };
+		D3F787491AADAD3800ED754B /* AddressBookApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookApi.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5018,6 +5027,7 @@
 		D3AC618B19B6BF930015B62F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D3F787441AADA3D300ED754B /* AddressBookModel */,
 				D3D29B7A1A0DB9AC00CAB1EB /* IsFocused */,
 				D36040E319F51E6900E9727D /* CompanyModel */,
 				04248B0219C67C1D000FB8A9 /* ProductModel */,
@@ -5317,6 +5327,8 @@
 			children = (
 				D3D5B81D1AAD715A0049A5E0 /* AddressBookViewController.h */,
 				D3D5B81E1AAD715A0049A5E0 /* AddressBookViewController.m */,
+				D3F787411AAD9F6F00ED754B /* AddressBookCell.h */,
+				D3F787421AAD9F6F00ED754B /* AddressBookCell.m */,
 			);
 			path = AddressBook;
 			sourceTree = "<group>";
@@ -5439,6 +5451,17 @@
 			children = (
 			);
 			path = Message;
+			sourceTree = "<group>";
+		};
+		D3F787441AADA3D300ED754B /* AddressBookModel */ = {
+			isa = PBXGroup;
+			children = (
+				D3F787451AADA40300ED754B /* AddressBookModel.h */,
+				D3F787461AADA40300ED754B /* AddressBookModel.m */,
+				D3F787481AADAD3800ED754B /* AddressBookApi.h */,
+				D3F787491AADAD3800ED754B /* AddressBookApi.m */,
+			);
+			path = AddressBookModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -6594,6 +6617,7 @@
 				0426C2D119922D5A00CD8822 /* GPUImageTwoPassTextureSamplingFilter.m in Sources */,
 				5B0A00A319B587CD00500C05 /* TMQuiltView.m in Sources */,
 				D3AD609419AC56CB001FD483 /* MJRefreshFooterView.m in Sources */,
+				D3F7874A1AADAD3800ED754B /* AddressBookApi.m in Sources */,
 				5B6A1D6A1A4A67170072B916 /* ContactEGOView.m in Sources */,
 				0426C2F619922D5A00CD8822 /* CJSONScanner.m in Sources */,
 				0426C2EE19922D5A00CD8822 /* CDataScanner.m in Sources */,
@@ -6669,10 +6693,12 @@
 				0426C30319922D5A00CD8822 /* TFIndicatorView.m in Sources */,
 				0426C27C19922D5A00CD8822 /* GPUImageHoughTransformLineDetector.m in Sources */,
 				D3AC612B19B5C7D10015B62F /* ContactProjectTableViewCell.m in Sources */,
+				D3F787471AADA40300ED754B /* AddressBookModel.m in Sources */,
 				D3AD609319AC56CB001FD483 /* MJRefreshConst.m in Sources */,
 				0426C28419922D5A00CD8822 /* GPUImageLaplacianFilter.m in Sources */,
 				0426BFF719922CE400CD8822 /* main.m in Sources */,
 				0426C2C619922D5A00CD8822 /* GPUImageThreeInputFilter.m in Sources */,
+				D3F787431AAD9F6F00ED754B /* AddressBookCell.m in Sources */,
 				0426C2CC19922D5A00CD8822 /* GPUImageToonFilter.m in Sources */,
 				0426C29419922D5A00CD8822 /* GPUImageMotionBlurFilter.m in Sources */,
 				D3AD60FC19AC7CC5001FD483 /* EGOImageView.m in Sources */,

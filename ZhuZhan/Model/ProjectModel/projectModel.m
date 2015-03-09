@@ -48,10 +48,11 @@
     self.isFocused = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"isFocus"]]];
     self.a_projectstage = [ProjectStage ProjectStrStage:dict[@"projectStage"]];
     if(![[ProjectStage ProjectStrStage:dict[@"projectImagesId"]] isEqualToString:@""]){
-        self.a_imageLocation = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"projectImagesId"]], @"project", @"", @"", @"")];
+        self.a_imageLocation = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"projectImagesId"]], @"project", @"288", @"110", @"1")];
     }else{
         self.a_imageLocation = [ProjectStage ProjectStrStage:dict[@"projectImagesId"]];
     }
+    NSLog(@"%@",self.a_imageLocation);
     self.a_imageHeight = [ProjectStage ProjectStrStage:dict[@"imageHeight"]];
     self.a_imageWidth = [ProjectStage ProjectStrStage:dict[@"imageWidth"]];
 }

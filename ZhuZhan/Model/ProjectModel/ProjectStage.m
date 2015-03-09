@@ -53,6 +53,10 @@
             string = @"No";
         }else if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"01"]){
             string = @"Yes";
+        }else if ([[NSString stringWithFormat:@"%@",str] isEqualToString:@"true"]){
+            string = @"Yes";
+        }else{
+            string = @"No";
         }
     }
     return string;
