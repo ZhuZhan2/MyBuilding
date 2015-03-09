@@ -27,6 +27,7 @@
     UIViewController* testVC;
     UINavigationController *nav;
     QuadCurveMenu *menu;
+    UIViewController* quadCurveVC;
     
 }
 -(void)homePageTabBarHide;

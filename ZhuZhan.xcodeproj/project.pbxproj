@@ -580,6 +580,15 @@
 		5B3209FA1A11CD8900D19279 /* 公司－我的公司_11a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3209F81A11CD8900D19279 /* 公司－我的公司_11a@2x.png */; };
 		5B3209FE1A11E78600D19279 /* RemindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3209FD1A11E78600D19279 /* RemindView.m */; };
 		5B3AD9E419F7CA7B008132B2 /* CompanyMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3AD9E319F7CA7B008132B2 /* CompanyMemberCell.m */; };
+		5B3B5D3D1AAD8C4F002FB444 /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B5D2A1AAD8C4F002FB444 /* AddFriendCell.m */; };
+		5B3B5D3E1AAD8C4F002FB444 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B5D2C1AAD8C4F002FB444 /* AddFriendViewController.m */; };
+		5B3B5D3F1AAD8C4F002FB444 /* ChatBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B5D2E1AAD8C4F002FB444 /* ChatBaseViewController.m */; };
+		5B3B5D401AAD8C4F002FB444 /* ChatContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B5D301AAD8C4F002FB444 /* ChatContentView.m */; };
+		5B3B5D411AAD8C4F002FB444 /* ChatListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B5D331AAD8C4F002FB444 /* ChatListViewCell.m */; };
+		5B3B5D421AAD8C4F002FB444 /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B5D351AAD8C4F002FB444 /* ChatListViewController.m */; };
+		5B3B5D431AAD8C4F002FB444 /* ChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B5D371AAD8C4F002FB444 /* ChatModel.m */; };
+		5B3B5D441AAD8C4F002FB444 /* ChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B5D391AAD8C4F002FB444 /* ChatTableViewCell.m */; };
+		5B3B5D451AAD8C4F002FB444 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B5D3B1AAD8C4F002FB444 /* ChatViewController.m */; };
 		5B45E61F1A00AE7800B790FB /* 全部项目_17.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B45E61D1A00AE7800B790FB /* 全部项目_17.png */; };
 		5B45E6201A00AE7800B790FB /* 全部项目_17@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B45E61E1A00AE7800B790FB /* 全部项目_17@2x.png */; };
 		5B4C197119FA444800C6C57D /* 注册_05.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4C196D19FA444800C6C57D /* 注册_05.png */; };
@@ -2084,6 +2093,24 @@
 		5B3209FD1A11E78600D19279 /* RemindView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindView.m; sourceTree = "<group>"; };
 		5B3AD9E219F7CA7B008132B2 /* CompanyMemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMemberCell.h; sourceTree = "<group>"; };
 		5B3AD9E319F7CA7B008132B2 /* CompanyMemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyMemberCell.m; sourceTree = "<group>"; };
+		5B3B5D291AAD8C4F002FB444 /* AddFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendCell.h; sourceTree = "<group>"; };
+		5B3B5D2A1AAD8C4F002FB444 /* AddFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendCell.m; sourceTree = "<group>"; };
+		5B3B5D2B1AAD8C4F002FB444 /* AddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
+		5B3B5D2C1AAD8C4F002FB444 /* AddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendViewController.m; sourceTree = "<group>"; };
+		5B3B5D2D1AAD8C4F002FB444 /* ChatBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBaseViewController.h; sourceTree = "<group>"; };
+		5B3B5D2E1AAD8C4F002FB444 /* ChatBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatBaseViewController.m; sourceTree = "<group>"; };
+		5B3B5D2F1AAD8C4F002FB444 /* ChatContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatContentView.h; sourceTree = "<group>"; };
+		5B3B5D301AAD8C4F002FB444 /* ChatContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatContentView.m; sourceTree = "<group>"; };
+		5B3B5D321AAD8C4F002FB444 /* ChatListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListViewCell.h; sourceTree = "<group>"; };
+		5B3B5D331AAD8C4F002FB444 /* ChatListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListViewCell.m; sourceTree = "<group>"; };
+		5B3B5D341AAD8C4F002FB444 /* ChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListViewController.h; sourceTree = "<group>"; };
+		5B3B5D351AAD8C4F002FB444 /* ChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListViewController.m; sourceTree = "<group>"; };
+		5B3B5D361AAD8C4F002FB444 /* ChatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatModel.h; sourceTree = "<group>"; };
+		5B3B5D371AAD8C4F002FB444 /* ChatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatModel.m; sourceTree = "<group>"; };
+		5B3B5D381AAD8C4F002FB444 /* ChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTableViewCell.h; sourceTree = "<group>"; };
+		5B3B5D391AAD8C4F002FB444 /* ChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTableViewCell.m; sourceTree = "<group>"; };
+		5B3B5D3A1AAD8C4F002FB444 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		5B3B5D3B1AAD8C4F002FB444 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		5B45E61D1A00AE7800B790FB /* 全部项目_17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "全部项目_17.png"; sourceTree = "<group>"; };
 		5B45E61E1A00AE7800B790FB /* 全部项目_17@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "全部项目_17@2x.png"; sourceTree = "<group>"; };
 		5B4C196D19FA444800C6C57D /* 注册_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_05.png"; sourceTree = "<group>"; };
@@ -2976,6 +3003,7 @@
 				0426C04E19922D5900CD8822 /* RegistView */,
 				5B0A005D19B5625D00500C05 /* Product */,
 				5BE08EC71A35900000495EEB /* FirstAnimationView */,
+				5B3B5D271AAD8C4F002FB444 /* Chat */,
 				0426C05519922D5900CD8822 /* Tools */,
 				0426BFF919922CE400CD8822 /* AppDelegate.h */,
 				0426BFFA19922CE400CD8822 /* AppDelegate.m */,
@@ -4384,6 +4412,55 @@
 				5B3209FD1A11E78600D19279 /* RemindView.m */,
 			);
 			path = RemindView;
+			sourceTree = "<group>";
+		};
+		5B3B5D271AAD8C4F002FB444 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				5B3B5D281AAD8C4F002FB444 /* AddFriend */,
+				5B3B5D2D1AAD8C4F002FB444 /* ChatBaseViewController.h */,
+				5B3B5D2E1AAD8C4F002FB444 /* ChatBaseViewController.m */,
+				5B3B5D2F1AAD8C4F002FB444 /* ChatContentView.h */,
+				5B3B5D301AAD8C4F002FB444 /* ChatContentView.m */,
+				5B3B5D311AAD8C4F002FB444 /* ChatList */,
+				5B3B5D361AAD8C4F002FB444 /* ChatModel.h */,
+				5B3B5D371AAD8C4F002FB444 /* ChatModel.m */,
+				5B3B5D381AAD8C4F002FB444 /* ChatTableViewCell.h */,
+				5B3B5D391AAD8C4F002FB444 /* ChatTableViewCell.m */,
+				5B3B5D3A1AAD8C4F002FB444 /* ChatViewController.h */,
+				5B3B5D3B1AAD8C4F002FB444 /* ChatViewController.m */,
+				5B3B5D3C1AAD8C4F002FB444 /* ChooseFriend */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		5B3B5D281AAD8C4F002FB444 /* AddFriend */ = {
+			isa = PBXGroup;
+			children = (
+				5B3B5D291AAD8C4F002FB444 /* AddFriendCell.h */,
+				5B3B5D2A1AAD8C4F002FB444 /* AddFriendCell.m */,
+				5B3B5D2B1AAD8C4F002FB444 /* AddFriendViewController.h */,
+				5B3B5D2C1AAD8C4F002FB444 /* AddFriendViewController.m */,
+			);
+			path = AddFriend;
+			sourceTree = "<group>";
+		};
+		5B3B5D311AAD8C4F002FB444 /* ChatList */ = {
+			isa = PBXGroup;
+			children = (
+				5B3B5D321AAD8C4F002FB444 /* ChatListViewCell.h */,
+				5B3B5D331AAD8C4F002FB444 /* ChatListViewCell.m */,
+				5B3B5D341AAD8C4F002FB444 /* ChatListViewController.h */,
+				5B3B5D351AAD8C4F002FB444 /* ChatListViewController.m */,
+			);
+			path = ChatList;
+			sourceTree = "<group>";
+		};
+		5B3B5D3C1AAD8C4F002FB444 /* ChooseFriend */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ChooseFriend;
 			sourceTree = "<group>";
 		};
 		5B8DAE921A7F1EA9003C7E41 /* inc */ = {
@@ -6296,6 +6373,7 @@
 				D3A4283B19C94E5E00BAB6C7 /* ActivesModel.m in Sources */,
 				5B5894F119FF9D24001CC09E /* EndEditingGesture.m in Sources */,
 				D3D4FB371A087BBD0033BB34 /* CompanyTableViewCell.m in Sources */,
+				5B3B5D3D1AAD8C4F002FB444 /* AddFriendCell.m in Sources */,
 				0426C2DE19922D5A00CD8822 /* GPUImageView.m in Sources */,
 				0426C25A19922D5A00CD8822 /* GPUImageCropFilter.m in Sources */,
 				0426C27819922D5A00CD8822 /* GPUImageHighlightShadowFilter.m in Sources */,
@@ -6332,6 +6410,7 @@
 				042D9E2C19B559FC00689C5D /* TopicsTableViewController.m in Sources */,
 				5BE08ED21A35900000495EEB /* FirstAnimationView.m in Sources */,
 				0426C29E19922D5A00CD8822 /* GPUImageOverlayBlendFilter.m in Sources */,
+				5B3B5D411AAD8C4F002FB444 /* ChatListViewCell.m in Sources */,
 				0426C2B119922D5A00CD8822 /* GPUImageSaturationFilter.m in Sources */,
 				04BF13B419C4162A002E02C9 /* AFAppDotNetAPIClient.m in Sources */,
 				0426C2BE19922D5A00CD8822 /* GPUImageSourceOverBlendFilter.m in Sources */,
@@ -6350,6 +6429,7 @@
 				0426C27F19922D5A00CD8822 /* GPUImageHueFilter.m in Sources */,
 				0426C29F19922D5A00CD8822 /* GPUImageParallelCoordinateLineTransformFilter.m in Sources */,
 				042D9E2219B559FC00689C5D /* ResultsTableViewController.m in Sources */,
+				5B3B5D421AAD8C4F002FB444 /* ChatListViewController.m in Sources */,
 				0426C29619922D5A00CD8822 /* GPUImageMovie.m in Sources */,
 				0426C2FA19922D5A00CD8822 /* XHWaterDropRefresh.m in Sources */,
 				D3AD60A019AC574A001FD483 /* ConnectionAvailable.m in Sources */,
@@ -6357,6 +6437,7 @@
 				0426C2EF19922D5A00CD8822 /* CFilteringJSONSerializer.m in Sources */,
 				5B0A00A519B587CD00500C05 /* TMQuiltViewController.m in Sources */,
 				5BAA14D619EE35AC00C7ECD9 /* MD5.m in Sources */,
+				5B3B5D3F1AAD8C4F002FB444 /* ChatBaseViewController.m in Sources */,
 				0426C22F19922D5A00CD8822 /* LoginEvent.m in Sources */,
 				0426C2E819922D5A00CD8822 /* FaceppInfo.m in Sources */,
 				0426C2D919922D5A00CD8822 /* GPUImageXYDerivativeFilter.m in Sources */,
@@ -6463,6 +6544,7 @@
 				0426C29919922D5A00CD8822 /* GPUImageNonMaximumSuppressionFilter.m in Sources */,
 				D3AC61B219B6BF930015B62F /* TopicsModel.m in Sources */,
 				0426C2C019922D5A00CD8822 /* GPUImageStillCamera.m in Sources */,
+				5B3B5D451AAD8C4F002FB444 /* ChatViewController.m in Sources */,
 				0426C29A19922D5A00CD8822 /* GPUImageNormalBlendFilter.m in Sources */,
 				0426C2BF19922D5A00CD8822 /* GPUImageSphereRefractionFilter.m in Sources */,
 				042D9E1619B559FC00689C5D /* ProgramDetailViewController.m in Sources */,
@@ -6496,6 +6578,7 @@
 				0426C2A219922D5A00CD8822 /* GPUImagePixellateFilter.m in Sources */,
 				0426C2BD19922D5A00CD8822 /* GPUImageSolidColorGenerator.m in Sources */,
 				0426C24D19922D5A00CD8822 /* GPUImageBulgeDistortionFilter.m in Sources */,
+				5B3B5D431AAD8C4F002FB444 /* ChatModel.m in Sources */,
 				042D9DC719B4A1C600689C5D /* JSONKit.m in Sources */,
 				D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */,
 				5B55D57E1A3EB63200CAEF8B /* ForgetPasswordSecondController.m in Sources */,
@@ -6505,6 +6588,7 @@
 				0426C2B919922D5A00CD8822 /* GPUImageSmoothToonFilter.m in Sources */,
 				0426C30019922D5A00CD8822 /* UIProgressView+AFNetworking.m in Sources */,
 				042D9E3619B55AB800689C5D /* UnderstandViewController.m in Sources */,
+				5B3B5D401AAD8C4F002FB444 /* ChatContentView.m in Sources */,
 				0426C26019922D5A00CD8822 /* GPUImageDirectionalNonMaximumSuppressionFilter.m in Sources */,
 				D3AD60FB19AC7CC5001FD483 /* EGOImageLoader.m in Sources */,
 				0426C2CB19922D5A00CD8822 /* GPUImageToneCurveFilter.m in Sources */,
@@ -6512,6 +6596,7 @@
 				0426C23219922D5A00CD8822 /* FaceViewController.m in Sources */,
 				0426C25F19922D5A00CD8822 /* GPUImageDilationFilter.m in Sources */,
 				5B7132411AA458D90043E37D /* ProductPublishController.m in Sources */,
+				5B3B5D441AAD8C4F002FB444 /* ChatTableViewCell.m in Sources */,
 				042D9E1419B559FC00689C5D /* MyIndexPath.m in Sources */,
 				0426C2A019922D5A00CD8822 /* GPUImagePerlinNoiseFilter.m in Sources */,
 				042D9E1E19B559FC00689C5D /* ConditionsView.m in Sources */,
@@ -6532,6 +6617,7 @@
 				0426C26D19922D5A00CD8822 /* GPUImageFilterPipeline.m in Sources */,
 				042D9E0F19B559FC00689C5D /* DecorationProject.m in Sources */,
 				0426C2A519922D5A00CD8822 /* GPUImagePolarPixellateFilter.m in Sources */,
+				5B3B5D3E1AAD8C4F002FB444 /* AddFriendViewController.m in Sources */,
 				04BF13B519C4162A002E02C9 /* ProjectApi.m in Sources */,
 				04D10BEA19AE016A0097C0C6 /* PublishViewController.m in Sources */,
 				5B51212F1A0781F900A77997 /* MapContentView.m in Sources */,
