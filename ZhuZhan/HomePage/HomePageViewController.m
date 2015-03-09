@@ -13,7 +13,7 @@
 #import "MBProgressHUD.h"
 #import "AddressBookViewController.h"
 @interface HomePageViewController ()<LoginViewDelegate>
-
+@property(nonatomic,strong)UINavigationController *navigatin;
 @end
 
 @implementation HomePageViewController
@@ -266,10 +266,11 @@
     }else{
         NSLog(@"通讯录");
         AddressBookViewController *addressBockView = [[AddressBookViewController alloc] init];
-        UINavigationController *navigatin = [[UINavigationController alloc] initWithRootViewController:addressBockView];
-        navigatin.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
+        //addressBockView.delegate = self;
+        //self.navigatin = [[UINavigationController alloc] initWithRootViewController:addressBockView];
+        //self.navigatin.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
         [self addAnimation];
-        [self.view addSubview:navigatin.view];
+        [nav pushViewController:addressBockView animated:NO];
     }
 }
 
@@ -278,7 +279,6 @@
     transition.duration = 0.5f;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = @"rippleEffect";
-    transition.subtype = kCATransitionFromRight;
     transition.delegate = self;
     [self.view.layer addAnimation:transition forKey:nil];
 }
