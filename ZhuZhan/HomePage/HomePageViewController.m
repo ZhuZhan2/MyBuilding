@@ -268,17 +268,10 @@
         NSLog(@"会话");
     }else{
         NSLog(@"通讯录");
-        AddressBookViewController *addressBockView = [[AddressBookViewController alloc] init];
-        //addressBockView.delegate = self;
-        //self.navigatin = [[UINavigationController alloc] initWithRootViewController:addressBockView];
-        //self.navigatin.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
-        [self addAnimation];
-        [nav pushViewController:addressBockView animated:NO];
+        quadCurveVC = [[AddressBookViewController alloc] init];
     }
-    UINavigationController *navigatin = [[UINavigationController alloc] initWithRootViewController:quadCurveVC];
-    navigatin.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
     [self addAnimation];
-    [self.view addSubview:navigatin.view];
+    [nav pushViewController:quadCurveVC animated:NO];
 }
 
 -(void)addAnimation{
