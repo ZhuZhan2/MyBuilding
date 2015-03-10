@@ -170,16 +170,20 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)firstNetWork{
-    [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            self.isFocused=[NSString stringWithFormat:@"%@",posts[0]];
-            [self getNetWorkData];
-        }
-    } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID EntityCategory:self.category noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
-            [self firstNetWork];
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        [self getNetWorkData];
+    }else{
+        [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                self.isFocused=[NSString stringWithFormat:@"%@",posts[0]];
+                [self getNetWorkData];
+            }
+        } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID EntityCategory:@"04" noNetWork:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                [self firstNetWork];
+            }];
         }];
-    }];
+    }
 }
 
 -(void)removeMyLoadingView{
@@ -896,7 +900,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID EntityCategory:self.category noNetWork:nil];
+    } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID EntityCategory:@"04" noNetWork:nil];
 }
 
 -(void)delComment:(UIButton *)button{

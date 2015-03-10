@@ -30,12 +30,11 @@
                 [dic setObject:[NSString stringWithFormat:@"%d",i] forKey:@"id"];
                 [dic setObject:[NSString stringWithFormat:@"test%d",i] forKey:@"name"];
                 [ABModel setDict:dic];
-                NSLog(@"%@",ABModel.a_name);
-                for(int i=0;i<5;i++){
+                for(int j=0;j<5;j++){
                     AddressBookContactModel *contactModel = [[AddressBookContactModel alloc] init];
                     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-                    [dic setObject:[NSString stringWithFormat:@"%d",i] forKey:@"id"];
-                    [dic setObject:[NSString stringWithFormat:@"test里的%d",i] forKey:@"name"];
+                    [dic setObject:[NSString stringWithFormat:@"%d",j] forKey:@"id"];
+                    [dic setObject:[NSString stringWithFormat:@"test里的%d",j] forKey:@"name"];
                     [dic setObject:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg" forKey:@"head"];
                     [contactModel setDict:dic];
                     [ABModel.contactArr addObject:contactModel];

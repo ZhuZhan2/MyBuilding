@@ -1111,6 +1111,7 @@
 		D3D321271A3EAE2E0009AEEA /* PooCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D321261A3EAE2E0009AEEA /* PooCodeView.m */; };
 		D3D3212E1A3ED4340009AEEA /* 注册_03.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D3212C1A3ED4340009AEEA /* 注册_03.png */; };
 		D3D3212F1A3ED4340009AEEA /* 注册_03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D3212D1A3ED4340009AEEA /* 注册_03@2x.png */; };
+		D3D4A2E21AAE98390071B3EA /* ChatMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4A2E11AAE98390071B3EA /* ChatMessageModel.m */; };
 		D3D4FB301A0872770033BB34 /* CompanyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4FB2F1A0872770033BB34 /* CompanyCenterViewController.m */; };
 		D3D4FB331A087A830033BB34 /* 公司－账号设置_03a-05.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D4FB311A087A830033BB34 /* 公司－账号设置_03a-05.png */; };
 		D3D4FB341A087A830033BB34 /* 公司－账号设置_03a-05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D4FB321A087A830033BB34 /* 公司－账号设置_03a-05@2x.png */; };
@@ -1206,6 +1207,7 @@
 		D3F787431AAD9F6F00ED754B /* AddressBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787421AAD9F6F00ED754B /* AddressBookCell.m */; };
 		D3F787471AADA40300ED754B /* AddressBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787461AADA40300ED754B /* AddressBookModel.m */; };
 		D3F7874A1AADAD3800ED754B /* AddressBookApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787491AADAD3800ED754B /* AddressBookApi.m */; };
+		D3FF3E811AAEC916005195CC /* ChoseContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FF3E801AAEC916005195CC /* ChoseContactModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2796,6 +2798,8 @@
 		D3D3212C1A3ED4340009AEEA /* 注册_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_03.png"; sourceTree = "<group>"; };
 		D3D3212D1A3ED4340009AEEA /* 注册_03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_03@2x.png"; sourceTree = "<group>"; };
 		D3D49EE919FE0B76002B3B99 /* HeadImageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadImageDelegate.h; sourceTree = "<group>"; };
+		D3D4A2E01AAE98390071B3EA /* ChatMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageModel.h; sourceTree = "<group>"; };
+		D3D4A2E11AAE98390071B3EA /* ChatMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageModel.m; sourceTree = "<group>"; };
 		D3D4FB2E1A0872770033BB34 /* CompanyCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyCenterViewController.h; sourceTree = "<group>"; };
 		D3D4FB2F1A0872770033BB34 /* CompanyCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyCenterViewController.m; sourceTree = "<group>"; };
 		D3D4FB311A087A830033BB34 /* 公司－账号设置_03a-05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－账号设置_03a-05.png"; sourceTree = "<group>"; };
@@ -2903,6 +2907,8 @@
 		D3F787461AADA40300ED754B /* AddressBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookModel.m; sourceTree = "<group>"; };
 		D3F787481AADAD3800ED754B /* AddressBookApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookApi.h; sourceTree = "<group>"; };
 		D3F787491AADAD3800ED754B /* AddressBookApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookApi.m; sourceTree = "<group>"; };
+		D3FF3E7F1AAEC916005195CC /* ChoseContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoseContactModel.h; sourceTree = "<group>"; };
+		D3FF3E801AAEC916005195CC /* ChoseContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoseContactModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5027,6 +5033,8 @@
 		D3AC618B19B6BF930015B62F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D3FF3E7E1AAEC8FF005195CC /* ChoseContactModel */,
+				D3D4A2DF1AAE98290071B3EA /* ChatMessageModel */,
 				D3F787441AADA3D300ED754B /* AddressBookModel */,
 				D3D29B7A1A0DB9AC00CAB1EB /* IsFocused */,
 				D36040E319F51E6900E9727D /* CompanyModel */,
@@ -5303,6 +5311,15 @@
 			path = AuthCode;
 			sourceTree = "<group>";
 		};
+		D3D4A2DF1AAE98290071B3EA /* ChatMessageModel */ = {
+			isa = PBXGroup;
+			children = (
+				D3D4A2E01AAE98390071B3EA /* ChatMessageModel.h */,
+				D3D4A2E11AAE98390071B3EA /* ChatMessageModel.m */,
+			);
+			path = ChatMessageModel;
+			sourceTree = "<group>";
+		};
 		D3D5B8031AAD626C0049A5E0 /* 人脉按钮 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5462,6 +5479,15 @@
 				D3F787491AADAD3800ED754B /* AddressBookApi.m */,
 			);
 			path = AddressBookModel;
+			sourceTree = "<group>";
+		};
+		D3FF3E7E1AAEC8FF005195CC /* ChoseContactModel */ = {
+			isa = PBXGroup;
+			children = (
+				D3FF3E7F1AAEC916005195CC /* ChoseContactModel.h */,
+				D3FF3E801AAEC916005195CC /* ChoseContactModel.m */,
+			);
+			path = ChoseContactModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -6368,6 +6394,7 @@
 				042D9E1919B559FC00689C5D /* ProjectTableViewCell.m in Sources */,
 				5BE08ED41A35900000495EEB /* FourthAnimationView.m in Sources */,
 				5B3AD9E419F7CA7B008132B2 /* CompanyMemberCell.m in Sources */,
+				D3D4A2E21AAE98390071B3EA /* ChatMessageModel.m in Sources */,
 				0426C2A919922D5A00CD8822 /* GPUImageRawDataInput.m in Sources */,
 				0426C28B19922D5A00CD8822 /* GPUImageLowPassFilter.m in Sources */,
 				0426C23719922D5A00CD8822 /* AFHTTPRequestOperationManager.m in Sources */,
@@ -6497,6 +6524,7 @@
 				04BF13B819C4162A002E02C9 /* ProjectImageModel.m in Sources */,
 				0426C2B819922D5A00CD8822 /* GPUImageSketchFilter.m in Sources */,
 				5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */,
+				D3FF3E811AAEC916005195CC /* ChoseContactModel.m in Sources */,
 				0426C23819922D5A00CD8822 /* AFHTTPSessionManager.m in Sources */,
 				0426C25019922D5A00CD8822 /* GPUImageChromaKeyBlendFilter.m in Sources */,
 				0426C2F819922D5A00CD8822 /* XHPathCover.m in Sources */,

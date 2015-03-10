@@ -7,7 +7,6 @@
 //
 
 #import "AddressBookCell.h"
-#import "AddressBookModel.h"
 @implementation AddressBookCell
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -33,10 +32,8 @@
     [self.contentView addSubview:lineImage];
 }
 
--(void)setArray:(NSMutableArray *)array{
-    [array enumerateObjectsUsingBlock:^(AddressBookContactModel* model, NSUInteger idx, BOOL *stop) {
-        headImage.imageURL = [NSURL URLWithString:model.a_avatarUrl];
-        nameLabel.text = model.a_contactName;
-    }];
+-(void)setModel:(AddressBookContactModel *)model{
+    headImage.imageURL = [NSURL URLWithString:model.a_avatarUrl];
+    nameLabel.text = model.a_contactName;
 }
 @end

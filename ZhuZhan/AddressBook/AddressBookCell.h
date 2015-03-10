@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "EGOImageView.h"
+#import "AddressBookModel.h"
 @interface AddressBookCell : UITableViewCell{
     UILabel *nameLabel;
     EGOImageView *headImage;
 }
-@property(nonatomic,strong)NSMutableArray *array;
+@property(nonatomic,strong)AddressBookContactModel *model;
 @end

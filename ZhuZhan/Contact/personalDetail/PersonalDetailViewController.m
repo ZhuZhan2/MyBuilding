@@ -152,18 +152,22 @@
 
 -(void)firstNetWork{
     loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view];
-    [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            self.isFocused=[NSString stringWithFormat:@"%@",posts[0]];
-            [self getNetWorkData];
-        }else{
-            [LoginAgain AddLoginView:NO];
-        }
-    } userId:[LoginSqlite getdata:@"userId"] targetId:self.contactId EntityCategory:@"Personal" noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
-            [self firstNetWork];
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        [self getNetWorkData];
+    }else{
+        [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                self.isFocused=[NSString stringWithFormat:@"%@",posts[0]];
+                [self getNetWorkData];
+            }else{
+                [LoginAgain AddLoginView:NO];
+            }
+        } userId:[LoginSqlite getdata:@"userId"] targetId:self.contactId EntityCategory:@"01" noNetWork:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                [self firstNetWork];
+            }];
         }];
-    }];
+    }
 }
 
 //获取网络数据

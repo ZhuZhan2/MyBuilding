@@ -204,7 +204,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     AddressBookModel *model = self.titleArr[indexPath.section];
-    cell.array = model.contactArr;
+    cell.model = model.contactArr[indexPath.row];
     return cell;
 }
 @end
