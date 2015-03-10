@@ -328,8 +328,9 @@ static int count =0;//记录生日textField 的时间被触发的次数
     [parameter setValue:model.constellation forKey:@"constellation"];
     [parameter setValue:model.birthday forKey:@"birthday"];
     [parameter setValue:model.bloodType forKey:@"bloodType"];
-    [parameter setValue:[NSString stringWithFormat:@"%@,%@,%@",model.provice,model.city,model.district] forKey:@"areaCode"];
-    [parameter setValue:model.industry forKey:@"industry"];
+    [parameter setValue:model.provice forKey:@"landProvince"];
+    [parameter setValue:model.city forKey:@"landCity"];
+    [parameter setValue:model.district forKey:@"landDistrict"];
     [LoginModel PostInformationImprovedWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             [LoginSqlite insertData:model.userName datakey:@"userName"];

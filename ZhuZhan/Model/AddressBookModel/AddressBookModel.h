@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+//分组的model
 @interface AddressBookModel : NSObject
 //分组id
 @property(nonatomic,strong)NSString *a_id;
@@ -19,6 +19,7 @@
 @property(nonatomic,strong)NSDictionary *dict;
 @end
 
+//分组里的人的model
 @interface AddressBookContactModel : NSObject
 //人的id
 @property(nonatomic,strong)NSString *a_contactId;

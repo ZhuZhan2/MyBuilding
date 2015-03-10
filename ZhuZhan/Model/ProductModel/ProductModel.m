@@ -31,7 +31,11 @@
     }
     self.a_userName = [ProjectStage ProjectStrStage:_dict[@"loginName"]];
     self.a_createdBy=[ProjectStage ProjectStrStage:_dict[@"createdUser"]];
-    self.a_userType=[ProjectStage ProjectStrStage:_dict[@"userType"]];
+    if([dict[@"userType"] isEqualToString:@"01"]){
+        self.a_userType = @"Personal";
+    }else{
+        self.a_userType = @"Company";
+    }
     self.a_isFocused = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"isFocus"]]];
 }
 

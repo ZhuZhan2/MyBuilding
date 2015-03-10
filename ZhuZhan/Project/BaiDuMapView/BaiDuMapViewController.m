@@ -534,7 +534,7 @@ int j;
         projectModel *model = posts[i];
         testLocation.latitude = [model.a_latitude floatValue];
         testLocation.longitude = [model.a_longitude floatValue];
-        NSLog(@"lat==%fm,long==%f",testLocation.latitude,testLocation.longitude);
+        NSLog(@"lat==%f,long==%f",testLocation.latitude,testLocation.longitude);
         locationConverToImage=[_mapView convertCoordinate:testLocation toPointToView:imageView];
         //NSLog(@"%f====%f",locationConverToImage.x,locationConverToImage.y);
         if ([self PtInPolygon:testLocation]) {

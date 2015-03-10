@@ -22,24 +22,24 @@
     self.userId = [ProjectStage ProjectStrStage:_dict[@"userId"]];
     self.userName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"loginName"]]];
     self.realName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"realName"]]];
-    self.sex = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"sex"]]];
+    self.sex = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"sexCn"]]];
     self.birthday = [ProjectStage ProjectTimeStage:[_dict objectForKey:@"birthday"]];
     self.constellation = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"constel"]]];
     self.bloodType = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"bloodType"]]];
     self.email = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"email"]]];
     self.cellPhone = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"cellphone"]]];
-    self.companyName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"companyName"]]];
-    self.position = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"duties"]]];
+    self.companyName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"workHistory"][@"companyName"]]];
+    self.position = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"workHistory"][@"duties"]]];
     self.userParticularsId = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"id"]]];
     self.password = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"password"]]];
-    if(![[ProjectStage ProjectStrStage:dict[@"head"]] isEqualToString:@""]){
-        self.userImage = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"head"]], @"login", @"", @"", @"")];
+    if(![[ProjectStage ProjectStrStage:dict[@"headImageId"]] isEqualToString:@""]){
+        self.userImage = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"headImageId"]], @"login", @"", @"", @"")];
     }else{
-        self.userImage = [ProjectStage ProjectStrStage:dict[@"userImage"]];
+        self.userImage = [ProjectStage ProjectStrStage:dict[@"headImageId"]];
     }
-    self.provice = [ProjectStage ProjectStrStage:dict[@"province"]];
-    self.city = [ProjectStage ProjectStrStage:dict[@"city"]];
-    self.district = [ProjectStage ProjectStrStage:dict[@"district"]];
+    self.provice = [ProjectStage ProjectStrStage:dict[@"landProvince"]];
+    self.city = [ProjectStage ProjectStrStage:dict[@"landCity"]];
+    self.district = [ProjectStage ProjectStrStage:dict[@"landDistrict"]];
     if(![[ProjectStage ProjectStrStage:dict[@"background"]] isEqualToString:@""]){
         self.personalBackground=[NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"background"]], @"login", @"", @"", @"")];
     }else{
@@ -219,18 +219,18 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/networking/UserDetails?userId=%@",userId];
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/userDetails?userId=%@",userId];
     NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             MyCenterModel *model = [[MyCenterModel alloc] init];
-            [model setDict:JSON[@"d"][@"data"][@"baseInformation"]];
+            [model setDict:JSON[@"data"]];
             [mutablePosts addObject:model];
             ParticularsModel *parModel = [[ParticularsModel alloc] init];
-            if(![[NSString stringWithFormat:@"%@",JSON[@"d"][@"data"][@"baseInformation"][@"userParticulars"]] isEqualToString:@"<null>"]){
-                [parModel setDict:JSON[@"d"][@"data"][@"baseInformation"][@"userParticulars"]];
+            if(![[NSString stringWithFormat:@"%@",JSON[@"data"][@"workHistory"]] isEqualToString:@"<null>"]){
+                [parModel setDict:JSON[@"data"][@"workHistory"]];
                 [mutablePosts addObject:parModel];
             }else{
                 [mutablePosts addObject:@"null"];
@@ -238,10 +238,8 @@
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

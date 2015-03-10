@@ -21,7 +21,11 @@
     }else{
         self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"imageUrl"]];
     }
-    self.a_userType = [ProjectStage ProjectStrStage:dict[@"userType"]];
+    if([dict[@"userType"] isEqualToString:@"01"]){
+        self.a_userType = @"Personal";
+    }else{
+        self.a_userType = @"Company";
+    }
 }
 
 -(instancetype)initWithID:(NSString*)ID entityID:(NSString*)entityID createdBy:(NSString*)createdBy userName:(NSString*)userName commentContents:(NSString*)commentContents avatarUrl:(NSString*)avatarUrl time:(NSDate*)time{

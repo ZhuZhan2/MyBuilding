@@ -320,6 +320,7 @@
         }
         return nil;
     }
+    
     NSString *urlStr = [NSString stringWithFormat:@"api/account/updateInformation"];
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);

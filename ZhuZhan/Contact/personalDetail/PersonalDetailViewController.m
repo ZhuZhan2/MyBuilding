@@ -172,9 +172,8 @@
     [ContactModel UserDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             if(posts.count !=0){
-                NSLog(@"%d",posts.count);
                 self.contactModel = posts[0];
-                NSLog(@"%@",posts);
+                NSLog(@"posts===.%@",self.contactModel.a_userName);
                 if([posts[1] isKindOfClass:[ParticularsModel class]]){
                     self.parModel = posts[1];
                     contactbackgroundview = [ContactBackgroundView setFram:self.parModel];

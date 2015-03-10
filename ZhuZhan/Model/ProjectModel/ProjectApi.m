@@ -220,8 +220,14 @@
     stage = [stage stringByReplacingOccurrencesOfString:@"装修阶段" withString:@"4"];
     stage = [stage stringByReplacingOccurrencesOfString:@"+" withString:@","];
     NSString *category = dic[@"projectCategory"];
+    category = [category stringByReplacingOccurrencesOfString:@"工业" withString:@"01"];
+    category = [category stringByReplacingOccurrencesOfString:@"酒店及餐饮" withString:@"02"];
+    category = [category stringByReplacingOccurrencesOfString:@"商务办公" withString:@"03"];
+    category = [category stringByReplacingOccurrencesOfString:@"住宅/经济适用房" withString:@"04"];
+    category = [category stringByReplacingOccurrencesOfString:@"公用事业设施（教育、医疗、科研、基础建设等）" withString:@"05"];
+    category = [category stringByReplacingOccurrencesOfString:@"其他" withString:@"00"];
     category = [category stringByReplacingOccurrencesOfString:@"+" withString:@","];
-    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/AdvanceSearchProjects?pageSize=5&pageIndex=%d&keywords=%@&landDistrict=%@&landProvince=%@&ProjectCategory=%@&ProjectStage=%@&ProjectCompany=%@&landCity=%@",startIndex,dic[@"keywords"],dic[@"landDistrict"],dic[@"landProvince"],category,stage,dic[@"companyName"],dic[@"landCity"]];
+    NSString *urlStr = [NSString stringWithFormat:@"api/projects/advSearch?pageSize=5&pageIndex=%d&keywords=%@&landDistrict=%@&landProvince=%@&landUsages=%@&projectStage=%@&contactCompany=%@&landCity=%@",startIndex,dic[@"keywords"],dic[@"landDistrict"],dic[@"landProvince"],category,stage,dic[@"companyName"],dic[@"landCity"]];
     NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)urlStr, NULL, NULL,  kCFStringEncodingUTF8 ));
     NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:encodedString parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
@@ -229,20 +235,18 @@
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             NSMutableArray *arr = [[NSMutableArray alloc] init];
-            for(NSDictionary *item in JSON[@"d"][@"data"]){
+            for(NSDictionary *item in JSON[@"data"][@"rows"]){
                 projectModel *model = [[projectModel alloc] init];
                 [model setDict:item];
                 [mutablePosts addObject:model];
             }
             [arr addObject:mutablePosts];
-            [arr addObject:JSON[@"d"][@"status"][@"totalCount"]];
+            [arr addObject:JSON[@"data"][@"total"]];
             if (block) {
                 block([NSMutableArray arrayWithArray:arr], nil);
             }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
@@ -519,28 +523,26 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/MapSearch?latitude=%@&longitude=%@&radius=%@&pageSize=26&pageIndex=%d",latitude,longitude,radius,startIndex];
+    NSString *urlStr = [NSString stringWithFormat:@"api/projects/mapSearch?lat=%@&lng=%@&radius=%@&pageSize=26&pageIndex=%d",latitude,longitude,radius,startIndex];
     NSLog(@"urlStr==%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON[@"d"]);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             NSMutableArray *arr = [[NSMutableArray alloc] init];
-            for (NSDictionary *item in JSON[@"d"][@"data"]) {
+            for (NSDictionary *item in JSON[@"data"][@"rows"]) {
                 projectModel *model = [[projectModel alloc] init];
                 [model setDict:item];
                 [mutablePosts addObject:model];
             }
             [arr addObject:mutablePosts];
-            [arr addObject:[[[JSON objectForKey:@"d"] objectForKey:@"status"] objectForKey:@"totalCount"]];
+            [arr addObject:JSON[@"data"][@"total"]];
             //[mutablePosts addObject:JSON[@"d"][@"data"]];
             if (block) {
                 block([NSMutableArray arrayWithArray:arr], nil);
             }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
@@ -594,13 +596,13 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/Projects/MyProjects?userId=%@&pageSize=5&pageIndex=%d",userId,startIndex];
+    NSString *urlStr = [NSString stringWithFormat:@"api/projects/search?userId=%@&pageSize=5&pageIndex=%d",userId,startIndex];
     
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            for(NSDictionary *item in JSON[@"d"][@"data"]){
+            for(NSDictionary *item in JSON[@"data"][@"rows"]){
                 projectModel *model = [[projectModel alloc] init];
                 [model setDict:item];
                 [mutablePosts addObject:model];
@@ -608,10 +610,8 @@
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
