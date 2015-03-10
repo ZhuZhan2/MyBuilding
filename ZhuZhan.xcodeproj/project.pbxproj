@@ -4472,11 +4472,11 @@
 				5B8A2CF81AAEE0DA00C8F9DE /* AddressBook */,
 				5B8A2CCB1AAEE0AD00C8F9DE /* AddressBookFriend */,
 				5B8A2CC61AAEE0AD00C8F9DE /* AddFriend */,
-				5B8A2CD01AAEE0AD00C8F9DE /* ChatBaseViewController.h */,
-				5B8A2CD11AAEE0AD00C8F9DE /* ChatBaseViewController.m */,
 				5B8A2CD21AAEE0AD00C8F9DE /* ChatDetail */,
 				5B8A2CDB1AAEE0AD00C8F9DE /* ChatList */,
 				5B8A2CE21AAEE0AD00C8F9DE /* ChooseContacts */,
+				5B8A2CD01AAEE0AD00C8F9DE /* ChatBaseViewController.h */,
+				5B8A2CD11AAEE0AD00C8F9DE /* ChatBaseViewController.m */,
 				5B8A2CE71AAEE0AD00C8F9DE /* SearchBarTableViewController.h */,
 				5B8A2CE81AAEE0AD00C8F9DE /* SearchBarTableViewController.m */,
 			);

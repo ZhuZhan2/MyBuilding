@@ -25,6 +25,7 @@
     self.title=@"添加好友";
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
     [self setRightBtnWithText:@"清空"];
+    self.needAnimaiton=YES;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
