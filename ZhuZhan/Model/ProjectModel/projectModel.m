@@ -33,18 +33,18 @@
     self.a_ownerType = [ProjectStage ProjectStrStage:dict[@"ownerTypeCn"]];
     self.a_longitude = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"longitude"]]];
     self.a_latitude = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"latitude"]]];
-    self.a_mainDesignStage = [ProjectStage ProjectStrStage:dict[@"mainDesignStage"]];
+    self.a_mainDesignStage = [ProjectStage ProjectStrStage:dict[@"mainDesignStageCn"]];
     self.a_elevator = [ProjectStage ProjectBoolStage:dict[@"elevator"]];
     self.a_airCondition = [ProjectStage ProjectBoolStage:dict[@"airCondition"]];
     self.a_heating = [ProjectStage ProjectBoolStage:dict[@"heating"]];
     self.a_externalWallMeterial = [ProjectStage ProjectBoolStage:dict[@"externalWallMeterial"]];
     self.a_stealStructure = [ProjectStage ProjectBoolStage:dict[@"stealStructure"]];
     self.a_actureStartTime = [ProjectStage ProjectTimeStage:dict[@"actureStartTime"]];
-    self.a_fireControl = [ProjectStage ProjectStrStage:dict[@"fireControl"]];
-    self.a_green = [ProjectStage ProjectStrStage:dict[@"green"]];
-    self.a_electorWeakInstallation = [ProjectStage ProjectStrStage:dict[@"electroWeakInstallation"]];
-    self.a_decorationSituation = [ProjectStage ProjectStrStage:dict[@"decorationSituation"]];
-    self.a_decorationProcess = [ProjectStage ProjectStrStage:dict[@"decorationProcess"]];
+    self.a_fireControl = [ProjectStage ProjectStrStage:dict[@"fireControlCn"]];
+    self.a_green = [ProjectStage ProjectStrStage:dict[@"greenCn"]];
+    self.a_electorWeakInstallation = [ProjectStage ProjectStrStage:dict[@"electroWeakInstallationCn"]];
+    self.a_decorationSituation = [ProjectStage ProjectStrStage:dict[@"decorationSituationCn"]];
+    self.a_decorationProcess = [ProjectStage ProjectStrStage:dict[@"decorationProcessCn"]];
     self.isFocused = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"isFocus"]]];
     self.a_projectstage = [ProjectStage ProjectStrStage:dict[@"projectStage"]];
     if(![[ProjectStage ProjectStrStage:dict[@"projectImagesId"]] isEqualToString:@""]){
