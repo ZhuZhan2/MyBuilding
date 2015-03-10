@@ -7,11 +7,13 @@
 //
 
 #import "ChatBaseViewController.h"
+#import "SearchBarTableViewController.h"
+
 @interface ChatBaseViewController()
 @property(nonatomic,strong)UIButton* rightBtn;
 @property(nonatomic,strong)UIButton* leftBtn;
 
-@property(nonatomic,strong)UISearchBar* searchBar;
+@property(nonatomic,strong)SearchBarTableViewController* searchBarTableViewController;
 @end
 
 @implementation ChatBaseViewController
@@ -37,7 +39,6 @@
         _rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, [text boundingRectWithSize:CGSizeMake(9999, 20) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size.width, 20)];
         [_rightBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         _rightBtn.titleLabel.font=font;
-        _rightBtn.titleLabel.textAlignment=NSTextAlignmentRight;
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:_rightBtn];
     }
     [_rightBtn setTitle:text forState:UIControlStateNormal];
@@ -59,6 +60,18 @@
     }
 }
 
+
+-(void)setLeftBtnWithText:(NSString*)text{
+    if (!_leftBtn) {
+        UIFont* font=[UIFont systemFontOfSize:15];
+        _leftBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, [text boundingRectWithSize:CGSizeMake(9999, 20) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size.width, 20)];
+        [_leftBtn addTarget:self action:@selector(leftBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+        _leftBtn.titleLabel.font=font;
+        self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:_leftBtn];
+    }
+    [_leftBtn setTitle:text forState:UIControlStateNormal];
+}
+
 -(void)leftBtnClicked{
     if (self.leftBtnIsBack) {
         [self.navigationController popViewControllerAnimated:YES];
@@ -73,13 +86,34 @@
     [self.view addSubview:self.tableView];
 }
 
--(void)initSearchBar{
+-(void)setUpSearchBarWithNeedTableView:(BOOL)needTableView{
     self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, 320, 43)];
     self.searchBar.placeholder = @"搜索";
     self.searchBar.tintColor = [UIColor grayColor];
     self.searchBar.backgroundImage=[self imageWithColor:RGBCOLOR(223, 223, 223)];
     self.searchBar.delegate=self;
     [self.view addSubview:self.searchBar];
+    if (needTableView) {
+        [self setUpSearchBarTableView];
+    }
+}
+
+-(void)setUpSearchBarTableView{
+    self.searchBarTableViewController=[[SearchBarTableViewController alloc]init];
+    self.searchBarTableViewController.delegate=self;
+}
+
+-(void)reloadSearchBarTableViewData{
+    [self.searchBarTableViewController reloadSearchBarTableViewData];
+}
+
+-(void)searchBarTableViewAppear{
+    self.searchBarTableViewController.view.transform=CGAffineTransformMakeTranslation(0, 64+self.searchBar.frame.size.height);
+    [self.view addSubview:self.searchBarTableViewController.view];
+}
+
+-(void)searchBarTableViewDisppear{
+    [self.searchBarTableViewController.view removeFromSuperview];
 }
 
 - (UIImage *)imageWithColor:(UIColor *)color{
