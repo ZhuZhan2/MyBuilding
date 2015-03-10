@@ -22,6 +22,7 @@
 #define topDistance 9
 #define bottomDistance 9
 
+
 @implementation ChatContentView
 - (instancetype)init{
     if (self = [super init]) {

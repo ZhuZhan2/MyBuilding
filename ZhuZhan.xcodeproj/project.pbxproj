@@ -580,15 +580,6 @@
 		5B3209FA1A11CD8900D19279 /* 公司－我的公司_11a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3209F81A11CD8900D19279 /* 公司－我的公司_11a@2x.png */; };
 		5B3209FE1A11E78600D19279 /* RemindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3209FD1A11E78600D19279 /* RemindView.m */; };
 		5B3AD9E419F7CA7B008132B2 /* CompanyMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3AD9E319F7CA7B008132B2 /* CompanyMemberCell.m */; };
-		5B3B5D3D1AAD8C4F002FB444 /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B5D2A1AAD8C4F002FB444 /* AddFriendCell.m */; };
-		5B3B5D3E1AAD8C4F002FB444 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B5D2C1AAD8C4F002FB444 /* AddFriendViewController.m */; };
-		5B3B5D3F1AAD8C4F002FB444 /* ChatBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B5D2E1AAD8C4F002FB444 /* ChatBaseViewController.m */; };
-		5B3B5D401AAD8C4F002FB444 /* ChatContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B5D301AAD8C4F002FB444 /* ChatContentView.m */; };
-		5B3B5D411AAD8C4F002FB444 /* ChatListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B5D331AAD8C4F002FB444 /* ChatListViewCell.m */; };
-		5B3B5D421AAD8C4F002FB444 /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B5D351AAD8C4F002FB444 /* ChatListViewController.m */; };
-		5B3B5D431AAD8C4F002FB444 /* ChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B5D371AAD8C4F002FB444 /* ChatModel.m */; };
-		5B3B5D441AAD8C4F002FB444 /* ChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B5D391AAD8C4F002FB444 /* ChatTableViewCell.m */; };
-		5B3B5D451AAD8C4F002FB444 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B5D3B1AAD8C4F002FB444 /* ChatViewController.m */; };
 		5B3B5D4B1AAD935E002FB444 /* 他人会话框最小.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3B5D471AAD935E002FB444 /* 他人会话框最小.png */; };
 		5B3B5D4C1AAD935E002FB444 /* 他人会话框最小@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3B5D481AAD935E002FB444 /* 他人会话框最小@2x.png */; };
 		5B3B5D4D1AAD935E002FB444 /* 自己会话框最小.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3B5D491AAD935E002FB444 /* 自己会话框最小.png */; };
@@ -668,6 +659,23 @@
 		5B7AA6EA1A58D93E000FBFF2 /* icon03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6E21A58D93E000FBFF2 /* icon03@2x.png */; };
 		5B7AA6EB1A58D93E000FBFF2 /* icon04.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6E31A58D93E000FBFF2 /* icon04.png */; };
 		5B7AA6EC1A58D93E000FBFF2 /* icon04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6E41A58D93E000FBFF2 /* icon04@2x.png */; };
+		5B8A2CE91AAEE0AD00C8F9DE /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CC81AAEE0AD00C8F9DE /* AddFriendCell.m */; };
+		5B8A2CEA1AAEE0AD00C8F9DE /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CCA1AAEE0AD00C8F9DE /* AddFriendViewController.m */; };
+		5B8A2CEB1AAEE0AD00C8F9DE /* AddressBookFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CCD1AAEE0AD00C8F9DE /* AddressBookFriendCell.m */; };
+		5B8A2CEC1AAEE0AD00C8F9DE /* AddressBookFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CCF1AAEE0AD00C8F9DE /* AddressBookFriendViewController.m */; };
+		5B8A2CED1AAEE0AD00C8F9DE /* ChatBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CD11AAEE0AD00C8F9DE /* ChatBaseViewController.m */; };
+		5B8A2CEE1AAEE0AD00C8F9DE /* ChatContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CD41AAEE0AD00C8F9DE /* ChatContentView.m */; };
+		5B8A2CEF1AAEE0AD00C8F9DE /* ChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CD61AAEE0AD00C8F9DE /* ChatModel.m */; };
+		5B8A2CF01AAEE0AD00C8F9DE /* ChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CD81AAEE0AD00C8F9DE /* ChatTableViewCell.m */; };
+		5B8A2CF11AAEE0AD00C8F9DE /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CDA1AAEE0AD00C8F9DE /* ChatViewController.m */; };
+		5B8A2CF21AAEE0AD00C8F9DE /* ChatListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CDD1AAEE0AD00C8F9DE /* ChatListViewCell.m */; };
+		5B8A2CF31AAEE0AD00C8F9DE /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CDF1AAEE0AD00C8F9DE /* ChatListViewController.m */; };
+		5B8A2CF41AAEE0AD00C8F9DE /* SearchBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CE11AAEE0AD00C8F9DE /* SearchBarCell.m */; };
+		5B8A2CF51AAEE0AD00C8F9DE /* ChooseContactsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CE41AAEE0AD00C8F9DE /* ChooseContactsViewCell.m */; };
+		5B8A2CF61AAEE0AD00C8F9DE /* ChooseContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CE61AAEE0AD00C8F9DE /* ChooseContactsViewController.m */; };
+		5B8A2CF71AAEE0AD00C8F9DE /* SearchBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CE81AAEE0AD00C8F9DE /* SearchBarTableViewController.m */; };
+		5B8A2CFD1AAEE0DA00C8F9DE /* AddressBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CFA1AAEE0DA00C8F9DE /* AddressBookCell.m */; };
+		5B8A2CFE1AAEE0DA00C8F9DE /* AddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CFC1AAEE0DA00C8F9DE /* AddressBookViewController.m */; };
 		5B8DAED41A7F1EBD003C7E41 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8DAED11A7F1EBD003C7E41 /* libbaidumapapi.a */; };
 		5B8DAED51A7F1EBD003C7E41 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8DAED31A7F1EBD003C7E41 /* libbaidumapapi.a */; };
 		5B9FDE9F1A6CD47000215485 /* 项目详情默认0.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9FDE9D1A6CD47000215485 /* 项目详情默认0.png */; };
@@ -1134,7 +1142,6 @@
 		D3D5B8171AAD62790049A5E0 /* tuijianxin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5B80D1AAD62790049A5E0 /* tuijianxin@2x.png */; };
 		D3D5B81A1AAD62850049A5E0 /* Group-7.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5B8181AAD62850049A5E0 /* Group-7.png */; };
 		D3D5B81B1AAD62850049A5E0 /* Group-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5B8191AAD62850049A5E0 /* Group-7@2x.png */; };
-		D3D5B81F1AAD715A0049A5E0 /* AddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D5B81E1AAD715A0049A5E0 /* AddressBookViewController.m */; };
 		D3D5D9A11A668FC80077C8C9 /* 公司详情图标bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5D99F1A668FC80077C8C9 /* 公司详情图标bg.png */; };
 		D3D5D9A21A668FC80077C8C9 /* 公司详情图标bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5D9A01A668FC80077C8C9 /* 公司详情图标bg@2x.png */; };
 		D3D5D9AC1A66919B0077C8C9 /* 公司详情图标01.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5D9A41A66919B0077C8C9 /* 公司详情图标01.png */; };
@@ -1204,7 +1211,6 @@
 		D3E2F4701A11E4D500CF2785 /* 注册_08.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E2F46E1A11E4D500CF2785 /* 注册_08.png */; };
 		D3E2F4711A11E4D500CF2785 /* 注册_08@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E2F46F1A11E4D500CF2785 /* 注册_08@2x.png */; };
 		D3E621E61A10AC3000EF8A90 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3E621E51A10AC3000EF8A90 /* area.plist */; };
-		D3F787431AAD9F6F00ED754B /* AddressBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787421AAD9F6F00ED754B /* AddressBookCell.m */; };
 		D3F787471AADA40300ED754B /* AddressBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787461AADA40300ED754B /* AddressBookModel.m */; };
 		D3F7874A1AADAD3800ED754B /* AddressBookApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787491AADAD3800ED754B /* AddressBookApi.m */; };
 		D3FF3E811AAEC916005195CC /* ChoseContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FF3E801AAEC916005195CC /* ChoseContactModel.m */; };
@@ -2102,24 +2108,6 @@
 		5B3209FD1A11E78600D19279 /* RemindView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindView.m; sourceTree = "<group>"; };
 		5B3AD9E219F7CA7B008132B2 /* CompanyMemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMemberCell.h; sourceTree = "<group>"; };
 		5B3AD9E319F7CA7B008132B2 /* CompanyMemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyMemberCell.m; sourceTree = "<group>"; };
-		5B3B5D291AAD8C4F002FB444 /* AddFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendCell.h; sourceTree = "<group>"; };
-		5B3B5D2A1AAD8C4F002FB444 /* AddFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendCell.m; sourceTree = "<group>"; };
-		5B3B5D2B1AAD8C4F002FB444 /* AddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
-		5B3B5D2C1AAD8C4F002FB444 /* AddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendViewController.m; sourceTree = "<group>"; };
-		5B3B5D2D1AAD8C4F002FB444 /* ChatBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBaseViewController.h; sourceTree = "<group>"; };
-		5B3B5D2E1AAD8C4F002FB444 /* ChatBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatBaseViewController.m; sourceTree = "<group>"; };
-		5B3B5D2F1AAD8C4F002FB444 /* ChatContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatContentView.h; sourceTree = "<group>"; };
-		5B3B5D301AAD8C4F002FB444 /* ChatContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatContentView.m; sourceTree = "<group>"; };
-		5B3B5D321AAD8C4F002FB444 /* ChatListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListViewCell.h; sourceTree = "<group>"; };
-		5B3B5D331AAD8C4F002FB444 /* ChatListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListViewCell.m; sourceTree = "<group>"; };
-		5B3B5D341AAD8C4F002FB444 /* ChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListViewController.h; sourceTree = "<group>"; };
-		5B3B5D351AAD8C4F002FB444 /* ChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListViewController.m; sourceTree = "<group>"; };
-		5B3B5D361AAD8C4F002FB444 /* ChatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatModel.h; sourceTree = "<group>"; };
-		5B3B5D371AAD8C4F002FB444 /* ChatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatModel.m; sourceTree = "<group>"; };
-		5B3B5D381AAD8C4F002FB444 /* ChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTableViewCell.h; sourceTree = "<group>"; };
-		5B3B5D391AAD8C4F002FB444 /* ChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTableViewCell.m; sourceTree = "<group>"; };
-		5B3B5D3A1AAD8C4F002FB444 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
-		5B3B5D3B1AAD8C4F002FB444 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		5B3B5D471AAD935E002FB444 /* 他人会话框最小.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "他人会话框最小.png"; sourceTree = "<group>"; };
 		5B3B5D481AAD935E002FB444 /* 他人会话框最小@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "他人会话框最小@2x.png"; sourceTree = "<group>"; };
 		5B3B5D491AAD935E002FB444 /* 自己会话框最小.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "自己会话框最小.png"; sourceTree = "<group>"; };
@@ -2214,6 +2202,40 @@
 		5B7AA6E21A58D93E000FBFF2 /* icon03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon03@2x.png"; sourceTree = "<group>"; };
 		5B7AA6E31A58D93E000FBFF2 /* icon04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon04.png; sourceTree = "<group>"; };
 		5B7AA6E41A58D93E000FBFF2 /* icon04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon04@2x.png"; sourceTree = "<group>"; };
+		5B8A2CC71AAEE0AD00C8F9DE /* AddFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendCell.h; sourceTree = "<group>"; };
+		5B8A2CC81AAEE0AD00C8F9DE /* AddFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendCell.m; sourceTree = "<group>"; };
+		5B8A2CC91AAEE0AD00C8F9DE /* AddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
+		5B8A2CCA1AAEE0AD00C8F9DE /* AddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendViewController.m; sourceTree = "<group>"; };
+		5B8A2CCC1AAEE0AD00C8F9DE /* AddressBookFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookFriendCell.h; sourceTree = "<group>"; };
+		5B8A2CCD1AAEE0AD00C8F9DE /* AddressBookFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookFriendCell.m; sourceTree = "<group>"; };
+		5B8A2CCE1AAEE0AD00C8F9DE /* AddressBookFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookFriendViewController.h; sourceTree = "<group>"; };
+		5B8A2CCF1AAEE0AD00C8F9DE /* AddressBookFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookFriendViewController.m; sourceTree = "<group>"; };
+		5B8A2CD01AAEE0AD00C8F9DE /* ChatBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBaseViewController.h; sourceTree = "<group>"; };
+		5B8A2CD11AAEE0AD00C8F9DE /* ChatBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatBaseViewController.m; sourceTree = "<group>"; };
+		5B8A2CD31AAEE0AD00C8F9DE /* ChatContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatContentView.h; sourceTree = "<group>"; };
+		5B8A2CD41AAEE0AD00C8F9DE /* ChatContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatContentView.m; sourceTree = "<group>"; };
+		5B8A2CD51AAEE0AD00C8F9DE /* ChatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatModel.h; sourceTree = "<group>"; };
+		5B8A2CD61AAEE0AD00C8F9DE /* ChatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatModel.m; sourceTree = "<group>"; };
+		5B8A2CD71AAEE0AD00C8F9DE /* ChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTableViewCell.h; sourceTree = "<group>"; };
+		5B8A2CD81AAEE0AD00C8F9DE /* ChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTableViewCell.m; sourceTree = "<group>"; };
+		5B8A2CD91AAEE0AD00C8F9DE /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		5B8A2CDA1AAEE0AD00C8F9DE /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		5B8A2CDC1AAEE0AD00C8F9DE /* ChatListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListViewCell.h; sourceTree = "<group>"; };
+		5B8A2CDD1AAEE0AD00C8F9DE /* ChatListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListViewCell.m; sourceTree = "<group>"; };
+		5B8A2CDE1AAEE0AD00C8F9DE /* ChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListViewController.h; sourceTree = "<group>"; };
+		5B8A2CDF1AAEE0AD00C8F9DE /* ChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListViewController.m; sourceTree = "<group>"; };
+		5B8A2CE01AAEE0AD00C8F9DE /* SearchBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBarCell.h; sourceTree = "<group>"; };
+		5B8A2CE11AAEE0AD00C8F9DE /* SearchBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBarCell.m; sourceTree = "<group>"; };
+		5B8A2CE31AAEE0AD00C8F9DE /* ChooseContactsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseContactsViewCell.h; sourceTree = "<group>"; };
+		5B8A2CE41AAEE0AD00C8F9DE /* ChooseContactsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseContactsViewCell.m; sourceTree = "<group>"; };
+		5B8A2CE51AAEE0AD00C8F9DE /* ChooseContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseContactsViewController.h; sourceTree = "<group>"; };
+		5B8A2CE61AAEE0AD00C8F9DE /* ChooseContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseContactsViewController.m; sourceTree = "<group>"; };
+		5B8A2CE71AAEE0AD00C8F9DE /* SearchBarTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBarTableViewController.h; sourceTree = "<group>"; };
+		5B8A2CE81AAEE0AD00C8F9DE /* SearchBarTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBarTableViewController.m; sourceTree = "<group>"; };
+		5B8A2CF91AAEE0DA00C8F9DE /* AddressBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookCell.h; sourceTree = "<group>"; };
+		5B8A2CFA1AAEE0DA00C8F9DE /* AddressBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookCell.m; sourceTree = "<group>"; };
+		5B8A2CFB1AAEE0DA00C8F9DE /* AddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookViewController.h; sourceTree = "<group>"; };
+		5B8A2CFC1AAEE0DA00C8F9DE /* AddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookViewController.m; sourceTree = "<group>"; };
 		5B8DAE931A7F1EA9003C7E41 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		5B8DAE941A7F1EA9003C7E41 /* BMKActionPaopaoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKActionPaopaoView.h; sourceTree = "<group>"; };
 		5B8DAE951A7F1EA9003C7E41 /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
@@ -2826,8 +2848,6 @@
 		D3D5B80D1AAD62790049A5E0 /* tuijianxin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tuijianxin@2x.png"; sourceTree = "<group>"; };
 		D3D5B8181AAD62850049A5E0 /* Group-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Group-7.png"; sourceTree = "<group>"; };
 		D3D5B8191AAD62850049A5E0 /* Group-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Group-7@2x.png"; sourceTree = "<group>"; };
-		D3D5B81D1AAD715A0049A5E0 /* AddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookViewController.h; sourceTree = "<group>"; };
-		D3D5B81E1AAD715A0049A5E0 /* AddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookViewController.m; sourceTree = "<group>"; };
 		D3D5D99F1A668FC80077C8C9 /* 公司详情图标bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司详情图标bg.png"; sourceTree = "<group>"; };
 		D3D5D9A01A668FC80077C8C9 /* 公司详情图标bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司详情图标bg@2x.png"; sourceTree = "<group>"; };
 		D3D5D9A41A66919B0077C8C9 /* 公司详情图标01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司详情图标01.png"; sourceTree = "<group>"; };
@@ -2901,8 +2921,6 @@
 		D3E2F46E1A11E4D500CF2785 /* 注册_08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_08.png"; sourceTree = "<group>"; };
 		D3E2F46F1A11E4D500CF2785 /* 注册_08@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_08@2x.png"; sourceTree = "<group>"; };
 		D3E621E51A10AC3000EF8A90 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
-		D3F787411AAD9F6F00ED754B /* AddressBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookCell.h; sourceTree = "<group>"; };
-		D3F787421AAD9F6F00ED754B /* AddressBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookCell.m; sourceTree = "<group>"; };
 		D3F787451AADA40300ED754B /* AddressBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookModel.h; sourceTree = "<group>"; };
 		D3F787461AADA40300ED754B /* AddressBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookModel.m; sourceTree = "<group>"; };
 		D3F787481AADAD3800ED754B /* AddressBookApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookApi.h; sourceTree = "<group>"; };
@@ -3020,13 +3038,12 @@
 				04D10BA819AE01690097C0C6 /* Contact */,
 				D3EACDEA199337750058FC9D /* Message */,
 				0426C01919922D5900CD8822 /* Company */,
-				D3D5B81C1AAD711A0049A5E0 /* AddressBook */,
 				0426C01F19922D5900CD8822 /* HomePage */,
 				0426C04419922D5900CD8822 /* LoginView */,
 				0426C04E19922D5900CD8822 /* RegistView */,
 				5B0A005D19B5625D00500C05 /* Product */,
 				5BE08EC71A35900000495EEB /* FirstAnimationView */,
-				5B3B5D271AAD8C4F002FB444 /* Chat */,
+				5B8A2CC51AAEE0AD00C8F9DE /* Chat */,
 				0426C05519922D5900CD8822 /* Tools */,
 				0426BFF919922CE400CD8822 /* AppDelegate.h */,
 				0426BFFA19922CE400CD8822 /* AppDelegate.m */,
@@ -4438,55 +4455,6 @@
 			path = RemindView;
 			sourceTree = "<group>";
 		};
-		5B3B5D271AAD8C4F002FB444 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				5B3B5D281AAD8C4F002FB444 /* AddFriend */,
-				5B3B5D2D1AAD8C4F002FB444 /* ChatBaseViewController.h */,
-				5B3B5D2E1AAD8C4F002FB444 /* ChatBaseViewController.m */,
-				5B3B5D2F1AAD8C4F002FB444 /* ChatContentView.h */,
-				5B3B5D301AAD8C4F002FB444 /* ChatContentView.m */,
-				5B3B5D311AAD8C4F002FB444 /* ChatList */,
-				5B3B5D361AAD8C4F002FB444 /* ChatModel.h */,
-				5B3B5D371AAD8C4F002FB444 /* ChatModel.m */,
-				5B3B5D381AAD8C4F002FB444 /* ChatTableViewCell.h */,
-				5B3B5D391AAD8C4F002FB444 /* ChatTableViewCell.m */,
-				5B3B5D3A1AAD8C4F002FB444 /* ChatViewController.h */,
-				5B3B5D3B1AAD8C4F002FB444 /* ChatViewController.m */,
-				5B3B5D3C1AAD8C4F002FB444 /* ChooseFriend */,
-			);
-			path = Chat;
-			sourceTree = "<group>";
-		};
-		5B3B5D281AAD8C4F002FB444 /* AddFriend */ = {
-			isa = PBXGroup;
-			children = (
-				5B3B5D291AAD8C4F002FB444 /* AddFriendCell.h */,
-				5B3B5D2A1AAD8C4F002FB444 /* AddFriendCell.m */,
-				5B3B5D2B1AAD8C4F002FB444 /* AddFriendViewController.h */,
-				5B3B5D2C1AAD8C4F002FB444 /* AddFriendViewController.m */,
-			);
-			path = AddFriend;
-			sourceTree = "<group>";
-		};
-		5B3B5D311AAD8C4F002FB444 /* ChatList */ = {
-			isa = PBXGroup;
-			children = (
-				5B3B5D321AAD8C4F002FB444 /* ChatListViewCell.h */,
-				5B3B5D331AAD8C4F002FB444 /* ChatListViewCell.m */,
-				5B3B5D341AAD8C4F002FB444 /* ChatListViewController.h */,
-				5B3B5D351AAD8C4F002FB444 /* ChatListViewController.m */,
-			);
-			path = ChatList;
-			sourceTree = "<group>";
-		};
-		5B3B5D3C1AAD8C4F002FB444 /* ChooseFriend */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ChooseFriend;
-			sourceTree = "<group>";
-		};
 		5B3B5D461AAD935E002FB444 /* 二期新图片 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4496,6 +4464,95 @@
 				5B3B5D4A1AAD935E002FB444 /* 自己会话框最小@2x.png */,
 			);
 			path = "二期新图片";
+			sourceTree = "<group>";
+		};
+		5B8A2CC51AAEE0AD00C8F9DE /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				5B8A2CF81AAEE0DA00C8F9DE /* AddressBook */,
+				5B8A2CCB1AAEE0AD00C8F9DE /* AddressBookFriend */,
+				5B8A2CC61AAEE0AD00C8F9DE /* AddFriend */,
+				5B8A2CD01AAEE0AD00C8F9DE /* ChatBaseViewController.h */,
+				5B8A2CD11AAEE0AD00C8F9DE /* ChatBaseViewController.m */,
+				5B8A2CD21AAEE0AD00C8F9DE /* ChatDetail */,
+				5B8A2CDB1AAEE0AD00C8F9DE /* ChatList */,
+				5B8A2CE21AAEE0AD00C8F9DE /* ChooseContacts */,
+				5B8A2CE71AAEE0AD00C8F9DE /* SearchBarTableViewController.h */,
+				5B8A2CE81AAEE0AD00C8F9DE /* SearchBarTableViewController.m */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		5B8A2CC61AAEE0AD00C8F9DE /* AddFriend */ = {
+			isa = PBXGroup;
+			children = (
+				5B8A2CC71AAEE0AD00C8F9DE /* AddFriendCell.h */,
+				5B8A2CC81AAEE0AD00C8F9DE /* AddFriendCell.m */,
+				5B8A2CC91AAEE0AD00C8F9DE /* AddFriendViewController.h */,
+				5B8A2CCA1AAEE0AD00C8F9DE /* AddFriendViewController.m */,
+			);
+			path = AddFriend;
+			sourceTree = "<group>";
+		};
+		5B8A2CCB1AAEE0AD00C8F9DE /* AddressBookFriend */ = {
+			isa = PBXGroup;
+			children = (
+				5B8A2CCC1AAEE0AD00C8F9DE /* AddressBookFriendCell.h */,
+				5B8A2CCD1AAEE0AD00C8F9DE /* AddressBookFriendCell.m */,
+				5B8A2CCE1AAEE0AD00C8F9DE /* AddressBookFriendViewController.h */,
+				5B8A2CCF1AAEE0AD00C8F9DE /* AddressBookFriendViewController.m */,
+			);
+			path = AddressBookFriend;
+			sourceTree = "<group>";
+		};
+		5B8A2CD21AAEE0AD00C8F9DE /* ChatDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5B8A2CD31AAEE0AD00C8F9DE /* ChatContentView.h */,
+				5B8A2CD41AAEE0AD00C8F9DE /* ChatContentView.m */,
+				5B8A2CD51AAEE0AD00C8F9DE /* ChatModel.h */,
+				5B8A2CD61AAEE0AD00C8F9DE /* ChatModel.m */,
+				5B8A2CD71AAEE0AD00C8F9DE /* ChatTableViewCell.h */,
+				5B8A2CD81AAEE0AD00C8F9DE /* ChatTableViewCell.m */,
+				5B8A2CD91AAEE0AD00C8F9DE /* ChatViewController.h */,
+				5B8A2CDA1AAEE0AD00C8F9DE /* ChatViewController.m */,
+			);
+			path = ChatDetail;
+			sourceTree = "<group>";
+		};
+		5B8A2CDB1AAEE0AD00C8F9DE /* ChatList */ = {
+			isa = PBXGroup;
+			children = (
+				5B8A2CDC1AAEE0AD00C8F9DE /* ChatListViewCell.h */,
+				5B8A2CDD1AAEE0AD00C8F9DE /* ChatListViewCell.m */,
+				5B8A2CDE1AAEE0AD00C8F9DE /* ChatListViewController.h */,
+				5B8A2CDF1AAEE0AD00C8F9DE /* ChatListViewController.m */,
+				5B8A2CE01AAEE0AD00C8F9DE /* SearchBarCell.h */,
+				5B8A2CE11AAEE0AD00C8F9DE /* SearchBarCell.m */,
+			);
+			path = ChatList;
+			sourceTree = "<group>";
+		};
+		5B8A2CE21AAEE0AD00C8F9DE /* ChooseContacts */ = {
+			isa = PBXGroup;
+			children = (
+				5B8A2CE31AAEE0AD00C8F9DE /* ChooseContactsViewCell.h */,
+				5B8A2CE41AAEE0AD00C8F9DE /* ChooseContactsViewCell.m */,
+				5B8A2CE51AAEE0AD00C8F9DE /* ChooseContactsViewController.h */,
+				5B8A2CE61AAEE0AD00C8F9DE /* ChooseContactsViewController.m */,
+			);
+			path = ChooseContacts;
+			sourceTree = "<group>";
+		};
+		5B8A2CF81AAEE0DA00C8F9DE /* AddressBook */ = {
+			isa = PBXGroup;
+			children = (
+				5B8A2CF91AAEE0DA00C8F9DE /* AddressBookCell.h */,
+				5B8A2CFA1AAEE0DA00C8F9DE /* AddressBookCell.m */,
+				5B8A2CFB1AAEE0DA00C8F9DE /* AddressBookViewController.h */,
+				5B8A2CFC1AAEE0DA00C8F9DE /* AddressBookViewController.m */,
+			);
+			path = AddressBook;
 			sourceTree = "<group>";
 		};
 		5B8DAE921A7F1EA9003C7E41 /* inc */ = {
@@ -5337,17 +5394,6 @@
 				D3D5B80D1AAD62790049A5E0 /* tuijianxin@2x.png */,
 			);
 			path = "人脉按钮";
-			sourceTree = "<group>";
-		};
-		D3D5B81C1AAD711A0049A5E0 /* AddressBook */ = {
-			isa = PBXGroup;
-			children = (
-				D3D5B81D1AAD715A0049A5E0 /* AddressBookViewController.h */,
-				D3D5B81E1AAD715A0049A5E0 /* AddressBookViewController.m */,
-				D3F787411AAD9F6F00ED754B /* AddressBookCell.h */,
-				D3F787421AAD9F6F00ED754B /* AddressBookCell.m */,
-			);
-			path = AddressBook;
 			sourceTree = "<group>";
 		};
 		D3D5D9A31A66919B0077C8C9 /* 公司详情图标 */ = {
@@ -6399,6 +6445,7 @@
 				0426C28B19922D5A00CD8822 /* GPUImageLowPassFilter.m in Sources */,
 				0426C23719922D5A00CD8822 /* AFHTTPRequestOperationManager.m in Sources */,
 				0426C27D19922D5A00CD8822 /* GPUImageHSBFilter.m in Sources */,
+				5B8A2CF21AAEE0AD00C8F9DE /* ChatListViewCell.m in Sources */,
 				D3AD60FA19AC7CC5001FD483 /* EGOImageLoadConnection.m in Sources */,
 				0426C2DC19922D5A00CD8822 /* GPUImageMovieWriter.m in Sources */,
 				0426C24619922D5A00CD8822 /* GPUImageAmatorkaFilter.m in Sources */,
@@ -6447,9 +6494,9 @@
 				D3A4283B19C94E5E00BAB6C7 /* ActivesModel.m in Sources */,
 				5B5894F119FF9D24001CC09E /* EndEditingGesture.m in Sources */,
 				D3D4FB371A087BBD0033BB34 /* CompanyTableViewCell.m in Sources */,
-				5B3B5D3D1AAD8C4F002FB444 /* AddFriendCell.m in Sources */,
 				0426C2DE19922D5A00CD8822 /* GPUImageView.m in Sources */,
 				0426C25A19922D5A00CD8822 /* GPUImageCropFilter.m in Sources */,
+				5B8A2CEE1AAEE0AD00C8F9DE /* ChatContentView.m in Sources */,
 				0426C27819922D5A00CD8822 /* GPUImageHighlightShadowFilter.m in Sources */,
 				D3A8713A1A5E7A1600C0B83C /* LoginAgain.m in Sources */,
 				0426C2D619922D5A00CD8822 /* GPUImageVoronoiConsumerFilter.m in Sources */,
@@ -6472,6 +6519,7 @@
 				0426C25C19922D5A00CD8822 /* GPUImageCrosshatchFilter.m in Sources */,
 				D36040E919F51E9F00E9727D /* CompanyApi.m in Sources */,
 				D3D7DB2F19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m in Sources */,
+				5B8A2CEF1AAEE0AD00C8F9DE /* ChatModel.m in Sources */,
 				042D9CFB19B40C4C00689C5D /* DKCircleButton.m in Sources */,
 				5B18B46F19BFFC3700551F82 /* GradientView.m in Sources */,
 				D3AC61D019B849920015B62F /* PorjectCommentTableViewController.m in Sources */,
@@ -6484,7 +6532,6 @@
 				042D9E2C19B559FC00689C5D /* TopicsTableViewController.m in Sources */,
 				5BE08ED21A35900000495EEB /* FirstAnimationView.m in Sources */,
 				0426C29E19922D5A00CD8822 /* GPUImageOverlayBlendFilter.m in Sources */,
-				5B3B5D411AAD8C4F002FB444 /* ChatListViewCell.m in Sources */,
 				0426C2B119922D5A00CD8822 /* GPUImageSaturationFilter.m in Sources */,
 				04BF13B419C4162A002E02C9 /* AFAppDotNetAPIClient.m in Sources */,
 				0426C2BE19922D5A00CD8822 /* GPUImageSourceOverBlendFilter.m in Sources */,
@@ -6503,7 +6550,6 @@
 				0426C27F19922D5A00CD8822 /* GPUImageHueFilter.m in Sources */,
 				0426C29F19922D5A00CD8822 /* GPUImageParallelCoordinateLineTransformFilter.m in Sources */,
 				042D9E2219B559FC00689C5D /* ResultsTableViewController.m in Sources */,
-				5B3B5D421AAD8C4F002FB444 /* ChatListViewController.m in Sources */,
 				0426C29619922D5A00CD8822 /* GPUImageMovie.m in Sources */,
 				0426C2FA19922D5A00CD8822 /* XHWaterDropRefresh.m in Sources */,
 				D3AD60A019AC574A001FD483 /* ConnectionAvailable.m in Sources */,
@@ -6511,11 +6557,12 @@
 				0426C2EF19922D5A00CD8822 /* CFilteringJSONSerializer.m in Sources */,
 				5B0A00A519B587CD00500C05 /* TMQuiltViewController.m in Sources */,
 				5BAA14D619EE35AC00C7ECD9 /* MD5.m in Sources */,
-				5B3B5D3F1AAD8C4F002FB444 /* ChatBaseViewController.m in Sources */,
 				0426C22F19922D5A00CD8822 /* LoginEvent.m in Sources */,
+				5B8A2CEC1AAEE0AD00C8F9DE /* AddressBookFriendViewController.m in Sources */,
 				0426C2E819922D5A00CD8822 /* FaceppInfo.m in Sources */,
 				0426C2D919922D5A00CD8822 /* GPUImageXYDerivativeFilter.m in Sources */,
 				D3B1C28319D155CC00E6D89F /* ContactCommentTableViewCell.m in Sources */,
+				5B8A2CEB1AAEE0AD00C8F9DE /* AddressBookFriendCell.m in Sources */,
 				0426C27019922D5A00CD8822 /* GPUImageGaussianBlurPositionFilter.m in Sources */,
 				5BE08ED51A35900000495EEB /* SecondAnimationView.m in Sources */,
 				0426C28219922D5A00CD8822 /* GPUImageKuwaharaRadius3Filter.m in Sources */,
@@ -6527,6 +6574,7 @@
 				D3FF3E811AAEC916005195CC /* ChoseContactModel.m in Sources */,
 				0426C23819922D5A00CD8822 /* AFHTTPSessionManager.m in Sources */,
 				0426C25019922D5A00CD8822 /* GPUImageChromaKeyBlendFilter.m in Sources */,
+				5B8A2CED1AAEE0AD00C8F9DE /* ChatBaseViewController.m in Sources */,
 				0426C2F819922D5A00CD8822 /* XHPathCover.m in Sources */,
 				D3AD609619AC56CB001FD483 /* UIScrollView+Extension.m in Sources */,
 				0426C2F019922D5A00CD8822 /* CJSONDeserializer_BlocksExtensions.m in Sources */,
@@ -6570,7 +6618,7 @@
 				0426C28C19922D5A00CD8822 /* GPUImageLuminanceThresholdFilter.m in Sources */,
 				0426C27719922D5A00CD8822 /* GPUImageHazeFilter.m in Sources */,
 				042D9E2A19B559FC00689C5D /* TopicsDetailTableViewController.m in Sources */,
-				D3D5B81F1AAD715A0049A5E0 /* AddressBookViewController.m in Sources */,
+				5B8A2CE91AAEE0AD00C8F9DE /* AddFriendCell.m in Sources */,
 				D3AD616B19ADB9F7001FD483 /* RecordModel.m in Sources */,
 				0426C27919922D5A00CD8822 /* GPUImageHighPassFilter.m in Sources */,
 				0426C2E919922D5A00CD8822 /* FaceppPerson.m in Sources */,
@@ -6581,6 +6629,7 @@
 				5B0A00A419B587CD00500C05 /* TMQuiltViewCell.m in Sources */,
 				0426C28819922D5A00CD8822 /* GPUImageLineGenerator.m in Sources */,
 				5B13C70919B6E53A008EA7A0 /* ProductCommentView.m in Sources */,
+				5B8A2CF41AAEE0AD00C8F9DE /* SearchBarCell.m in Sources */,
 				042D9E1519B559FC00689C5D /* MyView.m in Sources */,
 				5B4C198319FA518800C6C57D /* ClauseViewController.m in Sources */,
 				D3AD60A619AC5769001FD483 /* MBProgressHUD.m in Sources */,
@@ -6615,11 +6664,11 @@
 				0426C2FE19922D5A00CD8822 /* UIButton+AFNetworking.m in Sources */,
 				5B55D5381AA93C4C006501D8 /* RKCamera.m in Sources */,
 				0426C26E19922D5A00CD8822 /* GPUImageGammaFilter.m in Sources */,
+				5B8A2CF61AAEE0AD00C8F9DE /* ChooseContactsViewController.m in Sources */,
 				D39937C71A42B481007081C1 /* RecommendContactTableViewCell.m in Sources */,
 				0426C29919922D5A00CD8822 /* GPUImageNonMaximumSuppressionFilter.m in Sources */,
 				D3AC61B219B6BF930015B62F /* TopicsModel.m in Sources */,
 				0426C2C019922D5A00CD8822 /* GPUImageStillCamera.m in Sources */,
-				5B3B5D451AAD8C4F002FB444 /* ChatViewController.m in Sources */,
 				0426C29A19922D5A00CD8822 /* GPUImageNormalBlendFilter.m in Sources */,
 				0426C2BF19922D5A00CD8822 /* GPUImageSphereRefractionFilter.m in Sources */,
 				042D9E1619B559FC00689C5D /* ProgramDetailViewController.m in Sources */,
@@ -6654,17 +6703,16 @@
 				0426C2A219922D5A00CD8822 /* GPUImagePixellateFilter.m in Sources */,
 				0426C2BD19922D5A00CD8822 /* GPUImageSolidColorGenerator.m in Sources */,
 				0426C24D19922D5A00CD8822 /* GPUImageBulgeDistortionFilter.m in Sources */,
-				5B3B5D431AAD8C4F002FB444 /* ChatModel.m in Sources */,
 				042D9DC719B4A1C600689C5D /* JSONKit.m in Sources */,
 				D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */,
 				5B55D57E1A3EB63200CAEF8B /* ForgetPasswordSecondController.m in Sources */,
+				5B8A2CF01AAEE0AD00C8F9DE /* ChatTableViewCell.m in Sources */,
 				0426C24C19922D5A00CD8822 /* GPUImageBuffer.m in Sources */,
 				0426C24019922D5A00CD8822 /* GLProgram.m in Sources */,
 				0426BFFB19922CE400CD8822 /* AppDelegate.m in Sources */,
 				0426C2B919922D5A00CD8822 /* GPUImageSmoothToonFilter.m in Sources */,
 				0426C30019922D5A00CD8822 /* UIProgressView+AFNetworking.m in Sources */,
 				042D9E3619B55AB800689C5D /* UnderstandViewController.m in Sources */,
-				5B3B5D401AAD8C4F002FB444 /* ChatContentView.m in Sources */,
 				0426C26019922D5A00CD8822 /* GPUImageDirectionalNonMaximumSuppressionFilter.m in Sources */,
 				D3AD60FB19AC7CC5001FD483 /* EGOImageLoader.m in Sources */,
 				0426C2CB19922D5A00CD8822 /* GPUImageToneCurveFilter.m in Sources */,
@@ -6672,7 +6720,6 @@
 				0426C23219922D5A00CD8822 /* FaceViewController.m in Sources */,
 				0426C25F19922D5A00CD8822 /* GPUImageDilationFilter.m in Sources */,
 				5B7132411AA458D90043E37D /* ProductPublishController.m in Sources */,
-				5B3B5D441AAD8C4F002FB444 /* ChatTableViewCell.m in Sources */,
 				042D9E1419B559FC00689C5D /* MyIndexPath.m in Sources */,
 				0426C2A019922D5A00CD8822 /* GPUImagePerlinNoiseFilter.m in Sources */,
 				042D9E1E19B559FC00689C5D /* ConditionsView.m in Sources */,
@@ -6686,14 +6733,16 @@
 				D3D4FB301A0872770033BB34 /* CompanyCenterViewController.m in Sources */,
 				0426C2EA19922D5A00CD8822 /* FaceppRecognition.m in Sources */,
 				042D9E0E19B559FC00689C5D /* BaiDuMapViewController.m in Sources */,
+				5B8A2CFE1AAEE0DA00C8F9DE /* AddressBookViewController.m in Sources */,
 				D3A4281B19C1A2E700BAB6C7 /* GTMBase64.m in Sources */,
 				0426C26219922D5A00CD8822 /* GPUImageDissolveBlendFilter.m in Sources */,
 				0426C24F19922D5A00CD8822 /* GPUImageCGAColorspaceFilter.m in Sources */,
 				0426C2A819922D5A00CD8822 /* GPUImagePrewittEdgeDetectionFilter.m in Sources */,
+				5B8A2CF71AAEE0AD00C8F9DE /* SearchBarTableViewController.m in Sources */,
 				0426C26D19922D5A00CD8822 /* GPUImageFilterPipeline.m in Sources */,
 				042D9E0F19B559FC00689C5D /* DecorationProject.m in Sources */,
+				5B8A2CF11AAEE0AD00C8F9DE /* ChatViewController.m in Sources */,
 				0426C2A519922D5A00CD8822 /* GPUImagePolarPixellateFilter.m in Sources */,
-				5B3B5D3E1AAD8C4F002FB444 /* AddFriendViewController.m in Sources */,
 				04BF13B519C4162A002E02C9 /* ProjectApi.m in Sources */,
 				04D10BEA19AE016A0097C0C6 /* PublishViewController.m in Sources */,
 				5B51212F1A0781F900A77997 /* MapContentView.m in Sources */,
@@ -6707,6 +6756,7 @@
 				0426C2C219922D5A00CD8822 /* GPUImageSubtractBlendFilter.m in Sources */,
 				04D10BE519AE016A0097C0C6 /* PersonalDetailViewController.m in Sources */,
 				0426C27E19922D5A00CD8822 /* GPUImageHueBlendFilter.m in Sources */,
+				5B8A2CF31AAEE0AD00C8F9DE /* ChatListViewController.m in Sources */,
 				0426C2F219922D5A00CD8822 /* CJSONSerializedData.m in Sources */,
 				D3B8F53F19D92716008F6164 /* RecognizerFactory.m in Sources */,
 				D3D2E60119F7A79500908D8B /* EmployeesModel.m in Sources */,
@@ -6719,6 +6769,7 @@
 				0426C2E619922D5A00CD8822 /* FaceppGroup.m in Sources */,
 				0426C2DF19922D5A00CD8822 /* FaceppAPI.m in Sources */,
 				0426C30319922D5A00CD8822 /* TFIndicatorView.m in Sources */,
+				5B8A2CEA1AAEE0AD00C8F9DE /* AddFriendViewController.m in Sources */,
 				0426C27C19922D5A00CD8822 /* GPUImageHoughTransformLineDetector.m in Sources */,
 				D3AC612B19B5C7D10015B62F /* ContactProjectTableViewCell.m in Sources */,
 				D3F787471AADA40300ED754B /* AddressBookModel.m in Sources */,
@@ -6726,16 +6777,17 @@
 				0426C28419922D5A00CD8822 /* GPUImageLaplacianFilter.m in Sources */,
 				0426BFF719922CE400CD8822 /* main.m in Sources */,
 				0426C2C619922D5A00CD8822 /* GPUImageThreeInputFilter.m in Sources */,
-				D3F787431AAD9F6F00ED754B /* AddressBookCell.m in Sources */,
 				0426C2CC19922D5A00CD8822 /* GPUImageToonFilter.m in Sources */,
 				0426C29419922D5A00CD8822 /* GPUImageMotionBlurFilter.m in Sources */,
 				D3AD60FC19AC7CC5001FD483 /* EGOImageView.m in Sources */,
+				5B8A2CF51AAEE0AD00C8F9DE /* ChooseContactsViewCell.m in Sources */,
 				D3AD619D19AEEE30001FD483 /* SinglePickerView.m in Sources */,
 				0426C2BA19922D5A00CD8822 /* GPUImageSobelEdgeDetectionFilter.m in Sources */,
 				0426C29119922D5A00CD8822 /* GPUImageMissEtikateFilter.m in Sources */,
 				D3AC61AB19B6BF930015B62F /* MyCenterModel.m in Sources */,
 				0426C26F19922D5A00CD8822 /* GPUImageGaussianBlurFilter.m in Sources */,
 				D3AD61AC19AEF80B001FD483 /* MJPopupBackgroundView.m in Sources */,
+				5B8A2CFD1AAEE0DA00C8F9DE /* AddressBookCell.m in Sources */,
 				0426C25619922D5A00CD8822 /* GPUImageColorInvertFilter.m in Sources */,
 				04D10C7719B074C70097C0C6 /* RecommendLetterViewController.m in Sources */,
 				0426C2CF19922D5A00CD8822 /* GPUImageTwoInputFilter.m in Sources */,
