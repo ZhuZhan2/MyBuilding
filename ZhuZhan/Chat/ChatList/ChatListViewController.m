@@ -9,6 +9,7 @@
 #import "ChatListViewController.h"
 #import "ChatListViewCell.h"
 #import "SearchBarCell.h"
+#import "ChatViewController.h"
 
 @implementation ChatListViewController
 - (void)viewDidLoad {
@@ -22,6 +23,7 @@
     self.title=@"会话";
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
     [self setRightBtnWithText:@"发起"];
+    self.needAnimaiton=YES;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -110,6 +112,10 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ChatViewController* vc=[[ChatViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 -(void)leftBtnClicked{
     [self.searchBar resignFirstResponder];

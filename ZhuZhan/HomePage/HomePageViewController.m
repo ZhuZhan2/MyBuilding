@@ -280,7 +280,6 @@
     transition.duration = 0.5f;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = @"rippleEffect";
-    transition.delegate = self;
     [self.view.layer addAnimation:transition forKey:nil];
 }
 @end

@@ -8,6 +8,8 @@
 
 #import "ChatBaseViewController.h"
 #import "SearchBarTableViewController.h"
+#import "HomePageViewController.h"
+#import "AppDelegate.h"
 
 @interface ChatBaseViewController()
 @property(nonatomic,strong)UIButton* rightBtn;
@@ -74,12 +76,15 @@
 
 -(void)leftBtnClicked{
     if (self.leftBtnIsBack) {
+        if (self.needAnimaiton) {
+            [self addAnimation];
+        }
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
 -(void)initTableView{
-    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, self.searchBar?self.searchBar.frame.size.height+64:0, kScreenWidth, kScreenHeight-49-(self.searchBar?self.searchBar.frame.size.height:0)) style:UITableViewStylePlain];
+    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, self.searchBar?self.searchBar.frame.size.height+64:0, kScreenWidth, kScreenHeight-(self.searchBar?self.searchBar.frame.size.height:0)) style:UITableViewStylePlain];
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
@@ -125,5 +130,29 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+-(void)addAnimation{
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.5f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = @"rippleEffect";
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //恢复tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //隐藏tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarHide];
 }
 @end

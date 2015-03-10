@@ -29,6 +29,7 @@
 @property(nonatomic,strong)UISearchBar* searchBar;
 
 @property(nonatomic)BOOL isUsingSearchBar;
+@property(nonatomic)BOOL needAnimaiton;
 
 -(void)initTableView;
 
