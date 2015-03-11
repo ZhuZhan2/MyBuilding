@@ -74,7 +74,7 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/code/VerifyCode?cellPhone=%@&code=%@&type=%@",dic[@"cellPhone"],dic[@"code"],dic[@"type"]];
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/validCaptcha?cellPhone=%@&captcha=%@",dic[@"cellPhone"],dic[@"code"]];
     NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
@@ -117,26 +117,18 @@
             }
             NSNumber *errorcode = JSON[@"status"][@"statusCode"];
             switch ([errorcode intValue]) {
-                case 1308:
+                case 11002:
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"手机号已存在"];
                     break;
-                case 1325:
+                case 11017:
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"用户名已经存在"];
                     break;
-                case 1310:
-                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"激活码无效"];
-                    break;
-                case 1303:
-                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"注册失败，系统异常"];
-                    break;
-                case 1301:
-                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"注册失败，系统异常"];
-                    break;
-                case 1329:
+                case 11006:
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"验证码错误"];
                     //参数异常信息提示（具体见返回信息）
                     break;
                 default:
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"注册失败，系统异常"];
                     break;
             }
         }
@@ -172,9 +164,9 @@
                 block([NSMutableArray array], nil);
             }
 
-            NSNumber *errorcode = JSON[@"d"][@"status"][@"statusCode"];
+            NSNumber *errorcode = JSON[@"status"][@"statusCode"];
             switch ([errorcode intValue]) {
-                case 1320:
+                case 11018:
                 {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名或手机号不存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alert show];}
                     break;
@@ -186,11 +178,11 @@
                 {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"你已经禁止登录" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alert show];}
                     break;
-                case 1324:
+                case 11023:
                 {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"密码错误" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alert show];}
                     break;
-                case 1325:
+                case 11017:
                 {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名已存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alert show];}
                     break;
@@ -524,10 +516,6 @@
                 {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"参数异常" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alert show];}
                     break;
-                case 1314:
-                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"系统异常" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alert show];}
-                    break;
                 case 1318:
                 {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"token 失效或者不存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alert show];}
@@ -537,6 +525,8 @@
                     [alert show];}
                     break;
                 default:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"系统异常" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
                     break;
             }
         }
@@ -639,6 +629,31 @@
             block([NSMutableArray array], error);
         }
         
+    }];
+}
+
++ (NSURLSessionDataTask *)GetPhoneWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userName:(NSString*)userName noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    userName=userName?userName:@"";
+    
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/cellPhone?userNameOrCellPhone=%@",userName];
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)urlStr, NULL, NULL,  kCFStringEncodingUTF8 ));
+    NSLog(@"urlStr==%@",urlStr);
+    return [[AFAppDotNetAPIClient sharedNewClient] GET:encodedString parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if (block) {
+            block([NSMutableArray arrayWithObjects:JSON,nil],nil);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
     }];
 }
 @end

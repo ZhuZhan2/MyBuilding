@@ -19,7 +19,7 @@
     }else{
         self.a_image = [ProjectStage ProjectStrStage:dict[@"topicImagesId"]];
     }
-    self.a_projectCount = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"projectCounts"]]];
+    self.a_projectCount = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"projectNum"]]];
     self.a_publishTime = [ProjectStage ProjectTimeStage:dict[@"createdTime"]];
 }
 @end

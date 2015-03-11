@@ -11,7 +11,6 @@
 @implementation CompanyModel
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
-    NSLog(@"%@",dict[@"companyId"]);
     self.a_id = [ProjectStage ProjectStrStage:dict[@"companyId"]];
     self.a_companyName = [ProjectStage ProjectStrStage:dict[@"companyName"]];
     self.a_companyIndustry = [ProjectStage ProjectStrStage:dict[@"companyIndustry"]];
@@ -30,6 +29,6 @@
     self.a_companyLocation = [ProjectStage ProjectStrStage:dict[@"address"]];
     self.a_companyProvince = [ProjectStage ProjectStrStage:dict[@"companyProvince"]];
     self.a_companyCity = [ProjectStage ProjectStrStage:dict[@"companyCity"]];
-    self.a_reviewStatus = [ProjectStage ProjectStrStage:dict[@"reviewStatus"]];
+    self.a_reviewStatus = [ProjectStage ProjectStrStage:dict[@"state"]];
 }
 @end

@@ -175,15 +175,15 @@
         self.memberCountLabel.textColor=[UIColor lightGrayColor];
         self.memberBtn.enabled = NO;
         [self.authenticationImageView setImage:[GetImagePath getImagePath:@"公司详情图标03"]];
-        if([self.model.a_reviewStatus isEqualToString:@"Success"]){
+        if([self.model.a_reviewStatus isEqualToString:@"01"]){
             self.memberCountLabel.text=@"已认证";
-        }else if ([self.model.a_reviewStatus isEqualToString:@"Apply"]){
+        }else if ([self.model.a_reviewStatus isEqualToString:@"00"]){
             self.memberCountLabel.text=@"已申请";
         }else{
             self.memberCountLabel.text=@"申请认证";
         }
     }else{
-        if ([self.model.a_reviewStatus isEqualToString:@"Apply"]){
+        if ([self.model.a_reviewStatus isEqualToString:@"00"]){
             self.memberCountLabel.text=@"已申请";
             self.memberCountLabel.textColor=[UIColor lightGrayColor];
             self.memberBtn.enabled = NO;
@@ -246,7 +246,6 @@
         self.noticeBtn.enabled=NO;
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         if (self.isFocused) {
-            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
             [dic setObject:self.model.a_id forKey:@"targetId"];
             [dic setObject:@"02" forKey:@"targetCategory"];
             [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -259,7 +258,6 @@
                 }
             } dic:dic noNetWork:nil];
         }else{
-            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
             [dic setObject:self.model.a_id forKey:@"targetId"];
             [dic setObject:@"02" forKey:@"targetCategory"];
             [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {

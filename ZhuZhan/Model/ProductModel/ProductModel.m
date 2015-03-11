@@ -22,7 +22,7 @@
         self.a_imageUrl = [ProjectStage ProjectStrStage:_dict[@"productImagesId"]];
     }
     NSLog(@"%@",self.a_imageUrl);
-    self.a_commentNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"commetNum"]]];
+    self.a_commentNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"commentsNum"]]];
     self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"imageWidth"]]];
     self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"imageHeight"]]];
     if(![[ProjectStage ProjectStrStage:_dict[@"loginImagesId"]] isEqualToString:@""]){
@@ -103,12 +103,14 @@
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/productInfo/addProductInfo"];
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:imgData name:@"productImageString" fileName:@"product.jpg" mimeType:@"image/jpg"];
+        if(imgData !=nil){
+            [formData appendPartWithFileData:imgData name:@"productImageString" fileName:@"product.jpg" mimeType:@"image/jpg"];
+        }
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"responseObject ==> %@",responseObject);
-//        if (block) {
-//            block([NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%s%@",serverAddress,responseObject[@"data"]], nil], nil);
-//        }
+        if (block) {
+            block([NSMutableArray arrayWithObjects:responseObject[@"status"][@"statusCode"], nil], nil);
+        }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {

@@ -12,7 +12,7 @@
 #import "ProductModel.h"
 #import "RKCamera.h"
 
-@interface ProductPublishController ()<UITextViewDelegate,UIActionSheetDelegate,RKCameraDelegate>
+@interface ProductPublishController ()<UITextViewDelegate,UIActionSheetDelegate,RKCameraDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)UIButton* imageBtn;
 @property(nonatomic,strong)UITextView* titleTextView;
 @property(nonatomic,strong)UITextView* contentTextView;
@@ -197,8 +197,11 @@
 
 -(void)goToPublish{
     [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-        
-    } dic:@{@"productName":self.titleTextView.text,@"productDesc":self.contentTextView.text} imgData:UIImageJPEGRepresentation([self.imageBtn backgroundImageForState:UIControlStateNormal], 0.3) noNetWork:nil];
+        if(!error){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发布成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
+    } dic:@{@"productName":self.titleTextView.text,@"productDesc":self.contentTextView.text} imgData:UIImageJPEGRepresentation(self.cameraImage, 0.3) noNetWork:nil];
 }
 
 -(void)textViewDidChange:(UITextView *)textView{
@@ -241,5 +244,12 @@
 -(void)cameraWillFinishWithImage:(UIImage *)image isCancel:(BOOL)isCancel{
     if (!isCancel) self.cameraImage=image;
     [self.lastResponder becomeFirstResponder];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if([self.delegate respondsToSelector:@selector(successAddProduct)]){
+        [self.delegate successAddProduct];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 @end

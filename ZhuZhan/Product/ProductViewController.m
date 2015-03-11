@@ -17,7 +17,7 @@
 #import "LoadingView.h"
 #import "NoProductView.h"
 #import "ProductPublishController.h"
-@interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate,ErrorViewDelegate,UISearchBarDelegate>
+@interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate,ErrorViewDelegate,UISearchBarDelegate,ProductPublishControllerDelegate>
 @property (nonatomic, strong) NSMutableArray *images;
 @property(nonatomic,strong)ErrorView* errorView;
 @property(nonatomic,strong)UIActivityIndicatorView* indicatorView;
@@ -147,7 +147,8 @@
 }
 
 -(void)rightBtnClicked{
-    UIViewController* vc=[[ProductPublishController alloc]init];
+    ProductPublishController* vc=[[ProductPublishController alloc]init];
+    vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -336,5 +337,10 @@
     self.closeSearchBtn = nil;
     [self firstNetWork];
     [self.searchBar setShowsCancelButton:NO animated:YES];
+}
+
+-(void)successAddProduct{
+    startIndex = 0;
+    [self firstNetWork];
 }
 @end
