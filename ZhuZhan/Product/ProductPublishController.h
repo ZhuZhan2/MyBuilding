@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProductPublishController : UIViewController
+@protocol ProductPublishControllerDelegate <NSObject>
 
+-(void)successAddProduct;
+
+@end
+@interface ProductPublishController : UIViewController
+@property(nonatomic,weak)id<ProductPublishControllerDelegate>delegate;
 @end

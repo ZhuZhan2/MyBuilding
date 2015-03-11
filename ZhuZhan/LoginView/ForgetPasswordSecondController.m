@@ -88,7 +88,7 @@
     
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:_phoneNumberTextField.text forKey:@"cellPhone"];
-    [dic setValue:@"FindPassword" forKey:@"type"];
+    [dic setValue:@"01" forKey:@"codeType"];
     [LoginModel GenerateWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -119,7 +119,6 @@
 -(void)addSeparatorLineInView:(UIView*)view{
     NSInteger number=view.frame.size.height/47-1;
     for (int i=0; i<number; i++) {
-        NSLog(@"number==%d",number);
         UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(20, 47*(i+1)+4, 280, 1)];
         separatorLine.backgroundColor=RGBCOLOR(222, 222, 222);
         [view addSubview:separatorLine];
@@ -172,7 +171,6 @@
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:_phoneNumberTextField.text forKey:@"cellPhone"];
     [dic setValue:_yzmTextField.text forKey:@"code"];
-    [dic setValue:@"FindPassword" forKey:@"type"];
     [LoginModel VerifyCodeWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             ForgetPasswordThirdController *forgetSubView = [[ForgetPasswordThirdController alloc] init];

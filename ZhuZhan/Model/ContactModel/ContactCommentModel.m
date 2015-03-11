@@ -16,10 +16,10 @@
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"loginName"]];
     self.a_time = [ProjectStage ProjectDateStage:dict[@"createdTime"]];
     self.a_commentContents = [ProjectStage ProjectStrStage:dict[@"content"]];
-    if(![[ProjectStage ProjectStrStage:dict[@"imageUrl"]] isEqualToString:@""]){
-        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"imageUrl"]]];
+    if(![[ProjectStage ProjectStrStage:dict[@"loginImagesId"]] isEqualToString:@""]){
+        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"loginImagesId"]], @"login", @"", @"", @"")];
     }else{
-        self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"imageUrl"]];
+        self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"loginImagesId"]];
     }
     if([dict[@"userType"] isEqualToString:@"01"]){
         self.a_userType = @"Personal";

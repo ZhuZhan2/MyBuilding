@@ -28,8 +28,8 @@
 //#define  serverAddress "http://192.168.222.96:96/"
 //#define serverAddress "http://10.1.5.102:801/"
 //#define  serverAddress "http://10.1.5.104:9090/server"
-//#define  serverAddress "http://10.1.5.104:8080/server"
-#define  serverAddress "http://10.1.1.138:9090/service"
+#define  serverAddress "http://10.1.5.104:8080/server"
+//#define  serverAddress "http://10.1.1.138:9090/service"
 #define  kScreenWidth  [[UIScreen mainScreen] bounds].size.width
 #define  kScreenHeight [[UIScreen mainScreen] bounds].size.height
 #define  kContentHeight [[UIScreen mainScreen] bounds].size.height-64.5
@@ -41,3 +41,5 @@
 
 //图片参数
 #define image(imgId,type,width,height,iscut) [NSString stringWithFormat:@"/image/show?imageId=%@&type=%@&width=%@&height=%@&cut=%@",imgId,type,width,height,iscut]
+
+#define ALPHA_ARRAY [NSArray arrayWithObjects: @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil]

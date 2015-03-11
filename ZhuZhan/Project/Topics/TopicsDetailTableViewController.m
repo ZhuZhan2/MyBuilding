@@ -156,10 +156,24 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row == 0){
-        CGRect bounds=[self.model.a_content boundingRectWithSize:CGSizeMake(288, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
+        int height = 248;
+        if([self.model.a_content isEqualToString:@""]){
+            NSLog(@"a_content===>%@",self.model.a_content);
+            height +=0;
+        }else{
+            CGRect bounds=[self.model.a_content boundingRectWithSize:CGSizeMake(288, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
+            height += bounds.size.height-20;
+        }
         
-        CGRect bounds2=[self.model.a_title boundingRectWithSize:CGSizeMake(288, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:15]} context:nil];
-        return 278+bounds.size.height+5-10+bounds2.size.height;//5像素为原始版本遗留下来的高度
+        if([self.model.a_title isEqualToString:@""]){
+            height +=0;
+        }else{
+            CGRect bounds2=[self.model.a_title boundingRectWithSize:CGSizeMake(288, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:15]} context:nil];
+            height += bounds2.size.height;
+            NSLog(@"===>%f",bounds2.size.height);
+        }
+        NSLog(@"%d",height);
+        return height;//5像素为原始版本遗留下来的高度
     }else if(indexPath.row == 1){
         return 45;
     }
@@ -175,7 +189,7 @@
             cell = [[TopicsDetailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:self.model];
         }
         cell.selectionStyle = NO;
-        
+        cell.backgroundColor = [UIColor whiteColor];
         return cell;
     }else if(indexPath.row == 1){
         NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];

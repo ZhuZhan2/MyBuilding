@@ -83,4 +83,7 @@
 
 //查看手机号/用户名是否存在于我们服务器
 + (NSURLSessionDataTask *)GetIsExistWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userName:(NSString*)userName noNetWork:(void(^)())noNetWork;
+
+//获取手机号
++ (NSURLSessionDataTask *)GetPhoneWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userName:(NSString*)userName noNetWork:(void(^)())noNetWork;
 @end

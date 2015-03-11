@@ -1228,6 +1228,8 @@
 		D3F787471AADA40300ED754B /* AddressBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787461AADA40300ED754B /* AddressBookModel.m */; };
 		D3F7874A1AADAD3800ED754B /* AddressBookApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787491AADAD3800ED754B /* AddressBookApi.m */; };
 		D3FF3E811AAEC916005195CC /* ChoseContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FF3E801AAEC916005195CC /* ChoseContactModel.m */; };
+		D3FF3E911AAEEB83005195CC /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = D3FF3E8F1AAEEB83005195CC /* pinyin.c */; };
+		D3FF3E941AAEEFB4005195CC /* ChoseContctApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FF3E931AAEEFB4005195CC /* ChoseContctApi.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2961,6 +2963,10 @@
 		D3F787491AADAD3800ED754B /* AddressBookApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookApi.m; sourceTree = "<group>"; };
 		D3FF3E7F1AAEC916005195CC /* ChoseContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoseContactModel.h; sourceTree = "<group>"; };
 		D3FF3E801AAEC916005195CC /* ChoseContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoseContactModel.m; sourceTree = "<group>"; };
+		D3FF3E8F1AAEEB83005195CC /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
+		D3FF3E901AAEEB83005195CC /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
+		D3FF3E921AAEEFB4005195CC /* ChoseContctApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoseContctApi.h; sourceTree = "<group>"; };
+		D3FF3E931AAEEFB4005195CC /* ChoseContctApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoseContctApi.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3194,6 +3200,7 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3FF3E8E1AAEEB71005195CC /* Pinyin */,
 				D3D946A61A6CDD33003A68D5 /* YLLabel */,
 				D3D321241A3EAE200009AEEA /* AuthCode */,
 				5B3209FB1A11E75000D19279 /* RemindView */,
@@ -5602,8 +5609,19 @@
 			children = (
 				D3FF3E7F1AAEC916005195CC /* ChoseContactModel.h */,
 				D3FF3E801AAEC916005195CC /* ChoseContactModel.m */,
+				D3FF3E921AAEEFB4005195CC /* ChoseContctApi.h */,
+				D3FF3E931AAEEFB4005195CC /* ChoseContctApi.m */,
 			);
 			path = ChoseContactModel;
+			sourceTree = "<group>";
+		};
+		D3FF3E8E1AAEEB71005195CC /* Pinyin */ = {
+			isa = PBXGroup;
+			children = (
+				D3FF3E8F1AAEEB83005195CC /* pinyin.c */,
+				D3FF3E901AAEEB83005195CC /* pinyin.h */,
+			);
+			path = Pinyin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -6551,6 +6569,7 @@
 				0426C2E019922D5A00CD8822 /* FaceppClient.m in Sources */,
 				D3AD616C19ADB9F7001FD483 /* RecordSqlite.m in Sources */,
 				5B0A008B19B587B200500C05 /* EGORefreshTableHeaderView.m in Sources */,
+				D3FF3E911AAEEB83005195CC /* pinyin.c in Sources */,
 				0426C25819922D5A00CD8822 /* GPUImageColorPackingFilter.m in Sources */,
 				5B5173A21A368F8E0009E0AE /* FirstOpenAppAnimationView.m in Sources */,
 				0426C2B319922D5A00CD8822 /* GPUImageSepiaFilter.m in Sources */,
@@ -6789,6 +6808,7 @@
 				5B8A2CF01AAEE0AD00C8F9DE /* ChatTableViewCell.m in Sources */,
 				0426C24C19922D5A00CD8822 /* GPUImageBuffer.m in Sources */,
 				0426C24019922D5A00CD8822 /* GLProgram.m in Sources */,
+				D3FF3E941AAEEFB4005195CC /* ChoseContctApi.m in Sources */,
 				0426BFFB19922CE400CD8822 /* AppDelegate.m in Sources */,
 				0426C2B919922D5A00CD8822 /* GPUImageSmoothToonFilter.m in Sources */,
 				0426C30019922D5A00CD8822 /* UIProgressView+AFNetworking.m in Sources */,

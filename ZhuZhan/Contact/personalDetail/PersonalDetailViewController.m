@@ -310,6 +310,7 @@
         }
         contactBackgroundCell.model = self.contactModel;
         contactBackgroundCell.selectionStyle = NO;
+        //bgCell.backgroundColor = [UIColor yellowColor];
         return contactBackgroundCell;
     }else if(indexPath.row == 3){
         static NSString *identifier = @"bgCell";
@@ -387,7 +388,7 @@
     }
     
     if(indexPath.row == 2){
-        return 285;
+        return 235;
     }
     
     if(viewArr.count ==0){
