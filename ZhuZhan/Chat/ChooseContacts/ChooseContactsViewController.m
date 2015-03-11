@@ -9,11 +9,13 @@
 #import "ChooseContactsViewController.h"
 #import "ChooseContactsViewCell.h"
 @interface ChooseContactsViewController()<ChooseContactsViewCellDelegate>
+@property(nonatomic,strong)NSMutableArray* array;
 @end
 
 @implementation ChooseContactsViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.array=[NSMutableArray array];
     [self initNavi];
     [self initTableView];
 }
@@ -33,7 +35,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
+    return [self.array containsObject:[NSString stringWithFormat:@"%ld",(long)section]]?0:6;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -41,14 +43,26 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 25)];
+    UIButton* view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 25)];
     view.backgroundColor=RGBCOLOR(222, 222, 222);
     
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(20, 0, 100, 25)];
     label.text=@[@"A",@"B",@"C"][section];
     [view addSubview:label];
     
+    [view addTarget:self action:@selector(sectionDidSelectWithBtn:) forControlEvents:UIControlEventTouchUpInside];
+    view.tag=section;
     return view;
+}
+
+-(void)sectionDidSelectWithBtn:(UIButton*)btn{
+    NSString* sectionStr=[NSString stringWithFormat:@"%ld",(long)btn.tag];
+    if ([self.array containsObject:sectionStr]) {
+        [self.array removeObject:sectionStr];
+    }else{
+        [self.array addObject:sectionStr];
+    }
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:btn.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

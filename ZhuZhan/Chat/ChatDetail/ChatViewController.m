@@ -8,7 +8,8 @@
 
 #import "ChatViewController.h"
 #import "ChatTableViewCell.h"
-@interface ChatViewController ()
+#import "AddGroupMemberController.h"
+@interface ChatViewController ()<UIAlertViewDelegate>
 
 @end
 
@@ -23,6 +24,43 @@
 -(void)initNavi{
     self.title=@"用户名";
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
+    [self setRightBtnWithImage:[GetImagePath getImagePath:YES?@"单人会话":@"多人会话@2x"]];
+}
+
+-(void)sureBtnClickedWithContent:(NSString *)content{
+    NSLog(@"content=%@",content);
+}
+
+-(void)rightBtnClicked{
+    
+    AddGroupMemberController* vc=[[AddGroupMemberController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    return;
+//    UIView* view=[AlertTextFieldView alertTextFieldViewWithName:@"群聊名称" sureBtnTitle:@"确认" cancelBtnTitle:@"取消" originY:111  delegate:self];
+//    [self.navigationController.view addSubview:view];
+    
+//    NSMutableArray* array=[NSMutableArray array];
+//    for (int i=0; i<5; i++) {
+//        DiscussionGroupModel* model=[[DiscussionGroupModel alloc]init];
+//        model.memberName=@[@"范俊",@"汪洋",@"高大人",@"朱总",@"老板",@"深集科技"][arc4random()%6];
+//        [array addObject:model];
+//    }
+//
+//    
+//    DiscussionGroupView* view=[DiscussionGroupView discussionGroupViewWithTitle:@"讨论组名称" members:[array copy] newNotification:NO delegate:self];
+//    [self.navigationController.view addSubview:view];
+    return;
+    UIAlertView* alertView=[[UIAlertView alloc]initWithTitle:@"群聊名称" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定",@"取消",nil];
+    alertView.alertViewStyle=UIAlertViewStylePlainTextInput;
+    alertView.delegate=self;
+    [alertView show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==0) {
+        UITextField* textField=[alertView textFieldAtIndex:0];
+        NSLog(@"==%@",textField.text);
+    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -33,7 +71,6 @@
 static BOOL testIsSelfs[6] = {1,1,0,0,1,0};
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString* content=testContents[indexPath.row];
-    //return (arc4random()%100)+150;
     return [ChatTableViewCell carculateTotalHeightWithContentStr:content isSelf:testIsSelfs[indexPath.row]];
 }
 
