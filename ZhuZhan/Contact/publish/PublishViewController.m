@@ -159,10 +159,10 @@ static BOOL isFirst;
 - (void)keyboardWillShow:(NSNotification *)aNotification
 {
     //获取键盘的高度
-    NSDictionary *userInfo = [aNotification userInfo];
-    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardRect = [aValue CGRectValue];
-    int height = keyboardRect.size.height;
+    //NSDictionary *userInfo = [aNotification userInfo];
+    //NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    //CGRect keyboardRect = [aValue CGRectValue];
+    //int height = keyboardRect.size.height;
     //toolBar.frame =CGRectMake(0, kScreenHeight-height-40, 320, 40);
 }
 
@@ -230,7 +230,7 @@ static BOOL isFirst;
         [self goToPublish];
         return NO;
     }
-    NSLog(@"range.length=%ld",range.length);
+    NSLog(@"range.length=%ld",(unsigned long)range.length);
     if (range.length == 0 && textView.text.length >= kPublishLimitNumber) {
         return NO;
     }
@@ -324,7 +324,7 @@ static BOOL isFirst;
         } dic:dic noNetWork:nil];
 
     }else if (PublishNum ==2) {
-        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:publishContent,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
+        //NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:publishContent,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
 /*
         [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
             isPublish=NO;
@@ -359,7 +359,6 @@ static BOOL isFirst;
 -(BOOL)isAllSpace:(NSString*)content{
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@" " options:NSRegularExpressionCaseInsensitive error:nil];
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:content options:0 range:NSMakeRange(0, [content length])];
-    NSLog(@"===%d",numberOfMatches);
     return numberOfMatches==content.length;
 }
 
@@ -371,6 +370,5 @@ static BOOL isFirst;
 
 -(void)dealloc{
     NSLog(@"dealloc");
-    NSLog(@"%@",publishImage);
 }
 @end

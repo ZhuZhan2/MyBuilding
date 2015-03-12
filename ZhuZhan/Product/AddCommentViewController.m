@@ -70,7 +70,7 @@
         [textView resignFirstResponder];
         return NO;
     }
-    self.countLabel.text=[NSString stringWithFormat:@"%d/100",textView.text.length];
+    self.countLabel.text=[NSString stringWithFormat:@"%lu/100",(unsigned long)textView.text.length];
     if (range.length == 0 && textView.text.length >= kCommentLimitNumber) {
         return NO;
     }
@@ -103,7 +103,7 @@
     
     //该判断用于联想输入
 //    if (textView.text.length<=100) {
-        self.countLabel.text=[NSString stringWithFormat:@"%d/100",textView.text.length];
+        self.countLabel.text=[NSString stringWithFormat:@"%lu/100",(unsigned long)textView.text.length];
         //self.aboveMaxLabel.text=nil;
 //    }else{
 //        self.countLabel.text=@"100/100";

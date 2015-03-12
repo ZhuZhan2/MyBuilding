@@ -1130,6 +1130,9 @@
 		D3D51BCA1A80D1D400B52A04 /* loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D51BC81A80D1D400B52A04 /* loading@2x.png */; };
 		D3D5AAD71A690292009C2803 /* 暂无内容.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5AAD51A690292009C2803 /* 暂无内容.png */; };
 		D3D5AAD81A690292009C2803 /* 暂无内容@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5AAD61A690292009C2803 /* 暂无内容@2x.png */; };
+		D3D5B42B1AB12CB800E8EB04 /* ChatSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D5B42A1AB12CB800E8EB04 /* ChatSqlite.m */; };
+		D3D5B42F1AB130B900E8EB04 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D5B42E1AB130B900E8EB04 /* GCDAsyncSocket.m */; };
+		D3D5B4321AB1325100E8EB04 /* SocketManage.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D5B4311AB1325100E8EB04 /* SocketManage.m */; };
 		D3D5B80E1AAD62790049A5E0 /* huihua.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5B8041AAD62790049A5E0 /* huihua.png */; };
 		D3D5B80F1AAD62790049A5E0 /* huihua@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5B8051AAD62790049A5E0 /* huihua@2x.png */; };
 		D3D5B8101AAD62790049A5E0 /* jiahaoyou.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5B8061AAD62790049A5E0 /* jiahaoyou.png */; };
@@ -2838,6 +2841,12 @@
 		D3D51BC81A80D1D400B52A04 /* loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading@2x.png"; sourceTree = "<group>"; };
 		D3D5AAD51A690292009C2803 /* 暂无内容.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "暂无内容.png"; sourceTree = "<group>"; };
 		D3D5AAD61A690292009C2803 /* 暂无内容@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "暂无内容@2x.png"; sourceTree = "<group>"; };
+		D3D5B4291AB12CB800E8EB04 /* ChatSqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSqlite.h; sourceTree = "<group>"; };
+		D3D5B42A1AB12CB800E8EB04 /* ChatSqlite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSqlite.m; sourceTree = "<group>"; };
+		D3D5B42D1AB130B900E8EB04 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		D3D5B42E1AB130B900E8EB04 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		D3D5B4301AB1325100E8EB04 /* SocketManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketManage.h; sourceTree = "<group>"; };
+		D3D5B4311AB1325100E8EB04 /* SocketManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketManage.m; sourceTree = "<group>"; };
 		D3D5B8041AAD62790049A5E0 /* huihua.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = huihua.png; sourceTree = "<group>"; };
 		D3D5B8051AAD62790049A5E0 /* huihua@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "huihua@2x.png"; sourceTree = "<group>"; };
 		D3D5B8061AAD62790049A5E0 /* jiahaoyou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jiahaoyou.png; sourceTree = "<group>"; };
@@ -3166,6 +3175,7 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3D5B42C1AB130B900E8EB04 /* GCDAsyncsocket */,
 				D3FF3E8E1AAEEB71005195CC /* Pinyin */,
 				D3D946A61A6CDD33003A68D5 /* YLLabel */,
 				D3D321241A3EAE200009AEEA /* AuthCode */,
@@ -5316,6 +5326,8 @@
 				D3D21EB01A36F77C00ADD653 /* ProjectSqlite.m */,
 				D3D21EB51A36F9C700ADD653 /* LocalProjectModel.h */,
 				D3D21EB61A36F9C700ADD653 /* LocalProjectModel.m */,
+				D3D5B4291AB12CB800E8EB04 /* ChatSqlite.h */,
+				D3D5B42A1AB12CB800E8EB04 /* ChatSqlite.m */,
 			);
 			path = Sqlite3;
 			sourceTree = "<group>";
@@ -5382,6 +5394,17 @@
 				D3D4A2E11AAE98390071B3EA /* ChatMessageModel.m */,
 			);
 			path = ChatMessageModel;
+			sourceTree = "<group>";
+		};
+		D3D5B42C1AB130B900E8EB04 /* GCDAsyncsocket */ = {
+			isa = PBXGroup;
+			children = (
+				D3D5B42D1AB130B900E8EB04 /* GCDAsyncSocket.h */,
+				D3D5B42E1AB130B900E8EB04 /* GCDAsyncSocket.m */,
+				D3D5B4301AB1325100E8EB04 /* SocketManage.h */,
+				D3D5B4311AB1325100E8EB04 /* SocketManage.m */,
+			);
+			path = GCDAsyncsocket;
 			sourceTree = "<group>";
 		};
 		D3D5B8031AAD626C0049A5E0 /* 人脉按钮 */ = {
@@ -6572,11 +6595,13 @@
 				0426C29619922D5A00CD8822 /* GPUImageMovie.m in Sources */,
 				0426C2FA19922D5A00CD8822 /* XHWaterDropRefresh.m in Sources */,
 				D3AD60A019AC574A001FD483 /* ConnectionAvailable.m in Sources */,
+				D3D5B42B1AB12CB800E8EB04 /* ChatSqlite.m in Sources */,
 				0426C2F119922D5A00CD8822 /* CJSONSerialization.m in Sources */,
 				0426C2EF19922D5A00CD8822 /* CFilteringJSONSerializer.m in Sources */,
 				5B0A00A519B587CD00500C05 /* TMQuiltViewController.m in Sources */,
 				5BAA14D619EE35AC00C7ECD9 /* MD5.m in Sources */,
 				0426C22F19922D5A00CD8822 /* LoginEvent.m in Sources */,
+				D3D5B42F1AB130B900E8EB04 /* GCDAsyncSocket.m in Sources */,
 				5B8A2CEC1AAEE0AD00C8F9DE /* AddressBookFriendViewController.m in Sources */,
 				0426C2E819922D5A00CD8822 /* FaceppInfo.m in Sources */,
 				0426C2D919922D5A00CD8822 /* GPUImageXYDerivativeFilter.m in Sources */,
@@ -6650,6 +6675,7 @@
 				5B13C70919B6E53A008EA7A0 /* ProductCommentView.m in Sources */,
 				5B8A2CF41AAEE0AD00C8F9DE /* SearchBarCell.m in Sources */,
 				042D9E1519B559FC00689C5D /* MyView.m in Sources */,
+				D3D5B4321AB1325100E8EB04 /* SocketManage.m in Sources */,
 				5B4C198319FA518800C6C57D /* ClauseViewController.m in Sources */,
 				D3AD60A619AC5769001FD483 /* MBProgressHUD.m in Sources */,
 				D3A4281019C1749E00BAB6C7 /* ErrorView.m in Sources */,

@@ -380,7 +380,6 @@ NSString *const kDefaultReusableIdentifier = @"kTMQuiltViewDefaultReusableIdenti
     if ([self.delegate respondsToSelector:@selector(quiltView:heightForCellAtIndexPath:)]) {
         return [self.delegate quiltView:self heightForCellAtIndexPath:indexPath];
     }
-    NSLog(@"indexPath.row=%d,return kTMQuiltViewDefaultCellHeight",indexPath.row);
     return kTMQuiltViewDefaultCellHeight;
 }
 

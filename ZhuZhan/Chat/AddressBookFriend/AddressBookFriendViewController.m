@@ -47,6 +47,6 @@
 }
 
 -(void)chooseAssistBtn:(UIButton *)btn indexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%d,%d",indexPath.section,indexPath.row);
+    
 }
 @end

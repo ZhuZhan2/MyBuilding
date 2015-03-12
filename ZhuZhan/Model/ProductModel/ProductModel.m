@@ -38,6 +38,7 @@
         self.a_userType = @"Company";
     }
     self.a_isFocused = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"isFocus"]]];
+    self.a_focusedNum = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"focusNum"]]];
 }
 
 -(NSString *)a_commentNumber{
@@ -108,8 +109,13 @@
         }
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"responseObject ==> %@",responseObject);
-        if (block) {
-            block([NSMutableArray arrayWithObjects:responseObject[@"status"][@"statusCode"], nil], nil);
+        if([[NSString stringWithFormat:@"%@",responseObject[@"status"][@"statusCode"]]isEqualToString:@"200"]){
+            if (block) {
+                block([NSMutableArray arrayWithObjects:responseObject[@"status"][@"statusCode"], nil], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);

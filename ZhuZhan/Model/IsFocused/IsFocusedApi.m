@@ -9,19 +9,19 @@
 #import "IsFocusedApi.h"
 #import "ConnectionAvailable.h"
 @implementation IsFocusedApi
-+ (NSURLSessionDataTask *)GetIsFocusedListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId targetId:(NSString *)targetId EntityCategory:(NSString *)EntityCategory noNetWork:(void(^)())noNetWork{
++ (NSURLSessionDataTask *)GetIsFocusedListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId targetId:(NSString *)targetId noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
             noNetWork();
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/focus/isFocus?targetId=%@&targetCategory=%@",targetId,EntityCategory];
+    NSString *urlStr = [NSString stringWithFormat:@"api/focus/isFocus?targetId=%@",targetId];
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON Focused===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             if (block) {
-                block([NSMutableArray arrayWithObjects:JSON[@"data"], nil], nil);
+                block([NSMutableArray arrayWithObjects:JSON[@"data"][@"isFocus"], nil], nil);
             }
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

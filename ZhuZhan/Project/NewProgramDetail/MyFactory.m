@@ -239,7 +239,7 @@ static NSString* hasUserTypeContent(NSString* string){
     
     //图片数量label
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 164, 58, 26)];
-    label.text=[NSString stringWithFormat:@"%d张",count];
+    label.text=[NSString stringWithFormat:@"%ld张",(long)count];
     label.textAlignment=NSTextAlignmentCenter;
     label.textColor=[UIColor whiteColor];
     label.font=[UIFont systemFontOfSize:14.5];

@@ -189,13 +189,18 @@
         return NO;
     }
     
-    if (range.length == 0 && textView.text.length >= (kProductLimitNumber(isContentTextView))) {
-        return NO;
-    }
+//    if (range.length == 0 && textView.text.length >= (kProductLimitNumber(isContentTextView))) {
+//        return NO;
+//    }
     return YES;
 }
 
 -(void)goToPublish{
+    if([self.titleTextView.text isEqualToString:@""]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请填写产品名字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
     [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发布成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
