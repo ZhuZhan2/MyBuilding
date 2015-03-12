@@ -421,13 +421,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [forCornerView addSubview:userImageView];
     
     //调节有图无文字时候的下方留白高度
-    BOOL isHasImageNoContent=[self.content isEqualToString:@""]&&![self.imageUrl isEqualToString:@""];
-    if (isHasImageNoContent||YES) {
-        CGRect frame=productNameArea.frame;
-        frame.size.height+=8;
-        productNameArea.frame=frame;
+    //BOOL isHasImageNoContent=[self.content isEqualToString:@""]&&![self.imageUrl isEqualToString:@""];
+    //if (isHasImageNoContent) {
+        CGRect tempFrame=productNameArea.frame;
+        tempFrame.size.height+=8;
+        productNameArea.frame=tempFrame;
         height+=8;
-    }
+    //}
     
     //设置总的view的frame
     forCornerView.frame=CGRectMake(5, 5, 310, height);
