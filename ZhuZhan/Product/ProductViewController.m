@@ -17,6 +17,8 @@
 #import "LoadingView.h"
 #import "NoProductView.h"
 #import "ProductPublishController.h"
+#import "LoginSqlite.h"
+#import "LoginViewController.h"
 @interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate,ErrorViewDelegate,UISearchBarDelegate,ProductPublishControllerDelegate>
 @property (nonatomic, strong) NSMutableArray *images;
 @property(nonatomic,strong)ErrorView* errorView;
@@ -147,9 +149,15 @@
 }
 
 -(void)rightBtnClicked{
-    ProductPublishController* vc=[[ProductPublishController alloc]init];
-    vc.delegate = self;
-    [self.navigationController pushViewController:vc animated:YES];
+    if([[LoginSqlite getdata:@"token"] isEqualToString:@""]){
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }else{
+        ProductPublishController* vc=[[ProductPublishController alloc]init];
+        vc.delegate = self;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 //=====================================================================

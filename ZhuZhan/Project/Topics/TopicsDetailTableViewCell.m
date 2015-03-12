@@ -67,8 +67,8 @@
     }
     
     UIImageView* shadow=[[UIImageView alloc]initWithFrame:CGRectMake(0, height, 320, 3.5)];
-    //shadow.image=[GetImagePath getImagePath:@"Shadow-bottom"];
-    shadow.backgroundColor = [UIColor yellowColor];
+    shadow.image=[GetImagePath getImagePath:@"Shadow-bottom"];
+    //shadow.backgroundColor = [UIColor yellowColor];
     [self.contentView addSubview:shadow];
 }
 @end

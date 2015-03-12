@@ -27,6 +27,7 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     if ([CLLocationManager locationServicesEnabled]) {
         
         self.locationManager = [[CLLocationManager alloc] init];

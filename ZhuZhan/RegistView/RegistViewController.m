@@ -413,7 +413,6 @@
 -(BOOL)isAllNumber:(NSString*)numbers{
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\D" options:NSRegularExpressionCaseInsensitive error:nil];
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:numbers options:0 range:NSMakeRange(0, [numbers length])];
-    NSLog(@"===%d",numberOfMatches);
     if (numberOfMatches) {
         return NO;
     }else{

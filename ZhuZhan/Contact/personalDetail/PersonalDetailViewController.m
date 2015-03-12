@@ -162,7 +162,7 @@
             }else{
                 [LoginAgain AddLoginView:NO];
             }
-        } userId:[LoginSqlite getdata:@"userId"] targetId:self.contactId EntityCategory:@"01" noNetWork:^{
+        } userId:[LoginSqlite getdata:@"userId"] targetId:self.contactId noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
                 [self firstNetWork];
             }];

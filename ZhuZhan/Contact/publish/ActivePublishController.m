@@ -135,9 +135,9 @@
             return NO;
         }
     
-    if (range.length == 0 && textView.text.length >= (kProductContentNumber)) {
-        return NO;
-    }
+//    if (range.length == 0 && textView.text.length >= (kProductContentNumber)) {
+//        return NO;
+//    }
     return YES;
 }
 
@@ -172,7 +172,7 @@
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    NSLog(@"%ld",buttonIndex);
+    
 }
 @end
 

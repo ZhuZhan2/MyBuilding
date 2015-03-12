@@ -178,7 +178,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 self.isFocused=[NSString stringWithFormat:@"%@",posts[0]];
                 [self getNetWorkData];
             }
-        } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID EntityCategory:@"04" noNetWork:^{
+        } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
                 [self firstNetWork];
             }];
@@ -907,7 +907,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID EntityCategory:@"04" noNetWork:nil];
+    } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID noNetWork:nil];
 }
 
 -(void)delComment:(UIButton *)button{

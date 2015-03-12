@@ -123,9 +123,11 @@
                 case 11017:
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"用户名已经存在"];
                     break;
-                case 11006:
+                case 11005:
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"验证码错误"];
-                    //参数异常信息提示（具体见返回信息）
+                    break;
+                case 11006:
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"验证码过期"];
                     break;
                 default:
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"注册失败，系统异常"];
@@ -512,15 +514,7 @@
         }else{
             NSNumber *errorcode = JSON[@"status"][@"statusCode"];
             switch ([errorcode intValue]) {
-                case 1301:
-                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"参数异常" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alert show];}
-                    break;
-                case 1318:
-                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"token 失效或者不存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alert show];}
-                    break;
-                case 1319:
+                case 11023:
                 {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"原密码错误" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alert show];}
                     break;
@@ -620,8 +614,25 @@
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
+            NSNumber *errorcode = JSON[@"status"][@"statusCode"];
+            switch ([errorcode intValue]) {
+                case 11018:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户不存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
+                    break;
+                case 11005:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"验证码错误" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
+                    break;
+                case 11006:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"验证码过期" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
+                    break;
+                default:
+                {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"系统异常" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];}
+                    break;
+            }
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);

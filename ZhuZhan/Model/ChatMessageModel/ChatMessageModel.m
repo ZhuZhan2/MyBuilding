@@ -11,6 +11,6 @@
 @implementation ChatMessageModel
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
-    self.a_type = dict[@"type"];
+    //self.a_type = dict[@"type"];
 }
 @end

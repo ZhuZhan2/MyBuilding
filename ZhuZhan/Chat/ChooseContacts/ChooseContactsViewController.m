@@ -93,11 +93,7 @@
 }
 
 -(void)chooseAssistBtn:(UIButton *)btn indexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%d,%d",(int)indexPath.section,(int)indexPath.row);
-}
-
--(NSInteger)searchBarTableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
+   
 }
 
 -(CGFloat)searchBarTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

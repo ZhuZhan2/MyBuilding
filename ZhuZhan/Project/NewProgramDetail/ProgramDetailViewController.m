@@ -277,7 +277,7 @@
             }else{
                 [LoginAgain AddLoginView:NO];
             }
-        } userId:[LoginSqlite getdata:@"userId"] targetId:self.projectId EntityCategory:@"03" noNetWork:^{
+        } userId:[LoginSqlite getdata:@"userId"] targetId:self.projectId noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
                 [self firstNetWork];
             }];
@@ -1047,7 +1047,7 @@
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } userId:[LoginSqlite getdata:@"userId"] targetId:self.projectId EntityCategory:@"03" noNetWork:^{
+    } userId:[LoginSqlite getdata:@"userId"] targetId:self.projectId noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
