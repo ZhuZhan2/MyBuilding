@@ -21,4 +21,5 @@
 @interface ChooseContactsViewCell : UITableViewCell
 -(void)setModel:(ChooseContactsCellModel*)model indexPath:(NSIndexPath*)indexPath;
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier delegate:(id<ChooseContactsViewCellDelegate>)delegate;
++(UIView*)fullSeperatorLine;
 @end
