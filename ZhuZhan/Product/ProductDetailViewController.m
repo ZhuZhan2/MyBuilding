@@ -391,7 +391,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         tempHeight=imageView?imageView.frame.origin.y+imageView.frame.size.height:height;
     }
     
-    
     UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     commentBtn.frame = CGRectMake(265, tempHeight-40, 37, 37);
     [commentBtn setImage:[GetImagePath getImagePath:@"点-copy-3"] forState:UIControlStateNormal];
@@ -412,7 +411,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [forCornerView addSubview:btn];
     
     UILabel* noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, height, 100, 20)];
-    noticeLabel.text=self.productModel.a_focusedNum;
+    noticeLabel.text=[NSString stringWithFormat:@"%@ 关注",self.productModel.a_focusedNum];
     noticeLabel.textColor=RGBCOLOR(141, 196, 62);
     noticeLabel.font=[UIFont systemFontOfSize:14];
     [forCornerView addSubview:noticeLabel];
