@@ -412,7 +412,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [forCornerView addSubview:btn];
     
     UILabel* noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, height, 100, 20)];
-    noticeLabel.text=@"关注数";
+    noticeLabel.text=self.productModel.a_focusedNum;
     noticeLabel.textColor=RGBCOLOR(141, 196, 62);
     noticeLabel.font=[UIFont systemFontOfSize:14];
     [forCornerView addSubview:noticeLabel];
