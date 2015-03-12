@@ -411,6 +411,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [btn addTarget:self action:@selector(chooseUserImage:) forControlEvents:UIControlEventTouchUpInside];
     [forCornerView addSubview:btn];
     
+    UILabel* noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, height, 100, 20)];
+    noticeLabel.text=@"关注数";
+    noticeLabel.textColor=RGBCOLOR(141, 196, 62);
+    noticeLabel.font=[UIFont systemFontOfSize:14];
+    [forCornerView addSubview:noticeLabel];
+    height+=noticeLabel.frame.size.height;
+    
     userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userImageUrl]];
     [forCornerView addSubview:userImageView];
     
