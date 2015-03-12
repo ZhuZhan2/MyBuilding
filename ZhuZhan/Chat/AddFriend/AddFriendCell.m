@@ -25,23 +25,23 @@
         self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
         self.userImageView.layer.cornerRadius=3;
         self.userImageView.layer.masksToBounds=YES;
-        self.userImageView.frame=CGRectMake(20, 12, 37, 37);
+        self.userImageView.frame=CGRectMake(15, 12.5, 35, 35);
         [self addSubview:self.userImageView];
         self.userImageView.userInteractionEnabled=YES;
         
         
-        self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(72, 10, 200, 20)];
-        self.userNameLabel.font=[UIFont boldSystemFontOfSize:16];
+        self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(65, 12.5, 200, 16)];
+        self.userNameLabel.font=[UIFont boldSystemFontOfSize:15];
         self.userNameLabel.textColor=RGBCOLOR(89, 89, 89);
         [self addSubview:self.userNameLabel];
         
-        self.userBussniessLabel=[[UILabel alloc]initWithFrame:CGRectMake(72, 30, 200, 20)];
-        self.userBussniessLabel.font=[UIFont systemFontOfSize:14];
+        self.userBussniessLabel=[[UILabel alloc]initWithFrame:CGRectMake(65, 33, 200, 14)];
+        self.userBussniessLabel.font=[UIFont systemFontOfSize:13];
         self.userBussniessLabel.textColor=RGBCOLOR(149, 149, 149);
         [self addSubview:self.userBussniessLabel];
         
         if (self.needRightBtn) {
-            self.rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(272, 17, 26, 26)];
+            self.rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(270, 19, 26, 26)];
             [self addSubview:self.rightBtn];
         }
         

@@ -2,11 +2,12 @@
 //  AddressBookViewController.h
 //  ZhuZhan
 //
-//  Created by 汪洋 on 15/3/9.
+//  Created by 孙元侃 on 15/3/12.
 //
 //
 
-#import <UIKit/UIKit.h>
-#import "AddressBookCell.h"
-@interface AddressBookViewController : UIViewController
+#import "ChatBaseViewController.h"
+
+@interface AddressBookViewController : ChatBaseViewController
+
 @end

@@ -28,15 +28,9 @@
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)UISearchBar* searchBar;
 
-@property(nonatomic)BOOL isUsingSearchBar;
 @property(nonatomic)BOOL needAnimaiton;
 
 -(void)initTableView;
 
 -(void)setUpSearchBarWithNeedTableView:(BOOL)needTableView;
-
--(void)reloadSearchBarTableViewData;
-
--(void)searchBarTableViewAppear;
--(void)searchBarTableViewDisppear;
 @end

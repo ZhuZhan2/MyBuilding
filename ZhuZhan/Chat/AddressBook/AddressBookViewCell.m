@@ -1,29 +1,29 @@
 //
-//  ChooseContactsViewCell.m
+//  AddressBookViewCell.m
 //  ZhuZhan
 //
-//  Created by 孙元侃 on 15/3/9.
+//  Created by 孙元侃 on 15/3/12.
 //
 //
 
-#import "ChooseContactsViewCell.h"
+#import "AddressBookViewCell.h"
 #import "EGOImageView.h"
-@interface ChooseContactsViewCell ()
+@interface AddressBookViewCell ()
 @property(nonatomic,strong)EGOImageView* mainImageView;
 @property(nonatomic,strong)UILabel* mainLabel;
 @property(nonatomic,strong)UIButton* assistBtn;
 @property(nonatomic,strong)UIView* seperatorLine;
-@property(nonatomic,strong,setter=setModel:)ChooseContactsCellModel* model;
+@property(nonatomic,strong,setter=setModel:)AddressBookCellModel* model;
 
-@property(nonatomic,weak)id<ChooseContactsViewCellDelegate>delegate;
+@property(nonatomic,weak)id<AddressBookViewCellDelegate>delegate;
 @property(nonatomic,strong)NSIndexPath* indexPath;
 @end
 
 #define mainLabelFont [UIFont systemFontOfSize:13]
 #define seperatorLineColor RGBCOLOR(229, 229, 229)
 
-@implementation ChooseContactsViewCell
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier delegate:(id<ChooseContactsViewCellDelegate>)delegate{
+@implementation AddressBookViewCell
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier delegate:(id<AddressBookViewCellDelegate>)delegate{
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.delegate=delegate;
         [self setUp];
@@ -80,7 +80,7 @@
     self.selectedBackgroundView=selectedBackView;
 }
 
--(void)setModel:(ChooseContactsCellModel *)model indexPath:(NSIndexPath*)indexPath{
+-(void)setModel:(AddressBookCellModel *)model indexPath:(NSIndexPath*)indexPath{
     _model=model;
     _indexPath=indexPath;
     self.mainImageView.imageURL=[NSURL URLWithString:model.mainImageUrl];
@@ -111,5 +111,5 @@
 @end
 
 
-@implementation ChooseContactsCellModel
+@implementation AddressBookCellModel
 @end

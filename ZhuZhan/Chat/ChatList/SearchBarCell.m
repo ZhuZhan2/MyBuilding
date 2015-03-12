@@ -16,7 +16,7 @@
 
 @end
 
-#define mainLabelFont [UIFont systemFontOfSize:16]
+#define mainLabelFont [UIFont systemFontOfSize:13]
 
 @implementation SearchBarCell
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -36,7 +36,7 @@
 
 -(UILabel *)mainLabel{
     if (!_mainLabel) {
-        _mainLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 20)];
+        _mainLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 17)];
         _mainLabel.font=mainLabelFont;
     }
     return _mainLabel;
@@ -65,7 +65,7 @@
 
 -(void)layoutSubviews{
     self.mainImageView.center=CGPointMake(30, CGRectGetHeight(self.frame)*0.5);
-    self.mainLabel.frame=CGRectMake(60, 15, CGRectGetWidth(self.mainLabel.frame), CGRectGetHeight(self.mainLabel.frame));
+    self.mainLabel.frame=CGRectMake(65, 15, CGRectGetWidth(self.mainLabel.frame), CGRectGetHeight(self.mainLabel.frame));
     self.seperatorLine.center=CGPointMake(kScreenWidth-CGRectGetWidth(self.seperatorLine.frame)*0.5, self.frame.size.height-CGRectGetHeight(self.seperatorLine.frame)*.5);
 }
 @end

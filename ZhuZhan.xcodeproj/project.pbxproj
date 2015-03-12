@@ -674,8 +674,6 @@
 		5B8A2CF51AAEE0AD00C8F9DE /* ChooseContactsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CE41AAEE0AD00C8F9DE /* ChooseContactsViewCell.m */; };
 		5B8A2CF61AAEE0AD00C8F9DE /* ChooseContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CE61AAEE0AD00C8F9DE /* ChooseContactsViewController.m */; };
 		5B8A2CF71AAEE0AD00C8F9DE /* SearchBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CE81AAEE0AD00C8F9DE /* SearchBarTableViewController.m */; };
-		5B8A2CFD1AAEE0DA00C8F9DE /* AddressBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CFA1AAEE0DA00C8F9DE /* AddressBookCell.m */; };
-		5B8A2CFE1AAEE0DA00C8F9DE /* AddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CFC1AAEE0DA00C8F9DE /* AddressBookViewController.m */; };
 		5B8A2D011AAEEAD600C8F9DE /* 单人会话.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8A2CFF1AAEEAD600C8F9DE /* 单人会话.png */; };
 		5B8A2D021AAEEAD600C8F9DE /* 单人会话@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8A2D001AAEEAD600C8F9DE /* 单人会话@2x.png */; };
 		5B8DAED41A7F1EBD003C7E41 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8DAED11A7F1EBD003C7E41 /* libbaidumapapi.a */; };
@@ -688,10 +686,20 @@
 		5B95ADC91AB13A0300797EA6 /* 加载中@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADC51AB13A0300797EA6 /* 加载中@2x.png */; };
 		5B95ADCA1AB13A0300797EA6 /* 未设置.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADC61AB13A0300797EA6 /* 未设置.png */; };
 		5B95ADCB1AB13A0300797EA6 /* 未设置@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADC71AB13A0300797EA6 /* 未设置@2x.png */; };
-		5B95ADD01AB1572B00797EA6 /* 分组打开.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADCC1AB1572B00797EA6 /* 分组打开.png */; };
-		5B95ADD11AB1572B00797EA6 /* 分组打开@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADCD1AB1572B00797EA6 /* 分组打开@2x.png */; };
-		5B95ADD21AB1572B00797EA6 /* 分组关闭.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADCE1AB1572B00797EA6 /* 分组关闭.png */; };
-		5B95ADD31AB1572B00797EA6 /* 分组关闭@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADCF1AB1572B00797EA6 /* 分组关闭@2x.png */; };
+		5B95ADD81AB1929B00797EA6 /* 35px加载中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADD41AB1929B00797EA6 /* 35px加载中.png */; };
+		5B95ADD91AB1929B00797EA6 /* 35px加载中@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADD51AB1929B00797EA6 /* 35px加载中@2x.png */; };
+		5B95ADDA1AB1929B00797EA6 /* 35px未设置.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADD61AB1929B00797EA6 /* 35px未设置.png */; };
+		5B95ADDB1AB1929B00797EA6 /* 35px未设置@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADD71AB1929B00797EA6 /* 35px未设置@2x.png */; };
+		5B95ADDE1AB1981A00797EA6 /* 未选择联系人.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADDC1AB1981A00797EA6 /* 未选择联系人.png */; };
+		5B95ADDF1AB1981A00797EA6 /* 未选择联系人@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADDD1AB1981A00797EA6 /* 未选择联系人@2x.png */; };
+		5B95ADE21AB1986100797EA6 /* 已选择联系人.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADE01AB1986100797EA6 /* 已选择联系人.png */; };
+		5B95ADE31AB1986100797EA6 /* 已选择联系人@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADE11AB1986100797EA6 /* 已选择联系人@2x.png */; };
+		5B95ADE81AB19F5A00797EA6 /* 分组打开.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADE41AB19F5A00797EA6 /* 分组打开.png */; };
+		5B95ADE91AB19F5A00797EA6 /* 分组打开@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADE51AB19F5A00797EA6 /* 分组打开@2x.png */; };
+		5B95ADEA1AB19F5A00797EA6 /* 分组关闭.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADE61AB19F5A00797EA6 /* 分组关闭.png */; };
+		5B95ADEB1AB19F5A00797EA6 /* 分组关闭@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADE71AB19F5A00797EA6 /* 分组关闭@2x.png */; };
+		5B95ADEF1AB1B35B00797EA6 /* AddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B95ADEE1AB1B35B00797EA6 /* AddressBookViewController.m */; };
+		5B95ADF21AB1B37E00797EA6 /* AddressBookViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B95ADF11AB1B37E00797EA6 /* AddressBookViewCell.m */; };
 		5B9FDE9F1A6CD47000215485 /* 项目详情默认0.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9FDE9D1A6CD47000215485 /* 项目详情默认0.png */; };
 		5B9FDEA01A6CD47000215485 /* 项目详情默认0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9FDE9E1A6CD47000215485 /* 项目详情默认0@2x.png */; };
 		5BA181A61A76170500191D31 /* Shadow-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA181A41A76170500191D31 /* Shadow-top.png */; };
@@ -2259,10 +2267,6 @@
 		5B8A2CE61AAEE0AD00C8F9DE /* ChooseContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseContactsViewController.m; sourceTree = "<group>"; };
 		5B8A2CE71AAEE0AD00C8F9DE /* SearchBarTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBarTableViewController.h; sourceTree = "<group>"; };
 		5B8A2CE81AAEE0AD00C8F9DE /* SearchBarTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBarTableViewController.m; sourceTree = "<group>"; };
-		5B8A2CF91AAEE0DA00C8F9DE /* AddressBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookCell.h; sourceTree = "<group>"; };
-		5B8A2CFA1AAEE0DA00C8F9DE /* AddressBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookCell.m; sourceTree = "<group>"; };
-		5B8A2CFB1AAEE0DA00C8F9DE /* AddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookViewController.h; sourceTree = "<group>"; };
-		5B8A2CFC1AAEE0DA00C8F9DE /* AddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookViewController.m; sourceTree = "<group>"; };
 		5B8A2CFF1AAEEAD600C8F9DE /* 单人会话.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "单人会话.png"; sourceTree = "<group>"; };
 		5B8A2D001AAEEAD600C8F9DE /* 单人会话@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "单人会话@2x.png"; sourceTree = "<group>"; };
 		5B8DAE931A7F1EA9003C7E41 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
@@ -2336,10 +2340,22 @@
 		5B95ADC51AB13A0300797EA6 /* 加载中@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加载中@2x.png"; sourceTree = "<group>"; };
 		5B95ADC61AB13A0300797EA6 /* 未设置.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未设置.png"; sourceTree = "<group>"; };
 		5B95ADC71AB13A0300797EA6 /* 未设置@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未设置@2x.png"; sourceTree = "<group>"; };
-		5B95ADCC1AB1572B00797EA6 /* 分组打开.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "分组打开.png"; sourceTree = "<group>"; };
-		5B95ADCD1AB1572B00797EA6 /* 分组打开@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "分组打开@2x.png"; sourceTree = "<group>"; };
-		5B95ADCE1AB1572B00797EA6 /* 分组关闭.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "分组关闭.png"; sourceTree = "<group>"; };
-		5B95ADCF1AB1572B00797EA6 /* 分组关闭@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "分组关闭@2x.png"; sourceTree = "<group>"; };
+		5B95ADD41AB1929B00797EA6 /* 35px加载中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "35px加载中.png"; sourceTree = "<group>"; };
+		5B95ADD51AB1929B00797EA6 /* 35px加载中@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "35px加载中@2x.png"; sourceTree = "<group>"; };
+		5B95ADD61AB1929B00797EA6 /* 35px未设置.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "35px未设置.png"; sourceTree = "<group>"; };
+		5B95ADD71AB1929B00797EA6 /* 35px未设置@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "35px未设置@2x.png"; sourceTree = "<group>"; };
+		5B95ADDC1AB1981A00797EA6 /* 未选择联系人.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未选择联系人.png"; sourceTree = "<group>"; };
+		5B95ADDD1AB1981A00797EA6 /* 未选择联系人@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未选择联系人@2x.png"; sourceTree = "<group>"; };
+		5B95ADE01AB1986100797EA6 /* 已选择联系人.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "已选择联系人.png"; sourceTree = "<group>"; };
+		5B95ADE11AB1986100797EA6 /* 已选择联系人@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "已选择联系人@2x.png"; sourceTree = "<group>"; };
+		5B95ADE41AB19F5A00797EA6 /* 分组打开.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "分组打开.png"; sourceTree = "<group>"; };
+		5B95ADE51AB19F5A00797EA6 /* 分组打开@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "分组打开@2x.png"; sourceTree = "<group>"; };
+		5B95ADE61AB19F5A00797EA6 /* 分组关闭.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "分组关闭.png"; sourceTree = "<group>"; };
+		5B95ADE71AB19F5A00797EA6 /* 分组关闭@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "分组关闭@2x.png"; sourceTree = "<group>"; };
+		5B95ADED1AB1B35B00797EA6 /* AddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookViewController.h; sourceTree = "<group>"; };
+		5B95ADEE1AB1B35B00797EA6 /* AddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookViewController.m; sourceTree = "<group>"; };
+		5B95ADF01AB1B37E00797EA6 /* AddressBookViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookViewCell.h; sourceTree = "<group>"; };
+		5B95ADF11AB1B37E00797EA6 /* AddressBookViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookViewCell.m; sourceTree = "<group>"; };
 		5B9FDE9D1A6CD47000215485 /* 项目详情默认0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情默认0.png"; sourceTree = "<group>"; };
 		5B9FDE9E1A6CD47000215485 /* 项目详情默认0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情默认0@2x.png"; sourceTree = "<group>"; };
 		5BA181A41A76170500191D31 /* Shadow-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shadow-top.png"; sourceTree = "<group>"; };
@@ -4523,10 +4539,18 @@
 		5B3B5D461AAD935E002FB444 /* 二期新图片 */ = {
 			isa = PBXGroup;
 			children = (
-				5B95ADCC1AB1572B00797EA6 /* 分组打开.png */,
-				5B95ADCD1AB1572B00797EA6 /* 分组打开@2x.png */,
-				5B95ADCE1AB1572B00797EA6 /* 分组关闭.png */,
-				5B95ADCF1AB1572B00797EA6 /* 分组关闭@2x.png */,
+				5B95ADE41AB19F5A00797EA6 /* 分组打开.png */,
+				5B95ADE51AB19F5A00797EA6 /* 分组打开@2x.png */,
+				5B95ADE61AB19F5A00797EA6 /* 分组关闭.png */,
+				5B95ADE71AB19F5A00797EA6 /* 分组关闭@2x.png */,
+				5B95ADE01AB1986100797EA6 /* 已选择联系人.png */,
+				5B95ADE11AB1986100797EA6 /* 已选择联系人@2x.png */,
+				5B95ADDC1AB1981A00797EA6 /* 未选择联系人.png */,
+				5B95ADDD1AB1981A00797EA6 /* 未选择联系人@2x.png */,
+				5B95ADD41AB1929B00797EA6 /* 35px加载中.png */,
+				5B95ADD51AB1929B00797EA6 /* 35px加载中@2x.png */,
+				5B95ADD61AB1929B00797EA6 /* 35px未设置.png */,
+				5B95ADD71AB1929B00797EA6 /* 35px未设置@2x.png */,
 				5B95ADC41AB13A0300797EA6 /* 加载中.png */,
 				5B95ADC51AB13A0300797EA6 /* 加载中@2x.png */,
 				5B95ADC61AB13A0300797EA6 /* 未设置.png */,
@@ -4552,7 +4576,7 @@
 		5B8A2CC51AAEE0AD00C8F9DE /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				5B8A2CF81AAEE0DA00C8F9DE /* AddressBook */,
+				5B95ADEC1AB1B33600797EA6 /* AddressBook */,
 				5B8A2CCB1AAEE0AD00C8F9DE /* AddressBookFriend */,
 				5B8A2CC61AAEE0AD00C8F9DE /* AddFriend */,
 				5B8A2CD21AAEE0AD00C8F9DE /* ChatDetail */,
@@ -4626,17 +4650,6 @@
 				5B8A2CE41AAEE0AD00C8F9DE /* ChooseContactsViewCell.m */,
 			);
 			path = ChooseContacts;
-			sourceTree = "<group>";
-		};
-		5B8A2CF81AAEE0DA00C8F9DE /* AddressBook */ = {
-			isa = PBXGroup;
-			children = (
-				5B8A2CF91AAEE0DA00C8F9DE /* AddressBookCell.h */,
-				5B8A2CFA1AAEE0DA00C8F9DE /* AddressBookCell.m */,
-				5B8A2CFB1AAEE0DA00C8F9DE /* AddressBookViewController.h */,
-				5B8A2CFC1AAEE0DA00C8F9DE /* AddressBookViewController.m */,
-			);
-			path = AddressBook;
 			sourceTree = "<group>";
 		};
 		5B8DAE921A7F1EA9003C7E41 /* inc */ = {
@@ -4721,6 +4734,17 @@
 				5B8DAED31A7F1EBD003C7E41 /* libbaidumapapi.a */,
 			);
 			path = "Release-iphonesimulator";
+			sourceTree = "<group>";
+		};
+		5B95ADEC1AB1B33600797EA6 /* AddressBook */ = {
+			isa = PBXGroup;
+			children = (
+				5B95ADED1AB1B35B00797EA6 /* AddressBookViewController.h */,
+				5B95ADEE1AB1B35B00797EA6 /* AddressBookViewController.m */,
+				5B95ADF01AB1B37E00797EA6 /* AddressBookViewCell.h */,
+				5B95ADF11AB1B37E00797EA6 /* AddressBookViewCell.m */,
+			);
+			path = AddressBook;
 			sourceTree = "<group>";
 		};
 		5BAA14D319EE35AC00C7ECD9 /* MD5 */ = {
@@ -5748,6 +5772,7 @@
 				04BC413C19D7E5B3006B5C7B /* icon-star.png in Resources */,
 				D3D5D9AE1A66919B0077C8C9 /* 公司详情图标02.png in Resources */,
 				04BC423419D7E5B3006B5C7B /* 地图搜索_01@2x.png in Resources */,
+				5B95ADD91AB1929B00797EA6 /* 35px加载中@2x.png in Resources */,
 				5BE08DF31A3586EA00495EEB /* 010048@2x.png in Resources */,
 				5BE08EA31A3586EA00495EEB /* 040015@2x.png in Resources */,
 				5BE08E9F1A3586EA00495EEB /* 040013@2x.png in Resources */,
@@ -5768,6 +5793,7 @@
 				5BE08D951A3586EA00495EEB /* 010001@2x.png in Resources */,
 				04BC435619D7E5B3006B5C7B /* 高级搜索-多选_03a.png in Resources */,
 				04BC42B219D7E5B3006B5C7B /* 面部采集_07.png in Resources */,
+				5B95ADEB1AB19F5A00797EA6 /* 分组关闭@2x.png in Resources */,
 				5BE08E951A3586EA00495EEB /* 040008@2x.png in Resources */,
 				5BE08DC01A3586EA00495EEB /* 010023.png in Resources */,
 				5BE08DFD1A3586EA00495EEB /* 010053@2x.png in Resources */,
@@ -5822,10 +5848,10 @@
 				5BE08EA01A3586EA00495EEB /* 040014.png in Resources */,
 				5BEBAC701A79DB6100E29ADA /* 点-copy-3.png in Resources */,
 				5BE08DC11A3586EA00495EEB /* 010023@2x.png in Resources */,
-				5B95ADD31AB1572B00797EA6 /* 分组关闭@2x.png in Resources */,
 				D3D6C7951A15D75D001D2071 /* 公司－公司详情_05d.png in Resources */,
 				04BC42C019D7E5B3006B5C7B /* 项目-首页_18a.png in Resources */,
 				04BC433819D7E5B3006B5C7B /* 项目－项目专题_11a.png in Resources */,
+				5B95ADE91AB19F5A00797EA6 /* 分组打开@2x.png in Resources */,
 				5B45E6201A00AE7800B790FB /* 全部项目_17@2x.png in Resources */,
 				04BC435019D7E5B3006B5C7B /* 项目－高级搜索－2_22a.png in Resources */,
 				5BE08E421A3586EA00495EEB /* 020024.png in Resources */,
@@ -6044,6 +6070,7 @@
 				5BE08E451A3586EA00495EEB /* 020025@2x.png in Resources */,
 				04BC435819D7E5B3006B5C7B /* 高级搜索-多选_03aA.png in Resources */,
 				5BE08E311A3586EA00495EEB /* 020015@2x.png in Resources */,
+				5B95ADDE1AB1981A00797EA6 /* 未选择联系人.png in Resources */,
 				D3D9C91E1A13446B001D3A64 /* 主菜单03a.png in Resources */,
 				5BE08DCF1A3586EA00495EEB /* 010030@2x.png in Resources */,
 				04BC415F19D7E5B3006B5C7B /* 产品－产品详情_12a.png in Resources */,
@@ -6097,7 +6124,6 @@
 				5BE08DDC1A3586EA00495EEB /* 010037.png in Resources */,
 				5B5A24DE1A4189CA0071BD90 /* 密码找回_03z@2x.png in Resources */,
 				5BE08DB71A3586EA00495EEB /* 010018@2x.png in Resources */,
-				5B95ADD21AB1572B00797EA6 /* 分组关闭.png in Resources */,
 				5B112E6E1A63BA9200009CD3 /* 项目地图搜索01.png in Resources */,
 				5B7AA6C81A58D6B0000FBFF2 /* 02@2x.png in Resources */,
 				5BE08E191A3586EA00495EEB /* 020003@2x.png in Resources */,
@@ -6114,6 +6140,7 @@
 				5BE08E861A3586EA00495EEB /* 040001.png in Resources */,
 				5B7AA6EB1A58D93E000FBFF2 /* icon04.png in Resources */,
 				D366E7651A63CE6200D25F76 /* 默认主图@2x.png in Resources */,
+				5B95ADDF1AB1981A00797EA6 /* 未选择联系人@2x.png in Resources */,
 				04BC41E419D7E5B3006B5C7B /* 人脉－引荐信_08a@2x.png in Resources */,
 				5B8A2D011AAEEAD600C8F9DE /* 单人会话.png in Resources */,
 				5BE08DB81A3586EA00495EEB /* 010019.png in Resources */,
@@ -6162,6 +6189,7 @@
 				5B7AA6DC1A58D6E4000FBFF2 /* 筛选中04@2x.png in Resources */,
 				5BE08E841A3586EA00495EEB /* 030027.png in Resources */,
 				04BC413019D7E5B3006B5C7B /* controls_03.png in Resources */,
+				5B95ADE21AB1986100797EA6 /* 已选择联系人.png in Resources */,
 				5BE08DD91A3586EA00495EEB /* 010035@2x.png in Resources */,
 				5BE08D9D1A3586EA00495EEB /* 010005@2x.png in Resources */,
 				5BE08E241A3586EA00495EEB /* 020009.png in Resources */,
@@ -6245,6 +6273,7 @@
 				5BE08DCC1A3586EA00495EEB /* 010029.png in Resources */,
 				5BE08DD51A3586EA00495EEB /* 010033@2x.png in Resources */,
 				5BE08E081A3586EA00495EEB /* 010059.png in Resources */,
+				5B95ADE31AB1986100797EA6 /* 已选择联系人@2x.png in Resources */,
 				5B4C197F19FA515700C6C57D /* 用户条款_02.png in Resources */,
 				D35163EA1A67903F000051F4 /* 人脉_小.png in Resources */,
 				0426BFF519922CE400CD8822 /* InfoPlist.strings in Resources */,
@@ -6284,6 +6313,7 @@
 				D3D74E8619FA2FEC00ED8B62 /* 登录_19@2x.png in Resources */,
 				5BE08E511A3586EA00495EEB /* 030001@2x.png in Resources */,
 				D3D5D9B31A66919B0077C8C9 /* 公司详情图标04@2x.png in Resources */,
+				5B95ADEA1AB19F5A00797EA6 /* 分组关闭.png in Resources */,
 				5BE08DE51A3586EA00495EEB /* 010041@2x.png in Resources */,
 				D35163E11A67903F000051F4 /* 产品－产品详情_03a@2x.png in Resources */,
 				D35163E61A67903F000051F4 /* 人脉_74a2.png in Resources */,
@@ -6342,6 +6372,7 @@
 				04BC419119D7E5B3006B5C7B /* 人脉_59a.png in Resources */,
 				04BC435B19D7E5B3006B5C7B /* 高级搜索-多选_07a@2x.png in Resources */,
 				5BE08E971A3586EA00495EEB /* 040009@2x.png in Resources */,
+				5B95ADDA1AB1929B00797EA6 /* 35px未设置.png in Resources */,
 				04BC433A19D7E5B3006B5C7B /* 项目－项目专题_14a.png in Resources */,
 				04BC412C19D7E5B3006B5C7B /* bg001.png in Resources */,
 				5BE08E791A3586EA00495EEB /* 030021@2x.png in Resources */,
@@ -6369,7 +6400,7 @@
 				04BC40ED19D7E5B3006B5C7B /* +项目-首页_21a@2x.png in Resources */,
 				5BE08E5D1A3586EA00495EEB /* 030007@2x.png in Resources */,
 				5BE08DF41A3586EA00495EEB /* 010049.png in Resources */,
-				5B95ADD01AB1572B00797EA6 /* 分组打开.png in Resources */,
+				5B95ADE81AB19F5A00797EA6 /* 分组打开.png in Resources */,
 				5B3209F91A11CD8900D19279 /* 公司－我的公司_11a.png in Resources */,
 				5BE08E8A1A3586EA00495EEB /* 040003.png in Resources */,
 				04BC427C19D7E5B3006B5C7B /* 注册.png in Resources */,
@@ -6419,6 +6450,7 @@
 				D3E1AAFE1A7648FC00BFC6E1 /* Shape-1@2x.png in Resources */,
 				5BC234461AA81D7400312D9D /* 05.png in Resources */,
 				5BE08DDD1A3586EA00495EEB /* 010037@2x.png in Resources */,
+				5B95ADD81AB1929B00797EA6 /* 35px加载中.png in Resources */,
 				5BE08E5A1A3586EA00495EEB /* 030006.png in Resources */,
 				5BE08E1A1A3586EA00495EEB /* 020004.png in Resources */,
 				5BE08E181A3586EA00495EEB /* 020003.png in Resources */,
@@ -6453,7 +6485,6 @@
 				5BE08E4B1A3586EA00495EEB /* 020028@2x.png in Resources */,
 				D3D9C90A1A1343CF001D3A64 /* 主菜单01b.png in Resources */,
 				5BE08DE11A3586EA00495EEB /* 010039@2x.png in Resources */,
-				5B95ADD11AB1572B00797EA6 /* 分组打开@2x.png in Resources */,
 				04BC420219D7E5B3006B5C7B /* 公司认证员工_03a@2x.png in Resources */,
 				5BE08DBD1A3586EA00495EEB /* 010021@2x.png in Resources */,
 				5BE08E0A1A3586EA00495EEB /* 010060.png in Resources */,
@@ -6480,6 +6511,7 @@
 				5B4C197319FA444800C6C57D /* 注册_07.png in Resources */,
 				5BE08E6F1A3586EA00495EEB /* 030016@2x.png in Resources */,
 				5BC234501AA81D9300312D9D /* 017.png in Resources */,
+				5B95ADDB1AB1929B00797EA6 /* 35px未设置@2x.png in Resources */,
 				5BE08E8E1A3586EA00495EEB /* 040005.png in Resources */,
 				04BC40E319D7E5B3006B5C7B /* +人脉2_03a@2x.png in Resources */,
 				5BE08EB51A3586EA00495EEB /* 040024@2x.png in Resources */,
@@ -6642,6 +6674,7 @@
 				0426C27819922D5A00CD8822 /* GPUImageHighlightShadowFilter.m in Sources */,
 				D3A8713A1A5E7A1600C0B83C /* LoginAgain.m in Sources */,
 				0426C2D619922D5A00CD8822 /* GPUImageVoronoiConsumerFilter.m in Sources */,
+				5B95ADF21AB1B37E00797EA6 /* AddressBookViewCell.m in Sources */,
 				D3CF278A1A008EFF00DDA30D /* ContactBackgroundView.m in Sources */,
 				0426C20A19922D5A00CD8822 /* CompanyViewController.m in Sources */,
 				0426C26C19922D5A00CD8822 /* GPUImageFilterGroup.m in Sources */,
@@ -6791,6 +6824,7 @@
 				0426C24719922D5A00CD8822 /* GPUImageAverageColor.m in Sources */,
 				5BA8EACD1AA5501300996281 /* ActivePublishController.m in Sources */,
 				0426C2C919922D5A00CD8822 /* GPUImageThresholdSketchFilter.m in Sources */,
+				5B95ADEF1AB1B35B00797EA6 /* AddressBookViewController.m in Sources */,
 				0426C27419922D5A00CD8822 /* GPUImageHalftoneFilter.m in Sources */,
 				D3AC61E419B882050015B62F /* ContactCommentModel.m in Sources */,
 				0426C2F319922D5A00CD8822 /* CDataScanner_Extensions.m in Sources */,
@@ -6882,7 +6916,6 @@
 				D3D4FB301A0872770033BB34 /* CompanyCenterViewController.m in Sources */,
 				0426C2EA19922D5A00CD8822 /* FaceppRecognition.m in Sources */,
 				042D9E0E19B559FC00689C5D /* BaiDuMapViewController.m in Sources */,
-				5B8A2CFE1AAEE0DA00C8F9DE /* AddressBookViewController.m in Sources */,
 				D3A4281B19C1A2E700BAB6C7 /* GTMBase64.m in Sources */,
 				5BF31B6B1AB025FD00DA87F5 /* ImageAndLabelView.m in Sources */,
 				0426C26219922D5A00CD8822 /* GPUImageDissolveBlendFilter.m in Sources */,
@@ -6937,7 +6970,6 @@
 				D3AC61AB19B6BF930015B62F /* MyCenterModel.m in Sources */,
 				0426C26F19922D5A00CD8822 /* GPUImageGaussianBlurFilter.m in Sources */,
 				D3AD61AC19AEF80B001FD483 /* MJPopupBackgroundView.m in Sources */,
-				5B8A2CFD1AAEE0DA00C8F9DE /* AddressBookCell.m in Sources */,
 				0426C25619922D5A00CD8822 /* GPUImageColorInvertFilter.m in Sources */,
 				04D10C7719B074C70097C0C6 /* RecommendLetterViewController.m in Sources */,
 				0426C2CF19922D5A00CD8822 /* GPUImageTwoInputFilter.m in Sources */,
