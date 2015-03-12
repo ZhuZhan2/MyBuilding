@@ -8,7 +8,7 @@
 
 #import "ProductCommentView.h"
 #import "EGOImageView.h"
-
+#import "LoginSqlite.h"
 @interface ProductCommentView()
 @property(nonatomic,strong)EGOImageView* userImageView;
 @property(nonatomic,strong)UILabel* userNameLabel;
@@ -17,14 +17,14 @@
 
 @implementation ProductCommentView
 
--(instancetype)initWithCommentImageUrl:(NSString*)userImageUrl userName:(NSString*)userName commentContent:(NSString*)commentContent{
+-(instancetype)initWithCommentImageUrl:(NSString*)userImageUrl userName:(NSString*)userName commentContent:(NSString*)commentContent creatBy:(NSString *)creatBy{
     if ([super init]) {
-        [self loadSelfWithCommentImageUrl:userImageUrl userName:userName commentContent:commentContent];
+        [self loadSelfWithCommentImageUrl:userImageUrl userName:userName commentContent:commentContent creatBy:creatBy];
     }
     return self;
 }
 
--(void)loadSelfWithCommentImageUrl:(NSString*)userImageUrl userName:(NSString*)userName commentContent:(NSString*)commentContent{
+-(void)loadSelfWithCommentImageUrl:(NSString*)userImageUrl userName:(NSString*)userName commentContent:(NSString*)commentContent creatBy:(NSString *)creatBy{
     //获取用户头像
     self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",userImageUrl]];
@@ -38,6 +38,9 @@
     self.userNameLabel.text=userName;
     self.userNameLabel.font=[UIFont systemFontOfSize:16];
     //self.userNameLabel.backgroundColor=[UIColor redColor];
+    if([creatBy isEqualToString:[LoginSqlite getdata:@"userId"]]){
+        self.userNameLabel.textColor = BlueColor;
+    }
     [self addSubview:self.userNameLabel];
     
     //用户评论内容label

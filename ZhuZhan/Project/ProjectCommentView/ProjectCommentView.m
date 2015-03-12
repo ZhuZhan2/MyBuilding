@@ -7,7 +7,7 @@
 //
 
 #import "ProjectCommentView.h"
-
+#import "LoginSqlite.h"
 @implementation ProjectCommentView
 
 - (id)initWithFrame:(CGRect)frame
@@ -56,6 +56,9 @@
     self.userNameLabel.text=commentModel.a_userName;
     self.userNameLabel.font=[UIFont systemFontOfSize:16];
     //self.userNameLabel.backgroundColor=[UIColor redColor];
+    if([commentModel.a_createdBy isEqualToString:[LoginSqlite getdata:@"userId"]]){
+        self.userNameLabel.textColor = BlueColor;
+    }
     [self addSubview:self.userNameLabel];
     
     //用户评论内容label

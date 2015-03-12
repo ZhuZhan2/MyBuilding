@@ -40,10 +40,10 @@
     self.provice = [ProjectStage ProjectStrStage:dict[@"landProvince"]];
     self.city = [ProjectStage ProjectStrStage:dict[@"landCity"]];
     self.district = [ProjectStage ProjectStrStage:dict[@"landDistrict"]];
-    if(![[ProjectStage ProjectStrStage:dict[@"background"]] isEqualToString:@""]){
-        self.personalBackground=[NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"background"]], @"login", @"", @"", @"")];
+    if(![[ProjectStage ProjectStrStage:dict[@"backgroundImageId"]] isEqualToString:@""]){
+        self.personalBackground=[NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"backgroundImageId"]], @"login", @"", @"", @"")];
     }else{
-        self.personalBackground=[ProjectStage ProjectStrStage:dict[@"background"]];
+        self.personalBackground=[ProjectStage ProjectStrStage:dict[@"backgroundImageId"]];
     }
     self.industry = [ProjectStage ProjectStrStage:dict[@"industry"]];
 }

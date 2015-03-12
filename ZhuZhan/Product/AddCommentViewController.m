@@ -19,7 +19,7 @@
 @end
 
 @implementation AddCommentViewController
-#define kCommentLimitNumber 100
+#define kCommentLimitNumber 300
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -35,7 +35,7 @@
     [self.view addSubview:separatorLine];
     
     self.countLabel=[[UILabel alloc]initWithFrame:CGRectMake(5, self.view.frame.size.height-30, 60, 20)];
-    self.countLabel.text=@"0/100";
+    self.countLabel.text=@"0/300";
     self.countLabel.font=[UIFont systemFontOfSize:16];
     self.countLabel.textAlignment=NSTextAlignmentRight;
     self.countLabel.textColor=RGBCOLOR(155, 155, 155);
@@ -70,10 +70,10 @@
         [textView resignFirstResponder];
         return NO;
     }
-    self.countLabel.text=[NSString stringWithFormat:@"%lu/100",(unsigned long)textView.text.length];
-    if (range.length == 0 && textView.text.length >= kCommentLimitNumber) {
-        return NO;
-    }
+    self.countLabel.text=[NSString stringWithFormat:@"%lu/300",(unsigned long)textView.text.length];
+//    if (range.length == 0 && textView.text.length >= kCommentLimitNumber) {
+//        return NO;
+//    }
     return YES;
 }
 
@@ -103,7 +103,7 @@
     
     //该判断用于联想输入
 //    if (textView.text.length<=100) {
-        self.countLabel.text=[NSString stringWithFormat:@"%lu/100",(unsigned long)textView.text.length];
+        self.countLabel.text=[NSString stringWithFormat:@"%lu/300",(unsigned long)textView.text.length];
         //self.aboveMaxLabel.text=nil;
 //    }else{
 //        self.countLabel.text=@"100/100";
