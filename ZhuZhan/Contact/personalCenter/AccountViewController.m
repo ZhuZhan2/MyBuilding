@@ -325,7 +325,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
     }else if([model.sex isEqualToString:@"女"]){
         [parameter setValue:@"01" forKey:@"sex"];
     }
-    [parameter setValue:model.constellation forKey:@"constellation"];
+    [parameter setValue:model.constellation forKey:@"constel"];
     [parameter setValue:model.birthday forKey:@"birthday"];
     [parameter setValue:model.bloodType forKey:@"bloodType"];
     [parameter setValue:model.provice forKey:@"landProvince"];
