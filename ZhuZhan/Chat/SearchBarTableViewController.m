@@ -8,6 +8,10 @@
 
 #import "SearchBarTableViewController.h"
 
+@interface SearchBarTableViewController ()<UITableViewDataSource,UITableViewDelegate>
+@property(nonatomic,strong)UITableView* tableView;
+@end
+
 @implementation SearchBarTableViewController
 -(void)viewDidLoad{
     [super viewDidLoad];
@@ -17,7 +21,13 @@
 -(void)reloadSearchBarTableViewData{
     [self.tableView reloadData];
 }
-
+-(void)initTableView{
+    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
+    self.tableView.dataSource=self;
+    self.tableView.delegate=self;
+    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.tableView];
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([self.delegate respondsToSelector:@selector(searchBarTableView:heightForRowAtIndexPath:)]) {
         return [self.delegate searchBarTableView:tableView heightForRowAtIndexPath:indexPath];
@@ -46,7 +56,7 @@
     if ([self.delegate searchBarTableView:tableView cellForRowAtIndexPath:indexPath]) {
         return [self.delegate searchBarTableView:tableView cellForRowAtIndexPath:indexPath];
     }else{
-        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+        return nil;
     }
 }
 @end

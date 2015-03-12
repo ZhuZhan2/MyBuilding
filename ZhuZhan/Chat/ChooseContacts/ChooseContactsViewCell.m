@@ -20,6 +20,7 @@
 @end
 
 #define mainLabelFont [UIFont systemFontOfSize:16]
+#define seperatorLineColor RGBCOLOR(229, 229, 229)
 
 @implementation ChooseContactsViewCell
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier delegate:(id<ChooseContactsViewCellDelegate>)delegate{
@@ -63,11 +64,20 @@
 }
 
 -(void)setUp{
-    self.selectionStyle=UITableViewCellSelectionStyleNone;
     [self.contentView addSubview:self.mainImageView];
     [self.contentView addSubview:self.mainLabel];
     [self.contentView addSubview:self.assistBtn];
     [self.contentView addSubview:self.seperatorLine];
+}
+
+-(void)setUpSelectedBackView{
+    CGFloat lineHeight=CGRectGetHeight(self.seperatorLine.frame);
+    CGRect frame=self.bounds;
+    frame.origin.y-=lineHeight;
+    frame.size.height+=lineHeight;
+    UIView* selectedBackView=[[UIView alloc]initWithFrame:frame];
+    selectedBackView.backgroundColor=seperatorLineColor;
+    self.selectedBackgroundView=selectedBackView;
 }
 
 -(void)setModel:(ChooseContactsCellModel *)model indexPath:(NSIndexPath*)indexPath{
@@ -79,6 +89,7 @@
 }
 
 -(void)layoutSubviews{
+    [self setUpSelectedBackView];
     self.mainImageView.center=CGPointMake(30, CGRectGetHeight(self.frame)*0.5);
     self.mainLabel.frame=CGRectMake(60, 15, CGRectGetWidth(self.mainLabel.frame), CGRectGetHeight(self.mainLabel.frame));
     self.assistBtn.center=CGPointMake(290, 25);
@@ -90,6 +101,12 @@
         [self.delegate chooseAssistBtn:self.assistBtn indexPath:self
          .indexPath];
     }
+}
+
++(UIView *)fullSeperatorLine{
+    UIView* seperatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 1)];
+    seperatorLine.backgroundColor=seperatorLineColor;
+    return seperatorLine;
 }
 @end
 

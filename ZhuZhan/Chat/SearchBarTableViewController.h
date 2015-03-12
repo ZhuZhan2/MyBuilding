@@ -8,6 +8,7 @@
 
 #import "ChatBaseViewController.h"
 
-@interface SearchBarTableViewController : ChatBaseViewController
+@interface SearchBarTableViewController : UIViewController
 @property(nonatomic,weak)id<SearchBarTableViewDelegate>delegate;
+-(void)reloadSearchBarTableViewData;
 @end
