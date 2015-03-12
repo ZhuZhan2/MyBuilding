@@ -356,17 +356,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             contentTextView.text=text;
         }
         
-        BOOL imageUrlExist=YES;
         //给一个比较大的高度，宽度不变
-        CGSize size =CGSizeMake(imageUrlExist?290:250,CGFLOAT_MAX);
+        CGSize size =CGSizeMake(290,CGFLOAT_MAX);
         // 获取当前文本的属性
         NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:tfont,NSFontAttributeName,nil];
         //ios7方法，获取文本需要的size，限制宽度
         CGSize actualsize =[text boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin |NSStringDrawingUsesFontLeading attributes:tdic context:nil].size;
-        contentTextView.frame =CGRectMake(imageUrlExist?10:60,5, actualsize.width, actualsize.height);
+        contentTextView.frame =CGRectMake(10,5, actualsize.width, actualsize.height);
         
-        contentTotalView=[[UIView alloc]initWithFrame:CGRectMake(0, height, 310, imageView?contentTextView.frame.size.height+20:contentTextView.frame.size.height+20+40)];
-        contentTotalView.backgroundColor=[UIColor whiteColor];
+        contentTotalView=[[UIView alloc]initWithFrame:CGRectMake(0, height, 310, imageView?contentTextView.frame.size.height+20-17:contentTextView.frame.size.height+20+40-5)];
         [contentTotalView addSubview:contentTextView];
         [forCornerView addSubview:contentTotalView];
         height+=contentTotalView.frame.size.height;
@@ -411,6 +409,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [btn addTarget:self action:@selector(chooseUserImage:) forControlEvents:UIControlEventTouchUpInside];
     [forCornerView addSubview:btn];
     
+    height+=5;
     UILabel* noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, height, 100, 20)];
     noticeLabel.text=[NSString stringWithFormat:@"%@ 关注",self.productModel.a_focusedNum];
     noticeLabel.textColor=RGBCOLOR(141, 196, 62);
@@ -423,11 +422,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     //调节有图无文字时候的下方留白高度
     BOOL isHasImageNoContent=[self.content isEqualToString:@""]&&![self.imageUrl isEqualToString:@""];
-    if (isHasImageNoContent) {
+    if (isHasImageNoContent||YES) {
         CGRect frame=productNameArea.frame;
-        frame.size.height+=10;
+        frame.size.height+=8;
         productNameArea.frame=frame;
-        height+=10;
+        height+=8;
     }
     
     //设置总的view的frame
