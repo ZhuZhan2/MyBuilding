@@ -215,4 +215,24 @@
 -(void)backBtnClicked{
     [self searchBarCancelButtonClicked:self.searchBar];
 }
+
+-(NSMutableArray *)sectionSelectedArray{
+    if (!_sectionSelectedArray) {
+        _sectionSelectedArray=[NSMutableArray array];
+    }
+    return _sectionSelectedArray;
+}
+
+-(BOOL)sectionSelectedArrayContainsSection:(NSInteger)section{
+    NSString* sectionStr=[NSString stringWithFormat:@"%d",(int)section];
+    return  [self.sectionSelectedArray containsObject:sectionStr];
+}
+
+-(BOOL)sectionViewClickedWithSection:(NSInteger)section{
+    NSString* sectionStr=[NSString stringWithFormat:@"%d",(int)section];
+    BOOL isContainsSection=[self.sectionSelectedArray containsObject:sectionStr];
+    SEL action=isContainsSection?@selector(removeObject:):@selector(addObject:);
+    [self.sectionSelectedArray performSelector:action withObject:sectionStr];
+    return isContainsSection;
+}
 @end

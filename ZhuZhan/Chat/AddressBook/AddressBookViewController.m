@@ -9,27 +9,32 @@
 #import "AddressBookViewController.h"
 #import "AddressBookViewCell.h"
 #import "SearchBarCell.h"
+#import "AddressBookApi.h"
+
 @interface AddressBookViewController()<AddressBookViewCellDelegate>
-@property(nonatomic,strong)NSMutableArray* array;
 @end
 
 @implementation AddressBookViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.array=[NSMutableArray array];
     [self initNavi];
     [self setUpSearchBarWithNeedTableView:YES];
     [self initTableView];
 }
 
--(void)initTableView{
-    [super initTableView];
+-(void)firstNetWork{
+    [AddressBookApi GetAddressBookListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self.tableView reloadData];
+        }
+    } noNetWork:nil];
 }
 
 -(void)initNavi{
     self.title=@"通讯录";
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
-    [self setRightBtnWithText:@"发起"];
+    [self setRightBtnWithImage:[GetImagePath getImagePath:@"Rectangle-3-copy"]];
+    self.needAnimaiton=YES;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -41,7 +46,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.array containsObject:[NSString stringWithFormat:@"%d",(int)section]]?0:6;
+    return [self sectionSelectedArrayContainsSection:section]?0:6;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -49,7 +54,7 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    BOOL isShow=![self.array containsObject:[NSString stringWithFormat:@"%d",(int)section]];
+    BOOL isShow=![self sectionSelectedArrayContainsSection:section];
     CGFloat sectionHeight=30;
     UIButton* view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, sectionHeight)];
     view.backgroundColor=[UIColor whiteColor];
@@ -89,13 +94,9 @@
 }
 
 -(void)sectionDidSelectWithBtn:(UIButton*)btn{
-    NSString* sectionStr=[NSString stringWithFormat:@"%d",(int)btn.tag];
-    if ([self.array containsObject:sectionStr]) {
-        [self.array removeObject:sectionStr];
-    }else{
-        [self.array addObject:sectionStr];
-    }
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:btn.tag] withRowAnimation:UITableViewRowAnimationFade];
+    NSInteger section=btn.tag;
+    [self sectionViewClickedWithSection:section];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
