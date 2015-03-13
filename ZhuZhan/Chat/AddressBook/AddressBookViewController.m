@@ -10,7 +10,7 @@
 #import "AddressBookViewCell.h"
 #import "SearchBarCell.h"
 #import "AddressBookApi.h"
-
+#import "AddressBookFriendViewController.h"
 @interface AddressBookViewController()<AddressBookViewCellDelegate>
 @end
 
@@ -35,6 +35,11 @@
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
     [self setRightBtnWithImage:[GetImagePath getImagePath:@"Rectangle-3-copy"]];
     self.needAnimaiton=YES;
+}
+
+-(void)rightBtnClicked{
+    AddressBookFriendViewController* vc=[[AddressBookFriendViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
