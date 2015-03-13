@@ -25,7 +25,7 @@
     self.sex = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"sexCn"]]];
     self.birthday = [ProjectStage ProjectTimeStage:[_dict objectForKey:@"birthday"]];
     self.constellation = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"constel"]]];
-    self.bloodType = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"bloodType"]]];
+    self.bloodType = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"bloodTypeCn"]]];
     self.email = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"email"]]];
     self.cellPhone = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"cellphone"]]];
     self.companyName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"workHistory"][@"companyName"]]];

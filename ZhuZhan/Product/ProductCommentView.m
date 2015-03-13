@@ -44,8 +44,8 @@
     [self addSubview:self.userNameLabel];
     
     //用户评论内容label
-    CGRect bounds=[commentContent boundingRectWithSize:CGSizeMake(213, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
-    self.userCommentContent=[[UILabel alloc]initWithFrame:CGRectMake(70, 33, 213, bounds.size.height)];
+    CGRect bounds=[commentContent boundingRectWithSize:CGSizeMake(198, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
+    self.userCommentContent=[[UILabel alloc]initWithFrame:CGRectMake(70, 33, 198, bounds.size.height)];
     self.userCommentContent.numberOfLines=0;
     self.userCommentContent.font=[UIFont systemFontOfSize:14];
     self.userCommentContent.text=commentContent;

@@ -29,6 +29,6 @@
     self.a_companyLocation = [ProjectStage ProjectStrStage:dict[@"address"]];
     self.a_companyProvince = [ProjectStage ProjectStrStage:dict[@"companyProvince"]];
     self.a_companyCity = [ProjectStage ProjectStrStage:dict[@"companyCity"]];
-    self.a_reviewStatus = [ProjectStage ProjectStrStage:dict[@"state"]];
+    self.a_reviewStatus = [ProjectStage ProjectStrStage:dict[@"reviewStatus"]];
 }
 @end

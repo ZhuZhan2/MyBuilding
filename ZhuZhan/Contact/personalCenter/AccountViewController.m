@@ -327,7 +327,17 @@ static int count =0;//记录生日textField 的时间被触发的次数
     }
     [parameter setValue:model.constellation forKey:@"constel"];
     [parameter setValue:model.birthday forKey:@"birthday"];
-    [parameter setValue:model.bloodType forKey:@"bloodType"];
+    if([model.bloodType isEqualToString:@"A型"]){
+        [parameter setValue:@"01" forKey:@"bloodType"];
+    }else if ([model.bloodType isEqualToString:@"B型"]){
+        [parameter setValue:@"02" forKey:@"bloodType"];
+    }else if ([model.bloodType isEqualToString:@"AB型"]){
+        [parameter setValue:@"03" forKey:@"bloodType"];
+    }else if ([model.bloodType isEqualToString:@"O型"]){
+        [parameter setValue:@"04" forKey:@"bloodType"];
+    }else{
+        [parameter setValue:@"05" forKey:@"bloodType"];
+    }
     [parameter setValue:model.provice forKey:@"landProvince"];
     [parameter setValue:model.city forKey:@"landCity"];
     [parameter setValue:model.district forKey:@"landDistrict"];
