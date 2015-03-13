@@ -50,7 +50,6 @@
     
 }
 
-
 -(void)setLeftBtnWithImage:(UIImage*)image{
     if (!_leftBtn) {
         _leftBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
@@ -61,7 +60,6 @@
         [_leftBtn setBackgroundImage:image forState:UIControlStateNormal];
     }
 }
-
 
 -(void)setLeftBtnWithText:(NSString*)text{
     if (!_leftBtn) {
@@ -84,7 +82,7 @@
 }
 
 -(void)initTableView{
-    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, self.searchBar?self.searchBar.frame.size.height+64:0, kScreenWidth, kScreenHeight-(self.searchBar?self.searchBar.frame.size.height:0)) style:UITableViewStylePlain];
+    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, self.searchBar?self.searchBar.frame.size.height+64:0, kScreenWidth, kScreenHeight-(self.searchBar?self.searchBar.frame.size.height+64:0)) style:UITableViewStylePlain];
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
@@ -106,22 +104,6 @@
 -(void)setUpSearchBarTableView{
     self.searchBarTableViewController=[[SearchBarTableViewController alloc]init];
     self.searchBarTableViewController.delegate=self;
-}
-
--(void)reloadSearchBarTableViewData{
-    [self.searchBarTableViewController reloadSearchBarTableViewData];
-}
-
--(void)searchBarTableViewAppear{
-    //CGPoint point=self.searchBarTableViewController.view.center;
-    //point.y+=(64+CGRectGetHeight(self.searchBar.frame));
-    self.searchBarTableViewController.view.transform=CGAffineTransformMakeTranslation(0, 64+self.searchBar.frame.size.height);
-    //self.searchBarTableViewController.view.center=point;
-    [self.view addSubview:self.searchBarTableViewController.view];
-}
-
--(void)searchBarTableViewDisppear{
-    [self.searchBarTableViewController.view removeFromSuperview];
 }
 
 - (UIImage *)imageWithColor:(UIColor *)color{
@@ -159,9 +141,20 @@
     [homeVC homePageTabBarHide];
 }
 
-#pragma 搜索框tableViewxi
+//搜索框tableView
+-(void)reloadSearchBarTableViewData{
+    [self.searchBarTableViewController reloadSearchBarTableViewData];
+}
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    [self appearAnimation:searchBar];
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    [self disappearAnimation:searchBar];
+}
+
+-(void)appearAnimation:(UISearchBar *)searchBar{
     self.searchBar.showsCancelButton=YES;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 65)];
@@ -183,12 +176,7 @@
     }];
 }
 
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    [self searchBarTableViewAppear];
-}
-
-
--(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+-(void)disappearAnimation:(UISearchBar *)searchBar{
     searchBar.text=@"";
     self.searchBar.showsCancelButton=NO;
     self.navigationController.navigationBar.barTintColor=RGBCOLOR(85, 103, 166);
@@ -206,7 +194,45 @@
     }];
 }
 
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    if (!self.searchBarTableViewController.view.superview) {
+        [self searchBarTableViewAppear];
+    }
+}
+
+-(void)searchBarTableViewAppear{
+    //CGPoint point=self.searchBarTableViewController.view.center;
+    //point.y+=(64+CGRectGetHeight(self.searchBar.frame));
+    self.searchBarTableViewController.view.transform=CGAffineTransformMakeTranslation(0, 64+self.searchBar.frame.size.height);
+    //self.searchBarTableViewController.view.center=point;
+    [self.view addSubview:self.searchBarTableViewController.view];
+}
+
+-(void)searchBarTableViewDisppear{
+    [self.searchBarTableViewController.view removeFromSuperview];
+}
+
 -(void)backBtnClicked{
     [self searchBarCancelButtonClicked:self.searchBar];
+}
+
+-(NSMutableArray *)sectionSelectedArray{
+    if (!_sectionSelectedArray) {
+        _sectionSelectedArray=[NSMutableArray array];
+    }
+    return _sectionSelectedArray;
+}
+
+-(BOOL)sectionSelectedArrayContainsSection:(NSInteger)section{
+    NSString* sectionStr=[NSString stringWithFormat:@"%d",(int)section];
+    return  [self.sectionSelectedArray containsObject:sectionStr];
+}
+
+-(BOOL)sectionViewClickedWithSection:(NSInteger)section{
+    NSString* sectionStr=[NSString stringWithFormat:@"%d",(int)section];
+    BOOL isContainsSection=[self.sectionSelectedArray containsObject:sectionStr];
+    SEL action=isContainsSection?@selector(removeObject:):@selector(addObject:);
+    [self.sectionSelectedArray performSelector:action withObject:sectionStr];
+    return isContainsSection;
 }
 @end

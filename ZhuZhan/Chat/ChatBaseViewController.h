@@ -16,27 +16,24 @@
 @end
 
 @interface ChatBaseViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,SearchBarTableViewDelegate>
--(void)setRightBtnWithImage:(UIImage*)image;
--(void)rightBtnClicked;
--(void)setLeftBtnWithImage:(UIImage*)image;
--(void)leftBtnClicked;
-
--(void)setRightBtnWithText:(NSString*)text;
--(void)setLeftBtnWithText:(NSString*)text;
-
-@property(nonatomic)BOOL leftBtnIsBack;
-@property(nonatomic,strong)UITableView* tableView;
-@property(nonatomic,strong)UISearchBar* searchBar;
-
-@property(nonatomic)BOOL isUsingSearchBar;
 @property(nonatomic)BOOL needAnimaiton;
 
+@property(nonatomic)BOOL leftBtnIsBack;
+-(void)setLeftBtnWithImage:(UIImage*)image;
+-(void)setLeftBtnWithText:(NSString*)text;
+-(void)leftBtnClicked;
+
+-(void)setRightBtnWithImage:(UIImage*)image;
+-(void)setRightBtnWithText:(NSString*)text;
+-(void)rightBtnClicked;
+
+@property(nonatomic,strong)UITableView* tableView;
 -(void)initTableView;
 
+@property(nonatomic,strong)UISearchBar* searchBar;
 -(void)setUpSearchBarWithNeedTableView:(BOOL)needTableView;
 
--(void)reloadSearchBarTableViewData;
-
--(void)searchBarTableViewAppear;
--(void)searchBarTableViewDisppear;
+@property(nonatomic,strong)NSMutableArray* sectionSelectedArray;
+-(BOOL)sectionSelectedArrayContainsSection:(NSInteger)section;
+-(BOOL)sectionViewClickedWithSection:(NSInteger)section;
 @end

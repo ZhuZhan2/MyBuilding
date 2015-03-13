@@ -106,9 +106,7 @@
     self.userImageView.center=CGPointMake((self.model.isSelf?kScreenWidth-userImageDistanceFromSide:userImageDistanceFromSide), 8+self.userImageView.frame.size.height*0.5);
 
     self.nameLabel.alpha=!self.model.isSelf;
-    if (self.nameLabel.alpha) {
-        self.nameLabel.frame=CGRectMake(57, 8, 250, 15);
-    }
+    self.nameLabel.frame=self.nameLabel.alpha?CGRectMake(57, 8, 250, 15):CGRectZero;
     
     CGFloat chatMaxWidth=self.chatContentView.maxWidth;
     CGFloat chatSideDistance=(kScreenWidth-chatMaxWidth)*0.5;

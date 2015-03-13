@@ -10,13 +10,11 @@
 #import "ChooseContactsViewCell.h"
 #import "SearchBarCell.h"
 @interface ChooseContactsViewController()<ChooseContactsViewCellDelegate>
-@property(nonatomic,strong)NSMutableArray* array;
 @end
 
 @implementation ChooseContactsViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.array=[NSMutableArray array];
     [self initNavi];
     [self setUpSearchBarWithNeedTableView:YES];
     [self initTableView];
@@ -41,28 +39,47 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.array containsObject:[NSString stringWithFormat:@"%d",(int)section]]?0:6;
+    return [self sectionSelectedArrayContainsSection:section]?0:6;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 25;
+    return 30;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    BOOL isShow=![self.array containsObject:[NSString stringWithFormat:@"%d",(int)section]];
-    UIButton* view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 25)];
+    BOOL isShow=![self sectionSelectedArrayContainsSection:section];
+    CGFloat sectionHeight=30;
+    UIButton* view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, sectionHeight)];
+    view.backgroundColor=[UIColor whiteColor];
     
-    UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(20, 0, 100, 25)];
-    label.text=@[@"A",@"B",@"C"][section];
+    NSString* text=@[@"家庭",@"单位同事",@"高中同学"][section];
+    UIFont* textFont=[UIFont systemFontOfSize:14];
+    CGFloat labelWidth=[text boundingRectWithSize:CGSizeMake(9999, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:textFont} context:nil].size.width;
+    UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(11, 0, labelWidth, sectionHeight)];
+    label.text=text;
+    label.textColor=GrayColor;
+    label.font=[UIFont systemFontOfSize:14];
     [view addSubview:label];
     
-    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(40, 4, 16, 16)];
+    CGFloat imageViewOrginX=CGRectGetWidth(label.frame)+CGRectGetMinX(label.frame)+5;
+    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(imageViewOrginX, 11, 8, 8)];
     imageView.image=[GetImagePath getImagePath:isShow?@"分组打开":@"分组关闭"];
     [view addSubview:imageView];
     
-    UIView* seperatorLine=[ChooseContactsViewCell fullSeperatorLine];
-    seperatorLine.center=CGPointMake(view.center.x, CGRectGetHeight(view.frame)-CGRectGetHeight(seperatorLine.frame)*0.5);
-    [view addSubview:seperatorLine];
+    CGFloat numberLabelWidth=100;
+    UILabel* numberLabel=[[UILabel alloc]initWithFrame:CGRectMake(kScreenWidth-13-numberLabelWidth, 0, numberLabelWidth, sectionHeight)];
+    numberLabel.text=@"6";
+    numberLabel.textAlignment=NSTextAlignmentRight;
+    numberLabel.textColor=isShow?[UIColor redColor]:GrayColor;
+    numberLabel.font=[UIFont systemFontOfSize:13];
+    [view addSubview:numberLabel];
+    
+    UIView* seperatorLine0=[ChooseContactsViewCell fullSeperatorLine];
+    seperatorLine0.center=CGPointMake(view.center.x, 0);
+    [view addSubview:seperatorLine0];
+    UIView* seperatorLine1=[ChooseContactsViewCell fullSeperatorLine];
+    seperatorLine1.center=CGPointMake(view.center.x, CGRectGetHeight(view.frame));
+    [view addSubview:seperatorLine1];
     
     [view addTarget:self action:@selector(sectionDidSelectWithBtn:) forControlEvents:UIControlEventTouchUpInside];
     view.tag=section;
@@ -70,13 +87,9 @@
 }
 
 -(void)sectionDidSelectWithBtn:(UIButton*)btn{
-    NSString* sectionStr=[NSString stringWithFormat:@"%d",(int)btn.tag];
-    if ([self.array containsObject:sectionStr]) {
-        [self.array removeObject:sectionStr];
-    }else{
-        [self.array addObject:sectionStr];
-    }
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:btn.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
+    NSInteger section=btn.tag;
+    [self sectionViewClickedWithSection:section];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -86,7 +99,7 @@
     }
     ChooseContactsCellModel* model=[[ChooseContactsCellModel alloc]init];
     model.mainLabelText=@"用户名显示";
-    model.isHighlight=NO;
+    model.isHighlight=arc4random()%2;
     [cell setModel:model indexPath:indexPath];
     
     return cell;
@@ -104,6 +117,10 @@
     return 45;
 }
 
+-(NSInteger)searchBarTableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 6;
+}
+
 -(UITableViewCell *)searchBarTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SearchBarCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
@@ -115,5 +132,4 @@
     [cell setModel:model];
     return cell;
 }
-
 @end
