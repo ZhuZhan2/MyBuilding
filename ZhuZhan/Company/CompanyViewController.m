@@ -139,7 +139,7 @@
 
 -(void)initMyScrollViewAndNavi{
     //myScrollView初始化
-    self.myScrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 568-49)];
+    self.myScrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, kScreenHeight-49)];
     self.myScrollView.showsVerticalScrollIndicator=NO;
     [self.view addSubview:self.myScrollView];
     

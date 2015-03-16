@@ -21,6 +21,7 @@
         return nil;
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/comment/listComment?paramId=%@&commentType=%@",entityId,entityType];
+    NSLog(@"===>%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
@@ -108,7 +109,7 @@
  4. PictureStrings:图片内容，base64 无头
  5. Type:类型，Personal or Project
  */
-+ (NSURLSessionDataTask *)SendActivesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork
++ (NSURLSessionDataTask *)SendActivesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic imgData:(NSData *)imgData noNetWork:(void(^)())noNetWork
 {
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
@@ -116,23 +117,23 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/ActiveCenter/SendActives"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/dynamicInfo/addDynamicInfo"];
     NSLog(@"%@",dic);
-    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
-            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON];
+    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        if(imgData !=nil){
+            [formData appendPartWithFileData:imgData name:@"dynamicImageString" fileName:@"active.jpg" mimeType:@"image/jpg"];
+        }
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"responseObject ==> %@",responseObject);
+        if([[NSString stringWithFormat:@"%@",responseObject[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             if (block) {
-                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+                block([NSMutableArray arrayWithObjects:responseObject[@"status"][@"statusCode"], nil], nil);
             }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
-    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {
             block([NSMutableArray array], error);

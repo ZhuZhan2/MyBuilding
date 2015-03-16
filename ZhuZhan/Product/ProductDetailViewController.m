@@ -153,7 +153,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self initNavi];
 
     [self initMyTableView];
-    self.loadingView=[LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view];
+    self.loadingView=[LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view];
 
     //因为动态详情进来的产品model.content是评论而不是产品描述内容，所以先不出mainView，加载后会更新
     //暂时先取消，因为网络请求后会再次加载的，如果出现BUG，再次重新打开查看是否还存在BUG
@@ -180,7 +180,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [self getNetWorkData];
             }
         } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID noNetWork:^{
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
                 [self firstNetWork];
             }];
         }];
@@ -194,53 +194,66 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 //获取网络数据
 -(void)getNetWorkData{
-    //产品详情的评论 或者个人中心的产品详情
-    if (self.productModel||(self.personalModel&&[self.category isEqualToString:@"Product"])) {
-        [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
-            [self removeMyLoadingView];
-            if (!error) {
-                self.commentModels=posts;
-                [self getTableViewContents];
-                [self myTableViewReloadData];
-            }
-        } entityId:self.entityID entityType:@"01" noNetWork:^{
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
-                [self getNetWorkData];
-            }];
+    NSLog(@"%@",self.type);
+    [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [self removeMyLoadingView];
+        if (!error) {
+            self.commentModels=posts;
+            [self getTableViewContents];
+            [self myTableViewReloadData];
+        }
+    } entityId:self.entityID entityType:self.type noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+            [self getNetWorkData];
         }];
-        
-    //动态详情的评论 或者个人中心的个人动态
-    }else if (self.activesModel||(self.personalModel||!([self.category isEqualToString:@"Product"]))){
-        [CommentApi CommentUrlWithBlock:^(NSMutableArray *posts, NSError *error) {
-            [self removeMyLoadingView];
-            if (!error) {
-                if(posts.count !=0){
-                    self.activesModel=posts[0];
-
-                    if (!self.commentModels) self.commentModels=[[NSMutableArray alloc]init];
-                    for (int i=0; i<self.activesModel.a_commentsArr.count; i++) {
-                        //因为数组被处理过，当评论超过3条时会有一个字符串的元素，所以需要排除
-                        if ([self.activesModel.a_commentsArr[i] isKindOfClass:[ContactCommentModel class]] ) {
-                            [self.commentModels addObject:self.activesModel.a_commentsArr[i]];
-                        }
-                    }
-                    if (self.activesModel&&[self.category isEqualToString:@"Product"]) {
-                        self.content=self.activesModel.a_content;
-                        self.imageUrl=self.activesModel.a_imageUrl;
-                        self.imageWidth=self.activesModel.a_imageWidth;
-                        self.imageHeight=self.activesModel.a_imageHeight;
-                        self.userName=self.activesModel.a_userName;
-                    }
-                    [self getTableViewContents];
-                    [self myTableViewReloadData];
-                }
-            }
-        } url:self.entityUrl noNetWork:^{
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
-                [self getNetWorkData];
-            }];
-        }];
-    }
+    }];
+//    //产品详情的评论 或者个人中心的产品详情
+//    if (self.productModel||(self.personalModel&&[self.category isEqualToString:@"Product"])) {
+//        [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+//            [self removeMyLoadingView];
+//            if (!error) {
+//                self.commentModels=posts;
+//                [self getTableViewContents];
+//                [self myTableViewReloadData];
+//            }
+//        } entityId:self.entityID entityType:@"01" noNetWork:^{
+//            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+//                [self getNetWorkData];
+//            }];
+//        }];
+//        
+//    //动态详情的评论 或者个人中心的个人动态
+//    }else if (self.activesModel||(self.personalModel||!([self.category isEqualToString:@"Product"]))){
+//        [CommentApi CommentUrlWithBlock:^(NSMutableArray *posts, NSError *error) {
+//            [self removeMyLoadingView];
+//            if (!error) {
+//                if(posts.count !=0){
+//                    self.activesModel=posts[0];
+//
+//                    if (!self.commentModels) self.commentModels=[[NSMutableArray alloc]init];
+//                    for (int i=0; i<self.activesModel.a_commentsArr.count; i++) {
+//                        //因为数组被处理过，当评论超过3条时会有一个字符串的元素，所以需要排除
+//                        if ([self.activesModel.a_commentsArr[i] isKindOfClass:[ContactCommentModel class]] ) {
+//                            [self.commentModels addObject:self.activesModel.a_commentsArr[i]];
+//                        }
+//                    }
+//                    if (self.activesModel&&[self.category isEqualToString:@"Product"]) {
+//                        self.content=self.activesModel.a_content;
+//                        self.imageUrl=self.activesModel.a_imageUrl;
+//                        self.imageWidth=self.activesModel.a_imageWidth;
+//                        self.imageHeight=self.activesModel.a_imageHeight;
+//                        self.userName=self.activesModel.a_userName;
+//                    }
+//                    [self getTableViewContents];
+//                    [self myTableViewReloadData];
+//                }
+//            }
+//        } url:self.entityUrl noNetWork:^{
+//            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+//                [self getNetWorkData];
+//            }];
+//        }];
+//    }
 }
 
 //获得上方主要显示的图文内容
@@ -649,10 +662,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if(!error){
             [self finishAddComment:comment aid:@""];
             if ([self.delegate respondsToSelector:@selector(finishAddCommentFromDetailWithPosts:)]) {
-                [self.delegate finishAddCommentFromDetailWithPosts:posts];
+                //[self.delegate finishAddCommentFromDetailWithPosts:posts];
             }
         }
-    } dic:[@{@"paramId":self.entityID,@"content":comment,@"commentType":self.category} mutableCopy] noNetWork:nil];
+    } dic:[@{@"paramId":self.entityID,@"content":comment,@"commentType":self.type} mutableCopy] noNetWork:nil];
 }
 
 //添加产品详情的评论
@@ -802,7 +815,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //=============================================================
 //=============================================================
 -(void)initMyTableView{
-    self.tableView=[[MyTableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
+    self.tableView=[[MyTableView alloc]initWithFrame:CGRectMake(0, 0, 320, kScreenHeight) style:UITableViewStylePlain];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;

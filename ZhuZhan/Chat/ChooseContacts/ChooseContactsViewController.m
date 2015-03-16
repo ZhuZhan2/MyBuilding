@@ -117,10 +117,6 @@
     return 45;
 }
 
--(NSInteger)searchBarTableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
-}
-
 -(UITableViewCell *)searchBarTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SearchBarCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {

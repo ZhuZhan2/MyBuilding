@@ -37,7 +37,7 @@
 }
 
 -(void)loadIndicatorView{
-    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64.5, 320, 568) superView:self.view];
+    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64.5, 320, kScreenHeight) superView:self.view];
 }
 
 -(void)endIndicatorView{
@@ -109,7 +109,7 @@
         }
     } startIndex:0 keyWords:self.keyWords noNetWork:^{
         [self endIndicatorView];
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-49-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-49-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];
@@ -117,7 +117,7 @@
 
 -(void)addNoProductView{
     if(self.noProductView == nil){
-        self.noProductView = [[NoProductView alloc] initWithFrame:CGRectMake(0, 64+self.searchBar.frame.size.height, 320, 568-49-64-self.searchBar.frame.size.height)];
+        self.noProductView = [[NoProductView alloc] initWithFrame:CGRectMake(0, 64+self.searchBar.frame.size.height, 320, kScreenHeight-49-64-self.searchBar.frame.size.height)];
         [self.view addSubview:self.noProductView];
     }
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
@@ -127,7 +127,7 @@
 }
 
 -(void)loadQtmquitView{
-    qtmquitView = [[TMQuiltView alloc] initWithFrame:CGRectMake(0, 64+43, 320, 568-49-43-64)];
+    qtmquitView = [[TMQuiltView alloc] initWithFrame:CGRectMake(0, 64+43, 320, kScreenHeight-49-43-64)];
 	qtmquitView.delegate = self;
 	qtmquitView.dataSource = self;
 	qtmquitView.showsVerticalScrollIndicator=NO;
@@ -201,7 +201,7 @@
         }
     } startIndex:0 keyWords:self.keyWords noNetWork:^{
         [qtmquitView headerEndRefreshing];
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-49-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-49-64) superView:self.view reloadBlock:^{
             [self headerRereshing];
         }];
     }];
@@ -230,7 +230,7 @@
         }
     } startIndex:startIndex+1 keyWords:self.keyWords noNetWork:^{
         [qtmquitView footerEndRefreshing];
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-49-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-49-64) superView:self.view reloadBlock:^{
             [self footerRereshing];
         }];
     }];
@@ -314,7 +314,7 @@
 - (void)quiltView:(TMQuiltView *)quiltView didSelectCellAtIndexPath:(NSIndexPath *)indexPath{
     ProductModel* model=showArr[indexPath.row];
     ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithProductModel:model];
-    vc.type = @"Product";
+    vc.type = @"01";
     [self.navigationController pushViewController:vc animated:YES];
 }
 

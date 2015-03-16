@@ -21,7 +21,7 @@
     BOOL isPublish;
     int PublishNum;//1 发布动态  2，发布产品
 }
-
+@property(nonatomic,strong)NSData *imageData;
 @end
 #define kPublishLimitNumber 150
 @implementation PublishViewController
@@ -206,7 +206,7 @@ static BOOL isFirst;
     [inputView becomeFirstResponder];
     publishImageStr = imageStr;
     publishImage.image = image;
-    
+    self.imageData = imageData;
 }
 
 -(void)openKeyBoard
@@ -307,7 +307,7 @@ static BOOL isFirst;
     //范俊说以后如果这个被枪毙了，可以考虑当超出150字的时候提示alertView超出字数，并只出现一次
     NSString* publishContent=inputView.text.length>kPublishLimitNumber?[inputView.text substringToIndex:kPublishLimitNumber]:inputView.text;
     if (PublishNum ==1) {
-        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:userIdStr,@"EntityID",publishContent,@"ActiveText",[LoginSqlite getdata:@"userType"],@"Category",userIdStr,@"CreatedBy",publishImageStr,@"PictureStrings", nil];
+        NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:publishContent,@"content", nil];
         [CommentApi SendActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
             isPublish=NO;
             PublishNum = 1;
@@ -315,13 +315,10 @@ static BOOL isFirst;
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
                 [alert show];
                 [self inputViewGetNew];
-//                publishImage.image = [GetImagePath getImagePath:@"人脉－发布动态_03a"];
-//                inputView.text =@"";
-//                publishImageStr =@"";
             }else{
                 [LoginAgain AddLoginView:NO];
             }
-        } dic:dic noNetWork:nil];
+        } dic:dic imgData:self.imageData noNetWork:nil];
 
     }else if (PublishNum ==2) {
         //NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:publishContent,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];

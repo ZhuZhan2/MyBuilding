@@ -93,17 +93,17 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     viewArr = [[NSMutableArray alloc] init];
     _datasource = [[NSMutableArray alloc] init];
 
-    //[self firstNetWork];
+    [self firstNetWork];
     
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeHeadImage) name:@"changHead" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changName" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeBackgroundImage) name:@"changBackground" object:nil];
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstNetWork) name:@"reloadData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstNetWork) name:@"reloadData" object:nil];
 }
 
 -(void)firstNetWork{
     self.tableView.scrollEnabled=NO;
-    loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view];
+    loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view];
     if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
         if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
             [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -123,7 +123,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 self.tableView.scrollEnabled=NO;
                 [LoadingView removeLoadingView:loadingView];
                 loadingView = nil;
-                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
                     self.tableView.scrollEnabled=YES;
                     [self firstNetWork];
                 }];
@@ -150,7 +150,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 self.tableView.scrollEnabled=NO;
                 [LoadingView removeLoadingView:loadingView];
                 loadingView = nil;
-                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
                     self.tableView.scrollEnabled=YES;
                     [self firstNetWork];
                 }];
@@ -191,7 +191,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         self.tableView.scrollEnabled=NO;
         [LoadingView removeLoadingView:loadingView];
         loadingView = nil;
-        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
             self.tableView.scrollEnabled=YES;
             [self firstNetWork];
         }];
@@ -273,7 +273,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex+1 noNetWork:^{
         [self.tableView footerEndRefreshing];
         self.tableView.scrollEnabled=NO;
-        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
             self.tableView.scrollEnabled=YES;
             [self footerRereshing];
         }];
@@ -487,14 +487,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             NSLog(@"==>%@",model.a_entityUrl);
             ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
             vc.delegate = self;
-            vc.type = @"Personal";
+            vc.type = @"03";
             [self.navigationController pushViewController:vc animated:YES];
         }else if([model.a_eventType isEqualToString:@"AutomaticProduct"]){
             ActivesModel *model = showArr[indexPath.row];
             NSLog(@"==>%@",model.a_entityUrl);
             ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
             vc.delegate = self;
-            vc.type = @"Product";
+            vc.type = @"03";
             [self.navigationController pushViewController:vc animated:YES];
         }else if([model.a_eventType isEqualToString:@"AutomaticProject"]){
             ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
@@ -506,14 +506,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             ActivesModel *model = showArr[indexPath.row];
             ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
             vc.delegate = self;
-            vc.type = @"Company";
+            vc.type = @"03";
             [self.navigationController pushViewController:vc animated:YES];
         }else if([model.a_eventType isEqualToString:@"AutomaticProduct"]){
             ActivesModel *model = showArr[indexPath.row];
             NSLog(@"==>%@",model.a_entityUrl);
             ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
             vc.delegate = self;
-            vc.type = @"Product";
+            vc.type = @"03";
             [self.navigationController pushViewController:vc animated:YES];
         }else if([model.a_eventType isEqualToString:@"AutomaticProject"]){
             ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
@@ -720,7 +720,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 self.tableView.scrollEnabled=NO;
                 [LoadingView removeLoadingView:loadingView];
                 loadingView = nil;
-                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
                     self.tableView.scrollEnabled=YES;
                     [self firstNetWork];
                 }];
@@ -736,7 +736,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                         
                         [_pathCover setHeadImageUrl:model.userImage];
                         [_pathCover setBackgroundImageUrlString:model.personalBackground];
-                        NSLog(@"====>%@",model.companyName);
+                        NSLog(@"====>%@",model.userName);
                         [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,model.companyName,XHBirthdayKey,model.position, XHTitkeKey, nil]];
                     }
                 }else{
@@ -747,7 +747,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 self.tableView.scrollEnabled=NO;
                 [LoadingView removeLoadingView:loadingView];
                 loadingView = nil;
-                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
                     self.tableView.scrollEnabled=YES;
                     [self firstNetWork];
                 }];
@@ -790,7 +790,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         self.tableView.scrollEnabled=NO;
         __weak ContactViewController *wself = self;
         [wself.pathCover stopRefresh];
-        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
             self.tableView.scrollEnabled=YES;
             [self reloadView];
         }];
@@ -829,7 +829,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //            }
 //        } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
 //            self.tableView.scrollEnabled=NO;
-//            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+//            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
 //                self.tableView.scrollEnabled=YES;
 //                [self firstNetWork];
 //            }];
@@ -853,7 +853,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //            }
 //        } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
 //            self.tableView.scrollEnabled=NO;
-//            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+//            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
 //                self.tableView.scrollEnabled=YES;
 //                [self firstNetWork];
 //            }];
@@ -882,7 +882,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //        }
 //    } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
 //        self.tableView.scrollEnabled=NO;
-//        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+//        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
 //            self.tableView.scrollEnabled=YES;
 //            [self firstNetWork];
 //        }];

@@ -55,7 +55,7 @@
     [self initMyTableViewAndNavi];
     //集成刷新控件
     [self setupRefresh];
-    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view];
+    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view];
     [self firstNetWork];
 }
 
@@ -80,7 +80,7 @@
         }
         [self removeMyLoadingView];
     } startIndex:0 keyWords:@"" noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];
@@ -118,7 +118,7 @@
         [self.tableView headerEndRefreshing];
     } startIndex:0 keyWords:self.keywords noNetWork:^{
         [self.tableView headerEndRefreshing];
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self headerRereshing];
         }];
     }];
@@ -143,7 +143,7 @@
         [self.tableView footerEndRefreshing];
     } startIndex:startIndex+1 keyWords:self.keywords noNetWork:^{
         [self.tableView footerEndRefreshing];
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self footerRereshing];
         }];
     }];
@@ -238,7 +238,7 @@
 }
 
 -(void)initMyTableViewAndNavi{
-    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, self.searchBar.frame.origin.y+self.searchBar.frame.size.height, 320, self.isCompanyIdentify?568-43-64:568-49-43-64) style:UITableViewStylePlain];
+    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, self.searchBar.frame.origin.y+self.searchBar.frame.size.height, 320, self.isCompanyIdentify?kScreenHeight-43-64:kScreenHeight-49-43-64) style:UITableViewStylePlain];
     [self.tableView registerClass:[MoreCompanyViewCell class] forCellReuseIdentifier:@"Cell"];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
@@ -300,7 +300,7 @@
             [LoginAgain AddLoginView:NO];
         }
     }startIndex:0 keyWords:[NSString stringWithFormat:@"%@",searchBar.text] noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self searchBarSearchButtonClicked:searchBar];
         }];
     }];
@@ -325,7 +325,7 @@
             [LoginAgain AddLoginView:NO];
         }
     } startIndex:0 keyWords:@"" noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self searchBarCancelButtonClicked:searchBar];
         }];
     }];

@@ -83,7 +83,7 @@ static bool startListen =YES;
     label.textColor = [UIColor colorWithRed:(151/255.0)  green:(151/255.0)  blue:(151/255.0)  alpha:1.0];
     [resultView addSubview:label];
     UIImage *image = [GetImagePath getImagePath:@"语音搜索_04"];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(90, resultView.frame.origin.y+resultView.frame.size.height+103.5, 149, 149)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(90, kScreenHeight-149, 149, 149)];
     imageView.image = image;
     [self.view addSubview:imageView];
     button = [[DKCircleButton alloc] initWithFrame:CGRectMake(0, 0, 140, 140)];

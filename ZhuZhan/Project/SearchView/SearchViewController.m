@@ -9,7 +9,7 @@
 #import "SearchViewController.h"
 #import "RecordSqlite.h"
 #import "RecordModel.h"
-
+#define keyBoardHeight (kScreenHeight==480?376:464)
 @interface SearchViewController ()
 
 @end
@@ -155,11 +155,11 @@ int startIndex;
     //kbSize即為鍵盤尺寸 (有width, height)
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;//得到鍵盤的高度
     if(toolbarView == nil){
-        toolbarView = [[toolBarView alloc] initWithFrame:CGRectMake(0, 464-kbSize.height+64, 320, 40)];
+        toolbarView = [[toolBarView alloc] initWithFrame:CGRectMake(0, keyBoardHeight-kbSize.height+64, 320, 40)];
         toolbarView.delegate = self;
         [self.view addSubview:toolbarView];
     }else{
-        [toolbarView setFrame:CGRectMake(0, 464-kbSize.height+64, 320, 40)];
+        [toolbarView setFrame:CGRectMake(0, keyBoardHeight-kbSize.height+64, 320, 40)];
     }
 }
 

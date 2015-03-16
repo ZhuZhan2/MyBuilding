@@ -54,7 +54,7 @@
     [self initMyTableViewAndNavi];
     //集成刷新控件
     [self setupRefresh];
-    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view];
+    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view];
     [self firstNetWork];
 }
 
@@ -74,7 +74,7 @@
         }
         [self removeMyLoadingView];
     } companyId:self.companyId startIndex:self.startIndex keyWords:self.keyKords noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];
@@ -115,7 +115,7 @@
         [self.tableView headerEndRefreshing];
     } companyId:self.companyId startIndex:0 keyWords:self.keyKords noNetWork:^{
         [self.tableView headerEndRefreshing];
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64-49) superView:self.view reloadBlock:^{
             [self headerRereshing];
         }];
     }];
@@ -140,7 +140,7 @@
         [self.tableView footerEndRefreshing];
     } companyId:self.companyId startIndex:self.startIndex+1 keyWords:self.keyKords noNetWork:^{
         [self.tableView footerEndRefreshing];
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64-49) superView:self.view reloadBlock:^{
             [self footerRereshing];
         }];
     }];
@@ -259,7 +259,7 @@
 }
 
 -(void)initMyTableViewAndNavi{
-    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, self.searchBar.frame.origin.y+self.searchBar.frame.size.height, 320, 568-43-64) style:UITableViewStylePlain];
+    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, self.searchBar.frame.origin.y+self.searchBar.frame.size.height, 320, kScreenHeight-43-64) style:UITableViewStylePlain];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
@@ -314,7 +314,7 @@
             [LoginAgain AddLoginView:NO];
         }
     } companyId:self.companyId startIndex:0 keyWords:self.keyKords noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64-49) superView:self.view reloadBlock:^{
             [self searchBarSearchButtonClicked:searchBar];
         }];
     }];
@@ -340,7 +340,7 @@
             [LoginAgain AddLoginView:NO];
         }
     } companyId:self.companyId startIndex:0 keyWords:self.keyKords noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64-49) superView:self.view reloadBlock:^{
             [self searchBarSearchButtonClicked:searchBar];
         }];
     }];

@@ -174,14 +174,14 @@
 
 -(void)loadClauseView{
     self.selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.selectBtn.frame = CGRectMake(65, 470, 320, 18);
+    self.selectBtn.frame = CGRectMake(65, kScreenHeight-80-18, 320, 18);
     [self.selectBtn setImage:[GetImagePath getImagePath:@"注册_05"] forState:UIControlStateNormal];
     [self.selectBtn addTarget:self action:@selector(selectBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     self.selectBtn.adjustsImageWhenHighlighted = NO;
     [self.view addSubview:self.selectBtn];
     
     UIButton* button=[[UIButton alloc]init];
-    button.frame=CGRectMake(208, 470, 30, 20);
+    button.frame=CGRectMake(208, kScreenHeight-80-18, 30, 20);
     [button addTarget:self action:@selector(chooseClause) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
 }
@@ -203,7 +203,7 @@
 
 -(void)loadRegisterBtn{
     self.registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.registerBtn.frame = CGRectMake(22.5, 500, 275, 42);
+    self.registerBtn.frame = CGRectMake(22.5, kScreenHeight-26-42, 275, 42);
     [self.registerBtn setBackgroundImage:[GetImagePath getImagePath:@"注-----册"] forState:UIControlStateNormal];
     [self.registerBtn addTarget:self action:@selector(beginToCollect) forControlEvents:UIControlEventTouchUpInside];
     self.registerBtn.tag =2014072401;
@@ -551,5 +551,19 @@
     NSLog(@"注册dealloc");
 }
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    if(kScreenHeight == 480){
+        if(textField == passWordField || textField == verifyPassWordField){
+            self.view.transform = CGAffineTransformMakeTranslation(0, -90);
+        }
+    }
+}
 
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    if(kScreenHeight == 480){
+        if(textField == passWordField || textField == verifyPassWordField){
+            self.view.transform = CGAffineTransformIdentity;
+        }
+    }
+}
 @end

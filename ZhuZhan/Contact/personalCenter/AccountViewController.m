@@ -125,7 +125,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
         }
     } userId:userIdStr noNetWork:^{
         self.tableView.scrollEnabled=NO;
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             self.tableView.scrollEnabled=YES;
             [self getUserInformation];
         }];

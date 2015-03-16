@@ -15,7 +15,7 @@
 @implementation LoginModel
 - (void)setDict:(NSDictionary *)dict{
     _dict = dict;
-    self.a_userId = [ProjectStage ProjectStrStage:dict[@"userId"]];
+    self.a_userId = [ProjectStage ProjectStrStage:dict[@"loginId"]];
     self.a_deviceToken = [ProjectStage ProjectStrStage:dict[@"token"]];
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"loginName"]];
     if([dict[@"userType"] isEqualToString:@"01"]){

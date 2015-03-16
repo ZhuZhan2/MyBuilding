@@ -162,7 +162,7 @@
     [self.view addSubview:headView];
     
     //tableView部分
-    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, headView.frame.origin.y+headView.frame.size.height, 320, 568-headView.frame.size.height-64) style:UITableViewStylePlain];
+    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, headView.frame.origin.y+headView.frame.size.height, 320, kScreenHeight-headView.frame.size.height-64) style:UITableViewStylePlain];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;

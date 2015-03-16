@@ -65,7 +65,7 @@
             [LoginAgain AddLoginView:NO];
         }
     } startIndex:startIndex noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];
@@ -115,7 +115,7 @@
         [self.tableView headerEndRefreshing];
     }startIndex:0 noNetWork:^{
         [self.tableView headerEndRefreshing];
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self headerRereshing];
         }];
     }];
@@ -140,7 +140,7 @@
         [self.tableView footerEndRefreshing];
     }startIndex:startIndex+1 noNetWork:^{
         [self.tableView footerEndRefreshing];
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self footerRereshing];
         }];
     }];
