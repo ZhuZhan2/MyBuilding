@@ -9,8 +9,10 @@
 #import "ChatViewController.h"
 #import "ChatTableViewCell.h"
 #import "AddGroupMemberController.h"
-@interface ChatViewController ()<UIAlertViewDelegate>
+#import "ChatToolBar.h"
 
+@interface ChatViewController ()<UIAlertViewDelegate,ChatToolBarDelegate>
+@property(nonatomic,strong)ChatToolBar* chatToolBar;
 @end
 
 @implementation ChatViewController
@@ -19,6 +21,28 @@
     [super viewDidLoad];
     [self initNavi];
     [self initTableView];
+    [self initChatToolBar];
+    
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:11 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+    
+    [self addKeybordNotification];
+}
+
+-(void)initChatToolBar{
+    self.chatToolBar=[ChatToolBar chatToolBar];
+    self.chatToolBar.delegate=self;
+    self.chatToolBar.center=CGPointMake(kScreenWidth*0.5, kScreenHeight-CGRectGetHeight(self.chatToolBar.frame)*.5);
+    [self.view addSubview:self.chatToolBar];
+    
+    if (self.tableView) {
+        CGRect frame=self.tableView.frame;
+        frame.size.height-=CGRectGetHeight(self.chatToolBar.frame);
+        self.tableView.frame=frame;
+    }
+}
+
+-(void)chatToolBarSizeChangeWithHeight:(CGFloat)height{
+    self.tableView.transform=CGAffineTransformMakeTranslation(0, [ChatToolBar orginChatToolBarHeight]-height);
 }
 
 -(void)initNavi{
@@ -32,9 +56,10 @@
 }
 
 -(void)rightBtnClicked{
-    
+    [self.view endEditing:YES];
     AddGroupMemberController* vc=[[AddGroupMemberController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
+
     return;
 //    UIView* view=[AlertTextFieldView alertTextFieldViewWithName:@"群聊名称" sureBtnTitle:@"确认" cancelBtnTitle:@"取消" originY:111  delegate:self];
 //    [self.navigationController.view addSubview:view];

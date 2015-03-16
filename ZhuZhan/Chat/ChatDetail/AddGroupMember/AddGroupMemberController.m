@@ -12,7 +12,6 @@
 @interface AddGroupMemberController ()<AddImageViewDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)AddImageView* addImageView;
 @property(nonatomic,strong)UIView* secondView;
-@property(nonatomic,strong)UITableView* tableView;
 @end
 
 #define backColor RGBCOLOR(240, 239, 245)
