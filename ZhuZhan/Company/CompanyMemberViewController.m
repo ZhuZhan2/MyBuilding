@@ -323,6 +323,7 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     self.keyKords = @"";
     self.searchBar.text = nil;
+    [searchBar resignFirstResponder];
     [CompanyApi GetCompanyEmployeesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.startIndex = 0;

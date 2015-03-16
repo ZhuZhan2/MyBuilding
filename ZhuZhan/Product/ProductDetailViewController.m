@@ -48,6 +48,7 @@
 @property(nonatomic,strong)AddCommentViewController* vc;
 
 @property(nonatomic,strong)ACTimeScroller* timeScroller;
+@property(nonatomic,strong)UILabel* noticeLabel;
 
 //mainView部分
 @property(nonatomic,strong)NSString* imageWidth;
@@ -410,12 +411,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [forCornerView addSubview:btn];
     
     height+=5;
-    UILabel* noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, height, 100, 20)];
-    noticeLabel.text=[NSString stringWithFormat:@"%@ 关注",self.productModel.a_focusedNum];
-    noticeLabel.textColor=RGBCOLOR(141, 196, 62);
-    noticeLabel.font=[UIFont systemFontOfSize:14];
-    [forCornerView addSubview:noticeLabel];
-    height+=noticeLabel.frame.size.height;
+    self.noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, height, 100, 20)];
+    self.noticeLabel.text=[NSString stringWithFormat:@"%@ 关注",self.productModel.a_focusedNum];
+    self.noticeLabel.textColor=RGBCOLOR(141, 196, 62);
+    self.noticeLabel.font=[UIFont systemFontOfSize:14];
+    [forCornerView addSubview:self.noticeLabel];
+    height+=self.noticeLabel.frame.size.height;
     
     userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userImageUrl]];
     [forCornerView addSubview:userImageView];
@@ -562,7 +563,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)getTableViewContents{
     for (int i=0; i<self.commentModels.count; i++) {
         ContactCommentModel* model=self.commentModels[i];
-        ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_avatarUrl userName:model.a_userName commentContent:model.a_commentContents];
+        ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_avatarUrl userName:model.a_userName commentContent:model.a_commentContents creatBy:model.a_createdBy];
         [self.commentViews addObject:view];
     }
 }
@@ -666,7 +667,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 //给tableView添加数据
 -(void)addTableViewContentWithContent:(NSString*)content aid:(NSString *)aid{
-    ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:self.myImageUrl userName:self.myName commentContent:content];
+    ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:self.myImageUrl userName:self.myName commentContent:content creatBy:self.createdBy];
 
     ContactCommentModel* model=[[ContactCommentModel alloc]initWithID:aid entityID:nil createdBy:[LoginSqlite getdata:@"userId"] userName:self.myName commentContents:content avatarUrl:self.myImageUrl time:[NSDate date]];
     
@@ -873,6 +874,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alertView show];
                     self.isFocused = @"1";
+                    self.productModel.a_focusedNum = posts[0][@"focusNum"];
+                    self.noticeLabel.text=[NSString stringWithFormat:@"%@ 关注",self.productModel.a_focusedNum];
+                    NSLog(@"关注数===》%@",posts[0][@"focusNum"]);
                 }else{
                     [LoginAgain AddLoginView:NO];
                 }
@@ -886,6 +890,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alertView show];
                     self.isFocused = @"0";
+                    self.productModel.a_focusedNum = posts[0][@"focusNum"];
+                    self.noticeLabel.text=[NSString stringWithFormat:@"%@ 关注",self.productModel.a_focusedNum];
+                    NSLog(@"关注数===》%@",posts[0][@"focusNum"]);
                 }else{
                     [LoginAgain AddLoginView:NO];
                 }

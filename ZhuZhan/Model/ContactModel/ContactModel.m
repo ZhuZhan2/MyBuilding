@@ -25,7 +25,7 @@
     self.sex = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"sexCn"]]];
     self.birthday = [ProjectStage ProjectTimeStage:[_dict objectForKey:@"birthday"]];
     self.constellation = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"constel"]]];
-    self.bloodType = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"bloodType"]]];
+    self.bloodType = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"bloodTypeCn"]]];
     self.email = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"email"]]];
     self.cellPhone = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"cellphone"]]];
     self.companyName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"workHistory"][@"companyName"]]];
@@ -40,10 +40,10 @@
     self.provice = [ProjectStage ProjectStrStage:dict[@"landProvince"]];
     self.city = [ProjectStage ProjectStrStage:dict[@"landCity"]];
     self.district = [ProjectStage ProjectStrStage:dict[@"landDistrict"]];
-    if(![[ProjectStage ProjectStrStage:dict[@"background"]] isEqualToString:@""]){
-        self.personalBackground=[NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"background"]], @"login", @"", @"", @"")];
+    if(![[ProjectStage ProjectStrStage:dict[@"backgroundImageId"]] isEqualToString:@""]){
+        self.personalBackground=[NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"backgroundImageId"]], @"login", @"", @"", @"")];
     }else{
-        self.personalBackground=[ProjectStage ProjectStrStage:dict[@"background"]];
+        self.personalBackground=[ProjectStage ProjectStrStage:dict[@"backgroundImageId"]];
     }
     self.industry = [ProjectStage ProjectStrStage:dict[@"industry"]];
 }

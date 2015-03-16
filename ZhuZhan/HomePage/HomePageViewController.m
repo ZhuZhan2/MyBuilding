@@ -241,6 +241,7 @@
     UIButton* btn=[UIButton new];
     btn.tag=0;
     [self BtnClick:btn];
+    [self homePageTabBarRestore];
 }
 
 -(void)loginCompleteWithDelayBlock:(void (^)())block{

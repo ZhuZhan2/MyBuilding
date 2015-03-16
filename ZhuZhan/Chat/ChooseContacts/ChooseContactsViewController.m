@@ -105,6 +105,14 @@
     return cell;
 }
 
+-(void)chooseAssistBtn:(UIButton *)btn indexPath:(NSIndexPath *)indexPath{
+   
+}
+
+-(NSInteger)searchBarTableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 6;
+}
+
 -(CGFloat)searchBarTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 45;
 }

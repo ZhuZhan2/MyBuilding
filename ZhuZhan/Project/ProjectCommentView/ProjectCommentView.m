@@ -7,7 +7,7 @@
 //
 
 #import "ProjectCommentView.h"
-
+#import "LoginSqlite.h"
 @implementation ProjectCommentView
 
 - (id)initWithFrame:(CGRect)frame
@@ -56,14 +56,18 @@
     self.userNameLabel.text=commentModel.a_userName;
     self.userNameLabel.font=[UIFont systemFontOfSize:16];
     //self.userNameLabel.backgroundColor=[UIColor redColor];
+    if([commentModel.a_createdBy isEqualToString:[LoginSqlite getdata:@"userId"]]){
+        self.userNameLabel.textColor = BlueColor;
+    }
     [self addSubview:self.userNameLabel];
     
     //用户评论内容label
-    CGRect bounds=[commentModel.a_commentContents boundingRectWithSize:CGSizeMake(213, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
-    self.userCommentContent=[[UILabel alloc]initWithFrame:CGRectMake(70, 33, 213, bounds.size.height)];
+    CGRect bounds=[commentModel.a_commentContents boundingRectWithSize:CGSizeMake(198, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
+    self.userCommentContent=[[UILabel alloc]initWithFrame:CGRectMake(70, 33, 198, bounds.size.height)];
     self.userCommentContent.numberOfLines=0;
     self.userCommentContent.font=[UIFont systemFontOfSize:14];
     self.userCommentContent.text=commentModel.a_commentContents;
+    //self.userCommentContent.backgroundColor = [UIColor yellowColor];
     self.userCommentContent.textColor=RGBCOLOR(86, 86, 86);
     [self addSubview:self.userCommentContent];
     

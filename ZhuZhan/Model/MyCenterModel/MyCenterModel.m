@@ -31,7 +31,7 @@
     self.a_location = [NSString stringWithFormat:@"%@ %@",[ProjectStage ProjectStrStage:dict[@"landCity"]],[ProjectStage ProjectStrStage:dict[@"landDistrict"]]];
     self.a_birthday = [ProjectStage ProjectTimeStage:dict[@"birthday"]];
     self.a_constellation = [ProjectStage ProjectStrStage:dict[@"constel"]];
-    self.a_bloodType = [ProjectStage ProjectStrStage:dict[@"bloodType"]];
+    self.a_bloodType = [ProjectStage ProjectStrStage:dict[@"bloodTypeCn"]];
     self.a_province = [ProjectStage ProjectStrStage:dict[@"landProvince"]];
     self.a_city = [ProjectStage ProjectStrStage:dict[@"landCity"]];
     self.a_district = [ProjectStage ProjectStrStage:dict[@"landDistrict"]];
