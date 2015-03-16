@@ -702,6 +702,8 @@
 		5B95ADF21AB1B37E00797EA6 /* AddressBookViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B95ADF11AB1B37E00797EA6 /* AddressBookViewCell.m */; };
 		5B9624EA1AB2853A005728C5 /* Rectangle-3-copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9624E81AB2853A005728C5 /* Rectangle-3-copy.png */; };
 		5B9624EB1AB2853A005728C5 /* Rectangle-3-copy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9624E91AB2853A005728C5 /* Rectangle-3-copy@2x.png */; };
+		5B9624EE1AB2CE0C005728C5 /* ChatToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9624ED1AB2CE0C005728C5 /* ChatToolBar.m */; };
+		5B9624F11AB2F23C005728C5 /* RKBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9624F01AB2F23C005728C5 /* RKBaseTableView.m */; };
 		5B9FDE9F1A6CD47000215485 /* 项目详情默认0.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9FDE9D1A6CD47000215485 /* 项目详情默认0.png */; };
 		5B9FDEA01A6CD47000215485 /* 项目详情默认0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9FDE9E1A6CD47000215485 /* 项目详情默认0@2x.png */; };
 		5BA181A61A76170500191D31 /* Shadow-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA181A41A76170500191D31 /* Shadow-top.png */; };
@@ -2360,6 +2362,10 @@
 		5B95ADF11AB1B37E00797EA6 /* AddressBookViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookViewCell.m; sourceTree = "<group>"; };
 		5B9624E81AB2853A005728C5 /* Rectangle-3-copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rectangle-3-copy.png"; sourceTree = "<group>"; };
 		5B9624E91AB2853A005728C5 /* Rectangle-3-copy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rectangle-3-copy@2x.png"; sourceTree = "<group>"; };
+		5B9624EC1AB2CE0C005728C5 /* ChatToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatToolBar.h; sourceTree = "<group>"; };
+		5B9624ED1AB2CE0C005728C5 /* ChatToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatToolBar.m; sourceTree = "<group>"; };
+		5B9624EF1AB2F23C005728C5 /* RKBaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKBaseTableView.h; sourceTree = "<group>"; };
+		5B9624F01AB2F23C005728C5 /* RKBaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKBaseTableView.m; sourceTree = "<group>"; };
 		5B9FDE9D1A6CD47000215485 /* 项目详情默认0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情默认0.png"; sourceTree = "<group>"; };
 		5B9FDE9E1A6CD47000215485 /* 项目详情默认0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情默认0@2x.png"; sourceTree = "<group>"; };
 		5BA181A41A76170500191D31 /* Shadow-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shadow-top.png"; sourceTree = "<group>"; };
@@ -4590,6 +4596,8 @@
 				5B8A2CE21AAEE0AD00C8F9DE /* ChooseContacts */,
 				5B8A2CD01AAEE0AD00C8F9DE /* ChatBaseViewController.h */,
 				5B8A2CD11AAEE0AD00C8F9DE /* ChatBaseViewController.m */,
+				5B9624EF1AB2F23C005728C5 /* RKBaseTableView.h */,
+				5B9624F01AB2F23C005728C5 /* RKBaseTableView.m */,
 				5B8A2CE71AAEE0AD00C8F9DE /* SearchBarTableViewController.h */,
 				5B8A2CE81AAEE0AD00C8F9DE /* SearchBarTableViewController.m */,
 				5B8A2CE01AAEE0AD00C8F9DE /* SearchBarCell.h */,
@@ -4631,6 +4639,8 @@
 				5B8A2CD61AAEE0AD00C8F9DE /* ChatModel.m */,
 				5B8A2CD31AAEE0AD00C8F9DE /* ChatContentView.h */,
 				5B8A2CD41AAEE0AD00C8F9DE /* ChatContentView.m */,
+				5B9624EC1AB2CE0C005728C5 /* ChatToolBar.h */,
+				5B9624ED1AB2CE0C005728C5 /* ChatToolBar.m */,
 				5BF31B591AB025FD00DA87F5 /* AddGroupMember */,
 			);
 			path = ChatDetail;
@@ -6646,6 +6656,7 @@
 				5BF08A3A19B86C5D00782976 /* MoreCompanyViewController.m in Sources */,
 				0426C2CA19922D5A00CD8822 /* GPUImageTiltShiftFilter.m in Sources */,
 				5BE08ED61A35900000495EEB /* ThirdAnimationView.m in Sources */,
+				5B9624EE1AB2CE0C005728C5 /* ChatToolBar.m in Sources */,
 				5B0A006C19B5874500500C05 /* TMPhotoQuiltViewCell.m in Sources */,
 				0426C2D819922D5A00CD8822 /* GPUImageWhiteBalanceFilter.m in Sources */,
 				0426C2CD19922D5A00CD8822 /* GPUImageTransformFilter.m in Sources */,
@@ -6916,6 +6927,7 @@
 				042D9E1E19B559FC00689C5D /* ConditionsView.m in Sources */,
 				0426C2DA19922D5A00CD8822 /* GPUImageZoomBlurFilter.m in Sources */,
 				042D9E1219B559FC00689C5D /* MainDesign.m in Sources */,
+				5B9624F11AB2F23C005728C5 /* RKBaseTableView.m in Sources */,
 				D3049A681A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m in Sources */,
 				0426C28A19922D5A00CD8822 /* GPUImageLookupFilter.m in Sources */,
 				0426C24119922D5A00CD8822 /* GPUImage3x3ConvolutionFilter.m in Sources */,

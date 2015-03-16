@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RKBaseTableView.h"
 
 @protocol SearchBarTableViewDelegate <NSObject>
 -(NSInteger)searchBarNumberOfSectionsInTableView:(UITableView *)tableView;
@@ -15,7 +16,7 @@
 -(UITableViewCell *)searchBarTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@interface ChatBaseViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,SearchBarTableViewDelegate>
+@interface ChatBaseViewController : UIViewController<UITableViewDataSource,RKBaseTableViewDelegate,UISearchBarDelegate,SearchBarTableViewDelegate>
 @property(nonatomic)BOOL needAnimaiton;
 
 @property(nonatomic)BOOL leftBtnIsBack;
@@ -27,7 +28,7 @@
 -(void)setRightBtnWithText:(NSString*)text;
 -(void)rightBtnClicked;
 
-@property(nonatomic,strong)UITableView* tableView;
+@property(nonatomic,strong)RKBaseTableView* tableView;
 -(void)initTableView;
 
 @property(nonatomic,strong)UISearchBar* searchBar;
@@ -36,4 +37,7 @@
 @property(nonatomic,strong)NSMutableArray* sectionSelectedArray;
 -(BOOL)sectionSelectedArrayContainsSection:(NSInteger)section;
 -(BOOL)sectionViewClickedWithSection:(NSInteger)section;
+
+-(void)addKeybordNotification;
+-(void)keybordWillChangeFrame:(NSNotification*)noti;
 @end

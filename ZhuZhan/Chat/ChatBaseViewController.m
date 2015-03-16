@@ -23,6 +23,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     self.leftBtnIsBack=YES;
+    self.automaticallyAdjustsScrollViewInsets=NO;
     self.view.backgroundColor=[UIColor whiteColor];
 }
 
@@ -82,7 +83,7 @@
 }
 
 -(void)initTableView{
-    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, self.searchBar?self.searchBar.frame.size.height+64:0, kScreenWidth, kScreenHeight-(self.searchBar?self.searchBar.frame.size.height+64:0)) style:UITableViewStylePlain];
+    self.tableView=[[RKBaseTableView alloc]initWithFrame:CGRectMake(0, self.searchBar?self.searchBar.frame.size.height+64:64, kScreenWidth, kScreenHeight-(self.searchBar?self.searchBar.frame.size.height+64:64)) style:UITableViewStylePlain];
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
@@ -234,5 +235,34 @@
     SEL action=isContainsSection?@selector(removeObject:):@selector(addObject:);
     [self.sectionSelectedArray performSelector:action withObject:sectionStr];
     return isContainsSection;
+}
+
+-(void)addKeybordNotification{
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keybordWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+
+-(void)keybordWillChangeFrame:(NSNotification *)noti{
+    NSNumber* duration=noti.userInfo[UIKeyboardAnimationDurationUserInfoKey];
+    CGRect keybordBounds=[noti.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat upHeight=kScreenHeight-keybordBounds.origin.y;
+
+    [UIView animateWithDuration:[duration integerValue]  animations:^{
+        self.view.transform=CGAffineTransformMakeTranslation(0, -upHeight);
+    }];
+}
+
+-(void)touchesBeganInRKBaseTableView{
+    [self.view endEditing:YES];
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [self touchesBeganInRKBaseTableView];
+}
+
+-(void)dealloc{
+    self.tableView.delegate=nil;
+    self.tableView.dataSource=nil;
+    self.searchBar.delegate=nil;
+    self.searchBarTableViewController.delegate=nil;
 }
 @end
