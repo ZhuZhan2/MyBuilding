@@ -261,8 +261,10 @@
     NSLog(@"===>%ld",(long)idx);
     if(idx == 0){
         NSLog(@"推荐信");
+        quadCurveVC=[[RecommendListViewController alloc]init];
     }else if(idx == 1){
         NSLog(@"通知");
+        quadCurveVC=[[RemindListViewController alloc]init];
     }else if(idx == 2){
         NSLog(@"加好友");
         quadCurveVC=[[AddFriendViewController alloc]init];

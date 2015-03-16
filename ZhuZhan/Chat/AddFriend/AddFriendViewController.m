@@ -46,7 +46,7 @@ static BOOL testIsSelfs[12] = {1,1,0,0,1,0,1,1,0,0,1,0};
         cell=[[AddFriendCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell" needRightBtn:YES];
         [cell.rightBtn addTarget:self action:@selector(chooseApprove:) forControlEvents:UIControlEventTouchUpInside];
     }
-    NSDictionary* dic=@{@"userName":@"用户名",@"userImage":@"",@"isFocused":arc4random()%2?@"1":@"0",@"department":@"部门",@"company":@"一分以前哦"};
+    NSDictionary* dic=@{@"loginName":@"用户名",@"userImage":@"",@"isFocused":arc4random()%2?@"1":@"0",@"department":@"部门",@"company":@"一分以前哦"};
 
     
     EmployeesModel* model=[[EmployeesModel alloc]init];
