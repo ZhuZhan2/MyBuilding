@@ -265,7 +265,9 @@
         quadCurveVC=[[RecommendListViewController alloc]init];
     }else if(idx == 1){
         NSLog(@"通知");
-        quadCurveVC=[[RemindListViewController alloc]init];
+        //quadCurveVC=[[RemindListViewController alloc]init];
+        Class class=NSClassFromString(@"AskPriceViewController");
+        quadCurveVC=[[class alloc]init];
     }else if(idx == 2){
         NSLog(@"加好友");
         quadCurveVC=[[AddFriendViewController alloc]init];

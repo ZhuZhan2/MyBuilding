@@ -718,6 +718,8 @@
 		5BA938AD1A49720300BB8A96 /* ContactProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA938AC1A49720300BB8A96 /* ContactProductView.m */; };
 		5BA938B01A4972B200BB8A96 /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA938AF1A4972B200BB8A96 /* ContactTableViewCell.m */; };
 		5BAA14D619EE35AC00C7ECD9 /* MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAA14D519EE35AC00C7ECD9 /* MD5.m */; };
+		5BB9A53A1AB6EE4300B5B2D8 /* RKStageChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9A5391AB6EE4300B5B2D8 /* RKStageChooseView.m */; };
+		5BB9A53D1AB6F84300B5B2D8 /* AskPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9A53C1AB6F84300B5B2D8 /* AskPriceViewController.m */; };
 		5BC234461AA81D7400312D9D /* 05.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC234421AA81D7400312D9D /* 05.png */; };
 		5BC234471AA81D7400312D9D /* 05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC234431AA81D7400312D9D /* 05@2x.png */; };
 		5BC234481AA81D7400312D9D /* 06.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC234441AA81D7400312D9D /* 06.png */; };
@@ -2388,6 +2390,10 @@
 		5BA938AF1A4972B200BB8A96 /* ContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
 		5BAA14D419EE35AC00C7ECD9 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5.h; sourceTree = "<group>"; };
 		5BAA14D519EE35AC00C7ECD9 /* MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5.m; sourceTree = "<group>"; };
+		5BB9A5381AB6EE4300B5B2D8 /* RKStageChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKStageChooseView.h; sourceTree = "<group>"; };
+		5BB9A5391AB6EE4300B5B2D8 /* RKStageChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKStageChooseView.m; sourceTree = "<group>"; };
+		5BB9A53B1AB6F84300B5B2D8 /* AskPriceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceViewController.h; sourceTree = "<group>"; };
+		5BB9A53C1AB6F84300B5B2D8 /* AskPriceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPriceViewController.m; sourceTree = "<group>"; };
 		5BC234421AA81D7400312D9D /* 05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 05.png; sourceTree = "<group>"; };
 		5BC234431AA81D7400312D9D /* 05@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "05@2x.png"; sourceTree = "<group>"; };
 		5BC234441AA81D7400312D9D /* 06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 06.png; sourceTree = "<group>"; };
@@ -3139,6 +3145,7 @@
 				5B0A005D19B5625D00500C05 /* Product */,
 				5BE08EC71A35900000495EEB /* FirstAnimationView */,
 				5B8A2CC51AAEE0AD00C8F9DE /* Chat */,
+				5BB9A5341AB6EC3100B5B2D8 /* Business */,
 				0426C05519922D5900CD8822 /* Tools */,
 				0426BFF919922CE400CD8822 /* AppDelegate.h */,
 				0426BFFA19922CE400CD8822 /* AppDelegate.m */,
@@ -4804,6 +4811,41 @@
 				5BAA14D519EE35AC00C7ECD9 /* MD5.m */,
 			);
 			path = MD5;
+			sourceTree = "<group>";
+		};
+		5BB9A5341AB6EC3100B5B2D8 /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				5BB9A5371AB6EE0000B5B2D8 /* BusinessFactory */,
+				5BB9A5351AB6ED9F00B5B2D8 /* AskPrice */,
+				5BB9A5361AB6ED9F00B5B2D8 /* ProvidePrice */,
+			);
+			path = Business;
+			sourceTree = "<group>";
+		};
+		5BB9A5351AB6ED9F00B5B2D8 /* AskPrice */ = {
+			isa = PBXGroup;
+			children = (
+				5BB9A53B1AB6F84300B5B2D8 /* AskPriceViewController.h */,
+				5BB9A53C1AB6F84300B5B2D8 /* AskPriceViewController.m */,
+			);
+			path = AskPrice;
+			sourceTree = "<group>";
+		};
+		5BB9A5361AB6ED9F00B5B2D8 /* ProvidePrice */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ProvidePrice;
+			sourceTree = "<group>";
+		};
+		5BB9A5371AB6EE0000B5B2D8 /* BusinessFactory */ = {
+			isa = PBXGroup;
+			children = (
+				5BB9A5381AB6EE4300B5B2D8 /* RKStageChooseView.h */,
+				5BB9A5391AB6EE4300B5B2D8 /* RKStageChooseView.m */,
+			);
+			path = BusinessFactory;
 			sourceTree = "<group>";
 		};
 		5BE08C6C1A3586EA00495EEB /* 1 */ = {
@@ -6674,6 +6716,7 @@
 				5B8A2CF21AAEE0AD00C8F9DE /* ChatListViewCell.m in Sources */,
 				D3AD60FA19AC7CC5001FD483 /* EGOImageLoadConnection.m in Sources */,
 				0426C2DC19922D5A00CD8822 /* GPUImageMovieWriter.m in Sources */,
+				5BB9A53D1AB6F84300B5B2D8 /* AskPriceViewController.m in Sources */,
 				0426C24619922D5A00CD8822 /* GPUImageAmatorkaFilter.m in Sources */,
 				0426C2EB19922D5A00CD8822 /* FaceppTrainer.m in Sources */,
 				0426C28919922D5A00CD8822 /* GPUImageLocalBinaryPatternFilter.m in Sources */,
@@ -6975,6 +7018,7 @@
 				5BF31B6B1AB025FD00DA87F5 /* ImageAndLabelView.m in Sources */,
 				0426C26219922D5A00CD8822 /* GPUImageDissolveBlendFilter.m in Sources */,
 				0426C24F19922D5A00CD8822 /* GPUImageCGAColorspaceFilter.m in Sources */,
+				5BB9A53A1AB6EE4300B5B2D8 /* RKStageChooseView.m in Sources */,
 				0426C2A819922D5A00CD8822 /* GPUImagePrewittEdgeDetectionFilter.m in Sources */,
 				0426C26D19922D5A00CD8822 /* GPUImageFilterPipeline.m in Sources */,
 				042D9E0F19B559FC00689C5D /* DecorationProject.m in Sources */,
