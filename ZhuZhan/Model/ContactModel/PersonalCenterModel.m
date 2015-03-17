@@ -14,27 +14,39 @@
 - (void)setDict:(NSDictionary *)dict{
     _dict = dict;
     
-    self.a_id = [ProjectStage ProjectStrStage:dict[@"id"]];
-    self.a_entityId = [ProjectStage ProjectStrStage:dict[@"entityId"]];
-    self.a_entityUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"entityUrl"]]];
-    self.a_entityName = [ProjectStage ProjectStrStage:dict[@"entityName"]];
-    self.a_projectStage = [ProjectStage ProjectStrStage:dict[@"projectStage"]];
+    self.a_id = [ProjectStage ProjectStrStage:dict[@"messageId"]];
+    self.a_entityId = [ProjectStage ProjectStrStage:dict[@"messageSourceId"]];
+    //self.a_entityUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"entityUrl"]]];
+    self.a_entityName = [ProjectStage ProjectStrStage:dict[@"projectInfo"][@"projectName"]];
+    self.a_projectStage = [ProjectStage ProjectStrStage:dict[@"projectInfo"][@"projectStage"]];
     self.a_time = [ProjectStage ProjectDateStage:dict[@"createdTime"]];
-    self.a_content = [ProjectStage ProjectStrStage:dict[@"content"]];
+    self.a_content = [ProjectStage ProjectStrStage:dict[@"messageContent"]];
     if(![[ProjectStage ProjectStrStage:dict[@"imageLocation"]] isEqualToString:@""]){
         self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"imageLocation"]]];
     }else{
         self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"imageLocation"]];
     }
-    self.a_category = [ProjectStage ProjectStrStage:dict[@"category"]];
+    
+    
+    if([[ProjectStage ProjectStrStage:dict[@"messageType"]] isEqualToString:@"01"]&&[[ProjectStage ProjectStrStage:dict[@"userInfo"][@"userType"]] isEqualToString:@"01"]){
+        self.a_category = @"Personal";
+    }else if ([[ProjectStage ProjectStrStage:dict[@"messageType"]] isEqualToString:@"01"]&&[[ProjectStage ProjectStrStage:dict[@"userInfo"][@"userType"]] isEqualToString:@"02"]){
+        self.a_category = @"Company";
+    }else if ([[ProjectStage ProjectStrStage:dict[@"messageType"]] isEqualToString:@"02"]){
+        self.a_category = @"Project";
+    }else if ([[ProjectStage ProjectStrStage:dict[@"messageType"]] isEqualToString:@"03"]){
+        self.a_category = @"Product";
+    }else{
+        self.a_category = @"CompanyAgree";
+    }
     self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageWidth"]]];
     self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageHeight"]]];
-    if(![[ProjectStage ProjectStrStage:dict[@"avatarUrl"]] isEqualToString:@""]){
-        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"avatarUrl"]]];
+    if(![[ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginImagesId"]] isEqualToString:@""]){
+        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginImagesId"]], @"login", @"", @"", @"")];
     }else{
-        self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"avatarUrl"]];
+        self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginImagesId"]];
     }
-    self.a_userName = [ProjectStage ProjectStrStage:dict[@"userName"]];
+    self.a_userName = [ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginName"]];
     self.a_userType=[LoginSqlite getdata:@"userType"];
 }
 @end

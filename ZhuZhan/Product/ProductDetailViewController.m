@@ -125,6 +125,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.personalModel=personalModel;
+        self.productModel = [[ProductModel alloc] init];
         [self loadMyPropertyWithImgW:personalModel.a_imageWidth imgH:personalModel.a_imageHeight imgUrl:personalModel.a_imageUrl userImgUrl:self.myImageUrl content:personalModel.a_content entityID:personalModel.a_entityId entityUrl:personalModel.a_entityUrl userName:self.myName category:personalModel.a_category createdBy:[LoginSqlite getdata:@"userId"] userType:personalModel.a_userType];
     }
     return self;
@@ -176,7 +177,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }else{
         [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
-                self.isFocused=[NSString stringWithFormat:@"%@",posts[0]];
+                self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocus"]];
+                self.productModel.a_focusedNum=posts[0][@"focusNum"];
                 [self getNetWorkData];
             }
         } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID noNetWork:^{
@@ -919,7 +921,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)loginCompleteWithDelayBlock:(void (^)())block{
     [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            self.isFocused = [NSString stringWithFormat:@"%@",posts[0]];
+            self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocus"]];
+            self.productModel.a_focusedNum=posts[0][@"focusNum"];
             if (block) {
                 block();
             }

@@ -323,7 +323,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }else if([model.a_category isEqualToString:@"Personal"]||[model.a_category isEqualToString:@"Product"]||[model.a_category isEqualToString:@"Company"]){
         ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithPersonalCenterModel:model];
         NSLog(@"===>%@",model.a_category);
-        vc.type = model.a_category;
+        vc.type = @"03";
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

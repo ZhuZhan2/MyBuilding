@@ -183,12 +183,12 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/AcPersonalActiveCenter/PersonalActive?UserId=%@&pageSize=15&pageIndex=%d",userId,startIndex];
+    NSString *urlStr = [NSString stringWithFormat:@"api/message/getMessageList?pageSize=15&pageIndex=%d",startIndex];
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            for(NSDictionary *item in JSON[@"d"][@"data"]){
+            for(NSDictionary *item in JSON[@"data"][@"rows"]){
                 PersonalCenterModel* model=[[PersonalCenterModel alloc]init];
                 [model setDict:item];
                 [mutablePosts addObject:model];
@@ -196,10 +196,8 @@
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
-            
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"d"][@"status"][@"errors"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {

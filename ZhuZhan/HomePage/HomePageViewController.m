@@ -14,6 +14,8 @@
 #import "AddressBookViewController.h"
 #import "AddFriendViewController.h"
 #import "ChatListViewController.h"
+#import "RecommendListViewController.h"
+#import "RemindListViewController.h"
 #define contentHeight (kScreenHeight==480?431:519)
 @interface HomePageViewController ()<LoginViewDelegate>
 @property(nonatomic,strong)UINavigationController *navigatin;
