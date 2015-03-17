@@ -40,6 +40,7 @@
     if (!_underLineView) {
         _underLineView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 28, 3)];
         _underLineView.backgroundColor=BlueColor;
+        _underLineView.center=CGPointMake(kChooseViewWidth/4/2, kChooseViewHeight-CGRectGetHeight(_underLineView.frame)*0.5);
     }
     return _underLineView;
 }
@@ -57,8 +58,8 @@
         [self addSubview:singleStageLabel];
         [self.labels addObject:singleStageLabel];
     }
-    self.underLineView.center=CGPointMake(kChooseViewWidth/4/2, kChooseViewHeight-CGRectGetHeight(self.underLineView.frame)*0.5);
     [self addSubview:self.underLineView];
+    [self stageLabelClickedWithSequence:0];
 }
 
 -(UILabel*)getSingleStageLabelWithText:(NSString*)text sequence:(NSInteger)sequence{
@@ -76,11 +77,16 @@
 }
 
 -(void)stageLabelClicked:(UIGestureRecognizer*)gesture{
+    [self stageLabelClickedWithSequence:gesture.view.tag];
+}
+
+-(void)stageLabelClickedWithSequence:(NSInteger)sequence{
     [self.labels enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [(UILabel*)obj setTextColor:idx==gesture.view.tag?SelectedColor:NoSeletedColor];
+        [(UILabel*)obj setTextColor:idx==sequence?SelectedColor:NoSeletedColor];
     }];
+    UIView* stageLabel=self.labels[sequence];
     CGPoint center=self.underLineView.center;
-    center.x=gesture.view.center.x;
+    center.x=stageLabel.center.x;
     [UIView animateWithDuration:.3 animations:^{
         self.underLineView.center=center;
     }];
