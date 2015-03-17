@@ -14,7 +14,7 @@
     self.a_id = [ProjectStage ProjectStrStage:dict[@"companyId"]];
     self.a_companyName = [ProjectStage ProjectStrStage:dict[@"companyName"]];
     self.a_companyIndustry = [ProjectStage ProjectStrStage:dict[@"companyIndustry"]];
-    self.a_companyFocusNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"companyFocusNumber"]]];
+    self.a_companyFocusNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"focusNum"]]];
     self.a_companyEmployeeNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"employeesNum"]]];
     self.a_companyDescription = [ProjectStage ProjectStrStage:dict[@"companyDesc"]];
     if(![[ProjectStage ProjectStrStage:dict[@"loginImagesId"]] isEqualToString:@""]){

@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface ContactModel : NSObject
-
+@property(nonatomic,strong)NSString *projectNum;
+@property(nonatomic,strong)NSString *dynamicNum;
+@property(nonatomic,strong)NSString *isFocus;
 @property(nonatomic,strong) NSString *userId;
 
 //公司名称

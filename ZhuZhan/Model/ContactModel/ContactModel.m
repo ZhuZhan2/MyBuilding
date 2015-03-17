@@ -46,6 +46,9 @@
         self.personalBackground=[ProjectStage ProjectStrStage:dict[@"backgroundImageId"]];
     }
     self.industry = [ProjectStage ProjectStrStage:dict[@"industry"]];
+    self.projectNum = [ProjectStage ProjectStrStage:dict[@"projectNum"]];
+    self.dynamicNum = [ProjectStage ProjectStrStage:dict[@"dynamicNum"]];
+    self.isFocus = [ProjectStage ProjectStrStage:dict[@"isFocus"]];
 }
 
 //POST:

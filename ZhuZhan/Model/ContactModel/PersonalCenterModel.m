@@ -13,21 +13,29 @@
 
 - (void)setDict:(NSDictionary *)dict{
     _dict = dict;
-    
     self.a_id = [ProjectStage ProjectStrStage:dict[@"messageId"]];
     self.a_entityId = [ProjectStage ProjectStrStage:dict[@"messageSourceId"]];
-    //self.a_entityUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"entityUrl"]]];
-    self.a_entityName = [ProjectStage ProjectStrStage:dict[@"projectInfo"][@"projectName"]];
-    self.a_projectStage = [ProjectStage ProjectStrStage:dict[@"projectInfo"][@"projectStage"]];
-    self.a_time = [ProjectStage ProjectDateStage:dict[@"createdTime"]];
-    self.a_content = [ProjectStage ProjectStrStage:dict[@"messageContent"]];
-    if(![[ProjectStage ProjectStrStage:dict[@"imageLocation"]] isEqualToString:@""]){
-        self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"imageLocation"]]];
+    if([[ProjectStage ProjectStrStage:dict[@"messageType"]] isEqualToString:@"01"]){
+        self.a_content = [ProjectStage ProjectStrStage:dict[@"messageData"][@"content"]];
+        if(![[ProjectStage ProjectStrStage:dict[@"messageData"][@"dynamicImagesId"]] isEqualToString:@""]){
+            self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"messageData"][@"dynamicImagesId"]], @"dynamic", @"", @"", @"")];
+        }else{
+            self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"messageData"][@"dynamicImagesId"]];
+        }
+    }else if([[ProjectStage ProjectStrStage:dict[@"messageType"]] isEqualToString:@"02"]){
+        self.a_entityName = [ProjectStage ProjectStrStage:dict[@"messageData"][@"projectName"]];
+        self.a_projectStage = [ProjectStage ProjectStrStage:dict[@"messageData"][@"projectStage"]];
+    }else if ([[ProjectStage ProjectStrStage:dict[@"messageType"]] isEqualToString:@"03"]){
+        self.a_content = [ProjectStage ProjectStrStage:dict[@"messageData"][@"productDesc"]];
+        if(![[ProjectStage ProjectStrStage:dict[@"messageData"][@"productImagesId"]] isEqualToString:@""]){
+            self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"messageData"][@"productImagesId"]], @"product", @"", @"", @"")];
+        }else{
+            self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"messageData"][@"productImagesId"]];
+        }
     }else{
-        self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"imageLocation"]];
+        self.a_content = [ProjectStage ProjectStrStage:dict[@"messageContent"]];
     }
-    
-    
+    self.a_time = [ProjectStage ProjectDateStage:dict[@"createdTime"]];
     if([[ProjectStage ProjectStrStage:dict[@"messageType"]] isEqualToString:@"01"]&&[[ProjectStage ProjectStrStage:dict[@"userInfo"][@"userType"]] isEqualToString:@"01"]){
         self.a_category = @"Personal";
     }else if ([[ProjectStage ProjectStrStage:dict[@"messageType"]] isEqualToString:@"01"]&&[[ProjectStage ProjectStrStage:dict[@"userInfo"][@"userType"]] isEqualToString:@"02"]){
@@ -39,8 +47,8 @@
     }else{
         self.a_category = @"CompanyAgree";
     }
-    self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageWidth"]]];
-    self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageHeight"]]];
+//    self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageWidth"]]];
+//    self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageHeight"]]];
     if(![[ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginImagesId"]] isEqualToString:@""]){
         self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginImagesId"]], @"login", @"", @"", @"")];
     }else{

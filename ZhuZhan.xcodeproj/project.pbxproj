@@ -1152,6 +1152,9 @@
 		D3BAA7B71A58CB9A008E613F /* 人的详情88-03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BAA7AF1A58CB9A008E613F /* 人的详情88-03@2x.png */; };
 		D3BAA7B81A58CB9A008E613F /* 人的详情88-04.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BAA7B01A58CB9A008E613F /* 人的详情88-04.png */; };
 		D3BAA7B91A58CB9A008E613F /* 人的详情88-04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BAA7B11A58CB9A008E613F /* 人的详情88-04@2x.png */; };
+		D3CF0D871AB81A4C00D71CEB /* AskPriceMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF0D861AB81A4C00D71CEB /* AskPriceMainViewController.m */; };
+		D3CF0D8C1AB81A7800D71CEB /* AddContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF0D891AB81A7800D71CEB /* AddContactView.m */; };
+		D3CF0D8D1AB81A7800D71CEB /* TopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF0D8B1AB81A7800D71CEB /* TopView.m */; };
 		D3CF278A1A008EFF00DDA30D /* ContactBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF27891A008EFF00DDA30D /* ContactBackgroundView.m */; };
 		D3D1A7B719F8E9B40006F954 /* 公司－我的公司_05b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B519F8E9B40006F954 /* 公司－我的公司_05b.png */; };
 		D3D1A7B819F8E9B40006F954 /* 公司－我的公司_05b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B619F8E9B40006F954 /* 公司－我的公司_05b@2x.png */; };
@@ -2911,6 +2914,12 @@
 		D3BAA7AF1A58CB9A008E613F /* 人的详情88-03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人的详情88-03@2x.png"; sourceTree = "<group>"; };
 		D3BAA7B01A58CB9A008E613F /* 人的详情88-04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人的详情88-04.png"; sourceTree = "<group>"; };
 		D3BAA7B11A58CB9A008E613F /* 人的详情88-04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人的详情88-04@2x.png"; sourceTree = "<group>"; };
+		D3CF0D851AB81A4C00D71CEB /* AskPriceMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceMainViewController.h; sourceTree = "<group>"; };
+		D3CF0D861AB81A4C00D71CEB /* AskPriceMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPriceMainViewController.m; sourceTree = "<group>"; };
+		D3CF0D881AB81A7800D71CEB /* AddContactView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContactView.h; sourceTree = "<group>"; };
+		D3CF0D891AB81A7800D71CEB /* AddContactView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactView.m; sourceTree = "<group>"; };
+		D3CF0D8A1AB81A7800D71CEB /* TopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopView.h; sourceTree = "<group>"; };
+		D3CF0D8B1AB81A7800D71CEB /* TopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopView.m; sourceTree = "<group>"; };
 		D3CF27881A008EFF00DDA30D /* ContactBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactBackgroundView.h; sourceTree = "<group>"; };
 		D3CF27891A008EFF00DDA30D /* ContactBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactBackgroundView.m; sourceTree = "<group>"; };
 		D3D1A7B319F8A68F0006F954 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -4853,6 +4862,7 @@
 		5BB9A5341AB6EC3100B5B2D8 /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				D3CF0D841AB81A3900D71CEB /* AskPriceMainView */,
 				5B6289EA1AB8133800F30059 /* Choose */,
 				5BB9A5371AB6EE0000B5B2D8 /* BusinessFactory */,
 				5BB9A5351AB6ED9F00B5B2D8 /* AskPrice */,
@@ -5609,6 +5619,19 @@
 				D3AD61AB19AEF80B001FD483 /* UIViewController+MJPopupViewController.m */,
 			);
 			path = PopView;
+			sourceTree = "<group>";
+		};
+		D3CF0D841AB81A3900D71CEB /* AskPriceMainView */ = {
+			isa = PBXGroup;
+			children = (
+				D3CF0D881AB81A7800D71CEB /* AddContactView.h */,
+				D3CF0D891AB81A7800D71CEB /* AddContactView.m */,
+				D3CF0D8A1AB81A7800D71CEB /* TopView.h */,
+				D3CF0D8B1AB81A7800D71CEB /* TopView.m */,
+				D3CF0D851AB81A4C00D71CEB /* AskPriceMainViewController.h */,
+				D3CF0D861AB81A4C00D71CEB /* AskPriceMainViewController.m */,
+			);
+			path = AskPriceMainView;
 			sourceTree = "<group>";
 		};
 		D3D29B7A1A0DB9AC00CAB1EB /* IsFocused */ = {
@@ -6746,6 +6769,7 @@
 				0426C24A19922D5A00CD8822 /* GPUImageBoxBlurFilter.m in Sources */,
 				5B4E8A5819F8EA9800EA9AFF /* CompanyTotalViewController.m in Sources */,
 				042D9E2019B559FC00689C5D /* PopupView.m in Sources */,
+				D3CF0D871AB81A4C00D71CEB /* AskPriceMainViewController.m in Sources */,
 				0426C2B019922D5A00CD8822 /* GPUImageSaturationBlendFilter.m in Sources */,
 				0426C2D419922D5A00CD8822 /* GPUImageVideoCamera.m in Sources */,
 				D3A4281519C19A3E00BAB6C7 /* BirthDay.m in Sources */,
@@ -6792,6 +6816,7 @@
 				5B0A008B19B587B200500C05 /* EGORefreshTableHeaderView.m in Sources */,
 				D3FF3E911AAEEB83005195CC /* pinyin.c in Sources */,
 				0426C25819922D5A00CD8822 /* GPUImageColorPackingFilter.m in Sources */,
+				D3CF0D8C1AB81A7800D71CEB /* AddContactView.m in Sources */,
 				5B5173A21A368F8E0009E0AE /* FirstOpenAppAnimationView.m in Sources */,
 				0426C2B319922D5A00CD8822 /* GPUImageSepiaFilter.m in Sources */,
 				0426C2BC19922D5A00CD8822 /* GPUImageSoftLightBlendFilter.m in Sources */,
@@ -7026,6 +7051,7 @@
 				0426C2EE19922D5A00CD8822 /* CDataScanner.m in Sources */,
 				0426C28719922D5A00CD8822 /* GPUImageLinearBurnBlendFilter.m in Sources */,
 				D3D21EB71A36F9C700ADD653 /* LocalProjectModel.m in Sources */,
+				D3CF0D8D1AB81A7800D71CEB /* TopView.m in Sources */,
 				0426C2A219922D5A00CD8822 /* GPUImagePixellateFilter.m in Sources */,
 				0426C2BD19922D5A00CD8822 /* GPUImageSolidColorGenerator.m in Sources */,
 				0426C24D19922D5A00CD8822 /* GPUImageBulgeDistortionFilter.m in Sources */,
