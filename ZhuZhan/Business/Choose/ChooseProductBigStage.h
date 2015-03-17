@@ -8,6 +8,10 @@
 
 #import "ChatBaseViewController.h"
 
-@interface ChooseProductBigStage : ChatBaseViewController
+@protocol ChooseProductBigStageDelegate <NSObject>
+-(void)chooseProductBigStage;
+@end
 
+@interface ChooseProductBigStage : ChatBaseViewController
+@property(nonatomic,weak)id<ChooseProductBigStageDelegate>delegate;
 @end

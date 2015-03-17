@@ -57,7 +57,6 @@
         model.hasNew=arc4random()%2;
         model.number=@"流水号:321312312";
         _cellHeader=[AskPriceCellHeader askPriceCellHeaderStageMode:arc4random()%4 model:model];
-        _cellHeader.backgroundColor=[UIColor yellowColor];
         [_cellHeader addSubview:self.seperatorLineInCell];
     }
     return _cellHeader;

@@ -11,6 +11,7 @@
 #import "RKTwoView.h"
 #import "AskPriceViewCell.h"
 #import "ChooseProductBigStage.h"
+#import "ChooseProductSmallStage.h"
 @interface AskPriceViewController ()
 
 @end
@@ -69,8 +70,13 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ChooseProductBigStage* vc=[[ChooseProductBigStage alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (arc4random()%2) {
+        ChooseProductBigStage* vc=[[ChooseProductBigStage alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        ChooseProductSmallStage* vc=[[ChooseProductSmallStage alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 @end
