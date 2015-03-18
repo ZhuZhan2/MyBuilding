@@ -528,12 +528,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     
     //评论图标
-    CGFloat tempHeight=imageView?imageView.frame.origin.y+imageView.frame.size.height:height+40;
+    CGFloat tempHeight=imageView?imageView.frame.origin.y+imageView.frame.size.height:height;
     UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     commentBtn.frame = CGRectMake(265, tempHeight-40, 37, 37);
     [commentBtn setImage:[GetImagePath getImagePath:@"点-copy-3"] forState:UIControlStateNormal];
     [commentBtn addTarget:self action:@selector(chooseComment:) forControlEvents:UIControlEventTouchUpInside];
     [forCornerView addSubview:commentBtn];
+    NSLog(@"frame=%@",NSStringFromCGRect(commentBtn.frame));
+    //commentBtn.center=forCornerView.center;
     
     //用户头像
     tempHeight=imageView?imageView.frame.origin.y:contentTotalView.frame.origin.y;
@@ -549,7 +551,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [forCornerView addSubview:btn];
     
     userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userImageUrl]];
-    [forCornerView addSubview:userImageView];
+    //[forCornerView addSubview:userImageView];
     
     //设置总的view的frame
     forCornerView.frame=CGRectMake(5, 5, 310, height-5);

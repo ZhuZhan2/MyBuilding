@@ -38,7 +38,7 @@
 -(BOOL)sectionSelectedArrayContainsSection:(NSInteger)section;
 -(BOOL)sectionViewClickedWithSection:(NSInteger)section;
 
--(void)initStageChooseView;
+-(void)initStageChooseViewWithStages:(NSArray*)stages;
 
 -(void)addKeybordNotification;
 -(void)keybordWillChangeFrame:(NSNotification*)noti;

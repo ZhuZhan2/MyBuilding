@@ -647,6 +647,7 @@
 		5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
 		5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF819932E36007D79A8 /* QuadCurveMenu.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5B656CFC19932E36007D79A8 /* QuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CFA19932E36007D79A8 /* QuadCurveMenuItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5B6699291AB9490600C4B54F /* DemanDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6699281AB9490600C4B54F /* DemanDetailViewController.m */; };
 		5B6A1D661A4A65280072B916 /* 主站－人脉03.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6A1D641A4A65280072B916 /* 主站－人脉03.png */; };
 		5B6A1D671A4A65280072B916 /* 主站－人脉03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6A1D651A4A65280072B916 /* 主站－人脉03@2x.png */; };
 		5B6A1D6A1A4A67170072B916 /* ContactEGOView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A1D691A4A67170072B916 /* ContactEGOView.m */; };
@@ -2262,6 +2263,8 @@
 		5B656CF819932E36007D79A8 /* QuadCurveMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadCurveMenu.m; sourceTree = "<group>"; };
 		5B656CF919932E36007D79A8 /* QuadCurveMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadCurveMenuItem.h; sourceTree = "<group>"; };
 		5B656CFA19932E36007D79A8 /* QuadCurveMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadCurveMenuItem.m; sourceTree = "<group>"; };
+		5B6699271AB9490600C4B54F /* DemanDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemanDetailViewController.h; sourceTree = "<group>"; };
+		5B6699281AB9490600C4B54F /* DemanDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemanDetailViewController.m; sourceTree = "<group>"; };
 		5B6A1D641A4A65280072B916 /* 主站－人脉03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主站－人脉03.png"; sourceTree = "<group>"; };
 		5B6A1D651A4A65280072B916 /* 主站－人脉03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主站－人脉03@2x.png"; sourceTree = "<group>"; };
 		5B6A1D681A4A67170072B916 /* ContactEGOView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactEGOView.h; sourceTree = "<group>"; };
@@ -4700,6 +4703,15 @@
 			path = Big;
 			sourceTree = "<group>";
 		};
+		5B6699261AB948EB00C4B54F /* DemandDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5B6699271AB9490600C4B54F /* DemanDetailViewController.h */,
+				5B6699281AB9490600C4B54F /* DemanDetailViewController.m */,
+			);
+			path = DemandDetail;
+			sourceTree = "<group>";
+		};
 		5B7670571AB6B8D000E154C5 /* Remind */ = {
 			isa = PBXGroup;
 			children = (
@@ -4918,6 +4930,7 @@
 		5BB9A5341AB6EC3100B5B2D8 /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				5B6699261AB948EB00C4B54F /* DemandDetail */,
 				D3CF0D841AB81A3900D71CEB /* AskPriceMainView */,
 				5B6289EA1AB8133800F30059 /* Choose */,
 				5BB9A5371AB6EE0000B5B2D8 /* BusinessFactory */,
@@ -7156,6 +7169,7 @@
 				0426C24119922D5A00CD8822 /* GPUImage3x3ConvolutionFilter.m in Sources */,
 				D3AD61AE19AEF80B001FD483 /* UIViewController+MJPopupViewController.m in Sources */,
 				0426C24919922D5A00CD8822 /* GPUImageBilateralFilter.m in Sources */,
+				5B6699291AB9490600C4B54F /* DemanDetailViewController.m in Sources */,
 				D3D4FB301A0872770033BB34 /* CompanyCenterViewController.m in Sources */,
 				0426C2EA19922D5A00CD8822 /* FaceppRecognition.m in Sources */,
 				042D9E0E19B559FC00689C5D /* BaiDuMapViewController.m in Sources */,

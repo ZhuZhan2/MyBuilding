@@ -69,6 +69,8 @@
 }
 
 -(void)setUpMainView{
+    [self.mainView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
     RKTwoView* view1=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"参与用户" rightContent:self.contents[0] needAuto:NO];
     RKTwoView* view2=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"产品大类" rightContent:self.contents[1] needAuto:NO];
     RKTwoView* view3=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"产品分类" rightContent:self.contents[2] needAuto:NO];
@@ -114,6 +116,7 @@
 }
 
 -(void)setUp{
+    self.selectionStyle=UITableViewCellSelectionStyleNone;
     [self.contentView addSubview:self.cellHeader];
     [self.cellHeader addSubview:self.seperatorLineInCell];
     [self.contentView addSubview:self.mainView];
