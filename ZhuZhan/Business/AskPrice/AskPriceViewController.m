@@ -21,8 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initNavi];
-    [self initTableView];
     [self initStageChooseView];
+    [self initTableView];
 }
 
 -(void)initTableView{
@@ -44,7 +44,28 @@
 }
 
 -(void)initNavi{
-    self.title=@"询价需求表";
+//    self.title=@"询价需求表";
+    NSString* titleStr=@"需求表";
+    UIFont* font=[UIFont fontWithName:@"GurmukhiMN-Bold" size:19];
+    UILabel* titleLabel=[[UILabel alloc]init];
+    titleLabel.text=titleStr;
+    titleLabel.font=font;
+    titleLabel.textColor=[UIColor whiteColor];
+    CGSize size=[titleStr boundingRectWithSize:CGSizeMake(9999, 20) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
+    titleLabel.frame=CGRectMake(0, 0, size.width, size.height);
+    
+    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(titleLabel.frame), 0, 20, 20)];
+    imageView.backgroundColor=[UIColor whiteColor];
+    
+    CGRect frame=titleLabel.frame;
+    frame.size.width+=CGRectGetWidth(imageView.frame);
+    
+    UIButton* button=[[UIButton alloc]initWithFrame:frame];
+    [button addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+    [button addSubview:titleLabel];
+    [button addSubview:imageView];
+    
+    self.navigationItem.titleView=button;
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
 }
 

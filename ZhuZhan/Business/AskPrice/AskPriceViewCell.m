@@ -21,7 +21,6 @@
 #define mainViewTopDistance 9
 #define mainViewBottomDistance 9
 
-
 @implementation AskPriceViewCell
 +(CGFloat)carculateTotalHeightWithContents:(NSArray*)contents{
     return headerHeight+seperatorHeight+mainViewTopDistance+mainViewBottomDistance+[RKTwoView carculateTotalHeightWithContents:contents];
@@ -70,9 +69,9 @@
 }
 
 -(void)setUpMainView{
-    RKTwoView* view1=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"求购用户" rightContent:self.contents[0] needAuto:NO];
-    RKTwoView* view2=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeHalfLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"产品大类" rightContent:self.contents[1] needAuto:NO];
-    RKTwoView* view3=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeHalfLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"产品分类" rightContent:self.contents[2] needAuto:NO];
+    RKTwoView* view1=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"参与用户" rightContent:self.contents[0] needAuto:NO];
+    RKTwoView* view2=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"产品大类" rightContent:self.contents[1] needAuto:NO];
+    RKTwoView* view3=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"产品分类" rightContent:self.contents[2] needAuto:NO];
     RKTwoView* view4=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"需求描述" rightContent:self.contents[3] needAuto:YES];
     
     CGRect frame=view1.frame;
@@ -86,13 +85,12 @@
     [self.mainView addSubview:view2];
     
     frame=view3.frame;
-    frame.origin.y=CGRectGetMaxY(view1.frame);
-    frame.origin.x=CGRectGetMaxX(view2.frame);
+    frame.origin.y=CGRectGetMaxY(view2.frame);
     view3.frame=frame;
     [self.mainView addSubview:view3];
     
     frame=view4.frame;
-    frame.origin.y=CGRectGetMaxY(view2.frame);
+    frame.origin.y=CGRectGetMaxY(view3.frame);
     view4.frame=frame;
     [self.mainView addSubview:view4];
 }

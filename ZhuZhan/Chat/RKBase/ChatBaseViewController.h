@@ -38,6 +38,8 @@
 -(BOOL)sectionSelectedArrayContainsSection:(NSInteger)section;
 -(BOOL)sectionViewClickedWithSection:(NSInteger)section;
 
+-(void)initStageChooseView;
+
 -(void)addKeybordNotification;
 -(void)keybordWillChangeFrame:(NSNotification*)noti;
 @end

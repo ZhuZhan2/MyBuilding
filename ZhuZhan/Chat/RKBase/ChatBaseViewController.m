@@ -10,12 +10,15 @@
 #import "SearchBarTableViewController.h"
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
+#import "RKStageChooseView.h"
 
 @interface ChatBaseViewController()
 @property(nonatomic,strong)UIButton* rightBtn;
 @property(nonatomic,strong)UIButton* leftBtn;
 
 @property(nonatomic,strong)SearchBarTableViewController* searchBarTableViewController;
+
+@property(nonatomic,strong)RKStageChooseView* stageChooseView;
 @end
 
 @implementation ChatBaseViewController
@@ -83,6 +86,14 @@
 }
 
 -(void)initTableView{
+    CGFloat y=64;
+    if (self.searchBar) {
+        y+=CGRectGetHeight(self.searchBar.frame);
+    }else if (self.stageChooseView){
+        y+=CGRectGetHeight(self.stageChooseView.frame);
+    }
+    
+    CGFloat height=kScreenHeight-y;
     self.tableView=[[RKBaseTableView alloc]initWithFrame:CGRectMake(0, self.searchBar?self.searchBar.frame.size.height+64:64, kScreenWidth, kScreenHeight-(self.searchBar?self.searchBar.frame.size.height+64:64)) style:UITableViewStylePlain];
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
@@ -257,6 +268,16 @@
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     [self touchesBeganInRKBaseTableView];
+}
+
+-(void)initStageChooseView{
+    UIView* view=[RKStageChooseView stageChooseViewWithStages:
+                  @[@"全部",@"进行中",@"已采纳",@"已关闭"]];
+    CGRect frame=view.frame;
+    frame.origin=CGPointMake(0, 64);
+    view.frame=frame;
+    
+    [self.view addSubview:view];
 }
 
 -(void)dealloc{
