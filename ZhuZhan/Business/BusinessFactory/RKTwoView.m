@@ -25,7 +25,7 @@
 @implementation RKTwoView
 +(CGFloat)carculateTotalHeightWithContents:(NSArray*)array{
     CGFloat height=[self carculateTotalHeightWithContent:array[3] width:kScreenWidth*0.75 maxNumberOfLines:2];
-    return height+48;
+    return height+72;
 }
 
 +(CGFloat)carculateTotalHeightWithContent:(NSString*)content width:(CGFloat)width maxNumberOfLines:(NSInteger)maxNumberOfLines{
