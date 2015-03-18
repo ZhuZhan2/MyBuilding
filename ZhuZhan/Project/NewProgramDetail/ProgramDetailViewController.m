@@ -272,7 +272,7 @@
     }else{
         [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
-                self.isFocused=[NSString stringWithFormat:@"%@",posts[0]];
+                self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocus"]];
                 [self getContentList];
             }else{
                 [LoginAgain AddLoginView:NO];
@@ -1040,7 +1040,7 @@
 -(void)loginCompleteWithDelayBlock:(void (^)())block{
     [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            self.isFocused = [NSString stringWithFormat:@"%@",posts[0]];
+            self.isFocused = [NSString stringWithFormat:@"%@",posts[0][@"isFocus"]];
             if (block) {
                 block();
             }

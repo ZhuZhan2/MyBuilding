@@ -90,8 +90,8 @@
         if(!error){
             ContactModel *model = posts[0];
             contactId = model.userId;
-            tempImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,image(model.personalBackground, @"login", @"", @"", @"")]];
-            icon.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,image(model.userImage, @"login", @"", @"", @"")]];
+            tempImageView.imageURL = [NSURL URLWithString:model.personalBackground];
+            icon.imageURL = [NSURL URLWithString:model.userImage];
             userName.text = model.userName;
             message.text = [NSString stringWithFormat:@"%@项目，%@动态",model.projectNum,model.dynamicNum];
             if([model.isFocus isEqualToString:@"1"]){

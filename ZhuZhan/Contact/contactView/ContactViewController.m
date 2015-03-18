@@ -469,6 +469,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ActivesModel *model = showArr[indexPath.row];
     indexpath=indexPath;
+    NSLog(@"===>%@",model.a_category);
     if([model.a_category isEqualToString:@"Project"]){
         if (![model.a_eventType isEqualToString:@"Automatic"]) {
             ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
@@ -802,6 +803,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     ActivesModel *model = showArr[indexPath.row];
     ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
     vc.delegate=self;
+    vc.type = @"03";
     [self.navigationController pushViewController:vc animated:YES];
 }
 

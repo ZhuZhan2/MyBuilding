@@ -71,7 +71,7 @@
     }else{
         self.a_productImage = [ProjectStage ProjectStrStage:dict[@"operationData"][@"productImagesId"]];
     }
-
+    
     self.a_commentsArr = [[NSMutableArray alloc] init];
     if([dict[@"commentData"] count] !=0){
         for(NSDictionary *item in dict[@"commentData"]){
