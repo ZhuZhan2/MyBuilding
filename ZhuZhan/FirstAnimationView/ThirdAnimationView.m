@@ -37,7 +37,7 @@ static int j;
 -(void)addImage:(int)index{
     UIScrollView* scrollView=(UIScrollView*)self.superview;
     [scrollView setContentOffset:CGPointMake(640, 0)];
-    scrollView.contentSize=CGSizeMake(320*4, 568);
+    scrollView.contentSize=CGSizeMake(320*4, kScreenHeight);
     if(index <=27){
         if(index<10){
             self.image.image = [GetImagePath getImagePath:[NSString stringWithFormat:@"03000%d",index]];

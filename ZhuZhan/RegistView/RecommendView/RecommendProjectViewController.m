@@ -39,7 +39,7 @@
     
     [self addTopView];
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+77, 320, 568-64-77)];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+77, 320, kScreenHeight-64-77)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];

@@ -108,7 +108,7 @@
                 }
             }
         } startIndex:startIndex keywords:self.searchStr noNetWork:^{
-            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
                 [self firstNetWork];
             }];
         }];
@@ -132,7 +132,7 @@
                 }
             }
         } dic:self.dic startIndex:startIndex noNetWork:^{
-            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
                 [self firstNetWork];
             }];
         }];
@@ -193,7 +193,7 @@
             [self.tableView headerEndRefreshing];
         } startIndex:0 keywords:self.searchStr noNetWork:^{
             [self.tableView headerEndRefreshing];
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
                 [self headerRereshing];
             }];
         }];
@@ -219,7 +219,7 @@
             [self.tableView headerEndRefreshing];
         } dic:self.dic startIndex:0 noNetWork:^{
             [self.tableView headerEndRefreshing];
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
                 [self headerRereshing];
             }];
         }];
@@ -250,7 +250,7 @@
             }
         } startIndex:startIndex keywords:self.searchStr noNetWork:^{
             [self.tableView footerEndRefreshing];
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
                 [self footerRereshing];
             }];
         }];
@@ -275,7 +275,7 @@
             }
         } dic:self.dic startIndex:startIndex noNetWork:^{
             [self.tableView footerEndRefreshing];
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
                 [self footerRereshing];
             }];
         }];

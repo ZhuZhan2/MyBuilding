@@ -16,6 +16,7 @@
 #import "ChatListViewController.h"
 #import "RecommendListViewController.h"
 #import "RemindListViewController.h"
+#define contentHeight (kScreenHeight==480?431:519)
 @interface HomePageViewController ()<LoginViewDelegate>
 @property(nonatomic,strong)UINavigationController *navigatin;
 @end
@@ -38,14 +39,14 @@
     imageView.image = [GetImagePath getImagePath:@"loading"];
     [self.view addSubview:imageView];
     self.view.backgroundColor = RGBCOLOR(240, 240, 240);
-    contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 519)];
+    contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, contentHeight)];
     contactview = [[ContactViewController alloc] init];
     nav = [[UINavigationController alloc] initWithRootViewController:contactview];
-    [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
+    [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
     nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
     [contentView addSubview:nav.view];
 
-    toolView = [[UIView alloc] initWithFrame:CGRectMake(0, 519, 320, 49)];
+    toolView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-49, 320, 49)];
    [toolView setBackgroundColor:RGBCOLOR(229, 229, 229)];
     
     contactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -146,15 +147,15 @@
 */
 
 -(void)homePageTabBarHide{
-    contentView.frame=CGRectMake(0, 0, 320, 568);
-    [nav.view setFrame:CGRectMake(0, 0, 320, 568)];
+    contentView.frame=CGRectMake(0, 0, 320, kScreenHeight);
+    [nav.view setFrame:CGRectMake(0, 0, 320, kScreenHeight)];
     menu.hidden=YES;
     toolView.hidden=YES;
 }
 
 -(void)homePageTabBarRestore{
-    contentView.frame=CGRectMake(0, 0, 320, 519);
-    [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
+    contentView.frame=CGRectMake(0, 0, 320, contentHeight);
+    [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
     menu.hidden=NO;
     toolView.hidden=NO;
 
@@ -169,7 +170,7 @@
             NSLog(@"人脉");
             contactview = [[ContactViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:contactview];
-            [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
+            [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
             [contactBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单01b"] forState:UIControlStateNormal];
@@ -182,7 +183,7 @@
             NSLog(@"项目");
             projectview = [[ProjectTableViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:projectview];
-            [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
+            [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
             [contactBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单01a"] forState:UIControlStateNormal];
@@ -198,7 +199,7 @@
             NSLog(@"公司");
             companyview = [[CompanyTotalViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:companyview];
-            [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
+            [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
             [contactBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单01a"] forState:UIControlStateNormal];
@@ -216,7 +217,7 @@
             nav = [[UINavigationController alloc] initWithRootViewController:productView];
             //nav = [[UINavigationController alloc] initWithRootViewController:tradeView];
             //nav=[[UINavigationController alloc]initWithRootViewController:testVC];
-            [nav.view setFrame:CGRectMake(0, 0, 320, 519)];
+            [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
             [contentView addSubview:nav.view];
             [contactBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单01a"] forState:UIControlStateNormal];
@@ -276,7 +277,9 @@
         quadCurveVC=[[ChatListViewController alloc]init];
     }else{
         NSLog(@"通讯录");
-        quadCurveVC = [[AddressBookViewController alloc] init];
+        //quadCurveVC = [[AddressBookViewController alloc] init];
+        Class class=NSClassFromString(@"AskPriceMainViewController");
+        quadCurveVC=[[class alloc]init];
     }
     [self addAnimation];
     [nav pushViewController:quadCurveVC animated:NO];

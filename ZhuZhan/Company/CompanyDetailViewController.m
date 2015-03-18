@@ -43,7 +43,7 @@
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
     [self initMyScrollViewAndNavi];//scollview和navi初始
-    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view];
+    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view];
     [self firstNetWork];
 }
 
@@ -64,13 +64,13 @@
                 }
                 [self removeMyLoadingView];
             } companyId:self.companyId noNetWork:^{
-                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view reloadBlock:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
                     [self firstNetWork];
                 }];
             }];
         }
     } noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64-49) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64-49) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];
@@ -221,7 +221,7 @@
 
 -(void)initMyScrollViewAndNavi{
     //myScrollView初始化
-    self.myScrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 568)];
+    self.myScrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, kScreenHeight)];
     self.myScrollView.showsVerticalScrollIndicator=NO;
     [self.view addSubview:self.myScrollView];
     

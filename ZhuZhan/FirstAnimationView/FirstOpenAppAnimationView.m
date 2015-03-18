@@ -30,7 +30,7 @@
         self.backgroundColor=[UIColor whiteColor];
         self.canMoveWithGesture=NO;
         self.scrollview=[[UIScrollView alloc]initWithFrame:self.frame];
-        self.scrollview.contentSize=CGSizeMake(320*2, 568);
+        self.scrollview.contentSize=CGSizeMake(320*2, kScreenHeight);
         self.scrollview.pagingEnabled=YES;
         self.scrollview.delegate = self;
         self.scrollview.showsHorizontalScrollIndicator=NO;
@@ -53,7 +53,7 @@
 
 -(void)dismis{
     CGRect frame=self.frame;
-    frame.origin.y+=568;
+    frame.origin.y+=kScreenHeight;
     [UIView animateWithDuration:.3 animations:^{
         self.frame=frame;
     } completion:^(BOOL finished) {

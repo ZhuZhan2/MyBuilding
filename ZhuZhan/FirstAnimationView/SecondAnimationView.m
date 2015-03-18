@@ -34,7 +34,7 @@ static int j;
 }
 -(void)addImage:(int)index{
     UIScrollView* scrollView=(UIScrollView*)self.superview;
-    scrollView.contentSize=CGSizeMake(320*3, 568);
+    scrollView.contentSize=CGSizeMake(320*3, kScreenHeight);
     [scrollView setContentOffset:CGPointMake(320, 0)];
     if(index <=30){
         if(index<10){

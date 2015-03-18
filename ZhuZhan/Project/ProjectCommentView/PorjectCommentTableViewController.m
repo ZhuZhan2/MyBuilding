@@ -85,7 +85,7 @@
             [LoginAgain AddLoginView:NO];
         }
     } entityId:projectId entityType:@"02" noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];

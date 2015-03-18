@@ -14,6 +14,7 @@
 #import "ContactModel.h"
 #import "EGOImageView.h"
 #import "IsFocusedApi.h"
+#import "LoginModel.h"
 @interface ShowViewController ()
 @property(nonatomic,strong)UIActivityIndicatorView* indicatorView;
 @property(nonatomic,strong)UIView* bgVIew;
@@ -85,28 +86,48 @@
     concernBtn.alpha = 0.8;
     
     [self loadIndicatorView];
-    
-    [CommentApi UserBriefInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+    [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            if(posts.count !=0){
-                contactId = posts[0][@"userId"];
-                tempImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0][@"backgroundImage"]]];
-                icon.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:posts[0][@"userImage"]]]];
-                userName.text = [ProjectStage ProjectStrStage:posts[0][@"userName"]];
-                message.text = [NSString stringWithFormat:@"%@项目，%@动态",[ProjectStage ProjectStrStage:posts[0][@"projectsCount"]],[ProjectStage ProjectStrStage:posts[0][@"activesCount"]]];
-                if([[ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]]] isEqualToString:@"1"]){
-                    [concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
-                    isFoucsed = 1;
-                }else{
-                    [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
-                    isFoucsed = 0;
-                }
-                [self endIndicatorView];
+            ContactModel *model = posts[0];
+            contactId = model.userId;
+            tempImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,image(model.personalBackground, @"login", @"", @"", @"")]];
+            icon.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,image(model.userImage, @"login", @"", @"", @"")]];
+            userName.text = model.userName;
+            message.text = [NSString stringWithFormat:@"%@项目，%@动态",model.projectNum,model.dynamicNum];
+            if([model.isFocus isEqualToString:@"1"]){
+                [concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+                isFoucsed = 1;
+            }else{
+                [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
+                isFoucsed = 0;
             }
+            [self endIndicatorView];
         }else{
             [LoginAgain AddLoginView:NO];
         }
     } userId:self.createdBy noNetWork:nil];
+    
+//    [CommentApi UserBriefInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+//        if(!error){
+//            if(posts.count !=0){
+//                contactId = posts[0][@"userId"];
+//                tempImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0][@"backgroundImage"]]];
+//                icon.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:posts[0][@"userImage"]]]];
+//                userName.text = [ProjectStage ProjectStrStage:posts[0][@"userName"]];
+//                message.text = [NSString stringWithFormat:@"%@项目，%@动态",[ProjectStage ProjectStrStage:posts[0][@"projectsCount"]],[ProjectStage ProjectStrStage:posts[0][@"activesCount"]]];
+//                if([[ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]]] isEqualToString:@"1"]){
+//                    [concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+//                    isFoucsed = 1;
+//                }else{
+//                    [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
+//                    isFoucsed = 0;
+//                }
+//                [self endIndicatorView];
+//            }
+//        }else{
+//            [LoginAgain AddLoginView:NO];
+//        }
+//    } userId:self.createdBy noNetWork:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -181,16 +202,15 @@
 
 -(void)loginCompleteWithDelayBlock:(void (^)())block{
     NSLog(@"已登录");
-    [CommentApi UserBriefInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+    [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            if(posts.count !=0){
-                if([[ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]]] isEqualToString:@"1"]){
-                    [concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
-                    isFoucsed = 1;
-                }else{
-                    [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
-                    isFoucsed = 0;
-                }
+            ContactModel *model = posts[0];
+            if([model.isFocus isEqualToString:@"1"]){
+                [concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+                isFoucsed = 1;
+            }else{
+                [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
+                isFoucsed = 0;
             }
             
             if(block){

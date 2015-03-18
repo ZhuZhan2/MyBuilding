@@ -77,7 +77,7 @@
             [LoginAgain AddLoginView:NO];
         }
     } Id:self.model.a_id startIndex:startIndex noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];
@@ -95,7 +95,7 @@
             [LoginAgain AddLoginView:NO];
         }
     } Id:self.model.a_id startIndex:startIndex noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];
@@ -110,7 +110,7 @@
             [LoginAgain AddLoginView:NO];
         }
     } Id:self.model.a_id startIndex:startIndex noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];

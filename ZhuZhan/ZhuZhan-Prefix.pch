@@ -27,8 +27,8 @@
 //#define  serverAddress "http://192.168.222.95:801/"
 //#define  serverAddress "http://192.168.222.96:96/"
 //#define serverAddress "http://10.1.5.102:801/"
-#define  serverAddress "http://10.1.5.104:9090/server"
-//#define  serverAddress "http://10.1.5.104:8080/server"
+//#define  serverAddress "http://10.1.5.104:9090/server"
+#define  serverAddress "http://10.1.5.104:8080/server"
 //#define  serverAddress "http://10.1.1.138:9090/service"
 //#define  serverAddress "http://10.1.1.204:9090/service"
 #define  kScreenWidth  [[UIScreen mainScreen] bounds].size.width

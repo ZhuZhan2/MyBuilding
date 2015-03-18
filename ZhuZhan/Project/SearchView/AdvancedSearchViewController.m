@@ -53,7 +53,7 @@
     
     self.title = @"高级搜索";
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, kScreenHeight)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
@@ -88,7 +88,7 @@
                 [LoginAgain AddLoginView:NO];
             }
         }userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
                 [self firstNetWork];
             }];
         }];

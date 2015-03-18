@@ -25,7 +25,6 @@
         path=@"人脉－个人中心_06a";
         newCategory=@"产品";
     }
-    
     //动态描述部分
     UIView* contentView=[self getContentViewWithImageUrl:imageUrl content:content category:newCategory];
     
