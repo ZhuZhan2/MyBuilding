@@ -94,7 +94,7 @@
     }
     
     CGFloat height=kScreenHeight-y;
-    self.tableView=[[RKBaseTableView alloc]initWithFrame:CGRectMake(0, self.searchBar?self.searchBar.frame.size.height+64:64, kScreenWidth, kScreenHeight-(self.searchBar?self.searchBar.frame.size.height+64:64)) style:UITableViewStylePlain];
+    self.tableView=[[RKBaseTableView alloc]initWithFrame:CGRectMake(0, y, kScreenWidth, height) style:UITableViewStylePlain];
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
@@ -270,14 +270,14 @@
     [self touchesBeganInRKBaseTableView];
 }
 
--(void)initStageChooseView{
-    UIView* view=[RKStageChooseView stageChooseViewWithStages:
-                  @[@"全部",@"进行中",@"已采纳",@"已关闭"]];
-    CGRect frame=view.frame;
+-(void)initStageChooseViewWithStages:(NSArray*)stages{
+    self.stageChooseView=[RKStageChooseView stageChooseViewWithStages:
+                  stages];
+    CGRect frame=self.stageChooseView.frame;
     frame.origin=CGPointMake(0, 64);
-    view.frame=frame;
+    self.stageChooseView.frame=frame;
     
-    [self.view addSubview:view];
+    [self.view addSubview:self.stageChooseView];
 }
 
 -(void)dealloc{

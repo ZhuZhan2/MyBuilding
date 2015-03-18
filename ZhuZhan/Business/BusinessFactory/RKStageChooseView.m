@@ -18,7 +18,8 @@
 #define kChooseViewHeight 48
 #define kChooseViewWidth kScreenWidth
 #define SelectedColor BlueColor
-#define NoSeletedColor [UIColor blackColor]
+#define NoSeletedFourStageColor [UIColor blackColor]
+#define NoSeletedTwoStageColor GrayColor
 #define StageFont [UIFont systemFontOfSize:16]
 
 @implementation RKStageChooseView
@@ -38,7 +39,7 @@
 
 -(UIView *)underLineView{
     if (!_underLineView) {
-        _underLineView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 28, 3)];
+        _underLineView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.stages.count==4?28:kScreenWidth/2, 3)];
         _underLineView.backgroundColor=BlueColor;
         _underLineView.center=CGPointMake(kChooseViewWidth/4/2, kChooseViewHeight-CGRectGetHeight(_underLineView.frame)*0.5);
     }
@@ -48,9 +49,10 @@
 -(void)setUp{
     self.backgroundColor=[UIColor whiteColor];
     
-    for (int i=0; i<self.stages.count; i++) {
-        UIView* singleStageLabel=[self getSingleStageLabelWithText:self.stages[i] sequence:i];
-        CGFloat width=kChooseViewWidth/4;
+    NSInteger count=self.stages.count;
+    for (int i=0; i<count; i++) {
+        UIView* singleStageLabel=[self getSingleStageLabelWithText:self.stages[i] sequence:i ];
+        CGFloat width=kChooseViewWidth/count;
         CGFloat x=width*(0.5+i);
         CGFloat y=kChooseViewHeight*0.5;
         singleStageLabel.center=CGPointMake(x, y);
@@ -67,7 +69,7 @@
     stageLabel.text=text;
     stageLabel.tag=sequence;
     stageLabel.textAlignment=NSTextAlignmentCenter;
-    stageLabel.textColor=NoSeletedColor;
+    //stageLabel.textColor=NoSeletedColor;
     stageLabel.font=StageFont;
     stageLabel.userInteractionEnabled=YES;
     
@@ -82,7 +84,7 @@
 
 -(void)stageLabelClickedWithSequence:(NSInteger)sequence{
     [self.labels enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [(UILabel*)obj setTextColor:idx==sequence?SelectedColor:NoSeletedColor];
+        [(UILabel*)obj setTextColor:idx==sequence?SelectedColor:(self.stages.count==4?NoSeletedFourStageColor:NoSeletedTwoStageColor)];
     }];
     UIView* stageLabel=self.labels[sequence];
     CGPoint center=self.underLineView.center;

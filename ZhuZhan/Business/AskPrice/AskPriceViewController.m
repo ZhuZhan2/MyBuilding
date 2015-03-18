@@ -12,6 +12,7 @@
 #import "AskPriceViewCell.h"
 #import "ChooseProductBigStage.h"
 #import "ChooseProductSmallStage.h"
+#import "DemanDetailViewController.h"
 @interface AskPriceViewController ()
 
 @end
@@ -21,30 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initNavi];
-    [self initStageChooseView];
+    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]];
     [self initTableView];
 }
 
--(void)initTableView{
-    [super initTableView];
-    CGRect frame=self.tableView.frame;
-    frame.origin.y+=48;
-    frame.size.height-=48;
-    self.tableView.frame=frame;
-}
-
--(void)initStageChooseView{
-    UIView* view=[RKStageChooseView stageChooseViewWithStages:
-                  @[@"全部",@"进行中",@"已采纳",@"已关闭"]];
-    CGRect frame=view.frame;
-    frame.origin=CGPointMake(0, 64);
-    view.frame=frame;
-    
-    [self.view addSubview:view];
-}
-
 -(void)initNavi{
-//    self.title=@"询价需求表";
     NSString* titleStr=@"需求表";
     UIFont* font=[UIFont fontWithName:@"GurmukhiMN-Bold" size:19];
     UILabel* titleLabel=[[UILabel alloc]init];
@@ -84,14 +66,15 @@
         cell.clipsToBounds=YES;
     }
     cell.contents=@[@"参与用户啊啊啊啊啊啊啊啊啊啊啊啊啊啊",@"水泥啊水泥",@"产品分类",@"程序不做完，产品设计一起加班,程序不做完，产品设计一起加班,程序不做完，产品设计一起加班,程序不做完，产品设计一起加班"];
-    
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    //[cell setModel:model];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (arc4random()%2) {
+    DemanDetailViewController* vc=[[DemanDetailViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    return;
+    if (indexPath.row%2) {
         ChooseProductBigStage* vc=[[ChooseProductBigStage alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }else{
