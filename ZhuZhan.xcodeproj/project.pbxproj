@@ -1265,6 +1265,8 @@
 		D3D9C91F1A13446B001D3A64 /* 主菜单03a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9171A13446B001D3A64 /* 主菜单03a@2x.png */; };
 		D3D9C9201A13446B001D3A64 /* 主菜单04a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9181A13446B001D3A64 /* 主菜单04a.png */; };
 		D3D9C9211A13446B001D3A64 /* 主菜单04a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9191A13446B001D3A64 /* 主菜单04a@2x.png */; };
+		D3DBBC721AB914E20070DB98 /* AddCategoriesView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBBC711AB914E20070DB98 /* AddCategoriesView.m */; };
+		D3DBBC751AB91E110070DB98 /* AddClassificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBBC741AB91E110070DB98 /* AddClassificationView.m */; };
 		D3E0E94B1A398A3600A41D42 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3E0E94A1A398A3600A41D42 /* Settings.bundle */; };
 		D3E1AAFD1A7648FC00BFC6E1 /* Shape-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E1AAFB1A7648FC00BFC6E1 /* Shape-1.png */; };
 		D3E1AAFE1A7648FC00BFC6E1 /* Shape-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E1AAFC1A7648FC00BFC6E1 /* Shape-1@2x.png */; };
@@ -3063,6 +3065,10 @@
 		D3D9C9171A13446B001D3A64 /* 主菜单03a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单03a@2x.png"; sourceTree = "<group>"; };
 		D3D9C9181A13446B001D3A64 /* 主菜单04a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单04a.png"; sourceTree = "<group>"; };
 		D3D9C9191A13446B001D3A64 /* 主菜单04a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单04a@2x.png"; sourceTree = "<group>"; };
+		D3DBBC701AB914E20070DB98 /* AddCategoriesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCategoriesView.h; sourceTree = "<group>"; };
+		D3DBBC711AB914E20070DB98 /* AddCategoriesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCategoriesView.m; sourceTree = "<group>"; };
+		D3DBBC731AB91E110070DB98 /* AddClassificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddClassificationView.h; sourceTree = "<group>"; };
+		D3DBBC741AB91E110070DB98 /* AddClassificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddClassificationView.m; sourceTree = "<group>"; };
 		D3E0E94A1A398A3600A41D42 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D3E1AAFB1A7648FC00BFC6E1 /* Shape-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shape-1.png"; sourceTree = "<group>"; };
 		D3E1AAFC1A7648FC00BFC6E1 /* Shape-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shape-1@2x.png"; sourceTree = "<group>"; };
@@ -5680,6 +5686,10 @@
 				D3CF0D8B1AB81A7800D71CEB /* TopView.m */,
 				D3CF0D851AB81A4C00D71CEB /* AskPriceMainViewController.h */,
 				D3CF0D861AB81A4C00D71CEB /* AskPriceMainViewController.m */,
+				D3DBBC701AB914E20070DB98 /* AddCategoriesView.h */,
+				D3DBBC711AB914E20070DB98 /* AddCategoriesView.m */,
+				D3DBBC731AB91E110070DB98 /* AddClassificationView.h */,
+				D3DBBC741AB91E110070DB98 /* AddClassificationView.m */,
 			);
 			path = AskPriceMainView;
 			sourceTree = "<group>";
@@ -6835,6 +6845,7 @@
 				D39937CA1A42B49A007081C1 /* WelcomeViewController.m in Sources */,
 				042D9E1919B559FC00689C5D /* ProjectTableViewCell.m in Sources */,
 				5BE08ED41A35900000495EEB /* FourthAnimationView.m in Sources */,
+				D3DBBC721AB914E20070DB98 /* AddCategoriesView.m in Sources */,
 				5B6289DD1AB7C10000F30059 /* RKTwoView.m in Sources */,
 				5B3AD9E419F7CA7B008132B2 /* CompanyMemberCell.m in Sources */,
 				D3D4A2E21AAE98390071B3EA /* ChatMessageModel.m in Sources */,
@@ -6885,6 +6896,7 @@
 				5B0C8AA619D79E550058C0EE /* PersonalCenterCellView.m in Sources */,
 				0426C2A419922D5A00CD8822 /* GPUImagePoissonBlendFilter.m in Sources */,
 				0426C23B19922D5A00CD8822 /* AFURLConnectionOperation.m in Sources */,
+				D3DBBC751AB91E110070DB98 /* AddClassificationView.m in Sources */,
 				0426C30119922D5A00CD8822 /* UIRefreshControl+AFNetworking.m in Sources */,
 				0426C29519922D5A00CD8822 /* GPUImageMotionDetector.m in Sources */,
 				0426C29319922D5A00CD8822 /* GPUImageMosaicFilter.m in Sources */,

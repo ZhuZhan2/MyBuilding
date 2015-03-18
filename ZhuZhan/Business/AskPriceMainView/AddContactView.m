@@ -22,8 +22,7 @@
     if(!_fixationLabel){
         _fixationLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 65, 15)];
         _fixationLabel.font = [UIFont systemFontOfSize:15];
-        _fixationLabel.textColor = [UIColor blueColor];
-        //self.fixationLabel.backgroundColor = [UIColor whiteColor];
+        _fixationLabel.textColor = BlueColor;
         _fixationLabel.textAlignment = NSTextAlignmentLeft;
         _fixationLabel.text = @"参与用户";
     }
