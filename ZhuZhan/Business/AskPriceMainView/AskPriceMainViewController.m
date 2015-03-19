@@ -16,7 +16,8 @@
 #import "AddMarkView.h"
 #import "SearchContactViewController.h"
 #import "SearchCategoryViewController.h"
-@interface AskPriceMainViewController ()<AddContactViewDelegate,UITableViewDelegate,UITableViewDataSource,AddMarkViewDelegate,SearchContactViewDelegate,SearchCategoryViewDelegate>
+#import "ChooseProductBigStage.h"
+@interface AskPriceMainViewController ()<AddContactViewDelegate,UITableViewDelegate,UITableViewDataSource,AddMarkViewDelegate,SearchContactViewDelegate,SearchCategoryViewDelegate,ChooseProductBigStageDelegate>
 @property(nonatomic,strong)TopView *topView;
 @property(nonatomic,strong)NSMutableArray *laberStrArr;
 @property(nonatomic,strong)AddContactView *addContactView;
@@ -201,7 +202,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row == 1){
-        SearchCategoryViewController *categoryView = [[SearchCategoryViewController alloc] init];
+        ChooseProductBigStage *categoryView = [[ChooseProductBigStage alloc] init];
         categoryView.delegate = self;
         [self.navigationController pushViewController:categoryView animated:YES];
     }else if (indexPath.row == 2){
