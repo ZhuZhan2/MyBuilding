@@ -99,7 +99,13 @@
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.tableView];
+    if (self.searchBar&&!self.searchBarIsTableViewHeader) {
+        [self.view insertSubview:self.tableView belowSubview:self.searchBar];
+    }else if (self.stageChooseView){
+        [self.view insertSubview:self.tableView belowSubview:self.stageChooseView];
+    }else{
+        [self.view addSubview:self.tableView];
+    }
 }
 
 -(void)setUpSearchBarWithNeedTableView:(BOOL)needTableView isTableViewHeader:(BOOL)isTableViewHeader{
@@ -111,7 +117,15 @@
     self.searchBar.tintColor = [UIColor grayColor];
     self.searchBar.backgroundImage=[self imageWithColor:RGBCOLOR(223, 223, 223)];
     self.searchBar.delegate=self;
-    [self.view addSubview:self.searchBar];
+    
+    if (!isTableViewHeader) {
+        if (self.stageChooseView) {
+            [self.view insertSubview:self.searchBar belowSubview:self.stageChooseView];
+        }else{
+            [self.view addSubview:self.searchBar];
+        }
+    }
+    
     if (needTableView) {
         [self setUpSearchBarTableView];
     }

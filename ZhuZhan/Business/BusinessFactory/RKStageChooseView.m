@@ -37,7 +37,9 @@
 -(UIView *)seperatorLine{
     if (!_seperatorLine) {
         _seperatorLine=[RKShadowView seperatorLineInThemeView];
-        _seperatorLine.center=CGPointMake(CGRectGetWidth(_seperatorLine.frame)*0.5, CGRectGetHeight(self.frame)-CGRectGetHeight(_seperatorLine.frame)*0.5);
+        CGRect frame=_seperatorLine.frame;
+        frame.origin.y=CGRectGetMaxY(self.frame);
+        _seperatorLine.frame=frame;
     }
     return _seperatorLine;
 }
