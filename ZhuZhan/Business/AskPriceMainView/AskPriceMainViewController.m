@@ -15,9 +15,9 @@
 #import "AddClassificationView.h"
 #import "AddMarkView.h"
 #import "SearchContactViewController.h"
-#import "SearchCategoryViewController.h"
 #import "ChooseProductBigStage.h"
-@interface AskPriceMainViewController ()<AddContactViewDelegate,UITableViewDelegate,UITableViewDataSource,AddMarkViewDelegate,SearchContactViewDelegate,SearchCategoryViewDelegate,ChooseProductBigStageDelegate>
+#import "ChooseProductSmallStage.h"
+@interface AskPriceMainViewController ()<AddContactViewDelegate,UITableViewDelegate,UITableViewDataSource,AddMarkViewDelegate,SearchContactViewDelegate,ChooseProductBigStageDelegate,ChooseProductSmallStageDelegate>
 @property(nonatomic,strong)TopView *topView;
 @property(nonatomic,strong)NSMutableArray *laberStrArr;
 @property(nonatomic,strong)AddContactView *addContactView;
@@ -207,22 +207,13 @@
         [self.navigationController pushViewController:categoryView animated:YES];
     }else if (indexPath.row == 2){
         if(self.categoryStr !=nil){
-        
+            ChooseProductSmallStage *classificationView = [[ChooseProductSmallStage alloc] init];
+            classificationView.delegate = self;
+            [self.navigationController pushViewController:classificationView animated:YES];
         }else{
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请先选择产品大类" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
         }
-        [self.addClassificationView removeFromSuperview];
-        self.addClassificationView = nil;
-        if(self.isSelect2){
-            self.classifcationStr = nil;
-            self.isSelect2 = NO;
-        }else{
-            self.classifcationStr = @"分类奥德赛发送到发送到发送到发送到发送到发阿斯顿发送到发送到发分asdfasf";
-            self.isSelect2 = YES;
-        }
-        [self.viewArr replaceObjectAtIndex:2 withObject:self.addClassificationView];
-        [self.tableView reloadData];
     }
 }
 
@@ -267,11 +258,26 @@
     [self.tableView reloadData];
 }
 
--(void)selectCategory:(NSString *)str{
+-(void)chooseProductBigStage:(NSString *)str{
     self.categoryStr = str;
     [self.addCategoriesView removeFromSuperview];
     self.addCategoriesView = nil;
     [self.viewArr replaceObjectAtIndex:1 withObject:self.addCategoriesView];
     [self.tableView reloadData];
+}
+
+-(void)chooseProductSmallStage:(NSArray *)arr{
+    NSMutableString *str = [[NSMutableString alloc] init];
+    [arr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [str appendString:[NSString stringWithFormat:@"%@、",obj]];
+    }];
+    if(str.length !=0){
+        self.classifcationStr = [str substringWithRange:NSMakeRange(0,str.length-1)];
+    }
+    [self.addClassificationView removeFromSuperview];
+    self.addClassificationView = nil;
+    [self.viewArr replaceObjectAtIndex:2 withObject:self.addClassificationView];
+    [self.tableView reloadData];
+
 }
 @end

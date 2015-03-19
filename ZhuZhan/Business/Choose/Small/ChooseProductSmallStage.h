@@ -7,7 +7,9 @@
 //
 
 #import "ChatBaseViewController.h"
-
+@protocol ChooseProductSmallStageDelegate <NSObject>
+-(void)chooseProductSmallStage:(NSArray *)arr;
+@end
 @interface ChooseProductSmallStage : ChatBaseViewController
-
+@property(nonatomic,weak)id<ChooseProductSmallStageDelegate>delegate;
 @end

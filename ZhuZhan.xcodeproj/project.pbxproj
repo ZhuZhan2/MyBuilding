@@ -1253,8 +1253,6 @@
 		D3D686231ABAC665005D9ED6 /* 交易_删除@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D686211ABAC665005D9ED6 /* 交易_删除@2x.png */; };
 		D3D686271ABAC8C0005D9ED6 /* SearchContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D686261ABAC8C0005D9ED6 /* SearchContactViewController.m */; };
 		D3D6862A1ABACF44005D9ED6 /* SearchContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D686291ABACF44005D9ED6 /* SearchContactTableViewCell.m */; };
-		D3D6862E1ABADC43005D9ED6 /* SearchCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6862D1ABADC43005D9ED6 /* SearchCategoryViewController.m */; };
-		D3D686311ABADD67005D9ED6 /* SearchCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D686301ABADD67005D9ED6 /* SearchCategoryTableViewCell.m */; };
 		D3D6C7911A15D73F001D2071 /* 公司－公司详情_05c.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6C78F1A15D73F001D2071 /* 公司－公司详情_05c.png */; };
 		D3D6C7921A15D73F001D2071 /* 公司－公司详情_05c@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6C7901A15D73F001D2071 /* 公司－公司详情_05c@2x.png */; };
 		D3D6C7951A15D75D001D2071 /* 公司－公司详情_05d.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6C7931A15D75D001D2071 /* 公司－公司详情_05d.png */; };
@@ -3101,10 +3099,6 @@
 		D3D686261ABAC8C0005D9ED6 /* SearchContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchContactViewController.m; sourceTree = "<group>"; };
 		D3D686281ABACF44005D9ED6 /* SearchContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchContactTableViewCell.h; sourceTree = "<group>"; };
 		D3D686291ABACF44005D9ED6 /* SearchContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchContactTableViewCell.m; sourceTree = "<group>"; };
-		D3D6862C1ABADC43005D9ED6 /* SearchCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCategoryViewController.h; sourceTree = "<group>"; };
-		D3D6862D1ABADC43005D9ED6 /* SearchCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCategoryViewController.m; sourceTree = "<group>"; };
-		D3D6862F1ABADD67005D9ED6 /* SearchCategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCategoryTableViewCell.h; sourceTree = "<group>"; };
-		D3D686301ABADD67005D9ED6 /* SearchCategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCategoryTableViewCell.m; sourceTree = "<group>"; };
 		D3D6C78F1A15D73F001D2071 /* 公司－公司详情_05c.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－公司详情_05c.png"; sourceTree = "<group>"; };
 		D3D6C7901A15D73F001D2071 /* 公司－公司详情_05c@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－公司详情_05c@2x.png"; sourceTree = "<group>"; };
 		D3D6C7931A15D75D001D2071 /* 公司－公司详情_05d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－公司详情_05d.png"; sourceTree = "<group>"; };
@@ -5841,7 +5835,6 @@
 		D3CF0D841AB81A3900D71CEB /* AskPriceMainView */ = {
 			isa = PBXGroup;
 			children = (
-				D3D6862B1ABADC20005D9ED6 /* SearchCategory */,
 				D3D686241ABAC8A6005D9ED6 /* SearchContact */,
 				D3CF0D881AB81A7800D71CEB /* AddContactView.h */,
 				D3CF0D891AB81A7800D71CEB /* AddContactView.m */,
@@ -5940,17 +5933,6 @@
 				D3D686291ABACF44005D9ED6 /* SearchContactTableViewCell.m */,
 			);
 			path = SearchContact;
-			sourceTree = "<group>";
-		};
-		D3D6862B1ABADC20005D9ED6 /* SearchCategory */ = {
-			isa = PBXGroup;
-			children = (
-				D3D6862C1ABADC43005D9ED6 /* SearchCategoryViewController.h */,
-				D3D6862D1ABADC43005D9ED6 /* SearchCategoryViewController.m */,
-				D3D6862F1ABADD67005D9ED6 /* SearchCategoryTableViewCell.h */,
-				D3D686301ABADD67005D9ED6 /* SearchCategoryTableViewCell.m */,
-			);
-			path = SearchCategory;
 			sourceTree = "<group>";
 		};
 		D3D74E8B19FA302900ED8B62 /* Login */ = {
@@ -7416,7 +7398,6 @@
 				5B7670621AB6B92B00E154C5 /* ChatBaseViewController.m in Sources */,
 				042D9E1819B559FC00689C5D /* ScrollViewController.m in Sources */,
 				0426C2C819922D5A00CD8822 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
-				D3D6862E1ABADC43005D9ED6 /* SearchCategoryViewController.m in Sources */,
 				0426C2FC19922D5A00CD8822 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				0426C24819922D5A00CD8822 /* GPUImageAverageLuminanceThresholdFilter.m in Sources */,
 				0426C2C719922D5A00CD8822 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
@@ -7437,7 +7418,6 @@
 				D3AD60FC19AC7CC5001FD483 /* EGOImageView.m in Sources */,
 				5B8A2CF51AAEE0AD00C8F9DE /* ChooseContactsViewCell.m in Sources */,
 				D3AD619D19AEEE30001FD483 /* SinglePickerView.m in Sources */,
-				D3D686311ABADD67005D9ED6 /* SearchCategoryTableViewCell.m in Sources */,
 				0426C2BA19922D5A00CD8822 /* GPUImageSobelEdgeDetectionFilter.m in Sources */,
 				0426C29119922D5A00CD8822 /* GPUImageMissEtikateFilter.m in Sources */,
 				D3AC61AB19B6BF930015B62F /* MyCenterModel.m in Sources */,
