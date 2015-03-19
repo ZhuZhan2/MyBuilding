@@ -116,7 +116,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.activesModel=activesModel;
-        [self loadMyPropertyWithImgW:activesModel.a_imageWidth imgH:activesModel.a_imageHeight imgUrl:activesModel.a_imageUrl userImgUrl:activesModel.a_avatarUrl content:activesModel.a_content entityID:[activesModel.a_category isEqualToString:@"Product"]?activesModel.a_entityId:activesModel.a_id entityUrl:activesModel.a_entityUrl userName:activesModel.a_userName category:activesModel.a_category createdBy:activesModel.a_createdBy userType:activesModel.a_userType];
+        [self loadMyPropertyWithImgW:activesModel.a_imageWidth imgH:activesModel.a_imageHeight imgUrl:[activesModel.a_category isEqualToString:@"Product"]?activesModel.a_productImage:activesModel.a_imageUrl userImgUrl:activesModel.a_avatarUrl content:activesModel.a_content entityID:[activesModel.a_category isEqualToString:@"Product"]?activesModel.a_entityId:activesModel.a_id entityUrl:activesModel.a_entityUrl userName:activesModel.a_userName category:activesModel.a_category createdBy:activesModel.a_createdBy userType:activesModel.a_userType];
     }
     return self;
 }
@@ -125,7 +125,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.personalModel=personalModel;
-        self.productModel = [[ProductModel alloc] init];
+        if([personalModel.a_category isEqualToString:@"Product"]){
+            NSLog(@"asdfasdfasdfasdfsdfs");
+            self.productModel = [[ProductModel alloc] init];
+        }
         [self loadMyPropertyWithImgW:personalModel.a_imageWidth imgH:personalModel.a_imageHeight imgUrl:personalModel.a_imageUrl userImgUrl:self.myImageUrl content:personalModel.a_content entityID:personalModel.a_entityId entityUrl:personalModel.a_entityUrl userName:self.myName category:personalModel.a_category createdBy:[LoginSqlite getdata:@"userId"] userType:personalModel.a_userType];
     }
     return self;
@@ -196,7 +199,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 //获取网络数据
 -(void)getNetWorkData{
-    NSLog(@"%@",self.type);
+    NSLog(@"===>%@",self.type);
     [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         [self removeMyLoadingView];
         if (!error) {
@@ -424,7 +427,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     btn.tag=0;
     [btn addTarget:self action:@selector(chooseUserImage:) forControlEvents:UIControlEventTouchUpInside];
     [forCornerView addSubview:btn];
-    
+    NSLog(@"a_focusedNum==>%@",self.productModel.a_focusedNum);
     height+=5;
     self.noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, height, 100, 20)];
     self.noticeLabel.text=[NSString stringWithFormat:@"%@ 关注",self.productModel.a_focusedNum];
@@ -669,7 +672,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 //[self.delegate finishAddCommentFromDetailWithPosts:posts];
             }
         }
-    } dic:[@{@"paramId":self.entityID,@"content":comment,@"commentType":self.type} mutableCopy] noNetWork:nil];
+    } dic:[@{@"paramId":self.entityID,@"content":comment,@"commentType":@"03"} mutableCopy] noNetWork:nil];
 }
 
 //添加产品详情的评论
@@ -833,7 +836,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.title=@"详情";//self.productModel?@"产品详情":@"动态详情";
-    if([self.category isEqualToString:@"Product"]){
+    if([self.category isEqualToString:@"Product"] ){
         UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [rightButton setFrame:CGRectMake(0, 0, 25, 22)];
         [rightButton setBackgroundImage:[GetImagePath getImagePath:@"019"] forState:UIControlStateNormal];
@@ -945,6 +948,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         NSIndexPath * path = [self.tableView indexPathForCell:cell];
         ContactCommentModel *model = self.commentModels[path.row-1];
         NSLog(@"a_id==> %@",model.a_id);
+        NSLog(@"a_id==> %@",self.type);
         [CommentApi DelEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 [self.commentModels removeObjectAtIndex:path.row-1];
@@ -955,7 +959,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     [self myTableViewReloadData];
                 }
             }
-        } dic:[@{@"commentId":model.a_id,@"commentType":@"01"} mutableCopy] noNetWork:nil];
+        } dic:[@{@"commentId":model.a_id,@"commentType":self.type} mutableCopy] noNetWork:nil];
     }
 }
 

@@ -88,7 +88,7 @@
     }else{
         [stageImage setImage:[GetImagePath getImagePath:@"人脉_57a"]];
     }
-    titleLabel.text = model.a_title;
+    titleLabel.text = [NSString stringWithFormat:@"%@%@",model.a_projectName,model.a_title];
     contentLabel.text = model.a_content;
     headImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_avatarUrl]];
 }

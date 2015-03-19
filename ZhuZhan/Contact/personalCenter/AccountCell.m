@@ -354,7 +354,7 @@ static int textFieldTag =0;
             NSLog(@"Cancel");
         }else {
             NSLog(@"%@,%@,%@",locationview.proviceDictionary[@"provice"],locationview.proviceDictionary[@"city"],locationview.proviceDictionary[@"county"]);
-            location.text = [NSString stringWithFormat:@"%@,%@,%@",locationview.proviceDictionary[@"provice"],locationview.proviceDictionary[@"city"],locationview.proviceDictionary[@"county"]];
+            location.text = [NSString stringWithFormat:@"%@,%@",locationview.proviceDictionary[@"city"],locationview.proviceDictionary[@"county"]];
             [self.delegate addLocation:@{@"provice":locationview.proviceDictionary[@"provice"],@"city":locationview.proviceDictionary[@"city"],@"district":locationview.proviceDictionary[@"county"]}];
         }
     }else{
@@ -447,7 +447,7 @@ static int textFieldTag =0;
     password.text = @"**********";
     realName.text = model.realName;
     sex.text = model.sex;
-    location.text = [NSString stringWithFormat:@"%@ %@ %@",model.provice,model.city,model.district];
+    location.text = [NSString stringWithFormat:@"%@ %@",model.city,model.district];
     birthday.text = model.birthday;
     constellation.text = model.constellation;
     bloodType.text = model.bloodType;
