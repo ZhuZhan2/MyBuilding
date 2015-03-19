@@ -48,7 +48,6 @@
 -(void)initNavi{
     self.title=@"买家的用户名，懂？";
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
-    self.needAnimaiton=YES;
 }
 
 -(RKDemandDetailController *)detailController{

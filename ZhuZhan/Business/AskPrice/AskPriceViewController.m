@@ -37,7 +37,12 @@
 }
 
 -(void)initNavi{
-    NSString* titleStr=@"需求表";
+    [self initTitleViewWithTitle:@"全部需求表"];
+    [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
+}
+
+-(void)initTitleViewWithTitle:(NSString*)title{
+    NSString* titleStr=title;
     UIFont* font=[UIFont fontWithName:@"GurmukhiMN-Bold" size:19];
     UILabel* titleLabel=[[UILabel alloc]init];
     titleLabel.text=titleStr;
@@ -46,8 +51,9 @@
     CGSize size=[titleStr boundingRectWithSize:CGSizeMake(9999, 20) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
     titleLabel.frame=CGRectMake(0, 0, size.width, size.height);
     
-    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(titleLabel.frame), 0, 20, 20)];
-    imageView.backgroundColor=[UIColor whiteColor];
+    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake( 0, 0, 15, 7)];
+    imageView.center=CGPointMake(CGRectGetMaxX(titleLabel.frame)+CGRectGetWidth(imageView.frame)*0.5+5, CGRectGetMidY(titleLabel.frame));
+    imageView.image=[GetImagePath getImagePath:@"导航下三角"];
     
     CGRect frame=titleLabel.frame;
     frame.size.width+=CGRectGetWidth(imageView.frame);
@@ -58,7 +64,6 @@
     [button addSubview:imageView];
     
     self.navigationItem.titleView=button;
-    [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
