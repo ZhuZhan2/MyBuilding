@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initNavi];
-    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[@"99",@"88",@"0",@"1111"]];
+    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[@"99",@"88",@"10",@"1111"]];
 
     [self setUpSearchBarWithNeedTableView:NO isTableViewHeader:YES];
     [self initTableView];
@@ -40,6 +40,7 @@
 -(void)initNavi{
     [self initTitleViewWithTitle:@"全部需求表"];
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
+    self.needAnimaiton=YES;
 }
 
 -(void)initTitleViewWithTitle:(NSString*)title{

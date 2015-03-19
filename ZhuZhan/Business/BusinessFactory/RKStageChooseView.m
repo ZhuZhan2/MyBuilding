@@ -99,9 +99,9 @@
     [self.labels enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [(RKStageAndNumberView*)obj changeColor:idx==sequence?SelectedColor:(self.stages.count==4?NoSeletedFourStageColor:NoSeletedTwoStageColor)];
     }];
-    UIView* stageLabel=self.labels[sequence];
+    RKStageAndNumberView* stageLabel=self.labels[sequence];
     CGPoint center=self.underLineView.center;
-    center.x=stageLabel.center.x;
+    center.x=CGRectGetMinX(stageLabel.frame)+[stageLabel stageLabelCenterX];
     [UIView animateWithDuration:.3 animations:^{
         self.underLineView.center=center;
     }];

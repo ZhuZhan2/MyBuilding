@@ -33,6 +33,12 @@
     [view setUp];
     return view;
 }
+
+-(CGFloat)stageLabelCenterX{
+    return self.stageLabel.center.x;
+}
+
+
 +(RKStageAndNumberView*)stageAndNumberViewWithStage:(NSString*)stage{
     RKStageAndNumberView* view=[[RKStageAndNumberView alloc]initWithFrame:CGRectZero];
     view.stageStr=stage;
@@ -43,8 +49,8 @@
 -(void)changeNumber:(NSInteger)number{
     BOOL isOverMax=number>99;
     number=MIN(number, 99);
-    self.numberLabel.text=[NSString stringWithFormat:isOverMax?@"%d":@"%d+",(int)number];
-    self.numberLabel.font=[UIFont systemFontOfSize:isOverMax?8:14];
+    self.numberLabel.text=[NSString stringWithFormat:isOverMax?@"%d+":@"%d",(int)number];
+    self.numberLabel.font=[UIFont systemFontOfSize:isOverMax?8:11];
 }
 
 -(void)changeColor:(UIColor *)color{
@@ -70,7 +76,7 @@
         _stageLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, size.width, size.height)];
         _stageLabel.text=self.stageStr;
         _stageLabel.font=StageFont;
-        _stageLabel.backgroundColor=[UIColor greenColor];
+        _stageLabel.textAlignment=NSTextAlignmentCenter;
     }
     return _stageLabel;
 }
@@ -79,7 +85,10 @@
     if (!_numberLabel) {
         _numberLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 16, 16)];
         _numberLabel.textColor=[UIColor whiteColor];
+        _numberLabel.textAlignment=NSTextAlignmentCenter;
         _numberLabel.backgroundColor=[UIColor redColor];
+        _numberLabel.layer.cornerRadius=CGRectGetWidth(_numberLabel.frame)*0.5;
+        _numberLabel.layer.masksToBounds=YES;
     }
     return _numberLabel;
 }
