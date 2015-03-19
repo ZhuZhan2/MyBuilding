@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initNavi];
-    [self initStageChooseViewWithStages:@[@"报价",@"对话"]];
+    [self initStageChooseViewWithStages:@[@"报价",@"对话"] numbers:nil];
     [self.view insertSubview:self.contentView belowSubview:self.stageChooseView];
 }
 -(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{

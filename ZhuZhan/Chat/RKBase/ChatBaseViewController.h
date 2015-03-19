@@ -43,7 +43,7 @@
 -(void)initChatToolBar;
 
 @property(nonatomic,strong)RKStageChooseView* stageChooseView;
--(void)initStageChooseViewWithStages:(NSArray*)stages;
+-(void)initStageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers;
 
 -(void)addKeybordNotification;
 -(void)keybordWillChangeFrame:(NSNotification*)noti;

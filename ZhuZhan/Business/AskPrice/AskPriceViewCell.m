@@ -43,8 +43,7 @@
 
 -(UIView *)seperatorLineInCell{
     if (!_seperatorLineInCell) {
-        _seperatorLineInCell=[[UIView alloc]initWithFrame:CGRectZero];
-        _seperatorLineInCell.backgroundColor=[UIColor grayColor];
+        _seperatorLineInCell=[RKShadowView seperatorLineWithHeight:2];
     }
     return _seperatorLineInCell;
 }
@@ -105,7 +104,7 @@
 
 -(void)reloadAllFrames{
     self.cellHeader.frame=CGRectMake(0, 0, kScreenWidth, headerHeight);
-    self.seperatorLineInCell.frame=CGRectMake(0, CGRectGetMaxY(self.cellHeader.frame)-1, kScreenWidth, 1);
+    self.seperatorLineInCell.frame=CGRectMake(0, CGRectGetMaxY(self.cellHeader.frame)-CGRectGetHeight(self.seperatorLineInCell.frame), kScreenWidth, CGRectGetHeight(self.seperatorLineInCell.frame));
     
     CGFloat height=[RKTwoView carculateTotalHeightWithContents:self.contents]+mainViewTopDistance+mainViewBottomDistance;
     self.mainView.frame=CGRectMake(0, CGRectGetMaxY(self.cellHeader.frame), kScreenWidth, height);
