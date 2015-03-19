@@ -13,21 +13,34 @@
 
 @property(nonatomic,strong)UIView* underLineView;
 @property(nonatomic,strong)NSMutableArray* labels;
+@property(nonatomic,strong)UIView* seperatorLine;
+
+@property(nonatomic,weak)id<RKStageChooseViewDelegate>delegate;
 @end
 
-#define kChooseViewHeight 48
+#define kChooseViewHeight 46
 #define kChooseViewWidth kScreenWidth
 #define SelectedColor BlueColor
 #define NoSeletedFourStageColor [UIColor blackColor]
-#define NoSeletedTwoStageColor GrayColor
+#define NoSeletedTwoStageColor AllLightGrayColor
 #define StageFont [UIFont systemFontOfSize:16]
 
 @implementation RKStageChooseView
-+(RKStageChooseView *)stageChooseViewWithStages:(NSArray *)stages{
++(RKStageChooseView *)stageChooseViewWithStages:(NSArray *)stages delegate:(id<RKStageChooseViewDelegate>)delegate{
     RKStageChooseView* stageChooseView=[[RKStageChooseView alloc]initWithFrame:CGRectMake(0, 0, kChooseViewWidth, kChooseViewHeight)];
+    stageChooseView.delegate=delegate;
     stageChooseView.stages=stages;
     [stageChooseView setUp];
     return stageChooseView;
+}
+
+-(UIView *)seperatorLine{
+    if (!_seperatorLine) {
+        _seperatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kChooseViewWidth, 1)];
+        _seperatorLine.center=CGPointMake(CGRectGetWidth(_seperatorLine.frame)*0.5, CGRectGetHeight(self.frame)-CGRectGetHeight(_seperatorLine.frame)*0.5);
+        _seperatorLine.backgroundColor=AllSeperatorLineColor;
+    }
+    return _seperatorLine;
 }
 
 -(NSMutableArray *)labels{
@@ -41,13 +54,13 @@
     if (!_underLineView) {
         _underLineView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.stages.count==4?28:kScreenWidth/2, 3)];
         _underLineView.backgroundColor=BlueColor;
-        _underLineView.center=CGPointMake(kChooseViewWidth/4/2, kChooseViewHeight-CGRectGetHeight(_underLineView.frame)*0.5);
+        _underLineView.center=CGPointMake(kChooseViewWidth/4/2, kChooseViewHeight-CGRectGetHeight(self.seperatorLine.frame)-CGRectGetHeight(_underLineView.frame)*0.5);
     }
     return _underLineView;
 }
 
 -(void)setUp{
-    self.backgroundColor=[UIColor whiteColor];
+    self.backgroundColor=AllBackMiddleGrayColor;
     
     NSInteger count=self.stages.count;
     for (int i=0; i<count; i++) {
@@ -60,6 +73,7 @@
         [self addSubview:singleStageLabel];
         [self.labels addObject:singleStageLabel];
     }
+    [self addSubview:self.seperatorLine];
     [self addSubview:self.underLineView];
     [self stageLabelClickedWithSequence:0];
 }
@@ -92,5 +106,9 @@
     [UIView animateWithDuration:.3 animations:^{
         self.underLineView.center=center;
     }];
+    
+    if ([self.delegate respondsToSelector:@selector(stageBtnClickedWithNumber:)]) {
+        [self.delegate stageBtnClickedWithNumber:sequence];
+    }
 }
 @end

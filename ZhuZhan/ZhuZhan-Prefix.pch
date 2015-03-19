@@ -40,6 +40,23 @@
 //RGB的宏
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
 
+//文字色
+#define AllDeepGrayColor RGBCOLOR(106,106,106)//深灰
+#define AllLightGrayColor RGBCOLOR(152,150,150)//浅灰
+#define AllNoDataColor RGBCOLOR(187,187,187)//最浅灰，无数据、搜索框描述内容
+#define AllGreenColor RGBCOLOR(141,196,62)//绿
+
+//背景色
+#define AllBackMiddleGrayColor RGBCOLOR(247,247,248)//上导航的颜色
+#define AllBackDeepGrayColor RGBCOLOR(231,231,231)//卡片深灰背景
+#define AllBackLightGratColor RGBCOLOR(242,242,242)//浅灰背景
+
+//分割线
+#define AllSeperatorLineColor RGBCOLOR(211,211,211)//无渐变分割线颜色
+
+#define AllTopShadowImageName @"大卡片阴影上" //@2x 2*2 上阴影图片名
+#define AllBottomShadowImageName @"大卡片阴影下"//@2x 2*6 下阴影图片名
+
 //图片参数
 #define image(imgId,type,width,height,iscut) [NSString stringWithFormat:@"/image/show?imageId=%@&type=%@&width=%@&height=%@&cut=%@",imgId,type,width,height,iscut]
 

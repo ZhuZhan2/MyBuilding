@@ -9,6 +9,7 @@
 #import "AskPriceViewCell.h"
 #import "RKTwoView.h"
 #import "AskPriceCellHeader.h"
+#import "RKShadowView.h"
 @interface AskPriceViewCell ()
 @property(nonatomic,strong)AskPriceCellHeader* cellHeader;
 @property(nonatomic,strong)UIView* mainView;
@@ -35,8 +36,7 @@
 
 -(UIView *)seperatorLineOutCell{
     if (!_seperatorLineOutCell) {
-        _seperatorLineOutCell=[[UIView alloc]initWithFrame:CGRectZero];
-        _seperatorLineOutCell.backgroundColor=[UIColor grayColor];
+        _seperatorLineOutCell=[RKShadowView seperatorLineShadowViewWithHeight:seperatorHeight];
     }
     return _seperatorLineOutCell;
 }
@@ -112,7 +112,6 @@
     NSLog(@"height==%lf",height);
     //self.mainView.clipsToBounds=YES;
     self.seperatorLineOutCell.frame=CGRectMake(0, CGRectGetMaxY(self.mainView.frame), kScreenWidth, seperatorHeight);
-    self.seperatorLineOutCell.alpha=.2;
 }
 
 -(void)setUp{
@@ -122,4 +121,6 @@
     [self.contentView addSubview:self.mainView];
     [self.contentView addSubview:self.seperatorLineOutCell];
 }
+
+
 @end
