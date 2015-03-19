@@ -25,4 +25,10 @@
     view.backgroundColor=AllSeperatorLineColor;
     return view;
 }
+
++(UIView *)seperatorLineInThemeView{
+    UIImageView* view=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 2)];
+    view.image=[GetImagePath getImagePath:AllThemeViewShadowImageName];
+    return view;
+}
 @end

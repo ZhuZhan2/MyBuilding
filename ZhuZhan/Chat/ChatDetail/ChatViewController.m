@@ -11,7 +11,7 @@
 #import "AddGroupMemberController.h"
 #import "ChatToolBar.h"
 
-@interface ChatViewController ()<UIAlertViewDelegate,ChatToolBarDelegate>
+@interface ChatViewController ()<UIAlertViewDelegate>
 @end
 
 @implementation ChatViewController
@@ -24,14 +24,11 @@
     
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:11 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
     
-    [self addKeybordNotification];
 }
 
 
 
--(void)chatToolBarSizeChangeWithHeight:(CGFloat)height{
-    self.tableView.transform=CGAffineTransformMakeTranslation(0, [ChatToolBar orginChatToolBarHeight]-height);
-}
+
 
 -(void)initNavi{
     self.title=@"用户名";
@@ -49,24 +46,6 @@
     [self.navigationController pushViewController:vc animated:YES];
 
     return;
-//    UIView* view=[AlertTextFieldView alertTextFieldViewWithName:@"群聊名称" sureBtnTitle:@"确认" cancelBtnTitle:@"取消" originY:111  delegate:self];
-//    [self.navigationController.view addSubview:view];
-    
-//    NSMutableArray* array=[NSMutableArray array];
-//    for (int i=0; i<5; i++) {
-//        DiscussionGroupModel* model=[[DiscussionGroupModel alloc]init];
-//        model.memberName=@[@"范俊",@"汪洋",@"高大人",@"朱总",@"老板",@"深集科技"][arc4random()%6];
-//        [array addObject:model];
-//    }
-//
-//    
-//    DiscussionGroupView* view=[DiscussionGroupView discussionGroupViewWithTitle:@"讨论组名称" members:[array copy] newNotification:NO delegate:self];
-//    [self.navigationController.view addSubview:view];
-    return;
-    UIAlertView* alertView=[[UIAlertView alloc]initWithTitle:@"群聊名称" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定",@"取消",nil];
-    alertView.alertViewStyle=UIAlertViewStylePlainTextInput;
-    alertView.delegate=self;
-    [alertView show];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

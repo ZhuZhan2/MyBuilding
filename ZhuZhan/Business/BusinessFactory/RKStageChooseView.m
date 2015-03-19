@@ -7,7 +7,7 @@
 //
 
 #import "RKStageChooseView.h"
-
+#import "RKShadowView.h"
 @interface RKStageChooseView ()
 @property(nonatomic,strong)NSArray* stages;
 
@@ -36,9 +36,8 @@
 
 -(UIView *)seperatorLine{
     if (!_seperatorLine) {
-        _seperatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kChooseViewWidth, 1)];
+        _seperatorLine=[RKShadowView seperatorLineInThemeView];
         _seperatorLine.center=CGPointMake(CGRectGetWidth(_seperatorLine.frame)*0.5, CGRectGetHeight(self.frame)-CGRectGetHeight(_seperatorLine.frame)*0.5);
-        _seperatorLine.backgroundColor=AllSeperatorLineColor;
     }
     return _seperatorLine;
 }
@@ -83,7 +82,6 @@
     stageLabel.text=text;
     stageLabel.tag=sequence;
     stageLabel.textAlignment=NSTextAlignmentCenter;
-    //stageLabel.textColor=NoSeletedColor;
     stageLabel.font=StageFont;
     stageLabel.userInteractionEnabled=YES;
     

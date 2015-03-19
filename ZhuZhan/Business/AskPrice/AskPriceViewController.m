@@ -23,8 +23,17 @@
     [super viewDidLoad];
     [self initNavi];
     [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]];
+    [self setUpSearchBarWithNeedTableView:NO isTableViewHeader:YES];
     [self initTableView];
+    [self initTableViewHeader];
     self.tableView.backgroundColor=AllBackDeepGrayColor;
+}
+
+-(void)initTableViewHeader{
+    CGRect frame=self.searchBar.frame;
+    frame.origin=CGPointZero;
+    self.searchBar.frame=frame;
+    self.tableView.tableHeaderView=self.searchBar;
 }
 
 -(void)initNavi{

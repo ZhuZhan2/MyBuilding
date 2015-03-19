@@ -19,7 +19,7 @@
 
 #define kTotalHeight 24
 #define leftLabelColor BlueColor
-#define rightLabelColor GrayColor
+#define rightLabelColor AllDeepGrayColor
 #define ContentFont [UIFont systemFontOfSize:15]
 
 @implementation RKTwoView

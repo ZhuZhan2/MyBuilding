@@ -12,6 +12,8 @@
 @property(nonatomic,strong)UIView* seperatorLine;
 @property(nonatomic,strong)UITextView* textView;
 
+@property(nonatomic,strong)UILabel* placeLabel;
+
 @property(nonatomic)CGFloat lastContentSizeHeight;
 @end
 
@@ -63,6 +65,7 @@
     self.backgroundColor=backColor;
     [self addSubview:self.seperatorLine];
     [self addSubview:self.textView];
+    [self.textView addSubview:self.placeLabel];
 }
 
 -(void)textViewDidBeginEditing:(UITextView *)textView{
@@ -71,6 +74,24 @@
 
 -(void)textViewDidEndEditing:(UITextView *)textView{
     [self.textView removeObserver:self forKeyPath:@"contentSize"];
+}
+
+-(void)textViewDidChange:(UITextView *)textView{
+    self.placeLabel.alpha=!textView.text.length;
+}
+
+-(UILabel *)placeLabel{
+    if (!_placeLabel) {
+        NSString* placeText=[NSString stringWithFormat:@"请输入内容..."];
+        CGFloat height=CGRectGetHeight(self.textView.frame);
+        _placeLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, 0, 200, height)];
+        
+        _placeLabel.font=textFont;
+        _placeLabel.textColor=AllNoDataColor;
+        _placeLabel.text=placeText;
+        _placeLabel.backgroundColor=[UIColor clearColor];
+    }
+    return _placeLabel;
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
