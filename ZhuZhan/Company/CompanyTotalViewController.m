@@ -29,55 +29,61 @@
 }
 
 -(void)firstNetWork{
-    if ([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]) {
-        [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if (!error) {
-                self.companyVC=[[CompanyViewController alloc]init];
-                self.companyVC.model = posts[0];
-                self.companyVC.needNoticeView=NO;
-                self.companyVC.navigationItem.hidesBackButton=YES;
-                [self.navigationController pushViewController:self.companyVC animated:NO];
-            }else{
-                [LoginAgain AddLoginView:NO];
-            }
-            [self removeMyLoadingView];
-        } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64-49) superView:self.view reloadBlock:^{
-                [self firstNetWork];
-            }];
-        }];
-    }else{
-        [CompanyApi HasCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                NSLog(@"===>%@",posts[0][@"exists"]);
-                if([[NSString stringWithFormat:@"%@",posts[0][@"exists"]] isEqualToString:@"0"]){
-                    self.moreCompanyVC=[[MoreCompanyViewController alloc]init];
-                    self.moreCompanyVC.navigationItem.hidesBackButton=YES;
-                    [self.navigationController pushViewController:self.moreCompanyVC animated:NO];
+    if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
+        if ([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]) {
+            [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if (!error) {
+                    self.companyVC=[[CompanyViewController alloc]init];
+                    self.companyVC.model = posts[0];
+                    self.companyVC.needNoticeView=NO;
+                    self.companyVC.navigationItem.hidesBackButton=YES;
+                    [self.navigationController pushViewController:self.companyVC animated:NO];
                 }else{
-                    [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
-                        if(!error){
-                            self.companyVC=[[CompanyViewController alloc]init];
-                            self.companyVC.model = posts[0];
-                            self.companyVC.needNoticeView=YES;
-                            self.companyVC.navigationItem.hidesBackButton=YES;
-                            [self.navigationController pushViewController:self.companyVC animated:NO];
-                        }else{
-                            [LoginAgain AddLoginView:NO];
-                        }
-                        [self removeMyLoadingView];
-                    } companyId:posts[0][@"companyId"] noNetWork:^{
-                        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64-49) superView:self.view reloadBlock:^{
-                            [self firstNetWork];
-                        }];
-                    }];
+                    [LoginAgain AddLoginView:NO];
                 }
-            }
-        } noNetWork:^{
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64-49) superView:self.view reloadBlock:^{
-                [self firstNetWork];
+                [self removeMyLoadingView];
+            } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64-49) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
             }];
-        }];
+        }else{
+            [CompanyApi HasCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    NSLog(@"===>%@",posts[0][@"exists"]);
+                    if([[NSString stringWithFormat:@"%@",posts[0][@"exists"]] isEqualToString:@"0"]){
+                        self.moreCompanyVC=[[MoreCompanyViewController alloc]init];
+                        self.moreCompanyVC.navigationItem.hidesBackButton=YES;
+                        [self.navigationController pushViewController:self.moreCompanyVC animated:NO];
+                    }else{
+                        [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+                            if(!error){
+                                self.companyVC=[[CompanyViewController alloc]init];
+                                self.companyVC.model = posts[0];
+                                self.companyVC.needNoticeView=YES;
+                                self.companyVC.navigationItem.hidesBackButton=YES;
+                                [self.navigationController pushViewController:self.companyVC animated:NO];
+                            }else{
+                                [LoginAgain AddLoginView:NO];
+                            }
+                            [self removeMyLoadingView];
+                        } companyId:posts[0][@"companyId"] noNetWork:^{
+                            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64-49) superView:self.view reloadBlock:^{
+                                [self firstNetWork];
+                            }];
+                        }];
+                    }
+                }
+            } noNetWork:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64-49) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }];
+        }
+    }else{
+        self.moreCompanyVC=[[MoreCompanyViewController alloc]init];
+        self.moreCompanyVC.navigationItem.hidesBackButton=YES;
+        [self.navigationController pushViewController:self.moreCompanyVC animated:NO];
     }
 }
 

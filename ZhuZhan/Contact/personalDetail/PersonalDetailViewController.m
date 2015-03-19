@@ -387,17 +387,24 @@
         }
     }
     
-    if(indexPath.row == 2){
-        return 235;
-    }
-    
     if(viewArr.count ==0){
+        if(indexPath.row == 2){
+            return 235;
+        }
+        
         if(indexPath.row == 3){
             return 0;
         }
     }else{
+        contactbackgroundview = viewArr[0];
+        if(indexPath.row == 2){
+            if(contactbackgroundview.frame.size.height>50){
+                return 285;
+            }else{
+                return 235;
+            }
+        }
         if(indexPath.row == 3){
-            contactbackgroundview = viewArr[0];
             return contactbackgroundview.frame.size.height;
         }
     }

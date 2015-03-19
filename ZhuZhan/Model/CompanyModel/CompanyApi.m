@@ -148,7 +148,7 @@
         return nil;
     }
     NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)keyWords, NULL, NULL,  kCFStringEncodingUTF8 ));
-    NSString *urlStr = [NSString stringWithFormat:@"api/companyInfo/getCompanyEmployees?keywords=%@&companyId=%@&pageSize=15&pageIndex=%d",encodedString,companyId,startIndex];
+    NSString *urlStr = [NSString stringWithFormat:@"api/companyInfo/getCompanyEmployees?keywords=%@&companyId=%@&pageSize=15&pageIndex=%d&status=01",encodedString,companyId,startIndex];
     NSLog(@"=====%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);

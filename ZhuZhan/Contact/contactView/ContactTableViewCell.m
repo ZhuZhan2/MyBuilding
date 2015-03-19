@@ -85,7 +85,7 @@
 
 -(void)setModel:(ActivesModel *)model{
     headImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_avatarUrl]];
-    titleLabel.text = model.a_title;
+    titleLabel.text = [NSString stringWithFormat:@"%@%@",model.a_userName,model.a_title];
     nameLabel.text = model.a_content;
     if([model.a_category isEqualToString:@"Personal"]){
         [stageImage setImage:[GetImagePath getImagePath:@"人脉－个人中心_05a"]];

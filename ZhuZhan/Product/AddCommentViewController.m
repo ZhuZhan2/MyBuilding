@@ -172,8 +172,8 @@
     
     if ([self.delegate respondsToSelector:@selector(sureFromAddCommentWithComment:)]) {
         NSString* tempStr;
-        if (self.textView.text.length>100) {
-            tempStr=[self.textView.text substringToIndex:100];
+        if (self.textView.text.length>kCommentLimitNumber) {
+            tempStr=[self.textView.text substringToIndex:kCommentLimitNumber];
         }else{
             tempStr=self.textView.text;
         }

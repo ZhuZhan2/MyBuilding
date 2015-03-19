@@ -8,11 +8,11 @@
 
 #import "QuadCurveMenu.h"
 #import <QuartzCore/QuartzCore.h>
-
+#define Height (kScreenHeight==480?456:544)
 #define NEARRADIUS 100.0f
 #define ENDRADIUS 110.0f
 #define FARRADIUS 160.0f
-#define STARTPOINT CGPointMake(160, 544)
+#define STARTPOINT CGPointMake(160, Height)
 #define TIMEOFFSET 0.026f
 
 

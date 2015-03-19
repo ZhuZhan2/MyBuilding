@@ -469,6 +469,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ActivesModel *model = showArr[indexPath.row];
     indexpath=indexPath;
+    NSLog(@"===>%@",model.a_category);
     if([model.a_category isEqualToString:@"Project"]){
         if (![model.a_eventType isEqualToString:@"Automatic"]) {
             ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
@@ -482,19 +483,30 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             [self.navigationController pushViewController:projectCommentView animated:YES];
         }
     }else if([model.a_category isEqualToString:@"Personal"]){
+        NSLog(@"a_eventType===>%@",model.a_eventType);
         if([model.a_eventType isEqualToString:@"Actives"]){
             ActivesModel *model = showArr[indexPath.row];
-            NSLog(@"==>%@",model.a_entityUrl);
             ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
             vc.delegate = self;
             vc.type = @"03";
             [self.navigationController pushViewController:vc animated:YES];
         }else if([model.a_eventType isEqualToString:@"AutomaticProduct"]){
             ActivesModel *model = showArr[indexPath.row];
-            NSLog(@"==>%@",model.a_entityUrl);
-            ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+            ProductModel *productModel = [[ProductModel alloc] init];
+            productModel.a_id = model.a_entityId;
+            productModel.a_name = model.a_productName;
+            productModel.a_content = model.a_content;
+            productModel.a_imageUrl = model.a_productImage;
+            productModel.a_createdBy = model.a_createdBy;
+            productModel.a_imageWidth = model.a_imageWidth;
+            productModel.a_imageHeight = model.a_imageHeight;
+            productModel.a_avatarUrl = model.a_avatarUrl;
+            productModel.a_userName = model.a_userName;
+            productModel.a_userType = model.a_userType;
+            //ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+            ProductDetailViewController* vc= [[ProductDetailViewController alloc] initWithProductModel:productModel];
             vc.delegate = self;
-            vc.type = @"03";
+            vc.type = @"01";
             [self.navigationController pushViewController:vc animated:YES];
         }else if([model.a_eventType isEqualToString:@"AutomaticProject"]){
             ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
@@ -510,10 +522,21 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             [self.navigationController pushViewController:vc animated:YES];
         }else if([model.a_eventType isEqualToString:@"AutomaticProduct"]){
             ActivesModel *model = showArr[indexPath.row];
-            NSLog(@"==>%@",model.a_entityUrl);
-            ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+            ProductModel *productModel = [[ProductModel alloc] init];
+            productModel.a_id = model.a_entityId;
+            productModel.a_name = model.a_productName;
+            productModel.a_content = model.a_content;
+            productModel.a_imageUrl = model.a_productImage;
+            productModel.a_createdBy = model.a_createdBy;
+            productModel.a_imageWidth = model.a_imageWidth;
+            productModel.a_imageHeight = model.a_imageHeight;
+            productModel.a_avatarUrl = model.a_avatarUrl;
+            productModel.a_userName = model.a_userName;
+            productModel.a_userType = model.a_userType;
+            //ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+            ProductDetailViewController* vc= [[ProductDetailViewController alloc] initWithProductModel:productModel];
             vc.delegate = self;
-            vc.type = @"03";
+            vc.type = @"01";
             [self.navigationController pushViewController:vc animated:YES];
         }else if([model.a_eventType isEqualToString:@"AutomaticProject"]){
             ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
@@ -522,10 +545,21 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }
     }else{
         ActivesModel *model = showArr[indexPath.row];
-        NSLog(@"==>%@",model.a_entityUrl);
-        ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+        ProductModel *productModel = [[ProductModel alloc] init];
+        productModel.a_id = model.a_entityId;
+        productModel.a_name = model.a_productName;
+        productModel.a_content = model.a_content;
+        productModel.a_imageUrl = model.a_productImage;
+        productModel.a_createdBy = model.a_createdBy;
+        productModel.a_imageWidth = model.a_imageWidth;
+        productModel.a_imageHeight = model.a_imageHeight;
+        productModel.a_avatarUrl = model.a_avatarUrl;
+        productModel.a_userName = model.a_userName;
+        productModel.a_userType = model.a_userType;
+        //ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+        ProductDetailViewController* vc= [[ProductDetailViewController alloc] initWithProductModel:productModel];
         vc.delegate = self;
-        vc.type = @"Product";
+        vc.type = @"01";
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
@@ -802,6 +836,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     ActivesModel *model = showArr[indexPath.row];
     ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
     vc.delegate=self;
+    vc.type = @"03";
     [self.navigationController pushViewController:vc animated:YES];
 }
 

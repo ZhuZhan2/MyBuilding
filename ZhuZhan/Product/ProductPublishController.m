@@ -201,12 +201,25 @@
         [alertView show];
         return;
     }
+    NSString* tempStr;
+    if (self.titleTextView.text.length>kProductTitleNumber) {
+        tempStr=[self.titleTextView.text substringToIndex:kProductTitleNumber];
+    }else{
+        tempStr=self.titleTextView.text;
+    }
+    
+    NSString* tempStr2;
+    if (self.contentTextView.text.length>kProductContentNumber) {
+        tempStr2=[self.contentTextView.text substringToIndex:kProductContentNumber];
+    }else{
+        tempStr2=self.contentTextView.text;
+    }
     [ProductModel AddProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发布成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
         }
-    } dic:@{@"productName":self.titleTextView.text,@"productDesc":self.contentTextView.text} imgData:UIImageJPEGRepresentation(self.cameraImage, 0.3) noNetWork:nil];
+    } dic:@{@"productName":tempStr,@"productDesc":tempStr2} imgData:UIImageJPEGRepresentation(self.cameraImage, 0.3) noNetWork:nil];
 }
 
 -(void)textViewDidChange:(UITextView *)textView{

@@ -50,7 +50,7 @@
 -(void)firstNetWork{
     [CompanyApi HasCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            self.hasCompany = [NSString stringWithFormat:@"%@",posts[0]];
+            self.hasCompany = [NSString stringWithFormat:@"%@",posts[0][@"exists"]];
             [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
                     if(posts.count !=0){
@@ -162,7 +162,6 @@
     [view addSubview:self.noticeBtn];
     
     self.memberCountLabel=[[UILabel alloc]initWithFrame:CGRectMake(225, 16, 150, 20)];
-    NSLog(@"%@",self.model.a_reviewStatus);
     self.memberCountLabel.font=[UIFont boldSystemFontOfSize:16];
     [view addSubview:self.memberCountLabel];
     
@@ -171,6 +170,8 @@
     
     self.memberBtn=[[UIButton alloc]initWithFrame:CGRectMake(116, 0, 204, 49)];
     [self.memberBtn addTarget:self action:@selector(applyForCertification) forControlEvents:UIControlEventTouchUpInside];
+    NSLog(@"hasCompany===>%@",self.hasCompany);
+    NSLog(@"a_reviewStatus===>%@",self.model.a_reviewStatus);
     if([self.hasCompany isEqualToString:@"1"]){
         self.memberCountLabel.textColor=[UIColor lightGrayColor];
         self.memberBtn.enabled = NO;
