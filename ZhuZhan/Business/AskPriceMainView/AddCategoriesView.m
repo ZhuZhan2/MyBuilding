@@ -29,10 +29,10 @@
 
 -(UILabel *)titleLabel{
     if(!_titleLabel){
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 180, 15)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(26, 16, 180, 16)];
         _titleLabel.textColor = BlueColor;
         _titleLabel.textAlignment = NSTextAlignmentLeft;
-        _titleLabel.font = [UIFont systemFontOfSize:15];
+        _titleLabel.font = [UIFont systemFontOfSize:16];
         _titleLabel.text = @"请选择产品大类";
     }
     return _titleLabel;
@@ -40,8 +40,8 @@
 
 -(UIImageView *)arrowImageView{
     if(!_arrowImageView){
-        _arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(280, 20, 15, 15)];
-        _arrowImageView.backgroundColor = [UIColor redColor];
+        _arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(287, 16, 7, 15)];
+        _arrowImageView.image = [GetImagePath getImagePath:@"交易_箭头"];
     }
     return _arrowImageView;
 }
@@ -49,13 +49,13 @@
 -(void)GetHeightWithBlock:(void (^)(double))block str:(NSString *)str{
     __block int height = 0;
     if(str != nil){
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 45, 180, 15)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 42, 180, 16)];
         label.textAlignment = NSTextAlignmentLeft;
-        label.font = [UIFont systemFontOfSize:15];
+        label.font = [UIFont systemFontOfSize:16];
         label.text = str;
         [self addSubview:label];
-        height = 80;
-        self.arrowImageView.frame = CGRectMake(280, 32.5, 15, 15);
+        height = 72;
+        self.arrowImageView.frame = CGRectMake(287, 33, 7, 15);
     }
     if(block){
         block(height);

@@ -13,7 +13,10 @@
 #import "HomePageViewController.h"
 #import "AddCategoriesView.h"
 #import "AddClassificationView.h"
-@interface AskPriceMainViewController ()<AddContactViewDelegate,UITableViewDelegate,UITableViewDataSource>
+#import "AddMarkView.h"
+#import "SearchContactViewController.h"
+#import "SearchCategoryViewController.h"
+@interface AskPriceMainViewController ()<AddContactViewDelegate,UITableViewDelegate,UITableViewDataSource,AddMarkViewDelegate,SearchContactViewDelegate,SearchCategoryViewDelegate>
 @property(nonatomic,strong)TopView *topView;
 @property(nonatomic,strong)NSMutableArray *laberStrArr;
 @property(nonatomic,strong)AddContactView *addContactView;
@@ -23,11 +26,11 @@
 @property(nonatomic,strong)AddCategoriesView *addCategoriesView;
 @property(nonatomic)int addCategoriesViewHeight;
 @property(nonatomic,strong)NSString *categoryStr;
-@property(nonatomic)BOOL isSelect1;
 @property(nonatomic,strong)AddClassificationView *addClassificationView;
 @property(nonatomic)int addClassificationViewHeight;
 @property(nonatomic,strong)NSString *classifcationStr;
 @property(nonatomic)BOOL isSelect2;
+@property(nonatomic,strong)AddMarkView *addMarkView;
 @end
 
 @implementation AskPriceMainViewController
@@ -41,6 +44,16 @@
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.title=@"发起询价";
     
+    //RightButton设置属性
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setFrame:CGRectMake(0, 0, 40, 19.5)];
+    [rightButton setTitle:@"提交" forState:UIControlStateNormal];
+    rightButton.titleLabel.font=[UIFont systemFontOfSize:16];
+    rightButton.titleLabel.textColor = [UIColor whiteColor];
+    [rightButton addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
+    
     self.laberStrArr = [[NSMutableArray alloc] init];
     [self.view addSubview:self.topView];
     [self.view addSubview:self.tableView];
@@ -48,7 +61,7 @@
     [self.viewArr addObject:self.addContactView];
     [self.viewArr addObject:self.addCategoriesView];
     [self.viewArr addObject:self.addClassificationView];
-    self.isSelect1 = NO;
+    [self.viewArr addObject:self.addMarkView];
     self.isSelect2 = NO;
 }
 
@@ -78,6 +91,10 @@
     [self.navigationController popViewControllerAnimated:NO];
 }
 
+-(void)rightAction{
+    
+}
+
 -(void)addAnimation{
     CATransition *transition = [CATransition animation];
     transition.duration = 0.5f;
@@ -88,7 +105,7 @@
 
 -(TopView *)topView{
     if(!_topView){
-        _topView = [[TopView alloc] initWithFrame:CGRectMake(0, 64.5, 320, 50) firstStr:@"询价需求填写" secondStr:@"流水号:1234567890" colorArr:@[[UIColor blackColor],[UIColor lightGrayColor]]];
+        _topView = [[TopView alloc] initWithFrame:CGRectMake(0, 64, 320, 48) firstStr:@"询价需求填写" secondStr:@"流水号:1234567890" colorArr:@[[UIColor blackColor],AllLightGrayColor]];
     }
     return _topView;
 }
@@ -99,9 +116,10 @@
         _addContactView.delegate = self;
         //_addContactView.backgroundColor = [UIColor yellowColor];
         [_addContactView GetHeightWithBlock:^(double height) {
-            if(height<55){
-                height = 55;
+            if(height<=60){
+                height = 60;
             }
+            NSLog(@"%f",height);
             _addContactView.frame = CGRectMake(0, 0, 320, height);
             self.addContactViewHeight = height;
         } labelArr:self.laberStrArr];
@@ -113,8 +131,8 @@
     if(!_addCategoriesView){
         _addCategoriesView = [[AddCategoriesView alloc] init];
         [_addCategoriesView GetHeightWithBlock:^(double height) {
-            if(height<55){
-                height = 55;
+            if(height<46){
+                height = 46;
             }
             _addCategoriesView.frame = CGRectMake(0, 0, 320, height);
             self.addCategoriesViewHeight = height;
@@ -127,8 +145,8 @@
     if(!_addClassificationView){
         _addClassificationView = [[AddClassificationView alloc] init];
         [_addClassificationView GetHeightWithBlock:^(double height) {
-            if(height<55){
-                height = 55;
+            if(height<46){
+                height = 46;
             }
             _addClassificationView.frame = CGRectMake(0, 0, 320, height);
             self.addClassificationViewHeight = height;
@@ -137,9 +155,17 @@
     return _addClassificationView;
 }
 
+-(AddMarkView *)addMarkView{
+    if(!_addMarkView){
+        _addMarkView = [[AddMarkView alloc] initWithFrame:CGRectMake(0, 0, 320, 260)];
+        _addMarkView.delegate = self;
+    }
+    return _addMarkView;
+}
+
 -(UITableView *)tableView{
     if(!_tableView){
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 117, 320, kScreenHeight-114)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 112, 320, kScreenHeight-112)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = NO;
@@ -148,16 +174,9 @@
 }
 
 -(void)addContent{
-    [self.laberStrArr removeAllObjects];
-    [self.addContactView removeFromSuperview];
-    self.addContactView = nil;
-    int value = arc4random() % (5+1);
-    NSLog(@"%d",value);
-    for(int i=0;i<value;i++){
-        [self.laberStrArr addObject:[NSString stringWithFormat:@"参与用户%d",i+1]];
-    }
-    [self.viewArr replaceObjectAtIndex:0 withObject:self.addContactView];
-    [self.tableView reloadData];
+    SearchContactViewController *searchView = [[SearchContactViewController alloc] init];
+    searchView.delegate =self;
+    [self.navigationController pushViewController:searchView animated:YES];
 }
 
 -(void)closeContent:(NSInteger)index{
@@ -177,30 +196,28 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 3;
+    return 4;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row == 1){
-        [self.addCategoriesView removeFromSuperview];
-        self.addCategoriesView = nil;
-        if(self.isSelect1){
-            self.categoryStr = nil;
-            self.isSelect1 = NO;
-        }else{
-            self.categoryStr = @"分类";
-            self.isSelect1 = YES;
-        }
-        [self.viewArr replaceObjectAtIndex:1 withObject:self.addCategoriesView];
-        [self.tableView reloadData];
+        SearchCategoryViewController *categoryView = [[SearchCategoryViewController alloc] init];
+        categoryView.delegate = self;
+        [self.navigationController pushViewController:categoryView animated:YES];
     }else if (indexPath.row == 2){
+        if(self.categoryStr !=nil){
+        
+        }else{
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请先选择产品大类" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
         [self.addClassificationView removeFromSuperview];
         self.addClassificationView = nil;
         if(self.isSelect2){
-            self.categoryStr = nil;
+            self.classifcationStr = nil;
             self.isSelect2 = NO;
         }else{
-            self.categoryStr = @"分类";
+            self.classifcationStr = @"分类奥德赛发送到发送到发送到发送到发送到发阿斯顿发送到发送到发分asdfasf";
             self.isSelect2 = YES;
         }
         [self.viewArr replaceObjectAtIndex:2 withObject:self.addClassificationView];
@@ -210,37 +227,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row == 0){
-        NSString *CellIdentifier = [NSString stringWithFormat:@"AddContactViewCell"];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(!cell){
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [cell.contentView addSubview:self.viewArr[0]];
-        cell.selectionStyle = NO;
-        return cell;
-    }else if(indexPath.row == 1){
-        NSString *CellIdentifier = [NSString stringWithFormat:@"AddCategoriesViewCell"];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(!cell){
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [cell.contentView addSubview:self.viewArr[1]];
-        cell.selectionStyle = NO;
-        return cell;
-    }else{
-        NSString *CellIdentifier = [NSString stringWithFormat:@"AddClassificationViewCell"];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(!cell){
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [cell.contentView addSubview:self.viewArr[2]];
-        cell.selectionStyle = NO;
-        return cell;
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(!cell){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [cell.contentView addSubview:self.viewArr[indexPath.row]];
+    cell.selectionStyle = NO;
+    return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -248,8 +243,34 @@
         return self.addContactViewHeight;
     }else if(indexPath.row == 1){
         return self.addCategoriesViewHeight;
-    }else{
+    }else if(indexPath.row == 2){
         return self.addClassificationViewHeight;
+    }else{
+        return 260;
     }
+}
+
+-(void)beginTextView{
+    self.view.transform = CGAffineTransformMakeTranslation(0, -200);
+}
+
+-(void)endTextView:(NSString *)str{
+    self.view.transform = CGAffineTransformIdentity;
+}
+
+-(void)selectContact:(NSString *)str{
+    [self.addContactView removeFromSuperview];
+    self.addContactView = nil;
+    [self.laberStrArr insertObject:str atIndex:0];
+    [self.viewArr replaceObjectAtIndex:0 withObject:self.addContactView];
+    [self.tableView reloadData];
+}
+
+-(void)selectCategory:(NSString *)str{
+    self.categoryStr = str;
+    [self.addCategoriesView removeFromSuperview];
+    self.addCategoriesView = nil;
+    [self.viewArr replaceObjectAtIndex:1 withObject:self.addCategoriesView];
+    [self.tableView reloadData];
 }
 @end

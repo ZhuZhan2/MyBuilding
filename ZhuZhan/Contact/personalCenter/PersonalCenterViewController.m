@@ -22,6 +22,7 @@
 #import "CompanyCenterViewController.h"
 #import "MyTableView.h"
 #import "PersonalCenterCompanyTableViewCell.h"
+#import "ProductModel.h"
 @interface PersonalCenterViewController ()
 
 @end
@@ -124,7 +125,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [_datasource addObject:model.a_time];
                 
                 if (![model.a_category isEqualToString:@"Project"]) {
-                    UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:model.a_imageUrl content:model.a_content category:model.a_category];
+                    UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:model.a_imageUrl content:model.a_content category:model.a_category name:model.a_entityName];
                     [contentViews addObject:view];
                 }else{
                     [contentViews addObject:@""];
@@ -172,7 +173,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [_datasource addObject:model.a_time];
                 
                 if (![model.a_category isEqualToString:@"Project"]) {
-                    UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:model.a_imageUrl content:model.a_content category:model.a_category];
+                    UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:model.a_imageUrl content:model.a_content category:model.a_category name:model.a_entityName];
                     [contentViews addObject:view];
                 }else{
                     [contentViews addObject:@""];
@@ -320,14 +321,24 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         projectCommentView.projectId = model.a_entityId;
         projectCommentView.projectName = model.a_entityName;
         [self.navigationController pushViewController:projectCommentView animated:YES];
-    }else if([model.a_category isEqualToString:@"Personal"]||[model.a_category isEqualToString:@"Product"]||[model.a_category isEqualToString:@"Company"]){
+    }else if([model.a_category isEqualToString:@"Personal"]||[model.a_category isEqualToString:@"Company"]){
         ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithPersonalCenterModel:model];
-        NSLog(@"===>%@",model.a_category);
-        if([model.a_category isEqualToString:@"Product"]){
-            vc.type = @"01";
-        }else{
-            vc.type = @"03";
-        }
+        vc.type = @"03";
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        ProductModel *productModel = [[ProductModel alloc] init];
+        productModel.a_id = model.a_entityId;
+        productModel.a_name = model.a_entityName;
+        productModel.a_content = model.a_content;
+        productModel.a_imageUrl = model.a_imageUrl;
+        productModel.a_createdBy = [LoginSqlite getdata:@"userId"];
+        productModel.a_imageWidth = model.a_imageWidth;
+        productModel.a_imageHeight = model.a_imageHeight;
+        productModel.a_avatarUrl = model.a_avatarUrl;
+        productModel.a_userName = model.a_userName;
+        productModel.a_userType = model.a_userType;
+        ProductDetailViewController* vc=[[ProductDetailViewController alloc] initWithProductModel:productModel];
+        vc.type = @"01";
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
