@@ -13,6 +13,7 @@
 @property(nonatomic,copy)NSString* userDescribe;
 @property(nonatomic,copy)NSString* time;
 @property(nonatomic,copy)NSString* content;
+@property(nonatomic)BOOL isSelf;
 @end
 
 @interface DemandChatViewCell : UITableViewCell

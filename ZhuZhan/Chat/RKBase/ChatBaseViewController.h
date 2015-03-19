@@ -17,7 +17,7 @@
 -(UITableViewCell *)searchBarTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@interface ChatBaseViewController : UIViewController<UITableViewDataSource,RKBaseTableViewDelegate,UISearchBarDelegate,SearchBarTableViewDelegate,RKStageChooseViewDelegate>
+@interface ChatBaseViewController : UIViewController<UITableViewDataSource,RKBaseTableViewDelegate,UISearchBarDelegate,SearchBarTableViewDelegate,RKStageChooseViewDelegate,ChatToolBarDelegate>
 @property(nonatomic)BOOL needAnimaiton;
 
 @property(nonatomic)BOOL leftBtnIsBack;
@@ -33,7 +33,7 @@
 -(void)initTableView;
 
 @property(nonatomic,strong)UISearchBar* searchBar;
--(void)setUpSearchBarWithNeedTableView:(BOOL)needTableView;
+-(void)setUpSearchBarWithNeedTableView:(BOOL)needTableView isTableViewHeader:(BOOL)isTableViewHeader;
 
 @property(nonatomic,strong)NSMutableArray* sectionSelectedArray;
 -(BOOL)sectionSelectedArrayContainsSection:(NSInteger)section;
@@ -42,6 +42,7 @@
 @property(nonatomic,strong)ChatToolBar* chatToolBar;
 -(void)initChatToolBar;
 
+@property(nonatomic,strong)RKStageChooseView* stageChooseView;
 -(void)initStageChooseViewWithStages:(NSArray*)stages;
 
 -(void)addKeybordNotification;

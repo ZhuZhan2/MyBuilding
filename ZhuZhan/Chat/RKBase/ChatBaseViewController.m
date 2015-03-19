@@ -17,7 +17,7 @@
 
 @property(nonatomic,strong)SearchBarTableViewController* searchBarTableViewController;
 
-@property(nonatomic,strong)RKStageChooseView* stageChooseView;
+@property(nonatomic)BOOL searchBarIsTableViewHeader;
 @end
 
 @implementation ChatBaseViewController
@@ -87,10 +87,11 @@
 
 -(void)initTableView{
     CGFloat y=64;
-    if (self.searchBar) {
-        y+=CGRectGetHeight(self.searchBar.frame);
-    }else if (self.stageChooseView){
+    if (self.stageChooseView){
         y+=CGRectGetHeight(self.stageChooseView.frame);
+    }
+    if (self.searchBar&&!self.searchBarIsTableViewHeader) {
+        y+=CGRectGetHeight(self.searchBar.frame);
     }
     
     CGFloat height=kScreenHeight-y;
@@ -98,16 +99,33 @@
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.tableView];
+    if (self.searchBar&&!self.searchBarIsTableViewHeader) {
+        [self.view insertSubview:self.tableView belowSubview:self.searchBar];
+    }else if (self.stageChooseView){
+        [self.view insertSubview:self.tableView belowSubview:self.stageChooseView];
+    }else{
+        [self.view addSubview:self.tableView];
+    }
 }
 
--(void)setUpSearchBarWithNeedTableView:(BOOL)needTableView{
-    self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, 320, 43)];
+-(void)setUpSearchBarWithNeedTableView:(BOOL)needTableView isTableViewHeader:(BOOL)isTableViewHeader{
+    self.searchBarIsTableViewHeader=isTableViewHeader;
+    
+    CGFloat y=64+(self.stageChooseView?CGRectGetHeight(self.stageChooseView.frame):0);
+    self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, y, 320, 43)];
     self.searchBar.placeholder = @"搜索";
     self.searchBar.tintColor = [UIColor grayColor];
     self.searchBar.backgroundImage=[self imageWithColor:RGBCOLOR(223, 223, 223)];
     self.searchBar.delegate=self;
-    [self.view addSubview:self.searchBar];
+    
+    if (!isTableViewHeader) {
+        if (self.stageChooseView) {
+            [self.view insertSubview:self.searchBar belowSubview:self.stageChooseView];
+        }else{
+            [self.view addSubview:self.searchBar];
+        }
+    }
+    
     if (needTableView) {
         [self setUpSearchBarTableView];
     }
@@ -169,12 +187,14 @@
 -(void)appearAnimation:(UISearchBar *)searchBar{
     self.searchBar.showsCancelButton=YES;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 65)];
+    
+    CGFloat height=65+CGRectGetHeight(self.stageChooseView.frame);
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, height)];
     view.alpha=0;
     view.backgroundColor=RGBCOLOR(223, 223, 223);
     [self.navigationController.view addSubview:view];
     
-    UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.searchBar.frame)+64, kScreenWidth, CGRectGetHeight(self.view.frame))];
+    UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.searchBar.frame)+64+CGRectGetHeight(self.stageChooseView.frame), kScreenWidth, CGRectGetHeight(self.view.frame))];
     button.backgroundColor=[UIColor blackColor];
     [button addTarget:self action:@selector(backBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     button.alpha=0.5;
@@ -182,7 +202,8 @@
     
     [UIView animateWithDuration:0.3 animations:^{
         view.alpha=1;
-        self.navigationController.view.transform=CGAffineTransformMakeTranslation(0, -44);
+        CGFloat ty=64-20+CGRectGetHeight(self.stageChooseView.frame);
+        self.navigationController.view.transform=CGAffineTransformMakeTranslation(0, -ty);
     } completion:^(BOOL finished) {
         
     }];
@@ -291,6 +312,10 @@
         frame.size.height-=CGRectGetHeight(self.chatToolBar.frame);
         self.tableView.frame=frame;
     }
+}
+
+-(void)chatToolBarSizeChangeWithHeight:(CGFloat)height{
+    self.tableView.transform=CGAffineTransformMakeTranslation(0, [ChatToolBar orginChatToolBarHeight]-height);
 }
 
 -(void)dealloc{

@@ -26,13 +26,15 @@
 +(CGFloat)carculateTotalHeightWithModel:(DemandChatViewCellModel *)model{
     CGFloat height=15;
     CGSize size;
-
+    
     size=[DemandChatViewCell carculateLabelWithText:model.userName font:Font(16) width:ContentWidth];
     height+=size.height;
     
-    height+=2;
-    size=[DemandChatViewCell carculateLabelWithText:model.userDescribe font:Font(13) width:ContentWidth];
-    height+=size.height;
+    if (!model.isSelf) {
+        height+=2;
+        size=[DemandChatViewCell carculateLabelWithText:model.userDescribe font:Font(13) width:ContentWidth];
+        height+=size.height;
+    }
     
     height+=4;
     size=[DemandChatViewCell carculateLabelWithText:model.time font:Font(14) width:ContentWidth];
@@ -43,7 +45,7 @@
     height+=size.height;
     
     height+=18;
-    size=CGSizeMake(kScreenWidth, 10);
+    size=CGSizeMake(kScreenWidth, 1);
     height+=size.height;
     return height;
 }
@@ -60,8 +62,6 @@
         _userNamelabel=[[UILabel alloc]initWithFrame:CGRectZero];
         _userNamelabel.numberOfLines=0;
         _userNamelabel.font=Font(16);
-        _userNamelabel.textColor=BlueColor;
-        //_userNamelabel.backgroundColor=[UIColor greenColor];
     }
     return _userNamelabel;
 }
@@ -72,7 +72,6 @@
         _userDescribelabel.numberOfLines=0;
         _userDescribelabel.font=Font(13);
         _userDescribelabel.textColor=AllGreenColor;
-        //_userDescribelabel.backgroundColor=[UIColor greenColor];
     }
     return _userDescribelabel;
 }
@@ -83,8 +82,6 @@
         _timelabel.numberOfLines=0;
         _timelabel.font=Font(14);
         _timelabel.textColor=AllLightGrayColor;
-        //_timelabel.backgroundColor=[UIColor greenColor];
-        
     }
     return _timelabel;
 }
@@ -95,16 +92,13 @@
         _contentLabel.numberOfLines=0;
         _contentLabel.font=Font(14);
         _contentLabel.textColor=AllDeepGrayColor;
-        //_contentLabel.backgroundColor=[UIColor greenColor];
-        
     }
     return _contentLabel;
 }
 
 -(UIView *)shadowView{
     if (!_shadowView) {
-        _shadowView=[RKShadowView seperatorLineShadowViewWithHeight:10];
-//        _shadowView=[RKShadowView seperatorLineShadowViewWithHeight:10];
+        _shadowView=[RKShadowView seperatorLineWithHeight:1];
     }
     return _shadowView;
 }
@@ -129,18 +123,25 @@
     CGRect frame;
     CGSize size;
     
+    self.userNamelabel.textColor=self.model.isSelf?[UIColor blackColor]:BlueColor;
     self.userNamelabel.text=self.model.userName;
     size=[DemandChatViewCell carculateLabel:self.userNamelabel width:ContentWidth];
     frame=CGRectMake(distance, height, size.width, size.height);
     self.userNamelabel.frame=frame;
     height+=CGRectGetHeight(self.userNamelabel.frame);
     
-    height+=2;
-    self.userDescribelabel.text=self.model.userDescribe;
-    size=[DemandChatViewCell carculateLabel:self.userDescribelabel width:ContentWidth];
-    frame=CGRectMake(distance, height, size.width, size.height);
-    self.userDescribelabel.frame=frame;
-    height+=CGRectGetHeight(self.userDescribelabel.frame);
+    if (!self.model.isSelf) {
+        self.userDescribelabel.hidden=NO;
+        
+        height+=2;
+        self.userDescribelabel.text=self.model.userDescribe;
+        size=[DemandChatViewCell carculateLabel:self.userDescribelabel width:ContentWidth];
+        frame=CGRectMake(distance, height, size.width, size.height);
+        self.userDescribelabel.frame=frame;
+        height+=CGRectGetHeight(self.userDescribelabel.frame);
+    }else{
+        self.userDescribelabel.hidden=YES;
+    }
     
     height+=4;
     self.timelabel.text=self.model.time;

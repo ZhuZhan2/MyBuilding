@@ -19,7 +19,8 @@
 #define kTotalHeight 40
 #define mainFont [UIFont systemFontOfSize:15]
 #define assistFont [UIFont systemFontOfSize:14]
-#define assistColor GrayColor
+#define assistColor AllLightGrayColor
+
 @implementation AskPriceCellHeader
 +(AskPriceCellHeader *)askPriceCellHeaderStageMode:(AskPriceCellHeaderStageMode)stageMode model:(AskPriceCellHeaderModel *)model{
     AskPriceCellHeader* view=[[AskPriceCellHeader alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kTotalHeight)];
