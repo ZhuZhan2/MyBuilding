@@ -13,6 +13,7 @@
 #import "HomePageViewController.h"
 #import "AddCategoriesView.h"
 #import "AddClassificationView.h"
+#import "AddMarkView.h"
 @interface AskPriceMainViewController ()<AddContactViewDelegate,UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)TopView *topView;
 @property(nonatomic,strong)NSMutableArray *laberStrArr;
@@ -28,6 +29,7 @@
 @property(nonatomic)int addClassificationViewHeight;
 @property(nonatomic,strong)NSString *classifcationStr;
 @property(nonatomic)BOOL isSelect2;
+@property(nonatomic,strong)AddMarkView *addMarkView;
 @end
 
 @implementation AskPriceMainViewController
@@ -48,6 +50,7 @@
     [self.viewArr addObject:self.addContactView];
     [self.viewArr addObject:self.addCategoriesView];
     [self.viewArr addObject:self.addClassificationView];
+    [self.viewArr addObject:self.addMarkView];
     self.isSelect1 = NO;
     self.isSelect2 = NO;
 }
@@ -137,6 +140,13 @@
     return _addClassificationView;
 }
 
+-(AddMarkView *)addMarkView{
+    if(!_addMarkView){
+        _addMarkView = [[AddMarkView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+    }
+    return _addMarkView;
+}
+
 -(UITableView *)tableView{
     if(!_tableView){
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 117, 320, kScreenHeight-114)];
@@ -177,7 +187,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 3;
+    return 4;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -197,10 +207,10 @@
         [self.addClassificationView removeFromSuperview];
         self.addClassificationView = nil;
         if(self.isSelect2){
-            self.categoryStr = nil;
+            self.classifcationStr = nil;
             self.isSelect2 = NO;
         }else{
-            self.categoryStr = @"分类";
+            self.classifcationStr = @"分类奥德赛发送到发送到发送到发送到发送到发阿斯顿发送到发送到发分";
             self.isSelect2 = YES;
         }
         [self.viewArr replaceObjectAtIndex:2 withObject:self.addClassificationView];
@@ -210,37 +220,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row == 0){
-        NSString *CellIdentifier = [NSString stringWithFormat:@"AddContactViewCell"];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(!cell){
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [cell.contentView addSubview:self.viewArr[0]];
-        cell.selectionStyle = NO;
-        return cell;
-    }else if(indexPath.row == 1){
-        NSString *CellIdentifier = [NSString stringWithFormat:@"AddCategoriesViewCell"];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(!cell){
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [cell.contentView addSubview:self.viewArr[1]];
-        cell.selectionStyle = NO;
-        return cell;
-    }else{
-        NSString *CellIdentifier = [NSString stringWithFormat:@"AddClassificationViewCell"];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(!cell){
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [cell.contentView addSubview:self.viewArr[2]];
-        cell.selectionStyle = NO;
-        return cell;
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(!cell){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [cell.contentView addSubview:self.viewArr[indexPath.row]];
+    cell.selectionStyle = NO;
+    return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -248,8 +236,10 @@
         return self.addContactViewHeight;
     }else if(indexPath.row == 1){
         return self.addCategoriesViewHeight;
-    }else{
+    }else if(indexPath.row == 2){
         return self.addClassificationViewHeight;
+    }else{
+        return 320;
     }
 }
 @end

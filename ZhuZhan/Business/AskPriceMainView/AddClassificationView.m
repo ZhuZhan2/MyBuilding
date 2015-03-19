@@ -51,13 +51,14 @@
     __block int height = 0;
     if(str != nil){
         CGRect bounds=[str boundingRectWithSize:CGSizeMake(280, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 45, 180, bounds.size.height)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 45, 240, bounds.size.height)];
         label.textAlignment = NSTextAlignmentLeft;
+        label.numberOfLines =0;
         label.font = [UIFont systemFontOfSize:15];
         label.text = str;
         label.backgroundColor = [UIColor yellowColor];
         [self addSubview:label];
-        height = 80;
+        height = 60+bounds.size.height;
         self.arrowImageView.frame = CGRectMake(280, (30+label.frame.size.height)/2, 15, 15);
     }
     if(block){
