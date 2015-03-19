@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddMarkView : UIView
+@protocol AddMarkViewDelegate <NSObject>
+-(void)beginTextView;
+-(void)endTextView:(NSString *)str;
+@end
+
+@interface AddMarkView : UIView<UITextViewDelegate>
 @property(nonatomic,strong)UILabel *titleLabel;
 @property(nonatomic,strong)UIImageView *cutLine;
 @property(nonatomic,strong)UITextView *textView;
+@property(nonatomic,strong)UILabel *placeLabel;
+@property(nonatomic,weak)id<AddMarkViewDelegate>delegate;
 @end

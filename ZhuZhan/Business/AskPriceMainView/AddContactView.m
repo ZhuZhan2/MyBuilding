@@ -20,8 +20,8 @@
 
 -(UILabel *)fixationLabel{
     if(!_fixationLabel){
-        _fixationLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 65, 15)];
-        _fixationLabel.font = [UIFont systemFontOfSize:15];
+        _fixationLabel = [[UILabel alloc] initWithFrame:CGRectMake(26, 22, 65, 16)];
+        _fixationLabel.font = [UIFont systemFontOfSize:16];
         _fixationLabel.textColor = BlueColor;
         _fixationLabel.textAlignment = NSTextAlignmentLeft;
         _fixationLabel.text = @"参与用户";
@@ -31,9 +31,10 @@
 
 -(UILabel *)lastlabel{
     if(!_lastlabel){
-        _lastlabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 145, 180, 15)];
+        _lastlabel = [[UILabel alloc] initWithFrame:CGRectMake(106, 170, 180, 15)];
         _lastlabel.font = [UIFont systemFontOfSize:15];
         _lastlabel.textAlignment = NSTextAlignmentLeft;
+        _lastlabel.textColor = AllLightGrayColor;
         _lastlabel.text = @"您最多只能选择5位用户";
     }
     return _lastlabel;
@@ -41,10 +42,19 @@
 
 -(UIView *)addView{
     if(!_addView){
-        _addView = [[UIView alloc] initWithFrame:CGRectMake(100, 10, 180, 35)];
+        _addView = [[UIView alloc] initWithFrame:CGRectMake(106, 19, 180, 22)];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 21, 22)];
+        imageView.image = [GetImagePath getImagePath:@"交易_添加"];
+        [_addView addSubview:imageView];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(27, 3, 50, 16)];
+        label.textColor = AllGreenColor;
+        label.text = @"添加";
+        label.font = [UIFont systemFontOfSize:16];
+        [_addView addSubview:label];
+        
         UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        addBtn.frame = CGRectMake(0, 0, 180, 35);
-        addBtn.backgroundColor = [UIColor redColor];
+        addBtn.frame = CGRectMake(0, 0, 180, 22);
         [addBtn addTarget:self action:@selector(addBtnAction) forControlEvents:UIControlEventTouchUpInside];
         [_addView addSubview:addBtn];
     }
@@ -58,14 +68,14 @@
     int count = (int)labelArr.count;
     if(count !=0){
         [labelArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, idx*25+20, 180, 15)];
-            label.font = [UIFont systemFontOfSize:15];
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(106, idx*30+22, 180, 16)];
+            label.font = [UIFont systemFontOfSize:16];
             label.textAlignment = NSTextAlignmentLeft;
             label.text = obj;
             [self addSubview:label];
             UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            closeBtn.frame = CGRectMake(200, idx*25+20, 15, 15);
-            closeBtn.backgroundColor = [UIColor redColor];
+            closeBtn.frame = CGRectMake(280, idx*30+20, 21, 20);
+            [closeBtn setImage:[GetImagePath getImagePath:@"交易_删除"] forState:UIControlStateNormal];
             closeBtn.tag = idx;
             [closeBtn addTarget:self action:@selector(closeBtnAction:) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:closeBtn];
@@ -77,15 +87,20 @@
     if(count == 5){
         [self addSubview:self.lastlabel];
         if(block){
-            block(height+80+self.lastlabel.frame.size.height);
+            block(height+110+self.lastlabel.frame.size.height);
         }
     }else{
         if(count !=0){
-            self.addView.frame = CGRectMake(100, newLabel.frame.origin.y+25, 180, 35);
-        }
-        [self addSubview:self.addView];
-        if(block){
-            block(height+40+self.addView.frame.size.height+labelArr.count*10);
+            self.addView.frame = CGRectMake(106, newLabel.frame.origin.y+25, 180, 22);
+            [self addSubview:self.addView];
+            if(block){
+                block(height+40+self.addView.frame.size.height+labelArr.count*10);
+            }
+        }else{
+            [self addSubview:self.addView];
+            if(block){
+                block(60);
+            }
         }
     }
 }

@@ -8,7 +8,7 @@
 #import "PersonalCenterCellView.h"
 #import "EGOImageView.h"
 @implementation PersonalCenterCellView
-+(UIView *)getPersonalCenterCellViewWithImageUrl:(NSString *)imageUrl content:(NSString *)content category:(NSString *)category{
++(UIView *)getPersonalCenterCellViewWithImageUrl:(NSString *)imageUrl content:(NSString *)content category:(NSString *)category name:(NSString *)name{
     UIView* view=[[UIView alloc]initWithFrame:CGRectZero];
     NSLog(@"%@",category);
     //分割线上的图片路径
@@ -26,7 +26,7 @@
         newCategory=@"产品";
     }
     //动态描述部分
-    UIView* contentView=[self getContentViewWithImageUrl:imageUrl content:content category:newCategory];
+    UIView* contentView=[self getContentViewWithImageUrl:imageUrl content:content category:newCategory name:name];
     
     //竖分割线
     UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(35, 0, 2, contentView.frame.size.height+20)];
@@ -51,7 +51,7 @@
     return view;
 }
 
-+(UIView *)getContentViewWithImageUrl:(NSString *)imageUrl content:(NSString *)content category:(NSString *)category{
++(UIView *)getContentViewWithImageUrl:(NSString *)imageUrl content:(NSString *)content category:(NSString *)category name:(NSString *)name{
     UIView* view=[[UIView alloc]initWithFrame:CGRectZero];
     view.backgroundColor=[UIColor whiteColor];
     
@@ -79,7 +79,7 @@
     //}
     //动态label设置
     contentLabel.font=font;
-    contentLabel.text=content;
+    contentLabel.text=name;
     [view addSubview:contentLabel];
     
     //提醒label设置

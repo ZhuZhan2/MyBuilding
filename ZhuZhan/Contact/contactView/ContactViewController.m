@@ -614,6 +614,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }else{
         CompanyDetailViewController *detailView = [[CompanyDetailViewController alloc] init];
         detailView.delegate=self;
+        NSLog(@"a_createdBy==>%@",model.a_createdBy);
         detailView.companyId = model.a_createdBy;
         lasetCompanyID=model.a_createdBy;
         [self.navigationController pushViewController:detailView animated:YES];

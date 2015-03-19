@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PersonalCenterCellView : UIView
-+(UIView*)getPersonalCenterCellViewWithImageUrl:(NSString*)imageUrl content:(NSString*)content category:(NSString*)category;
++(UIView*)getPersonalCenterCellViewWithImageUrl:(NSString*)imageUrl content:(NSString*)content category:(NSString*)category name:(NSString *)name;
 @end

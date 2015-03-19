@@ -48,32 +48,52 @@
 }
 
 -(void)firstNetWork{
-    [CompanyApi HasCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            self.hasCompany = [NSString stringWithFormat:@"%@",posts[0][@"exists"]];
-            [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
-                if(!error){
-                    if(posts.count !=0){
-                        self.model = posts[0];
-                        [self initFirstView];//第一个文字view初始
-                        if (![self.companyId isEqualToString:[LoginSqlite getdata:@"userId"]])[self initSecondView];//第二个文字view初始
-                        [self initThirdView];
+    if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
+        [CompanyApi HasCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                self.hasCompany = [NSString stringWithFormat:@"%@",posts[0][@"exists"]];
+                [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+                    if(!error){
+                        if(posts.count !=0){
+                            self.model = posts[0];
+                            [self initFirstView];//第一个文字view初始
+                            if (![self.companyId isEqualToString:[LoginSqlite getdata:@"userId"]])[self initSecondView];//第二个文字view初始
+                            [self initThirdView];
+                        }
+                    }else{
+                        [LoginAgain AddLoginView:NO];
                     }
-                }else{
-                    [LoginAgain AddLoginView:NO];
-                }
-                [self removeMyLoadingView];
-            } companyId:self.companyId noNetWork:^{
-                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
-                    [self firstNetWork];
+                    [self removeMyLoadingView];
+                } companyId:self.companyId noNetWork:^{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                        [self firstNetWork];
+                    }];
                 }];
+            }
+        } noNetWork:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64-49) superView:self.view reloadBlock:^{
+                [self firstNetWork];
             }];
-        }
-    } noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64-49) superView:self.view reloadBlock:^{
-            [self firstNetWork];
         }];
-    }];
+    }else{
+        [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                if(posts.count !=0){
+                    self.model = posts[0];
+                    [self initFirstView];//第一个文字view初始
+                    if (![self.companyId isEqualToString:[LoginSqlite getdata:@"userId"]])[self initSecondView];//第二个文字view初始
+                    [self initThirdView];
+                }
+            }else{
+                [LoginAgain AddLoginView:NO];
+            }
+            [self removeMyLoadingView];
+        } companyId:self.companyId noNetWork:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                [self firstNetWork];
+            }];
+        }];
+    }
 }
 
 -(void)removeMyLoadingView{

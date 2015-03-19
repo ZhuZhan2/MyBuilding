@@ -26,7 +26,8 @@
         self.a_entityName = [ProjectStage ProjectStrStage:dict[@"messageData"][@"projectName"]];
         self.a_projectStage = [ProjectStage ProjectStrStage:dict[@"messageData"][@"projectStage"]];
     }else if ([[ProjectStage ProjectStrStage:dict[@"messageType"]] isEqualToString:@"03"]){
-        self.a_content = [ProjectStage ProjectStrStage:dict[@"messageData"][@"productName"]];
+        self.a_entityName = [ProjectStage ProjectStrStage:dict[@"messageData"][@"productName"]];
+        self.a_content = [ProjectStage ProjectStrStage:dict[@"messageData"][@"productDesc"]];
         if(![[ProjectStage ProjectStrStage:dict[@"messageData"][@"productImagesId"]] isEqualToString:@""]){
             self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"messageData"][@"productImagesId"]], @"product", @"", @"", @"")];
         }else{

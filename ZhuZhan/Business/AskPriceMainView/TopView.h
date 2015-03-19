@@ -11,5 +11,6 @@
 @interface TopView : UIView
 @property(nonatomic,strong)UILabel *firstLabel;
 @property(nonatomic,strong)UILabel *secondLabel;
+@property(nonatomic,strong)UIView *shadowView;
 -(id)initWithFrame:(CGRect)frame firstStr:(NSString *)firstStr secondStr:(NSString *)secondStr colorArr:(NSArray *)colorArr;
 @end
