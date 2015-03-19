@@ -44,7 +44,7 @@
     BOOL isOverMax=number>99;
     number=MIN(number, 99);
     self.numberLabel.text=[NSString stringWithFormat:isOverMax?@"%d":@"%d+",(int)number];
-    self.numberLabel.font=[UIFont systemFontOfSize:isOverMax?14:12];
+    self.numberLabel.font=[UIFont systemFontOfSize:isOverMax?8:14];
 }
 
 -(void)changeColor:(UIColor *)color{
