@@ -8,8 +8,10 @@
 
 #import "RKStageChooseView.h"
 #import "RKShadowView.h"
+#import "RKStageAndNumberView.h"
 @interface RKStageChooseView ()
 @property(nonatomic,strong)NSArray* stages;
+@property(nonatomic,strong)NSArray* numbers;
 
 @property(nonatomic,strong)UIView* underLineView;
 @property(nonatomic,strong)NSMutableArray* labels;
@@ -26,10 +28,11 @@
 #define StageFont [UIFont systemFontOfSize:16]
 
 @implementation RKStageChooseView
-+(RKStageChooseView *)stageChooseViewWithStages:(NSArray *)stages delegate:(id<RKStageChooseViewDelegate>)delegate{
++(RKStageChooseView*)stageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers delegate:(id<RKStageChooseViewDelegate>)delegate{
     RKStageChooseView* stageChooseView=[[RKStageChooseView alloc]initWithFrame:CGRectMake(0, 0, kChooseViewWidth, kChooseViewHeight)];
     stageChooseView.delegate=delegate;
     stageChooseView.stages=stages;
+    stageChooseView.numbers=numbers;
     [stageChooseView setUp];
     return stageChooseView;
 }
@@ -55,17 +58,17 @@
     if (!_underLineView) {
         _underLineView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.stages.count==4?28:kScreenWidth/2, 3)];
         _underLineView.backgroundColor=BlueColor;
-        _underLineView.center=CGPointMake(kChooseViewWidth/4/2, kChooseViewHeight-CGRectGetHeight(self.seperatorLine.frame)-CGRectGetHeight(_underLineView.frame)*0.5);
+        _underLineView.center=CGPointMake(kChooseViewWidth/4/2, kChooseViewHeight-CGRectGetHeight(_underLineView.frame)*0.5);
     }
     return _underLineView;
 }
 
 -(void)setUp{
     self.backgroundColor=AllBackMiddleGrayColor;
-    
     NSInteger count=self.stages.count;
     for (int i=0; i<count; i++) {
-        UIView* singleStageLabel=[self getSingleStageLabelWithText:self.stages[i] sequence:i ];
+        RKStageAndNumberView* singleStageLabel=[self getSingleStageLabelWithText:self.stages[i] sequence:i];
+        
         CGFloat width=kChooseViewWidth/count;
         CGFloat x=width*(0.5+i);
         CGFloat y=kChooseViewHeight*0.5;
@@ -79,14 +82,10 @@
     [self stageLabelClickedWithSequence:0];
 }
 
--(UILabel*)getSingleStageLabelWithText:(NSString*)text sequence:(NSInteger)sequence{
-    UILabel* stageLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, kChooseViewWidth/self.stages.count, kChooseViewHeight)];
-    stageLabel.text=text;
+-(RKStageAndNumberView*)getSingleStageLabelWithText:(NSString*)text sequence:(NSInteger)sequence{
+    RKStageAndNumberView* stageLabel=self.numbers.count?[RKStageAndNumberView stageAndNumberViewWithStage:text number:[self.numbers[sequence] integerValue]]:[RKStageAndNumberView stageAndNumberViewWithStage:text];
     stageLabel.tag=sequence;
-    stageLabel.textAlignment=NSTextAlignmentCenter;
-    stageLabel.font=StageFont;
-    stageLabel.userInteractionEnabled=YES;
-    
+        
     UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(stageLabelClicked:)];
     [stageLabel addGestureRecognizer:tap];
     return stageLabel;
@@ -98,7 +97,7 @@
 
 -(void)stageLabelClickedWithSequence:(NSInteger)sequence{
     [self.labels enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [(UILabel*)obj setTextColor:idx==sequence?SelectedColor:(self.stages.count==4?NoSeletedFourStageColor:NoSeletedTwoStageColor)];
+        [(RKStageAndNumberView*)obj changeColor:idx==sequence?SelectedColor:(self.stages.count==4?NoSeletedFourStageColor:NoSeletedTwoStageColor)];
     }];
     UIView* stageLabel=self.labels[sequence];
     CGPoint center=self.underLineView.center;

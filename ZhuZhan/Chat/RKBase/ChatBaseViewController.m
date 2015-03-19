@@ -291,9 +291,9 @@
     [self touchesBeganInRKBaseTableView];
 }
 
--(void)initStageChooseViewWithStages:(NSArray*)stages{
+-(void)initStageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers{
     self.stageChooseView=[RKStageChooseView stageChooseViewWithStages:
-                  stages delegate:self];
+                  stages numbers:numbers delegate:self];
     CGRect frame=self.stageChooseView.frame;
     frame.origin=CGPointMake(0, 64);
     self.stageChooseView.frame=frame;

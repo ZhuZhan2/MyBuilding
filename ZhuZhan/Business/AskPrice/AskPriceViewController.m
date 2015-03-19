@@ -22,7 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initNavi];
-    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]];
+    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[@"99",@"88",@"0",@"1111"]];
+
     [self setUpSearchBarWithNeedTableView:NO isTableViewHeader:YES];
     [self initTableView];
     [self initTableViewHeader];
