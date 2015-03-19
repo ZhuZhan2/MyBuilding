@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "RKBaseTableView.h"
-
+#import "RKStageChooseView.h"
+#import "ChatToolBar.h"
 @protocol SearchBarTableViewDelegate <NSObject>
 -(NSInteger)searchBarNumberOfSectionsInTableView:(UITableView *)tableView;
 -(NSInteger)searchBarTableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
@@ -16,7 +17,7 @@
 -(UITableViewCell *)searchBarTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@interface ChatBaseViewController : UIViewController<UITableViewDataSource,RKBaseTableViewDelegate,UISearchBarDelegate,SearchBarTableViewDelegate>
+@interface ChatBaseViewController : UIViewController<UITableViewDataSource,RKBaseTableViewDelegate,UISearchBarDelegate,SearchBarTableViewDelegate,RKStageChooseViewDelegate>
 @property(nonatomic)BOOL needAnimaiton;
 
 @property(nonatomic)BOOL leftBtnIsBack;
@@ -37,6 +38,9 @@
 @property(nonatomic,strong)NSMutableArray* sectionSelectedArray;
 -(BOOL)sectionSelectedArrayContainsSection:(NSInteger)section;
 -(BOOL)sectionViewClickedWithSection:(NSInteger)section;
+
+@property(nonatomic,strong)ChatToolBar* chatToolBar;
+-(void)initChatToolBar;
 
 -(void)initStageChooseViewWithStages:(NSArray*)stages;
 

@@ -10,7 +10,6 @@
 #import "SearchBarTableViewController.h"
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
-#import "RKStageChooseView.h"
 
 @interface ChatBaseViewController()
 @property(nonatomic,strong)UIButton* rightBtn;
@@ -28,6 +27,7 @@
     self.leftBtnIsBack=YES;
     self.automaticallyAdjustsScrollViewInsets=NO;
     self.view.backgroundColor=[UIColor whiteColor];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
 }
 
 -(void)setRightBtnWithImage:(UIImage*)image{
@@ -272,12 +272,25 @@
 
 -(void)initStageChooseViewWithStages:(NSArray*)stages{
     self.stageChooseView=[RKStageChooseView stageChooseViewWithStages:
-                  stages];
+                  stages delegate:self];
     CGRect frame=self.stageChooseView.frame;
     frame.origin=CGPointMake(0, 64);
     self.stageChooseView.frame=frame;
     
     [self.view addSubview:self.stageChooseView];
+}
+
+-(void)initChatToolBar{
+    self.chatToolBar=[ChatToolBar chatToolBar];
+    self.chatToolBar.delegate=self;
+    self.chatToolBar.center=CGPointMake(kScreenWidth*0.5, kScreenHeight-CGRectGetHeight(self.chatToolBar.frame)*.5);
+    [self.view addSubview:self.chatToolBar];
+    
+    if (self.tableView) {
+        CGRect frame=self.tableView.frame;
+        frame.size.height-=CGRectGetHeight(self.chatToolBar.frame);
+        self.tableView.frame=frame;
+    }
 }
 
 -(void)dealloc{

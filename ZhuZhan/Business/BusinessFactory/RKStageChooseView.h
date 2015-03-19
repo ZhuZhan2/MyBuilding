@@ -13,5 +13,5 @@
 @end
 
 @interface RKStageChooseView : UIView
-+(RKStageChooseView*)stageChooseViewWithStages:(NSArray*)stages;
++(RKStageChooseView*)stageChooseViewWithStages:(NSArray*)stages delegate:(id<RKStageChooseViewDelegate>)delegate;
 @end

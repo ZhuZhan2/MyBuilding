@@ -24,6 +24,7 @@
     [self initNavi];
     [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]];
     [self initTableView];
+    self.tableView.backgroundColor=AllBackDeepGrayColor;
 }
 
 -(void)initNavi{

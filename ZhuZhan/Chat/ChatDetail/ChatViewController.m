@@ -12,7 +12,6 @@
 #import "ChatToolBar.h"
 
 @interface ChatViewController ()<UIAlertViewDelegate,ChatToolBarDelegate>
-@property(nonatomic,strong)ChatToolBar* chatToolBar;
 @end
 
 @implementation ChatViewController
@@ -28,18 +27,7 @@
     [self addKeybordNotification];
 }
 
--(void)initChatToolBar{
-    self.chatToolBar=[ChatToolBar chatToolBar];
-    self.chatToolBar.delegate=self;
-    self.chatToolBar.center=CGPointMake(kScreenWidth*0.5, kScreenHeight-CGRectGetHeight(self.chatToolBar.frame)*.5);
-    [self.view addSubview:self.chatToolBar];
-    
-    if (self.tableView) {
-        CGRect frame=self.tableView.frame;
-        frame.size.height-=CGRectGetHeight(self.chatToolBar.frame);
-        self.tableView.frame=frame;
-    }
-}
+
 
 -(void)chatToolBarSizeChangeWithHeight:(CGFloat)height{
     self.tableView.transform=CGAffineTransformMakeTranslation(0, [ChatToolBar orginChatToolBarHeight]-height);
