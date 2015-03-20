@@ -34,10 +34,13 @@
     return view;
 }
 
--(CGFloat)stageLabelCenterX{
-    return self.stageLabel.center.x;
+-(CGFloat)stageLabelOriginX{
+    return CGRectGetMinX(self.stageLabel.frame);
 }
 
+-(CGFloat)stageLabelWidth{
+    return CGRectGetWidth(self.stageLabel.frame);
+}
 
 +(RKStageAndNumberView*)stageAndNumberViewWithStage:(NSString*)stage{
     RKStageAndNumberView* view=[[RKStageAndNumberView alloc]initWithFrame:CGRectZero];
@@ -49,8 +52,8 @@
 -(void)changeNumber:(NSInteger)number{
     BOOL isOverMax=number>99;
     number=MIN(number, 99);
-    self.numberLabel.text=[NSString stringWithFormat:isOverMax?@"%d+":@"%d",(int)number];
-    self.numberLabel.font=[UIFont systemFontOfSize:isOverMax?8:11];
+    self.numberLabel.text=isOverMax?@"···":[NSString stringWithFormat:@"%d",(int)number];
+    self.numberLabel.font=[UIFont systemFontOfSize:isOverMax?12:11];
 }
 
 -(void)changeColor:(UIColor *)color{

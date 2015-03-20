@@ -13,5 +13,6 @@
 +(RKStageAndNumberView*)stageAndNumberViewWithStage:(NSString*)stage;
 -(void)changeColor:(UIColor*)color;
 -(void)changeNumber:(NSInteger)number;
--(CGFloat)stageLabelCenterX;
+-(CGFloat)stageLabelOriginX;
+-(CGFloat)stageLabelWidth;
 @end

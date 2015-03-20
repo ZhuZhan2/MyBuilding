@@ -393,7 +393,7 @@
 -(void)initThemeView{
     //画布themeView初始
     self.themeView=[[UIView alloc]initWithFrame:CGRectMake(0, 64, 320, 50)];
-    self.themeView.backgroundColor=[UIColor whiteColor];
+    self.themeView.backgroundColor=AllBackMiddleGrayColor;//[UIColor whiteColor];
     [self.view addSubview:self.themeView];
     
     //大标题左边的大阶段图片
