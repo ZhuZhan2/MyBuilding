@@ -8,6 +8,8 @@
 
 #import "RKDemandDetailController.h"
 #import "DemandDetailViewCell.h"
+#import "ProvidePriceInfoController.h"
+
 
 @interface RKDemandDetailController ()<DemandDetailViewCellDelegate>
 
@@ -94,6 +96,8 @@
 }
 
 -(void)rightBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
+    ProvidePriceInfoController* vc=[[ProvidePriceInfoController alloc]init];
+    [self.superViewController.navigationController pushViewController:vc animated:YES];
     NSLog(@"rightBtnClicked,indexPath==%d",(int)indexPath.row);
 }
 

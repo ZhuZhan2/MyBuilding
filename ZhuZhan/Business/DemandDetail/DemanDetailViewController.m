@@ -53,6 +53,7 @@
 -(RKDemandDetailController *)detailController{
     if (!_detailController) {
         _detailController=[[RKDemandDetailController alloc]init];
+        _detailController.superViewController=self;
     }
     return _detailController;
 }
