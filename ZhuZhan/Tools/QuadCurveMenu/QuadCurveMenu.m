@@ -183,6 +183,10 @@
     // exclude the "add" button
     if (item == _addButton) 
     {
+        if(!self.expanding){
+            self.bgView.backgroundColor = [UIColor clearColor];
+            self.bgView.alpha = 0;
+        }
         return;
     }
     // blowup the selected menu button

@@ -11,36 +11,46 @@
 #import "AddressBookModel.h"
 #import "LoginSqlite.h"
 @implementation AddressBookApi
-+ (NSURLSessionDataTask *)GetAddressBookListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block noNetWork:(void(^)())noNetWork{
++ (NSURLSessionDataTask *)GetAddressBookListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block keywords:(NSString *)keywords noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
             noNetWork();
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/account/hasCompany?userId=%@",[LoginSqlite getdata:@"userId"]];
+    NSString *urlStr = [NSString stringWithFormat:@"api/contacts/getContactsUserList?keywords=%@",keywords];
     NSLog(@"=====%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            for(int i=0;i<5;i++){
+            for(NSDictionary *item in JSON[@"data"]){
                 AddressBookModel *ABModel = [[AddressBookModel alloc] init];
-                NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-                [dic setObject:[NSString stringWithFormat:@"%d",i] forKey:@"id"];
-                [dic setObject:[NSString stringWithFormat:@"test%d",i] forKey:@"name"];
-                [ABModel setDict:dic];
-                for(int j=0;j<5;j++){
+                [ABModel setDict:item];
+                for(NSDictionary *item2 in item[@"groupUsers"]){
                     AddressBookContactModel *contactModel = [[AddressBookContactModel alloc] init];
-                    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-                    [dic setObject:[NSString stringWithFormat:@"%d",j] forKey:@"id"];
-                    [dic setObject:[NSString stringWithFormat:@"test里的%d",j] forKey:@"name"];
-                    [dic setObject:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg" forKey:@"head"];
-                    [contactModel setDict:dic];
+                    [contactModel setDict:item2];
                     [ABModel.contactArr addObject:contactModel];
                 }
                 [mutablePosts addObject:ABModel];
             }
+//            for(int i=0;i<5;i++){
+//                AddressBookModel *ABModel = [[AddressBookModel alloc] init];
+//                NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+//                [dic setObject:[NSString stringWithFormat:@"%d",i] forKey:@"id"];
+//                [dic setObject:[NSString stringWithFormat:@"test%d",i] forKey:@"name"];
+//                [ABModel setDict:dic];
+//                for(int j=0;j<5;j++){
+//                    AddressBookContactModel *contactModel = [[AddressBookContactModel alloc] init];
+//                    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+//                    [dic setObject:[NSString stringWithFormat:@"%d",j] forKey:@"id"];
+//                    [dic setObject:[NSString stringWithFormat:@"test里的%d",j] forKey:@"name"];
+//                    [dic setObject:@"http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg" forKey:@"head"];
+//                    [contactModel setDict:dic];
+//                    [ABModel.contactArr addObject:contactModel];
+//                }
+//                [mutablePosts addObject:ABModel];
+//            }
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }

@@ -71,9 +71,9 @@
         return NO;
     }
     self.countLabel.text=[NSString stringWithFormat:@"%lu/300",(unsigned long)textView.text.length];
-//    if (range.length == 0 && textView.text.length >= kCommentLimitNumber) {
-//        return NO;
-//    }
+    if (range.length == 0 && textView.text.length >= kCommentLimitNumber) {
+        return NO;
+    }
     return YES;
 }
 

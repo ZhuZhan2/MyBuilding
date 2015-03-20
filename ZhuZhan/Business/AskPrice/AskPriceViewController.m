@@ -13,21 +13,32 @@
 #import "ChooseProductBigStage.h"
 #import "ChooseProductSmallStage.h"
 #import "DemanDetailViewController.h"
+#import "AskPriceApi.h"
 @interface AskPriceViewController ()
-
+@property(nonatomic,strong)NSString *statusStr;
 @end
 
 @implementation AskPriceViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.statusStr = @"";
     [self initNavi];
+    [self loadList];
     [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[@"99",@"88",@"0",@"1111"]];
 
     [self setUpSearchBarWithNeedTableView:NO isTableViewHeader:YES];
     [self initTableView];
     [self initTableViewHeader];
     self.tableView.backgroundColor=AllBackDeepGrayColor;
+}
+
+-(void)loadList{
+    [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            NSLog(@"%@,%@",posts[0],posts[1]);
+        }
+    } status:self.statusStr startIndex:0 noNetWork:nil];
 }
 
 -(void)initTableViewHeader{

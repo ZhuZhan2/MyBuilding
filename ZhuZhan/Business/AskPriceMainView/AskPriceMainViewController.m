@@ -17,6 +17,10 @@
 #import "SearchContactViewController.h"
 #import "ChooseProductBigStage.h"
 #import "ChooseProductSmallStage.h"
+#import "AskPriceApi.h"
+#import "LoginSqlite.h"
+#import "LoginViewController.h"
+#import "AskPriceViewController.h"
 @interface AskPriceMainViewController ()<AddContactViewDelegate,UITableViewDelegate,UITableViewDataSource,AddMarkViewDelegate,SearchContactViewDelegate,ChooseProductBigStageDelegate,ChooseProductSmallStageDelegate>
 @property(nonatomic,strong)TopView *topView;
 @property(nonatomic,strong)NSMutableArray *laberStrArr;
@@ -32,6 +36,7 @@
 @property(nonatomic,strong)NSString *classifcationStr;
 @property(nonatomic)BOOL isSelect2;
 @property(nonatomic,strong)AddMarkView *addMarkView;
+@property(nonatomic,strong)NSString *remarkStr;
 @end
 
 @implementation AskPriceMainViewController
@@ -93,7 +98,23 @@
 }
 
 -(void)rightAction{
-    
+    if([[LoginSqlite getdata:@"token"] isEqualToString:@""]){
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }else{
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:@"123,456,789" forKey:@"invitedUser"];
+        [dic setValue:self.categoryStr forKey:@"productBigCategory"];
+        [dic setValue:[self.classifcationStr stringByReplacingOccurrencesOfString:@"、" withString:@","] forKey:@"productCategory"];
+        [dic setValue:self.remarkStr forKey:@"remark"];
+        [AskPriceApi PostAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                AskPriceViewController *view = [[AskPriceViewController alloc] init];
+                [self.navigationController pushViewController:view animated:YES];
+            }
+        } dic:dic noNetWork:nil];
+    }
 }
 
 -(void)addAnimation{
@@ -248,6 +269,7 @@
 
 -(void)endTextView:(NSString *)str{
     self.view.transform = CGAffineTransformIdentity;
+    self.remarkStr = str;
 }
 
 -(void)selectContact:(NSString *)str{

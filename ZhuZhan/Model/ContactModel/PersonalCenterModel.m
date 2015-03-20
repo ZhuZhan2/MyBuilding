@@ -39,14 +39,19 @@
     self.a_time = [ProjectStage ProjectDateStage:dict[@"createdTime"]];
     if([[ProjectStage ProjectStrStage:dict[@"messageType"]] isEqualToString:@"01"]&&[[ProjectStage ProjectStrStage:dict[@"userInfo"][@"userType"]] isEqualToString:@"01"]){
         self.a_category = @"Personal";
+        self.a_userName = [ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginName"]];
     }else if ([[ProjectStage ProjectStrStage:dict[@"messageType"]] isEqualToString:@"01"]&&[[ProjectStage ProjectStrStage:dict[@"userInfo"][@"userType"]] isEqualToString:@"02"]){
         self.a_category = @"Company";
+        self.a_userName = [ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginName"]];
     }else if ([[ProjectStage ProjectStrStage:dict[@"messageType"]] isEqualToString:@"02"]){
         self.a_category = @"Project";
+        self.a_userName = [ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginName"]];
     }else if ([[ProjectStage ProjectStrStage:dict[@"messageType"]] isEqualToString:@"03"]){
         self.a_category = @"Product";
+        self.a_userName = [ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginName"]];
     }else{
         self.a_category = @"CompanyAgree";
+        self.a_userName = [ProjectStage ProjectStrStage:dict[@"messageData"][@"companyName"]];
     }
     self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"messageData"][@"imageWidth"]]];
     self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"messageData"][@"imageHeight"]]];
@@ -55,7 +60,6 @@
     }else{
         self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginImagesId"]];
     }
-    self.a_userName = [ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginName"]];
     self.a_userType=[LoginSqlite getdata:@"userType"];
 }
 @end

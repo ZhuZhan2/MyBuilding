@@ -11,7 +11,7 @@
 @implementation EmployeesModel
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
-    self.a_id = [ProjectStage ProjectStrStage:dict[@"userId"]];
+    self.a_id = [ProjectStage ProjectStrStage:dict[@"loginId"]];
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"loginName"]];
     if(![[ProjectStage ProjectStrStage:dict[@"headImageId"]] isEqualToString:@""]){
         self.a_userIamge = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"headImageId"]], @"login", @"", @"", @"")];

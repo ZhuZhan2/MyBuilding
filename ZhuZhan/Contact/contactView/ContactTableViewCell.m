@@ -86,7 +86,11 @@
 -(void)setModel:(ActivesModel *)model{
     headImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_avatarUrl]];
     titleLabel.text = [NSString stringWithFormat:@"%@%@",model.a_userName,model.a_title];
-    nameLabel.text = model.a_content;
+    if([model.a_eventType isEqualToString:@"AutomaticProduct"]){
+        nameLabel.text = model.a_productName;
+    }else{
+        nameLabel.text = model.a_content;
+    }
     if([model.a_category isEqualToString:@"Personal"]){
         [stageImage setImage:[GetImagePath getImagePath:@"人脉－个人中心_05a"]];
     }else if([model.a_category isEqualToString:@"Company"]){
