@@ -57,8 +57,8 @@
     ChooseProductCellModel* model=self.models[indexPath.row];
     model.isHighlight=YES;
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    if ([self.delegate respondsToSelector:@selector(chooseProductBigStage)]) {
-        [self.delegate chooseProductBigStage];
+    if ([self.delegate respondsToSelector:@selector(chooseProductBigStage:)]) {
+        [self.delegate chooseProductBigStage:model.content];
     }
     //设计(魏清清)要停个0.3秒
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

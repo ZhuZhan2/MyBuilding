@@ -9,7 +9,7 @@
 #import "ChatBaseViewController.h"
 
 @protocol ChooseProductBigStageDelegate <NSObject>
--(void)chooseProductBigStage;
+-(void)chooseProductBigStage:(NSString *)str;
 @end
 
 @interface ChooseProductBigStage : ChatBaseViewController
