@@ -721,6 +721,9 @@
 		5B7E59191ABC0C7E0063B400 /* 交易_上传附件@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E59131ABC0C7E0063B400 /* 交易_上传附件@2x.png */; };
 		5B7E591A1ABC0C7E0063B400 /* 交易_上传资质.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E59141ABC0C7E0063B400 /* 交易_上传资质.png */; };
 		5B7E591B1ABC0C7E0063B400 /* 交易_上传资质@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E59151ABC0C7E0063B400 /* 交易_上传资质@2x.png */; };
+		5B7E591E1ABC1E4B0063B400 /* priceX@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E591C1ABC1E4B0063B400 /* priceX@2x.png */; };
+		5B7E591F1ABC1E4B0063B400 /* priceX.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E591D1ABC1E4B0063B400 /* priceX.png */; };
+		5B7E59221ABC33E70063B400 /* RKPointKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E59211ABC33E70063B400 /* RKPointKit.m */; };
 		5B8A2CE91AAEE0AD00C8F9DE /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CC81AAEE0AD00C8F9DE /* AddFriendCell.m */; };
 		5B8A2CEA1AAEE0AD00C8F9DE /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CCA1AAEE0AD00C8F9DE /* AddFriendViewController.m */; };
 		5B8A2CEB1AAEE0AD00C8F9DE /* AddressBookFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CCD1AAEE0AD00C8F9DE /* AddressBookFriendCell.m */; };
@@ -2405,6 +2408,10 @@
 		5B7E59131ABC0C7E0063B400 /* 交易_上传附件@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_上传附件@2x.png"; sourceTree = "<group>"; };
 		5B7E59141ABC0C7E0063B400 /* 交易_上传资质.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_上传资质.png"; sourceTree = "<group>"; };
 		5B7E59151ABC0C7E0063B400 /* 交易_上传资质@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_上传资质@2x.png"; sourceTree = "<group>"; };
+		5B7E591C1ABC1E4B0063B400 /* priceX@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "priceX@2x.png"; sourceTree = "<group>"; };
+		5B7E591D1ABC1E4B0063B400 /* priceX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priceX.png; sourceTree = "<group>"; };
+		5B7E59201ABC33E70063B400 /* RKPointKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKPointKit.h; sourceTree = "<group>"; };
+		5B7E59211ABC33E70063B400 /* RKPointKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKPointKit.m; sourceTree = "<group>"; };
 		5B8A2CC71AAEE0AD00C8F9DE /* AddFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendCell.h; sourceTree = "<group>"; };
 		5B8A2CC81AAEE0AD00C8F9DE /* AddFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendCell.m; sourceTree = "<group>"; };
 		5B8A2CC91AAEE0AD00C8F9DE /* AddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
@@ -4734,6 +4741,8 @@
 		5B3B5D461AAD935E002FB444 /* 二期新图片 */ = {
 			isa = PBXGroup;
 			children = (
+				5B7E591C1ABC1E4B0063B400 /* priceX@2x.png */,
+				5B7E591D1ABC1E4B0063B400 /* priceX.png */,
 				5B7E59101ABC0C7E0063B400 /* 交易_上传报价.png */,
 				5B7E59111ABC0C7E0063B400 /* 交易_上传报价@2x.png */,
 				5B7E59121ABC0C7E0063B400 /* 交易_上传附件.png */,
@@ -4837,6 +4846,8 @@
 				5B6373801ABA796D007CF1F8 /* RKMuchImageViews.m */,
 				5B6373811ABA796D007CF1F8 /* RKSingleImageView.h */,
 				5B6373821ABA796D007CF1F8 /* RKSingleImageView.m */,
+				5B7E59201ABC33E70063B400 /* RKPointKit.h */,
+				5B7E59211ABC33E70063B400 /* RKPointKit.m */,
 			);
 			path = DetailCell;
 			sourceTree = "<group>";
@@ -6352,6 +6363,7 @@
 				5BE08DF91A3586EA00495EEB /* 010051@2x.png in Resources */,
 				5BE08E361A3586EA00495EEB /* 020018.png in Resources */,
 				5BE08E741A3586EA00495EEB /* 030019.png in Resources */,
+				5B7E591F1ABC1E4B0063B400 /* priceX.png in Resources */,
 				04BC417619D7E5B3006B5C7B /* 人脉_02a@2x.png in Resources */,
 				04BC42A819D7E5B3006B5C7B /* 面部识别登录1_03@2x.png in Resources */,
 				04BC435E19D7E5B3006B5C7B /* 高级搜索－1_03a.png in Resources */,
@@ -6586,6 +6598,7 @@
 				04BC41A819D7E5B3006B5C7B /* 人脉－个人中心_07a@2x.png in Resources */,
 				5BE08E681A3586EA00495EEB /* 030013.png in Resources */,
 				04BC433C19D7E5B3006B5C7B /* 项目－项目专题_17a.png in Resources */,
+				5B7E591E1ABC1E4B0063B400 /* priceX@2x.png in Resources */,
 				04BC413D19D7E5B3006B5C7B /* icon-star@2x.png in Resources */,
 				5BE08E011A3586EA00495EEB /* 010055@2x.png in Resources */,
 				5BE08DAB1A3586EA00495EEB /* 010012@2x.png in Resources */,
@@ -7431,6 +7444,7 @@
 				042D9E0F19B559FC00689C5D /* DecorationProject.m in Sources */,
 				5B8A2CF11AAEE0AD00C8F9DE /* ChatViewController.m in Sources */,
 				0426C2A519922D5A00CD8822 /* GPUImagePolarPixellateFilter.m in Sources */,
+				5B7E59221ABC33E70063B400 /* RKPointKit.m in Sources */,
 				04BF13B519C4162A002E02C9 /* ProjectApi.m in Sources */,
 				04D10BEA19AE016A0097C0C6 /* PublishViewController.m in Sources */,
 				5B51212F1A0781F900A77997 /* MapContentView.m in Sources */,

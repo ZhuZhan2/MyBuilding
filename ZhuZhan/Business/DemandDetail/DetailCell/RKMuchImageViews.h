@@ -12,4 +12,5 @@
 @property(nonatomic,strong)NSArray* models;
 +(CGSize)carculateTotalHeightWithModels:(NSArray*)models width:(CGFloat)width;
 +(RKMuchImageViews*)muchImageViewsWithWidth:(CGFloat)width;
+-(NSArray*)editCenters;
 @end

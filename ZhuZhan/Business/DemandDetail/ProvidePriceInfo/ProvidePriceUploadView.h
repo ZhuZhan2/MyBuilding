@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ProvidePriceUploadViewDelegate <NSObject>
+-(void)upLoadBtnClickedWithNumber:(NSInteger)number;
+@end
+
 @interface ProvidePriceUploadView : UIView
-+(ProvidePriceUploadView*)uploadViewWithFirstAccessorys:(NSArray*)firstAccessorys secondAccessory:(NSArray*)secondAccessory thirdAccessory:(NSArray*)thirdAccessory maxWidth:(CGFloat)maxWidth topDistance:(CGFloat)topDistance bottomDistance:(CGFloat)bottomDistance;
++(ProvidePriceUploadView*)uploadViewWithFirstAccessory:(NSArray*)firstAccessory secondAccessory:(NSArray*)secondAccessory thirdAccessory:(NSArray*)thirdAccessory maxWidth:(CGFloat)maxWidth topDistance:(CGFloat)topDistance bottomDistance:(CGFloat)bottomDistance delegate:(id<ProvidePriceUploadViewDelegate>)delegate;
+-(NSArray*)editCenters;
 @end

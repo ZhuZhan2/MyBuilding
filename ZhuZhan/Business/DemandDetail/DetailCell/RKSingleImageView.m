@@ -13,4 +13,10 @@
     view.backgroundColor=[UIColor redColor];
     return view;
 }
+
+-(CGPoint)editCenter{
+    CGFloat x=CGRectGetWidth(self.frame);
+    CGFloat y=0;
+    return CGPointMake(x, y);
+}
 @end

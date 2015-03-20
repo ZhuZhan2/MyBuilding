@@ -10,4 +10,5 @@
 
 @interface RKSingleImageView : UIView
 +(RKSingleImageView*)singleImageViewWithImageSize:(CGSize)size;
+-(CGPoint)editCenter;
 @end

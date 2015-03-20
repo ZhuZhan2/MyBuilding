@@ -11,14 +11,18 @@
 #import "RKLeftAndRightView.h"
 #import "RKUpAndDownView.h"
 #import "RKShadowView.h"
-@interface ProvidePriceInfoController ()
+#import "ProvidePriceUploadView.h"
+#import "RKPointKit.h"
+#import "RKCamera.h"
+@interface ProvidePriceInfoController ()<RKCameraDelegate,ProvidePriceUploadViewDelegate,UIActionSheetDelegate>
 @property(nonatomic,strong)UIView* firstView;
 @property(nonatomic,strong)UIView* secondView;
 @property(nonatomic,strong)UIView* thirdView;
 @property(nonatomic,strong)UIView* fourthView;
 @property(nonatomic,strong)UIView* fifthView;
-@property(nonatomic,strong)UIView* sixthView;
+@property(nonatomic,strong)ProvidePriceUploadView* sixthView;
 @property(nonatomic,strong)NSArray* contentViews;
+@property(nonatomic,strong)RKCamera* cameraControl;
 
 @property(nonatomic,strong)UIView* topView;
 @end
@@ -78,17 +82,72 @@
     frame=seperatorLine.frame;
     frame.origin.y=CGRectGetHeight(view.frame)-CGRectGetHeight(seperatorLine.frame)+1;
     seperatorLine.frame=frame;
-    NSLog(@"frame=%@",NSStringFromCGRect(frame));
     [cell.contentView addSubview:seperatorLine];
     
+    
+    if (view==self.sixthView) {
+        [[self.sixthView editCenters] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [(NSArray*)obj enumerateObjectsUsingBlock:^(id subObj, NSUInteger subIdx, BOOL *subStop) {
+                CGPoint point=self.sixthView.frame.origin;
+                CGPoint subPoint=[subObj CGPointValue];
+                CGPoint newPoint=[RKPointKit point:point addSubPoint:subPoint];
+                UIButton* cancelBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+                [cancelBtn setBackgroundImage:[GetImagePath getImagePath:@"priceX"] forState:UIControlStateNormal];
+                cancelBtn.tag=subIdx;
+                cancelBtn.center=newPoint;
+                [cell.contentView addSubview:cancelBtn];
+                NSString* actionStr;
+                switch (idx) {
+                    case 0:
+                        actionStr=@"firstAccessoryStageCancelBtnClickedWithBtn:";
+                        break;
+                    case 1:
+                        actionStr=@"secondAccessoryStageCancelBtnClickedWithBtn:";
+                        break;
+                    case 2:
+                        actionStr=@"thirdAccessoryStageCancelBtnClickedWithBtn:";
+                        break;
+                }
+                [cancelBtn addTarget:self action:NSSelectorFromString(actionStr) forControlEvents:UIControlEventTouchUpInside];
+            }];
+        }];
+    }
     return cell;
 }
 
+-(void)firstAccessoryStageCancelBtnClickedWithBtn:(UIButton*)btn{
+    NSLog(@"firstStage,%d",(int)btn.tag);
+    [self reloadSixthView];
+}
+
+-(void)secondAccessoryStageCancelBtnClickedWithBtn:(UIButton*)btn{
+    NSLog(@"secondStage,%d",(int)btn.tag);
+    [self reloadSixthView];
+}
+
+-(void)thirdAccessoryStageCancelBtnClickedWithBtn:(UIButton*)btn{
+    NSLog(@"thirdStage,%d",(int)btn.tag);
+    [self reloadSixthView];
+}
+
+-(void)reloadSixthView{
+    self.sixthView=nil;
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:5 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+}
+
+-(void)upLoadBtnClickedWithNumber:(NSInteger)number{
+    UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册",nil];
+    [actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==actionSheet.cancelButtonIndex) return;
+    self.cameraControl=[RKCamera cameraWithType:!buttonIndex allowEdit:YES deleate:self presentViewController:self.view.window.rootViewController];
+}
+
+
 -(NSArray *)contentViews{
-    if (!_contentViews) {
-        _contentViews=@[self.firstView,self.secondView,self.thirdView,self.fourthView,self.fifthView,self.sixthView];
-    }
-    return _contentViews;
+    return @[self.firstView,self.secondView,self.thirdView,self.fourthView,self.fifthView,self.sixthView];
 }
 
 -(UIView *)firstView{
@@ -129,9 +188,21 @@
     return _fifthView;
 }
 
--(UIView *)sixthView{
+-(ProvidePriceUploadView *)sixthView{
     if (!_sixthView) {
-        _sixthView=[RKUpAndDownView upAndDownViewWithUpContent:@"产品大类" downContent:@"水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥" topDistance:14 bottomDistance:14 maxWidth:kScreenWidth-50];
+        NSMutableArray* array1=[NSMutableArray array];
+        NSMutableArray* array2=[NSMutableArray array];
+        NSMutableArray* array3=[NSMutableArray array];
+        for (int i=0; i<arc4random()%30; i++) {
+            [array1 addObject:@""];
+        }
+        for (int i=0; i<arc4random()%30; i++) {
+            [array2 addObject:@""];
+        }
+        for (int i=0; i<arc4random()%30; i++) {
+            [array3 addObject:@""];
+        }
+        _sixthView=[ProvidePriceUploadView uploadViewWithFirstAccessory:array1 secondAccessory:array2 thirdAccessory:array3 maxWidth:kScreenWidth-50 topDistance:20 bottomDistance:20 delegate:self];
     }
     return _sixthView;
 }
