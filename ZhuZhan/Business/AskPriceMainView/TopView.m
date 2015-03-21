@@ -36,7 +36,7 @@
         self.secondLabel.text = secondStr;
         [self addSubview:self.secondLabel];
         
-        self.shadowView = [RKShadowView seperatorLineShadowViewWithHeight:2];
+        self.shadowView = [RKShadowView seperatorLineInThemeView];
         self.shadowView.frame = CGRectMake(0, 46, 320, 2);
         [self addSubview:self.shadowView];
         

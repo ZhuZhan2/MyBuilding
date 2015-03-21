@@ -8,13 +8,16 @@
 
 #import "RKMuchImageViews.h"
 #import "RKSingleImageView.h"
+#import "RKPointKit.h"
 @interface RKMuchImageViews()
 @property(nonatomic,strong)UILabel* titleLabel;
 @property(nonatomic,strong)UILabel* noDataLabel;
 @property(nonatomic)CGFloat contentWidth;
+
+@property(nonatomic,strong)NSMutableArray* singleImageViews;
 @end
 #define Font(size) [UIFont systemFontOfSize:size]
-#define kLineWidth 10
+//#define kLineWidth 10
 #define kLineHeight 10
 #define OneLineAllowNumber 3
 #define SingleImageViewWidth 80
@@ -33,6 +36,18 @@
         height+=size.height;
     }
     return CGSizeMake(width, height);
+}
+
+-(NSArray*)editCenters{
+    NSMutableArray* points=[NSMutableArray array];
+    NSMutableArray* subPoints=[NSMutableArray array];
+    for (RKSingleImageView* singleImageView in self.singleImageViews) {
+        [points addObject:[NSValue valueWithCGPoint: singleImageView.frame.origin]];
+        [subPoints addObject:[NSValue valueWithCGPoint:[singleImageView editCenter]]];
+    }
+    NSArray* newPoints=[RKPointKit points:points addSubPoints:subPoints];
+//    NSLog(@"newPoints=%@",newPoints);
+    return newPoints;
 }
 
 +(RKMuchImageViews *)muchImageViewsWithWidth:(CGFloat)width{
@@ -78,14 +93,23 @@
 }
 
 -(void)addMuchImageViewsWithY:(CGFloat)Y{
-    CGFloat horizontalWidth=SingleImageViewWidth+kLineWidth;
+    CGFloat space=(self.contentWidth-OneLineAllowNumber*SingleImageViewWidth)/(OneLineAllowNumber-1);
+    CGFloat horizontalWidth=SingleImageViewWidth+space;
     CGFloat verticalHeight=SingleImageViewHeight+kLineHeight;
     for (int i=0; i<self.models.count; i++) {
         CGRect frame=CGRectMake(i%3*horizontalWidth, Y+i/3*verticalHeight, SingleImageViewWidth, SingleImageViewHeight);
         RKSingleImageView* singleImageView=[RKSingleImageView singleImageViewWithImageSize:frame.size];
         singleImageView.frame=frame;
         [self addSubview:singleImageView];
+        [self.singleImageViews addObject:singleImageView];
     }
+}
+
+-(NSMutableArray *)singleImageViews{
+    if (!_singleImageViews) {
+        _singleImageViews=[NSMutableArray array];
+    }
+    return _singleImageViews;
 }
 
 -(UILabel *)titleLabel{

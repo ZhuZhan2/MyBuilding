@@ -655,8 +655,6 @@
 		5B6373861ABA796D007CF1F8 /* RKSingleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373821ABA796D007CF1F8 /* RKSingleImageView.m */; };
 		5B6373921ABAA7A8007CF1F8 /* RKDemandDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373911ABAA7A8007CF1F8 /* RKDemandDetailController.m */; };
 		5B6373951ABAA7B0007CF1F8 /* RKDemandChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373941ABAA7B0007CF1F8 /* RKDemandChatController.m */; };
-		5B6373971ABAC57C007CF1F8 /* 上导航阴影.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6373961ABAC57C007CF1F8 /* 上导航阴影.png */; };
-		5B6373991ABAC581007CF1F8 /* 上导航阴影@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6373981ABAC581007CF1F8 /* 上导航阴影@2x.png */; };
 		5B6373A01ABAD30B007CF1F8 /* RKStageAndNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B63739F1ABAD30B007CF1F8 /* RKStageAndNumberView.m */; };
 		5B6373AB1ABAE32A007CF1F8 /* ChooseProductBigCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373A31ABAE32A007CF1F8 /* ChooseProductBigCell.m */; };
 		5B6373AC1ABAE32A007CF1F8 /* ChooseProductBigStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373A51ABAE32A007CF1F8 /* ChooseProductBigStage.m */; };
@@ -711,6 +709,21 @@
 		5B7AA6EA1A58D93E000FBFF2 /* icon03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6E21A58D93E000FBFF2 /* icon03@2x.png */; };
 		5B7AA6EB1A58D93E000FBFF2 /* icon04.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6E31A58D93E000FBFF2 /* icon04.png */; };
 		5B7AA6EC1A58D93E000FBFF2 /* icon04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6E41A58D93E000FBFF2 /* icon04@2x.png */; };
+		5B7E58FE1ABBB2880063B400 /* 上导航阴影.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E58FC1ABBB2880063B400 /* 上导航阴影.png */; };
+		5B7E58FF1ABBB2880063B400 /* 上导航阴影@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E58FD1ABBB2880063B400 /* 上导航阴影@2x.png */; };
+		5B7E59061ABBD9B90063B400 /* ProvidePriceInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E59051ABBD9B90063B400 /* ProvidePriceInfoController.m */; };
+		5B7E59091ABBEAD20063B400 /* RKUpAndDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E59081ABBEAD20063B400 /* RKUpAndDownView.m */; };
+		5B7E590C1ABBFD760063B400 /* RKLeftAndRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E590B1ABBFD760063B400 /* RKLeftAndRightView.m */; };
+		5B7E590F1ABC08A70063B400 /* ProvidePriceUploadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E590E1ABC08A70063B400 /* ProvidePriceUploadView.m */; };
+		5B7E59161ABC0C7E0063B400 /* 交易_上传报价.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E59101ABC0C7E0063B400 /* 交易_上传报价.png */; };
+		5B7E59171ABC0C7E0063B400 /* 交易_上传报价@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E59111ABC0C7E0063B400 /* 交易_上传报价@2x.png */; };
+		5B7E59181ABC0C7E0063B400 /* 交易_上传附件.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E59121ABC0C7E0063B400 /* 交易_上传附件.png */; };
+		5B7E59191ABC0C7E0063B400 /* 交易_上传附件@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E59131ABC0C7E0063B400 /* 交易_上传附件@2x.png */; };
+		5B7E591A1ABC0C7E0063B400 /* 交易_上传资质.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E59141ABC0C7E0063B400 /* 交易_上传资质.png */; };
+		5B7E591B1ABC0C7E0063B400 /* 交易_上传资质@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E59151ABC0C7E0063B400 /* 交易_上传资质@2x.png */; };
+		5B7E591E1ABC1E4B0063B400 /* priceX@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E591C1ABC1E4B0063B400 /* priceX@2x.png */; };
+		5B7E591F1ABC1E4B0063B400 /* priceX.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E591D1ABC1E4B0063B400 /* priceX.png */; };
+		5B7E59221ABC33E70063B400 /* RKPointKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E59211ABC33E70063B400 /* RKPointKit.m */; };
 		5B8A2CE91AAEE0AD00C8F9DE /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CC81AAEE0AD00C8F9DE /* AddFriendCell.m */; };
 		5B8A2CEA1AAEE0AD00C8F9DE /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CCA1AAEE0AD00C8F9DE /* AddFriendViewController.m */; };
 		5B8A2CEB1AAEE0AD00C8F9DE /* AddressBookFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CCD1AAEE0AD00C8F9DE /* AddressBookFriendCell.m */; };
@@ -2309,8 +2322,6 @@
 		5B6373911ABAA7A8007CF1F8 /* RKDemandDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKDemandDetailController.m; sourceTree = "<group>"; };
 		5B6373931ABAA7B0007CF1F8 /* RKDemandChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKDemandChatController.h; sourceTree = "<group>"; };
 		5B6373941ABAA7B0007CF1F8 /* RKDemandChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKDemandChatController.m; sourceTree = "<group>"; };
-		5B6373961ABAC57C007CF1F8 /* 上导航阴影.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上导航阴影.png"; sourceTree = "<group>"; };
-		5B6373981ABAC581007CF1F8 /* 上导航阴影@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上导航阴影@2x.png"; sourceTree = "<group>"; };
 		5B63739E1ABAD30B007CF1F8 /* RKStageAndNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKStageAndNumberView.h; sourceTree = "<group>"; };
 		5B63739F1ABAD30B007CF1F8 /* RKStageAndNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKStageAndNumberView.m; sourceTree = "<group>"; };
 		5B6373A21ABAE32A007CF1F8 /* ChooseProductBigCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseProductBigCell.h; sourceTree = "<group>"; };
@@ -2383,6 +2394,26 @@
 		5B7AA6E21A58D93E000FBFF2 /* icon03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon03@2x.png"; sourceTree = "<group>"; };
 		5B7AA6E31A58D93E000FBFF2 /* icon04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon04.png; sourceTree = "<group>"; };
 		5B7AA6E41A58D93E000FBFF2 /* icon04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon04@2x.png"; sourceTree = "<group>"; };
+		5B7E58FC1ABBB2880063B400 /* 上导航阴影.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上导航阴影.png"; sourceTree = "<group>"; };
+		5B7E58FD1ABBB2880063B400 /* 上导航阴影@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上导航阴影@2x.png"; sourceTree = "<group>"; };
+		5B7E59041ABBD9B90063B400 /* ProvidePriceInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvidePriceInfoController.h; sourceTree = "<group>"; };
+		5B7E59051ABBD9B90063B400 /* ProvidePriceInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvidePriceInfoController.m; sourceTree = "<group>"; };
+		5B7E59071ABBEAD20063B400 /* RKUpAndDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKUpAndDownView.h; sourceTree = "<group>"; };
+		5B7E59081ABBEAD20063B400 /* RKUpAndDownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKUpAndDownView.m; sourceTree = "<group>"; };
+		5B7E590A1ABBFD760063B400 /* RKLeftAndRightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKLeftAndRightView.h; sourceTree = "<group>"; };
+		5B7E590B1ABBFD760063B400 /* RKLeftAndRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLeftAndRightView.m; sourceTree = "<group>"; };
+		5B7E590D1ABC08A70063B400 /* ProvidePriceUploadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvidePriceUploadView.h; sourceTree = "<group>"; };
+		5B7E590E1ABC08A70063B400 /* ProvidePriceUploadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvidePriceUploadView.m; sourceTree = "<group>"; };
+		5B7E59101ABC0C7E0063B400 /* 交易_上传报价.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_上传报价.png"; sourceTree = "<group>"; };
+		5B7E59111ABC0C7E0063B400 /* 交易_上传报价@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_上传报价@2x.png"; sourceTree = "<group>"; };
+		5B7E59121ABC0C7E0063B400 /* 交易_上传附件.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_上传附件.png"; sourceTree = "<group>"; };
+		5B7E59131ABC0C7E0063B400 /* 交易_上传附件@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_上传附件@2x.png"; sourceTree = "<group>"; };
+		5B7E59141ABC0C7E0063B400 /* 交易_上传资质.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_上传资质.png"; sourceTree = "<group>"; };
+		5B7E59151ABC0C7E0063B400 /* 交易_上传资质@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_上传资质@2x.png"; sourceTree = "<group>"; };
+		5B7E591C1ABC1E4B0063B400 /* priceX@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "priceX@2x.png"; sourceTree = "<group>"; };
+		5B7E591D1ABC1E4B0063B400 /* priceX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priceX.png; sourceTree = "<group>"; };
+		5B7E59201ABC33E70063B400 /* RKPointKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKPointKit.h; sourceTree = "<group>"; };
+		5B7E59211ABC33E70063B400 /* RKPointKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKPointKit.m; sourceTree = "<group>"; };
 		5B8A2CC71AAEE0AD00C8F9DE /* AddFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendCell.h; sourceTree = "<group>"; };
 		5B8A2CC81AAEE0AD00C8F9DE /* AddFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendCell.m; sourceTree = "<group>"; };
 		5B8A2CC91AAEE0AD00C8F9DE /* AddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
@@ -4716,6 +4747,14 @@
 		5B3B5D461AAD935E002FB444 /* 二期新图片 */ = {
 			isa = PBXGroup;
 			children = (
+				5B7E591C1ABC1E4B0063B400 /* priceX@2x.png */,
+				5B7E591D1ABC1E4B0063B400 /* priceX.png */,
+				5B7E59101ABC0C7E0063B400 /* 交易_上传报价.png */,
+				5B7E59111ABC0C7E0063B400 /* 交易_上传报价@2x.png */,
+				5B7E59121ABC0C7E0063B400 /* 交易_上传附件.png */,
+				5B7E59131ABC0C7E0063B400 /* 交易_上传附件@2x.png */,
+				5B7E59141ABC0C7E0063B400 /* 交易_上传资质.png */,
+				5B7E59151ABC0C7E0063B400 /* 交易_上传资质@2x.png */,
 				5B6373AF1ABAE3C8007CF1F8 /* 导航下三角.png */,
 				5B6373B01ABAE3C8007CF1F8 /* 导航下三角@2x.png */,
 				D3D686201ABAC665005D9ED6 /* 交易_删除.png */,
@@ -4813,6 +4852,8 @@
 				5B6373801ABA796D007CF1F8 /* RKMuchImageViews.m */,
 				5B6373811ABA796D007CF1F8 /* RKSingleImageView.h */,
 				5B6373821ABA796D007CF1F8 /* RKSingleImageView.m */,
+				5B7E59201ABC33E70063B400 /* RKPointKit.h */,
+				5B7E59211ABC33E70063B400 /* RKPointKit.m */,
 			);
 			path = DetailCell;
 			sourceTree = "<group>";
@@ -4846,6 +4887,7 @@
 				5B6699281AB9490600C4B54F /* DemanDetailViewController.m */,
 				5B63737C1ABA796D007CF1F8 /* DetailCell */,
 				5B6373791ABA796D007CF1F8 /* ChatCell */,
+				5B7E59031ABBD9B90063B400 /* ProvidePriceInfo */,
 			);
 			path = DemandDetail;
 			sourceTree = "<group>";
@@ -4881,6 +4923,17 @@
 				5B7670611AB6B92B00E154C5 /* SearchBarTableViewController.m */,
 			);
 			path = RKBase;
+			sourceTree = "<group>";
+		};
+		5B7E59031ABBD9B90063B400 /* ProvidePriceInfo */ = {
+			isa = PBXGroup;
+			children = (
+				5B7E59041ABBD9B90063B400 /* ProvidePriceInfoController.h */,
+				5B7E59051ABBD9B90063B400 /* ProvidePriceInfoController.m */,
+				5B7E590D1ABC08A70063B400 /* ProvidePriceUploadView.h */,
+				5B7E590E1ABC08A70063B400 /* ProvidePriceUploadView.m */,
+			);
+			path = ProvidePriceInfo;
 			sourceTree = "<group>";
 		};
 		5B8A2CC51AAEE0AD00C8F9DE /* Chat */ = {
@@ -5107,6 +5160,10 @@
 				5B63739F1ABAD30B007CF1F8 /* RKStageAndNumberView.m */,
 				5B6289DB1AB7C10000F30059 /* RKTwoView.h */,
 				5B6289DC1AB7C10000F30059 /* RKTwoView.m */,
+				5B7E59071ABBEAD20063B400 /* RKUpAndDownView.h */,
+				5B7E59081ABBEAD20063B400 /* RKUpAndDownView.m */,
+				5B7E590A1ABBFD760063B400 /* RKLeftAndRightView.h */,
+				5B7E590B1ABBFD760063B400 /* RKLeftAndRightView.m */,
 				5B6373631ABA5E97007CF1F8 /* RKShadowView.h */,
 				5B6373641ABA5E97007CF1F8 /* RKShadowView.m */,
 			);
@@ -5469,8 +5526,8 @@
 		D35163CF1A67903F000051F4 /* 默认图像 */ = {
 			isa = PBXGroup;
 			children = (
-				5B6373961ABAC57C007CF1F8 /* 上导航阴影.png */,
-				5B6373981ABAC581007CF1F8 /* 上导航阴影@2x.png */,
+				5B7E58FC1ABBB2880063B400 /* 上导航阴影.png */,
+				5B7E58FD1ABBB2880063B400 /* 上导航阴影@2x.png */,
 				5B6699331AB975A800C4B54F /* 大卡片阴影上.png */,
 				5B6699341AB975A800C4B54F /* 大卡片阴影上@2x.png */,
 				5B6699351AB975A800C4B54F /* 大卡片阴影下.png */,
@@ -6185,6 +6242,7 @@
 				5B66993A1AB975A800C4B54F /* 大卡片阴影下@2x.png in Resources */,
 				D3D9C90D1A1343CF001D3A64 /* 主菜单02b@2x.png in Resources */,
 				04BC41E819D7E5B3006B5C7B /* 人脉－账号设置_03a@2x.png in Resources */,
+				5B7E59161ABC0C7E0063B400 /* 交易_上传报价.png in Resources */,
 				04BC428C19D7E5B3006B5C7B /* 登录_11.png in Resources */,
 				5BE08E871A3586EA00495EEB /* 040001@2x.png in Resources */,
 				5BE08E031A3586EA00495EEB /* 010056@2x.png in Resources */,
@@ -6233,6 +6291,7 @@
 				5B5121331A07962600A77997 /* 地图搜索1_16@2X.png in Resources */,
 				D3D74ED719FA308000ED8B62 /* 面部识别登录_02@2x.png in Resources */,
 				5B6699381AB975A800C4B54F /* 大卡片阴影上@2x.png in Resources */,
+				5B7E591B1ABC0C7E0063B400 /* 交易_上传资质@2x.png in Resources */,
 				5BE08E281A3586EA00495EEB /* 020011.png in Resources */,
 				04BC419019D7E5B3006B5C7B /* 人脉_57a@2x.png in Resources */,
 				04BC436119D7E5B3006B5C7B /* ＋人脉－个人中心2_30a@2x.png in Resources */,
@@ -6278,6 +6337,7 @@
 				5B7AA6CC1A58D6B0000FBFF2 /* 04@2x.png in Resources */,
 				D3D5B8161AAD62790049A5E0 /* tuijianxin.png in Resources */,
 				5BE08DE61A3586EA00495EEB /* 010042.png in Resources */,
+				5B7E58FE1ABBB2880063B400 /* 上导航阴影.png in Resources */,
 				5BE08E161A3586EA00495EEB /* 020002.png in Resources */,
 				04BC428419D7E5B3006B5C7B /* 登录1_03.png in Resources */,
 				5BE08E041A3586EA00495EEB /* 010057.png in Resources */,
@@ -6321,6 +6381,7 @@
 				5BE08DF91A3586EA00495EEB /* 010051@2x.png in Resources */,
 				5BE08E361A3586EA00495EEB /* 020018.png in Resources */,
 				5BE08E741A3586EA00495EEB /* 030019.png in Resources */,
+				5B7E591F1ABC1E4B0063B400 /* priceX.png in Resources */,
 				04BC417619D7E5B3006B5C7B /* 人脉_02a@2x.png in Resources */,
 				04BC42A819D7E5B3006B5C7B /* 面部识别登录1_03@2x.png in Resources */,
 				04BC435E19D7E5B3006B5C7B /* 高级搜索－1_03a.png in Resources */,
@@ -6510,7 +6571,9 @@
 				5B4E6C9C1A68DB140008E5D5 /* 动态产品评论02.png in Resources */,
 				5BA938A71A4935FF00BB8A96 /* 密码找回_03@2x.png in Resources */,
 				04BC41A419D7E5B3006B5C7B /* 人脉－个人中心_05a@2x.png in Resources */,
+				5B7E59191ABC0C7E0063B400 /* 交易_上传附件@2x.png in Resources */,
 				5BE08E631A3586EA00495EEB /* 030010@2x.png in Resources */,
+				5B7E59171ABC0C7E0063B400 /* 交易_上传报价@2x.png in Resources */,
 				D3D686221ABAC665005D9ED6 /* 交易_删除.png in Resources */,
 				D3D7986A1A0B1ECF00194FF8 /* 加载中.gif in Resources */,
 				5B6373741ABA66DD007CF1F8 /* 交易_采纳.png in Resources */,
@@ -6553,6 +6616,7 @@
 				04BC41A819D7E5B3006B5C7B /* 人脉－个人中心_07a@2x.png in Resources */,
 				5BE08E681A3586EA00495EEB /* 030013.png in Resources */,
 				04BC433C19D7E5B3006B5C7B /* 项目－项目专题_17a.png in Resources */,
+				5B7E591E1ABC1E4B0063B400 /* priceX@2x.png in Resources */,
 				04BC413D19D7E5B3006B5C7B /* icon-star@2x.png in Resources */,
 				5BE08E011A3586EA00495EEB /* 010055@2x.png in Resources */,
 				5BE08DAB1A3586EA00495EEB /* 010012@2x.png in Resources */,
@@ -6633,6 +6697,7 @@
 				04BC40EF19D7E5B3006B5C7B /* +项目-首页_23a@2x.png in Resources */,
 				04BC413219D7E5B3006B5C7B /* controls_05.png in Resources */,
 				D35163E21A67903F000051F4 /* 产品－列表_10a.png in Resources */,
+				5B7E591A1ABC0C7E0063B400 /* 交易_上传资质.png in Resources */,
 				04BC41E719D7E5B3006B5C7B /* 人脉－账号设置_03a.png in Resources */,
 				04BC434A19D7E5B3006B5C7B /* 项目－高级搜索－2_15a-19.png in Resources */,
 				5BE08E2F1A3586EA00495EEB /* 020014@2x.png in Resources */,
@@ -6750,6 +6815,7 @@
 				5BE08DE51A3586EA00495EEB /* 010041@2x.png in Resources */,
 				D35163E11A67903F000051F4 /* 产品－产品详情_03a@2x.png in Resources */,
 				D35163E61A67903F000051F4 /* 人脉_74a2.png in Resources */,
+				5B7E58FF1ABBB2880063B400 /* 上导航阴影@2x.png in Resources */,
 				5BE08E341A3586EA00495EEB /* 020017.png in Resources */,
 				5B5121371A07968200A77997 /* 地图搜索1_05@2x.png in Resources */,
 				04BC427019D7E5B3006B5C7B /* 新建项目5_09@2x.png in Resources */,
@@ -6833,7 +6899,6 @@
 				5BE08E491A3586EA00495EEB /* 020027@2x.png in Resources */,
 				04BC42A019D7E5B3006B5C7B /* 语音搜索1_05.png in Resources */,
 				04BC40ED19D7E5B3006B5C7B /* +项目-首页_21a@2x.png in Resources */,
-				5B6373991ABAC581007CF1F8 /* 上导航阴影@2x.png in Resources */,
 				5BE08E5D1A3586EA00495EEB /* 030007@2x.png in Resources */,
 				5BE08DF41A3586EA00495EEB /* 010049.png in Resources */,
 				5B95ADE81AB19F5A00797EA6 /* 分组打开.png in Resources */,
@@ -6846,6 +6911,7 @@
 				5BE08E151A3586EA00495EEB /* 020001@2x.png in Resources */,
 				D3D74ED619FA308000ED8B62 /* 面部识别登录_02.png in Resources */,
 				5B628A031AB81CFE00F30059 /* 多选已选@2x.png in Resources */,
+				5B7E59181ABC0C7E0063B400 /* 交易_上传附件.png in Resources */,
 				04BC433E19D7E5B3006B5C7B /* 项目－项目专题_23a.png in Resources */,
 				04BC435219D7E5B3006B5C7B /* 首页_16.png in Resources */,
 				04BC433B19D7E5B3006B5C7B /* 项目－项目专题_14a@2x.png in Resources */,
@@ -6890,7 +6956,6 @@
 				5B95ADD81AB1929B00797EA6 /* 35px加载中.png in Resources */,
 				5BE08E5A1A3586EA00495EEB /* 030006.png in Resources */,
 				5BE08E1A1A3586EA00495EEB /* 020004.png in Resources */,
-				5B6373971ABAC57C007CF1F8 /* 上导航阴影.png in Resources */,
 				5BE08E181A3586EA00495EEB /* 020003.png in Resources */,
 				5B6A1D671A4A65280072B916 /* 主站－人脉03@2x.png in Resources */,
 				04BC414C19D7E5B3006B5C7B /* minutehand.png in Resources */,
@@ -7203,6 +7268,7 @@
 				04BF13B819C4162A002E02C9 /* ProjectImageModel.m in Sources */,
 				0426C2B819922D5A00CD8822 /* GPUImageSketchFilter.m in Sources */,
 				5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */,
+				5B7E590C1ABBFD760063B400 /* RKLeftAndRightView.m in Sources */,
 				D3FF3E811AAEC916005195CC /* ChoseContactModel.m in Sources */,
 				0426C23819922D5A00CD8822 /* AFHTTPSessionManager.m in Sources */,
 				0426C25019922D5A00CD8822 /* GPUImageChromaKeyBlendFilter.m in Sources */,
@@ -7254,6 +7320,7 @@
 				042D9E2A19B559FC00689C5D /* TopicsDetailTableViewController.m in Sources */,
 				5B8A2CE91AAEE0AD00C8F9DE /* AddFriendCell.m in Sources */,
 				D3AD616B19ADB9F7001FD483 /* RecordModel.m in Sources */,
+				5B7E59061ABBD9B90063B400 /* ProvidePriceInfoController.m in Sources */,
 				0426C27919922D5A00CD8822 /* GPUImageHighPassFilter.m in Sources */,
 				0426C2E919922D5A00CD8822 /* FaceppPerson.m in Sources */,
 				0426C26119922D5A00CD8822 /* GPUimageDirectionalSobelEdgeDetectionFilter.m in Sources */,
@@ -7370,6 +7437,7 @@
 				0426C2A019922D5A00CD8822 /* GPUImagePerlinNoiseFilter.m in Sources */,
 				042D9E1E19B559FC00689C5D /* ConditionsView.m in Sources */,
 				5B6373861ABA796D007CF1F8 /* RKSingleImageView.m in Sources */,
+				5B7E590F1ABC08A70063B400 /* ProvidePriceUploadView.m in Sources */,
 				0426C2DA19922D5A00CD8822 /* GPUImageZoomBlurFilter.m in Sources */,
 				042D9E1219B559FC00689C5D /* MainDesign.m in Sources */,
 				D3049A681A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m in Sources */,
@@ -7380,6 +7448,7 @@
 				0426C24919922D5A00CD8822 /* GPUImageBilateralFilter.m in Sources */,
 				5B6699291AB9490600C4B54F /* DemanDetailViewController.m in Sources */,
 				D3D4FB301A0872770033BB34 /* CompanyCenterViewController.m in Sources */,
+				5B7E59091ABBEAD20063B400 /* RKUpAndDownView.m in Sources */,
 				0426C2EA19922D5A00CD8822 /* FaceppRecognition.m in Sources */,
 				042D9E0E19B559FC00689C5D /* BaiDuMapViewController.m in Sources */,
 				D3A4281B19C1A2E700BAB6C7 /* GTMBase64.m in Sources */,
@@ -7394,6 +7463,7 @@
 				042D9E0F19B559FC00689C5D /* DecorationProject.m in Sources */,
 				5B8A2CF11AAEE0AD00C8F9DE /* ChatViewController.m in Sources */,
 				0426C2A519922D5A00CD8822 /* GPUImagePolarPixellateFilter.m in Sources */,
+				5B7E59221ABC33E70063B400 /* RKPointKit.m in Sources */,
 				04BF13B519C4162A002E02C9 /* ProjectApi.m in Sources */,
 				04D10BEA19AE016A0097C0C6 /* PublishViewController.m in Sources */,
 				5B51212F1A0781F900A77997 /* MapContentView.m in Sources */,

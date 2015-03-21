@@ -10,4 +10,5 @@
 
 @interface RKDemandDetailController : ChatBaseViewController
 @property(nonatomic,strong)NSMutableArray* detailModels;
+@property(nonatomic,weak)UIViewController* superViewController;
 @end

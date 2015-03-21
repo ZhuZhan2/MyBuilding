@@ -51,6 +51,7 @@
 -(void)initNavi{
     [self initTitleViewWithTitle:@"全部需求表"];
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
+    self.needAnimaiton=YES;
 }
 
 -(void)initTitleViewWithTitle:(NSString*)title{

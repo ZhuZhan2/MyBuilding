@@ -18,6 +18,8 @@
 @property(nonatomic,strong)UIView* seperatorLine;
 
 @property(nonatomic,weak)id<RKStageChooseViewDelegate>delegate;
+
+@property(nonatomic)BOOL underLineIsWhole;
 @end
 
 #define kChooseViewHeight 46
@@ -33,6 +35,8 @@
     stageChooseView.delegate=delegate;
     stageChooseView.stages=stages;
     stageChooseView.numbers=numbers;
+    stageChooseView.underLineIsWhole=stages.count==2;
+    NSLog(@"%d",stageChooseView.underLineIsWhole);
     [stageChooseView setUp];
     return stageChooseView;
 }
@@ -56,9 +60,10 @@
 
 -(UIView *)underLineView{
     if (!_underLineView) {
-        _underLineView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.stages.count==4?28:kScreenWidth/2, 3)];
+        CGFloat height=3;
+        CGFloat y=CGRectGetHeight(self.frame)-height;
+        _underLineView=[[UIView alloc]initWithFrame:CGRectMake(0, y, 0, height)];
         _underLineView.backgroundColor=BlueColor;
-        _underLineView.center=CGPointMake(kChooseViewWidth/4/2, kChooseViewHeight-CGRectGetHeight(_underLineView.frame)*0.5);
     }
     return _underLineView;
 }
@@ -99,11 +104,19 @@
     [self.labels enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [(RKStageAndNumberView*)obj changeColor:idx==sequence?SelectedColor:(self.stages.count==4?NoSeletedFourStageColor:NoSeletedTwoStageColor)];
     }];
-    UIView* stageLabel=self.labels[sequence];
-    CGPoint center=self.underLineView.center;
-    center.x=stageLabel.center.x;
-    [UIView animateWithDuration:.3 animations:^{
-        self.underLineView.center=center;
+    RKStageAndNumberView* stageLabel=self.labels[sequence];
+    
+    CGRect frame=self.underLineView.frame;
+    if (self.underLineIsWhole) {
+        frame.size.width=kScreenWidth/self.stages.count;
+        frame.origin.x=sequence*kScreenWidth/self.stages.count;
+    }else{
+        frame.origin.x=CGRectGetMinX(stageLabel.frame)+[stageLabel stageLabelOriginX];
+        frame.size.width=[stageLabel stageLabelWidth];
+    }
+
+    [UIView animateWithDuration:CGRectGetWidth(self.underLineView.frame)?0.3:0 animations:^{
+        self.underLineView.frame=frame;
     }];
     
     if ([self.delegate respondsToSelector:@selector(stageBtnClickedWithNumber:)]) {
