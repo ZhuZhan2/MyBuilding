@@ -17,6 +17,8 @@
 #import "AskPriceApi.h"
 #import "AskPriceModel.h"
 #import "QuotesModel.h"
+#import "LoginSqlite.h"
+#import "AskPriceDetailViewController.h"
 @interface AskPriceViewController ()<DemandStageChooseControllerDelegate,RKStageChooseViewDelegate>
 @property(nonatomic,strong)NSString *statusStr;
 @property(nonatomic,strong)NSString *otherStr;
@@ -40,7 +42,7 @@
 -(void)loadList{
     [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            NSLog(@"%@,%@",posts[0],posts[1]);
+            [self.showArr removeAllObjects];
             self.showArr = posts[0];
 //            [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
             [self.tableView reloadData];
@@ -124,6 +126,16 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     AskPriceModel *model = self.showArr[indexPath.row];
+    if([model.a_createdBy isEqualToString:[LoginSqlite getdata:@"userId"]]){
+        NSLog(@"自己发");
+        AskPriceDetailViewController *view = [[AskPriceDetailViewController alloc] init];
+        view.askPriceModel = model;
+        [self.navigationController pushViewController:view animated:YES];
+    }else{
+        NSLog(@"别人发");
+    }
+    
+    return;
     [AskPriceApi GetAskPriceDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             if(posts.count !=0){

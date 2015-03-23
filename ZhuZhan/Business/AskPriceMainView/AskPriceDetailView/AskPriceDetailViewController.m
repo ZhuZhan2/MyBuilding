@@ -79,7 +79,7 @@
         [_classificationView GetHeightWithBlock:^(double height) {
             _classificationView.frame = CGRectMake(0, 0, 320, height);
             self.classificationViewHeight = height;
-        } str:@"阿斯顿发生法士大阿斯顿发送到发沙发沙发沙发法撒旦法师打发士大夫撒飞洒发生发送到发送到发送到发送到法撒旦法师打" name:@"产品分类"];
+        } str:self.askPriceModel.a_productBigCategory name:@"产品分类"];
     }
     return _classificationView;
 }
@@ -124,8 +124,7 @@
             cell = [[CatoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.selectionStyle = NO;
-        //cell.catoryStr = self.askPriceModel.a_productBigCategory;
-        cell.catoryStr = @"分类";
+        cell.catoryStr = self.askPriceModel.a_productBigCategory;
         return cell;
     }else if(indexPath.row == 1){
         NSString *CellIdentifier = [NSString stringWithFormat:@"classificationCell"];
