@@ -259,4 +259,89 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)GetCommentListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block tradeId:(NSString *)tradeId tradeUserAndCommentUser:(NSString *)tradeUserAndCommentUser startIndex:(int)startIndex noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"api/tradeComments/listComment?tradeId=%@&tradeUserAndCommentUser=%@&pageSize=5&pageIndex=%d",tradeId,tradeUserAndCommentUser,startIndex];
+    NSLog(@"=====%@",urlStr);
+    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            for(NSDictionary *item in JSON[@"data"]){
+                
+            }
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)AddImageWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dataArr:(NSMutableArray *)dataArr dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"api/attachment/addAttachment"];
+    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [dataArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSLog(@"=====>%lu",(unsigned long)idx);
+            [formData appendPartWithFileData:obj name:@"file" fileName:[NSString stringWithFormat:@"image_%lu.jpg",(unsigned long)idx] mimeType:@"image/jpg"];
+        }];
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"responseObject ==> %@",responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)GetChildsListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block parentId:(NSString *)parentId noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"api/tradeProduct/getChilds?parentId=%@",parentId];
+    NSLog(@"=====%@",urlStr);
+    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            for(NSDictionary *item in JSON[@"data"]){
+                
+            }
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
 @end

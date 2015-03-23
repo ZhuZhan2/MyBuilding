@@ -19,6 +19,7 @@
 #import "QuotesModel.h"
 #import "LoginSqlite.h"
 #import "AskPriceDetailViewController.h"
+#import "QuotesDetailViewController.h"
 @interface AskPriceViewController ()<DemandStageChooseControllerDelegate,RKStageChooseViewDelegate>
 @property(nonatomic,strong)NSString *statusStr;
 @property(nonatomic,strong)NSString *otherStr;
@@ -135,6 +136,8 @@
         [self.navigationController pushViewController:view animated:YES];
     }else{
         NSLog(@"别人发");
+        QuotesDetailViewController *view = [[QuotesDetailViewController alloc] init];
+        [self.navigationController pushViewController:view animated:YES];
     }
     
     return;

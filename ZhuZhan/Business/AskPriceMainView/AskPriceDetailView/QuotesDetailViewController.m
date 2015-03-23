@@ -11,6 +11,7 @@
 #import "ClassificationView.h"
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
+#import "AskPriceApi.h"
 @interface QuotesDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *showArr;
@@ -125,7 +126,34 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if(indexPath.row == 3){
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:@"88B7CE789CC9" forKey:@"tradeCode"];
+        [dic setValue:@"0" forKey:@"category"];
+        [dic setValue:@"b1104ca7-ff90-4220-b478-3d6f15f09da3" forKey:@"quotesId"];
+        NSMutableArray *arr = [[NSMutableArray alloc] init];
+        for(int i=1;i<10;i++){
+            UIImage *image = [GetImagePath getImagePath:[NSString stringWithFormat:@"01000%d",i]];
+            NSData *imageData = UIImageJPEGRepresentation(image, 0.3);
+            [arr addObject:imageData];
+        }
+        [AskPriceApi AddImageWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+            
+            }
+        } dataArr:arr dic:dic noNetWork:nil];
+
+//        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+//        [dic setValue:@"88B7CE789CC9" forKey:@"tradeCode"];
+//        [dic setValue:@"d6a4c3a4-e15d-4896-ae79-ccc2a7bd8914" forKey:@"bookBuildingId"];
+//        [dic setValue:@"岳志强fuck" forKey:@"quoteContent"];
+//        [AskPriceApi AddQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
+//            if(!error){
+//                //b1104ca7-ff90-4220-b478-3d6f15f09da3
+//            }
+//        } dic:dic noNetWork:nil];
+
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

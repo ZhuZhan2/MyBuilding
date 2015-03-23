@@ -32,4 +32,13 @@
 
 //关闭报价
 + (NSURLSessionDataTask *)CloseQuotesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
+
+//回复列表
++ (NSURLSessionDataTask *)GetCommentListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block tradeId:(NSString *)tradeId tradeUserAndCommentUser:(NSString *)tradeUserAndCommentUser startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
+
+//上传附件
++ (NSURLSessionDataTask *)AddImageWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dataArr:(NSMutableArray *)dataArr dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
+
+//获取分类
++ (NSURLSessionDataTask *)GetChildsListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block parentId:(NSString *)parentId noNetWork:(void(^)())noNetWork;
 @end

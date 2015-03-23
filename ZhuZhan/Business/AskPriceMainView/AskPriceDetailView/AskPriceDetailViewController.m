@@ -12,6 +12,8 @@
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
 #import "RemarkViewController.h"
+#import "AskPriceApi.h"
+#import "DemanDetailViewController.h"
 @interface AskPriceDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *showArr;
@@ -34,6 +36,8 @@
     self.viewArr = [[NSMutableArray alloc] initWithObjects:self.classificationView, nil];
     self.showArr = [[NSMutableArray alloc] init];
     [self.view addSubview:self.tableView];
+    
+    [self loadList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,7 +62,15 @@
 }
 
 -(void)back{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)loadList{
+    [AskPriceApi GetAskPriceDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+        
+        }
+    } tradeId:self.askPriceModel.a_id noNetWork:nil];
 }
 
 -(UITableView *)tableView{
@@ -112,6 +124,9 @@
     if(indexPath.row == 2){
         RemarkViewController *remarkView = [[RemarkViewController alloc] init];
         [self.navigationController pushViewController:remarkView animated:YES];
+    }else if(indexPath.row>2){
+        DemanDetailViewController *viewController = [[DemanDetailViewController alloc] init];
+        [self.navigationController pushViewController:viewController animated:YES];
     }
 }
 

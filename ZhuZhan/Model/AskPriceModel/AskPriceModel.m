@@ -31,8 +31,18 @@
     }else{
         self.a_invitedUser = @"";
     }
+    self.a_invitedUserArr = dict[@"invitedUser"];
     self.a_productBigCategory = dict[@"productBigCategory"];
     self.a_productCategory = dict[@"productCategory"];
     self.a_remark = dict[@"remark"];
+}
+@end
+
+@implementation InvitedUserModel
+-(void)setDict:(NSDictionary *)dict{
+    _dict = dict;
+    self.a_id = dict[@""];
+    self.a_name = dict[@"loginName"];
+    self.a_status = dict[@""];
 }
 @end
