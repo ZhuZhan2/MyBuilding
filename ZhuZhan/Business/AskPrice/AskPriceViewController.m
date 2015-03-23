@@ -14,8 +14,11 @@
 #import "ChooseProductSmallStage.h"
 #import "DemanDetailViewController.h"
 #import "AskPriceApi.h"
+#import "AskPriceModel.h"
+#import "QuotesModel.h"
 @interface AskPriceViewController ()
 @property(nonatomic,strong)NSString *statusStr;
+@property(nonatomic,strong)NSMutableArray *showArr;
 @end
 
 @implementation AskPriceViewController
@@ -25,7 +28,7 @@
     self.statusStr = @"";
     [self initNavi];
     [self loadList];
-    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[@"99",@"88",@"0",@"1111"]];
+    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[@"99",@"88",@"10",@"1111"]];
 
     [self setUpSearchBarWithNeedTableView:NO isTableViewHeader:YES];
     [self initTableView];
@@ -37,6 +40,8 @@
     [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             NSLog(@"%@,%@",posts[0],posts[1]);
+            self.showArr = posts[0];
+            [self.tableView reloadData];
         }
     } status:self.statusStr startIndex:0 noNetWork:nil];
 }
@@ -80,11 +85,12 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 11;
+    return self.showArr.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [AskPriceViewCell carculateTotalHeightWithContents:@[@"参与用户啊啊啊啊啊啊啊啊啊啊啊啊啊啊",@"水泥啊水泥",@"产品分类",@"程序不做完，产品设计一起加班,程序不做完，产品设计一起加班,程序不做完，产品设计一起加班,程序不做完，产品设计一起加班"]];
+    AskPriceModel *model = self.showArr[indexPath.row];
+    return [AskPriceViewCell carculateTotalHeightWithContents:@[model.a_invitedUser,model.a_productBigCategory,model.a_productCategory,model.a_remark]];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -93,11 +99,28 @@
         cell=[[AskPriceViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.clipsToBounds=YES;
     }
-    cell.contents=@[@"参与用户啊啊啊啊啊啊啊啊啊啊啊啊啊啊",@"水泥啊水泥",@"产品分类",@"程序不做完，产品设计一起加班,程序不做完，产品设计一起加班,程序不做完，产品设计一起加班,程序不做完，产品设计一起加班"];
+    AskPriceModel *model = self.showArr[indexPath.row];
+    cell.contents=@[model.a_invitedUser,model.a_productBigCategory,model.a_productCategory,model.a_remark];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    AskPriceModel *model = self.showArr[indexPath.row];
+    [AskPriceApi GetAskPriceDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            if(posts.count !=0){
+                QuotesModel *quotesModel = posts[0];
+                NSLog(@"%@",quotesModel.a_loginName);
+                [AskPriceApi GetQuotesListWithBlock:^(NSMutableArray *posts, NSError *error) {
+                    if(!error){
+                        
+                    }
+                } providerId:quotesModel.a_loginId tradeCode:model.a_tradeCode startIndex:0 noNetWork:nil];
+            }
+        }
+    } tradeId:model.a_id noNetWork:nil];
+
+    return;
     DemanDetailViewController* vc=[[DemanDetailViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
     

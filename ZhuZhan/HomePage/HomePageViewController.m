@@ -278,7 +278,8 @@
     }else{
         NSLog(@"通讯录");
         //quadCurveVC = [[AddressBookViewController alloc] init];
-        Class class=NSClassFromString(@"AskPriceMainViewController");
+        //Class class=NSClassFromString(@"AskPriceMainViewController");
+        Class class=NSClassFromString(@"AskPriceDetailViewController");
         quadCurveVC=[[class alloc]init];
     }
     [self addAnimation];
