@@ -40,6 +40,12 @@
     return stageChooseView;
 }
 
+-(void)changeNumbers:(NSArray *)numbers{
+    [self.labels enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [(RKStageAndNumberView*)obj changeNumber:[self.numbers[idx] integerValue]];
+    }];
+}
+
 -(UIView *)seperatorLine{
     if (!_seperatorLine) {
         _seperatorLine=[RKShadowView seperatorLineInThemeView];
