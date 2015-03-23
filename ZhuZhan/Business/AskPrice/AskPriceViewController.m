@@ -155,7 +155,6 @@
 }
 
 -(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{
-    [self loadList];
 
     NSLog(@"=====> %ld",(long)stageNumber);
     if(stageNumber == 0){
@@ -167,6 +166,6 @@
     }else{
         self.statusStr = @"2";
     }
-    //[self loadList];
+    [self loadList];
 }
 @end
