@@ -36,7 +36,6 @@
     stageChooseView.stages=stages;
     stageChooseView.numbers=numbers;
     stageChooseView.underLineIsWhole=stages.count==2;
-    NSLog(@"%d",stageChooseView.underLineIsWhole);
     [stageChooseView setUp];
     return stageChooseView;
 }

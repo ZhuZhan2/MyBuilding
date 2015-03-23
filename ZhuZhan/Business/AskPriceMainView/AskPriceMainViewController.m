@@ -21,7 +21,7 @@
 #import "LoginSqlite.h"
 #import "LoginViewController.h"
 #import "AskPriceViewController.h"
-@interface AskPriceMainViewController ()<AddContactViewDelegate,UITableViewDelegate,UITableViewDataSource,AddMarkViewDelegate,SearchContactViewDelegate,ChooseProductBigStageDelegate,ChooseProductSmallStageDelegate>
+@interface AskPriceMainViewController ()<AddContactViewDelegate,UITableViewDelegate,UITableViewDataSource,AddMarkViewDelegate,SearchContactViewDelegate,ChooseProductBigStageDelegate,ChooseProductSmallStageDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)TopView *topView;
 @property(nonatomic,strong)NSMutableArray *laberStrArr;
 @property(nonatomic,strong)AddContactView *addContactView;
@@ -110,8 +110,8 @@
         [dic setValue:self.remarkStr forKey:@"remark"];
         [AskPriceApi PostAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                AskPriceViewController *view = [[AskPriceViewController alloc] init];
-                [self.navigationController pushViewController:view animated:YES];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发起成功是否去列表查看" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                [alertView show];
             }
         } dic:dic noNetWork:nil];
         
@@ -331,5 +331,15 @@
     [self.viewArr replaceObjectAtIndex:2 withObject:self.addClassificationView];
     [self.tableView reloadData];
 
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 0){
+        [self addAnimation];
+        [self.navigationController popViewControllerAnimated:NO];
+    }else{
+        AskPriceViewController *view = [[AskPriceViewController alloc] init];
+        [self.navigationController pushViewController:view animated:YES];
+    }
 }
 @end

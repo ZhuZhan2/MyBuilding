@@ -17,8 +17,9 @@
 #import "AskPriceApi.h"
 #import "AskPriceModel.h"
 #import "QuotesModel.h"
-@interface AskPriceViewController ()<DemandStageChooseControllerDelegate>
+@interface AskPriceViewController ()<DemandStageChooseControllerDelegate,RKStageChooseViewDelegate>
 @property(nonatomic,strong)NSString *statusStr;
+@property(nonatomic,strong)NSString *otherStr;
 @property(nonatomic,strong)NSMutableArray *showArr;
 @end
 
@@ -27,25 +28,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.statusStr = @"";
+    self.otherStr = @"00";
     [self initNavi];
-    [self loadList:@"00"];
-    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[@"99",@"88",@"10",@"1111"]];
-
+    [self loadList];
     [self setUpSearchBarWithNeedTableView:NO isTableViewHeader:YES];
     [self initTableView];
     [self initTableViewHeader];
     self.tableView.backgroundColor=AllBackDeepGrayColor;
 }
 
--(void)loadList:(NSString *)str{
+-(void)loadList{
     [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             NSLog(@"%@,%@",posts[0],posts[1]);
             self.showArr = posts[0];
-            [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
+//            [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
             [self.tableView reloadData];
         }
-    } status:self.statusStr startIndex:0 other:str noNetWork:nil];
+    } status:self.statusStr startIndex:0 other:self.otherStr noNetWork:nil];
 }
 
 -(void)initTableViewHeader{
@@ -95,10 +95,11 @@
 -(void)finishSelectedWithStageName:(NSString *)stageName index:(int)index{
     [self initTitleViewWithTitle:stageName];
     if(index == 1){
-        [self loadList:@"01"];
+        self.otherStr = @"01";
     }else if (index == 2){
-        [self loadList:@"00"];
+        self.otherStr = @"00";
     }
+    [self loadList];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -151,4 +152,17 @@
     }
 }
 
+-(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{
+    NSLog(@"=====> %ld",(long)stageNumber);
+    if(stageNumber == 0){
+        self.statusStr = @"";
+    }else if (stageNumber == 1){
+        self.statusStr = @"0";
+    }else if (stageNumber == 2){
+        self.statusStr = @"1";
+    }else{
+        self.statusStr = @"2";
+    }
+    //[self loadList];
+}
 @end
