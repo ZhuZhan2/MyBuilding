@@ -12,6 +12,8 @@
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
 #import "RemarkViewController.h"
+#import "AskPriceApi.h"
+#import "DemanDetailViewController.h"
 @interface AskPriceDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *showArr;
@@ -34,6 +36,8 @@
     self.viewArr = [[NSMutableArray alloc] initWithObjects:self.classificationView, nil];
     self.showArr = [[NSMutableArray alloc] init];
     [self.view addSubview:self.tableView];
+    
+    [self loadList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,7 +62,15 @@
 }
 
 -(void)back{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)loadList{
+    [AskPriceApi GetAskPriceDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+        
+        }
+    } tradeId:self.askPriceModel.a_id noNetWork:nil];
 }
 
 -(UITableView *)tableView{
@@ -79,7 +91,7 @@
         [_classificationView GetHeightWithBlock:^(double height) {
             _classificationView.frame = CGRectMake(0, 0, 320, height);
             self.classificationViewHeight = height;
-        } str:@"阿斯顿发生法士大阿斯顿发送到发沙发沙发沙发法撒旦法师打发士大夫撒飞洒发生发送到发送到发送到发送到法撒旦法师打" name:@"产品分类"];
+        } str:self.askPriceModel.a_productBigCategory name:@"产品分类"];
     }
     return _classificationView;
 }
@@ -112,6 +124,9 @@
     if(indexPath.row == 2){
         RemarkViewController *remarkView = [[RemarkViewController alloc] init];
         [self.navigationController pushViewController:remarkView animated:YES];
+    }else if(indexPath.row>2){
+        DemanDetailViewController *viewController = [[DemanDetailViewController alloc] init];
+        [self.navigationController pushViewController:viewController animated:YES];
     }
 }
 
@@ -124,8 +139,7 @@
             cell = [[CatoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.selectionStyle = NO;
-        //cell.catoryStr = self.askPriceModel.a_productBigCategory;
-        cell.catoryStr = @"分类";
+        cell.catoryStr = self.askPriceModel.a_productBigCategory;
         return cell;
     }else if(indexPath.row == 1){
         NSString *CellIdentifier = [NSString stringWithFormat:@"classificationCell"];

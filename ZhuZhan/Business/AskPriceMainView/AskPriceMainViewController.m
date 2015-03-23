@@ -114,18 +114,7 @@
                 [alertView show];
             }
         } dic:dic noNetWork:nil];
-        
-//        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-//        [dic setValue:@"88B756B709D6" forKey:@"tradeCode"];
-//        [dic setValue:@"4e05abd0-db44-4b32-a6f3-393952cc1ecc" forKey:@"bookBuildingId"];
-//        [dic setValue:@"岳志强fuck" forKey:@"quoteContent"];
-//        [dic setValue:self.remarkStr forKey:@"remark"];
-//        [AskPriceApi AddQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
-//            if(!error){
-//            
-//            }
-//        } dic:dic noNetWork:nil];
-        
+            
 //        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
 //        [dic setObject:@"4e05abd0-db44-4b32-a6f3-393952cc1ecc" forKey:@"tradeId"];
 //        [dic setValue:@"88B756B709D6" forKey:@"tradeCode"];
