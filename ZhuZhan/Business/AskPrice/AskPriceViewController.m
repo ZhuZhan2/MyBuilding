@@ -13,10 +13,11 @@
 #import "ChooseProductBigStage.h"
 #import "ChooseProductSmallStage.h"
 #import "DemanDetailViewController.h"
+#import "DemandStageChooseController.h"
 #import "AskPriceApi.h"
 #import "AskPriceModel.h"
 #import "QuotesModel.h"
-@interface AskPriceViewController ()
+@interface AskPriceViewController ()<DemandStageChooseControllerDelegate>
 @property(nonatomic,strong)NSString *statusStr;
 @property(nonatomic,strong)NSMutableArray *showArr;
 @end
