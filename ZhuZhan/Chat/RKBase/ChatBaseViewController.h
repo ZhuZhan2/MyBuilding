@@ -18,6 +18,8 @@
 @end
 
 @interface ChatBaseViewController : UIViewController<UITableViewDataSource,RKBaseTableViewDelegate,UISearchBarDelegate,SearchBarTableViewDelegate,RKStageChooseViewDelegate,ChatToolBarDelegate>
+//@property(nonatomic,strong)NSMutableArray* models;
+
 @property(nonatomic)BOOL needAnimaiton;
 
 @property(nonatomic)BOOL leftBtnIsBack;

@@ -10,8 +10,10 @@
 #import "AddFriendCell.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
+#import "AddressBookApi.h"
+#import "ReceiveApplyFreindModel.h"
 @interface AddFriendViewController ()
-
+@property(nonatomic,strong)NSMutableArray* models;
 @end
 
 @implementation AddFriendViewController
@@ -19,6 +21,7 @@
     [super viewDidLoad];
     [self initNavi];
     [self initTableView];
+    [self firstNetWork];
 }
 
 -(void)initNavi{
@@ -28,15 +31,20 @@
     self.needAnimaiton=YES;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 12;
+-(void)firstNetWork{
+    [AddressBookApi GetFriendRequestListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            [self.models addObjectsFromArray:posts];
+            [self.tableView reloadData];
+        }
+    } pageIndex:0 noNetWork:nil];
 }
 
-#define testContents @[@"开发部的都是好人，产品部设计部测试部都是坏人",@"范俊是帅哥",@"恭喜发财，红包拿来，深集发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发",@"高凌露是美女",@"老板是好人",@"恭喜发财，红包拿来，深集发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发",@"开发部的都是好人，产品部设计部测试部都是坏人",@"范俊是帅哥",@"恭喜发财，红包拿来，深集发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发",@"高凌露是美女",@"老板是好人",@"恭喜发财，红包拿来，深集发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发"]
-static BOOL testIsSelfs[12] = {1,1,0,0,1,0,1,1,0,0,1,0};
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.models.count;
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    NSString* content=testContents[indexPath.row];
-//    return (arc4random()%100)+150;
     return 60;
 }
 
@@ -46,22 +54,32 @@ static BOOL testIsSelfs[12] = {1,1,0,0,1,0,1,1,0,0,1,0};
         cell=[[AddFriendCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell" needRightBtn:YES];
         [cell.rightBtn addTarget:self action:@selector(chooseApprove:) forControlEvents:UIControlEventTouchUpInside];
     }
-    NSDictionary* dic=@{@"loginName":@"用户名",@"userImage":@"",@"isFocused":arc4random()%2?@"1":@"0",@"department":@"部门",@"company":@"一分以前哦"};
-
     
-    EmployeesModel* model=[[EmployeesModel alloc]init];
-    [model setDict:dic];
+    ReceiveApplyFreindModel* model=self.models[indexPath.row];
     
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    [cell setModel:model indexPathRow:indexPath.row needCompanyName:YES];
+    [cell setUserName:model.a_loginName time:model.a_createdTime userImageUrl:model.a_imageId isFinished:model.a_isFinished indexPathRow:indexPath.row];
     return cell;
 }
 
 -(void)chooseApprove:(UIButton*)btn{
+    ReceiveApplyFreindModel* model=self.models[btn.tag];
+    NSMutableDictionary* dic=[@{
+                              @"messageId":model.a_messageId
+                                } mutableCopy];
+    [AddressBookApi PostAgreeFriendWithBlock:^(NSMutableArray *posts, NSError *error) {
+        
+    } dic:dic noNetWork:nil];
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)rightBtnClicked{
     NSLog(@"AddFriend清空");
+}
+
+-(NSMutableArray *)models{
+    if (!_models) {
+        _models=[NSMutableArray array];
+    }
+    return _models;
 }
 @end

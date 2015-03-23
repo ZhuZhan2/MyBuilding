@@ -10,6 +10,7 @@
 #import "ConnectionAvailable.h"
 #import "AddressBookModel.h"
 #import "LoginSqlite.h"
+#import "ReceiveApplyFreindModel.h"
 @implementation AddressBookApi
 + (NSURLSessionDataTask *)GetAddressBookListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block keywords:(NSString *)keywords noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
@@ -46,6 +47,74 @@
         if (block) {
             block([NSMutableArray array], error);
         }
+    }];
+}
+
++ (NSURLSessionDataTask *)PostSendFriendRequestWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"api/contacts/sendFriendRequest"];
+    NSLog(@"urlStr==%@",urlStr);
+
+    return  [[AFAppDotNetAPIClient sharedNewClient]POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error==>%@",error);
+    }];
+}
+
++ (NSURLSessionDataTask *)GetFriendRequestListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block pageIndex:(NSString *)pageIndex noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"api/contacts/getFriendRequestList?pageIndex=%@&pageSize=5",pageIndex];
+    NSLog(@"=====%@",urlStr);
+    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            for (NSDictionary* dic in JSON[@"data"][@"rows"]) {
+                ReceiveApplyFreindModel* model=[[ReceiveApplyFreindModel alloc]init];
+                model.dic=dic;
+                [mutablePosts addObject:model];
+            }
+            if (block) {
+                block(mutablePosts, nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)PostAgreeFriendWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"api/contacts/agreeFriend"];
+    NSLog(@"urlStr==%@,%@",urlStr,dic);
+    
+    return  [[AFAppDotNetAPIClient sharedNewClient]POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error==>%@",error);
     }];
 }
 @end

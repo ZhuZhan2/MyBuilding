@@ -26,12 +26,25 @@
 }
 
 -(void)firstNetWork{
+    NSDictionary* dic= @{@"dasda":@"的萨达",
+                         @"dsadas":@"的萨达",
+                         @"dsda":@"撒大声地",
+                         @"dsadsa":@"大师的撒的撒的"
+                         };
+    NSDictionary* dic1=[NSDictionary dictionaryWithObjectsAndKeys:
+                       @"object1",@"key1",
+                       @"object2",@"key2",
+                       @"object3",@"key3",
+                       @"object4",@"key4",
+                       @"object5",@"key5",
+                       nil];
+    
     [AddressBookApi GetAddressBookListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.groupArr = posts;
             [self.tableView reloadData];
         }
-    }keywords:@"" noNetWork:nil];
+    }keywords:nil noNetWork:nil];
 }
 
 -(void)initNavi{

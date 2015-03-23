@@ -32,10 +32,12 @@
     self.statusStr = @"";
     self.otherStr = @"00";
     [self initNavi];
-    [self loadList];
     [self setUpSearchBarWithNeedTableView:NO isTableViewHeader:YES];
     [self initTableView];
     [self initTableViewHeader];
+    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[@"0",@"0",@"0",@"0"]];
+//    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
+
     self.tableView.backgroundColor=AllBackDeepGrayColor;
 }
 
@@ -44,7 +46,7 @@
         if(!error){
             [self.showArr removeAllObjects];
             self.showArr = posts[0];
-//            [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
+            [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
             [self.tableView reloadData];
         }
     } status:self.statusStr startIndex:0 other:self.otherStr noNetWork:nil];
@@ -165,6 +167,7 @@
 }
 
 -(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{
+
     NSLog(@"=====> %ld",(long)stageNumber);
     if(stageNumber == 0){
         self.statusStr = @"";
@@ -175,6 +178,6 @@
     }else{
         self.statusStr = @"2";
     }
-    //[self loadList];
+    [self loadList];
 }
 @end
