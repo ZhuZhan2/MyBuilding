@@ -25,13 +25,14 @@
 @implementation RKTwoView
 +(CGFloat)carculateTotalHeightWithContents:(NSArray*)array{
     CGFloat height=[self carculateTotalHeightWithContent:array[3] width:kScreenWidth*0.75 maxNumberOfLines:2];
-    return height+72;
+    NSLog(@"height==%f,==%@==",height+3*kTotalHeight,array[3]);
+    return height+3*kTotalHeight;
 }
 
 +(CGFloat)carculateTotalHeightWithContent:(NSString*)content width:(CGFloat)width maxNumberOfLines:(NSInteger)maxNumberOfLines{
     CGFloat height=[content boundingRectWithSize:CGSizeMake(width, 9999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:ContentFont} context:nil].size.height;
-    NSInteger number=height/ContentFont.lineHeight;
-    return kTotalHeight+(maxNumberOfLines-1)*height/number;
+    //NSInteger number=height/ContentFont.lineHeight;
+    return kTotalHeight+(height>kTotalHeight?16*(maxNumberOfLines-1):0);
 }
 
 +(RKTwoView *)twoViewWithViewMode:(RKTwoViewWidthMode)viewMode assistMode:(RKTwoViewAssistViewMode)assistMode leftContent:(NSString *)leftContent rightContent:(NSString *)rightContent needAuto:(BOOL)needAuto{
@@ -83,6 +84,5 @@
         frame.size.height=CGRectGetHeight(self.rightLabel.frame);
         self.frame=frame;
     }
-    NSLog(@"frame.height==%lf",self.frame.size.height);
 }
 @end

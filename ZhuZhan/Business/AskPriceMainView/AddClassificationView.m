@@ -41,7 +41,7 @@
 
 -(UIImageView *)arrowImageView{
     if(!_arrowImageView){
-        _arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(287, 20, 7, 15)];
+        _arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(287, 20, 9, 15)];
         _arrowImageView.image = [GetImagePath getImagePath:@"交易_箭头"];
     }
     return _arrowImageView;

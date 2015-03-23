@@ -63,13 +63,16 @@
 
 -(void)chooseApprove:(UIButton*)btn{
     ReceiveApplyFreindModel* model=self.models[btn.tag];
+    if (model.a_isFinished) return;
+    
     NSMutableDictionary* dic=[@{
                               @"messageId":model.a_messageId
                                 } mutableCopy];
     [AddressBookApi PostAgreeFriendWithBlock:^(NSMutableArray *posts, NSError *error) {
-        
+        if (!error) {
+            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        }
     } dic:dic noNetWork:nil];
-    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)rightBtnClicked{

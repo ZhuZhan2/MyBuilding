@@ -42,7 +42,8 @@
 
 -(void)changeNumbers:(NSArray *)numbers{
     [self.labels enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [(RKStageAndNumberView*)obj changeNumber:[self.numbers[idx] integerValue]];
+        NSLog(@"%d",(int)[numbers[idx] integerValue]);
+        [(RKStageAndNumberView*)obj changeNumber:[numbers[idx] integerValue]];
     }];
 }
 
