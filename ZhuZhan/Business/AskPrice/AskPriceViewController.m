@@ -13,7 +13,8 @@
 #import "ChooseProductBigStage.h"
 #import "ChooseProductSmallStage.h"
 #import "DemanDetailViewController.h"
-@interface AskPriceViewController ()
+#import "DemandStageChooseController.h"
+@interface AskPriceViewController ()<DemandStageChooseControllerDelegate>
 
 @end
 
@@ -38,7 +39,7 @@
 }
 
 -(void)initNavi{
-    [self initTitleViewWithTitle:@"全部需求表"];
+    [self initTitleViewWithTitle:@"全部需求列表"];
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
     self.needAnimaiton=YES;
 }
@@ -61,11 +62,21 @@
     frame.size.width+=CGRectGetWidth(imageView.frame);
     
     UIButton* button=[[UIButton alloc]initWithFrame:frame];
-    [button addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(selectDemandStage) forControlEvents:UIControlEventTouchUpInside];
     [button addSubview:titleLabel];
     [button addSubview:imageView];
     
     self.navigationItem.titleView=button;
+}
+
+-(void)selectDemandStage{
+    DemandStageChooseController* vc=[[DemandStageChooseController alloc]init];
+    vc.delegate=self;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)finishSelectedWithStageName:(NSString *)stageName{
+    [self initTitleViewWithTitle:stageName];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
