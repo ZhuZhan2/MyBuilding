@@ -52,6 +52,17 @@
     return self;
 }
 
+-(void)setUserName:(NSString*)userName time:(NSString*)time userImageUrl:(NSString*)userImageUrl isFinished:(BOOL)isFinished indexPathRow:(NSInteger)indexPathRow{
+    self.userImageView.imageURL=[NSURL URLWithString:userImageUrl];
+    
+    self.userNameLabel.text=userName;
+    self.userBussniessLabel.text=time;
+    [self.rightBtn setBackgroundImage:[GetImagePath getImagePath:isFinished?@"公司认证员工_08a":@"公司认证员工_18a"] forState:UIControlStateNormal];
+    self.rightBtn.tag=indexPathRow;
+    self.userImageView.tag=indexPathRow;
+}
+
+
 -(void)setModel:(EmployeesModel *)model indexPathRow:(NSInteger)indexPathRow needCompanyName:(BOOL)needCompanyName{
     BOOL isFocesed=[model.a_isFocused isEqualToString:@"1"];
     self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_userIamge]];

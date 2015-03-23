@@ -728,6 +728,7 @@
 		5B8650471ABFA1B90096BEF0 /* DemandStageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8650461ABFA1B90096BEF0 /* DemandStageCell.m */; };
 		5B86504A1ABFAF370096BEF0 /* DemandStageSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8650481ABFAF370096BEF0 /* DemandStageSelected.png */; };
 		5B86504B1ABFAF370096BEF0 /* DemandStageSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8650491ABFAF370096BEF0 /* DemandStageSelected@2x.png */; };
+		5B86504E1ABFE4830096BEF0 /* ReceiveApplyFreindModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B86504D1ABFE4830096BEF0 /* ReceiveApplyFreindModel.m */; };
 		5B8A2CE91AAEE0AD00C8F9DE /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CC81AAEE0AD00C8F9DE /* AddFriendCell.m */; };
 		5B8A2CEA1AAEE0AD00C8F9DE /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CCA1AAEE0AD00C8F9DE /* AddFriendViewController.m */; };
 		5B8A2CEB1AAEE0AD00C8F9DE /* AddressBookFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CCD1AAEE0AD00C8F9DE /* AddressBookFriendCell.m */; };
@@ -2428,6 +2429,8 @@
 		5B8650461ABFA1B90096BEF0 /* DemandStageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemandStageCell.m; sourceTree = "<group>"; };
 		5B8650481ABFAF370096BEF0 /* DemandStageSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DemandStageSelected.png; sourceTree = "<group>"; };
 		5B8650491ABFAF370096BEF0 /* DemandStageSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DemandStageSelected@2x.png"; sourceTree = "<group>"; };
+		5B86504C1ABFE4830096BEF0 /* ReceiveApplyFreindModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveApplyFreindModel.h; sourceTree = "<group>"; };
+		5B86504D1ABFE4830096BEF0 /* ReceiveApplyFreindModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveApplyFreindModel.m; sourceTree = "<group>"; };
 		5B8A2CC71AAEE0AD00C8F9DE /* AddFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendCell.h; sourceTree = "<group>"; };
 		5B8A2CC81AAEE0AD00C8F9DE /* AddFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendCell.m; sourceTree = "<group>"; };
 		5B8A2CC91AAEE0AD00C8F9DE /* AddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
@@ -6172,6 +6175,8 @@
 			children = (
 				D3F787451AADA40300ED754B /* AddressBookModel.h */,
 				D3F787461AADA40300ED754B /* AddressBookModel.m */,
+				5B86504C1ABFE4830096BEF0 /* ReceiveApplyFreindModel.h */,
+				5B86504D1ABFE4830096BEF0 /* ReceiveApplyFreindModel.m */,
 				D3F787481AADAD3800ED754B /* AddressBookApi.h */,
 				D3F787491AADAD3800ED754B /* AddressBookApi.m */,
 			);
@@ -7393,6 +7398,7 @@
 				D3DA3D2E1ABBBA8A001D1EEA /* AskPriceApi.m in Sources */,
 				5B4C198319FA518800C6C57D /* ClauseViewController.m in Sources */,
 				D3AD60A619AC5769001FD483 /* MBProgressHUD.m in Sources */,
+				5B86504E1ABFE4830096BEF0 /* ReceiveApplyFreindModel.m in Sources */,
 				D3A4281019C1749E00BAB6C7 /* ErrorView.m in Sources */,
 				04BF13B719C4162A002E02C9 /* ProjectContactModel.m in Sources */,
 				D3D29B7D1A0DB9CA00CAB1EB /* IsFocusedApi.m in Sources */,

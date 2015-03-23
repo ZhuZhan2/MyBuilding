@@ -85,6 +85,13 @@
     }
 }
 
+//-(NSMutableArray *)models{
+//    if (!_models) {
+//        _models=[NSMutableArray array];
+//    }
+//    return _models;
+//}
+
 -(void)initTableView{
     CGFloat y=64;
     if (self.stageChooseView){
