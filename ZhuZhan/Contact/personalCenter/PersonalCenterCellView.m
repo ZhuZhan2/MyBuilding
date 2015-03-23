@@ -79,7 +79,12 @@
     //}
     //动态label设置
     contentLabel.font=font;
-    contentLabel.text=name;
+    NSLog(@"category === > %@",category);
+    if([category isEqualToString:@"产品"]){
+        contentLabel.text=name;
+    }else{
+        contentLabel.text=content;
+    }
     [view addSubview:contentLabel];
     
     //提醒label设置

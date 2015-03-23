@@ -17,6 +17,10 @@
 #import "SearchContactViewController.h"
 #import "ChooseProductBigStage.h"
 #import "ChooseProductSmallStage.h"
+#import "AskPriceApi.h"
+#import "LoginSqlite.h"
+#import "LoginViewController.h"
+#import "AskPriceViewController.h"
 @interface AskPriceMainViewController ()<AddContactViewDelegate,UITableViewDelegate,UITableViewDataSource,AddMarkViewDelegate,SearchContactViewDelegate,ChooseProductBigStageDelegate,ChooseProductSmallStageDelegate>
 @property(nonatomic,strong)TopView *topView;
 @property(nonatomic,strong)NSMutableArray *laberStrArr;
@@ -32,6 +36,7 @@
 @property(nonatomic,strong)NSString *classifcationStr;
 @property(nonatomic)BOOL isSelect2;
 @property(nonatomic,strong)AddMarkView *addMarkView;
+@property(nonatomic,strong)NSString *remarkStr;
 @end
 
 @implementation AskPriceMainViewController
@@ -93,7 +98,53 @@
 }
 
 -(void)rightAction{
-    
+    if([[LoginSqlite getdata:@"token"] isEqualToString:@""]){
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }else{
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:@"ef190673-0f57-4a78-aa07-e86d3edf2262,4dab083a-3f09-4854-839a-f45995b6047f" forKey:@"invitedUser"];
+        [dic setValue:self.categoryStr forKey:@"productBigCategory"];
+        [dic setValue:[self.classifcationStr stringByReplacingOccurrencesOfString:@"、" withString:@","] forKey:@"productCategory"];
+        [dic setValue:self.remarkStr forKey:@"remark"];
+        [AskPriceApi PostAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                AskPriceViewController *view = [[AskPriceViewController alloc] init];
+                [self.navigationController pushViewController:view animated:YES];
+            }
+        } dic:dic noNetWork:nil];
+        
+//        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+//        [dic setValue:@"88B756B709D6" forKey:@"tradeCode"];
+//        [dic setValue:@"4e05abd0-db44-4b32-a6f3-393952cc1ecc" forKey:@"bookBuildingId"];
+//        [dic setValue:@"岳志强fuck" forKey:@"quoteContent"];
+//        [dic setValue:self.remarkStr forKey:@"remark"];
+//        [AskPriceApi AddQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
+//            if(!error){
+//            
+//            }
+//        } dic:dic noNetWork:nil];
+        
+//        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+//        [dic setObject:@"4e05abd0-db44-4b32-a6f3-393952cc1ecc" forKey:@"tradeId"];
+//        [dic setValue:@"88B756B709D6" forKey:@"tradeCode"];
+//        [dic setValue:@"岳志强fuck 2次" forKey:@"contents"];
+//        [dic setValue:@"d859009b-51b4-4415-ada1-d5ea09ca4130:ef190673-0f57-4a78-aa07-e86d3edf2262" forKey:@"tradeUserAndCommentUser"];
+//        [AskPriceApi AddCommentWithBlock:^(NSMutableArray *posts, NSError *error) {
+//            if(!error){
+//            
+//            }
+//        } dic:dic noNetWork:nil];
+        
+//        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+//        [dic setObject:@"3e18a108-7dca-4c29-9d0a-3fd2a41a8f1b" forKey:@"id"];
+//        [AskPriceApi AcceptQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
+//            if(!error){
+//            
+//            }
+//        } dic:dic noNetWork:nil];
+    }
 }
 
 -(void)addAnimation{
@@ -248,6 +299,7 @@
 
 -(void)endTextView:(NSString *)str{
     self.view.transform = CGAffineTransformIdentity;
+    self.remarkStr = str;
 }
 
 -(void)selectContact:(NSString *)str{

@@ -11,8 +11,10 @@
 @implementation AddressBookModel
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
-    self.a_id = dict[@"id"];
-    self.a_name = dict[@"name"];
+    self.a_id = dict[@"groupId"];
+    self.a_name = dict[@"groupName"];
+    self.a_count = dict[@"counts"];
+    self.a_type = dict[@"groupType"];
     self.contactArr = [[NSMutableArray alloc] init];
 }
 @end
@@ -20,8 +22,14 @@
 @implementation AddressBookContactModel
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
-    self.a_contactId = dict[@"id"];
-    self.a_contactName = dict[@"name"];
-    self.a_avatarUrl = dict[@"head"];
+    self.a_contactId = dict[@"loginId"];
+    self.a_loginName = dict[@"loginName"];
+    if(![dict[@"imageId"] isEqualToString:@""]){
+        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"imageId"], @"login", @"", @"", @"")];
+    }else{
+        self.a_avatarUrl = dict[@"imageId"];
+    }
+    self.a_nickName = dict[@"nickName"];
+    self.a_realName = dict[@"realName"];
 }
 @end

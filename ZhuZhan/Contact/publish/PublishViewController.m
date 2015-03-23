@@ -231,9 +231,9 @@ static BOOL isFirst;
         return NO;
     }
     NSLog(@"range.length=%ld",(unsigned long)range.length);
-    if (range.length == 0 && textView.text.length >= kPublishLimitNumber) {
-        return NO;
-    }
+//    if (range.length == 0 && textView.text.length >= kPublishLimitNumber) {
+//        return NO;
+//    }
     return YES;
 }
 
@@ -280,8 +280,6 @@ static BOOL isFirst;
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
         return;
     }
-    
-    NSString *userIdStr = [LoginSqlite getdata:@"userId"];
 
     if ([inputView.text isEqualToString:@""]&&[publishImageStr isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布内容不能为空" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
@@ -309,7 +307,6 @@ static BOOL isFirst;
     if (PublishNum ==1) {
         NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:publishContent,@"content", nil];
         [CommentApi SendActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
-            isPublish=NO;
             PublishNum = 1;
             if(!error){
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:nil cancelButtonTitle:@"是" otherButtonTitles: nil , nil];
@@ -319,7 +316,7 @@ static BOOL isFirst;
                 [LoginAgain AddLoginView:NO];
             }
         } dic:dic imgData:self.imageData noNetWork:nil];
-
+        isPublish=NO;
     }else if (PublishNum ==2) {
         //NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:publishContent,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];
 /*

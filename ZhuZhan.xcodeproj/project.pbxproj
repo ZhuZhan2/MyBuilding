@@ -1123,12 +1123,15 @@
 		D35163EF1A67903F000051F4 /* 公司－我的公司_02a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D35163DF1A67903F000051F4 /* 公司－我的公司_02a@2x.png */; };
 		D35163F21A6796E2000051F4 /* 人脉_超大2.png in Resources */ = {isa = PBXBuildFile; fileRef = D35163F01A6796E2000051F4 /* 人脉_超大2.png */; };
 		D35163F31A6796E2000051F4 /* 人脉_超大2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D35163F11A6796E2000051F4 /* 人脉_超大2@2x.png */; };
+		D35E12411ABD65D8007C6726 /* AskPriceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D35E12401ABD65D8007C6726 /* AskPriceDetailViewController.m */; };
+		D35E12441ABD68B5007C6726 /* CatoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D35E12431ABD68B5007C6726 /* CatoryTableViewCell.m */; };
 		D36040E619F51E8600E9727D /* CompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D36040E519F51E8600E9727D /* CompanyModel.m */; };
 		D36040E919F51E9F00E9727D /* CompanyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D36040E819F51E9F00E9727D /* CompanyApi.m */; };
 		D366E7641A63CE6200D25F76 /* 默认主图.png in Resources */ = {isa = PBXBuildFile; fileRef = D366E7621A63CE6200D25F76 /* 默认主图.png */; };
 		D366E7651A63CE6200D25F76 /* 默认主图@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D366E7631A63CE6200D25F76 /* 默认主图@2x.png */; };
 		D366E7681A63CEE800D25F76 /* 默认主图01.png in Resources */ = {isa = PBXBuildFile; fileRef = D366E7661A63CEE800D25F76 /* 默认主图01.png */; };
 		D366E7691A63CEE800D25F76 /* 默认主图01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D366E7671A63CEE800D25F76 /* 默认主图01@2x.png */; };
+		D368092B1ABFAB3200AFA097 /* ClassificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D368092A1ABFAB3200AFA097 /* ClassificationView.m */; };
 		D38D6B4E1A5CC1C30020CCBF /* 读取中icon.gif in Resources */ = {isa = PBXBuildFile; fileRef = D38D6B4D1A5CC1C30020CCBF /* 读取中icon.gif */; };
 		D38D6B501A5CC2920020CCBF /* 锯子.gif in Resources */ = {isa = PBXBuildFile; fileRef = D38D6B4F1A5CC2920020CCBF /* 锯子.gif */; };
 		D39937BE1A42B428007081C1 /* RecommendProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937BD1A42B428007081C1 /* RecommendProjectViewController.m */; };
@@ -1302,6 +1305,7 @@
 		D3D7DB2619FF73B800AE5765 /* 人脉－人的详情_02a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7DB2419FF73B800AE5765 /* 人脉－人的详情_02a@2x.png */; };
 		D3D7DB2F19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DB2E19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m */; };
 		D3D7DB3219FFAD1700AE5765 /* ParticularsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DB3119FFAD1700AE5765 /* ParticularsModel.m */; };
+		D3D8FEAD1ABD489E0096B7FD /* QuotesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8FEAC1ABD489E0096B7FD /* QuotesModel.m */; };
 		D3D946A91A6CDD33003A68D5 /* YLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D946A81A6CDD33003A68D5 /* YLLabel.m */; };
 		D3D9C90A1A1343CF001D3A64 /* 主菜单01b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9021A1343CE001D3A64 /* 主菜单01b.png */; };
 		D3D9C90B1A1343CF001D3A64 /* 主菜单01b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9031A1343CE001D3A64 /* 主菜单01b@2x.png */; };
@@ -1319,6 +1323,8 @@
 		D3D9C91F1A13446B001D3A64 /* 主菜单03a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9171A13446B001D3A64 /* 主菜单03a@2x.png */; };
 		D3D9C9201A13446B001D3A64 /* 主菜单04a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9181A13446B001D3A64 /* 主菜单04a.png */; };
 		D3D9C9211A13446B001D3A64 /* 主菜单04a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9191A13446B001D3A64 /* 主菜单04a@2x.png */; };
+		D3DA3D2E1ABBBA8A001D1EEA /* AskPriceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DA3D2D1ABBBA8A001D1EEA /* AskPriceApi.m */; };
+		D3DA3D311ABBECAC001D1EEA /* AskPriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DA3D301ABBECAC001D1EEA /* AskPriceModel.m */; };
 		D3DBBC721AB914E20070DB98 /* AddCategoriesView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBBC711AB914E20070DB98 /* AddCategoriesView.m */; };
 		D3DBBC751AB91E110070DB98 /* AddClassificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBBC741AB91E110070DB98 /* AddClassificationView.m */; };
 		D3E0E94B1A398A3600A41D42 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3E0E94A1A398A3600A41D42 /* Settings.bundle */; };
@@ -2912,6 +2918,10 @@
 		D35163DF1A67903F000051F4 /* 公司－我的公司_02a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_02a@2x.png"; sourceTree = "<group>"; };
 		D35163F01A6796E2000051F4 /* 人脉_超大2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉_超大2.png"; sourceTree = "<group>"; };
 		D35163F11A6796E2000051F4 /* 人脉_超大2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉_超大2@2x.png"; sourceTree = "<group>"; };
+		D35E123F1ABD65D8007C6726 /* AskPriceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceDetailViewController.h; sourceTree = "<group>"; };
+		D35E12401ABD65D8007C6726 /* AskPriceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPriceDetailViewController.m; sourceTree = "<group>"; };
+		D35E12421ABD68B5007C6726 /* CatoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatoryTableViewCell.h; sourceTree = "<group>"; };
+		D35E12431ABD68B5007C6726 /* CatoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatoryTableViewCell.m; sourceTree = "<group>"; };
 		D36040E419F51E8600E9727D /* CompanyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyModel.h; sourceTree = "<group>"; };
 		D36040E519F51E8600E9727D /* CompanyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyModel.m; sourceTree = "<group>"; };
 		D36040E719F51E9F00E9727D /* CompanyApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyApi.h; sourceTree = "<group>"; };
@@ -2920,6 +2930,8 @@
 		D366E7631A63CE6200D25F76 /* 默认主图@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认主图@2x.png"; sourceTree = "<group>"; };
 		D366E7661A63CEE800D25F76 /* 默认主图01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认主图01.png"; sourceTree = "<group>"; };
 		D366E7671A63CEE800D25F76 /* 默认主图01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认主图01@2x.png"; sourceTree = "<group>"; };
+		D36809291ABFAB3200AFA097 /* ClassificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassificationView.h; sourceTree = "<group>"; };
+		D368092A1ABFAB3200AFA097 /* ClassificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationView.m; sourceTree = "<group>"; };
 		D38D6B4D1A5CC1C30020CCBF /* 读取中icon.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "读取中icon.gif"; sourceTree = "<group>"; };
 		D38D6B4F1A5CC2920020CCBF /* 锯子.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "锯子.gif"; sourceTree = "<group>"; };
 		D39937BC1A42B428007081C1 /* RecommendProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendProjectViewController.h; sourceTree = "<group>"; };
@@ -3175,6 +3187,8 @@
 		D3D7DB2E19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactBackgroundTableViewCell.m; sourceTree = "<group>"; };
 		D3D7DB3019FFAD1700AE5765 /* ParticularsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticularsModel.h; sourceTree = "<group>"; };
 		D3D7DB3119FFAD1700AE5765 /* ParticularsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticularsModel.m; sourceTree = "<group>"; };
+		D3D8FEAB1ABD489E0096B7FD /* QuotesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuotesModel.h; sourceTree = "<group>"; };
+		D3D8FEAC1ABD489E0096B7FD /* QuotesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuotesModel.m; sourceTree = "<group>"; };
 		D3D946A71A6CDD33003A68D5 /* YLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLLabel.h; sourceTree = "<group>"; };
 		D3D946A81A6CDD33003A68D5 /* YLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLLabel.m; sourceTree = "<group>"; };
 		D3D9C9021A1343CE001D3A64 /* 主菜单01b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单01b.png"; sourceTree = "<group>"; };
@@ -3193,6 +3207,10 @@
 		D3D9C9171A13446B001D3A64 /* 主菜单03a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单03a@2x.png"; sourceTree = "<group>"; };
 		D3D9C9181A13446B001D3A64 /* 主菜单04a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单04a.png"; sourceTree = "<group>"; };
 		D3D9C9191A13446B001D3A64 /* 主菜单04a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单04a@2x.png"; sourceTree = "<group>"; };
+		D3DA3D2C1ABBBA8A001D1EEA /* AskPriceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceApi.h; sourceTree = "<group>"; };
+		D3DA3D2D1ABBBA8A001D1EEA /* AskPriceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPriceApi.m; sourceTree = "<group>"; };
+		D3DA3D2F1ABBECAC001D1EEA /* AskPriceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceModel.h; sourceTree = "<group>"; };
+		D3DA3D301ABBECAC001D1EEA /* AskPriceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPriceModel.m; sourceTree = "<group>"; };
 		D3DBBC701AB914E20070DB98 /* AddCategoriesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCategoriesView.h; sourceTree = "<group>"; };
 		D3DBBC711AB914E20070DB98 /* AddCategoriesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCategoriesView.m; sourceTree = "<group>"; };
 		D3DBBC731AB91E110070DB98 /* AddClassificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddClassificationView.h; sourceTree = "<group>"; };
@@ -5574,6 +5592,19 @@
 			path = "默认图像";
 			sourceTree = "<group>";
 		};
+		D35E123E1ABD6556007C6726 /* AskPriceDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				D35E123F1ABD65D8007C6726 /* AskPriceDetailViewController.h */,
+				D35E12401ABD65D8007C6726 /* AskPriceDetailViewController.m */,
+				D35E12421ABD68B5007C6726 /* CatoryTableViewCell.h */,
+				D35E12431ABD68B5007C6726 /* CatoryTableViewCell.m */,
+				D36809291ABFAB3200AFA097 /* ClassificationView.h */,
+				D368092A1ABFAB3200AFA097 /* ClassificationView.m */,
+			);
+			path = AskPriceDetailView;
+			sourceTree = "<group>";
+		};
 		D36040E319F51E6900E9727D /* CompanyModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -5651,6 +5682,7 @@
 		D3AC618B19B6BF930015B62F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D3DA3D2B1ABBBA71001D1EEA /* AskPriceModel */,
 				D3FF3E7E1AAEC8FF005195CC /* ChoseContactModel */,
 				D3D4A2DF1AAE98290071B3EA /* ChatMessageModel */,
 				D3F787441AADA3D300ED754B /* AddressBookModel */,
@@ -5916,6 +5948,7 @@
 		D3CF0D841AB81A3900D71CEB /* AskPriceMainView */ = {
 			isa = PBXGroup;
 			children = (
+				D35E123E1ABD6556007C6726 /* AskPriceDetailView */,
 				D3D686241ABAC8A6005D9ED6 /* SearchContact */,
 				D3CF0D881AB81A7800D71CEB /* AddContactView.h */,
 				D3CF0D891AB81A7800D71CEB /* AddContactView.m */,
@@ -6101,6 +6134,19 @@
 				D3D946A81A6CDD33003A68D5 /* YLLabel.m */,
 			);
 			path = YLLabel;
+			sourceTree = "<group>";
+		};
+		D3DA3D2B1ABBBA71001D1EEA /* AskPriceModel */ = {
+			isa = PBXGroup;
+			children = (
+				D3DA3D2C1ABBBA8A001D1EEA /* AskPriceApi.h */,
+				D3DA3D2D1ABBBA8A001D1EEA /* AskPriceApi.m */,
+				D3DA3D2F1ABBECAC001D1EEA /* AskPriceModel.h */,
+				D3DA3D301ABBECAC001D1EEA /* AskPriceModel.m */,
+				D3D8FEAB1ABD489E0096B7FD /* QuotesModel.h */,
+				D3D8FEAC1ABD489E0096B7FD /* QuotesModel.m */,
+			);
+			path = AskPriceModel;
 			sourceTree = "<group>";
 		};
 		D3EACDE3199327780058FC9D /* QuadCurveMenu */ = {
@@ -7142,6 +7188,7 @@
 				D3AD60FA19AC7CC5001FD483 /* EGOImageLoadConnection.m in Sources */,
 				0426C2DC19922D5A00CD8822 /* GPUImageMovieWriter.m in Sources */,
 				5BB9A53D1AB6F84300B5B2D8 /* AskPriceViewController.m in Sources */,
+				D35E12441ABD68B5007C6726 /* CatoryTableViewCell.m in Sources */,
 				0426C24619922D5A00CD8822 /* GPUImageAmatorkaFilter.m in Sources */,
 				0426C2EB19922D5A00CD8822 /* FaceppTrainer.m in Sources */,
 				0426C28919922D5A00CD8822 /* GPUImageLocalBinaryPatternFilter.m in Sources */,
@@ -7238,6 +7285,7 @@
 				0426C2B119922D5A00CD8822 /* GPUImageSaturationFilter.m in Sources */,
 				04BF13B419C4162A002E02C9 /* AFAppDotNetAPIClient.m in Sources */,
 				0426C2BE19922D5A00CD8822 /* GPUImageSourceOverBlendFilter.m in Sources */,
+				D35E12411ABD65D8007C6726 /* AskPriceDetailViewController.m in Sources */,
 				0426C2B719922D5A00CD8822 /* GPUImageSingleComponentGaussianBlurFilter.m in Sources */,
 				0426C29D19922D5A00CD8822 /* GPUImageOutput.m in Sources */,
 				0426C27619922D5A00CD8822 /* GPUImageHarrisCornerDetectionFilter.m in Sources */,
@@ -7342,6 +7390,7 @@
 				5B13C70919B6E53A008EA7A0 /* ProductCommentView.m in Sources */,
 				042D9E1519B559FC00689C5D /* MyView.m in Sources */,
 				D3D5B4321AB1325100E8EB04 /* SocketManage.m in Sources */,
+				D3DA3D2E1ABBBA8A001D1EEA /* AskPriceApi.m in Sources */,
 				5B4C198319FA518800C6C57D /* ClauseViewController.m in Sources */,
 				D3AD60A619AC5769001FD483 /* MBProgressHUD.m in Sources */,
 				D3A4281019C1749E00BAB6C7 /* ErrorView.m in Sources */,
@@ -7396,6 +7445,7 @@
 				5B3209FE1A11E78600D19279 /* RemindView.m in Sources */,
 				5B6373AD1ABAE32A007CF1F8 /* ChooseProductSmallCell.m in Sources */,
 				0426C23919922D5A00CD8822 /* AFNetworkReachabilityManager.m in Sources */,
+				D3D8FEAD1ABD489E0096B7FD /* QuotesModel.m in Sources */,
 				0426C23E19922D5A00CD8822 /* AFURLSessionManager.m in Sources */,
 				04BF13B919C4162A002E02C9 /* projectModel.m in Sources */,
 				04D10BE019AE016A0097C0C6 /* PersonalCenterViewController.m in Sources */,
@@ -7439,6 +7489,7 @@
 				5BF31B671AB025FD00DA87F5 /* AddImageView.m in Sources */,
 				0426C2CB19922D5A00CD8822 /* GPUImageToneCurveFilter.m in Sources */,
 				042D9EEF19B8855100689C5D /* Camera.m in Sources */,
+				D368092B1ABFAB3200AFA097 /* ClassificationView.m in Sources */,
 				0426C23219922D5A00CD8822 /* FaceViewController.m in Sources */,
 				0426C25F19922D5A00CD8822 /* GPUImageDilationFilter.m in Sources */,
 				5B7132411AA458D90043E37D /* ProductPublishController.m in Sources */,
@@ -7524,6 +7575,7 @@
 				0426C25619922D5A00CD8822 /* GPUImageColorInvertFilter.m in Sources */,
 				04D10C7719B074C70097C0C6 /* RecommendLetterViewController.m in Sources */,
 				0426C2CF19922D5A00CD8822 /* GPUImageTwoInputFilter.m in Sources */,
+				D3DA3D311ABBECAC001D1EEA /* AskPriceModel.m in Sources */,
 				0426C2DD19922D5A00CD8822 /* GPUImagePicture.m in Sources */,
 				042D9E2519B559FC00689C5D /* toolBarView.m in Sources */,
 				D3A4283819C9401C00BAB6C7 /* LoginSqlite.m in Sources */,

@@ -11,12 +11,15 @@
 #import "SearchBarCell.h"
 #import "AddressBookApi.h"
 #import "AddressBookFriendViewController.h"
+#import "AddressBookModel.h"
 @interface AddressBookViewController()<AddressBookViewCellDelegate>
+@property(nonatomic,strong)NSMutableArray *groupArr;
 @end
 
 @implementation AddressBookViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self firstNetWork];
     [self initNavi];
     [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
     [self initTableView];
@@ -25,9 +28,10 @@
 -(void)firstNetWork{
     [AddressBookApi GetAddressBookListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
+            self.groupArr = posts;
             [self.tableView reloadData];
         }
-    } noNetWork:nil];
+    }keywords:@"" noNetWork:nil];
 }
 
 -(void)initNavi{
@@ -47,11 +51,12 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return self.groupArr.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self sectionSelectedArrayContainsSection:section]?0:6;
+    AddressBookModel *model = self.groupArr[section];
+    return [self sectionSelectedArrayContainsSection:section]?0:model.contactArr.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -59,12 +64,13 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    AddressBookModel *model = self.groupArr[section];
     BOOL isShow=![self sectionSelectedArrayContainsSection:section];
     CGFloat sectionHeight=30;
     UIButton* view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, sectionHeight)];
     view.backgroundColor=[UIColor whiteColor];
     
-    NSString* text=@[@"家庭",@"单位同事",@"高中同学"][section];
+    NSString* text=model.a_name;
     UIFont* textFont=[UIFont systemFontOfSize:14];
     CGFloat labelWidth=[text boundingRectWithSize:CGSizeMake(9999, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:textFont} context:nil].size.width;
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(11, 0, labelWidth, sectionHeight)];
@@ -80,7 +86,7 @@
     
     CGFloat numberLabelWidth=100;
     UILabel* numberLabel=[[UILabel alloc]initWithFrame:CGRectMake(kScreenWidth-13-numberLabelWidth, 0, numberLabelWidth, sectionHeight)];
-    numberLabel.text=@"6";
+    numberLabel.text=model.a_count;
     numberLabel.textAlignment=NSTextAlignmentRight;
     numberLabel.textColor=isShow?[UIColor redColor]:GrayColor;
     numberLabel.font=[UIFont systemFontOfSize:13];
@@ -109,8 +115,11 @@
     if (!cell) {
         cell=[[AddressBookViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell" delegate:self];
     }
+    AddressBookModel *ABmodel = self.groupArr[indexPath.section];
+    AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];
     AddressBookCellModel* model=[[AddressBookCellModel alloc]init];
-    model.mainLabelText=@"用户名显示";
+    model.mainLabelText=contactModel.a_loginName;
+    model.mainImageUrl = contactModel.a_avatarUrl;
     model.isHighlight=arc4random()%2;
     [cell setModel:model indexPath:indexPath];
     

@@ -13,6 +13,10 @@
 @property(nonatomic,strong)NSString *a_id;
 //分组名
 @property(nonatomic,strong)NSString *a_name;
+//分组里人的数量
+@property(nonatomic,strong)NSString *a_count;
+//分组类型
+@property(nonatomic,strong)NSString *a_type;
 //分组里的人
 @property(nonatomic,strong)NSMutableArray *contactArr;
 
@@ -24,7 +28,11 @@
 //人的id
 @property(nonatomic,strong)NSString *a_contactId;
 //人的名字
-@property(nonatomic,strong)NSString *a_contactName;
+@property(nonatomic,strong)NSString *a_loginName;
+//昵称
+@property(nonatomic,strong)NSString *a_nickName;
+//真是姓名
+@property(nonatomic,strong)NSString *a_realName;
 //头像
 @property(nonatomic,strong)NSString *a_avatarUrl;
 @property(nonatomic,strong)NSDictionary *dict;
