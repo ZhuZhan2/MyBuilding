@@ -9,7 +9,7 @@
 #import "ChatBaseViewController.h"
 
 @protocol DemandStageChooseControllerDelegate <NSObject>
--(void)finishSelectedWithStageName:(NSString*)stageName;
+-(void)finishSelectedWithStageName:(NSString*)stageName index:(int)index;
 @end
 
 @interface DemandStageChooseController : ChatBaseViewController

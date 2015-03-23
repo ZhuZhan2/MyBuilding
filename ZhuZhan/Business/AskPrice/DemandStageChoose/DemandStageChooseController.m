@@ -47,8 +47,8 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([self.delegate respondsToSelector:@selector(finishSelectedWithStageName:)]) {
-        [self.delegate finishSelectedWithStageName:@[@"全部需求列表",@"报价需求列表",@"询价需求列表"][indexPath.row]];
+    if ([self.delegate respondsToSelector:@selector(finishSelectedWithStageName:index:)]) {
+        [self.delegate finishSelectedWithStageName:@[@"全部需求列表",@"报价需求列表",@"询价需求列表"][indexPath.row] index:(int)indexPath.row];
     }
     [self.navigationController popViewControllerAnimated:YES];
 }

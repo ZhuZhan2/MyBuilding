@@ -13,5 +13,6 @@
 @property(nonatomic,strong)UILabel *cateroryLabel;
 @property(nonatomic,strong)UIImageView *cutLine;
 @property(nonatomic,strong)UIView *shadowView;
--(void)GetHeightWithBlock:(void (^)(double height))block str:(NSString *)str;
+@property(nonatomic)BOOL isNeedCutLine;
+-(void)GetHeightWithBlock:(void (^)(double height))block str:(NSString *)str name:(NSString *)name;
 @end

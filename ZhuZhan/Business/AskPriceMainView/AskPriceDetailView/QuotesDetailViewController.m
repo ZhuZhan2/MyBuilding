@@ -1,26 +1,27 @@
 //
-//  AskPriceDetailViewController.m
+//  QuotesDetailViewController.m
 //  ZhuZhan
 //
-//  Created by 汪洋 on 15/3/21.
+//  Created by 汪洋 on 15/3/23.
 //
 //
 
-#import "AskPriceDetailViewController.h"
+#import "QuotesDetailViewController.h"
 #import "CatoryTableViewCell.h"
 #import "ClassificationView.h"
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
-#import "RemarkViewController.h"
-@interface AskPriceDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface QuotesDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *showArr;
-@property(nonatomic,strong)ClassificationView *classificationView;
+@property(nonatomic,strong)UIView *classificationView;
+@property(nonatomic,strong)UIView * remarkView;
 @property(nonatomic)int classificationViewHeight;
+@property(nonatomic)int remarkViewHeight;
 @property(nonatomic,strong)NSMutableArray *viewArr;
 @end
 
-@implementation AskPriceDetailViewController
+@implementation QuotesDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,14 +32,19 @@
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.title=@"询价详情";
     
-    self.viewArr = [[NSMutableArray alloc] initWithObjects:self.classificationView, nil];
-    self.showArr = [[NSMutableArray alloc] init];
+    self.viewArr = [[NSMutableArray alloc] init];
+    [self.viewArr addObject:self.classificationView];
+    [self.viewArr addObject:self.remarkView];
     [self.view addSubview:self.tableView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)back{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -57,10 +63,6 @@
     [homeVC homePageTabBarHide];
 }
 
--(void)back{
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
 -(UITableView *)tableView{
     if(!_tableView){
         _tableView = [[UITableView alloc] initWithFrame:self.view.frame];
@@ -72,16 +74,30 @@
     return _tableView;
 }
 
--(ClassificationView *)classificationView{
+-(UIView *)classificationView{
     if(!_classificationView){
-        _classificationView = [[ClassificationView alloc] init];
-        _classificationView.isNeedCutLine = YES;
-        [_classificationView GetHeightWithBlock:^(double height) {
+        ClassificationView *view = [[ClassificationView alloc] init];
+        view.isNeedCutLine = YES;
+        [view GetHeightWithBlock:^(double height) {
             _classificationView.frame = CGRectMake(0, 0, 320, height);
             self.classificationViewHeight = height;
-        } str:@"阿斯顿发生法士大阿斯顿发送到发沙发沙发沙发法撒旦法师打发士大夫撒飞洒发生发送到发送到发送到发送到法撒旦法师打" name:@"产品分类"];
+        } str:@"啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发" name:@"产品分类"];
+        _classificationView = view;
     }
     return _classificationView;
+}
+
+-(UIView *)remarkView{
+    if(!_remarkView){
+        ClassificationView *view = [[ClassificationView alloc] init];
+        view.isNeedCutLine = NO;
+        [view GetHeightWithBlock:^(double height) {
+            _classificationView.frame = CGRectMake(0, 0, 320, height);
+            self.remarkViewHeight = height;
+        } str:@"啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发" name:@"需求描述"];
+        _remarkView = view;
+    }
+    return _remarkView;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -93,7 +109,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 3+self.showArr.count+5;
+    return 4;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -102,17 +118,14 @@
     }else if (indexPath.row == 1){
         return self.classificationViewHeight;
     }else if(indexPath.row == 2){
-        return 60;
+        return self.remarkViewHeight;
     }else{
-        return 50;
+        return 55;
     }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.row == 2){
-        RemarkViewController *remarkView = [[RemarkViewController alloc] init];
-        [self.navigationController pushViewController:remarkView animated:YES];
-    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -144,19 +157,8 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.selectionStyle = NO;
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 17, 180, 16)];
-        label.text = @"需求描述";
-        label.textAlignment = NSTextAlignmentLeft;
-        label.font = [UIFont systemFontOfSize:16];
-        [cell.contentView addSubview:label];
-        
-        UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(287, 17.5, 7, 15)];
-        arrowImageView.image = [GetImagePath getImagePath:@"交易_箭头"];
-        [cell.contentView addSubview:arrowImageView];
-        
-        UIView *shadowView = [RKShadowView seperatorLineShadowViewWithHeight:10];
-        shadowView.center = CGPointMake(160, 55);
-        [cell.contentView addSubview:shadowView];
+        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [cell.contentView addSubview:self.viewArr[1]];
         return cell;
     }else{
         NSString *CellIdentifier = [NSString stringWithFormat:@"cell"];
@@ -181,9 +183,9 @@
         arrowImageView.image = [GetImagePath getImagePath:@"交易_箭头"];
         [cell.contentView addSubview:arrowImageView];
         
-        UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 49, 320, 1)];
-        lineImageView.backgroundColor = [UIColor lightGrayColor];
-        [cell.contentView addSubview:lineImageView];
+        UIView *shadowView = [RKShadowView seperatorLineShadowViewWithHeight:10];
+        shadowView.center = CGPointMake(160, 50);
+        [cell.contentView addSubview:shadowView];
         return cell;
     }
 }

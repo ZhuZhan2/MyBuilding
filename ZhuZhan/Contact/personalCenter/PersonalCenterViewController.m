@@ -23,6 +23,7 @@
 #import "MyTableView.h"
 #import "PersonalCenterCompanyTableViewCell.h"
 #import "ProductModel.h"
+#import "AskPriceViewController.h"
 @interface PersonalCenterViewController ()
 
 @end
@@ -83,6 +84,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setNameFrame:CGRectMake(0, 50, 320, 20) font:[UIFont systemFontOfSize:14]];
     
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
+    
+    UIButton *gotoAskPriceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    gotoAskPriceBtn.frame = CGRectMake(0, 80, 100, 50);
+    [gotoAskPriceBtn setTitle:@"询价列表" forState:UIControlStateNormal];
+    [gotoAskPriceBtn addTarget:self action:@selector(gotoAskPrice) forControlEvents:UIControlEventTouchUpInside];
+    [_pathCover addSubview:gotoAskPriceBtn];
     self.tableView.tableHeaderView = self.pathCover;
     
     //时间标签
@@ -389,5 +396,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)changeBackgroundImage{
     [_pathCover setBackgroundImageUrlString:[LoginSqlite getdata:@"backgroundImage"]];
+}
+
+-(void)gotoAskPrice{
+    AskPriceViewController *view = [[AskPriceViewController alloc] init];
+    [self.navigationController pushViewController:view animated:YES];
 }
 @end

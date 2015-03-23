@@ -54,6 +54,7 @@
     number=MIN(number, 99);
     self.numberLabel.text=isOverMax?@"···":[NSString stringWithFormat:@"%d",(int)number];
     self.numberLabel.font=[UIFont systemFontOfSize:isOverMax?12:11];
+    self.numberLabel.backgroundColor = RGBCOLOR(175, 175, 175);
 }
 
 -(void)changeColor:(UIColor *)color{
