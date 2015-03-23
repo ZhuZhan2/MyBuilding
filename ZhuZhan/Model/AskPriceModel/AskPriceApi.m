@@ -40,14 +40,19 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)GetAskPriceWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block status:(NSString *)status startIndex:(int)startIndex noNetWork:(void(^)())noNetWork{
++ (NSURLSessionDataTask *)GetAskPriceWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block status:(NSString *)status startIndex:(int)startIndex other:(NSString *)other noNetWork:(void (^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
             noNetWork();
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/trade/listBook?Status=%@&pageSize=10&pageIndex=%d",status,startIndex];
+    NSString *urlStr = nil;
+    if([other isEqualToString:@"00"]){
+        urlStr = [NSString stringWithFormat:@"api/trade/listBook?Status=%@&pageSize=10&pageIndex=%d",status,startIndex];
+    }else{
+        urlStr = [NSString stringWithFormat:@"api/trade/listBook?Status=%@&pageSize=10&pageIndex=%d&invitedUser=%@",status,startIndex,[LoginSqlite getdata:@"userId"]];
+    }
     NSLog(@"=====%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);

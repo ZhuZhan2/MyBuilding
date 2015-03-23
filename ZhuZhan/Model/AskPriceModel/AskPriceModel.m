@@ -22,7 +22,15 @@
     }
     self.a_createdBy = dict[@"createdBy"];
     self.a_requestName = dict[@"requestName"];
-    self.a_invitedUser = dict[@"invitedUser"];
+    NSMutableString *str = [[NSMutableString alloc] init];
+    [dict[@"invitedUser"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [str appendString:[NSString stringWithFormat:@"%@,",obj[@"loginName"]]];
+    }];
+    if(str.length !=0){
+        self.a_invitedUser = [str substringWithRange:NSMakeRange(0,str.length-1)];
+    }else{
+        self.a_invitedUser = @"";
+    }
     self.a_productBigCategory = dict[@"productBigCategory"];
     self.a_productCategory = dict[@"productCategory"];
     self.a_remark = dict[@"remark"];

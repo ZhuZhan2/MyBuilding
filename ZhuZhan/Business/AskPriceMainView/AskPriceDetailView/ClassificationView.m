@@ -12,8 +12,8 @@
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if(self){
-        [self addSubview:self.cutLine];
         [self addSubview:self.titleLabel];
+        [self addSubview:self.shadowView];
     }
     return self;
 }
@@ -24,7 +24,6 @@
         _titleLabel.textColor = BlueColor;
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.font = [UIFont systemFontOfSize:16];
-        _titleLabel.text = @"产品大类";
     }
     return _titleLabel;
 }
@@ -44,7 +43,8 @@
     return _shadowView;
 }
 
--(void)GetHeightWithBlock:(void (^)(double))block str:(NSString *)str{
+-(void)GetHeightWithBlock:(void (^)(double))block str:(NSString *)str name:(NSString *)name{
+    self.titleLabel.text = name;
     __block int height = 0;
     if(str != nil){
         CGRect bounds=[str boundingRectWithSize:CGSizeMake(280, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil];
@@ -55,11 +55,17 @@
         label.font = [UIFont systemFontOfSize:16];
         label.text = str;
         [self addSubview:label];
-        self.shadowView.center;
-        height = 15+bounds.size.height;
+        height = 60+bounds.size.height;
+        self.shadowView.center = CGPointMake(160, height-5);
     }
     if(block){
         block(height);
+    }
+}
+
+-(void)setIsNeedCutLine:(BOOL)isNeedCutLine{
+    if(isNeedCutLine){
+        [self addSubview:self.cutLine];
     }
 }
 @end

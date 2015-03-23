@@ -1132,6 +1132,8 @@
 		D366E7681A63CEE800D25F76 /* 默认主图01.png in Resources */ = {isa = PBXBuildFile; fileRef = D366E7661A63CEE800D25F76 /* 默认主图01.png */; };
 		D366E7691A63CEE800D25F76 /* 默认主图01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D366E7671A63CEE800D25F76 /* 默认主图01@2x.png */; };
 		D368092B1ABFAB3200AFA097 /* ClassificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D368092A1ABFAB3200AFA097 /* ClassificationView.m */; };
+		D368092E1ABFD70500AFA097 /* RemarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D368092D1ABFD70500AFA097 /* RemarkViewController.m */; };
+		D36809311ABFDCB900AFA097 /* QuotesDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D36809301ABFDCB900AFA097 /* QuotesDetailViewController.m */; };
 		D38D6B4E1A5CC1C30020CCBF /* 读取中icon.gif in Resources */ = {isa = PBXBuildFile; fileRef = D38D6B4D1A5CC1C30020CCBF /* 读取中icon.gif */; };
 		D38D6B501A5CC2920020CCBF /* 锯子.gif in Resources */ = {isa = PBXBuildFile; fileRef = D38D6B4F1A5CC2920020CCBF /* 锯子.gif */; };
 		D39937BE1A42B428007081C1 /* RecommendProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937BD1A42B428007081C1 /* RecommendProjectViewController.m */; };
@@ -2932,6 +2934,10 @@
 		D366E7671A63CEE800D25F76 /* 默认主图01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认主图01@2x.png"; sourceTree = "<group>"; };
 		D36809291ABFAB3200AFA097 /* ClassificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassificationView.h; sourceTree = "<group>"; };
 		D368092A1ABFAB3200AFA097 /* ClassificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationView.m; sourceTree = "<group>"; };
+		D368092C1ABFD70500AFA097 /* RemarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemarkViewController.h; sourceTree = "<group>"; };
+		D368092D1ABFD70500AFA097 /* RemarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemarkViewController.m; sourceTree = "<group>"; };
+		D368092F1ABFDCB900AFA097 /* QuotesDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuotesDetailViewController.h; sourceTree = "<group>"; };
+		D36809301ABFDCB900AFA097 /* QuotesDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuotesDetailViewController.m; sourceTree = "<group>"; };
 		D38D6B4D1A5CC1C30020CCBF /* 读取中icon.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "读取中icon.gif"; sourceTree = "<group>"; };
 		D38D6B4F1A5CC2920020CCBF /* 锯子.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "锯子.gif"; sourceTree = "<group>"; };
 		D39937BC1A42B428007081C1 /* RecommendProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendProjectViewController.h; sourceTree = "<group>"; };
@@ -5601,6 +5607,10 @@
 				D35E12431ABD68B5007C6726 /* CatoryTableViewCell.m */,
 				D36809291ABFAB3200AFA097 /* ClassificationView.h */,
 				D368092A1ABFAB3200AFA097 /* ClassificationView.m */,
+				D368092C1ABFD70500AFA097 /* RemarkViewController.h */,
+				D368092D1ABFD70500AFA097 /* RemarkViewController.m */,
+				D368092F1ABFDCB900AFA097 /* QuotesDetailViewController.h */,
+				D36809301ABFDCB900AFA097 /* QuotesDetailViewController.m */,
 			);
 			path = AskPriceDetailView;
 			sourceTree = "<group>";
@@ -7472,6 +7482,7 @@
 				D3D6862A1ABACF44005D9ED6 /* SearchContactTableViewCell.m in Sources */,
 				0426C2BD19922D5A00CD8822 /* GPUImageSolidColorGenerator.m in Sources */,
 				0426C24D19922D5A00CD8822 /* GPUImageBulgeDistortionFilter.m in Sources */,
+				D36809311ABFDCB900AFA097 /* QuotesDetailViewController.m in Sources */,
 				042D9DC719B4A1C600689C5D /* JSONKit.m in Sources */,
 				5BF31B6A1AB025FD00DA87F5 /* DiscussionGroupView.m in Sources */,
 				D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */,
@@ -7509,6 +7520,7 @@
 				5B6699291AB9490600C4B54F /* DemanDetailViewController.m in Sources */,
 				D3D4FB301A0872770033BB34 /* CompanyCenterViewController.m in Sources */,
 				5B7E59091ABBEAD20063B400 /* RKUpAndDownView.m in Sources */,
+				D368092E1ABFD70500AFA097 /* RemarkViewController.m in Sources */,
 				0426C2EA19922D5A00CD8822 /* FaceppRecognition.m in Sources */,
 				042D9E0E19B559FC00689C5D /* BaiDuMapViewController.m in Sources */,
 				D3A4281B19C1A2E700BAB6C7 /* GTMBase64.m in Sources */,
