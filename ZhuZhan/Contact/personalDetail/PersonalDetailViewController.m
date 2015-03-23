@@ -19,6 +19,7 @@
 #import "CompanyApi.h"
 #import "MJRefresh.h"
 #import "ProjectApi.h"
+#import "AddressBookApi.h"
 @interface PersonalDetailViewController ()
 
 @end
@@ -61,6 +62,19 @@
     _pathCover.userNameLabel.textAlignment = NSTextAlignmentCenter;
     _pathCover.userNameLabel.center = CGPointMake(155, 30);
     
+    for (int i=0; i<3; i++) {
+        UIButton *tempBtn =[UIButton buttonWithType:UIButtonTypeCustom];
+//        UIImage* tempImg=i?[GetImagePath getImagePath:@"人脉－账号设置_03a-05"]:[GetImagePath getImagePath:@"人脉－账号设置_03a"];
+        [tempBtn setTitle:@"顶顶顶顶" forState:UIControlStateNormal];
+        tempBtn.frame=CGRectMake(0, 0, 80, 20);
+        tempBtn.center=CGPointMake((i+0.5)*320/3, 230-tempBtn.frame.size.height*.5-10);
+        tempBtn.tag=i;
+//        [tempBtn setImage:tempImg forState:UIControlStateNormal];
+        [_pathCover addSubview:tempBtn];
+        [tempBtn addTarget:self action:@selector(pathCoverBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    }
+
+    //
     self.tableView.tableHeaderView = self.pathCover;
     
     //集成刷新控件
@@ -77,6 +91,15 @@
     
     self.tableView.separatorStyle = NO;
     [self.tableView setBackgroundColor:RGBCOLOR(242, 242, 242)];
+}
+
+-(void)pathCoverBtnClicked:(UIButton*)btn{
+    NSMutableDictionary* dic=[@{@"userId":self.contactId
+                        } mutableCopy];
+    [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
+        
+    } dic:dic noNetWork:nil];
+    NSLog(@"btntag=%d",(int)btn.tag);
 }
 
 - (void)_refreshing {

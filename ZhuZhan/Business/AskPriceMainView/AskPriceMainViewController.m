@@ -48,7 +48,7 @@
     [button setImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
-    self.navigationItem.title=@"发起询价";
+    self.navigationItem.title=@"询价需求填写";
     
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -61,7 +61,7 @@
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
     self.laberStrArr = [[NSMutableArray alloc] init];
-    [self.view addSubview:self.topView];
+    //[self.view addSubview:self.topView];
     [self.view addSubview:self.tableView];
     self.viewArr = [[NSMutableArray alloc] init];
     [self.viewArr addObject:self.addContactView];
@@ -217,7 +217,7 @@
 
 -(UITableView *)tableView{
     if(!_tableView){
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 112, 320, kScreenHeight-112)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, kScreenHeight)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = NO;
