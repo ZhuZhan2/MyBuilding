@@ -44,7 +44,7 @@
 }
 
 -(void)initTopView{
-    self.topView=[[TopView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, 48) firstStr:@"询价 2013-12-12 12:12" secondStr:@"流水号:12345678" colorArr:@[[UIColor blackColor],AllLightGrayColor]];
+    self.topView=[[TopView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, 48) firstStr:[NSString stringWithFormat:@"询价%@",self.askPriceModel.a_time] secondStr:[NSString stringWithFormat:@"流水号:%@",self.askPriceModel.a_tradeCode] colorArr:@[[UIColor blackColor],AllLightGrayColor]];
     [self.view addSubview:self.topView];
 }
 
@@ -152,21 +152,21 @@
 
 -(UIView *)firstView{
     if (!_firstView) {
-        _firstView=[RKLeftAndRightView upAndDownViewWithUpContent:@"求购用户" downContent:@"撒旦撒旦撒大师大师大师" topDistance:20 bottomDistance:20 maxWidth:kScreenWidth-50];
+        _firstView=[RKLeftAndRightView upAndDownViewWithUpContent:@"求购用户" downContent:self.askPriceModel.a_requestName topDistance:20 bottomDistance:20 maxWidth:kScreenWidth-50];
     }
     return _firstView;
 }
 
 -(UIView *)secondView{
     if (!_secondView) {
-        _secondView=[RKUpAndDownView upAndDownViewWithUpContent:@"产品大类" downContent:@"水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水泥" topDistance:14 bottomDistance:14 maxWidth:kScreenWidth-50];
+        _secondView=[RKUpAndDownView upAndDownViewWithUpContent:@"产品大类" downContent:self.askPriceModel.a_productBigCategory topDistance:14 bottomDistance:14 maxWidth:kScreenWidth-50];
     }
     return _secondView;
 }
 
 -(UIView *)thirdView{
     if (!_thirdView) {
-        _thirdView=[RKUpAndDownView upAndDownViewWithUpContent:@"产品分类" downContent:@"水泥" topDistance:14 bottomDistance:14 maxWidth:kScreenWidth-50];
+        _thirdView=[RKUpAndDownView upAndDownViewWithUpContent:@"产品分类" downContent:self.askPriceModel.a_productCategory topDistance:14 bottomDistance:14 maxWidth:kScreenWidth-50];
 
     }
     return _thirdView;
@@ -174,7 +174,7 @@
 
 -(UIView *)fourthView{
     if (!_fourthView) {
-        _fourthView=[RKUpAndDownView upAndDownViewWithUpContent:@"需求描述" downContent:@"dddddd水泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水泥" topDistance:20 bottomDistance:20 maxWidth:kScreenWidth-50];
+        _fourthView=[RKUpAndDownView upAndDownViewWithUpContent:@"需求描述" downContent:self.askPriceModel.a_remark topDistance:20 bottomDistance:20 maxWidth:kScreenWidth-50];
 
     }
     return _fourthView;
