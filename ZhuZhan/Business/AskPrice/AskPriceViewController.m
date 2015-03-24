@@ -12,7 +12,6 @@
 #import "AskPriceViewCell.h"
 #import "ChooseProductBigStage.h"
 #import "ChooseProductSmallStage.h"
-#import "DemanDetailViewController.h"
 #import "DemandStageChooseController.h"
 #import "AskPriceApi.h"
 #import "AskPriceModel.h"
@@ -34,7 +33,6 @@
     self.statusStr = @"";
     self.otherStr = @"-1";
     [self initNavi];
-   // [self setUpSearchBarWithNeedTableView:NO isTableViewHeader:YES];
     [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[@"0",@"0",@"0",@"0"]];
     [self initTableView];
     [self initTableViewHeader];
@@ -165,19 +163,6 @@
             }
         }
     } tradeId:model.a_id noNetWork:nil];
-
-    return;
-    DemanDetailViewController* vc=[[DemanDetailViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-    
-    return;
-    if (indexPath.row%2) {
-        ChooseProductBigStage* vc=[[ChooseProductBigStage alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }else{
-        ChooseProductSmallStage* vc=[[ChooseProductSmallStage alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
 }
 
 -(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{

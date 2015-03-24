@@ -615,6 +615,12 @@
 		5B55D57B1A3EB5FD00CAEF8B /* ForgetPasswordFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D57A1A3EB5FD00CAEF8B /* ForgetPasswordFirstController.m */; };
 		5B55D57E1A3EB63200CAEF8B /* ForgetPasswordSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D57D1A3EB63200CAEF8B /* ForgetPasswordSecondController.m */; };
 		5B55D5811A3EB64C00CAEF8B /* ForgetPasswordThirdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D5801A3EB64C00CAEF8B /* ForgetPasswordThirdController.m */; };
+		5B5773DB1AC1320400C17DBF /* DemandDetailAskPriceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773D71AC1320400C17DBF /* DemandDetailAskPriceController.m */; };
+		5B5773DC1AC1320400C17DBF /* DemandDetailProvidePriceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773DA1AC1320400C17DBF /* DemandDetailProvidePriceController.m */; };
+		5B5773DF1AC1335C00C17DBF /* DemandAskPriceDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773DE1AC1335C00C17DBF /* DemandAskPriceDetailController.m */; };
+		5B5773E21AC1338000C17DBF /* DemandAskPriceChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773E11AC1338000C17DBF /* DemandAskPriceChatController.m */; };
+		5B5773E51AC133BA00C17DBF /* DemandProvidePriceDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773E41AC133BA00C17DBF /* DemandProvidePriceDetailController.m */; };
+		5B5773E81AC133E400C17DBF /* DemandProvidePriceChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773E71AC133E400C17DBF /* DemandProvidePriceChatController.m */; };
 		5B5894F119FF9D24001CC09E /* EndEditingGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5894F019FF9D24001CC09E /* EndEditingGesture.m */; };
 		5B5A24DD1A4189CA0071BD90 /* 密码找回_03z.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5A24D71A4189CA0071BD90 /* 密码找回_03z.png */; };
 		5B5A24DE1A4189CA0071BD90 /* 密码找回_03z@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5A24D81A4189CA0071BD90 /* 密码找回_03z@2x.png */; };
@@ -2286,6 +2292,18 @@
 		5B55D57D1A3EB63200CAEF8B /* ForgetPasswordSecondController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordSecondController.m; sourceTree = "<group>"; };
 		5B55D57F1A3EB64C00CAEF8B /* ForgetPasswordThirdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordThirdController.h; sourceTree = "<group>"; };
 		5B55D5801A3EB64C00CAEF8B /* ForgetPasswordThirdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordThirdController.m; sourceTree = "<group>"; };
+		5B5773D61AC1320400C17DBF /* DemandDetailAskPriceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemandDetailAskPriceController.h; sourceTree = "<group>"; };
+		5B5773D71AC1320400C17DBF /* DemandDetailAskPriceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemandDetailAskPriceController.m; sourceTree = "<group>"; };
+		5B5773D91AC1320400C17DBF /* DemandDetailProvidePriceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemandDetailProvidePriceController.h; sourceTree = "<group>"; };
+		5B5773DA1AC1320400C17DBF /* DemandDetailProvidePriceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemandDetailProvidePriceController.m; sourceTree = "<group>"; };
+		5B5773DD1AC1335C00C17DBF /* DemandAskPriceDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemandAskPriceDetailController.h; sourceTree = "<group>"; };
+		5B5773DE1AC1335C00C17DBF /* DemandAskPriceDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemandAskPriceDetailController.m; sourceTree = "<group>"; };
+		5B5773E01AC1338000C17DBF /* DemandAskPriceChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemandAskPriceChatController.h; sourceTree = "<group>"; };
+		5B5773E11AC1338000C17DBF /* DemandAskPriceChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemandAskPriceChatController.m; sourceTree = "<group>"; };
+		5B5773E31AC133BA00C17DBF /* DemandProvidePriceDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemandProvidePriceDetailController.h; sourceTree = "<group>"; };
+		5B5773E41AC133BA00C17DBF /* DemandProvidePriceDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemandProvidePriceDetailController.m; sourceTree = "<group>"; };
+		5B5773E61AC133E400C17DBF /* DemandProvidePriceChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemandProvidePriceChatController.h; sourceTree = "<group>"; };
+		5B5773E71AC133E400C17DBF /* DemandProvidePriceChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemandProvidePriceChatController.m; sourceTree = "<group>"; };
 		5B5894EF19FF9D24001CC09E /* EndEditingGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndEditingGesture.h; sourceTree = "<group>"; };
 		5B5894F019FF9D24001CC09E /* EndEditingGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndEditingGesture.m; sourceTree = "<group>"; };
 		5B5A24D71A4189CA0071BD90 /* 密码找回_03z.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码找回_03z.png"; sourceTree = "<group>"; };
@@ -4867,6 +4885,33 @@
 			path = "二期新图片";
 			sourceTree = "<group>";
 		};
+		5B5773D51AC1320400C17DBF /* AskPrice */ = {
+			isa = PBXGroup;
+			children = (
+				5B5773D61AC1320400C17DBF /* DemandDetailAskPriceController.h */,
+				5B5773D71AC1320400C17DBF /* DemandDetailAskPriceController.m */,
+				5B5773DD1AC1335C00C17DBF /* DemandAskPriceDetailController.h */,
+				5B5773DE1AC1335C00C17DBF /* DemandAskPriceDetailController.m */,
+				5B5773E01AC1338000C17DBF /* DemandAskPriceChatController.h */,
+				5B5773E11AC1338000C17DBF /* DemandAskPriceChatController.m */,
+			);
+			path = AskPrice;
+			sourceTree = "<group>";
+		};
+		5B5773D81AC1320400C17DBF /* ProvidePrice */ = {
+			isa = PBXGroup;
+			children = (
+				5B5773D91AC1320400C17DBF /* DemandDetailProvidePriceController.h */,
+				5B5773DA1AC1320400C17DBF /* DemandDetailProvidePriceController.m */,
+				5B5773E31AC133BA00C17DBF /* DemandProvidePriceDetailController.h */,
+				5B5773E41AC133BA00C17DBF /* DemandProvidePriceDetailController.m */,
+				5B5773E61AC133E400C17DBF /* DemandProvidePriceChatController.h */,
+				5B5773E71AC133E400C17DBF /* DemandProvidePriceChatController.m */,
+				5B7E59031ABBD9B90063B400 /* ProvidePriceInfo */,
+			);
+			path = ProvidePrice;
+			sourceTree = "<group>";
+		};
 		5B6289EA1AB8133800F30059 /* Choose */ = {
 			isa = PBXGroup;
 			children = (
@@ -4878,7 +4923,7 @@
 			path = Choose;
 			sourceTree = "<group>";
 		};
-		5B6373791ABA796D007CF1F8 /* ChatCell */ = {
+		5B6373791ABA796D007CF1F8 /* ChatController */ = {
 			isa = PBXGroup;
 			children = (
 				5B6373931ABAA7B0007CF1F8 /* RKDemandChatController.h */,
@@ -4886,10 +4931,11 @@
 				5B63737A1ABA796D007CF1F8 /* DemandChatViewCell.h */,
 				5B63737B1ABA796D007CF1F8 /* DemandChatViewCell.m */,
 			);
+			name = ChatController;
 			path = ChatCell;
 			sourceTree = "<group>";
 		};
-		5B63737C1ABA796D007CF1F8 /* DetailCell */ = {
+		5B63737C1ABA796D007CF1F8 /* DetailController */ = {
 			isa = PBXGroup;
 			children = (
 				5B6373901ABAA7A8007CF1F8 /* RKDemandDetailController.h */,
@@ -4903,6 +4949,7 @@
 				5B7E59201ABC33E70063B400 /* RKPointKit.h */,
 				5B7E59211ABC33E70063B400 /* RKPointKit.m */,
 			);
+			name = DetailController;
 			path = DetailCell;
 			sourceTree = "<group>";
 		};
@@ -4933,9 +4980,10 @@
 			children = (
 				5B6699271AB9490600C4B54F /* DemanDetailViewController.h */,
 				5B6699281AB9490600C4B54F /* DemanDetailViewController.m */,
-				5B63737C1ABA796D007CF1F8 /* DetailCell */,
-				5B6373791ABA796D007CF1F8 /* ChatCell */,
-				5B7E59031ABBD9B90063B400 /* ProvidePriceInfo */,
+				5B5773D51AC1320400C17DBF /* AskPrice */,
+				5B5773D81AC1320400C17DBF /* ProvidePrice */,
+				5B63737C1ABA796D007CF1F8 /* DetailController */,
+				5B6373791ABA796D007CF1F8 /* ChatController */,
 			);
 			path = DemandDetail;
 			sourceTree = "<group>";
@@ -4981,8 +5029,9 @@
 				5B7E590D1ABC08A70063B400 /* ProvidePriceUploadView.h */,
 				5B7E590E1ABC08A70063B400 /* ProvidePriceUploadView.m */,
 			);
-			path = ProvidePriceInfo;
-			sourceTree = "<group>";
+			name = ProvidePriceInfo;
+			path = ZhuZhan/Business/DemandDetail/ProvidePriceInfo;
+			sourceTree = SOURCE_ROOT;
 		};
 		5B8650411ABFA1510096BEF0 /* DemandStageChoose */ = {
 			isa = PBXGroup;
@@ -7215,6 +7264,7 @@
 				5BE08ED41A35900000495EEB /* FourthAnimationView.m in Sources */,
 				D3DBBC721AB914E20070DB98 /* AddCategoriesView.m in Sources */,
 				5B6289DD1AB7C10000F30059 /* RKTwoView.m in Sources */,
+				5B5773DC1AC1320400C17DBF /* DemandDetailProvidePriceController.m in Sources */,
 				5B3AD9E419F7CA7B008132B2 /* CompanyMemberCell.m in Sources */,
 				D3D4A2E21AAE98390071B3EA /* ChatMessageModel.m in Sources */,
 				0426C2A919922D5A00CD8822 /* GPUImageRawDataInput.m in Sources */,
@@ -7373,6 +7423,7 @@
 				042D9E3519B55AB800689C5D /* UIPlaceHolderTextView.m in Sources */,
 				0426C24B19922D5A00CD8822 /* GPUImageBrightnessFilter.m in Sources */,
 				042D9E1C19B559FC00689C5D /* AdvancedSearchViewController.m in Sources */,
+				5B5773DB1AC1320400C17DBF /* DemandDetailAskPriceController.m in Sources */,
 				5B13C70019B6AB0C008EA7A0 /* ProductDetailViewController.m in Sources */,
 				5B6373851ABA796D007CF1F8 /* RKMuchImageViews.m in Sources */,
 				D3D686271ABAC8C0005D9ED6 /* SearchContactViewController.m in Sources */,
@@ -7477,6 +7528,7 @@
 				042D9E1619B559FC00689C5D /* ProgramDetailViewController.m in Sources */,
 				0426C24219922D5A00CD8822 /* GPUImage3x3TextureSamplingFilter.m in Sources */,
 				0426C25419922D5A00CD8822 /* GPUImageColorBurnBlendFilter.m in Sources */,
+				5B5773DF1AC1335C00C17DBF /* DemandAskPriceDetailController.m in Sources */,
 				0426C2F919922D5A00CD8822 /* XHSoundManager.m in Sources */,
 				D3AD619C19AEEE30001FD483 /* LocateView.m in Sources */,
 				D3D321271A3EAE2E0009AEEA /* PooCodeView.m in Sources */,
@@ -7503,6 +7555,7 @@
 				5B6A1D6A1A4A67170072B916 /* ContactEGOView.m in Sources */,
 				0426C2F619922D5A00CD8822 /* CJSONScanner.m in Sources */,
 				0426C2EE19922D5A00CD8822 /* CDataScanner.m in Sources */,
+				5B5773E51AC133BA00C17DBF /* DemandProvidePriceDetailController.m in Sources */,
 				0426C28719922D5A00CD8822 /* GPUImageLinearBurnBlendFilter.m in Sources */,
 				D3D21EB71A36F9C700ADD653 /* LocalProjectModel.m in Sources */,
 				D3CF0D8D1AB81A7800D71CEB /* TopView.m in Sources */,
@@ -7592,6 +7645,7 @@
 				0426C2C719922D5A00CD8822 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
 				0426C2E619922D5A00CD8822 /* FaceppGroup.m in Sources */,
 				0426C2DF19922D5A00CD8822 /* FaceppAPI.m in Sources */,
+				5B5773E81AC133E400C17DBF /* DemandProvidePriceChatController.m in Sources */,
 				0426C30319922D5A00CD8822 /* TFIndicatorView.m in Sources */,
 				5B8A2CEA1AAEE0AD00C8F9DE /* AddFriendViewController.m in Sources */,
 				0426C27C19922D5A00CD8822 /* GPUImageHoughTransformLineDetector.m in Sources */,
@@ -7604,6 +7658,7 @@
 				0426C2CC19922D5A00CD8822 /* GPUImageToonFilter.m in Sources */,
 				0426C29419922D5A00CD8822 /* GPUImageMotionBlurFilter.m in Sources */,
 				5B628A0C1AB826AA00F30059 /* ChooseProductCellModel.m in Sources */,
+				5B5773E21AC1338000C17DBF /* DemandAskPriceChatController.m in Sources */,
 				D3AD60FC19AC7CC5001FD483 /* EGOImageView.m in Sources */,
 				5B8A2CF51AAEE0AD00C8F9DE /* ChooseContactsViewCell.m in Sources */,
 				D3AD619D19AEEE30001FD483 /* SinglePickerView.m in Sources */,

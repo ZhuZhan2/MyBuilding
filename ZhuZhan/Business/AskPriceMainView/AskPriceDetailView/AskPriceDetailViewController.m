@@ -13,7 +13,7 @@
 #import "AppDelegate.h"
 #import "RemarkViewController.h"
 #import "AskPriceApi.h"
-#import "DemanDetailViewController.h"
+#import "DemandDetailAskPriceController.h"
 @interface AskPriceDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *showArr;
@@ -125,7 +125,7 @@
         RemarkViewController *remarkView = [[RemarkViewController alloc] init];
         [self.navigationController pushViewController:remarkView animated:YES];
     }else if(indexPath.row>2){
-        DemanDetailViewController *viewController = [[DemanDetailViewController alloc] init];
+        DemandDetailAskPriceController *viewController = [[DemandDetailAskPriceController alloc] init];
         [self.navigationController pushViewController:viewController animated:YES];
     }
 }
