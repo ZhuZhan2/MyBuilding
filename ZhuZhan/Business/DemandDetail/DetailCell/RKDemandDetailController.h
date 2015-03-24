@@ -7,8 +7,9 @@
 //
 
 #import "ChatBaseViewController.h"
+#import "DemandDetailViewCell.h"
 
-@interface RKDemandDetailController : ChatBaseViewController
+@interface RKDemandDetailController : ChatBaseViewController<DemandDetailViewCellDelegate>
 @property(nonatomic,strong)NSMutableArray* detailModels;
 @property(nonatomic,weak)UIViewController* superViewController;
 @end
