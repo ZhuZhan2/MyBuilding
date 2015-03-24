@@ -13,7 +13,7 @@
 #import "AppDelegate.h"
 #import "AskPriceApi.h"
 #import "ProvidePriceInfoController.h"
-#import "DemanDetailViewController.h"
+#import "DemandDetailProvidePriceController.h"
 @interface QuotesDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *showArr;
@@ -145,7 +145,7 @@
             view.askPriceModel = self.askPriceModel;
             [self.navigationController pushViewController:view animated:YES];
         }else{
-            DemanDetailViewController *view = [[DemanDetailViewController alloc] init];
+            DemandDetailProvidePriceController *view = [[DemandDetailProvidePriceController alloc] init];
             [self.navigationController pushViewController:view animated:YES];
         }
 //        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];

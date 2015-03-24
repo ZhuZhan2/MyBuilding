@@ -67,10 +67,10 @@
     return _mainView;
 }
 
--(void)setUpMainView{
+-(void)setUpMainViewWithUserType:(NSString*)userType{
     [self.mainView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
-    RKTwoView* view1=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"参与用户" rightContent:self.contents[0] needAuto:NO];
+    RKTwoView* view1=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:userType rightContent:self.contents[0] needAuto:NO];
     RKTwoView* view2=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"产品大类" rightContent:self.contents[1] needAuto:NO];
     RKTwoView* view3=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"产品分类" rightContent:self.contents[2] needAuto:NO];
     RKTwoView* view4=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"需求描述" rightContent:self.contents[3] needAuto:YES];
@@ -98,8 +98,12 @@
 
 -(void)setContents:(NSArray *)contents{
     _contents=contents;
-    [self setUpMainView];
-    NSString* stage=contents[4];
+    BOOL isAskPrice=[contents[4] isEqualToString:@"0"];
+    
+    [self setUpMainViewWithUserType:isAskPrice?@"参与用户":@"求购用户"];
+    
+    NSString* typeName=[contents[4] isEqualToString:@"0"]?@"询价":@"报价";
+    NSString* stage=contents[5];
     UIColor* stageColor;
     if ([stage isEqualToString:@"进行中"]) {
         stageColor=AllGreenColor;
@@ -108,7 +112,11 @@
     }else{
         stageColor=AllLightGrayColor;
     }
-    [self.cellHeader changeStageName:[NSString stringWithFormat:@"询价%@",contents[4]] code:[NSString stringWithFormat:@"流水号：%@",contents[5]] stageColor:stageColor];
+    NSString* code=[NSString stringWithFormat:@"流水号：%@",contents[6]];
+    
+    NSString* wholeStageName=[typeName stringByAppendingString:stage];
+    [self.cellHeader changeStageName:wholeStageName code:code stageColor:stageColor];
+//    [self.cellHeader changeStageName:wholeStageName stageColor:stageColor];
     [self reloadAllFrames];
 }
 

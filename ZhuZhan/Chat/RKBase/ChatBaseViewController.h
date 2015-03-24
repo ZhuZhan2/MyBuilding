@@ -10,11 +10,13 @@
 #import "RKBaseTableView.h"
 #import "RKStageChooseView.h"
 #import "ChatToolBar.h"
+
 @protocol SearchBarTableViewDelegate <NSObject>
 -(NSInteger)searchBarNumberOfSectionsInTableView:(UITableView *)tableView;
 -(NSInteger)searchBarTableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 -(CGFloat)searchBarTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 -(UITableViewCell *)searchBarTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+-(void)searchBarTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @interface ChatBaseViewController : UIViewController<UITableViewDataSource,RKBaseTableViewDelegate,UISearchBarDelegate,SearchBarTableViewDelegate,RKStageChooseViewDelegate,ChatToolBarDelegate>
@@ -37,6 +39,8 @@
 @property(nonatomic,strong)UISearchBar* searchBar;
 @property(nonatomic,weak)UIView* searchBarAnimationBackView;
 -(void)setUpSearchBarWithNeedTableView:(BOOL)needTableView isTableViewHeader:(BOOL)isTableViewHeader;
+
+-(void)setSearchBarTableViewBackColor:(UIColor*)color;
 
 @property(nonatomic,strong)NSMutableArray* sectionSelectedArray;
 -(BOOL)sectionSelectedArrayContainsSection:(NSInteger)section;

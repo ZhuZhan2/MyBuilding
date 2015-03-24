@@ -48,12 +48,11 @@
         return nil;
     }
     
-    keyWorks=@"";
     //NSData
     //keyWorks=@"";
     //keyWorks=encodedString;
     
-    NSString *urlStr = [NSString stringWithFormat:@"api/trade/listBook?status=%@&pageSize=10&pageIndex=%d&tab=%@&keyWords=%@",status,startIndex,other,keyWorks];;
+    NSString *urlStr = [NSString stringWithFormat:@"api/trade/listBook?status=%@&pageSize=10&pageIndex=%d&tab=%@&keyWords=%@",status,startIndex,other,keyWorks];
     
     
     NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)urlStr, NULL, NULL,  kCFStringEncodingUTF8 ));

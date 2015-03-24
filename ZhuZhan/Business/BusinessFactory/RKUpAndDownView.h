@@ -10,4 +10,6 @@
 
 @interface RKUpAndDownView : UIView
 +(RKUpAndDownView*)upAndDownViewWithUpContent:(NSString*)upContent downContent:(NSString*)downContent topDistance:(CGFloat)topDistance bottomDistance:(CGFloat)bottomDistance maxWidth:(CGFloat)maxWidth;
++(RKUpAndDownView*)upAndDownTextViewWithUpContent:(NSString*)upContent topDistance:(CGFloat)topDistance bottomDistance:(CGFloat)bottomDistance maxWidth:(CGFloat)maxWidth ;
+-(NSString*)textViewText;
 @end

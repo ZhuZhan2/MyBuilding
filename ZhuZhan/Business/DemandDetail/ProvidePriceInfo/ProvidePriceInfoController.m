@@ -195,7 +195,8 @@
 
 -(UIView *)fifthView{
     if (!_fifthView) {
-        _fifthView=[RKUpAndDownView upAndDownViewWithUpContent:@"回复" downContent:@"水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水泥" topDistance:20 bottomDistance:20 maxWidth:kScreenWidth-50];
+        //_fifthView=[RKUpAndDownView upAndDownViewWithUpContent:@"回复" downContent:@"水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水泥" topDistance:20 bottomDistance:20 maxWidth:kScreenWidth-50];
+        _fifthView=[RKUpAndDownView upAndDownTextViewWithUpContent:@"回复" topDistance:20 bottomDistance:20 maxWidth:kScreenWidth-50];
 
     }
     return _fifthView;

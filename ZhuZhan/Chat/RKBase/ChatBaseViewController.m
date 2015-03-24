@@ -7,17 +7,17 @@
 //
 
 #import "ChatBaseViewController.h"
-#import "SearchBarTableViewController.h"
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
+#import "SearchBarTableViewController.h"
 
 @interface ChatBaseViewController()
 @property(nonatomic,strong)UIButton* rightBtn;
 @property(nonatomic,strong)UIButton* leftBtn;
 
-@property(nonatomic,strong)SearchBarTableViewController* searchBarTableViewController;
-
 @property(nonatomic)BOOL searchBarIsTableViewHeader;
+
+@property(nonatomic,strong)SearchBarTableViewController* searchBarTableViewController;
 
 @property(nonatomic,weak)UIButton* searchBarBackBtn;
 @property(nonatomic)BOOL searchBarIsAnimating;
@@ -145,6 +145,11 @@
 -(void)setUpSearchBarTableView{
     self.searchBarTableViewController=[[SearchBarTableViewController alloc]init];
     self.searchBarTableViewController.delegate=self;
+}
+
+-(void)setSearchBarTableViewBackColor:(UIColor*)color{
+    self.searchBarTableViewController.view.backgroundColor=color;
+    self.searchBarTableViewController.tableView.backgroundColor=color;
 }
 
 - (UIImage *)imageWithColor:(UIColor *)color{
