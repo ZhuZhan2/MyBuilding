@@ -45,8 +45,8 @@
 
 -(void)GetHeightWithBlock:(void (^)(double))block str:(NSString *)str name:(NSString *)name{
     self.titleLabel.text = name;
-    __block int height = 0;
-    if(str != nil){
+    __block int height = 60;
+    if(![str isEqualToString:@""]){
         CGRect bounds=[str boundingRectWithSize:CGSizeMake(280, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 42, 240, bounds.size.height)];
         label.textAlignment = NSTextAlignmentLeft;
@@ -56,8 +56,8 @@
         label.text = str;
         [self addSubview:label];
         height = 60+bounds.size.height;
-        self.shadowView.center = CGPointMake(160, height-5);
     }
+    self.shadowView.center = CGPointMake(160, height-5);
     if(block){
         block(height);
     }

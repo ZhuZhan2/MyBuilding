@@ -20,6 +20,7 @@
 @property(nonatomic)int classificationViewHeight;
 @property(nonatomic)int remarkViewHeight;
 @property(nonatomic,strong)NSMutableArray *viewArr;
+@property(nonatomic,strong)NSMutableArray *invitedUserArr;
 @end
 
 @implementation QuotesDetailViewController
@@ -37,6 +38,7 @@
     [self.viewArr addObject:self.classificationView];
     [self.viewArr addObject:self.remarkView];
     [self.view addSubview:self.tableView];
+    NSLog(@"%@",self.invitedUserArr);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,6 +66,16 @@
     [homeVC homePageTabBarHide];
 }
 
+-(NSMutableArray *)invitedUserArr{
+    if(!_invitedUserArr){
+        _invitedUserArr = [[NSMutableArray alloc] init];
+        [self.askPriceModel.a_invitedUserArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSLog(@"%@",obj);
+        }];
+    }
+    return _invitedUserArr;
+}
+
 -(UITableView *)tableView{
     if(!_tableView){
         _tableView = [[UITableView alloc] initWithFrame:self.view.frame];
@@ -82,7 +94,7 @@
         [view GetHeightWithBlock:^(double height) {
             _classificationView.frame = CGRectMake(0, 0, 320, height);
             self.classificationViewHeight = height;
-        } str:@"啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发" name:@"产品分类"];
+        } str:self.askPriceModel.a_productCategory name:@"产品分类"];
         _classificationView = view;
     }
     return _classificationView;
@@ -95,7 +107,7 @@
         [view GetHeightWithBlock:^(double height) {
             _classificationView.frame = CGRectMake(0, 0, 320, height);
             self.remarkViewHeight = height;
-        } str:@"啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发啊发送到发送到发送到发送到发送到发" name:@"需求描述"];
+        } str:self.askPriceModel.a_remark name:@"需求描述"];
         _remarkView = view;
     }
     return _remarkView;
@@ -127,21 +139,21 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row == 3){
-        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        [dic setValue:@"88B7CE789CC9" forKey:@"tradeCode"];
-        [dic setValue:@"0" forKey:@"category"];
-        [dic setValue:@"b1104ca7-ff90-4220-b478-3d6f15f09da3" forKey:@"quotesId"];
-        NSMutableArray *arr = [[NSMutableArray alloc] init];
-        for(int i=1;i<10;i++){
-            UIImage *image = [GetImagePath getImagePath:[NSString stringWithFormat:@"01000%d",i]];
-            NSData *imageData = UIImageJPEGRepresentation(image, 0.3);
-            [arr addObject:imageData];
-        }
-        [AskPriceApi AddImageWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-            
-            }
-        } dataArr:arr dic:dic noNetWork:nil];
+//        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+//        [dic setValue:@"88B7CE789CC9" forKey:@"tradeCode"];
+//        [dic setValue:@"0" forKey:@"category"];
+//        [dic setValue:@"b1104ca7-ff90-4220-b478-3d6f15f09da3" forKey:@"quotesId"];
+//        NSMutableArray *arr = [[NSMutableArray alloc] init];
+//        for(int i=1;i<10;i++){
+//            UIImage *image = [GetImagePath getImagePath:[NSString stringWithFormat:@"01000%d",i]];
+//            NSData *imageData = UIImageJPEGRepresentation(image, 0.3);
+//            [arr addObject:imageData];
+//        }
+//        [AskPriceApi AddImageWithBlock:^(NSMutableArray *posts, NSError *error) {
+//            if(!error){
+//            
+//            }
+//        } dataArr:arr dic:dic noNetWork:nil];
 
 //        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
 //        [dic setValue:@"88B7CE789CC9" forKey:@"tradeCode"];
@@ -165,8 +177,7 @@
             cell = [[CatoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.selectionStyle = NO;
-        //cell.catoryStr = self.askPriceModel.a_productBigCategory;
-        cell.catoryStr = @"分类";
+        cell.catoryStr = self.askPriceModel.a_productBigCategory;
         return cell;
     }else if(indexPath.row == 1){
         NSString *CellIdentifier = [NSString stringWithFormat:@"classificationCell"];
