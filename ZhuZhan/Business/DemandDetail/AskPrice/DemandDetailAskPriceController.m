@@ -17,15 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //[self loadList];
-}
-
--(void)loadList{
-    [AskPriceApi GetQuotesListWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            self.detailController.detailModels = posts;
-        }
-    } providerId:self.model.a_id tradeCode:self.askPriceModel.a_tradeCode startIndex:0 noNetWork:nil];
 }
 
 -(RKDemandDetailController *)detailController{
