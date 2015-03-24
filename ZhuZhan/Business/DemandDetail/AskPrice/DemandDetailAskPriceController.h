@@ -7,7 +7,6 @@
 //
 
 #import "DemanDetailViewController.h"
-
 @interface DemandDetailAskPriceController : DemanDetailViewController
 
 @end

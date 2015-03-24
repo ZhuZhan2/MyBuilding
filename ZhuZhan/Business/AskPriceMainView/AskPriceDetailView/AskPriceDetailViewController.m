@@ -154,7 +154,10 @@
         remarkView.remarkStr = self.askPriceModel.a_remark;
         [self.navigationController pushViewController:remarkView animated:YES];
     }else if(indexPath.row>2){
+        InvitedUserModel *model = self.invitedUserArr[indexPath.row-3];
         DemandDetailAskPriceController *viewController = [[DemandDetailAskPriceController alloc] init];
+        viewController.model = model;
+        viewController.askPriceModel = self.askPriceModel;
         [self.navigationController pushViewController:viewController animated:YES];
     }
 }

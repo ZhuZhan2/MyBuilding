@@ -72,7 +72,6 @@
     size=[RKMuchImageViews carculateLabel:self.titleLabel width:self.contentWidth];
     frame=CGRectMake(0, height, size.width, size.height);
     self.titleLabel.frame=frame;
-    NSLog(@"titleFrame==%@",NSStringFromCGRect(frame));
 
     height+=CGRectGetHeight(self.titleLabel.frame);
     
@@ -83,7 +82,6 @@
         size=[RKMuchImageViews carculateLabel:self.noDataLabel width:self.contentWidth];
         frame=CGRectMake(0, height, size.width, size.height);
         self.noDataLabel.frame=frame;
-        NSLog(@"frame==%@",NSStringFromCGRect(frame));
         [self addSubview:self.noDataLabel];
     }
     UIView* lastView=self.subviews.lastObject;

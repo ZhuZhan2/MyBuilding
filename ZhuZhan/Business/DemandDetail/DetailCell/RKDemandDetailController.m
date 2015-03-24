@@ -19,6 +19,7 @@
     [super viewDidLoad];
     [self initTableView];
     [self reloadTableViewExtra];
+    NSLog(@"detailModels ===>%@",self.detailModels);
 }
 
 -(void)initTableView{
