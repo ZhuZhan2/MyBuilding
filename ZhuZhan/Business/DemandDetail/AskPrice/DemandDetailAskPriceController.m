@@ -17,13 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadList];
+    //[self loadList];
 }
 
 -(void)loadList{
     [AskPriceApi GetQuotesListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            _detailController.detailModels = posts;
+            self.detailController.detailModels = posts;
         }
     } providerId:self.model.a_id tradeCode:self.askPriceModel.a_tradeCode startIndex:0 noNetWork:nil];
 }

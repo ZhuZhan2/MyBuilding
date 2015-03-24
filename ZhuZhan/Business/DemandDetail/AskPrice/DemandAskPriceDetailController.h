@@ -9,5 +9,4 @@
 #import "RKDemandDetailController.h"
 
 @interface DemandAskPriceDetailController : RKDemandDetailController
-@property(nonatomic,strong)NSMutableArray *showArr;
 @end
