@@ -25,7 +25,7 @@
         if(!error){
             _detailController.detailModels = posts;
         }
-    } providerId:self.model.a_id tradeCode:self.askPriceModel.a_tradeCode startIndex:0 noNetWork:nil];
+    } providerId:self.quotesModel.a_loginId tradeCode:self.askPriceModel.a_tradeCode startIndex:0 noNetWork:nil];
 }
 
 -(RKDemandDetailController *)detailController{

@@ -130,7 +130,7 @@
         cell.clipsToBounds=YES;
     }
     AskPriceModel *model = self.showArr[indexPath.row];
-    cell.contents=@[model.a_invitedUser,model.a_productBigCategory,model.a_productCategory,model.a_remark,model.a_tradeStatus];
+    cell.contents=@[model.a_invitedUser,model.a_productBigCategory,model.a_productCategory,model.a_remark,model.a_tradeStatus,model.a_tradeCode];
     return cell;
 }
 

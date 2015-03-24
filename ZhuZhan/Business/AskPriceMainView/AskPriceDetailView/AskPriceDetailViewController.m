@@ -68,20 +68,7 @@
 -(void)loadList{
     [AskPriceApi GetAskPriceDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            [self.invitedUserArr enumerateObjectsUsingBlock:^(InvitedUserModel *invModel, NSUInteger intIdx, BOOL *stop) {
-                [posts[0] enumerateObjectsUsingBlock:^(QuotesModel *quoModel, NSUInteger quoIdx, BOOL *stop) {
-                    if([invModel.a_id isEqualToString:quoModel.a_loginId]){
-                        if([quoModel.a_status isEqualToString:@"0"]){
-                            invModel.a_status = @"进行中";
-                        }else if ([quoModel.a_status isEqualToString:@"1"]){
-                            invModel.a_status = @"完成";
-                        }else{
-                            invModel.a_status = @"关闭";
-                        }
-                        [self.invitedUserArr replaceObjectAtIndex:intIdx withObject:invModel];
-                    }
-                }];
-            }];
+            self.invitedUserArr = posts[0];
             [self.tableView reloadData];
         }
     } tradeId:self.askPriceModel.a_id noNetWork:nil];
@@ -90,13 +77,6 @@
 -(NSMutableArray *)invitedUserArr{
     if(!_invitedUserArr){
         _invitedUserArr = [NSMutableArray array];
-        [self.askPriceModel.a_invitedUserArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            InvitedUserModel *model = [[InvitedUserModel alloc] init];
-            NSMutableDictionary *item = [[NSMutableDictionary alloc] initWithDictionary:obj];
-            [item setValue:@"进行中" forKey:@"status"];
-            [model setDict:item];
-            [_invitedUserArr addObject:model];
-        }];
     }
     return _invitedUserArr;
 }
@@ -154,9 +134,9 @@
         remarkView.remarkStr = self.askPriceModel.a_remark;
         [self.navigationController pushViewController:remarkView animated:YES];
     }else if(indexPath.row>2){
-        InvitedUserModel *model = self.invitedUserArr[indexPath.row-3];
+        QuotesModel *model = self.invitedUserArr[indexPath.row-3];
         DemandDetailAskPriceController *viewController = [[DemandDetailAskPriceController alloc] init];
-        viewController.model = model;
+        viewController.quotesModel = model;
         viewController.askPriceModel = self.askPriceModel;
         [self.navigationController pushViewController:viewController animated:YES];
     }
@@ -205,7 +185,7 @@
         [cell.contentView addSubview:shadowView];
         return cell;
     }else{
-        InvitedUserModel *model = self.invitedUserArr[indexPath.row-3];
+        QuotesModel *model = self.invitedUserArr[indexPath.row-3];
         NSString *CellIdentifier = [NSString stringWithFormat:@"cell"];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
@@ -213,7 +193,7 @@
         }
         cell.selectionStyle = NO;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 17, 180, 16)];
-        label.text = model.a_name;
+        label.text = model.a_loginName;
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont systemFontOfSize:16];
         [cell.contentView addSubview:label];

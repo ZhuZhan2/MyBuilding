@@ -51,7 +51,7 @@
 -(AskPriceCellHeader *)cellHeader{
     if (!_cellHeader) {
         AskPriceCellHeaderModel* model=[[AskPriceCellHeaderModel alloc]init];
-        model.stage=[NSString stringWithFormat:@"询价%@",self.askPriceModel.a_tradeStatus];
+        model.stage=[NSString stringWithFormat:@"询价"];
         //model.hasNew=arc4random()%2;
         model.number=@"流水号:321312312";
         _cellHeader=[AskPriceCellHeader askPriceCellHeaderWithModel:model];
@@ -108,13 +108,8 @@
     }else{
         stageColor=AllLightGrayColor;
     }
-    [self.cellHeader changeStageName:[NSString stringWithFormat:@"询价%@",contents[4]] stageColor:stageColor];
+    [self.cellHeader changeStageName:[NSString stringWithFormat:@"询价%@",contents[4]] code:[NSString stringWithFormat:@"流水号：%@",contents[5]] stageColor:stageColor];
     [self reloadAllFrames];
-}
-
--(void)setAskPriceModel:(AskPriceModel *)askPriceModel{
-    _askPriceModel = askPriceModel;
-    NSLog(@"==.%@",self.askPriceModel.a_tradeStatus);
 }
 
 -(void)reloadAllFrames{
