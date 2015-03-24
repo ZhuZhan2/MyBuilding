@@ -40,5 +40,9 @@
 @property(nonatomic,strong)NSString *a_status;
 //流水号
 @property(nonatomic,strong)NSString *a_tradeCode;
+//创建人
+@property(nonatomic,strong)NSString *a_createdBy;
+//第几次报价
+@property(nonatomic,strong)NSString *a_quoteTimes;
 @property(nonatomic,strong)NSDictionary *dict;
 @end

@@ -31,6 +31,8 @@
 -(RKDemandDetailController *)detailController{
     if (!_detailController) {
         _detailController=[[DemandAskPriceDetailController alloc]init];
+        _detailController.quotesModel = self.quotesModel;
+        _detailController.askPriceModel = self.askPriceModel;
         _detailController.superViewController=self;
     }
     return _detailController;

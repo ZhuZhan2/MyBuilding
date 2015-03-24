@@ -36,9 +36,10 @@
     [self addSubview:self.numberLabel];
 }
 
--(void)changeStageName:(NSString*)stageName stageColor:(UIColor*)stageColor{
+-(void)changeStageName:(NSString*)stageName code:(NSString *)code stageColor:(UIColor*)stageColor{
     self.stageLabel.text=stageName;
     self.stageLabel.textColor=stageColor;
+    self.numberLabel.text = code;
 }
 
 -(UILabel *)stageLabel{
@@ -59,7 +60,7 @@
 
 -(UILabel *)numberLabel{
     if (!_numberLabel) {
-        _numberLabel=[[UILabel alloc]initWithFrame:CGRectMake(184, 0, 130, kTotalHeight)];
+        _numberLabel=[[UILabel alloc]initWithFrame:CGRectMake(150, 0, 164, kTotalHeight)];
         _numberLabel.font=assistFont;
         _numberLabel.textColor=assistColor;
         _numberLabel.text=self.model.number;

@@ -14,6 +14,7 @@
 #import "ProvidePriceUploadView.h"
 #import "RKPointKit.h"
 #import "RKCamera.h"
+#import "AskPriceApi.h"
 @interface ProvidePriceInfoController ()<RKCameraDelegate,ProvidePriceUploadViewDelegate,UIActionSheetDelegate>
 @property(nonatomic,strong)UIView* firstView;
 @property(nonatomic,strong)UIView* secondView;
@@ -35,6 +36,18 @@
     [self initTopView];
     [self initTableView];
     [self initTableViewExtra];
+}
+
+-(void)rightBtnClicked{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:self.askPriceModel.a_tradeCode forKey:@"tradeCode"];
+    [dic setObject:self.askPriceModel.a_id forKey:@"bookBuildingId"];
+    [dic setObject:@"岳志强fuck" forKey:@"quoteContent"];
+    [AskPriceApi AddQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+        
+        }
+    } dic:dic noNetWork:nil];
 }
 
 -(void)initNavi{
