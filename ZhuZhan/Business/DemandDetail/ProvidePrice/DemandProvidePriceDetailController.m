@@ -53,7 +53,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     DemandDetailViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"detailCell"];
     if (!cell) {
-        cell=[[DemandDetailViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"detailCell" delegate:self category:DemandControllerCategoryAskPriceController];
+        cell=[[DemandDetailViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"detailCell" delegate:self category:DemandControllerCategoryProvidePriceController];
     }
     DemandDetailCellModel* model=self.detailModels[indexPath.row];
     model.indexPath=indexPath;
@@ -66,11 +66,13 @@
 }
 
 -(void)rightBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
-    NSMutableDictionary* dic=[@{@"id":@""}mutableCopy];
-    [AskPriceApi AcceptQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
-        
-    } dic:dic noNetWork:nil];
-    NSLog(@"rightBtnClicked,indexPath==%d",(int)indexPath.row);
+    ProvidePriceInfoController* vc=[[ProvidePriceInfoController alloc]init];
+    [self.superViewController.navigationController pushViewController:vc animated:YES];
+//    NSMutableDictionary* dic=[@{@"id":@""}mutableCopy];
+//    [AskPriceApi AcceptQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
+//        
+//    } dic:dic noNetWork:nil];
+//    NSLog(@"rightBtnClicked,indexPath==%d",(int)indexPath.row);
 }
 //    + (NSURLSessionDataTask *)CloseQuotesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 
