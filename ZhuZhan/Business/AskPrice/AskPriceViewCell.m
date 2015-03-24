@@ -51,7 +51,7 @@
 -(AskPriceCellHeader *)cellHeader{
     if (!_cellHeader) {
         AskPriceCellHeaderModel* model=[[AskPriceCellHeaderModel alloc]init];
-        model.stage=@"询价进行中";
+        model.stage=[NSString stringWithFormat:@"询价%@",self.askPriceModel.a_tradeStatus];
         model.hasNew=arc4random()%2;
         model.number=@"流水号:321312312";
         _cellHeader=[AskPriceCellHeader askPriceCellHeaderStageMode:arc4random()%4 model:model];
@@ -100,6 +100,11 @@
     _contents=contents;
     [self setUpMainView];
     [self reloadAllFrames];
+}
+
+-(void)setAskPriceModel:(AskPriceModel *)askPriceModel{
+    _askPriceModel = askPriceModel;
+    NSLog(@"==.%@",self.askPriceModel.a_tradeStatus);
 }
 
 -(void)reloadAllFrames{

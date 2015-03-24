@@ -12,6 +12,8 @@
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
 #import "AskPriceApi.h"
+#import "ProvidePriceInfoController.h"
+#import "DemanDetailViewController.h"
 @interface QuotesDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *showArr;
@@ -20,7 +22,7 @@
 @property(nonatomic)int classificationViewHeight;
 @property(nonatomic)int remarkViewHeight;
 @property(nonatomic,strong)NSMutableArray *viewArr;
-@property(nonatomic,strong)NSMutableArray *invitedUserArr;
+@property(nonatomic,strong)NSString *quoteTimes;
 @end
 
 @implementation QuotesDetailViewController
@@ -34,11 +36,12 @@
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.title=@"询价详情";
     
+    [self loadList];
+    
     self.viewArr = [[NSMutableArray alloc] init];
     [self.viewArr addObject:self.classificationView];
     [self.viewArr addObject:self.remarkView];
     [self.view addSubview:self.tableView];
-    NSLog(@"%@",self.invitedUserArr);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,14 +69,12 @@
     [homeVC homePageTabBarHide];
 }
 
--(NSMutableArray *)invitedUserArr{
-    if(!_invitedUserArr){
-        _invitedUserArr = [[NSMutableArray alloc] init];
-        [self.askPriceModel.a_invitedUserArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            NSLog(@"%@",obj);
-        }];
-    }
-    return _invitedUserArr;
+-(void)loadList{
+    [AskPriceApi GetAskPriceDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.quoteTimes = posts[1];
+        }
+    } tradeId:self.askPriceModel.a_id noNetWork:nil];
 }
 
 -(UITableView *)tableView{
@@ -139,6 +140,14 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row == 3){
+        if([self.quoteTimes isEqualToString:@"0"]){
+            ProvidePriceInfoController *view = [[ProvidePriceInfoController alloc] init];
+            view.askPriceModel = self.askPriceModel;
+            [self.navigationController pushViewController:view animated:YES];
+        }else{
+            DemanDetailViewController *view = [[DemanDetailViewController alloc] init];
+            [self.navigationController pushViewController:view animated:YES];
+        }
 //        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
 //        [dic setValue:@"88B7CE789CC9" forKey:@"tradeCode"];
 //        [dic setValue:@"0" forKey:@"category"];
@@ -206,14 +215,14 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.selectionStyle = NO;
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 17, 180, 16)];
-        label.text = @"名字";
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 15, 180, 16)];
+        label.text = self.askPriceModel.a_requestName;
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont systemFontOfSize:16];
         [cell.contentView addSubview:label];
         
-        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(240, 17, 80, 16)];
-        label2.text = @"名字";
+        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(230, 15, 80, 16)];
+        label2.text = self.askPriceModel.a_tradeStatus;
         label2.textAlignment = NSTextAlignmentLeft;
         label2.font = [UIFont systemFontOfSize:16];
         [cell.contentView addSubview:label2];

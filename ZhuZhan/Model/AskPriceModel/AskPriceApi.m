@@ -99,14 +99,21 @@
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
+            NSMutableArray *arr = [[NSMutableArray alloc] init];
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             for(NSDictionary *item in JSON[@"data"][@"quotesIdsWithStatus"]){
                 QuotesModel *model = [[QuotesModel alloc] init];
                 [model setDict:item];
                 [mutablePosts addObject:model];
             }
+            if(mutablePosts.count !=0){
+                [arr addObject:mutablePosts];
+            }else{
+                [arr addObject:[NSArray array]];
+            }
+            [arr addObject:JSON[@"data"][@"quoteTimes"]];
             if (block) {
-                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+                block([NSMutableArray arrayWithArray:arr], nil);
             }
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

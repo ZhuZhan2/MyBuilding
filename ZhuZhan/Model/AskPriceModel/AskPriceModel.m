@@ -7,7 +7,7 @@
 //
 
 #import "AskPriceModel.h"
-
+#import "ProjectStage.h"
 @implementation AskPriceModel
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
@@ -36,6 +36,7 @@
     self.a_productCategory = dict[@"productCategory"];
     self.a_remark = dict[@"remark"];
     self.a_category = dict[@"category"];
+    self.a_time = [ProjectStage ProjectTimeStage:dict[@"createdTime"]];
 }
 @end
 

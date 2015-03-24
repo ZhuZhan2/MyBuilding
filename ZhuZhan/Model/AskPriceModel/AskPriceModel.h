@@ -29,6 +29,7 @@
 @property(nonatomic,strong)NSString *a_remark;
 //询价类型 0是询价 1是报价
 @property(nonatomic,strong)NSString *a_category;
+@property(nonatomic,strong)NSString *a_time;
 @property(nonatomic,strong)NSDictionary *dict;
 @end
 

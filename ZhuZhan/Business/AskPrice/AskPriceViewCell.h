@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AskPriceModel.h"
 @interface AskPriceViewCell : UITableViewCell
 @property(nonatomic,strong)NSArray* contents;
+@property(nonatomic,strong)AskPriceModel *askPriceModel;
 +(CGFloat)carculateTotalHeightWithContents:(NSArray*)contents;
 @end
