@@ -7,11 +7,10 @@
 //
 
 #import "RKDemandDetailController.h"
-#import "DemandDetailViewCell.h"
 #import "ProvidePriceInfoController.h"
 
 
-@interface RKDemandDetailController ()<DemandDetailViewCellDelegate>
+@interface RKDemandDetailController ()
 
 @end
 
@@ -81,14 +80,15 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    DemandDetailViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"detailCell"];
-    if (!cell) {
-        cell=[[DemandDetailViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"detailCell" delegate:self];
-    }
-    DemandDetailCellModel* model=self.detailModels[indexPath.row];
-    model.indexPath=indexPath;
-    cell.model=model;
-    return cell;
+//    DemandDetailViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"detailCell"];
+//    if (!cell) {
+//        cell=[[DemandDetailViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"detailCell" delegate:self];
+//    }
+//    DemandDetailCellModel* model=self.detailModels[indexPath.row];
+//    model.indexPath=indexPath;
+//    cell.model=model;
+//    return cell;
+    return nil;
 }
 
 -(void)leftBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
