@@ -104,7 +104,7 @@
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }else{
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        [dic setValue:@"ef190673-0f57-4a78-aa07-e86d3edf2262,4dab083a-3f09-4854-839a-f45995b6047f" forKey:@"invitedUser"];
+        [dic setValue:@"4dab083a-3f09-4854-839a-f45995b6047f" forKey:@"invitedUser"];
         [dic setValue:self.categoryStr forKey:@"productBigCategory"];
         [dic setValue:[self.classifcationStr stringByReplacingOccurrencesOfString:@"、" withString:@","] forKey:@"productCategory"];
         [dic setValue:self.remarkStr forKey:@"remark"];
