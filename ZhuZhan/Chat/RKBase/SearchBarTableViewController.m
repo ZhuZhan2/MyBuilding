@@ -9,7 +9,6 @@
 #import "SearchBarTableViewController.h"
 
 @interface SearchBarTableViewController ()<UITableViewDataSource,UITableViewDelegate>
-@property(nonatomic,strong)UITableView* tableView;
 @end
 
 @implementation SearchBarTableViewController
@@ -53,10 +52,16 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([self.delegate searchBarTableView:tableView cellForRowAtIndexPath:indexPath]) {
+    if ([self.delegate respondsToSelector:@selector(searchBarTableView:cellForRowAtIndexPath:)]) {
         return [self.delegate searchBarTableView:tableView cellForRowAtIndexPath:indexPath];
     }else{
         return nil;
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([self.delegate respondsToSelector:@selector(searchBarTableView:didSelectRowAtIndexPath:)]) {
+        [self.delegate searchBarTableView:tableView didSelectRowAtIndexPath:indexPath];
     }
 }
 @end
