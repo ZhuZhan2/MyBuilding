@@ -17,4 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
+
+-(void)chatToolSendBtnClicked{
+
+}
 @end

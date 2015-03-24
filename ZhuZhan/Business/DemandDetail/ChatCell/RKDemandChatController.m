@@ -82,4 +82,8 @@
 -(void)viewWillAppear:(BOOL)animated{
 
 }
+
+-(void)chatToolSendBtnClicked{
+    NSLog(@"22");
+}
 @end
