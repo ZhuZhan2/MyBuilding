@@ -22,18 +22,7 @@
 -(void)loadList{
     [AskPriceApi GetQuotesListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            [posts enumerateObjectsUsingBlock:^(QuotesDetailModel *model, NSUInteger idx, BOOL *stop) {
-                DemandDetailCellModel* detailModel=[[DemandDetailCellModel alloc]init];
-                detailModel.userName=model.a_quoteUser;
-                detailModel.userDescribe=@"用户描述啊用户描述啊用户描述啊用";
-                detailModel.time=model.a_createdTime;
-                detailModel.numberDescribe=[NSString stringWithFormat:@"第%@次报价",model.a_quoteTimes];
-                detailModel.content=model.a_quoteContent;
-                detailModel.array1=@[@"",@""];
-                detailModel.array2=@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@""];
-                detailModel.array3=@[];
-                [_detailModels addObject:detailModel];
-            }];
+            self.detailModels=posts;
             [self.tableView reloadData];
         }
     } providerId:self.quotesModel.a_loginId tradeCode:self.askPriceModel.a_tradeCode startIndex:0 noNetWork:nil];
@@ -42,19 +31,6 @@
 -(NSMutableArray *)detailModels{
     if (!_detailModels) {
         _detailModels=[NSMutableArray array];
-//        for (int i=0; i<8; i++) {
-//            DemandDetailCellModel* model=[[DemandDetailCellModel alloc]init];
-//            model.userName=@"用户名啊用户名啊用户名啊";
-//            model.userDescribe=@"用户描述啊用户描述啊用户描述啊用";
-//            model.time=@"2015-01-23 11:47";
-//            model.numberDescribe=@"第N次报价";
-//            model.content=@"内容啊内容，内容啊内容，这遥遥无期的代码，写到何处方到尽头啊啊啊啊啊啊啊啊啊啊!内容啊内容，内容啊内容，这遥遥无期的代码，写到何处方到尽头啊啊啊啊啊啊啊啊啊啊!内容啊内容，内容啊内容，这遥遥无期的代码，写到何处方到尽头啊啊啊啊啊啊啊啊啊啊!内容啊内容，内容啊内容，这遥遥无期的代码，写到何处方到尽头啊啊啊啊啊啊啊啊啊啊!";
-//            model.array1=@[@"",@""];
-//            model.array2=@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@""];
-//            model.array3=@[];
-//            
-//            [_detailModels addObject:model];
-//        }
     }
     return _detailModels;
 }
@@ -73,22 +49,19 @@
         cell=[[DemandDetailViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"detailCell" delegate:self category:DemandControllerCategoryAskPriceController];
     }
     DemandDetailCellModel* cellModel=[[DemandDetailCellModel alloc]init];
-    QuotesDetailModel* dataModel=self.detailModels[indexPath.row];
     {
-//            detailModel.userName=dataModel.a_quoteUser;
-//            detailModel.userDescribe=@"用户描述啊用户描述啊用户描述啊用";
-//            detailModel.time=dataModel.a_createdTime;
-//            detailModel.numberDescribe=[NSString stringWithFormat:@"第%@次报价",dataModel.a_quoteTimes];
-//            detailModel.content=dataModel.a_quoteContent;
-//            detailModel.array1=@[@"",@""];
-//            detailModel.array2=@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@""];
-//            detailModel.array3=@[];
-//            [_detailModels addObject:detailModel];
-        }];
-
+        QuotesDetailModel* dataModel=self.detailModels[indexPath.row];
+        cellModel.userName=dataModel.a_quoteUser;
+        cellModel.userDescribe=@"用户描述啊用户描述啊用户描述啊用";
+        cellModel.time=dataModel.a_createdTime;
+        cellModel.numberDescribe=[NSString stringWithFormat:@"第%@次报价",dataModel.a_quoteTimes];
+        cellModel.content=dataModel.a_quoteContent;
+        cellModel.array1=@[@"",@""];
+        cellModel.array2=@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@""];
+        cellModel.array3=@[];
     }
-    model.indexPath=indexPath;
-    cell.model=model;
+    cellModel.indexPath=indexPath;
+    cell.model=cellModel;
     return cell;
 }
 
@@ -107,7 +80,7 @@
 
 -(void)closeBtnClicked{
     NSMutableDictionary* dic=[@{@"createdBy":@"",
-                               @"bookBuildingId":@""
+                                @"bookBuildingId":@""
                                 }mutableCopy];
     [AskPriceApi CloseQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
         
