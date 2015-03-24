@@ -96,7 +96,7 @@
     CGFloat verticalHeight=SingleImageViewHeight+kLineHeight;
     for (int i=0; i<self.models.count; i++) {
         CGRect frame=CGRectMake(i%3*horizontalWidth, Y+i/3*verticalHeight, SingleImageViewWidth, SingleImageViewHeight);
-        RKSingleImageView* singleImageView=[RKSingleImageView singleImageViewWithImageSize:frame.size];
+        RKSingleImageView* singleImageView=[RKSingleImageView singleImageViewWithImageSize:frame.size model:self.models[i]];
         singleImageView.frame=frame;
         [self addSubview:singleImageView];
         [self.singleImageViews addObject:singleImageView];

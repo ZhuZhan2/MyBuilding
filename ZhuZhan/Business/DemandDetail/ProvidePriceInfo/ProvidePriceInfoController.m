@@ -15,6 +15,7 @@
 #import "RKPointKit.h"
 #import "RKCamera.h"
 #import "AskPriceApi.h"
+#import "RKImageModel.h"
 @interface ProvidePriceInfoController ()<RKCameraDelegate,ProvidePriceUploadViewDelegate,UIActionSheetDelegate>
 @property(nonatomic,strong)UIView* firstView;
 @property(nonatomic,strong)UIView* secondView;
@@ -25,7 +26,12 @@
 @property(nonatomic,strong)NSArray* contentViews;
 @property(nonatomic,strong)RKCamera* cameraControl;
 
+@property(nonatomic,strong)NSMutableArray* array1;
+@property(nonatomic,strong)NSMutableArray* array2;
+@property(nonatomic,strong)NSMutableArray* array3;
+
 @property(nonatomic,strong)UIView* topView;
+@property(nonatomic)NSInteger cameraCategory;
 @end
 
 @implementation ProvidePriceInfoController
@@ -149,15 +155,33 @@
 }
 
 -(void)upLoadBtnClickedWithNumber:(NSInteger)number{
+    self.cameraCategory=number;
     UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册",nil];
     [actionSheet showInView:self.view];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==actionSheet.cancelButtonIndex) return;
-    self.cameraControl=[RKCamera cameraWithType:!buttonIndex allowEdit:YES deleate:self presentViewController:self.view.window.rootViewController];
+    self.cameraControl=[RKCamera cameraWithType:!buttonIndex allowEdit:NO deleate:self presentViewController:self.view.window.rootViewController];
 }
 
+-(void)cameraWillFinishWithImage:(UIImage *)image isCancel:(BOOL)isCancel{
+    NSArray* images=@[self.array1,self.array2,self.array3];
+    NSMutableArray* array=images[self.cameraCategory];
+    RKImageModel* imageModel=[RKImageModel imageModelWithImage:image imageUrl:nil isUrl:NO];
+    [array addObject:imageModel];
+    [self reloadSixthView];
+//    if (!isCancel) {
+//        [self sendWithImage:image];
+//    }
+}
+/*
+ + (NSURLSessionDataTask *)AddImageWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dataArr:(NSMutableArray *)dataArr dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
+
+ */
+-(void)sendWithImage:(UIImage*)image{
+    
+}
 
 -(NSArray *)contentViews{
     return @[self.firstView,self.secondView,self.thirdView,self.fourthView,self.fifthView,self.sixthView];
@@ -195,7 +219,6 @@
 
 -(UIView *)fifthView{
     if (!_fifthView) {
-        //_fifthView=[RKUpAndDownView upAndDownViewWithUpContent:@"回复" downContent:@"水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水传说中的描述泥水泥" topDistance:20 bottomDistance:20 maxWidth:kScreenWidth-50];
         _fifthView=[RKUpAndDownView upAndDownTextViewWithUpContent:@"回复" topDistance:20 bottomDistance:20 maxWidth:kScreenWidth-50];
 
     }
@@ -204,20 +227,29 @@
 
 -(ProvidePriceUploadView *)sixthView{
     if (!_sixthView) {
-        NSMutableArray* array1=[NSMutableArray array];
-        NSMutableArray* array2=[NSMutableArray array];
-        NSMutableArray* array3=[NSMutableArray array];
-        for (int i=0; i<arc4random()%30; i++) {
-            [array1 addObject:@""];
-        }
-        for (int i=0; i<arc4random()%30; i++) {
-            [array2 addObject:@""];
-        }
-        for (int i=0; i<arc4random()%30; i++) {
-            [array3 addObject:@""];
-        }
-        _sixthView=[ProvidePriceUploadView uploadViewWithFirstAccessory:array1 secondAccessory:array2 thirdAccessory:array3 maxWidth:kScreenWidth-50 topDistance:20 bottomDistance:20 delegate:self];
+        _sixthView=[ProvidePriceUploadView uploadViewWithFirstAccessory:self.array1 secondAccessory:self.array2 thirdAccessory:self.array3 maxWidth:kScreenWidth-50 topDistance:20 bottomDistance:20 delegate:self];
     }
     return _sixthView;
+}
+
+-(NSMutableArray *)array1{
+    if (!_array1) {
+        _array1=[NSMutableArray array];
+    }
+    return _array1;
+}
+
+-(NSMutableArray *)array2{
+    if (!_array2) {
+        _array2=[NSMutableArray array];
+    }
+    return _array2;
+}
+
+-(NSMutableArray *)array3{
+    if (!_array3) {
+        _array3=[NSMutableArray array];
+    }
+    return _array3;
 }
 @end

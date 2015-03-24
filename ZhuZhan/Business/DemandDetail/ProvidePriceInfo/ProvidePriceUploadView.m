@@ -63,7 +63,6 @@
     [self addSubview:self.qualityMuchImage];
     [self addSubview:self.otherMuchImage];
     
-    
     CGFloat height=self.topDistance;
     CGRect frame;
     

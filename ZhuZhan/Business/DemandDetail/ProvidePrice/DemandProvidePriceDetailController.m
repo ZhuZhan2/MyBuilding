@@ -49,8 +49,8 @@
         cellModel.time=dataModel.a_createdTime;
         cellModel.numberDescribe=[NSString stringWithFormat:@"第%@次报价",dataModel.a_quoteTimes];
         cellModel.content=dataModel.a_quoteContent;
-        cellModel.array1=@[@"",@""];
-        cellModel.array2=@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@""];
+        cellModel.array1=@[];
+        cellModel.array2=@[];
         cellModel.array3=@[];
     }
     return [DemandDetailViewCell carculateTotalHeightWithModel:cellModel];
@@ -59,7 +59,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     DemandDetailViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"detailCell"];
     if (!cell) {
-        cell=[[DemandDetailViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"detailCell" delegate:self category:DemandControllerCategoryAskPriceController];
+        cell=[[DemandDetailViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"detailCell" delegate:self category:DemandControllerCategoryProvidePriceController];
     }
     DemandDetailCellModel* cellModel=[[DemandDetailCellModel alloc]init];
     {
@@ -69,20 +69,8 @@
         cellModel.time=dataModel.a_createdTime;
         cellModel.numberDescribe=[NSString stringWithFormat:@"第%@次报价",dataModel.a_quoteTimes];
         cellModel.content=dataModel.a_quoteContent;
-        cellModel.array1=@[@"",@""];
-        cellModel.array2=@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@""];
-        cellModel.array3=@[];
-    }
-    DemandDetailCellModel* cellModel=[[DemandDetailCellModel alloc]init];
-    {
-        QuotesDetailModel* dataModel=self.detailModels[indexPath.row];
-        cellModel.userName=dataModel.a_quoteUser;
-        cellModel.userDescribe=@"用户描述啊用户描述啊用户描述啊用";
-        cellModel.time=dataModel.a_createdTime;
-        cellModel.numberDescribe=[NSString stringWithFormat:@"第%@次报价",dataModel.a_quoteTimes];
-        cellModel.content=dataModel.a_quoteContent;
-        cellModel.array1=@[@"",@""];
-        cellModel.array2=@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@""];
+        cellModel.array1=@[];
+        cellModel.array2=@[];
         cellModel.array3=@[];
     }
     cellModel.indexPath=indexPath;
