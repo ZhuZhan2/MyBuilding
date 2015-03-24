@@ -52,6 +52,7 @@
     if (!_cellHeader) {
         AskPriceCellHeaderModel* model=[[AskPriceCellHeaderModel alloc]init];
         model.stage=[NSString stringWithFormat:@"询价%@",self.askPriceModel.a_tradeStatus];
+        //model.hasNew=arc4random()%2;
         model.number=@"流水号:321312312";
         _cellHeader=[AskPriceCellHeader askPriceCellHeaderWithModel:model];
         [_cellHeader addSubview:self.seperatorLineInCell];

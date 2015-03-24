@@ -14,12 +14,13 @@
 #import "RemarkViewController.h"
 #import "AskPriceApi.h"
 #import "DemandDetailAskPriceController.h"
+#import "QuotesModel.h"
 @interface AskPriceDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
-@property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)ClassificationView *classificationView;
 @property(nonatomic)int classificationViewHeight;
 @property(nonatomic,strong)NSMutableArray *viewArr;
+@property(nonatomic,strong)NSMutableArray *invitedUserArr;
 @end
 
 @implementation AskPriceDetailViewController
@@ -34,7 +35,6 @@
     self.navigationItem.title=@"询价详情";
     
     self.viewArr = [[NSMutableArray alloc] initWithObjects:self.classificationView, nil];
-    self.showArr = [[NSMutableArray alloc] init];
     [self.view addSubview:self.tableView];
     
     [self loadList];
@@ -68,9 +68,37 @@
 -(void)loadList{
     [AskPriceApi GetAskPriceDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-        
+            [self.invitedUserArr enumerateObjectsUsingBlock:^(InvitedUserModel *invModel, NSUInteger intIdx, BOOL *stop) {
+                [posts[0] enumerateObjectsUsingBlock:^(QuotesModel *quoModel, NSUInteger quoIdx, BOOL *stop) {
+                    if([invModel.a_id isEqualToString:quoModel.a_loginId]){
+                        if([quoModel.a_status isEqualToString:@"0"]){
+                            invModel.a_status = @"进行中";
+                        }else if ([quoModel.a_status isEqualToString:@"1"]){
+                            invModel.a_status = @"完成";
+                        }else{
+                            invModel.a_status = @"关闭";
+                        }
+                        [self.invitedUserArr replaceObjectAtIndex:intIdx withObject:invModel];
+                    }
+                }];
+            }];
+            [self.tableView reloadData];
         }
     } tradeId:self.askPriceModel.a_id noNetWork:nil];
+}
+
+-(NSMutableArray *)invitedUserArr{
+    if(!_invitedUserArr){
+        _invitedUserArr = [NSMutableArray array];
+        [self.askPriceModel.a_invitedUserArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            InvitedUserModel *model = [[InvitedUserModel alloc] init];
+            NSMutableDictionary *item = [[NSMutableDictionary alloc] initWithDictionary:obj];
+            [item setValue:@"进行中" forKey:@"status"];
+            [model setDict:item];
+            [_invitedUserArr addObject:model];
+        }];
+    }
+    return _invitedUserArr;
 }
 
 -(UITableView *)tableView{
@@ -105,7 +133,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 3+self.showArr.count+5;
+    return 3+self.invitedUserArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -123,9 +151,13 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row == 2){
         RemarkViewController *remarkView = [[RemarkViewController alloc] init];
+        remarkView.remarkStr = self.askPriceModel.a_remark;
         [self.navigationController pushViewController:remarkView animated:YES];
     }else if(indexPath.row>2){
+        InvitedUserModel *model = self.invitedUserArr[indexPath.row-3];
         DemandDetailAskPriceController *viewController = [[DemandDetailAskPriceController alloc] init];
+        viewController.model = model;
+        viewController.askPriceModel = self.askPriceModel;
         [self.navigationController pushViewController:viewController animated:YES];
     }
 }
@@ -173,6 +205,7 @@
         [cell.contentView addSubview:shadowView];
         return cell;
     }else{
+        InvitedUserModel *model = self.invitedUserArr[indexPath.row-3];
         NSString *CellIdentifier = [NSString stringWithFormat:@"cell"];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
@@ -180,13 +213,13 @@
         }
         cell.selectionStyle = NO;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 17, 180, 16)];
-        label.text = @"名字";
+        label.text = model.a_name;
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont systemFontOfSize:16];
         [cell.contentView addSubview:label];
         
-        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(240, 17, 80, 16)];
-        label2.text = @"名字";
+        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(230, 17, 80, 16)];
+        label2.text = model.a_status;
         label2.textAlignment = NSTextAlignmentLeft;
         label2.font = [UIFont systemFontOfSize:16];
         [cell.contentView addSubview:label2];

@@ -41,7 +41,7 @@
 }
 
 -(void)initNavi{
-    self.title=@"买家的用户名，懂？";
+    self.title=self.askPriceModel.a_requestName;
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
 }
 

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface RemarkViewController : UIViewController
-
+@property(nonatomic,strong)NSString *remarkStr;
 @end
