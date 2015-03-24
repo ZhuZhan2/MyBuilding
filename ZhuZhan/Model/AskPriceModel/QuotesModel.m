@@ -7,7 +7,7 @@
 //
 
 #import "QuotesModel.h"
-
+#import "ProjectStage.h"
 @implementation QuotesModel
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
@@ -31,7 +31,7 @@
     _dict = dict;
     self.a_id = dict[@"id"];
     self.a_bookBuildingId = dict[@"bookBuildingId"];
-    self.a_createdTime = dict[@"createdTime"];
+    self.a_createdTime = [ProjectStage ProjectTimeStage:dict[@"createdTime"]];
     self.a_isAccepted = dict[@"isAccepted"];
     self.a_quoteContent = dict[@"quoteContent"];
     self.a_quoteIsVerified = dict[@"quoteIsVerified"];

@@ -168,7 +168,7 @@
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            for(NSDictionary *item in JSON[@"data"][@"tradeQuotes"]){
+            for(NSDictionary *item in JSON[@"data"][@"quoteWithAttachmentsComments"]){
                 QuotesDetailModel *model = [[QuotesDetailModel alloc] init];
                 [model setDict:item];
                 [mutablePosts addObject:model];

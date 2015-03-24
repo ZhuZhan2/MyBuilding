@@ -17,20 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadList];
-}
-
--(void)loadList{
-    [AskPriceApi GetQuotesListWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            _detailController.detailModels = posts;
-        }
-    } providerId:self.quotesModel.a_loginId tradeCode:self.askPriceModel.a_tradeCode startIndex:0 noNetWork:nil];
 }
 
 -(RKDemandDetailController *)detailController{
     if (!_detailController) {
         _detailController=[[DemandAskPriceDetailController alloc]init];
+        _detailController.quotesModel = self.quotesModel;
+        _detailController.askPriceModel = self.askPriceModel;
         _detailController.superViewController=self;
     }
     return _detailController;
