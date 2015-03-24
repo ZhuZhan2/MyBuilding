@@ -80,6 +80,20 @@
     self.placeLabel.alpha=!textView.text.length;
 }
 
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]) {
+        if ([self.delegate respondsToSelector:@selector(chatToolSendBtnClickedWithContent:)]) {
+            [self.delegate chatToolSendBtnClickedWithContent:textView.text];
+        }
+        textView.text=@"";
+        [textView resignFirstResponder];
+        return NO;
+    }else{
+        return YES;
+    }
+    
+}
+
 -(UILabel *)placeLabel{
     if (!_placeLabel) {
         NSString* placeText=[NSString stringWithFormat:@"请输入内容..."];

@@ -10,6 +10,7 @@
 
 @protocol ChatToolBarDelegate <NSObject>
 -(void)chatToolBarSizeChangeWithHeight:(CGFloat)height;
+-(void)chatToolSendBtnClickedWithContent:(NSString*)content;
 @end
 
 @interface ChatToolBar : UIView
