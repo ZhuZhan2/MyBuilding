@@ -27,6 +27,8 @@
 @property(nonatomic,strong)NSString *a_productCategory;
 //描述
 @property(nonatomic,strong)NSString *a_remark;
+//询价类型 0是询价 1是报价
+@property(nonatomic,strong)NSString *a_category;
 @property(nonatomic,strong)NSDictionary *dict;
 @end
 
@@ -34,5 +36,6 @@
 @property(nonatomic,strong)NSString *a_id;
 @property(nonatomic,strong)NSString *a_name;
 @property(nonatomic,strong)NSString *a_status;
+@property(nonatomic,strong)NSString *a_isVerified;
 @property(nonatomic,strong)NSDictionary *dict;
 @end

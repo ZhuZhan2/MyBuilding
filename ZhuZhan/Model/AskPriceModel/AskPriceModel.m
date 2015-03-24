@@ -35,14 +35,16 @@
     self.a_productBigCategory = dict[@"productBigCategory"];
     self.a_productCategory = dict[@"productCategory"];
     self.a_remark = dict[@"remark"];
+    self.a_category = dict[@"category"];
 }
 @end
 
 @implementation InvitedUserModel
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
-    self.a_id = dict[@""];
+    self.a_id = dict[@"loginId"];
     self.a_name = dict[@"loginName"];
-    self.a_status = dict[@""];
+    self.a_status = dict[@"status"];
+    self.a_isVerified = dict[@"isVerified"];
 }
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AskPriceModel.h"
 @interface QuotesDetailViewController : UIViewController
-
+@property(nonatomic,strong)AskPriceModel *askPriceModel;
 @end

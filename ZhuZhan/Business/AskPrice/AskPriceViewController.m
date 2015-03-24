@@ -31,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.statusStr = @"";
-    self.otherStr = @"00";
+    self.otherStr = @"-1";
     [self initNavi];
     [self setUpSearchBarWithNeedTableView:NO isTableViewHeader:YES];
     [self initTableView];
@@ -50,7 +50,7 @@
             [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
             [self.tableView reloadData];
         }
-    } status:self.statusStr startIndex:0 other:self.otherStr noNetWork:nil];
+    } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:@"" noNetWork:nil];
 }
 
 -(void)initTableViewHeader{
@@ -100,9 +100,11 @@
 -(void)finishSelectedWithStageName:(NSString *)stageName index:(int)index{
     [self initTitleViewWithTitle:stageName];
     if(index == 1){
-        self.otherStr = @"01";
+        self.otherStr = @"1";
     }else if (index == 2){
-        self.otherStr = @"00";
+        self.otherStr = @"0";
+    }else{
+        self.otherStr = @"-1";
     }
     [self loadList];
 }
@@ -129,7 +131,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     AskPriceModel *model = self.showArr[indexPath.row];
-    if([model.a_createdBy isEqualToString:[LoginSqlite getdata:@"userId"]]){
+    if([model.a_category isEqualToString:@"0"]){
         NSLog(@"自己发");
         AskPriceDetailViewController *view = [[AskPriceDetailViewController alloc] init];
         view.askPriceModel = model;
@@ -137,6 +139,7 @@
     }else{
         NSLog(@"别人发");
         QuotesDetailViewController *view = [[QuotesDetailViewController alloc] init];
+        view.askPriceModel = model;
         [self.navigationController pushViewController:view animated:YES];
     }
     
