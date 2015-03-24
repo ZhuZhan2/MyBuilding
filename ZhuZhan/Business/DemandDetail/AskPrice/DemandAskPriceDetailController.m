@@ -82,17 +82,17 @@
 }
 
 -(void)rightBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
-    NSMutableDictionary* dic=[@{@"id":@""}mutableCopy];
+    QuotesDetailModel* dataModel=self.detailModels[indexPath.row];
+    NSMutableDictionary* dic=[@{@"id":dataModel.a_id}mutableCopy];
     [AskPriceApi AcceptQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
         
     } dic:dic noNetWork:nil];
     NSLog(@"rightBtnClicked,indexPath==%d",(int)indexPath.row);
 }
-//    + (NSURLSessionDataTask *)CloseQuotesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 
 -(void)closeBtnClicked{
-    NSMutableDictionary* dic=[@{@"createdBy":@"",
-                                @"bookBuildingId":@""
+    NSMutableDictionary* dic=[@{@"createdBy":self.quotesModel.a_loginId,
+                                @"bookBuildingId":self.askPriceModel.a_tradeCode
                                 }mutableCopy];
     [AskPriceApi CloseQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
         

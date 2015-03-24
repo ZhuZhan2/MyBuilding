@@ -146,6 +146,7 @@
             [self.navigationController pushViewController:view animated:YES];
         }else{
             DemandDetailProvidePriceController *view = [[DemandDetailProvidePriceController alloc] init];
+            view.askPriceModel = self.askPriceModel;
             [self.navigationController pushViewController:view animated:YES];
         }
 //        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];

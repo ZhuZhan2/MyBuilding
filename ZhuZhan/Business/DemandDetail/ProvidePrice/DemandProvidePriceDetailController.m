@@ -8,6 +8,7 @@
 
 #import "DemandProvidePriceDetailController.h"
 #import "AskPriceApi.h"
+#import "LoginSqlite.h"
 @interface DemandProvidePriceDetailController ()
 
 @end
@@ -25,7 +26,7 @@
             self.detailModels=posts;
             [self.tableView reloadData];
         }
-    } providerId:self.quotesModel.a_loginId tradeCode:self.askPriceModel.a_tradeCode startIndex:0 noNetWork:nil];
+    } providerId:[LoginSqlite getdata:@"userId"] tradeCode:self.askPriceModel.a_tradeCode startIndex:0 noNetWork:nil];
 }
 
 -(NSMutableArray *)detailModels{
@@ -35,16 +36,24 @@
     return _detailModels;
 }
 
--(void)setDetailModels:(NSMutableArray *)detailModels{
-    NSLog(@"==>%@",detailModels);
-}
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.detailModels.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [DemandDetailViewCell carculateTotalHeightWithModel:self.detailModels[indexPath.row]];
+    DemandDetailCellModel* cellModel=[[DemandDetailCellModel alloc]init];
+    {
+        QuotesDetailModel* dataModel=self.detailModels[indexPath.row];
+        cellModel.userName=dataModel.a_quoteUser;
+        cellModel.userDescribe=@"用户描述啊用户描述啊用户描述啊用";
+        cellModel.time=dataModel.a_createdTime;
+        cellModel.numberDescribe=[NSString stringWithFormat:@"第%@次报价",dataModel.a_quoteTimes];
+        cellModel.content=dataModel.a_quoteContent;
+        cellModel.array1=@[@"",@""];
+        cellModel.array2=@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@""];
+        cellModel.array3=@[];
+    }
+    return [DemandDetailViewCell carculateTotalHeightWithModel:cellModel];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -75,18 +84,13 @@
 
 -(void)rightBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
     ProvidePriceInfoController* vc=[[ProvidePriceInfoController alloc]init];
+    vc.askPriceModel = self.askPriceModel;
     [self.superViewController.navigationController pushViewController:vc animated:YES];
-//    NSMutableDictionary* dic=[@{@"id":@""}mutableCopy];
-//    [AskPriceApi AcceptQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
-//        
-//    } dic:dic noNetWork:nil];
-//    NSLog(@"rightBtnClicked,indexPath==%d",(int)indexPath.row);
 }
-//    + (NSURLSessionDataTask *)CloseQuotesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 
 -(void)closeBtnClicked{
-    NSMutableDictionary* dic=[@{@"createdBy":@"",
-                                @"bookBuildingId":@""
+    NSMutableDictionary* dic=[@{@"createdBy":[LoginSqlite getdata:@"userId"],
+                                @"bookBuildingId":self.askPriceModel.a_id
                                 }mutableCopy];
     [AskPriceApi CloseQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
         
