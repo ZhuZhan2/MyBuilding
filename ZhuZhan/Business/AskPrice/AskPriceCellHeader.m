@@ -10,7 +10,7 @@
 
 @interface AskPriceCellHeader ()
 @property(nonatomic,strong)UILabel* stageLabel;
-@property(nonatomic,strong)UIImageView* remindNew;
+//@property(nonatomic,strong)UIImageView* remindNew;
 @property(nonatomic,strong)UILabel* numberLabel;
 
 @property(nonatomic,strong)AskPriceCellHeaderModel* model;
@@ -22,7 +22,7 @@
 #define assistColor AllLightGrayColor
 
 @implementation AskPriceCellHeader
-+(AskPriceCellHeader *)askPriceCellHeaderStageMode:(AskPriceCellHeaderStageMode)stageMode model:(AskPriceCellHeaderModel *)model{
++(AskPriceCellHeader*)askPriceCellHeaderWithModel:(AskPriceCellHeaderModel*)model{
     AskPriceCellHeader* view=[[AskPriceCellHeader alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kTotalHeight)];
     view.model=model;
     [view setUp];
@@ -32,28 +32,30 @@
 
 -(void)setUp{
     [self addSubview:self.stageLabel];
-    [self addSubview:self.remindNew];
+    //[self addSubview:self.remindNew];
     [self addSubview:self.numberLabel];
+}
+
+-(void)changeStageName:(NSString*)stageName stageColor:(UIColor*)stageColor{
+    self.stageLabel.text=stageName;
+    self.stageLabel.textColor=stageColor;
 }
 
 -(UILabel *)stageLabel{
     if (!_stageLabel) {
         _stageLabel=[[UILabel alloc]initWithFrame:CGRectMake(13, 0, 75, kTotalHeight)];
         _stageLabel.font=mainFont;
-        _stageLabel.textAlignment=NSTextAlignmentCenter;
-        _stageLabel.text=self.model.stage;
     }
     return _stageLabel;
 }
 
--(UIImageView *)remindNew{
-    if (!_remindNew) {
-        _remindNew=[[UIImageView alloc]initWithFrame:CGRectMake(91, 14, 27, 11.5)];
-        _remindNew.image=[GetImagePath getImagePath:@"交易_有新消息"];
-        _remindNew.alpha=self.model.hasNew;
-    }
-    return _remindNew;
-}
+//-(UIImageView *)remindNew{
+//    if (!_remindNew) {
+//        _remindNew=[[UIImageView alloc]initWithFrame:CGRectMake(91, 14, 27, 11.5)];
+//        _remindNew.image=[GetImagePath getImagePath:@"交易_有新消息"];
+//    }
+//    return _remindNew;
+//}
 
 -(UILabel *)numberLabel{
     if (!_numberLabel) {

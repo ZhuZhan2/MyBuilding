@@ -52,9 +52,8 @@
     if (!_cellHeader) {
         AskPriceCellHeaderModel* model=[[AskPriceCellHeaderModel alloc]init];
         model.stage=[NSString stringWithFormat:@"询价%@",self.askPriceModel.a_tradeStatus];
-        model.hasNew=arc4random()%2;
         model.number=@"流水号:321312312";
-        _cellHeader=[AskPriceCellHeader askPriceCellHeaderStageMode:arc4random()%4 model:model];
+        _cellHeader=[AskPriceCellHeader askPriceCellHeaderWithModel:model];
         [_cellHeader addSubview:self.seperatorLineInCell];
     }
     return _cellHeader;
@@ -99,6 +98,16 @@
 -(void)setContents:(NSArray *)contents{
     _contents=contents;
     [self setUpMainView];
+    NSString* stage=contents[4];
+    UIColor* stageColor;
+    if ([stage isEqualToString:@"进行中"]) {
+        stageColor=AllGreenColor;
+    }else if ([stage isEqualToString:@"已完成"]){
+        stageColor=AllDeepGrayColor;
+    }else{
+        stageColor=AllLightGrayColor;
+    }
+    [self.cellHeader changeStageName:[NSString stringWithFormat:@"询价%@",contents[4]] stageColor:stageColor];
     [self reloadAllFrames];
 }
 

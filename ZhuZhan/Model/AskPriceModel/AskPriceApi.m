@@ -48,7 +48,7 @@
         return nil;
     }
     
-    //keyWorks=@"张三";
+    keyWorks=@"";
     //NSData
     //keyWorks=@"";
     //keyWorks=encodedString;

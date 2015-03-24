@@ -7,7 +7,11 @@
 //
 
 #import "ChatBaseViewController.h"
-
-@interface DemanDetailViewController : ChatBaseViewController
-
+#import "RKDemandDetailController.h"
+#import "RKDemandChatController.h"
+@interface DemanDetailViewController : ChatBaseViewController{
+@protected
+    RKDemandDetailController* _detailController;
+    RKDemandChatController* _chatController;
+}
 @end

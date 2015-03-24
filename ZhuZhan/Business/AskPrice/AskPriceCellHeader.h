@@ -10,16 +10,16 @@
 
 @interface AskPriceCellHeaderModel : NSObject
 @property(nonatomic,copy)NSString* stage;
-@property(nonatomic)BOOL hasNew;
+//@property(nonatomic)BOOL hasNew;
 @property(nonatomic,copy)NSString* number;
 @end
 
 typedef enum  AskPriceCellHeaderStageMode{
-    AskPriceCellHeaderStageAll,
     AskPriceCellHeaderStageDoing,
     AskPriceCellHeaderStageDone,
     AskPriceCellHeaderStageClosed
 } AskPriceCellHeaderStageMode;
 @interface AskPriceCellHeader : UIView
-+(AskPriceCellHeader*)askPriceCellHeaderStageMode:(AskPriceCellHeaderStageMode)stageMode model:(AskPriceCellHeaderModel*)model;
++(AskPriceCellHeader*)askPriceCellHeaderWithModel:(AskPriceCellHeaderModel*)model;
+-(void)changeStageName:(NSString*)stageName stageColor:(UIColor*)stageColor;
 @end

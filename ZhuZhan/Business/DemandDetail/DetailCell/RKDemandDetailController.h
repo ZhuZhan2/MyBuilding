@@ -8,8 +8,12 @@
 
 #import "ChatBaseViewController.h"
 #import "DemandDetailViewCell.h"
+#import "ProvidePriceInfoController.h"
 
-@interface RKDemandDetailController : ChatBaseViewController<DemandDetailViewCellDelegate>
+@interface RKDemandDetailController : ChatBaseViewController<DemandDetailViewCellDelegate>{
+@protected
+    NSMutableArray* _detailModels;
+}
 @property(nonatomic,strong)NSMutableArray* detailModels;
 @property(nonatomic,weak)UIViewController* superViewController;
 @end

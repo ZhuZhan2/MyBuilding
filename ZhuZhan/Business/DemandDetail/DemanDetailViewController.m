@@ -9,8 +9,7 @@
 #import "DemanDetailViewController.h"
 #import "DemandDetailViewCell.h"
 #import "DemandChatViewCell.h"
-#import "RKDemandDetailController.h"
-#import "RKDemandChatController.h"
+
 
 @interface DemanDetailViewController ()
 
