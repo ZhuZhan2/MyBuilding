@@ -20,7 +20,6 @@
 @property(nonatomic)int classificationViewHeight;
 @property(nonatomic)int remarkViewHeight;
 @property(nonatomic,strong)NSMutableArray *viewArr;
-@property(nonatomic,strong)NSMutableArray *invitedUserArr;
 @end
 
 @implementation QuotesDetailViewController
@@ -38,7 +37,6 @@
     [self.viewArr addObject:self.classificationView];
     [self.viewArr addObject:self.remarkView];
     [self.view addSubview:self.tableView];
-    NSLog(@"%@",self.invitedUserArr);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,16 +62,6 @@
     AppDelegate* app=[AppDelegate instance];
     HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
     [homeVC homePageTabBarHide];
-}
-
--(NSMutableArray *)invitedUserArr{
-    if(!_invitedUserArr){
-        _invitedUserArr = [[NSMutableArray alloc] init];
-        [self.askPriceModel.a_invitedUserArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            NSLog(@"%@",obj);
-        }];
-    }
-    return _invitedUserArr;
 }
 
 -(UITableView *)tableView{
@@ -207,13 +195,13 @@
         }
         cell.selectionStyle = NO;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 17, 180, 16)];
-        label.text = @"名字";
+        label.text = self.askPriceModel.a_requestName;
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont systemFontOfSize:16];
         [cell.contentView addSubview:label];
         
-        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(240, 17, 80, 16)];
-        label2.text = @"名字";
+        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(230, 17, 80, 16)];
+        label2.text = self.askPriceModel.a_tradeStatus;
         label2.textAlignment = NSTextAlignmentLeft;
         label2.font = [UIFont systemFontOfSize:16];
         [cell.contentView addSubview:label2];
