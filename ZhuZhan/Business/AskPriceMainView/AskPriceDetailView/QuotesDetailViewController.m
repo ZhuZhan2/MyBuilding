@@ -227,7 +227,7 @@
         label2.font = [UIFont systemFontOfSize:16];
         [cell.contentView addSubview:label2];
         
-        UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(287, 17.5, 7, 15)];
+        UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(287, 17.5, 9, 15)];
         arrowImageView.image = [GetImagePath getImagePath:@"交易_箭头"];
         [cell.contentView addSubview:arrowImageView];
         

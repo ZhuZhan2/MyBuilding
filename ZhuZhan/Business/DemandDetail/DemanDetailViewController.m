@@ -12,10 +12,7 @@
 #import "RKDemandDetailController.h"
 #import "RKDemandChatController.h"
 
-//@interface DemanDetailViewController ()<DemandDetailViewCellDelegate>
 @interface DemanDetailViewController ()
-//@property(nonatomic,strong)NSMutableArray* detailModels;
-//@property(nonatomic,strong)NSMutableArray* chatModels;
 
 @property(nonatomic,strong)RKDemandDetailController* detailController;
 @property(nonatomic,strong)RKDemandChatController* chatController;
@@ -34,7 +31,6 @@
 -(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{
     [self.contentView addSubview:stageNumber?self.chatController.view:self.detailController.view];
 }
-
 
 -(UIView *)contentView{
     if (!_contentView) {

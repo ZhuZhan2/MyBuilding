@@ -12,11 +12,11 @@
 #import "AskPriceViewCell.h"
 #import "ChooseProductBigStage.h"
 #import "ChooseProductSmallStage.h"
-#import "DemanDetailViewController.h"
 #import "DemandStageChooseController.h"
 #import "AskPriceApi.h"
 #import "AskPriceModel.h"
 #import "QuotesModel.h"
+#import "DemandListSearchController.h"
 #import "LoginSqlite.h"
 #import "AskPriceDetailViewController.h"
 #import "QuotesDetailViewController.h"
@@ -33,11 +33,9 @@
     self.statusStr = @"";
     self.otherStr = @"-1";
     [self initNavi];
-    [self setUpSearchBarWithNeedTableView:NO isTableViewHeader:YES];
+    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[@"0",@"0",@"0",@"0"]];
     [self initTableView];
     [self initTableViewHeader];
-    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[@"0",@"0",@"0",@"0"]];
-//    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
 
     self.tableView.backgroundColor=AllBackDeepGrayColor;
 }
@@ -47,7 +45,7 @@
         if(!error){
             [self.showArr removeAllObjects];
             self.showArr = posts[0];
-            [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
+           [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
             [self.tableView reloadData];
         }
     } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:@"" noNetWork:nil];
@@ -63,6 +61,7 @@
 -(void)initNavi{
     [self initTitleViewWithTitle:@"全部需求列表"];
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
+    [self setRightBtnWithImage:[GetImagePath getImagePath:@"搜索按钮"]];
     self.needAnimaiton=YES;
 }
 
@@ -76,9 +75,9 @@
     CGSize size=[titleStr boundingRectWithSize:CGSizeMake(9999, 20) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
     titleLabel.frame=CGRectMake(0, 0, size.width, size.height);
     
-    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake( 0, 0, 15, 7)];
+    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake( 0, 0, 15, 9)];
     imageView.center=CGPointMake(CGRectGetMaxX(titleLabel.frame)+CGRectGetWidth(imageView.frame)*0.5+5, CGRectGetMidY(titleLabel.frame));
-    imageView.image=[GetImagePath getImagePath:@"导航下三角"];
+    imageView.image=[GetImagePath getImagePath:@"交易_页头箭头"];
     
     CGRect frame=titleLabel.frame;
     frame.size.width+=CGRectGetWidth(imageView.frame);
@@ -89,6 +88,12 @@
     [button addSubview:imageView];
     
     self.navigationItem.titleView=button;
+}
+
+-(void)rightBtnClicked{
+    UIViewController* vc=[[DemandListSearchController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    //[self presentViewController:vc animated:YES completion:nil];
 }
 
 -(void)selectDemandStage{
@@ -126,7 +131,7 @@
     }
     AskPriceModel *model = self.showArr[indexPath.row];
     cell.contents=@[model.a_invitedUser,model.a_productBigCategory,model.a_productCategory,model.a_remark];
-    cell.askPriceModel = model;
+
     return cell;
 }
 
@@ -158,19 +163,6 @@
             }
         }
     } tradeId:model.a_id noNetWork:nil];
-
-    return;
-    DemanDetailViewController* vc=[[DemanDetailViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-    
-    return;
-    if (indexPath.row%2) {
-        ChooseProductBigStage* vc=[[ChooseProductBigStage alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }else{
-        ChooseProductSmallStage* vc=[[ChooseProductSmallStage alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
 }
 
 -(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{

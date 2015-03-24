@@ -35,6 +35,7 @@
 -(void)initTableView;
 
 @property(nonatomic,strong)UISearchBar* searchBar;
+@property(nonatomic,weak)UIView* searchBarAnimationBackView;
 -(void)setUpSearchBarWithNeedTableView:(BOOL)needTableView isTableViewHeader:(BOOL)isTableViewHeader;
 
 @property(nonatomic,strong)NSMutableArray* sectionSelectedArray;

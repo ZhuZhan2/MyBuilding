@@ -615,6 +615,12 @@
 		5B55D57B1A3EB5FD00CAEF8B /* ForgetPasswordFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D57A1A3EB5FD00CAEF8B /* ForgetPasswordFirstController.m */; };
 		5B55D57E1A3EB63200CAEF8B /* ForgetPasswordSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D57D1A3EB63200CAEF8B /* ForgetPasswordSecondController.m */; };
 		5B55D5811A3EB64C00CAEF8B /* ForgetPasswordThirdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D5801A3EB64C00CAEF8B /* ForgetPasswordThirdController.m */; };
+		5B5773DB1AC1320400C17DBF /* DemandDetailAskPriceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773D71AC1320400C17DBF /* DemandDetailAskPriceController.m */; };
+		5B5773DC1AC1320400C17DBF /* DemandDetailProvidePriceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773DA1AC1320400C17DBF /* DemandDetailProvidePriceController.m */; };
+		5B5773DF1AC1335C00C17DBF /* DemandAskPriceDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773DE1AC1335C00C17DBF /* DemandAskPriceDetailController.m */; };
+		5B5773E21AC1338000C17DBF /* DemandAskPriceChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773E11AC1338000C17DBF /* DemandAskPriceChatController.m */; };
+		5B5773E51AC133BA00C17DBF /* DemandProvidePriceDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773E41AC133BA00C17DBF /* DemandProvidePriceDetailController.m */; };
+		5B5773E81AC133E400C17DBF /* DemandProvidePriceChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773E71AC133E400C17DBF /* DemandProvidePriceChatController.m */; };
 		5B5894F119FF9D24001CC09E /* EndEditingGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5894F019FF9D24001CC09E /* EndEditingGesture.m */; };
 		5B5A24DD1A4189CA0071BD90 /* 密码找回_03z.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5A24D71A4189CA0071BD90 /* 密码找回_03z.png */; };
 		5B5A24DE1A4189CA0071BD90 /* 密码找回_03z@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5A24D81A4189CA0071BD90 /* 密码找回_03z@2x.png */; };
@@ -622,6 +628,11 @@
 		5B5A24E01A4189CA0071BD90 /* 密码找回01z@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5A24DA1A4189CA0071BD90 /* 密码找回01z@2x.png */; };
 		5B5A24E11A4189CA0071BD90 /* 密码找回z.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5A24DB1A4189CA0071BD90 /* 密码找回z.png */; };
 		5B5A24E21A4189CA0071BD90 /* 密码找回z@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5A24DC1A4189CA0071BD90 /* 密码找回z@2x.png */; };
+		5B5CB9B11AC01639000CF505 /* 交易_页头箭头.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CB9AF1AC01639000CF505 /* 交易_页头箭头.png */; };
+		5B5CB9B21AC01639000CF505 /* 交易_页头箭头@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CB9B01AC01639000CF505 /* 交易_页头箭头@2x.png */; };
+		5B5CB9B51AC016AF000CF505 /* 搜索按钮.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CB9B31AC016AF000CF505 /* 搜索按钮.png */; };
+		5B5CB9B61AC016AF000CF505 /* 搜索按钮@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CB9B41AC016AF000CF505 /* 搜索按钮@2x.png */; };
+		5B5CB9B91AC01855000CF505 /* DemandListSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CB9B81AC01855000CF505 /* DemandListSearchController.m */; };
 		5B5E14531A71E85E0069B40D /* 注-----册.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5E14511A71E85E0069B40D /* 注-----册.png */; };
 		5B5E14541A71E85E0069B40D /* 注-----册@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5E14521A71E85E0069B40D /* 注-----册@2x.png */; };
 		5B5E14571A71F54F0069B40D /* 验-----证.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5E14551A71F54F0069B40D /* 验-----证.png */; };
@@ -729,6 +740,8 @@
 		5B86504A1ABFAF370096BEF0 /* DemandStageSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8650481ABFAF370096BEF0 /* DemandStageSelected.png */; };
 		5B86504B1ABFAF370096BEF0 /* DemandStageSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8650491ABFAF370096BEF0 /* DemandStageSelected@2x.png */; };
 		5B86504E1ABFE4830096BEF0 /* ReceiveApplyFreindModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B86504D1ABFE4830096BEF0 /* ReceiveApplyFreindModel.m */; };
+		5B8650511AC00B650096BEF0 /* 交易_箭头.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B86504F1AC00B650096BEF0 /* 交易_箭头.png */; };
+		5B8650521AC00B650096BEF0 /* 交易_箭头@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8650501AC00B650096BEF0 /* 交易_箭头@2x.png */; };
 		5B8A2CE91AAEE0AD00C8F9DE /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CC81AAEE0AD00C8F9DE /* AddFriendCell.m */; };
 		5B8A2CEA1AAEE0AD00C8F9DE /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CCA1AAEE0AD00C8F9DE /* AddFriendViewController.m */; };
 		5B8A2CEB1AAEE0AD00C8F9DE /* AddressBookFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CCD1AAEE0AD00C8F9DE /* AddressBookFriendCell.m */; };
@@ -1270,8 +1283,6 @@
 		D3D5DDD21A4C18940093E60F /* 主站－人脉04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5DDD01A4C18940093E60F /* 主站－人脉04@2x.png */; };
 		D3D6861A1ABAC43D005D9ED6 /* 交易_添加.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D686181ABAC43D005D9ED6 /* 交易_添加.png */; };
 		D3D6861B1ABAC43D005D9ED6 /* 交易_添加@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D686191ABAC43D005D9ED6 /* 交易_添加@2x.png */; };
-		D3D6861E1ABAC44E005D9ED6 /* 交易_箭头.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6861C1ABAC44E005D9ED6 /* 交易_箭头.png */; };
-		D3D6861F1ABAC44E005D9ED6 /* 交易_箭头@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6861D1ABAC44E005D9ED6 /* 交易_箭头@2x.png */; };
 		D3D686221ABAC665005D9ED6 /* 交易_删除.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D686201ABAC665005D9ED6 /* 交易_删除.png */; };
 		D3D686231ABAC665005D9ED6 /* 交易_删除@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D686211ABAC665005D9ED6 /* 交易_删除@2x.png */; };
 		D3D686271ABAC8C0005D9ED6 /* SearchContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D686261ABAC8C0005D9ED6 /* SearchContactViewController.m */; };
@@ -2281,6 +2292,18 @@
 		5B55D57D1A3EB63200CAEF8B /* ForgetPasswordSecondController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordSecondController.m; sourceTree = "<group>"; };
 		5B55D57F1A3EB64C00CAEF8B /* ForgetPasswordThirdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordThirdController.h; sourceTree = "<group>"; };
 		5B55D5801A3EB64C00CAEF8B /* ForgetPasswordThirdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordThirdController.m; sourceTree = "<group>"; };
+		5B5773D61AC1320400C17DBF /* DemandDetailAskPriceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemandDetailAskPriceController.h; sourceTree = "<group>"; };
+		5B5773D71AC1320400C17DBF /* DemandDetailAskPriceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemandDetailAskPriceController.m; sourceTree = "<group>"; };
+		5B5773D91AC1320400C17DBF /* DemandDetailProvidePriceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemandDetailProvidePriceController.h; sourceTree = "<group>"; };
+		5B5773DA1AC1320400C17DBF /* DemandDetailProvidePriceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemandDetailProvidePriceController.m; sourceTree = "<group>"; };
+		5B5773DD1AC1335C00C17DBF /* DemandAskPriceDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemandAskPriceDetailController.h; sourceTree = "<group>"; };
+		5B5773DE1AC1335C00C17DBF /* DemandAskPriceDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemandAskPriceDetailController.m; sourceTree = "<group>"; };
+		5B5773E01AC1338000C17DBF /* DemandAskPriceChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemandAskPriceChatController.h; sourceTree = "<group>"; };
+		5B5773E11AC1338000C17DBF /* DemandAskPriceChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemandAskPriceChatController.m; sourceTree = "<group>"; };
+		5B5773E31AC133BA00C17DBF /* DemandProvidePriceDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemandProvidePriceDetailController.h; sourceTree = "<group>"; };
+		5B5773E41AC133BA00C17DBF /* DemandProvidePriceDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemandProvidePriceDetailController.m; sourceTree = "<group>"; };
+		5B5773E61AC133E400C17DBF /* DemandProvidePriceChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemandProvidePriceChatController.h; sourceTree = "<group>"; };
+		5B5773E71AC133E400C17DBF /* DemandProvidePriceChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemandProvidePriceChatController.m; sourceTree = "<group>"; };
 		5B5894EF19FF9D24001CC09E /* EndEditingGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndEditingGesture.h; sourceTree = "<group>"; };
 		5B5894F019FF9D24001CC09E /* EndEditingGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndEditingGesture.m; sourceTree = "<group>"; };
 		5B5A24D71A4189CA0071BD90 /* 密码找回_03z.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码找回_03z.png"; sourceTree = "<group>"; };
@@ -2289,6 +2312,12 @@
 		5B5A24DA1A4189CA0071BD90 /* 密码找回01z@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码找回01z@2x.png"; sourceTree = "<group>"; };
 		5B5A24DB1A4189CA0071BD90 /* 密码找回z.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码找回z.png"; sourceTree = "<group>"; };
 		5B5A24DC1A4189CA0071BD90 /* 密码找回z@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码找回z@2x.png"; sourceTree = "<group>"; };
+		5B5CB9AF1AC01639000CF505 /* 交易_页头箭头.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_页头箭头.png"; sourceTree = "<group>"; };
+		5B5CB9B01AC01639000CF505 /* 交易_页头箭头@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_页头箭头@2x.png"; sourceTree = "<group>"; };
+		5B5CB9B31AC016AF000CF505 /* 搜索按钮.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索按钮.png"; sourceTree = "<group>"; };
+		5B5CB9B41AC016AF000CF505 /* 搜索按钮@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索按钮@2x.png"; sourceTree = "<group>"; };
+		5B5CB9B71AC01855000CF505 /* DemandListSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemandListSearchController.h; sourceTree = "<group>"; };
+		5B5CB9B81AC01855000CF505 /* DemandListSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemandListSearchController.m; sourceTree = "<group>"; };
 		5B5E14511A71E85E0069B40D /* 注-----册.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注-----册.png"; sourceTree = "<group>"; };
 		5B5E14521A71E85E0069B40D /* 注-----册@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注-----册@2x.png"; sourceTree = "<group>"; };
 		5B5E14551A71F54F0069B40D /* 验-----证.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "验-----证.png"; sourceTree = "<group>"; };
@@ -2433,6 +2462,8 @@
 		5B8650491ABFAF370096BEF0 /* DemandStageSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DemandStageSelected@2x.png"; sourceTree = "<group>"; };
 		5B86504C1ABFE4830096BEF0 /* ReceiveApplyFreindModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveApplyFreindModel.h; sourceTree = "<group>"; };
 		5B86504D1ABFE4830096BEF0 /* ReceiveApplyFreindModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveApplyFreindModel.m; sourceTree = "<group>"; };
+		5B86504F1AC00B650096BEF0 /* 交易_箭头.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_箭头.png"; sourceTree = "<group>"; };
+		5B8650501AC00B650096BEF0 /* 交易_箭头@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_箭头@2x.png"; sourceTree = "<group>"; };
 		5B8A2CC71AAEE0AD00C8F9DE /* AddFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendCell.h; sourceTree = "<group>"; };
 		5B8A2CC81AAEE0AD00C8F9DE /* AddFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendCell.m; sourceTree = "<group>"; };
 		5B8A2CC91AAEE0AD00C8F9DE /* AddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
@@ -3153,8 +3184,6 @@
 		D3D5DDD01A4C18940093E60F /* 主站－人脉04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主站－人脉04@2x.png"; sourceTree = "<group>"; };
 		D3D686181ABAC43D005D9ED6 /* 交易_添加.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_添加.png"; sourceTree = "<group>"; };
 		D3D686191ABAC43D005D9ED6 /* 交易_添加@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_添加@2x.png"; sourceTree = "<group>"; };
-		D3D6861C1ABAC44E005D9ED6 /* 交易_箭头.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_箭头.png"; sourceTree = "<group>"; };
-		D3D6861D1ABAC44E005D9ED6 /* 交易_箭头@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_箭头@2x.png"; sourceTree = "<group>"; };
 		D3D686201ABAC665005D9ED6 /* 交易_删除.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_删除.png"; sourceTree = "<group>"; };
 		D3D686211ABAC665005D9ED6 /* 交易_删除@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易_删除@2x.png"; sourceTree = "<group>"; };
 		D3D686251ABAC8C0005D9ED6 /* SearchContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchContactViewController.h; sourceTree = "<group>"; };
@@ -4778,6 +4807,10 @@
 		5B3B5D461AAD935E002FB444 /* 二期新图片 */ = {
 			isa = PBXGroup;
 			children = (
+				5B5CB9B31AC016AF000CF505 /* 搜索按钮.png */,
+				5B5CB9B41AC016AF000CF505 /* 搜索按钮@2x.png */,
+				5B5CB9AF1AC01639000CF505 /* 交易_页头箭头.png */,
+				5B5CB9B01AC01639000CF505 /* 交易_页头箭头@2x.png */,
 				5B8650481ABFAF370096BEF0 /* DemandStageSelected.png */,
 				5B8650491ABFAF370096BEF0 /* DemandStageSelected@2x.png */,
 				5B7E591C1ABC1E4B0063B400 /* priceX@2x.png */,
@@ -4790,10 +4823,10 @@
 				5B7E59151ABC0C7E0063B400 /* 交易_上传资质@2x.png */,
 				5B6373AF1ABAE3C8007CF1F8 /* 导航下三角.png */,
 				5B6373B01ABAE3C8007CF1F8 /* 导航下三角@2x.png */,
+				5B86504F1AC00B650096BEF0 /* 交易_箭头.png */,
+				5B8650501AC00B650096BEF0 /* 交易_箭头@2x.png */,
 				D3D686201ABAC665005D9ED6 /* 交易_删除.png */,
 				D3D686211ABAC665005D9ED6 /* 交易_删除@2x.png */,
-				D3D6861C1ABAC44E005D9ED6 /* 交易_箭头.png */,
-				D3D6861D1ABAC44E005D9ED6 /* 交易_箭头@2x.png */,
 				D3D686181ABAC43D005D9ED6 /* 交易_添加.png */,
 				D3D686191ABAC43D005D9ED6 /* 交易_添加@2x.png */,
 				5B6373721ABA66DD007CF1F8 /* 交易_采纳.png */,
@@ -4852,6 +4885,33 @@
 			path = "二期新图片";
 			sourceTree = "<group>";
 		};
+		5B5773D51AC1320400C17DBF /* AskPrice */ = {
+			isa = PBXGroup;
+			children = (
+				5B5773D61AC1320400C17DBF /* DemandDetailAskPriceController.h */,
+				5B5773D71AC1320400C17DBF /* DemandDetailAskPriceController.m */,
+				5B5773DD1AC1335C00C17DBF /* DemandAskPriceDetailController.h */,
+				5B5773DE1AC1335C00C17DBF /* DemandAskPriceDetailController.m */,
+				5B5773E01AC1338000C17DBF /* DemandAskPriceChatController.h */,
+				5B5773E11AC1338000C17DBF /* DemandAskPriceChatController.m */,
+			);
+			path = AskPrice;
+			sourceTree = "<group>";
+		};
+		5B5773D81AC1320400C17DBF /* ProvidePrice */ = {
+			isa = PBXGroup;
+			children = (
+				5B5773D91AC1320400C17DBF /* DemandDetailProvidePriceController.h */,
+				5B5773DA1AC1320400C17DBF /* DemandDetailProvidePriceController.m */,
+				5B5773E31AC133BA00C17DBF /* DemandProvidePriceDetailController.h */,
+				5B5773E41AC133BA00C17DBF /* DemandProvidePriceDetailController.m */,
+				5B5773E61AC133E400C17DBF /* DemandProvidePriceChatController.h */,
+				5B5773E71AC133E400C17DBF /* DemandProvidePriceChatController.m */,
+				5B7E59031ABBD9B90063B400 /* ProvidePriceInfo */,
+			);
+			path = ProvidePrice;
+			sourceTree = "<group>";
+		};
 		5B6289EA1AB8133800F30059 /* Choose */ = {
 			isa = PBXGroup;
 			children = (
@@ -4863,7 +4923,7 @@
 			path = Choose;
 			sourceTree = "<group>";
 		};
-		5B6373791ABA796D007CF1F8 /* ChatCell */ = {
+		5B6373791ABA796D007CF1F8 /* ChatController */ = {
 			isa = PBXGroup;
 			children = (
 				5B6373931ABAA7B0007CF1F8 /* RKDemandChatController.h */,
@@ -4871,10 +4931,11 @@
 				5B63737A1ABA796D007CF1F8 /* DemandChatViewCell.h */,
 				5B63737B1ABA796D007CF1F8 /* DemandChatViewCell.m */,
 			);
+			name = ChatController;
 			path = ChatCell;
 			sourceTree = "<group>";
 		};
-		5B63737C1ABA796D007CF1F8 /* DetailCell */ = {
+		5B63737C1ABA796D007CF1F8 /* DetailController */ = {
 			isa = PBXGroup;
 			children = (
 				5B6373901ABAA7A8007CF1F8 /* RKDemandDetailController.h */,
@@ -4888,6 +4949,7 @@
 				5B7E59201ABC33E70063B400 /* RKPointKit.h */,
 				5B7E59211ABC33E70063B400 /* RKPointKit.m */,
 			);
+			name = DetailController;
 			path = DetailCell;
 			sourceTree = "<group>";
 		};
@@ -4918,9 +4980,10 @@
 			children = (
 				5B6699271AB9490600C4B54F /* DemanDetailViewController.h */,
 				5B6699281AB9490600C4B54F /* DemanDetailViewController.m */,
-				5B63737C1ABA796D007CF1F8 /* DetailCell */,
-				5B6373791ABA796D007CF1F8 /* ChatCell */,
-				5B7E59031ABBD9B90063B400 /* ProvidePriceInfo */,
+				5B5773D51AC1320400C17DBF /* AskPrice */,
+				5B5773D81AC1320400C17DBF /* ProvidePrice */,
+				5B63737C1ABA796D007CF1F8 /* DetailController */,
+				5B6373791ABA796D007CF1F8 /* ChatController */,
 			);
 			path = DemandDetail;
 			sourceTree = "<group>";
@@ -4966,8 +5029,9 @@
 				5B7E590D1ABC08A70063B400 /* ProvidePriceUploadView.h */,
 				5B7E590E1ABC08A70063B400 /* ProvidePriceUploadView.m */,
 			);
-			path = ProvidePriceInfo;
-			sourceTree = "<group>";
+			name = ProvidePriceInfo;
+			path = ZhuZhan/Business/DemandDetail/ProvidePriceInfo;
+			sourceTree = SOURCE_ROOT;
 		};
 		5B8650411ABFA1510096BEF0 /* DemandStageChoose */ = {
 			isa = PBXGroup;
@@ -5184,6 +5248,8 @@
 				5B6289DF1AB7CC5A00F30059 /* AskPriceViewCell.m */,
 				5B6289E11AB806AB00F30059 /* AskPriceCellHeader.h */,
 				5B6289E21AB806AB00F30059 /* AskPriceCellHeader.m */,
+				5B5CB9B71AC01855000CF505 /* DemandListSearchController.h */,
+				5B5CB9B81AC01855000CF505 /* DemandListSearchController.m */,
 				5B8650411ABFA1510096BEF0 /* DemandStageChoose */,
 			);
 			path = AskPrice;
@@ -6309,6 +6375,7 @@
 				5B66993A1AB975A800C4B54F /* 大卡片阴影下@2x.png in Resources */,
 				D3D9C90D1A1343CF001D3A64 /* 主菜单02b@2x.png in Resources */,
 				04BC41E819D7E5B3006B5C7B /* 人脉－账号设置_03a@2x.png in Resources */,
+				5B5CB9B61AC016AF000CF505 /* 搜索按钮@2x.png in Resources */,
 				5B7E59161ABC0C7E0063B400 /* 交易_上传报价.png in Resources */,
 				04BC428C19D7E5B3006B5C7B /* 登录_11.png in Resources */,
 				5BE08E871A3586EA00495EEB /* 040001@2x.png in Resources */,
@@ -6539,6 +6606,7 @@
 				04BC40FB19D7E5B3006B5C7B /* 012.png in Resources */,
 				D3D4FB331A087A830033BB34 /* 公司－账号设置_03a-05.png in Resources */,
 				04BC413119D7E5B3006B5C7B /* controls_03@2x.png in Resources */,
+				5B5CB9B11AC01639000CF505 /* 交易_页头箭头.png in Resources */,
 				D35163EC1A67903F000051F4 /* 公司－公司组织_05a.png in Resources */,
 				04BC412D19D7E5B3006B5C7B /* bg001@2x.png in Resources */,
 				5B5E14581A71F54F0069B40D /* 验-----证@2x.png in Resources */,
@@ -6656,7 +6724,6 @@
 				04BC413519D7E5B3006B5C7B /* grayColor@2x.png in Resources */,
 				5BE08DF11A3586EA00495EEB /* 010047@2x.png in Resources */,
 				5BE08E831A3586EA00495EEB /* 030026@2x.png in Resources */,
-				D3D6861F1ABAC44E005D9ED6 /* 交易_箭头@2x.png in Resources */,
 				5BE08EAA1A3586EA00495EEB /* 040019.png in Resources */,
 				5BE08DB01A3586EA00495EEB /* 010015.png in Resources */,
 				5BE08DC41A3586EA00495EEB /* 010025.png in Resources */,
@@ -6748,7 +6815,6 @@
 				D3D6861B1ABAC43D005D9ED6 /* 交易_添加@2x.png in Resources */,
 				5BE08DD91A3586EA00495EEB /* 010035@2x.png in Resources */,
 				5BE08D9D1A3586EA00495EEB /* 010005@2x.png in Resources */,
-				D3D6861E1ABAC44E005D9ED6 /* 交易_箭头.png in Resources */,
 				5BE08E241A3586EA00495EEB /* 020009.png in Resources */,
 				5BE08E471A3586EA00495EEB /* 020026@2x.png in Resources */,
 				5BE08DA31A3586EA00495EEB /* 010008@2x.png in Resources */,
@@ -6798,6 +6864,7 @@
 				5BE08DDA1A3586EA00495EEB /* 010036.png in Resources */,
 				5B7AA6DA1A58D6E4000FBFF2 /* 筛选中03@2x.png in Resources */,
 				04BC42A119D7E5B3006B5C7B /* 语音搜索1_05@2x.png in Resources */,
+				5B8650511AC00B650096BEF0 /* 交易_箭头.png in Resources */,
 				5B6289E71AB80BC800F30059 /* 交易_有新消息@2x.png in Resources */,
 				5BE08E761A3586EA00495EEB /* 030020.png in Resources */,
 				04BC41A619D7E5B3006B5C7B /* 人脉－个人中心_06a@2x.png in Resources */,
@@ -6947,6 +7014,7 @@
 				04BC41EF19D7E5B3006B5C7B /* 全部项目_10.png in Resources */,
 				5BE08DD81A3586EA00495EEB /* 010035.png in Resources */,
 				5B5A24DD1A4189CA0071BD90 /* 密码找回_03z.png in Resources */,
+				5B5CB9B21AC01639000CF505 /* 交易_页头箭头@2x.png in Resources */,
 				04BC428519D7E5B3006B5C7B /* 登录1_03@2x.png in Resources */,
 				04BC412819D7E5B3006B5C7B /* bg-menuitem.png in Resources */,
 				5BE08DB21A3586EA00495EEB /* 010016.png in Resources */,
@@ -7011,6 +7079,7 @@
 				5BA523231AAEEB9D00F44223 /* 多人会话@2x.png in Resources */,
 				0426BFFD19922CE400CD8822 /* Images.xcassets in Resources */,
 				5BE08E0F1A3586EA00495EEB /* 010062@2x.png in Resources */,
+				5B8650521AC00B650096BEF0 /* 交易_箭头@2x.png in Resources */,
 				D3D9C91C1A13446B001D3A64 /* 主菜单02a.png in Resources */,
 				04BC432F19D7E5B3006B5C7B /* 项目－评论列表_03a@2x.png in Resources */,
 				04BC423019D7E5B3006B5C7B /* 动态详情_14a@2x.png in Resources */,
@@ -7063,6 +7132,7 @@
 				04BC420519D7E5B3006B5C7B /* 公司认证员工_08a.png in Resources */,
 				04BC41D119D7E5B3006B5C7B /* 人脉－发布动态_03a.png in Resources */,
 				04BC413E19D7E5B3006B5C7B /* icon.png in Resources */,
+				5B5CB9B51AC016AF000CF505 /* 搜索按钮.png in Resources */,
 				04BC418F19D7E5B3006B5C7B /* 人脉_57a.png in Resources */,
 				D3BAA7B31A58CB9A008E613F /* 人的详情88-01@2x.png in Resources */,
 				5B6289FF1AB81CFE00F30059 /* 单选已选@2x.png in Resources */,
@@ -7172,6 +7242,7 @@
 				D3D511AF1A70923E000104E9 /* NoProductView.m in Sources */,
 				0426C23319922D5A00CD8822 /* PanViewController.m in Sources */,
 				0426C28E19922D5A00CD8822 /* GPUImageLuminosityBlendFilter.m in Sources */,
+				5B5CB9B91AC01855000CF505 /* DemandListSearchController.m in Sources */,
 				0426C23019922D5A00CD8822 /* LoginViewController.m in Sources */,
 				0426C2F719922D5A00CD8822 /* CJSONSerializer.m in Sources */,
 				5B1AC4B019BEE4DC006CA4F4 /* CompanyDetailViewController.m in Sources */,
@@ -7193,6 +7264,7 @@
 				5BE08ED41A35900000495EEB /* FourthAnimationView.m in Sources */,
 				D3DBBC721AB914E20070DB98 /* AddCategoriesView.m in Sources */,
 				5B6289DD1AB7C10000F30059 /* RKTwoView.m in Sources */,
+				5B5773DC1AC1320400C17DBF /* DemandDetailProvidePriceController.m in Sources */,
 				5B3AD9E419F7CA7B008132B2 /* CompanyMemberCell.m in Sources */,
 				D3D4A2E21AAE98390071B3EA /* ChatMessageModel.m in Sources */,
 				0426C2A919922D5A00CD8822 /* GPUImageRawDataInput.m in Sources */,
@@ -7351,6 +7423,7 @@
 				042D9E3519B55AB800689C5D /* UIPlaceHolderTextView.m in Sources */,
 				0426C24B19922D5A00CD8822 /* GPUImageBrightnessFilter.m in Sources */,
 				042D9E1C19B559FC00689C5D /* AdvancedSearchViewController.m in Sources */,
+				5B5773DB1AC1320400C17DBF /* DemandDetailAskPriceController.m in Sources */,
 				5B13C70019B6AB0C008EA7A0 /* ProductDetailViewController.m in Sources */,
 				5B6373851ABA796D007CF1F8 /* RKMuchImageViews.m in Sources */,
 				D3D686271ABAC8C0005D9ED6 /* SearchContactViewController.m in Sources */,
@@ -7455,6 +7528,7 @@
 				042D9E1619B559FC00689C5D /* ProgramDetailViewController.m in Sources */,
 				0426C24219922D5A00CD8822 /* GPUImage3x3TextureSamplingFilter.m in Sources */,
 				0426C25419922D5A00CD8822 /* GPUImageColorBurnBlendFilter.m in Sources */,
+				5B5773DF1AC1335C00C17DBF /* DemandAskPriceDetailController.m in Sources */,
 				0426C2F919922D5A00CD8822 /* XHSoundManager.m in Sources */,
 				D3AD619C19AEEE30001FD483 /* LocateView.m in Sources */,
 				D3D321271A3EAE2E0009AEEA /* PooCodeView.m in Sources */,
@@ -7481,6 +7555,7 @@
 				5B6A1D6A1A4A67170072B916 /* ContactEGOView.m in Sources */,
 				0426C2F619922D5A00CD8822 /* CJSONScanner.m in Sources */,
 				0426C2EE19922D5A00CD8822 /* CDataScanner.m in Sources */,
+				5B5773E51AC133BA00C17DBF /* DemandProvidePriceDetailController.m in Sources */,
 				0426C28719922D5A00CD8822 /* GPUImageLinearBurnBlendFilter.m in Sources */,
 				D3D21EB71A36F9C700ADD653 /* LocalProjectModel.m in Sources */,
 				D3CF0D8D1AB81A7800D71CEB /* TopView.m in Sources */,
@@ -7570,6 +7645,7 @@
 				0426C2C719922D5A00CD8822 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
 				0426C2E619922D5A00CD8822 /* FaceppGroup.m in Sources */,
 				0426C2DF19922D5A00CD8822 /* FaceppAPI.m in Sources */,
+				5B5773E81AC133E400C17DBF /* DemandProvidePriceChatController.m in Sources */,
 				0426C30319922D5A00CD8822 /* TFIndicatorView.m in Sources */,
 				5B8A2CEA1AAEE0AD00C8F9DE /* AddFriendViewController.m in Sources */,
 				0426C27C19922D5A00CD8822 /* GPUImageHoughTransformLineDetector.m in Sources */,
@@ -7582,6 +7658,7 @@
 				0426C2CC19922D5A00CD8822 /* GPUImageToonFilter.m in Sources */,
 				0426C29419922D5A00CD8822 /* GPUImageMotionBlurFilter.m in Sources */,
 				5B628A0C1AB826AA00F30059 /* ChooseProductCellModel.m in Sources */,
+				5B5773E21AC1338000C17DBF /* DemandAskPriceChatController.m in Sources */,
 				D3AD60FC19AC7CC5001FD483 /* EGOImageView.m in Sources */,
 				5B8A2CF51AAEE0AD00C8F9DE /* ChooseContactsViewCell.m in Sources */,
 				D3AD619D19AEEE30001FD483 /* SinglePickerView.m in Sources */,

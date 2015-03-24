@@ -47,7 +47,17 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/trade/listBook?Status=%@&pageSize=10&pageIndex=%d&tab=%@&keyWords=%@",status,startIndex,other,keyWorks];;
+    
+    //keyWorks=@"张三";
+    //NSData
+    //keyWorks=@"";
+    //keyWorks=encodedString;
+    
+    NSString *urlStr = [NSString stringWithFormat:@"api/trade/listBook?status=%@&pageSize=10&pageIndex=%d&tab=%@&keyWords=%@",status,startIndex,other,keyWorks];;
+    
+    
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)urlStr, NULL, NULL,  kCFStringEncodingUTF8 ));
+    urlStr=encodedString;
     NSLog(@"=====%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);

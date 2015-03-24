@@ -18,6 +18,9 @@
 @property(nonatomic,strong)SearchBarTableViewController* searchBarTableViewController;
 
 @property(nonatomic)BOOL searchBarIsTableViewHeader;
+
+@property(nonatomic,weak)UIButton* searchBarBackBtn;
+@property(nonatomic)BOOL searchBarIsAnimating;
 @end
 
 @implementation ChatBaseViewController
@@ -30,6 +33,7 @@
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
 }
 
+//Navi相关
 -(void)setRightBtnWithImage:(UIImage*)image{
     if (!_rightBtn) {
         _rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
@@ -183,12 +187,19 @@
     [self.searchBarTableViewController reloadSearchBarTableViewData];
 }
 
+//搜索框动画
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    [self appearAnimation:searchBar];
+    if (!self.searchBarIsAnimating) {
+        self.searchBarIsAnimating=YES;
+        [self appearAnimation:searchBar];
+    }
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    [self disappearAnimation:searchBar];
+    if (self.searchBarIsAnimating) {
+        [self disappearAnimation:searchBar];
+        self.searchBarIsAnimating=NO;
+    }
 }
 
 -(void)appearAnimation:(UISearchBar *)searchBar{
@@ -197,18 +208,20 @@
     
     CGFloat height=65+CGRectGetHeight(self.stageChooseView.frame);
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, height)];
-    view.alpha=0;
-    view.backgroundColor=RGBCOLOR(223, 223, 223);
-    [self.navigationController.view addSubview:view];
+    self.searchBarAnimationBackView=view;
+    self.searchBarAnimationBackView.alpha=0;
+    self.searchBarAnimationBackView.backgroundColor=RGBCOLOR(223, 223, 223);
+    [self.navigationController.view addSubview:self.searchBarAnimationBackView];
     
     UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.searchBar.frame)+64+CGRectGetHeight(self.stageChooseView.frame), kScreenWidth, CGRectGetHeight(self.view.frame))];
     button.backgroundColor=[UIColor blackColor];
     [button addTarget:self action:@selector(backBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     button.alpha=0.5;
     [self.view addSubview:button];
+    self.searchBarBackBtn=button;
     
     [UIView animateWithDuration:0.3 animations:^{
-        view.alpha=1;
+        self.searchBarAnimationBackView.alpha=1;
         CGFloat ty=64-20+CGRectGetHeight(self.stageChooseView.frame);
         self.navigationController.view.transform=CGAffineTransformMakeTranslation(0, -ty);
     } completion:^(BOOL finished) {
@@ -219,17 +232,16 @@
 -(void)disappearAnimation:(UISearchBar *)searchBar{
     searchBar.text=@"";
     self.searchBar.showsCancelButton=NO;
-    self.navigationController.navigationBar.barTintColor=RGBCOLOR(85, 103, 166);
+    //self.navigationController.navigationBar.barTintColor=RGBCOLOR(85, 103, 166);
     [self searchBarTableViewDisppear];
     
     [UIView animateWithDuration:0.3 animations:^{
-        self.navigationController.view.transform=CGAffineTransformMakeTranslation(0, 0);
-        [(UIView*)self.navigationController.view.subviews.lastObject setAlpha:0];
-        self.view.alpha=1;
+        self.navigationController.view.transform=CGAffineTransformIdentity;
+        self.searchBarAnimationBackView.alpha=0;
     } completion:^(BOOL finished) {
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        [self.navigationController.view.subviews.lastObject removeFromSuperview];
-        [self.view.subviews.lastObject removeFromSuperview];
+        [self.searchBarAnimationBackView removeFromSuperview];
+        [self.searchBarBackBtn removeFromSuperview];
         [searchBar resignFirstResponder];
     }];
 }
@@ -238,13 +250,11 @@
     if (!self.searchBarTableViewController.view.superview) {
         [self searchBarTableViewAppear];
     }
+    [searchBar resignFirstResponder];
 }
 
 -(void)searchBarTableViewAppear{
-    //CGPoint point=self.searchBarTableViewController.view.center;
-    //point.y+=(64+CGRectGetHeight(self.searchBar.frame));
     self.searchBarTableViewController.view.transform=CGAffineTransformMakeTranslation(0, 64+self.searchBar.frame.size.height);
-    //self.searchBarTableViewController.view.center=point;
     [self.view addSubview:self.searchBarTableViewController.view];
 }
 

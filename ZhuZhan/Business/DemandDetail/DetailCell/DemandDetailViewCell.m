@@ -22,6 +22,7 @@
 
 @property(nonatomic,strong)UIButton* leftBtn;
 @property(nonatomic,strong)UIButton* rightBtn;
+@property(nonatomic)DemandControllerCategory category;
 @end
 #define Font(size) [UIFont systemFontOfSize:size]
 #define SideDistance 26
@@ -78,9 +79,10 @@
     return height;
 }
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier delegate:(id<DemandDetailViewCellDelegate>)delegate{
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier delegate:(id<DemandDetailViewCellDelegate>)delegate category:(DemandControllerCategory)category{
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.delegate=delegate;
+        self.category=category;
         [self setUp];
     
     }
@@ -173,7 +175,7 @@
 -(UIButton *)rightBtn{
     if (!_rightBtn) {
         _rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 72, 26)];
-        [_rightBtn setBackgroundImage:[GetImagePath getImagePath:arc4random()%2?@"报价":@"交易_采纳"] forState:UIControlStateNormal];
+        [_rightBtn setBackgroundImage:[GetImagePath getImagePath:self.category==DemandControllerCategoryAskPriceController?@"交易_采纳":@"报价"] forState:UIControlStateNormal];
         [_rightBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     }
     return _rightBtn;

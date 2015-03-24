@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum DemandControllerCategory{
+    DemandControllerCategoryAskPriceController,
+    DemandControllerCategoryProvidePriceController
+}DemandControllerCategory;
+
 @protocol DemandDetailViewCellDelegate <NSObject>
 -(void)leftBtnClickedWithIndexPath:(NSIndexPath*)indexPath;
 -(void)rightBtnClickedWithIndexPath:(NSIndexPath*)indexPath;
@@ -30,5 +35,5 @@
 @property(nonatomic,strong)DemandDetailCellModel* model;
 @property(nonatomic,weak)id<DemandDetailViewCellDelegate>delegate;
 +(CGFloat)carculateTotalHeightWithModel:(DemandDetailCellModel*)model;
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier delegate:(id<DemandDetailViewCellDelegate>)delegate;
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier delegate:(id<DemandDetailViewCellDelegate>)delegate category:(DemandControllerCategory)category;
 @end
