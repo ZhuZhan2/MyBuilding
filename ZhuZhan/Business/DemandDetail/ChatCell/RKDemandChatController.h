@@ -9,7 +9,10 @@
 #import "ChatBaseViewController.h"
 #import "AskPriceModel.h"
 #import "QuotesModel.h"
-@interface RKDemandChatController : ChatBaseViewController
+@interface RKDemandChatController : ChatBaseViewController{
+@protected
+    NSMutableArray* _chatModels;
+}
 @property(nonatomic,strong)NSMutableArray* chatModels;
 @property(nonatomic,strong)AskPriceModel *askPriceModel;
 @property(nonatomic,strong)QuotesModel *quotesModel;

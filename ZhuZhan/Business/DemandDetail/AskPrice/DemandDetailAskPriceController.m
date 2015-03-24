@@ -10,7 +10,7 @@
 #import "DemandAskPriceDetailController.h"
 #import "DemandAskPriceChatController.h"
 @interface DemandDetailAskPriceController ()
-@property(nonatomic,strong)NSMutableArray *showArr;
+
 @end
 
 @implementation DemandDetailAskPriceController
