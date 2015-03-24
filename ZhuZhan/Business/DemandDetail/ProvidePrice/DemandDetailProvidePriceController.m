@@ -7,7 +7,8 @@
 //
 
 #import "DemandDetailProvidePriceController.h"
-
+#import "DemandProvidePriceDetailController.h"
+#import "DemandProvidePriceChatController.h"
 @interface DemandDetailProvidePriceController ()
 
 @end
@@ -16,6 +17,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+}
+
+-(RKDemandDetailController *)detailController{
+    if (!_detailController) {
+        _detailController=[[DemandProvidePriceDetailController alloc]init];
+        _detailController.superViewController=self;
+    }
+    return _detailController;
+}
+
+-(RKDemandChatController *)chatController{
+    if (!_chatController) {
+        _chatController=[[DemandProvidePriceChatController alloc]init];
+    }
+    return _chatController;
 }
 @end
