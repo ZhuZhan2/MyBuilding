@@ -249,7 +249,8 @@
 
 -(UIView *)fourthView{
     if (!_fourthView) {
-        _fourthView=[RKUpAndDownView upAndDownViewWithUpContent:@"需求描述" downContent:self.askPriceModel.a_remark topDistance:20 bottomDistance:20 maxWidth:kScreenWidth-50];
+        _fourthView=[RKUpAndDownView upAndDownViewWithUpContent:@"询价说明" downContent:self.askPriceModel.a_remark topDistance:20 bottomDistance:20 maxWidth:kScreenWidth-50];
+
     }
     return _fourthView;
 }

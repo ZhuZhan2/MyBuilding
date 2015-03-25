@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface ChooseProductCellModel : NSObject
+@property(nonatomic,copy)NSString *aid;
 @property(nonatomic,copy)NSString* content;
 @property(nonatomic)BOOL isHighlight;
 @end

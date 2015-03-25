@@ -8,7 +8,8 @@
 
 #import "ChooseProductSmallStage.h"
 #import "ChooseProductSmallCell.h"
-
+#import "CategoryModel.h"
+#import "AskPriceApi.h"
 @interface ChooseProductSmallStage ()
 @property(nonatomic,strong)NSMutableArray* models;
 @property(nonatomic,strong)NSMutableArray* selectedArr;
@@ -19,7 +20,24 @@
     [super viewDidLoad];
     [self initNavi];
     //[self setUpSearchBarWithNeedTableView:YES];
+    [self loadList];
     [self initTableView];
+}
+
+-(void)loadList{
+    [AskPriceApi GetChildsListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            for (int i=0; i<posts.count; i++) {
+                CategoryModel *categoryModel = posts[i];
+                ChooseProductCellModel* model=[[ChooseProductCellModel alloc]init];
+                model.content=categoryModel.a_name;
+                model.aid = categoryModel.a_id;
+                [self.models addObject:model];
+                [self.selectedArr addObject:@""];
+            }
+            [self.tableView reloadData];
+        }
+    } parentId:self.categoryId noNetWork:nil];
 }
 
 -(void)initNavi{
@@ -48,12 +66,6 @@
 -(NSMutableArray *)models{
     if (!_models) {
         _models=[NSMutableArray array];
-        for (int i=0; i<12; i++) {
-            ChooseProductCellModel* model=[[ChooseProductCellModel alloc]init];
-            model.content=@"得得得";
-            [_models addObject:model];
-            [self.selectedArr addObject:@""];
-        }
     }
     return _models;
 }
@@ -79,7 +91,7 @@
     ChooseProductCellModel* model=self.models[indexPath.row];
     model.isHighlight=!model.isHighlight;
     if(model.isHighlight){
-        [self.selectedArr insertObject:model.content atIndex:indexPath.row];
+        [self.selectedArr insertObject:model atIndex:indexPath.row];
     }else{
         [self.selectedArr removeObjectAtIndex:indexPath.row];
     }

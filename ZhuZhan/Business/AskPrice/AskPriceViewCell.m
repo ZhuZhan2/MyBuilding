@@ -73,7 +73,7 @@
     RKTwoView* view1=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:userType rightContent:self.contents[0] needAuto:NO];
     RKTwoView* view2=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"产品大类" rightContent:self.contents[1] needAuto:NO];
     RKTwoView* view3=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"产品分类" rightContent:self.contents[2] needAuto:NO];
-    RKTwoView* view4=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"需求描述" rightContent:self.contents[3] needAuto:YES];
+    RKTwoView* view4=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"询价说明" rightContent:self.contents[3] needAuto:YES];
     
     CGRect frame=view1.frame;
     frame.origin.y+=mainViewTopDistance;
@@ -103,6 +103,7 @@
     [self setUpMainViewWithUserType:isAskPrice?@"参与用户":@"求购用户"];
     
     NSString* typeName=[contents[4] isEqualToString:@"0"]?@"询价":@"报价";
+    NSLog(@"==>%@",contents);
     NSString* stage=contents[5];
     UIColor* stageColor;
     if ([stage isEqualToString:@"进行中"]) {

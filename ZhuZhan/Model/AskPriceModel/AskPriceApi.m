@@ -11,6 +11,8 @@
 #import "LoginSqlite.h"
 #import "AskPriceModel.h"
 #import "QuotesModel.h"
+#import "UserOrCompanyModel.h"
+#import "CategoryModel.h"
 @implementation AskPriceApi
 + (NSURLSessionDataTask *)PostAskPriceWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
@@ -341,7 +343,42 @@
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             for(NSDictionary *item in JSON[@"data"]){
-                
+                CategoryModel *model = [[CategoryModel alloc] init];
+                [model setDict:item];
+                [mutablePosts addObject:model];
+            }
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)GetUserOrCompanyListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block keyWorks:(NSString *)keyWorks noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/getUserOrCompanyList?keywords=%@",keyWorks];
+    NSLog(@"=====%@",urlStr);
+    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            for(NSDictionary *item in JSON[@"data"]){
+                UserOrCompanyModel *model = [[UserOrCompanyModel alloc] init];
+                [model setDict:item];
+                [mutablePosts addObject:model];
             }
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);

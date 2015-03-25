@@ -11,10 +11,12 @@
 #import "HomePageViewController.h"
 #import "EndEditingGesture.h"
 #import "SearchContactTableViewCell.h"
+#import "AskPriceApi.h"
 @interface SearchContactViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UISearchBar *searchBar;
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *showArr;
+@property(nonatomic,strong)NSString *keyWorks;
 @end
 
 @implementation SearchContactViewController
@@ -29,7 +31,8 @@
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.title=@"参与用户";
     
-    self.showArr = [[NSMutableArray alloc] initWithObjects:@"参与用户一",@"参与用户二",@"参与用户三",@"参与用户四",@"参与用户五", nil];
+    self.showArr = [[NSMutableArray alloc] init];
+    self.keyWorks = @"";
     
     [self.view addSubview:self.searchBar];
     [self.view addSubview:self.tableView];
@@ -52,12 +55,22 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)loadList{
+    [AskPriceApi GetUserOrCompanyListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.showArr = posts;
+            [self.tableView reloadData];
+        }
+    } keyWorks:self.keyWorks noNetWork:nil];
+}
+
 -(UISearchBar *)searchBar{
     if(!_searchBar){
         _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 64, 320, 43)];
         _searchBar.placeholder = @"搜索";
         _searchBar.backgroundImage=[self imageWithColor:RGBCOLOR(223, 223, 223)];;
         _searchBar.delegate=self;
+        _searchBar.returnKeyType = UIReturnKeySearch;
     }
     return _searchBar;
 }
@@ -89,6 +102,19 @@
     return YES;
 }
 
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    self.keyWorks = searchBar.text;
+    [self loadList];
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    searchBar.showsCancelButton = NO;
+    searchBar.text = @"";
+    [searchBar resignFirstResponder];
+    [self.showArr removeAllObjects];
+    [self.tableView reloadData];
+}
+
 -(UIImage*)imageWithColor:(UIColor *)color{
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
     UIGraphicsBeginImageContext(rect.size);
@@ -107,7 +133,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.showArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -117,7 +143,8 @@
     if(!cell){
         cell = [[SearchContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.companyNameStr = self.showArr[indexPath.row];
+    UserOrCompanyModel *model = self.showArr[indexPath.row];
+    cell.companyNameStr = model.a_loginName;
     cell.selectionStyle = NO;
     return cell;
 }

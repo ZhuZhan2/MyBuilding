@@ -17,6 +17,7 @@
 
 @implementation RKCamera
 +(id)cameraWithType:(UIImagePickerControllerSourceType)sourceType allowEdit:(BOOL)allowEdit deleate:(id<RKCameraDelegate>)delegate presentViewController:(UIViewController *)presentViewController{
+    
     RKCamera* camera=[[RKCamera alloc]init];
     camera.delegate=delegate;
     camera.presentViewController=presentViewController;

@@ -12,4 +12,5 @@
 @end
 @interface ChooseProductSmallStage : ChatBaseViewController
 @property(nonatomic,weak)id<ChooseProductSmallStageDelegate>delegate;
+@property(nonatomic,strong)NSString *categoryId;
 @end
