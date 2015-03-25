@@ -139,6 +139,7 @@
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            [mutablePosts addObject:JSON[@"data"][@"id"]];
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
@@ -302,7 +303,7 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)AddImageWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dataArr:(NSMutableArray *)dataArr dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
++ (NSURLSessionDataTask *)AddAttachmentWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dataArr:(NSMutableArray *)dataArr dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
             noNetWork();
@@ -310,6 +311,7 @@
         return nil;
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/attachment/addAttachment"];
+    NSLog(@"=====%@\ndata=%@",dic,dataArr[0]);
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [dataArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSLog(@"=====>%lu",(unsigned long)idx);

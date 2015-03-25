@@ -13,6 +13,7 @@
 @property(nonatomic,strong)UILabel* titleLabel;
 @property(nonatomic,strong)UILabel* noDataLabel;
 @property(nonatomic)CGFloat contentWidth;
+@property(nonatomic,copy)NSString* title;
 
 @property(nonatomic,strong)NSMutableArray* singleImageViews;
 @end
@@ -50,9 +51,10 @@
     return newPoints;
 }
 
-+(RKMuchImageViews *)muchImageViewsWithWidth:(CGFloat)width{
++(RKMuchImageViews*)muchImageViewsWithWidth:(CGFloat)width title:(NSString*)title{
     RKMuchImageViews* muchImageViews=[[RKMuchImageViews alloc]initWithFrame:CGRectZero];
     muchImageViews.contentWidth=width;
+    muchImageViews.title=title;
     [muchImageViews addSubview:muchImageViews.titleLabel];
     return muchImageViews;
 }
@@ -67,7 +69,7 @@
     CGRect frame;
     CGSize size;
     
-    self.titleLabel.text=@"报价附件";
+    self.titleLabel.text=self.title;
     self.titleLabel.textColor=self.models.count?[UIColor blackColor]:AllNoDataColor;
     size=[RKMuchImageViews carculateLabel:self.titleLabel width:self.contentWidth];
     frame=CGRectMake(0, height, size.width, size.height);

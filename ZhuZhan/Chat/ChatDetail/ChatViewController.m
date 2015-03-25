@@ -23,12 +23,8 @@
     [self initChatToolBar];
     
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:11 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
-    
+    [self addKeybordNotification];
 }
-
-
-
-
 
 -(void)initNavi{
     self.title=@"用户名";
