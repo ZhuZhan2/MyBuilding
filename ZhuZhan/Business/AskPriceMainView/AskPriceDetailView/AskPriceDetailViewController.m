@@ -171,7 +171,7 @@
         }
         cell.selectionStyle = NO;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 17, 180, 16)];
-        label.text = @"需求描述";
+        label.text = @"询价说明";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont systemFontOfSize:16];
         [cell.contentView addSubview:label];

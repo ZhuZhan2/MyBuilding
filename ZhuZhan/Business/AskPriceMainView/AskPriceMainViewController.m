@@ -21,6 +21,7 @@
 #import "LoginSqlite.h"
 #import "LoginViewController.h"
 #import "AskPriceViewController.h"
+#import "ChooseProductCellModel.h"
 @interface AskPriceMainViewController ()<AddContactViewDelegate,UITableViewDelegate,UITableViewDataSource,AddMarkViewDelegate,SearchContactViewDelegate,ChooseProductBigStageDelegate,ChooseProductSmallStageDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)TopView *topView;
 @property(nonatomic,strong)NSMutableArray *laberStrArr;
@@ -34,9 +35,11 @@
 @property(nonatomic,strong)AddClassificationView *addClassificationView;
 @property(nonatomic)int addClassificationViewHeight;
 @property(nonatomic,strong)NSString *classifcationStr;
-@property(nonatomic)BOOL isSelect2;
 @property(nonatomic,strong)AddMarkView *addMarkView;
 @property(nonatomic,strong)NSString *remarkStr;
+@property(nonatomic,strong)NSMutableArray *userIdArr;
+@property(nonatomic,strong)NSString *categoryId;
+@property(nonatomic,strong)NSString *classifcationIdStr;
 @end
 
 @implementation AskPriceMainViewController
@@ -61,14 +64,13 @@
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
     self.laberStrArr = [[NSMutableArray alloc] init];
-    //[self.view addSubview:self.topView];
+    self.userIdArr = [[NSMutableArray alloc] init];
     [self.view addSubview:self.tableView];
     self.viewArr = [[NSMutableArray alloc] init];
     [self.viewArr addObject:self.addContactView];
     [self.viewArr addObject:self.addCategoriesView];
     [self.viewArr addObject:self.addClassificationView];
     [self.viewArr addObject:self.addMarkView];
-    self.isSelect2 = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -103,36 +105,32 @@
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }else{
-        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        [dic setValue:@"4dab083a-3f09-4854-839a-f45995b6047f" forKey:@"invitedUser"];
-        [dic setValue:self.categoryStr forKey:@"productBigCategory"];
-        [dic setValue:[self.classifcationStr stringByReplacingOccurrencesOfString:@"、" withString:@","] forKey:@"productCategory"];
-        [dic setValue:self.remarkStr forKey:@"remark"];
-        [AskPriceApi PostAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发起成功是否去列表查看" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-                [alertView show];
-            }
-        } dic:dic noNetWork:nil];
-            
-//        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-//        [dic setObject:@"4e05abd0-db44-4b32-a6f3-393952cc1ecc" forKey:@"tradeId"];
-//        [dic setValue:@"88B756B709D6" forKey:@"tradeCode"];
-//        [dic setValue:@"岳志强fuck 2次" forKey:@"contents"];
-//        [dic setValue:@"d859009b-51b4-4415-ada1-d5ea09ca4130:ef190673-0f57-4a78-aa07-e86d3edf2262" forKey:@"tradeUserAndCommentUser"];
-//        [AskPriceApi AddCommentWithBlock:^(NSMutableArray *posts, NSError *error) {
-//            if(!error){
-//            
-//            }
-//        } dic:dic noNetWork:nil];
+        NSMutableString *str = [[NSMutableString alloc] init];
+        [self.userIdArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [str appendString:[NSString stringWithFormat:@"%@,",obj]];
+        }];
         
-//        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-//        [dic setObject:@"3e18a108-7dca-4c29-9d0a-3fd2a41a8f1b" forKey:@"id"];
-//        [AskPriceApi AcceptQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
-//            if(!error){
-//            
-//            }
-//        } dic:dic noNetWork:nil];
+        if(str.length !=0){
+            if(self.categoryStr == nil){
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请选择大类" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+                return;
+            }
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setValue:[str substringWithRange:NSMakeRange(0,str.length-1)] forKey:@"invitedUser"];
+            [dic setValue:self.categoryId forKey:@"productBigCategory"];
+            [dic setValue:self.classifcationIdStr forKey:@"productCategory"];
+            [dic setValue:self.remarkStr forKey:@"remark"];
+            [AskPriceApi PostAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发起成功是否去列表查看" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                    [alertView show];
+                }
+            } dic:dic noNetWork:nil];
+        }else{
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请选择参与用户" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
     }
 }
 
@@ -222,6 +220,7 @@
 
 -(void)closeContent:(NSInteger)index{
     [self.laberStrArr removeObjectAtIndex:index];
+    [self.userIdArr removeObjectAtIndex:index];
     [self.addContactView removeFromSuperview];
     self.addContactView = nil;
     [self.viewArr replaceObjectAtIndex:0 withObject:self.addContactView];
@@ -249,6 +248,7 @@
         if(self.categoryStr !=nil){
             ChooseProductSmallStage *classificationView = [[ChooseProductSmallStage alloc] init];
             classificationView.delegate = self;
+            classificationView.categoryId = self.categoryId;
             [self.navigationController pushViewController:classificationView animated:YES];
         }else{
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请先选择产品大类" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -291,16 +291,18 @@
     self.remarkStr = str;
 }
 
--(void)selectContact:(NSString *)str{
+-(void)selectContact:(UserOrCompanyModel *)model{
     [self.addContactView removeFromSuperview];
     self.addContactView = nil;
-    [self.laberStrArr insertObject:str atIndex:0];
+    [self.laberStrArr insertObject:model.a_loginName atIndex:0];
+    [self.userIdArr insertObject:model.a_loginId atIndex:0];
     [self.viewArr replaceObjectAtIndex:0 withObject:self.addContactView];
     [self.tableView reloadData];
 }
 
--(void)chooseProductBigStage:(NSString *)str{
+-(void)chooseProductBigStage:(NSString *)str catroyId:(NSString *)catroyId{
     self.categoryStr = str;
+    self.categoryId = catroyId;
     [self.addCategoriesView removeFromSuperview];
     self.addCategoriesView = nil;
     [self.viewArr replaceObjectAtIndex:1 withObject:self.addCategoriesView];
@@ -309,12 +311,18 @@
 
 -(void)chooseProductSmallStage:(NSArray *)arr{
     NSMutableString *str = [[NSMutableString alloc] init];
-    [arr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [str appendString:[NSString stringWithFormat:@"%@、",obj]];
+    NSMutableString *idStr = [[NSMutableString alloc] init];
+    [arr enumerateObjectsUsingBlock:^(ChooseProductCellModel *cellModel, NSUInteger idx, BOOL *stop) {
+        [str appendString:[NSString stringWithFormat:@"%@、",cellModel.content]];
+        [idStr appendString:[NSString stringWithFormat:@"%@,",cellModel.aid]];
     }];
     if(str.length !=0){
         self.classifcationStr = [str substringWithRange:NSMakeRange(0,str.length-1)];
     }
+    if(idStr.length !=0){
+        self.classifcationIdStr = [idStr substringWithRange:NSMakeRange(0,str.length-1)];
+    }
+    
     [self.addClassificationView removeFromSuperview];
     self.addClassificationView = nil;
     [self.viewArr replaceObjectAtIndex:2 withObject:self.addClassificationView];

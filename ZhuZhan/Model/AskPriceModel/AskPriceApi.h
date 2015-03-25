@@ -41,4 +41,7 @@
 
 //获取分类
 + (NSURLSessionDataTask *)GetChildsListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block parentId:(NSString *)parentId noNetWork:(void(^)())noNetWork;
+
+//获取用户及公司列表
++ (NSURLSessionDataTask *)GetUserOrCompanyListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block keyWorks:(NSString *)keyWorks noNetWork:(void(^)())noNetWork;
 @end

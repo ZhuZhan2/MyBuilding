@@ -1120,6 +1120,8 @@
 		D300F40C1A84AE7A002AFAC0 /* mapdef@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D300F40A1A84AE7A002AFAC0 /* mapdef@2x.png */; };
 		D3049A681A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3049A671A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m */; };
 		D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */; };
+		D3376CFB1AC2549C00738B5F /* UserOrCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376CFA1AC2549C00738B5F /* UserOrCompanyModel.m */; };
+		D3376CFE1AC25D6100738B5F /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376CFD1AC25D6100738B5F /* CategoryModel.m */; };
 		D35163E01A67903F000051F4 /* 产品－产品详情_03a.png in Resources */ = {isa = PBXBuildFile; fileRef = D35163D01A67903F000051F4 /* 产品－产品详情_03a.png */; };
 		D35163E11A67903F000051F4 /* 产品－产品详情_03a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D35163D11A67903F000051F4 /* 产品－产品详情_03a@2x.png */; };
 		D35163E21A67903F000051F4 /* 产品－列表_10a.png in Resources */ = {isa = PBXBuildFile; fileRef = D35163D21A67903F000051F4 /* 产品－列表_10a.png */; };
@@ -2939,6 +2941,10 @@
 		D3049A671A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterCompanyTableViewCell.m; sourceTree = "<group>"; };
 		D32C88CD19D79E0800D1BA1D /* PersonalCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterModel.h; sourceTree = "<group>"; };
 		D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterModel.m; sourceTree = "<group>"; };
+		D3376CF91AC2549C00738B5F /* UserOrCompanyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserOrCompanyModel.h; sourceTree = "<group>"; };
+		D3376CFA1AC2549C00738B5F /* UserOrCompanyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserOrCompanyModel.m; sourceTree = "<group>"; };
+		D3376CFC1AC25D6100738B5F /* CategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryModel.h; sourceTree = "<group>"; };
+		D3376CFD1AC25D6100738B5F /* CategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryModel.m; sourceTree = "<group>"; };
 		D35163D01A67903F000051F4 /* 产品－产品详情_03a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "产品－产品详情_03a.png"; sourceTree = "<group>"; };
 		D35163D11A67903F000051F4 /* 产品－产品详情_03a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "产品－产品详情_03a@2x.png"; sourceTree = "<group>"; };
 		D35163D21A67903F000051F4 /* 产品－列表_10a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "产品－列表_10a.png"; sourceTree = "<group>"; };
@@ -6229,6 +6235,10 @@
 				D3DA3D301ABBECAC001D1EEA /* AskPriceModel.m */,
 				D3D8FEAB1ABD489E0096B7FD /* QuotesModel.h */,
 				D3D8FEAC1ABD489E0096B7FD /* QuotesModel.m */,
+				D3376CF91AC2549C00738B5F /* UserOrCompanyModel.h */,
+				D3376CFA1AC2549C00738B5F /* UserOrCompanyModel.m */,
+				D3376CFC1AC25D6100738B5F /* CategoryModel.h */,
+				D3376CFD1AC25D6100738B5F /* CategoryModel.m */,
 			);
 			path = AskPriceModel;
 			sourceTree = "<group>";
@@ -7650,8 +7660,10 @@
 				0426C24819922D5A00CD8822 /* GPUImageAverageLuminanceThresholdFilter.m in Sources */,
 				0426C2C719922D5A00CD8822 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
 				0426C2E619922D5A00CD8822 /* FaceppGroup.m in Sources */,
+				D3376CFE1AC25D6100738B5F /* CategoryModel.m in Sources */,
 				0426C2DF19922D5A00CD8822 /* FaceppAPI.m in Sources */,
 				5B5773E81AC133E400C17DBF /* DemandProvidePriceChatController.m in Sources */,
+				D3376CFB1AC2549C00738B5F /* UserOrCompanyModel.m in Sources */,
 				0426C30319922D5A00CD8822 /* TFIndicatorView.m in Sources */,
 				5B8A2CEA1AAEE0AD00C8F9DE /* AddFriendViewController.m in Sources */,
 				0426C27C19922D5A00CD8822 /* GPUImageHoughTransformLineDetector.m in Sources */,

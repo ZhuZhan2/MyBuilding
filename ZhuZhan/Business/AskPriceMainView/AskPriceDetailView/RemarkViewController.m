@@ -60,7 +60,7 @@
 -(UILabel *)titleLabel{
     if(!_titleLabel){
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(26, 80, 180, 16)];
-        _titleLabel.text = @"需求描述";
+        _titleLabel.text = @"询价说明";
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.font = [UIFont systemFontOfSize:16];
     }

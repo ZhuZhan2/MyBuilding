@@ -108,7 +108,7 @@
         [view GetHeightWithBlock:^(double height) {
             _classificationView.frame = CGRectMake(0, 0, 320, height);
             self.remarkViewHeight = height;
-        } str:self.askPriceModel.a_remark name:@"需求描述"];
+        } str:self.askPriceModel.a_remark name:@"询价说明"];
         _remarkView = view;
     }
     return _remarkView;

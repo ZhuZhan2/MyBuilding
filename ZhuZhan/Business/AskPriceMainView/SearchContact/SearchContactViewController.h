@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserOrCompanyModel.h"
 @protocol SearchContactViewDelegate <NSObject>
--(void)selectContact:(NSString *)str;
+-(void)selectContact:(UserOrCompanyModel *)model;
 @end
 
 @interface SearchContactViewController : UIViewController
