@@ -103,6 +103,7 @@
     [self setUpMainViewWithUserType:isAskPrice?@"参与用户":@"求购用户"];
     
     NSString* typeName=[contents[4] isEqualToString:@"0"]?@"询价":@"报价";
+    NSLog(@"==>%@",contents);
     NSString* stage=contents[5];
     UIColor* stageColor;
     if ([stage isEqualToString:@"进行中"]) {
