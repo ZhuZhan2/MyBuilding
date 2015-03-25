@@ -23,6 +23,7 @@
     [super viewDidLoad];
     self.statusStr = @"";
     self.otherStr = @"-1";
+    self.view.backgroundColor=[UIColor whiteColor];
     [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
     [self setSearchBarTableViewBackColor:AllBackDeepGrayColor];
     [self.searchBar becomeFirstResponder];
@@ -93,12 +94,17 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self appearAnimation:self.searchBar];
+    [self viewAppearOrDisappear:YES];
+}
+
+-(void)viewAppearOrDisappear:(BOOL)isAppear{
+    self.navigationController.navigationBarHidden=isAppear;
+    [[UIApplication sharedApplication] setStatusBarStyle:isAppear?UIStatusBarStyleDefault:UIStatusBarStyleLightContent];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self disappearAnimation:self.searchBar];
+    [self viewAppearOrDisappear:NO];
 }
 
 -(NSMutableArray *)models{
@@ -107,10 +113,6 @@
     }
     return _models;
 }
-
-//-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-//
-//}
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     [self.navigationController popViewControllerAnimated:YES];
