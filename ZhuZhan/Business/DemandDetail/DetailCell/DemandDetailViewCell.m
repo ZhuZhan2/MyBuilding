@@ -146,19 +146,19 @@
 }
 -(RKMuchImageViews *)muchImageView1{
     if (!_muchImageView1) {
-        _muchImageView1=[RKMuchImageViews muchImageViewsWithWidth:ContentWidth];
+        _muchImageView1=[RKMuchImageViews muchImageViewsWithWidth:ContentWidth title:@"报价附件"];
     }
     return _muchImageView1;
 }
 -(RKMuchImageViews *)muchImageView2{
     if (!_muchImageView2) {
-        _muchImageView2=[RKMuchImageViews muchImageViewsWithWidth:ContentWidth];
+        _muchImageView2=[RKMuchImageViews muchImageViewsWithWidth:ContentWidth title:@"资质附件"];
     }
     return _muchImageView2;
 }
 -(RKMuchImageViews *)muchImageView3{
     if (!_muchImageView3) {
-        _muchImageView3=[RKMuchImageViews muchImageViewsWithWidth:ContentWidth];
+        _muchImageView3=[RKMuchImageViews muchImageViewsWithWidth:ContentWidth title:@"其他附件"];
     }
     return _muchImageView3;
 }

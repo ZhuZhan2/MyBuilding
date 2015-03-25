@@ -28,7 +28,13 @@
     [self.view insertSubview:self.contentView belowSubview:self.stageChooseView];
 }
 -(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{
-    [self.contentView addSubview:stageNumber?self.chatController.view:self.detailController.view];
+    UIView* lastView=stageNumber?self.detailController.view:self.chatController.view;
+    [lastView endEditing:YES];
+    lastView.hidden=YES;
+    
+    UIView* newView=stageNumber?self.chatController.view:self.detailController.view;
+    newView.hidden=NO;
+    [self.contentView addSubview:newView];
 }
 
 -(UIView *)contentView{

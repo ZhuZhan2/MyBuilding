@@ -8,6 +8,7 @@
 
 #import "ChatBaseViewController.h"
 #import "AskPriceModel.h"
+#import "QuotesModel.h"
 @interface ProvidePriceInfoController : ChatBaseViewController
 @property(nonatomic,strong)AskPriceModel *askPriceModel;
 @end

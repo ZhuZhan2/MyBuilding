@@ -32,6 +32,8 @@
 -(RKDemandChatController *)chatController{
     if (!_chatController) {
         _chatController=[[DemandProvidePriceChatController alloc]init];
+        _chatController.askPriceModel = self.askPriceModel;
+        _chatController.quotesModel = self.quotesModel;
     }
     return _chatController;
 }

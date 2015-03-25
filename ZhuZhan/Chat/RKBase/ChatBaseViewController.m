@@ -300,7 +300,7 @@
     CGRect keybordBounds=[noti.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat upHeight=kScreenHeight-keybordBounds.origin.y;
 
-    [UIView animateWithDuration:[duration integerValue]  animations:^{
+    [UIView animateWithDuration:[duration floatValue]  animations:^{
         self.view.transform=CGAffineTransformMakeTranslation(0, -upHeight);
     }];
 }

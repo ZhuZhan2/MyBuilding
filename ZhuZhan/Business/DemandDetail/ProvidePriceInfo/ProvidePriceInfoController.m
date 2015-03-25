@@ -21,7 +21,7 @@
 @property(nonatomic,strong)UIView* secondView;
 @property(nonatomic,strong)UIView* thirdView;
 @property(nonatomic,strong)UIView* fourthView;
-@property(nonatomic,strong)UIView* fifthView;
+@property(nonatomic,strong)RKUpAndDownView* fifthView;
 @property(nonatomic,strong)ProvidePriceUploadView* sixthView;
 @property(nonatomic,strong)NSArray* contentViews;
 @property(nonatomic,strong)RKCamera* cameraControl;
@@ -42,20 +42,54 @@
     [self initTopView];
     [self initTableView];
     [self initTableViewExtra];
+    [self addKeybordNotification];
 }
 
 -(void)rightBtnClicked{
+    [self firstPost];
+}
+
+-(void)firstPost{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:self.askPriceModel.a_tradeCode forKey:@"tradeCode"];
     [dic setObject:self.askPriceModel.a_id forKey:@"bookBuildingId"];
-    [dic setObject:@"岳志强fuck" forKey:@"quoteContent"];
+    [dic setObject:[self.fifthView textViewText] forKey:@"quoteContent"];
     [AskPriceApi AddQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-        
+            NSString* quotesId=posts[0];
+            [self secondPostFirstStepWithQuotesId:quotesId];
         }
     } dic:dic noNetWork:nil];
 }
 
+-(void)secondPostFirstStepWithQuotesId:(NSString*)quotesId{
+    NSArray* allImages=@[self.array1,self.array2,self.array3];
+    for (int i=0; i<allImages.count; i++) {
+        NSArray* images=allImages[i];
+        if (!images.count) continue;
+        NSMutableArray* newImageDatas=[NSMutableArray array];
+        for (RKImageModel* imageModel in images) {
+            NSData* imageData=UIImageJPEGRepresentation(imageModel.image, 0.3);
+            [newImageDatas addObject:imageData];
+        }
+        [self secondPostSecondStepWithImages:newImageDatas category:[NSString stringWithFormat:@"%d",i] quotesId:quotesId];
+    }
+}
+
+-(void)secondPostSecondStepWithImages:(NSMutableArray*)images category:(NSString*)category quotesId:(NSString*)quotesId{
+    if (!images.count) return;
+    NSMutableDictionary* dic=[@{@"category":category,
+                                @"tradeCode":self.askPriceModel.a_tradeCode,
+                                @"quotesId":quotesId}
+                              mutableCopy];
+     [AskPriceApi AddAttachmentWithBlock:^(NSMutableArray *posts, NSError *error) {
+         if (!error) {
+             
+         }else{
+             NSLog(@"===%@",error);
+         }
+     } dataArr:images dic:dic noNetWork:nil];
+}
 -(void)initNavi{
     self.title=@"报价资料";
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
@@ -88,6 +122,7 @@
     if (!cell) {
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        cell.clipsToBounds=YES;
     }
     [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
@@ -135,17 +170,21 @@
 }
 
 -(void)firstAccessoryStageCancelBtnClickedWithBtn:(UIButton*)btn{
-    NSLog(@"firstStage,%d",(int)btn.tag);
-    [self reloadSixthView];
+    [self imageDeleteWithIndexpath:[NSIndexPath indexPathForRow:btn.tag inSection:0]];
 }
 
 -(void)secondAccessoryStageCancelBtnClickedWithBtn:(UIButton*)btn{
-    NSLog(@"secondStage,%d",(int)btn.tag);
-    [self reloadSixthView];
+    [self imageDeleteWithIndexpath:[NSIndexPath indexPathForRow:btn.tag inSection:1]];
 }
 
 -(void)thirdAccessoryStageCancelBtnClickedWithBtn:(UIButton*)btn{
-    NSLog(@"thirdStage,%d",(int)btn.tag);
+    [self imageDeleteWithIndexpath:[NSIndexPath indexPathForRow:btn.tag inSection:2]];
+}
+
+-(void)imageDeleteWithIndexpath:(NSIndexPath*)indexpath{
+    NSArray* images=@[self.array1,self.array2,self.array3];
+    NSMutableArray* array=images[indexpath.section];
+    [array removeObjectAtIndex:indexpath.row];
     [self reloadSixthView];
 }
 
@@ -166,14 +205,13 @@
 }
 
 -(void)cameraWillFinishWithImage:(UIImage *)image isCancel:(BOOL)isCancel{
+    NSLog(@"%@,%d",image,isCancel);
+    if (isCancel) return;
     NSArray* images=@[self.array1,self.array2,self.array3];
     NSMutableArray* array=images[self.cameraCategory];
     RKImageModel* imageModel=[RKImageModel imageModelWithImage:image imageUrl:nil isUrl:NO];
     [array addObject:imageModel];
     [self reloadSixthView];
-//    if (!isCancel) {
-//        [self sendWithImage:image];
-//    }
 }
 /*
  + (NSURLSessionDataTask *)AddImageWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dataArr:(NSMutableArray *)dataArr dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
@@ -217,7 +255,7 @@
     return _fourthView;
 }
 
--(UIView *)fifthView{
+-(RKUpAndDownView *)fifthView{
     if (!_fifthView) {
         _fifthView=[RKUpAndDownView upAndDownTextViewWithUpContent:@"回复" topDistance:20 bottomDistance:20 maxWidth:kScreenWidth-50];
 

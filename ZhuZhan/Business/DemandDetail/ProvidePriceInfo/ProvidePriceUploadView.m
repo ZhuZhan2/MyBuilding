@@ -162,7 +162,7 @@
  */
 -(RKMuchImageViews *)priceMuchImage{
     if (!_priceMuchImage) {
-        _priceMuchImage=[RKMuchImageViews muchImageViewsWithWidth:self.maxWidth];
+        _priceMuchImage=[RKMuchImageViews muchImageViewsWithWidth:self.maxWidth title:@"报价附件"];
         [_priceMuchImage setModels:self.array1];
     }
     return _priceMuchImage;
@@ -170,7 +170,7 @@
 
 -(RKMuchImageViews *)qualityMuchImage{
     if (!_qualityMuchImage) {
-        _qualityMuchImage=[RKMuchImageViews muchImageViewsWithWidth:self.maxWidth];
+        _qualityMuchImage=[RKMuchImageViews muchImageViewsWithWidth:self.maxWidth title:@"资质附件"];
         [_qualityMuchImage setModels:self.array2];
     }
     return _qualityMuchImage;
@@ -178,7 +178,7 @@
 
 -(RKMuchImageViews *)otherMuchImage{
     if (!_otherMuchImage) {
-        _otherMuchImage=[RKMuchImageViews muchImageViewsWithWidth:self.maxWidth];
+        _otherMuchImage=[RKMuchImageViews muchImageViewsWithWidth:self.maxWidth title:@"其他附件"];
         [_otherMuchImage setModels:self.array3];
     }
     return _otherMuchImage;
