@@ -19,7 +19,6 @@
 
 @property(nonatomic,strong)SearchBarTableViewController* searchBarTableViewController;
 
-@property(nonatomic,weak)UIButton* searchBarBackBtn;
 @property(nonatomic)BOOL searchBarIsAnimating;
 @end
 
@@ -137,6 +136,10 @@
         }
     }
     
+//    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, -20, kScreenWidth, 50)];
+//    view.backgroundColor=[UIColor redColor];
+//    [self.searchBar addSubview:view];
+    
     if (needTableView) {
         [self setUpSearchBarTableView];
     }
@@ -205,29 +208,27 @@
     }
 }
 
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    if (!self.searchBarTableViewController.view.superview) {
+        [self searchBarTableViewAppear];
+    }
+    [searchBar resignFirstResponder];
+}
+
 -(void)appearAnimation:(UISearchBar *)searchBar{
-    UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.searchBar.frame)+64+CGRectGetHeight(self.stageChooseView.frame), kScreenWidth, CGRectGetHeight(self.view.frame))];
-    button.backgroundColor=[UIColor blackColor];
-    [button addTarget:self action:@selector(backBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    button.alpha=0.5;
-    self.searchBarBackBtn=button;
     [self appearAndDisappearAnimation:searchBar isAppear:YES];
 }
 
--(UIButton *)searchBarBackBtn{
-    if (!_searchBarBackBtn) {
-        UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.searchBar.frame)+64+CGRectGetHeight(self.stageChooseView.frame), kScreenWidth, CGRectGetHeight(self.view.frame))];
-        button.backgroundColor=[UIColor blackColor];
-        [button addTarget:self action:@selector(backBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-        button.alpha=0.5;
-        _searchBarBackBtn=button;
-    }
-    return _searchBarBackBtn;
+-(void)disappearAnimation:(UISearchBar *)searchBar{
+    searchBar.text=@"";
+    [self searchBarTableViewDisppear];
+    [self appearAndDisappearAnimation:searchBar isAppear:NO];
+    [searchBar resignFirstResponder];
 }
+
 -(void)appearAndDisappearAnimation:(UISearchBar*)searchBar isAppear:(BOOL)isAppear{
     self.searchBarIsAnimating=isAppear;
-
-    isAppear?[self.view addSubview:self.searchBarBackBtn]:[self.searchBarBackBtn removeFromSuperview];
+    isAppear?[self getSearchBarBackBtn]:[self removeSearchBarBackBtn];
     self.searchBar.showsCancelButton=isAppear;
     [[UIApplication sharedApplication] setStatusBarStyle:isAppear?UIStatusBarStyleDefault:UIStatusBarStyleLightContent];
     self.navigationController.navigationBarHidden=isAppear;
@@ -237,28 +238,32 @@
 }
 
 -(void)subviewsDoAnimationWithSubviews:(NSArray*)subviews ty:(CGFloat)ty{
-     [subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-         UIView* view=obj;
-         NSLog(@"view==%@",view);
-         CGRect frame=view.frame;
-         frame.origin.y+=ty;
-         [UIView animateWithDuration:0.3 animations:^{
-             view.frame=frame;
-         }];
-     }];
-}
--(void)disappearAnimation:(UISearchBar *)searchBar{
-    searchBar.text=@"";
-    [self searchBarTableViewDisppear];
-    [self appearAndDisappearAnimation:searchBar isAppear:NO];
-    [searchBar resignFirstResponder];
+    [subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        UIView* view=obj;
+        NSLog(@"view==%@",view);
+        CGRect frame=view.frame;
+        frame.origin.y+=ty;
+        [UIView animateWithDuration:0.3 animations:^{
+            view.frame=frame;
+        }];
+    }];
 }
 
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    if (!self.searchBarTableViewController.view.superview) {
-        [self searchBarTableViewAppear];
-    }
-    [searchBar resignFirstResponder];
+-(void)getSearchBarBackBtn{
+    UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.searchBar.frame)+64+CGRectGetHeight(self.stageChooseView.frame), kScreenWidth, CGRectGetHeight(self.view.frame))];
+    button.backgroundColor=[UIColor blackColor];
+    [button addTarget:self action:@selector(backBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    button.alpha=0.5;
+    self.searchBarBackBtn=button;
+    [self.view addSubview:self.searchBarBackBtn];
+}
+
+-(void)backBtnClicked{
+    [self searchBarCancelButtonClicked:self.searchBar];
+}
+
+-(void)removeSearchBarBackBtn{
+    [self.searchBarBackBtn removeFromSuperview];
 }
 
 -(void)searchBarTableViewAppear{
@@ -269,10 +274,6 @@
 
 -(void)searchBarTableViewDisppear{
     [self.searchBarTableViewController.view removeFromSuperview];
-}
-
--(void)backBtnClicked{
-    [self searchBarCancelButtonClicked:self.searchBar];
 }
 
 -(NSMutableArray *)sectionSelectedArray{

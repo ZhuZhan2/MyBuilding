@@ -23,7 +23,6 @@
     [super viewDidLoad];
     self.statusStr = @"";
     self.otherStr = @"-1";
-    self.view.backgroundColor=[UIColor whiteColor];
     [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
     [self setSearchBarTableViewBackColor:AllBackDeepGrayColor];
     [self.searchBar becomeFirstResponder];
@@ -112,6 +111,13 @@
         _models=[NSMutableArray array];
     }
     return _models;
+}
+
+-(void)getSearchBarBackBtn{
+    UIView* button=[[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.searchBar.frame)+64+CGRectGetHeight(self.stageChooseView.frame), kScreenWidth, CGRectGetHeight(self.view.frame))];
+    button.backgroundColor=[UIColor whiteColor];
+    self.searchBarBackBtn=button;
+    [self.view addSubview:self.searchBarBackBtn];
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{

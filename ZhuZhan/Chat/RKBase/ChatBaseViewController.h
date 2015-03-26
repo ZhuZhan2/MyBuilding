@@ -41,6 +41,7 @@
 -(void)setUpSearchBarWithNeedTableView:(BOOL)needTableView isTableViewHeader:(BOOL)isTableViewHeader;
 -(void)appearAnimation:(UISearchBar *)searchBar;
 -(void)disappearAnimation:(UISearchBar *)searchBar;
+@property(nonatomic,weak)UIView* searchBarBackBtn;
 
 -(void)setSearchBarTableViewBackColor:(UIColor*)color;
 
