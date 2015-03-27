@@ -1153,6 +1153,7 @@
 		D36809311ABFDCB900AFA097 /* QuotesDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D36809301ABFDCB900AFA097 /* QuotesDetailViewController.m */; };
 		D38D6B4E1A5CC1C30020CCBF /* 读取中icon.gif in Resources */ = {isa = PBXBuildFile; fileRef = D38D6B4D1A5CC1C30020CCBF /* 读取中icon.gif */; };
 		D38D6B501A5CC2920020CCBF /* 锯子.gif in Resources */ = {isa = PBXBuildFile; fileRef = D38D6B4F1A5CC2920020CCBF /* 锯子.gif */; };
+		D3929F3E1AC538740017E93D /* AskPriceComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D3929F3D1AC538740017E93D /* AskPriceComment.m */; };
 		D39937BE1A42B428007081C1 /* RecommendProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937BD1A42B428007081C1 /* RecommendProjectViewController.m */; };
 		D39937C11A42B453007081C1 /* RecommendContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937C01A42B453007081C1 /* RecommendContactViewController.m */; };
 		D39937C41A42B470007081C1 /* RecommendProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937C31A42B470007081C1 /* RecommendProjectTableViewCell.m */; };
@@ -2983,6 +2984,8 @@
 		D36809301ABFDCB900AFA097 /* QuotesDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuotesDetailViewController.m; sourceTree = "<group>"; };
 		D38D6B4D1A5CC1C30020CCBF /* 读取中icon.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "读取中icon.gif"; sourceTree = "<group>"; };
 		D38D6B4F1A5CC2920020CCBF /* 锯子.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "锯子.gif"; sourceTree = "<group>"; };
+		D3929F3C1AC538740017E93D /* AskPriceComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceComment.h; sourceTree = "<group>"; };
+		D3929F3D1AC538740017E93D /* AskPriceComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPriceComment.m; sourceTree = "<group>"; };
 		D39937BC1A42B428007081C1 /* RecommendProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendProjectViewController.h; sourceTree = "<group>"; };
 		D39937BD1A42B428007081C1 /* RecommendProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendProjectViewController.m; sourceTree = "<group>"; };
 		D39937BF1A42B453007081C1 /* RecommendContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendContactViewController.h; sourceTree = "<group>"; };
@@ -6239,6 +6242,8 @@
 				D3376CFA1AC2549C00738B5F /* UserOrCompanyModel.m */,
 				D3376CFC1AC25D6100738B5F /* CategoryModel.h */,
 				D3376CFD1AC25D6100738B5F /* CategoryModel.m */,
+				D3929F3C1AC538740017E93D /* AskPriceComment.h */,
+				D3929F3D1AC538740017E93D /* AskPriceComment.m */,
 			);
 			path = AskPriceModel;
 			sourceTree = "<group>";
@@ -7697,6 +7702,7 @@
 				5B553BF31A2EE97C00527E45 /* MyTableView.m in Sources */,
 				0426C26519922D5A00CD8822 /* GPUImageErosionFilter.m in Sources */,
 				5B6289E01AB7CC5A00F30059 /* AskPriceViewCell.m in Sources */,
+				D3929F3E1AC538740017E93D /* AskPriceComment.m in Sources */,
 				D39937C11A42B453007081C1 /* RecommendContactViewController.m in Sources */,
 				0426C2D219922D5A00CD8822 /* GPUImageUIElement.m in Sources */,
 				0426C23F19922D5A00CD8822 /* BaseViewController.m in Sources */,

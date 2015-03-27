@@ -13,6 +13,7 @@
 #import "QuotesModel.h"
 #import "UserOrCompanyModel.h"
 #import "CategoryModel.h"
+#import "AskPriceComment.h"
 @implementation AskPriceApi
 + (NSURLSessionDataTask *)PostAskPriceWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
@@ -289,7 +290,9 @@
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             for(NSDictionary *item in JSON[@"data"]){
-                
+                AskPriceComment *model = [[AskPriceComment alloc] init];
+                [model setDict:item];
+                [mutablePosts addObject:model];
             }
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
