@@ -27,6 +27,7 @@
         }
     } tradeId:self.askPriceModel.a_id tradeUserAndCommentUser:[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,self.quotesModel.a_loginId] startIndex:0 noNetWork:nil];
 }
+
 /**
  *tradeId	string	询价ID	必填	不可为空
  *tradeCode	string	询价code	必填	不可为空

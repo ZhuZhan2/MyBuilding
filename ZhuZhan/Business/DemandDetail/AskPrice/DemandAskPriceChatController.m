@@ -9,7 +9,7 @@
 #import "DemandAskPriceChatController.h"
 #import "AskPriceApi.h"
 @interface DemandAskPriceChatController ()
-@property(nonatomic,copy)NSString* sendContent;
+
 @end
 
 @implementation DemandAskPriceChatController
