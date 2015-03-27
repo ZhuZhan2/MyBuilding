@@ -40,7 +40,7 @@
         [str2 appendString:[NSString stringWithFormat:@"%@,",obj[@"name"]]];
     }];
     if(str2.length !=0){
-        self.a_productCategory = [str2 substringWithRange:NSMakeRange(0,str.length-1)];
+        self.a_productCategory = [str2 substringWithRange:NSMakeRange(0,str2.length-1)];
     }else{
         self.a_productCategory = @"";
     }
