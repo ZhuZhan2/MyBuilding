@@ -91,6 +91,21 @@
 //    } tradeId:model.a_id noNetWork:nil];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self viewAppearOrDisappear:YES];
+}
+
+-(void)viewAppearOrDisappear:(BOOL)isAppear{
+    self.navigationController.navigationBarHidden=isAppear;
+    [[UIApplication sharedApplication] setStatusBarStyle:isAppear?UIStatusBarStyleDefault:UIStatusBarStyleLightContent];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self viewAppearOrDisappear:NO];
+}
+
 -(NSMutableArray *)models{
     if (!_models) {
         _models=[NSMutableArray array];
@@ -98,34 +113,14 @@
     return _models;
 }
 
+-(void)getSearchBarBackBtn{
+    UIView* button=[[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.searchBar.frame)+64+CGRectGetHeight(self.stageChooseView.frame), kScreenWidth, CGRectGetHeight(self.view.frame))];
+    button.backgroundColor=[UIColor whiteColor];
+    self.searchBarBackBtn=button;
+    [self.view addSubview:self.searchBarBackBtn];
+}
+
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     [self.navigationController popViewControllerAnimated:YES];
-    [self disappearAnimation:searchBar];
-}
-
--(void)disappearAnimation:(UISearchBar *)searchBar{
-    self.navigationController.view.transform=CGAffineTransformMakeTranslation(0, 0);
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [self.searchBarAnimationBackView removeFromSuperview];
-}
-
--(void)appearAnimation:(UISearchBar *)searchBar{
-    self.searchBar.showsCancelButton=YES;
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-    
-    CGFloat height=65+CGRectGetHeight(self.stageChooseView.frame);
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, height)];
-    self.searchBarAnimationBackView=view;
-    self.searchBarAnimationBackView.alpha=0;
-    self.searchBarAnimationBackView.backgroundColor=RGBCOLOR(223, 223, 223);
-    [self.navigationController.view addSubview:self.searchBarAnimationBackView];
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        self.searchBarAnimationBackView.alpha=1;
-        CGFloat ty=64-20+CGRectGetHeight(self.stageChooseView.frame);
-        self.navigationController.view.transform=CGAffineTransformMakeTranslation(0, -ty);
-    } completion:^(BOOL finished) {
-        
-    }];
 }
 @end

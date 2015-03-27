@@ -39,8 +39,12 @@
 @property(nonatomic,strong)UISearchBar* searchBar;
 @property(nonatomic,weak)UIView* searchBarAnimationBackView;
 -(void)setUpSearchBarWithNeedTableView:(BOOL)needTableView isTableViewHeader:(BOOL)isTableViewHeader;
+-(void)appearAnimation:(UISearchBar *)searchBar;
+-(void)disappearAnimation:(UISearchBar *)searchBar;
+@property(nonatomic,weak)UIView* searchBarBackBtn;
 
 -(void)setSearchBarTableViewBackColor:(UIColor*)color;
+
 
 @property(nonatomic,strong)NSMutableArray* sectionSelectedArray;
 -(BOOL)sectionSelectedArrayContainsSection:(NSInteger)section;
