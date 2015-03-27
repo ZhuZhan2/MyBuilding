@@ -106,7 +106,7 @@
     CGFloat extraHeight=CGRectGetHeight(self.topView.frame);
     frame.origin.y+=extraHeight;
     frame.size.height-=extraHeight;
-    self.tableView.frame=frame;
+     self.tableView.frame=frame;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -213,10 +213,7 @@
     [array addObject:imageModel];
     [self reloadSixthView];
 }
-/*
- + (NSURLSessionDataTask *)AddImageWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dataArr:(NSMutableArray *)dataArr dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 
- */
 -(void)sendWithImage:(UIImage*)image{
     
 }

@@ -9,7 +9,7 @@
 #import "DemandAskPriceChatController.h"
 #import "AskPriceApi.h"
 @interface DemandAskPriceChatController ()
-@property(nonatomic,copy)NSString* sendContent;
+
 @end
 
 @implementation DemandAskPriceChatController
@@ -29,6 +29,19 @@
             [self.tableView reloadData];
         }
     } tradeId:self.askPriceModel.a_id tradeUserAndCommentUser:[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,self.quotesModel.a_loginId] startIndex:0 noNetWork:nil];
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [DemandChatViewCell carculateTotalHeightWithModel:self.chatModels[indexPath.row]];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    DemandChatViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"chatCell"];
+    if (!cell) {
+        cell=[[DemandChatViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"chatCell"];
+    }
+    DemandChatViewCellModel* model=self.chatModels[indexPath.row];
+    cell.model=model;
+    return cell;
 }
 /**
  *tradeId	string	询价ID	必填	不可为空

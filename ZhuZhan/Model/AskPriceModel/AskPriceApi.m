@@ -52,7 +52,7 @@
         return nil;
     }
     
-    //NSData
+    //NSData//
     //keyWorks=@"";
     //keyWorks=encodedString;
     
@@ -63,7 +63,7 @@
     urlStr=encodedString;
     NSLog(@"=====%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON);
+        NSLog(@"JSON[@\"data\"][@\"rows\"]===>%@",JSON[@"data"][@"rows"]);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *arr = [[NSMutableArray alloc] init];
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
@@ -317,7 +317,7 @@
         return nil;
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/attachment/addAttachment"];
-    NSLog(@"=====%@\ndata=%@",dic,dataArr[0]);
+    NSLog(@"=====%@",dic);
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [dataArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSLog(@"=====>%lu",(unsigned long)idx);

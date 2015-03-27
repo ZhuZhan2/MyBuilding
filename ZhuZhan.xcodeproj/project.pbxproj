@@ -610,6 +610,8 @@
 		5B5121361A07968200A77997 /* 地图搜索1_05.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5121341A07968200A77997 /* 地图搜索1_05.png */; };
 		5B5121371A07968200A77997 /* 地图搜索1_05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5121351A07968200A77997 /* 地图搜索1_05@2x.png */; };
 		5B5173A21A368F8E0009E0AE /* FirstOpenAppAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5173A11A368F8E0009E0AE /* FirstOpenAppAnimationView.m */; };
+		5B5266371AC3B63400EF8185 /* RKViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5266361AC3B63400EF8185 /* RKViewFactory.m */; };
+		5B52C5ED1AC500550035ABB8 /* RKMuchBtns.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B52C5EC1AC500550035ABB8 /* RKMuchBtns.m */; };
 		5B553BF31A2EE97C00527E45 /* MyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B553BF21A2EE97C00527E45 /* MyTableView.m */; };
 		5B55D5381AA93C4C006501D8 /* RKCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D5371AA93C4C006501D8 /* RKCamera.m */; };
 		5B55D57B1A3EB5FD00CAEF8B /* ForgetPasswordFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D57A1A3EB5FD00CAEF8B /* ForgetPasswordFirstController.m */; };
@@ -2286,6 +2288,10 @@
 		5B5121351A07968200A77997 /* 地图搜索1_05@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图搜索1_05@2x.png"; sourceTree = "<group>"; };
 		5B5173A01A368F8E0009E0AE /* FirstOpenAppAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstOpenAppAnimationView.h; sourceTree = "<group>"; };
 		5B5173A11A368F8E0009E0AE /* FirstOpenAppAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstOpenAppAnimationView.m; sourceTree = "<group>"; };
+		5B5266351AC3B63400EF8185 /* RKViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKViewFactory.h; sourceTree = "<group>"; };
+		5B5266361AC3B63400EF8185 /* RKViewFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKViewFactory.m; sourceTree = "<group>"; };
+		5B52C5EB1AC500550035ABB8 /* RKMuchBtns.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKMuchBtns.h; sourceTree = "<group>"; };
+		5B52C5EC1AC500550035ABB8 /* RKMuchBtns.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKMuchBtns.m; sourceTree = "<group>"; };
 		5B553BF11A2EE97C00527E45 /* MyTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableView.h; sourceTree = "<group>"; };
 		5B553BF21A2EE97C00527E45 /* MyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableView.m; sourceTree = "<group>"; };
 		5B55D5361AA93C4C006501D8 /* RKCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCamera.h; sourceTree = "<group>"; };
@@ -3401,6 +3407,7 @@
 				5BE08EC71A35900000495EEB /* FirstAnimationView */,
 				5B8A2CC51AAEE0AD00C8F9DE /* Chat */,
 				5BB9A5341AB6EC3100B5B2D8 /* Business */,
+				5B5266331AC3B4B800EF8185 /* Contracts */,
 				0426C05519922D5900CD8822 /* Tools */,
 				0426BFF919922CE400CD8822 /* AppDelegate.h */,
 				0426BFFA19922CE400CD8822 /* AppDelegate.m */,
@@ -4895,6 +4902,25 @@
 				5B8A2D001AAEEAD600C8F9DE /* 单人会话@2x.png */,
 			);
 			path = "二期新图片";
+			sourceTree = "<group>";
+		};
+		5B5266331AC3B4B800EF8185 /* Contracts */ = {
+			isa = PBXGroup;
+			children = (
+				5B5266341AC3B53300EF8185 /* View */,
+			);
+			path = Contracts;
+			sourceTree = "<group>";
+		};
+		5B5266341AC3B53300EF8185 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5B5266351AC3B63400EF8185 /* RKViewFactory.h */,
+				5B5266361AC3B63400EF8185 /* RKViewFactory.m */,
+				5B52C5EB1AC500550035ABB8 /* RKMuchBtns.h */,
+				5B52C5EC1AC500550035ABB8 /* RKMuchBtns.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		5B5773D51AC1320400C17DBF /* AskPrice */ = {
@@ -7362,6 +7388,7 @@
 				0426C27119922D5A00CD8822 /* GPUImageGaussianSelectiveBlurFilter.m in Sources */,
 				0426C29B19922D5A00CD8822 /* GPUImageOpacityFilter.m in Sources */,
 				0426C25719922D5A00CD8822 /* GPUImageColorMatrixFilter.m in Sources */,
+				5B52C5ED1AC500550035ABB8 /* RKMuchBtns.m in Sources */,
 				0426C27319922D5A00CD8822 /* GPUImageGrayscaleFilter.m in Sources */,
 				0426C2C419922D5A00CD8822 /* GPUImageTextureInput.m in Sources */,
 				D3AD60F919AC7CC5001FD483 /* EGOCache.m in Sources */,
@@ -7509,6 +7536,7 @@
 				0426C28119922D5A00CD8822 /* GPUImageKuwaharaFilter.m in Sources */,
 				0426C25D19922D5A00CD8822 /* GPUImageDarkenBlendFilter.m in Sources */,
 				0426C2FD19922D5A00CD8822 /* UIAlertView+AFNetworking.m in Sources */,
+				5B5266371AC3B63400EF8185 /* RKViewFactory.m in Sources */,
 				0426C26619922D5A00CD8822 /* GPUImageExclusionBlendFilter.m in Sources */,
 				0426C2E419922D5A00CD8822 /* FaceppDetection.m in Sources */,
 				042D9E1119B559FC00689C5D /* MainBuild.m in Sources */,
