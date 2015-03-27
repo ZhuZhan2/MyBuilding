@@ -22,6 +22,7 @@
 
 
 -(void)loadList{
+    NSLog(@"loadList");
     [AskPriceApi GetCommentListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             

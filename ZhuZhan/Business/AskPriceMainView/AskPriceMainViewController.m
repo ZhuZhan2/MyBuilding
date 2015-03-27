@@ -320,9 +320,9 @@
         self.classifcationStr = [str substringWithRange:NSMakeRange(0,str.length-1)];
     }
     if(idStr.length !=0){
-        self.classifcationIdStr = [idStr substringWithRange:NSMakeRange(0,str.length-1)];
+        self.classifcationIdStr = [idStr substringWithRange:NSMakeRange(0,idStr.length-1)];
     }
-    
+    NSLog(@"%@",self.classifcationIdStr);
     [self.addClassificationView removeFromSuperview];
     self.addClassificationView = nil;
     [self.viewArr replaceObjectAtIndex:2 withObject:self.addClassificationView];

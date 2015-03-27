@@ -99,7 +99,7 @@
         [_classificationView GetHeightWithBlock:^(double height) {
             _classificationView.frame = CGRectMake(0, 0, 320, height);
             self.classificationViewHeight = height;
-        } str:self.askPriceModel.a_productBigCategory name:@"产品分类"];
+        } str:self.askPriceModel.a_productCategory name:@"产品分类"];
     }
     return _classificationView;
 }
