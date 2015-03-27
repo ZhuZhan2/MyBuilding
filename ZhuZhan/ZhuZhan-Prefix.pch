@@ -21,12 +21,6 @@
 #import "LoginAgain.h"
 #endif
 
-//#define serverAddress "http://203.114.247.211:82/"
-//#define  serverAddress "http://203.114.247.212:21202/"
-//#define  serverAddress "http://www.shenjigroup.com:2192/"
-//#define  serverAddress "http://192.168.222.95:801/"
-//#define  serverAddress "http://192.168.222.96:96/"
-//#define serverAddress "http://10.1.5.102:801/"
 //#define  serverAddress "http://10.1.5.104:9090/server"
 //#define  serverAddress "http://10.1.5.104:8080/server"
 #define  serverAddress "http://10.1.1.138:9090/service"

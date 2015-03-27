@@ -32,8 +32,18 @@
         self.a_invitedUser = @"";
     }
     self.a_invitedUserArr = dict[@"invitedUser"];
-    self.a_productBigCategory = dict[@"productBigCategory"];
-    self.a_productCategory = dict[@"productCategory"];
+    [dict[@"productBigCategory"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        self.a_productBigCategory = obj[@"name"];
+    }];
+    NSMutableString *str2 = [[NSMutableString alloc] init];
+    [dict[@"productCategory"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [str2 appendString:[NSString stringWithFormat:@"%@,",obj[@"name"]]];
+    }];
+    if(str2.length !=0){
+        self.a_productCategory = [str2 substringWithRange:NSMakeRange(0,str.length-1)];
+    }else{
+        self.a_productCategory = @"";
+    }
     self.a_remark = dict[@"remark"];
     self.a_category = dict[@"category"];
     self.a_time = [ProjectStage ProjectTimeStage:dict[@"createdTime"]];
