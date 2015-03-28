@@ -20,10 +20,12 @@
 #import "LoginSqlite.h"
 #import "AskPriceDetailViewController.h"
 #import "QuotesDetailViewController.h"
+#import "MJRefresh.h"
 @interface AskPriceViewController ()<DemandStageChooseControllerDelegate,RKStageChooseViewDelegate>
 @property(nonatomic,strong)NSString *statusStr;
 @property(nonatomic,strong)NSString *otherStr;
 @property(nonatomic,strong)NSMutableArray *showArr;
+@property(nonatomic)int startIndex;
 @end
 
 @implementation AskPriceViewController
@@ -32,10 +34,14 @@
     [super viewDidLoad];
     self.statusStr = @"";
     self.otherStr = @"-1";
+    self.startIndex = 0;
     [self initNavi];
     [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[@"0",@"0",@"0",@"0"]];
     [self initTableView];
     [self initTableViewHeader];
+    
+    //集成刷新控件
+    [self setupRefresh];
 
     self.tableView.backgroundColor=AllBackDeepGrayColor;
 }
@@ -120,7 +126,11 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     AskPriceModel *model = self.showArr[indexPath.row];
-    return [AskPriceViewCell carculateTotalHeightWithContents:@[model.a_invitedUser,model.a_productBigCategory,model.a_productCategory,model.a_remark]];
+    if([model.a_category isEqualToString:@"0"]){
+        return [AskPriceViewCell carculateTotalHeightWithContents:@[model.a_invitedUser,model.a_productBigCategory,model.a_productCategory,model.a_remark]];
+    }else{
+        return [AskPriceViewCell carculateTotalHeightWithContents:@[model.a_requestName,model.a_productBigCategory,model.a_productCategory,model.a_remark]];
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -130,7 +140,11 @@
         cell.clipsToBounds=YES;
     }
     AskPriceModel *model = self.showArr[indexPath.row];
-    cell.contents=@[model.a_invitedUser,model.a_productBigCategory,model.a_productCategory,model.a_remark,model.a_category,model.a_tradeStatus,model.a_tradeCode];
+    if([model.a_category isEqualToString:@"0"]){
+        cell.contents=@[model.a_invitedUser,model.a_productBigCategory,model.a_productCategory,model.a_remark,model.a_category,model.a_tradeStatus,model.a_tradeCode];
+    }else{
+        cell.contents=@[model.a_requestName,model.a_productBigCategory,model.a_productCategory,model.a_remark,model.a_category,model.a_tradeStatus,model.a_tradeCode];
+    }
     return cell;
 }
 
@@ -162,5 +176,45 @@
         self.statusStr = @"2";
     }
     [self loadList];
+}
+
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    //[_tableView headerBeginRefreshing];
+    
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self.showArr removeAllObjects];
+            self.showArr = posts[0];
+            [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
+            [self.tableView reloadData];
+        }
+        [self.tableView headerEndRefreshing];
+    } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:@"" noNetWork:nil];
+}
+
+- (void)footerRereshing
+{
+    [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.startIndex++;
+            [self.showArr addObjectsFromArray:posts[0]];
+            [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
+            [self.tableView reloadData];
+        }
+        [self.tableView footerEndRefreshing];
+    } status:self.statusStr startIndex:self.startIndex+1 other:self.otherStr keyWorks:@"" noNetWork:nil];
 }
 @end

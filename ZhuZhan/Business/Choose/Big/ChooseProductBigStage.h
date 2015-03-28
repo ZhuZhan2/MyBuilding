@@ -9,7 +9,7 @@
 #import "ChatBaseViewController.h"
 
 @protocol ChooseProductBigStageDelegate <NSObject>
--(void)chooseProductBigStage:(NSString *)str catroyId:(NSString *)catroyId;
+-(void)chooseProductBigStage:(NSString *)str catroyId:(NSString *)catroyId allClassificationArr:(NSMutableArray *)allClassification;
 @end
 
 @interface ChooseProductBigStage : ChatBaseViewController

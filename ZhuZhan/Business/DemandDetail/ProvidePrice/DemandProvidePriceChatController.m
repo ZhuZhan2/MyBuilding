@@ -8,14 +8,18 @@
 
 #import "DemandProvidePriceChatController.h"
 #import "AskPriceApi.h"
+#import "DemandChatViewCell.h"
+#import "AskPriceComment.h"
+#import "MJRefresh.h"
 @interface DemandProvidePriceChatController ()
-
+@property(nonatomic)int startIndex;
 @end
 
 @implementation DemandProvidePriceChatController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.startIndex = 0;
     [self loadList];
 }
 
@@ -23,12 +27,20 @@
 -(void)loadList{
     [AskPriceApi GetCommentListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            
+            self.chatModels = posts;
+            [self.tableView reloadData];
         }
     } tradeId:self.askPriceModel.a_id tradeUserAndCommentUser:[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,self.quotesModel.a_loginId] startIndex:0 noNetWork:nil];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [DemandChatViewCell carculateTotalHeightWithModel:self.chatModels[indexPath.row]];
+    DemandChatViewCellModel *model = [[DemandChatViewCellModel alloc] init];
+    AskPriceComment *commentModel = self.chatModels[indexPath.row];
+    model.userName = commentModel.a_name;
+    model.userDescribe = commentModel.a_isVerified;
+    model.time = commentModel.a_createdTime;
+    model.content = commentModel.a_contents;
+    model.isSelf = commentModel.a_isSelf;
+    return [DemandChatViewCell carculateTotalHeightWithModel:model];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -36,7 +48,13 @@
     if (!cell) {
         cell=[[DemandChatViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"chatCell"];
     }
-    DemandChatViewCellModel* model=self.chatModels[indexPath.row];
+    DemandChatViewCellModel *model = [[DemandChatViewCellModel alloc] init];
+    AskPriceComment *commentModel = self.chatModels[indexPath.row];
+    model.userName = commentModel.a_name;
+    model.userDescribe = commentModel.a_isVerified;
+    model.time = commentModel.a_createdTime;
+    model.content = commentModel.a_contents;
+    model.isSelf = commentModel.a_isSelf;
     cell.model=model;
     return cell;
 }
@@ -53,7 +71,9 @@
                                 @"tradeUserAndCommentUser":tradeUserAndCommentUser,
                                 @"contents":content} mutableCopy];
     [AskPriceApi AddCommentWithBlock:^(NSMutableArray *posts, NSError *error) {
-        
+        if(!error){
+            [self loadList];
+        }
     } dic:dic noNetWork:nil];
 }
 
@@ -66,5 +86,42 @@
         _chatModels=[NSMutableArray array];
     }
     return _chatModels;
+}
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    //[_tableView headerBeginRefreshing];
+    
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    [AskPriceApi GetCommentListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self.chatModels removeAllObjects];
+            self.chatModels = posts;
+            [self.tableView reloadData];
+        }
+        [self.tableView headerEndRefreshing];
+    } tradeId:self.askPriceModel.a_id tradeUserAndCommentUser:[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,self.quotesModel.a_loginId] startIndex:0 noNetWork:nil];
+}
+
+- (void)footerRereshing
+{
+    [AskPriceApi GetCommentListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.startIndex++;
+            [self.chatModels addObjectsFromArray:posts];
+            [self.tableView reloadData];
+        }
+        [self.tableView footerEndRefreshing];
+    } tradeId:self.askPriceModel.a_id tradeUserAndCommentUser:[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,self.quotesModel.a_loginId] startIndex:self.startIndex++ noNetWork:nil];
 }
 @end

@@ -9,14 +9,18 @@
 #import "DemandProvidePriceDetailController.h"
 #import "AskPriceApi.h"
 #import "LoginSqlite.h"
+#import "MJRefresh.h"
+#import "RKImageModel.h"
 @interface DemandProvidePriceDetailController ()
-
+@property(nonatomic)int startIndex;
 @end
 
 @implementation DemandProvidePriceDetailController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.startIndex = 0;
+    [self setupRefresh];
     [self loadList];
 }
 
@@ -45,10 +49,17 @@
     {
         QuotesDetailModel* dataModel=self.detailModels[indexPath.row];
         cellModel.userName=dataModel.a_quoteUser;
-        cellModel.userDescribe=@"用户描述啊用户描述啊用户描述啊用";
+        cellModel.userDescribe=dataModel.a_quoteIsVerified;
         cellModel.time=dataModel.a_createdTime;
         cellModel.numberDescribe=[NSString stringWithFormat:@"第%@次报价",dataModel.a_quoteTimes];
         cellModel.content=dataModel.a_quoteContent;
+        NSMutableArray *array1 = [[NSMutableArray alloc] init];
+        [dataModel.a_quoteAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {
+            RKImageModel *imageModel = [[RKImageModel alloc] init];
+            imageModel.imageUrl =  model.a_location;
+            imageModel.isUrl = model.a_isUrl;
+            [array1 addObject:imageModel];
+        }];
         cellModel.array1=@[];
         cellModel.array2=@[];
         cellModel.array3=@[];
@@ -65,12 +76,19 @@
     {
         QuotesDetailModel* dataModel=self.detailModels[indexPath.row];
         cellModel.userName=dataModel.a_quoteUser;
-        cellModel.userDescribe=@"用户描述啊用户描述啊用户描述啊用";
+        cellModel.userDescribe=dataModel.a_quoteIsVerified;
         cellModel.time=dataModel.a_createdTime;
         cellModel.numberDescribe=[NSString stringWithFormat:@"第%@次报价",dataModel.a_quoteTimes];
         cellModel.content=dataModel.a_quoteContent;
-        cellModel.array1=@[@"",@""];
-        cellModel.array2=@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@""];
+        NSMutableArray *array1 = [[NSMutableArray alloc] init];
+        [dataModel.a_quoteAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {
+            RKImageModel *imageModel = [[RKImageModel alloc] init];
+            imageModel.imageUrl =  model.a_location;
+            imageModel.isUrl = model.a_isUrl;
+            [array1 addObject:imageModel];
+        }];
+        cellModel.array1=array1;
+        cellModel.array2=@[];
         cellModel.array3=@[];
     }
     cellModel.indexPath=indexPath;
@@ -96,5 +114,42 @@
         
     } dic:dic noNetWork:nil];
     NSLog(@"closeBtnClicked");
+}
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    //[_tableView headerBeginRefreshing];
+    
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    [AskPriceApi GetQuotesListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self.detailModels removeAllObjects];
+            self.detailModels=posts;
+            [self.tableView reloadData];
+        }
+        [self.tableView headerEndRefreshing];
+    } providerId:[LoginSqlite getdata:@"userId"] tradeCode:self.askPriceModel.a_tradeCode startIndex:0 noNetWork:nil];
+}
+
+- (void)footerRereshing
+{
+    [AskPriceApi GetQuotesListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.startIndex++;
+            [self.detailModels addObjectsFromArray:posts];
+            [self.tableView reloadData];
+        }
+        [self.tableView footerEndRefreshing];
+    } providerId:[LoginSqlite getdata:@"userId"] tradeCode:self.askPriceModel.a_tradeCode startIndex:self.startIndex+1 noNetWork:nil];
 }
 @end

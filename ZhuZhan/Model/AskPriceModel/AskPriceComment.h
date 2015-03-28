@@ -26,5 +26,8 @@
 @property(nonatomic,strong)NSString *a_createdTime;
 //报价id
 @property(nonatomic,strong)NSString *a_quoteId;
+//大v
+@property(nonatomic,strong)NSString *a_isVerified;
+@property(nonatomic)BOOL a_isSelf;
 @property(nonatomic,strong)NSDictionary *dict;
 @end

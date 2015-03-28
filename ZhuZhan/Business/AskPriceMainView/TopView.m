@@ -42,7 +42,7 @@
         [self addSubview:self.shadowView];
         
         NSDictionary *viewDict = NSDictionaryOfVariableBindings(_firstLabel,_secondLabel,_shadowView);
-        [self addConstraints: [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(10)-[_firstLabel(140)]-(0)-[_secondLabel(160)]-(10)-|"options:0 metrics:nil views:viewDict]];
+        [self addConstraints: [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(10)-[_firstLabel(130)]-(0)-[_secondLabel(170)]-(10)-|"options:0 metrics:nil views:viewDict]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(10)-[_firstLabel]-(10)-|" options:0 metrics:nil views:viewDict]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(10)-[_secondLabel]-(10)-|" options:0 metrics:nil views:viewDict]];
     }

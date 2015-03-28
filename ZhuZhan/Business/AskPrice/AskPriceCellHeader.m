@@ -60,7 +60,7 @@
 
 -(UILabel *)numberLabel{
     if (!_numberLabel) {
-        _numberLabel=[[UILabel alloc]initWithFrame:CGRectMake(150, 0, 164, kTotalHeight)];
+        _numberLabel=[[UILabel alloc]initWithFrame:CGRectMake(145, 0, 169, kTotalHeight)];
         _numberLabel.font=assistFont;
         _numberLabel.textColor=assistColor;
         _numberLabel.text=self.model.number;

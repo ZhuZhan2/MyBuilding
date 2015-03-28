@@ -294,13 +294,41 @@
 -(void)selectContact:(UserOrCompanyModel *)model{
     [self.addContactView removeFromSuperview];
     self.addContactView = nil;
-    [self.laberStrArr insertObject:model.a_loginName atIndex:0];
-    [self.userIdArr insertObject:model.a_loginId atIndex:0];
+    NSMutableArray *array1 = [[NSMutableArray alloc] init];
+    NSMutableArray *array2 = [[NSMutableArray alloc] init];
+    [array1 insertObject:model.a_loginName atIndex:0];
+    [array2 insertObject:model.a_loginId atIndex:0];
+    for (unsigned i = 0; i < [array1 count]; i++){
+        if ([self.laberStrArr containsObject:[array1 objectAtIndex:i]] == NO){
+            [self.laberStrArr addObject:[array1 objectAtIndex:i]];
+        }
+        
+    }
+    for (unsigned i = 0; i < [array2 count]; i++){
+        if ([self.userIdArr containsObject:[array2 objectAtIndex:i]] == NO){
+            [self.userIdArr addObject:[array2 objectAtIndex:i]];
+        }
+        
+    }
     [self.viewArr replaceObjectAtIndex:0 withObject:self.addContactView];
     [self.tableView reloadData];
 }
 
--(void)chooseProductBigStage:(NSString *)str catroyId:(NSString *)catroyId{
+-(void)chooseProductBigStage:(NSString *)str catroyId:(NSString *)catroyId allClassificationArr:(NSMutableArray *)allClassification{
+    NSMutableString *string = [[NSMutableString alloc] init];
+    NSMutableString *idStr = [[NSMutableString alloc] init];
+    [allClassification enumerateObjectsUsingBlock:^(ChooseProductCellModel *cellModel, NSUInteger idx, BOOL *stop) {
+        [string appendString:[NSString stringWithFormat:@"%@、",cellModel.content]];
+        [idStr appendString:[NSString stringWithFormat:@"%@,",cellModel.aid]];
+    }];
+    if(str.length !=0){
+        self.classifcationStr = [str substringWithRange:NSMakeRange(0,str.length-1)];
+    }
+    if(idStr.length !=0){
+        self.classifcationIdStr = [idStr substringWithRange:NSMakeRange(0,idStr.length-1)];
+    }
+    NSLog(@"%@",self.classifcationIdStr);
+    
     self.categoryStr = str;
     self.categoryId = catroyId;
     [self.addCategoriesView removeFromSuperview];

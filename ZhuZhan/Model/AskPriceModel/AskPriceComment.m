@@ -8,6 +8,7 @@
 
 #import "AskPriceComment.h"
 #import "ProjectStage.h"
+#import "LoginSqlite.h"
 @implementation AskPriceComment
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
@@ -20,5 +21,16 @@
     self.a_tradeCode = dict[@"tradeCode"];
     self.a_tradeId = dict[@"tradeId"];
     self.a_tradeUserAndCommentUser = dict[@"tradeUserAndCommentUser"];
+    if([dict[@"createdBy"] isEqualToString:[LoginSqlite getdata:@"userId"]]){
+        self.a_isSelf = YES;
+    }else{
+        self.a_isSelf = NO;
+    }
+    
+    if([dict[@"isVerified"] isEqualToString:@"00"]){
+        self.a_isVerified = dict[@""];
+    }else{
+        self.a_isVerified = dict[@"平台认证公司资质，诚实可信"];
+    }
 }
 @end
