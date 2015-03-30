@@ -8,9 +8,11 @@
 
 #import "ContractsBaseViewController.h"
 #import "BaseContractsView.h"
+#import "ProvisionalViewController.h"
 @interface ContractsBaseViewController ()<RKMuchBtnsDelegate,ContractsViewDelegate>
 @property (nonatomic, strong)BaseContractsView* providerConstractView;
 @property (nonatomic, strong)BaseContractsView* salerConstractView;
+@property (nonatomic, strong)ProvisionalViewController *provisionalView;
 @end
 
 @implementation ContractsBaseViewController
@@ -24,7 +26,9 @@
 }
 
 -(void)muchBtnsClickedWithNumber:(NSInteger)number{
-    if (number==1) {
+    if(number == 0){
+        [self.view addSubview:self.provisionalView.view];
+    }else if (number==1) {
         self.providerConstractView.hidden=NO;
         self.salerConstractView.hidden=YES;
     }else if (number==2){
@@ -76,5 +80,12 @@
         _muchBtns.frame=frame;
     }
     return _muchBtns;
+}
+
+-(ProvisionalViewController *)provisionalView{
+    if(!_provisionalView){
+        _provisionalView = [[ProvisionalViewController alloc] init];
+    }
+    return _provisionalView;
 }
 @end
