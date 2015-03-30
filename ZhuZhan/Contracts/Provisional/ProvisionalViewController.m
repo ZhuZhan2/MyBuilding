@@ -54,6 +54,10 @@
     [self.otherView2.textView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     
     [self.otherView3.textView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,19 +82,19 @@
 }
 
 -(void)textFiedDidBegin{
-    self.view.transform = CGAffineTransformMakeTranslation(0, -(self.startMainViewHeight+self.receiveViewHeight+self.previousTextViewContentHeight1+self.otherViewHeight1-30+self.previousTextViewContentHeight2+self.otherViewHeight2-30+self.previousTextViewContentHeight3+self.otherViewHeight3-30));
+    
 }
 
 -(void)textFiedDidEnd:(NSString *)str{
-    self.view.transform = CGAffineTransformIdentity;
+    
 }
 
 -(void)beginTextView{
-    self.view.transform = CGAffineTransformMakeTranslation(0, -(self.startMainViewHeight+self.receiveViewHeight+self.previousTextViewContentHeight1+self.otherViewHeight1-30+self.previousTextViewContentHeight2+self.otherViewHeight2-30+self.previousTextViewContentHeight3+self.otherViewHeight3-30+80));
+    
 }
 
 -(void)endTextView:(NSString *)str{
-    self.view.transform = CGAffineTransformIdentity;
+    
 }
 
 -(void)textViewDidBeginEditing:(MessageTextView *)textView{
@@ -103,18 +107,10 @@
     if(!self.previousTextViewContentHeight3){
         self.previousTextViewContentHeight3 = [self getTextViewContentH:textView];
     }
-    
-    if(textView == self.otherView1.textView){
-        self.view.transform = CGAffineTransformMakeTranslation(0, -(self.startMainViewHeight+self.receiveViewHeight));
-    }else if (textView == self.otherView2.textView){
-        self.view.transform = CGAffineTransformMakeTranslation(0, -(self.startMainViewHeight+self.receiveViewHeight+self.previousTextViewContentHeight1+self.otherViewHeight1-30));
-    }else{
-        self.view.transform = CGAffineTransformMakeTranslation(0, -(self.startMainViewHeight+self.receiveViewHeight+self.previousTextViewContentHeight1+self.otherViewHeight1-30+self.previousTextViewContentHeight2+self.otherViewHeight2-30));
-    }
 }
 
 -(void)textViewDidEndEditing:(MessageTextView *)textView{
-    self.view.transform = CGAffineTransformIdentity;
+    
 }
 
 -(void)layoutAndAnimateTextView:(UITextView *)textView index:(int)index{
@@ -188,7 +184,7 @@
 
 -(UITableView *)tableView{
     if(!_tableView){
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 132, 320, kScreenHeight-192)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 132, 320, kScreenHeight-182)];
         //_tableView = [[UITableView alloc] initWithFrame:self.view.frame];
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -371,6 +367,22 @@
 
 -(void)submitAction{
     
+}
+
+#pragma mark - 键盘处理
+#pragma mark 键盘即将显示
+- (void)keyBoardWillShow:(NSNotification *)note{
+    CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat ty = - rect.size.height;
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]-0.01 animations:^{
+        self.view.transform = CGAffineTransformMakeTranslation(0, ty);
+    }];
+}
+#pragma mark 键盘即将退出
+- (void)keyBoardWillHide:(NSNotification *)note{
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+        self.view.transform = CGAffineTransformIdentity;
+    }];
 }
 
 -(void)dealloc{
