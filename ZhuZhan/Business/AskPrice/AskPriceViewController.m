@@ -35,7 +35,7 @@
     [self initNavi];
     [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[@"0",@"0",@"0",@"0"]];
     [self initTableView];
-    [self initTableViewHeader];
+//    [self initTableViewHeader];
 
     self.tableView.backgroundColor=AllBackDeepGrayColor;
 }
@@ -51,12 +51,12 @@
     } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:@"" noNetWork:nil];
 }
 
--(void)initTableViewHeader{
-    CGRect frame=self.searchBar.frame;
-    frame.origin=CGPointZero;
-    self.searchBar.frame=frame;
-    self.tableView.tableHeaderView=self.searchBar;
-}
+//-(void)initTableViewHeader{
+//    CGRect frame=self.searchBar.frame;
+//    frame.origin=CGPointZero;
+//    self.searchBar.frame=frame;
+//    self.tableView.tableHeaderView=self.searchBar;
+//}
 
 -(void)initNavi{
     [self initTitleViewWithTitle:@"全部需求列表"];

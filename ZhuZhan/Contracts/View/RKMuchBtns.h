@@ -12,6 +12,6 @@
 -(void)muchBtnsClickedWithNumber:(NSInteger)number;
 @end
 @interface RKMuchBtns : UIView
-+(RKMuchBtns*)getMuchBtnsWithContents:(NSArray*)contents size:(CGSize)size;
++(RKMuchBtns*)muchBtnsWithContents:(NSArray*)contents mainSize:(CGSize)mainSize assistSize:(CGSize)assistSize assistStageCount:(NSInteger)assistStageCount delegate:(id<RKMuchBtnsDelegate>)delegate;
 -(void)setNormalTextColor:(UIColor*)normalTextColor normalBackColor:(UIColor*)normalBackColor highlightTextColor:(UIColor*)highlightTextColor highlightBackColor:(UIColor*)highlightBackColor;
 @end

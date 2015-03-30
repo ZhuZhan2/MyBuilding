@@ -8,6 +8,8 @@
 
 #import "DemandProvidePriceChatController.h"
 #import "AskPriceApi.h"
+#import "DemandChatViewCell.h"
+
 @interface DemandProvidePriceChatController ()
 
 @end
