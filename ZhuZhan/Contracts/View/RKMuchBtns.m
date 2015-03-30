@@ -10,9 +10,9 @@
 #import "RKMuchBtnAssistView.h"
 #import "RKShadowView.h"
 #define NormalTextColor [UIColor whiteColor]
-#define NormalBackColor RGBCOLOR(211, 211, 211)
+#define NormalBackColor RGBCOLOR(222, 222, 222)
 #define HighlightTextColor AllDeepGrayColor
-#define HighlightBackColor AllBackLightGratColor
+#define HighlightBackColor AllBackMiddleGrayColor
 
 @interface RKMuchBtns()
 

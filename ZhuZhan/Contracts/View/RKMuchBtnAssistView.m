@@ -22,7 +22,7 @@
 @implementation RKMuchBtnAssistView
 +(RKMuchBtnAssistView*)muchBtnAssistViewWithMaxStageCount:(NSInteger)maxStageCount size:(CGSize)size{
     RKMuchBtnAssistView* muchBtnAssistView=[[RKMuchBtnAssistView alloc]initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    muchBtnAssistView.backgroundColor=AllBackLightGratColor;
+    muchBtnAssistView.backgroundColor=AllBackMiddleGrayColor;
     muchBtnAssistView.maxStageCount=maxStageCount;
     [muchBtnAssistView setUp];
     return muchBtnAssistView;
