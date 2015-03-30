@@ -9,6 +9,8 @@
 #import "DemandAskPriceChatController.h"
 #import "AskPriceApi.h"
 #import "DemandChatViewCell.h"
+#import "AskPriceComment.h"
+#import "MJRefresh.h"
 @interface DemandAskPriceChatController ()
 @property(nonatomic)int startIndex;
 @end
