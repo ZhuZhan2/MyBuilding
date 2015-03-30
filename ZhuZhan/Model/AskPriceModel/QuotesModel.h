@@ -44,5 +44,23 @@
 @property(nonatomic,strong)NSString *a_createdBy;
 //第几次报价
 @property(nonatomic,strong)NSString *a_quoteTimes;
+//附件图片
+@property(nonatomic,strong)NSMutableArray *a_otherAttachmentsArr;
+//资质图片
+@property(nonatomic,strong)NSMutableArray *a_qualificationsAttachmentsArr;
+//报价图片
+@property(nonatomic,strong)NSMutableArray *a_quoteAttachmentsArr;
+@property(nonatomic,strong)NSDictionary *dict;
+@end
+
+@interface ImagesModel : NSObject
+@property(nonatomic,strong)NSString *a_id;
+@property(nonatomic,strong)NSString *a_createdBy;
+@property(nonatomic,strong)NSString *a_category;
+@property(nonatomic,strong)NSString *a_location;
+@property(nonatomic,strong)NSString *a_name;
+@property(nonatomic,strong)NSString *a_quotesId;
+@property(nonatomic,strong)NSString *a_tradeCode;
+@property(nonatomic)BOOL a_isUrl;
 @property(nonatomic,strong)NSDictionary *dict;
 @end

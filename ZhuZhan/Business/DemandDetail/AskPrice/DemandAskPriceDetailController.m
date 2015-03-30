@@ -8,14 +8,17 @@
 
 #import "DemandAskPriceDetailController.h"
 #import "AskPriceApi.h"
+#import "MJRefresh.h"
 @interface DemandAskPriceDetailController ()
-
+@property(nonatomic)int startIndex;
 @end
 
 @implementation DemandAskPriceDetailController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.startIndex = 0;
+    [self setupRefresh];
     [self loadList];
 }
 
@@ -44,7 +47,7 @@
     {
         QuotesDetailModel* dataModel=self.detailModels[indexPath.row];
         cellModel.userName=dataModel.a_quoteUser;
-        cellModel.userDescribe=@"用户描述啊用户描述啊用户描述啊用";
+        cellModel.userDescribe=dataModel.a_quoteIsVerified;
         cellModel.time=dataModel.a_createdTime;
         cellModel.numberDescribe=[NSString stringWithFormat:@"第%@次报价",dataModel.a_quoteTimes];
         cellModel.content=dataModel.a_quoteContent;
@@ -64,7 +67,7 @@
     {
         QuotesDetailModel* dataModel=self.detailModels[indexPath.row];
         cellModel.userName=dataModel.a_quoteUser;
-        cellModel.userDescribe=@"用户描述啊用户描述啊用户描述啊用";
+        cellModel.userDescribe=dataModel.a_quoteIsVerified;
         cellModel.time=dataModel.a_createdTime;
         cellModel.numberDescribe=[NSString stringWithFormat:@"第%@次报价",dataModel.a_quoteTimes];
         cellModel.content=dataModel.a_quoteContent;
@@ -98,5 +101,42 @@
         
     } dic:dic noNetWork:nil];
     NSLog(@"closeBtnClicked");
+}
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    //[_tableView headerBeginRefreshing];
+    
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    [AskPriceApi GetQuotesListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self.detailModels removeAllObjects];
+            self.detailModels=posts;
+            [self.tableView reloadData];
+        }
+        [self.tableView headerEndRefreshing];
+    } providerId:self.quotesModel.a_loginId tradeCode:self.askPriceModel.a_tradeCode startIndex:0 noNetWork:nil];
+}
+
+- (void)footerRereshing
+{
+    [AskPriceApi GetQuotesListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.startIndex++;
+            [self.detailModels addObjectsFromArray:posts];
+            [self.tableView reloadData];
+        }
+        [self.tableView footerEndRefreshing];
+    } providerId:self.quotesModel.a_loginId tradeCode:self.askPriceModel.a_tradeCode startIndex:self.startIndex+1 noNetWork:nil];
 }
 @end

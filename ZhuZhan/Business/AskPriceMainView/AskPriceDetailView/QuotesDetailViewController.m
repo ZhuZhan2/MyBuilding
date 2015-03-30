@@ -149,21 +149,6 @@
             view.askPriceModel = self.askPriceModel;
             [self.navigationController pushViewController:view animated:YES];
         }
-//        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-//        [dic setValue:@"88B7CE789CC9" forKey:@"tradeCode"];
-//        [dic setValue:@"0" forKey:@"category"];
-//        [dic setValue:@"b1104ca7-ff90-4220-b478-3d6f15f09da3" forKey:@"quotesId"];
-//        NSMutableArray *arr = [[NSMutableArray alloc] init];
-//        for(int i=1;i<10;i++){
-//            UIImage *image = [GetImagePath getImagePath:[NSString stringWithFormat:@"01000%d",i]];
-//            NSData *imageData = UIImageJPEGRepresentation(image, 0.3);
-//            [arr addObject:imageData];
-//        }
-//        [AskPriceApi AddImageWithBlock:^(NSMutableArray *posts, NSError *error) {
-//            if(!error){
-//            
-//            }
-//        } dataArr:arr dic:dic noNetWork:nil];
     }
 }
 

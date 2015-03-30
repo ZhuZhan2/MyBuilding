@@ -97,7 +97,7 @@ static int BtnTag =0;
     
     //image = [self fixOrientation:image];
     
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.3);
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
     NSString* imageStr = [[NSString alloc] initWithData:[GTMBase64 encodeData:imageData] encoding:NSUTF8StringEncoding];
     
     if (BtnTag == 2014090201) {//更换背景
