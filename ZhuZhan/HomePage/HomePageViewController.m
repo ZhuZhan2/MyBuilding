@@ -16,6 +16,7 @@
 #import "ChatListViewController.h"
 #import "RecommendListViewController.h"
 #import "RemindListViewController.h"
+#import "ConstractListController.h"
 #define contentHeight (kScreenHeight==480?431:519)
 @interface HomePageViewController ()<LoginViewDelegate>
 @property(nonatomic,strong)UINavigationController *navigatin;
@@ -263,7 +264,8 @@
     NSLog(@"===>%ld",(long)idx);
     if(idx == 0){
         NSLog(@"推荐信");
-        quadCurveVC=[[RecommendListViewController alloc]init];
+        Class class=NSClassFromString(@"ContractsBaseViewController");
+        quadCurveVC=[[class alloc]init];
     }else if(idx == 1){
         NSLog(@"通知");
         //quadCurveVC=[[RemindListViewController alloc]init];
@@ -272,6 +274,7 @@
     }else if(idx == 2){
         NSLog(@"加好友");
         quadCurveVC=[[AddFriendViewController alloc]init];
+        quadCurveVC=[[ConstractListController alloc]init];
     }else if (idx == 3){
         NSLog(@"会话");
         quadCurveVC=[[ChatListViewController alloc]init];

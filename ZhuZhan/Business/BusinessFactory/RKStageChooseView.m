@@ -108,7 +108,7 @@
 
 -(void)stageLabelClickedWithSequence:(NSInteger)sequence{
     [self.labels enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [(RKStageAndNumberView*)obj changeColor:idx==sequence?SelectedColor:(self.stages.count==4?NoSeletedFourStageColor:NoSeletedTwoStageColor)];
+        [(RKStageAndNumberView*)obj changeColor:idx==sequence?SelectedColor:(self.stages.count>2?NoSeletedFourStageColor:NoSeletedTwoStageColor)];
     }];
     RKStageAndNumberView* stageLabel=self.labels[sequence];
     

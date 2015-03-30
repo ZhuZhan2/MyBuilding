@@ -38,7 +38,6 @@
     [self initNavi];
     [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[@"0",@"0",@"0",@"0"]];
     [self initTableView];
-    [self initTableViewHeader];
     
     //集成刷新控件
     [self setupRefresh];
@@ -55,13 +54,6 @@
             [self.tableView reloadData];
         }
     } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:@"" noNetWork:nil];
-}
-
--(void)initTableViewHeader{
-    CGRect frame=self.searchBar.frame;
-    frame.origin=CGPointZero;
-    self.searchBar.frame=frame;
-    self.tableView.tableHeaderView=self.searchBar;
 }
 
 -(void)initNavi{
