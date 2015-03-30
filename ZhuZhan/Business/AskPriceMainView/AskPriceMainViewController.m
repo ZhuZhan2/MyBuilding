@@ -28,12 +28,12 @@
 @property(nonatomic,strong)AddContactView *addContactView;
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *viewArr;
-@property(nonatomic)int addContactViewHeight;
+@property(nonatomic)float addContactViewHeight;
 @property(nonatomic,strong)AddCategoriesView *addCategoriesView;
-@property(nonatomic)int addCategoriesViewHeight;
+@property(nonatomic)float addCategoriesViewHeight;
 @property(nonatomic,strong)NSString *categoryStr;
 @property(nonatomic,strong)AddClassificationView *addClassificationView;
-@property(nonatomic)int addClassificationViewHeight;
+@property(nonatomic)float addClassificationViewHeight;
 @property(nonatomic,strong)NSString *classifcationStr;
 @property(nonatomic,strong)AddMarkView *addMarkView;
 @property(nonatomic,strong)NSString *remarkStr;
