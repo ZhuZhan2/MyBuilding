@@ -70,29 +70,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row<7){
-        NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(!cell){
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        cell.selectionStyle = NO;
-        [cell.contentView addSubview:self.viewArr[indexPath.row]];
-        return cell;
-    }else{
-        NSString *CellIdentifier = [NSString stringWithFormat:@"ButtonCell"];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(!cell){
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        UIButton *submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        submitBtn.frame = CGRectMake(13, 5, 294, 38);
-        [submitBtn setImage:[GetImagePath getImagePath:@"submit"] forState:UIControlStateNormal];
-        [submitBtn addTarget:self action:@selector(submitAction) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contentView addSubview:submitBtn];
-        return cell;
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(!cell){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    cell.selectionStyle = NO;
+    [cell.contentView addSubview:self.viewArr[indexPath.row]];
+    return cell;
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
