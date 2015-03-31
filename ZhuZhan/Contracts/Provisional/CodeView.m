@@ -14,13 +14,16 @@
     if(self){
         [self addSubview:self.titleLabel];
         [self addSubview:self.codeLabel];
+        [self addSubview:self.timeLabel];
+        [self addSubview:self.tradCodeLabel];
+        [self addSubview:self.cutLine];
     }
     return self;
 }
 
 -(UILabel *)titleLabel{
     if(!_titleLabel){
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(26, 16, 180, 16)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(26, 10, 180, 16)];
         _titleLabel.textColor = AllLightGrayColor;
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.font = [UIFont systemFontOfSize:16];
@@ -31,12 +34,40 @@
 
 -(UILabel *)codeLabel{
     if(!_codeLabel){
-        _codeLabel = [[UILabel alloc] initWithFrame:CGRectMake(26, 42, 180, 16)];
+        _codeLabel = [[UILabel alloc] initWithFrame:CGRectMake(26, 36, 180, 16)];
         _codeLabel.textColor = AllLightGrayColor;
         _codeLabel.textAlignment = NSTextAlignmentLeft;
         _codeLabel.font = [UIFont systemFontOfSize:16];
         _codeLabel.text = @"流水号：";
     }
     return _codeLabel;
+}
+
+-(UILabel *)timeLabel{
+    if(!_timeLabel){
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(105, 10, 195, 16)];
+        _timeLabel.textColor = AllLightGrayColor;
+        _timeLabel.textAlignment = NSTextAlignmentLeft;
+        _timeLabel.font = [UIFont systemFontOfSize:16];
+    }
+    return _timeLabel;
+}
+
+-(UILabel *)tradCodeLabel{
+    if(!_tradCodeLabel){
+        _tradCodeLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 36, 200, 16)];
+        _tradCodeLabel.textColor = AllLightGrayColor;
+        _tradCodeLabel.textAlignment = NSTextAlignmentLeft;
+        _tradCodeLabel.font = [UIFont systemFontOfSize:16];
+    }
+    return _tradCodeLabel;
+}
+
+-(UIImageView *)cutLine{
+    if(!_cutLine){
+        _cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(0,64, 320, 1)];
+        _cutLine.backgroundColor = [UIColor lightGrayColor];
+    }
+    return _cutLine;
 }
 @end
