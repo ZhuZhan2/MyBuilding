@@ -180,8 +180,7 @@
     }else{
         [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
-                NSLog(@"%@",posts);
-                self.isFocused=[NSString stringWithFormat:@"%@",posts[0]];
+                self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocus"]];
                 [self getNetWorkData];
             }else{
                 [LoginAgain AddLoginView:NO];

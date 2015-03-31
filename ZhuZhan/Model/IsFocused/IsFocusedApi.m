@@ -21,7 +21,7 @@
         NSLog(@"JSON Focused===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             if (block) {
-                block([NSMutableArray arrayWithObjects:JSON[@"data"][@"isFocus"], nil], nil);
+                block([NSMutableArray arrayWithObjects:JSON[@"data"], nil], nil);
             }
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
