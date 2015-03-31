@@ -28,6 +28,7 @@
         _detailController=[[DemandProvidePriceDetailController alloc]init];
         _detailController.askPriceModel = self.askPriceModel;
         _detailController.quotesModel = self.quotesModel;
+        _detailController.superViewController=self;
         _detailController.delegate=self;
     }
     return _detailController;

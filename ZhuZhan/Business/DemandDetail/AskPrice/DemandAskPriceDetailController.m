@@ -134,7 +134,7 @@
     NSMutableDictionary* dic=[@{@"id":dataModel.a_id}mutableCopy];
     [AskPriceApi AcceptQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            [[[UIAlertView alloc]initWithTitle:@"提醒" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定",@"取消", nil]show];
+            [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"采纳成功" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定",@"取消", nil]show];
         }
     } dic:dic noNetWork:nil];
     NSLog(@"rightBtnClicked,indexPath==%d",(int)indexPath.row);
