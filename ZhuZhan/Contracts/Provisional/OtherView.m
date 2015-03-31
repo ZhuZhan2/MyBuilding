@@ -8,6 +8,7 @@
 
 #import "OtherView.h"
 #import "EndEditingGesture.h"
+#import "RKShadowView.h"
 @implementation OtherView
 -(id)initWithFrame:(CGRect)frame isOver:(BOOL)isOver{
     self = [super initWithFrame:frame];
@@ -41,10 +42,9 @@
     return _imageView;
 }
 
--(UIImageView *)cutLine{
+-(UIView *)cutLine{
     if(!_cutLine){
-        _cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
-        _cutLine.backgroundColor = [UIColor lightGrayColor];
+        _cutLine = [RKShadowView seperatorLineWithHeight:2];
     }
     return _cutLine;
 }

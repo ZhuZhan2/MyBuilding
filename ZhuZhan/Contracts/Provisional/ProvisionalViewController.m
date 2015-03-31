@@ -260,6 +260,7 @@
             if(height<60){
                 height = 60;
             }
+            NSLog(@"height===. %f",height);
             self.otherViewHeight3 = height;
             _otherView3.frame = CGRectMake(0, 0, 320, height);
         } titleStr:@"开票公司抬头"];
@@ -352,6 +353,7 @@
         }
     }else if(indexPath.row == 4){
         if(!self.previousTextViewContentHeight3){
+            NSLog(@"previousTextViewContentHeight3==> %f",self.otherViewHeight3);
             return self.otherViewHeight3;
         }else{
             return self.previousTextViewContentHeight3+self.otherViewHeight3-30;

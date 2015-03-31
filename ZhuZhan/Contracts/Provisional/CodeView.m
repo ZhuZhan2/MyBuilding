@@ -7,7 +7,7 @@
 //
 
 #import "CodeView.h"
-
+#import "RKShadowView.h"
 @implementation CodeView
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -63,10 +63,10 @@
     return _tradCodeLabel;
 }
 
--(UIImageView *)cutLine{
+-(UIView *)cutLine{
     if(!_cutLine){
-        _cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(0,64, 320, 1)];
-        _cutLine.backgroundColor = [UIColor lightGrayColor];
+        _cutLine = [RKShadowView seperatorLineWithHeight:2];
+        _cutLine.frame = CGRectMake(0, 63, 320, 2);
     }
     return _cutLine;
 }
