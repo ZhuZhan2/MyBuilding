@@ -34,7 +34,6 @@
 
 @property(nonatomic,strong)MoneyView *moneyView;
 @property(nonatomic,strong)ContractView *contractView;
-@property(nonatomic,strong)UIButton *submitBtn;
 @end
 
 @implementation ProvisionalViewController
@@ -47,13 +46,16 @@
     // Do any additional setup after loading the view.
     //self.receiveStr=@"阿士大夫撒发生地方撒旦法师打发士大夫阿士大夫撒发生地方撒旦法师打发士大夫阿士大夫撒发生地方撒旦法师打发士大夫";
     [self.view addSubview:self.tableView];
-    [self.view addSubview:self.submitBtn];
     
     [self.otherView1.textView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     
     [self.otherView2.textView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     
     [self.otherView3.textView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,19 +80,19 @@
 }
 
 -(void)textFiedDidBegin{
-    self.view.transform = CGAffineTransformMakeTranslation(0, -(self.startMainViewHeight+self.receiveViewHeight+self.previousTextViewContentHeight1+self.otherViewHeight1-30+self.previousTextViewContentHeight2+self.otherViewHeight2-30+self.previousTextViewContentHeight3+self.otherViewHeight3-30));
+    
 }
 
 -(void)textFiedDidEnd:(NSString *)str{
-    self.view.transform = CGAffineTransformIdentity;
+    
 }
 
 -(void)beginTextView{
-    self.view.transform = CGAffineTransformMakeTranslation(0, -(self.startMainViewHeight+self.receiveViewHeight+self.previousTextViewContentHeight1+self.otherViewHeight1-30+self.previousTextViewContentHeight2+self.otherViewHeight2-30+self.previousTextViewContentHeight3+self.otherViewHeight3-30+80));
+    
 }
 
 -(void)endTextView:(NSString *)str{
-    self.view.transform = CGAffineTransformIdentity;
+    
 }
 
 -(void)textViewDidBeginEditing:(MessageTextView *)textView{
@@ -103,18 +105,10 @@
     if(!self.previousTextViewContentHeight3){
         self.previousTextViewContentHeight3 = [self getTextViewContentH:textView];
     }
-    
-    if(textView == self.otherView1.textView){
-        self.view.transform = CGAffineTransformMakeTranslation(0, -(self.startMainViewHeight+self.receiveViewHeight));
-    }else if (textView == self.otherView2.textView){
-        self.view.transform = CGAffineTransformMakeTranslation(0, -(self.startMainViewHeight+self.receiveViewHeight+self.previousTextViewContentHeight1+self.otherViewHeight1-30));
-    }else{
-        self.view.transform = CGAffineTransformMakeTranslation(0, -(self.startMainViewHeight+self.receiveViewHeight+self.previousTextViewContentHeight1+self.otherViewHeight1-30+self.previousTextViewContentHeight2+self.otherViewHeight2-30));
-    }
 }
 
 -(void)textViewDidEndEditing:(MessageTextView *)textView{
-    self.view.transform = CGAffineTransformIdentity;
+    
 }
 
 -(void)layoutAndAnimateTextView:(UITextView *)textView index:(int)index{
@@ -188,7 +182,7 @@
 
 -(UITableView *)tableView{
     if(!_tableView){
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 132, 320, kScreenHeight-192)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 132, 320, kScreenHeight-132)];
         //_tableView = [[UITableView alloc] initWithFrame:self.view.frame];
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -300,16 +294,6 @@
     return _viewArr;
 }
 
--(UIButton *)submitBtn{
-    if(!_submitBtn){
-        _submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _submitBtn.frame = CGRectMake(13, kScreenHeight-48, 294, 38);
-        [_submitBtn setImage:[GetImagePath getImagePath:@"submit"] forState:UIControlStateNormal];
-        [_submitBtn addTarget:self action:@selector(submitAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _submitBtn;
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
@@ -319,7 +303,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.viewArr.count;
+    return self.viewArr.count+1;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -328,15 +312,29 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(!cell){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if(indexPath.row<7){
+        NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        cell.selectionStyle = NO;
+        [cell.contentView addSubview:self.viewArr[indexPath.row]];
+        return cell;
+    }else{
+        NSString *CellIdentifier = [NSString stringWithFormat:@"ButtonCell"];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        UIButton *submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        submitBtn.frame = CGRectMake(13, 5, 294, 38);
+        [submitBtn setImage:[GetImagePath getImagePath:@"submit"] forState:UIControlStateNormal];
+        [submitBtn addTarget:self action:@selector(submitAction) forControlEvents:UIControlEventTouchUpInside];
+        [cell.contentView addSubview:submitBtn];
+        return cell;
     }
-    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    cell.selectionStyle = NO;
-    [cell.contentView addSubview:self.viewArr[indexPath.row]];
-    return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -364,13 +362,31 @@
         }
     }else if(indexPath.row == 5){
         return 80;
-    }else{
+    }else if(indexPath.row == 6){
         return 252;
+    }else{
+        return 48;
     }
 }
 
 -(void)submitAction{
     
+}
+
+#pragma mark - 键盘处理
+#pragma mark 键盘即将显示
+- (void)keyBoardWillShow:(NSNotification *)note{
+    CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat ty = - rect.size.height;
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]-0.01 animations:^{
+        self.view.transform = CGAffineTransformMakeTranslation(0, ty);
+    }];
+}
+#pragma mark 键盘即将退出
+- (void)keyBoardWillHide:(NSNotification *)note{
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+        self.view.transform = CGAffineTransformIdentity;
+    }];
 }
 
 -(void)dealloc{
