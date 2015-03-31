@@ -116,7 +116,7 @@
     NSString* code=[NSString stringWithFormat:@"流水号：%@",contents[6]];
     
     NSString* wholeStageName=[typeName stringByAppendingString:stage];
-    [self.cellHeader changeStageName:wholeStageName code:code stageColor:stageColor];
+    [self.cellHeader changeStageName:wholeStageName code:code stageColor:stageColor codeColor:AllLightGrayColor];
 //    [self.cellHeader changeStageName:wholeStageName stageColor:stageColor];
     [self reloadAllFrames];
 }

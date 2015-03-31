@@ -96,7 +96,7 @@
 }
 
 -(void)selectDemandStage{
-    DemandStageChooseController* vc=[[DemandStageChooseController alloc]initWithIndex:self.nowStage];
+    DemandStageChooseController* vc=[[DemandStageChooseController alloc]initWithIndex:self.nowStage stageNames:@[@"全部需求列表",@"报价需求列表",@"询价需求列表"]];
     vc.delegate=self;
     [self.navigationController pushViewController:vc animated:YES];
 }

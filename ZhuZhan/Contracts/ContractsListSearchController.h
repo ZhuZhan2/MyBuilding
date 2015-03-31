@@ -1,0 +1,13 @@
+//
+//  ContractsListSearchController.h
+//  ZhuZhan
+//
+//  Created by 孙元侃 on 15/3/31.
+//
+//
+
+#import "DemandListSearchController.h"
+
+@interface ContractsListSearchController : DemandListSearchController
+
+@end
