@@ -14,5 +14,6 @@
 
 @interface RKStageChooseView : UIView
 +(RKStageChooseView*)stageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers delegate:(id<RKStageChooseViewDelegate>)delegate;
+-(void)stageLabelClickedWithSequence:(NSInteger)sequence;
 -(void)changeNumbers:(NSArray*)numbers;
 @end

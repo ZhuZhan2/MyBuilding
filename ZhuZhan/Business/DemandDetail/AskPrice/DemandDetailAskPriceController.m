@@ -19,11 +19,16 @@
     [super viewDidLoad];
 }
 
+-(void)demandDetailControllerLeftBtnClicked{
+    [self.stageChooseView stageLabelClickedWithSequence:1];
+}
+
 -(RKDemandDetailController *)detailController{
     if (!_detailController) {
         _detailController=[[DemandAskPriceDetailController alloc]init];
         _detailController.quotesModel = self.quotesModel;
         _detailController.askPriceModel = self.askPriceModel;
+        _detailController.delegate=self;
         _detailController.superViewController=self;
     }
     return _detailController;

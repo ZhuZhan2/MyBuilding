@@ -125,10 +125,14 @@
 }
 
 -(void)leftBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
+    if ([self.delegate respondsToSelector:@selector(demandDetailControllerLeftBtnClicked)]) {
+        [self.delegate demandDetailControllerLeftBtnClicked];
+    }
     NSLog(@"leftBtnClicked,indexPath==%d",(int)indexPath.row);
 }
 
 -(void)rightBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"rightBtnClicked,indexPath==%d",(int)indexPath.row);
     ProvidePriceInfoController* vc=[[ProvidePriceInfoController alloc]init];
     vc.askPriceModel = self.askPriceModel;
     [self.superViewController.navigationController pushViewController:vc animated:YES];
