@@ -20,6 +20,8 @@
 #import "LoginSqlite.h"
 #import "FirstOpenAppAnimationView.h"
 #import "ProjectSqlite.h"
+#import "SocketManage.h"
+#import "GCDAsyncSocket.h"
 @implementation AppDelegate
 
 + (AppDelegate *)instance {
@@ -27,6 +29,10 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+//    SocketManage *socket = [SocketManage sharedManager];
+//    [socket connectToServer:@"10.1.1.138" withPort:[@"44455" intValue]];
+//    [socket writeData:[[NSString stringWithFormat:@"操死你\r\n"] dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
+//    [socket readDataWithTimeout:-1 tag:0];
     
     if ([CLLocationManager locationServicesEnabled]) {
         
@@ -149,5 +155,4 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
 @end

@@ -180,6 +180,7 @@
     }else{
         [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
+                NSLog(@"%@",posts);
                 self.isFocused=[NSString stringWithFormat:@"%@",posts[0]];
                 [self getNetWorkData];
             }else{
