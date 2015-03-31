@@ -34,7 +34,6 @@
 
 @property(nonatomic,strong)MoneyView *moneyView;
 @property(nonatomic,strong)ContractView *contractView;
-@property(nonatomic,strong)UIButton *submitBtn;
 @end
 
 @implementation ProvisionalViewController
@@ -47,7 +46,6 @@
     // Do any additional setup after loading the view.
     //self.receiveStr=@"阿士大夫撒发生地方撒旦法师打发士大夫阿士大夫撒发生地方撒旦法师打发士大夫阿士大夫撒发生地方撒旦法师打发士大夫";
     [self.view addSubview:self.tableView];
-    [self.view addSubview:self.submitBtn];
     
     [self.otherView1.textView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     
@@ -184,7 +182,7 @@
 
 -(UITableView *)tableView{
     if(!_tableView){
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 132, 320, kScreenHeight-182)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 132, 320, kScreenHeight-132)];
         //_tableView = [[UITableView alloc] initWithFrame:self.view.frame];
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -296,16 +294,6 @@
     return _viewArr;
 }
 
--(UIButton *)submitBtn{
-    if(!_submitBtn){
-        _submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _submitBtn.frame = CGRectMake(13, kScreenHeight-48, 294, 38);
-        [_submitBtn setImage:[GetImagePath getImagePath:@"submit"] forState:UIControlStateNormal];
-        [_submitBtn addTarget:self action:@selector(submitAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _submitBtn;
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
@@ -315,7 +303,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.viewArr.count;
+    return self.viewArr.count+1;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -324,15 +312,29 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(!cell){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if(indexPath.row<7){
+        NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        cell.selectionStyle = NO;
+        [cell.contentView addSubview:self.viewArr[indexPath.row]];
+        return cell;
+    }else{
+        NSString *CellIdentifier = [NSString stringWithFormat:@"ButtonCell"];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        UIButton *submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        submitBtn.frame = CGRectMake(13, 5, 294, 38);
+        [submitBtn setImage:[GetImagePath getImagePath:@"submit"] forState:UIControlStateNormal];
+        [submitBtn addTarget:self action:@selector(submitAction) forControlEvents:UIControlEventTouchUpInside];
+        [cell.contentView addSubview:submitBtn];
+        return cell;
     }
-    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    cell.selectionStyle = NO;
-    [cell.contentView addSubview:self.viewArr[indexPath.row]];
-    return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -360,8 +362,10 @@
         }
     }else if(indexPath.row == 5){
         return 80;
-    }else{
+    }else if(indexPath.row == 6){
         return 252;
+    }else{
+        return 48;
     }
 }
 
