@@ -20,7 +20,6 @@
         imageView.image=model.image;
     }
     [view addSubview:imageView];
-    view.backgroundColor=[UIColor redColor];
     return view;
 }
 

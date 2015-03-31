@@ -7,7 +7,7 @@
 //
 
 #import "ConstractListController.h"
-#import "AskPriceViewCell.h"
+#import "ContractListCell.h"
 #import "ContractsBaseViewController.h"
 
 @interface ConstractListController ()
@@ -18,15 +18,54 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initNavi];
     [self initStageChooseViewWithStages:@[@"全部",@"待审核",@"待确认",@"已关闭",@"已完成"]  numbers:nil];
     [self initTableView];
+}
+
+-(void)initNavi{
+    [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
+    [self setRightBtnWithImage:[GetImagePath getImagePath:@"搜索按钮"]];
+    [self initTitleViewWithTitle:@"佣金合同列表"];
+}
+
+-(void)initTitleViewWithTitle:(NSString*)title{
+    NSString* titleStr=title;
+    UIFont* font=[UIFont fontWithName:@"GurmukhiMN-Bold" size:19];
+    UILabel* titleLabel=[[UILabel alloc]init];
+    titleLabel.text=titleStr;
+    titleLabel.font=font;
+    titleLabel.textColor=[UIColor whiteColor];
+    CGSize size=[titleStr boundingRectWithSize:CGSizeMake(9999, 20) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
+    titleLabel.frame=CGRectMake(0, 0, size.width, size.height);
+    
+    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake( 0, 0, 15, 9)];
+    imageView.center=CGPointMake(CGRectGetMaxX(titleLabel.frame)+CGRectGetWidth(imageView.frame)*0.5+5, CGRectGetMidY(titleLabel.frame));
+    imageView.image=[GetImagePath getImagePath:@"交易_页头箭头"];
+    
+    CGRect frame=titleLabel.frame;
+    frame.size.width+=CGRectGetWidth(imageView.frame);
+    
+    UIButton* button=[[UIButton alloc]initWithFrame:frame];
+    [button addTarget:self action:@selector(selectStage) forControlEvents:UIControlEventTouchUpInside];
+    [button addSubview:titleLabel];
+    [button addSubview:imageView];
+    
+    self.navigationItem.titleView=button;
+}
+
+-(void)selectStage{
+    NSLog(@"22");
+//    DemandStageChooseController* vc=[[DemandStageChooseController alloc]init];
+//    vc.delegate=self;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(NSMutableArray *)showArr{
     if (!_showArr) {
         _showArr=[NSMutableArray array];
         for (int i=0;i<15;i++) {
-            [_showArr addObject:@[@"用户名",@"bigCategory",@"model.a_productCategory",@"model.a_remark",@"model.a_category",@"model.a_tradeStatus",@"model.a_tradeCode"]];
+            [_showArr addObject:@[@"发起者",@"接收者",@"甲  方",@"乙  方",@"金  额",@"合同条款",@"状态"]];
         }
     }
     return _showArr;
@@ -37,13 +76,13 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [AskPriceViewCell carculateTotalHeightWithContents:self.showArr[indexPath.row]];
+    return [ContractListCell carculateTotalHeightWithContents:self.showArr[indexPath.row]];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    AskPriceViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
+    ContractListCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
-        cell=[[AskPriceViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell=[[ContractListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.clipsToBounds=YES;
     }
     cell.contents=self.showArr[indexPath.row];

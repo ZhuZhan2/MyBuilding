@@ -9,10 +9,18 @@
 #import "DemandStageChooseController.h"
 #import "DemandStageCell.h"
 @interface DemandStageChooseController ()
-
+@property (nonatomic)NSInteger index;
+@property (nonatomic, strong)NSArray* stageNames;
 @end
 
 @implementation DemandStageChooseController
+
+-(instancetype)initWithIndex:(NSInteger)index{
+    if (self=[super init]) {
+        self.index=index;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,8 +29,15 @@
 }
 
 -(void)initNavi{
-    self.title=@"需求列表分类";
+    self.title=self.stageNames[self.index];
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
+}
+
+-(NSArray *)stageNames{
+    if (!_stageNames) {
+        _stageNames=@[@"全部需求列表",@"报价需求列表",@"询价需求列表"];
+    }
+    return _stageNames;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -40,8 +55,8 @@
     }
     DemandStageCellModel* model=[[DemandStageCellModel alloc]init];
     
-    model.stageName=@[@"全部需求列表",@"报价需求列表",@"询价需求列表"][indexPath.row];
-    model.isHighlight=indexPath.row%2;
+    model.stageName=self.stageNames[indexPath.row];
+    model.isHighlight=self.index==indexPath.row;
     cell.model=model;
     return cell;
 }

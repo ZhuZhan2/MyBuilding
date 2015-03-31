@@ -10,9 +10,9 @@
 #import "RKMuchBtnAssistView.h"
 #import "RKShadowView.h"
 #define NormalTextColor [UIColor whiteColor]
-#define NormalBackColor RGBCOLOR(211, 211, 211)
+#define NormalBackColor RGBCOLOR(222, 222, 222)
 #define HighlightTextColor AllDeepGrayColor
-#define HighlightBackColor AllBackLightGratColor
+#define HighlightBackColor AllBackMiddleGrayColor
 
 @interface RKMuchBtns()
 
@@ -20,9 +20,9 @@
 @property (nonatomic,strong) NSMutableArray* contentLabels;
 @property (nonatomic)CGSize mainSize;
 
-@property (nonatomic, strong)RKMuchBtnAssistView* assistView;
+@property (nonatomic, strong)NSMutableArray* assistViews;
 @property (nonatomic)CGSize assistSize;
-@property (nonatomic)NSInteger assistStageCount;
+@property (nonatomic, strong)NSArray* assistStageCounts;
 
 @property (nonatomic, strong)NSMutableArray* seperatorLines;
 
@@ -41,11 +41,11 @@
 @end
 
 @implementation RKMuchBtns
-+(RKMuchBtns*)muchBtnsWithContents:(NSArray*)contents mainSize:(CGSize)mainSize assistSize:(CGSize)assistSize assistStageCount:(NSInteger)assistStageCount delegate:(id<RKMuchBtnsDelegate>)delegate{
++(RKMuchBtns*)muchBtnsWithContents:(NSArray*)contents mainSize:(CGSize)mainSize assistSize:(CGSize)assistSize assistStageCounts:(NSArray *)assistStageCounts delegate:(id<RKMuchBtnsDelegate>)delegate{
     RKMuchBtns* btns=[[RKMuchBtns alloc]initWithFrame:CGRectMake(0, 0, mainSize.width, mainSize.height+assistSize.height)];
     btns.contents=contents;
     btns.mainSize=mainSize;
-    btns.assistStageCount=assistStageCount;
+    btns.assistStageCounts=assistStageCounts;
     btns.assistSize=assistSize;
     btns.delegate=delegate;
     [btns setUp];
@@ -62,15 +62,18 @@
     }];
     
     if (self.assistSize.height) {
-        [self addSubview:self.assistView];
-        CGRect frame=self.assistView.frame;
-        frame.origin.y=self.mainSize.height;
-        self.assistView.frame=frame;
+        [self.assistViews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            UIView* assistView=obj;
+            [self addSubview:assistView];
+            CGRect frame=assistView.frame;
+            frame.origin.y=self.mainSize.height;
+            assistView.frame=frame;
+        }];
     }
     
     [self addSubview:self.shadowView];
     
-    [self contentBtnsClickedWithNumber:0];
+    //[self contentBtnsClickedWithNumber:0];
 }
 
 -(void)contentBtnsClickedWithBtn:(UIButton*)btn{
@@ -82,7 +85,6 @@
         [self.delegate muchBtnsClickedWithNumber:number];
     }
     
-    [self.assistView setContent:@"当当当" stageNumber:number];
 
     [self.contentLabels enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         BOOL isSelected=idx==number;
@@ -91,6 +93,12 @@
         UIColor* backColor=isSelected?self.highlightBackColor:self.normalBackColor;
         [btn setTitleColor:titleColor forState:UIControlStateNormal];
         btn.backgroundColor=backColor;
+    }];
+    
+//    [self.assistView setContent:@[@"已完成",@"已关闭"][arc4random()%2] stageNumber:number];
+    [self.assistViews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        UIView* assistView=obj;
+        assistView.hidden=idx!=number;
     }];
 }
 
@@ -121,11 +129,17 @@
     return _seperatorLines;
 }
 
--(RKMuchBtnAssistView *)assistView{
-    if (!_assistView&&self.assistSize.height) {
-        _assistView=[RKMuchBtnAssistView muchBtnAssistViewWithMaxStageCount:self.assistStageCount size:self.assistSize];
+-(NSMutableArray *)assistViews{
+    if (!_assistViews&&self.assistSize.height) {
+        _assistViews=[NSMutableArray array];
+        for (int i=0;i<self.contentLabels.count;i++) {
+            RKMuchBtnAssistView* assistView=[RKMuchBtnAssistView muchBtnAssistViewWithMaxStageCount:[self.assistStageCounts[i] integerValue] size:self.assistSize];
+            [_assistViews addObject:assistView];
+            
+            [assistView setContent:@[@"已完成",@"已关闭"][arc4random()%2] stageNumber:arc4random()%2];
+        }
     }
-    return _assistView;
+    return _assistViews;
 }
 
 -(NSMutableArray *)contentLabels{
@@ -139,11 +153,15 @@
             singleLabel.backgroundColor=NormalBackColor;
             singleLabel.tag=idx;
             [_contentLabels addObject:singleLabel];
-            
             [singleLabel addTarget:self action:@selector(contentBtnsClickedWithBtn:) forControlEvents:UIControlEventTouchUpInside];
         }];
     }
     return _contentLabels;
+}
+
+-(void)setContentLabelWithNumber:(NSInteger)number enabled:(BOOL)enabled{
+    UIButton* btn=self.contentLabels[number];
+    btn.enabled=enabled;
 }
 
 -(CGFloat)singleWidth{

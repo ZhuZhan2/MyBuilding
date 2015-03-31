@@ -14,4 +14,5 @@
 
 @interface DemandStageChooseController : ChatBaseViewController
 @property(nonatomic,weak)id<DemandStageChooseControllerDelegate>delegate;
+-(instancetype)initWithIndex:(NSInteger)index;
 @end

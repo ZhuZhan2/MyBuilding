@@ -5011,12 +5011,12 @@
 				D3DBCE561AC8DEC900C9FEDE /* BaseView */,
 				D3DBCE521AC8DE6700C9FEDE /* Provisional */,
 				5B5266341AC3B53300EF8185 /* View */,
-				5B70CC341AC8DE5C00FC8353 /* ContractsBaseViewController.h */,
-				5B70CC351AC8DE5C00FC8353 /* ContractsBaseViewController.m */,
 				5B70CC5D1AC9420600FC8353 /* ConstractListController.h */,
 				5B70CC5E1AC9420600FC8353 /* ConstractListController.m */,
 				5B70CC601AC947F100FC8353 /* ContractListCell.h */,
 				5B70CC611AC947F100FC8353 /* ContractListCell.m */,
+				5B70CC341AC8DE5C00FC8353 /* ContractsBaseViewController.h */,
+				5B70CC351AC8DE5C00FC8353 /* ContractsBaseViewController.m */,
 			);
 			path = Contracts;
 			sourceTree = "<group>";

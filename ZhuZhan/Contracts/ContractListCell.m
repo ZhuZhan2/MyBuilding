@@ -72,9 +72,10 @@
     [self.mainView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
     RKTwoView* view1=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:userType rightContent:self.contents[0] needAuto:NO];
-    RKTwoView* view2=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"产品大类" rightContent:self.contents[1] needAuto:NO];
-    RKTwoView* view3=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"产品分类" rightContent:self.contents[2] needAuto:NO];
-    RKTwoView* view4=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"询价说明" rightContent:self.contents[3] needAuto:YES];
+    RKTwoView* view2=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"接收者" rightContent:self.contents[1] needAuto:NO];
+    RKTwoView* view3=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"甲  方" rightContent:self.contents[2] needAuto:NO];
+    RKTwoView* view4=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"乙  方" rightContent:self.contents[3] needAuto:YES];
+    RKTwoView* view5=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"金  额" rightContent:self.contents[4] needAuto:YES];
     
     CGRect frame=view1.frame;
     frame.origin.y+=mainViewTopDistance;
@@ -95,16 +96,20 @@
     frame.origin.y=CGRectGetMaxY(view3.frame);
     view4.frame=frame;
     [self.mainView addSubview:view4];
+    
+    frame=view5.frame;
+    frame.origin.y=CGRectGetMaxY(view4.frame);
+    view5.frame=frame;
+    [self.mainView addSubview:view5];
 }
 
 -(void)setContents:(NSArray *)contents{
     _contents=contents;
-    BOOL isAskPrice=[contents[4] isEqualToString:@"0"];
+   // BOOL isAskPrice=[contents[4] isEqualToString:@"0"];
     
-    [self setUpMainViewWithUserType:isAskPrice?@"参与用户":@"求购用户"];
+    [self setUpMainViewWithUserType:@"发起者"];
     
-    NSString* typeName=[contents[4] isEqualToString:@"0"]?@"询价":@"报价";
-    NSLog(@"==>%@",contents);
+    //NSString* typeName=[contents[4] isEqualToString:@"0"]?@"询价":@"报价";
     NSString* stage=contents[5];
     UIColor* stageColor;
     if ([stage isEqualToString:@"进行中"]) {
@@ -114,9 +119,9 @@
     }else{
         stageColor=AllLightGrayColor;
     }
-    NSString* code=[NSString stringWithFormat:@"流水号：%@",contents[6]];
+    NSString* code=[NSString stringWithFormat:@"%@",contents[6]];
     
-    NSString* wholeStageName=[typeName stringByAppendingString:stage];
+    NSString* wholeStageName=@"";
     [self.cellHeader changeStageName:wholeStageName code:code stageColor:stageColor];
     //    [self.cellHeader changeStageName:wholeStageName stageColor:stageColor];
     [self reloadAllFrames];
