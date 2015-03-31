@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface OverProvisionalViewController : UIViewController
+#import "CommissionBaseViewController.h"
+@interface OverProvisionalViewController : CommissionBaseViewController
 
 @end

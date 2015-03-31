@@ -11,4 +11,6 @@
 @interface CodeView : UIView
 @property(nonatomic,strong)UILabel *titleLabel;
 @property(nonatomic,strong)UILabel *codeLabel;
+@property(nonatomic,strong)UILabel *timeLabel;
+@property(nonatomic,strong)UILabel *tradCodeLabel;
 @end

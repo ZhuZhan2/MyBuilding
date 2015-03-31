@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor=[UIColor grayColor];
+    self.view.backgroundColor=[UIColor whiteColor];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
 }
 
@@ -27,22 +27,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-//-(void)viewWillDisappear:(BOOL)animated{
-//    [super viewWillDisappear:animated];
-//    //恢复tabBar
-//    AppDelegate* app=[AppDelegate instance];
-//    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-//    [homeVC homePageTabBarRestore];
-//}
-//
-//-(void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    //隐藏tabBar
-//    AppDelegate* app=[AppDelegate instance];
-//    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-//    [homeVC homePageTabBarHide];
-//}
 
 -(void)setRightBtnWithImage:(UIImage*)image{
     if (!_rightBtn) {

@@ -8,10 +8,13 @@
 
 #import "OverProvisionalViewController.h"
 #import "CodeView.h"
+#import "StartManView.h"
 @interface OverProvisionalViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *viewArr;
 @property(nonatomic,strong)CodeView *codeView;
+@property(nonatomic,strong)StartManView *startMainView;
+@property(nonatomic)float startMainViewHeight;
 @end
 
 @implementation OverProvisionalViewController
@@ -19,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.view addSubview:self.tableView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,10 +48,25 @@
     return _codeView;
 }
 
+-(StartManView *)startMainView{
+    if(!_startMainView){
+        _startMainView = [[StartManView alloc] init];
+        [_startMainView GetHeightWithBlock:^(double height) {
+            if(height<60){
+                height = 60;
+            }
+            self.startMainViewHeight = height;
+            _startMainView.frame = CGRectMake(0, 0, 320, height);
+        } str:@""];
+    }
+    return _startMainView;
+}
+
 -(NSMutableArray *)viewArr{
     if(!_viewArr){
         _viewArr = [NSMutableArray array];
         [_viewArr addObject:self.codeView];
+        [_viewArr addObject:self.startMainView];
     }
     return _viewArr;
 }
@@ -61,7 +80,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.viewArr.count+1;
+    return self.viewArr.count;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -83,6 +102,6 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 44;
+    return 60;
 }
 @end

@@ -9,7 +9,7 @@
 #import "ConstractListController.h"
 #import "ContractListCell.h"
 #import "ContractsBaseViewController.h"
-
+#import "OverProvisionalViewController.h"
 @interface ConstractListController ()
 @property(nonatomic,strong)NSMutableArray *showArr;
 @end
@@ -90,8 +90,10 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ContractsBaseViewController* vc=[[ContractsBaseViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    //ContractsBaseViewController* vc=[[ContractsBaseViewController alloc]init];
+    //[self.navigationController pushViewController:vc animated:YES];
+    OverProvisionalViewController *overView = [[OverProvisionalViewController alloc] init];
+    [self.navigationController pushViewController:overView animated:YES];
 }
 
 -(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{
