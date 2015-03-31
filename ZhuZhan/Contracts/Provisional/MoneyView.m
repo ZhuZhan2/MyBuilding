@@ -8,6 +8,7 @@
 
 #import "MoneyView.h"
 #import "EndEditingGesture.h"
+#import "RKShadowView.h"
 @implementation MoneyView
 
 -(id)initWithFrame:(CGRect)frame isOver:(BOOL)isOver{
@@ -45,8 +46,7 @@
 
 -(UIImageView *)cutLine{
     if(!_cutLine){
-        _cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
-        _cutLine.backgroundColor = [UIColor lightGrayColor];
+        _cutLine = [RKShadowView seperatorLineWithHeight:2];
     }
     return _cutLine;
 }

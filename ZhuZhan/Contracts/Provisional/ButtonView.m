@@ -76,7 +76,7 @@
     if(!_changeBtn){
         _changeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _changeBtn.frame = CGRectMake(164, 5, 128, 37);
-        [_changeBtn setImage:[GetImagePath getImagePath:@"agree"] forState:UIControlStateNormal];
+        [_changeBtn setImage:[GetImagePath getImagePath:@"change"] forState:UIControlStateNormal];
         [_changeBtn addTarget:self action:@selector(submitAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _changeBtn;
