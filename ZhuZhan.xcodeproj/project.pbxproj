@@ -1271,7 +1271,6 @@
 		D3D2BFE81AC94478003BB779 /* MoneyView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2BFE71AC94478003BB779 /* MoneyView.m */; };
 		D3D2BFEB1AC9497B003BB779 /* ContractView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2BFEA1AC9497B003BB779 /* ContractView.m */; };
 		D3D2BFEF1AC94DE7003BB779 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D2BFED1AC94DE7003BB779 /* star.png */; };
-		D3D2BFF01AC94DE7003BB779 /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D2BFEE1AC94DE7003BB779 /* star@2x.png */; };
 		D3D2BFF31AC94FA6003BB779 /* submit.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D2BFF11AC94FA6003BB779 /* submit.png */; };
 		D3D2BFF41AC94FA6003BB779 /* submit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D2BFF21AC94FA6003BB779 /* submit@2x.png */; };
 		D3D2E60119F7A79500908D8B /* EmployeesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2E60019F7A79500908D8B /* EmployeesModel.m */; };
@@ -5006,12 +5005,12 @@
 				D3DBCE561AC8DEC900C9FEDE /* BaseView */,
 				D3DBCE521AC8DE6700C9FEDE /* Provisional */,
 				5B5266341AC3B53300EF8185 /* View */,
-				5B70CC341AC8DE5C00FC8353 /* ContractsBaseViewController.h */,
-				5B70CC351AC8DE5C00FC8353 /* ContractsBaseViewController.m */,
 				5B70CC5D1AC9420600FC8353 /* ConstractListController.h */,
 				5B70CC5E1AC9420600FC8353 /* ConstractListController.m */,
 				5B70CC601AC947F100FC8353 /* ContractListCell.h */,
 				5B70CC611AC947F100FC8353 /* ContractListCell.m */,
+				5B70CC341AC8DE5C00FC8353 /* ContractsBaseViewController.h */,
+				5B70CC351AC8DE5C00FC8353 /* ContractsBaseViewController.m */,
 			);
 			path = Contracts;
 			sourceTree = "<group>";

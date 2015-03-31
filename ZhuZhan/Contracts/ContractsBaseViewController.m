@@ -10,9 +10,9 @@
 #import "BaseContractsView.h"
 #import "ProvisionalViewController.h"
 @interface ContractsBaseViewController ()<RKMuchBtnsDelegate,ContractsViewDelegate>
+@property (nonatomic, strong)ProvisionalViewController *provisionalView;
 @property (nonatomic, strong)BaseContractsView* providerConstractView;
 @property (nonatomic, strong)BaseContractsView* salerConstractView;
-@property (nonatomic, strong)ProvisionalViewController *provisionalView;
 @end
 
 @implementation ContractsBaseViewController
@@ -20,25 +20,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
+    [self initNavi];
     [self initMuchBtns];
+    [self initProvisionalView];
     [self initProviderConstractView];
     [self initSalerConstractView];
+    [self.muchBtns contentBtnsClickedWithNumber:0];
+}
+
+-(void)initNavi{
+    [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
 }
 
 -(void)muchBtnsClickedWithNumber:(NSInteger)number{
-    if(number == 0){
-        [self.view addSubview:self.provisionalView.view];
-    }else if (number==1) {
-        self.providerConstractView.hidden=NO;
-        self.salerConstractView.hidden=YES;
-    }else if (number==2){
-        self.providerConstractView.hidden=YES;
-        self.salerConstractView.hidden=NO;
+    NSArray* views=@[self.provisionalView.view,self.providerConstractView,self.salerConstractView];
+    [views enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [obj setHidden:!(idx==number)];
+    }];
+    
+    NSArray* titles=@[@"主要合同条款",@"供应商佣金合同",@"销售佣金合同"];
+    self.title=titles[number];
+    
+    if (number) {
+        [self.provisionalView.view endEditing:YES];
     }
 }
 
 -(void)initMuchBtns{
     [self.view addSubview:self.muchBtns];
+}
+
+-(void)initProvisionalView{
+    [self.view insertSubview:self.provisionalView.view belowSubview:self.muchBtns];
 }
 
 -(void)initProviderConstractView{
@@ -73,11 +86,12 @@
 
 -(RKMuchBtns *)muchBtns{
     if (!_muchBtns) {
-        _muchBtns=[RKMuchBtns muchBtnsWithContents:@[@"临时合同条款",@"供应商佣金合同",@"销售佣金合同"] mainSize:CGSizeMake(kScreenWidth,30) assistSize:CGSizeMake(kScreenWidth,35) assistStageCount:3 delegate:self];
-        
+        _muchBtns=[RKMuchBtns muchBtnsWithContents:@[@"主要合同条款",@"供应商佣金合同",@"销售佣金合同"] mainSize:CGSizeMake(kScreenWidth,30) assistSize:CGSizeMake(kScreenWidth,35) assistStageCounts:@[@2,@3,@2] delegate:self];
         CGRect frame=_muchBtns.frame;
         frame.origin.y=64;
         _muchBtns.frame=frame;
+        
+        [_muchBtns setContentLabelWithNumber:2 enabled:NO];
     }
     return _muchBtns;
 }

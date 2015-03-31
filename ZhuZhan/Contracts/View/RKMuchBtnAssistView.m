@@ -16,8 +16,9 @@
 @property (nonatomic, strong)UILabel* stageLabel;
 @end
 #define StageLineWidth 295
-#define NormalTextColor AllDeepGrayColor
-#define HighlightTextColor AllGreenColor
+#define HasDataColor AllGreenColor
+#define CloseDataColor RGBCOLOR(175, 175, 175)
+#define NoDataColor RGBCOLOR(222, 222, 222)
 
 @implementation RKMuchBtnAssistView
 +(RKMuchBtnAssistView*)muchBtnAssistViewWithMaxStageCount:(NSInteger)maxStageCount size:(CGSize)size{
@@ -61,14 +62,17 @@
 }
 
 -(void)setContent:(NSString*)content stageNumber:(NSInteger)stageNumber{
+    BOOL isClose=[content isEqualToString:@"已关闭"];
+    UIColor* hasDataColor=isClose?CloseDataColor:HasDataColor;
+    UIColor* noDataColor=isClose?CloseDataColor:NoDataColor;
     [self.stageLines enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIView* stageLine=self.stageLines[idx];
-        stageLine.backgroundColor=idx<stageNumber?HighlightTextColor:NormalTextColor;
+        stageLine.backgroundColor=idx<stageNumber?hasDataColor:noDataColor;
     }];
     
     [self.stageRounds enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIView* stageRound=self.stageRounds[idx];
-        stageRound.backgroundColor=idx<stageNumber?HighlightTextColor:NormalTextColor;
+        stageRound.backgroundColor=idx<stageNumber?hasDataColor:noDataColor;
     }];
     
     
@@ -83,7 +87,7 @@
         x+=CGRectGetWidth(roundFrame)/2-CGRectGetWidth(frame)/2;
     }
     self.stageLabel.center=CGPointMake(x, y);
-    self.stageLabel.textColor=(stageNumber==self.stageRounds.count-1)?NormalTextColor:HighlightTextColor;
+    self.stageLabel.textColor=isClose?noDataColor:hasDataColor;
     self.stageLabel.layer.borderColor=self.stageLabel.textColor.CGColor;
     self.stageLabel.text=content;
 
@@ -107,8 +111,7 @@
         NSInteger const lineCount=self.maxStageCount-1;
         for (int i=0;i<lineCount;i++) {
             CGFloat width=StageLineWidth/lineCount;
-            UIView* singleStageLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 2)];
-            singleStageLine.backgroundColor=NormalTextColor;
+            UIView* singleStageLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 1)];
             [_stageLines addObject:singleStageLine];
         }
     }
@@ -121,7 +124,6 @@
         for (int i=0;i<self.maxStageCount;i++) {
             UIView* round=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
             round.layer.cornerRadius=CGRectGetWidth(round.frame)/2;
-            round.backgroundColor=NormalTextColor;
             [_stageRounds addObject:round];
         }
     }
