@@ -50,14 +50,14 @@
         [model setDict:item];
         [self.a_quoteAttachmentsArr addObject:model];
     }];
-    
-    [dict[@"quoteAttachments"] enumerateObjectsUsingBlock:^(NSDictionary *item, NSUInteger idx, BOOL *stop) {
+    self.a_qualificationsAttachmentsArr = [[NSMutableArray alloc] init];
+    [dict[@"qualificationsAttachments"] enumerateObjectsUsingBlock:^(NSDictionary *item, NSUInteger idx, BOOL *stop) {
         ImagesModel *model = [[ImagesModel alloc] init];
         [model setDict:item];
         [self.a_qualificationsAttachmentsArr addObject:model];
     }];
-    
-    [dict[@"quoteAttachments"] enumerateObjectsUsingBlock:^(NSDictionary *item, NSUInteger idx, BOOL *stop) {
+    self.a_otherAttachmentsArr = [[NSMutableArray alloc] init];
+    [dict[@"otherAttachments"] enumerateObjectsUsingBlock:^(NSDictionary *item, NSUInteger idx, BOOL *stop) {
         ImagesModel *model = [[ImagesModel alloc] init];
         [model setDict:item];
         [self.a_otherAttachmentsArr addObject:model];
