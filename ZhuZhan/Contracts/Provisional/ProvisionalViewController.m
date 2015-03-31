@@ -270,7 +270,7 @@
 
 -(MoneyView *)moneyView{
     if(!_moneyView){
-        _moneyView = [[MoneyView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
+        _moneyView = [[MoneyView alloc] initWithFrame:CGRectMake(0, 0, 320, 80) isOver:NO];
         _moneyView.delegate = self;
     }
     return _moneyView;
@@ -353,7 +353,6 @@
         }
     }else if(indexPath.row == 4){
         if(!self.previousTextViewContentHeight3){
-            NSLog(@"previousTextViewContentHeight3==> %f",self.otherViewHeight3);
             return self.otherViewHeight3;
         }else{
             return self.previousTextViewContentHeight3+self.otherViewHeight3-30;
