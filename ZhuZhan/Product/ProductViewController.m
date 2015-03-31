@@ -19,7 +19,9 @@
 #import "ProductPublishController.h"
 #import "LoginSqlite.h"
 #import "LoginViewController.h"
-@interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate,ErrorViewDelegate,UISearchBarDelegate,ProductPublishControllerDelegate>
+#import "MBProgressHUD.h"
+#import "AskPriceMainViewController.h"
+@interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate,ErrorViewDelegate,UISearchBarDelegate,ProductPublishControllerDelegate,UIActionSheetDelegate>
 @property (nonatomic, strong) NSMutableArray *images;
 @property(nonatomic,strong)ErrorView* errorView;
 @property(nonatomic,strong)UIActivityIndicatorView* indicatorView;
@@ -154,9 +156,35 @@
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }else{
-        ProductPublishController* vc=[[ProductPublishController alloc]init];
-        vc.delegate = self;
-        [self.navigationController pushViewController:vc animated:YES];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"发布产品" otherButtonTitles:@"发布询价", nil];
+        [actionSheet showInView:self.view];
+    }
+}
+
+-(void)gotoProductPublishController{
+    ProductPublishController* vc=[[ProductPublishController alloc]init];
+    vc.delegate = self;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)gotoAskPriceMainView{
+    AskPriceMainViewController *vc = [[AskPriceMainViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    switch (buttonIndex)
+    {
+        case 0:  //发产品
+            [self gotoProductPublishController];
+            break;
+        case 1:  //打开本地相册
+            [self gotoAskPriceMainView];
+            break;
     }
 }
 
