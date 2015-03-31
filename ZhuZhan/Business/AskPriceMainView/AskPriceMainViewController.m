@@ -95,8 +95,8 @@
 }
 
 -(void)back{
-    [self addAnimation];
-    [self.navigationController popViewControllerAnimated:NO];
+    //[self addAnimation];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)rightAction{
