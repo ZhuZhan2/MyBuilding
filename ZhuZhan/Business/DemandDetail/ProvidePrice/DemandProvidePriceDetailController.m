@@ -60,9 +60,23 @@
             imageModel.isUrl = model.a_isUrl;
             [array1 addObject:imageModel];
         }];
-        cellModel.array1=@[];
-        cellModel.array2=@[];
-        cellModel.array3=@[];
+        NSMutableArray *array2 = [[NSMutableArray alloc] init];
+        [dataModel.a_qualificationsAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {
+            RKImageModel *imageModel = [[RKImageModel alloc] init];
+            imageModel.imageUrl =  model.a_location;
+            imageModel.isUrl = model.a_isUrl;
+            [array2 addObject:imageModel];
+        }];
+        NSMutableArray *array3 = [[NSMutableArray alloc] init];
+        [dataModel.a_otherAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {
+            RKImageModel *imageModel = [[RKImageModel alloc] init];
+            imageModel.imageUrl =  model.a_location;
+            imageModel.isUrl = model.a_isUrl;
+            [array3 addObject:imageModel];
+        }];
+        cellModel.array1=array1;
+        cellModel.array2=array2;
+        cellModel.array3=array3;
     }
     return [DemandDetailViewCell carculateTotalHeightWithModel:cellModel];
 }
@@ -87,9 +101,23 @@
             imageModel.isUrl = model.a_isUrl;
             [array1 addObject:imageModel];
         }];
+        NSMutableArray *array2 = [[NSMutableArray alloc] init];
+        [dataModel.a_qualificationsAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {
+            RKImageModel *imageModel = [[RKImageModel alloc] init];
+            imageModel.imageUrl =  model.a_location;
+            imageModel.isUrl = model.a_isUrl;
+            [array2 addObject:imageModel];
+        }];
+        NSMutableArray *array3 = [[NSMutableArray alloc] init];
+        [dataModel.a_otherAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {
+            RKImageModel *imageModel = [[RKImageModel alloc] init];
+            imageModel.imageUrl =  model.a_location;
+            imageModel.isUrl = model.a_isUrl;
+            [array3 addObject:imageModel];
+        }];
         cellModel.array1=array1;
-        cellModel.array2=@[];
-        cellModel.array3=@[];
+        cellModel.array2=array2;
+        cellModel.array3=array3;
     }
     cellModel.indexPath=indexPath;
     cell.model=cellModel;

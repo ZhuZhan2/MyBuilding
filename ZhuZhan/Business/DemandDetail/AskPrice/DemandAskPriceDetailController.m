@@ -9,6 +9,7 @@
 #import "DemandAskPriceDetailController.h"
 #import "AskPriceApi.h"
 #import "MJRefresh.h"
+#import "RKImageModel.h"
 @interface DemandAskPriceDetailController ()
 @property(nonatomic)int startIndex;
 @end
@@ -51,9 +52,30 @@
         cellModel.time=dataModel.a_createdTime;
         cellModel.numberDescribe=[NSString stringWithFormat:@"第%@次报价",dataModel.a_quoteTimes];
         cellModel.content=dataModel.a_quoteContent;
-        cellModel.array1=@[];
-        cellModel.array2=@[];
-        cellModel.array3=@[];
+        NSMutableArray *array1 = [[NSMutableArray alloc] init];
+        [dataModel.a_quoteAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {
+            RKImageModel *imageModel = [[RKImageModel alloc] init];
+            imageModel.imageUrl =  model.a_location;
+            imageModel.isUrl = model.a_isUrl;
+            [array1 addObject:imageModel];
+        }];
+        NSMutableArray *array2 = [[NSMutableArray alloc] init];
+        [dataModel.a_qualificationsAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {
+            RKImageModel *imageModel = [[RKImageModel alloc] init];
+            imageModel.imageUrl =  model.a_location;
+            imageModel.isUrl = model.a_isUrl;
+            [array2 addObject:imageModel];
+        }];
+        NSMutableArray *array3 = [[NSMutableArray alloc] init];
+        [dataModel.a_otherAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {
+            RKImageModel *imageModel = [[RKImageModel alloc] init];
+            imageModel.imageUrl =  model.a_location;
+            imageModel.isUrl = model.a_isUrl;
+            [array3 addObject:imageModel];
+        }];
+        cellModel.array1=array1;
+        cellModel.array2=array2;
+        cellModel.array3=array3;
     }
     return [DemandDetailViewCell carculateTotalHeightWithModel:cellModel];
 }
@@ -71,9 +93,30 @@
         cellModel.time=dataModel.a_createdTime;
         cellModel.numberDescribe=[NSString stringWithFormat:@"第%@次报价",dataModel.a_quoteTimes];
         cellModel.content=dataModel.a_quoteContent;
-        cellModel.array1=@[];
-        cellModel.array2=@[];
-        cellModel.array3=@[];
+        NSMutableArray *array1 = [[NSMutableArray alloc] init];
+        [dataModel.a_quoteAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {
+            RKImageModel *imageModel = [[RKImageModel alloc] init];
+            imageModel.imageUrl =  model.a_location;
+            imageModel.isUrl = model.a_isUrl;
+            [array1 addObject:imageModel];
+        }];
+        NSMutableArray *array2 = [[NSMutableArray alloc] init];
+        [dataModel.a_qualificationsAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {
+            RKImageModel *imageModel = [[RKImageModel alloc] init];
+            imageModel.imageUrl =  model.a_location;
+            imageModel.isUrl = model.a_isUrl;
+            [array2 addObject:imageModel];
+        }];
+        NSMutableArray *array3 = [[NSMutableArray alloc] init];
+        [dataModel.a_otherAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {
+            RKImageModel *imageModel = [[RKImageModel alloc] init];
+            imageModel.imageUrl =  model.a_location;
+            imageModel.isUrl = model.a_isUrl;
+            [array3 addObject:imageModel];
+        }];
+        cellModel.array1=array1;
+        cellModel.array2=array2;
+        cellModel.array3=array3;
     }
     cellModel.indexPath=indexPath;
     cell.model=cellModel;

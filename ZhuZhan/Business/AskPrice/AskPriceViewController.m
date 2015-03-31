@@ -25,6 +25,7 @@
 @property(nonatomic,strong)NSString *statusStr;
 @property(nonatomic,strong)NSString *otherStr;
 @property(nonatomic,strong)NSMutableArray *showArr;
+@property (nonatomic)NSInteger nowStage;
 @property(nonatomic)int startIndex;
 @end
 
@@ -95,12 +96,13 @@
 }
 
 -(void)selectDemandStage{
-    DemandStageChooseController* vc=[[DemandStageChooseController alloc]init];
+    DemandStageChooseController* vc=[[DemandStageChooseController alloc]initWithIndex:self.nowStage];
     vc.delegate=self;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)finishSelectedWithStageName:(NSString *)stageName index:(int)index{
+    self.nowStage=index;
     [self initTitleViewWithTitle:stageName];
     if(index == 1){
         self.otherStr = @"1";
