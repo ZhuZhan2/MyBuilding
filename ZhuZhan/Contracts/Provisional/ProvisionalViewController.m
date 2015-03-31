@@ -13,6 +13,7 @@
 #import "OtherView.h"
 #import "MoneyView.h"
 #import "ContractView.h"
+#import "ButtonView.h"
 @interface ProvisionalViewController ()<UITableViewDataSource,UITableViewDelegate,OtherViewDelegate,MoneyViewDelegate,ContractViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *viewArr;
@@ -34,6 +35,7 @@
 
 @property(nonatomic,strong)MoneyView *moneyView;
 @property(nonatomic,strong)ContractView *contractView;
+@property(nonatomic,strong)ButtonView *buttonView;
 @end
 
 @implementation ProvisionalViewController
@@ -207,7 +209,7 @@
 
 -(ReceiveView *)receiveView{
     if(!_receiveView){
-        _receiveView = [[ReceiveView alloc] init];
+        _receiveView = [[ReceiveView alloc] initWithFrame:CGRectZero isOver:NO];
         [_receiveView GetHeightWithBlock:^(double height) {
             if(height<70){
                 height = 70;
@@ -222,7 +224,7 @@
 
 -(OtherView *)otherView1{
     if(!_otherView1){
-        _otherView1 = [[OtherView alloc] init];
+        _otherView1 = [[OtherView alloc] initWithFrame:CGRectZero isOver:NO];
         _otherView1.delegate = self;
         [_otherView1 GetHeightWithBlock:^(double height) {
             if(height<60){
@@ -237,7 +239,7 @@
 
 -(OtherView *)otherView2{
     if(!_otherView2){
-        _otherView2 = [[OtherView alloc] init];
+        _otherView2 = [[OtherView alloc] initWithFrame:CGRectZero isOver:NO];
         _otherView2.delegate = self;
         [_otherView2 GetHeightWithBlock:^(double height) {
             if(height<60){
@@ -252,7 +254,7 @@
 
 -(OtherView *)otherView3{
     if(!_otherView3){
-        _otherView3 = [[OtherView alloc] init];
+        _otherView3 = [[OtherView alloc] initWithFrame:CGRectZero isOver:NO];
         _otherView3.delegate = self;
         [_otherView3 GetHeightWithBlock:^(double height) {
             if(height<60){
@@ -275,9 +277,16 @@
 
 -(ContractView *)contractView{
     if(!_contractView){
-        _contractView = [[ContractView alloc] initWithFrame:CGRectMake(0, 0, 320, 252)];
+        _contractView = [[ContractView alloc] initWithFrame:CGRectMake(0, 0, 320, 252) isOver:NO];
     }
     return _contractView;
+}
+
+-(ButtonView *)buttonView{
+    if(!_buttonView){
+        _buttonView = [[ButtonView alloc] initWithFrame:CGRectMake(0, 0, 320, 48) flag:1];
+    }
+    return _buttonView;
 }
 
 -(NSMutableArray *)viewArr{
@@ -290,6 +299,7 @@
         [_viewArr addObject:self.otherView3];
         [_viewArr addObject:self.moneyView];
         [_viewArr addObject:self.contractView];
+        [_viewArr addObject:self.buttonView];
     }
     return _viewArr;
 }
@@ -303,7 +313,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.viewArr.count+1;
+    return self.viewArr.count;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -312,29 +322,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row<7){
-        NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(!cell){
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        cell.selectionStyle = NO;
-        [cell.contentView addSubview:self.viewArr[indexPath.row]];
-        return cell;
-    }else{
-        NSString *CellIdentifier = [NSString stringWithFormat:@"ButtonCell"];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(!cell){
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        UIButton *submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        submitBtn.frame = CGRectMake(13, 5, 294, 38);
-        [submitBtn setImage:[GetImagePath getImagePath:@"submit"] forState:UIControlStateNormal];
-        [submitBtn addTarget:self action:@selector(submitAction) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contentView addSubview:submitBtn];
-        return cell;
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(!cell){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    cell.selectionStyle = NO;
+    [cell.contentView addSubview:self.viewArr[indexPath.row]];
+    return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -367,10 +363,6 @@
     }else{
         return 48;
     }
-}
-
--(void)submitAction{
-    
 }
 
 #pragma mark - 键盘处理

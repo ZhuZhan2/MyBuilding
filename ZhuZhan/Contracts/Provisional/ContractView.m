@@ -10,14 +10,16 @@
 #import "EndEditingGesture.h"
 @implementation ContractView
 
--(id)initWithFrame:(CGRect)frame{
+-(id)initWithFrame:(CGRect)frame isOver:(BOOL)isOver{
     self = [super initWithFrame:frame];
     if(self){
         [self addSubview:self.cutLine];
         [self addSubview:self.titleLabel];
-        [self addSubview:self.imageView];
-        [self addSubview:self.textView];
-        [EndEditingGesture addGestureToView:self];
+        if(!isOver){
+            [self addSubview:self.imageView];
+            [self addSubview:self.textView];
+            [EndEditingGesture addGestureToView:self];
+        }
     }
     return self;
 }
@@ -51,7 +53,7 @@
 
 -(MessageTextView *)textView{
     if(!_textView){
-        _textView = [[MessageTextView alloc] initWithFrame:CGRectMake(26, 42, 280, 200)];
+        _textView = [[MessageTextView alloc] initWithFrame:CGRectMake(26, 42, 300, 200)];
         _textView.placeHolder = @"请输入条款内容";
         _textView.delegate = self;
         _textView.backgroundColor = [UIColor clearColor];
@@ -68,6 +70,24 @@
 -(void)textViewDidEndEditing:(UITextView *)textView{
     if([self.delegate respondsToSelector:@selector(endTextView:)]){
         [self.delegate endTextView:textView.text];
+    }
+}
+
+-(void)GetHeightOverWithBlock:(void (^)(double height))block str:(NSString *)str{
+    __block int height = 0;
+    if(str != nil){
+        CGRect bounds=[str boundingRectWithSize:CGSizeMake(300, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 42, 240, bounds.size.height)];
+        label.textAlignment = NSTextAlignmentLeft;
+        label.numberOfLines =0;
+        label.lineBreakMode = NSLineBreakByWordWrapping;
+        label.font = [UIFont systemFontOfSize:16];
+        label.text = str;
+        [self addSubview:label];
+        height = 52+bounds.size.height;
+    }
+    if(block){
+        block(height);
     }
 }
 @end

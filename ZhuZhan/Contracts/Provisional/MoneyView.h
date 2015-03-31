@@ -20,4 +20,6 @@
 @property(nonatomic,strong)UIImageView *cutLine;
 @property(nonatomic,strong)UITextField *textFied;
 @property(nonatomic,weak)id<MoneyViewDelegate>delegate;
+-(id)initWithFrame:(CGRect)frame isOver:(BOOL)isOver;
+-(void)GetHeightOverWithBlock:(void (^)(double height))block str:(NSString *)str;
 @end

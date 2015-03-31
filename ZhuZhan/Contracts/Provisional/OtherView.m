@@ -9,14 +9,16 @@
 #import "OtherView.h"
 #import "EndEditingGesture.h"
 @implementation OtherView
--(id)initWithFrame:(CGRect)frame{
+-(id)initWithFrame:(CGRect)frame isOver:(BOOL)isOver{
     self = [super initWithFrame:frame];
     if(self){
         [self addSubview:self.cutLine];
         [self addSubview:self.titleLabel];
-        [self addSubview:self.imageView];
-        [self addSubview:self.textView];
-        [EndEditingGesture addGestureToView:self];
+        if(!isOver){
+            [self addSubview:self.imageView];
+            [self addSubview:self.textView];
+            [EndEditingGesture addGestureToView:self];
+        }
     }
     return self;
 }
@@ -61,6 +63,25 @@
     __block int height = 0;
     self.titleLabel.text = titleStr;
     height = 52+self.textView.frame.size.height;
+    if(block){
+        block(height);
+    }
+}
+
+-(void)GetHeightOverWithBlock:(void (^)(double height))block titleStr:(NSString *)titleStr contentStr:(NSString *)contentStr{
+    __block int height = 0;
+    self.titleLabel.text = titleStr;
+    if(contentStr != nil){
+        CGRect bounds=[contentStr boundingRectWithSize:CGSizeMake(280, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 42, 240, bounds.size.height)];
+        label.textAlignment = NSTextAlignmentLeft;
+        label.numberOfLines =0;
+        label.lineBreakMode = NSLineBreakByWordWrapping;
+        label.font = [UIFont systemFontOfSize:16];
+        label.text = contentStr;
+        [self addSubview:label];
+        height = 52+bounds.size.height;
+    }
     if(block){
         block(height);
     }

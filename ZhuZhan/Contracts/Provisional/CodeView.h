@@ -13,4 +13,5 @@
 @property(nonatomic,strong)UILabel *codeLabel;
 @property(nonatomic,strong)UILabel *timeLabel;
 @property(nonatomic,strong)UILabel *tradCodeLabel;
+@property(nonatomic,strong)UIImageView *cutLine;
 @end

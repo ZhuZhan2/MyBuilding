@@ -90,10 +90,13 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //ContractsBaseViewController* vc=[[ContractsBaseViewController alloc]init];
-    //[self.navigationController pushViewController:vc animated:YES];
-    OverProvisionalViewController *overView = [[OverProvisionalViewController alloc] init];
-    [self.navigationController pushViewController:overView animated:YES];
+    if(indexPath.row==0){
+        ContractsBaseViewController* vc=[[ContractsBaseViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        OverProvisionalViewController *overView = [[OverProvisionalViewController alloc] init];
+        [self.navigationController pushViewController:overView animated:YES];
+    }
 }
 
 -(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{

@@ -16,6 +16,7 @@
         [self addSubview:self.codeLabel];
         [self addSubview:self.timeLabel];
         [self addSubview:self.tradCodeLabel];
+        [self addSubview:self.cutLine];
     }
     return self;
 }
@@ -48,7 +49,6 @@
         _timeLabel.textColor = AllLightGrayColor;
         _timeLabel.textAlignment = NSTextAlignmentLeft;
         _timeLabel.font = [UIFont systemFontOfSize:16];
-        _timeLabel.text = @"asdfasdfasdfasdfasdfasdfasdf";
     }
     return _timeLabel;
 }
@@ -59,8 +59,15 @@
         _tradCodeLabel.textColor = AllLightGrayColor;
         _tradCodeLabel.textAlignment = NSTextAlignmentLeft;
         _tradCodeLabel.font = [UIFont systemFontOfSize:16];
-        _tradCodeLabel.text = @"12341234123412342134";
     }
     return _tradCodeLabel;
+}
+
+-(UIImageView *)cutLine{
+    if(!_cutLine){
+        _cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(0,64, 320, 1)];
+        _cutLine.backgroundColor = [UIColor lightGrayColor];
+    }
+    return _cutLine;
 }
 @end
