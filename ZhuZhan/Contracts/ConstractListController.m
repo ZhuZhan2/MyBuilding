@@ -9,9 +9,13 @@
 #import "ConstractListController.h"
 #import "ContractListCell.h"
 #import "ContractsBaseViewController.h"
+#import "DemandStageChooseController.h"
+#import "ContractsListSearchController.h"
 #import "OverProvisionalViewController.h"
-@interface ConstractListController ()
+
+@interface ConstractListController ()<DemandStageChooseControllerDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
+@property (nonatomic)NSInteger nowStage;
 @end
 
 @implementation ConstractListController
@@ -55,10 +59,15 @@
 }
 
 -(void)selectStage{
-    NSLog(@"22");
-//    DemandStageChooseController* vc=[[DemandStageChooseController alloc]init];
-//    vc.delegate=self;
-//    [self.navigationController pushViewController:vc animated:YES];
+    DemandStageChooseController* vc=[[DemandStageChooseController alloc]initWithIndex:self.nowStage stageNames:@[@"全部佣金合同",@"主要合同条款",@"供应商佣金合同",@"销售佣金合同"]];
+    vc.delegate=self;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)rightBtnClicked{
+    UIViewController* vc=[[ContractsListSearchController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    //[self presentViewController:vc animated:YES completion:nil];
 }
 
 -(NSMutableArray *)showArr{
@@ -94,12 +103,17 @@
         ContractsBaseViewController* vc=[[ContractsBaseViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }else{
-        OverProvisionalViewController *overView = [[OverProvisionalViewController alloc] init];
+        OverProvisionalViewController *overView = [[OverProvisionalViewController alloc] initWithIsMainView:YES];
         [self.navigationController pushViewController:overView animated:YES];
     }
 }
 
 -(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{
-    
+    self.nowStage=stageNumber;
+}
+
+-(void)finishSelectedWithStageName:(NSString *)stageName index:(int)index{
+    self.nowStage=index;
+    [self initTitleViewWithTitle:stageName];
 }
 @end

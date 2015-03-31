@@ -29,6 +29,10 @@
     return height+3*kTotalHeight;
 }
 
++(CGFloat)carculateNormalTotalHeightWithNumber:(NSInteger)number{
+    return number*kTotalHeight;
+}
+
 +(CGFloat)carculateTotalHeightWithContent:(NSString*)content width:(CGFloat)width maxNumberOfLines:(NSInteger)maxNumberOfLines{
     CGFloat height=[content boundingRectWithSize:CGSizeMake(width, 9999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:ContentFont} context:nil].size.height;
     //NSInteger number=height/ContentFont.lineHeight;

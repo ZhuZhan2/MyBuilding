@@ -17,4 +17,6 @@
 -(void)setLeftBtnWithText:(NSString*)text;
 -(void)rightBtnClicked;
 -(void)leftBtnClicked;
+
+-(instancetype)initWithIsMainView:(BOOL)isMainView;
 @end

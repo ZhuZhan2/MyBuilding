@@ -21,5 +21,5 @@ typedef enum  AskPriceCellHeaderStageMode{
 } AskPriceCellHeaderStageMode;
 @interface AskPriceCellHeader : UIView
 +(AskPriceCellHeader*)askPriceCellHeaderWithModel:(AskPriceCellHeaderModel*)model;
--(void)changeStageName:(NSString*)stageName code:(NSString *)code stageColor:(UIColor*)stageColor;
+-(void)changeStageName:(NSString*)stageName code:(NSString *)code stageColor:(UIColor*)stageColor codeColor:(UIColor*)codeColor;
 @end

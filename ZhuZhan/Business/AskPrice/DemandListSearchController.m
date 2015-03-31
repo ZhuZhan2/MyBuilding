@@ -75,20 +75,6 @@
         [self.navigationController pushViewController:view animated:YES];
     }
     self.searchBarAnimationBackView.hidden=YES;
-    return;
-//    [AskPriceApi GetAskPriceDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
-//        if(!error){
-//            if(posts.count !=0){
-//                QuotesModel *quotesModel = posts[0];
-//                NSLog(@"%@",quotesModel.a_loginName);
-//                [AskPriceApi GetQuotesListWithBlock:^(NSMutableArray *posts, NSError *error) {
-//                    if(!error){
-//                        
-//                    }
-//                } providerId:quotesModel.a_loginId tradeCode:model.a_tradeCode startIndex:0 noNetWork:nil];
-//            }
-//        }
-//    } tradeId:model.a_id noNetWork:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

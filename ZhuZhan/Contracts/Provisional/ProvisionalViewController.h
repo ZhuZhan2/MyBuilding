@@ -9,5 +9,5 @@
 #import "CommissionBaseViewController.h"
 
 @interface ProvisionalViewController : CommissionBaseViewController
-
+-(instancetype)initWithIsMainView:(BOOL)isMainView;
 @end

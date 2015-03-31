@@ -19,7 +19,6 @@
 #define kTotalHeight 40
 #define mainFont [UIFont systemFontOfSize:15]
 #define assistFont [UIFont systemFontOfSize:14]
-#define assistColor AllLightGrayColor
 
 @implementation AskPriceCellHeader
 +(AskPriceCellHeader*)askPriceCellHeaderWithModel:(AskPriceCellHeaderModel*)model{
@@ -36,33 +35,27 @@
     [self addSubview:self.numberLabel];
 }
 
--(void)changeStageName:(NSString*)stageName code:(NSString *)code stageColor:(UIColor*)stageColor{
+-(void)changeStageName:(NSString*)stageName code:(NSString *)code stageColor:(UIColor*)stageColor codeColor:(UIColor*)codeColor{
     self.stageLabel.text=stageName;
     self.stageLabel.textColor=stageColor;
-    self.numberLabel.text = code;
+    
+    self.numberLabel.text=code;
+    self.numberLabel.textColor=codeColor;
 }
 
 -(UILabel *)stageLabel{
     if (!_stageLabel) {
-        _stageLabel=[[UILabel alloc]initWithFrame:CGRectMake(13, 0, 75, kTotalHeight)];
+        _stageLabel=[[UILabel alloc]initWithFrame:CGRectMake(13, 0, 125, kTotalHeight)];
         _stageLabel.font=mainFont;
     }
     return _stageLabel;
 }
 
-//-(UIImageView *)remindNew{
-//    if (!_remindNew) {
-//        _remindNew=[[UIImageView alloc]initWithFrame:CGRectMake(91, 14, 27, 11.5)];
-//        _remindNew.image=[GetImagePath getImagePath:@"交易_有新消息"];
-//    }
-//    return _remindNew;
-//}
-
 -(UILabel *)numberLabel{
     if (!_numberLabel) {
-        _numberLabel=[[UILabel alloc]initWithFrame:CGRectMake(145, 0, 169, kTotalHeight)];
+        _numberLabel=[[UILabel alloc]initWithFrame:CGRectMake(125, 0, 185, kTotalHeight)];
         _numberLabel.font=assistFont;
-        _numberLabel.textColor=assistColor;
+        _numberLabel.textAlignment=NSTextAlignmentRight;
         _numberLabel.text=self.model.number;
     }
     return _numberLabel;

@@ -15,9 +15,10 @@
 
 @implementation DemandStageChooseController
 
--(instancetype)initWithIndex:(NSInteger)index{
+-(instancetype)initWithIndex:(NSInteger)index stageNames:(NSArray*)stageNames{
     if (self=[super init]) {
         self.index=index;
+        self.stageNames=stageNames;
     }
     return self;
 }
@@ -33,15 +34,8 @@
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
 }
 
--(NSArray *)stageNames{
-    if (!_stageNames) {
-        _stageNames=@[@"全部需求列表",@"报价需求列表",@"询价需求列表"];
-    }
-    return _stageNames;
-}
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.stageNames.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -63,7 +57,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([self.delegate respondsToSelector:@selector(finishSelectedWithStageName:index:)]) {
-        [self.delegate finishSelectedWithStageName:@[@"全部需求列表",@"报价需求列表",@"询价需求列表"][indexPath.row] index:(int)indexPath.row];
+        [self.delegate finishSelectedWithStageName:self.stageNames[indexPath.row] index:(int)indexPath.row];
     }
     [self.navigationController popViewControllerAnimated:YES];
 }

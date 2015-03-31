@@ -782,6 +782,7 @@
 		5B8A2D021AAEEAD600C8F9DE /* 单人会话@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8A2D001AAEEAD600C8F9DE /* 单人会话@2x.png */; };
 		5B8DAED41A7F1EBD003C7E41 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8DAED11A7F1EBD003C7E41 /* libbaidumapapi.a */; };
 		5B8DAED51A7F1EBD003C7E41 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8DAED31A7F1EBD003C7E41 /* libbaidumapapi.a */; };
+		5B9401D31ACA89FF000C3C99 /* ContractsListSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9401D21ACA89FF000C3C99 /* ContractsListSearchController.m */; };
 		5B95ADBA1AB1225E00797EA6 /* 退出本群.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADB81AB1225E00797EA6 /* 退出本群.png */; };
 		5B95ADBB1AB1225E00797EA6 /* 退出本群@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADB91AB1225E00797EA6 /* 退出本群@2x.png */; };
 		5B95ADBE1AB122F100797EA6 /* Vector-Smart-Object.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADBC1AB122F100797EA6 /* Vector-Smart-Object.png */; };
@@ -2636,6 +2637,8 @@
 		5B8DAECF1A7F1EA9003C7E41 /* BMKVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKVersion.h; sourceTree = "<group>"; };
 		5B8DAED11A7F1EBD003C7E41 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		5B8DAED31A7F1EBD003C7E41 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
+		5B9401D11ACA89FF000C3C99 /* ContractsListSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractsListSearchController.h; sourceTree = "<group>"; };
+		5B9401D21ACA89FF000C3C99 /* ContractsListSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractsListSearchController.m; sourceTree = "<group>"; };
 		5B95ADB81AB1225E00797EA6 /* 退出本群.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "退出本群.png"; sourceTree = "<group>"; };
 		5B95ADB91AB1225E00797EA6 /* 退出本群@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "退出本群@2x.png"; sourceTree = "<group>"; };
 		5B95ADBC1AB122F100797EA6 /* Vector-Smart-Object.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Vector-Smart-Object.png"; path = "../Vector-Smart-Object.png"; sourceTree = "<group>"; };
@@ -5036,6 +5039,8 @@
 				5B5266341AC3B53300EF8185 /* View */,
 				5B70CC5D1AC9420600FC8353 /* ConstractListController.h */,
 				5B70CC5E1AC9420600FC8353 /* ConstractListController.m */,
+				5B9401D11ACA89FF000C3C99 /* ContractsListSearchController.h */,
+				5B9401D21ACA89FF000C3C99 /* ContractsListSearchController.m */,
 				5B70CC601AC947F100FC8353 /* ContractListCell.h */,
 				5B70CC611AC947F100FC8353 /* ContractListCell.m */,
 				5B70CC341AC8DE5C00FC8353 /* ContractsBaseViewController.h */,
@@ -7510,6 +7515,7 @@
 				042D9EE519B8671900689C5D /* AccountCell.m in Sources */,
 				D3D511AF1A70923E000104E9 /* NoProductView.m in Sources */,
 				0426C23319922D5A00CD8822 /* PanViewController.m in Sources */,
+				5B9401D31ACA89FF000C3C99 /* ContractsListSearchController.m in Sources */,
 				0426C28E19922D5A00CD8822 /* GPUImageLuminosityBlendFilter.m in Sources */,
 				5B5CB9B91AC01855000CF505 /* DemandListSearchController.m in Sources */,
 				0426C23019922D5A00CD8822 /* LoginViewController.m in Sources */,

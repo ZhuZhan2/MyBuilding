@@ -21,4 +21,5 @@ typedef enum RKTwoViewWidthMode{
 @interface RKTwoView : UIView
 +(RKTwoView*)twoViewWithViewMode:(RKTwoViewWidthMode)viewMode assistMode:(RKTwoViewAssistViewMode)assistMode leftContent:(NSString*)leftContent rightContent:(NSString*)rightContent needAuto:(BOOL)needAuto;
 +(CGFloat)carculateTotalHeightWithContents:(NSArray*)array;
++(CGFloat)carculateNormalTotalHeightWithNumber:(NSInteger)number;
 @end
