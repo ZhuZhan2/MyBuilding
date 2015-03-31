@@ -12,7 +12,7 @@
 #import "AskPriceModel.h"
 #import "AskPriceApi.h"
 #import "QuotesModel.h"
-@interface DemanDetailViewController : ChatBaseViewController{
+@interface DemanDetailViewController : ChatBaseViewController<RKDemandDetailControllerDelegate>{
 @protected
     RKDemandDetailController* _detailController;
     RKDemandChatController* _chatController;

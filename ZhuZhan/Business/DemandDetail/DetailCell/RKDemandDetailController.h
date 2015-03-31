@@ -10,6 +10,11 @@
 #import "DemandDetailViewCell.h"
 #import "ProvidePriceInfoController.h"
 #import "QuotesModel.h"
+
+@protocol RKDemandDetailControllerDelegate <NSObject>
+-(void)demandDetailControllerLeftBtnClicked;
+@end
+
 @interface RKDemandDetailController : ChatBaseViewController<DemandDetailViewCellDelegate>{
 @protected
     NSMutableArray* _detailModels;
@@ -18,4 +23,5 @@
 @property(nonatomic,weak)UIViewController* superViewController;
 @property(nonatomic,strong)AskPriceModel *askPriceModel;
 @property(nonatomic,strong)QuotesModel *quotesModel;
+@property(nonatomic,weak)id<RKDemandDetailControllerDelegate>delegate;
 @end

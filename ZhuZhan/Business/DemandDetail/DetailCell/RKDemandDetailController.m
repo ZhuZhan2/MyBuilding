@@ -51,16 +51,6 @@
     self.tableView.tableFooterView=view;
 }
 
--(void)leftBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"leftBtnClicked,indexPath==%d",(int)indexPath.row);
-}
-
--(void)rightBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
-    ProvidePriceInfoController* vc=[[ProvidePriceInfoController alloc]init];
-    [self.superViewController.navigationController pushViewController:vc animated:YES];
-    NSLog(@"rightBtnClicked,indexPath==%d",(int)indexPath.row);
-}
-
 -(void)closeBtnClicked{
     NSLog(@"closeBtnClicked");
 }

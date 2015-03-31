@@ -50,19 +50,4 @@
     self.title=self.askPriceModel.a_requestName;
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
 }
-
--(RKDemandDetailController *)detailController{
-    if (!_detailController) {
-        _detailController=[[RKDemandDetailController alloc]init];
-        _detailController.superViewController=self;
-    }
-    return _detailController;
-}
-
--(RKDemandChatController *)chatController{
-    if (!_chatController) {
-        _chatController=[[RKDemandChatController alloc]init];
-    }
-    return _chatController;
-}
 @end
