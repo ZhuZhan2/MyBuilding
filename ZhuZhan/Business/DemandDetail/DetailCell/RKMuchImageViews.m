@@ -78,6 +78,8 @@
     height+=CGRectGetHeight(self.titleLabel.frame);
     
     height+=7;
+    [self.singleImageViews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.noDataLabel removeFromSuperview];
     if (self.models.count) {
         [self addMuchImageViewsWithY:height];
     }else{
