@@ -16,4 +16,5 @@
 @property(nonatomic,strong)NSMutableArray* chatModels;
 @property(nonatomic,strong)AskPriceModel *askPriceModel;
 @property(nonatomic,strong)QuotesModel *quotesModel;
+@property(nonatomic)BOOL isFinish;
 @end

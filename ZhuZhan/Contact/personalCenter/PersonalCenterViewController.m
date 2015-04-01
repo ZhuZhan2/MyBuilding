@@ -73,23 +73,22 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self.title = @"个人中心";
 
     
-    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154) bannerPlaceholderImageName:@"默认主图"];
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 200) bannerPlaceholderImageName:@"默认主图"];
     _pathCover.delegate = self;
     [_pathCover setBackgroundImageUrlString:[LoginSqlite getdata:@"backgroundImage"]];
     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImage"]]];
     [_pathCover hidewaterDropRefresh];
-    [_pathCover setHeadImageFrame:CGRectMake(125, -30, 70, 70)];
+    [_pathCover setNameFrame:CGRectMake(0, 0, 320, 20) font:[UIFont systemFontOfSize:14]];
+    [_pathCover setHeadImageFrame:CGRectMake(125, -70, 70, 70)];
+    
     [_pathCover.headImage.layer setMasksToBounds:YES];
     [_pathCover.headImage.layer setCornerRadius:35];
-    [_pathCover setNameFrame:CGRectMake(0, 50, 320, 20) font:[UIFont systemFontOfSize:14]];
-    
+    [_pathCover setFootViewFrame:CGRectMake(0, 120, 320, 80)];
+
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
     
-    UIButton *gotoAskPriceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    gotoAskPriceBtn.frame = CGRectMake(0, 80, 100, 50);
-    [gotoAskPriceBtn setTitle:@"询价列表" forState:UIControlStateNormal];
-    [gotoAskPriceBtn addTarget:self action:@selector(gotoAskPrice) forControlEvents:UIControlEventTouchUpInside];
-    [_pathCover addSubview:gotoAskPriceBtn];
+    [self getThreeBtn];
+    
     self.tableView.tableHeaderView = self.pathCover;
     
     //时间标签
@@ -117,6 +116,42 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changName" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeBackgroundImage) name:@"changBackground" object:nil];
     
+}
+
+-(void)getThreeBtn{
+    UIButton *threeBtnsView = [UIButton buttonWithType:UIButtonTypeCustom];
+    threeBtnsView.frame = CGRectMake(0, 155, kScreenWidth, 50);
+//    threeBtnsView.backgroundColor=[UIColor whiteColor];
+    [_pathCover addSubview:threeBtnsView];
+    
+    CGFloat width=kScreenWidth/3;
+    
+    UIButton *firstBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    firstBtn.frame = CGRectMake(0, 0, width, 50);
+    [firstBtn setTitle:@"询价列表" forState:UIControlStateNormal];
+    firstBtn.titleLabel.font=[UIFont systemFontOfSize:14];
+    [firstBtn addTarget:self action:@selector(gotoAskPrice) forControlEvents:UIControlEventTouchUpInside];
+    [threeBtnsView addSubview:firstBtn];
+    
+    UIButton *secondBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    secondBtn.frame = CGRectMake(width, 0, width, 50);
+    [secondBtn setTitle:@"报价列表" forState:UIControlStateNormal];
+    [secondBtn addTarget:self action:@selector(gotoAskPrice) forControlEvents:UIControlEventTouchUpInside];
+    secondBtn.titleLabel.font=[UIFont systemFontOfSize:14];
+    [threeBtnsView addSubview:secondBtn];
+    
+    UIButton *thirdBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    thirdBtn.frame = CGRectMake(width*2, 0, width, 50);
+    [thirdBtn setTitle:@"合同列表" forState:UIControlStateNormal];
+    [thirdBtn addTarget:self action:@selector(gotoAskPrice) forControlEvents:UIControlEventTouchUpInside];
+    thirdBtn.titleLabel.font=[UIFont systemFontOfSize:14];
+    [threeBtnsView addSubview:thirdBtn];
+    
+//    for (int i=0;i<2;i++) {
+//        UIView* view=[[UIView alloc]initWithFrame:CGRectMake(width*(i+1), 10, 2, 30)];
+//        view.backgroundColor=AllSeperatorLineColor;
+//        [threeBtnsView addSubview:view];
+//    }
 }
 
 -(void)downLoad:(void(^)())block{

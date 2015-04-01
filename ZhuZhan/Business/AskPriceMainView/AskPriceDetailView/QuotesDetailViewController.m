@@ -149,6 +149,7 @@
             QuotesModel *model = self.invitedUserArr[indexPath.row-3];
             DemandDetailProvidePriceController *view = [[DemandDetailProvidePriceController alloc] init];
             view.askPriceModel = self.askPriceModel;
+            NSLog(@"model==%@",model);
             view.quotesModel = model;
             view.delegate = self;
             [self.navigationController pushViewController:view animated:YES];

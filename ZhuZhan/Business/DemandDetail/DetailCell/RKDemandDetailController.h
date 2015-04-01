@@ -24,4 +24,5 @@
 @property(nonatomic,strong)AskPriceModel *askPriceModel;
 @property(nonatomic,strong)QuotesModel *quotesModel;
 @property(nonatomic,weak)id<RKDemandDetailControllerDelegate>delegate;
+@property(nonatomic)BOOL isFinish;
 @end

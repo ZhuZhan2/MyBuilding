@@ -166,7 +166,6 @@
 -(UIButton *)leftBtn{
     if (!_leftBtn) {
         _leftBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 72, 26)];
-        [_leftBtn setBackgroundImage:[GetImagePath getImagePath:@"交易_回复"] forState:UIControlStateNormal];
         [_leftBtn addTarget:self action:@selector(leftBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     }
     return _leftBtn;
@@ -175,7 +174,6 @@
 -(UIButton *)rightBtn{
     if (!_rightBtn) {
         _rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 72, 26)];
-        [_rightBtn setBackgroundImage:[GetImagePath getImagePath:self.category==DemandControllerCategoryAskPriceController?@"交易_采纳":@"报价"] forState:UIControlStateNormal];
         [_rightBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     }
     return _rightBtn;
@@ -282,6 +280,17 @@
     frame=CGRectMake(0, height, size.width, size.height);
     self.seperatorLine.frame=frame;
     height+=CGRectGetHeight(self.seperatorLine.frame);
+    
+    NSString* leftBtnImageName=self.model.isFinish?@"回复灰":@"交易_回复";
+    [self.leftBtn setBackgroundImage:[GetImagePath getImagePath:leftBtnImageName] forState:UIControlStateNormal];
+    self.leftBtn.userInteractionEnabled=!self.model.isFinish;
+    
+    BOOL isAskPrice=self.category==DemandControllerCategoryAskPriceController;
+    NSString* rightNotFinishImageName=isAskPrice?@"交易_采纳":@"报价";
+    NSString* rightIsFinishImageName=isAskPrice?@"采纳灰":@"报价灰";
+    NSString* rightBtnImageName=self.model.isFinish?rightIsFinishImageName:rightNotFinishImageName;
+    [self.rightBtn setBackgroundImage:[GetImagePath getImagePath:rightBtnImageName] forState:UIControlStateNormal];
+    self.rightBtn.userInteractionEnabled=!self.model.isFinish;
 }
 
 -(void)leftBtnClicked{
