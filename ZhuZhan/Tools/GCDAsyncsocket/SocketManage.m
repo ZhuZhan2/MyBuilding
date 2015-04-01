@@ -44,6 +44,10 @@
     [self.socket writeData:data withTimeout:timeout tag:tag];
 }
 
+- (void)readDataWithTimeout:(NSTimeInterval)timeout tag:(long)tag{
+    [self.socket readDataWithTimeout:-1 tag:0];
+}
+
 - (void)socketDidSecure:(GCDAsyncSocket *)sock{
     NSLog(@"socketDidSecure:%p", sock);
 }

@@ -117,7 +117,7 @@
 
 -(void)updateFrames{
     static CGFloat orginContentSizeHeight=kChatTextViewInitialHeight;
-    NSLog(@"orginContentSizeHeight==%lf,lastContentSizeHeight==%lf",orginContentSizeHeight,self.lastContentSizeHeight);
+    //NSLog(@"orginContentSizeHeight==%lf,lastContentSizeHeight==%lf",orginContentSizeHeight,self.lastContentSizeHeight);
     CGFloat extraContentHeight=self.textView.contentSize.height-self.lastContentSizeHeight;
     if (extraContentHeight<=5&&extraContentHeight>=-5) {
         return;
@@ -134,7 +134,7 @@
     if (self.textView.contentSize.height>maxSizeHeight) {
         extraHeight=maxSizeHeight-orginContentSizeHeight;
     }
-    NSLog(@"extraHeight==%lf",extraHeight);
+    //NSLog(@"extraHeight==%lf",extraHeight);
     
     {
         CGFloat leftDownHeight=CGRectGetMaxY(self.frame);
