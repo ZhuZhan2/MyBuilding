@@ -151,7 +151,7 @@
 
 -(void)closeBtnClicked{
     NSMutableDictionary* dic=[@{@"createdBy":self.quotesModel.a_loginId,
-                                @"bookBuildingId":self.askPriceModel.a_tradeCode
+                                @"bookBuildingId":self.askPriceModel.a_id
                                 }mutableCopy];
     [AskPriceApi CloseQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){

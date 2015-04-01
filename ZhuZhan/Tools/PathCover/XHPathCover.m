@@ -411,7 +411,7 @@ NSString *const XHTitkeKey = @"XHTitkeKey";
     
     [self addSubview:self.bannerView];
     
-    NSArray *colorArray = [@[[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:.5],[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:.5]] mutableCopy];
+    NSArray *colorArray = [@[[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:.3],[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:.3]] mutableCopy];
     self.footView = [[GradientView alloc] initWithFrame:CGRectMake(0, _bannerImageView.frame.origin.y-83, 320, 320) colorArr:colorArray];
     [self addSubview:self.footView];
     
