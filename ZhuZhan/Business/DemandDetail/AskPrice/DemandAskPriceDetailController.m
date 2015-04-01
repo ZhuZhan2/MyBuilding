@@ -124,6 +124,7 @@
 }
 
 -(void)leftBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"leftBtnClickedWithIndexPath");
     if ([self.delegate respondsToSelector:@selector(demandDetailControllerLeftBtnClicked)]) {
         [self.delegate demandDetailControllerLeftBtnClicked];
     }

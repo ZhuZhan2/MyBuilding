@@ -16,7 +16,7 @@
 @property(nonatomic,strong)NSString *statusStr;
 @property(nonatomic,strong)NSString *otherStr;
 @property(nonatomic,strong)NSMutableArray* models;
-@property(nonatomic,strong)NSString *keyWorks;
+@property (nonatomic)NSInteger startIndex;
 @end
 
 @implementation DemandListSearchController

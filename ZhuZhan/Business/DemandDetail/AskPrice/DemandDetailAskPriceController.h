@@ -7,6 +7,9 @@
 //
 
 #import "DemanDetailViewController.h"
+@protocol DemandDetailAskPriceDelegate <NSObject>
+-(void)backAndLoad;
+@end
 @interface DemandDetailAskPriceController : DemanDetailViewController
-
+@property(nonatomic,weak)id<DemandDetailAskPriceDelegate>delegate;
 @end
