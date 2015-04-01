@@ -64,6 +64,10 @@
 
 -(void)secondPostFirstStepWithQuotesId:(NSString*)quotesId{
     NSArray* allImages=@[self.array1,self.array2,self.array3];
+    if(self.array1.count ==0 && self.array2.count == 0&&self.array3.count==0){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"报价成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }
     for (int i=0; i<allImages.count; i++) {
         NSArray* images=allImages[i];
         if (!images.count) continue;
@@ -77,18 +81,23 @@
 }
 
 -(void)secondPostSecondStepWithImages:(NSMutableArray*)images category:(NSString*)category quotesId:(NSString*)quotesId{
-    if (!images.count) return;
-    NSMutableDictionary* dic=[@{@"category":category,
-                                @"tradeCode":self.askPriceModel.a_tradeCode,
-                                @"quotesId":quotesId}
-                              mutableCopy];
-     [AskPriceApi AddAttachmentWithBlock:^(NSMutableArray *posts, NSError *error) {
-         if (!error) {
-             
-         }else{
-             NSLog(@"===%@",error);
-         }
-     } dataArr:images dic:dic noNetWork:nil];
+    if (!images.count){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"报价成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }else{
+        NSMutableDictionary* dic=[@{@"category":category,
+                                    @"tradeCode":self.askPriceModel.a_tradeCode,
+                                    @"quotesId":quotesId}
+                                  mutableCopy];
+        [AskPriceApi AddAttachmentWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"报价成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+            }else{
+                NSLog(@"===%@",error);
+            }
+        } dataArr:images dic:dic noNetWork:nil];
+    }
 }
 -(void)initNavi{
     self.title=@"报价资料";

@@ -21,7 +21,7 @@
 
 -(UILabel *)companyName{
     if(!_companyName){
-        _companyName = [[UILabel alloc] initWithFrame:CGRectMake(20, 14, 280, 16)];
+        _companyName = [[UILabel alloc] initWithFrame:CGRectMake(20, 14, 280, 20)];
         _companyName.font = [UIFont systemFontOfSize:16];
     }
     return _companyName;

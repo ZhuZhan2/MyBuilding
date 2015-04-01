@@ -326,6 +326,9 @@
         }];
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"responseObject ==> %@",responseObject);
+        if(block){
+            block([NSMutableArray arrayWithObjects:responseObject, nil], nil);
+        }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {

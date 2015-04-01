@@ -71,6 +71,10 @@
     [self.viewArr addObject:self.addCategoriesView];
     [self.viewArr addObject:self.addClassificationView];
     [self.viewArr addObject:self.addMarkView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -283,11 +287,11 @@
 }
 
 -(void)beginTextView{
-    self.view.transform = CGAffineTransformMakeTranslation(0, -200);
+    //self.view.transform = CGAffineTransformMakeTranslation(0, -170);
 }
 
 -(void)endTextView:(NSString *)str{
-    self.view.transform = CGAffineTransformIdentity;
+    //self.view.transform = CGAffineTransformIdentity;
     self.remarkStr = str;
 }
 
@@ -366,5 +370,21 @@
         AskPriceViewController *view = [[AskPriceViewController alloc] init];
         [self.navigationController pushViewController:view animated:YES];
     }
+}
+
+#pragma mark - 键盘处理
+#pragma mark 键盘即将显示
+- (void)keyBoardWillShow:(NSNotification *)note{
+    CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat ty = - rect.size.height+(self.tableView.frame.size.height-(self.addContactViewHeight+self.addCategoriesViewHeight+self.addClassificationViewHeight+260))-60;
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]-0.01 animations:^{
+        self.view.transform = CGAffineTransformMakeTranslation(0, ty);
+    }];
+}
+#pragma mark 键盘即将退出
+- (void)keyBoardWillHide:(NSNotification *)note{
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+        self.view.transform = CGAffineTransformIdentity;
+    }];
 }
 @end

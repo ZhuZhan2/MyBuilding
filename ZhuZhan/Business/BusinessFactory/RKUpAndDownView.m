@@ -7,7 +7,7 @@
 //
 
 #import "RKUpAndDownView.h"
-
+#define strCount 500
 @interface RKUpAndDownView()<UITextViewDelegate>
 @property(nonatomic,strong)UILabel* upLabel;
 @property(nonatomic,strong)UILabel* downLabel;
@@ -151,6 +151,25 @@
 }
 
 -(void)textViewDidChange:(UITextView *)textView{
+    NSArray *array = [UITextInputMode activeInputModes];
+    if (array.count > 0) {
+        UITextInputMode *textInputMode = [array firstObject];
+        NSString *lang = [textInputMode primaryLanguage];
+        if ([lang isEqualToString:@"zh-Hans"]) {
+            if (textView.text.length != 0) {
+                int a = [textView.text characterAtIndex:textView.text.length - 1];
+                if( a > 0x4e00 && a < 0x9fff) { // PINYIN 手写的时候 才做处理
+                    if (textView.text.length >= strCount) {
+                        textView.text = [textView.text substringToIndex:strCount];
+                    }
+                }
+            }
+        } else {
+            if (textView.text.length >= strCount) {
+                textView.text = [textView.text substringToIndex:strCount];
+            }
+        }
+    }
     self.placeLabel.alpha=!textView.text.length;
 }
 @end
