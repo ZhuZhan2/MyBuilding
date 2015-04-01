@@ -59,6 +59,7 @@
     DemandDetailCellModel* cellModel=[self cellModelWithDataModel:dataModel];
     cellModel.isFinish=self.isFinish;
     cellModel.indexPath=indexPath;
+    cellModel.userDescribe = dataModel.a_quoteIsVerified;
     cell.model=cellModel;
     return cell;
 }
