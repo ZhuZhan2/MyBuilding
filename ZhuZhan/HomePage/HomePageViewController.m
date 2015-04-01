@@ -274,7 +274,7 @@
     }else if(idx == 2){
         NSLog(@"加好友");
         quadCurveVC=[[AddFriendViewController alloc]init];
-        quadCurveVC=[[ConstractListController alloc]init];
+        //quadCurveVC=[[ConstractListController alloc]init];
     }else if (idx == 3){
         NSLog(@"会话");
         quadCurveVC=[[ChatListViewController alloc]init];

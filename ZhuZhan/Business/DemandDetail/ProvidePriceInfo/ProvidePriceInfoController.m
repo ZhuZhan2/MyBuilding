@@ -141,7 +141,7 @@
     view.frame=frame;
     [cell.contentView addSubview:view];
     
-    UIView* seperatorLine=[RKShadowView seperatorLineWithHeight:2];
+    UIView* seperatorLine=[RKShadowView seperatorLine];
     frame=seperatorLine.frame;
     frame.origin.y=CGRectGetHeight(view.frame)-CGRectGetHeight(seperatorLine.frame)+1;
     seperatorLine.frame=frame;

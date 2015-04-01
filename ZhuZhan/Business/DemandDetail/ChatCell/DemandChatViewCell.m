@@ -98,7 +98,7 @@
 
 -(UIView *)shadowView{
     if (!_shadowView) {
-        _shadowView=[RKShadowView seperatorLineWithHeight:1];
+        _shadowView=[RKShadowView seperatorLine];
     }
     return _shadowView;
 }

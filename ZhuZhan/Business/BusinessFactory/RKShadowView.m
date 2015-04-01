@@ -20,8 +20,8 @@
     return view;
 }
 
-+(UIView *)seperatorLineWithHeight:(CGFloat)height{
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, height)];
++(UIView *)seperatorLine{
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 1)];
     view.backgroundColor=AllSeperatorLineColor;
     return view;
 }

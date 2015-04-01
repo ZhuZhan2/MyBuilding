@@ -65,7 +65,7 @@
 
 -(UIView *)cutLine{
     if(!_cutLine){
-        _cutLine = [RKShadowView seperatorLineWithHeight:2];
+        _cutLine = [RKShadowView seperatorLine];
         _cutLine.frame = CGRectMake(0, 63, 320, 2);
     }
     return _cutLine;

@@ -10,6 +10,6 @@
 
 @interface RKShadowView : UIView
 +(UIView *)seperatorLineShadowViewWithHeight:(CGFloat)height;
-+(UIView *)seperatorLineWithHeight:(CGFloat)height;
++(UIView *)seperatorLine;//height=1px
 +(UIView *)seperatorLineInThemeView;//上导航阴影
 @end

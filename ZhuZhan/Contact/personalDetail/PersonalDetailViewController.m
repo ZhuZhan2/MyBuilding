@@ -97,7 +97,9 @@
     NSMutableDictionary* dic=[@{@"userId":self.contactId
                         } mutableCopy];
     [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
-        
+        if (!error) {
+            [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"已成功申请好友" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil]show];
+        }
     } dic:dic noNetWork:nil];
     NSLog(@"btntag=%d",(int)btn.tag);
 }

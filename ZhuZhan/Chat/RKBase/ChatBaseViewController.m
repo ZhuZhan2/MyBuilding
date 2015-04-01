@@ -15,9 +15,9 @@
 @property(nonatomic,strong)UIButton* rightBtn;
 @property(nonatomic,strong)UIButton* leftBtn;
 
-@property(nonatomic)BOOL searchBarIsTableViewHeader;
-
 @property(nonatomic,strong)SearchBarTableViewController* searchBarTableViewController;
+
+@property(nonatomic)BOOL searchBarIsTableViewHeader;
 
 @property(nonatomic)BOOL searchBarIsAnimating;
 @end
@@ -136,17 +136,17 @@
         }
     }
     
-//    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, -20, kScreenWidth, 50)];
-//    view.backgroundColor=[UIColor redColor];
-//    [self.searchBar addSubview:view];
-    
     if (needTableView) {
         [self setUpSearchBarTableView];
     }
 }
 
+-(UITableView*)searchBarTableView{
+    return self.searchBarTableViewController.tableView;
+}
+
 -(void)setUpSearchBarTableView{
-    self.searchBarTableViewController=[[SearchBarTableViewController alloc]init];
+    self.searchBarTableViewController=[[SearchBarTableViewController alloc]initWithTableViewBounds:CGRectMake(0, 0, kScreenWidth, kScreenHeight-CGRectGetMinY(self.searchBar.frame))];
     self.searchBarTableViewController.delegate=self;
 }
 

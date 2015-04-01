@@ -10,10 +10,7 @@
 
 @interface AskPriceCellHeader ()
 @property(nonatomic,strong)UILabel* stageLabel;
-//@property(nonatomic,strong)UIImageView* remindNew;
 @property(nonatomic,strong)UILabel* numberLabel;
-
-@property(nonatomic,strong)AskPriceCellHeaderModel* model;
 @end
 
 #define kTotalHeight 40
@@ -21,9 +18,8 @@
 #define assistFont [UIFont systemFontOfSize:14]
 
 @implementation AskPriceCellHeader
-+(AskPriceCellHeader*)askPriceCellHeaderWithModel:(AskPriceCellHeaderModel*)model{
++(AskPriceCellHeader*)askPriceCellHeader{
     AskPriceCellHeader* view=[[AskPriceCellHeader alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kTotalHeight)];
-    view.model=model;
     [view setUp];
     
     return view;
@@ -56,10 +52,7 @@
         _numberLabel=[[UILabel alloc]initWithFrame:CGRectMake(125, 0, 185, kTotalHeight)];
         _numberLabel.font=assistFont;
         _numberLabel.textAlignment=NSTextAlignmentRight;
-        _numberLabel.text=self.model.number;
     }
     return _numberLabel;
 }
-@end
-@implementation AskPriceCellHeaderModel
 @end
