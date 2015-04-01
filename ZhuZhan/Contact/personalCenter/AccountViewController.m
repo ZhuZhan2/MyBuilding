@@ -76,7 +76,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImage"]]];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadImageFrame:CGRectMake(125, -70, 70, 70)];
-    [_pathCover setFootViewFrame:CGRectMake(0, 120, 320, 80)];
+    [_pathCover setFootViewFrame:CGRectMake(0, -120, 320, 320)];
     [_pathCover.headImage.layer setMasksToBounds:YES];
     [_pathCover.headImage.layer setCornerRadius:35];
     [_pathCover setNameFrame:CGRectMake(0, 0, 320, 20) font:[UIFont systemFontOfSize:14]];

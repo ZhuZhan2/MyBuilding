@@ -411,8 +411,8 @@ NSString *const XHTitkeKey = @"XHTitkeKey";
     
     [self addSubview:self.bannerView];
     
-    NSArray *colorArray = [@[[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:0.0],[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:.8]] mutableCopy];
-    self.footView = [[GradientView alloc] initWithFrame:CGRectMake(0, 75, 320, 80) colorArr:colorArray];
+    NSArray *colorArray = [@[[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:.5],[UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:.5]] mutableCopy];
+    self.footView = [[GradientView alloc] initWithFrame:CGRectMake(0, _bannerImageView.frame.origin.y-83, 320, 320) colorArr:colorArray];
     [self addSubview:self.footView];
     
     CGFloat waterDropRefreshHeight = 100;
@@ -567,6 +567,7 @@ NSString *const XHTitkeKey = @"XHTitkeKey";
 }
 
 -(void)setFootViewFrame:(CGRect)newFrame{
+    NSLog(@"%f",_bannerImageView.frame.origin.y-60);
     self.footView.frame = newFrame;
 }
 @end
