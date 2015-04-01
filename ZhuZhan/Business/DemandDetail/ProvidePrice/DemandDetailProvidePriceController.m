@@ -23,6 +23,13 @@
     [self.stageChooseView stageLabelClickedWithSequence:1];
 }
 
+-(void)leftBtnClicked{
+    if([self.delegate respondsToSelector:@selector(backAndLoad)]){
+        [self.delegate backAndLoad];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(RKDemandDetailController *)detailController{
     if (!_detailController) {
         _detailController=[[DemandProvidePriceDetailController alloc]init];

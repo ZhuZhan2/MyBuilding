@@ -16,7 +16,7 @@
     self.a_name = dict[@"commentsUserName"];
     self.a_contents = dict[@"contents"];
     self.a_createdBy = dict[@"createdBy"];
-    self.a_createdTime = [NSString stringWithFormat:@"%@",[ProjectStage ProjectDateStage:dict[@"createdTime"]]];
+    self.a_createdTime = [NSString stringWithFormat:@"%@",[ProjectStage ProjectNewTimeStage:dict[@"createdTime"]]];
     self.a_quoteId = dict[@"quoteId"];
     self.a_tradeCode = dict[@"tradeCode"];
     self.a_tradeId = dict[@"tradeId"];

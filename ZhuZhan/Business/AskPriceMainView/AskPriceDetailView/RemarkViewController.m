@@ -77,7 +77,7 @@
 
 -(YLLabel *)contentLabel{
     if(!_contentLabel){
-        _contentLabel = [[YLLabel alloc] initWithFrame:CGRectMake(10, 122, 300, 400)];
+        _contentLabel = [[YLLabel alloc] initWithFrame:CGRectMake(10, 122, 300, 430)];
         [_contentLabel setText:self.remarkStr];
         _contentLabel.font = [UIFont systemFontOfSize:15];
     }

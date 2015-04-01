@@ -15,7 +15,7 @@
 #import "AskPriceApi.h"
 #import "DemandDetailAskPriceController.h"
 #import "QuotesModel.h"
-@interface AskPriceDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface AskPriceDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DemandDetailAskPriceDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)ClassificationView *classificationView;
 @property(nonatomic)int classificationViewHeight;
@@ -138,6 +138,7 @@
         DemandDetailAskPriceController *viewController = [[DemandDetailAskPriceController alloc] init];
         viewController.quotesModel = model;
         viewController.askPriceModel = self.askPriceModel;
+        viewController.delegate = self;
         [self.navigationController pushViewController:viewController animated:YES];
     }
 }
@@ -191,6 +192,7 @@
         if(!cell){
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
+        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         cell.selectionStyle = NO;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 17, 180, 16)];
         label.text = model.a_loginName;
@@ -213,5 +215,9 @@
         [cell.contentView addSubview:lineImageView];
         return cell;
     }
+}
+
+-(void)backAndLoad{
+    [self loadList];
 }
 @end

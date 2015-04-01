@@ -14,7 +14,7 @@
 #import "AskPriceApi.h"
 #import "ProvidePriceInfoController.h"
 #import "DemandDetailProvidePriceController.h"
-@interface QuotesDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface QuotesDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DemandDetailProvidePriceDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UIView *classificationView;
@@ -23,6 +23,7 @@
 @property(nonatomic)int remarkViewHeight;
 @property(nonatomic,strong)NSMutableArray *viewArr;
 @property(nonatomic,strong)NSString *quoteTimes;
+@property(nonatomic,strong)NSMutableArray *invitedUserArr;
 @end
 
 @implementation QuotesDetailViewController
@@ -72,7 +73,9 @@
 -(void)loadList{
     [AskPriceApi GetAskPriceDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
+            self.invitedUserArr = posts[0];
             self.quoteTimes = posts[1];
+            [self.tableView reloadData];
         }
     } tradeId:self.askPriceModel.a_id noNetWork:nil];
 }
@@ -143,8 +146,11 @@
             view.askPriceModel = self.askPriceModel;
             [self.navigationController pushViewController:view animated:YES];
         }else{
+            QuotesModel *model = self.invitedUserArr[indexPath.row-3];
             DemandDetailProvidePriceController *view = [[DemandDetailProvidePriceController alloc] init];
             view.askPriceModel = self.askPriceModel;
+            view.quotesModel = model;
+            view.delegate = self;
             [self.navigationController pushViewController:view animated:YES];
         }
     }
@@ -182,11 +188,13 @@
         [cell.contentView addSubview:self.viewArr[1]];
         return cell;
     }else{
+        QuotesModel *model = self.invitedUserArr[indexPath.row-3];
         NSString *CellIdentifier = [NSString stringWithFormat:@"cell"];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
+        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         cell.selectionStyle = NO;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 15, 180, 16)];
         label.text = self.askPriceModel.a_requestName;
@@ -195,7 +203,7 @@
         [cell.contentView addSubview:label];
         
         UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(230, 15, 80, 16)];
-        label2.text = self.askPriceModel.a_tradeStatus;
+        label2.text = model.a_status;
         label2.textAlignment = NSTextAlignmentLeft;
         label2.font = [UIFont systemFontOfSize:16];
         [cell.contentView addSubview:label2];
@@ -209,5 +217,9 @@
         [cell.contentView addSubview:shadowView];
         return cell;
     }
+}
+
+-(void)backAndLoad{
+    [self loadList];
 }
 @end

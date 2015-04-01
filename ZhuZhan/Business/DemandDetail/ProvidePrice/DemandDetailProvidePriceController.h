@@ -8,6 +8,10 @@
 
 #import "DemanDetailViewController.h"
 
-@interface DemandDetailProvidePriceController : DemanDetailViewController
+@protocol DemandDetailProvidePriceDelegate <NSObject>
+-(void)backAndLoad;
+@end
 
+@interface DemandDetailProvidePriceController : DemanDetailViewController
+@property(nonatomic,weak)id<DemandDetailProvidePriceDelegate>delegate;
 @end
