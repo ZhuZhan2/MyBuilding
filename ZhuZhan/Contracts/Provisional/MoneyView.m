@@ -46,7 +46,7 @@
 
 -(UIImageView *)cutLine{
     if(!_cutLine){
-        _cutLine = [RKShadowView seperatorLineWithHeight:2];
+        _cutLine = [RKShadowView seperatorLine];
     }
     return _cutLine;
 }

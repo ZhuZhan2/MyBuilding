@@ -21,7 +21,7 @@
         
         [self.contentView addSubview:self.assistImageView];
         
-        UIView* seperatorLine=[RKShadowView seperatorLineWithHeight:2];
+        UIView* seperatorLine=[RKShadowView seperatorLine];
         seperatorLine.center=CGPointMake(kScreenWidth*0.5, 47);
         [self.contentView addSubview:seperatorLine];
     }

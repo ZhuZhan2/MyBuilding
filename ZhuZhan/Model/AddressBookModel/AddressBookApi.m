@@ -62,6 +62,9 @@
 
     return  [[AFAppDotNetAPIClient sharedNewClient]POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
+        if (block) {
+            block(nil,nil);
+        }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error==>%@",error);
     }];
@@ -113,6 +116,15 @@
     
     return  [[AFAppDotNetAPIClient sharedNewClient]POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
+        if ([JSON[@"status"][@"statusCode"] isEqualToString:@"200"]) {
+            if (block) {
+                block(nil,nil);
+            }
+        }else{
+            NSLog(@"error==%@",
+                  JSON[@"status"][@"errorMsg"]);
+        }
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error==>%@",error);
     }];

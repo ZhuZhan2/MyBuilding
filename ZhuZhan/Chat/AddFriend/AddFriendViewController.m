@@ -70,6 +70,7 @@
                                 } mutableCopy];
     [AddressBookApi PostAgreeFriendWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
+            [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"成功添加好友" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil]show];
             [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
         }
     } dic:dic noNetWork:nil];

@@ -9,9 +9,17 @@
 #import "SearchBarTableViewController.h"
 
 @interface SearchBarTableViewController ()<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic)CGRect tableViewBounds;
 @end
 
 @implementation SearchBarTableViewController
+-(instancetype)initWithTableViewBounds:(CGRect)bounds{
+    if (self=[super init]) {
+        self.tableViewBounds=bounds;
+    }
+    return self;
+}
+
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self initTableView];
@@ -21,7 +29,7 @@
     [self.tableView reloadData];
 }
 -(void)initTableView{
-    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
+    self.tableView=[[UITableView alloc]initWithFrame:self.tableViewBounds];
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;

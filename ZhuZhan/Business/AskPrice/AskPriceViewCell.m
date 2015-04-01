@@ -43,18 +43,14 @@
 
 -(UIView *)seperatorLineInCell{
     if (!_seperatorLineInCell) {
-        _seperatorLineInCell=[RKShadowView seperatorLineWithHeight:2];
+        _seperatorLineInCell=[RKShadowView seperatorLine];
     }
     return _seperatorLineInCell;
 }
 
 -(AskPriceCellHeader *)cellHeader{
     if (!_cellHeader) {
-        AskPriceCellHeaderModel* model=[[AskPriceCellHeaderModel alloc]init];
-        model.stage=[NSString stringWithFormat:@"询价"];
-        //model.hasNew=arc4random()%2;
-        model.number=@"流水号:321312312";
-        _cellHeader=[AskPriceCellHeader askPriceCellHeaderWithModel:model];
+        _cellHeader=[AskPriceCellHeader askPriceCellHeader];
         [_cellHeader addSubview:self.seperatorLineInCell];
     }
     return _cellHeader;

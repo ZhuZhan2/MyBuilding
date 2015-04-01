@@ -19,8 +19,9 @@
 -(void)searchBarTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
+@class SearchBarTableViewController;
+
 @interface ChatBaseViewController : UIViewController<UITableViewDataSource,RKBaseTableViewDelegate,UISearchBarDelegate,SearchBarTableViewDelegate,RKStageChooseViewDelegate,ChatToolBarDelegate>
-//@property(nonatomic,strong)NSMutableArray* models;
 
 @property(nonatomic)BOOL needAnimaiton;
 
@@ -43,8 +44,8 @@
 -(void)disappearAnimation:(UISearchBar *)searchBar;
 @property(nonatomic,weak)UIView* searchBarBackBtn;
 
+@property(nonatomic,strong)UITableView* searchBarTableView;
 -(void)setSearchBarTableViewBackColor:(UIColor*)color;
-
 
 @property(nonatomic,strong)NSMutableArray* sectionSelectedArray;
 -(BOOL)sectionSelectedArrayContainsSection:(NSInteger)section;

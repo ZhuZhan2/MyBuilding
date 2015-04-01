@@ -11,10 +11,12 @@
 #import "AskPriceViewCell.h"
 #import "AskPriceDetailViewController.h"
 #import "QuotesDetailViewController.h"
+#import "MJRefresh.h"
 @interface DemandListSearchController ()
 @property(nonatomic,strong)NSString *statusStr;
 @property(nonatomic,strong)NSString *otherStr;
 @property(nonatomic,strong)NSMutableArray* models;
+@property (nonatomic)NSInteger startIndex;
 @end
 
 @implementation DemandListSearchController
@@ -26,16 +28,61 @@
     [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
     [self setSearchBarTableViewBackColor:AllBackDeepGrayColor];
     [self.searchBar becomeFirstResponder];
-    [self loadList];
+    
+    //集成刷新控件
+    [self setupRefresh];
 }
 
--(void)loadList{
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.searchBarTableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    
+    [self.searchBarTableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [super searchBarSearchButtonClicked:searchBar];
+    [self searchListWithKeyword:searchBar.text];
+}
+
+-(void)searchListWithKeyword:(NSString*)keyword{
     [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.models = posts[0];
-            [self.tableView reloadData];
+            [self.searchBarTableView reloadData];
         }
+    } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:keyword noNetWork:nil];
+}
+
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self.models removeAllObjects];
+            self.models = posts[0];
+            [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
+            [self.searchBarTableView reloadData];
+        }
+        [self.searchBarTableView headerEndRefreshing];
     } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:@"" noNetWork:nil];
+}
+
+- (void)footerRereshing
+{
+    [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.startIndex++;
+            [self.models addObjectsFromArray:posts[0]];
+            [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
+            [self.searchBarTableView reloadData];
+        }
+        [self.searchBarTableView footerEndRefreshing];
+    } status:self.statusStr startIndex:(int)self.startIndex+1 other:self.otherStr keyWorks:@"" noNetWork:nil];
 }
 
 -(NSInteger)searchBarNumberOfSectionsInTableView:(UITableView *)tableView{
