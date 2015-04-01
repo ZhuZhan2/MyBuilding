@@ -18,7 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTableView];
-    [self initChatToolBar];
+    if (!self.isFinish) {
+        [self initChatToolBar];
+    }
     [self addKeybordNotification];
 }
 
@@ -72,6 +74,10 @@
 
 -(void)viewWillAppear:(BOOL)animated{
 
+}
+
+-(BOOL)isFinish{
+    return ![self.quotesModel.a_status isEqualToString:@"进行中"];
 }
 
 -(void)chatToolSendBtnClicked{
