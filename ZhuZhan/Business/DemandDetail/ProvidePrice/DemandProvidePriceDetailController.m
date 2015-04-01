@@ -82,7 +82,10 @@
                                 @"bookBuildingId":self.askPriceModel.a_id
                                 }mutableCopy];
     [AskPriceApi CloseQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
-        
+        if(!error){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关闭成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
     } dic:dic noNetWork:nil];
     NSLog(@"closeBtnClicked");
 }
