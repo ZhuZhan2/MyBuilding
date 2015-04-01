@@ -55,7 +55,7 @@
     //[_pathCover setBackgroundImage:[GetImagePath getImagePath:@"人脉－人的详情_02a"]];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadImageFrame:CGRectMake(120, -50, 70, 70)];
-    [_pathCover setFootViewFrame:CGRectMake(0, 135, 320, 80)];
+    [_pathCover setFootViewFrame:CGRectMake(0, -105, 320, 320)];
     _pathCover.headImage.layer.cornerRadius =35;
     _pathCover.headImage.layer.masksToBounds =YES;
     [_pathCover setNameFrame:CGRectMake(145, 20, 100, 20) font:[UIFont systemFontOfSize:14]];

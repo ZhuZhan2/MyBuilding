@@ -132,7 +132,10 @@
 }
 
 -(void)rightBtnClick{
-    if(![dataDic[@"keywords"] isEqualToString:@""]){
+    if([dataDic[@"keywords"] isEqualToString:@""]&&[dataDic[@"companyName"] isEqualToString:@""]&&[dataDic[@"landProvince"] isEqualToString:@""]&&[dataDic[@"landCity"] isEqualToString:@""]&&[dataDic[@"landDistrict"] isEqualToString:@""]&&[dataDic[@"projectStage"] isEqualToString:@""]&&[dataDic[@"projectCategory"] isEqualToString:@""]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请填写搜索条件" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }else{
         if([[LoginSqlite getdata:@"token"] isEqualToString:@""]){
             LoginViewController *loginVC = [[LoginViewController alloc] init];
             loginVC.delegate = self;
@@ -145,9 +148,6 @@
             saveView.dataDic = dataDic;
             [self presentPopupViewController:saveView animationType:MJPopupViewAnimationFade flag:1];
         }
-    }else{
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请填写关键字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
     }
 }
 

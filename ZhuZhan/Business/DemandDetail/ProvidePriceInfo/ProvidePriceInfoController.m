@@ -50,6 +50,11 @@
 }
 
 -(void)firstPost{
+    if([[self.fifthView textViewText] isEqualToString:@""]&&self.array1.count==0&&self.array2.count==0&&self.array3.count ==0){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请先回复或上传附件" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:self.askPriceModel.a_tradeCode forKey:@"tradeCode"];
     [dic setObject:self.askPriceModel.a_id forKey:@"bookBuildingId"];

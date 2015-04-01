@@ -64,7 +64,7 @@
     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImage"]]];
     [_pathCover hidewaterDropRefresh];
     [_pathCover setHeadImageFrame:CGRectMake(125, -40, 70, 70)];
-    [_pathCover setFootViewFrame:CGRectMake(0, 50, 320, 80)];
+    [_pathCover setFootViewFrame:CGRectMake(0, -190, 320, 320)];
     [_pathCover.headImage.layer setMasksToBounds:YES];
     [_pathCover.headImage.layer setCornerRadius:35];
     self.tableView.tableHeaderView = self.pathCover;

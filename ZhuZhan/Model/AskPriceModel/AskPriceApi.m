@@ -112,7 +112,7 @@
             }else{
                 [arr addObject:[NSArray array]];
             }
-            [arr addObject:JSON[@"data"][@"quoteTimes"]];
+            [arr addObject:JSON[@"data"][@"isQuoted"]];
             if (block) {
                 block([NSMutableArray arrayWithArray:arr], nil);
             }
@@ -256,6 +256,7 @@
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/tradeQuotes/closeQuotes"];
     NSLog(@"=====%@",urlStr);
+    NSLog(@"%@",dic);
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){

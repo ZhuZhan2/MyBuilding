@@ -22,7 +22,7 @@
 @property(nonatomic)int classificationViewHeight;
 @property(nonatomic)int remarkViewHeight;
 @property(nonatomic,strong)NSMutableArray *viewArr;
-@property(nonatomic,strong)NSString *quoteTimes;
+@property(nonatomic,strong)NSString *isQuoted;
 @property(nonatomic,strong)NSMutableArray *invitedUserArr;
 @end
 
@@ -74,7 +74,7 @@
     [AskPriceApi GetAskPriceDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.invitedUserArr = posts[0];
-            self.quoteTimes = posts[1];
+            self.isQuoted = posts[1];
             [self.tableView reloadData];
         }
     } tradeId:self.askPriceModel.a_id noNetWork:nil];
@@ -141,7 +141,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row == 3){
-        if([self.quoteTimes isEqualToString:@"0"]){
+        if([self.isQuoted isEqualToString:@"0"]){
             ProvidePriceInfoController *view = [[ProvidePriceInfoController alloc] init];
             view.askPriceModel = self.askPriceModel;
             [self.navigationController pushViewController:view animated:YES];
