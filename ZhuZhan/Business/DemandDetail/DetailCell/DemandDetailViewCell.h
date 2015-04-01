@@ -28,6 +28,7 @@ typedef enum DemandControllerCategory{
 @property(nonatomic,strong)NSArray* array2;
 @property(nonatomic,strong)NSArray* array3;
 
+@property(nonatomic)BOOL isFinish;
 @property(nonatomic,strong)NSIndexPath* indexPath;
 @end
 

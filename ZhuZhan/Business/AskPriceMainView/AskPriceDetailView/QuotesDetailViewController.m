@@ -119,13 +119,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     return 4;
 }
 
@@ -151,6 +149,7 @@
             QuotesModel *model = self.invitedUserArr[indexPath.row-3];
             DemandDetailProvidePriceController *view = [[DemandDetailProvidePriceController alloc] init];
             view.askPriceModel = self.askPriceModel;
+            NSLog(@"model==%@",model);
             view.quotesModel = model;
             view.delegate = self;
             [self.navigationController pushViewController:view animated:YES];

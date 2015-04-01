@@ -104,6 +104,7 @@
                 QuotesModel *model = [[QuotesModel alloc] init];
                 [model setDict:item];
                 [mutablePosts addObject:model];
+                NSLog(@"item==%@",item);
             }
             if(mutablePosts.count !=0){
                 [arr addObject:mutablePosts];

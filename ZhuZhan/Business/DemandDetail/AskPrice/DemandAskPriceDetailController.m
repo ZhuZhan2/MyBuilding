@@ -76,6 +76,7 @@
         cellModel.array1=array1;
         cellModel.array2=array2;
         cellModel.array3=array3;
+        cellModel.isFinish=![dataModel.a_status isEqualToString:@"0"];
     }
     return [DemandDetailViewCell carculateTotalHeightWithModel:cellModel];
 }
@@ -87,7 +88,12 @@
     }
     DemandDetailCellModel* cellModel=[[DemandDetailCellModel alloc]init];
     {
+        
         QuotesDetailModel* dataModel=self.detailModels[indexPath.row];
+        
+        NSLog(@"dataModel===%@",dataModel);
+
+        
         cellModel.userName=dataModel.a_quoteUser;
         cellModel.userDescribe=dataModel.a_quoteIsVerified;
         cellModel.time=dataModel.a_createdTime;
@@ -117,6 +123,8 @@
         cellModel.array1=array1;
         cellModel.array2=array2;
         cellModel.array3=array3;
+        cellModel.isFinish=![dataModel.a_status isEqualToString:@"0"];
+        NSLog(@"dataModel.status==%@",dataModel.a_status);
     }
     cellModel.indexPath=indexPath;
     cell.model=cellModel;
