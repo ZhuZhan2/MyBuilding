@@ -44,40 +44,8 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    DemandDetailCellModel* cellModel=[[DemandDetailCellModel alloc]init];
-    {
-        QuotesDetailModel* dataModel=self.detailModels[indexPath.row];
-        cellModel.userName=dataModel.a_quoteUser;
-        cellModel.userDescribe=dataModel.a_quoteIsVerified;
-        cellModel.time=dataModel.a_createdTime;
-        cellModel.numberDescribe=[NSString stringWithFormat:@"第%@次报价",dataModel.a_quoteTimes];
-        cellModel.content=dataModel.a_quoteContent;
-        NSMutableArray *array1 = [[NSMutableArray alloc] init];
-        [dataModel.a_quoteAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {
-            RKImageModel *imageModel = [[RKImageModel alloc] init];
-            imageModel.imageUrl =  model.a_location;
-            imageModel.isUrl = model.a_isUrl;
-            [array1 addObject:imageModel];
-        }];
-        NSMutableArray *array2 = [[NSMutableArray alloc] init];
-        [dataModel.a_qualificationsAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {
-            RKImageModel *imageModel = [[RKImageModel alloc] init];
-            imageModel.imageUrl =  model.a_location;
-            imageModel.isUrl = model.a_isUrl;
-            [array2 addObject:imageModel];
-        }];
-        NSMutableArray *array3 = [[NSMutableArray alloc] init];
-        [dataModel.a_otherAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {
-            RKImageModel *imageModel = [[RKImageModel alloc] init];
-            imageModel.imageUrl =  model.a_location;
-            imageModel.isUrl = model.a_isUrl;
-            [array3 addObject:imageModel];
-        }];
-        cellModel.array1=array1;
-        cellModel.array2=array2;
-        cellModel.array3=array3;
-        cellModel.isFinish=![dataModel.a_status isEqualToString:@"0"];
-    }
+    QuotesDetailModel* dataModel=self.detailModels[indexPath.row];
+    DemandDetailCellModel* cellModel=[self cellModelWithDataModel:dataModel];
     return [DemandDetailViewCell carculateTotalHeightWithModel:cellModel];
 }
 
@@ -86,46 +54,9 @@
     if (!cell) {
         cell=[[DemandDetailViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"detailCell" delegate:self category:DemandControllerCategoryAskPriceController];
     }
-    DemandDetailCellModel* cellModel=[[DemandDetailCellModel alloc]init];
-    {
-        
-        QuotesDetailModel* dataModel=self.detailModels[indexPath.row];
-        
-        NSLog(@"dataModel===%@",dataModel);
-
-        
-        cellModel.userName=dataModel.a_quoteUser;
-        cellModel.userDescribe=dataModel.a_quoteIsVerified;
-        cellModel.time=dataModel.a_createdTime;
-        cellModel.numberDescribe=[NSString stringWithFormat:@"第%@次报价",dataModel.a_quoteTimes];
-        cellModel.content=dataModel.a_quoteContent;
-        NSMutableArray *array1 = [[NSMutableArray alloc] init];
-        [dataModel.a_quoteAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {
-            RKImageModel *imageModel = [[RKImageModel alloc] init];
-            imageModel.imageUrl =  model.a_location;
-            imageModel.isUrl = model.a_isUrl;
-            [array1 addObject:imageModel];
-        }];
-        NSMutableArray *array2 = [[NSMutableArray alloc] init];
-        [dataModel.a_qualificationsAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {
-            RKImageModel *imageModel = [[RKImageModel alloc] init];
-            imageModel.imageUrl =  model.a_location;
-            imageModel.isUrl = model.a_isUrl;
-            [array2 addObject:imageModel];
-        }];
-        NSMutableArray *array3 = [[NSMutableArray alloc] init];
-        [dataModel.a_otherAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {
-            RKImageModel *imageModel = [[RKImageModel alloc] init];
-            imageModel.imageUrl =  model.a_location;
-            imageModel.isUrl = model.a_isUrl;
-            [array3 addObject:imageModel];
-        }];
-        cellModel.array1=array1;
-        cellModel.array2=array2;
-        cellModel.array3=array3;
-        cellModel.isFinish=![dataModel.a_status isEqualToString:@"0"];
-        NSLog(@"dataModel.status==%@",dataModel.a_status);
-    }
+    QuotesDetailModel* dataModel=self.detailModels[indexPath.row];
+    DemandDetailCellModel* cellModel=[self cellModelWithDataModel:dataModel];
+    cellModel.isFinish=self.isFinish;
     cellModel.indexPath=indexPath;
     cell.model=cellModel;
     return cell;
