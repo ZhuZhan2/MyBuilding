@@ -90,7 +90,7 @@ static int BtnTag =0;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = [info objectForKey:BtnTag==110120?UIImagePickerControllerOriginalImage:UIImagePickerControllerEditedImage];
-    
+    UIImageWriteToSavedPhotosAlbum(image, self,nil, nil);
     UIImageView *preview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width/2, image.size.height/2)];
     [preview setImage:image];
     image = [self convertViewAsImage:preview];

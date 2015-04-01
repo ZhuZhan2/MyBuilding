@@ -40,6 +40,8 @@
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImageWriteToSavedPhotosAlbum(image, self,nil, nil);
     [self cameraFinishWithPicker:picker info:info isCancel:NO];
 }
 

@@ -271,7 +271,7 @@
 //当选择一张图片后进入这里
 -(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    
+    UIImageWriteToSavedPhotosAlbum(image, self,nil, nil);
     NSData *imageData = UIImageJPEGRepresentation(image, 0.3);
     
     //NSString* imageStr = [[NSString alloc] initWithData:[GTMBase64 encodeData:imageData] encoding:NSUTF8StringEncoding];
