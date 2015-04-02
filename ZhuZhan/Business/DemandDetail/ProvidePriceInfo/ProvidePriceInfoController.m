@@ -148,7 +148,7 @@
     
     UIView* seperatorLine=[RKShadowView seperatorLine];
     frame=seperatorLine.frame;
-    frame.origin.y=CGRectGetHeight(view.frame)-CGRectGetHeight(seperatorLine.frame)+1;
+    frame.origin.y=CGRectGetHeight(view.frame)-CGRectGetHeight(seperatorLine.frame);
     seperatorLine.frame=frame;
     [cell.contentView addSubview:seperatorLine];
     
@@ -197,6 +197,7 @@
 
 -(void)imageDeleteWithIndexpath:(NSIndexPath*)indexpath{
     NSArray* images=@[self.array1,self.array2,self.array3];
+    
     NSMutableArray* array=images[indexpath.section];
     [array removeObjectAtIndex:indexpath.row];
     [self reloadSixthView];
@@ -208,6 +209,15 @@
 }
 
 -(void)upLoadBtnClickedWithNumber:(NSInteger)number{
+    NSArray* images=@[self.array1,self.array2,self.array3];
+    NSMutableArray* array=images[number];
+    if (array.count>=9) {
+        NSArray* categorys=@[@"报价附件",@"资质附件",@"其他附件"];
+        NSString* message=[NSString stringWithFormat:@"%@图片数量已达上限",categorys[number]];
+        [[[UIAlertView alloc]initWithTitle:@"提醒" message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil]show];
+        return;
+    }
+    
     self.cameraCategory=number;
     UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册",nil];
     [actionSheet showInView:self.view];
