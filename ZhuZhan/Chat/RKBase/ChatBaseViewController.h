@@ -17,6 +17,8 @@
 -(CGFloat)searchBarTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 -(UITableViewCell *)searchBarTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 -(void)searchBarTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+-(UIView *)searchBarTableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;
+-(CGFloat)searchBarTableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 @end
 
 @class SearchBarTableViewController;
@@ -59,4 +61,6 @@
 
 -(void)addKeybordNotification;
 -(void)keybordWillChangeFrame:(NSNotification*)noti;
+-(void)reloadSearchBarTableViewData;
+-(void)ClickedSearchBarSearchButton:(UISearchBar *)searchBar;
 @end

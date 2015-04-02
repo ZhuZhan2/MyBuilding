@@ -72,4 +72,21 @@
         [self.delegate searchBarTableView:tableView didSelectRowAtIndexPath:indexPath];
     }
 }
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if([self.delegate respondsToSelector:@selector(searchBarTableView:viewForHeaderInSection:)]){
+        return [self.delegate searchBarTableView:tableView viewForHeaderInSection:section];
+    }else{
+        return nil;
+    }
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if([self.delegate respondsToSelector:@selector(searchBarTableView:heightForHeaderInSection:)]){
+        return [self.delegate searchBarTableView:tableView heightForHeaderInSection:section];
+    }else{
+        return 0;
+    }
+}
 @end

@@ -151,6 +151,7 @@
             view.askPriceModel = self.askPriceModel;
             NSLog(@"model==%@",model);
             view.quotesModel = model;
+            view.title = self.askPriceModel.a_requestName;
             view.delegate = self;
             [self.navigationController pushViewController:view animated:YES];
         }
@@ -197,7 +198,7 @@
         }
         [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         cell.selectionStyle = NO;
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 15, 180, 16)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 13, 180, 20)];
         label.text = self.askPriceModel.a_requestName;
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont systemFontOfSize:16];

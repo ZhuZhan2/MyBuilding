@@ -13,6 +13,7 @@
 
 @protocol RKDemandDetailControllerDelegate <NSObject>
 -(void)demandDetailControllerLeftBtnClicked;
+-(void)backView;
 @end
 
 @interface RKDemandDetailController : ChatBaseViewController<DemandDetailViewCellDelegate>{

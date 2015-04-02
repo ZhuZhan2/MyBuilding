@@ -24,13 +24,17 @@
      */
     self.a_createdTime=dic[@"createdTime"];
     self.a_createdUser=dic[@"createdUser"];
-    self.a_imageId=dic[@"imageId"];
     self.a_loginName=dic[@"loginName"];
     self.a_messageContent=dic[@"messageContent"];
+    if(![dic[@"imageId"] isEqualToString:@""]){
+        self.a_imageId = [NSString stringWithFormat:@"%s%@",serverAddress,image(dic[@"imageId"], @"login", @"", @"", @"")];
+    }else{
+        self.a_imageId = dic[@"imageId"];
+    }
     self.a_messageId=dic[@"messageId"];
     self.a_messageObjectId=dic[@"messageObjectId"];
     self.a_messageType=dic[@"messageType"];
-    self.a_isFinished=[dic[@"status"] isEqualToString:@"02"];
-
+    self.a_isFinished=[dic[@"status"] isEqualToString:@"01"];
+    self.a_status=dic[@"status"];
 }
 @end

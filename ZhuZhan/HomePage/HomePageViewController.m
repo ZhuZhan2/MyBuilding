@@ -280,12 +280,12 @@
         quadCurveVC=[[ChatListViewController alloc]init];
     }else{
         NSLog(@"通讯录");
-        //quadCurveVC = [[AddressBookViewController alloc] init];
+        quadCurveVC = [[AddressBookViewController alloc] init];
         //Class class=NSClassFromString(@"AskPriceMainViewController");
         //Class class=NSClassFromString(@"AskPriceDetailViewController");
         //Class class=NSClassFromString(@"QuotesDetailViewController");
-        Class class=NSClassFromString(@"ProvisionalViewController");
-        quadCurveVC=[[class alloc]init];
+        //Class class=NSClassFromString(@"ProvisionalViewController");
+        //quadCurveVC=[[class alloc]init];
     }
     [self addAnimation];
     [nav pushViewController:quadCurveVC animated:NO];

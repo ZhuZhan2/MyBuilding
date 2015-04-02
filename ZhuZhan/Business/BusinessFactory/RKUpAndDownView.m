@@ -115,6 +115,7 @@
     if (!_downTextView) {
         _downTextView=[[UITextView alloc]initWithFrame:CGRectMake(-3, -3, self.maxWidth+6, 85+6)];
         _downTextView.delegate=self;
+        _downTextView.returnKeyType = UIReturnKeyDone;
         [_downTextView addSubview:self.placeLabel];
     }
     return _downTextView;
@@ -125,7 +126,7 @@
         _placeLabel=[[UILabel alloc]initWithFrame:CGRectMake(5, 5, 200, 20)];
         _placeLabel.textColor=AllNoDataColor;
         _placeLabel.font=ContentFont;
-        _placeLabel.text=@"请输入回复（500字）";
+        _placeLabel.text=@"请输入备注（500字）";
     }
     return _placeLabel;
 }
@@ -148,6 +149,16 @@
         _downLabel.textColor=AllDeepGrayColor;
     }
     return _downLabel;
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }else{
+        return YES;
+    }
+    
 }
 
 -(void)textViewDidChange:(UITextView *)textView{

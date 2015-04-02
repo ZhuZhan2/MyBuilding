@@ -28,6 +28,7 @@
 @property(nonatomic,copy)NSString* a_messageId;
 @property(nonatomic,copy)NSString* a_messageObjectId;
 @property(nonatomic,copy)NSString* a_messageType;
+@property(nonatomic,copy)NSString* a_status;
 @property(nonatomic)BOOL a_isFinished;
 
 @property(nonatomic,strong)NSDictionary* dic;

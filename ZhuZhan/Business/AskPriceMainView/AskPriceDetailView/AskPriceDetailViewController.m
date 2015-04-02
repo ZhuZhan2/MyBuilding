@@ -139,6 +139,7 @@
         viewController.quotesModel = model;
         NSLog(@"model==%@",model);
         viewController.askPriceModel = self.askPriceModel;
+        viewController.title = model.a_loginName;
         viewController.delegate = self;
         [self.navigationController pushViewController:viewController animated:YES];
     }
@@ -195,7 +196,7 @@
         }
         [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         cell.selectionStyle = NO;
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 17, 180, 16)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 15, 180, 20)];
         label.text = model.a_loginName;
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont systemFontOfSize:16];

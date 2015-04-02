@@ -52,11 +52,12 @@
     return self;
 }
 
--(void)setUserName:(NSString*)userName time:(NSString*)time userImageUrl:(NSString*)userImageUrl isFinished:(BOOL)isFinished indexPathRow:(NSInteger)indexPathRow{
+-(void)setUserName:(NSString*)userName time:(NSString*)time userImageUrl:(NSString*)userImageUrl isFinished:(BOOL)isFinished indexPathRow:(NSInteger)indexPathRow status:(NSString *)status{
     self.userImageView.imageURL=[NSURL URLWithString:userImageUrl];
     
     self.userNameLabel.text=userName;
     self.userBussniessLabel.text=time;
+    NSLog(@"isFinished===> %d",isFinished);
     [self.rightBtn setBackgroundImage:[GetImagePath getImagePath:isFinished?@"公司认证员工_08a":@"公司认证员工_18a"] forState:UIControlStateNormal];
     self.rightBtn.tag=indexPathRow;
     self.userImageView.tag=indexPathRow;

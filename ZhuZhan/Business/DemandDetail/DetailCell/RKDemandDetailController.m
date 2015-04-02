@@ -76,7 +76,8 @@
     cellModel.userName=dataModel.a_quoteUser;
     cellModel.userDescribe=dataModel.a_quoteIsVerified;
     cellModel.time=dataModel.a_createdTime;
-    cellModel.numberDescribe=[NSString stringWithFormat:@"第%@次报价",dataModel.a_quoteTimes];
+    //cellModel.numberDescribe=[NSString stringWithFormat:@"第%@次报价",dataModel.a_quoteTimes];
+    cellModel.numberDescribe = dataModel.a_quoteTimes;
     cellModel.content=dataModel.a_quoteContent;
     NSMutableArray *array1 = [[NSMutableArray alloc] init];
     [dataModel.a_quoteAttachmentsArr enumerateObjectsUsingBlock:^(ImagesModel *model, NSUInteger idx, BOOL *stop) {

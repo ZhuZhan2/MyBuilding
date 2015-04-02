@@ -50,8 +50,8 @@
 }
 
 -(void)firstPost{
-    if([[self.fifthView textViewText] isEqualToString:@""]&&self.array1.count==0&&self.array2.count==0&&self.array3.count ==0){
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请先回复或上传附件" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    if(self.array1.count==0&&self.array2.count==0&&self.array3.count ==0){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请先上传附件" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
         return;
     }
@@ -268,7 +268,7 @@
 
 -(RKUpAndDownView *)fifthView{
     if (!_fifthView) {
-        _fifthView=[RKUpAndDownView upAndDownTextViewWithUpContent:@"回复" topDistance:20 bottomDistance:20 maxWidth:kScreenWidth-50];
+        _fifthView=[RKUpAndDownView upAndDownTextViewWithUpContent:@"备注" topDistance:20 bottomDistance:20 maxWidth:kScreenWidth-50];
 
     }
     return _fifthView;

@@ -14,7 +14,7 @@
     self.a_isVerified = dict[@"isVerified"];
     self.a_loginId = dict[@"loginId"];
     self.a_loginName = dict[@"loginName"];
-    if([dict[@"status"] isEqualToString:@"0"]){
+    if([dict[@"status"] isEqualToString:@"0"]||[dict[@"status"] isEqualToString:@"-1"]){
         self.a_status = @"进行中";
     }else if ([dict[@"status"] isEqualToString:@"1"]){
         self.a_status = @"完成";
@@ -43,7 +43,12 @@
     self.a_status = dict[@"status"];
     self.a_tradeCode = dict[@"tradeCode"];
     self.a_createdBy = dict[@"createdBy"];
-    self.a_quoteTimes = dict[@"quoteTimes"];
+    if([dict[@"isRealQuote"] isEqualToString:@"1"]){
+        self.a_quoteTimes = [NSString stringWithFormat:@"第%@次报价",dict[@"quoteTimes"]];
+    }else{
+        self.a_quoteTimes = @"";
+    }
+    //self.a_quoteTimes = dict[@"quoteTimes"];
     self.a_quoteAttachmentsArr = [[NSMutableArray alloc] init];
     [dict[@"quoteAttachments"] enumerateObjectsUsingBlock:^(NSDictionary *item, NSUInteger idx, BOOL *stop) {
         ImagesModel *model = [[ImagesModel alloc] init];

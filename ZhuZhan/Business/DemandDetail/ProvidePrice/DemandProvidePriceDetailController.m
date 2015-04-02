@@ -11,7 +11,7 @@
 #import "LoginSqlite.h"
 #import "MJRefresh.h"
 #import "RKImageModel.h"
-@interface DemandProvidePriceDetailController ()
+@interface DemandProvidePriceDetailController ()<UIAlertViewDelegate>
 @property(nonatomic)int startIndex;
 @end
 
@@ -83,9 +83,18 @@
                                 @"bookBuildingId":self.askPriceModel.a_id
                                 }mutableCopy];
     [AskPriceApi CloseQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
-        
+        if(!error){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关闭成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
     } dic:dic noNetWork:nil];
     NSLog(@"closeBtnClicked");
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if ([self.delegate respondsToSelector:@selector(backView)]) {
+        [self.delegate backView];
+    }
 }
 
 /**

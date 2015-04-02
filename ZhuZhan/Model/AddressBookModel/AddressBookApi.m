@@ -70,14 +70,14 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)GetFriendRequestListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block pageIndex:(NSString *)pageIndex noNetWork:(void(^)())noNetWork{
++ (NSURLSessionDataTask *)GetFriendRequestListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block pageIndex:(int)pageIndex noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
             noNetWork();
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/contacts/getFriendRequestList?pageIndex=%@&pageSize=5",pageIndex];
+    NSString *urlStr = [NSString stringWithFormat:@"api/contacts/getFriendRequestList?pageIndex=%d&pageSize=15",pageIndex];
     NSLog(@"=====%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
@@ -113,6 +113,84 @@
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/contacts/agreeFriend"];
     NSLog(@"urlStr==%@,%@",urlStr,dic);
+    
+    return  [[AFAppDotNetAPIClient sharedNewClient]POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if ([JSON[@"status"][@"statusCode"] isEqualToString:@"200"]) {
+            if (block) {
+                block(nil,nil);
+            }
+        }else{
+            NSLog(@"error==%@",
+                  JSON[@"status"][@"errorMsg"]);
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error==>%@",error);
+    }];
+}
+
++ (NSURLSessionDataTask *)DelFriendRequestListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"api/contacts/delFriendRequestList"];
+    NSLog(@"urlStr==%@",urlStr);
+    
+    return  [[AFAppDotNetAPIClient sharedNewClient]POST:urlStr parameters:nil success:^(NSURLSessionDataTask *task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if ([JSON[@"status"][@"statusCode"] isEqualToString:@"200"]) {
+            if (block) {
+                block(nil,nil);
+            }
+        }else{
+            NSLog(@"error==%@",
+                  JSON[@"status"][@"errorMsg"]);
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error==>%@",error);
+    }];
+}
+
++ (NSURLSessionDataTask *)DelSingleFriendRequestWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"api/contacts/delSingleFriendRequest"];
+    NSLog(@"urlStr==%@",urlStr);
+    
+    return  [[AFAppDotNetAPIClient sharedNewClient]POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if ([JSON[@"status"][@"statusCode"] isEqualToString:@"200"]) {
+            if (block) {
+                block(nil,nil);
+            }
+        }else{
+            NSLog(@"error==%@",
+                  JSON[@"status"][@"errorMsg"]);
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error==>%@",error);
+    }];
+}
+
++ (NSURLSessionDataTask *)UpdateNickNameWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"api/contacts/updateNickName"];
+    NSLog(@"urlStr==%@",urlStr);
     
     return  [[AFAppDotNetAPIClient sharedNewClient]POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id JSON) {
         NSLog(@"JSON===>%@",JSON);

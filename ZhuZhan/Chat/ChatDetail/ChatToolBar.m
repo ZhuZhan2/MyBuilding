@@ -38,6 +38,7 @@
     if (!_textView) {
         _textView=[[UITextView alloc]initWithFrame:CGRectMake(0, 0, kChatTextViewWidth, kChatTextViewInitialHeight)];
         _textView.layer.cornerRadius=3;
+        _textView.returnKeyType = UIReturnKeySend;
         CGFloat x=CGRectGetWidth(self.frame)*0.5;
         CGFloat y=CGRectGetHeight(self.frame)*0.5;
         _textView.center=CGPointMake(x, y);

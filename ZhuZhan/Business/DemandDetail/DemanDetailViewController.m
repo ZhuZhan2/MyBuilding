@@ -48,7 +48,7 @@
 }
 
 -(void)initNavi{
-    self.title=self.askPriceModel.a_requestName;
+    self.title=self.title;
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
 }
 @end

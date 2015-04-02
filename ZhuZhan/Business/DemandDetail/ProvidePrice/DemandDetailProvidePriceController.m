@@ -30,6 +30,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)backView{
+    if([self.delegate respondsToSelector:@selector(backAndLoad)]){
+        [self.delegate backAndLoad];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(RKDemandDetailController *)detailController{
     if (!_detailController) {
         _detailController=[[DemandProvidePriceDetailController alloc]init];

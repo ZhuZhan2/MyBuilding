@@ -44,7 +44,7 @@
 
 -(UIView *)seperatorLine{
     if (!_seperatorLine) {
-        _seperatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 1)];
+        _seperatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 260, 1)];
         _seperatorLine.backgroundColor=RGBCOLOR(229, 229, 229);
     }
     return _seperatorLine;

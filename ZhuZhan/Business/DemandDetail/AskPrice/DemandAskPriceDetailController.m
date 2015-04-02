@@ -10,7 +10,7 @@
 #import "AskPriceApi.h"
 #import "MJRefresh.h"
 #import "RKImageModel.h"
-@interface DemandAskPriceDetailController ()
+@interface DemandAskPriceDetailController ()<UIAlertViewDelegate>
 @property(nonatomic)int startIndex;
 @end
 
@@ -75,7 +75,7 @@
     NSMutableDictionary* dic=[@{@"id":dataModel.a_id}mutableCopy];
     [AskPriceApi AcceptQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"采纳成功" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定",@"取消", nil]show];
+            [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"采纳成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
         }
     } dic:dic noNetWork:nil];
     NSLog(@"rightBtnClicked,indexPath==%d",(int)indexPath.row);
@@ -87,11 +87,17 @@
                                 }mutableCopy];
     [AskPriceApi CloseQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关闭成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关闭成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
         }
     } dic:dic noNetWork:nil];
     NSLog(@"closeBtnClicked");
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if ([self.delegate respondsToSelector:@selector(backView)]) {
+        [self.delegate backView];
+    }
 }
 
 /**

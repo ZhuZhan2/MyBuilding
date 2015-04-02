@@ -338,6 +338,10 @@
     [self.addCategoriesView removeFromSuperview];
     self.addCategoriesView = nil;
     [self.viewArr replaceObjectAtIndex:1 withObject:self.addCategoriesView];
+    [self.addClassificationView removeFromSuperview];
+    self.addClassificationView = nil;
+    self.classifcationStr = @"默认全选";
+    [self.viewArr replaceObjectAtIndex:2 withObject:self.addClassificationView];
     [self.tableView reloadData];
 }
 
@@ -354,7 +358,6 @@
     if(idStr.length !=0){
         self.classifcationIdStr = [idStr substringWithRange:NSMakeRange(0,idStr.length-1)];
     }
-    NSLog(@"%@",self.classifcationIdStr);
     [self.addClassificationView removeFromSuperview];
     self.addClassificationView = nil;
     [self.viewArr replaceObjectAtIndex:2 withObject:self.addClassificationView];

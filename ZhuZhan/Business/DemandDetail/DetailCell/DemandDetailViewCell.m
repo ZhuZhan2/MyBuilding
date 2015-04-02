@@ -284,14 +284,26 @@
     NSString* leftBtnImageName=self.model.isFinish?@"回复灰":@"交易_回复";
     [self.leftBtn setBackgroundImage:[GetImagePath getImagePath:leftBtnImageName] forState:UIControlStateNormal];
     self.leftBtn.userInteractionEnabled=!self.model.isFinish;
-    
+    NSLog(@"asdfasdfsadfasdfas");
+    //按钮判断
+    BOOL isHasImage = self.model.array1.count?YES:NO;
     BOOL isAskPrice=self.category==DemandControllerCategoryAskPriceController;
     NSString* rightNotFinishImageName=isAskPrice?@"交易_采纳":@"报价";
     NSString* rightIsFinishImageName=isAskPrice?@"采纳灰":@"报价灰";
-    NSString* rightBtnImageName=self.model.isFinish?rightIsFinishImageName:rightNotFinishImageName;
-    [self.rightBtn setBackgroundImage:[GetImagePath getImagePath:rightBtnImageName] forState:UIControlStateNormal];
-    self.rightBtn.userInteractionEnabled=!self.model.isFinish;
+    NSString* rightBtnImageName =  nil;
+    if(isAskPrice){
+        NSLog(@"询价");
+        rightBtnImageName=self.model.isFinish?rightIsFinishImageName:(isHasImage?rightNotFinishImageName:rightIsFinishImageName);
+        [self.rightBtn setBackgroundImage:[GetImagePath getImagePath:rightBtnImageName] forState:UIControlStateNormal];
+        self.rightBtn.enabled= self.model.isFinish?NO:(isHasImage?YES:NO);
+    }else{
+        NSLog(@"报价");
+        rightBtnImageName=self.model.isFinish?rightIsFinishImageName:rightNotFinishImageName;
+        [self.rightBtn setBackgroundImage:[GetImagePath getImagePath:rightBtnImageName] forState:UIControlStateNormal];
+        self.rightBtn.enabled= !self.model.isFinish;
+    }
 }
+
 
 -(void)leftBtnClicked{
     if ([self.delegate respondsToSelector:@selector(leftBtnClickedWithIndexPath:)]) {

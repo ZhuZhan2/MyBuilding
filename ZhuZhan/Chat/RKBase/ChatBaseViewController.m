@@ -215,6 +215,13 @@
     [searchBar resignFirstResponder];
 }
 
+-(void)ClickedSearchBarSearchButton:(UISearchBar *)searchBar{
+    if (!self.searchBarTableViewController.view.superview) {
+        [self searchBarTableViewAppear];
+    }
+    [searchBar resignFirstResponder];
+}
+
 -(void)appearAnimation:(UISearchBar *)searchBar{
     [self appearAndDisappearAnimation:searchBar isAppear:YES];
 }

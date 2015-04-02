@@ -26,6 +26,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)backView{
+    if([self.delegate respondsToSelector:@selector(backAndLoad)]){
+        [self.delegate backAndLoad];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void)demandDetailControllerLeftBtnClicked{
     [self.stageChooseView stageLabelClickedWithSequence:1];
 }

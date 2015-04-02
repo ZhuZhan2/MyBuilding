@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 typedef enum DemandControllerCategory{
-    DemandControllerCategoryAskPriceController,
-    DemandControllerCategoryProvidePriceController
+    DemandControllerCategoryAskPriceController,// 询价
+    DemandControllerCategoryProvidePriceController//报价
 }DemandControllerCategory;
 
 @protocol DemandDetailViewCellDelegate <NSObject>
