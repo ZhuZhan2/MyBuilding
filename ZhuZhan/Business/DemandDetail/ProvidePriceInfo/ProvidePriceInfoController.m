@@ -89,7 +89,7 @@
         self.needPostGroupCount++;
         NSMutableArray* newImageDatas=[NSMutableArray array];
         for (RKImageModel* imageModel in images) {
-            NSData* imageData=UIImageJPEGRepresentation(imageModel.image, 0.2);
+            NSData* imageData=UIImageJPEGRepresentation(imageModel.image, 1);
             [newImageDatas addObject:imageData];
         }
         [self secondPostSecondStepWithImages:newImageDatas category:[NSString stringWithFormat:@"%d",i] quotesId:quotesId];
@@ -256,12 +256,12 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==actionSheet.cancelButtonIndex) return;
-    self.cameraControl=[RKCamera cameraWithType:!buttonIndex allowEdit:NO deleate:self presentViewController:self.view.window.rootViewController];
+    self.cameraControl=[RKCamera cameraWithType:!buttonIndex allowEdit:NO deleate:self presentViewController:self.view.window.rootViewController demandSize:CGSizeMake(80, 80)];
 }
 
 -(void)cameraWillFinishWithImage:(UIImage *)image isCancel:(BOOL)isCancel{
     NSData *data = UIImageJPEGRepresentation(image, 1);
-    NSLog(@"data.length=%ld",data.length);
+    NSLog(@"data.length=%ld",(long)data.length);
     if((double)data.length/(1024*1024)>5){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"图片大于5M" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
