@@ -72,6 +72,7 @@
     [dic setObject:[self.fifthView textViewText] forKey:@"quoteContent"];
     [AskPriceApi AddQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
         self.rightBtn.userInteractionEnabled=YES;
+        //
         if(!error){
             NSString* quotesId=posts[0];
             [self secondPostFirstStepWithQuotesId:quotesId];
