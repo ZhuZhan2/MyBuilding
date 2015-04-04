@@ -6,7 +6,6 @@
 //
 //
 #import "PersonalCenterCellView.h"
-#import "EGOImageView.h"
 @implementation PersonalCenterCellView
 +(UIView *)getPersonalCenterCellViewWithImageUrl:(NSString *)imageUrl content:(NSString *)content category:(NSString *)category name:(NSString *)name{
     UIView* view=[[UIView alloc]initWithFrame:CGRectZero];
@@ -58,9 +57,9 @@
     CGFloat contentX=10;
     BOOL imageExist = ![imageUrl isEqualToString:@""];
     if (imageExist) {
-        EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"公司认证员工_05a"]];
+        UIImageView* imageView=[[UIImageView alloc]init];
         imageView.frame=CGRectMake(10, 10, 60, 60);
-        imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]] placeholderImage:[GetImagePath getImagePath:@"公司认证员工_05a"]];
         [view addSubview:imageView];
         contentX=80;
     }

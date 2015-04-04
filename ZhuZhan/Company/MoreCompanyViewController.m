@@ -207,7 +207,7 @@
 
     //公司内容部分
     CompanyModel *model = self.showArr[indexPath.row];
-    cell.myImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_companyLogo]];
+    [cell.myImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_companyLogo]] placeholderImage:[GetImagePath getImagePath:@"公司－公司组织_05a"]];
     cell.companyNameLabel.text=[NSString stringWithFormat:@"%@",model.a_companyName];
     cell.companyBusiness.text=[NSString stringWithFormat:@"公司行业：%@",model.a_companyIndustry];
     cell.companyIntroduce.text=[NSString stringWithFormat:@"%@位关注者",model.a_companyFocusNumber];

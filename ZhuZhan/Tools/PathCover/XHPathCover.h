@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EGOImageView.h"
 #import "GradientView.h"
 // user info key for Dictionary
 extern NSString *const XHUserNameKey;
@@ -22,7 +21,7 @@ extern NSString *const XHTitkeKey;
 @interface XHPathCover : UIView
 @property (nonatomic, weak) id<XHPathCoverDelegate>delegate;
 // parallax background
-@property (nonatomic, strong) EGOImageView *bannerImageView;
+@property (nonatomic, strong) UIImageView *bannerImageView;
 @property(nonatomic,strong)NSString* bannerPlaceholderImageName;
 @property (nonatomic, strong) UIImageView *bannerImageViewWithImageEffects;
 
@@ -31,7 +30,7 @@ extern NSString *const XHTitkeKey;
 @property (nonatomic, strong) UILabel *userNameLabel;
 @property (nonatomic, strong) UILabel *birthdayLabel;
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) EGOImageView *headImage;
+@property (nonatomic, strong) UIImageView *headImage;
 @property (nonatomic, strong) GradientView *footView;
 
 

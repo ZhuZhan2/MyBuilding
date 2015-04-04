@@ -27,7 +27,7 @@
     [self.contentView addSubview:lineImage2];
     lineImage2.alpha = 0.08;
     
-    headImage = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"公司－我的公司_02a"]];
+    headImage = [[UIImageView alloc] init];
     [headImage setFrame:CGRectMake(20.5, 9.5, 30, 30)];
     headImage.layer.cornerRadius=15;
     headImage.layer.masksToBounds=YES;
@@ -49,8 +49,7 @@
 }
 
 -(void)setImageUrl:(NSString *)imageUrl{
-    NSLog(@"%@",imageUrl);
-    headImage.imageURL = [NSURL URLWithString:imageUrl];
+    [headImage sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:@"公司－我的公司_02a"]];
 }
 
 -(void)setCompanyName:(NSString *)companyName{

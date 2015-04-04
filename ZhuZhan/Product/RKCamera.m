@@ -41,7 +41,12 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    UIImageWriteToSavedPhotosAlbum(image, self,nil, nil);
+    UIImageView *preview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width/2, image.size.height/2)];
+    [preview setImage:image];
+    image = [self convertViewAsImage:preview];
+    if(picker.sourceType !=0){
+        UIImageWriteToSavedPhotosAlbum(image, self,nil, nil);
+    }
     [self cameraFinishWithPicker:picker info:info isCancel:NO];
 }
 
@@ -55,5 +60,13 @@
         UIImage* image=isCancel?nil:(info[self.allowsEditing?UIImagePickerControllerEditedImage:UIImagePickerControllerOriginalImage]);
         [self.delegate cameraWillFinishWithImage:image isCancel:isCancel];
     }
+}
+
+- (UIImage *)convertViewAsImage:(UIView *)aview {
+    UIGraphicsBeginImageContext(aview.bounds.size);
+    [aview.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 @end

@@ -7,9 +7,8 @@
 //
 
 #import "ImageAndLabelView.h"
-#import "EGOImageView.h"
 @interface ImageAndLabelView ()
-@property(nonatomic,strong)EGOImageView* imageView;
+@property(nonatomic,strong)UIImageView* imageView;
 @property(nonatomic,strong)UILabel* contentLabel;
 @property(nonatomic,strong)UIButton* addBtn;
 
@@ -53,9 +52,10 @@
     return _addBtn;
 }
 
--(EGOImageView *)imageView{
+-(UIImageView *)imageView{
     if (!_imageView) {
-        _imageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"未设置"]];
+        //[GetImagePath getImagePath:@"未设置"]
+        _imageView=[[UIImageView alloc]init];
 #warning  图片名为"未设置"和"加载中"为对应状态的图,暂时不作区分,等接口好了再调整
         _imageView.frame=CGRectMake(0, 0, kImageWidth, kImageWidth);
     }

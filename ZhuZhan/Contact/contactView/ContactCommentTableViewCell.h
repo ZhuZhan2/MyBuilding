@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EGOImageView.h"
 #import "ContactCommentModel.h"
 
 @protocol ContactCommentTableViewDelegate <NSObject>
@@ -16,7 +15,7 @@
 
 @end
 @interface ContactCommentTableViewCell : UITableViewCell{
-    EGOImageView *headImageView;
+    UIImageView *headImageView;
     UILabel *contentLabel;
     UILabel *timeLabel;
     NSString *contactId;

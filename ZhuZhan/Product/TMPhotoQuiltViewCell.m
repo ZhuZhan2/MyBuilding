@@ -42,10 +42,9 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
     return self;
 }
 
-- (EGOImageView *)photoView {
+- (UIImageView *)photoView {
     if (!_photoView) {
-        _photoView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"动态产品评论02"]];
-        _photoView.delegate = self;
+        _photoView = [[UIImageView alloc] init];
         _photoView.backgroundColor = RGBCOLOR(219, 219, 219);
         _photoView.contentMode=UIViewContentModeScaleAspectFit;
         [self addSubview:_photoView];
@@ -168,16 +167,4 @@ CGFloat returnOriginY(CGRect frame){
 -(void)setImageSize:(CGSize)imageSize{
     _imageSize = imageSize;
 }
-
-//- (void)imageViewLoadedImage:(EGOImageView*)imageView{
-////    [_defaultImageView removeFromSuperview];
-////    _defaultImageView = nil;
-//}
-//
-//- (void)imageViewFailedToLoadImage:(EGOImageView*)imageView error:(NSError*)error{
-//    NSLog(@"imageViewFailedToLoadImage");
-////    _defaultImageView = [[UIImageView alloc] initWithImage:[GetImagePath getImagePath:@"产品－列表_10a"]];
-////    _defaultImageView.frame = CGRectMake((self.imageSize.width-60)/2-2, (self.imageSize.height-60)/2-2, 61, 61);
-////    [self addSubview:_defaultImageView];
-//}
 @end

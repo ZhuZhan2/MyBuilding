@@ -7,10 +7,9 @@
 //
 
 #import "ProductCommentView.h"
-#import "EGOImageView.h"
 #import "LoginSqlite.h"
 @interface ProductCommentView()
-@property(nonatomic,strong)EGOImageView* userImageView;
+@property(nonatomic,strong)UIImageView* userImageView;
 @property(nonatomic,strong)UILabel* userNameLabel;
 @property(nonatomic,strong)UILabel* userCommentContent;
 @end
@@ -26,8 +25,8 @@
 
 -(void)loadSelfWithCommentImageUrl:(NSString*)userImageUrl userName:(NSString*)userName commentContent:(NSString*)commentContent creatBy:(NSString *)creatBy{
     //获取用户头像
-    self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
-    self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",userImageUrl]];
+    self.userImageView=[[UIImageView alloc]init];
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",userImageUrl]] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     self.userImageView.layer.masksToBounds=YES;
     self.userImageView.layer.cornerRadius=3;
     self.userImageView.frame=CGRectMake(15, 15, 37, 37);

@@ -146,7 +146,7 @@
 -(UILabel *)remindLabel{
     if (!_remindLabel) {
         _remindLabel=[[UILabel alloc]initWithFrame:CGRectZero];
-        _remindLabel.text=@"报价仅限PNG、JPG格式，单个文件大小不可超过2MB。";
+        _remindLabel.text=@"报价仅限PNG、JPG格式，单个文件大小不可超过5MB。";
         _remindLabel.font=[UIFont systemFontOfSize:13];
         _remindLabel.numberOfLines=0;
         _remindLabel.textColor=AllLightGrayColor;
@@ -162,7 +162,7 @@
  */
 -(RKMuchImageViews *)priceMuchImage{
     if (!_priceMuchImage) {
-        _priceMuchImage=[RKMuchImageViews muchImageViewsWithWidth:self.maxWidth title:@"报价附件"];
+        _priceMuchImage=[RKMuchImageViews muchImageViewsWithWidth:self.maxWidth title:@"报价附件" isAskPrice:NO];
         [_priceMuchImage setModels:self.array1];
     }
     return _priceMuchImage;
@@ -170,7 +170,7 @@
 
 -(RKMuchImageViews *)qualityMuchImage{
     if (!_qualityMuchImage) {
-        _qualityMuchImage=[RKMuchImageViews muchImageViewsWithWidth:self.maxWidth title:@"资质附件"];
+        _qualityMuchImage=[RKMuchImageViews muchImageViewsWithWidth:self.maxWidth title:@"资质附件" isAskPrice:NO];
         [_qualityMuchImage setModels:self.array2];
     }
     return _qualityMuchImage;
@@ -178,7 +178,7 @@
 
 -(RKMuchImageViews *)otherMuchImage{
     if (!_otherMuchImage) {
-        _otherMuchImage=[RKMuchImageViews muchImageViewsWithWidth:self.maxWidth title:@"其他附件"];
+        _otherMuchImage=[RKMuchImageViews muchImageViewsWithWidth:self.maxWidth title:@"其他附件" isAskPrice:NO];
         [_otherMuchImage setModels:self.array3];
     }
     return _otherMuchImage;

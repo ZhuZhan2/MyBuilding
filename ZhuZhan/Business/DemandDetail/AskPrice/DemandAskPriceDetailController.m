@@ -10,6 +10,7 @@
 #import "AskPriceApi.h"
 #import "MJRefresh.h"
 #import "RKImageModel.h"
+#import "WebViewController.h"
 @interface DemandAskPriceDetailController ()<UIAlertViewDelegate>
 @property(nonatomic)int startIndex;
 @end
@@ -135,5 +136,11 @@
         }
         [self.tableView footerEndRefreshing];
     } providerId:self.quotesModel.a_loginId tradeCode:self.askPriceModel.a_tradeCode startIndex:self.startIndex+1 noNetWork:nil];
+}
+
+-(void)imageCilckWithDemandDetailViewCell:(NSString *)imageUrl{
+    WebViewController *view = [[WebViewController alloc] init];
+    view.url = imageUrl;
+    [self.superViewController.navigationController pushViewController:view animated:YES];
 }
 @end

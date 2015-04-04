@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EGOImageView.h"
 @interface MoreCompanyViewCell : UITableViewCell
-@property(nonatomic,strong)EGOImageView* myImageView;//公司图片
+@property(nonatomic,strong)UIImageView* myImageView;//公司图片
 @property(nonatomic,strong)UILabel* companyNameLabel;//公司名称
 @property(nonatomic,strong)UILabel* companyBusiness;//公司行业
 @property(nonatomic,strong)UILabel* companyIntroduce;//公司介绍

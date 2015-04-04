@@ -33,9 +33,9 @@
 }
 
 -(void)addContent:(TopicsModel *)model{
-    headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"项目详情默认"]];
+    headImageView = [[UIImageView alloc] init];
     [headImageView setFrame:CGRectMake(0, 0, 320, 202)];
-    headImageView.imageURL = [NSURL URLWithString:model.a_image];
+    [headImageView sd_setImageWithURL:[NSURL URLWithString:model.a_image] placeholderImage:[GetImagePath getImagePath:@"项目详情默认"]];
     [self.contentView addSubview:headImageView];
     
     int height = 202;

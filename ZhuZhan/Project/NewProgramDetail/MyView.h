@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EGOImageView.h"
 @interface MyView : UIView
-@property(nonatomic,strong)EGOImageView* myImageView;
+@property(nonatomic,strong)UIImageView* myImageView;
 -(void)observeImage;
 @end

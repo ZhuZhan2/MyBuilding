@@ -84,6 +84,7 @@
         RKImageModel *imageModel = [[RKImageModel alloc] init];
         imageModel.imageUrl =  model.a_location;
         imageModel.isUrl = model.a_isUrl;
+        imageModel.type = model.a_extension;
         [array1 addObject:imageModel];
     }];
     NSMutableArray *array2 = [[NSMutableArray alloc] init];
@@ -91,6 +92,7 @@
         RKImageModel *imageModel = [[RKImageModel alloc] init];
         imageModel.imageUrl =  model.a_location;
         imageModel.isUrl = model.a_isUrl;
+        imageModel.type = model.a_extension;
         [array2 addObject:imageModel];
     }];
     NSMutableArray *array3 = [[NSMutableArray alloc] init];
@@ -98,6 +100,7 @@
         RKImageModel *imageModel = [[RKImageModel alloc] init];
         imageModel.imageUrl =  model.a_location;
         imageModel.isUrl = model.a_isUrl;
+        imageModel.type = model.a_extension;
         [array3 addObject:imageModel];
     }];
     cellModel.array1=array1;

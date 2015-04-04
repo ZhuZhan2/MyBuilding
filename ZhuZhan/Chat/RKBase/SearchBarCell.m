@@ -7,9 +7,8 @@
 //
 
 #import "SearchBarCell.h"
-#import "EGOImageView.h"
 @interface SearchBarCell ()
-@property(nonatomic,strong)EGOImageView* mainImageView;
+@property(nonatomic,strong)UIImageView* mainImageView;
 @property(nonatomic,strong)UILabel* mainLabel;
 @property(nonatomic,strong)UIView* seperatorLine;
 @property(nonatomic,strong,setter=setModel:)SearchBarCellModel* model;
@@ -26,9 +25,9 @@
     return self;
 }
 
--(EGOImageView *)mainImageView{
+-(UIImageView *)mainImageView{
     if (!_mainImageView) {
-        _mainImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+        _mainImageView=[[UIImageView alloc]init];
         _mainImageView.frame=CGRectMake(0, 0, 37, 37);
     }
     return _mainImageView;
@@ -59,7 +58,7 @@
 
 -(void)setModel:(SearchBarCellModel *)model{
     _model=model;
-    self.mainImageView.imageURL=[NSURL URLWithString:model.mainImageUrl];
+    [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:model.mainImageUrl] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     self.mainLabel.text=model.mainLabelText;
 }
 

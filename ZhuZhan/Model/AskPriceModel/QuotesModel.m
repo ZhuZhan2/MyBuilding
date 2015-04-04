@@ -76,15 +76,16 @@
     self.a_id = dict[@"id"];
     self.a_createdBy = dict[@"createdBy"];
     if(![[ProjectStage ProjectStrStage:dict[@"location"]] isEqualToString:@""]){
-        self.a_location = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"location"]], @"quote", @"", @"", @"")];
+        self.a_location = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"id"]], @"quote", @"", @"", @"")];
         self.a_isUrl = YES;
     }else{
-        self.a_location = [ProjectStage ProjectStrStage:dict[@"location"]];
+        self.a_location = [ProjectStage ProjectStrStage:dict[@"id"]];
         self.a_isUrl = NO;
     }
     self.a_name = dict[@"name"];
     self.a_quotesId = dict[@"quotesId"];
     self.a_tradeCode = dict[@"tradeCode"];
     self.a_category = dict[@"category"];
+    self.a_extension = dict[@"extension"];
 }
 @end

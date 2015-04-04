@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "TopicsModel.h"
-#import "EGOImageView.h"
 #import "YLLabel.h"
 @interface TopicsDetailTableViewCell : UITableViewCell{
-    EGOImageView *headImageView;
+    UIImageView *headImageView;
     UILabel *titleLabel;
     //UILabel *contentLabel;
     UIButton *moreBtn;

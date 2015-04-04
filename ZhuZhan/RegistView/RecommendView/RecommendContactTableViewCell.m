@@ -20,7 +20,7 @@
     if (self) {
         self.needRightBtn=needRightBtn;
         
-        self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+        self.userImageView=[[UIImageView alloc]init];
         self.userImageView.layer.cornerRadius=3;
         self.userImageView.layer.masksToBounds=YES;
         self.userImageView.frame=CGRectMake(20, 17, 37, 37);
@@ -59,7 +59,7 @@
 
 -(void)setModel:(EmployeesModel *)model indexPathRow:(NSInteger)indexPathRow needCompanyName:(BOOL)needCompanyName{
     BOOL isFocesed=[model.a_isFocused isEqualToString:@"1"];
-    self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_userIamge]];
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_userIamge]] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     
     self.userNameLabel.text=model.a_userName;
     self.userCompanyNameLabel.text=[model.a_company isEqualToString:@""]?@"公司":model.a_company;

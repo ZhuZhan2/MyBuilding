@@ -54,10 +54,11 @@
 
 -(UILabel *)placeLabel{
     if(!_placeLabel){
-        _placeLabel = [[UILabel alloc] initWithFrame:CGRectMake(26, 51, 280, 15)];
+        _placeLabel = [[UILabel alloc] initWithFrame:CGRectMake(26, 51, 280, 40)];
         _placeLabel.font = [UIFont systemFontOfSize:15];
         _placeLabel.textColor = AllNoDataColor;
-        _placeLabel.text = @"请输入询价说明 (限500字)";
+        _placeLabel.numberOfLines = 2;
+        _placeLabel.text = @"请输入询价说明 (限500字并且不能含有表情)";
     }
     return _placeLabel;
 }
@@ -90,22 +91,29 @@
     if (array.count > 0) {
         UITextInputMode *textInputMode = [array firstObject];
         NSString *lang = [textInputMode primaryLanguage];
+        NSLog(@"%@",lang);
         if ([lang isEqualToString:@"zh-Hans"]) {
-            if (textView.text.length != 0) {
-                int a = [textView.text characterAtIndex:textView.text.length - 1];
+            if (self.textView.text.length != 0) {
+                int a = [self.textView.text characterAtIndex:self.textView.text.length - 1];
                 if( a > 0x4e00 && a < 0x9fff) { // PINYIN 手写的时候 才做处理
-                    if (textView.text.length >= strCount) {
-                        textView.text = [textView.text substringToIndex:strCount];
+                    if (self.textView.text.length >= strCount) {
+                        self.textView.text = [self.textView.text substringToIndex:strCount];
+                    }
+                }else{
+                    if (self.textView.text.length >= strCount) {
+                        self.textView.text = [self.textView.text substringToIndex:strCount];
                     }
                 }
             }
         } else {
-            if (textView.text.length >= strCount) {
-                textView.text = [textView.text substringToIndex:strCount];
+            NSLog(@"aaaaaa");
+            if (self.textView.text.length >= strCount) {
+                NSLog(@"bbbbb");
+                self.textView.text = [self.textView.text substringToIndex:strCount];
             }
         }
     }
-    
+    NSLog(@"%lu",(unsigned long)self.textView.text.length);
     self.placeLabel.alpha=!textView.text.length;
 }
 @end

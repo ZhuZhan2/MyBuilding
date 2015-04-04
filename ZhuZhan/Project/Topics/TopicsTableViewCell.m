@@ -42,9 +42,8 @@
     
     [self.contentView addSubview:bgView];
     
-    headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"项目详情默认0"]];
+    headImageView = [[UIImageView alloc] init];
     [headImageView setFrame:CGRectMake(3, 2.7, 132, 105)];
-    headImageView.showActivityIndicator = YES;
     [bgView addSubview:headImageView];
     
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(147, 8, 157, 30)];
@@ -73,7 +72,7 @@
 }
 
 -(void)setModel:(TopicsModel *)model{
-    headImageView.imageURL = [NSURL URLWithString:model.a_image];
+    [headImageView sd_setImageWithURL:[NSURL URLWithString:model.a_image] placeholderImage:[GetImagePath getImagePath:@"项目详情默认0"]];
     titleLabel.text = model.a_title;
     contentLabel.text = model.a_content;
     projectCount.text = model.a_projectCount;

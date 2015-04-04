@@ -7,7 +7,6 @@
 //
 
 #import "ContactProductView.h"
-#import "EGOImageView.h"
 #import "ContactEGOView.h"
 @interface ContactProductView()
 @property(nonatomic,copy)NSString* usrImgUrl;
@@ -39,8 +38,8 @@
 }
 
 -(void)setUp{
-    EGOImageView* userImageView=[[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
-    userImageView.imageURL = [NSURL URLWithString:self.usrImgUrl];
+    UIImageView* userImageView=[[UIImageView alloc] init];
+    [userImageView sd_setImageWithURL:[NSURL URLWithString:self.usrImgUrl] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     [userImageView setFrame:CGRectMake(10, 6.5, 37, 37)];
     userImageView.layer.masksToBounds = YES;
     userImageView.layer.cornerRadius = 3;
@@ -59,8 +58,7 @@
     if (![self.productImgUrl isEqualToString:@""]) {
         ContactEGOView* productImgView=[[ContactEGOView alloc]initWithFrame:CGRectMake(90, 10, 208, 132.5)];
         [productImgView observeImage];
-        productImgView.myImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.productImgUrl]];
-        NSLog(@"===%@",productImgView.myImageView.imageURL);
+        [productImgView.myImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.productImgUrl]] placeholderImage:[GetImagePath getImagePath:@"主站－人脉03"]];
         [self addSubview:productImgView];
         height=productImgView.frame.origin.y+productImgView.frame.size.height;
     }

@@ -7,7 +7,6 @@
 //
 
 #import "MyFactory.h"
-#import "EGOImageView.h"
 #import "MyView.h"
 
 #define NoDataColor RGBCOLOR(166, 166, 166)
@@ -234,7 +233,7 @@ static NSString* hasUserTypeContent(NSString* string){
     view.layer.masksToBounds=YES;
     view.backgroundColor=[UIColor grayColor];
     [view observeImage];
-    view.myImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]];
+    [view.myImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]] placeholderImage:[GetImagePath getImagePath:@"项目详情默认"]];
     
     
     //图片数量label

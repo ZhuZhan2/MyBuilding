@@ -10,7 +10,6 @@
 #import "TMPhotoQuiltViewCell.h"
 #import "ProductDetailViewController.h"
 #import "ProductModel.h"
-#import "EGOImageView.h"
 #import "MJRefresh.h"
 #import "ConnectionAvailable.h"
 #import "ErrorView.h"
@@ -295,8 +294,7 @@
     cell.commentCountLabel.text= model.a_commentNumber;
     cell.imageSize = [self imageAtIndexPath:indexPath];
     BOOL imageExist=model.a_imageUrl&&![model.a_imageUrl isEqualToString:@""];
-    NSLog(@"%@",model.a_imageUrl);
-    cell.photoView.imageURL = [NSURL URLWithString:imageExist?model.a_imageUrl:@""];
+    [cell.photoView sd_setImageWithURL:[NSURL URLWithString:imageExist?model.a_imageUrl:@""] placeholderImage:[GetImagePath getImagePath:@"动态产品评论02"]];
     cell.model = model;
     return cell;
 }

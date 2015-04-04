@@ -258,6 +258,10 @@ static BOOL isFirst;
                     if (textView.text.length >= kPublishLimitNumber) {
                         textView.text = [textView.text substringToIndex:kPublishLimitNumber];
                     }
+                }else{
+                    if (textView.text.length >= kPublishLimitNumber) {
+                        textView.text = [textView.text substringToIndex:kPublishLimitNumber];
+                    }
                 }
             }
         } else {

@@ -32,8 +32,7 @@
     self.backImageView.image=[GetImagePath getImagePath:@"主站－人脉03"];
     [self addSubview:self.backImageView];
     
-    self.originImage=[GetImagePath getImagePath:@"主站－人脉03"];
-    self.myImageView=[[EGOImageView alloc]initWithPlaceholderImage:self.originImage];
+    self.myImageView=[[UIImageView alloc]init];
     self.myImageView.frame=CGRectZero;//CGRectMake(0, 0, 320, 215.5);
 }
 
@@ -56,7 +55,6 @@
 }
 
 -(void)dealloc{
-    NSLog(@"EGOImageView SuperView Dealloc");
     [self.myImageView removeObserver:self forKeyPath:@"image"];
 }
 @end

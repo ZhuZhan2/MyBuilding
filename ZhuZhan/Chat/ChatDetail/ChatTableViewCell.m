@@ -7,11 +7,10 @@
 //
 
 #import "ChatTableViewCell.h"
-#import "EGOImageView.h"
 #import "ChatContentView.h"
 
 @interface ChatTableViewCell ()
-@property(nonatomic,strong)EGOImageView* userImageView;
+@property(nonatomic,strong)UIImageView* userImageView;
 @property(nonatomic,strong)UILabel* nameLabel;
 @property(nonatomic,strong)UIView* seperatorLine;
 @property(nonatomic,strong)ChatContentView* chatContentView;
@@ -59,9 +58,10 @@
     return _seperatorLine;
 }
 
--(EGOImageView *)userImageView{
+-(UIImageView *)userImageView{
     if (!_userImageView) {
-        _userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"默认主图01"]];
+        //[GetImagePath getImagePath:@"默认主图01"]
+        _userImageView=[[UIImageView alloc]init];
         _userImageView.frame=CGRectMake(0, 0, 35, 35);
         _userImageView.layer.cornerRadius=2;
         _userImageView.layer.masksToBounds=YES;

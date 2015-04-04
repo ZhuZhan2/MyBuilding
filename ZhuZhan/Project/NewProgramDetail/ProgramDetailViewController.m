@@ -15,7 +15,6 @@
 #import "MyIndexPath.h"
 #import "ProjectImageModel.h"
 #import "ProjectContactModel.h"
-#import "EGOImageView.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
 #import "ProgramSelectViewCell.h"

@@ -7,7 +7,6 @@
 //
 
 #import "CycleScrollView.h"
-#import "EGOImageView.h"
 #import "ProjectImageModel.h"
 @implementation CycleScrollView
 
@@ -65,10 +64,10 @@
         ProjectImageModel* model=[curImages objectAtIndex:i];
         CGFloat height=[model.a_imageHeight floatValue];
         CGFloat wdith=[model.a_imageWidth floatValue];
-        EGOImageView *imageView = [[EGOImageView alloc] initWithFrame:CGRectMake(0, 0, 320, height*320/wdith)];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, height*320/wdith)];
         imageView.center=scrollView.center;
         imageView.userInteractionEnabled = YES;
-        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_imageOriginalLocation]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_imageOriginalLocation]]];
         
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
         [imageView addGestureRecognizer:singleTap];

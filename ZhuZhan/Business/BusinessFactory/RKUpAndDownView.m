@@ -126,7 +126,7 @@
         _placeLabel=[[UILabel alloc]initWithFrame:CGRectMake(5, 5, 200, 20)];
         _placeLabel.textColor=AllNoDataColor;
         _placeLabel.font=ContentFont;
-        _placeLabel.text=@"请输入备注（500字）";
+        _placeLabel.text=@"请输入备注（限500字并且不能含有表情）";
     }
     return _placeLabel;
 }
@@ -170,6 +170,10 @@
             if (textView.text.length != 0) {
                 int a = [textView.text characterAtIndex:textView.text.length - 1];
                 if( a > 0x4e00 && a < 0x9fff) { // PINYIN 手写的时候 才做处理
+                    if (textView.text.length >= strCount) {
+                        textView.text = [textView.text substringToIndex:strCount];
+                    }
+                }else{
                     if (textView.text.length >= strCount) {
                         textView.text = [textView.text substringToIndex:strCount];
                     }

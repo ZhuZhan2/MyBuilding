@@ -9,7 +9,7 @@
 #import "DemandDetailViewCell.h"
 #import "RKMuchImageViews.h"
 #import "RKShadowView.h"
-@interface DemandDetailViewCell ()
+@interface DemandDetailViewCell ()<RKMuchImageViewsDelegate>
 @property(nonatomic,strong)UILabel* userNamelabel;
 @property(nonatomic,strong)UILabel* userDescribelabel;
 @property(nonatomic,strong)UILabel* timelabel;
@@ -146,19 +146,22 @@
 }
 -(RKMuchImageViews *)muchImageView1{
     if (!_muchImageView1) {
-        _muchImageView1=[RKMuchImageViews muchImageViewsWithWidth:ContentWidth title:@"报价附件"];
+        _muchImageView1=[RKMuchImageViews muchImageViewsWithWidth:ContentWidth title:@"报价附件" isAskPrice:YES];
+        _muchImageView1.delegate = self;
     }
     return _muchImageView1;
 }
 -(RKMuchImageViews *)muchImageView2{
     if (!_muchImageView2) {
-        _muchImageView2=[RKMuchImageViews muchImageViewsWithWidth:ContentWidth title:@"资质附件"];
+        _muchImageView2=[RKMuchImageViews muchImageViewsWithWidth:ContentWidth title:@"资质附件" isAskPrice:YES];
+        _muchImageView2.delegate = self;
     }
     return _muchImageView2;
 }
 -(RKMuchImageViews *)muchImageView3{
     if (!_muchImageView3) {
-        _muchImageView3=[RKMuchImageViews muchImageViewsWithWidth:ContentWidth title:@"其他附件"];
+        _muchImageView3=[RKMuchImageViews muchImageViewsWithWidth:ContentWidth title:@"其他附件" isAskPrice:YES];
+        _muchImageView3.delegate = self;
     }
     return _muchImageView3;
 }
@@ -284,7 +287,6 @@
     NSString* leftBtnImageName=self.model.isFinish?@"回复灰":@"交易_回复";
     [self.leftBtn setBackgroundImage:[GetImagePath getImagePath:leftBtnImageName] forState:UIControlStateNormal];
     self.leftBtn.userInteractionEnabled=!self.model.isFinish;
-    NSLog(@"asdfasdfsadfasdfas");
     //按钮判断
     BOOL isHasImage = self.model.array1.count?YES:NO;
     BOOL isAskPrice=self.category==DemandControllerCategoryAskPriceController;
@@ -323,6 +325,12 @@
 
 +(CGSize)carculateLabelWithText:(NSString*)text font:(UIFont*)font width:(CGFloat)width{
     return [text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
+}
+
+-(void)imageCilckWithRKMuchImageViews:(NSString *)imageUrl{
+    if ([self.delegate respondsToSelector:@selector(imageCilckWithDemandDetailViewCell:)]) {
+        [self.delegate imageCilckWithDemandDetailViewCell:imageUrl];
+    }
 }
 @end
 @implementation DemandDetailCellModel

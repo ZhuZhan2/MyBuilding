@@ -19,7 +19,7 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier needRightBtn:(BOOL)needRightBtn{
     self=[super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"35px未设置"]];
+        self.userImageView=[[UIImageView alloc]init];
         self.userImageView.layer.cornerRadius=3;
         self.userImageView.layer.masksToBounds=YES;
         self.userImageView.frame=CGRectMake(12, 7.5, 35, 35);
@@ -51,8 +51,7 @@
 }
 
 -(void)setModel:(EmployeesModel *)model{
-    self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_userIamge]];
-    
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_userIamge]] placeholderImage:[GetImagePath getImagePath:@"35px未设置"]];
     self.userNameLabel.text=model.a_userName;
     self.userBussniessLabel.text=model.a_company;
 

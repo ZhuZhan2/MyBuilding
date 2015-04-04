@@ -16,7 +16,7 @@
 #import "RKCamera.h"
 #import "AskPriceApi.h"
 #import "RKImageModel.h"
-@interface ProvidePriceInfoController ()<RKCameraDelegate,ProvidePriceUploadViewDelegate,UIActionSheetDelegate>
+@interface ProvidePriceInfoController ()<RKCameraDelegate,ProvidePriceUploadViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)UIView* firstView;
 @property(nonatomic,strong)UIView* secondView;
 @property(nonatomic,strong)UIView* thirdView;
@@ -46,15 +46,21 @@
 }
 
 -(void)rightBtnClicked{
-    [self firstPost];
-}
-
--(void)firstPost{
     if(self.array1.count==0&&self.array2.count==0&&self.array3.count ==0){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请先上传附件" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
         return;
     }
+    if([self isContainsEmoji:[self.fifthView textViewText]]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@" 备注中不能含有表情" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
+    
+    [self firstPost];
+}
+
+-(void)firstPost{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:self.askPriceModel.a_tradeCode forKey:@"tradeCode"];
     [dic setObject:self.askPriceModel.a_id forKey:@"bookBuildingId"];
@@ -104,6 +110,11 @@
         } dataArr:images dic:dic noNetWork:nil];
     }
 }
+
+//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
+
 -(void)initNavi{
     self.title=@"报价资料";
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
@@ -230,10 +241,16 @@
 
 -(void)cameraWillFinishWithImage:(UIImage *)image isCancel:(BOOL)isCancel{
     NSLog(@"%@,%d",image,isCancel);
+    NSData *data = UIImageJPEGRepresentation(image, 1);
+    if((double)data.length/(1024*1024)>5){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"图片大于5M" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
     if (isCancel) return;
     NSArray* images=@[self.array1,self.array2,self.array3];
     NSMutableArray* array=images[self.cameraCategory];
-    RKImageModel* imageModel=[RKImageModel imageModelWithImage:image imageUrl:nil isUrl:NO];
+    RKImageModel* imageModel=[RKImageModel imageModelWithImage:image imageUrl:nil isUrl:NO type:nil];
     [array addObject:imageModel];
     [self reloadSixthView];
 }
@@ -310,5 +327,44 @@
         _array3=[NSMutableArray array];
     }
     return _array3;
+}
+
+//判断是否是表情
+- (BOOL)isContainsEmoji:(NSString *)string {
+    NSLog(@"%@",string);
+    __block BOOL isEomji = NO;
+    [string enumerateSubstringsInRange:NSMakeRange(0, [string length]) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+        const unichar hs = [substring characterAtIndex:0];
+        // surrogate pair
+        if (0xd800 <= hs && hs <= 0xdbff) {
+            if (substring.length > 1) {
+                const unichar ls = [substring characterAtIndex:1];
+                const int uc = ((hs - 0xd800) * 0x400) + (ls - 0xdc00) + 0x10000;
+                if (0x1d000 <= uc && uc <= 0x1f77f) {
+                    isEomji = YES;
+                }
+            }
+        } else {
+            // non surrogate
+            if (0x2100 <= hs && hs <= 0x27ff && hs != 0x263b) {
+                isEomji = YES;
+            } else if (0x2B05 <= hs && hs <= 0x2b07) {
+                isEomji = YES;
+            } else if (0x2934 <= hs && hs <= 0x2935) {
+                isEomji = YES;
+            } else if (0x3297 <= hs && hs <= 0x3299) {
+                isEomji = YES;
+            } else if (hs == 0xa9 || hs == 0xae || hs == 0x303d || hs == 0x3030 || hs == 0x2b55 || hs == 0x2b1c || hs == 0x2b1b || hs == 0x2b50|| hs == 0x231a ) {
+                isEomji = YES;
+            }
+            if (!isEomji && substring.length > 1) {
+                const unichar ls = [substring characterAtIndex:1];
+                if (ls == 0x20e3) {
+                    isEomji = YES;
+                }
+            }
+        }
+    }];
+    return isEomji;
 }
 @end

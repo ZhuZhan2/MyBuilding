@@ -91,6 +91,10 @@
                     if (textView.text.length >= kCommentLimitNumber) {
                         textView.text = [textView.text substringToIndex:kCommentLimitNumber];
                     }
+                }else{
+                    if (textView.text.length >= kCommentLimitNumber) {
+                        textView.text = [textView.text substringToIndex:kCommentLimitNumber];
+                    }
                 }
             }
         } else {

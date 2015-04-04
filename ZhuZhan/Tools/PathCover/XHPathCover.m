@@ -8,7 +8,6 @@
 
 #import "XHPathCover.h"
 #import "XHWaterDropRefresh.h"
-#import "EGOCache.h"
 
 NSString *const XHUserNameKey = @"XHUserName";
 NSString *const XHBirthdayKey = @"XHBirthday";
@@ -198,7 +197,7 @@ NSString *const XHTitkeKey = @"XHTitkeKey";
 
 - (void)setBackgroundImageUrlString:(NSString *)backgroundImageUrlString {
     if (backgroundImageUrlString) {
-        _bannerImageView.imageURL=[NSURL URLWithString:backgroundImageUrlString];
+        [_bannerImageView sd_setImageWithURL:[NSURL URLWithString:backgroundImageUrlString] placeholderImage:[GetImagePath getImagePath:self.bannerPlaceholderImageName]];
     }
 }
 
@@ -217,7 +216,7 @@ NSString *const XHTitkeKey = @"XHTitkeKey";
 
 -(void)setHeadImageUrl:(NSString *)imageUrl{
     if(imageUrl){
-        _headImage.imageURL = [NSURL URLWithString:imageUrl];
+        [_headImage sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:@"人脉_大"]];
     }
 }
 
@@ -397,9 +396,8 @@ NSString *const XHTitkeKey = @"XHTitkeKey";
     _bannerView = [[UIView alloc] initWithFrame:self.bounds];
     _bannerView.clipsToBounds = YES;
     
-    _bannerImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:self.bannerPlaceholderImageName]];
-    NSLog(@"%@",self.bannerPlaceholderImageName);
-//    _bannerImageView.frame=CGRectMake(0, -self.parallaxHeight, CGRectGetWidth(_bannerView.frame), CGRectGetHeight(_bannerView.frame));
+    _bannerImageView = [[UIImageView alloc] init];
+    [_bannerImageView sd_setImageWithURL:nil placeholderImage:[GetImagePath getImagePath:self.bannerPlaceholderImageName]];
     _bannerImageView.frame=CGRectMake(0, 0, 320, 320);
     _bannerImageView.center=self.center;
     _bannerImageView.contentMode = UIViewContentModeScaleToFill;
@@ -428,7 +426,8 @@ NSString *const XHTitkeKey = @"XHTitkeKey";
     _showView = [[UIView alloc] initWithFrame:CGRectMake(0, self.showUserInfoViewOffsetHeight, CGRectGetWidth(self.bounds), waterDropRefreshHeight)];
     _showView.backgroundColor = [UIColor clearColor];
     
-    _headImage = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_大"]];
+    _headImage = [[UIImageView alloc] init];
+    [_headImage sd_setImageWithURL:nil placeholderImage:[GetImagePath getImagePath:@"人脉_大"]];
     _headImage.frame = CGRectMake(45, 0, avatarButtonHeight, avatarButtonHeight);
     [_headImage.layer setMasksToBounds:YES];
     [_headImage.layer setCornerRadius:23];

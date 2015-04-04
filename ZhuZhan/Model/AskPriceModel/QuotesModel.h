@@ -61,6 +61,7 @@
 @property(nonatomic,strong)NSString *a_name;
 @property(nonatomic,strong)NSString *a_quotesId;
 @property(nonatomic,strong)NSString *a_tradeCode;
+@property(nonatomic,strong)NSString *a_extension;
 @property(nonatomic)BOOL a_isUrl;
 @property(nonatomic,strong)NSDictionary *dict;
 @end

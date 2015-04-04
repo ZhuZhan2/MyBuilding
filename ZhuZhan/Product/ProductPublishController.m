@@ -236,6 +236,10 @@
                     if (textView.text.length >= limitNumber) {
                         textView.text = [textView.text substringToIndex:limitNumber];
                     }
+                }else{
+                    if (textView.text.length >= limitNumber) {
+                        textView.text = [textView.text substringToIndex:limitNumber];
+                    }
                 }
             }
         } else {

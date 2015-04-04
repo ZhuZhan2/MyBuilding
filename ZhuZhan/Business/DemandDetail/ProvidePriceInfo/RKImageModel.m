@@ -9,11 +9,12 @@
 #import "RKImageModel.h"
 
 @implementation RKImageModel
-+(RKImageModel*)imageModelWithImage:(UIImage*)image imageUrl:(NSString*)imageUrl isUrl:(BOOL)isUrl{
++(RKImageModel*)imageModelWithImage:(UIImage*)image imageUrl:(NSString*)imageUrl isUrl:(BOOL)isUrl type:(NSString *)type{
     RKImageModel* model=[RKImageModel new];
     model.image=image;
     model.imageUrl=imageUrl;
     model.isUrl=isUrl;
+    model.type = type;
     return model;
 }
 

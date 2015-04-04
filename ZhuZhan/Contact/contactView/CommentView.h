@@ -10,7 +10,6 @@
 #import "ActivesModel.h"
 #import "HeadImageDelegate.h"
 #import "ContactCommentTableViewCell.h"
-#import "EGOImageView.h"
 @protocol CommentViewDelegate <NSObject>
 
 -(void)addCommentView:(NSIndexPath *)indexPath;

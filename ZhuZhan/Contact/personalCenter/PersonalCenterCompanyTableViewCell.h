@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EGOImageView.h"
 @interface PersonalCenterCompanyTableViewCell : UITableViewCell{
-    EGOImageView *headImage;
+    UIImageView *headImage;
     UILabel *titleLabel;
     UILabel *contentLabel;
 }

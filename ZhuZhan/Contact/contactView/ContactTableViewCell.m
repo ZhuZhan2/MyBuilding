@@ -44,7 +44,7 @@
     [self.contentView addSubview:lineImage2];
     lineImage2.alpha = 0.2;
     
-    headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+    headImageView = [[UIImageView alloc] init];
     [headImageView setFrame:CGRectMake(10, 6.5, 37, 37)];
     headImageView.layer.masksToBounds = YES;
     headImageView.layer.cornerRadius = 3;
@@ -84,7 +84,7 @@
 }
 
 -(void)setModel:(ActivesModel *)model{
-    headImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_avatarUrl]];
+    [headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_avatarUrl]] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     titleLabel.text = [NSString stringWithFormat:@"%@%@",model.a_userName,model.a_title];
     if([model.a_eventType isEqualToString:@"AutomaticProduct"]){
         nameLabel.text = model.a_productName;

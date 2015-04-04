@@ -16,6 +16,7 @@ typedef enum DemandControllerCategory{
 @protocol DemandDetailViewCellDelegate <NSObject>
 -(void)leftBtnClickedWithIndexPath:(NSIndexPath*)indexPath;
 -(void)rightBtnClickedWithIndexPath:(NSIndexPath*)indexPath;
+-(void)imageCilckWithDemandDetailViewCell:(NSString *)imageUrl;
 @end
 
 @interface DemandDetailCellModel : NSObject

@@ -15,10 +15,8 @@
 -(instancetype)init{
     self=[super init];
     if (self) {
-        self.originImage=[GetImagePath getImagePath:@"项目详情默认"];
-        self.myImageView=[[EGOImageView alloc]initWithPlaceholderImage:self.originImage];
+        self.myImageView=[[UIImageView alloc]init];
         self.myImageView.frame=CGRectMake(0, 0, 320, 215.5);
-        self.myImageView.showActivityIndicator=YES;
         [self addSubview:self.myImageView];
     }
     return self;
@@ -36,7 +34,6 @@
 }
 
 -(void)dealloc{
-    NSLog(@"EGOImageView SuperView Dealloc");
     [self.myImageView removeObserver:self forKeyPath:@"image"];
 }
 @end

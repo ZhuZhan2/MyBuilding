@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EGOImageView.h"
 #import "EmployeesModel.h"
 
 @interface AddFriendCell : UITableViewCell
-@property(nonatomic,strong)EGOImageView* userImageView;
+@property(nonatomic,strong)UIImageView* userImageView;
 @property(nonatomic,strong)UIButton* rightBtn;
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier needRightBtn:(BOOL)needRightBtn;
 -(void)setModel:(EmployeesModel *)model indexPathRow:(NSInteger)indexPathRow needCompanyName:(BOOL)needCompanyName;

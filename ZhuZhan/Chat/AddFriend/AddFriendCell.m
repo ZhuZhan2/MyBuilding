@@ -22,7 +22,7 @@
     if (self) {
         self.needRightBtn=needRightBtn;
         
-        self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+        self.userImageView=[[UIImageView alloc]init];
         self.userImageView.layer.cornerRadius=3;
         self.userImageView.layer.masksToBounds=YES;
         self.userImageView.frame=CGRectMake(15, 12.5, 35, 35);
@@ -53,8 +53,7 @@
 }
 
 -(void)setUserName:(NSString*)userName time:(NSString*)time userImageUrl:(NSString*)userImageUrl isFinished:(BOOL)isFinished indexPathRow:(NSInteger)indexPathRow status:(NSString *)status{
-    self.userImageView.imageURL=[NSURL URLWithString:userImageUrl];
-    
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:userImageUrl] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     self.userNameLabel.text=userName;
     self.userBussniessLabel.text=time;
     NSLog(@"isFinished===> %d",isFinished);
@@ -66,8 +65,7 @@
 
 -(void)setModel:(EmployeesModel *)model indexPathRow:(NSInteger)indexPathRow needCompanyName:(BOOL)needCompanyName{
     BOOL isFocesed=[model.a_isFocused isEqualToString:@"1"];
-    self.userImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_userIamge]];
-    
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_userIamge]] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     self.userNameLabel.text=model.a_userName;
     self.userBussniessLabel.text=needCompanyName?[NSString stringWithFormat:@"%@ %@",model.a_company,model.a_duties]:model.a_duties;
     if (self.needRightBtn) {

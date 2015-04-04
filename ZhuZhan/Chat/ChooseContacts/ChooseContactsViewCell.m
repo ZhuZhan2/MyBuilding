@@ -7,9 +7,8 @@
 //
 
 #import "ChooseContactsViewCell.h"
-#import "EGOImageView.h"
 @interface ChooseContactsViewCell ()
-@property(nonatomic,strong)EGOImageView* mainImageView;
+@property(nonatomic,strong)UIImageView* mainImageView;
 @property(nonatomic,strong)UILabel* mainLabel;
 @property(nonatomic,strong)UIButton* assistBtn;
 @property(nonatomic,strong)UIView* seperatorLine;
@@ -31,9 +30,9 @@
     return self;
 }
 
--(EGOImageView *)mainImageView{
+-(UIImageView *)mainImageView{
     if (!_mainImageView) {
-        _mainImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"35px未设置"]];
+        _mainImageView=[[UIImageView alloc]init];
         _mainImageView.frame=CGRectMake(0, 0, 35, 35);
     }
     return _mainImageView;
@@ -83,7 +82,7 @@
 -(void)setModel:(ChooseContactsCellModel *)model indexPath:(NSIndexPath*)indexPath{
     _model=model;
     _indexPath=indexPath;
-    self.mainImageView.imageURL=[NSURL URLWithString:model.mainImageUrl];
+    [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:model.mainImageUrl] placeholderImage:[GetImagePath getImagePath:@"35px未设置"]];
     self.mainLabel.text=model.mainLabelText;
     [self.assistBtn setBackgroundImage:[GetImagePath getImagePath:model.isHighlight?@"已选择联系人":@"未选择联系人"] forState:UIControlStateNormal];
 }

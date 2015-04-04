@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EGOImageView.h"
 #import "ActivesModel.h"
 #import "HeadImageDelegate.h"
 @interface ContactTableViewCell : UITableViewCell{
-    EGOImageView *headImageView;
+    UIImageView *headImageView;
     UIImageView *stageImage;
     UILabel *titleLabel;
     UILabel *nameLabel;

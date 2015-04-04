@@ -10,7 +10,6 @@
 #import "MoreCompanyViewController.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
-#import "EGOImageView.h"
 #import "CompanyApi.h"
 #import "LoginSqlite.h"
 #import "ContactModel.h"
@@ -116,11 +115,11 @@
     [self scrollViewAddView:view];
     
     //公司图标
-    EGOImageView* companyImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"公司－公司组织_05a"]];
+    UIImageView* companyImageView=[[UIImageView alloc]init];
     companyImageView.frame=CGRectMake(15, 20, 75, 75);
     companyImageView.layer.cornerRadius=37.5;
     companyImageView.layer.masksToBounds=YES;
-    companyImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.model.a_companyLogo]];
+    [companyImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.model.a_companyLogo]] placeholderImage:[GetImagePath getImagePath:@"公司－公司组织_05a"]];
     [view addSubview:companyImageView];
     
     //公司名称label

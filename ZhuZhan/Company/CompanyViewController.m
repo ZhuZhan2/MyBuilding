@@ -11,7 +11,6 @@
 #import "MoreCompanyViewController.h"
 #import "ProjectApi.h"
 #import "CompanyApi.h"
-#import "EGOImageView.h"
 #import "ContactModel.h"
 #import "LoginSqlite.h"
 #import "ConnectionAvailable.h"
@@ -56,8 +55,8 @@
     
     UIImage *appleImage = [GetImagePath getImagePath:@"公司－我的公司_02a"] ;
     //公司图标
-    EGOImageView* companyImageView=[[EGOImageView alloc]initWithPlaceholderImage:appleImage];
-    companyImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.model.a_companyLogo]];
+    UIImageView* companyImageView=[[UIImageView alloc]init];
+    [companyImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.model.a_companyLogo]] placeholderImage:appleImage];
     companyImageView.layer.cornerRadius=37.5;
     companyImageView.layer.masksToBounds=YES;
     companyImageView.frame=CGRectMake(15, 20, 75, 75);

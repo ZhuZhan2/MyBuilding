@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "RKImageModel.h"
+
+@protocol RKSingleImageDelegate <NSObject>
+-(void)imageClick:(NSString *)imageUrl;
+@end
+
 @interface RKSingleImageView : UIView
-+(RKSingleImageView*)singleImageViewWithImageSize:(CGSize)size model:(RKImageModel*)model;
+@property(nonatomic,strong)RKImageModel *model;
+@property(nonatomic,weak)id<RKSingleImageDelegate>delegate;
++(RKSingleImageView*)singleImageViewWithImageSize:(CGSize)size model:(RKImageModel*)model isAskPrice:(BOOL)isAskPrice;
 -(CGPoint)editCenter;
 @end

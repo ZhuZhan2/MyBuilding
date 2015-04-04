@@ -9,11 +9,13 @@
 #import "RKMuchImageViews.h"
 #import "RKSingleImageView.h"
 #import "RKPointKit.h"
-@interface RKMuchImageViews()
+
+@interface RKMuchImageViews()<RKSingleImageDelegate>
 @property(nonatomic,strong)UILabel* titleLabel;
 @property(nonatomic,strong)UILabel* noDataLabel;
 @property(nonatomic)CGFloat contentWidth;
 @property(nonatomic,copy)NSString* title;
+@property(nonatomic)BOOL isAskPrice;
 
 @property(nonatomic,strong)NSMutableArray* singleImageViews;
 @end
@@ -51,10 +53,11 @@
     return newPoints;
 }
 
-+(RKMuchImageViews*)muchImageViewsWithWidth:(CGFloat)width title:(NSString*)title{
++(RKMuchImageViews*)muchImageViewsWithWidth:(CGFloat)width title:(NSString*)title isAskPrice:(BOOL)isAskPrice{
     RKMuchImageViews* muchImageViews=[[RKMuchImageViews alloc]initWithFrame:CGRectZero];
     muchImageViews.contentWidth=width;
     muchImageViews.title=title;
+    muchImageViews.isAskPrice=isAskPrice;
     [muchImageViews addSubview:muchImageViews.titleLabel];
     return muchImageViews;
 }
@@ -100,8 +103,9 @@
     CGFloat verticalHeight=SingleImageViewHeight+kLineHeight;
     for (int i=0; i<self.models.count; i++) {
         CGRect frame=CGRectMake(i%3*horizontalWidth, Y+i/3*verticalHeight, SingleImageViewWidth, SingleImageViewHeight);
-        RKSingleImageView* singleImageView=[RKSingleImageView singleImageViewWithImageSize:frame.size model:self.models[i]];
+        RKSingleImageView* singleImageView=[RKSingleImageView singleImageViewWithImageSize:frame.size model:self.models[i] isAskPrice:self.isAskPrice];
         singleImageView.frame=frame;
+        singleImageView.delegate = self;
         [self addSubview:singleImageView];
         [self.singleImageViews addObject:singleImageView];
     }
@@ -139,5 +143,11 @@
 
 +(CGSize)carculateLabelWithText:(NSString*)text font:(UIFont*)font width:(CGFloat)width{
     return [text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
+}
+
+-(void)imageClick:(NSString *)imageUrl{
+    if([self.delegate respondsToSelector:@selector(imageCilckWithRKMuchImageViews:)]){
+        [self.delegate imageCilckWithRKMuchImageViews:imageUrl];
+    }
 }
 @end

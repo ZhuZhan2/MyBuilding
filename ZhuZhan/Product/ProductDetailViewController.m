@@ -284,10 +284,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     CGFloat height=0;
     
-    EGOImageView *imageView;
+    UIImageView *imageView;
     //动态图像
     if(![self.imageUrl isEqualToString:@""]){
-        imageView = [[EGOImageView alloc] init];
+        imageView = [[UIImageView alloc] init];
         imageView.backgroundColor=RGBCOLOR(219, 219, 219);
         if([self.imageHeight floatValue]/[self.imageWidth floatValue]*310<50){
             imageView.frame = CGRectMake(0, 0, 310,50);
@@ -297,7 +297,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             imageView.frame = CGRectMake(0, 0, 310,[self.imageHeight floatValue]/[self.imageWidth floatValue]*310);
             height+=imageView.frame.size.height;
         }
-        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imageUrl]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imageUrl]]];
         [forCornerView addSubview:imageView];
     }
     
@@ -417,7 +417,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     //用户头像
     tempHeight=imageView?imageView.frame.origin.y:productNameArea.frame.origin.y;
-    EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+    UIImageView* userImageView = [[UIImageView alloc] init];
     userImageView.layer.masksToBounds = YES;
     userImageView.layer.cornerRadius = 3;
     userImageView.frame=CGRectMake(5,tempHeight+5,37,37);
@@ -435,8 +435,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self.noticeLabel.font=[UIFont systemFontOfSize:14];
     [forCornerView addSubview:self.noticeLabel];
     height+=self.noticeLabel.frame.size.height;
-    
-    userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userImageUrl]];
+    [userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userImageUrl]] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     [forCornerView addSubview:userImageView];
     
     //调节有图无文字时候的下方留白高度
@@ -477,10 +476,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     CGFloat height=0;
     
-    EGOImageView *imageView;
+    UIImageView *imageView;
     //动态图像
     if(![self.imageUrl isEqualToString:@""]){
-        imageView = [[EGOImageView alloc] init];
+        imageView = [[UIImageView alloc] init];
         imageView.backgroundColor=RGBCOLOR(219, 219, 219);
         if([self.imageHeight floatValue]/[self.imageWidth floatValue]*310<50){
             imageView.frame = CGRectMake(0, 0, 310,50);
@@ -490,7 +489,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             imageView.frame = CGRectMake(0, 0, 310,[self.imageHeight floatValue]/[self.imageWidth floatValue]*310);
             height+=imageView.frame.size.height;
         }
-        imageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imageUrl]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imageUrl]]];
         [forCornerView addSubview:imageView];
     }
     UIView* contentTotalView;
@@ -542,7 +541,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     //用户头像
     tempHeight=imageView?imageView.frame.origin.y:contentTotalView.frame.origin.y;
-    EGOImageView* userImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+    UIImageView* userImageView = [[UIImageView alloc] init];
     userImageView.layer.masksToBounds = YES;
     userImageView.layer.cornerRadius = 3;
     userImageView.frame=CGRectMake(5,tempHeight+5,37,37);
@@ -552,8 +551,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     btn.tag=0;
     [btn addTarget:self action:@selector(chooseUserImage:) forControlEvents:UIControlEventTouchUpInside];
     [forCornerView addSubview:btn];
-    
-    userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userImageUrl]];
+    [userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userImageUrl]] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     //[forCornerView addSubview:userImageView];
     
     //设置总的view的frame
@@ -962,66 +960,4 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         } dic:[@{@"commentId":model.a_id,@"commentType":self.type} mutableCopy] noNetWork:nil];
     }
 }
-
-//-(void)getProductView{
-//    self.productView=[[UIView alloc]initWithFrame:CGRectZero];
-//    CGFloat tempHeight=0;
-//
-//    //imageView部分
-//    CGFloat scale=320.0/[self.productModel.a_imageWidth floatValue]*2;
-//    CGFloat height=[self.productModel.a_imageHeight floatValue]*.5*scale;
-//
-//    EGOImageView* imageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"产品－产品详情_03a"]];
-//    if (![self.productModel.a_imageUrl isEqualToString:@""]) {
-//        imageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,self.productModel.a_imageUrl]];
-//    }else{
-//        height=202;
-//    }
-//    imageView.frame=CGRectMake(0, 0, 320, height);
-//
-//    //imageView右下角评论图标
-//    UIImage* image=[GetImagePath getImagePath:@"人脉_66a"];
-//    CGRect frame=CGRectMake(0, 0, image.size.width, image.size.height);
-//    UIImageView* tempImageView=[[UIImageView alloc]initWithFrame:frame];
-//    tempImageView.image=image;
-//    tempImageView.center=CGPointMake(320-30, height-30);
-//    [imageView addSubview:tempImageView];
-//
-//    UIButton* button=[[UIButton alloc]initWithFrame:tempImageView.frame];
-//    [button addTarget:self action:@selector(chooseComment:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.productView addSubview:button];
-//
-//    [self.productView addSubview:imageView];
-//    tempHeight+=imageView.frame.size.height;
-//
-//    //文字label部分
-//    if (![self.productModel.a_content isEqualToString:@""]) {
-//        UIFont* font=[UIFont systemFontOfSize:15];
-//        CGRect bounds=[self.productModel.a_content boundingRectWithSize:CGSizeMake(270, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil];
-//        UILabel* textLabel=[[UILabel alloc]initWithFrame:CGRectMake(25, height+15, 270, bounds.size.height)];
-//        ;
-//        textLabel.numberOfLines=0;
-//        textLabel.font=font;
-//        textLabel.text=self.productModel.a_content;
-//        textLabel.textColor=RGBCOLOR(86, 86, 86);
-//        [self.productView addSubview:textLabel];
-//
-//        tempHeight+=bounds.size.height+30;
-//
-//    }
-//
-//    //与下方tableView的分割部分
-//    if (self.commentViews.count) {
-//        UIImage* separatorImage=[GetImagePath getImagePath:@"产品－产品详情_12a"];
-//        frame=CGRectMake(0, tempHeight, separatorImage.size.width, separatorImage.size.height);
-//        UIImageView* separatorImageView=[[UIImageView alloc]initWithFrame:frame];
-//        separatorImageView.image=separatorImage;
-//        separatorImageView.backgroundColor=RGBCOLOR(235, 235, 235);
-//        [self.productView addSubview:separatorImageView];
-//
-//        tempHeight+=frame.size.height;
-//    }
-//    self.productView.frame=CGRectMake(0, 0, 320, tempHeight);
-//
-//}
 @end

@@ -38,12 +38,11 @@
 
 -(void)loadSelfWithCommentModel:(ContactCommentModel *)commentModel{
     //获取用户头像
-    self.userImageView=[[EGOImageView alloc]initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+    self.userImageView=[[UIImageView alloc]init];
     self.userImageView.layer.masksToBounds=YES;
     self.userImageView.layer.cornerRadius=5;
     self.userImageView.frame=CGRectMake(15, 15, 37, 37);
-    self.userImageView.showActivityIndicator=YES;
-    self.userImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",commentModel.a_avatarUrl]];
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",commentModel.a_avatarUrl]] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     [self addSubview:self.userImageView];
     
     UIButton *headBtn = [UIButton buttonWithType:UIButtonTypeCustom];

@@ -12,7 +12,6 @@
 #import "ProjectStage.h"
 #import "LoginSqlite.h"
 #import "ContactModel.h"
-#import "EGOImageView.h"
 #import "IsFocusedApi.h"
 #import "LoginModel.h"
 @interface ShowViewController ()
@@ -35,7 +34,7 @@
 {
     [super viewDidLoad];
     
-    EGOImageView  *tempImageView= [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"默认主图01"]];
+    UIImageView  *tempImageView= [[UIImageView alloc] init];
     tempImageView.frame = CGRectMake(0, 0, 280, 300);
     [self.view addSubview:tempImageView];
     
@@ -45,7 +44,7 @@
     [tempImageView insertSubview:bgImage atIndex:0];
     
     
-    EGOImageView *icon = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_超大2"]];
+    UIImageView *icon = [[UIImageView alloc] init];
     icon.frame = CGRectMake(107.5, 50, 65, 65);
     icon.layer.cornerRadius = 32.5;//设置那个圆角的有多圆
     icon.layer.masksToBounds = YES;
@@ -90,8 +89,8 @@
         if(!error){
             ContactModel *model = posts[0];
             contactId = model.userId;
-            tempImageView.imageURL = [NSURL URLWithString:model.personalBackground];
-            icon.imageURL = [NSURL URLWithString:model.userImage];
+            [tempImageView sd_setImageWithURL:[NSURL URLWithString:model.personalBackground] placeholderImage:[GetImagePath getImagePath:@"默认主图01"]];
+            [icon sd_setImageWithURL:[NSURL URLWithString:model.userImage] placeholderImage:[GetImagePath getImagePath:@"人脉_超大2"]];
             userName.text = model.userName;
             message.text = [NSString stringWithFormat:@"%@项目，%@动态",model.projectNum,model.dynamicNum];
             if([model.isFocus isEqualToString:@"1"]){

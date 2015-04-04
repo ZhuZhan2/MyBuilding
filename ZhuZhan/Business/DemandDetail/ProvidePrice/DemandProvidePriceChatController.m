@@ -72,6 +72,7 @@
                                 @"contents":content} mutableCopy];
     [AskPriceApi AddCommentWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
+            [self.chatModels removeAllObjects];
             [self loadList];
         }
     } dic:dic noNetWork:nil];

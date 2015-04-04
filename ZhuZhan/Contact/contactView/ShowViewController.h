@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EGOImageView.h"
 #import "LoginViewController.h"
 @protocol showControllerDelegate <NSObject>
 -(void)gotoContactDetailView:(NSString *)contactId;

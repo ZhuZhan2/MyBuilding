@@ -32,7 +32,7 @@
 }
 
 -(void)setContent{
-    headImageView = [[EGOImageView alloc] initWithPlaceholderImage:[GetImagePath getImagePath:@"人脉_74a2"]];
+    headImageView = [[UIImageView alloc] init];
     headImageView.frame = CGRectMake(5, 5, 27, 27);
     headImageView.layer.masksToBounds = YES;
     headImageView.layer.cornerRadius = 3;
@@ -61,8 +61,7 @@
 }
 
 -(void)setModel:(ContactCommentModel *)model{
-    headImageView.imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_avatarUrl]];
-    
+    [headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_avatarUrl]] placeholderImage:[GetImagePath getImagePath:@"人脉_74a2"]];
     NSString* tempStr = [NSString stringWithFormat:@"%@：%@",model.a_userName,model.a_commentContents];
     NSMutableAttributedString* attStr=[[NSMutableAttributedString alloc]initWithString:tempStr];
     [attStr addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(242, 66, 146) range:NSMakeRange(0, model.a_userName.length+1)];
