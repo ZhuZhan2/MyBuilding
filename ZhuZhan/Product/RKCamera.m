@@ -45,7 +45,7 @@
     [preview setImage:image];
     image = [self convertViewAsImage:preview];
     if(picker.sourceType !=0){
-        UIImageWriteToSavedPhotosAlbum(image, self,nil, nil);
+   //     UIImageWriteToSavedPhotosAlbum(image, self,nil, nil);
     }
     [self cameraFinishWithPicker:picker info:info isCancel:NO];
 }
