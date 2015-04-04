@@ -106,13 +106,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     return 3+self.invitedUserArr.count;
 }
 
@@ -139,7 +137,6 @@
         viewController.quotesModel = model;
         NSLog(@"model==%@",model);
         viewController.askPriceModel = self.askPriceModel;
-        viewController.title = model.a_loginName;
         viewController.delegate = self;
         [self.navigationController pushViewController:viewController animated:YES];
     }

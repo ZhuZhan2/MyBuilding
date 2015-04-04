@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title=self.quotesModel.a_loginName;
 }
 
 -(void)leftBtnClicked{

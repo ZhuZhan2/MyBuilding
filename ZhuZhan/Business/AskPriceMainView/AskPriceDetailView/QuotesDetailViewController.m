@@ -14,7 +14,7 @@
 #import "AskPriceApi.h"
 #import "ProvidePriceInfoController.h"
 #import "DemandDetailProvidePriceController.h"
-@interface QuotesDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DemandDetailProvidePriceDelegate>
+@interface QuotesDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DemandDetailProvidePriceDelegate,ProvidePriceInfoControllerDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UIView *classificationView;
@@ -140,18 +140,19 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    QuotesModel *model = self.invitedUserArr[indexPath.row-3];
     if(indexPath.row == 3){
         if([self.isQuoted isEqualToString:@"0"]){
             ProvidePriceInfoController *view = [[ProvidePriceInfoController alloc] init];
             view.askPriceModel = self.askPriceModel;
+            view.quotesModel = model;
+            view.isFirstQuote=YES;
+            view.delegate=self;
             [self.navigationController pushViewController:view animated:YES];
         }else{
-            QuotesModel *model = self.invitedUserArr[indexPath.row-3];
             DemandDetailProvidePriceController *view = [[DemandDetailProvidePriceController alloc] init];
             view.askPriceModel = self.askPriceModel;
-            NSLog(@"model==%@",model);
             view.quotesModel = model;
-            view.title = self.askPriceModel.a_requestName;
             view.delegate = self;
             [self.navigationController pushViewController:view animated:YES];
         }

@@ -12,8 +12,7 @@
 #import "SearchBarTableViewController.h"
 
 @interface ChatBaseViewController()
-@property(nonatomic,strong)UIButton* rightBtn;
-@property(nonatomic,strong)UIButton* leftBtn;
+
 
 @property(nonatomic,strong)SearchBarTableViewController* searchBarTableViewController;
 
@@ -87,13 +86,6 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
-
-//-(NSMutableArray *)models{
-//    if (!_models) {
-//        _models=[NSMutableArray array];
-//    }
-//    return _models;
-//}
 
 -(void)initTableView{
     CGFloat y=64;
