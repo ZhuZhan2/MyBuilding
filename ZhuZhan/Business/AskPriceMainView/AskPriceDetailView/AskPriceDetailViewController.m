@@ -139,7 +139,7 @@
         viewController.quotesModel = model;
         NSLog(@"model==%@",model);
         viewController.askPriceModel = self.askPriceModel;
-        viewController.title = model.a_loginName;
+        viewController.titleStr = model.a_loginName;
         viewController.delegate = self;
         [self.navigationController pushViewController:viewController animated:YES];
     }

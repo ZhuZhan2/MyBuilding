@@ -12,6 +12,7 @@
     RKSingleImageView* view=[[RKSingleImageView alloc]initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     view.model = model;
     UIImage *image = nil;
+    NSLog(@"%@",model.type);
     if([model.type isEqualToString:@"xlsx"]){
         image = [GetImagePath getImagePath:@"xlsx"];
     }else if ([model.type isEqualToString:@"docx"]){
@@ -21,7 +22,7 @@
     }
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:view.bounds];
     if (model.isUrl) {
-        [imageView sd_setImageWithURL:[NSURL URLWithString:model.imageUrl] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:model.imageUrl] placeholderImage:image];
     }else{
         imageView.image=model.image;
     }

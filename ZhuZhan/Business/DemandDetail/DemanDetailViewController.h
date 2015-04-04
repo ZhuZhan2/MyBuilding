@@ -19,5 +19,5 @@
 }
 @property(nonatomic,strong)AskPriceModel *askPriceModel;
 @property(nonatomic,strong)QuotesModel *quotesModel;
-@property(nonatomic,strong)NSString *title;
+@property(nonatomic,strong)NSString *titleStr;
 @end

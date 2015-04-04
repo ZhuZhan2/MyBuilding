@@ -377,6 +377,7 @@
         [self.navigationController popViewControllerAnimated:NO];
     }else{
         AskPriceViewController *view = [[AskPriceViewController alloc] init];
+        view.otherStr = @"-1";
         [self.navigationController pushViewController:view animated:YES];
     }
 }

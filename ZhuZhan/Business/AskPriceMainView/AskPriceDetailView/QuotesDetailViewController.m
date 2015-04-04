@@ -151,7 +151,7 @@
             view.askPriceModel = self.askPriceModel;
             NSLog(@"model==%@",model);
             view.quotesModel = model;
-            view.title = self.askPriceModel.a_requestName;
+            view.titleStr = self.askPriceModel.a_requestName;
             view.delegate = self;
             [self.navigationController pushViewController:view animated:YES];
         }

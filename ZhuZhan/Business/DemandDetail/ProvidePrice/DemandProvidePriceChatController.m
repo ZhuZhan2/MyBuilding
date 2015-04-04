@@ -19,12 +19,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.startIndex = 0;
+    [self setupRefresh];
     [self loadList];
 }
 
 
 -(void)loadList{
+    self.startIndex = 0;
     [AskPriceApi GetCommentListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.chatModels = posts;
@@ -123,6 +124,6 @@
             [self.tableView reloadData];
         }
         [self.tableView footerEndRefreshing];
-    } tradeId:self.askPriceModel.a_id tradeUserAndCommentUser:[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,self.quotesModel.a_loginId] startIndex:self.startIndex++ noNetWork:nil];
+    } tradeId:self.askPriceModel.a_id tradeUserAndCommentUser:[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,self.quotesModel.a_loginId] startIndex:self.startIndex+1 noNetWork:nil];
 }
 @end
