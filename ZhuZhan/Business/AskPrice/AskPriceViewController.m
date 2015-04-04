@@ -23,7 +23,6 @@
 #import "MJRefresh.h"
 @interface AskPriceViewController ()<DemandStageChooseControllerDelegate,RKStageChooseViewDelegate>
 @property(nonatomic,strong)NSString *statusStr;
-@property(nonatomic,strong)NSString *otherStr;
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property (nonatomic)NSInteger nowStage;
 @property(nonatomic)int startIndex;
@@ -34,7 +33,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.statusStr = @"";
-    self.otherStr = @"-1";
     self.startIndex = 0;
     [self initNavi];
     [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[@"0",@"0",@"0",@"0"]];

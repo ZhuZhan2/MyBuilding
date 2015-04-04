@@ -127,24 +127,39 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     CGFloat width=kScreenWidth/3;
     
     UIButton *firstBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    firstBtn.frame = CGRectMake(0, 0, width, 50);
+    firstBtn.frame = CGRectMake(8, 12, width-15, 25);
     [firstBtn setTitle:@"询价列表" forState:UIControlStateNormal];
-    firstBtn.titleLabel.font=[UIFont systemFontOfSize:14];
-    [firstBtn addTarget:self action:@selector(gotoAskPrice) forControlEvents:UIControlEventTouchUpInside];
+    firstBtn.backgroundColor = [UIColor blackColor];
+    firstBtn.titleLabel.font=[UIFont systemFontOfSize:12];
+    firstBtn.tag = 1;
+    [firstBtn addTarget:self action:@selector(gotoAskPrice:) forControlEvents:UIControlEventTouchUpInside];
+    firstBtn.alpha = .8;
+    firstBtn.layer.masksToBounds = YES;
+    firstBtn.layer.cornerRadius = 4.0;
     [threeBtnsView addSubview:firstBtn];
     
     UIButton *secondBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    secondBtn.frame = CGRectMake(width, 0, width, 50);
+    secondBtn.frame = CGRectMake(width+8, 12, width-15, 25);
     [secondBtn setTitle:@"报价列表" forState:UIControlStateNormal];
-    [secondBtn addTarget:self action:@selector(gotoAskPrice) forControlEvents:UIControlEventTouchUpInside];
-    secondBtn.titleLabel.font=[UIFont systemFontOfSize:14];
+    [secondBtn addTarget:self action:@selector(gotoAskPrice:) forControlEvents:UIControlEventTouchUpInside];
+    secondBtn.tag = 2;
+    secondBtn.titleLabel.font=[UIFont systemFontOfSize:12];
+    secondBtn.backgroundColor = [UIColor blackColor];
+    secondBtn.alpha = .8;
+    secondBtn.layer.masksToBounds = YES;
+    secondBtn.layer.cornerRadius = 4.0;
     [threeBtnsView addSubview:secondBtn];
     
     UIButton *thirdBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    thirdBtn.frame = CGRectMake(width*2, 0, width, 50);
+    thirdBtn.frame = CGRectMake(width*2+8, 12, width-15, 25);
     [thirdBtn setTitle:@"合同列表" forState:UIControlStateNormal];
-    [thirdBtn addTarget:self action:@selector(gotoAskPrice) forControlEvents:UIControlEventTouchUpInside];
-    thirdBtn.titleLabel.font=[UIFont systemFontOfSize:14];
+    //[thirdBtn addTarget:self action:@selector(gotoAskPrice:) forControlEvents:UIControlEventTouchUpInside];
+    thirdBtn.tag = 3;
+    thirdBtn.titleLabel.font=[UIFont systemFontOfSize:12];
+    thirdBtn.backgroundColor = [UIColor blackColor];
+    thirdBtn.alpha = .8;
+    thirdBtn.layer.masksToBounds = YES;
+    thirdBtn.layer.cornerRadius = 4.0;
     [threeBtnsView addSubview:thirdBtn];
     
 //    for (int i=0;i<2;i++) {
@@ -433,8 +448,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setBackgroundImageUrlString:[LoginSqlite getdata:@"backgroundImage"]];
 }
 
--(void)gotoAskPrice{
+-(void)gotoAskPrice:(UIButton *)button{
     AskPriceViewController *view = [[AskPriceViewController alloc] init];
+    if(button.tag == 1){
+        view.otherStr = @"0";
+    }else{
+        view.otherStr = @"1";
+    }
     [self.navigationController pushViewController:view animated:YES];
 }
 @end
