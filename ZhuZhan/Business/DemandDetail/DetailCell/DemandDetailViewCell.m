@@ -20,8 +20,8 @@
 @property(nonatomic,strong)RKMuchImageViews* muchImageView3;
 @property(nonatomic,strong)UIView* seperatorLine;
 
-@property(nonatomic,strong)UIButton* leftBtn;
-@property(nonatomic,strong)UIButton* rightBtn;
+//@property(nonatomic,strong)UIButton* leftBtn;
+//@property(nonatomic,strong)UIButton* rightBtn;
 @property(nonatomic)DemandControllerCategory category;
 @end
 #define Font(size) [UIFont systemFontOfSize:size]
@@ -67,10 +67,10 @@
     frame=CGRectMake(0, height, size.width, size.height);
     height+=CGRectGetHeight(frame);
     
-    height+=19;
-    size=CGSizeMake(72, 26);
-    frame=CGRectMake(0, height, size.width, size.height);
-    height+=CGRectGetHeight(frame);
+//    height+=19;
+//    size=CGSizeMake(72, 26);
+//    frame=CGRectMake(0, height, size.width, size.height);
+//    height+=CGRectGetHeight(frame);
     
     height+=18;
     size=CGSizeMake(kScreenWidth, 10);
@@ -166,21 +166,21 @@
     return _muchImageView3;
 }
 
--(UIButton *)leftBtn{
-    if (!_leftBtn) {
-        _leftBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 72, 26)];
-        [_leftBtn addTarget:self action:@selector(leftBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _leftBtn;
-}
-
--(UIButton *)rightBtn{
-    if (!_rightBtn) {
-        _rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 72, 26)];
-        [_rightBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _rightBtn;
-}
+//-(UIButton *)leftBtn{
+//    if (!_leftBtn) {
+//        _leftBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 72, 26)];
+//        [_leftBtn addTarget:self action:@selector(leftBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _leftBtn;
+//}
+//
+//-(UIButton *)rightBtn{
+//    if (!_rightBtn) {
+//        _rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 72, 26)];
+//        [_rightBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _rightBtn;
+//}
 
 -(UIView *)seperatorLine{
     if (!_seperatorLine) {
@@ -199,8 +199,8 @@
     [self.contentView addSubview:self.muchImageView1];
     [self.contentView addSubview:self.muchImageView2];
     [self.contentView addSubview:self.muchImageView3];
-    [self.contentView addSubview:self.leftBtn];
-    [self.contentView addSubview:self.rightBtn];
+    //[self.contentView addSubview:self.leftBtn];
+    //[self.contentView addSubview:self.rightBtn];
     [self.contentView addSubview:self.seperatorLine];
 }
 
@@ -268,15 +268,15 @@
     self.muchImageView3.frame=frame;
     height+=CGRectGetHeight(self.muchImageView3.frame);
     
-    height+=19;
-    size=self.leftBtn.frame.size;
-    frame=CGRectMake(distance, height, size.width, size.height);
-    self.leftBtn.frame=frame;
-    
-    size=self.rightBtn.frame.size;
-    frame=CGRectMake(kScreenWidth-distance-size.width, height, size.width, size.height);
-    self.rightBtn.frame=frame;
-    height+=CGRectGetHeight(self.leftBtn.frame);
+//    height+=19;
+//    size=self.leftBtn.frame.size;
+//    frame=CGRectMake(distance, height, size.width, size.height);
+//    self.leftBtn.frame=frame;
+//    
+//    size=self.rightBtn.frame.size;
+//    frame=CGRectMake(kScreenWidth-distance-size.width, height, size.width, size.height);
+//    self.rightBtn.frame=frame;
+//    height+=CGRectGetHeight(self.leftBtn.frame);
     
     height+=18;
     size=self.seperatorLine.frame.size;
@@ -284,40 +284,40 @@
     self.seperatorLine.frame=frame;
     height+=CGRectGetHeight(self.seperatorLine.frame);
     
-    NSString* leftBtnImageName=self.model.isFinish?@"回复灰":@"交易_回复";
-    [self.leftBtn setBackgroundImage:[GetImagePath getImagePath:leftBtnImageName] forState:UIControlStateNormal];
-    self.leftBtn.userInteractionEnabled=!self.model.isFinish;
-    //按钮判断
-    BOOL isHasImage = self.model.array1.count?YES:NO;
-    BOOL isAskPrice=self.category==DemandControllerCategoryAskPriceController;
-    NSString* rightNotFinishImageName=isAskPrice?@"交易_采纳":@"报价";
-    NSString* rightIsFinishImageName=isAskPrice?@"采纳灰":@"报价灰";
-    NSString* rightBtnImageName =  nil;
-    if(isAskPrice){
-        NSLog(@"询价");
-        rightBtnImageName=self.model.isFinish?rightIsFinishImageName:(isHasImage?rightNotFinishImageName:rightIsFinishImageName);
-        [self.rightBtn setBackgroundImage:[GetImagePath getImagePath:rightBtnImageName] forState:UIControlStateNormal];
-        self.rightBtn.enabled= self.model.isFinish?NO:(isHasImage?YES:NO);
-    }else{
-        NSLog(@"报价");
-        rightBtnImageName=self.model.isFinish?rightIsFinishImageName:rightNotFinishImageName;
-        [self.rightBtn setBackgroundImage:[GetImagePath getImagePath:rightBtnImageName] forState:UIControlStateNormal];
-        self.rightBtn.enabled= !self.model.isFinish;
-    }
+//    NSString* leftBtnImageName=self.model.isFinish?@"回复灰":@"交易_回复";
+//    [self.leftBtn setBackgroundImage:[GetImagePath getImagePath:leftBtnImageName] forState:UIControlStateNormal];
+//    self.leftBtn.userInteractionEnabled=!self.model.isFinish;
+//    //按钮判断
+//    BOOL isHasImage = self.model.array1.count?YES:NO;
+//    BOOL isAskPrice=self.category==DemandControllerCategoryAskPriceController;
+//    NSString* rightNotFinishImageName=isAskPrice?@"交易_采纳":@"报价";
+//    NSString* rightIsFinishImageName=isAskPrice?@"采纳灰":@"报价灰";
+//    NSString* rightBtnImageName =  nil;
+//    if(isAskPrice){
+//        NSLog(@"询价");
+//        rightBtnImageName=self.model.isFinish?rightIsFinishImageName:(isHasImage?rightNotFinishImageName:rightIsFinishImageName);
+//        [self.rightBtn setBackgroundImage:[GetImagePath getImagePath:rightBtnImageName] forState:UIControlStateNormal];
+//        self.rightBtn.enabled= self.model.isFinish?NO:(isHasImage?YES:NO);
+//    }else{
+//        NSLog(@"报价");
+//        rightBtnImageName=self.model.isFinish?rightIsFinishImageName:rightNotFinishImageName;
+//        [self.rightBtn setBackgroundImage:[GetImagePath getImagePath:rightBtnImageName] forState:UIControlStateNormal];
+//        self.rightBtn.enabled= !self.model.isFinish;
+//    }
 }
 
 
--(void)leftBtnClicked{
-    if ([self.delegate respondsToSelector:@selector(leftBtnClickedWithIndexPath:)]) {
-        [self.delegate leftBtnClickedWithIndexPath:self.model.indexPath];
-    }
-}
-
--(void)rightBtnClicked{
-    if ([self.delegate respondsToSelector:@selector(rightBtnClickedWithIndexPath:)]) {
-        [self.delegate rightBtnClickedWithIndexPath:self.model.indexPath];
-    }
-}
+//-(void)leftBtnClicked{
+//    if ([self.delegate respondsToSelector:@selector(leftBtnClickedWithIndexPath:)]) {
+//        [self.delegate leftBtnClickedWithIndexPath:self.model.indexPath];
+//    }
+//}
+//
+//-(void)rightBtnClicked{
+//    if ([self.delegate respondsToSelector:@selector(rightBtnClickedWithIndexPath:)]) {
+//        [self.delegate rightBtnClickedWithIndexPath:self.model.indexPath];
+//    }
+//}
 
 +(CGSize)carculateLabel:(UILabel*)label width:(CGFloat)width{
     return [self carculateLabelWithText:label.text font:label.font width:width];

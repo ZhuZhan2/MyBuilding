@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTableView];
-    [self reloadTableViewExtra];
+   // [self reloadTableViewExtra];
     NSLog(@"detailModels ===>%@",self.detailModels);
 }
 
@@ -30,10 +30,10 @@
     self.tableView.delegate=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
+    self.tableView.backgroundColor=AllBackDeepGrayColor;
 }
 
 -(void)reloadTableViewExtra{
-    self.tableView.backgroundColor=AllBackDeepGrayColor;
     CGFloat tableFooterSpaceHeight=24;
     CGFloat shadowHeight=10;
     CGFloat btnHeight=37;

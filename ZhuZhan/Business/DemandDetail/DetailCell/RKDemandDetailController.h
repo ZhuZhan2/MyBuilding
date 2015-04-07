@@ -27,4 +27,8 @@
 @property(nonatomic,weak)id<RKDemandDetailControllerDelegate>delegate;
 @property(nonatomic)BOOL isFinish;
 -(DemandDetailCellModel*)cellModelWithDataModel:(QuotesDetailModel*)dataModel;
+
+-(void)leftBtnClickedWithIndexPath:(NSIndexPath *)indexPath;
+-(void)rightBtnClickedWithIndexPath:(NSIndexPath *)indexPath;
+-(void)closeBtnClicked;
 @end

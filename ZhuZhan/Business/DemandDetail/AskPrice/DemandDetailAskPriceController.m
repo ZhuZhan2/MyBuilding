@@ -28,10 +28,27 @@
 }
 
 -(void)backView{
-    if([self.delegate respondsToSelector:@selector(backAndLoad)]){
-        [self.delegate backAndLoad];
+    [self leftBtnClicked];
+}
+
+-(void)rightBtnClicked{
+    UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"回复",@"采纳",@"关闭", nil];
+    [actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    switch (buttonIndex) {
+        case 0:
+            [self.detailController leftBtnClickedWithIndexPath:nil];
+            break;
+        case 1:
+            [self.detailController rightBtnClickedWithIndexPath:nil];
+            break;
+        case 2:
+            [self.detailController closeBtnClicked];
+            break;
     }
-    [self.navigationController popViewControllerAnimated:YES];
+    [self initNavi];
 }
 
 -(void)demandDetailControllerLeftBtnClicked{

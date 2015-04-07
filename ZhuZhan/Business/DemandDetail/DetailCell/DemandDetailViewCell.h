@@ -14,8 +14,8 @@ typedef enum DemandControllerCategory{
 }DemandControllerCategory;
 
 @protocol DemandDetailViewCellDelegate <NSObject>
--(void)leftBtnClickedWithIndexPath:(NSIndexPath*)indexPath;
--(void)rightBtnClickedWithIndexPath:(NSIndexPath*)indexPath;
+//-(void)leftBtnClickedWithIndexPath:(NSIndexPath*)indexPath;
+//-(void)rightBtnClickedWithIndexPath:(NSIndexPath*)indexPath;
 -(void)imageCilckWithDemandDetailViewCell:(NSString *)imageUrl;
 @end
 
@@ -29,8 +29,8 @@ typedef enum DemandControllerCategory{
 @property(nonatomic,strong)NSArray* array2;
 @property(nonatomic,strong)NSArray* array3;
 
-@property(nonatomic)BOOL isFinish;
-@property(nonatomic,strong)NSIndexPath* indexPath;
+//@property(nonatomic)BOOL isFinish;
+//@property(nonatomic,strong)NSIndexPath* indexPath;
 @end
 
 @interface DemandDetailViewCell : UITableViewCell

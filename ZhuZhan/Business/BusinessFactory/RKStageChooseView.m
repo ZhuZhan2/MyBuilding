@@ -107,6 +107,8 @@
 }
 
 -(void)stageLabelClickedWithSequence:(NSInteger)sequence{
+    self.nowStageNumber=sequence;
+    
     [self.labels enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [(RKStageAndNumberView*)obj changeColor:idx==sequence?SelectedColor:(self.stages.count>2?NoSeletedFourStageColor:NoSeletedTwoStageColor)];
     }];
@@ -128,5 +130,9 @@
     if ([self.delegate respondsToSelector:@selector(stageBtnClickedWithNumber:)]) {
         [self.delegate stageBtnClickedWithNumber:sequence];
     }
+}
+
+-(void)setNowStageNumber:(NSInteger)nowStageNumber{
+    _nowStageNumber=nowStageNumber;
 }
 @end

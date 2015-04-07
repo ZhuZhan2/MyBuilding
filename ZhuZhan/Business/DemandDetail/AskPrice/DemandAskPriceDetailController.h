@@ -9,4 +9,5 @@
 #import "RKDemandDetailController.h"
 
 @interface DemandAskPriceDetailController : RKDemandDetailController
+
 @end
