@@ -16,7 +16,8 @@
 #import "RKCamera.h"
 #import "AskPriceApi.h"
 #import "RKImageModel.h"
-@interface ProvidePriceInfoController ()<RKCameraDelegate,ProvidePriceUploadViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
+#import "DemandDetailProvidePriceController.h"
+@interface ProvidePriceInfoController ()<RKCameraDelegate,ProvidePriceUploadViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate,DemandDetailProvidePriceDelegate>
 @property(nonatomic,strong)UIView* firstView;
 @property(nonatomic,strong)UIView* secondView;
 @property(nonatomic,strong)UIView* thirdView;
@@ -32,6 +33,9 @@
 
 @property(nonatomic,strong)UIView* topView;
 @property(nonatomic)NSInteger cameraCategory;
+
+@property(nonatomic)NSInteger needPostGroupCount;
+@property(nonatomic)NSInteger finishPostGroupCount;
 @end
 
 @implementation ProvidePriceInfoController
@@ -61,11 +65,14 @@
 }
 
 -(void)firstPost{
+    self.rightBtn.userInteractionEnabled=NO;
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:self.askPriceModel.a_tradeCode forKey:@"tradeCode"];
     [dic setObject:self.askPriceModel.a_id forKey:@"bookBuildingId"];
     [dic setObject:[self.fifthView textViewText] forKey:@"quoteContent"];
     [AskPriceApi AddQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
+        self.rightBtn.userInteractionEnabled=YES;
+        //
         if(!error){
             NSString* quotesId=posts[0];
             [self secondPostFirstStepWithQuotesId:quotesId];
@@ -75,45 +82,58 @@
 
 -(void)secondPostFirstStepWithQuotesId:(NSString*)quotesId{
     NSArray* allImages=@[self.array1,self.array2,self.array3];
-    if(self.array1.count ==0 && self.array2.count == 0&&self.array3.count==0){
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"报价成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
-    }
+    
     for (int i=0; i<allImages.count; i++) {
         NSArray* images=allImages[i];
         if (!images.count) continue;
+        self.needPostGroupCount++;
         NSMutableArray* newImageDatas=[NSMutableArray array];
         for (RKImageModel* imageModel in images) {
-            NSData* imageData=UIImageJPEGRepresentation(imageModel.image, 0.3);
+            NSData* imageData=UIImageJPEGRepresentation(imageModel.image, 1);
             [newImageDatas addObject:imageData];
         }
         [self secondPostSecondStepWithImages:newImageDatas category:[NSString stringWithFormat:@"%d",i] quotesId:quotesId];
     }
 }
 
--(void)secondPostSecondStepWithImages:(NSMutableArray*)images category:(NSString*)category quotesId:(NSString*)quotesId{
-    if (!images.count){
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"报价成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
+-(void)sucessPost{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"报价成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (self.isFirstQuote) {
+        DemandDetailProvidePriceController *view = [[DemandDetailProvidePriceController alloc] init];
+        view.askPriceModel = self.askPriceModel;
+        view.quotesModel = self.quotesModel;
+        view.delegate = self;
+        view.isFirstQuote=self.isFirstQuote;//YES
+        [self.navigationController pushViewController:view animated:YES];
     }else{
-        NSMutableDictionary* dic=[@{@"category":category,
-                                    @"tradeCode":self.askPriceModel.a_tradeCode,
-                                    @"quotesId":quotesId}
-                                  mutableCopy];
-        [AskPriceApi AddAttachmentWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if (!error) {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"报价成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alertView show];
-            }else{
-                NSLog(@"===%@",error);
-            }
-        } dataArr:images dic:dic noNetWork:nil];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
-//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
+-(void)backAndLoad{
+    if ([self.delegate respondsToSelector:@selector(backAndLoad)]) {
+        [self.delegate backAndLoad];
+    }
+}
+
+-(void)secondPostSecondStepWithImages:(NSMutableArray*)images category:(NSString*)category quotesId:(NSString*)quotesId{
+    NSMutableDictionary* dic=[@{@"category":category,
+                                @"tradeCode":self.askPriceModel.a_tradeCode,
+                                @"quotesId":quotesId}
+                              mutableCopy];
+    [AskPriceApi AddAttachmentWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            self.finishPostGroupCount++;
+            if (self.finishPostGroupCount==self.needPostGroupCount) {
+                [self sucessPost];
+            }
+        }
+    } dataArr:images dic:dic noNetWork:nil];
+}
 
 -(void)initNavi{
     self.title=@"报价资料";
@@ -131,7 +151,7 @@
     CGFloat extraHeight=CGRectGetHeight(self.topView.frame);
     frame.origin.y+=extraHeight;
     frame.size.height-=extraHeight;
-     self.tableView.frame=frame;
+    self.tableView.frame=frame;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -236,12 +256,12 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==actionSheet.cancelButtonIndex) return;
-    self.cameraControl=[RKCamera cameraWithType:!buttonIndex allowEdit:NO deleate:self presentViewController:self.view.window.rootViewController];
+    self.cameraControl=[RKCamera cameraWithType:!buttonIndex allowEdit:NO deleate:self presentViewController:self.view.window.rootViewController demandSize:CGSizeMake(80, 80)];
 }
 
 -(void)cameraWillFinishWithImage:(UIImage *)image isCancel:(BOOL)isCancel{
-    NSLog(@"%@,%d",image,isCancel);
     NSData *data = UIImageJPEGRepresentation(image, 1);
+    NSLog(@"data.length=%ld",(long)data.length);
     if((double)data.length/(1024*1024)>5){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"图片大于5M" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
@@ -253,10 +273,6 @@
     RKImageModel* imageModel=[RKImageModel imageModelWithImage:image imageUrl:nil isUrl:NO type:nil];
     [array addObject:imageModel];
     [self reloadSixthView];
-}
-
--(void)sendWithImage:(UIImage*)image{
-    
 }
 
 -(NSArray *)contentViews{
@@ -280,7 +296,7 @@
 -(UIView *)thirdView{
     if (!_thirdView) {
         _thirdView=[RKUpAndDownView upAndDownViewWithUpContent:@"产品分类" downContent:self.askPriceModel.a_productCategory topDistance:14 bottomDistance:14 maxWidth:kScreenWidth-50];
-
+        
     }
     return _thirdView;
 }
@@ -288,7 +304,7 @@
 -(UIView *)fourthView{
     if (!_fourthView) {
         _fourthView=[RKUpAndDownView upAndDownViewWithUpContent:@"询价说明" downContent:self.askPriceModel.a_remark topDistance:20 bottomDistance:20 maxWidth:kScreenWidth-50];
-
+        
     }
     return _fourthView;
 }
@@ -296,7 +312,7 @@
 -(RKUpAndDownView *)fifthView{
     if (!_fifthView) {
         _fifthView=[RKUpAndDownView upAndDownTextViewWithUpContent:@"备注" topDistance:20 bottomDistance:20 maxWidth:kScreenWidth-50];
-
+        
     }
     return _fifthView;
 }

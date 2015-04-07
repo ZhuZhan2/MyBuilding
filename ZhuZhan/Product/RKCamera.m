@@ -13,16 +13,18 @@
 @property(nonatomic)UIImagePickerControllerSourceType sourceType;
 @property(nonatomic,weak)UIViewController* presentViewController;
 @property(nonatomic)BOOL allowsEditing;
+@property(nonatomic)CGSize demandSize;
 @end
 
 @implementation RKCamera
-+(id)cameraWithType:(UIImagePickerControllerSourceType)sourceType allowEdit:(BOOL)allowEdit deleate:(id<RKCameraDelegate>)delegate presentViewController:(UIViewController *)presentViewController{
++(id)cameraWithType:(UIImagePickerControllerSourceType)sourceType allowEdit:(BOOL)allowEdit deleate:(id<RKCameraDelegate>)delegate presentViewController:(UIViewController *)presentViewController demandSize:(CGSize)demandSize{
     
     RKCamera* camera=[[RKCamera alloc]init];
     camera.delegate=delegate;
     camera.presentViewController=presentViewController;
     camera.allowsEditing=allowEdit;
     camera.sourceType=sourceType;
+    camera.demandSize=demandSize;
     [camera setUp];
     return camera;
 }
@@ -40,13 +42,6 @@
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    UIImageView *preview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width/2, image.size.height/2)];
-    [preview setImage:image];
-    image = [self convertViewAsImage:preview];
-    if(picker.sourceType !=0){
-        UIImageWriteToSavedPhotosAlbum(image, self,nil, nil);
-    }
     [self cameraFinishWithPicker:picker info:info isCancel:NO];
 }
 
@@ -58,6 +53,17 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     if ([self.delegate respondsToSelector:@selector(cameraWillFinishWithImage:isCancel:)]) {
         UIImage* image=isCancel?nil:(info[self.allowsEditing?UIImagePickerControllerEditedImage:UIImagePickerControllerOriginalImage]);
+        
+        if(picker.sourceType !=0){
+            UIImageWriteToSavedPhotosAlbum(image, self,nil, nil);
+        }
+        
+        CGFloat width=self.demandSize.width?2*self.demandSize.width:image.size.width*0.5;
+        CGFloat height=self.demandSize.height?2*self.demandSize.height:image.size.height*0.5;
+        UIImageView *preview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+        [preview setImage:image];
+        image = [self convertViewAsImage:preview];
+        
         [self.delegate cameraWillFinishWithImage:image isCancel:isCancel];
     }
 }

@@ -48,7 +48,6 @@
 }
 
 -(void)initNavi{
-    self.title=self.titleStr;
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
 }
 @end

@@ -27,6 +27,9 @@
 
 @property(nonatomic)BOOL needAnimaiton;
 
+@property(nonatomic,strong)UIButton* rightBtn;
+@property(nonatomic,strong)UIButton* leftBtn;
+
 @property(nonatomic)BOOL leftBtnIsBack;
 -(void)setLeftBtnWithImage:(UIImage*)image;
 -(void)setLeftBtnWithText:(NSString*)text;

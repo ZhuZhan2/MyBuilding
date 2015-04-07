@@ -106,13 +106,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     return 3+self.invitedUserArr.count;
 }
 
@@ -138,7 +136,6 @@
         DemandDetailAskPriceController *viewController = [[DemandDetailAskPriceController alloc] init];
         viewController.quotesModel = model;
         viewController.askPriceModel = self.askPriceModel;
-        viewController.titleStr = model.a_loginName;
         viewController.delegate = self;
         [self.navigationController pushViewController:viewController animated:YES];
     }
