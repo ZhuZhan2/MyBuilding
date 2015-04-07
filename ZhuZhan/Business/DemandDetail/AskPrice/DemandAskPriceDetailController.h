@@ -9,5 +9,5 @@
 #import "RKDemandDetailController.h"
 
 @interface DemandAskPriceDetailController : RKDemandDetailController
-
+@property(nonatomic,strong)NSArray* invitedUserArr;
 @end

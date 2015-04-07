@@ -138,6 +138,7 @@
         NSLog(@"model==%@",model);
         viewController.askPriceModel = self.askPriceModel;
         viewController.delegate = self;
+        viewController.invitedUserArr=self.invitedUserArr;
         [self.navigationController pushViewController:viewController animated:YES];
     }
 }
