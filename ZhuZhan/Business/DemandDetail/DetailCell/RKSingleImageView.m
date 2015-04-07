@@ -12,7 +12,6 @@
     RKSingleImageView* view=[[RKSingleImageView alloc]initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     view.model = model;
     UIImage *image = nil;
-    NSLog(@"%@",model.type);
     if([model.type isEqualToString:@"xlsx"]){
         image = [GetImagePath getImagePath:@"xlsx"];
     }else if ([model.type isEqualToString:@"docx"]){

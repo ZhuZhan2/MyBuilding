@@ -261,7 +261,6 @@
 
 -(void)cameraWillFinishWithImage:(UIImage *)image isCancel:(BOOL)isCancel{
     NSData *data = UIImageJPEGRepresentation(image, 1);
-    NSLog(@"data.length=%ld",(long)data.length);
     if((double)data.length/(1024*1024)>5){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"图片大于5M" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];

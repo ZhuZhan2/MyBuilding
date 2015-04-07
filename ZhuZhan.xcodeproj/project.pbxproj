@@ -6672,6 +6672,11 @@
 				TargetAttributes = {
 					0426BFE619922CE400CD8822 = {
 						DevelopmentTeam = M8S6DXYEZE;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					0426C00119922CE400CD8822 = {
 						DevelopmentTeam = AU89D3J45E;

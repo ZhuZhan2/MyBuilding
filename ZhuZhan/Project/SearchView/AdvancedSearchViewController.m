@@ -407,14 +407,14 @@
 }
 
 -(void)startSearch{
-    if(![dataDic[@"keywords"] isEqualToString:@""]){
+    if([dataDic[@"keywords"] isEqualToString:@""]&&[dataDic[@"companyName"] isEqualToString:@""]&&[dataDic[@"landProvince"] isEqualToString:@""]&&[dataDic[@"projectStage"] isEqualToString:@""]&&[dataDic[@"projectCategory"] isEqualToString:@""]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请填写搜索条件" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }else{
         ResultsTableViewController *resultView = [[ResultsTableViewController alloc] init];
         resultView.dic = dataDic;
         resultView.flag = 1;
         [self.navigationController pushViewController:resultView animated:YES];
-    }else{
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请填写关键字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
     }
 }
 

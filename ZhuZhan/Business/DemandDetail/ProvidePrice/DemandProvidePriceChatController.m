@@ -11,6 +11,7 @@
 #import "DemandChatViewCell.h"
 #import "AskPriceComment.h"
 #import "MJRefresh.h"
+#import "LoginSqlite.h"
 @interface DemandProvidePriceChatController ()
 @property(nonatomic)int startIndex;
 @end
@@ -31,7 +32,7 @@
             self.chatModels = posts;
             [self.tableView reloadData];
         }
-    } tradeId:self.askPriceModel.a_id tradeUserAndCommentUser:[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,self.quotesModel.a_loginId] startIndex:0 noNetWork:nil];
+    } tradeId:self.askPriceModel.a_id tradeUserAndCommentUser:[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,[LoginSqlite getdata:@"userId"]] startIndex:0 noNetWork:nil];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     DemandChatViewCellModel *model = [[DemandChatViewCellModel alloc] init];
@@ -66,7 +67,7 @@
  *contents
  */
 -(void)sendWithContent:(NSString*)content{
-    NSString* tradeUserAndCommentUser=[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,self.quotesModel.a_loginId];
+    NSString* tradeUserAndCommentUser=[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,[LoginSqlite getdata:@"userId"]];
     NSMutableDictionary* dic=[@{@"tradeId":self.askPriceModel.a_id,
                                 @"tradeCode":self.askPriceModel.a_tradeCode,
                                 @"tradeUserAndCommentUser":tradeUserAndCommentUser,
@@ -112,7 +113,7 @@
             [self.tableView reloadData];
         }
         [self.tableView headerEndRefreshing];
-    } tradeId:self.askPriceModel.a_id tradeUserAndCommentUser:[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,self.quotesModel.a_loginId] startIndex:0 noNetWork:nil];
+    } tradeId:self.askPriceModel.a_id tradeUserAndCommentUser:[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,[LoginSqlite getdata:@"userId"]] startIndex:0 noNetWork:nil];
 }
 
 - (void)footerRereshing
@@ -124,6 +125,6 @@
             [self.tableView reloadData];
         }
         [self.tableView footerEndRefreshing];
-    } tradeId:self.askPriceModel.a_id tradeUserAndCommentUser:[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,self.quotesModel.a_loginId] startIndex:self.startIndex+1 noNetWork:nil];
+    } tradeId:self.askPriceModel.a_id tradeUserAndCommentUser:[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,[LoginSqlite getdata:@"userId"]] startIndex:self.startIndex+1 noNetWork:nil];
 }
 @end
