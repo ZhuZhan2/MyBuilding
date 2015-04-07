@@ -123,9 +123,10 @@
 
 -(UILabel *)placeLabel{
     if (!_placeLabel) {
-        _placeLabel=[[UILabel alloc]initWithFrame:CGRectMake(5, 5, 200, 20)];
+        _placeLabel=[[UILabel alloc]initWithFrame:CGRectMake(5, 5, 200, 30)];
         _placeLabel.textColor=AllNoDataColor;
         _placeLabel.font=ContentFont;
+        _placeLabel.numberOfLines = 2;
         _placeLabel.text=@"请输入备注（限500字并且不能含有表情）";
     }
     return _placeLabel;

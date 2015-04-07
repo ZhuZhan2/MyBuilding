@@ -91,7 +91,6 @@
     if (array.count > 0) {
         UITextInputMode *textInputMode = [array firstObject];
         NSString *lang = [textInputMode primaryLanguage];
-        NSLog(@"%@",lang);
         if ([lang isEqualToString:@"zh-Hans"]) {
             if (self.textView.text.length != 0) {
                 int a = [self.textView.text characterAtIndex:self.textView.text.length - 1];
@@ -106,9 +105,7 @@
                 }
             }
         } else {
-            NSLog(@"aaaaaa");
             if (self.textView.text.length >= strCount) {
-                NSLog(@"bbbbb");
                 self.textView.text = [self.textView.text substringToIndex:strCount];
             }
         }
