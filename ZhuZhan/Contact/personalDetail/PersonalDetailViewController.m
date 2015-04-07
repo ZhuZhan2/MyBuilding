@@ -54,27 +54,14 @@
     _pathCover.delegate = self;
     //[_pathCover setBackgroundImage:[GetImagePath getImagePath:@"人脉－人的详情_02a"]];
     [_pathCover hidewaterDropRefresh];
-    [_pathCover setHeadImageFrame:CGRectMake(120, -50, 70, 70)];
+    [_pathCover setHeadImageFrame:CGRectMake(120, -70, 70, 70)];
     [_pathCover setFootViewFrame:CGRectMake(0, -105, 320, 320)];
     _pathCover.headImage.layer.cornerRadius =35;
     _pathCover.headImage.layer.masksToBounds =YES;
-    [_pathCover setNameFrame:CGRectMake(145, 20, 100, 20) font:[UIFont systemFontOfSize:14]];
+    [_pathCover setNameFrame:CGRectMake(105, 10, 100, 20) font:[UIFont systemFontOfSize:14]];
     _pathCover.userNameLabel.textAlignment = NSTextAlignmentCenter;
-    _pathCover.userNameLabel.center = CGPointMake(155, 30);
-    
-    for (int i=0; i<3; i++) {
-        UIButton *tempBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-//        UIImage* tempImg=i?[GetImagePath getImagePath:@"人脉－账号设置_03a-05"]:[GetImagePath getImagePath:@"人脉－账号设置_03a"];
-        [tempBtn setTitle:@"顶顶顶顶" forState:UIControlStateNormal];
-        tempBtn.frame=CGRectMake(0, 0, 80, 20);
-        tempBtn.center=CGPointMake((i+0.5)*320/3, 230-tempBtn.frame.size.height*.5-10);
-        tempBtn.tag=i;
-//        [tempBtn setImage:tempImg forState:UIControlStateNormal];
-        [_pathCover addSubview:tempBtn];
-        [tempBtn addTarget:self action:@selector(pathCoverBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    }
+    [self getThreeBtn];
 
-    //
     self.tableView.tableHeaderView = self.pathCover;
     
     //集成刷新控件
@@ -91,6 +78,51 @@
     
     self.tableView.separatorStyle = NO;
     [self.tableView setBackgroundColor:RGBCOLOR(242, 242, 242)];
+}
+
+-(void)getThreeBtn{
+    UIButton *threeBtnsView = [UIButton buttonWithType:UIButtonTypeCustom];
+    threeBtnsView.frame = CGRectMake(0, 170, kScreenWidth, 50);
+    //    threeBtnsView.backgroundColor=[UIColor whiteColor];
+    [_pathCover addSubview:threeBtnsView];
+    
+    CGFloat width=kScreenWidth/3;
+    
+//    UIButton *firstBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    firstBtn.frame = CGRectMake(8, 12, width-15, 25);
+//    [firstBtn setTitle:@"询价列表" forState:UIControlStateNormal];
+//    firstBtn.backgroundColor = [UIColor blackColor];
+//    firstBtn.titleLabel.font=[UIFont systemFontOfSize:12];
+//    firstBtn.tag = 1;
+//    [firstBtn addTarget:self action:@selector(gotoAskPrice:) forControlEvents:UIControlEventTouchUpInside];
+//    firstBtn.alpha = .8;
+//    firstBtn.layer.masksToBounds = YES;
+//    firstBtn.layer.cornerRadius = 4.0;
+//    [threeBtnsView addSubview:firstBtn];
+    
+    UIButton *secondBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    secondBtn.frame = CGRectMake(width+8, 12, width-15, 25);
+    [secondBtn setTitle:@"添加好友" forState:UIControlStateNormal];
+    [secondBtn addTarget:self action:@selector(addFriend) forControlEvents:UIControlEventTouchUpInside];
+    secondBtn.tag = 2;
+    secondBtn.titleLabel.font=[UIFont systemFontOfSize:12];
+    secondBtn.backgroundColor = [UIColor blackColor];
+    secondBtn.alpha = .8;
+    secondBtn.layer.masksToBounds = YES;
+    secondBtn.layer.cornerRadius = 4.0;
+    [threeBtnsView addSubview:secondBtn];
+    
+//    UIButton *thirdBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    thirdBtn.frame = CGRectMake(width*2+8, 12, width-15, 25);
+//    [thirdBtn setTitle:@"合同列表" forState:UIControlStateNormal];
+//    //[thirdBtn addTarget:self action:@selector(gotoAskPrice:) forControlEvents:UIControlEventTouchUpInside];
+//    thirdBtn.tag = 3;
+//    thirdBtn.titleLabel.font=[UIFont systemFontOfSize:12];
+//    thirdBtn.backgroundColor = [UIColor blackColor];
+//    thirdBtn.alpha = .8;
+//    thirdBtn.layer.masksToBounds = YES;
+//    thirdBtn.layer.cornerRadius = 4.0;
+//    [threeBtnsView addSubview:thirdBtn];
 }
 
 -(void)pathCoverBtnClicked:(UIButton*)btn{
@@ -649,5 +681,15 @@
     }
 }
 
+-(void)addFriend{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:self.contactId forKey:@"userId"];
+    [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
+    } dic:dic noNetWork:nil];
+}
     
 @end

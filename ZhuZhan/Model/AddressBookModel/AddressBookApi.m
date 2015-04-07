@@ -62,8 +62,13 @@
 
     return  [[AFAppDotNetAPIClient sharedNewClient]POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
-        if (block) {
-            block(nil,nil);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
+            if (block) {
+                block(nil,nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error==>%@",error);

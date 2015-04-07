@@ -38,6 +38,9 @@
 
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port{
     NSLog(@"did connect to host");
+    [self.socket performBlock:^{
+        [self.socket enableBackgroundingOnSocket];
+    }];
 }
 
 - (void)writeData:(NSData *)data withTimeout:(NSTimeInterval)timeout tag:(long)tag;{
@@ -58,7 +61,7 @@
 
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
     NSLog(@"socket:%p didReadData:withTag:%ld", sock, tag);
-    
+    [self.socket readDataWithTimeout:-1 tag:0];
     NSString *httpResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     NSLog(@"HTTP Response:\n%@", httpResponse);
