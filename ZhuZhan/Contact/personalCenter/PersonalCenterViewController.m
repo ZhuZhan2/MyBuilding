@@ -449,12 +449,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)gotoAskPrice:(UIButton *)button{
-    AskPriceViewController *view = [[AskPriceViewController alloc] init];
+    NSString* otherStr;
     if(button.tag == 1){
-        view.otherStr = @"0";
+        otherStr = @"0";
     }else{
-        view.otherStr = @"1";
+        otherStr = @"1";
     }
+    
+    AskPriceViewController *view = [[AskPriceViewController alloc] initWithOtherStr:otherStr];
+
     [self.navigationController pushViewController:view animated:YES];
 }
 @end

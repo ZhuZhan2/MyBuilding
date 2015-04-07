@@ -22,6 +22,7 @@
 #import "QuotesDetailViewController.h"
 #import "MJRefresh.h"
 @interface AskPriceViewController ()<DemandStageChooseControllerDelegate,RKStageChooseViewDelegate>
+@property(nonatomic,strong)NSString *otherStr;
 @property(nonatomic,strong)NSString *statusStr;
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property (nonatomic)NSInteger nowStage;
@@ -30,9 +31,22 @@
 
 @implementation AskPriceViewController
 
+-(instancetype)init{
+    if (self=[super init]) {
+        self.otherStr=@"-1";
+    }
+    return self;
+}
+
+-(instancetype)initWithOtherStr:(NSString*)otherStr{
+    if (self=[super init]) {
+        self.otherStr=otherStr;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.statusStr = @"";
     self.startIndex = 0;
     [self initNavi];
     [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已采纳",@"已关闭"]  numbers:@[@"0",@"0",@"0",@"0"]];
@@ -42,6 +56,25 @@
     [self setupRefresh];
 
     self.tableView.backgroundColor=AllBackDeepGrayColor;
+}
+
+-(NSString*)getTitle{
+    NSString* title;
+    if([self.otherStr isEqualToString:@"1"]){
+        title=@"报价需求列表";
+    }else if ([self.otherStr isEqualToString:@"0"]){
+        title=@"询价需求列表";
+    }else if ([self.otherStr isEqualToString:@"-1"]){
+        title=@"全部需求列表";
+    }
+    return title;
+}
+
+-(NSString *)statusStr{
+    if (!_statusStr) {
+        _statusStr = @"";
+    }
+    return _statusStr;
 }
 
 -(void)loadList{
@@ -56,7 +89,7 @@
 }
 
 -(void)initNavi{
-    [self initTitleViewWithTitle:@"全部需求列表"];
+    [self initTitleViewWithTitle:[self getTitle]];
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
     [self setRightBtnWithImage:[GetImagePath getImagePath:@"搜索按钮"]];
     self.needAnimaiton=YES;
@@ -109,7 +142,7 @@
     }else{
         self.otherStr = @"-1";
     }
-    [self loadList];
+    [self stageBtnClickedWithNumber:self.stageChooseView.nowStageNumber];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
