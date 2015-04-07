@@ -13,8 +13,7 @@
 
 @interface DemanDetailViewController ()
 
-@property(nonatomic,strong)RKDemandDetailController* detailController;
-@property(nonatomic,strong)RKDemandChatController* chatController;
+
 
 @property(nonatomic,strong)UIView* contentView;
 @end
@@ -29,6 +28,7 @@
 }
 
 -(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{
+    [self initNavi];
     UIView* lastView=stageNumber?self.detailController.view:self.chatController.view;
     [lastView endEditing:YES];
     lastView.hidden=YES;
@@ -49,5 +49,21 @@
 
 -(void)initNavi{
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
+    if (!self.isFinish) {
+        [self setRightBtnWithText:self.stageChooseView.nowStageNumber?nil:@"更多"];
+    }
+}
+
+-(void)rightBtnClicked{
+    UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"回复",@"采纳/报价",@"关闭", nil];
+    [actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSLog(@"index==%d",(int)buttonIndex);
+}
+
+-(BOOL)isFinish{
+    return ![self.quotesModel.a_status isEqualToString:@"进行中"];
 }
 @end

@@ -12,11 +12,18 @@
 #import "AskPriceModel.h"
 #import "AskPriceApi.h"
 #import "QuotesModel.h"
-@interface DemanDetailViewController : ChatBaseViewController<RKDemandDetailControllerDelegate>{
+@interface DemanDetailViewController : ChatBaseViewController<RKDemandDetailControllerDelegate,UIActionSheetDelegate>{
 @protected
     RKDemandDetailController* _detailController;
     RKDemandChatController* _chatController;
 }
 @property(nonatomic,strong)AskPriceModel *askPriceModel;
 @property(nonatomic,strong)QuotesModel *quotesModel;
+
+@property(nonatomic,strong)RKDemandDetailController* detailController;
+@property(nonatomic,strong)RKDemandChatController* chatController;
+
+@property(nonatomic)BOOL isFinish;
+
+-(void)initNavi;
 @end

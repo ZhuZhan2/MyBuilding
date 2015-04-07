@@ -58,9 +58,8 @@
     }
     QuotesDetailModel* dataModel=self.detailModels[indexPath.row];
     DemandDetailCellModel* cellModel=[self cellModelWithDataModel:dataModel];
-    cellModel.isFinish=self.isFinish;
-    cellModel.indexPath=indexPath;
-    cellModel.userDescribe = dataModel.a_quoteIsVerified;
+//    cellModel.isFinish=self.isFinish;
+//    cellModel.indexPath=indexPath;
     cell.model=cellModel;
     return cell;
 }

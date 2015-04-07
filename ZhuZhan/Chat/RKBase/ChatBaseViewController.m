@@ -42,14 +42,17 @@
 }
 
 -(void)setRightBtnWithText:(NSString*)text{
-    if (!_rightBtn) {
+    if (text) {
         UIFont* font=[UIFont systemFontOfSize:15];
         _rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, [text boundingRectWithSize:CGSizeMake(9999, 20) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size.width, 20)];
+        [_rightBtn setTitle:text forState:UIControlStateNormal];
         [_rightBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         _rightBtn.titleLabel.font=font;
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:_rightBtn];
+    }else{
+        _rightBtn=nil;
+        self.navigationItem.rightBarButtonItem=nil;
     }
-    [_rightBtn setTitle:text forState:UIControlStateNormal];
 }
 
 -(void)rightBtnClicked{
@@ -62,8 +65,6 @@
         [_leftBtn setBackgroundImage:image forState:UIControlStateNormal];
         [_leftBtn addTarget:self action:@selector(leftBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:_leftBtn];
-    }else{
-        [_leftBtn setBackgroundImage:image forState:UIControlStateNormal];
     }
 }
 
