@@ -20,6 +20,7 @@
     [self initTableView];
     if (!self.isFinish) {
         [self initChatToolBar];
+        self.chatToolBar.maxTextCount=500;
     }
     [self addKeybordNotification];
 }

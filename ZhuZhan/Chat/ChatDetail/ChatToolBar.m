@@ -34,6 +34,13 @@
     return chatToolBar;
 }
 
+-(NSInteger)maxTextCount{
+    if (_maxTextCount==0) {
+        _maxTextCount=NSIntegerMax;
+    }
+    return _maxTextCount;
+}
+
 -(UITextView *)textView{
     if (!_textView) {
         _textView=[[UITextView alloc]initWithFrame:CGRectMake(0, 0, kChatTextViewWidth, kChatTextViewInitialHeight)];
@@ -67,17 +74,35 @@
     [self addSubview:self.seperatorLine];
     [self addSubview:self.textView];
     [self.textView addSubview:self.placeLabel];
-}
-
--(void)textViewDidBeginEditing:(UITextView *)textView{
     [self.textView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
 }
 
--(void)textViewDidEndEditing:(UITextView *)textView{
-    [self.textView removeObserver:self forKeyPath:@"contentSize"];
-}
-
 -(void)textViewDidChange:(UITextView *)textView{
+    NSInteger limitNumber=self.maxTextCount;
+    NSArray *array = [UITextInputMode activeInputModes];
+    if (array.count > 0) {
+        UITextInputMode *textInputMode = [array firstObject];
+        NSString *lang = [textInputMode primaryLanguage];
+        if ([lang isEqualToString:@"zh-Hans"]) {
+            if (textView.text.length != 0) {
+                int a = [textView.text characterAtIndex:textView.text.length - 1];
+                if( a > 0x4e00 && a < 0x9fff) { // PINYIN 手写的时候 才做处理
+                    if (textView.text.length >= limitNumber) {
+                        textView.text = [textView.text substringToIndex:limitNumber];
+                    }
+                }else{
+                    if (textView.text.length >= limitNumber) {
+                        textView.text = [textView.text substringToIndex:limitNumber];
+                    }
+                }
+            }
+        } else {
+            if (textView.text.length >= limitNumber) {
+                textView.text = [textView.text substringToIndex:limitNumber];
+            }
+        }
+    }
+    
     self.placeLabel.alpha=!textView.text.length;
 }
 
@@ -87,12 +112,12 @@
             [self.delegate chatToolSendBtnClickedWithContent:textView.text];
         }
         textView.text=@"";
+        [self textViewDidChange:textView];
         [textView resignFirstResponder];
         return NO;
     }else{
         return YES;
     }
-    
 }
 
 -(UILabel *)placeLabel{
@@ -117,7 +142,7 @@
 }
 
 -(void)updateFrames{
-    static CGFloat orginContentSizeHeight=kChatTextViewInitialHeight;
+    static CGFloat const orginContentSizeHeight=kChatTextViewInitialHeight;
     //NSLog(@"orginContentSizeHeight==%lf,lastContentSizeHeight==%lf",orginContentSizeHeight,self.lastContentSizeHeight);
     CGFloat extraContentHeight=self.textView.contentSize.height-self.lastContentSizeHeight;
     if (extraContentHeight<=5&&extraContentHeight>=-5) {
@@ -160,5 +185,9 @@
 
 +(CGFloat)orginChatToolBarHeight{
     return kChatToolInitialHeight;
+}
+
+-(void)dealloc{
+    [self.textView removeObserver:self forKeyPath:@"contentSize"];
 }
 @end
