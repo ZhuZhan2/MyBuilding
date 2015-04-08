@@ -13,7 +13,7 @@
 @interface RemarkViewController ()
 @property(nonatomic,strong)UILabel *titleLabel;
 @property(nonatomic,strong)UIImageView *cutLine;
-@property(nonatomic,strong)YLLabel *contentLabel;
+@property(nonatomic,strong)UILabel *contentLabel;
 @end
 
 @implementation RemarkViewController
@@ -75,11 +75,15 @@
     return _cutLine;
 }
 
--(YLLabel *)contentLabel{
+-(UILabel *)contentLabel{
     if(!_contentLabel){
-        _contentLabel = [[YLLabel alloc] initWithFrame:CGRectMake(10, 122, 300, 430)];
-        [_contentLabel setText:self.remarkStr];
-        _contentLabel.font = [UIFont systemFontOfSize:15];
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _contentLabel.numberOfLines = 0;
+        CGSize size =CGSizeMake(300,440);
+        CGSize actualsize =[self.remarkStr boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil].size;
+        _contentLabel.text = self.remarkStr;
+        _contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _contentLabel.frame =CGRectMake(10,122, 300, actualsize.height+30);
     }
     return _contentLabel;
 }

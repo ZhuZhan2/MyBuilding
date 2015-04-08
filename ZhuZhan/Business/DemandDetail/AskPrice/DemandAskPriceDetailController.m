@@ -11,9 +11,13 @@
 #import "MJRefresh.h"
 #import "RKImageModel.h"
 #import "WebViewController.h"
-#import "AcceptView.h"
-@interface DemandAskPriceDetailController ()<UIAlertViewDelegate,AcceptViewDelegate>
+#import "UIViewController+MJPopupViewController.h"
+#import "AcceptViewController.h"
+#import "AccpetUserModel.h"
+@interface DemandAskPriceDetailController ()<UIAlertViewDelegate,AcceptViewControllerDelegate>
 @property(nonatomic)int startIndex;
+@property(nonatomic,strong)AcceptViewController* acceptView;
+@property(nonatomic,strong)NSMutableArray *acceptUserArr;
 @end
 
 @implementation DemandAskPriceDetailController
@@ -23,6 +27,15 @@
     self.startIndex = 0;
     [self setupRefresh];
     [self loadList];
+    [self firstNetWork];
+}
+
+-(void)firstNetWork{
+    [AskPriceApi AcceptUsersListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.acceptUserArr = posts;
+        }
+    } tradeId:self.askPriceModel.a_id noNetWork:nil];
 }
 
 -(void)loadList{
@@ -72,29 +85,12 @@
 }
 
 -(void)rightBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
-    NSMutableArray* userNames=[NSMutableArray array];
-    [self.invitedUserArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        QuotesModel* model=self.invitedUserArr[indexPath.row];
-        [userNames addObject:model.a_loginName];
-    }];
-    AcceptView* acceptView=[[AcceptView alloc]initWithUserNames:userNames];
-    acceptView.delegate=self;
-    [self.view.window addSubview:acceptView];
-    
-    return;
-    QuotesDetailModel* dataModel=self.detailModels[indexPath.row];
-    NSMutableDictionary* dic=[@{@"id":dataModel.a_id}mutableCopy];
-    [AskPriceApi AcceptQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"采纳成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
-        }
-    } dic:dic noNetWork:nil];
-    NSLog(@"rightBtnClicked,indexPath==%d",(int)indexPath.row);
+    self.acceptView=[[AcceptViewController alloc]init];
+    self.acceptView.invitedUserArr = self.acceptUserArr;
+    self.acceptView.delegate=self;
+    [self.superViewController presentPopupViewController:self.acceptView animationType:MJPopupViewAnimationFade flag:0];
 }
 
--(void)acceptViewSureBtnClicked:(AcceptView *)acceptView{
-    NSLog(@"ddd");
-}
 
 -(void)closeBtnClicked{
     NSMutableDictionary* dic=[@{@"createdBy":self.quotesModel.a_loginId,
@@ -156,5 +152,26 @@
     WebViewController *view = [[WebViewController alloc] init];
     view.url = imageUrl;
     [self.superViewController.navigationController pushViewController:view animated:YES];
+}
+
+-(void)acceptViewSureBtnClicked:(NSMutableArray *)arr{
+    [self.superViewController dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    NSMutableString *string = [[NSMutableString alloc] init];
+    [arr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [string appendString:[NSString stringWithFormat:@"%@,",obj]];
+    }];
+    if(string.length !=0){
+        NSString *newStr = [string substringWithRange:NSMakeRange(0,string.length-1)];
+        NSMutableDictionary* dic=[@{@"id":newStr,@"bookBuildingId":self.askPriceModel.a_id}mutableCopy];
+        [AskPriceApi AcceptQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"采纳成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
+            }
+        } dic:dic noNetWork:nil];
+    }
+}
+
+-(void)acceptViewCancelBtnClicked{
+    [self.superViewController dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
 @end

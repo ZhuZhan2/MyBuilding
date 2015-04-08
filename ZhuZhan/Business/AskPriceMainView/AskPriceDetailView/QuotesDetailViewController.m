@@ -142,20 +142,11 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     QuotesModel *model = self.invitedUserArr[indexPath.row-3];
     if(indexPath.row == 3){
-        if([self.isQuoted isEqualToString:@"0"]){
-            ProvidePriceInfoController *view = [[ProvidePriceInfoController alloc] init];
-            view.askPriceModel = self.askPriceModel;
-            view.quotesModel = model;
-            view.isFirstQuote=YES;
-            view.delegate=self;
-            [self.navigationController pushViewController:view animated:YES];
-        }else{
-            DemandDetailProvidePriceController *view = [[DemandDetailProvidePriceController alloc] init];
-            view.askPriceModel = self.askPriceModel;
-            view.quotesModel = model;
-            view.delegate = self;
-            [self.navigationController pushViewController:view animated:YES];
-        }
+        DemandDetailProvidePriceController *view = [[DemandDetailProvidePriceController alloc] init];
+        view.askPriceModel = self.askPriceModel;
+        view.quotesModel = model;
+        view.delegate = self;
+        [self.navigationController pushViewController:view animated:YES];
     }
 }
 
