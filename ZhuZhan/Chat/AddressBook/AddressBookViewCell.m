@@ -31,6 +31,13 @@
     return self;
 }
 
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self setUp];
+    }
+    return self;
+}
+
 -(UIImageView *)mainImageView{
     if (!_mainImageView) {
         _mainImageView=[[UIImageView alloc]init];
@@ -86,14 +93,12 @@
     [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:model.mainImageUrl] placeholderImage:[GetImagePath getImagePath:@"35px未设置"]];
     self.mainLabel.text=model.mainLabelText;
     //[self.assistBtn setBackgroundImage:[GetImagePath getImagePath:model.isHighlight?@"已选择联系人":@"未选择联系人"] forState:UIControlStateNormal];
-}
 
--(void)layoutSubviews{
     [self setUpSelectedBackView];
-    self.mainImageView.center=CGPointMake(30, CGRectGetHeight(self.frame)*0.5);
+    self.mainImageView.center=CGPointMake(30, 23.5);
     self.mainLabel.frame=CGRectMake(60, 15, CGRectGetWidth(self.mainLabel.frame), CGRectGetHeight(self.mainLabel.frame));
     //self.assistBtn.center=CGPointMake(290, 25);
-    self.seperatorLine.center=CGPointMake(kScreenWidth-CGRectGetWidth(self.seperatorLine.frame)*0.5, self.frame.size.height);
+    self.seperatorLine.center=CGPointMake(kScreenWidth-CGRectGetWidth(self.seperatorLine.frame)*0.5, 46.5);
 }
 
 //-(void)chooseAssistBtn{
