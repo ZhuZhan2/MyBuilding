@@ -98,7 +98,7 @@
     self.mainImageView.center=CGPointMake(30, 23.5);
     self.mainLabel.frame=CGRectMake(60, 15, CGRectGetWidth(self.mainLabel.frame), CGRectGetHeight(self.mainLabel.frame));
     //self.assistBtn.center=CGPointMake(290, 25);
-    self.seperatorLine.center=CGPointMake(kScreenWidth-CGRectGetWidth(self.seperatorLine.frame)*0.5, 46.5);
+    self.seperatorLine.center=CGPointMake(kScreenWidth-CGRectGetWidth(self.seperatorLine.frame)*0.5, 47);
 }
 
 //-(void)chooseAssistBtn{
