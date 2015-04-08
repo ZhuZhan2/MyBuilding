@@ -12,6 +12,7 @@
 @property(nonatomic,strong)UIImage* image;
 @property(nonatomic,copy)NSString* imageUrl;
 @property(nonatomic,copy)NSString* type;
+@property(nonatomic,copy)NSString* bigImageUrl;
 @property(nonatomic)BOOL isUrl;
 +(RKImageModel*)imageModelWithImage:(UIImage*)image imageUrl:(NSString*)imageUrl isUrl:(BOOL)isUrl type:(NSString *)type;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SWTableViewCell.h"
 @interface AddressBookCellModel : NSObject
 @property(nonatomic,copy)NSString* mainImageUrl;
 @property(nonatomic,copy)NSString* mainLabelText;
@@ -18,7 +18,7 @@
 -(void)chooseAssistBtn:(UIButton*)btn indexPath:(NSIndexPath*)indexPath;
 @end
 
-@interface AddressBookViewCell : UITableViewCell
+@interface AddressBookViewCell : SWTableViewCell
 -(void)setModel:(AddressBookCellModel*)model indexPath:(NSIndexPath*)indexPath;
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier delegate:(id<AddressBookViewCellDelegate>)delegate;
 +(UIView*)fullSeperatorLine;

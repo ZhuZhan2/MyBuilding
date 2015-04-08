@@ -12,7 +12,7 @@
 #import "AddressBookApi.h"
 #import "AddressBookFriendViewController.h"
 #import "AddressBookModel.h"
-@interface AddressBookViewController()<AddressBookViewCellDelegate>
+@interface AddressBookViewController()<AddressBookViewCellDelegate,SWTableViewCellDelegate>
 @property(nonatomic,strong)NSMutableArray *groupArr;
 @property(nonatomic,strong)NSMutableArray *searchDataArr;
 @end
@@ -24,6 +24,19 @@
     [self initNavi];
     [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
     [self initTableView];
+}
+
+- (NSArray *)rightButtons
+{
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:
+     [UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]
+                                                title:@"More"];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:
+     [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
+                                                title:@"Delete"];
+    
+    return rightUtilityButtons;
 }
 
 -(void)firstNetWork{
@@ -114,7 +127,10 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     AddressBookViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
-        cell=[[AddressBookViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell" delegate:self];
+        //cell=[[AddressBookViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell" delegate:self];
+        cell=[[AddressBookViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        [cell setRightUtilityButtons:[self rightButtons] WithButtonWidth:58.0f];
+        cell.delegate = self;
     }
     AddressBookModel *ABmodel = self.groupArr[indexPath.section];
     AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];

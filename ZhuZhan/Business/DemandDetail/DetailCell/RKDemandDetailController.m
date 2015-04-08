@@ -85,6 +85,7 @@
         imageModel.imageUrl =  model.a_location;
         imageModel.isUrl = model.a_isUrl;
         imageModel.type = model.a_extension;
+        imageModel.bigImageUrl = model.a_bigLocation;
         [array1 addObject:imageModel];
     }];
     NSMutableArray *array2 = [[NSMutableArray alloc] init];
@@ -93,6 +94,7 @@
         imageModel.imageUrl =  model.a_location;
         imageModel.isUrl = model.a_isUrl;
         imageModel.type = model.a_extension;
+        imageModel.bigImageUrl = model.a_bigLocation;
         [array2 addObject:imageModel];
     }];
     NSMutableArray *array3 = [[NSMutableArray alloc] init];
@@ -101,6 +103,7 @@
         imageModel.imageUrl =  model.a_location;
         imageModel.isUrl = model.a_isUrl;
         imageModel.type = model.a_extension;
+        imageModel.bigImageUrl = model.a_bigLocation;
         [array3 addObject:imageModel];
     }];
     cellModel.array1=array1;
