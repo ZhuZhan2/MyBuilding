@@ -28,14 +28,7 @@
     if([self.delegate respondsToSelector:@selector(backAndLoad)]){
         [self.delegate backAndLoad];
     }
-    UIViewController* vc;
-    NSInteger index=[self.navigationController.viewControllers indexOfObject:self];
-    if (self.isFirstQuote) {
-        vc=self.navigationController.viewControllers[index-2];
-    }else{
-        vc=self.navigationController.viewControllers[index-1];
-    }
-    [self.navigationController popToViewController:vc animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)backView{

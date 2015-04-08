@@ -102,23 +102,23 @@
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (self.isFirstQuote) {
-        DemandDetailProvidePriceController *view = [[DemandDetailProvidePriceController alloc] init];
-        view.askPriceModel = self.askPriceModel;
-        view.quotesModel = self.quotesModel;
-        view.delegate = self;
-        view.isFirstQuote=self.isFirstQuote;//YES
-        [self.navigationController pushViewController:view animated:YES];
-    }else{
+//    if (self.isFirstQuote) {
+//        DemandDetailProvidePriceController *view = [[DemandDetailProvidePriceController alloc] init];
+//        view.askPriceModel = self.askPriceModel;
+//        view.quotesModel = self.quotesModel;
+//        view.delegate = self;
+//        view.isFirstQuote=self.isFirstQuote;//YES
+//        [self.navigationController pushViewController:view animated:YES];
+//    }else{
         [self.navigationController popViewControllerAnimated:YES];
-    }
+//    }
 }
 
--(void)backAndLoad{
-    if ([self.delegate respondsToSelector:@selector(backAndLoad)]) {
-        [self.delegate backAndLoad];
-    }
-}
+//-(void)backAndLoad{
+//    if ([self.delegate respondsToSelector:@selector(backAndLoad)]) {
+//        [self.delegate backAndLoad];
+//    }
+//}
 
 -(void)secondPostSecondStepWithImages:(NSMutableArray*)images category:(NSString*)category quotesId:(NSString*)quotesId{
     NSMutableDictionary* dic=[@{@"category":category,

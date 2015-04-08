@@ -14,5 +14,5 @@
 
 @interface DemandDetailProvidePriceController : DemanDetailViewController
 @property(nonatomic,weak)id<DemandDetailProvidePriceDelegate>delegate;
-@property(nonatomic)BOOL isFirstQuote;
+//@property(nonatomic)BOOL isFirstQuote;
 @end

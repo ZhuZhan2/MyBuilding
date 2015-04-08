@@ -35,6 +35,8 @@
                         ,self.view.frame.size.width,self.view.frame.size.height-64 ,self.url];
     [self.webView loadHTMLString:content baseURL:nil];
     [self.view addSubview:self.webView];
+    
+    NSLog(@"范俊url==%@",self.url);
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,15 +8,15 @@
 
 #import "ChatBaseViewController.h"
 #import "AskPriceModel.h"
-#import "QuotesModel.h"
-@protocol ProvidePriceInfoControllerDelegate <NSObject>
--(void)backAndLoad;
-@end
+//#import "QuotesModel.h"
+//@protocol ProvidePriceInfoControllerDelegate <NSObject>
+//-(void)backAndLoad;
+//@end
 
 @interface ProvidePriceInfoController : ChatBaseViewController
 @property(nonatomic,strong)AskPriceModel *askPriceModel;
 
-@property(nonatomic,strong)QuotesModel *quotesModel;
-@property(nonatomic)BOOL isFirstQuote;
-@property(nonatomic,weak)id<ProvidePriceInfoControllerDelegate>delegate;
+//@property(nonatomic,strong)QuotesModel *quotesModel;
+//@property(nonatomic)BOOL isFirstQuote;
+//@property(nonatomic,weak)id<ProvidePriceInfoControllerDelegate>delegate;
 @end
