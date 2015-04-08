@@ -57,11 +57,14 @@
 
 -(RKDemandDetailController *)detailController{
     if (!_detailController) {
-        _detailController=[[DemandAskPriceDetailController alloc]init];
-        _detailController.quotesModel = self.quotesModel;
-        _detailController.askPriceModel = self.askPriceModel;
-        _detailController.delegate=self;
-        _detailController.superViewController=self;
+        DemandAskPriceDetailController* detailController=[[DemandAskPriceDetailController alloc]init];
+        detailController.quotesModel = self.quotesModel;
+        detailController.askPriceModel = self.askPriceModel;
+        detailController.delegate=self;
+        detailController.superViewController=self;
+        detailController.invitedUserArr=self.invitedUserArr;
+        
+        _detailController=detailController;
     }
     return _detailController;
 }

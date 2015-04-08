@@ -11,7 +11,8 @@
 #import "MJRefresh.h"
 #import "RKImageModel.h"
 #import "WebViewController.h"
-@interface DemandAskPriceDetailController ()<UIAlertViewDelegate>
+#import "AcceptView.h"
+@interface DemandAskPriceDetailController ()<UIAlertViewDelegate,AcceptViewDelegate>
 @property(nonatomic)int startIndex;
 @end
 
@@ -71,6 +72,16 @@
 }
 
 -(void)rightBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
+    NSMutableArray* userNames=[NSMutableArray array];
+    [self.invitedUserArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        QuotesModel* model=self.invitedUserArr[indexPath.row];
+        [userNames addObject:model.a_loginName];
+    }];
+    AcceptView* acceptView=[[AcceptView alloc]initWithUserNames:userNames];
+    acceptView.delegate=self;
+    [self.view.window addSubview:acceptView];
+    
+    return;
     QuotesDetailModel* dataModel=self.detailModels[indexPath.row];
     NSMutableDictionary* dic=[@{@"id":dataModel.a_id}mutableCopy];
     [AskPriceApi AcceptQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -79,6 +90,10 @@
         }
     } dic:dic noNetWork:nil];
     NSLog(@"rightBtnClicked,indexPath==%d",(int)indexPath.row);
+}
+
+-(void)acceptViewSureBtnClicked:(AcceptView *)acceptView{
+    NSLog(@"ddd");
 }
 
 -(void)closeBtnClicked{

@@ -9,5 +9,5 @@
 #import "ChatBaseViewController.h"
 
 @interface AskPriceViewController : ChatBaseViewController
-@property(nonatomic,strong)NSString *otherStr;
+-(instancetype)initWithOtherStr:(NSString*)otherStr;
 @end

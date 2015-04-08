@@ -822,6 +822,7 @@
 		5BA181A71A76170500191D31 /* Shadow-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA181A51A76170500191D31 /* Shadow-top@2x.png */; };
 		5BA523221AAEEB9D00F44223 /* 多人会话.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA523201AAEEB9D00F44223 /* 多人会话.png */; };
 		5BA523231AAEEB9D00F44223 /* 多人会话@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA523211AAEEB9D00F44223 /* 多人会话@2x.png */; };
+		5BA5BBDD1AD3B8A1004829AF /* AcceptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA5BBDC1AD3B8A1004829AF /* AcceptView.m */; };
 		5BA8EACD1AA5501300996281 /* ActivePublishController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA8EACC1AA5501300996281 /* ActivePublishController.m */; };
 		5BA938A61A4935FF00BB8A96 /* 密码找回_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA938A41A4935FF00BB8A96 /* 密码找回_03.png */; };
 		5BA938A71A4935FF00BB8A96 /* 密码找回_03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA938A51A4935FF00BB8A96 /* 密码找回_03@2x.png */; };
@@ -2712,6 +2713,8 @@
 		5BA181A51A76170500191D31 /* Shadow-top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shadow-top@2x.png"; sourceTree = "<group>"; };
 		5BA523201AAEEB9D00F44223 /* 多人会话.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "多人会话.png"; sourceTree = "<group>"; };
 		5BA523211AAEEB9D00F44223 /* 多人会话@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "多人会话@2x.png"; sourceTree = "<group>"; };
+		5BA5BBDB1AD3B8A1004829AF /* AcceptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptView.h; sourceTree = "<group>"; };
+		5BA5BBDC1AD3B8A1004829AF /* AcceptView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptView.m; sourceTree = "<group>"; };
 		5BA8EACB1AA5501300996281 /* ActivePublishController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivePublishController.h; sourceTree = "<group>"; };
 		5BA8EACC1AA5501300996281 /* ActivePublishController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivePublishController.m; sourceTree = "<group>"; };
 		5BA938A41A4935FF00BB8A96 /* 密码找回_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码找回_03.png"; sourceTree = "<group>"; };
@@ -5164,6 +5167,8 @@
 				5B5773DE1AC1335C00C17DBF /* DemandAskPriceDetailController.m */,
 				5B5773E01AC1338000C17DBF /* DemandAskPriceChatController.h */,
 				5B5773E11AC1338000C17DBF /* DemandAskPriceChatController.m */,
+				5BA5BBDB1AD3B8A1004829AF /* AcceptView.h */,
+				5BA5BBDC1AD3B8A1004829AF /* AcceptView.m */,
 			);
 			path = AskPrice;
 			sourceTree = "<group>";
@@ -8077,6 +8082,7 @@
 				5B7E59221ABC33E70063B400 /* RKPointKit.m in Sources */,
 				04BF13B519C4162A002E02C9 /* ProjectApi.m in Sources */,
 				04D10BEA19AE016A0097C0C6 /* PublishViewController.m in Sources */,
+				5BA5BBDD1AD3B8A1004829AF /* AcceptView.m in Sources */,
 				5B51212F1A0781F900A77997 /* MapContentView.m in Sources */,
 				042D9E1319B559FC00689C5D /* MyFactory.m in Sources */,
 				D3AD60A119AC574A001FD483 /* networkConnect.m in Sources */,
