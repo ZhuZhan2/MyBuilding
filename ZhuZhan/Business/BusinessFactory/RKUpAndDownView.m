@@ -85,7 +85,6 @@
     [self addSubview:self.upLabel];
     [self addSubview:self.downTextView];
 
-    
     CGFloat height=self.topDistance;
     
     CGSize size=[self carculateSizeWithLabel:self.upLabel];
@@ -186,6 +185,7 @@
             }
         }
     }
+    
     self.placeLabel.alpha=!textView.text.length;
 }
 @end

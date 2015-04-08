@@ -16,6 +16,7 @@
 @interface ChatToolBar : UIView
 @property(nonatomic,readonly,copy)NSString* text;
 @property(nonatomic,weak)id<ChatToolBarDelegate>delegate;
+@property(nonatomic)NSInteger maxTextCount;
 +(ChatToolBar*)chatToolBar;
 +(CGFloat)orginChatToolBarHeight;
 @end

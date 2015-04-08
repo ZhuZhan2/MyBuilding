@@ -87,29 +87,31 @@
 }
 
 -(void)textViewDidChange:(UITextView *)textView{
+    NSInteger limitNumber=strCount;
     NSArray *array = [UITextInputMode activeInputModes];
     if (array.count > 0) {
         UITextInputMode *textInputMode = [array firstObject];
         NSString *lang = [textInputMode primaryLanguage];
         if ([lang isEqualToString:@"zh-Hans"]) {
-            if (self.textView.text.length != 0) {
-                int a = [self.textView.text characterAtIndex:self.textView.text.length - 1];
+            if (textView.text.length != 0) {
+                int a = [textView.text characterAtIndex:textView.text.length - 1];
                 if( a > 0x4e00 && a < 0x9fff) { // PINYIN 手写的时候 才做处理
-                    if (self.textView.text.length >= strCount) {
-                        self.textView.text = [self.textView.text substringToIndex:strCount];
+                    if (textView.text.length >= limitNumber) {
+                        textView.text = [textView.text substringToIndex:limitNumber];
                     }
                 }else{
-                    if (self.textView.text.length >= strCount) {
-                        self.textView.text = [self.textView.text substringToIndex:strCount];
+                    if (textView.text.length >= limitNumber) {
+                        textView.text = [textView.text substringToIndex:limitNumber];
                     }
                 }
             }
         } else {
-            if (self.textView.text.length >= strCount) {
-                self.textView.text = [self.textView.text substringToIndex:strCount];
+            if (textView.text.length >= limitNumber) {
+                textView.text = [textView.text substringToIndex:limitNumber];
             }
         }
     }
+
     NSLog(@"%lu",(unsigned long)self.textView.text.length);
     self.placeLabel.alpha=!textView.text.length;
 }
