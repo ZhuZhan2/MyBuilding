@@ -127,7 +127,8 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     AddressBookViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
-        cell=[[AddressBookViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell" delegate:self];
+        //cell=[[AddressBookViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell" delegate:self];
+        cell=[[AddressBookViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         [cell setRightUtilityButtons:[self rightButtons] WithButtonWidth:58.0f];
         cell.delegate = self;
     }
