@@ -25,7 +25,6 @@
 @property(nonatomic,strong)NSString *otherStr;
 @property(nonatomic,strong)NSString *statusStr;
 @property(nonatomic,strong)NSMutableArray *showArr;
-@property (nonatomic)NSInteger nowStage;
 @property(nonatomic)int startIndex;
 @end
 
@@ -59,15 +58,13 @@
 }
 
 -(NSString*)getTitle{
-    NSString* title;
-    if([self.otherStr isEqualToString:@"1"]){
-        title=@"报价需求列表";
-    }else if ([self.otherStr isEqualToString:@"0"]){
-        title=@"询价需求列表";
-    }else if ([self.otherStr isEqualToString:@"-1"]){
-        title=@"全部需求列表";
-    }
+    NSInteger index=[self getNowIndex];
+    NSString* title=@[@"全部需求列表",@"报价需求列表",@"询价需求列表"][index];
     return title;
+}
+
+-(NSInteger)getNowIndex{
+   return [@[@"-1",@"1",@"0"] indexOfObject:self.otherStr];
 }
 
 -(NSString *)statusStr{
@@ -127,21 +124,15 @@
 }
 
 -(void)selectDemandStage{
-    DemandStageChooseController* vc=[[DemandStageChooseController alloc]initWithIndex:self.nowStage stageNames:@[@"全部需求列表",@"报价需求列表",@"询价需求列表"]];
+    NSInteger index=[self getNowIndex];
+    DemandStageChooseController* vc=[[DemandStageChooseController alloc]initWithIndex:index stageNames:@[@"全部需求列表",@"报价需求列表",@"询价需求列表"]];
     vc.delegate=self;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)finishSelectedWithStageName:(NSString *)stageName index:(int)index{
-    self.nowStage=index;
     [self initTitleViewWithTitle:stageName];
-    if(index == 1){
-        self.otherStr = @"1";
-    }else if (index == 2){
-        self.otherStr = @"0";
-    }else{
-        self.otherStr = @"-1";
-    }
+    self.otherStr=@[@"-1",@"1",@"0"][index];
     [self stageBtnClickedWithNumber:self.stageChooseView.nowStageNumber];
 }
 
@@ -189,17 +180,8 @@
 }
 
 -(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{
-
-    NSLog(@"=====> %ld",(long)stageNumber);
-    if(stageNumber == 0){
-        self.statusStr = @"";
-    }else if (stageNumber == 1){
-        self.statusStr = @"0";
-    }else if (stageNumber == 2){
-        self.statusStr = @"1";
-    }else{
-        self.statusStr = @"2";
-    }
+    NSArray* stages=@[@"",@"0",@"1",@"2"];
+    self.statusStr=stages[stageNumber];
     [self loadList];
 }
 
