@@ -19,9 +19,15 @@
     // Do any additional setup after loading the view.
     self.webView = [[UIWebView alloc] initWithFrame:self.view.frame];
     self.webView.delegate =self;
-    NSLog(@"%@",self.url);
-    NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.url]];
-    [self.webView loadRequest:request];
+    NSString *content =[NSString stringWithFormat:
+                        @"<html>"
+                        "<body style='margin:0;display:table-cell; height:568px' >"
+                        "<img src=%@ style='max-width:320px;vertical-align: middle;text-align: center'>"
+                        "</img>"
+                        "</body>"
+                        "</html>"
+                        , self.url];
+    [self.webView loadHTMLString:content baseURL:nil];
     [self.view addSubview:self.webView];
 }
 

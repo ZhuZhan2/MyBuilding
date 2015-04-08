@@ -21,7 +21,7 @@
     }
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:view.bounds];
     if (model.isUrl) {
-        [imageView sd_setImageWithURL:[NSURL URLWithString:model.imageUrl] placeholderImage:image];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:model.bigImageUrl] placeholderImage:image];
     }else{
         imageView.image=model.image;
     }
@@ -42,7 +42,7 @@
 
 -(void)btnAction{
     if([self.delegate respondsToSelector:@selector(imageClick:)]){
-        [self.delegate imageClick:self.model.imageUrl];
+        [self.delegate imageClick:self.model.bigImageUrl];
     }
 }
 @end

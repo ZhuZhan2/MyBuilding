@@ -16,6 +16,7 @@
 @property(nonatomic,strong)NSString *statusStr;
 @property(nonatomic,strong)NSString *otherStr;
 @property(nonatomic,strong)NSMutableArray* models;
+@property(nonatomic,strong)NSString *keyWords;
 @property (nonatomic)NSInteger startIndex;
 @end
 
@@ -50,6 +51,7 @@
 }
 
 -(void)searchListWithKeyword:(NSString*)keyword{
+    self.keyWords = keyword;
     [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.models = posts[0];
@@ -69,7 +71,7 @@
             [self.searchBarTableView reloadData];
         }
         [self.searchBarTableView headerEndRefreshing];
-    } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:@"" noNetWork:nil];
+    } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:self.keyWords noNetWork:nil];
 }
 
 - (void)footerRereshing
@@ -82,7 +84,7 @@
             [self.searchBarTableView reloadData];
         }
         [self.searchBarTableView footerEndRefreshing];
-    } status:self.statusStr startIndex:(int)self.startIndex+1 other:self.otherStr keyWorks:@"" noNetWork:nil];
+    } status:self.statusStr startIndex:(int)self.startIndex+1 other:self.otherStr keyWorks:self.keyWords noNetWork:nil];
 }
 
 -(NSInteger)searchBarNumberOfSectionsInTableView:(UITableView *)tableView{

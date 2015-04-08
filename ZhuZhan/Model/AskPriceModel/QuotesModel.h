@@ -58,6 +58,7 @@
 @property(nonatomic,strong)NSString *a_createdBy;
 @property(nonatomic,strong)NSString *a_category;
 @property(nonatomic,strong)NSString *a_location;
+@property(nonatomic,strong)NSString *a_bigLocation;
 @property(nonatomic,strong)NSString *a_name;
 @property(nonatomic,strong)NSString *a_quotesId;
 @property(nonatomic,strong)NSString *a_tradeCode;
