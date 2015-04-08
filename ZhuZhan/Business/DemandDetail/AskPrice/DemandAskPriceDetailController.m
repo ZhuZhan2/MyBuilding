@@ -72,18 +72,21 @@
 }
 
 -(void)rightBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
-    NSMutableArray* userNames=[NSMutableArray array];
-    [self.invitedUserArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        QuotesModel* model=self.invitedUserArr[indexPath.row];
-        [userNames addObject:model.a_loginName];
-    }];
-    AcceptView* acceptView=[[AcceptView alloc]initWithUserNames:userNames];
-    acceptView.delegate=self;
-    [self.view.window addSubview:acceptView];
-    
-    return;
+//    NSMutableArray* userNames=[NSMutableArray array];
+//    [self.invitedUserArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//        QuotesModel* model=self.invitedUserArr[indexPath.row];
+//        [userNames addObject:model.a_loginName];
+//    }];
+//    AcceptView* acceptView=[[AcceptView alloc]initWithUserNames:userNames];
+//    acceptView.delegate=self;
+//    [self.view.window addSubview:acceptView];
+//    
+//    return;
+    NSString* a_id=@"95ea8d56-d642-47f9-abda-04626808552e,a70f2c3c-79fd-4546-ac3d-fe8d0dc34b57";
     QuotesDetailModel* dataModel=self.detailModels[indexPath.row];
-    NSMutableDictionary* dic=[@{@"id":dataModel.a_id}mutableCopy];
+//    NSMutableDictionary* dic=[@{@"id":dataModel.a_id}mutableCopy];
+    NSMutableDictionary* dic=[@{@"id":a_id}mutableCopy];
+    NSLog(@"ID===%@",a_id);
     [AskPriceApi AcceptQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"采纳成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
