@@ -16,9 +16,9 @@
     RKSingleImageView* view=[[RKSingleImageView alloc]initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     view.model = model;
     UIImage *image;
-    if([model.type isEqualToString:@"xlsx"]){
+    if([[model.type substringToIndex:2] isEqualToString:@"xl"]){
         image = [GetImagePath getImagePath:@"xlsx"];
-    }else if ([model.type isEqualToString:@"docx"]){
+    }else if ([[model.type substringToIndex:2] isEqualToString:@"do"]){
         image = [GetImagePath getImagePath:@"word"];
     }else{
         image = [GetImagePath getImagePath:@"人脉_06a2"];
@@ -32,7 +32,7 @@
     }
     [view addSubview:imageView];
     
-    if ([model.type isEqualToString:@"xlsx"]||[model.type isEqualToString:@"docx"]) {
+    if ([[model.type substringToIndex:2] isEqualToString:@"xl"]||[[model.type substringToIndex:2] isEqualToString:@"do"]) {
         view.fileNameLabel.text=model.name;
         [view addSubview:view.fileNameLabel];
     }

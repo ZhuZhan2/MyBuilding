@@ -28,6 +28,7 @@
     
     self.webView = [[UIWebView alloc] initWithFrame:self.view.frame];
     self.webView.delegate =self;
+    self.webView.scrollView.bounces=NO;
     if([self.type isEqualToString:@"docx"]||[self.type isEqualToString:@"xlsx"]){
         self.webView.scalesPageToFit=YES;
         [self down];
@@ -51,8 +52,8 @@
 }
 
 -(void)back{
-    NSFileManager *fileManage = [NSFileManager defaultManager];
-    [fileManage removeItemAtURL:self.path error:nil];
+//    NSFileManager *fileManage = [NSFileManager defaultManager];
+//    [fileManage removeItemAtURL:self.path error:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -74,16 +75,39 @@
 
 
 -(void)down{
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+//    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+//    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]];
+//    NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+//        NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+//        return [documentsDirectoryURL URLByAppendingPathComponent:self.name];
+//    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+//        NSURLRequest *request = [NSURLRequest requestWithURL:filePath];
+//        self.path = filePath;
+//        [self.webView loadRequest:request];
+//    }];
+//    [downloadTask resume];
+    
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]];
-   NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-       NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-       return [documentsDirectoryURL URLByAppendingPathComponent:self.name];
-   } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-       NSURLRequest *request = [NSURLRequest requestWithURL:filePath];
-       self.path = filePath;
-       [self.webView loadRequest:request];
-   }];
-    [downloadTask resume];
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        } else {
+            if([self.type isEqualToString:@"docx"]){
+                [self.webView loadData:(NSData *)responseObject MIMEType:@"application/vnd.openxmlformats-officedocument.wordprocessingml.document" textEncodingName:@"UTF-8" baseURL:nil];
+            }else if([self.type isEqualToString:@"xlsx"]){
+                [self.webView loadData:(NSData *)responseObject MIMEType:@"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" textEncodingName:@"UTF-8" baseURL:nil];
+            }else if([self.type isEqualToString:@"xls"]){
+                [self.webView loadData:(NSData *)responseObject MIMEType:@"application/vnd.ms-excel	application/x-excel" textEncodingName:@"UTF-8" baseURL:nil];
+            }else if ([self.type isEqualToString:@"doc"]){
+                [self.webView loadData:(NSData *)responseObject MIMEType:@"application/msword" textEncodingName:@"UTF-8" baseURL:nil];
+            }
+        }
+    }];
+    [dataTask resume];
+
 }
 @end
