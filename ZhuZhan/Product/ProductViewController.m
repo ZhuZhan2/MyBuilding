@@ -155,8 +155,11 @@
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }else{
-        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"发布产品" otherButtonTitles:@"发布询价", nil];
-        [actionSheet showInView:self.view];
+        if (![ConnectionAvailable isConnectionAvailable]) {
+            [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+            return;
+        }
+        [self gotoProductPublishController];
     }
 }
 
@@ -169,22 +172,6 @@
 -(void)gotoAskPriceMainView{
     AskPriceMainViewController *vc = [[AskPriceMainViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
-        return;
-    }
-    switch (buttonIndex)
-    {
-        case 0:  //发产品
-            [self gotoProductPublishController];
-            break;
-        case 1:  //打开本地相册
-            [self gotoAskPriceMainView];
-            break;
-    }
 }
 
 //=====================================================================

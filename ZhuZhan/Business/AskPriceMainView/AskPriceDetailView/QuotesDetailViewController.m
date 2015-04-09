@@ -140,8 +140,8 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    QuotesModel *model = self.invitedUserArr[indexPath.row-3];
     if(indexPath.row == 3){
+        QuotesModel *model = self.invitedUserArr[indexPath.row-3];
         DemandDetailProvidePriceController *view = [[DemandDetailProvidePriceController alloc] init];
         view.askPriceModel = self.askPriceModel;
         view.quotesModel = model;

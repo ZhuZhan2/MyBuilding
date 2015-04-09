@@ -10,7 +10,7 @@
 
 @protocol RKMuchImageViewsDelegate <NSObject>
 
--(void)imageCilckWithRKMuchImageViews:(NSString *)imageUrl;
+-(void)imageCilckWithRKMuchImageViews:(NSString *)imageUrl type:(NSString *)type;
 
 @end
 

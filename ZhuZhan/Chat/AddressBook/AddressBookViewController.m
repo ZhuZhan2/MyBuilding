@@ -12,6 +12,7 @@
 #import "AddressBookApi.h"
 #import "AddressBookFriendViewController.h"
 #import "AddressBookModel.h"
+#import "AddressBookSearchBarCell.h"
 @interface AddressBookViewController()<AddressBookViewCellDelegate,SWTableViewCellDelegate>
 @property(nonatomic,strong)NSMutableArray *groupArr;
 @property(nonatomic,strong)NSMutableArray *searchDataArr;
@@ -31,10 +32,10 @@
     NSMutableArray *rightUtilityButtons = [NSMutableArray new];
     [rightUtilityButtons sw_addUtilityButtonWithColor:
      [UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]
-                                                title:@"More"];
+                                                title:@"更多"];
     [rightUtilityButtons sw_addUtilityButtonWithColor:
      [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
-                                                title:@"Delete"];
+                                                title:@"删除"];
     
     return rightUtilityButtons;
 }
@@ -157,13 +158,15 @@
 }
 
 -(UITableViewCell *)searchBarTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    SearchBarCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
+    AddressBookSearchBarCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
-        cell=[[SearchBarCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell=[[AddressBookSearchBarCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        [cell setRightUtilityButtons:[self rightButtons] WithButtonWidth:58.0f];
+        cell.delegate = self;
     }
     AddressBookModel *ABmodel = self.searchDataArr[indexPath.section];
     AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];
-    SearchBarCellModel* model=[[SearchBarCellModel alloc]init];
+    AddressBookSearchBarCellModel* model=[[AddressBookSearchBarCellModel alloc]init];
     model.mainLabelText=contactModel.a_loginName;
     model.mainImageUrl = contactModel.a_avatarUrl;
     model.isHighlight=arc4random()%2;
@@ -235,4 +238,42 @@
         }
     }keywords:keyWords noNetWork:nil];
 }
+
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
+{
+    switch (index) {
+        case 0:
+        {
+            NSLog(@"More button was pressed");
+            UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello" message:@"More more more" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles: nil];
+            [alertTest show];
+
+            [cell hideUtilityButtonsAnimated:YES];
+            break;
+        }
+        case 1:
+        {
+            // Delete button was pressed
+            if([cell isKindOfClass:[AddressBookSearchBarCell class]]){
+                NSIndexPath *cellIndexPath = [self.searchBarTableView indexPathForCell:cell];
+                NSLog(@"%ld",(long)cellIndexPath.section);
+                AddressBookModel *ABmodel = self.searchDataArr[cellIndexPath.section];
+                NSArray *indexPaths = [NSArray arrayWithObject:cellIndexPath];
+                [ABmodel.contactArr removeObjectAtIndex:cellIndexPath.row];
+                [self.searchBarTableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            }else{
+                NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
+                NSLog(@"%ld",(long)cellIndexPath.section);
+                AddressBookModel *ABmodel = self.groupArr[cellIndexPath.section];
+                NSArray *indexPaths = [NSArray arrayWithObject:cellIndexPath];
+                [ABmodel.contactArr removeObjectAtIndex:cellIndexPath.row];
+                [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            };
+            break;
+        }
+        default:
+            break;
+    }
+}
+
 @end

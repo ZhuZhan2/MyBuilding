@@ -41,8 +41,8 @@
 }
 
 -(void)btnAction{
-    if([self.delegate respondsToSelector:@selector(imageClick:)]){
-        [self.delegate imageClick:self.model.bigImageUrl];
+    if([self.delegate respondsToSelector:@selector(imageClick:type:)]){
+        [self.delegate imageClick:self.model.bigImageUrl type:self.model.type];
     }
 }
 @end

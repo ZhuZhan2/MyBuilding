@@ -29,4 +29,7 @@
 
 //修改联系人备注
 + (NSURLSessionDataTask *)UpdateNickNameWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
+
+//删除好友
++ (NSURLSessionDataTask *)DeleteContactsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 @end
