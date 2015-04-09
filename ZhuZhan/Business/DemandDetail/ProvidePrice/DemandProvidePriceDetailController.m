@@ -132,9 +132,11 @@
     } providerId:[LoginSqlite getdata:@"userId"] tradeCode:self.askPriceModel.a_tradeCode startIndex:self.startIndex+1 noNetWork:nil];
 }
 
--(void)imageCilckWithDemandDetailViewCell:(NSString *)imageUrl{
+-(void)imageCilckWithDemandDetailViewCell:(RKImageModel *)model{
     WebViewController *view = [[WebViewController alloc] init];
-    view.url = imageUrl;
+    view.url = model.imageUrl;
+    view.type = model.type;
+    view.name = model.name;
     [self.superViewController.navigationController pushViewController:view animated:YES];
 }
 @end

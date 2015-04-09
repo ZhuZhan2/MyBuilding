@@ -24,7 +24,7 @@
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     
-    NSLog(@"%@",self.type);
+    NSLog(@"%@",self.name);
     
     self.webView = [[UIWebView alloc] initWithFrame:self.view.frame];
     self.webView.delegate =self;
@@ -43,8 +43,6 @@
         [self.webView loadHTMLString:content baseURL:nil];
     }
     [self.view addSubview:self.webView];
-    
-    NSLog(@"范俊url==%@",self.url);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,18 +78,12 @@
     NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]];
    NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
        NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-       return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
+       return [documentsDirectoryURL URLByAppendingPathComponent:self.name];
    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
        NSURLRequest *request = [NSURLRequest requestWithURL:filePath];
        self.path = filePath;
        [self.webView loadRequest:request];
    }];
     [downloadTask resume];
-}
-
--(void)webViewDidFinishLoad:(UIWebView *)webView{
-    NSLog(@"%@",[NSString stringWithFormat:@"%@",self.path]);
-    //NSFileManager *fileManage = [NSFileManager defaultManager];
-    //[fileManage removeItemAtURL:self.path error:nil];
 }
 @end

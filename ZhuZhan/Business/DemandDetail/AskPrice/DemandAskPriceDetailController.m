@@ -148,10 +148,11 @@
     } providerId:self.quotesModel.a_loginId tradeCode:self.askPriceModel.a_tradeCode startIndex:self.startIndex+1 noNetWork:nil];
 }
 
--(void)imageCilckWithDemandDetailViewCell:(NSString *)imageUrl type:(NSString *)type{
+-(void)imageCilckWithDemandDetailViewCell:(RKImageModel *)model{
     WebViewController *view = [[WebViewController alloc] init];
-    view.url = imageUrl;
-    view.type = type;
+    view.url = model.imageUrl;
+    view.type = model.type;
+    view.name = model.name;
     [self.superViewController.navigationController pushViewController:view animated:YES];
 }
 

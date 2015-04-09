@@ -327,9 +327,9 @@
     return [text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
 }
 
--(void)imageCilckWithRKMuchImageViews:(NSString *)imageUrl type:(NSString *)type{
-    if ([self.delegate respondsToSelector:@selector(imageCilckWithDemandDetailViewCell:type:)]) {
-        [self.delegate imageCilckWithDemandDetailViewCell:imageUrl type:type];
+-(void)imageCilckWithRKMuchImageViews:(RKImageModel *)model{
+    if ([self.delegate respondsToSelector:@selector(imageCilckWithDemandDetailViewCell:)]) {
+        [self.delegate imageCilckWithDemandDetailViewCell:model];
     }
 }
 @end
