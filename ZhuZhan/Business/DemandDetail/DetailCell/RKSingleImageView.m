@@ -26,7 +26,7 @@
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:view.bounds];
     if (model.isUrl) {
-        [imageView sd_setImageWithURL:[NSURL URLWithString:model.bigImageUrl] placeholderImage:image];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:model.imageUrl] placeholderImage:image];
     }else{
         imageView.image=model.image;
     }
