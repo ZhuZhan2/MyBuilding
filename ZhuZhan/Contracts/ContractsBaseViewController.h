@@ -7,9 +7,7 @@
 //
 
 #import "ChatBaseViewController.h"
-#import "RKMuchBtns.h"
 
 @interface ContractsBaseViewController : ChatBaseViewController
 
-@property (nonatomic, strong)RKMuchBtns* muchBtns;
 @end

@@ -263,8 +263,8 @@
     self.cameraControl=[RKCamera cameraWithType:!buttonIndex allowEdit:YES deleate:self presentViewController:self.view.window.rootViewController demandSize:CGSizeZero];
 }
 
--(void)cameraWillFinishWithImage:(UIImage *)image isCancel:(BOOL)isCancel{
-    if (!isCancel) self.cameraImage=image;
+-(void)cameraWillFinishWithLowQualityImage:(UIImage *)lowQualityimage originQualityImage:(UIImage *)originQualityImage isCancel:(BOOL)isCancel{
+    if (!isCancel) self.cameraImage=originQualityImage;
     [self.lastResponder becomeFirstResponder];
 }
 

@@ -16,6 +16,7 @@
 #import "ChatListViewController.h"
 #import "RecommendListViewController.h"
 #import "RemindListViewController.h"
+#import "ConstractListController.h"
 #import "ContractsBaseViewController.h"
 #import "AskPriceMainViewController.h"
 #define contentHeight (kScreenHeight==480?431:519)
@@ -160,7 +161,6 @@
     [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
     menu.hidden=NO;
     toolView.hidden=NO;
-
 }
 
 -(void)BtnClick:(UIButton *)button{
