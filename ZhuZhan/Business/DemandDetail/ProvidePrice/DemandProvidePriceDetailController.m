@@ -68,11 +68,9 @@
     if ([self.delegate respondsToSelector:@selector(demandDetailControllerLeftBtnClicked)]) {
         [self.delegate demandDetailControllerLeftBtnClicked];
     }
-    NSLog(@"leftBtnClicked,indexPath==%d",(int)indexPath.row);
 }
 
 -(void)rightBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"rightBtnClicked,indexPath==%d",(int)indexPath.row);
     ProvidePriceInfoController* vc=[[ProvidePriceInfoController alloc]init];
     vc.askPriceModel = self.askPriceModel;
     [self.superViewController.navigationController pushViewController:vc animated:YES];
@@ -134,9 +132,11 @@
     } providerId:[LoginSqlite getdata:@"userId"] tradeCode:self.askPriceModel.a_tradeCode startIndex:self.startIndex+1 noNetWork:nil];
 }
 
--(void)imageCilckWithDemandDetailViewCell:(NSString *)imageUrl{
+-(void)imageCilckWithDemandDetailViewCell:(RKImageModel *)model{
     WebViewController *view = [[WebViewController alloc] init];
-    view.url = imageUrl;
+    view.url = model.imageUrl;
+    view.type = model.type;
+    view.name = model.name;
     [self.superViewController.navigationController pushViewController:view animated:YES];
 }
 @end

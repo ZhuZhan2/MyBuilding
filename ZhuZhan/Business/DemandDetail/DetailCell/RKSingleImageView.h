@@ -10,7 +10,7 @@
 #import "RKImageModel.h"
 
 @protocol RKSingleImageDelegate <NSObject>
--(void)imageClick:(NSString *)imageUrl;
+-(void)imageClick:(RKImageModel *)model;
 @end
 
 @interface RKSingleImageView : UIView

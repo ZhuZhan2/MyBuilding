@@ -1352,6 +1352,9 @@
 		D3D6C7921A15D73F001D2071 /* 公司－公司详情_05c@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6C7901A15D73F001D2071 /* 公司－公司详情_05c@2x.png */; };
 		D3D6C7951A15D75D001D2071 /* 公司－公司详情_05d.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6C7931A15D75D001D2071 /* 公司－公司详情_05d.png */; };
 		D3D6C7961A15D75D001D2071 /* 公司－公司详情_05d@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6C7941A15D75D001D2071 /* 公司－公司详情_05d@2x.png */; };
+		D3D710331AD4EC5400E43124 /* AcceptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D710321AD4EC5400E43124 /* AcceptViewController.m */; };
+		D3D710391AD505CB00E43124 /* AccpetUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D710381AD505CB00E43124 /* AccpetUserModel.m */; };
+		D3D7103C1AD54A9C00E43124 /* AddressBookSearchBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7103B1AD54A9C00E43124 /* AddressBookSearchBarCell.m */; };
 		D3D74E8319FA2FEC00ED8B62 /* 登录_14.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D74E7B19FA2FEC00ED8B62 /* 登录_14.png */; };
 		D3D74E8419FA2FEC00ED8B62 /* 登录_14@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D74E7C19FA2FEC00ED8B62 /* 登录_14@2x.png */; };
 		D3D74E8519FA2FEC00ED8B62 /* 登录_19.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D74E7D19FA2FEC00ED8B62 /* 登录_19.png */; };
@@ -3365,6 +3368,12 @@
 		D3D6C7901A15D73F001D2071 /* 公司－公司详情_05c@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－公司详情_05c@2x.png"; sourceTree = "<group>"; };
 		D3D6C7931A15D75D001D2071 /* 公司－公司详情_05d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－公司详情_05d.png"; sourceTree = "<group>"; };
 		D3D6C7941A15D75D001D2071 /* 公司－公司详情_05d@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－公司详情_05d@2x.png"; sourceTree = "<group>"; };
+		D3D710311AD4EC5400E43124 /* AcceptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptViewController.h; sourceTree = "<group>"; };
+		D3D710321AD4EC5400E43124 /* AcceptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptViewController.m; sourceTree = "<group>"; };
+		D3D710371AD505CB00E43124 /* AccpetUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccpetUserModel.h; sourceTree = "<group>"; };
+		D3D710381AD505CB00E43124 /* AccpetUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccpetUserModel.m; sourceTree = "<group>"; };
+		D3D7103A1AD54A9C00E43124 /* AddressBookSearchBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookSearchBarCell.h; sourceTree = "<group>"; };
+		D3D7103B1AD54A9C00E43124 /* AddressBookSearchBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookSearchBarCell.m; sourceTree = "<group>"; };
 		D3D74E7B19FA2FEC00ED8B62 /* 登录_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "登录_14.png"; sourceTree = "<group>"; };
 		D3D74E7C19FA2FEC00ED8B62 /* 登录_14@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "登录_14@2x.png"; sourceTree = "<group>"; };
 		D3D74E7D19FA2FEC00ED8B62 /* 登录_19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "登录_19.png"; sourceTree = "<group>"; };
@@ -5174,6 +5183,8 @@
 				5B5773E11AC1338000C17DBF /* DemandAskPriceChatController.m */,
 				5BA5BBDB1AD3B8A1004829AF /* AcceptView.h */,
 				5BA5BBDC1AD3B8A1004829AF /* AcceptView.m */,
+				D3D710311AD4EC5400E43124 /* AcceptViewController.h */,
+				D3D710321AD4EC5400E43124 /* AcceptViewController.m */,
 			);
 			path = AskPrice;
 			sourceTree = "<group>";
@@ -5495,6 +5506,8 @@
 				5B95ADEE1AB1B35B00797EA6 /* AddressBookViewController.m */,
 				5B95ADF01AB1B37E00797EA6 /* AddressBookViewCell.h */,
 				5B95ADF11AB1B37E00797EA6 /* AddressBookViewCell.m */,
+				D3D7103A1AD54A9C00E43124 /* AddressBookSearchBarCell.h */,
+				D3D7103B1AD54A9C00E43124 /* AddressBookSearchBarCell.m */,
 			);
 			path = AddressBook;
 			sourceTree = "<group>";
@@ -6526,6 +6539,8 @@
 				D3376CFD1AC25D6100738B5F /* CategoryModel.m */,
 				D3929F3C1AC538740017E93D /* AskPriceComment.h */,
 				D3929F3D1AC538740017E93D /* AskPriceComment.m */,
+				D3D710371AD505CB00E43124 /* AccpetUserModel.h */,
+				D3D710381AD505CB00E43124 /* AccpetUserModel.m */,
 			);
 			path = AskPriceModel;
 			sourceTree = "<group>";
@@ -7733,6 +7748,7 @@
 				0426C2CA19922D5A00CD8822 /* GPUImageTiltShiftFilter.m in Sources */,
 				5BE08ED61A35900000495EEB /* ThirdAnimationView.m in Sources */,
 				D374BCAD1AC8F84A002A7D58 /* OtherView.m in Sources */,
+				D3D7103C1AD54A9C00E43124 /* AddressBookSearchBarCell.m in Sources */,
 				5B9624EE1AB2CE0C005728C5 /* ChatToolBar.m in Sources */,
 				D374BCB01AC91C82002A7D58 /* MessageTextView.m in Sources */,
 				5B0A006C19B5874500500C05 /* TMPhotoQuiltViewCell.m in Sources */,
@@ -7761,6 +7777,7 @@
 				5B0C8AA619D79E550058C0EE /* PersonalCenterCellView.m in Sources */,
 				0426C2A419922D5A00CD8822 /* GPUImagePoissonBlendFilter.m in Sources */,
 				0426C23B19922D5A00CD8822 /* AFURLConnectionOperation.m in Sources */,
+				D3D710391AD505CB00E43124 /* AccpetUserModel.m in Sources */,
 				D3DBBC751AB91E110070DB98 /* AddClassificationView.m in Sources */,
 				0426C30119922D5A00CD8822 /* UIRefreshControl+AFNetworking.m in Sources */,
 				0426C29519922D5A00CD8822 /* GPUImageMotionDetector.m in Sources */,
@@ -8019,6 +8036,7 @@
 				D3AD609419AC56CB001FD483 /* MJRefreshFooterView.m in Sources */,
 				D3F7874A1AADAD3800ED754B /* AddressBookApi.m in Sources */,
 				5B6A1D6A1A4A67170072B916 /* ContactEGOView.m in Sources */,
+				D3D710331AD4EC5400E43124 /* AcceptViewController.m in Sources */,
 				0426C2F619922D5A00CD8822 /* CJSONScanner.m in Sources */,
 				0426C2EE19922D5A00CD8822 /* CDataScanner.m in Sources */,
 				5B5773E51AC133BA00C17DBF /* DemandProvidePriceDetailController.m in Sources */,

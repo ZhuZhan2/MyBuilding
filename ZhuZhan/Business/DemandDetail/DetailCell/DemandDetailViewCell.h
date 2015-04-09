@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "RKImageModel.h"
 typedef enum DemandControllerCategory{
     DemandControllerCategoryAskPriceController,// 询价
     DemandControllerCategoryProvidePriceController//报价
@@ -16,7 +16,7 @@ typedef enum DemandControllerCategory{
 @protocol DemandDetailViewCellDelegate <NSObject>
 //-(void)leftBtnClickedWithIndexPath:(NSIndexPath*)indexPath;
 //-(void)rightBtnClickedWithIndexPath:(NSIndexPath*)indexPath;
--(void)imageCilckWithDemandDetailViewCell:(NSString *)imageUrl;
+-(void)imageCilckWithDemandDetailViewCell:(RKImageModel *)model;
 @end
 
 @interface DemandDetailCellModel : NSObject

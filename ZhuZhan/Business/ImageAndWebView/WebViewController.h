@@ -10,4 +10,6 @@
 
 @interface WebViewController : UIViewController
 @property(nonatomic,strong)NSString *url;
+@property(nonatomic,strong)NSString *type;
+@property(nonatomic,strong)NSString *name;
 @end

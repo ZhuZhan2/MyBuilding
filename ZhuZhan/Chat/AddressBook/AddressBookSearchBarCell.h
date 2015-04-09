@@ -1,19 +1,19 @@
 //
-//  SearchBarCell.h
+//  AddressBookSearchBarCell.h
 //  ZhuZhan
 //
-//  Created by 孙元侃 on 15/3/10.
+//  Created by 汪洋 on 15/4/8.
 //
 //
 
 #import <UIKit/UIKit.h>
 #import "SWTableViewCell.h"
-@interface SearchBarCellModel : NSObject
+@interface AddressBookSearchBarCellModel : NSObject
 @property(nonatomic,copy)NSString* mainImageUrl;
 @property(nonatomic,copy)NSString* mainLabelText;
 @property(nonatomic)BOOL isHighlight;
 @end
 
-@interface SearchBarCell : UITableViewCell
--(void)setModel:(SearchBarCellModel*)model;
+@interface AddressBookSearchBarCell : SWTableViewCell
+-(void)setModel:(AddressBookSearchBarCell*)model;
 @end

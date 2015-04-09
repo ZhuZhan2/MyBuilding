@@ -145,9 +145,9 @@
     return [text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
 }
 
--(void)imageClick:(NSString *)imageUrl{
+-(void)imageClick:(RKImageModel *)model{
     if([self.delegate respondsToSelector:@selector(imageCilckWithRKMuchImageViews:)]){
-        [self.delegate imageCilckWithRKMuchImageViews:imageUrl];
+        [self.delegate imageCilckWithRKMuchImageViews:model];
     }
 }
 @end

@@ -99,7 +99,7 @@
 }
 
 -(void)back{
-    //[self addAnimation];
+    [self addAnimation];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

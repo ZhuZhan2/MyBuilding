@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "RKImageModel.h"
 @protocol RKMuchImageViewsDelegate <NSObject>
 
--(void)imageCilckWithRKMuchImageViews:(NSString *)imageUrl;
+-(void)imageCilckWithRKMuchImageViews:(RKImageModel *)model;
 
 @end
 
