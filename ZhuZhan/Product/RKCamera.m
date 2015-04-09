@@ -51,21 +51,32 @@
 
 -(void)cameraFinishWithPicker:(UIImagePickerController*)picker info:(NSDictionary*)info isCancel:(BOOL)isCancel{
     [picker dismissViewControllerAnimated:YES completion:nil];
-    if ([self.delegate respondsToSelector:@selector(cameraWillFinishWithImage:isCancel:)]) {
-        UIImage* image=isCancel?nil:(info[self.allowsEditing?UIImagePickerControllerEditedImage:UIImagePickerControllerOriginalImage]);
+    if ([self.delegate respondsToSelector:@selector(cameraWillFinishWithLowQualityImage:originQualityImage:isCancel:)]) {
+        UIImage* originQualityImage=isCancel?nil:(info[self.allowsEditing?UIImagePickerControllerEditedImage:UIImagePickerControllerOriginalImage]);
         
         if(picker.sourceType !=0){
-            UIImageWriteToSavedPhotosAlbum(image, self,nil, nil);
+            UIImageWriteToSavedPhotosAlbum(originQualityImage, self,nil, nil);
         }
         
-        CGFloat width=self.demandSize.width?2*self.demandSize.width:image.size.width*0.5;
-        CGFloat height=self.demandSize.height?2*self.demandSize.height:image.size.height*0.5;
-        UIImageView *preview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
-        [preview setImage:image];
-        image = [self convertViewAsImage:preview];
+        //原图的一半
+        CGFloat width=originQualityImage.size.width*0.5;
+        CGFloat height=originQualityImage.size.height*0.5;
+        UIView* view=[self getImageViewWithImage:originQualityImage size:CGSizeMake(width, height)];
+        originQualityImage = [self convertViewAsImage:view];
         
-        [self.delegate cameraWillFinishWithImage:image isCancel:isCancel];
+        width=self.demandSize.width?2*self.demandSize.width:originQualityImage.size.width;
+        height=self.demandSize.height?2*self.demandSize.height:originQualityImage.size.height;
+        view=[self getImageViewWithImage:originQualityImage size:CGSizeMake(width, height)];
+        UIImage* lowQualityImage= [self convertViewAsImage:view];
+        
+        [self.delegate cameraWillFinishWithLowQualityImage:lowQualityImage originQualityImage:originQualityImage isCancel:isCancel];
     }
+}
+
+-(UIImageView*)getImageViewWithImage:(UIImage*)image size:(CGSize)size{
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    imageView.image=image;
+    return imageView;
 }
 
 - (UIImage *)convertViewAsImage:(UIView *)aview {

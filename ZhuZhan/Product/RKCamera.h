@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @protocol RKCameraDelegate <NSObject>
--(void)cameraWillFinishWithImage:(UIImage*)image isCancel:(BOOL)isCancel;
+-(void)cameraWillFinishWithLowQualityImage:(UIImage*)lowQualityimage originQualityImage:(UIImage*)originQualityImage isCancel:(BOOL)isCancel;
 @end
 
 @interface RKCamera : NSObject

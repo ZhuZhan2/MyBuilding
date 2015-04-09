@@ -31,6 +31,10 @@
 @property(nonatomic,strong)NSMutableArray* array2;
 @property(nonatomic,strong)NSMutableArray* array3;
 
+@property(nonatomic,strong)NSMutableArray* postArray1;
+@property(nonatomic,strong)NSMutableArray* postArray2;
+@property(nonatomic,strong)NSMutableArray* postArray3;
+
 @property(nonatomic,strong)UIView* topView;
 @property(nonatomic)NSInteger cameraCategory;
 
@@ -72,7 +76,6 @@
     [dic setObject:[self.fifthView textViewText] forKey:@"quoteContent"];
     [AskPriceApi AddQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
         self.rightBtn.userInteractionEnabled=YES;
-        //
         if(!error){
             NSString* quotesId=posts[0];
             [self secondPostFirstStepWithQuotesId:quotesId];
@@ -81,15 +84,15 @@
 }
 
 -(void)secondPostFirstStepWithQuotesId:(NSString*)quotesId{
-    NSArray* allImages=@[self.array1,self.array2,self.array3];
+    NSArray* allImages=@[self.postArray1,self.postArray2,self.postArray3];
     
     for (int i=0; i<allImages.count; i++) {
         NSArray* images=allImages[i];
         if (!images.count) continue;
         self.needPostGroupCount++;
         NSMutableArray* newImageDatas=[NSMutableArray array];
-        for (RKImageModel* imageModel in images) {
-            NSData* imageData=UIImageJPEGRepresentation(imageModel.image, 1);
+        for (UIImage* image in images) {
+            NSData* imageData=UIImageJPEGRepresentation(image, 1);
             [newImageDatas addObject:imageData];
         }
         [self secondPostSecondStepWithImages:newImageDatas category:[NSString stringWithFormat:@"%d",i] quotesId:quotesId];
@@ -110,7 +113,7 @@
 //        view.isFirstQuote=self.isFirstQuote;//YES
 //        [self.navigationController pushViewController:view animated:YES];
 //    }else{
-        [self.navigationController popViewControllerAnimated:YES];
+        //[self.navigationController popViewControllerAnimated:YES];
 //    }
 }
 
@@ -259,19 +262,25 @@
     self.cameraControl=[RKCamera cameraWithType:!buttonIndex allowEdit:NO deleate:self presentViewController:self.view.window.rootViewController demandSize:CGSizeMake(80, 80)];
 }
 
--(void)cameraWillFinishWithImage:(UIImage *)image isCancel:(BOOL)isCancel{
-    NSData *data = UIImageJPEGRepresentation(image, 1);
+-(void)cameraWillFinishWithLowQualityImage:(UIImage *)lowQualityimage originQualityImage:(UIImage *)originQualityImage isCancel:(BOOL)isCancel{
+    if (isCancel) return;
+    
+    NSData *data = UIImageJPEGRepresentation(originQualityImage, 1);
     if((double)data.length/(1024*1024)>5){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"图片大于5M" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
         return;
     }
-    if (isCancel) return;
+    
     NSArray* images=@[self.array1,self.array2,self.array3];
     NSMutableArray* array=images[self.cameraCategory];
-    RKImageModel* imageModel=[RKImageModel imageModelWithImage:image imageUrl:nil isUrl:NO type:nil];
+    RKImageModel* imageModel=[RKImageModel imageModelWithImage:lowQualityimage imageUrl:nil isUrl:NO type:nil];
     [array addObject:imageModel];
     [self reloadSixthView];
+    
+    NSArray* postImages=@[self.postArray1,self.postArray2,self.postArray3];
+    NSMutableArray* postArray=postImages[self.cameraCategory];
+    [postArray addObject:originQualityImage];
 }
 
 -(NSArray *)contentViews{
@@ -342,6 +351,27 @@
         _array3=[NSMutableArray array];
     }
     return _array3;
+}
+
+-(NSMutableArray *)postArray1{
+    if (!_postArray1) {
+        _postArray1=[NSMutableArray array];
+    }
+    return _postArray1;
+}
+
+-(NSMutableArray *)postArray2{
+    if (!_postArray2) {
+        _postArray2=[NSMutableArray array];
+    }
+    return _postArray2;
+}
+
+-(NSMutableArray *)postArray3{
+    if (!_postArray3) {
+        _postArray3=[NSMutableArray array];
+    }
+    return _postArray3;
 }
 
 //判断是否是表情
