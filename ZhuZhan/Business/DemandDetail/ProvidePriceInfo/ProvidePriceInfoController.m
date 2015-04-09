@@ -40,6 +40,9 @@
 
 @property(nonatomic)NSInteger needPostGroupCount;
 @property(nonatomic)NSInteger finishPostGroupCount;
+
+@property(nonatomic,strong)UIView* loadingView;
+@property(nonatomic,strong)UIActivityIndicatorView* activityView;
 @end
 
 @implementation ProvidePriceInfoController
@@ -69,6 +72,8 @@
 }
 
 -(void)firstPost{
+    [self startLoadingView];
+    
     self.rightBtn.userInteractionEnabled=NO;
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:self.askPriceModel.a_tradeCode forKey:@"tradeCode"];
@@ -102,6 +107,7 @@
 -(void)sucessPost{
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"报价成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     [alertView show];
+    [self stopLoadingView];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -372,6 +378,34 @@
         _postArray3=[NSMutableArray array];
     }
     return _postArray3;
+}
+
+-(UIView *)loadingView{
+    if (!_loadingView) {
+        _loadingView=[[UIView alloc]initWithFrame:self.view.bounds];
+        _loadingView.backgroundColor=[[UIColor alloc]initWithRed:0 green:0 blue:0 alpha:.5];
+        
+        self.activityView.center=_loadingView.center;
+        [_loadingView addSubview:self.activityView];
+    }
+    return _loadingView;
+}
+
+-(UIActivityIndicatorView *)activityView{
+    if (!_activityView) {
+        _activityView=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    }
+    return _activityView;
+}
+
+-(void)startLoadingView{
+    [self.activityView startAnimating];
+    [self.navigationController.view addSubview:self.loadingView];
+}
+
+-(void)stopLoadingView{
+    [self.activityView stopAnimating];
+    [self.loadingView removeFromSuperview];
 }
 
 //判断是否是表情
