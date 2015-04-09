@@ -43,6 +43,8 @@
         [self.webView loadHTMLString:content baseURL:nil];
     }
     [self.view addSubview:self.webView];
+    
+    NSLog(@"范俊url==%@",self.url);
 }
 
 - (void)didReceiveMemoryWarning {

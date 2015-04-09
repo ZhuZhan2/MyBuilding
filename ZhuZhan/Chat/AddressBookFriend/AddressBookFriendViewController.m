@@ -15,7 +15,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initNavi];
-    [self setUpSearchBarWithNeedTableView:NO isTableViewHeader:NO];
+   // [self setUpSearchBarWithNeedTableView:NO isTableViewHeader:NO];
     [self initTableView];
 }
 

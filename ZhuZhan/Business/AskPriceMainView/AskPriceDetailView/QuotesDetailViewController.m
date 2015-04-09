@@ -14,7 +14,7 @@
 #import "AskPriceApi.h"
 #import "ProvidePriceInfoController.h"
 #import "DemandDetailProvidePriceController.h"
-@interface QuotesDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DemandDetailProvidePriceDelegate,ProvidePriceInfoControllerDelegate>
+@interface QuotesDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DemandDetailProvidePriceDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UIView *classificationView;
