@@ -823,6 +823,7 @@
 		5BA523221AAEEB9D00F44223 /* 多人会话.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA523201AAEEB9D00F44223 /* 多人会话.png */; };
 		5BA523231AAEEB9D00F44223 /* 多人会话@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA523211AAEEB9D00F44223 /* 多人会话@2x.png */; };
 		5BA5BBDD1AD3B8A1004829AF /* AcceptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA5BBDC1AD3B8A1004829AF /* AcceptView.m */; };
+		5BA6E7CF1AD60EA50035A97D /* RKContractsStagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA6E7CE1AD60EA50035A97D /* RKContractsStagesView.m */; };
 		5BA8EACD1AA5501300996281 /* ActivePublishController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA8EACC1AA5501300996281 /* ActivePublishController.m */; };
 		5BA938A61A4935FF00BB8A96 /* 密码找回_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA938A41A4935FF00BB8A96 /* 密码找回_03.png */; };
 		5BA938A71A4935FF00BB8A96 /* 密码找回_03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA938A51A4935FF00BB8A96 /* 密码找回_03@2x.png */; };
@@ -2715,6 +2716,8 @@
 		5BA523211AAEEB9D00F44223 /* 多人会话@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "多人会话@2x.png"; sourceTree = "<group>"; };
 		5BA5BBDB1AD3B8A1004829AF /* AcceptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptView.h; sourceTree = "<group>"; };
 		5BA5BBDC1AD3B8A1004829AF /* AcceptView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptView.m; sourceTree = "<group>"; };
+		5BA6E7CD1AD60EA50035A97D /* RKContractsStagesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKContractsStagesView.h; sourceTree = "<group>"; };
+		5BA6E7CE1AD60EA50035A97D /* RKContractsStagesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKContractsStagesView.m; sourceTree = "<group>"; };
 		5BA8EACB1AA5501300996281 /* ActivePublishController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivePublishController.h; sourceTree = "<group>"; };
 		5BA8EACC1AA5501300996281 /* ActivePublishController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivePublishController.m; sourceTree = "<group>"; };
 		5BA938A41A4935FF00BB8A96 /* 密码找回_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码找回_03.png"; sourceTree = "<group>"; };
@@ -5154,6 +5157,8 @@
 				5B70CC381AC8EF7300FC8353 /* RKMuchBtnAssistView.m */,
 				5B70CC3A1AC92A3F00FC8353 /* BaseContractsView.h */,
 				5B70CC3B1AC92A3F00FC8353 /* BaseContractsView.m */,
+				5BA6E7CD1AD60EA50035A97D /* RKContractsStagesView.h */,
+				5BA6E7CE1AD60EA50035A97D /* RKContractsStagesView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7856,6 +7861,7 @@
 				5BE08ED51A35900000495EEB /* SecondAnimationView.m in Sources */,
 				D3EDCA501ACE90A6002AF865 /* SDImageCache.m in Sources */,
 				0426C28219922D5A00CD8822 /* GPUImageKuwaharaRadius3Filter.m in Sources */,
+				5BA6E7CF1AD60EA50035A97D /* RKContractsStagesView.m in Sources */,
 				D3AD61A419AEF0A2001FD483 /* MultipleChoiceViewController.m in Sources */,
 				5B55D5811A3EB64C00CAEF8B /* ForgetPasswordThirdController.m in Sources */,
 				D3EDCA511ACE90A6002AF865 /* SDWebImageCompat.m in Sources */,
