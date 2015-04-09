@@ -13,9 +13,12 @@
 #import "AddressBookApi.h"
 #import "ReceiveApplyFreindModel.h"
 #import "MJRefresh.h"
+#import "RecommendFriendViewController.h"
 @interface AddFriendViewController ()
 @property(nonatomic,strong)NSMutableArray* models;
 @property(nonatomic)int startIndex;
+@property(nonatomic,strong)UIButton *addressBookBtn;
+@property(nonatomic,strong)UIButton *MyBuildingBtn;
 @end
 
 @implementation AddFriendViewController
@@ -27,13 +30,34 @@
     //集成刷新控件
     [self setupRefresh];
     [self firstNetWork];
+    
+    [self initTopView];
 }
 
 -(void)initNavi{
-    self.title=@"添加好友";
+    self.title=@"新的朋友";
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
     [self setRightBtnWithText:@"清空"];
-    self.needAnimaiton=YES;
+}
+
+-(void)initTopView{
+    self.addressBookBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.addressBookBtn.frame = CGRectMake(0, 74, 157, 80);
+    self.addressBookBtn.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.addressBookBtn];
+    
+    self.MyBuildingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.MyBuildingBtn.frame = CGRectMake(162, 74, 157, 80);
+    self.MyBuildingBtn.backgroundColor = [UIColor whiteColor];
+    [self.MyBuildingBtn addTarget:self action:@selector(MyBuildingBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.MyBuildingBtn];
+    
+    self.tableView.frame = CGRectMake(0, 164, 320, kScreenHeight-164);
+}
+
+-(void)MyBuildingBtnAction{
+    RecommendFriendViewController *view = [[RecommendFriendViewController alloc] init];
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 -(void)firstNetWork{

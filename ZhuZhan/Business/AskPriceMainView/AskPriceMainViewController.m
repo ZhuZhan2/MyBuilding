@@ -385,8 +385,13 @@
 #pragma mark - 键盘处理
 #pragma mark 键盘即将显示
 - (void)keyBoardWillShow:(NSNotification *)note{
+    CGFloat ty = 0;
     CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGFloat ty = - rect.size.height+(self.tableView.frame.size.height-(self.addContactViewHeight+self.addCategoriesViewHeight+self.addClassificationViewHeight+260))-60;
+    if(self.addContactViewHeight == 205){
+        ty = - rect.size.height+(self.tableView.frame.size.height-(self.addContactViewHeight+self.addCategoriesViewHeight+self.addClassificationViewHeight+260));
+    }else{
+        ty = - rect.size.height+(self.tableView.frame.size.height-(self.addContactViewHeight+self.addCategoriesViewHeight+self.addClassificationViewHeight+260))-40;
+    }
     [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]-0.01 animations:^{
         self.view.transform = CGAffineTransformMakeTranslation(0, ty);
     }];

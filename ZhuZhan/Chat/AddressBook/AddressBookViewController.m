@@ -13,9 +13,13 @@
 #import "AddressBookFriendViewController.h"
 #import "AddressBookModel.h"
 #import "AddressBookSearchBarCell.h"
+#import "AddFriendViewController.h"
+#import "AddressBookNickNameViewController.h"
+#define seperatorLineColor RGBCOLOR(229, 229, 229)
 @interface AddressBookViewController()<AddressBookViewCellDelegate,SWTableViewCellDelegate>
 @property(nonatomic,strong)NSMutableArray *groupArr;
 @property(nonatomic,strong)NSMutableArray *searchDataArr;
+@property(nonatomic,strong)UIButton *addFriendBtn;
 @end
 
 @implementation AddressBookViewController
@@ -25,6 +29,39 @@
     [self initNavi];
     [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
     [self initTableView];
+    [self initaddFriendBtn];
+}
+
+-(void)initaddFriendBtn{
+    CGFloat y=64+CGRectGetHeight(self.searchBar.frame);
+    
+    self.addFriendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.addFriendBtn.frame = CGRectMake(0, y, kScreenWidth, 50);
+    self.addFriendBtn.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.addFriendBtn];
+    
+    UIView* seperatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 49, kScreenWidth, 1)];
+    seperatorLine.backgroundColor=seperatorLineColor;
+    [self.addFriendBtn addSubview:seperatorLine];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 40, 40)];
+    imageView.backgroundColor = [UIColor redColor];
+    [self.addFriendBtn addSubview:imageView];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(65, 10, 180, 30)];
+    titleLabel.text = @"新的朋友";
+    titleLabel.font = [UIFont systemFontOfSize:15];
+    [self.addFriendBtn addSubview:titleLabel];
+    
+    [self.addFriendBtn addTarget:self action:@selector(addFriend) forControlEvents:UIControlEventTouchUpInside];
+    
+    CGFloat height=kScreenHeight-y;
+    self.tableView.frame = CGRectMake(0, y+CGRectGetHeight(self.addFriendBtn.frame), 320, height);
+}
+
+-(void)addFriend{
+    AddFriendViewController *view = [[AddFriendViewController alloc] init];
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 - (NSArray *)rightButtons
@@ -55,6 +92,7 @@
     [self setRightBtnWithImage:[GetImagePath getImagePath:@"Rectangle-3-copy"]];
     self.needAnimaiton=YES;
 }
+
 
 -(void)rightBtnClicked{
     AddressBookFriendViewController* vc=[[AddressBookFriendViewController alloc]init];
@@ -244,10 +282,8 @@
     switch (index) {
         case 0:
         {
-            NSLog(@"More button was pressed");
-            UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello" message:@"More more more" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles: nil];
-            [alertTest show];
-
+            AddressBookNickNameViewController *view = [[AddressBookNickNameViewController alloc] init];
+            [self.navigationController pushViewController:view animated:YES];
             [cell hideUtilityButtonsAnimated:YES];
             break;
         }

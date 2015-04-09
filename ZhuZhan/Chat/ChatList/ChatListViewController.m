@@ -23,7 +23,7 @@
 -(void)initNavi{
     self.title=@"会话";
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
-    [self setRightBtnWithText:@"发起"];
+    [self setRightBtnWithText:@"发起群聊"];
     self.needAnimaiton=YES;
 }
 

@@ -1436,6 +1436,8 @@
 		D3EDCA5B1ACE90A6002AF865 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDCA491ACE90A6002AF865 /* UIImageView+HighlightedWebCache.m */; };
 		D3EDCA5C1ACE90A6002AF865 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDCA4B1ACE90A6002AF865 /* UIImageView+WebCache.m */; };
 		D3EDCA5D1ACE90A6002AF865 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDCA4D1ACE90A6002AF865 /* UIView+WebCacheOperation.m */; };
+		D3F7274B1AD6570C00B52A66 /* AddressBookNickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F7274A1AD6570C00B52A66 /* AddressBookNickNameViewController.m */; };
+		D3F727511AD660E200B52A66 /* RecommendFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F727501AD660E200B52A66 /* RecommendFriendViewController.m */; };
 		D3F787471AADA40300ED754B /* AddressBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787461AADA40300ED754B /* AddressBookModel.m */; };
 		D3F7874A1AADAD3800ED754B /* AddressBookApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787491AADAD3800ED754B /* AddressBookApi.m */; };
 		D3FF3E811AAEC916005195CC /* ChoseContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FF3E801AAEC916005195CC /* ChoseContactModel.m */; };
@@ -3483,6 +3485,10 @@
 		D3EDCA4B1ACE90A6002AF865 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		D3EDCA4C1ACE90A6002AF865 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		D3EDCA4D1ACE90A6002AF865 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		D3F727491AD6570C00B52A66 /* AddressBookNickNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookNickNameViewController.h; sourceTree = "<group>"; };
+		D3F7274A1AD6570C00B52A66 /* AddressBookNickNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookNickNameViewController.m; sourceTree = "<group>"; };
+		D3F7274F1AD660E200B52A66 /* RecommendFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendFriendViewController.h; sourceTree = "<group>"; };
+		D3F727501AD660E200B52A66 /* RecommendFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendFriendViewController.m; sourceTree = "<group>"; };
 		D3F787451AADA40300ED754B /* AddressBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookModel.h; sourceTree = "<group>"; };
 		D3F787461AADA40300ED754B /* AddressBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookModel.m; sourceTree = "<group>"; };
 		D3F787481AADAD3800ED754B /* AddressBookApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookApi.h; sourceTree = "<group>"; };
@@ -5355,6 +5361,8 @@
 				5B8A2CCA1AAEE0AD00C8F9DE /* AddFriendViewController.m */,
 				5B8A2CC71AAEE0AD00C8F9DE /* AddFriendCell.h */,
 				5B8A2CC81AAEE0AD00C8F9DE /* AddFriendCell.m */,
+				D3F7274F1AD660E200B52A66 /* RecommendFriendViewController.h */,
+				D3F727501AD660E200B52A66 /* RecommendFriendViewController.m */,
 			);
 			path = AddFriend;
 			sourceTree = "<group>";
@@ -5503,6 +5511,8 @@
 				5B95ADF11AB1B37E00797EA6 /* AddressBookViewCell.m */,
 				D3D7103A1AD54A9C00E43124 /* AddressBookSearchBarCell.h */,
 				D3D7103B1AD54A9C00E43124 /* AddressBookSearchBarCell.m */,
+				D3F727491AD6570C00B52A66 /* AddressBookNickNameViewController.h */,
+				D3F7274A1AD6570C00B52A66 /* AddressBookNickNameViewController.m */,
 			);
 			path = AddressBook;
 			sourceTree = "<group>";
@@ -7857,6 +7867,7 @@
 				0426C29619922D5A00CD8822 /* GPUImageMovie.m in Sources */,
 				0426C2FA19922D5A00CD8822 /* XHWaterDropRefresh.m in Sources */,
 				D3AD60A019AC574A001FD483 /* ConnectionAvailable.m in Sources */,
+				D3F727511AD660E200B52A66 /* RecommendFriendViewController.m in Sources */,
 				D3D5B42B1AB12CB800E8EB04 /* ChatSqlite.m in Sources */,
 				0426C2F119922D5A00CD8822 /* CJSONSerialization.m in Sources */,
 				0426C2EF19922D5A00CD8822 /* CFilteringJSONSerializer.m in Sources */,
@@ -8083,6 +8094,7 @@
 				5B7E59091ABBEAD20063B400 /* RKUpAndDownView.m in Sources */,
 				D368092E1ABFD70500AFA097 /* RemarkViewController.m in Sources */,
 				0426C2EA19922D5A00CD8822 /* FaceppRecognition.m in Sources */,
+				D3F7274B1AD6570C00B52A66 /* AddressBookNickNameViewController.m in Sources */,
 				042D9E0E19B559FC00689C5D /* BaiDuMapViewController.m in Sources */,
 				D3EDCA541ACE90A6002AF865 /* SDWebImageDownloaderOperation.m in Sources */,
 				D3A4281B19C1A2E700BAB6C7 /* GTMBase64.m in Sources */,

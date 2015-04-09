@@ -9,7 +9,7 @@
 #import "ChooseContactsViewController.h"
 #import "ChooseContactsViewCell.h"
 #import "SearchBarCell.h"
-@interface ChooseContactsViewController()<ChooseContactsViewCellDelegate>
+@interface ChooseContactsViewController()<ChooseContactsViewCellDelegate,UIAlertViewDelegate>
 @end
 
 @implementation ChooseContactsViewController
@@ -29,6 +29,19 @@
     self.title=@"选择联系人";
     [self setLeftBtnWithText:@"取消"];
     [self setRightBtnWithText:@"确定"];
+}
+
+-(void)rightBtnClicked{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"群聊名称" message:nil delegate:self cancelButtonTitle:@"确认" otherButtonTitles:@"取消", nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 0){
+        UITextField *tf=[alertView textFieldAtIndex:0];
+        NSLog(@"%@",tf.text);
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

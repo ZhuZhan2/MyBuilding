@@ -10,7 +10,6 @@
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
 #import "SearchBarTableViewController.h"
-
 @interface ChatBaseViewController()
 
 

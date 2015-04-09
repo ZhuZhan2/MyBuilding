@@ -37,12 +37,12 @@
                             @"<html>"
                             "<body style=' margin:0; width:%fpx; height:%fpx; display:table-cell; text-align:center; vertical-align:middle;'>"
                             "<img src=%@ style='max-width:320px;'>"
-                            "</img>"
                             "</body>"
                             "</html>"
                             ,self.view.frame.size.width,self.view.frame.size.height-64 ,self.url];
         [self.webView loadHTMLString:content baseURL:nil];
     }
+    NSLog(@"%@",self.url);
     [self.view addSubview:self.webView];
 }
 

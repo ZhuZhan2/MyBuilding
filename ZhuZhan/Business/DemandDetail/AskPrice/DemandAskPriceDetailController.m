@@ -150,7 +150,7 @@
 
 -(void)imageCilckWithDemandDetailViewCell:(RKImageModel *)model{
     WebViewController *view = [[WebViewController alloc] init];
-    view.url = model.imageUrl;
+    view.url = model.bigImageUrl;
     view.type = model.type;
     view.name = model.name;
     [self.superViewController.navigationController pushViewController:view animated:YES];
