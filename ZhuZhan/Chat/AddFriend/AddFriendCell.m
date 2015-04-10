@@ -30,7 +30,7 @@
         self.userImageView.userInteractionEnabled=YES;
         
         
-        self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(65, 12.5, 200, 16)];
+        self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(65, 10.5, 200, 20)];
         self.userNameLabel.font=[UIFont boldSystemFontOfSize:15];
         self.userNameLabel.textColor=RGBCOLOR(89, 89, 89);
         [self addSubview:self.userNameLabel];

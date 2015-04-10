@@ -43,16 +43,16 @@
 
 -(void)initTopView{
     self.addressBookBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.addressBookBtn.frame = CGRectMake(0, 74, 157, 80);
-    self.addressBookBtn.backgroundColor = [UIColor whiteColor];
+    self.addressBookBtn.frame = CGRectMake(0, 74, 320, 82);
     [self.addressBookBtn addTarget:self action:@selector(addressBookBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.addressBookBtn setBackgroundImage:[GetImagePath getImagePath:@"add_both_button"] forState:UIControlStateNormal];
     [self.view addSubview:self.addressBookBtn];
     
     self.MyBuildingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.MyBuildingBtn.frame = CGRectMake(162, 74, 157, 80);
-    self.MyBuildingBtn.backgroundColor = [UIColor whiteColor];
+    self.MyBuildingBtn.frame = CGRectMake(162, 74, 158, 78);
     [self.MyBuildingBtn addTarget:self action:@selector(MyBuildingBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.MyBuildingBtn];
+    [self.MyBuildingBtn setBackgroundImage:[GetImagePath getImagePath:@"add_MBfriend_button"] forState:UIControlStateNormal];
+    //[self.view addSubview:self.MyBuildingBtn];
     
     self.tableView.frame = CGRectMake(0, 164, 320, kScreenHeight-164);
 }

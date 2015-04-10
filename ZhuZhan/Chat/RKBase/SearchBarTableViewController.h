@@ -8,8 +8,6 @@
 
 #import "ChatBaseViewController.h"
 
-
-
 @interface SearchBarTableViewController : UIViewController
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,weak)id<SearchBarTableViewDelegate>delegate;

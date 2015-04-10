@@ -11,6 +11,7 @@
 #import "AddressBookApi.h"
 #import "FriendModel.h"
 #import "RecommendFriendSearchController.h"
+#import "MJRefresh.h"
 #define seperatorLineColor RGBCOLOR(229, 229, 229)
 @interface RecommendFriendViewController ()
 @property(nonatomic,strong)NSMutableArray* models;
@@ -33,9 +34,9 @@
     [self setupRefresh];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [super searchBarCancelButtonClicked:searchBar];
+    [self headerRereshing];
 }
 
 -(void)setupRefresh{

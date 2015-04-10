@@ -53,7 +53,6 @@
     return 57;
 }
 
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.models.count;
 }
@@ -69,5 +68,4 @@
     
     return cell;
 }
-
 @end
