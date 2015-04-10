@@ -35,4 +35,7 @@
 
 //获取推荐的好友
 + (NSURLSessionDataTask *)GetUserRecommendInfoWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
+
+//搜索用户
++ (NSURLSessionDataTask *)SearchUserWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block keywords:(NSString *)keywords startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
 @end

@@ -111,6 +111,7 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
+    self.startIndex = 0;
     [AskPriceApi GetCommentListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             [self.chatModels removeAllObjects];
@@ -134,6 +135,6 @@
             [LoginAgain AddLoginView:NO];
         }
         [self.tableView footerEndRefreshing];
-    } tradeId:self.askPriceModel.a_id tradeUserAndCommentUser:[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,self.quotesModel.a_loginId] startIndex:self.startIndex++ noNetWork:nil];
+    } tradeId:self.askPriceModel.a_id tradeUserAndCommentUser:[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,self.quotesModel.a_loginId] startIndex:self.startIndex+1 noNetWork:nil];
 }
 @end
