@@ -86,6 +86,7 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
+    self.startIndex = 0;
     [AddressBookApi GetFriendRequestListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [self.models removeAllObjects];

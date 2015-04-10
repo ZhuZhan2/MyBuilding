@@ -273,4 +273,38 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)SearchUserWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block keywords:(NSString *)keywords startIndex:(int)startIndex noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/search?keywords=%@&pageIndex=%d&pageSize=15",keywords,startIndex];
+    NSLog(@"=====%@",urlStr);
+    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            for (NSDictionary* item in JSON[@"data"][@"rows"]) {
+//                FriendModel *model = [[FriendModel alloc] init];
+//                [model setDict:item];
+//                [mutablePosts addObject:model];
+            }
+            if (block) {
+                block(mutablePosts, nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
 @end
