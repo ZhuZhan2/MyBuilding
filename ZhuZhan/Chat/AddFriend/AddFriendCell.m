@@ -56,7 +56,6 @@
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:userImageUrl] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     self.userNameLabel.text=userName;
     self.userBussniessLabel.text=time;
-    NSLog(@"isFinished===> %d",isFinished);
     [self.rightBtn setBackgroundImage:[GetImagePath getImagePath:isFinished?@"公司认证员工_08a":@"公司认证员工_18a"] forState:UIControlStateNormal];
     self.rightBtn.tag=indexPathRow;
     self.userImageView.tag=indexPathRow;
