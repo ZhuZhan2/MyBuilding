@@ -21,7 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.startIndex = 0;
     [self initNavi];
     [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
