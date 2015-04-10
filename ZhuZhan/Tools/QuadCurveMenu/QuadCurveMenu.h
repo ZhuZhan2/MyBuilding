@@ -30,4 +30,5 @@
 
 @protocol QuadCurveMenuDelegate <NSObject>
 - (void)quadCurveMenu:(QuadCurveMenu *)menu didSelectIndex:(NSInteger)idx;
+-(void)gotoLoginView;
 @end

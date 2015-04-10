@@ -29,11 +29,46 @@
     [self initTableView];
     [self firstNetWork];
     [self initTopView];
+    //集成刷新控件
+    [self setupRefresh];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)setupRefresh{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    //2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    self.startIndex = 0;
+    [AddressBookApi GetUserRecommendInfoWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self.models removeAllObjects];
+            self.models = posts;
+            [self.tableView reloadData];
+        }
+        [self.tableView headerEndRefreshing];
+    } startIndex:0 noNetWork:nil];
+}
+
+- (void)footerRereshing
+{
+    [AddressBookApi GetUserRecommendInfoWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.startIndex++;
+            [self.models addObjectsFromArray:posts];
+            [self.tableView reloadData];
+        }
+        [self.tableView footerEndRefreshing];
+    } startIndex:self.startIndex+1 noNetWork:nil];
 }
 
 -(void)initTopView{

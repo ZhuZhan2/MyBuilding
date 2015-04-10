@@ -7,6 +7,7 @@
 //
 
 #import "QuadCurveMenu.h"
+#import "LoginSqlite.h"
 #import <QuartzCore/QuartzCore.h>
 #define Height (kScreenHeight==480?456:544)
 #define NEARRADIUS 100.0f
@@ -170,6 +171,12 @@
 #pragma mark - QuadCurveMenuItem delegates
 - (void)quadCurveMenuItemTouchesBegan:(QuadCurveMenuItem *)item
 {
+    if([[LoginSqlite getdata:@"token"] isEqualToString:@""]){
+        if([self.delegate respondsToSelector:@selector(gotoLoginView)]){
+            [self.delegate gotoLoginView];
+        }
+        return;
+    }
     self.bgView.backgroundColor = [UIColor blackColor];
     self.bgView.alpha = 0.5;
     if (item == _addButton) 

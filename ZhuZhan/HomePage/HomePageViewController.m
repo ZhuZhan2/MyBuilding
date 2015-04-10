@@ -289,6 +289,12 @@
     [nav pushViewController:quadCurveVC animated:NO];
 }
 
+-(void)gotoLoginView{
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+}
+
 -(void)addAnimation{
     CATransition *transition = [CATransition animation];
     transition.duration = 0.5f;
