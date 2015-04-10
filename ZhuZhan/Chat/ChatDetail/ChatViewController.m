@@ -14,6 +14,7 @@
 #import "LoginSqlite.h"
 #import "JSONKit.h"
 @interface ChatViewController ()<UIAlertViewDelegate>
+@property (nonatomic, strong)NSMutableArray* models;
 @end
 
 @implementation ChatViewController
@@ -24,9 +25,9 @@
     [self initTableView];
     [self initChatToolBar];
     
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:11 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+//    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:11 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
     [self addKeybordNotification];
-    
+    [self testSocket];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(newMessage:) name:@"newMessage" object:nil];
 }
 
@@ -63,8 +64,6 @@
     [self.view endEditing:YES];
     AddGroupMemberController* vc=[[AddGroupMemberController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
-
-    return;
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -98,5 +97,27 @@ static BOOL testIsSelfs[12] = {1,1,0,0,1,0,1,1,0,0,1,0};
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     cell.model=model;
     return cell;
+}
+
+-(void)chatToolSendBtnClickedWithContent:(NSString *)content{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:@"user" forKey:@"msgType"];
+    [dic setObject:@"text" forKey:@"event"];
+    [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
+    [dic setObject:@"d859009b-51b4-4415-ada1-d5ea09ca4130" forKey:@"toUserId"];
+    [dic setObject:content forKey:@"content"];
+    NSString *str = [dic JSONString];
+    str = [NSString stringWithFormat:@"%@\r\n",str];
+
+    AppDelegate *app = [AppDelegate instance];
+    [app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
+    [app.socket readDataWithTimeout:-1 tag:0];
+}
+
+-(NSMutableArray *)models{
+    if (!_models) {
+        _models=[NSMutableArray array];
+    }
+    return _models;
 }
 @end
