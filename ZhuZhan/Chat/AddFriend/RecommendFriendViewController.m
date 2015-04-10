@@ -122,7 +122,6 @@
     FriendModel *model = self.models[indexPath.row];
     cell.model = model;
     cell.selectionStyle = NO;
-    
     return cell;
 }
 

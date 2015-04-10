@@ -89,10 +89,15 @@
 }
 
 -(void)rightBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
-    self.acceptView=[[AcceptViewController alloc]init];
-    self.acceptView.invitedUserArr = self.acceptUserArr;
-    self.acceptView.delegate=self;
-    [self.superViewController presentPopupViewController:self.acceptView animationType:MJPopupViewAnimationFade flag:0];
+    if(self.acceptUserArr.count !=0){
+        self.acceptView=[[AcceptViewController alloc]init];
+        self.acceptView.invitedUserArr = self.acceptUserArr;
+        self.acceptView.delegate=self;
+        [self.superViewController presentPopupViewController:self.acceptView animationType:MJPopupViewAnimationFade flag:0];
+    }else{
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"没有报价" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }
 }
 
 

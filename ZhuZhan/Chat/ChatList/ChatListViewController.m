@@ -11,13 +11,29 @@
 #import "SearchBarCell.h"
 #import "ChatViewController.h"
 #import "ChooseContactsViewController.h"
-
+#import "AppDelegate.h"
+#import "JSONKit.h"
+#import "LoginSqlite.h"
 @implementation ChatListViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initSocket];
     [self initNavi];
     //[self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
     [self initTableView];
+}
+
+-(void)initSocket{
+    AppDelegate *app = [AppDelegate instance];
+    [app.socket connectToServer:@"10.1.1.138" withPort:[@"44455" intValue]];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:@"event" forKey:@"msgType"];
+    [dic setObject:@"login" forKey:@"event"];
+    [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
+    NSString *str = [dic JSONString];
+    str = [NSString stringWithFormat:@"%@\r\n",str];
+    [app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
+    [app.socket readDataWithTimeout:-1 tag:0];
 }
 
 -(void)initNavi{
