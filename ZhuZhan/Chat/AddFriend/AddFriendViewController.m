@@ -14,6 +14,7 @@
 #import "ReceiveApplyFreindModel.h"
 #import "MJRefresh.h"
 #import "RecommendFriendViewController.h"
+#import "AddressBookFriendViewController.h"
 @interface AddFriendViewController ()
 @property(nonatomic,strong)NSMutableArray* models;
 @property(nonatomic)int startIndex;
@@ -44,6 +45,7 @@
     self.addressBookBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.addressBookBtn.frame = CGRectMake(0, 74, 157, 80);
     self.addressBookBtn.backgroundColor = [UIColor whiteColor];
+    [self.addressBookBtn addTarget:self action:@selector(addressBookBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.addressBookBtn];
     
     self.MyBuildingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -53,6 +55,11 @@
     [self.view addSubview:self.MyBuildingBtn];
     
     self.tableView.frame = CGRectMake(0, 164, 320, kScreenHeight-164);
+}
+
+-(void)addressBookBtnAction{
+    AddressBookFriendViewController *view = [[AddressBookFriendViewController alloc] init];
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 -(void)MyBuildingBtnAction{

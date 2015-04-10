@@ -89,15 +89,9 @@
 -(void)initNavi{
     self.title=@"通讯录";
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
-    [self setRightBtnWithImage:[GetImagePath getImagePath:@"Rectangle-3-copy"]];
     self.needAnimaiton=YES;
 }
 
-
--(void)rightBtnClicked{
-    AddressBookFriendViewController* vc=[[AddressBookFriendViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 47;
@@ -292,18 +286,30 @@
             // Delete button was pressed
             if([cell isKindOfClass:[AddressBookSearchBarCell class]]){
                 NSIndexPath *cellIndexPath = [self.searchBarTableView indexPathForCell:cell];
-                NSLog(@"%ld",(long)cellIndexPath.section);
                 AddressBookModel *ABmodel = self.searchDataArr[cellIndexPath.section];
-                NSArray *indexPaths = [NSArray arrayWithObject:cellIndexPath];
-                [ABmodel.contactArr removeObjectAtIndex:cellIndexPath.row];
-                [self.searchBarTableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+                AddressBookContactModel *contactModel = ABmodel.contactArr[cellIndexPath.row];
+                NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+                [dic setObject:contactModel.a_contactId forKey:@"userId"];
+                [AddressBookApi DeleteContactsWithBlock:^(NSMutableArray *posts, NSError *error) {
+                    if(!error){
+                        [self firstNetWork];
+                    }else{
+                        [LoginAgain AddLoginView:NO];
+                    }
+                } dic:dic noNetWork:nil];
             }else{
                 NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
-                NSLog(@"%ld",(long)cellIndexPath.section);
                 AddressBookModel *ABmodel = self.groupArr[cellIndexPath.section];
-                NSArray *indexPaths = [NSArray arrayWithObject:cellIndexPath];
-                [ABmodel.contactArr removeObjectAtIndex:cellIndexPath.row];
-                [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+                AddressBookContactModel *contactModel = ABmodel.contactArr[cellIndexPath.row];
+                NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+                [dic setObject:contactModel.a_contactId forKey:@"userId"];
+                [AddressBookApi DeleteContactsWithBlock:^(NSMutableArray *posts, NSError *error) {
+                    if(!error){
+                        [self firstNetWork];
+                    }else{
+                        [LoginAgain AddLoginView:NO];
+                    }
+                } dic:dic noNetWork:nil];
             };
             break;
         }

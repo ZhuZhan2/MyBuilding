@@ -10,7 +10,9 @@
 #import "ChatTableViewCell.h"
 #import "AddGroupMemberController.h"
 #import "ChatToolBar.h"
-
+#import "AppDelegate.h"
+#import "LoginSqlite.h"
+#import "JSONKit.h"
 @interface ChatViewController ()<UIAlertViewDelegate>
 @end
 
@@ -24,6 +26,20 @@
     
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:11 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
     [self addKeybordNotification];
+    
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:@"user" forKey:@"msgType"];
+    [dic setObject:@"text" forKey:@"event"];
+    [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
+    [dic setObject:@"d859009b-51b4-4415-ada1-d5ea09ca4130" forKey:@"toUserId"];
+    [dic setObject:@"草死你" forKey:@"content"];
+    NSString *str = [dic JSONString];
+    str = [NSString stringWithFormat:@"%@\r\n",str];
+    NSLog(@"%@",str);
+    AppDelegate *app = [AppDelegate instance];
+    [app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
+    [app.socket readDataWithTimeout:-1 tag:0];
 }
 
 -(void)initNavi{

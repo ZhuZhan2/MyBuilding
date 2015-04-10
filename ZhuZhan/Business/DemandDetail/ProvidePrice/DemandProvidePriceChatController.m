@@ -31,6 +31,8 @@
         if(!error){
             self.chatModels = posts;
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
     } tradeId:self.askPriceModel.a_id tradeUserAndCommentUser:[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,[LoginSqlite getdata:@"userId"]] startIndex:0 noNetWork:nil];
 }
@@ -76,6 +78,8 @@
         if(!error){
             [self.chatModels removeAllObjects];
             [self loadList];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
     } dic:dic noNetWork:nil];
 }
@@ -111,6 +115,8 @@
             [self.chatModels removeAllObjects];
             self.chatModels = posts;
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
         [self.tableView headerEndRefreshing];
     } tradeId:self.askPriceModel.a_id tradeUserAndCommentUser:[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,[LoginSqlite getdata:@"userId"]] startIndex:0 noNetWork:nil];
@@ -123,6 +129,8 @@
             self.startIndex++;
             [self.chatModels addObjectsFromArray:posts];
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
         [self.tableView footerEndRefreshing];
     } tradeId:self.askPriceModel.a_id tradeUserAndCommentUser:[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,[LoginSqlite getdata:@"userId"]] startIndex:self.startIndex+1 noNetWork:nil];

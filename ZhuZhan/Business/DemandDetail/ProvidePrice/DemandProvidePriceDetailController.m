@@ -30,6 +30,8 @@
         if(!error){
             self.detailModels=posts;
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
     } providerId:[LoginSqlite getdata:@"userId"] tradeCode:self.askPriceModel.a_tradeCode startIndex:0 noNetWork:nil];
 }
@@ -84,6 +86,8 @@
         if(!error){
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关闭成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
     } dic:dic noNetWork:nil];
     NSLog(@"closeBtnClicked");
@@ -115,6 +119,8 @@
             [self.detailModels removeAllObjects];
             self.detailModels=posts;
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
         [self.tableView headerEndRefreshing];
     } providerId:[LoginSqlite getdata:@"userId"] tradeCode:self.askPriceModel.a_tradeCode startIndex:0 noNetWork:nil];
@@ -127,6 +133,8 @@
             self.startIndex++;
             [self.detailModels addObjectsFromArray:posts];
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
         [self.tableView footerEndRefreshing];
     } providerId:[LoginSqlite getdata:@"userId"] tradeCode:self.askPriceModel.a_tradeCode startIndex:self.startIndex+1 noNetWork:nil];

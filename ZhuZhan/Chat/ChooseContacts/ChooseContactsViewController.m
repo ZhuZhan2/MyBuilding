@@ -9,20 +9,33 @@
 #import "ChooseContactsViewController.h"
 #import "ChooseContactsViewCell.h"
 #import "SearchBarCell.h"
+#import "AddressBookApi.h"
+#import "AddressBookModel.h"
+#import "ChatMessageApi.h"
 @interface ChooseContactsViewController()<ChooseContactsViewCellDelegate,UIAlertViewDelegate>
+@property(nonatomic,strong)NSMutableArray *groupArr;
 @end
 
 @implementation ChooseContactsViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initNavi];
-    //
+    [self firstNetWork];
     [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
     [self initTableView];
 }
 
 -(void)initTableView{
     [super initTableView];
+}
+
+-(void)firstNetWork{
+    [AddressBookApi GetAddressBookListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.groupArr = posts;
+            [self.tableView reloadData];
+        }
+    }keywords:@"" noNetWork:nil];
 }
 
 -(void)initNavi{
@@ -40,7 +53,14 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 0){
         UITextField *tf=[alertView textFieldAtIndex:0];
-        NSLog(@"%@",tf.text);
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:tf.text forKey:@"name"];
+        [dic setObject:@"2765fb48-405c-4648-8b9f-d03957260e0e,d859009b-51b4-4415-ada1-d5ea09ca4130" forKey:@"user"];
+        [ChatMessageApi CreateWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                
+            }
+        } dic:dic noNetWork:nil];
     }
 }
 
@@ -49,11 +69,12 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return self.groupArr.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self sectionSelectedArrayContainsSection:section]?0:6;
+    AddressBookModel *model = self.groupArr[section];
+    return [self sectionSelectedArrayContainsSection:section]?0:model.contactArr.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -61,12 +82,13 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    AddressBookModel *model = self.groupArr[section];
     BOOL isShow=![self sectionSelectedArrayContainsSection:section];
     CGFloat sectionHeight=30;
     UIButton* view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, sectionHeight)];
     view.backgroundColor=[UIColor whiteColor];
     
-    NSString* text=@[@"家庭",@"单位同事",@"高中同学"][section];
+    NSString* text=model.a_name;
     UIFont* textFont=[UIFont systemFontOfSize:14];
     CGFloat labelWidth=[text boundingRectWithSize:CGSizeMake(9999, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:textFont} context:nil].size.width;
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(11, 0, labelWidth, sectionHeight)];
@@ -82,7 +104,7 @@
     
     CGFloat numberLabelWidth=100;
     UILabel* numberLabel=[[UILabel alloc]initWithFrame:CGRectMake(kScreenWidth-13-numberLabelWidth, 0, numberLabelWidth, sectionHeight)];
-    numberLabel.text=@"6";
+    numberLabel.text=model.a_count;
     numberLabel.textAlignment=NSTextAlignmentRight;
     numberLabel.textColor=isShow?[UIColor redColor]:GrayColor;
     numberLabel.font=[UIFont systemFontOfSize:13];
@@ -112,8 +134,10 @@
         cell=[[ChooseContactsViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell" delegate:self];
     }
     ChooseContactsCellModel* model=[[ChooseContactsCellModel alloc]init];
-    model.mainLabelText=@"用户名显示";
-    model.isHighlight=arc4random()%2;
+    AddressBookModel *ABmodel = self.groupArr[indexPath.section];
+    AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];
+    model.mainLabelText=contactModel.a_loginName;
+    model.isHighlight=NO;
     [cell setModel:model indexPath:indexPath];
     
     return cell;

@@ -60,6 +60,8 @@
         if(!error){
             self.showArr = posts;
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
     } keyWorks:self.keyWorks noNetWork:nil];
 }

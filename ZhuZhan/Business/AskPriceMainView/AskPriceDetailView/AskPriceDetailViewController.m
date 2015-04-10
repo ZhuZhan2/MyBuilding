@@ -70,6 +70,8 @@
         if(!error){
             self.invitedUserArr = posts[0];
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
     } tradeId:self.askPriceModel.a_id noNetWork:nil];
 }

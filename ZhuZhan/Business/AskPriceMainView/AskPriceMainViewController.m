@@ -135,6 +135,8 @@
                 if(!error){
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发起成功是否去列表查看" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                     [alertView show];
+                }else{
+                    [LoginAgain AddLoginView:NO];
                 }
             } dic:dic noNetWork:nil];
         }else{

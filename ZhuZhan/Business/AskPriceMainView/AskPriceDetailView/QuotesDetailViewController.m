@@ -76,6 +76,8 @@
             self.invitedUserArr = posts[0];
             self.isQuoted = posts[1];
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
     } tradeId:self.askPriceModel.a_id noNetWork:nil];
 }

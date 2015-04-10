@@ -34,6 +34,8 @@
     [AskPriceApi AcceptUsersListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.acceptUserArr = posts;
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
     } tradeId:self.askPriceModel.a_id noNetWork:nil];
 }
@@ -43,6 +45,8 @@
         if(!error){
             self.detailModels=posts;
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
     } providerId:self.quotesModel.a_loginId tradeCode:self.askPriceModel.a_tradeCode startIndex:0 noNetWork:nil];
 }
@@ -100,6 +104,8 @@
         if(!error){
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关闭成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
     } dic:dic noNetWork:nil];
     NSLog(@"closeBtnClicked");
@@ -131,6 +137,8 @@
             [self.detailModels removeAllObjects];
             self.detailModels=posts;
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
         [self.tableView headerEndRefreshing];
     } providerId:self.quotesModel.a_loginId tradeCode:self.askPriceModel.a_tradeCode startIndex:0 noNetWork:nil];
@@ -143,6 +151,8 @@
             self.startIndex++;
             [self.detailModels addObjectsFromArray:posts];
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
         [self.tableView footerEndRefreshing];
     } providerId:self.quotesModel.a_loginId tradeCode:self.askPriceModel.a_tradeCode startIndex:self.startIndex+1 noNetWork:nil];
@@ -168,6 +178,8 @@
         [AskPriceApi AcceptQuotesWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"采纳成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
+            }else{
+                [LoginAgain AddLoginView:NO];
             }
         } dic:dic noNetWork:nil];
     }

@@ -56,6 +56,8 @@
         if(!error){
             self.models = posts[0];
             [self.searchBarTableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
     } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:keyword noNetWork:nil];
 }
@@ -69,6 +71,8 @@
             self.models = posts[0];
             [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
             [self.searchBarTableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
         [self.searchBarTableView headerEndRefreshing];
     } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:self.keyWords noNetWork:nil];
@@ -82,6 +86,8 @@
             [self.models addObjectsFromArray:posts[0]];
             [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
             [self.searchBarTableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
         [self.searchBarTableView footerEndRefreshing];
     } status:self.statusStr startIndex:(int)self.startIndex+1 other:self.otherStr keyWorks:self.keyWords noNetWork:nil];

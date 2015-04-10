@@ -39,6 +39,8 @@
                 [self.models addObject:model];
             }
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
     } parentId:@"0" noNetWork:nil];
 }
@@ -92,6 +94,8 @@
                 [self.delegate chooseProductBigStage:model.content catroyId:model.aid allClassificationArr:self.selectedArr];
             }
             [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
     } parentId:model.aid noNetWork:nil];
 }

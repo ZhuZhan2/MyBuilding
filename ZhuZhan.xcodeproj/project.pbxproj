@@ -1348,6 +1348,8 @@
 		D3D686231ABAC665005D9ED6 /* 交易_删除@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D686211ABAC665005D9ED6 /* 交易_删除@2x.png */; };
 		D3D686271ABAC8C0005D9ED6 /* SearchContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D686261ABAC8C0005D9ED6 /* SearchContactViewController.m */; };
 		D3D6862A1ABACF44005D9ED6 /* SearchContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D686291ABACF44005D9ED6 /* SearchContactTableViewCell.m */; };
+		D3D6B7421AD6A51500C8BF91 /* ChatNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6B7411AD6A51500C8BF91 /* ChatNetAPIClient.m */; };
+		D3D6B7451AD6A63500C8BF91 /* ChatMessageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6B7441AD6A63500C8BF91 /* ChatMessageApi.m */; };
 		D3D6C7911A15D73F001D2071 /* 公司－公司详情_05c.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6C78F1A15D73F001D2071 /* 公司－公司详情_05c.png */; };
 		D3D6C7921A15D73F001D2071 /* 公司－公司详情_05c@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6C7901A15D73F001D2071 /* 公司－公司详情_05c@2x.png */; };
 		D3D6C7951A15D75D001D2071 /* 公司－公司详情_05d.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6C7931A15D75D001D2071 /* 公司－公司详情_05d.png */; };
@@ -1439,6 +1441,8 @@
 		D3EDCA5D1ACE90A6002AF865 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDCA4D1ACE90A6002AF865 /* UIView+WebCacheOperation.m */; };
 		D3F7274B1AD6570C00B52A66 /* AddressBookNickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F7274A1AD6570C00B52A66 /* AddressBookNickNameViewController.m */; };
 		D3F727511AD660E200B52A66 /* RecommendFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F727501AD660E200B52A66 /* RecommendFriendViewController.m */; };
+		D3F727571AD68FC400B52A66 /* FriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F727561AD68FC400B52A66 /* FriendModel.m */; };
+		D3F7275A1AD6941900B52A66 /* RecommendFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F727591AD6941900B52A66 /* RecommendFriendCell.m */; };
 		D3F787471AADA40300ED754B /* AddressBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787461AADA40300ED754B /* AddressBookModel.m */; };
 		D3F7874A1AADAD3800ED754B /* AddressBookApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787491AADAD3800ED754B /* AddressBookApi.m */; };
 		D3FF3E811AAEC916005195CC /* ChoseContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FF3E801AAEC916005195CC /* ChoseContactModel.m */; };
@@ -3366,6 +3370,10 @@
 		D3D686261ABAC8C0005D9ED6 /* SearchContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchContactViewController.m; sourceTree = "<group>"; };
 		D3D686281ABACF44005D9ED6 /* SearchContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchContactTableViewCell.h; sourceTree = "<group>"; };
 		D3D686291ABACF44005D9ED6 /* SearchContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchContactTableViewCell.m; sourceTree = "<group>"; };
+		D3D6B7401AD6A51500C8BF91 /* ChatNetAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatNetAPIClient.h; sourceTree = "<group>"; };
+		D3D6B7411AD6A51500C8BF91 /* ChatNetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatNetAPIClient.m; sourceTree = "<group>"; };
+		D3D6B7431AD6A63500C8BF91 /* ChatMessageApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageApi.h; sourceTree = "<group>"; };
+		D3D6B7441AD6A63500C8BF91 /* ChatMessageApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageApi.m; sourceTree = "<group>"; };
 		D3D6C78F1A15D73F001D2071 /* 公司－公司详情_05c.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－公司详情_05c.png"; sourceTree = "<group>"; };
 		D3D6C7901A15D73F001D2071 /* 公司－公司详情_05c@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－公司详情_05c@2x.png"; sourceTree = "<group>"; };
 		D3D6C7931A15D75D001D2071 /* 公司－公司详情_05d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－公司详情_05d.png"; sourceTree = "<group>"; };
@@ -3492,6 +3500,10 @@
 		D3F7274A1AD6570C00B52A66 /* AddressBookNickNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookNickNameViewController.m; sourceTree = "<group>"; };
 		D3F7274F1AD660E200B52A66 /* RecommendFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendFriendViewController.h; sourceTree = "<group>"; };
 		D3F727501AD660E200B52A66 /* RecommendFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendFriendViewController.m; sourceTree = "<group>"; };
+		D3F727551AD68FC400B52A66 /* FriendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendModel.h; sourceTree = "<group>"; };
+		D3F727561AD68FC400B52A66 /* FriendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendModel.m; sourceTree = "<group>"; };
+		D3F727581AD6941900B52A66 /* RecommendFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendFriendCell.h; sourceTree = "<group>"; };
+		D3F727591AD6941900B52A66 /* RecommendFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendFriendCell.m; sourceTree = "<group>"; };
 		D3F787451AADA40300ED754B /* AddressBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookModel.h; sourceTree = "<group>"; };
 		D3F787461AADA40300ED754B /* AddressBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookModel.m; sourceTree = "<group>"; };
 		D3F787481AADAD3800ED754B /* AddressBookApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookApi.h; sourceTree = "<group>"; };
@@ -5368,6 +5380,8 @@
 				5B8A2CC81AAEE0AD00C8F9DE /* AddFriendCell.m */,
 				D3F7274F1AD660E200B52A66 /* RecommendFriendViewController.h */,
 				D3F727501AD660E200B52A66 /* RecommendFriendViewController.m */,
+				D3F727581AD6941900B52A66 /* RecommendFriendCell.h */,
+				D3F727591AD6941900B52A66 /* RecommendFriendCell.m */,
 			);
 			path = AddFriend;
 			sourceTree = "<group>";
@@ -6387,6 +6401,10 @@
 			children = (
 				D3D4A2E01AAE98390071B3EA /* ChatMessageModel.h */,
 				D3D4A2E11AAE98390071B3EA /* ChatMessageModel.m */,
+				D3D6B7401AD6A51500C8BF91 /* ChatNetAPIClient.h */,
+				D3D6B7411AD6A51500C8BF91 /* ChatNetAPIClient.m */,
+				D3D6B7431AD6A63500C8BF91 /* ChatMessageApi.h */,
+				D3D6B7441AD6A63500C8BF91 /* ChatMessageApi.m */,
 			);
 			path = ChatMessageModel;
 			sourceTree = "<group>";
@@ -6667,6 +6685,8 @@
 				5B86504D1ABFE4830096BEF0 /* ReceiveApplyFreindModel.m */,
 				D3F787481AADAD3800ED754B /* AddressBookApi.h */,
 				D3F787491AADAD3800ED754B /* AddressBookApi.m */,
+				D3F727551AD68FC400B52A66 /* FriendModel.h */,
+				D3F727561AD68FC400B52A66 /* FriendModel.m */,
 			);
 			path = AddressBookModel;
 			sourceTree = "<group>";
@@ -7728,6 +7748,7 @@
 				D3DBBC721AB914E20070DB98 /* AddCategoriesView.m in Sources */,
 				5B6289DD1AB7C10000F30059 /* RKTwoView.m in Sources */,
 				5B5773DC1AC1320400C17DBF /* DemandDetailProvidePriceController.m in Sources */,
+				D3F7275A1AD6941900B52A66 /* RecommendFriendCell.m in Sources */,
 				5B3AD9E419F7CA7B008132B2 /* CompanyMemberCell.m in Sources */,
 				D3D4A2E21AAE98390071B3EA /* ChatMessageModel.m in Sources */,
 				0426C2A919922D5A00CD8822 /* GPUImageRawDataInput.m in Sources */,
@@ -7739,6 +7760,7 @@
 				5BB9A53D1AB6F84300B5B2D8 /* AskPriceViewController.m in Sources */,
 				D35E12441ABD68B5007C6726 /* CatoryTableViewCell.m in Sources */,
 				0426C24619922D5A00CD8822 /* GPUImageAmatorkaFilter.m in Sources */,
+				D3D6B7421AD6A51500C8BF91 /* ChatNetAPIClient.m in Sources */,
 				0426C2EB19922D5A00CD8822 /* FaceppTrainer.m in Sources */,
 				0426C28919922D5A00CD8822 /* GPUImageLocalBinaryPatternFilter.m in Sources */,
 				0426C25519922D5A00CD8822 /* GPUImageColorDodgeBlendFilter.m in Sources */,
@@ -7798,6 +7820,7 @@
 				042D9ECD19B81BE400689C5D /* ContactCell.m in Sources */,
 				D3A4283B19C94E5E00BAB6C7 /* ActivesModel.m in Sources */,
 				5B5894F119FF9D24001CC09E /* EndEditingGesture.m in Sources */,
+				D3D6B7451AD6A63500C8BF91 /* ChatMessageApi.m in Sources */,
 				D3D4FB371A087BBD0033BB34 /* CompanyTableViewCell.m in Sources */,
 				0426C2DE19922D5A00CD8822 /* GPUImageView.m in Sources */,
 				0426C25A19922D5A00CD8822 /* GPUImageCropFilter.m in Sources */,
@@ -7994,6 +8017,7 @@
 				0426C28D19922D5A00CD8822 /* GPUImageLuminosity.m in Sources */,
 				D3AC61A819B6BF930015B62F /* ConditionsModel.m in Sources */,
 				D3AD60E919AC7C0B001FD483 /* CycleScrollView.m in Sources */,
+				D3F727571AD68FC400B52A66 /* FriendModel.m in Sources */,
 				0426C2D019922D5A00CD8822 /* GPUImageTwoPassFilter.m in Sources */,
 				0426C27B19922D5A00CD8822 /* GPUImageHistogramGenerator.m in Sources */,
 				0426C22E19922D5A00CD8822 /* FaceLoginViewController.m in Sources */,

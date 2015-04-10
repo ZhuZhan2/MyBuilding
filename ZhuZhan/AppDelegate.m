@@ -22,6 +22,7 @@
 #import "ProjectSqlite.h"
 #import "SocketManage.h"
 #import "GCDAsyncSocket.h"
+#import "JSONKit.h"
 @implementation AppDelegate
 
 + (AppDelegate *)instance {
@@ -29,10 +30,16 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    SocketManage *socket = [SocketManage sharedManager];
-//    [socket connectToServer:@"10.1.1.138" withPort:[@"44455" intValue]];
-//    [socket writeData:[[NSString stringWithFormat:@"操死你\r\n"] dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
-//    [socket readDataWithTimeout:-1 tag:0];
+    self.socket = [SocketManage sharedManager];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:@"event" forKey:@"msgType"];
+    [dic setObject:@"login" forKey:@"event"];
+    [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
+    NSString *str = [dic JSONString];
+    str = [NSString stringWithFormat:@"%@\r\n",str];
+    [self.socket connectToServer:@"10.1.1.138" withPort:[@"44455" intValue]];
+    [self.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
+    [self.socket readDataWithTimeout:-1 tag:0];
     
     if ([CLLocationManager locationServicesEnabled]) {
         

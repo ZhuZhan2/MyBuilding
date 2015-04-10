@@ -32,4 +32,7 @@
 
 //删除好友
 + (NSURLSessionDataTask *)DeleteContactsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
+
+//获取推荐的好友
++ (NSURLSessionDataTask *)GetUserRecommendInfoWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
 @end

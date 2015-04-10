@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "BMapKit.h"
+#import "SocketManage.h"
+#import "GCDAsyncSocket.h"
 #define KAPI_KEY @"25d987b4f4f915bf02aaecde055db243"//face++
 #define KAPI_SECRET @"S_rg7gvJpWXO4OJS4m7yaQt_VtTwszC7"
 @interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate,CLLocationManagerDelegate>{
@@ -15,6 +17,7 @@
 }
 
 @property (strong, nonatomic) UIWindow *window;
+@property(nonatomic,strong)SocketManage *socket;
 @property (nonatomic,strong)CLLocationManager *locationManager;
 + (AppDelegate *)instance;
 @end

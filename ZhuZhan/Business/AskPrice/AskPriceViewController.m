@@ -81,6 +81,8 @@
             self.showArr = posts[0];
            [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
     } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:@"" noNetWork:nil];
 }
@@ -207,6 +209,8 @@
             self.showArr = posts[0];
             [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
         [self.tableView headerEndRefreshing];
     } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:@"" noNetWork:nil];
@@ -220,6 +224,8 @@
             [self.showArr addObjectsFromArray:posts[0]];
             [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
         [self.tableView footerEndRefreshing];
     } status:self.statusStr startIndex:self.startIndex+1 other:self.otherStr keyWorks:@"" noNetWork:nil];

@@ -36,6 +36,8 @@
                 [self.selectedArr addObject:@""];
             }
             [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
     } parentId:self.categoryId noNetWork:nil];
 }

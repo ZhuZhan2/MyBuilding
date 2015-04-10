@@ -79,6 +79,8 @@
         if(!error){
             NSString* quotesId=posts[0];
             [self secondPostFirstStepWithQuotesId:quotesId];
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
     } dic:dic noNetWork:nil];
 }
@@ -134,6 +136,8 @@
             if (self.finishPostGroupCount==self.needPostGroupCount) {
                 [self sucessPost];
             }
+        }else{
+            [LoginAgain AddLoginView:NO];
         }
     } dataArr:images dic:dic noNetWork:nil];
 }

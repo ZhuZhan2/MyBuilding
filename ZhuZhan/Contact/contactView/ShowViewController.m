@@ -14,6 +14,7 @@
 #import "ContactModel.h"
 #import "IsFocusedApi.h"
 #import "LoginModel.h"
+#import "AddressBookApi.h"
 @interface ShowViewController ()
 @property(nonatomic,strong)UIActivityIndicatorView* indicatorView;
 @property(nonatomic,strong)UIView* bgVIew;
@@ -64,7 +65,7 @@
     [tempImageView addSubview:message];
     
     UIButton *visitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    visitBtn.frame =CGRectMake(70, 220, 60, 28);
+    visitBtn.frame =CGRectMake(15, 220, 60, 28);
     visitBtn.backgroundColor = [UIColor blackColor];
     [visitBtn setTitle:@"访问" forState:UIControlStateNormal];
     visitBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
@@ -75,14 +76,26 @@
     visitBtn.alpha = 0.8;
     
     concernBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    concernBtn.frame = CGRectMake(150, 220, 75, 28);
+    concernBtn.frame = CGRectMake(95, 220, 75, 28);
     concernBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
     concernBtn.backgroundColor = [UIColor blackColor];
     concernBtn.layer.cornerRadius = 5;//设置那个圆角的有多圆
     concernBtn.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
-    [concernBtn addTarget:self action:@selector(gotoConcern) forControlEvents:UIControlEventTouchUpInside];
+    [concernBtn addTarget:self action:@selector(addFriend) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:concernBtn];
     concernBtn.alpha = 0.8;
+    
+    UIButton *addFriendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    addFriendBtn.frame = CGRectMake(190, 220, 75, 28);
+    addFriendBtn.backgroundColor = [UIColor blackColor];
+    [addFriendBtn setTitle:@"添加好友" forState:UIControlStateNormal];
+    addFriendBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
+    addFriendBtn.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    addFriendBtn.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
+    [addFriendBtn addTarget:self action:@selector(gotoConcern) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:addFriendBtn];
+    addFriendBtn.alpha = 0.8;
+    
     
     [self loadIndicatorView];
     [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -105,28 +118,6 @@
             [LoginAgain AddLoginView:NO];
         }
     } userId:self.createdBy noNetWork:nil];
-    
-//    [CommentApi UserBriefInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-//        if(!error){
-//            if(posts.count !=0){
-//                contactId = posts[0][@"userId"];
-//                tempImageView.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,posts[0][@"backgroundImage"]]];
-//                icon.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:posts[0][@"userImage"]]]];
-//                userName.text = [ProjectStage ProjectStrStage:posts[0][@"userName"]];
-//                message.text = [NSString stringWithFormat:@"%@项目，%@动态",[ProjectStage ProjectStrStage:posts[0][@"projectsCount"]],[ProjectStage ProjectStrStage:posts[0][@"activesCount"]]];
-//                if([[ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]]] isEqualToString:@"1"]){
-//                    [concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
-//                    isFoucsed = 1;
-//                }else{
-//                    [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
-//                    isFoucsed = 0;
-//                }
-//                [self endIndicatorView];
-//            }
-//        }else{
-//            [LoginAgain AddLoginView:NO];
-//        }
-//    } userId:self.createdBy noNetWork:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -197,6 +188,19 @@
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }
+}
+
+-(void)addFriend{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:self.createdBy forKey:@"userId"];
+    [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }else{
+            [LoginAgain AddLoginView:NO];
+        }
+    } dic:dic noNetWork:nil];
 }
 
 -(void)loginCompleteWithDelayBlock:(void (^)())block{
