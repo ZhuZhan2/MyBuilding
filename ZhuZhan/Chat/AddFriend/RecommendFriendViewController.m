@@ -94,4 +94,9 @@
     self.searchBarTableViewController=[[RecommendFriendSearchController alloc]initWithTableViewBounds:CGRectMake(0, 0, kScreenWidth, kScreenHeight-CGRectGetMinY(self.searchBar.frame))];
     self.searchBarTableViewController.delegate=self;
 }
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [super searchBarSearchButtonClicked:searchBar];
+    [self.searchBarTableViewController loadListWithKeyWords:searchBar.text];
+}
 @end

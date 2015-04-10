@@ -288,9 +288,9 @@
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             for (NSDictionary* item in JSON[@"data"][@"rows"]) {
-//                FriendModel *model = [[FriendModel alloc] init];
-//                [model setDict:item];
-//                [mutablePosts addObject:model];
+                FriendModel *model = [[FriendModel alloc] init];
+                [model setDict:item];
+                [mutablePosts addObject:model];
             }
             if (block) {
                 block(mutablePosts, nil);

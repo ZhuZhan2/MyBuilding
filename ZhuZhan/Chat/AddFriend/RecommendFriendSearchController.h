@@ -9,5 +9,5 @@
 #import "SearchBarTableViewController.h"
 
 @interface RecommendFriendSearchController : SearchBarTableViewController
-
+-(void)loadListWithKeyWords:(NSString*)keyWords;
 @end
