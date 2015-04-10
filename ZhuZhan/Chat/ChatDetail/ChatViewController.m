@@ -33,7 +33,7 @@
     [dic setObject:@"text" forKey:@"event"];
     [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
     [dic setObject:@"d859009b-51b4-4415-ada1-d5ea09ca4130" forKey:@"toUserId"];
-    [dic setObject:@"草死你" forKey:@"content"];
+    [dic setObject:@"老板让我来草死你" forKey:@"content"];
     NSString *str = [dic JSONString];
     str = [NSString stringWithFormat:@"%@\r\n",str];
     NSLog(@"%@",str);
