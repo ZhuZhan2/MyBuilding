@@ -41,7 +41,7 @@
         [self addSubview:self.userBussniessLabel];
         
         if (self.needRightBtn) {
-            self.rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(270, 19, 26, 26)];
+            self.rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(236, 19, 60, 26)];
             [self addSubview:self.rightBtn];
         }
         

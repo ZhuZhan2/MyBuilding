@@ -68,8 +68,8 @@
 +(void)InsertData:(ChatMessageModel *)model{
     SqliteHelper *sqlite = [[SqliteHelper alloc] init];
     if ([sqlite open:DataBaseName]) {
-        [sqlite executeQuery:@"INSERT INTO Chat(chatId,name,avatarUrl,message,time,userId,hasChatId) VALUES (?,?,?,?,?,?,?);",
-         model.a_id,model.a_name,model.a_avatarUrl,model.a_message,model.a_time,model.a_userId,model.a_hasChatId];
+        [sqlite executeQuery:@"INSERT INTO Chat(chatId,name,avatarUrl,message,time,userId) VALUES (?,?,?,?,?,?);",
+         model.a_id,model.a_name,model.a_avatarUrl,model.a_message,model.a_time,model.a_userId];
     }
 }
 @end

@@ -45,6 +45,7 @@
         self.a_productCategory = @"";
     }
     self.a_remark = dict[@"remark"];
+    NSLog(@"%@",dict[@"category"]);
     self.a_category = dict[@"category"];
     self.a_time = [ProjectStage ProjectTimeStage:dict[@"createdTime"]];
 }

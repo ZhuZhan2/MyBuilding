@@ -8,6 +8,8 @@
 
 #import "SocketManage.h"
 #import "GCDAsyncSocket.h"
+#import "JSONKit.h"
+#import "ChatMessageModel.h"
 @interface SocketManage ()
 @property (nonatomic, strong) GCDAsyncSocket * socket;
 @end
@@ -63,12 +65,22 @@
     NSLog(@"socket:%p didReadData:withTag:%ld", sock, tag);
     [self.socket readDataWithTimeout:-1 tag:0];
     NSString *httpResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSDictionary *dic = [httpResponse objectFromJSONString];
+    NSLog(@"HTTP Response:\n%@", dic);
+    if([dic[@"msgType"] isEqualToString:@"user"]){
+        if([dic[@"event"] isEqualToString:@"text"]){
+            ChatMessageModel *model = [[ChatMessageModel alloc] init];
+            [model setDict:dic[@"chatlog"]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessage" object:nil userInfo:@{@"message":model}];
+        }
+    }else if ([dic[@"msgType"] isEqualToString:@"group"]){
     
-    NSLog(@"HTTP Response:\n%@", httpResponse);
+    }else{
     
+    }
 }
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err{
-    
+    NSLog(@"%@",err);
 }
 @end

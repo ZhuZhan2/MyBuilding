@@ -7,10 +7,27 @@
 //
 
 #import "ChatMessageModel.h"
-
+#import "ProjectStage.h"
+#import "LoginSqlite.h"
 @implementation ChatMessageModel
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
-    //self.a_type = dict[@"type"];
+    self.a_id = [ProjectStage ProjectStrStage:dict[@"chatlogId"]];
+    self.a_name = [ProjectStage ProjectStrStage:dict[@"senderName"]];
+    if(![[ProjectStage ProjectStrStage:dict[@"senderImageId"]] isEqualToString:@""]){
+        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"senderImageId"]], @"login", @"", @"", @"")];
+    }else{
+        self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"senderImageId"]];
+    }
+    self.a_message = [ProjectStage ProjectStrStage:dict[@"content"]];
+    self.a_time = [ProjectStage ProjectStrStage:dict[@"createdTime"]];
+    self.a_userId = [ProjectStage ProjectStrStage:dict[@"sender"]];
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:dict[@"sender"]]){
+        self.a_type = chatTypeMe;
+    }else{
+        self.a_type = chatTypeOther;
+    }
+    
+    NSLog(@"===>%@",self.a_avatarUrl);
 }
 @end

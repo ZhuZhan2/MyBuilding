@@ -11,6 +11,7 @@
 #import "AddressBookApi.h"
 #import "FriendModel.h"
 #import "RecommendFriendSearchController.h"
+#import "MJRefresh.h"
 #define seperatorLineColor RGBCOLOR(229, 229, 229)
 @interface RecommendFriendViewController ()
 @property(nonatomic,strong)NSMutableArray* models;
@@ -121,7 +122,6 @@
     FriendModel *model = self.models[indexPath.row];
     cell.model = model;
     cell.selectionStyle = NO;
-    
     return cell;
 }
 
