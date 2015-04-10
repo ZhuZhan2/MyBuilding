@@ -25,7 +25,9 @@
 
 -(void)initSocket{
     AppDelegate *app = [AppDelegate instance];
-    [app.socket connectToServer:@"10.1.1.138" withPort:[@"44455" intValue]];
+    
+    [app.socket connectToServer:@"10.1.5.104" withPort:[@"44455" intValue]];
+//    [app.socket connectToServer:@"10.1.1.138" withPort:[@"44455" intValue]];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:@"event" forKey:@"msgType"];
     [dic setObject:@"login" forKey:@"event"];
