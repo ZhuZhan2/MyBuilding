@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "LoginSqlite.h"
 #import "JSONKit.h"
+#import "ChatMessageModel.h"
 @interface ChatViewController ()<UIAlertViewDelegate>
 @property (nonatomic, strong)NSMutableArray* models;
 @end
@@ -33,6 +34,10 @@
 
 -(void)newMessage:(NSNotification*)noti{
     NSLog(@"noti=%@",noti.userInfo);
+    [self.models addObject:noti.userInfo[@"message"]];
+    [self.tableView reloadData];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.models.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+
 }
 
 -(void)testSocket{
@@ -74,14 +79,15 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 12;
+    return self.models.count;
 }
 
 #define testContents @[@"开发部的都是好人，产品部设计部测试部都是坏人",@"范俊是帅哥",@"恭喜发财，红包拿来，深集发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发",@"高凌露是美女",@"老板是好人",@"恭喜发财，红包拿来，深集发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发",@"开发部的都是好人，产品部设计部测试部都是坏人",@"范俊是帅哥",@"恭喜发财，红包拿来，深集发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发",@"高凌露是美女",@"老板是好人",@"恭喜发财，红包拿来，深集发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发"]
 static BOOL testIsSelfs[12] = {1,1,0,0,1,0,1,1,0,0,1,0};
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString* content=testContents[indexPath.row];
-    return [ChatTableViewCell carculateTotalHeightWithContentStr:content isSelf:testIsSelfs[indexPath.row]];
+    ChatMessageModel* model=self.models[indexPath.row];
+    NSString* content=model.a_message;
+    return [ChatTableViewCell carculateTotalHeightWithContentStr:content isSelf:model.a_type];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -89,10 +95,13 @@ static BOOL testIsSelfs[12] = {1,1,0,0,1,0,1,1,0,0,1,0};
     if (!cell) {
         cell=[[ChatTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
+    ChatMessageModel* dataModel=self.models[indexPath.row];
+    
     ChatModel* model=[[ChatModel alloc]init];
-    model.userNameStr=@"大家都是好人";
-    model.chatContent=testContents[indexPath.row];
-    model.isSelf=testIsSelfs[indexPath.row];
+    model.userNameStr=dataModel.a_name;
+    model.chatContent=dataModel.a_message;
+    model.isSelf=dataModel.a_type;
+    model.userImageStr=dataModel.a_avatarUrl;
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     cell.model=model;
