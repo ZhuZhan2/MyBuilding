@@ -8,6 +8,8 @@
 
 #import "AddressBookNickNameViewController.h"
 #import "EndEditingGesture.h"
+#import "AddressBookApi.h"
+#import "LoginSqlite.h"
 @interface AddressBookNickNameViewController ()<UITextFieldDelegate>
 @property(nonatomic,strong)UILabel *titleLabel;
 @property(nonatomic,strong)UITextField *textField;
@@ -36,7 +38,18 @@
 }
 
 -(void)rightBtnClicked{
-    NSLog(@"%@",self.textField.text);
+    NSMutableDictionary* dic=[@{
+                                @"userId":self.targetId,
+                                @"nickName":self.textField.text
+                                }mutableCopy];
+    [AddressBookApi UpdateNickNameWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            if ([self.delegate respondsToSelector:@selector(addressBookNickNameViewControllerFinish )]) {
+                [self.delegate addressBookNickNameViewControllerFinish];
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } dic:dic noNetWork:nil];
 }
 
 -(UILabel *)titleLabel{
@@ -67,6 +80,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.textField resignFirstResponder];
+    [self rightBtnClicked];
     return YES;
 }
 @end

@@ -16,7 +16,7 @@
 #import "AddFriendViewController.h"
 #import "AddressBookNickNameViewController.h"
 #define seperatorLineColor RGBCOLOR(229, 229, 229)
-@interface AddressBookViewController()<AddressBookViewCellDelegate,SWTableViewCellDelegate>
+@interface AddressBookViewController()<AddressBookViewCellDelegate,SWTableViewCellDelegate,AddressBookNickNameViewControllerDelegate>
 @property(nonatomic,strong)NSMutableArray *groupArr;
 @property(nonatomic,strong)NSMutableArray *searchDataArr;
 @property(nonatomic,strong)UIButton *addFriendBtn;
@@ -168,7 +168,8 @@
     AddressBookModel *ABmodel = self.groupArr[indexPath.section];
     AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];
     AddressBookCellModel* model=[[AddressBookCellModel alloc]init];
-    model.mainLabelText=contactModel.a_loginName;
+    BOOL hasNickName=![contactModel.a_nickName isEqualToString:@""];
+    model.mainLabelText=hasNickName?contactModel.a_nickName:contactModel.a_loginName;
     model.mainImageUrl = contactModel.a_avatarUrl;
     model.isHighlight=arc4random()%2;
     [cell setModel:model indexPath:indexPath];
@@ -199,7 +200,8 @@
     AddressBookModel *ABmodel = self.searchDataArr[indexPath.section];
     AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];
     AddressBookSearchBarCellModel* model=[[AddressBookSearchBarCellModel alloc]init];
-    model.mainLabelText=contactModel.a_loginName;
+    BOOL hasNickName=![contactModel.a_nickName isEqualToString:@""];
+    model.mainLabelText=hasNickName?contactModel.a_nickName:contactModel.a_loginName;
     model.mainImageUrl = contactModel.a_avatarUrl;
     model.isHighlight=arc4random()%2;
     [cell setModel:model];
@@ -276,7 +278,13 @@
     switch (index) {
         case 0:
         {
+            NSIndexPath* indexPath=[self.tableView indexPathForCell:cell];
+            AddressBookModel *ABmodel = self.groupArr[indexPath.section];
+            AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];
+            
             AddressBookNickNameViewController *view = [[AddressBookNickNameViewController alloc] init];
+            view.delegate=self;
+            view.targetId=contactModel.a_contactId;
             [self.navigationController pushViewController:view animated:YES];
             [cell hideUtilityButtonsAnimated:YES];
             break;
@@ -318,4 +326,13 @@
     }
 }
 
+-(void)addressBookNickNameViewControllerFinish{
+    [AddressBookApi GetAddressBookListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self.groupArr removeAllObjects];
+            self.groupArr = posts;
+            [self.tableView reloadData];
+        }
+    }keywords:@"" noNetWork:nil];
+}
 @end

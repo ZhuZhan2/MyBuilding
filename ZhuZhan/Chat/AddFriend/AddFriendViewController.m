@@ -42,17 +42,19 @@
 }
 
 -(void)initTopView{
+    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 74, 320, 82)];
+    imageView.image=[GetImagePath getImagePath:@"add_both_button"];
+    [self.view addSubview:imageView];
+    
     self.addressBookBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.addressBookBtn.frame = CGRectMake(0, 74, 320, 82);
+    self.addressBookBtn.frame = CGRectMake(0, 74, 160, 82);
     [self.addressBookBtn addTarget:self action:@selector(addressBookBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.addressBookBtn setBackgroundImage:[GetImagePath getImagePath:@"add_both_button"] forState:UIControlStateNormal];
     [self.view addSubview:self.addressBookBtn];
     
     self.MyBuildingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.MyBuildingBtn.frame = CGRectMake(162, 74, 158, 78);
+    self.MyBuildingBtn.frame = CGRectMake(160, 74, 160, 82);
     [self.MyBuildingBtn addTarget:self action:@selector(MyBuildingBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.MyBuildingBtn setBackgroundImage:[GetImagePath getImagePath:@"add_MBfriend_button"] forState:UIControlStateNormal];
-    //[self.view addSubview:self.MyBuildingBtn];
+    [self.view addSubview:self.MyBuildingBtn];
     
     self.tableView.frame = CGRectMake(0, 164, 320, kScreenHeight-164);
 }

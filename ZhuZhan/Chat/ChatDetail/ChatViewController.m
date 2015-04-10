@@ -27,7 +27,14 @@
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:11 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
     [self addKeybordNotification];
     
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(newMessage:) name:@"newMessage" object:nil];
+}
+
+-(void)newMessage:(NSNotification*)noti{
+    NSLog(@"noti=%@",noti.userInfo);
+}
+
+-(void)testSocket{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:@"user" forKey:@"msgType"];
     [dic setObject:@"text" forKey:@"event"];

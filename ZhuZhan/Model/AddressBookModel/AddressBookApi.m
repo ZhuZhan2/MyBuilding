@@ -197,6 +197,7 @@
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/contacts/updateNickName"];
     NSLog(@"urlStr==%@",urlStr);
+    NSLog(@"dic==%@",dic);
     
     return  [[AFAppDotNetAPIClient sharedNewClient]POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id JSON) {
         NSLog(@"JSON===>%@",JSON);

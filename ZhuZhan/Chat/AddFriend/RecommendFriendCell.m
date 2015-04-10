@@ -25,7 +25,7 @@
     _model = model;
     [self.headImage sd_setImageWithURL:[NSURL URLWithString:model.a_avatarUrl] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     self.nameLabel.text = model.a_name;
-    [self.addBtn setBackgroundImage:[GetImagePath getImagePath:model.a_isisFriend?@"公司认证员工_08a":@"公司认证员工_18a"] forState:UIControlStateNormal];
+    [self.addBtn setBackgroundImage:[GetImagePath getImagePath:model.a_isisFriend?@"added":@"add_green_button"] forState:UIControlStateNormal];
 }
 
 -(UIImageView *)headImage{
@@ -56,7 +56,7 @@
 -(UIButton *)addBtn{
     if(!_addBtn){
         _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _addBtn.frame = CGRectMake(270, 15, 26, 26);
+        _addBtn.frame = CGRectMake(250, 19, 60, 26);
         [_addBtn addTarget:self action:@selector(addFriendAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addBtn;
@@ -82,6 +82,8 @@
             if(!error){
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertView show];
+                self.model.a_isisFriend=YES;
+                [self.addBtn setBackgroundImage:[GetImagePath getImagePath:@"报价灰"] forState:UIControlStateNormal];
             }else{
                 [LoginAgain AddLoginView:NO];
             }
