@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 typedef enum {
-    chatTypeMe = 0, // 自己发的
-    chatTypeOther = 1 //别人发得
+    chatTypeOther = 0, // 别人发得
+    chatTypeMe = 1 //自己发的
 } ChatType;
 @interface ChatMessageModel : NSObject
 @property(nonatomic)ChatType a_type;

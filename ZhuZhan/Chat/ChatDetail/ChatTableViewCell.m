@@ -60,7 +60,6 @@
 
 -(UIImageView *)userImageView{
     if (!_userImageView) {
-        //[GetImagePath getImagePath:@"默认主图01"]
         _userImageView=[[UIImageView alloc]init];
         _userImageView.frame=CGRectMake(0, 0, 35, 35);
         _userImageView.layer.cornerRadius=2;
@@ -96,9 +95,12 @@
 -(void)setModel:(ChatModel *)chatModel{
     _model=chatModel;
     
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:chatModel.userImageStr] placeholderImage:[GetImagePath getImagePath:@"默认主图01"]];
     self.nameLabel.text=chatModel.userNameStr;
     [self.chatContentView setText:chatModel.chatContent isSelf:chatModel.isSelf];
     self.isSelf=chatModel.isSelf;
+//    默认主图01
+    
 }
 
 -(void)layoutSubviews{
