@@ -104,7 +104,7 @@ static BOOL testIsSelfs[12] = {1,1,0,0,1,0,1,1,0,0,1,0};
     [dic setObject:@"user" forKey:@"msgType"];
     [dic setObject:@"text" forKey:@"event"];
     [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
-    [dic setObject:@"d859009b-51b4-4415-ada1-d5ea09ca4130" forKey:@"toUserId"];
+    [dic setObject:@"ef190673-0f57-4a78-aa07-e86d3edf2262" forKey:@"toUserId"];
     [dic setObject:content forKey:@"content"];
     NSString *str = [dic JSONString];
     str = [NSString stringWithFormat:@"%@\r\n",str];
