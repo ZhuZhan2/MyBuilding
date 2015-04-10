@@ -10,11 +10,13 @@
 #import "RecommendFriendCell.h"
 #import "AddressBookApi.h"
 #import "FriendModel.h"
+#import "RecommendFriendSearchController.h"
 #define seperatorLineColor RGBCOLOR(229, 229, 229)
 @interface RecommendFriendViewController ()
 @property(nonatomic,strong)NSMutableArray* models;
 @property(nonatomic)int startIndex;
 @property(nonatomic,strong)UIView *topView;
+@property(nonatomic,strong)RecommendFriendSearchController* searchBarTableViewController;
 @end
 
 @implementation RecommendFriendViewController
@@ -86,5 +88,10 @@
     cell.selectionStyle = NO;
     
     return cell;
+}
+
+-(void)setUpSearchBarTableView{
+    self.searchBarTableViewController=[[RecommendFriendSearchController alloc]initWithTableViewBounds:CGRectMake(0, 0, kScreenWidth, kScreenHeight-CGRectGetMinY(self.searchBar.frame))];
+    self.searchBarTableViewController.delegate=self;
 }
 @end

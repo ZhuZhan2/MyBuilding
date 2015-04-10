@@ -624,6 +624,7 @@
 		5B5773E51AC133BA00C17DBF /* DemandProvidePriceDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773E41AC133BA00C17DBF /* DemandProvidePriceDetailController.m */; };
 		5B5773E81AC133E400C17DBF /* DemandProvidePriceChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773E71AC133E400C17DBF /* DemandProvidePriceChatController.m */; };
 		5B5773EB1AC19E8700C17DBF /* RKImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773EA1AC19E8700C17DBF /* RKImageModel.m */; };
+		5B5836D71AD771AF00F8E7C3 /* RecommendFriendSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5836D61AD771AF00F8E7C3 /* RecommendFriendSearchController.m */; };
 		5B5894F119FF9D24001CC09E /* EndEditingGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5894F019FF9D24001CC09E /* EndEditingGesture.m */; };
 		5B5A24DD1A4189CA0071BD90 /* 密码找回_03z.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5A24D71A4189CA0071BD90 /* 密码找回_03z.png */; };
 		5B5A24DE1A4189CA0071BD90 /* 密码找回_03z@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5A24D81A4189CA0071BD90 /* 密码找回_03z@2x.png */; };
@@ -2404,6 +2405,8 @@
 		5B5773E71AC133E400C17DBF /* DemandProvidePriceChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemandProvidePriceChatController.m; sourceTree = "<group>"; };
 		5B5773E91AC19E8700C17DBF /* RKImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKImageModel.h; sourceTree = "<group>"; };
 		5B5773EA1AC19E8700C17DBF /* RKImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKImageModel.m; sourceTree = "<group>"; };
+		5B5836D51AD771AF00F8E7C3 /* RecommendFriendSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendFriendSearchController.h; sourceTree = "<group>"; };
+		5B5836D61AD771AF00F8E7C3 /* RecommendFriendSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendFriendSearchController.m; sourceTree = "<group>"; };
 		5B5894EF19FF9D24001CC09E /* EndEditingGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndEditingGesture.h; sourceTree = "<group>"; };
 		5B5894F019FF9D24001CC09E /* EndEditingGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndEditingGesture.m; sourceTree = "<group>"; };
 		5B5A24D71A4189CA0071BD90 /* 密码找回_03z.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码找回_03z.png"; sourceTree = "<group>"; };
@@ -5380,6 +5383,8 @@
 				5B8A2CC81AAEE0AD00C8F9DE /* AddFriendCell.m */,
 				D3F7274F1AD660E200B52A66 /* RecommendFriendViewController.h */,
 				D3F727501AD660E200B52A66 /* RecommendFriendViewController.m */,
+				5B5836D51AD771AF00F8E7C3 /* RecommendFriendSearchController.h */,
+				5B5836D61AD771AF00F8E7C3 /* RecommendFriendSearchController.m */,
 				D3F727581AD6941900B52A66 /* RecommendFriendCell.h */,
 				D3F727591AD6941900B52A66 /* RecommendFriendCell.m */,
 			);
@@ -7758,6 +7763,7 @@
 				5B8A2CF21AAEE0AD00C8F9DE /* ChatListViewCell.m in Sources */,
 				0426C2DC19922D5A00CD8822 /* GPUImageMovieWriter.m in Sources */,
 				5BB9A53D1AB6F84300B5B2D8 /* AskPriceViewController.m in Sources */,
+				5B5836D71AD771AF00F8E7C3 /* RecommendFriendSearchController.m in Sources */,
 				D35E12441ABD68B5007C6726 /* CatoryTableViewCell.m in Sources */,
 				0426C24619922D5A00CD8822 /* GPUImageAmatorkaFilter.m in Sources */,
 				D3D6B7421AD6A51500C8BF91 /* ChatNetAPIClient.m in Sources */,

@@ -13,7 +13,6 @@
 @interface ChatBaseViewController()
 
 
-@property(nonatomic,strong)SearchBarTableViewController* searchBarTableViewController;
 
 @property(nonatomic)BOOL searchBarIsTableViewHeader;
 

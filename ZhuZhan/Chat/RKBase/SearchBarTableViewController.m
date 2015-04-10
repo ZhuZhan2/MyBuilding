@@ -81,7 +81,6 @@
     }
 }
 
-
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if([self.delegate respondsToSelector:@selector(searchBarTableView:heightForHeaderInSection:)]){
         return [self.delegate searchBarTableView:tableView heightForHeaderInSection:section];
