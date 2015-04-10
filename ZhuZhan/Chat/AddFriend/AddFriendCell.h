@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EmployeesModel.h"
 
 @interface AddFriendCell : UITableViewCell
 @property(nonatomic,strong)UIImageView* userImageView;

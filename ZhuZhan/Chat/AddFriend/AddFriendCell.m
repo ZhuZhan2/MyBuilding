@@ -30,7 +30,7 @@
         self.userImageView.userInteractionEnabled=YES;
         
         
-        self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(65, 12.5, 200, 16)];
+        self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(65, 10.5, 200, 20)];
         self.userNameLabel.font=[UIFont boldSystemFontOfSize:15];
         self.userNameLabel.textColor=RGBCOLOR(89, 89, 89);
         [self addSubview:self.userNameLabel];
@@ -41,7 +41,7 @@
         [self addSubview:self.userBussniessLabel];
         
         if (self.needRightBtn) {
-            self.rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(236, 19, 60, 26)];
+            self.rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(250, 19, 60, 26)];
             [self addSubview:self.rightBtn];
         }
         
@@ -56,7 +56,7 @@
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:userImageUrl] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     self.userNameLabel.text=userName;
     self.userBussniessLabel.text=time;
-    [self.rightBtn setBackgroundImage:[GetImagePath getImagePath:isFinished?@"公司认证员工_08a":@"公司认证员工_18a"] forState:UIControlStateNormal];
+    [self.rightBtn setBackgroundImage:[GetImagePath getImagePath:isFinished?@"added":@"add_green_button"] forState:UIControlStateNormal];
     self.rightBtn.tag=indexPathRow;
     self.userImageView.tag=indexPathRow;
 }

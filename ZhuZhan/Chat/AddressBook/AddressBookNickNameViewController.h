@@ -8,6 +8,11 @@
 
 #import "ChatBaseViewController.h"
 
-@interface AddressBookNickNameViewController : ChatBaseViewController
+@protocol AddressBookNickNameViewControllerDelegate <NSObject>
+-(void)addressBookNickNameViewControllerFinish;
+@end
 
+@interface AddressBookNickNameViewController : ChatBaseViewController
+@property (nonatomic, copy)NSString* targetId;
+@property (nonatomic, weak)id<AddressBookNickNameViewControllerDelegate> delegate;
 @end

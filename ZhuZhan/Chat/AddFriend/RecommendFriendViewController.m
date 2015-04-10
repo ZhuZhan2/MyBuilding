@@ -34,9 +34,9 @@
     [self setupRefresh];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [super searchBarCancelButtonClicked:searchBar];
+    [self headerRereshing];
 }
 
 -(void)setupRefresh{
