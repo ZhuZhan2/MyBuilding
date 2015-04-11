@@ -25,7 +25,7 @@
     [self initNavi];
     [self initTableView];
     [self initChatToolBar];
-    
+    [self initTableViewHeaderView];
 //    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:11 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
     [self addKeybordNotification];
     [self testSocket];
@@ -35,9 +35,12 @@
 -(void)newMessage:(NSNotification*)noti{
     NSLog(@"noti=%@",noti.userInfo);
     [self.models addObject:noti.userInfo[@"message"]];
+    [self appearNewData];
+}
+
+-(void)appearNewData{
     [self.tableView reloadData];
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.models.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-
 }
 
 -(void)testSocket{
@@ -61,29 +64,16 @@
     [self setRightBtnWithImage:[GetImagePath getImagePath:YES?@"单人会话":@"多人会话@2x"]];
 }
 
--(void)sureBtnClickedWithContent:(NSString *)content{
-    NSLog(@"content=%@",content);
-}
-
 -(void)rightBtnClicked{
     [self.view endEditing:YES];
     AddGroupMemberController* vc=[[AddGroupMemberController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex==0) {
-        UITextField* textField=[alertView textFieldAtIndex:0];
-        NSLog(@"==%@",textField.text);
-    }
-}
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.models.count;
 }
 
-#define testContents @[@"开发部的都是好人，产品部设计部测试部都是坏人",@"范俊是帅哥",@"恭喜发财，红包拿来，深集发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发",@"高凌露是美女",@"老板是好人",@"恭喜发财，红包拿来，深集发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发",@"开发部的都是好人，产品部设计部测试部都是坏人",@"范俊是帅哥",@"恭喜发财，红包拿来，深集发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发",@"高凌露是美女",@"老板是好人",@"恭喜发财，红包拿来，深集发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发发"]
-static BOOL testIsSelfs[12] = {1,1,0,0,1,0,1,1,0,0,1,0};
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     ChatMessageModel* model=self.models[indexPath.row];
     NSString* content=model.a_message;
@@ -96,11 +86,12 @@ static BOOL testIsSelfs[12] = {1,1,0,0,1,0,1,1,0,0,1,0};
         cell=[[ChatTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     ChatMessageModel* dataModel=self.models[indexPath.row];
-    
+
     ChatModel* model=[[ChatModel alloc]init];
     model.userNameStr=dataModel.a_name;
     model.chatContent=dataModel.a_message;
     model.isSelf=dataModel.a_type;
+    model.time=dataModel.a_time;
     model.userImageStr=dataModel.a_avatarUrl;
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
@@ -109,6 +100,11 @@ static BOOL testIsSelfs[12] = {1,1,0,0,1,0,1,1,0,0,1,0};
 }
 
 -(void)chatToolSendBtnClickedWithContent:(NSString *)content{
+    [self sendMessage:content];
+    [self addModelWithContent:content];
+}
+
+-(void)sendMessage:(NSString*)content{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:@"user" forKey:@"msgType"];
     [dic setObject:@"text" forKey:@"event"];
@@ -117,10 +113,32 @@ static BOOL testIsSelfs[12] = {1,1,0,0,1,0,1,1,0,0,1,0};
     [dic setObject:content forKey:@"content"];
     NSString *str = [dic JSONString];
     str = [NSString stringWithFormat:@"%@\r\n",str];
-
+    
     AppDelegate *app = [AppDelegate instance];
     [app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
     [app.socket readDataWithTimeout:-1 tag:0];
+}
+
+-(void)addModelWithContent:(NSString*)content{
+    ChatMessageModel* model=[[ChatMessageModel alloc]init];
+    model.a_name=[LoginSqlite getdata:@"userName"];
+    model.a_message=content;
+    model.a_type=chatTypeMe;
+    model.a_avatarUrl=[LoginSqlite getdata:@"userImage"];
+    
+    NSDate* date=[NSDate date];
+    NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
+    formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";
+    NSString* time=[formatter stringFromDate:date];
+    model.a_time=time;
+    
+    [self.models addObject:model];
+    [self appearNewData];
+}
+
+-(void)initTableViewHeaderView{
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
+    self.tableView.tableHeaderView=view;
 }
 
 -(NSMutableArray *)models{
