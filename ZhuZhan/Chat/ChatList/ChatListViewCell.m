@@ -12,6 +12,7 @@
 @property(nonatomic,strong)UILabel* userNameLabel;
 @property(nonatomic,strong)UILabel* userBussniessLabel;
 @property(nonatomic,strong)UILabel* remindNumberLabel;
+@property(nonatomic,strong)UILabel* timeLabel;
 @property(nonatomic,strong)UIView* separatorLine;
 @end
 
@@ -22,7 +23,7 @@
     if (self) {
         self.userImageView=[[UIImageView alloc]init];
         self.userImageView.layer.cornerRadius=3;
-        self.userImageView.layer.masksToBounds=YES;
+//        self.userImageView.layer.masksToBounds=YES;
         self.userImageView.frame=CGRectMake(12, 7.5, 35, 35);
         [self addSubview:self.userImageView];
         self.userImageView.userInteractionEnabled=YES;
@@ -43,13 +44,20 @@
         self.rightLabel.textColor=RGBCOLOR(149, 149, 149);
         [self addSubview:self.rightLabel];
         
-        self.remindNumberLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
+        self.remindNumberLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 12, 12)];
         self.remindNumberLabel.backgroundColor=[UIColor redColor];
-        self.remindNumberLabel.layer.cornerRadius=5;
+        self.remindNumberLabel.layer.cornerRadius=6;
+        self.remindNumberLabel.clipsToBounds=YES;
         self.remindNumberLabel.textAlignment=NSTextAlignmentCenter;
         self.remindNumberLabel.textColor=[UIColor whiteColor];
-        self.remindNumberLabel.center=CGPointMake(CGRectGetMaxX(self.userImageView.frame), 0);
+        self.remindNumberLabel.center=CGPointMake(CGRectGetWidth(self.userImageView.frame), 0);
+        self.remindNumberLabel.font=[UIFont systemFontOfSize:9];
         [self.userImageView addSubview:self.remindNumberLabel];
+        
+        self.timeLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 70, 20)];
+        self.timeLabel.textAlignment=NSTextAlignmentRight;
+        self.timeLabel.textColor=RGBCOLOR(149, 149, 149);
+        [self addSubview:self.timeLabel];
         
         self.separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 49, 320, 1)];
         self.separatorLine.backgroundColor=RGBCOLOR(229, 229, 229);
@@ -67,8 +75,13 @@
     }
     self.userBussniessLabel.text=model.a_content;
 
-    self.remindNumberLabel.text;
-    
+    if ([model.a_msgCount isEqualToString:@""]) {
+        self.remindNumberLabel.hidden=YES;
+    }else{
+        self.remindNumberLabel.text=model.a_msgCount;
+        self.remindNumberLabel.hidden=NO;
+    }
+
     self.rightLabel.text=@"2015-02-08";
 }
 @end

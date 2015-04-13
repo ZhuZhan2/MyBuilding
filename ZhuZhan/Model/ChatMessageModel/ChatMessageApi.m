@@ -83,7 +83,7 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/chatlog/list?userId=%@&pageIndex=%d&pageSize=10",userId,startIndex];
+    NSString *urlStr = [NSString stringWithFormat:@"api/chatlog/list?userId=%@&pageIndex=%d&pageSize=5&chatlogId=%@",userId,startIndex,chatlogId];
     NSLog(@"=====%@",urlStr);
     return [[ChatNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);

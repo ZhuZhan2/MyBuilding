@@ -35,7 +35,7 @@
     return self;
 }
 
--(void)leftBtnClicked{
+-(void)popNavi{
     UIViewController* vc=self.navigationController.viewControllers[self.popViewControllerIndex];
     [self.navigationController popToViewController:vc animated:YES];
 }
@@ -61,7 +61,7 @@
     [dic setValue:@"02" forKey:@"deviceType"];
     [ChatMessageApi LogoutWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            [self.navigationController popViewControllerAnimated:YES];
+            [self popNavi];
         }
     }dic:dic noNetWork:nil];
 }
