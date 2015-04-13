@@ -16,6 +16,7 @@
 
 @protocol AddressBookViewCellDelegate <NSObject>
 -(void)chooseAssistBtn:(UIButton*)btn indexPath:(NSIndexPath*)indexPath;
+-(void)headClick:(NSIndexPath*)indexPath;
 @end
 
 @interface AddressBookViewCell : SWTableViewCell

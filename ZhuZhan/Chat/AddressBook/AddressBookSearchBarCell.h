@@ -15,5 +15,5 @@
 @end
 
 @interface AddressBookSearchBarCell : SWTableViewCell
--(void)setModel:(AddressBookSearchBarCell*)model;
+-(void)setModel:(AddressBookSearchBarCellModel*)model indexPath:(NSIndexPath*)indexPath;
 @end
