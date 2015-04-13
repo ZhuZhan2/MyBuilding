@@ -38,4 +38,7 @@
 
 //搜索用户
 + (NSURLSessionDataTask *)SearchUserWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block keywords:(NSString *)keywords startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
+
+//上传通讯录
++ (void)ContactsAddWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block arr:(NSMutableArray*)arr noNetWork:(void(^)())noNetWork;
 @end

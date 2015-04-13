@@ -7,7 +7,6 @@
 //
 
 #import "AddFriendCell.h"
-#import "UIButton+WebCache.h"
 @interface AddFriendCell()
 @property(nonatomic,strong)UILabel* userNameLabel;
 @property(nonatomic,strong)UILabel* userBussniessLabel;

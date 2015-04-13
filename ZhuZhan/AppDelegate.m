@@ -23,6 +23,7 @@
 #import "SocketManage.h"
 #import "GCDAsyncSocket.h"
 #import "JSONKit.h"
+#import "GetAddressBook.h"
 @implementation AppDelegate
 
 + (AppDelegate *)instance {
@@ -30,6 +31,13 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        GetAddressBook *addressBook = [[GetAddressBook alloc] init];
+        [addressBook registerAddressBook:^(bool granted, NSError *error) {
+            
+        }];
+    });
+    
     self.socket = [SocketManage sharedManager];
     
     
