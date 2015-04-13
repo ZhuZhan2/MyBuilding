@@ -11,6 +11,7 @@
 #import "ChatNetAPIClient.h"
 #import "ChatMessageModel.h"
 #import "ChatListModel.h"
+#import "ChatGroupMemberModel.h"
 @implementation ChatMessageApi
 + (NSURLSessionDataTask *)CreateWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
@@ -211,11 +212,11 @@
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-//            for(NSDictionary *item in JSON[@"data"][@"rows"]){
-//                ChatMessageModel *model = [[ChatMessageModel alloc] init];
-//                [model setDict:item];
-//                [mutablePosts insertObject:model atIndex:0];
-//            }
+            for(NSDictionary *item in JSON[@"data"][@"userList"]){
+                ChatGroupMemberModel* model=[[ChatGroupMemberModel alloc]init];
+                [model setDict:item];
+                [mutablePosts addObject:model];
+            }
             if (block) {
                 block(mutablePosts, nil);
             }

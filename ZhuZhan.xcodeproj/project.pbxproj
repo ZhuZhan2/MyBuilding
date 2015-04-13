@@ -1162,6 +1162,7 @@
 		5BF31B671AB025FD00DA87F5 /* AddImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B5D1AB025FD00DA87F5 /* AddImageView.m */; };
 		5BF31B6A1AB025FD00DA87F5 /* DiscussionGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B631AB025FD00DA87F5 /* DiscussionGroupView.m */; };
 		5BF31B6B1AB025FD00DA87F5 /* ImageAndLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B651AB025FD00DA87F5 /* ImageAndLabelView.m */; };
+		5BFCE5C11ADBABB00049F009 /* ChatGroupMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCE5C01ADBABB00049F009 /* ChatGroupMemberModel.m */; };
 		D300F40B1A84AE7A002AFAC0 /* mapdef.png in Resources */ = {isa = PBXBuildFile; fileRef = D300F4091A84AE7A002AFAC0 /* mapdef.png */; };
 		D300F40C1A84AE7A002AFAC0 /* mapdef@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D300F40A1A84AE7A002AFAC0 /* mapdef@2x.png */; };
 		D3049A681A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3049A671A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m */; };
@@ -3100,6 +3101,8 @@
 		5BF31B631AB025FD00DA87F5 /* DiscussionGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscussionGroupView.m; sourceTree = "<group>"; };
 		5BF31B641AB025FD00DA87F5 /* ImageAndLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAndLabelView.h; sourceTree = "<group>"; };
 		5BF31B651AB025FD00DA87F5 /* ImageAndLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAndLabelView.m; sourceTree = "<group>"; };
+		5BFCE5BF1ADBABB00049F009 /* ChatGroupMemberModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroupMemberModel.h; sourceTree = "<group>"; };
+		5BFCE5C01ADBABB00049F009 /* ChatGroupMemberModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroupMemberModel.m; sourceTree = "<group>"; };
 		D300F4091A84AE7A002AFAC0 /* mapdef.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapdef.png; sourceTree = "<group>"; };
 		D300F40A1A84AE7A002AFAC0 /* mapdef@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapdef@2x.png"; sourceTree = "<group>"; };
 		D3049A661A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterCompanyTableViewCell.h; sourceTree = "<group>"; };
@@ -6499,6 +6502,8 @@
 				D3D6B7441AD6A63500C8BF91 /* ChatMessageApi.m */,
 				D3F8970A1AD8F68F00DE3AB4 /* ChatListModel.h */,
 				D3F8970B1AD8F68F00DE3AB4 /* ChatListModel.m */,
+				5BFCE5BF1ADBABB00049F009 /* ChatGroupMemberModel.h */,
+				5BFCE5C01ADBABB00049F009 /* ChatGroupMemberModel.m */,
 			);
 			path = ChatMessageModel;
 			sourceTree = "<group>";
@@ -8077,6 +8082,7 @@
 				D3AD61A319AEF0A2001FD483 /* MChoiceTableViewCell.m in Sources */,
 				042D9E1719B559FC00689C5D /* ProgramSelectViewCell.m in Sources */,
 				0426C25219922D5A00CD8822 /* GPUImageClosingFilter.m in Sources */,
+				5BFCE5C11ADBABB00049F009 /* ChatGroupMemberModel.m in Sources */,
 				0426C28C19922D5A00CD8822 /* GPUImageLuminanceThresholdFilter.m in Sources */,
 				5B58370D1AD7D09000F8E7C3 /* OtherContractsMainView.m in Sources */,
 				0426C27719922D5A00CD8822 /* GPUImageHazeFilter.m in Sources */,
