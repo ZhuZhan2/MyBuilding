@@ -15,6 +15,7 @@
 #import "AddressBookSearchBarCell.h"
 #import "AddFriendViewController.h"
 #import "AddressBookNickNameViewController.h"
+#import "ChatViewController.h"
 #define seperatorLineColor RGBCOLOR(229, 229, 229)
 @interface AddressBookViewController()<AddressBookViewCellDelegate,SWTableViewCellDelegate,AddressBookNickNameViewControllerDelegate>
 @property(nonatomic,strong)NSMutableArray *groupArr;
@@ -175,6 +176,15 @@
     [cell setModel:model indexPath:indexPath];
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    AddressBookModel *ABmodel = self.groupArr[indexPath.section];
+    AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];
+    ChatViewController *view = [[ChatViewController alloc] init];
+    view.contactId = contactModel.a_contactId;
+    view.type = @"01";
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 -(CGFloat)searchBarTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

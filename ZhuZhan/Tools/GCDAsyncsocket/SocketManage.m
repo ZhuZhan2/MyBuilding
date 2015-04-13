@@ -69,12 +69,20 @@
     NSLog(@"HTTP Response:\n%@", dic);
     if([dic[@"msgType"] isEqualToString:@"user"]){
         if([dic[@"event"] isEqualToString:@"text"]){
-            ChatMessageModel *model = [[ChatMessageModel alloc] init];
-            [model setDict:dic[@"chatlog"]];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessage" object:nil userInfo:@{@"message":model}];
+            [self snedUserMessage:dic[@"chatlog"]];
+        }else{
+            [self alertError:dic[@"event"]];
         }
     }else if ([dic[@"msgType"] isEqualToString:@"group"]){
-    
+        if([dic[@"event"] isEqualToString:@"text"]){
+            if([dic[@"event"] isEqualToString:@"text"]){
+                [self snedUserMessage:dic[@"chatlog"]];
+            }else{
+                [self alertError:dic[@"event"]];
+            }
+        }else{
+            [self alertError:dic[@"event"]];
+        }
     }else{
     
     }
@@ -82,5 +90,29 @@
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err{
     NSLog(@"%@",err);
+}
+
+-(void)snedUserMessage:(NSDictionary *)dic{
+    ChatMessageModel *model = [[ChatMessageModel alloc] init];
+    [model setDict:dic];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessage" object:nil userInfo:@{@"message":model}];
+}
+
+-(void)alertError:(NSString *)errorCode{
+    if([errorCode isEqualToString:@"403"]){
+        [LoginAgain AddLoginView:NO];
+    }else if ([errorCode isEqualToString:@"604"]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"你们不是好友" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }else if ([errorCode isEqualToString:@"605"]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"不是群成员" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }else if ([errorCode isEqualToString:@"606"]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"连接失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }else{
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"服务器异常" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }
 }
 @end

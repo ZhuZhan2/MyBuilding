@@ -1456,6 +1456,8 @@
 		D3F7275A1AD6941900B52A66 /* RecommendFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F727591AD6941900B52A66 /* RecommendFriendCell.m */; };
 		D3F787471AADA40300ED754B /* AddressBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787461AADA40300ED754B /* AddressBookModel.m */; };
 		D3F7874A1AADAD3800ED754B /* AddressBookApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787491AADAD3800ED754B /* AddressBookApi.m */; };
+		D3F897091AD8EB2F00DE3AB4 /* MessageTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F897081AD8EB2F00DE3AB4 /* MessageTableView.m */; };
+		D3F8970C1AD8F68F00DE3AB4 /* ChatListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F8970B1AD8F68F00DE3AB4 /* ChatListModel.m */; };
 		D3FF3E811AAEC916005195CC /* ChoseContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FF3E801AAEC916005195CC /* ChoseContactModel.m */; };
 		D3FF3E911AAEEB83005195CC /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = D3FF3E8F1AAEEB83005195CC /* pinyin.c */; };
 		D3FF3E941AAEEFB4005195CC /* ChoseContctApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FF3E931AAEEFB4005195CC /* ChoseContctApi.m */; };
@@ -3533,6 +3535,10 @@
 		D3F787461AADA40300ED754B /* AddressBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookModel.m; sourceTree = "<group>"; };
 		D3F787481AADAD3800ED754B /* AddressBookApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookApi.h; sourceTree = "<group>"; };
 		D3F787491AADAD3800ED754B /* AddressBookApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookApi.m; sourceTree = "<group>"; };
+		D3F897071AD8EB2F00DE3AB4 /* MessageTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableView.h; sourceTree = "<group>"; };
+		D3F897081AD8EB2F00DE3AB4 /* MessageTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableView.m; sourceTree = "<group>"; };
+		D3F8970A1AD8F68F00DE3AB4 /* ChatListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListModel.h; sourceTree = "<group>"; };
+		D3F8970B1AD8F68F00DE3AB4 /* ChatListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListModel.m; sourceTree = "<group>"; };
 		D3FF3E7F1AAEC916005195CC /* ChoseContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoseContactModel.h; sourceTree = "<group>"; };
 		D3FF3E801AAEC916005195CC /* ChoseContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoseContactModel.m; sourceTree = "<group>"; };
 		D3FF3E8F1AAEEB83005195CC /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
@@ -5490,6 +5496,8 @@
 				5B9624EC1AB2CE0C005728C5 /* ChatToolBar.h */,
 				5B9624ED1AB2CE0C005728C5 /* ChatToolBar.m */,
 				5BF31B591AB025FD00DA87F5 /* AddGroupMember */,
+				D3F897071AD8EB2F00DE3AB4 /* MessageTableView.h */,
+				D3F897081AD8EB2F00DE3AB4 /* MessageTableView.m */,
 			);
 			path = ChatDetail;
 			sourceTree = "<group>";
@@ -6484,6 +6492,8 @@
 				D3D6B7411AD6A51500C8BF91 /* ChatNetAPIClient.m */,
 				D3D6B7431AD6A63500C8BF91 /* ChatMessageApi.h */,
 				D3D6B7441AD6A63500C8BF91 /* ChatMessageApi.m */,
+				D3F8970A1AD8F68F00DE3AB4 /* ChatListModel.h */,
+				D3F8970B1AD8F68F00DE3AB4 /* ChatListModel.m */,
 			);
 			path = ChatMessageModel;
 			sourceTree = "<group>";
@@ -7883,6 +7893,7 @@
 				D3EDCA4E1ACE90A6002AF865 /* MKAnnotationView+WebCache.m in Sources */,
 				D3AD616C19ADB9F7001FD483 /* RecordSqlite.m in Sources */,
 				5B0A008B19B587B200500C05 /* EGORefreshTableHeaderView.m in Sources */,
+				D3F8970C1AD8F68F00DE3AB4 /* ChatListModel.m in Sources */,
 				D3FF3E911AAEEB83005195CC /* pinyin.c in Sources */,
 				0426C25819922D5A00CD8822 /* GPUImageColorPackingFilter.m in Sources */,
 				D3CF0D8C1AB81A7800D71CEB /* AddContactView.m in Sources */,
@@ -7926,6 +7937,7 @@
 				0426C27119922D5A00CD8822 /* GPUImageGaussianSelectiveBlurFilter.m in Sources */,
 				0426C29B19922D5A00CD8822 /* GPUImageOpacityFilter.m in Sources */,
 				0426C25719922D5A00CD8822 /* GPUImageColorMatrixFilter.m in Sources */,
+				D3F897091AD8EB2F00DE3AB4 /* MessageTableView.m in Sources */,
 				5B52C5ED1AC500550035ABB8 /* RKMuchBtns.m in Sources */,
 				0426C27319922D5A00CD8822 /* GPUImageGrayscaleFilter.m in Sources */,
 				5B70CC5F1AC9420600FC8353 /* ConstractListController.m in Sources */,

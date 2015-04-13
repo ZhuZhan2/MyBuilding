@@ -55,7 +55,7 @@
         UITextField *tf=[alertView textFieldAtIndex:0];
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         [dic setObject:tf.text forKey:@"name"];
-        [dic setObject:@"2765fb48-405c-4648-8b9f-d03957260e0e,d859009b-51b4-4415-ada1-d5ea09ca4130" forKey:@"user"];
+        [dic setObject:@"d859009b-51b4-4415-ada1-d5ea09ca4130,2765fb48-405c-4648-8b9f-d03957260e0e" forKey:@"user"];
         [ChatMessageApi CreateWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 

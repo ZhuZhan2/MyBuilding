@@ -14,48 +14,113 @@
 #import "LoginSqlite.h"
 #import "JSONKit.h"
 #import "ChatMessageModel.h"
-@interface ChatViewController ()<UIAlertViewDelegate>
+#import "ChatMessageApi.h"
+#import "AppDelegate.h"
+#import "MJRefresh.h"
+#import "MessageTableView.h"
+@interface ChatViewController ()<UIAlertViewDelegate,MessageTableViewDelegate>
 @property (nonatomic, strong)NSMutableArray* models;
+@property(nonatomic,strong)MessageTableView *tableView;
+@property(nonatomic)int startIndex;
 @end
 
 @implementation ChatViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.startIndex = 0;
+    [self initSocket];
     [self initNavi];
-    [self initTableView];
+    [self initMessageTableView];
+    //[self initTableView];
+    //集成刷新控件
+    [self setupRefresh];
     [self initChatToolBar];
     [self initTableViewHeaderView];
 //    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:11 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
     [self addKeybordNotification];
-    [self testSocket];
+    [self firstNetWork];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(newMessage:) name:@"newMessage" object:nil];
 }
 
+-(void)initMessageTableView{
+    self.tableView = [[MessageTableView alloc] initWithFrame:CGRectMake(0, 64, 320,kScreenHeight-64)];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.tableView];
+}
+
+-(void)setupRefresh{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+}
+
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    [ChatMessageApi GetMessageListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.startIndex++;
+            NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:
+                                   NSMakeRange(0,[posts count])];
+            [self.models insertObjects:posts atIndexes:indexes];
+            [self.tableView reloadData];
+            //[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.models.count-4 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+        }else{
+            [LoginAgain AddLoginView:NO];
+        }
+        [self.tableView headerEndRefreshing];
+    } userId:self.contactId startIndex:self.startIndex+1 noNetWork:nil];
+}
+
+-(void)initSocket{
+    AppDelegate *app = [AppDelegate instance];
+    
+    [app.socket connectToServer:@socketServer withPort:44455];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:@"event" forKey:@"msgType"];
+    [dic setObject:@"login" forKey:@"event"];
+    [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
+    NSString *str = [dic JSONString];
+    str = [NSString stringWithFormat:@"%@\r\n",str];
+    [app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
+    [app.socket readDataWithTimeout:-1 tag:0];
+}
+
 -(void)newMessage:(NSNotification*)noti{
-    NSLog(@"noti=%@",noti.userInfo);
-    [self.models addObject:noti.userInfo[@"message"]];
-    [self appearNewData];
+    NSLog(@"noti=%@",noti.userInfo[@"message"]);
+    ChatMessageModel* dataModel=noti.userInfo[@"message"];
+    NSLog(@"%@",self.type);
+    if([self.type isEqualToString:@"01"]){
+        if([self.contactId isEqualToString:dataModel.a_userId]){
+            [self.models addObject:noti.userInfo[@"message"]];
+            [self appearNewData];
+        }
+    }else{
+        if([self.contactId isEqualToString:dataModel.a_groupId]){
+            [self.models addObject:noti.userInfo[@"message"]];
+            [self appearNewData];
+        }
+    }
 }
 
 -(void)appearNewData{
     [self.tableView reloadData];
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.models.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    if(self.models.count !=0){
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.models.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
 }
 
--(void)testSocket{
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setObject:@"user" forKey:@"msgType"];
-    [dic setObject:@"text" forKey:@"event"];
-    [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
-    [dic setObject:@"ef190673-0f57-4a78-aa07-e86d3edf2262" forKey:@"toUserId"];
-    [dic setObject:@"老板让我来草死你" forKey:@"content"];
-    NSString *str = [dic JSONString];
-    str = [NSString stringWithFormat:@"%@\r\n",str];
-    NSLog(@"%@",str);
-    AppDelegate *app = [AppDelegate instance];
-    [app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
-    [app.socket readDataWithTimeout:-1 tag:0];
+-(void)firstNetWork{
+    [ChatMessageApi GetMessageListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.models = posts;
+            [self appearNewData];
+        }else{
+            [LoginAgain AddLoginView:NO];
+        }
+    } userId:self.contactId startIndex:0 noNetWork:nil];
 }
 
 -(void)initNavi{
@@ -86,7 +151,6 @@
         cell=[[ChatTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     ChatMessageModel* dataModel=self.models[indexPath.row];
-
     ChatModel* model=[[ChatModel alloc]init];
     model.userNameStr=dataModel.a_name;
     model.chatContent=dataModel.a_message;
@@ -106,10 +170,14 @@
 
 -(void)sendMessage:(NSString*)content{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setObject:@"user" forKey:@"msgType"];
+    if([self.type isEqualToString:@"01"]){
+        [dic setObject:@"user" forKey:@"msgType"];
+    }else{
+        [dic setObject:@"group" forKey:@"msgType"];
+    }
     [dic setObject:@"text" forKey:@"event"];
     [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
-    [dic setObject:@"ef190673-0f57-4a78-aa07-e86d3edf2262" forKey:@"toUserId"];
+    [dic setObject:self.contactId forKey:@"toUserId"];
     [dic setObject:content forKey:@"content"];
     NSString *str = [dic JSONString];
     str = [NSString stringWithFormat:@"%@\r\n",str];
@@ -146,5 +214,9 @@
         _models=[NSMutableArray array];
     }
     return _models;
+}
+
+-(void)touchesBeganInMessageTableView{
+    [self.view endEditing:YES];
 }
 @end

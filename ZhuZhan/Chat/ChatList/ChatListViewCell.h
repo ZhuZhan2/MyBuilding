@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EmployeesModel.h"
+#import "ChatListModel.h"
 
 @interface ChatListViewCell : UITableViewCell
 @property(nonatomic,strong)UIImageView* userImageView;
 @property(nonatomic,strong)UILabel* rightLabel;
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier needRightBtn:(BOOL)needRightBtn;
--(void)setModel:(EmployeesModel *)model;
+-(void)setModel:(ChatListModel *)model;
 @end

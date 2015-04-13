@@ -50,10 +50,14 @@
     return self;
 }
 
--(void)setModel:(EmployeesModel *)model{
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_userIamge]] placeholderImage:[GetImagePath getImagePath:@"35px未设置"]];
-    self.userNameLabel.text=model.a_userName;
-    self.userBussniessLabel.text=model.a_company;
+-(void)setModel:(ChatListModel *)model{
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_loginImageUrl]] placeholderImage:[GetImagePath getImagePath:@"35px未设置"]];
+    if([model.a_type isEqualToString:@"01"]){
+        self.userNameLabel.text=model.a_loginName;
+    }else{
+        self.userNameLabel.text=model.a_groupName;
+    }
+    self.userBussniessLabel.text=model.a_content;
 
     self.rightLabel.text=@"2015-02-08";
 }

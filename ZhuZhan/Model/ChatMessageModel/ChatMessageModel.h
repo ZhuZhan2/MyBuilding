@@ -19,5 +19,7 @@ typedef enum {
 @property(nonatomic,strong)NSString *a_message;
 @property(nonatomic,strong)NSString *a_time;
 @property(nonatomic,strong)NSString *a_userId;
+@property(nonatomic,strong)NSString *a_groupId;
+@property(nonatomic,strong)NSString *a_groupName;
 @property(nonatomic,strong)NSDictionary *dict;
 @end

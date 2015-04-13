@@ -27,7 +27,7 @@
     }else{
         self.a_type = chatTypeOther;
     }
-    
-    NSLog(@"===>%@",self.a_avatarUrl);
+    self.a_groupId = [ProjectStage ProjectStrStage:dict[@"groupId"]];
+    self.a_groupName = [ProjectStage ProjectStrStage:dict[@"groupName"]];
 }
 @end

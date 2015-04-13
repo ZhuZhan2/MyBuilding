@@ -10,5 +10,6 @@
 #import "ChatBaseViewController.h"
 
 @interface ChatViewController : ChatBaseViewController
-
+@property(nonatomic,strong)NSString *contactId;
+@property(nonatomic,strong)NSString *type;
 @end
