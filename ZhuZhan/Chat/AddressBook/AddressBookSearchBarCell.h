@@ -13,7 +13,10 @@
 @property(nonatomic,copy)NSString* mainLabelText;
 @property(nonatomic)BOOL isHighlight;
 @end
-
+@protocol AddressBookSearchBarCellDelegate <NSObject>
+-(void)headSearchBarClick:(NSIndexPath*)indexPath;
+@end
 @interface AddressBookSearchBarCell : SWTableViewCell
+@property(nonatomic,weak)id<AddressBookSearchBarCellDelegate>searchDelegate;
 -(void)setModel:(AddressBookSearchBarCellModel*)model indexPath:(NSIndexPath*)indexPath;
 @end

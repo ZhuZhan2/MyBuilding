@@ -29,5 +29,6 @@
     }else{
         self.a_isShow = YES;
     }
+    self.a_time = dict[@"createdTime"];
 }
 @end
