@@ -1421,6 +1421,7 @@
 		D3DBCE591AC8DF0C00C9FEDE /* CommissionBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE581AC8DF0C00C9FEDE /* CommissionBaseViewController.m */; };
 		D3DBCE5C1AC8E1A400C9FEDE /* ProvisionalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE5B1AC8E1A400C9FEDE /* ProvisionalViewController.m */; };
 		D3DBCE5F1AC8E77A00C9FEDE /* StartManView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE5E1AC8E77A00C9FEDE /* StartManView.m */; };
+		D3DCDACA1ADBA66C0029DB95 /* GetAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCDAC91ADBA66C0029DB95 /* GetAddressBook.m */; };
 		D3E0E94B1A398A3600A41D42 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3E0E94A1A398A3600A41D42 /* Settings.bundle */; };
 		D3E1AAFD1A7648FC00BFC6E1 /* Shape-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E1AAFB1A7648FC00BFC6E1 /* Shape-1.png */; };
 		D3E1AAFE1A7648FC00BFC6E1 /* Shape-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E1AAFC1A7648FC00BFC6E1 /* Shape-1@2x.png */; };
@@ -3476,6 +3477,8 @@
 		D3DBCE5B1AC8E1A400C9FEDE /* ProvisionalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvisionalViewController.m; sourceTree = "<group>"; };
 		D3DBCE5D1AC8E77A00C9FEDE /* StartManView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartManView.h; sourceTree = "<group>"; };
 		D3DBCE5E1AC8E77A00C9FEDE /* StartManView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartManView.m; sourceTree = "<group>"; };
+		D3DCDAC81ADBA66C0029DB95 /* GetAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAddressBook.h; sourceTree = "<group>"; };
+		D3DCDAC91ADBA66C0029DB95 /* GetAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAddressBook.m; sourceTree = "<group>"; };
 		D3E0E94A1A398A3600A41D42 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D3E1AAFB1A7648FC00BFC6E1 /* Shape-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shape-1.png"; sourceTree = "<group>"; };
 		D3E1AAFC1A7648FC00BFC6E1 /* Shape-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shape-1@2x.png"; sourceTree = "<group>"; };
@@ -3780,6 +3783,7 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3DCDAC71ADBA66C0029DB95 /* GetAddressBook */,
 				D31BBB8A1AD3E3F500919B8B /* PodFiles */,
 				D3EDCA2C1ACE90A6002AF865 /* SDWebImage */,
 				D3D5B42C1AB130B900E8EB04 /* GCDAsyncsocket */,
@@ -6698,6 +6702,15 @@
 			path = BaseView;
 			sourceTree = "<group>";
 		};
+		D3DCDAC71ADBA66C0029DB95 /* GetAddressBook */ = {
+			isa = PBXGroup;
+			children = (
+				D3DCDAC81ADBA66C0029DB95 /* GetAddressBook.h */,
+				D3DCDAC91ADBA66C0029DB95 /* GetAddressBook.m */,
+			);
+			path = GetAddressBook;
+			sourceTree = "<group>";
+		};
 		D3EACDE3199327780058FC9D /* QuadCurveMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -7887,6 +7900,7 @@
 				0426C25E19922D5A00CD8822 /* GPUImageDifferenceBlendFilter.m in Sources */,
 				D3D21EB11A36F77C00ADD653 /* ProjectSqlite.m in Sources */,
 				0426C2E019922D5A00CD8822 /* FaceppClient.m in Sources */,
+				D3DCDACA1ADBA66C0029DB95 /* GetAddressBook.m in Sources */,
 				D3EDCA4F1ACE90A6002AF865 /* NSData+ImageContentType.m in Sources */,
 				D3EDCA5D1ACE90A6002AF865 /* UIView+WebCacheOperation.m in Sources */,
 				D31BBB9A1AD3E3F500919B8B /* SWTableViewCell.m in Sources */,
