@@ -9,7 +9,10 @@
 #import "OtherContractsBaseController.h"
 
 @interface OtherContractsBaseController ()
-
+@property (nonatomic, strong)UIView* serialNumberView;
+@property (nonatomic, strong)UIView* clauseMainView;
+@property (nonatomic, strong)UIView* PDFView;
+@property (nonatomic, strong)UIView* btnToolBar;
 @end
 
 @implementation OtherContractsBaseController

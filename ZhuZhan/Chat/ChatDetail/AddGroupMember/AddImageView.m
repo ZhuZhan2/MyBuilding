@@ -35,11 +35,11 @@
     NSMutableArray* array=[NSMutableArray array];
     for (int i=0; i<self.models.count; i++) {
         AddImageViewModel* model=self.models[i];
-        ImageAndLabelView* view=[ImageAndLabelView imageAndLabelViewWithImageUrl:@"" content:model.name isAddImage:NO delegate:nil];
+        ImageAndLabelView* view=[ImageAndLabelView imageAndLabelViewWithImageUrl:model.imageUrl content:model.name isAddImage:NO delegate:nil];
         [array addObject:view];
     }
-    ImageAndLabelView* view=[ImageAndLabelView imageAndLabelViewWithImageUrl:@"" content:@"" isAddImage:YES delegate:self];
-    [array addObject:view];
+//    ImageAndLabelView* view=[ImageAndLabelView imageAndLabelViewWithImageUrl:@"" content:@"" isAddImage:YES delegate:self];
+//    [array addObject:view];
     
     for (int i=0; i<array.count; i++){
         UIView* view=array[i];

@@ -11,6 +11,8 @@
 @interface ChatListViewCell()
 @property(nonatomic,strong)UILabel* userNameLabel;
 @property(nonatomic,strong)UILabel* userBussniessLabel;
+@property(nonatomic,strong)UILabel* remindNumberLabel;
+@property(nonatomic,strong)UILabel* timeLabel;
 @property(nonatomic,strong)UIView* separatorLine;
 @end
 
@@ -21,18 +23,18 @@
     if (self) {
         self.userImageView=[[UIImageView alloc]init];
         self.userImageView.layer.cornerRadius=3;
-        self.userImageView.layer.masksToBounds=YES;
+//        self.userImageView.layer.masksToBounds=YES;
         self.userImageView.frame=CGRectMake(12, 7.5, 35, 35);
         [self addSubview:self.userImageView];
         self.userImageView.userInteractionEnabled=YES;
         
         
-        self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(62, 8, 200, 16)];
+        self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(62, 8, 110, 16)];
         self.userNameLabel.font=[UIFont boldSystemFontOfSize:15];
         self.userNameLabel.textColor=RGBCOLOR(89, 89, 89);
         [self addSubview:self.userNameLabel];
         
-        self.userBussniessLabel=[[UILabel alloc]initWithFrame:CGRectMake(62, 28, 200, 14)];
+        self.userBussniessLabel=[[UILabel alloc]initWithFrame:CGRectMake(62, 28, 250, 14)];
         self.userBussniessLabel.font=[UIFont systemFontOfSize:13];
         self.userBussniessLabel.textColor=RGBCOLOR(149, 149, 149);
         [self addSubview:self.userBussniessLabel];
@@ -42,6 +44,22 @@
         self.rightLabel.textColor=RGBCOLOR(149, 149, 149);
         [self addSubview:self.rightLabel];
         
+        self.remindNumberLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 12, 12)];
+        self.remindNumberLabel.backgroundColor=[UIColor redColor];
+        self.remindNumberLabel.layer.cornerRadius=6;
+        self.remindNumberLabel.clipsToBounds=YES;
+        self.remindNumberLabel.textAlignment=NSTextAlignmentCenter;
+        self.remindNumberLabel.textColor=[UIColor whiteColor];
+        self.remindNumberLabel.center=CGPointMake(CGRectGetWidth(self.userImageView.frame), 0);
+        self.remindNumberLabel.font=[UIFont systemFontOfSize:9];
+        [self.userImageView addSubview:self.remindNumberLabel];
+        
+        self.timeLabel=[[UILabel alloc]initWithFrame:CGRectMake(175, 8, 130, 16)];
+        self.timeLabel.textAlignment=NSTextAlignmentRight;
+        self.timeLabel.textColor=RGBCOLOR(149, 149, 149);
+        self.timeLabel.font=[UIFont systemFontOfSize:13];
+
+        [self addSubview:self.timeLabel];
         
         self.separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 49, 320, 1)];
         self.separatorLine.backgroundColor=RGBCOLOR(229, 229, 229);
@@ -59,6 +77,13 @@
     }
     self.userBussniessLabel.text=model.a_content;
 
+    if (model.a_isShow) {
+        self.remindNumberLabel.text=model.a_msgCount;
+    }
+    self.remindNumberLabel.hidden=!model.a_isShow;
+
+    self.timeLabel.text=model.a_time;
+    
     self.rightLabel.text=@"2015-02-08";
 }
 @end

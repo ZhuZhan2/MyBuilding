@@ -22,9 +22,23 @@
 @property (nonatomic, strong)NSMutableArray* models;
 @property(nonatomic,strong)MessageTableView *tableView;
 @property(nonatomic)int startIndex;
+
+@property (nonatomic)NSInteger popViewControllerIndex;
 @end
 
 @implementation ChatViewController
+
+-(instancetype)initWithPopViewControllerIndex:(NSInteger)index{
+    if (self=[super init]) {
+        self.popViewControllerIndex=index;
+    }
+    return self;
+}
+
+-(void)popNavi{
+    UIViewController* vc=self.navigationController.viewControllers[self.popViewControllerIndex];
+    [self.navigationController popToViewController:vc animated:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,7 +51,6 @@
     [self setupRefresh];
     [self initChatToolBar];
     [self initTableViewHeaderView];
-//    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:11 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
     [self addKeybordNotification];
     [self firstNetWork];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(newMessage:) name:@"newMessage" object:nil];
@@ -48,7 +61,7 @@
     [dic setValue:@"02" forKey:@"deviceType"];
     [ChatMessageApi LogoutWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            [self.navigationController popViewControllerAnimated:YES];
+            [self popNavi];
         }
     }dic:dic noNetWork:nil];
 }
@@ -138,12 +151,15 @@
 -(void)initNavi{
     self.title=@"用户名";
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
-    [self setRightBtnWithImage:[GetImagePath getImagePath:YES?@"单人会话":@"多人会话@2x"]];
+    if ([self.type isEqualToString:@"02"]) {
+        [self setRightBtnWithImage:[GetImagePath getImagePath:NO?@"单人会话":@"多人会话@2x"]];
+    }
 }
 
 -(void)rightBtnClicked{
     [self.view endEditing:YES];
     AddGroupMemberController* vc=[[AddGroupMemberController alloc]init];
+    vc.contactId=self.contactId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -230,5 +246,12 @@
 
 -(void)touchesBeganInMessageTableView{
     [self.view endEditing:YES];
+}
+
+-(NSInteger)popViewControllerIndex{
+    if (!_popViewControllerIndex) {
+        _popViewControllerIndex=self.navigationController.viewControllers.count-2;
+    }
+    return _popViewControllerIndex;
 }
 @end

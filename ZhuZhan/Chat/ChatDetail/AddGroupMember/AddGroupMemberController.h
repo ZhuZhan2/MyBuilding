@@ -9,5 +9,5 @@
 #import "ChatBaseViewController.h"
 
 @interface AddGroupMemberController : ChatBaseViewController
-
+@property(nonatomic,strong)NSString *contactId;
 @end

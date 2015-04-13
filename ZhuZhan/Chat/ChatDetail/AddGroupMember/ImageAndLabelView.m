@@ -56,6 +56,7 @@
     if (!_imageView) {
         //[GetImagePath getImagePath:@"未设置"]
         _imageView=[[UIImageView alloc]init];
+        [_imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrl] placeholderImage:[GetImagePath getImagePath:@"未设置"]];
 #warning  图片名为"未设置"和"加载中"为对应状态的图,暂时不作区分,等接口好了再调整
         _imageView.frame=CGRectMake(0, 0, kImageWidth, kImageWidth);
     }

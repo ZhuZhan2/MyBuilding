@@ -26,4 +26,7 @@
 
 //解散聊天群
 + (NSURLSessionDataTask *)DismissWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
+
+//聊天群详情
++ (NSURLSessionDataTask *)GetInfoWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block groupId:(NSString *)groupId noNetWork:(void(^)())noNetWork;
 @end

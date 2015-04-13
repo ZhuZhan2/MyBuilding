@@ -794,13 +794,14 @@
 		5B8A2CF01AAEE0AD00C8F9DE /* ChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CD81AAEE0AD00C8F9DE /* ChatTableViewCell.m */; };
 		5B8A2CF11AAEE0AD00C8F9DE /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CDA1AAEE0AD00C8F9DE /* ChatViewController.m */; };
 		5B8A2CF21AAEE0AD00C8F9DE /* ChatListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CDD1AAEE0AD00C8F9DE /* ChatListViewCell.m */; };
-		5B8A2CF31AAEE0AD00C8F9DE /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CDF1AAEE0AD00C8F9DE /* ChatListViewController.m */; };
 		5B8A2CF51AAEE0AD00C8F9DE /* ChooseContactsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CE41AAEE0AD00C8F9DE /* ChooseContactsViewCell.m */; };
 		5B8A2CF61AAEE0AD00C8F9DE /* ChooseContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CE61AAEE0AD00C8F9DE /* ChooseContactsViewController.m */; };
 		5B8A2D011AAEEAD600C8F9DE /* 单人会话.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8A2CFF1AAEEAD600C8F9DE /* 单人会话.png */; };
 		5B8A2D021AAEEAD600C8F9DE /* 单人会话@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8A2D001AAEEAD600C8F9DE /* 单人会话@2x.png */; };
 		5B8DAED41A7F1EBD003C7E41 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8DAED11A7F1EBD003C7E41 /* libbaidumapapi.a */; };
 		5B8DAED51A7F1EBD003C7E41 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8DAED31A7F1EBD003C7E41 /* libbaidumapapi.a */; };
+		5B9238471ADB606F00281E94 /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CDF1AAEE0AD00C8F9DE /* ChatListViewController.m */; };
+		5B92384A1ADB6C2D00281E94 /* ChooseContactsSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9238491ADB6C2D00281E94 /* ChooseContactsSearchController.m */; };
 		5B9401D31ACA89FF000C3C99 /* ContractsListSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9401D21ACA89FF000C3C99 /* ContractsListSearchController.m */; };
 		5B95ADBA1AB1225E00797EA6 /* 退出本群.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADB81AB1225E00797EA6 /* 退出本群.png */; };
 		5B95ADBB1AB1225E00797EA6 /* 退出本群@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B95ADB91AB1225E00797EA6 /* 退出本群@2x.png */; };
@@ -1161,6 +1162,7 @@
 		5BF31B671AB025FD00DA87F5 /* AddImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B5D1AB025FD00DA87F5 /* AddImageView.m */; };
 		5BF31B6A1AB025FD00DA87F5 /* DiscussionGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B631AB025FD00DA87F5 /* DiscussionGroupView.m */; };
 		5BF31B6B1AB025FD00DA87F5 /* ImageAndLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B651AB025FD00DA87F5 /* ImageAndLabelView.m */; };
+		5BFCE5C11ADBABB00049F009 /* ChatGroupMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCE5C01ADBABB00049F009 /* ChatGroupMemberModel.m */; };
 		D300F40B1A84AE7A002AFAC0 /* mapdef.png in Resources */ = {isa = PBXBuildFile; fileRef = D300F4091A84AE7A002AFAC0 /* mapdef.png */; };
 		D300F40C1A84AE7A002AFAC0 /* mapdef@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D300F40A1A84AE7A002AFAC0 /* mapdef@2x.png */; };
 		D3049A681A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3049A671A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m */; };
@@ -2715,6 +2717,8 @@
 		5B8DAECF1A7F1EA9003C7E41 /* BMKVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKVersion.h; sourceTree = "<group>"; };
 		5B8DAED11A7F1EBD003C7E41 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		5B8DAED31A7F1EBD003C7E41 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
+		5B9238481ADB6C2D00281E94 /* ChooseContactsSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseContactsSearchController.h; sourceTree = "<group>"; };
+		5B9238491ADB6C2D00281E94 /* ChooseContactsSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseContactsSearchController.m; sourceTree = "<group>"; };
 		5B9401D11ACA89FF000C3C99 /* ContractsListSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractsListSearchController.h; sourceTree = "<group>"; };
 		5B9401D21ACA89FF000C3C99 /* ContractsListSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractsListSearchController.m; sourceTree = "<group>"; };
 		5B95ADB81AB1225E00797EA6 /* 退出本群.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "退出本群.png"; sourceTree = "<group>"; };
@@ -3098,6 +3102,8 @@
 		5BF31B631AB025FD00DA87F5 /* DiscussionGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscussionGroupView.m; sourceTree = "<group>"; };
 		5BF31B641AB025FD00DA87F5 /* ImageAndLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAndLabelView.h; sourceTree = "<group>"; };
 		5BF31B651AB025FD00DA87F5 /* ImageAndLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAndLabelView.m; sourceTree = "<group>"; };
+		5BFCE5BF1ADBABB00049F009 /* ChatGroupMemberModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroupMemberModel.h; sourceTree = "<group>"; };
+		5BFCE5C01ADBABB00049F009 /* ChatGroupMemberModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroupMemberModel.m; sourceTree = "<group>"; };
 		D300F4091A84AE7A002AFAC0 /* mapdef.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapdef.png; sourceTree = "<group>"; };
 		D300F40A1A84AE7A002AFAC0 /* mapdef@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapdef@2x.png"; sourceTree = "<group>"; };
 		D3049A661A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterCompanyTableViewCell.h; sourceTree = "<group>"; };
@@ -5524,6 +5530,8 @@
 				5B8A2CE61AAEE0AD00C8F9DE /* ChooseContactsViewController.m */,
 				5B8A2CE31AAEE0AD00C8F9DE /* ChooseContactsViewCell.h */,
 				5B8A2CE41AAEE0AD00C8F9DE /* ChooseContactsViewCell.m */,
+				5B9238481ADB6C2D00281E94 /* ChooseContactsSearchController.h */,
+				5B9238491ADB6C2D00281E94 /* ChooseContactsSearchController.m */,
 			);
 			path = ChooseContacts;
 			sourceTree = "<group>";
@@ -6498,6 +6506,8 @@
 				D3D6B7441AD6A63500C8BF91 /* ChatMessageApi.m */,
 				D3F8970A1AD8F68F00DE3AB4 /* ChatListModel.h */,
 				D3F8970B1AD8F68F00DE3AB4 /* ChatListModel.m */,
+				5BFCE5BF1ADBABB00049F009 /* ChatGroupMemberModel.h */,
+				5BFCE5C01ADBABB00049F009 /* ChatGroupMemberModel.m */,
 			);
 			path = ChatMessageModel;
 			sourceTree = "<group>";
@@ -7947,6 +7957,7 @@
 				D3CF278A1A008EFF00DDA30D /* ContactBackgroundView.m in Sources */,
 				0426C20A19922D5A00CD8822 /* CompanyViewController.m in Sources */,
 				0426C26C19922D5A00CD8822 /* GPUImageFilterGroup.m in Sources */,
+				5B92384A1ADB6C2D00281E94 /* ChooseContactsSearchController.m in Sources */,
 				D3AD609819AC56CB001FD483 /* UIView+Extension.m in Sources */,
 				0426C27119922D5A00CD8822 /* GPUImageGaussianSelectiveBlurFilter.m in Sources */,
 				0426C29B19922D5A00CD8822 /* GPUImageOpacityFilter.m in Sources */,
@@ -7966,6 +7977,7 @@
 				D36040E919F51E9F00E9727D /* CompanyApi.m in Sources */,
 				D3D7DB2F19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m in Sources */,
 				5B8A2CEF1AAEE0AD00C8F9DE /* ChatModel.m in Sources */,
+				5B9238471ADB606F00281E94 /* ChatListViewController.m in Sources */,
 				042D9CFB19B40C4C00689C5D /* DKCircleButton.m in Sources */,
 				5B18B46F19BFFC3700551F82 /* GradientView.m in Sources */,
 				D3AC61D019B849920015B62F /* PorjectCommentTableViewController.m in Sources */,
@@ -8084,6 +8096,7 @@
 				D3AD61A319AEF0A2001FD483 /* MChoiceTableViewCell.m in Sources */,
 				042D9E1719B559FC00689C5D /* ProgramSelectViewCell.m in Sources */,
 				0426C25219922D5A00CD8822 /* GPUImageClosingFilter.m in Sources */,
+				5BFCE5C11ADBABB00049F009 /* ChatGroupMemberModel.m in Sources */,
 				0426C28C19922D5A00CD8822 /* GPUImageLuminanceThresholdFilter.m in Sources */,
 				5B58370D1AD7D09000F8E7C3 /* OtherContractsMainView.m in Sources */,
 				0426C27719922D5A00CD8822 /* GPUImageHazeFilter.m in Sources */,
@@ -8273,7 +8286,6 @@
 				0426C27E19922D5A00CD8822 /* GPUImageHueBlendFilter.m in Sources */,
 				D3EDCA531ACE90A6002AF865 /* SDWebImageDownloader.m in Sources */,
 				5B6373651ABA5E97007CF1F8 /* RKShadowView.m in Sources */,
-				5B8A2CF31AAEE0AD00C8F9DE /* ChatListViewController.m in Sources */,
 				0426C2F219922D5A00CD8822 /* CJSONSerializedData.m in Sources */,
 				D3D2BFE81AC94478003BB779 /* MoneyView.m in Sources */,
 				D3B8F53F19D92716008F6164 /* RecognizerFactory.m in Sources */,

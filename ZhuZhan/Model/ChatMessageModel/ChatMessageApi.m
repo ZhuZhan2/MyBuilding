@@ -11,6 +11,7 @@
 #import "ChatNetAPIClient.h"
 #import "ChatMessageModel.h"
 #import "ChatListModel.h"
+#import "ChatGroupMemberModel.h"
 @implementation ChatMessageApi
 + (NSURLSessionDataTask *)CreateWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
@@ -20,11 +21,12 @@
         return nil;
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/group/create"];
-    NSLog(@"=====%@",urlStr);
+    NSLog(@"=====%@\ndic==%@",urlStr,dic);
     return [[ChatNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            [mutablePosts addObject:JSON[@"data"][@"groupId"]];
             if (block) {
                 block(mutablePosts, nil);
             }
@@ -194,5 +196,41 @@
             block([NSMutableArray array], error);
         }
     }];
+}
+
++ (NSURLSessionDataTask *)GetInfoWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block groupId:(NSString *)groupId noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    ///api/group/info
+    NSString *urlStr = [NSString stringWithFormat:@"api/group/info?groupId=%@",groupId];
+    NSLog(@"=====%@",urlStr);
+    return [[ChatNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            for(NSDictionary *item in JSON[@"data"][@"userList"]){
+                ChatGroupMemberModel* model=[[ChatGroupMemberModel alloc]init];
+                [model setDict:item];
+                [mutablePosts addObject:model];
+            }
+            if (block) {
+                block(mutablePosts, nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+
 }
 @end

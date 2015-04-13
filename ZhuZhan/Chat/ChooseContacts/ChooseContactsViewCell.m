@@ -24,6 +24,7 @@
 @implementation ChooseContactsViewCell
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier delegate:(id<ChooseContactsViewCellDelegate>)delegate{
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.selectionStyle=UITableViewCellSelectionStyleNone;
         self.delegate=delegate;
         [self setUp];
     }
