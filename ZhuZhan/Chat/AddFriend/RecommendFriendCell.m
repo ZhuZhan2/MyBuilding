@@ -13,7 +13,7 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self.contentView addSubview:self.headImage];
+        [self.contentView addSubview:self.headBtn];
         [self.contentView addSubview:self.nameLabel];
         [self.contentView addSubview:self.cutLine];
         [self.contentView addSubview:self.addBtn];
@@ -23,25 +23,24 @@
 
 -(void)setModel:(FriendModel *)model{
     _model = model;
-    [self.headImage sd_setImageWithURL:[NSURL URLWithString:model.a_avatarUrl] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+    [self.headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:model.a_avatarUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     self.nameLabel.text = model.a_name;
     [self.addBtn setBackgroundImage:[GetImagePath getImagePath:model.a_isisFriend?@"added":@"add_green_button"] forState:UIControlStateNormal];
 }
 
--(UIImageView *)headImage{
-    if(!_headImage){
-        _headImage = [[UIImageView alloc] init];
-        _headImage.layer.cornerRadius=3;
-        _headImage.layer.masksToBounds=YES;
-        _headImage.frame=CGRectMake(15, 10, 35, 35);
-        
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = _headImage.frame;
-        btn.backgroundColor = [UIColor clearColor];
-        [btn addTarget:self action:@selector(headImageAction) forControlEvents:UIControlEventTouchUpInside];
-        [_headImage addSubview:btn];
+-(void)setIndexPathRow:(int)indexPathRow{
+    _indexPathRow = indexPathRow;
+}
+
+-(UIButton *)headBtn{
+    if(!_headBtn){
+        _headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _headBtn.layer.cornerRadius=3;
+        _headBtn.layer.masksToBounds=YES;
+        _headBtn.frame=CGRectMake(15, 10, 35, 35);
+        [_headBtn addTarget:self action:@selector(headImageAction) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _headImage;
+    return _headBtn;
 }
 
 -(UILabel *)nameLabel{
@@ -71,7 +70,9 @@
 }
 
 -(void)headImageAction{
-
+    if([self.delegate respondsToSelector:@selector(headClick:)]){
+        [self.delegate headClick:self.indexPathRow];
+    }
 }
 
 -(void)addFriendAction{

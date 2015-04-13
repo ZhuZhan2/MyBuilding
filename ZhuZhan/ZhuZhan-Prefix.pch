@@ -20,6 +20,7 @@
 #import "LoginAgain.h"
 #import "SDImageCache.h"
 #import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
 #endif
 
 //#define  serverAddress "http://10.1.5.104:9090/server"//测试用服务器

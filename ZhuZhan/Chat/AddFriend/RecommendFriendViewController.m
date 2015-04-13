@@ -12,8 +12,9 @@
 #import "FriendModel.h"
 #import "RecommendFriendSearchController.h"
 #import "MJRefresh.h"
+#import "PersonalDetailViewController.h"
 #define seperatorLineColor RGBCOLOR(229, 229, 229)
-@interface RecommendFriendViewController ()
+@interface RecommendFriendViewController ()<RecommendFriendCellDelegate>
 @property(nonatomic,strong)NSMutableArray* models;
 @property(nonatomic)int startIndex;
 @property(nonatomic,strong)UIView *topView;
@@ -121,6 +122,8 @@
     }
     FriendModel *model = self.models[indexPath.row];
     cell.model = model;
+    cell.delegate = self;
+    cell.indexPathRow = (int)indexPath.row;
     cell.selectionStyle = NO;
     return cell;
 }
@@ -133,5 +136,12 @@
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [super searchBarSearchButtonClicked:searchBar];
     [self.searchBarTableViewController loadListWithKeyWords:searchBar.text];
+}
+
+-(void)headClick:(int)index{
+    FriendModel *model = self.models[index];
+    PersonalDetailViewController *view = [[PersonalDetailViewController alloc] init];
+    view.contactId = model.a_id;
+    [self.navigationController pushViewController:view animated:YES];
 }
 @end
