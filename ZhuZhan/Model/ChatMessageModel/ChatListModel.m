@@ -20,7 +20,11 @@
     }else{
         self.a_loginImageUrl = dict[@"loginImagesId"];
     }
-    self.a_loginName = dict[@"loginName"];
+    if([dict[@"senderNickName"] isEqualToString:@""]){
+        self.a_loginName = dict[@"loginName"];
+    }else{
+        self.a_loginName = dict[@"senderNickName"];
+    }
     self.a_content = dict[@"content"];
     self.a_type = dict[@"type"];
     self.a_msgCount = dict[@"msgCount"];
