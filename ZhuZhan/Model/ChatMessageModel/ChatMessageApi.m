@@ -20,11 +20,12 @@
         return nil;
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/group/create"];
-    NSLog(@"=====%@",urlStr);
+    NSLog(@"=====%@\ndic==%@",urlStr,dic);
     return [[ChatNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            [mutablePosts addObject:JSON[@"data"][@"groupId"]];
             if (block) {
                 block(mutablePosts, nil);
             }
@@ -82,7 +83,7 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/chatlog/list?userId=%@&pageIndex=%d&pageSize=5",userId,startIndex];
+    NSString *urlStr = [NSString stringWithFormat:@"api/chatlog/list?userId=%@&pageIndex=%d&pageSize=10",userId,startIndex];
     NSLog(@"=====%@",urlStr);
     return [[ChatNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);

@@ -12,8 +12,12 @@
 #import "AddressBookApi.h"
 #import "AddressBookModel.h"
 #import "ChatMessageApi.h"
+#import "ChooseContactsSearchController.h"
+#import "ChatViewController.h"
 @interface ChooseContactsViewController()<ChooseContactsViewCellDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)NSMutableArray *groupArr;
+@property (nonatomic, strong)NSMutableArray* selectedUserIds;
+@property(nonatomic,strong)ChooseContactsSearchController* searchBarTableViewController;
 @end
 
 @implementation ChooseContactsViewController
@@ -55,13 +59,35 @@
         UITextField *tf=[alertView textFieldAtIndex:0];
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         [dic setObject:tf.text forKey:@"name"];
-        [dic setObject:@"d859009b-51b4-4415-ada1-d5ea09ca4130,2765fb48-405c-4648-8b9f-d03957260e0e" forKey:@"user"];
+        __block NSString* userIds=@"";
+        [self.selectedUserIds enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            userIds=[userIds stringByAppendingString:obj];
+            if (idx==self.selectedUserIds.count-1) return;
+            userIds=[userIds stringByAppendingString:@","];
+        }];
+        [dic setObject:userIds forKey:@"user"];
         [ChatMessageApi CreateWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                
+                [self gotoDetailWithGroupId:posts[0]];
             }
         } dic:dic noNetWork:nil];
     }
+}
+/*
+ @property(nonatomic,strong)NSString *contactId;
+ @property(nonatomic,strong)NSString *type;
+ */
+-(void)gotoDetailWithGroupId:(NSString*)groupId{
+    ChatViewController* vc=[[ChatViewController alloc]init];
+    vc.contactId=groupId;
+    vc.type=@"02";
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)sectionDidSelectWithBtn:(UIButton*)btn{
+    NSInteger section=btn.tag;
+    [self sectionViewClickedWithSection:section];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -122,12 +148,6 @@
     return view;
 }
 
--(void)sectionDidSelectWithBtn:(UIButton*)btn{
-    NSInteger section=btn.tag;
-    [self sectionViewClickedWithSection:section];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
-}
-
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ChooseContactsViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
@@ -137,29 +157,45 @@
     AddressBookModel *ABmodel = self.groupArr[indexPath.section];
     AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];
     model.mainLabelText=contactModel.a_loginName;
-    model.isHighlight=NO;
+    model.isHighlight=[self.selectedUserIds containsObject:contactModel.a_contactId];
     [cell setModel:model indexPath:indexPath];
     
     return cell;
 }
 
 -(void)chooseAssistBtn:(UIButton *)btn indexPath:(NSIndexPath *)indexPath{
-   
-}
-
--(CGFloat)searchBarTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 45;
-}
-
--(UITableViewCell *)searchBarTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    SearchBarCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell=[[SearchBarCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    AddressBookModel *ABmodel = self.groupArr[indexPath.section];
+    AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];
+    NSString* userId=contactModel.a_contactId;
+    BOOL hasUserId=[self.selectedUserIds containsObject:userId];
+    if (hasUserId) {
+        [self.selectedUserIds removeObject:userId];
+    }else{
+        [self.selectedUserIds addObject:userId];
     }
-    SearchBarCellModel* model=[[SearchBarCellModel alloc]init];
-    model.mainLabelText=@"用户名显示";
-    
-    [cell setModel:model];
-    return cell;
+    [self.tableView reloadData];
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [super searchBarSearchButtonClicked:searchBar];
+    [self.searchBarTableViewController loadListWithKeyWords:searchBar.text];
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [super searchBarCancelButtonClicked:searchBar];
+    [self firstNetWork];
+}
+
+-(void)setUpSearchBarTableView{
+    self.searchBarTableViewController=[[ChooseContactsSearchController alloc]initWithTableViewBounds:CGRectMake(0, 0, kScreenWidth, kScreenHeight-CGRectGetMinY(self.searchBar.frame))];
+    self.searchBarTableViewController.selectedUserIds=self.selectedUserIds;
+    self.searchBarTableViewController.delegate=self;
+}
+
+-(NSMutableArray *)selectedUserIds{
+    if (!_selectedUserIds) {
+        _selectedUserIds=[NSMutableArray array];
+    }
+    return _selectedUserIds;
 }
 @end
