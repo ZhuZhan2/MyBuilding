@@ -19,6 +19,7 @@
 @property(nonatomic,strong)NSString *a_loginName;
 @property(nonatomic,strong)NSString *a_content;
 @property(nonatomic,strong)NSString *a_msgCount;
+@property(nonatomic,strong)NSString *a_time;
 @property(nonatomic)BOOL a_isShow;
 @property(nonatomic,strong)NSDictionary *dict;
 @end

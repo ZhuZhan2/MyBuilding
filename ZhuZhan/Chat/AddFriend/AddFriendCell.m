@@ -7,7 +7,7 @@
 //
 
 #import "AddFriendCell.h"
-
+#import "UIButton+WebCache.h"
 @interface AddFriendCell()
 @property(nonatomic,strong)UILabel* userNameLabel;
 @property(nonatomic,strong)UILabel* userBussniessLabel;
@@ -22,13 +22,12 @@
     if (self) {
         self.needRightBtn=needRightBtn;
         
-        self.userImageView=[[UIImageView alloc]init];
-        self.userImageView.layer.cornerRadius=3;
-        self.userImageView.layer.masksToBounds=YES;
-        self.userImageView.frame=CGRectMake(15, 12.5, 35, 35);
-        [self addSubview:self.userImageView];
-        self.userImageView.userInteractionEnabled=YES;
-        
+        self.headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.headBtn.layer.cornerRadius=3;
+        self.headBtn.layer.masksToBounds=YES;
+        self.headBtn.frame=CGRectMake(15, 12.5, 35, 35);
+        [self.headBtn addTarget:self action:@selector(headAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.headBtn];
         
         self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(65, 10.5, 200, 20)];
         self.userNameLabel.font=[UIFont boldSystemFontOfSize:15];
@@ -53,11 +52,18 @@
 }
 
 -(void)setUserName:(NSString*)userName time:(NSString*)time userImageUrl:(NSString*)userImageUrl isFinished:(BOOL)isFinished indexPathRow:(NSInteger)indexPathRow status:(NSString *)status{
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:userImageUrl] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+    [self.headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:userImageUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     self.userNameLabel.text=userName;
     self.userBussniessLabel.text=time;
     [self.rightBtn setBackgroundImage:[GetImagePath getImagePath:isFinished?@"added":@"add_green_button"] forState:UIControlStateNormal];
     self.rightBtn.tag=indexPathRow;
-    self.userImageView.tag=indexPathRow;
+    self.headBtn.tag=indexPathRow;
+}
+
+-(void)headAction:(UIButton *)button{
+    NSLog(@"headAction");
+    if([self.delegate respondsToSelector:@selector(headClick:)]){
+        [self.delegate headClick:(int)button.tag];
+    }
 }
 @end

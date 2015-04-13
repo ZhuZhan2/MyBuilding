@@ -15,7 +15,8 @@
 #import "MJRefresh.h"
 #import "RecommendFriendViewController.h"
 #import "AddressBookFriendViewController.h"
-@interface AddFriendViewController ()
+#import "PersonalDetailViewController.h"
+@interface AddFriendViewController ()<AddFriendCellDelegate>
 @property(nonatomic,strong)NSMutableArray* models;
 @property(nonatomic)int startIndex;
 @property(nonatomic,strong)UIButton *addressBookBtn;
@@ -125,7 +126,7 @@
         cell=[[AddFriendCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell" needRightBtn:YES];
         [cell.rightBtn addTarget:self action:@selector(chooseApprove:) forControlEvents:UIControlEventTouchUpInside];
     }
-    
+    cell.delegate = self;
     ReceiveApplyFreindModel* model=self.models[indexPath.row];
     
     [cell setUserName:model.a_loginName time:model.a_createdTime userImageUrl:model.a_imageId isFinished:model.a_isFinished indexPathRow:indexPath.row status:model.a_status];
@@ -195,5 +196,12 @@
         _models=[NSMutableArray array];
     }
     return _models;
+}
+
+-(void)headClick:(int)index{
+    ReceiveApplyFreindModel* model=self.models[index];
+    PersonalDetailViewController *view = [[PersonalDetailViewController alloc] init];
+    view.contactId = model.a_createdUser;
+    [self.navigationController pushViewController:view animated:YES];
 }
 @end
