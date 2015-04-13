@@ -43,6 +43,16 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(newMessage:) name:@"newMessage" object:nil];
 }
 
+-(void)leftBtnClicked{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:@"02" forKey:@"deviceType"];
+    [ChatMessageApi LogoutWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }dic:dic noNetWork:nil];
+}
+
 -(void)initMessageTableView{
     self.tableView = [[MessageTableView alloc] initWithFrame:CGRectMake(0, 64, 320,kScreenHeight-64)];
     self.tableView.delegate = self;
@@ -59,6 +69,8 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
+    ChatMessageModel* dataModel=[self.models lastObject];
+    NSLog(@"%@",dataModel.a_id);
     [ChatMessageApi GetMessageListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.startIndex++;
@@ -71,7 +83,7 @@
             [LoginAgain AddLoginView:NO];
         }
         [self.tableView headerEndRefreshing];
-    } userId:self.contactId startIndex:self.startIndex+1 noNetWork:nil];
+    } userId:self.contactId chatlogId:dataModel.a_id startIndex:self.startIndex+1 noNetWork:nil];
 }
 
 -(void)initSocket{
@@ -120,7 +132,7 @@
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } userId:self.contactId startIndex:0 noNetWork:nil];
+    } userId:self.contactId chatlogId:@"" startIndex:0 noNetWork:nil];
 }
 
 -(void)initNavi{

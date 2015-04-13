@@ -16,6 +16,7 @@
 #import "AddFriendViewController.h"
 #import "AddressBookNickNameViewController.h"
 #import "ChatViewController.h"
+#import "PersonalDetailViewController.h"
 #define seperatorLineColor RGBCOLOR(229, 229, 229)
 @interface AddressBookViewController()<AddressBookViewCellDelegate,SWTableViewCellDelegate,AddressBookNickNameViewControllerDelegate>
 @property(nonatomic,strong)NSMutableArray *groupArr;
@@ -164,8 +165,8 @@
         //cell=[[AddressBookViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell" delegate:self];
         cell=[[AddressBookViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         [cell setRightUtilityButtons:[self rightButtons] WithButtonWidth:58.0f];
-        cell.delegate = self;
     }
+    cell.delegate = self;
     AddressBookModel *ABmodel = self.groupArr[indexPath.section];
     AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];
     AddressBookCellModel* model=[[AddressBookCellModel alloc]init];
@@ -174,7 +175,8 @@
     model.mainImageUrl = contactModel.a_avatarUrl;
     model.isHighlight=arc4random()%2;
     [cell setModel:model indexPath:indexPath];
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     return cell;
 }
 
@@ -214,8 +216,19 @@
     model.mainLabelText=hasNickName?contactModel.a_nickName:contactModel.a_loginName;
     model.mainImageUrl = contactModel.a_avatarUrl;
     model.isHighlight=arc4random()%2;
-    [cell setModel:model];
+    [cell setModel:model indexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+
+-(void)searchBarTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self disappearAnimation:self.searchBar];
+    AddressBookModel *ABmodel = self.searchDataArr[indexPath.section];
+    AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];
+    ChatViewController *view = [[ChatViewController alloc] init];
+    view.contactId = contactModel.a_contactId;
+    view.type = @"01";
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 -(CGFloat)searchBarTableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -344,5 +357,13 @@
             [self.tableView reloadData];
         }
     }keywords:@"" noNetWork:nil];
+}
+
+-(void)headClick:(NSIndexPath *)indexPath{
+    AddressBookModel *ABmodel = self.groupArr[indexPath.section];
+    AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];
+    PersonalDetailViewController *view = [[PersonalDetailViewController alloc] init];
+    view.contactId = contactModel.a_contactId;
+    [self.navigationController pushViewController:view animated:YES];
 }
 @end

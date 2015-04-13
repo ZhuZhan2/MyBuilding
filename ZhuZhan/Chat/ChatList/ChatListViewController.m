@@ -22,7 +22,7 @@
 @implementation ChatListViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initSocket];
+    //[self initSocket];
     [self firstNetWork];
     [self initNavi];
     //[self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];

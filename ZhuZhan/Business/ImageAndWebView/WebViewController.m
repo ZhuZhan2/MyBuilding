@@ -29,7 +29,7 @@
     self.webView = [[UIWebView alloc] initWithFrame:self.view.frame];
     self.webView.delegate =self;
     self.webView.scrollView.bounces=NO;
-    if([self.type isEqualToString:@"docx"]||[self.type isEqualToString:@"xlsx"]){
+    if([[self.type substringToIndex:2] isEqualToString:@"xl"]||[[self.type substringToIndex:2] isEqualToString:@"do"]||[self.type isEqualToString:@"pdf"]){
         self.webView.scalesPageToFit=YES;
         [self down];
     }else{
@@ -42,7 +42,6 @@
                             ,self.view.frame.size.width,self.view.frame.size.height-64 ,self.url];
         [self.webView loadHTMLString:content baseURL:nil];
     }
-    NSLog(@"%@",self.url);
     [self.view addSubview:self.webView];
 }
 
@@ -52,8 +51,8 @@
 }
 
 -(void)back{
-//    NSFileManager *fileManage = [NSFileManager defaultManager];
-//    [fileManage removeItemAtURL:self.path error:nil];
+    //NSFileManager *fileManage = [NSFileManager defaultManager];
+    //[fileManage removeItemAtURL:self.path error:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -87,7 +86,7 @@
 //    }];
 //    [downloadTask resume];
     
-    
+   
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -104,6 +103,8 @@
                 [self.webView loadData:(NSData *)responseObject MIMEType:@"application/vnd.ms-excel	application/x-excel" textEncodingName:@"UTF-8" baseURL:nil];
             }else if ([self.type isEqualToString:@"doc"]){
                 [self.webView loadData:(NSData *)responseObject MIMEType:@"application/msword" textEncodingName:@"UTF-8" baseURL:nil];
+            }else if([self.type isEqualToString:@"pdf"]){
+                [self.webView loadData:(NSData *)responseObject MIMEType:@"application/pdf" textEncodingName:@"UTF-8" baseURL:nil];
             }
         }
     }];

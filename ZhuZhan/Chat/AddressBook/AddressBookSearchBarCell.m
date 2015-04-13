@@ -11,7 +11,7 @@
 @property(nonatomic,strong)UIImageView* mainImageView;
 @property(nonatomic,strong)UILabel* mainLabel;
 @property(nonatomic,strong)UIView* seperatorLine;
-@property(nonatomic,strong)AddressBookSearchBarCellModel* model;
+@property(nonatomic,strong,setter=setModel:)AddressBookSearchBarCellModel* model;
 
 @end
 
@@ -57,7 +57,7 @@
     [self.contentView addSubview:self.seperatorLine];
 }
 
--(void)setModel:(AddressBookSearchBarCellModel *)model{
+-(void)setModel:(AddressBookSearchBarCellModel *)model indexPath:(NSIndexPath *)indexPath{
     _model=model;
     [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:model.mainImageUrl] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     self.mainLabel.text=model.mainLabelText;

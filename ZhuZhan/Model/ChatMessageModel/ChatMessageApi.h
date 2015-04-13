@@ -16,8 +16,14 @@
 + (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block noNetWork:(void(^)())noNetWork;
 
 //获取聊天记录
-+ (NSURLSessionDataTask *)GetMessageListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
++ (NSURLSessionDataTask *)GetMessageListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId chatlogId:(NSString *)chatlogId startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
 
 //删除会话
 + (NSURLSessionDataTask *)DelMessageListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
+
+//登出
++ (NSURLSessionDataTask *)LogoutWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
+
+//解散聊天群
++ (NSURLSessionDataTask *)DismissWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 @end

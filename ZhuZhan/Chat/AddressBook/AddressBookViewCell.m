@@ -10,6 +10,7 @@
 
 @interface AddressBookViewCell ()
 @property(nonatomic,strong)UIImageView* mainImageView;
+@property(nonatomic,strong)UIButton *headBtn;
 @property(nonatomic,strong)UILabel* mainLabel;
 //@property(nonatomic,strong)UIButton* assistBtn;
 @property(nonatomic,strong)UIView* seperatorLine;
@@ -46,6 +47,15 @@
     return _mainImageView;
 }
 
+-(UIButton *)headBtn{
+    if(!_headBtn){
+        _headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _headBtn.frame = CGRectMake(10, 0, 42, 50);
+        [_headBtn addTarget:self action:@selector(headAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _headBtn;
+}
+
 -(UILabel *)mainLabel{
     if (!_mainLabel) {
         _mainLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 20)];
@@ -75,6 +85,7 @@
     [self.contentView addSubview:self.mainLabel];
 //    [self.contentView addSubview:self.assistBtn];
     [self.contentView addSubview:self.seperatorLine];
+    [self.contentView addSubview:self.headBtn];
 }
 
 -(void)setUpSelectedBackView{
@@ -111,6 +122,13 @@
     UIView* seperatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 1)];
     seperatorLine.backgroundColor=seperatorLineColor;
     return seperatorLine;
+}
+
+-(void)headAction{
+    NSLog(@"headAction");
+    if([self.delegate respondsToSelector:@selector(headClick:)]){
+        [self.delegate headClick:self.indexPath];
+    }
 }
 @end
 

@@ -29,7 +29,8 @@
 //#define  serverAddress "http://10.1.1.135:9090/service"
 
 #define socketServer "10.1.1.138"//马恩伟本地
-//#define socketServer "10.1.5.104"//马恩伟本地
+//#define socketServer "10.1.5.104"//服务器
+
 #define  kScreenWidth  [[UIScreen mainScreen] bounds].size.width
 #define  kScreenHeight [[UIScreen mainScreen] bounds].size.height
 #define  kContentHeight [[UIScreen mainScreen] bounds].size.height-64.5

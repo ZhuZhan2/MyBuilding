@@ -20,6 +20,8 @@
         image = [GetImagePath getImagePath:@"xlsx"];
     }else if ([[model.type substringToIndex:2] isEqualToString:@"do"]){
         image = [GetImagePath getImagePath:@"word"];
+    }else if([model.type isEqualToString:@"pdf"]){
+        image = [GetImagePath getImagePath:@"人脉_06a2"];
     }else{
         image = [GetImagePath getImagePath:@"人脉_06a2"];
     }
