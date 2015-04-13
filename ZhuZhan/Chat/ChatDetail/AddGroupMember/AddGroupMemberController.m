@@ -9,6 +9,7 @@
 #import "AddGroupMemberController.h"
 #import "AddImageView.h"
 #import "ChooseContactsViewController.h"
+#import "ChatMessageApi.h"
 @interface AddGroupMemberController ()<AddImageViewDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)AddImageView* addImageView;
 @property(nonatomic,strong)UIView* secondView;
@@ -22,6 +23,13 @@
     [self initNavi];
     [self initTableView];
     self.tableView.backgroundColor=backColor;
+    [self firstNetWork];
+}
+
+-(void)firstNetWork{
+    [ChatMessageApi GetInfoWithBlock:^(NSMutableArray *posts, NSError *error) {
+        
+    } groupId:self.contactId noNetWork:nil];
 }
 
 -(void)initNavi{

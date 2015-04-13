@@ -196,4 +196,40 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)GetInfoWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block groupId:(NSString *)groupId noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    ///api/group/info
+    NSString *urlStr = [NSString stringWithFormat:@"api/group/info?groupId=%@",groupId];
+    NSLog(@"=====%@",urlStr);
+    return [[ChatNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+//            for(NSDictionary *item in JSON[@"data"][@"rows"]){
+//                ChatMessageModel *model = [[ChatMessageModel alloc] init];
+//                [model setDict:item];
+//                [mutablePosts insertObject:model atIndex:0];
+//            }
+            if (block) {
+                block(mutablePosts, nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+
+}
 @end

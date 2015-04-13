@@ -151,12 +151,15 @@
 -(void)initNavi{
     self.title=@"用户名";
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
-    [self setRightBtnWithImage:[GetImagePath getImagePath:YES?@"单人会话":@"多人会话@2x"]];
+    if ([self.type isEqualToString:@"02"]) {
+        [self setRightBtnWithImage:[GetImagePath getImagePath:NO?@"单人会话":@"多人会话@2x"]];
+    }
 }
 
 -(void)rightBtnClicked{
     [self.view endEditing:YES];
     AddGroupMemberController* vc=[[AddGroupMemberController alloc]init];
+    vc.contactId=self.contactId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
