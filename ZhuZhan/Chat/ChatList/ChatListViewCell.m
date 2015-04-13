@@ -11,6 +11,7 @@
 @interface ChatListViewCell()
 @property(nonatomic,strong)UILabel* userNameLabel;
 @property(nonatomic,strong)UILabel* userBussniessLabel;
+@property(nonatomic,strong)UILabel* remindNumberLabel;
 @property(nonatomic,strong)UIView* separatorLine;
 @end
 
@@ -42,6 +43,13 @@
         self.rightLabel.textColor=RGBCOLOR(149, 149, 149);
         [self addSubview:self.rightLabel];
         
+        self.remindNumberLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
+        self.remindNumberLabel.backgroundColor=[UIColor redColor];
+        self.remindNumberLabel.layer.cornerRadius=5;
+        self.remindNumberLabel.textAlignment=NSTextAlignmentCenter;
+        self.remindNumberLabel.textColor=[UIColor whiteColor];
+        self.remindNumberLabel.center=CGPointMake(CGRectGetMaxX(self.userImageView.frame), 0);
+        [self.userImageView addSubview:self.remindNumberLabel];
         
         self.separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 49, 320, 1)];
         self.separatorLine.backgroundColor=RGBCOLOR(229, 229, 229);
@@ -59,6 +67,8 @@
     }
     self.userBussniessLabel.text=model.a_content;
 
+    self.remindNumberLabel.text;
+    
     self.rightLabel.text=@"2015-02-08";
 }
 @end
