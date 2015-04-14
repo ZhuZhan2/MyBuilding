@@ -47,13 +47,13 @@
     [self getNameAndPhone:mresults];
 }
 
--(void)sendAddressBook:(NSMutableArray*)array{
-    [AddressBookApi ContactsAddWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            
-        }
-    } arr:array noNetWork:nil];
-}
+//-(void)sendAddressBook:(NSMutableArray*)array{
+//    [AddressBookApi ContactsAddWithBlock:^(NSMutableArray *posts, NSError *error) {
+//        if (!error) {
+//            
+//        }
+//    } arr:array noNetWork:nil];
+//}
 
 //获取联系人名字电话
 -(void)getNameAndPhone:(CFMutableArrayRef)mresults{
@@ -62,21 +62,23 @@
     for (int k=0;k<CFArrayGetCount(mresults);k++) {
         ABRecordRef tempRecord=CFArrayGetValueAtIndex(mresults,k) ;
         NSMutableDictionary* singleDataDic=[NSMutableDictionary dictionary];
-        NSObject* baseInformation=[self getBaseInformationDicValueWithRecord:tempRecord];
-        NSObject* birthday=[self getBirthdayDicValueWithRecord:tempRecord];
-        NSObject* addresses=[self getAddressesDicValueWithRecord:tempRecord];
+       // NSObject* baseInformation=[self getBaseInformationDicValueWithRecord:tempRecord];
+       // NSObject* birthday=[self getBirthdayDicValueWithRecord:tempRecord];
+       // NSObject* addresses=[self getAddressesDicValueWithRecord:tempRecord];
         NSObject* cellPhones=[self getCellPhonesDicValueWithRecord:tempRecord];
-        NSObject* emails=[self getEmailsDicValueWithRecord:tempRecord];
-        NSObject* ims=[self getImsDicValueWithRecord:tempRecord];
-        [singleDataDic setObject:baseInformation forKey:@"baseInformation"];
-        [singleDataDic setObject:birthday forKey:@"birthday"];
-        [singleDataDic setObject:addresses forKey:@"addresses"];
+       // NSObject* emails=[self getEmailsDicValueWithRecord:tempRecord];
+       // NSObject* ims=[self getImsDicValueWithRecord:tempRecord];
+       // [singleDataDic setObject:baseInformation forKey:@"baseInformation"];
+//        [singleDataDic setObject:birthday forKey:@"birthday"];
+//        [singleDataDic setObject:addresses forKey:@"addresses"];
         [singleDataDic setObject:cellPhones forKey:@"cellPhones"];
-        [singleDataDic setObject:emails forKey:@"emails"];
-        [singleDataDic setObject:ims forKey:@"ims"];
+//        [singleDataDic setObject:emails forKey:@"emails"];
+//        [singleDataDic setObject:ims forKey:@"ims"];
         [allArr addObject:singleDataDic];
     }
-    [self sendAddressBook:allArr];
+    //[self sendAddressBook:allArr];
+    self.phones=allArr;
+//    NSLog(@"内部phones=%@",self.phones);
 }
 
 -(NSObject*)getBaseInformationDicValueWithRecord:(ABRecordRef)record{
@@ -214,7 +216,14 @@
             tmpPhoneIndex=@"";
         }
         NSMutableDictionary *phoneDic = [[NSMutableDictionary alloc] init];
-        [phoneDic setValue:tmpPhoneIndex forKey:@"phoneNumber"];
+        NSMutableString* str=[tmpPhoneIndex mutableCopy];
+        while ([str rangeOfString:@"-"].length) {
+            [str deleteCharactersInRange:[str rangeOfString:@"-"]];
+        }
+        while ([str rangeOfString:@" "].length) {
+            [str deleteCharactersInRange:[str rangeOfString:@" "]];
+        }
+        [phoneDic setValue:str forKey:@"phoneNumber"];
         [phoneDic setValue:personPhoneLabel forKey:@"tagName"];
         [phoneArr addObject:phoneDic];
     }

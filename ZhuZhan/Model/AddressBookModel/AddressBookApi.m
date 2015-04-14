@@ -12,6 +12,7 @@
 #import "LoginSqlite.h"
 #import "ReceiveApplyFreindModel.h"
 #import "FriendModel.h"
+#import "ValidatePlatformContactModel.h"
 @implementation AddressBookApi
 + (NSURLSessionDataTask *)GetAddressBookListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block keywords:(NSString *)keywords noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
@@ -330,5 +331,38 @@
             NSLog(@"Error: %@", error);
         }];
     }
+}
+
++ (NSURLSessionDataTask *)ValidatePlatformContactsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary*)dic noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"api/contacts/validatePlatformContacts"];
+    NSLog(@"=====%@",urlStr);
+    return  [[AFAppDotNetAPIClient sharedNewClient]POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if ([JSON[@"status"][@"statusCode"] isEqualToString:@"200"]) {
+            NSMutableArray* datas=[NSMutableArray array];
+            for (NSDictionary* dic in JSON[@"data"]) {
+                ValidatePlatformContactModel* model=[[ValidatePlatformContactModel alloc]init];
+                model.dict=dic;
+                if (model.a_isPlatformUser) {
+                    [datas addObject:model];
+                }
+            }
+            if (block) {
+                block(datas,nil);
+            }
+        }else{
+            NSLog(@"error==%@",
+                  JSON[@"status"][@"errorMsg"]);
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error==>%@",error);
+    }];
 }
 @end

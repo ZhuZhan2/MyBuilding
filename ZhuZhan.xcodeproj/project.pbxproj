@@ -731,6 +731,7 @@
 		5B7670651AB6B92B00E154C5 /* SearchBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7670611AB6B92B00E154C5 /* SearchBarTableViewController.m */; };
 		5B7670681AB6BD8100E154C5 /* RecommendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7670671AB6BD8100E154C5 /* RecommendListViewController.m */; };
 		5B76706B1AB6BDB800E154C5 /* RemindListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B76706A1AB6BDB800E154C5 /* RemindListViewController.m */; };
+		5B78D68E1ADCB40900E08C4A /* ValidatePlatformContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B78D68D1ADCB40900E08C4A /* ValidatePlatformContactModel.m */; };
 		5B7AA6C51A58D6B0000FBFF2 /* 01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6BD1A58D6AF000FBFF2 /* 01.png */; };
 		5B7AA6C61A58D6B0000FBFF2 /* 01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6BE1A58D6AF000FBFF2 /* 01@2x.png */; };
 		5B7AA6C71A58D6B0000FBFF2 /* 02.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6BF1A58D6AF000FBFF2 /* 02.png */; };
@@ -2567,6 +2568,8 @@
 		5B7670671AB6BD8100E154C5 /* RecommendListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendListViewController.m; sourceTree = "<group>"; };
 		5B7670691AB6BDB800E154C5 /* RemindListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindListViewController.h; sourceTree = "<group>"; };
 		5B76706A1AB6BDB800E154C5 /* RemindListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindListViewController.m; sourceTree = "<group>"; };
+		5B78D68C1ADCB40900E08C4A /* ValidatePlatformContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidatePlatformContactModel.h; sourceTree = "<group>"; };
+		5B78D68D1ADCB40900E08C4A /* ValidatePlatformContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidatePlatformContactModel.m; sourceTree = "<group>"; };
 		5B7AA6BD1A58D6AF000FBFF2 /* 01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 01.png; sourceTree = "<group>"; };
 		5B7AA6BE1A58D6AF000FBFF2 /* 01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01@2x.png"; sourceTree = "<group>"; };
 		5B7AA6BF1A58D6AF000FBFF2 /* 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 02.png; sourceTree = "<group>"; };
@@ -6800,6 +6803,8 @@
 				5B86504D1ABFE4830096BEF0 /* ReceiveApplyFreindModel.m */,
 				D3F787481AADAD3800ED754B /* AddressBookApi.h */,
 				D3F787491AADAD3800ED754B /* AddressBookApi.m */,
+				5B78D68C1ADCB40900E08C4A /* ValidatePlatformContactModel.h */,
+				5B78D68D1ADCB40900E08C4A /* ValidatePlatformContactModel.m */,
 				D3F727551AD68FC400B52A66 /* FriendModel.h */,
 				D3F727561AD68FC400B52A66 /* FriendModel.m */,
 			);
@@ -8254,6 +8259,7 @@
 				0426C24919922D5A00CD8822 /* GPUImageBilateralFilter.m in Sources */,
 				5B6699291AB9490600C4B54F /* DemanDetailViewController.m in Sources */,
 				D3D4FB301A0872770033BB34 /* CompanyCenterViewController.m in Sources */,
+				5B78D68E1ADCB40900E08C4A /* ValidatePlatformContactModel.m in Sources */,
 				5B7E59091ABBEAD20063B400 /* RKUpAndDownView.m in Sources */,
 				D368092E1ABFD70500AFA097 /* RemarkViewController.m in Sources */,
 				0426C2EA19922D5A00CD8822 /* FaceppRecognition.m in Sources */,

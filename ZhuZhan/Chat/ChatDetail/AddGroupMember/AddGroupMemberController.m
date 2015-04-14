@@ -104,43 +104,11 @@
 }
 
 -(void)setUpSecondView{
-    //setObject
-    UIView* backView=[[UIView alloc]initWithFrame:CGRectMake(0, 18, kScreenWidth, 92)];
-//    backView.backgroundColor=[UIColor whiteColor];
-//    {
-//        UILabel* nameLabel=[[UILabel alloc]initWithFrame:CGRectMake(35, 0, 200, CGRectGetHeight(backView.frame)*0.5)];
-//        UIButton* nameBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(backView.frame), CGRectGetHeight(backView.frame)*0.5)];
-//        UILabel* notificationLabel=[[UILabel alloc]initWithFrame:CGRectMake(35, CGRectGetHeight(backView.frame)*0.5, 150, CGRectGetHeight(backView.frame)*0.5)];
-//        UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(kScreenWidth-40, 17, 7, 15)];
-//        UISwitch* switchBtn=[[UISwitch alloc]init];
-//        switchBtn.center=CGPointMake(262, 67);
-//        
-//        nameLabel.text=@"群聊名称";
-//        notificationLabel.text=@"新消息通知";
-//        imageView.image=[GetImagePath getImagePath:@"Vector-Smart-Object"];
-//        [nameBtn addTarget:self action:@selector(changeNameBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-//        
-//        [backView addSubview:nameLabel];
-//        [backView addSubview:nameBtn];
-//        [backView addSubview:notificationLabel];
-//        [backView addSubview:imageView];
-//        [backView addSubview:switchBtn];
-//    }
-//    for (int i=0; i<3; i++) {
-//        UIView* view=[self seperatorLine];
-//        view.center=CGPointMake(kScreenWidth*0.5, -0.5+i%3*CGRectGetHeight(backView.frame)/2);
-//        [backView addSubview:view];
-//    }
-    
-    
-    {
-        UIButton* btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 294, 42)];
-        [btn setBackgroundImage:[GetImagePath getImagePath:@"退出本群"] forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(exitBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-        btn.center=CGPointMake(kScreenWidth*0.5, 35);
-        [_secondView addSubview:btn];
-    }
-    [_secondView addSubview:backView];
+    UIButton* btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 294, 42)];
+    [btn setBackgroundImage:[GetImagePath getImagePath:@"退出本群"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(exitBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    btn.center=CGPointMake(kScreenWidth*0.5, 35);
+    [_secondView addSubview:btn];
 }
 
 -(UIView*)seperatorLine{
@@ -149,24 +117,39 @@
     return view;
 }
 
--(void)changeNameBtnClicked{
-    UIAlertView* alertView=[[UIAlertView alloc]initWithTitle:@"群聊名称" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认",@"取消", nil];
-    alertView.alertViewStyle=UIAlertViewStylePlainTextInput;
-    [alertView textFieldAtIndex:0].clearButtonMode=UITextFieldViewModeAlways;
-    [alertView show];
-//    UIView* view=[AlertTextFieldView alertTextFieldViewWithName:@"群聊名称" sureBtnTitle:@"确认" cancelBtnTitle:@"取消" originY:110 delegate:self];
-//    [self.navigationController.view addSubview:view];
-}
+//-(void)changeNameBtnClicked{
+//    UIAlertView* alertView=[[UIAlertView alloc]initWithTitle:@"群聊名称" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认",@"取消", nil];
+//    alertView.alertViewStyle=UIAlertViewStylePlainTextInput;
+//    [alertView textFieldAtIndex:0].clearButtonMode=UITextFieldViewModeAlways;
+//    [alertView show];
+//    //    UIView* view=[AlertTextFieldView alertTextFieldViewWithName:@"群聊名称" sureBtnTitle:@"确认" cancelBtnTitle:@"取消" originY:110 delegate:self];
+//    //    [self.navigationController.view addSubview:view];
+//}
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSLog(@"%d",(int)buttonIndex);
     if (buttonIndex==0) {
-        UITextField* field=[alertView textFieldAtIndex:0];
-        NSLog(@"field==%@",field.text);
+        [self quitGroup];
     }
+//    if (buttonIndex==0) {
+//        UITextField* field=[alertView textFieldAtIndex:0];
+//        NSLog(@"field==%@",field.text);
+//    }
+}
+
+-(void)quitGroup{
+    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+    [dic setObject:self.contactId forKey:@"groupId"];
+    [ChatMessageApi DismissWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            NSInteger index=self.navigationController.viewControllers.count-3;
+            [self.navigationController popToViewController:self.navigationController.viewControllers[index] animated:YES];
+        }
+    } dic:dic noNetWork:nil];
 }
 
 -(void)exitBtnClicked{
-    UIAlertView* alertView=[[UIAlertView alloc]initWithTitle:@"退出本群" message:@"退出后，将不再接受此群聊消息" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确认",@"取消",nil];
+    UIAlertView* alertView=[[UIAlertView alloc]initWithTitle:@"退出本群" message:@"退出后，将不再接受此群聊消息" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认",@"取消",nil];
     [alertView show];
 }
 

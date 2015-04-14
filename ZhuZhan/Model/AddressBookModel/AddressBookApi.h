@@ -41,4 +41,7 @@
 
 //上传通讯录
 + (void)ContactsAddWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block arr:(NSMutableArray*)arr noNetWork:(void(^)())noNetWork;
+
+//获取当前手机通讯录内联系人与平台关系及与当前用户好友关系
++ (NSURLSessionDataTask *)ValidatePlatformContactsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary*)dic noNetWork:(void(^)())noNetWork;
 @end
