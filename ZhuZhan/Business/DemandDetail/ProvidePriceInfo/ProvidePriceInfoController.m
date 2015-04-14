@@ -140,7 +140,7 @@
 //        view.isFirstQuote=self.isFirstQuote;//YES
 //        [self.navigationController pushViewController:view animated:YES];
 //    }else{
-        [self.navigationController popViewControllerAnimated:YES];
+    [self leftBtnClicked];
 //    }
 }
 
@@ -263,6 +263,11 @@
     
     NSMutableArray* array=images[indexpath.section];
     [array removeObjectAtIndex:indexpath.row];
+    NSLog(@"images==%@",images);
+    
+    RKImageModel* imageModel=array[indexpath.row];
+    [ImageSqlite DelImage:imageModel.Id];
+    
     [self reloadSixthView];
 }
 
@@ -274,7 +279,7 @@
 -(void)upLoadBtnClickedWithNumber:(NSInteger)number{
     NSArray* images=@[self.array1,self.array2,self.array3];
     NSMutableArray* array=images[number];
-    if (array.count>=9) {
+    if (array.count>=6) {
         NSArray* categorys=@[@"报价附件",@"资质附件",@"其他附件"];
         NSString* message=[NSString stringWithFormat:@"%@图片数量已达上限",categorys[number]];
         [[[UIAlertView alloc]initWithTitle:@"提醒" message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil]show];
@@ -300,13 +305,14 @@
         [alertView show];
         return;
     }
-    [ImageSqlite InsertData:data type:[NSString stringWithFormat:@"%ld",(long)self.cameraCategory]];
     NSArray* images=@[self.array1,self.array2,self.array3];
     NSMutableArray* array=images[self.cameraCategory];
     RKImageModel* imageModel=[RKImageModel imageModelWithImage:lowQualityimage imageUrl:nil isUrl:NO type:nil];
     [array addObject:imageModel];
     [self reloadSixthView];
     
+    
+    [ImageSqlite InsertData:data type:[NSString stringWithFormat:@"%ld",(long)self.cameraCategory] imageId:imageModel.Id];
 //    NSArray* postImages=@[self.postArray1,self.postArray2,self.postArray3];
 //    NSMutableArray* postArray=postImages[self.cameraCategory];
 //    //[postArray addObject:originQualityImage];
@@ -431,7 +437,6 @@
 -(void)stopLoadingView{
     [self.activityView stopAnimating];
     [self.loadingView removeFromSuperview];
-    [ImageSqlite delAll];
 }
 
 //判断是否是表情
