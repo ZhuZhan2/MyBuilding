@@ -262,11 +262,13 @@
     NSArray* images=@[self.array1,self.array2,self.array3];
     
     NSMutableArray* array=images[indexpath.section];
-    [array removeObjectAtIndex:indexpath.row];
-    NSLog(@"images==%@",images);
     
     RKImageModel* imageModel=array[indexpath.row];
+    NSLog(@"id==%@",imageModel.Id);
     [ImageSqlite DelImage:imageModel.Id];
+    
+    [array removeObjectAtIndex:indexpath.row];
+    NSLog(@"images==%@",images);
     
     [self reloadSixthView];
 }

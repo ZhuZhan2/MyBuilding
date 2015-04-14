@@ -11,9 +11,6 @@
 @implementation RKImageModel
 
 static NSInteger number=0;
--(NSString *)Id{
-    return [NSString stringWithFormat:@"%d",(int)number];
-}
 
 +(RKImageModel*)imageModelWithImage:(UIImage*)image imageUrl:(NSString*)imageUrl isUrl:(BOOL)isUrl type:(NSString *)type{
     RKImageModel* model=[RKImageModel new];
@@ -23,6 +20,7 @@ static NSInteger number=0;
     model.type = type;
     
     number++;
+    model.Id=[NSString stringWithFormat:@"%d",(int)number];
     return model;
 }
 
