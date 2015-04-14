@@ -104,6 +104,7 @@
     }else{
         NSLog(@"success");
     }
+    [ImageSqlite delAll];
     [LoginSqlite opensql];
     [RecordSqlite opensql];
     [ProjectSqlite opensql];

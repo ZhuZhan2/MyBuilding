@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface ImageModel : NSObject
+@property(nonatomic,strong)NSString *imageId;
 @property(nonatomic,strong)NSData *ImageData;
 @property(nonatomic,strong)NSString *type;
 @property(nonatomic,strong)NSDictionary *dict;

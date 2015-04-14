@@ -11,6 +11,7 @@
 @implementation ImageModel
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
+    self.imageId = dict[@"imageId"];
     self.ImageData = dict[@"data"];
     self.type = dict[@"type"];
 }

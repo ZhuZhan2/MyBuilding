@@ -19,7 +19,7 @@
     //  NSLog(@"%@,=========%@",paths,database_path);
     if (sqlite3_open([database_path UTF8String], &zhuZhanDB)==SQLITE_OK) {
         NSLog(@"打开数据库成功!");
-        NSString *createSQL = @"CREATE TABLE IF NOT EXISTS Image (data blob,type text); ";
+        NSString *createSQL = @"CREATE TABLE IF NOT EXISTS Image (imageId text,data blob,type text); ";
         
         if (sqlite3_exec(zhuZhanDB, [createSQL UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK) {
             sqlite3_close(zhuZhanDB);
@@ -66,11 +66,18 @@
     }
 }
 
-+(void)InsertData:(NSData *)data type:(NSString *)type{
++(void)DelImage:(NSString *)imageId{
     SqliteHelper *sqlite = [[SqliteHelper alloc] init];
     if ([sqlite open:DataBaseName]) {
-        [sqlite executeQuery:@"INSERT INTO Image(data,type) VALUES (?,?);",
-         data,type];
+        [sqlite executeQuery:[NSString stringWithFormat:@"delete from Image where imageId='%@'",imageId]];
+    }
+}
+
++(void)InsertData:(NSData *)data type:(NSString *)type imageId:(NSString *)imageId{
+    SqliteHelper *sqlite = [[SqliteHelper alloc] init];
+    if ([sqlite open:DataBaseName]) {
+        [sqlite executeQuery:@"INSERT INTO Image(imageId,data,type) VALUES (?,?,?);",
+         imageId,data,type];
     }
 }
 
