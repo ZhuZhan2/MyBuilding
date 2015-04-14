@@ -59,11 +59,10 @@
         }
         
         //原图的一半
-        CGFloat width=originQualityImage.size.width*0.5;
-        CGFloat height=originQualityImage.size.height*0.5;
+        CGFloat width=originQualityImage.size.width;
+        CGFloat height=originQualityImage.size.height;
         UIView* view=[self getImageViewWithImage:originQualityImage size:CGSizeMake(width, height)];
         originQualityImage = [self convertViewAsImage:view];
-        
         width=self.demandSize.width?2*self.demandSize.width:originQualityImage.size.width;
         height=self.demandSize.height?2*self.demandSize.height:originQualityImage.size.height;
         view=[self getImageViewWithImage:originQualityImage size:CGSizeMake(width, height)];

@@ -11,10 +11,12 @@
 #import "ChooseContactsViewController.h"
 #import "ChatMessageApi.h"
 #import "ChatGroupMemberModel.h"
+#import "LoginSqlite.h"
 @interface AddGroupMemberController ()<AddImageViewDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)AddImageView* addImageView;
 @property(nonatomic,strong)UIView* secondView;
-
+@property(nonatomic,strong)NSString *createdUserId;
+@property(nonatomic,strong)UIButton* btn;
 @property (nonatomic, strong)NSArray* groupMemberModels;
 @end
 
@@ -23,17 +25,23 @@
 @implementation AddGroupMemberController
 -(void)viewDidLoad{
     [super viewDidLoad];
+    [self firstNetWork];
     [self initNavi];
     [self initTableView];
     self.tableView.backgroundColor=backColor;
-    [self firstNetWork];
 }
 
 -(void)firstNetWork{
     [ChatMessageApi GetInfoWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            self.groupMemberModels=posts;
+            self.groupMemberModels=posts[0];
             self.addImageView=nil;
+            self.createdUserId = posts[1];
+            if([[LoginSqlite getdata:@"userId"] isEqualToString:posts[1]]){
+                [self.btn setBackgroundImage:[GetImagePath getImagePath:@"关--闭灰"] forState:UIControlStateNormal];
+            }else{
+                [self.btn setBackgroundImage:[GetImagePath getImagePath:@"退出本群"] forState:UIControlStateNormal];
+            }
             [self.tableView reloadData];
         }
     } groupId:self.contactId noNetWork:nil];
@@ -104,11 +112,12 @@
 }
 
 -(void)setUpSecondView{
-    UIButton* btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 294, 42)];
-    [btn setBackgroundImage:[GetImagePath getImagePath:@"退出本群"] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(exitBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    btn.center=CGPointMake(kScreenWidth*0.5, 35);
-    [_secondView addSubview:btn];
+    NSLog(@"%@",self.createdUserId);
+    self.btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 294, 42)];
+    //[self.btn setBackgroundImage:[GetImagePath getImagePath:@"退出本群"] forState:UIControlStateNormal];
+    [self.btn addTarget:self action:@selector(exitBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    self.btn.center=CGPointMake(kScreenWidth*0.5, 35);
+    [_secondView addSubview:self.btn];
 }
 
 -(UIView*)seperatorLine{

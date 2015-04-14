@@ -1329,6 +1329,8 @@
 		D3D51BC91A80D1D400B52A04 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D51BC71A80D1D400B52A04 /* loading.png */; };
 		D3D51BCA1A80D1D400B52A04 /* loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D51BC81A80D1D400B52A04 /* loading@2x.png */; };
 		D3D538441ADCBD82003727C1 /* source.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3D538431ADCBD82003727C1 /* source.bundle */; };
+		D3D538471ADD1D3C003727C1 /* ImageSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D538461ADD1D3C003727C1 /* ImageSqlite.m */; };
+		D3D5384A1ADD1FC8003727C1 /* ImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D538491ADD1FC8003727C1 /* ImageModel.m */; };
 		D3D5AAD71A690292009C2803 /* 暂无内容.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5AAD51A690292009C2803 /* 暂无内容.png */; };
 		D3D5AAD81A690292009C2803 /* 暂无内容@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5AAD61A690292009C2803 /* 暂无内容@2x.png */; };
 		D3D5B42B1AB12CB800E8EB04 /* ChatSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D5B42A1AB12CB800E8EB04 /* ChatSqlite.m */; };
@@ -3372,6 +3374,10 @@
 		D3D51BC71A80D1D400B52A04 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
 		D3D51BC81A80D1D400B52A04 /* loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading@2x.png"; sourceTree = "<group>"; };
 		D3D538431ADCBD82003727C1 /* source.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = source.bundle; sourceTree = "<group>"; };
+		D3D538451ADD1D3C003727C1 /* ImageSqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSqlite.h; sourceTree = "<group>"; };
+		D3D538461ADD1D3C003727C1 /* ImageSqlite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageSqlite.m; sourceTree = "<group>"; };
+		D3D538481ADD1FC8003727C1 /* ImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageModel.h; sourceTree = "<group>"; };
+		D3D538491ADD1FC8003727C1 /* ImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageModel.m; sourceTree = "<group>"; };
 		D3D5AAD51A690292009C2803 /* 暂无内容.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "暂无内容.png"; sourceTree = "<group>"; };
 		D3D5AAD61A690292009C2803 /* 暂无内容@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "暂无内容@2x.png"; sourceTree = "<group>"; };
 		D3D5B4291AB12CB800E8EB04 /* ChatSqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSqlite.h; sourceTree = "<group>"; };
@@ -6401,6 +6407,10 @@
 				D3D21EB61A36F9C700ADD653 /* LocalProjectModel.m */,
 				D3D5B4291AB12CB800E8EB04 /* ChatSqlite.h */,
 				D3D5B42A1AB12CB800E8EB04 /* ChatSqlite.m */,
+				D3D538451ADD1D3C003727C1 /* ImageSqlite.h */,
+				D3D538461ADD1D3C003727C1 /* ImageSqlite.m */,
+				D3D538481ADD1FC8003727C1 /* ImageModel.h */,
+				D3D538491ADD1FC8003727C1 /* ImageModel.m */,
 			);
 			path = Sqlite3;
 			sourceTree = "<group>";
@@ -7930,6 +7940,7 @@
 				D31BBB9A1AD3E3F500919B8B /* SWTableViewCell.m in Sources */,
 				D3EDCA4E1ACE90A6002AF865 /* MKAnnotationView+WebCache.m in Sources */,
 				D3AD616C19ADB9F7001FD483 /* RecordSqlite.m in Sources */,
+				D3D538471ADD1D3C003727C1 /* ImageSqlite.m in Sources */,
 				5B0A008B19B587B200500C05 /* EGORefreshTableHeaderView.m in Sources */,
 				D3F8970C1AD8F68F00DE3AB4 /* ChatListModel.m in Sources */,
 				D3FF3E911AAEEB83005195CC /* pinyin.c in Sources */,
@@ -8336,6 +8347,7 @@
 				5B8A2CF51AAEE0AD00C8F9DE /* ChooseContactsViewCell.m in Sources */,
 				D3AD619D19AEEE30001FD483 /* SinglePickerView.m in Sources */,
 				0426C2BA19922D5A00CD8822 /* GPUImageSobelEdgeDetectionFilter.m in Sources */,
+				D3D5384A1ADD1FC8003727C1 /* ImageModel.m in Sources */,
 				0426C29119922D5A00CD8822 /* GPUImageMissEtikateFilter.m in Sources */,
 				D3AC61AB19B6BF930015B62F /* MyCenterModel.m in Sources */,
 				0426C26F19922D5A00CD8822 /* GPUImageGaussianBlurFilter.m in Sources */,

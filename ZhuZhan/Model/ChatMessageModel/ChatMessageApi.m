@@ -217,8 +217,11 @@
                 [model setDict:item];
                 [mutablePosts addObject:model];
             }
+            NSMutableArray *arr = [[NSMutableArray alloc] init];
+            [arr addObject:mutablePosts];
+            [arr addObject:JSON[@"data"][@"createdUser"]];
             if (block) {
-                block(mutablePosts, nil);
+                block(arr, nil);
             }
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

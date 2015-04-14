@@ -24,6 +24,7 @@
 #import "GCDAsyncSocket.h"
 #import "JSONKit.h"
 #import "GetAddressBook.h"
+#import "ImageSqlite.h"
 @implementation AppDelegate
 
 + (AppDelegate *)instance {
@@ -106,6 +107,7 @@
     [LoginSqlite opensql];
     [RecordSqlite opensql];
     [ProjectSqlite opensql];
+    [ImageSqlite opensql];
     
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;

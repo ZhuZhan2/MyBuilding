@@ -17,6 +17,8 @@
 #import "AskPriceApi.h"
 #import "RKImageModel.h"
 #import "DemandDetailProvidePriceController.h"
+#import "ImageSqlite.h"
+#import "ImageModel.h"
 @interface ProvidePriceInfoController ()<RKCameraDelegate,ProvidePriceUploadViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate,DemandDetailProvidePriceDelegate>
 @property(nonatomic,strong)UIView* firstView;
 @property(nonatomic,strong)UIView* secondView;
@@ -71,6 +73,11 @@
     [self firstPost];
 }
 
+-(void)leftBtnClicked{
+    [ImageSqlite delAll];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void)firstPost{
     [self startLoadingView];
     
@@ -91,16 +98,28 @@
 }
 
 -(void)secondPostFirstStepWithQuotesId:(NSString*)quotesId{
-    NSArray* allImages=@[self.postArray1,self.postArray2,self.postArray3];
+   // NSArray* allImages=@[self.postArray1,self.postArray2,self.postArray3];
+    NSArray* allImages=@[[ImageSqlite loadList:@"0"],[ImageSqlite loadList:@"1"],[ImageSqlite loadList:@"2"]];
+    
+//    for (int i=0; i<allImages.count; i++) {
+//        NSArray* images=allImages[i];
+//        if (!images.count) continue;
+//        self.needPostGroupCount++;
+//        NSMutableArray* newImageDatas=[NSMutableArray array];
+//        for (UIImage* image in images) {
+//            NSData* imageData=UIImageJPEGRepresentation(image, 1);
+//            [newImageDatas addObject:imageData];
+//        }
+//        [self secondPostSecondStepWithImages:newImageDatas category:[NSString stringWithFormat:@"%d",i] quotesId:quotesId];
+//    }
     
     for (int i=0; i<allImages.count; i++) {
         NSArray* images=allImages[i];
         if (!images.count) continue;
         self.needPostGroupCount++;
         NSMutableArray* newImageDatas=[NSMutableArray array];
-        for (UIImage* image in images) {
-            NSData* imageData=UIImageJPEGRepresentation(image, 1);
-            [newImageDatas addObject:imageData];
+        for (ImageModel* model in images) {
+            [newImageDatas addObject:model.ImageData];
         }
         [self secondPostSecondStepWithImages:newImageDatas category:[NSString stringWithFormat:@"%d",i] quotesId:quotesId];
     }
@@ -281,16 +300,18 @@
         [alertView show];
         return;
     }
-    
+    [ImageSqlite InsertData:data type:[NSString stringWithFormat:@"%ld",(long)self.cameraCategory]];
     NSArray* images=@[self.array1,self.array2,self.array3];
     NSMutableArray* array=images[self.cameraCategory];
     RKImageModel* imageModel=[RKImageModel imageModelWithImage:lowQualityimage imageUrl:nil isUrl:NO type:nil];
     [array addObject:imageModel];
     [self reloadSixthView];
     
-    NSArray* postImages=@[self.postArray1,self.postArray2,self.postArray3];
-    NSMutableArray* postArray=postImages[self.cameraCategory];
-    [postArray addObject:originQualityImage];
+//    NSArray* postImages=@[self.postArray1,self.postArray2,self.postArray3];
+//    NSMutableArray* postArray=postImages[self.cameraCategory];
+//    //[postArray addObject:originQualityImage];
+//    ImageModel *model = [[ImageSqlite loadList:[NSString stringWithFormat:@"%ld",(long)self.cameraCategory]] objectAtIndex:0];
+//    [postArray addObject:model.ImageData];
 }
 
 -(NSArray *)contentViews{
@@ -410,6 +431,7 @@
 -(void)stopLoadingView{
     [self.activityView stopAnimating];
     [self.loadingView removeFromSuperview];
+    [ImageSqlite delAll];
 }
 
 //判断是否是表情
