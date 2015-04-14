@@ -10,8 +10,10 @@
 #import "AddressBookFriendCell.h"
 #import "GetAddressBook.h"
 #import "AddressBookApi.h"
+#import "ValidatePlatformContactModel.h"
 @interface AddressBookFriendViewController()<AddressBookFriendCellDelegate>
 @property (nonatomic, strong)NSMutableArray* phones;
+@property (nonatomic, strong)NSMutableArray* models;
 @end
 
 @implementation AddressBookFriendViewController
@@ -31,7 +33,8 @@
         [addressBook.phones enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSArray* phoneDics=obj[@"cellPhones"];
             [phoneDics enumerateObjectsUsingBlock:^(id tObj, NSUInteger tIdx, BOOL *tStop) {
-                [self.phones addObject:tObj[@"phoneNumber"]];
+                NSString* phoneNumber=tObj[@"phoneNumber"];
+                [self.phones addObject:phoneNumber];
             }];
         }];
         if (block) {
@@ -41,11 +44,7 @@
 }
 
 -(void)postPhones{
-    NSLog(@"phones=%@",self.phones);
     __block NSString* tels=@"";
-    [self.phones enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSLog(@"phone=%@",obj);
-    }];
     [self.phones enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         tels=[tels stringByAppendingString:obj];
         if (idx==self.phones.count-1) {
@@ -56,7 +55,10 @@
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
     [dic setObject:tels forKey:@"tels"];
     [AddressBookApi ValidatePlatformContactsWithBlock:^(NSMutableArray *posts, NSError *error) {
-        
+        if (!error) {
+            self.models=posts;
+            [self.tableView reloadData];
+        }
     } dic:dic noNetWork:nil];
 }
 
@@ -71,7 +73,7 @@
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
+    return self.models.count;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -79,16 +81,27 @@
     if (!cell) {
         cell=[[AddressBookFriendCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell" delegate:self];
     }
+    ValidatePlatformContactModel* dataModel=self.models[indexPath.row];
     AddressBookFriendCellModel* model=[[AddressBookFriendCellModel alloc]init];
-    model.mainLabelText=@"用户名显示";
-    model.assistStyle=arc4random()%3;
+    model.mainLabelText=dataModel.a_loginName;
+    model.assistStyle=dataModel.a_isFriend;
     [cell setModel:model indexPath:indexPath];
     
     return cell;
 }
 
 -(void)chooseAssistBtn:(UIButton *)btn indexPath:(NSIndexPath *)indexPath{
-    
+    ValidatePlatformContactModel* dataModel=self.models[indexPath.row];
+    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+    [dic setValue:dataModel.a_loginId forKey:@"userId"];
+    [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            dataModel.a_isFriend=YES;
+            [self.tableView reloadData];
+        }else{
+            [LoginAgain AddLoginView:NO];
+        }
+    } dic:dic noNetWork:nil];
 }
 
 -(NSMutableArray *)phones{

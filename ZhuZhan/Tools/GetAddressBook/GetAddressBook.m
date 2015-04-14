@@ -216,9 +216,15 @@
             tmpPhoneIndex=@"";
         }
         NSMutableDictionary *phoneDic = [[NSMutableDictionary alloc] init];
-        [phoneDic setValue:tmpPhoneIndex forKey:@"phoneNumber"];
+        NSMutableString* str=[tmpPhoneIndex mutableCopy];
+        while ([str rangeOfString:@"-"].length) {
+            [str deleteCharactersInRange:[str rangeOfString:@"-"]];
+        }
+        while ([str rangeOfString:@" "].length) {
+            [str deleteCharactersInRange:[str rangeOfString:@" "]];
+        }
+        [phoneDic setValue:str forKey:@"phoneNumber"];
         [phoneDic setValue:personPhoneLabel forKey:@"tagName"];
-        NSLog(@"tmpPhoneIndex=%@",tmpPhoneIndex);
         [phoneArr addObject:phoneDic];
     }
     return phoneArr;

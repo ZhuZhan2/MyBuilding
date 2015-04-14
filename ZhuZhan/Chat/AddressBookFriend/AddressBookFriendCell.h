@@ -9,8 +9,8 @@
 #import "ChatBaseViewController.h"
 
 typedef enum AddressBookFriendCellAssistStyle{
-    AddressBookFriendCellAssistIsFinished,
     AddressBookFriendCellAssistNotFinished,
+    AddressBookFriendCellAssistIsFinished,
     AddressBookFriendCellAssistNotExist
 }AddressBookFriendCellAssistStyle;
 

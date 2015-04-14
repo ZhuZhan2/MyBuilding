@@ -12,6 +12,7 @@
 #import "LoginSqlite.h"
 #import "ReceiveApplyFreindModel.h"
 #import "FriendModel.h"
+#import "ValidatePlatformContactModel.h"
 @implementation AddressBookApi
 + (NSURLSessionDataTask *)GetAddressBookListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block keywords:(NSString *)keywords noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
@@ -344,8 +345,16 @@
     return  [[AFAppDotNetAPIClient sharedNewClient]POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if ([JSON[@"status"][@"statusCode"] isEqualToString:@"200"]) {
+            NSMutableArray* datas=[NSMutableArray array];
+            for (NSDictionary* dic in JSON[@"data"]) {
+                ValidatePlatformContactModel* model=[[ValidatePlatformContactModel alloc]init];
+                model.dict=dic;
+                if (model.a_isPlatformUser) {
+                    [datas addObject:model];
+                }
+            }
             if (block) {
-                block(nil,nil);
+                block(datas,nil);
             }
         }else{
             NSLog(@"error==%@",
