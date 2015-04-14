@@ -11,4 +11,5 @@
 @interface GetAddressBook : NSObject
 @property (nonatomic) ABAddressBookRef addressBook;
 -(void)registerAddressBook:(void (^)(bool granted, NSError *error))block;
+@property (nonatomic, strong)NSMutableArray* phones;
 @end
