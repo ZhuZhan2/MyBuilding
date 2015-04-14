@@ -9,12 +9,20 @@
 #import "RKImageModel.h"
 
 @implementation RKImageModel
+
+static NSInteger number=0;
+-(NSString *)Id{
+    return [NSString stringWithFormat:@"%d",(int)number];
+}
+
 +(RKImageModel*)imageModelWithImage:(UIImage*)image imageUrl:(NSString*)imageUrl isUrl:(BOOL)isUrl type:(NSString *)type{
     RKImageModel* model=[RKImageModel new];
     model.image=image;
     model.imageUrl=imageUrl;
     model.isUrl=isUrl;
     model.type = type;
+    
+    number++;
     return model;
 }
 
