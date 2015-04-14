@@ -122,7 +122,7 @@
 
 -(UILabel *)placeLabel{
     if (!_placeLabel) {
-        _placeLabel=[[UILabel alloc]initWithFrame:CGRectMake(5, 5, 200, 30)];
+        _placeLabel=[[UILabel alloc]initWithFrame:CGRectMake(5, 5, 250, 40)];
         _placeLabel.textColor=AllNoDataColor;
         _placeLabel.font=ContentFont;
         _placeLabel.numberOfLines = 2;
