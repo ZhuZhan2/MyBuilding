@@ -12,6 +12,7 @@
 +(void)opensql;
 +(void)dropTable;
 +(void)delAll;
-+(void)InsertData:(NSData *)data type:(NSString *)type;
++(void)InsertData:(NSData *)data type:(NSString *)type imageId:(NSString *)imageId;
++(void)DelImage:(NSString *)imageId;
 +(NSMutableArray *)loadList:(NSString *)type;
 @end
