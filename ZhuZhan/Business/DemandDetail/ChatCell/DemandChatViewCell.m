@@ -123,16 +123,15 @@
     CGRect frame;
     CGSize size;
     
-    self.userNamelabel.textColor=self.model.isSelf?[UIColor blackColor]:BlueColor;
+    //self.userNamelabel.textColor=self.model.isSelf?[UIColor blackColor]:BlueColor;
+    self.userNamelabel.textColor = [UIColor blackColor];
     self.userNamelabel.text=self.model.userName;
     size=[DemandChatViewCell carculateLabel:self.userNamelabel width:ContentWidth];
     frame=CGRectMake(distance, height, size.width, size.height);
     self.userNamelabel.frame=frame;
     height+=CGRectGetHeight(self.userNamelabel.frame);
-    
     if (!self.model.isSelf) {
         self.userDescribelabel.hidden=NO;
-        
         height+=2;
         self.userDescribelabel.text=self.model.userDescribe;
         size=[DemandChatViewCell carculateLabel:self.userDescribelabel width:ContentWidth];

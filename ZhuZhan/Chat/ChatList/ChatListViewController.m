@@ -15,7 +15,7 @@
 #import "JSONKit.h"
 #import "LoginSqlite.h"
 #import "ChatMessageApi.h"
-@interface ChatListViewController ()<UIAlertViewDelegate>
+@interface ChatListViewController ()<UIAlertViewDelegate,ChatViewControllerDelegate>
 @property (nonatomic, strong)NSMutableArray* models;
 @end
 
@@ -87,6 +87,7 @@
         vc.contactId = model.a_groupId;
     }
     vc.type = model.a_type;
+    vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -150,5 +151,10 @@
 -(void)rightBtnClicked{
     ChooseContactsViewController* vc=[[ChooseContactsViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)reloadList{
+    [self.models removeAllObjects];
+    [self firstNetWork];
 }
 @end

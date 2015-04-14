@@ -38,6 +38,9 @@
 -(void)popNavi{
     UIViewController* vc=self.navigationController.viewControllers[self.popViewControllerIndex];
     [self.navigationController popToViewController:vc animated:YES];
+    if([self.delegate respondsToSelector:@selector(reloadList)]){
+        [self.delegate reloadList];
+    }
 }
 
 - (void)viewDidLoad {

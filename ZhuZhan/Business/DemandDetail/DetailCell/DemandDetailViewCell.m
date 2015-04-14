@@ -93,7 +93,7 @@
         _userNamelabel=[[UILabel alloc]initWithFrame:CGRectZero];
         _userNamelabel.numberOfLines=0;
         _userNamelabel.font=Font(16);
-        _userNamelabel.textColor=BlueColor;
+        //_userNamelabel.textColor=BlueColor;
         //_userNamelabel.backgroundColor=[UIColor greenColor];
     }
     return _userNamelabel;
