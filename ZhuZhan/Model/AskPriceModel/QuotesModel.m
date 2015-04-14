@@ -35,7 +35,7 @@
     self.a_isAccepted = dict[@"isAccepted"];
     self.a_quoteContent = dict[@"quoteContent"];
     if([dict[@"quoteIsVerified"] isEqualToString:@"00"]){
-        self.a_quoteIsVerified = @"";
+        self.a_quoteIsVerified = @"平台未认证公司资质，请注意交流过程中的风险。";
     }else{
         self.a_quoteIsVerified = @"平台认证公司资质，诚实可信";
     }

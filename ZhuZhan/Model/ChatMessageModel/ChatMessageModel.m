@@ -13,7 +13,11 @@
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
     self.a_id = [ProjectStage ProjectStrStage:dict[@"chatlogId"]];
-    self.a_name = [ProjectStage ProjectStrStage:dict[@"senderName"]];
+    if([[ProjectStage ProjectStrStage:dict[@"nickName"]] isEqualToString:@""]){
+        self.a_name = [ProjectStage ProjectStrStage:dict[@"senderName"]];
+    }else{
+        self.a_name = [ProjectStage ProjectStrStage:dict[@"nickName"]];
+    }
     if(![[ProjectStage ProjectStrStage:dict[@"senderImageId"]] isEqualToString:@""]){
         self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"senderImageId"]], @"login", @"", @"", @"")];
     }else{

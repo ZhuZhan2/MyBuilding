@@ -28,9 +28,9 @@
     }
     
     if([dict[@"isVerified"] isEqualToString:@"00"]){
-        self.a_isVerified = dict[@""];
+        self.a_isVerified = @"平台未认证公司资质，请注意交流过程中的风险。";
     }else{
-        self.a_isVerified = dict[@"平台认证公司资质，诚实可信"];
+        self.a_isVerified = @"平台认证公司资质，诚实可信";
     }
 }
 @end

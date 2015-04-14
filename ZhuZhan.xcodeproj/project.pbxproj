@@ -1328,6 +1328,7 @@
 		D3D511AF1A70923E000104E9 /* NoProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D511AE1A70923E000104E9 /* NoProductView.m */; };
 		D3D51BC91A80D1D400B52A04 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D51BC71A80D1D400B52A04 /* loading.png */; };
 		D3D51BCA1A80D1D400B52A04 /* loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D51BC81A80D1D400B52A04 /* loading@2x.png */; };
+		D3D538441ADCBD82003727C1 /* source.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3D538431ADCBD82003727C1 /* source.bundle */; };
 		D3D5AAD71A690292009C2803 /* 暂无内容.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5AAD51A690292009C2803 /* 暂无内容.png */; };
 		D3D5AAD81A690292009C2803 /* 暂无内容@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5AAD61A690292009C2803 /* 暂无内容@2x.png */; };
 		D3D5B42B1AB12CB800E8EB04 /* ChatSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D5B42A1AB12CB800E8EB04 /* ChatSqlite.m */; };
@@ -3370,6 +3371,7 @@
 		D3D511AE1A70923E000104E9 /* NoProductView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoProductView.m; sourceTree = "<group>"; };
 		D3D51BC71A80D1D400B52A04 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
 		D3D51BC81A80D1D400B52A04 /* loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading@2x.png"; sourceTree = "<group>"; };
+		D3D538431ADCBD82003727C1 /* source.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = source.bundle; sourceTree = "<group>"; };
 		D3D5AAD51A690292009C2803 /* 暂无内容.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "暂无内容.png"; sourceTree = "<group>"; };
 		D3D5AAD61A690292009C2803 /* 暂无内容@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "暂无内容@2x.png"; sourceTree = "<group>"; };
 		D3D5B4291AB12CB800E8EB04 /* ChatSqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSqlite.h; sourceTree = "<group>"; };
@@ -3693,6 +3695,7 @@
 		0426BFF119922CE400CD8822 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D3D538431ADCBD82003727C1 /* source.bundle */,
 				D3E621E51A10AC3000EF8A90 /* area.plist */,
 				04BC3E5D19D7E5B0006B5C7B /* Images */,
 				0426BFF219922CE400CD8822 /* ZhuZhan-Info.plist */,
@@ -7559,6 +7562,7 @@
 				5BE08DFA1A3586EA00495EEB /* 010052.png in Resources */,
 				04BC415019D7E5B3006B5C7B /* pullrefresh.aif in Resources */,
 				5BE08EB21A3586EA00495EEB /* 040023.png in Resources */,
+				D3D538441ADCBD82003727C1 /* source.bundle in Resources */,
 				04BC414D19D7E5B3006B5C7B /* minutehand@2x.png in Resources */,
 				5BE08DAE1A3586EA00495EEB /* 010014.png in Resources */,
 				D35163E81A67903F000051F4 /* 人脉_大.png in Resources */,

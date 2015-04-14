@@ -295,7 +295,7 @@
                 [mutablePosts addObject:model];
             }
             if (block) {
-                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+                block(mutablePosts, nil);
             }
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
