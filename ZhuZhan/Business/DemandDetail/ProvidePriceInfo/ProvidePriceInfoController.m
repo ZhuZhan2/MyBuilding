@@ -33,15 +33,15 @@
 @property(nonatomic,strong)NSMutableArray* array2;
 @property(nonatomic,strong)NSMutableArray* array3;
 
-@property(nonatomic,strong)NSMutableArray* postArray1;
-@property(nonatomic,strong)NSMutableArray* postArray2;
-@property(nonatomic,strong)NSMutableArray* postArray3;
+//@property(nonatomic,strong)NSMutableArray* postArray1;
+//@property(nonatomic,strong)NSMutableArray* postArray2;
+//@property(nonatomic,strong)NSMutableArray* postArray3;
 
 @property(nonatomic,strong)UIView* topView;
 @property(nonatomic)NSInteger cameraCategory;
 
-@property(nonatomic)NSInteger needPostGroupCount;
-@property(nonatomic)NSInteger finishPostGroupCount;
+//@property(nonatomic)NSInteger needPostGroupCount;
+//@property(nonatomic)NSInteger finishPostGroupCount;
 
 @property(nonatomic,strong)UIView* loadingView;
 @property(nonatomic,strong)UIActivityIndicatorView* activityView;
@@ -98,31 +98,20 @@
 }
 
 -(void)secondPostFirstStepWithQuotesId:(NSString*)quotesId{
-   // NSArray* allImages=@[self.postArray1,self.postArray2,self.postArray3];
-    NSArray* allImages=@[[ImageSqlite loadList:@"0"],[ImageSqlite loadList:@"1"],[ImageSqlite loadList:@"2"]];
-    
-//    for (int i=0; i<allImages.count; i++) {
-//        NSArray* images=allImages[i];
-//        if (!images.count) continue;
-//        self.needPostGroupCount++;
+//    NSArray* allImages=@[[ImageSqlite loadList:@"0"],[ImageSqlite loadList:@"1"],[ImageSqlite loadList:@"2"]];
+    NSMutableArray* allImagesListNames=[@[@"0",@"1",@"2"] mutableCopy];
+
+    [allImagesListNames enumerateObjectsUsingBlock:^(NSString* listName, NSUInteger idx, BOOL *stop) {
+        NSArray* images=[ImageSqlite loadList:listName];
+        if (!images.count) return;
+        //self.needPostGroupCount++;
 //        NSMutableArray* newImageDatas=[NSMutableArray array];
-//        for (UIImage* image in images) {
-//            NSData* imageData=UIImageJPEGRepresentation(image, 1);
-//            [newImageDatas addObject:imageData];
+//        for (ImageModel* model in images) {
+//            [newImageDatas addObject:model.ImageData];
 //        }
-//        [self secondPostSecondStepWithImages:newImageDatas category:[NSString stringWithFormat:@"%d",i] quotesId:quotesId];
-//    }
-    
-    for (int i=0; i<allImages.count; i++) {
-        NSArray* images=allImages[i];
-        if (!images.count) continue;
-        self.needPostGroupCount++;
-        NSMutableArray* newImageDatas=[NSMutableArray array];
-        for (ImageModel* model in images) {
-            [newImageDatas addObject:model.ImageData];
-        }
-        [self secondPostSecondStepWithImages:newImageDatas category:[NSString stringWithFormat:@"%d",i] quotesId:quotesId];
-    }
+//        [self secondPostSecondStepWithImages:newImageDatas category:listName quotesId:quotesId];
+    }];
+    [self secondPostSecondStepWithImagesListNames:allImagesListNames quotesId:quotesId];
 }
 
 -(void)sucessPost{
@@ -132,39 +121,41 @@
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-//    if (self.isFirstQuote) {
-//        DemandDetailProvidePriceController *view = [[DemandDetailProvidePriceController alloc] init];
-//        view.askPriceModel = self.askPriceModel;
-//        view.quotesModel = self.quotesModel;
-//        view.delegate = self;
-//        view.isFirstQuote=self.isFirstQuote;//YES
-//        [self.navigationController pushViewController:view animated:YES];
-//    }else{
     [self leftBtnClicked];
-//    }
 }
 
-//-(void)backAndLoad{
-//    if ([self.delegate respondsToSelector:@selector(backAndLoad)]) {
-//        [self.delegate backAndLoad];
-//    }
-//}
+//-(void)secondPostSecondStepWithImages:(NSMutableArray*)images category:(NSString*)category quotesId:(NSString*)quotesId{
+//imagesListNames与categorys一样
+-(void)secondPostSecondStepWithImagesListNames:(NSMutableArray*)imagesListNames quotesId:(NSString*)quotesId{
+    if (!imagesListNames.count) {
+        [self sucessPost];
+        return;
+    }
+    NSString* listName=imagesListNames.lastObject;
+    NSString* category=imagesListNames.lastObject;
+    [imagesListNames removeLastObject];
 
--(void)secondPostSecondStepWithImages:(NSMutableArray*)images category:(NSString*)category quotesId:(NSString*)quotesId{
+    NSMutableArray* imageModels=[ImageSqlite loadList:listName];
+    if (!imageModels.count) {
+        [self secondPostSecondStepWithImagesListNames:imagesListNames quotesId:quotesId];
+        return;
+    }
+    NSMutableArray* imageDatas=[NSMutableArray array];
+    [imageModels enumerateObjectsUsingBlock:^(ImageModel* imageModel, NSUInteger idx, BOOL *stop) {
+        [imageDatas addObject:imageModel.ImageData];
+    }];
+    
     NSMutableDictionary* dic=[@{@"category":category,
                                 @"tradeCode":self.askPriceModel.a_tradeCode,
                                 @"quotesId":quotesId}
                               mutableCopy];
     [AskPriceApi AddAttachmentWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            self.finishPostGroupCount++;
-            if (self.finishPostGroupCount==self.needPostGroupCount) {
-                [self sucessPost];
-            }
+            [self secondPostSecondStepWithImagesListNames:imagesListNames quotesId:quotesId];
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } dataArr:images dic:dic noNetWork:nil];
+    } dataArr:imageDatas dic:dic noNetWork:nil];
 }
 
 -(void)initNavi{
@@ -264,11 +255,9 @@
     NSMutableArray* array=images[indexpath.section];
     
     RKImageModel* imageModel=array[indexpath.row];
-    NSLog(@"id==%@",imageModel.Id);
     [ImageSqlite DelImage:imageModel.Id];
     
     [array removeObjectAtIndex:indexpath.row];
-    NSLog(@"images==%@",images);
     
     [self reloadSixthView];
 }
@@ -313,13 +302,7 @@
     [array addObject:imageModel];
     [self reloadSixthView];
     
-    
-    [ImageSqlite InsertData:data type:[NSString stringWithFormat:@"%ld",(long)self.cameraCategory] imageId:imageModel.Id];
-//    NSArray* postImages=@[self.postArray1,self.postArray2,self.postArray3];
-//    NSMutableArray* postArray=postImages[self.cameraCategory];
-//    //[postArray addObject:originQualityImage];
-//    ImageModel *model = [[ImageSqlite loadList:[NSString stringWithFormat:@"%ld",(long)self.cameraCategory]] objectAtIndex:0];
-//    [postArray addObject:model.ImageData];
+    [ImageSqlite InsertData:data type:[NSString stringWithFormat:@"%d",(int)self.cameraCategory] imageId:imageModel.Id];
 }
 
 -(NSArray *)contentViews{
@@ -390,27 +373,6 @@
         _array3=[NSMutableArray array];
     }
     return _array3;
-}
-
--(NSMutableArray *)postArray1{
-    if (!_postArray1) {
-        _postArray1=[NSMutableArray array];
-    }
-    return _postArray1;
-}
-
--(NSMutableArray *)postArray2{
-    if (!_postArray2) {
-        _postArray2=[NSMutableArray array];
-    }
-    return _postArray2;
-}
-
--(NSMutableArray *)postArray3{
-    if (!_postArray3) {
-        _postArray3=[NSMutableArray array];
-    }
-    return _postArray3;
 }
 
 -(UIView *)loadingView{
