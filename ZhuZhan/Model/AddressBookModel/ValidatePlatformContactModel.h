@@ -12,6 +12,7 @@
 @interface ValidatePlatformContactModel : NSObject
 @property (nonatomic)BOOL a_isFriend;
 @property (nonatomic)BOOL a_isPlatformUser;
+@property (nonatomic, copy)NSString* a_userPhoneName;
 @property (nonatomic, copy)NSString* a_loginId;
 @property (nonatomic, copy)NSString* a_loginName;
 @property (nonatomic, copy)NSString* a_loginTel;
