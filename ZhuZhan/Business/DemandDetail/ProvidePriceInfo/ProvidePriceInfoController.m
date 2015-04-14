@@ -265,7 +265,8 @@
     [array removeObjectAtIndex:indexpath.row];
     NSLog(@"images==%@",images);
     
-    
+    RKImageModel* imageModel=array[indexpath.row];
+    [ImageSqlite DelImage:imageModel.Id];
     
     [self reloadSixthView];
 }
@@ -311,7 +312,7 @@
     [self reloadSixthView];
     
     
-    [ImageSqlite InsertData:data type:[NSString stringWithFormat:@"%ld",(long)self.cameraCategory]];
+    [ImageSqlite InsertData:data type:[NSString stringWithFormat:@"%ld",(long)self.cameraCategory] imageId:imageModel.Id];
 //    NSArray* postImages=@[self.postArray1,self.postArray2,self.postArray3];
 //    NSMutableArray* postArray=postImages[self.cameraCategory];
 //    //[postArray addObject:originQualityImage];
