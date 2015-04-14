@@ -11,16 +11,18 @@
 #import "GetAddressBook.h"
 #import "AddressBookApi.h"
 #import "ValidatePlatformContactModel.h"
+#import "AddressBookFriendSearchController.h"
 @interface AddressBookFriendViewController()<AddressBookFriendCellDelegate>
 @property (nonatomic, strong)NSMutableArray* phones;
 @property (nonatomic, strong)NSMutableArray* models;
+@property(nonatomic,strong)AddressBookFriendSearchController* searchBarTableViewController;
 @end
 
 @implementation AddressBookFriendViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initNavi];
-    // [self setUpSearchBarWithNeedTableView:NO isTableViewHeader:NO];
+    [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
     [self initTableView];
     [self getAddressBookWithFinishBlock:^{
         [self postPhones];
@@ -31,12 +33,31 @@
     GetAddressBook *addressBook = [[GetAddressBook alloc] init];
     [addressBook registerAddressBook:^(bool granted, NSError *error) {
         [addressBook.phones enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSDictionary* baseInformationDics=obj[@"baseInformation"];
+            
             NSArray* phoneDics=obj[@"cellPhones"];
+            NSMutableArray* singleContactTels=[NSMutableArray array];
             [phoneDics enumerateObjectsUsingBlock:^(id tObj, NSUInteger tIdx, BOOL *tStop) {
                 NSString* phoneNumber=tObj[@"phoneNumber"];
-                [self.phones addObject:phoneNumber];
+                if ([singleContactTels containsObject:phoneNumber]) {
+                    return;
+                }
+                NSString* userPhoneName=[baseInformationDics[@"lastName"] stringByAppendingString:baseInformationDics[@"firstName"]];
+                
+                ValidatePlatformContactModel* model=[[ValidatePlatformContactModel alloc]init];
+
+                model.a_loginTel=phoneNumber;
+                model.a_userPhoneName=userPhoneName;
+                /*
+                 [phoneDic setValue:str forKey:@"phoneNumber"];
+                 [phoneDic setValue:personPhoneLabel forKey:@"tagName"];
+                 */
+                [self.phones addObject:model];
+                
+                [singleContactTels addObject:phoneNumber];
             }];
         }];
+
         if (block) {
             block();
         }
@@ -46,7 +67,8 @@
 -(void)postPhones{
     __block NSString* tels=@"";
     [self.phones enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        tels=[tels stringByAppendingString:obj];
+        ValidatePlatformContactModel* model=obj;
+        tels=[tels stringByAppendingString:model.a_loginTel];
         if (idx==self.phones.count-1) {
             return ;
         }
@@ -56,7 +78,16 @@
     [dic setObject:tels forKey:@"tels"];
     [AddressBookApi ValidatePlatformContactsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            self.models=posts;
+            [self.phones enumerateObjectsUsingBlock:^(ValidatePlatformContactModel* localModel, NSUInteger idx, BOOL *stop) {
+                for (ValidatePlatformContactModel* serverModel in posts) {
+                    if ([serverModel.a_loginTel isEqualToString:localModel.a_loginTel]) {
+                        localModel.dict=serverModel.dict;
+                        [self.models addObject:localModel];
+                        NSLog(@"%@,%@",localModel.a_userPhoneName,localModel.dict);
+                    }
+                }
+            }];
+            
             [self.tableView reloadData];
         }
     } dic:dic noNetWork:nil];
@@ -83,7 +114,7 @@
     }
     ValidatePlatformContactModel* dataModel=self.models[indexPath.row];
     AddressBookFriendCellModel* model=[[AddressBookFriendCellModel alloc]init];
-    model.mainLabelText=dataModel.a_loginName;
+    model.mainLabelText=dataModel.a_userPhoneName;
     model.assistStyle=dataModel.a_isFriend;
     [cell setModel:model indexPath:indexPath];
     
@@ -102,6 +133,29 @@
             [LoginAgain AddLoginView:NO];
         }
     } dic:dic noNetWork:nil];
+}
+
+-(void)setUpSearchBarTableView{
+    self.searchBarTableViewController=[[AddressBookFriendSearchController alloc]initWithTableViewBounds:CGRectMake(0, 0, kScreenWidth, kScreenHeight-CGRectGetMinY(self.searchBar.frame))];
+    self.searchBarTableViewController.delegate=self;
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [super searchBarSearchButtonClicked:searchBar];
+    self.searchBarTableViewController.sqliteModels=self.models;
+    [self.searchBarTableViewController loadListWithKeyWords:searchBar.text];
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    [super searchBarCancelButtonClicked:searchBar];
+    [self.tableView reloadData];
+}
+
+-(NSMutableArray *)models{
+    if (!_models) {
+        _models=[NSMutableArray array];
+    }
+    return _models;
 }
 
 -(NSMutableArray *)phones{

@@ -62,13 +62,13 @@
     for (int k=0;k<CFArrayGetCount(mresults);k++) {
         ABRecordRef tempRecord=CFArrayGetValueAtIndex(mresults,k) ;
         NSMutableDictionary* singleDataDic=[NSMutableDictionary dictionary];
-       // NSObject* baseInformation=[self getBaseInformationDicValueWithRecord:tempRecord];
+        NSObject* baseInformation=[self getBaseInformationDicValueWithRecord:tempRecord];
        // NSObject* birthday=[self getBirthdayDicValueWithRecord:tempRecord];
        // NSObject* addresses=[self getAddressesDicValueWithRecord:tempRecord];
         NSObject* cellPhones=[self getCellPhonesDicValueWithRecord:tempRecord];
        // NSObject* emails=[self getEmailsDicValueWithRecord:tempRecord];
        // NSObject* ims=[self getImsDicValueWithRecord:tempRecord];
-       // [singleDataDic setObject:baseInformation forKey:@"baseInformation"];
+        [singleDataDic setObject:baseInformation forKey:@"baseInformation"];
 //        [singleDataDic setObject:birthday forKey:@"birthday"];
 //        [singleDataDic setObject:addresses forKey:@"addresses"];
         [singleDataDic setObject:cellPhones forKey:@"cellPhones"];
@@ -78,7 +78,7 @@
     }
     //[self sendAddressBook:allArr];
     self.phones=allArr;
-//    NSLog(@"内部phones=%@",self.phones);
+   // NSLog(@"内部phones=%@",self.phones);
 }
 
 -(NSObject*)getBaseInformationDicValueWithRecord:(ABRecordRef)record{
