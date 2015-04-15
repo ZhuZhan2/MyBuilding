@@ -89,7 +89,7 @@
     [self.topView addSubview:label];
     
     CGFloat height=kScreenHeight-y;
-    self.tableView.frame = CGRectMake(0, y+CGRectGetHeight(self.topView.frame), 320, height);
+    self.tableView.frame = CGRectMake(0, y+CGRectGetHeight(self.topView.frame), 320, height-40);
 }
 
 -(void)initNavi{
