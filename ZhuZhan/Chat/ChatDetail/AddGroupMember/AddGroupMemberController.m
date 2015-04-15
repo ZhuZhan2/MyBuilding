@@ -38,9 +38,9 @@
             self.addImageView=nil;
             self.createdUserId = posts[1];
             if([[LoginSqlite getdata:@"userId"] isEqualToString:posts[1]]){
-                [self.btn setBackgroundImage:[GetImagePath getImagePath:@"关--闭灰"] forState:UIControlStateNormal];
+                [self.btn setBackgroundImage:[GetImagePath getImagePath:@"解散本群带字"] forState:UIControlStateNormal];
             }else{
-                [self.btn setBackgroundImage:[GetImagePath getImagePath:@"退出本群"] forState:UIControlStateNormal];
+                [self.btn setBackgroundImage:[GetImagePath getImagePath:@"退出本群带字"] forState:UIControlStateNormal];
             }
             [self.tableView reloadData];
         }
@@ -113,7 +113,7 @@
 
 -(void)setUpSecondView{
     NSLog(@"%@",self.createdUserId);
-    self.btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 294, 42)];
+    self.btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 294, 37)];
     //[self.btn setBackgroundImage:[GetImagePath getImagePath:@"退出本群"] forState:UIControlStateNormal];
     [self.btn addTarget:self action:@selector(exitBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     self.btn.center=CGPointMake(kScreenWidth*0.5, 35);

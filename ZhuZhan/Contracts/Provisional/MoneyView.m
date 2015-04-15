@@ -45,22 +45,19 @@
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
-    if([self.delegate respondsToSelector:@selector(textFiedDidBegin)]){
-        [self.delegate textFiedDidBegin];
+    if([self.delegate respondsToSelector:@selector(textFiedDidBegin:)]){
+        [self.delegate textFiedDidBegin:textField];
     }
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
-    if([self.delegate respondsToSelector:@selector(textFiedDidEnd:)]){
-        [self.delegate textFiedDidEnd:textField.text];
+    if([self.delegate respondsToSelector:@selector(textFiedDidEnd:textField:)]){
+        [self.delegate textFiedDidEnd:textField.text textField:textField];
     }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.textFied resignFirstResponder];
-    if([self.delegate respondsToSelector:@selector(textFiedDidEnd:)]){
-        [self.delegate textFiedDidEnd:textField.text];
-    }
     return YES;
 }
 @end

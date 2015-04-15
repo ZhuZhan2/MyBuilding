@@ -14,7 +14,7 @@
 #import "ContractView.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
-@interface ProvisionalViewController ()<UITableViewDataSource,UITableViewDelegate,MoneyViewDelegate>
+@interface ProvisionalViewController ()<UITableViewDataSource,UITableViewDelegate,MoneyViewDelegate,ContractViewDelegate,StartManViewDelegate,ReceiveViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *viewArr;
 @property(nonatomic,strong)StartManView *startMainView;
@@ -29,6 +29,8 @@
 @property(nonatomic,strong)NSString *personaName;
 @property(nonatomic,strong)NSString *moneyStr;
 @property(nonatomic,strong)NSString *contractStr;
+
+@property(nonatomic)BOOL isOpen;
 @end
 
 @implementation ProvisionalViewController
@@ -49,6 +51,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = YES;
+    [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
+    self.leftBtnIsBack = YES;
+    self.needAnimaiton = YES;
     [self setRightBtnWithText:@"提交"];
     self.title = @"填写佣金合同条款";
     
@@ -81,9 +86,7 @@
 }
 
 -(void)rightBtnClicked{
-    self.leftBtnIsBack = YES;
-    self.needAnimaiton = YES;
-    [self leftBtnClicked];
+    
 }
 
 //-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
@@ -179,6 +182,7 @@
 -(StartManView *)startMainView{
     if(!_startMainView){
         _startMainView = [[StartManView alloc] initWithFrame:CGRectMake(0, 0, 320, 180)];
+        _startMainView.delegate = self;
         if(self.personaStr1){
             _startMainView.contactLabel.text = self.personaStr1;
         }
@@ -193,6 +197,7 @@
 -(ReceiveView *)receiveView{
     if(!_receiveView){
         _receiveView = [[ReceiveView alloc] initWithFrame:CGRectMake(0, 0, 320, 180)];
+        _receiveView.delegate = self;
         if(self.personaName){
             _receiveView.personaLabel.text = self.personaName;
         }
@@ -211,6 +216,7 @@
 -(MoneyView *)moneyView{
     if(!_moneyView){
         _moneyView = [[MoneyView alloc] initWithFrame:CGRectMake(0, 0, 320, 48)];
+        _moneyView.delegate = self;
         if(self.moneyStr){
             _moneyView.textFied.text = self.moneyStr;
         }
@@ -221,6 +227,7 @@
 -(ContractView *)contractView{
     if(!_contractView){
         _contractView = [[ContractView alloc] initWithFrame:CGRectMake(0, 0, 320, 290)];
+        _contractView.delegate = self;
         if(self.contractStr){
             _contractView.textView.text = self.contractStr;
         }
@@ -288,14 +295,62 @@
     [self.tableView reloadData];
 }
 
+-(void)reloadMoneyView{
+    [self.moneyView removeFromSuperview];
+    self.moneyView = nil;
+    [self.viewArr replaceObjectAtIndex:2 withObject:self.moneyView];
+    [self.tableView reloadData];
+}
+
+-(void)reloadContractView{
+    [self.contractView removeFromSuperview];
+    self.contractView = nil;
+    [self.viewArr replaceObjectAtIndex:3 withObject:self.contractView];
+    [self.tableView reloadData];
+}
+
+-(void)textFiedDidBegin:(UITextField *)textField{
+    if(textField == self.startMainView.textField){
+        NSLog(@"startMainView");
+        self.isOpen = NO;
+    }else if (textField == self.receiveView.textField){
+        NSLog(@"receiveView");
+        self.isOpen = YES;
+    }else{
+        NSLog(@"moneyView");
+        self.isOpen = YES;
+    }
+}
+
+-(void)textFiedDidEnd:(NSString *)str textField:(UITextField *)textField{
+    if(textField == self.startMainView.textField){
+        self.myCompanyName = str;
+    }else if (textField == self.receiveView.textField){
+        self.otherCompanyName = str;
+    }else{
+        self.moneyStr = str;
+    }
+}
+
+-(void)beginTextView{
+    self.isOpen = YES;
+}
+
+-(void)endTextView:(NSString *)str{
+    NSLog(@"%@",str);
+    self.contractStr = str;
+}
+
 #pragma mark - 键盘处理
 #pragma mark 键盘即将显示
 - (void)keyBoardWillShow:(NSNotification *)note{
-    CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGFloat ty = - rect.size.height;
-    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]-0.01 animations:^{
-        self.view.transform = CGAffineTransformMakeTranslation(0, ty);
-    }];
+    if(self.isOpen){
+        CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        CGFloat ty = - rect.size.height;
+        [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]-0.01 animations:^{
+            self.view.transform = CGAffineTransformMakeTranslation(0, ty);
+        }];
+    }
 }
 #pragma mark 键盘即将退出
 - (void)keyBoardWillHide:(NSNotification *)note{

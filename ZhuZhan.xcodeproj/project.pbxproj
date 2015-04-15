@@ -1418,6 +1418,14 @@
 		D3D9C91F1A13446B001D3A64 /* 主菜单03a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9171A13446B001D3A64 /* 主菜单03a@2x.png */; };
 		D3D9C9201A13446B001D3A64 /* 主菜单04a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9181A13446B001D3A64 /* 主菜单04a.png */; };
 		D3D9C9211A13446B001D3A64 /* 主菜单04a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9191A13446B001D3A64 /* 主菜单04a@2x.png */; };
+		D3D9F8C81ADE663F002BBB06 /* 新的朋友.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9F8C61ADE663F002BBB06 /* 新的朋友.png */; };
+		D3D9F8C91ADE663F002BBB06 /* 新的朋友@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9F8C71ADE663F002BBB06 /* 新的朋友@2x.png */; };
+		D3D9F8CF1ADE678B002BBB06 /* 退出本群带字.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9F8CE1ADE678B002BBB06 /* 退出本群带字.png */; };
+		D3D9F8D11ADE67A2002BBB06 /* 退出本群带字@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9F8D01ADE67A2002BBB06 /* 退出本群带字@2x.png */; };
+		D3D9F8D41ADE67AF002BBB06 /* 解散本群带字.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9F8D21ADE67AF002BBB06 /* 解散本群带字.png */; };
+		D3D9F8D51ADE67AF002BBB06 /* 解散本群带字@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9F8D31ADE67AF002BBB06 /* 解散本群带字@2x.png */; };
+		D3D9F8D81ADE6A4F002BBB06 /* 询价上传图片默认图.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9F8D61ADE6A4F002BBB06 /* 询价上传图片默认图.png */; };
+		D3D9F8D91ADE6A4F002BBB06 /* 询价上传图片默认图@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9F8D71ADE6A4F002BBB06 /* 询价上传图片默认图@2x.png */; };
 		D3DA3D2E1ABBBA8A001D1EEA /* AskPriceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DA3D2D1ABBBA8A001D1EEA /* AskPriceApi.m */; };
 		D3DA3D311ABBECAC001D1EEA /* AskPriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DA3D301ABBECAC001D1EEA /* AskPriceModel.m */; };
 		D3DBBC721AB914E20070DB98 /* AddCategoriesView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBBC711AB914E20070DB98 /* AddCategoriesView.m */; };
@@ -3474,6 +3482,14 @@
 		D3D9C9171A13446B001D3A64 /* 主菜单03a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单03a@2x.png"; sourceTree = "<group>"; };
 		D3D9C9181A13446B001D3A64 /* 主菜单04a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单04a.png"; sourceTree = "<group>"; };
 		D3D9C9191A13446B001D3A64 /* 主菜单04a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单04a@2x.png"; sourceTree = "<group>"; };
+		D3D9F8C61ADE663F002BBB06 /* 新的朋友.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "新的朋友.png"; sourceTree = "<group>"; };
+		D3D9F8C71ADE663F002BBB06 /* 新的朋友@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "新的朋友@2x.png"; sourceTree = "<group>"; };
+		D3D9F8CE1ADE678B002BBB06 /* 退出本群带字.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "退出本群带字.png"; sourceTree = "<group>"; };
+		D3D9F8D01ADE67A2002BBB06 /* 退出本群带字@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "退出本群带字@2x.png"; sourceTree = "<group>"; };
+		D3D9F8D21ADE67AF002BBB06 /* 解散本群带字.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "解散本群带字.png"; sourceTree = "<group>"; };
+		D3D9F8D31ADE67AF002BBB06 /* 解散本群带字@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "解散本群带字@2x.png"; sourceTree = "<group>"; };
+		D3D9F8D61ADE6A4F002BBB06 /* 询价上传图片默认图.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "询价上传图片默认图.png"; sourceTree = "<group>"; };
+		D3D9F8D71ADE6A4F002BBB06 /* 询价上传图片默认图@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "询价上传图片默认图@2x.png"; sourceTree = "<group>"; };
 		D3DA3D2C1ABBBA8A001D1EEA /* AskPriceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceApi.h; sourceTree = "<group>"; };
 		D3DA3D2D1ABBBA8A001D1EEA /* AskPriceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPriceApi.m; sourceTree = "<group>"; };
 		D3DA3D2F1ABBECAC001D1EEA /* AskPriceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceModel.h; sourceTree = "<group>"; };
@@ -5100,6 +5116,14 @@
 		5B3B5D461AAD935E002FB444 /* 二期新图片 */ = {
 			isa = PBXGroup;
 			children = (
+				D3D9F8D61ADE6A4F002BBB06 /* 询价上传图片默认图.png */,
+				D3D9F8D71ADE6A4F002BBB06 /* 询价上传图片默认图@2x.png */,
+				D3D9F8D21ADE67AF002BBB06 /* 解散本群带字.png */,
+				D3D9F8D31ADE67AF002BBB06 /* 解散本群带字@2x.png */,
+				D3D9F8CE1ADE678B002BBB06 /* 退出本群带字.png */,
+				D3D9F8D01ADE67A2002BBB06 /* 退出本群带字@2x.png */,
+				D3D9F8C61ADE663F002BBB06 /* 新的朋友.png */,
+				D3D9F8C71ADE663F002BBB06 /* 新的朋友@2x.png */,
 				5B5836F41AD7A3D200F8E7C3 /* accept_green_button.png */,
 				5B5836F51AD7A3D200F8E7C3 /* accept_green_button@2x.png */,
 				5B5836F61AD7A3D200F8E7C3 /* add_green_button.png */,
@@ -6936,6 +6960,7 @@
 				5B7E59161ABC0C7E0063B400 /* 交易_上传报价.png in Resources */,
 				04BC428C19D7E5B3006B5C7B /* 登录_11.png in Resources */,
 				5BE08E871A3586EA00495EEB /* 040001@2x.png in Resources */,
+				D3D9F8D41ADE67AF002BBB06 /* 解散本群带字.png in Resources */,
 				5BE08E031A3586EA00495EEB /* 010056@2x.png in Resources */,
 				5B5E14571A71F54F0069B40D /* 验-----证.png in Resources */,
 				5B70CC501AC9394700FC8353 /* small不同意@2x.png in Resources */,
@@ -7065,6 +7090,7 @@
 				04BC425A19D7E5B3006B5C7B /* 搜索结果_03a@2x.png in Resources */,
 				5B6373711ABA656F007CF1F8 /* 关--闭@2x.png in Resources */,
 				04BC410219D7E5B3006B5C7B /* 015@2x.png in Resources */,
+				D3D9F8D81ADE6A4F002BBB06 /* 询价上传图片默认图.png in Resources */,
 				D3D74E8519FA2FEC00ED8B62 /* 登录_19.png in Resources */,
 				5BE08E911A3586EA00495EEB /* 040006@2x.png in Resources */,
 				5BE08E3B1A3586EA00495EEB /* 020020@2x.png in Resources */,
@@ -7079,6 +7105,7 @@
 				04BC424F19D7E5B3006B5C7B /* 搜索_03.png in Resources */,
 				D3D9C91B1A13446B001D3A64 /* 主菜单01a@2x.png in Resources */,
 				D3D9C91D1A13446B001D3A64 /* 主菜单02a@2x.png in Resources */,
+				D3D9F8C81ADE663F002BBB06 /* 新的朋友.png in Resources */,
 				D366E7641A63CE6200D25F76 /* 默认主图.png in Resources */,
 				04BC426319D7E5B3006B5C7B /* 数据加载失败_07a.png in Resources */,
 				5BE08DF91A3586EA00495EEB /* 010051@2x.png in Resources */,
@@ -7230,6 +7257,7 @@
 				5BE08E261A3586EA00495EEB /* 020010.png in Resources */,
 				04BC413719D7E5B3006B5C7B /* hourhand@2x.png in Resources */,
 				5B5836FF1AD7A3D200F8E7C3 /* added@2x.png in Resources */,
+				D3D9F8D91ADE6A4F002BBB06 /* 询价上传图片默认图@2x.png in Resources */,
 				04BC40F719D7E5B3006B5C7B /* 010.png in Resources */,
 				04BC414B19D7E5B3006B5C7B /* mapsearch-1@2x.png in Resources */,
 				04BC436219D7E5B3006B5C7B /* ＋项目－项目专题_11a.png in Resources */,
@@ -7321,6 +7349,7 @@
 				5BC2344E1AA81D9300312D9D /* 016.png in Resources */,
 				5BE08EAE1A3586EA00495EEB /* 040021.png in Resources */,
 				5B4E6CA51A68F19A0008E5D5 /* 项目详情默认@2x.png in Resources */,
+				D3D9F8C91ADE663F002BBB06 /* 新的朋友@2x.png in Resources */,
 				04BC41C919D7E5B3006B5C7B /* 人脉－人的详情_30a.png in Resources */,
 				5BE08EA21A3586EA00495EEB /* 040015.png in Resources */,
 				04BC42A719D7E5B3006B5C7B /* 面部识别登录1_03.png in Resources */,
@@ -7532,6 +7561,7 @@
 				D39937D01A42B527007081C1 /* 推荐页面02a.png in Resources */,
 				5BE08DA51A3586EA00495EEB /* 010009@2x.png in Resources */,
 				5BE08DF51A3586EA00495EEB /* 010049@2x.png in Resources */,
+				D3D9F8D11ADE67A2002BBB06 /* 退出本群带字@2x.png in Resources */,
 				5BE08E3D1A3586EA00495EEB /* 020021@2x.png in Resources */,
 				5B6373751ABA66DD007CF1F8 /* 交易_采纳@2x.png in Resources */,
 				5BE08DBE1A3586EA00495EEB /* 010022.png in Resources */,
@@ -7543,6 +7573,7 @@
 				5B95ADEA1AB19F5A00797EA6 /* 分组关闭.png in Resources */,
 				5BE08DE51A3586EA00495EEB /* 010041@2x.png in Resources */,
 				D35163E11A67903F000051F4 /* 产品－产品详情_03a@2x.png in Resources */,
+				D3D9F8D51ADE67AF002BBB06 /* 解散本群带字@2x.png in Resources */,
 				D35163E61A67903F000051F4 /* 人脉_74a2.png in Resources */,
 				5B7E58FF1ABBB2880063B400 /* 上导航阴影@2x.png in Resources */,
 				5BE08E341A3586EA00495EEB /* 020017.png in Resources */,
@@ -7798,6 +7829,7 @@
 				5B628A011AB81CFE00F30059 /* 多选未选@2x.png in Resources */,
 				5B8A2D021AAEEAD600C8F9DE /* 单人会话@2x.png in Resources */,
 				04BC434D19D7E5B3006B5C7B /* 项目－高级搜索－2_15a@2x.png in Resources */,
+				D3D9F8CF1ADE678B002BBB06 /* 退出本群带字.png in Resources */,
 				04BC411A19D7E5B3006B5C7B /* 07.png in Resources */,
 				5B6699431AB9AB7A00C4B54F /* 交易_回复.png in Resources */,
 				04BC419219D7E5B3006B5C7B /* 人脉_59a@2x.png in Resources */,

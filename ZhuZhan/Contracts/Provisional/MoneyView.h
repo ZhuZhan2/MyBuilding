@@ -10,8 +10,8 @@
 #import "MessageTextView.h"
 
 @protocol MoneyViewDelegate <NSObject>
--(void)textFiedDidBegin;
--(void)textFiedDidEnd:(NSString *)str;
+-(void)textFiedDidBegin:(UITextField *)textField;
+-(void)textFiedDidEnd:(NSString *)str textField:(UITextField *)textField;
 @end
 
 @interface MoneyView : UIView<UITextFieldDelegate>

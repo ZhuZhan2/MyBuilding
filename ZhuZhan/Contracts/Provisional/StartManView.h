@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface StartManView : UIView
+@protocol StartManViewDelegate <NSObject>
+-(void)textFiedDidBegin:(UITextField *)textField;
+-(void)textFiedDidEnd:(NSString *)str textField:(UITextField *)textField;
+@end
+@interface StartManView : UIView<UITextFieldDelegate>
 @property(nonatomic,strong)UILabel *titleLabel;
 @property(nonatomic,strong)UIView *cutLine;
 @property(nonatomic,strong)UIButton *contactBtn;
@@ -17,4 +20,5 @@
 @property(nonatomic,strong)UITextField *textField;
 @property(nonatomic,strong)UILabel *messageLabel;
 @property(nonatomic,strong)UIView *bottomView;
+@property(nonatomic,weak)id<StartManViewDelegate>delegate;
 @end
