@@ -70,7 +70,7 @@
     ValidatePlatformContactModel* dataModel=self.models[indexPath.row];
     AddressBookFriendCellModel* model=[[AddressBookFriendCellModel alloc]init];
     model.mainLabelText=dataModel.a_userPhoneName;
-    model.assistStyle=dataModel.a_isFriend;
+    model.assistStyle=dataModel.a_isWaiting?2:dataModel.a_isFriend;
     [cell setModel:model indexPath:indexPath];
     
     return cell;
@@ -82,7 +82,7 @@
     [dic setValue:dataModel.a_loginId forKey:@"userId"];
     [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            dataModel.a_isFriend=YES;
+            dataModel.a_isWaiting=YES;
             [self.tableView reloadData];
         }else{
             [LoginAgain AddLoginView:NO];

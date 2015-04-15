@@ -7,7 +7,9 @@
 //
 
 #import "ChatBaseViewController.h"
-
+@class RKContractsStagesView;
+@class ContractsTradeCodeView;
 @interface ContractsBaseViewController : ChatBaseViewController
-
+@property (nonatomic, strong)RKContractsStagesView* stagesView;
+@property (nonatomic, strong)ContractsTradeCodeView* tradeCodeView;
 @end

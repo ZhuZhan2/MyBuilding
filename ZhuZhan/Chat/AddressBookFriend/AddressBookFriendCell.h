@@ -11,7 +11,7 @@
 typedef enum AddressBookFriendCellAssistStyle{
     AddressBookFriendCellAssistNotFinished,
     AddressBookFriendCellAssistIsFinished,
-    AddressBookFriendCellAssistNotExist
+    AddressBookFriendCellAssistIsWaiting
 }AddressBookFriendCellAssistStyle;
 
 @interface AddressBookFriendCellModel : NSObject

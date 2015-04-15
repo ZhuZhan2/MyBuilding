@@ -54,7 +54,7 @@
     [self.headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:userImageUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     self.userNameLabel.text=userName;
     self.userBussniessLabel.text=time;
-    [self.rightBtn setBackgroundImage:[GetImagePath getImagePath:isFinished?@"added":@"add_green_button"] forState:UIControlStateNormal];
+    [self.rightBtn setBackgroundImage:[GetImagePath getImagePath:isFinished?@"added":@"accept_green_button"] forState:UIControlStateNormal];
     self.rightBtn.tag=indexPathRow;
     self.headBtn.tag=indexPathRow;
 }

@@ -98,19 +98,7 @@
 }
 
 -(void)secondPostFirstStepWithQuotesId:(NSString*)quotesId{
-//    NSArray* allImages=@[[ImageSqlite loadList:@"0"],[ImageSqlite loadList:@"1"],[ImageSqlite loadList:@"2"]];
     NSMutableArray* allImagesListNames=[@[@"0",@"1",@"2"] mutableCopy];
-
-    [allImagesListNames enumerateObjectsUsingBlock:^(NSString* listName, NSUInteger idx, BOOL *stop) {
-        NSArray* images=[ImageSqlite loadList:listName];
-        if (!images.count) return;
-        //self.needPostGroupCount++;
-//        NSMutableArray* newImageDatas=[NSMutableArray array];
-//        for (ImageModel* model in images) {
-//            [newImageDatas addObject:model.ImageData];
-//        }
-//        [self secondPostSecondStepWithImages:newImageDatas category:listName quotesId:quotesId];
-    }];
     [self secondPostSecondStepWithImagesListNames:allImagesListNames quotesId:quotesId];
 }
 
@@ -124,7 +112,6 @@
     [self leftBtnClicked];
 }
 
-//-(void)secondPostSecondStepWithImages:(NSMutableArray*)images category:(NSString*)category quotesId:(NSString*)quotesId{
 //imagesListNames与categorys一样
 -(void)secondPostSecondStepWithImagesListNames:(NSMutableArray*)imagesListNames quotesId:(NSString*)quotesId{
     if (!imagesListNames.count) {

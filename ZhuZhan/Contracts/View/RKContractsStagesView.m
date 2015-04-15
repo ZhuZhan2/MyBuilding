@@ -45,8 +45,13 @@
 }
 
 -(NSString*)getRoundImageNameWithStage:(RKContractsSmallStageStyle)contractsSmallStage{
-    NSArray* images=@[@"word",@"star",@"xlsx"];
+    NSArray* images=@[@"流程点_已完成",@"流程点_未开始",@"流程点_已关闭"];
     return images[contractsSmallStage];
+}
+
+-(UIColor*)getLineColorWithStage:(RKContractsSmallStageStyle)contractsSmallStage{
+    NSArray* colors=@[RGBCOLOR(160, 212, 104),RGBCOLOR(230, 233, 237),RGBCOLOR(230, 233, 237)];
+    return colors[contractsSmallStage];
 }
 
 -(UIColor*)getSmallStageLabelTextColorStage:(RKContractsSmallStageStyle)contractsSmallStage{
@@ -100,7 +105,7 @@
                 UIView* view=self.smallStageLines[idx][tmpIdx];
                 tmpCenter.x-=CGRectGetWidth(view.frame)*0.5;
                 view.center=tmpCenter;
-                [self addSubview:view];
+                [self insertSubview:view atIndex:0];
             }
             
             nowCenterX+=width;
@@ -152,9 +157,8 @@
             NSArray* stageRounds=obj;
             NSMutableArray* singleLines=[NSMutableArray array];
             [stageRounds enumerateObjectsUsingBlock:^(id tmpObj, NSUInteger tmpIdx, BOOL *tmpStop) {
-                UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 134, 2)];
-                NSString* imageName=[self getRoundImageNameWithStage:(RKContractsSmallStageStyle)[self.smallStageStyles[idx][tmpIdx] integerValue]];
-                imageView.image=[GetImagePath getImagePath:imageName];
+                UIView* imageView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 134, 2)];
+                imageView.backgroundColor=[self getLineColorWithStage:(RKContractsSmallStageStyle)[self.smallStageStyles[idx][tmpIdx] integerValue]];
                 [singleLines addObject:imageView];
             }];
             [allLines addObject:singleLines];

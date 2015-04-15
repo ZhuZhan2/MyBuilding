@@ -38,7 +38,7 @@
 
 -(UIButton *)assistBtn{
     if (!_assistBtn) {
-        _assistBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 26, 26)];
+        _assistBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 62, 14)];
         [_assistBtn addTarget:self action:@selector(chooseAssistBtn) forControlEvents:UIControlEventTouchUpInside];
     }
     return _assistBtn;
@@ -64,19 +64,20 @@
     _indexPath=indexPath;
     self.mainLabel.text=model.mainLabelText;
     [self.assistBtn setBackgroundImage:[self.class assistImageChooseWithStyle:model.assistStyle] forState:UIControlStateNormal];
+    self.assistBtn.userInteractionEnabled=model.assistStyle==AddressBookFriendCellAssistNotFinished;
 }
 
 +(UIImage*)assistImageChooseWithStyle:(AddressBookFriendCellAssistStyle)style{
     NSString* imageName;
     switch (style) {
         case AddressBookFriendCellAssistIsFinished:
-            imageName=@"公司认证员工_08a";
+            imageName=@"已添加带字";
             break;
         case AddressBookFriendCellAssistNotFinished:
-            imageName=@"公司认证员工_18a";
+            imageName=@"加好友带字";
             break;
-        case AddressBookFriendCellAssistNotExist:
-            imageName=@"点-copy-3";
+        case AddressBookFriendCellAssistIsWaiting:
+            imageName=@"等待验证";
             break;
     }
     return [GetImagePath getImagePath:imageName];
@@ -84,7 +85,7 @@
 
 -(void)layoutSubviews{
     self.mainLabel.frame=CGRectMake(15, 15, CGRectGetWidth(self.mainLabel.frame), CGRectGetHeight(self.mainLabel.frame));
-    self.assistBtn.center=CGPointMake(290, 25);
+    self.assistBtn.center=CGPointMake(272, 25);
     self.seperatorLine.center=CGPointMake(kScreenWidth-CGRectGetWidth(self.seperatorLine.frame)*0.5, self.frame.size.height-CGRectGetHeight(self.seperatorLine.frame)*.5);
 }
 

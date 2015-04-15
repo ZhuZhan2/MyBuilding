@@ -635,7 +635,6 @@
 		5B5836FF1AD7A3D200F8E7C3 /* added@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5836F91AD7A3D200F8E7C3 /* added@2x.png */; };
 		5B5837031AD7CE0900F8E7C3 /* ContractsBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5837021AD7CE0900F8E7C3 /* ContractsBaseViewController.m */; };
 		5B58370A1AD7CFD900F8E7C3 /* OtherContractsBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5837091AD7CFD900F8E7C3 /* OtherContractsBaseController.m */; };
-		5B58370D1AD7D09000F8E7C3 /* OtherContractsMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B58370C1AD7D09000F8E7C3 /* OtherContractsMainView.m */; };
 		5B5894F119FF9D24001CC09E /* EndEditingGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5894F019FF9D24001CC09E /* EndEditingGesture.m */; };
 		5B5A24DD1A4189CA0071BD90 /* 密码找回_03z.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5A24D71A4189CA0071BD90 /* 密码找回_03z.png */; };
 		5B5A24DE1A4189CA0071BD90 /* 密码找回_03z@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5A24D81A4189CA0071BD90 /* 密码找回_03z@2x.png */; };
@@ -802,6 +801,22 @@
 		5B8A2D021AAEEAD600C8F9DE /* 单人会话@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8A2D001AAEEAD600C8F9DE /* 单人会话@2x.png */; };
 		5B8DAED41A7F1EBD003C7E41 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8DAED11A7F1EBD003C7E41 /* libbaidumapapi.a */; };
 		5B8DAED51A7F1EBD003C7E41 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8DAED31A7F1EBD003C7E41 /* libbaidumapapi.a */; };
+		5B90E0FF1ADE325000436CED /* ContractsTradeCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B90E0FE1ADE325000436CED /* ContractsTradeCodeView.m */; };
+		5B90E1021ADE3ABB00436CED /* ContractsUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B90E1011ADE3ABB00436CED /* ContractsUserView.m */; };
+		5B90E1051ADE491F00436CED /* MainContractsBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B90E1041ADE491F00436CED /* MainContractsBaseController.m */; };
+		5B90E10B1ADE539F00436CED /* ContractsMainClauseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B90E10A1ADE539F00436CED /* ContractsMainClauseView.m */; };
+		5B90E1121ADE59B600436CED /* 流程点_未开始.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B90E10C1ADE59B600436CED /* 流程点_未开始.png */; };
+		5B90E1131ADE59B600436CED /* 流程点_未开始@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B90E10D1ADE59B600436CED /* 流程点_未开始@2x.png */; };
+		5B90E1141ADE59B600436CED /* 流程点_已关闭.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B90E10E1ADE59B600436CED /* 流程点_已关闭.png */; };
+		5B90E1151ADE59B600436CED /* 流程点_已关闭@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B90E10F1ADE59B600436CED /* 流程点_已关闭@2x.png */; };
+		5B90E1161ADE59B600436CED /* 流程点_已完成.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B90E1101ADE59B600436CED /* 流程点_已完成.png */; };
+		5B90E1171ADE59B600436CED /* 流程点_已完成@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B90E1111ADE59B600436CED /* 流程点_已完成@2x.png */; };
+		5B90E11E1ADE67DE00436CED /* 等待验证.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B90E1181ADE67DE00436CED /* 等待验证.png */; };
+		5B90E11F1ADE67DE00436CED /* 等待验证@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B90E1191ADE67DE00436CED /* 等待验证@2x.png */; };
+		5B90E1201ADE67DE00436CED /* 加好友带字.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B90E11A1ADE67DE00436CED /* 加好友带字.png */; };
+		5B90E1211ADE67DE00436CED /* 加好友带字@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B90E11B1ADE67DE00436CED /* 加好友带字@2x.png */; };
+		5B90E1221ADE67DE00436CED /* 已添加带字.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B90E11C1ADE67DE00436CED /* 已添加带字.png */; };
+		5B90E1231ADE67DE00436CED /* 已添加带字@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B90E11D1ADE67DE00436CED /* 已添加带字@2x.png */; };
 		5B9238471ADB606F00281E94 /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CDF1AAEE0AD00C8F9DE /* ChatListViewController.m */; };
 		5B92384A1ADB6C2D00281E94 /* ChooseContactsSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9238491ADB6C2D00281E94 /* ChooseContactsSearchController.m */; };
 		5B9401D31ACA89FF000C3C99 /* ContractsListSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9401D21ACA89FF000C3C99 /* ContractsListSearchController.m */; };
@@ -2444,8 +2459,6 @@
 		5B5837021AD7CE0900F8E7C3 /* ContractsBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractsBaseViewController.m; sourceTree = "<group>"; };
 		5B5837081AD7CFD900F8E7C3 /* OtherContractsBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherContractsBaseController.h; sourceTree = "<group>"; };
 		5B5837091AD7CFD900F8E7C3 /* OtherContractsBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherContractsBaseController.m; sourceTree = "<group>"; };
-		5B58370B1AD7D09000F8E7C3 /* OtherContractsMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherContractsMainView.h; sourceTree = "<group>"; };
-		5B58370C1AD7D09000F8E7C3 /* OtherContractsMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherContractsMainView.m; sourceTree = "<group>"; };
 		5B5894EF19FF9D24001CC09E /* EndEditingGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndEditingGesture.h; sourceTree = "<group>"; };
 		5B5894F019FF9D24001CC09E /* EndEditingGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndEditingGesture.m; sourceTree = "<group>"; };
 		5B5A24D71A4189CA0071BD90 /* 密码找回_03z.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码找回_03z.png"; sourceTree = "<group>"; };
@@ -2731,6 +2744,26 @@
 		5B8DAECF1A7F1EA9003C7E41 /* BMKVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKVersion.h; sourceTree = "<group>"; };
 		5B8DAED11A7F1EBD003C7E41 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		5B8DAED31A7F1EBD003C7E41 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
+		5B90E0FD1ADE325000436CED /* ContractsTradeCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractsTradeCodeView.h; sourceTree = "<group>"; };
+		5B90E0FE1ADE325000436CED /* ContractsTradeCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractsTradeCodeView.m; sourceTree = "<group>"; };
+		5B90E1001ADE3ABB00436CED /* ContractsUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractsUserView.h; sourceTree = "<group>"; };
+		5B90E1011ADE3ABB00436CED /* ContractsUserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractsUserView.m; sourceTree = "<group>"; };
+		5B90E1031ADE491F00436CED /* MainContractsBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainContractsBaseController.h; sourceTree = "<group>"; };
+		5B90E1041ADE491F00436CED /* MainContractsBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainContractsBaseController.m; sourceTree = "<group>"; };
+		5B90E1091ADE539F00436CED /* ContractsMainClauseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractsMainClauseView.h; sourceTree = "<group>"; };
+		5B90E10A1ADE539F00436CED /* ContractsMainClauseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractsMainClauseView.m; sourceTree = "<group>"; };
+		5B90E10C1ADE59B600436CED /* 流程点_未开始.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "流程点_未开始.png"; sourceTree = "<group>"; };
+		5B90E10D1ADE59B600436CED /* 流程点_未开始@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "流程点_未开始@2x.png"; sourceTree = "<group>"; };
+		5B90E10E1ADE59B600436CED /* 流程点_已关闭.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "流程点_已关闭.png"; sourceTree = "<group>"; };
+		5B90E10F1ADE59B600436CED /* 流程点_已关闭@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "流程点_已关闭@2x.png"; sourceTree = "<group>"; };
+		5B90E1101ADE59B600436CED /* 流程点_已完成.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "流程点_已完成.png"; sourceTree = "<group>"; };
+		5B90E1111ADE59B600436CED /* 流程点_已完成@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "流程点_已完成@2x.png"; sourceTree = "<group>"; };
+		5B90E1181ADE67DE00436CED /* 等待验证.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "等待验证.png"; sourceTree = "<group>"; };
+		5B90E1191ADE67DE00436CED /* 等待验证@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "等待验证@2x.png"; sourceTree = "<group>"; };
+		5B90E11A1ADE67DE00436CED /* 加好友带字.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加好友带字.png"; sourceTree = "<group>"; };
+		5B90E11B1ADE67DE00436CED /* 加好友带字@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加好友带字@2x.png"; sourceTree = "<group>"; };
+		5B90E11C1ADE67DE00436CED /* 已添加带字.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "已添加带字.png"; sourceTree = "<group>"; };
+		5B90E11D1ADE67DE00436CED /* 已添加带字@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "已添加带字@2x.png"; sourceTree = "<group>"; };
 		5B9238481ADB6C2D00281E94 /* ChooseContactsSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseContactsSearchController.h; sourceTree = "<group>"; };
 		5B9238491ADB6C2D00281E94 /* ChooseContactsSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseContactsSearchController.m; sourceTree = "<group>"; };
 		5B9401D11ACA89FF000C3C99 /* ContractsListSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractsListSearchController.h; sourceTree = "<group>"; };
@@ -5264,8 +5297,12 @@
 				5B70CC3B1AC92A3F00FC8353 /* BaseContractsView.m */,
 				5BA6E7CD1AD60EA50035A97D /* RKContractsStagesView.h */,
 				5BA6E7CE1AD60EA50035A97D /* RKContractsStagesView.m */,
-				5B58370B1AD7D09000F8E7C3 /* OtherContractsMainView.h */,
-				5B58370C1AD7D09000F8E7C3 /* OtherContractsMainView.m */,
+				5B90E0FD1ADE325000436CED /* ContractsTradeCodeView.h */,
+				5B90E0FE1ADE325000436CED /* ContractsTradeCodeView.m */,
+				5B90E1001ADE3ABB00436CED /* ContractsUserView.h */,
+				5B90E1011ADE3ABB00436CED /* ContractsUserView.m */,
+				5B90E1091ADE539F00436CED /* ContractsMainClauseView.h */,
+				5B90E10A1ADE539F00436CED /* ContractsMainClauseView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5315,6 +5352,8 @@
 		5B5837041AD7CF0100F8E7C3 /* MainContractsController */ = {
 			isa = PBXGroup;
 			children = (
+				5B90E1031ADE491F00436CED /* MainContractsBaseController.h */,
+				5B90E1041ADE491F00436CED /* MainContractsBaseController.m */,
 			);
 			path = MainContractsController;
 			sourceTree = "<group>";
@@ -6500,6 +6539,12 @@
 		D3D2BFEC1AC94DDB003BB779 /* 佣金 */ = {
 			isa = PBXGroup;
 			children = (
+				5B90E10C1ADE59B600436CED /* 流程点_未开始.png */,
+				5B90E10D1ADE59B600436CED /* 流程点_未开始@2x.png */,
+				5B90E10E1ADE59B600436CED /* 流程点_已关闭.png */,
+				5B90E10F1ADE59B600436CED /* 流程点_已关闭@2x.png */,
+				5B90E1101ADE59B600436CED /* 流程点_已完成.png */,
+				5B90E1111ADE59B600436CED /* 流程点_已完成@2x.png */,
 				D3EDC9F61ACE687C002AF865 /* word.png */,
 				D3EDC9F71ACE687C002AF865 /* word@2x.png */,
 				D3EDC9F21ACE6538002AF865 /* xlsx.png */,
@@ -7103,6 +7148,7 @@
 				04BC423119D7E5B3006B5C7B /* 地图搜索1_09.png in Resources */,
 				04BC417919D7E5B3006B5C7B /* 人脉_06a.png in Resources */,
 				04BC424F19D7E5B3006B5C7B /* 搜索_03.png in Resources */,
+				5B90E1151ADE59B600436CED /* 流程点_已关闭@2x.png in Resources */,
 				D3D9C91B1A13446B001D3A64 /* 主菜单01a@2x.png in Resources */,
 				D3D9C91D1A13446B001D3A64 /* 主菜单02a@2x.png in Resources */,
 				D3D9F8C81ADE663F002BBB06 /* 新的朋友.png in Resources */,
@@ -7173,6 +7219,7 @@
 				04BC421119D7E5B3006B5C7B /* 公司－公司组织_03a.png in Resources */,
 				5B3B5D4B1AAD935E002FB444 /* 他人会话框最小.png in Resources */,
 				04BC41E619D7E5B3006B5C7B /* 人脉－账号设置_03a-05@2x.png in Resources */,
+				5B90E1201ADE67DE00436CED /* 加好友带字.png in Resources */,
 				D38D6B4E1A5CC1C30020CCBF /* 读取中icon.gif in Resources */,
 				5BE08DF81A3586EA00495EEB /* 010051.png in Resources */,
 				04BC433419D7E5B3006B5C7B /* 项目－项目专题_03a.png in Resources */,
@@ -7246,6 +7293,7 @@
 				04BC42C119D7E5B3006B5C7B /* 项目-首页_18a@2x.png in Resources */,
 				D3D5D9AD1A66919B0077C8C9 /* 公司详情图标01@2x.png in Resources */,
 				5BE08DE81A3586EA00495EEB /* 010043.png in Resources */,
+				5B90E1121ADE59B600436CED /* 流程点_未开始.png in Resources */,
 				D3D7D86A19FF5B3100AE5765 /* 人脉－发布动态_09a.png in Resources */,
 				D39937D11A42B527007081C1 /* 推荐页面02a@2x.png in Resources */,
 				D3D2BFF31AC94FA6003BB779 /* submit.png in Resources */,
@@ -7489,12 +7537,14 @@
 				04BC42A519D7E5B3006B5C7B /* 语音搜索_04@2x.png in Resources */,
 				5BE08E001A3586EA00495EEB /* 010055.png in Resources */,
 				5B70CC541AC9394700FC8353 /* small同--意@2x.png in Resources */,
+				5B90E1171ADE59B600436CED /* 流程点_已完成@2x.png in Resources */,
 				5BE08DA61A3586EA00495EEB /* 010010.png in Resources */,
 				5BE08DFC1A3586EA00495EEB /* 010053.png in Resources */,
 				04BC411C19D7E5B3006B5C7B /* 08.png in Resources */,
 				04BC41C619D7E5B3006B5C7B /* 人脉－人的详情_28a@2x.png in Resources */,
 				04BC432D19D7E5B3006B5C7B /* 项目－评论列表_03a-07@2x.png in Resources */,
 				04BC40E219D7E5B3006B5C7B /* +人脉2_03a.png in Resources */,
+				5B90E1131ADE59B600436CED /* 流程点_未开始@2x.png in Resources */,
 				D3D74E8319FA2FEC00ED8B62 /* 登录_14.png in Resources */,
 				5B5A24E21A4189CA0071BD90 /* 密码找回z@2x.png in Resources */,
 				5BE08E301A3586EA00495EEB /* 020015.png in Resources */,
@@ -7581,6 +7631,7 @@
 				04BC427019D7E5B3006B5C7B /* 新建项目5_09@2x.png in Resources */,
 				5B3B5D4E1AAD935E002FB444 /* 自己会话框最小@2x.png in Resources */,
 				5BE08EAC1A3586EA00495EEB /* 040020.png in Resources */,
+				5B90E11E1ADE67DE00436CED /* 等待验证.png in Resources */,
 				04BC434C19D7E5B3006B5C7B /* 项目－高级搜索－2_15a.png in Resources */,
 				04BC425319D7E5B3006B5C7B /* 搜索_07.png in Resources */,
 				04BC41E319D7E5B3006B5C7B /* 人脉－引荐信_08a.png in Resources */,
@@ -7598,6 +7649,7 @@
 				D3D1A7BB19F8F6250006F954 /* 公司－公司详情_05b.png in Resources */,
 				04BC435919D7E5B3006B5C7B /* 高级搜索-多选_03aA@2x.png in Resources */,
 				04BC420B19D7E5B3006B5C7B /* 公司认证员工_18a.png in Resources */,
+				5B90E11F1ADE67DE00436CED /* 等待验证@2x.png in Resources */,
 				5B45E61F1A00AE7800B790FB /* 全部项目_17.png in Resources */,
 				04BC425119D7E5B3006B5C7B /* 搜索_05.png in Resources */,
 				5B6373B21ABAE3C8007CF1F8 /* 导航下三角@2x.png in Resources */,
@@ -7605,6 +7657,7 @@
 				5BE08E5B1A3586EA00495EEB /* 030006@2x.png in Resources */,
 				5B5836F31AD7A12800F8E7C3 /* add_both_button@2x.png in Resources */,
 				04BC41F019D7E5B3006B5C7B /* 全部项目_10@2x.png in Resources */,
+				5B90E1141ADE59B600436CED /* 流程点_已关闭.png in Resources */,
 				5B4C197919FA4ACC00C6C57D /* 注册_02.png in Resources */,
 				5BF31B551AB0162D00DA87F5 /* 添加联系人入群@2x.png in Resources */,
 				5BE08E941A3586EA00495EEB /* 040008.png in Resources */,
@@ -7681,6 +7734,7 @@
 				5B628A031AB81CFE00F30059 /* 多选已选@2x.png in Resources */,
 				5B7E59181ABC0C7E0063B400 /* 交易_上传附件.png in Resources */,
 				04BC433E19D7E5B3006B5C7B /* 项目－项目专题_23a.png in Resources */,
+				5B90E1221ADE67DE00436CED /* 已添加带字.png in Resources */,
 				04BC435219D7E5B3006B5C7B /* 首页_16.png in Resources */,
 				04BC433B19D7E5B3006B5C7B /* 项目－项目专题_14a@2x.png in Resources */,
 				04BC411E19D7E5B3006B5C7B /* 09.png in Resources */,
@@ -7763,6 +7817,7 @@
 				5BE08DE11A3586EA00495EEB /* 010039@2x.png in Resources */,
 				04BC420219D7E5B3006B5C7B /* 公司认证员工_03a@2x.png in Resources */,
 				5BE08DBD1A3586EA00495EEB /* 010021@2x.png in Resources */,
+				5B90E1161ADE59B600436CED /* 流程点_已完成.png in Resources */,
 				5BE08E0A1A3586EA00495EEB /* 010060.png in Resources */,
 				04BC41D919D7E5B3006B5C7B /* 人脉－发布动态_13a.png in Resources */,
 				04BC420519D7E5B3006B5C7B /* 公司认证员工_08a.png in Resources */,
@@ -7813,6 +7868,7 @@
 				5BA181A71A76170500191D31 /* Shadow-top@2x.png in Resources */,
 				D3D5B8101AAD62790049A5E0 /* jiahaoyou.png in Resources */,
 				5BE08E5E1A3586EA00495EEB /* 030008.png in Resources */,
+				5B90E1211ADE67DE00436CED /* 加好友带字@2x.png in Resources */,
 				04BC40FF19D7E5B3006B5C7B /* 014.png in Resources */,
 				D3D9C90C1A1343CF001D3A64 /* 主菜单02b.png in Resources */,
 				D366E7681A63CEE800D25F76 /* 默认主图01.png in Resources */,
@@ -7905,6 +7961,7 @@
 				D39937CA1A42B49A007081C1 /* WelcomeViewController.m in Sources */,
 				D3DBCE5F1AC8E77A00C9FEDE /* StartManView.m in Sources */,
 				042D9E1919B559FC00689C5D /* ProjectTableViewCell.m in Sources */,
+				5B90E10B1ADE539F00436CED /* ContractsMainClauseView.m in Sources */,
 				5BE08ED41A35900000495EEB /* FourthAnimationView.m in Sources */,
 				D3DBBC721AB914E20070DB98 /* AddCategoriesView.m in Sources */,
 				5B6289DD1AB7C10000F30059 /* RKTwoView.m in Sources */,
@@ -8067,6 +8124,7 @@
 				0426C2F119922D5A00CD8822 /* CJSONSerialization.m in Sources */,
 				0426C2EF19922D5A00CD8822 /* CFilteringJSONSerializer.m in Sources */,
 				5B0A00A519B587CD00500C05 /* TMQuiltViewController.m in Sources */,
+				5B90E0FF1ADE325000436CED /* ContractsTradeCodeView.m in Sources */,
 				5BAA14D619EE35AC00C7ECD9 /* MD5.m in Sources */,
 				0426C22F19922D5A00CD8822 /* LoginEvent.m in Sources */,
 				D3D5B42F1AB130B900E8EB04 /* GCDAsyncSocket.m in Sources */,
@@ -8140,10 +8198,10 @@
 				0426C25219922D5A00CD8822 /* GPUImageClosingFilter.m in Sources */,
 				5BFCE5C11ADBABB00049F009 /* ChatGroupMemberModel.m in Sources */,
 				0426C28C19922D5A00CD8822 /* GPUImageLuminanceThresholdFilter.m in Sources */,
-				5B58370D1AD7D09000F8E7C3 /* OtherContractsMainView.m in Sources */,
 				0426C27719922D5A00CD8822 /* GPUImageHazeFilter.m in Sources */,
 				042D9E2A19B559FC00689C5D /* TopicsDetailTableViewController.m in Sources */,
 				5B8A2CE91AAEE0AD00C8F9DE /* AddFriendCell.m in Sources */,
+				5B90E1051ADE491F00436CED /* MainContractsBaseController.m in Sources */,
 				D3AD616B19ADB9F7001FD483 /* RecordModel.m in Sources */,
 				5B7E59061ABBD9B90063B400 /* ProvidePriceInfoController.m in Sources */,
 				0426C27919922D5A00CD8822 /* GPUImageHighPassFilter.m in Sources */,
@@ -8211,6 +8269,7 @@
 				0426C29A19922D5A00CD8822 /* GPUImageNormalBlendFilter.m in Sources */,
 				0426C2BF19922D5A00CD8822 /* GPUImageSphereRefractionFilter.m in Sources */,
 				042D9E1619B559FC00689C5D /* ProgramDetailViewController.m in Sources */,
+				5B90E1021ADE3ABB00436CED /* ContractsUserView.m in Sources */,
 				0426C24219922D5A00CD8822 /* GPUImage3x3TextureSamplingFilter.m in Sources */,
 				0426C25419922D5A00CD8822 /* GPUImageColorBurnBlendFilter.m in Sources */,
 				5B5773DF1AC1335C00C17DBF /* DemandAskPriceDetailController.m in Sources */,

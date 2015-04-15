@@ -19,7 +19,7 @@
 #import "ConstractListController.h"
 #import "ContractsBaseViewController.h"
 #import "AskPriceMainViewController.h"
-#import "ProvisionalViewController.h"
+#import "MainContractsBaseController.h"
 #define contentHeight (kScreenHeight==480?431:519)
 @interface HomePageViewController ()<LoginViewDelegate>
 @property(nonatomic,strong)UINavigationController *navigatin;
@@ -266,11 +266,7 @@
     NSLog(@"===>%ld",(long)idx);
     if(idx == 0){
         NSLog(@"推荐信");
-//        ProvisionalModel *model = [[ProvisionalModel alloc] init];
-//        model.personaStr1 = @"选择合同角色";
-//        model.personaStr2 = @"选择合同角色";
-//        model.myCompanyName = @"";
-        quadCurveVC=[[ProvisionalViewController alloc]initWithView:nil];
+        quadCurveVC=[[MainContractsBaseController alloc]init];
     }else if(idx == 1){
         NSLog(@"通知");
         quadCurveVC=[[AskPriceMainViewController alloc]init];

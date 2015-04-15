@@ -23,5 +23,10 @@
     }else{
         self.a_isisFriend = YES;
     }
+    if([dict[@"waiting"] isEqualToString:@"0"]){
+        self.a_isWaiting = NO;
+    }else{
+        self.a_isWaiting = YES;
+    }
 }
 @end

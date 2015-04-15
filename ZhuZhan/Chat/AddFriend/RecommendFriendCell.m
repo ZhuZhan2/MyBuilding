@@ -25,7 +25,13 @@
     _model = model;
     [self.headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:model.a_avatarUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     self.nameLabel.text = model.a_name;
-    [self.addBtn setBackgroundImage:[GetImagePath getImagePath:model.a_isisFriend?@"added":@"add_green_button"] forState:UIControlStateNormal];
+    if (model.a_isWaiting) {
+        [self.addBtn setBackgroundImage:[GetImagePath getImagePath:@"等待验证"] forState:UIControlStateNormal];
+        self.addBtn.userInteractionEnabled=NO;
+    }else{
+        [self.addBtn setBackgroundImage:[GetImagePath getImagePath:model.a_isisFriend?@"added":@"add_green_button"] forState:UIControlStateNormal];
+        self.addBtn.userInteractionEnabled=!model.a_isisFriend;
+    }
 }
 
 -(void)setIndexPathRow:(int)indexPathRow{
@@ -83,8 +89,9 @@
             if(!error){
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertView show];
-                self.model.a_isisFriend=YES;
-                [self.addBtn setBackgroundImage:[GetImagePath getImagePath:@"报价灰"] forState:UIControlStateNormal];
+                self.model.a_isWaiting=YES;
+                self.addBtn.userInteractionEnabled=NO;
+                [self.addBtn setBackgroundImage:[GetImagePath getImagePath:@"等待验证"] forState:UIControlStateNormal];
             }else{
                 [LoginAgain AddLoginView:NO];
             }
