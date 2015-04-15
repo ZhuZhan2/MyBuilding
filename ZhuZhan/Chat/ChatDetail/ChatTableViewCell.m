@@ -109,7 +109,7 @@
     _model=chatModel;
     
     self.timeLine.text=chatModel.time;
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:chatModel.userImageStr] placeholderImage:[GetImagePath getImagePath:@"默认主图01"]];
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:chatModel.userImageStr] placeholderImage:[GetImagePath getImagePath:@"未设置"]];
     self.nameLabel.text=chatModel.userNameStr;
     [self.chatContentView setText:chatModel.chatContent isSelf:chatModel.isSelf];
     self.isSelf=chatModel.isSelf;

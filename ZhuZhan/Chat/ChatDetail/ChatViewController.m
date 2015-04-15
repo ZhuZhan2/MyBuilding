@@ -105,7 +105,7 @@
 -(void)initSocket{
     AppDelegate *app = [AppDelegate instance];
     
-    [app.socket connectToServer:@socketServer withPort:44455];
+    [app.socket connectToServer:@socketServer withPort:socketPort];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:@"event" forKey:@"msgType"];
     [dic setObject:@"login" forKey:@"event"];
@@ -152,7 +152,7 @@
 }
 
 -(void)initNavi{
-    self.title=@"用户名";
+    self.title=self.titleStr;
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
     if ([self.type isEqualToString:@"02"]) {
         [self setRightBtnWithImage:[GetImagePath getImagePath:NO?@"单人会话":@"多人会话@2x"]];
@@ -163,6 +163,7 @@
     [self.view endEditing:YES];
     AddGroupMemberController* vc=[[AddGroupMemberController alloc]init];
     vc.contactId=self.contactId;
+    vc.titleStr = self.titleStr;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

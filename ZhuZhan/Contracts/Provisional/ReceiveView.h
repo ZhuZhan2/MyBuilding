@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface ReceiveView : UIView
-@property(nonatomic,strong)UILabel *titleLabel;//参与用户label
-@property(nonatomic,strong)UIImageView *imageView;
-@property(nonatomic,strong)UIView *addView;
+@property(nonatomic,strong)UIButton *addPersona;
+@property(nonatomic,strong)UILabel *personaLabel;
+@property(nonatomic,strong)UIImageView *addImageView;
 @property(nonatomic,strong)UIView *cutLine;
--(id)initWithFrame:(CGRect)frame isOver:(BOOL)isOver;
--(void)GetHeightWithBlock:(void (^)(double height))block str:(NSString *)str;
--(void)GetHeightOverWithBlock:(void (^)(double height))block str:(NSString *)str;
+@property(nonatomic,strong)UIButton *contactBtn;
+@property(nonatomic,strong)UIImageView *arrowImageView;
+@property(nonatomic,strong)UILabel *contactLabel;
+@property(nonatomic,strong)UITextField *textField;
+@property(nonatomic,strong)UILabel *messageLabel;
+@property(nonatomic,strong)UIView *bottomView;
 @end

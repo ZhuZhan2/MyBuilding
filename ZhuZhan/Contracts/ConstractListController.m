@@ -11,7 +11,6 @@
 #import "ContractsBaseViewController.h"
 #import "DemandStageChooseController.h"
 #import "ContractsListSearchController.h"
-#import "OverProvisionalViewController.h"
 
 @interface ConstractListController ()<DemandStageChooseControllerDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
@@ -103,8 +102,7 @@
         ContractsBaseViewController* vc=[[ContractsBaseViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }else{
-        OverProvisionalViewController *overView = [[OverProvisionalViewController alloc] initWithIsMainView:YES];
-        [self.navigationController pushViewController:overView animated:YES];
+        
     }
 }
 

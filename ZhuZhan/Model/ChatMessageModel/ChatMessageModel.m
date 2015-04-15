@@ -24,7 +24,7 @@
         self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"senderImageId"]];
     }
     self.a_message = [ProjectStage ProjectStrStage:dict[@"content"]];
-    self.a_time = [ProjectStage ProjectStrStage:dict[@"createdTime"]];
+    self.a_time = [ProjectStage ChatMessageTimeStage:dict[@"createdTime"]];
     self.a_userId = [ProjectStage ProjectStrStage:dict[@"sender"]];
     if([[LoginSqlite getdata:@"userId"] isEqualToString:dict[@"sender"]]){
         self.a_type = chatTypeMe;

@@ -32,7 +32,7 @@
 -(void)initSocket{
     AppDelegate *app = [AppDelegate instance];
     
-    [app.socket connectToServer:@socketServer withPort:44455];
+    [app.socket connectToServer:@socketServer withPort:socketPort];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:@"event" forKey:@"msgType"];
     [dic setObject:@"login" forKey:@"event"];
@@ -83,8 +83,10 @@
     ChatViewController* vc=[[ChatViewController alloc]init];
     if([model.a_type isEqualToString:@"01"]){
         vc.contactId = model.a_loginId;
+        vc.titleStr = model.a_loginName;
     }else{
         vc.contactId = model.a_groupId;
+        vc.titleStr = model.a_groupName;
     }
     vc.type = model.a_type;
     vc.delegate = self;

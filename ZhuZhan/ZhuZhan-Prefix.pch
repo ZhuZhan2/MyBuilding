@@ -31,6 +31,8 @@
 
 //#define socketServer "10.1.1.138"//马恩伟本地
 #define socketServer "10.1.5.104"//服务器
+#define socketPort 44455//开发
+//#define socketPort 54455//测试
 
 #define  kScreenWidth  [[UIScreen mainScreen] bounds].size.width
 #define  kScreenHeight [[UIScreen mainScreen] bounds].size.height

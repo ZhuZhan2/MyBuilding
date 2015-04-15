@@ -13,11 +13,6 @@
 -(void)endTextView:(NSString *)str;
 @end
 @interface ContractView : UIView<UITextViewDelegate>
-@property(nonatomic,strong)UILabel *titleLabel;
-@property(nonatomic,strong)UIView *cutLine;
-@property(nonatomic,strong)UIImageView *imageView;
 @property(nonatomic,strong)MessageTextView *textView;
 @property(nonatomic,weak)id<ContractViewDelegate>delegate;
--(id)initWithFrame:(CGRect)frame isOver:(BOOL)isOver;
--(void)GetHeightOverWithBlock:(void (^)(double height))block str:(NSString *)str;
 @end

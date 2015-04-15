@@ -11,54 +11,37 @@
 #import "RKShadowView.h"
 @implementation MoneyView
 
--(id)initWithFrame:(CGRect)frame isOver:(BOOL)isOver{
+-(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if(self){
-        [self addSubview:self.titleLabel];
+        [self addSubview:self.textFied];
         [self addSubview:self.cutLine];
-        if(!isOver){
-            [self addSubview:self.imageView];
-            [self addSubview:self.textFied];
-            [EndEditingGesture addGestureToView:self];
-        }
+        [EndEditingGesture addGestureToView:self];
     }
     return self;
 }
 
--(UILabel *)titleLabel{
-    if(!_titleLabel){
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(26, 16, 180, 16)];
-        _titleLabel.textColor = BlueColor;
-        _titleLabel.textAlignment = NSTextAlignmentLeft;
-        _titleLabel.font = [UIFont systemFontOfSize:16];
-        _titleLabel.text = @"金额（人民币）";
+-(UITextField *)textFied{
+    if(!_textFied){
+        _textFied = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 320, 48)];
+        _textFied.delegate = self;
+        _textFied.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 0)];
+        _textFied.leftView.userInteractionEnabled = NO;
+        _textFied.leftViewMode = UITextFieldViewModeAlways;
+        _textFied.placeholder = @"请输入金额";
+        _textFied.font = [UIFont systemFontOfSize:15];
+        _textFied.returnKeyType = UIReturnKeyDone;
+        [_textFied setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
     }
-    return _titleLabel;
-}
-
--(UIImageView *)imageView{
-    if(!_imageView){
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(17, 18, 6, 6)];
-        _imageView.image = [GetImagePath getImagePath:@"star"];
-    }
-    return _imageView;
+    return _textFied;
 }
 
 -(UIView *)cutLine{
     if(!_cutLine){
         _cutLine = [RKShadowView seperatorLine];
+        _cutLine.frame = CGRectMake(0, 47, 320, 1);
     }
     return _cutLine;
-}
-
--(UITextField *)textFied{
-    if(!_textFied){
-        _textFied = [[UITextField alloc] initWithFrame:CGRectMake(26, 42, 280, 30)];
-        _textFied.delegate = self;
-        _textFied.placeholder = @"请输入金额";
-        [_textFied setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
-    }
-    return _textFied;
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
@@ -79,23 +62,5 @@
         [self.delegate textFiedDidEnd:textField.text];
     }
     return YES;
-}
-
--(void)GetHeightOverWithBlock:(void (^)(double height))block str:(NSString *)str{
-    __block int height = 0;
-    if(str != nil){
-        CGRect bounds=[str boundingRectWithSize:CGSizeMake(280, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil];
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 42, 240, bounds.size.height)];
-        label.textAlignment = NSTextAlignmentLeft;
-        label.numberOfLines =0;
-        label.lineBreakMode = NSLineBreakByWordWrapping;
-        label.font = [UIFont systemFontOfSize:16];
-        label.text = str;
-        [self addSubview:label];
-        height = 52+bounds.size.height;
-    }
-    if(block){
-        block(height);
-    }
 }
 @end

@@ -166,7 +166,9 @@
     ChooseContactsCellModel* model=[[ChooseContactsCellModel alloc]init];
     AddressBookModel *ABmodel = self.groupArr[indexPath.section];
     AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];
-    model.mainLabelText=contactModel.a_loginName;
+    BOOL hasNickName=![contactModel.a_nickName isEqualToString:@""];
+    model.mainLabelText=hasNickName?contactModel.a_nickName:contactModel.a_loginName;
+    model.mainImageUrl = contactModel.a_avatarUrl;
     model.isHighlight=[self.selectedUserIds containsObject:contactModel.a_contactId];
     [cell setModel:model indexPath:indexPath];
     
