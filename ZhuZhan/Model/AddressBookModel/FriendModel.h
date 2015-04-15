@@ -13,5 +13,6 @@
 @property(nonatomic,strong)NSString *a_name;
 @property(nonatomic,strong)NSString *a_avatarUrl;
 @property(nonatomic)BOOL a_isisFriend;
+@property(nonatomic)BOOL a_isWaiting;
 @property(nonatomic,strong)NSDictionary *dict;
 @end

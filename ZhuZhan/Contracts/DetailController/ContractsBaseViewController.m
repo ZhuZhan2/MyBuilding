@@ -10,8 +10,9 @@
 #import "BaseContractsView.h"
 #import "ProvisionalViewController.h"
 #import "RKContractsStagesView.h"
+#import "ContractsTradeCodeView.h"
 @interface ContractsBaseViewController ()<ContractsViewDelegate>
-@property (nonatomic, strong)RKContractsStagesView* contractsStagesView;
+
 //@property (nonatomic, strong)ProvisionalViewController *provisionalView;
 //@property (nonatomic, strong)BaseContractsView* providerConstractView;
 //@property (nonatomic, strong)BaseContractsView* salerConstractView;
@@ -23,7 +24,8 @@
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
     [self initNavi];
-    [self initContractsStagesView];
+    [self initStagesView];
+    [self initTradeCodeView];
 //    [self initProvisionalView];
 //    [self initProviderConstractView];
 //    [self initSalerConstractView];
@@ -31,10 +33,18 @@
 
 -(void)initNavi{
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
+    self.needAnimaiton=YES;
 }
 
--(void)initContractsStagesView{
-    [self.view addSubview:self.contractsStagesView];
+-(void)initStagesView{
+    [self.view addSubview:self.stagesView];
+}
+
+-(void)initTradeCodeView{
+    [self.view insertSubview:self.tradeCodeView belowSubview:self.stagesView];
+    CGRect frame=self.tradeCodeView.frame;
+    frame.origin.y=CGRectGetMaxY(self.stagesView.frame);
+    self.tradeCodeView.frame=frame;
 }
 
 //-(void)initProvisionalView{
@@ -71,14 +81,21 @@
 //    return _salerConstractView;
 //}
 
--(RKContractsStagesView *)contractsStagesView{
-    if (!_contractsStagesView) {
-        _contractsStagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:@[@"大标题1",@"大标题2",@"大标题3"] smallStageNames:@[@[@"小标题1",@"小标题2",@"小标题3"],@[@"小标题1",@"小标题2"],@[@"小标题"]] smallStageStyles:@[@[@0,@0,@0],@[@0,@1],@[@1]] isClosed:NO];
-        CGRect frame=_contractsStagesView.frame;
+-(RKContractsStagesView *)stagesView{
+    if (!_stagesView) {
+        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:@[@"大标题1",@"大标题2",@"大标题3"] smallStageNames:@[@[@"小标题1",@"小标题2",@"小标题3"],@[@"小标题1",@"小标题2"],@[@"小标题"]] smallStageStyles:@[@[@0,@0,@0],@[@0,@1],@[@1]] isClosed:NO];
+        CGRect frame=_stagesView.frame;
         frame.origin.y=64;
-        _contractsStagesView.frame=frame;
+        _stagesView.frame=frame;
     }
-    return _contractsStagesView;
+    return _stagesView;
+}
+
+-(ContractsTradeCodeView *)tradeCodeView{
+    if (!_tradeCodeView) {
+        _tradeCodeView=[ContractsTradeCodeView contractsTradeCodeViewWithTradeCode:@"流水号:32948238476283" time:@"2015-03-21 22:34"];
+    }
+    return _tradeCodeView;
 }
 
 //-(ProvisionalViewController *)provisionalView{
