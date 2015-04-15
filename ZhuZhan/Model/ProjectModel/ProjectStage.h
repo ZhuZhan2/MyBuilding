@@ -19,6 +19,8 @@
 
 +(NSString *)ProjectNewTimeStage:(NSString *)str;
 
++(NSString *)ChatMessageTimeStage:(NSString *)str;
+
 //bool的处理
 +(NSString *)ProjectBoolStage:(NSString *)str;
 

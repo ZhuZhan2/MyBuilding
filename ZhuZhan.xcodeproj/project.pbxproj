@@ -1306,9 +1306,6 @@
 		D3D321271A3EAE2E0009AEEA /* PooCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D321261A3EAE2E0009AEEA /* PooCodeView.m */; };
 		D3D3212E1A3ED4340009AEEA /* 注册_03.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D3212C1A3ED4340009AEEA /* 注册_03.png */; };
 		D3D3212F1A3ED4340009AEEA /* 注册_03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D3212D1A3ED4340009AEEA /* 注册_03@2x.png */; };
-		D3D34A171ACA4396004733D2 /* OverProvisionalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D34A161ACA4396004733D2 /* OverProvisionalViewController.m */; };
-		D3D34A1A1ACA48A3004733D2 /* CodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D34A191ACA48A3004733D2 /* CodeView.m */; };
-		D3D34A1D1ACA81AC004733D2 /* ButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D34A1C1ACA81AC004733D2 /* ButtonView.m */; };
 		D3D34A201ACA85EE004733D2 /* noagree.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D34A1E1ACA85EE004733D2 /* noagree.png */; };
 		D3D34A211ACA85EE004733D2 /* noagree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D34A1F1ACA85EE004733D2 /* noagree@2x.png */; };
 		D3D34A241ACA861B004733D2 /* agree.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D34A221ACA861B004733D2 /* agree.png */; };
@@ -3342,12 +3339,6 @@
 		D3D321261A3EAE2E0009AEEA /* PooCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PooCodeView.m; sourceTree = "<group>"; };
 		D3D3212C1A3ED4340009AEEA /* 注册_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_03.png"; sourceTree = "<group>"; };
 		D3D3212D1A3ED4340009AEEA /* 注册_03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_03@2x.png"; sourceTree = "<group>"; };
-		D3D34A151ACA4396004733D2 /* OverProvisionalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverProvisionalViewController.h; sourceTree = "<group>"; };
-		D3D34A161ACA4396004733D2 /* OverProvisionalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverProvisionalViewController.m; sourceTree = "<group>"; };
-		D3D34A181ACA48A3004733D2 /* CodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeView.h; sourceTree = "<group>"; };
-		D3D34A191ACA48A3004733D2 /* CodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeView.m; sourceTree = "<group>"; };
-		D3D34A1B1ACA81AC004733D2 /* ButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonView.h; sourceTree = "<group>"; };
-		D3D34A1C1ACA81AC004733D2 /* ButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonView.m; sourceTree = "<group>"; };
 		D3D34A1E1ACA85EE004733D2 /* noagree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noagree.png; sourceTree = "<group>"; };
 		D3D34A1F1ACA85EE004733D2 /* noagree@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noagree@2x.png"; sourceTree = "<group>"; };
 		D3D34A221ACA861B004733D2 /* agree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = agree.png; sourceTree = "<group>"; };
@@ -6714,12 +6705,6 @@
 				D3D2BFE71AC94478003BB779 /* MoneyView.m */,
 				D3D2BFE91AC9497B003BB779 /* ContractView.h */,
 				D3D2BFEA1AC9497B003BB779 /* ContractView.m */,
-				D3D34A151ACA4396004733D2 /* OverProvisionalViewController.h */,
-				D3D34A161ACA4396004733D2 /* OverProvisionalViewController.m */,
-				D3D34A181ACA48A3004733D2 /* CodeView.h */,
-				D3D34A191ACA48A3004733D2 /* CodeView.m */,
-				D3D34A1B1ACA81AC004733D2 /* ButtonView.h */,
-				D3D34A1C1ACA81AC004733D2 /* ButtonView.m */,
 			);
 			path = Provisional;
 			sourceTree = "<group>";
@@ -8174,7 +8159,6 @@
 				0426C27B19922D5A00CD8822 /* GPUImageHistogramGenerator.m in Sources */,
 				0426C22E19922D5A00CD8822 /* FaceLoginViewController.m in Sources */,
 				5B656CFC19932E36007D79A8 /* QuadCurveMenuItem.m in Sources */,
-				D3D34A171ACA4396004733D2 /* OverProvisionalViewController.m in Sources */,
 				0426C27A19922D5A00CD8822 /* GPUImageHistogramFilter.m in Sources */,
 				D3B51BC41ABA96A600C7D57A /* AddMarkView.m in Sources */,
 				0426C23A19922D5A00CD8822 /* AFSecurityPolicy.m in Sources */,
@@ -8236,7 +8220,6 @@
 				0426C2BD19922D5A00CD8822 /* GPUImageSolidColorGenerator.m in Sources */,
 				0426C24D19922D5A00CD8822 /* GPUImageBulgeDistortionFilter.m in Sources */,
 				D36809311ABFDCB900AFA097 /* QuotesDetailViewController.m in Sources */,
-				D3D34A1D1ACA81AC004733D2 /* ButtonView.m in Sources */,
 				042D9DC719B4A1C600689C5D /* JSONKit.m in Sources */,
 				5BF31B6A1AB025FD00DA87F5 /* DiscussionGroupView.m in Sources */,
 				D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */,
@@ -8332,7 +8315,6 @@
 				D3376CFB1AC2549C00738B5F /* UserOrCompanyModel.m in Sources */,
 				0426C30319922D5A00CD8822 /* TFIndicatorView.m in Sources */,
 				5B8A2CEA1AAEE0AD00C8F9DE /* AddFriendViewController.m in Sources */,
-				D3D34A1A1ACA48A3004733D2 /* CodeView.m in Sources */,
 				0426C27C19922D5A00CD8822 /* GPUImageHoughTransformLineDetector.m in Sources */,
 				D3AC612B19B5C7D10015B62F /* ContactProjectTableViewCell.m in Sources */,
 				D3F787471AADA40300ED754B /* AddressBookModel.m in Sources */,

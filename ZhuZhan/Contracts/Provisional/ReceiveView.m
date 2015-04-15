@@ -9,104 +9,123 @@
 #import "ReceiveView.h"
 #import "RKShadowView.h"
 @implementation ReceiveView
--(id)initWithFrame:(CGRect)frame isOver:(BOOL)isOver{
+-(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if(self){
-        [self addSubview:self.titleLabel];
-        [self addSubview:self.cutLine];
-        if(!isOver){
-            [self addSubview:self.imageView];
-            [self addSubview:self.addView];
-        }
+        [self addCutLine];
+        [self.addPersona addSubview:self.personaLabel];
+        [self.addPersona addSubview:self.addImageView];
+        [self addSubview:self.addPersona];
+        [self addSubview:self.contactBtn];
+        [self.contactBtn addSubview:self.arrowImageView];
+        [self.contactBtn addSubview:self.contactLabel];
+        [self addSubview:self.textField];
+        [self addSubview:self.messageLabel];
+        [self addSubview:self.bottomView];
     }
     return self;
 }
 
--(UILabel *)titleLabel{
-    if(!_titleLabel){
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(26, 16, 180, 16)];
-        _titleLabel.textColor = BlueColor;
-        _titleLabel.textAlignment = NSTextAlignmentLeft;
-        _titleLabel.font = [UIFont systemFontOfSize:16];
-        _titleLabel.text = @"接收者";
+-(UIButton *)addPersona{
+    if(!_addPersona){
+        _addPersona = [UIButton buttonWithType:UIButtonTypeCustom];
+        _addPersona.frame = CGRectMake(0, 0, 320, 47);
+        [_addPersona addTarget:self action:@selector(addPersonaAction) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _titleLabel;
+    return _addPersona;
 }
 
--(UIImageView *)imageView{
-    if(!_imageView){
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(17, 18, 6, 6)];
-        _imageView.image = [GetImagePath getImagePath:@"star"];
+-(UILabel *)personaLabel{
+    if(!_personaLabel){
+        _personaLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 16, 180, 16)];
+        _personaLabel.textAlignment = NSTextAlignmentLeft;
+        _personaLabel.textColor = BlueColor;
+        _personaLabel.text = @"请选择接受者的用户名";
+        _personaLabel.font = [UIFont systemFontOfSize:16];
     }
-    return _imageView;
+    return _personaLabel;
 }
 
--(UIView *)cutLine{
-    if(!_cutLine){
-        _cutLine = [RKShadowView seperatorLine];
+-(UIImageView *)addImageView{
+    if(!_addImageView){
+        _addImageView = [[UIImageView alloc] initWithFrame:CGRectMake(287, 16, 9, 15)];
+        _addImageView.image = [GetImagePath getImagePath:@"交易_箭头"];
     }
-    return _cutLine;
+    return _addImageView;
 }
 
--(UIView *)addView{
-    if(!_addView){
-        _addView = [[UIView alloc] initWithFrame:CGRectMake(26, 38, 180, 22)];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 21, 22)];
-        imageView.image = [GetImagePath getImagePath:@"交易_添加"];
-        [_addView addSubview:imageView];
-        
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(27, 3, 50, 16)];
-        label.textColor = AllGreenColor;
-        label.text = @"添加";
-        label.font = [UIFont systemFontOfSize:16];
-        [_addView addSubview:label];
-        
-        UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        addBtn.frame = CGRectMake(0, 0, 180, 22);
-        [addBtn addTarget:self action:@selector(addBtnAction) forControlEvents:UIControlEventTouchUpInside];
-        [_addView addSubview:addBtn];
+-(UIButton *)contactBtn{
+    if(!_contactBtn){
+        _contactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _contactBtn.frame = CGRectMake(0, 49, 320, 47);
+        [_contactBtn addTarget:self action:@selector(contactBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _addView;
+    return _contactBtn;
 }
 
--(void)GetHeightWithBlock:(void (^)(double))block str:(NSString *)str{
-    __block int height = 0;
-    if(str != nil){
-        CGRect bounds=[str boundingRectWithSize:CGSizeMake(280, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil];
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 37, 240, bounds.size.height)];
-        label.textAlignment = NSTextAlignmentLeft;
-        label.numberOfLines =0;
-        label.lineBreakMode = NSLineBreakByWordWrapping;
-        label.font = [UIFont systemFontOfSize:16];
-        label.text = str;
-        [self addSubview:label];
-        [self.addView setFrame:CGRectMake(26, bounds.size.height+44, 180, 22)];
-        height = 75+bounds.size.height;
+-(UIImageView *)arrowImageView{
+    if(!_arrowImageView){
+        _arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(287, 16, 9, 15)];
+        _arrowImageView.image = [GetImagePath getImagePath:@"交易_箭头"];
     }
-    if(block){
-        block(height);
+    return _arrowImageView;
+}
+
+-(UILabel *)contactLabel{
+    if(!_contactLabel){
+        _contactLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 16, 200, 16)];
+        _contactLabel.text = @"选择合同角色";
+        _contactLabel.textColor = BlueColor;
+        _contactLabel.font = [UIFont systemFontOfSize:16];
+    }
+    return _contactLabel;
+}
+
+-(UITextField *)textField{
+    if(!_textField){
+        _textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 97, 320, 47)];
+        _textField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 0)];
+        _textField.leftView.userInteractionEnabled = NO;
+        _textField.leftViewMode = UITextFieldViewModeAlways;
+        _textField.placeholder = @"请输入公司全名";
+        _textField.font = [UIFont systemFontOfSize:15];
+        _textField.returnKeyType = UIReturnKeyDone;
+        [_textField setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
+    }
+    return _textField;
+}
+
+-(UILabel *)messageLabel{
+    if(!_messageLabel){
+        _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 145, 250, 16)];
+        _messageLabel.textColor = [UIColor redColor];
+        _messageLabel.text = @"这里输入的公司全称将用于合同和开票信息";
+        _messageLabel.font = [UIFont systemFontOfSize:13];
+    }
+    return _messageLabel;
+}
+
+-(UIView *)bottomView{
+    if(!_bottomView){
+        _bottomView = [RKShadowView seperatorLineShadowViewWithHeight:10];
+        _bottomView.frame = CGRectMake(0, 170, 320, 10);
+    }
+    return _bottomView;
+}
+
+-(void)addCutLine{
+    for(int i=0;i<2;i++){
+        self.cutLine = [RKShadowView seperatorLine];
+        self.cutLine.frame = CGRectMake(0, 48*i+48, 320, 1);
+        [self addSubview:self.cutLine];
     }
 }
 
--(void)GetHeightOverWithBlock:(void (^)(double height))block str:(NSString *)str{
-    __block int height = 0;
-    if(str != nil){
-        CGRect bounds=[str boundingRectWithSize:CGSizeMake(280, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil];
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 42, 240, bounds.size.height)];
-        label.textAlignment = NSTextAlignmentLeft;
-        label.numberOfLines =0;
-        label.lineBreakMode = NSLineBreakByWordWrapping;
-        label.font = [UIFont systemFontOfSize:16];
-        label.text = str;
-        [self addSubview:label];
-        height = 42+bounds.size.height;
-    }
-    if(block){
-        block(height);
-    }
+-(void)addPersonaAction{
+    NSLog(@"addPersonaAction");
 }
 
--(void)addBtnAction{
-    NSLog(@"addBtnAction");
+-(void)contactBtnAction{
+    NSLog(@"contactBtnAction");
 }
 @end

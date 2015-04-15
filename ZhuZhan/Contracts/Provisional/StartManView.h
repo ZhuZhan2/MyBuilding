@@ -10,5 +10,11 @@
 
 @interface StartManView : UIView
 @property(nonatomic,strong)UILabel *titleLabel;
--(void)GetHeightWithBlock:(void (^)(double height))block str:(NSString *)str;
+@property(nonatomic,strong)UIView *cutLine;
+@property(nonatomic,strong)UIButton *contactBtn;
+@property(nonatomic,strong)UIImageView *arrowImageView;
+@property(nonatomic,strong)UILabel *contactLabel;
+@property(nonatomic,strong)UITextField *textField;
+@property(nonatomic,strong)UILabel *messageLabel;
+@property(nonatomic,strong)UIView *bottomView;
 @end

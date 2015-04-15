@@ -7,7 +7,7 @@
 //
 
 #import "ChatListModel.h"
-
+#import "ProjectStage.h"
 @implementation ChatListModel
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
@@ -33,6 +33,6 @@
     }else{
         self.a_isShow = YES;
     }
-    self.a_time = dict[@"createdTime"];
+    self.a_time = [ProjectStage ChatMessageTimeStage:dict[@"createdTime"]];
 }
 @end

@@ -185,6 +185,8 @@
     AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];
     ChatViewController *view = [[ChatViewController alloc] init];
     view.contactId = contactModel.a_contactId;
+    BOOL hasNickName=![contactModel.a_nickName isEqualToString:@""];
+    view.titleStr = hasNickName?contactModel.a_nickName:contactModel.a_loginName;
     view.type = @"01";
     [self.navigationController pushViewController:view animated:YES];
 }
@@ -229,6 +231,8 @@
         AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];
         ChatViewController *view = [[ChatViewController alloc] init];
         view.contactId = contactModel.a_contactId;
+        BOOL hasNickName=![contactModel.a_nickName isEqualToString:@""];
+        view.titleStr = hasNickName?contactModel.a_nickName:contactModel.a_loginName;
         view.type = @"01";
         [self.navigationController pushViewController:view animated:YES];
     });

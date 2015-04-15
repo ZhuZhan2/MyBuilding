@@ -17,14 +17,6 @@
 @end
 
 @implementation CommissionBaseViewController
-
--(instancetype)initWithIsMainView:(BOOL)isMainView{
-    if (self=[super init]) {
-        self.isMainView=isMainView;
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

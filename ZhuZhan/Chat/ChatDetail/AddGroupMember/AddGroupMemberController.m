@@ -48,7 +48,7 @@
 }
 
 -(void)initNavi{
-    self.title=@"群成员(等待接口完成再修改)";
+    self.title=self.titleStr;
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
     self.view.backgroundColor=backColor;
 }
