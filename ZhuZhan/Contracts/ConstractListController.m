@@ -25,9 +25,14 @@
     [super viewDidLoad];
     self.archiveStatus = @"";
     [self initNavi];
-    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"",@"已完成",@"已关闭"]  numbers:nil];
+    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已完成",@"已关闭"]  numbers:nil];
     [self initTableView];
+    [self initTableViewExtra];
     [self firstNetWork];
+}
+
+-(void)initTableViewExtra{
+    self.tableView.backgroundColor=AllBackDeepGrayColor;
 }
 
 -(void)initNavi{

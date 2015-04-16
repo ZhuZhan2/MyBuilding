@@ -16,5 +16,5 @@ typedef enum{
 
 @interface RKContractsStagesView : UIScrollView
 //big为一维，small为二维
-+(instancetype)contractsStagesViewWithBigStageNames:(NSArray*)bigStageNames smallStageNames:(NSArray*)smallStageNames smallStageStyles:(NSArray*)smallStageStyles isClosed:(BOOL)isClosed;
++(UIView*)contractsStagesViewWithBigStageNames:(NSArray*)bigStageNames smallStageNames:(NSArray*)smallStageNames smallStageStyles:(NSArray*)smallStageStyles isClosed:(BOOL)isClosed;
 @end

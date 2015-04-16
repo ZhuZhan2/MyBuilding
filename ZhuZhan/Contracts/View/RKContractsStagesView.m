@@ -27,8 +27,18 @@
 #define roundWidth 15
 
 @implementation RKContractsStagesView
-+(instancetype)contractsStagesViewWithBigStageNames:(NSArray *)bigStageNames smallStageNames:(NSArray *)smallStageNames smallStageStyles:(NSArray *)smallStageStyles isClosed:(BOOL)isClosed{
-    return [[self alloc]initWithBigStageNames:bigStageNames smallStageNames:smallStageNames smallStageStyles:smallStageStyles isClosed:isClosed];
++(UIView*)contractsStagesViewWithBigStageNames:(NSArray *)bigStageNames smallStageNames:(NSArray *)smallStageNames smallStageStyles:(NSArray *)smallStageStyles isClosed:(BOOL)isClosed{
+    RKContractsStagesView* stagesView=[[self alloc]initWithBigStageNames:bigStageNames smallStageNames:smallStageNames smallStageStyles:smallStageStyles isClosed:isClosed];
+    
+    UIView* stagesViewAddedShadow=[[UIView alloc]initWithFrame:stagesView.frame];
+    [stagesViewAddedShadow addSubview:stagesView];
+    
+    UIView* seperatorLine=[RKShadowView seperatorLineInThemeView];
+    CGRect frame=seperatorLine.frame;
+    frame.origin.y=CGRectGetHeight(stagesView.frame);
+    seperatorLine.frame=frame;
+    [stagesViewAddedShadow addSubview:seperatorLine];
+    return stagesViewAddedShadow;
 }
 
 -(instancetype)initWithBigStageNames:(NSArray *)bigStageNames smallStageNames:(NSArray *)smallStageNames smallStageStyles:(NSArray *)smallStageStyles isClosed:(BOOL)isClosed{
@@ -119,14 +129,6 @@
     maxWidth+=orginCenterX;
     self.frame=CGRectMake(0, 0, kScreenWidth, maxHeight);
     self.contentSize=CGSizeMake(maxWidth, maxHeight);
-    self.clipsToBounds=NO;
-    UIView* seperatorLine=[RKShadowView seperatorLineInThemeView];
-    CGRect frame=seperatorLine.frame;
-    frame.origin.y=CGRectGetHeight(self.frame);
-    frame.origin.x-=600;
-    frame.size.width=maxWidth+1200;
-    seperatorLine.frame=frame;
-    [self addSubview:seperatorLine];
 }
 
 -(NSMutableArray *)smallStageRounds{

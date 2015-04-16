@@ -10,6 +10,6 @@
 @class RKContractsStagesView;
 @class ContractsTradeCodeView;
 @interface ContractsBaseViewController : ChatBaseViewController
-@property (nonatomic, strong)RKContractsStagesView* stagesView;
+@property (nonatomic, strong)UIView* stagesView;
 @property (nonatomic, strong)ContractsTradeCodeView* tradeCodeView;
 @end

@@ -5346,10 +5346,10 @@
 			children = (
 				5B70CC5D1AC9420600FC8353 /* ConstractListController.h */,
 				5B70CC5E1AC9420600FC8353 /* ConstractListController.m */,
-				5B9401D11ACA89FF000C3C99 /* ContractsListSearchController.h */,
-				5B9401D21ACA89FF000C3C99 /* ContractsListSearchController.m */,
 				5B70CC601AC947F100FC8353 /* ContractListCell.h */,
 				5B70CC611AC947F100FC8353 /* ContractListCell.m */,
+				5B9401D11ACA89FF000C3C99 /* ContractsListSearchController.h */,
+				5B9401D21ACA89FF000C3C99 /* ContractsListSearchController.m */,
 				5B5837001AD7CE0900F8E7C3 /* DetailController */,
 				D3DBCE561AC8DEC900C9FEDE /* BaseView */,
 				D3DBCE521AC8DE6700C9FEDE /* Provisional */,

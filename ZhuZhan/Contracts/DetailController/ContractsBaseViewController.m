@@ -81,7 +81,7 @@
 //    return _salerConstractView;
 //}
 
--(RKContractsStagesView *)stagesView{
+-(UIView *)stagesView{
     if (!_stagesView) {
         _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:@[@"大标题1",@"大标题2",@"大标题3"] smallStageNames:@[@[@"小标题1",@"小标题2",@"小标题3"],@[@"小标题1",@"小标题2"],@[@"小标题"]] smallStageStyles:@[@[@0,@0,@0],@[@0,@1],@[@1]] isClosed:NO];
         CGRect frame=_stagesView.frame;

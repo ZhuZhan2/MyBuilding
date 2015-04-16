@@ -22,7 +22,7 @@
 #import "MainContractsBaseController.h"
 #import "ProvisionalViewController.h"
 #import "OtherContractsBaseController.h"
-
+#import "AskPriceMessageViewController.h"
 #define contentHeight (kScreenHeight==480?431:519)
 @interface HomePageViewController ()<LoginViewDelegate>
 @property(nonatomic,strong)UINavigationController *navigatin;
@@ -269,7 +269,8 @@
     NSLog(@"===>%ld",(long)idx);
     if(idx == 0){
         NSLog(@"推荐信");
-        quadCurveVC=[[OtherContractsBaseController alloc]init];
+       // quadCurveVC=[[ConstractListController alloc]init];
+        quadCurveVC=[[MainContractsBaseController alloc]init];
     }else if(idx == 1){
         NSLog(@"发询价");
         quadCurveVC=[[AskPriceMainViewController alloc]init];
