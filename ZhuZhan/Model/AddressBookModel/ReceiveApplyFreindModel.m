@@ -7,7 +7,7 @@
 //
 
 #import "ReceiveApplyFreindModel.h"
-
+#import "ProjectStage.h"
 @implementation ReceiveApplyFreindModel
 -(void)setDic:(NSDictionary *)dic{
     _dic=dic;
@@ -22,7 +22,7 @@
      @property(nonatomic,copy)NSString* a_messageType;
      @property(nonatomic,copy)NSString* a_status;
      */
-    self.a_createdTime=dic[@"createdTime"];
+    self.a_createdTime=[ProjectStage ChatMessageTimeStage:dic[@"createdTime"]];
     self.a_createdUser=dic[@"createdUser"];
     self.a_loginName=dic[@"loginName"];
     self.a_messageContent=dic[@"messageContent"];
