@@ -342,7 +342,7 @@
         return nil;
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/contacts/validatePlatformContacts"];
-    NSLog(@"=====%@",urlStr);
+    NSLog(@"url==>%@,dic==>%@",urlStr,dic);
     return  [[AFAppDotNetAPIClient sharedNewClient]POST:urlStr parameters:dic success:^(NSURLSessionDataTask *task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if ([JSON[@"status"][@"statusCode"] isEqualToString:@"200"]) {

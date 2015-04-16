@@ -26,7 +26,7 @@
     [self.headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:model.a_avatarUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     self.nameLabel.text = model.a_name;
     if (model.a_isWaiting) {
-        [self.addBtn setBackgroundImage:[GetImagePath getImagePath:@"等待验证"] forState:UIControlStateNormal];
+        [self.addBtn setBackgroundImage:[GetImagePath getImagePath:@"等待验证120"] forState:UIControlStateNormal];
         self.addBtn.userInteractionEnabled=NO;
     }else{
         [self.addBtn setBackgroundImage:[GetImagePath getImagePath:model.a_isisFriend?@"added":@"add_green_button"] forState:UIControlStateNormal];
@@ -91,7 +91,7 @@
                 [alertView show];
                 self.model.a_isWaiting=YES;
                 self.addBtn.userInteractionEnabled=NO;
-                [self.addBtn setBackgroundImage:[GetImagePath getImagePath:@"等待验证"] forState:UIControlStateNormal];
+                [self.addBtn setBackgroundImage:[GetImagePath getImagePath:@"等待验证120"] forState:UIControlStateNormal];
             }else{
                 [LoginAgain AddLoginView:NO];
             }
