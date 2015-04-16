@@ -730,6 +730,8 @@
 		5B7670651AB6B92B00E154C5 /* SearchBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7670611AB6B92B00E154C5 /* SearchBarTableViewController.m */; };
 		5B7670681AB6BD8100E154C5 /* RecommendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7670671AB6BD8100E154C5 /* RecommendListViewController.m */; };
 		5B76706B1AB6BDB800E154C5 /* RemindListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B76706A1AB6BDB800E154C5 /* RemindListViewController.m */; };
+		5B7715921ADF4423004CA4D1 /* 等待验证120.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7715901ADF4423004CA4D1 /* 等待验证120.png */; };
+		5B7715931ADF4423004CA4D1 /* 等待验证120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7715911ADF4423004CA4D1 /* 等待验证120@2x.png */; };
 		5B78D68E1ADCB40900E08C4A /* ValidatePlatformContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B78D68D1ADCB40900E08C4A /* ValidatePlatformContactModel.m */; };
 		5B78D6911ADCDF5A00E08C4A /* AddressBookFriendSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B78D6901ADCDF5A00E08C4A /* AddressBookFriendSearchController.m */; };
 		5B7AA6C51A58D6B0000FBFF2 /* 01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6BD1A58D6AF000FBFF2 /* 01.png */; };
@@ -2589,6 +2591,8 @@
 		5B7670671AB6BD8100E154C5 /* RecommendListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendListViewController.m; sourceTree = "<group>"; };
 		5B7670691AB6BDB800E154C5 /* RemindListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindListViewController.h; sourceTree = "<group>"; };
 		5B76706A1AB6BDB800E154C5 /* RemindListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindListViewController.m; sourceTree = "<group>"; };
+		5B7715901ADF4423004CA4D1 /* 等待验证120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "等待验证120.png"; sourceTree = "<group>"; };
+		5B7715911ADF4423004CA4D1 /* 等待验证120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "等待验证120@2x.png"; sourceTree = "<group>"; };
 		5B78D68C1ADCB40900E08C4A /* ValidatePlatformContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidatePlatformContactModel.h; sourceTree = "<group>"; };
 		5B78D68D1ADCB40900E08C4A /* ValidatePlatformContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidatePlatformContactModel.m; sourceTree = "<group>"; };
 		5B78D68F1ADCDF5A00E08C4A /* AddressBookFriendSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookFriendSearchController.h; sourceTree = "<group>"; };
@@ -7483,6 +7487,7 @@
 				5BE08E841A3586EA00495EEB /* 030027.png in Resources */,
 				04BC413019D7E5B3006B5C7B /* controls_03.png in Resources */,
 				5B95ADE21AB1986100797EA6 /* 已选择联系人.png in Resources */,
+				5B7715931ADF4423004CA4D1 /* 等待验证120@2x.png in Resources */,
 				D3D6861B1ABAC43D005D9ED6 /* 交易_添加@2x.png in Resources */,
 				5BE08DD91A3586EA00495EEB /* 010035@2x.png in Resources */,
 				5BE08D9D1A3586EA00495EEB /* 010005@2x.png in Resources */,
@@ -7841,6 +7846,7 @@
 				5BE08DCE1A3586EA00495EEB /* 010030.png in Resources */,
 				04BC41D319D7E5B3006B5C7B /* 人脉－发布动态_07a.png in Resources */,
 				5BE08E1D1A3586EA00495EEB /* 020005@2x.png in Resources */,
+				5B7715921ADF4423004CA4D1 /* 等待验证120.png in Resources */,
 				D3EDC9F91ACE687C002AF865 /* word@2x.png in Resources */,
 				5B9FDEA01A6CD47000215485 /* 项目详情默认0@2x.png in Resources */,
 				04BC435C19D7E5B3006B5C7B /* 高级搜索-多选_09a.png in Resources */,

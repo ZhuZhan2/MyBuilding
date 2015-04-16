@@ -20,6 +20,7 @@
 #import "ContractsBaseViewController.h"
 #import "AskPriceMainViewController.h"
 #import "MainContractsBaseController.h"
+#import "ProvisionalViewController.h"
 #define contentHeight (kScreenHeight==480?431:519)
 @interface HomePageViewController ()<LoginViewDelegate>
 @property(nonatomic,strong)UINavigationController *navigatin;
