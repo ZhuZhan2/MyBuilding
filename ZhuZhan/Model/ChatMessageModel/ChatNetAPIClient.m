@@ -9,8 +9,8 @@
 #import "ChatNetAPIClient.h"
 #import "LoginSqlite.h"
 @implementation ChatNetAPIClient
-//static NSString * const AFAppDotNetAPIBaseURLString = @"http://10.1.5.104:9090/im";//测试用
-static NSString * const AFAppDotNetAPIBaseURLString = @"http://10.1.5.104:8080/im";//开发用
+static NSString * const AFAppDotNetAPIBaseURLString = @"http://10.1.5.104:9090/im";//测试用
+//static NSString * const AFAppDotNetAPIBaseURLString = @"http://10.1.5.104:8080/im";//开发用
 //static NSString * const AFAppDotNetAPIBaseURLString = @"http://10.1.1.138:9092/im";
 + (instancetype)sharedClient {
     static ChatNetAPIClient *_sharedClient = nil;
