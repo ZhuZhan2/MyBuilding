@@ -104,7 +104,9 @@
 }
 
 -(void)contactBtnAction{
-    NSLog(@"contactBtnAction");
+    if([self.delegate respondsToSelector:@selector(showActionSheet)]){
+        [self.delegate showActionSheet];
+    }
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{

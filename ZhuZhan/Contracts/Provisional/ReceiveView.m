@@ -123,11 +123,15 @@
 }
 
 -(void)addPersonaAction{
-    NSLog(@"addPersonaAction");
+    if([self.delegate respondsToSelector:@selector(showSearchView)]){
+        [self.delegate showSearchView];
+    }
 }
 
 -(void)contactBtnAction{
-    NSLog(@"contactBtnAction");
+    if([self.delegate respondsToSelector:@selector(showActionSheet)]){
+        [self.delegate showActionSheet];
+    }
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{

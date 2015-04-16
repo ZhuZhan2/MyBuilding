@@ -10,6 +10,8 @@
 @protocol ReceiveViewDelegate <NSObject>
 -(void)textFiedDidBegin:(UITextField *)textField;
 -(void)textFiedDidEnd:(NSString *)str textField:(UITextField *)textField;
+-(void)showActionSheet;
+-(void)showSearchView;
 @end
 @interface ReceiveView : UIView<UITextFieldDelegate>
 @property(nonatomic,strong)UIButton *addPersona;

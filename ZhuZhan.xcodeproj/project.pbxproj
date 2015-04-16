@@ -730,8 +730,6 @@
 		5B7670651AB6B92B00E154C5 /* SearchBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7670611AB6B92B00E154C5 /* SearchBarTableViewController.m */; };
 		5B7670681AB6BD8100E154C5 /* RecommendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7670671AB6BD8100E154C5 /* RecommendListViewController.m */; };
 		5B76706B1AB6BDB800E154C5 /* RemindListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B76706A1AB6BDB800E154C5 /* RemindListViewController.m */; };
-		5B7715921ADF4423004CA4D1 /* 等待验证120.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7715901ADF4423004CA4D1 /* 等待验证120.png */; };
-		5B7715931ADF4423004CA4D1 /* 等待验证120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7715911ADF4423004CA4D1 /* 等待验证120@2x.png */; };
 		5B78D68E1ADCB40900E08C4A /* ValidatePlatformContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B78D68D1ADCB40900E08C4A /* ValidatePlatformContactModel.m */; };
 		5B78D6911ADCDF5A00E08C4A /* AddressBookFriendSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B78D6901ADCDF5A00E08C4A /* AddressBookFriendSearchController.m */; };
 		5B7AA6C51A58D6B0000FBFF2 /* 01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6BD1A58D6AF000FBFF2 /* 01.png */; };
@@ -1329,6 +1327,10 @@
 		D3D34A311ACA8F9A004733D2 /* change@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D34A2F1ACA8F9A004733D2 /* change@2x.png */; };
 		D3D483EC1ADF41FF004AF972 /* 等待验证.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D483EA1ADF41FF004AF972 /* 等待验证.png */; };
 		D3D483ED1ADF41FF004AF972 /* 等待验证@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D483EB1ADF41FF004AF972 /* 等待验证@2x.png */; };
+		D3D483F01ADF5FF6004AF972 /* 等待验证120.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D483EE1ADF5FF6004AF972 /* 等待验证120.png */; };
+		D3D483F11ADF5FF6004AF972 /* 等待验证120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D483EF1ADF5FF6004AF972 /* 等待验证120@2x.png */; };
+		D3D483F51ADF884A004AF972 /* ContractsApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D483F41ADF884A004AF972 /* ContractsApi.m */; };
+		D3D483F91ADFBB08004AF972 /* AskPriceMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D483F81ADFBB08004AF972 /* AskPriceMessageViewController.m */; };
 		D3D4A2E21AAE98390071B3EA /* ChatMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4A2E11AAE98390071B3EA /* ChatMessageModel.m */; };
 		D3D4FB301A0872770033BB34 /* CompanyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4FB2F1A0872770033BB34 /* CompanyCenterViewController.m */; };
 		D3D4FB331A087A830033BB34 /* 公司－账号设置_03a-05.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D4FB311A087A830033BB34 /* 公司－账号设置_03a-05.png */; };
@@ -2591,8 +2593,6 @@
 		5B7670671AB6BD8100E154C5 /* RecommendListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendListViewController.m; sourceTree = "<group>"; };
 		5B7670691AB6BDB800E154C5 /* RemindListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindListViewController.h; sourceTree = "<group>"; };
 		5B76706A1AB6BDB800E154C5 /* RemindListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindListViewController.m; sourceTree = "<group>"; };
-		5B7715901ADF4423004CA4D1 /* 等待验证120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "等待验证120.png"; sourceTree = "<group>"; };
-		5B7715911ADF4423004CA4D1 /* 等待验证120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "等待验证120@2x.png"; sourceTree = "<group>"; };
 		5B78D68C1ADCB40900E08C4A /* ValidatePlatformContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidatePlatformContactModel.h; sourceTree = "<group>"; };
 		5B78D68D1ADCB40900E08C4A /* ValidatePlatformContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidatePlatformContactModel.m; sourceTree = "<group>"; };
 		5B78D68F1ADCDF5A00E08C4A /* AddressBookFriendSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookFriendSearchController.h; sourceTree = "<group>"; };
@@ -3390,6 +3390,12 @@
 		D3D34A2F1ACA8F9A004733D2 /* change@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "change@2x.png"; sourceTree = "<group>"; };
 		D3D483EA1ADF41FF004AF972 /* 等待验证.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "等待验证.png"; sourceTree = "<group>"; };
 		D3D483EB1ADF41FF004AF972 /* 等待验证@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "等待验证@2x.png"; sourceTree = "<group>"; };
+		D3D483EE1ADF5FF6004AF972 /* 等待验证120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "等待验证120.png"; sourceTree = "<group>"; };
+		D3D483EF1ADF5FF6004AF972 /* 等待验证120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "等待验证120@2x.png"; sourceTree = "<group>"; };
+		D3D483F31ADF884A004AF972 /* ContractsApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractsApi.h; sourceTree = "<group>"; };
+		D3D483F41ADF884A004AF972 /* ContractsApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractsApi.m; sourceTree = "<group>"; };
+		D3D483F71ADFBB08004AF972 /* AskPriceMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceMessageViewController.h; sourceTree = "<group>"; };
+		D3D483F81ADFBB08004AF972 /* AskPriceMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPriceMessageViewController.m; sourceTree = "<group>"; };
 		D3D49EE919FE0B76002B3B99 /* HeadImageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadImageDelegate.h; sourceTree = "<group>"; };
 		D3D4A2E01AAE98390071B3EA /* ChatMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageModel.h; sourceTree = "<group>"; };
 		D3D4A2E11AAE98390071B3EA /* ChatMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageModel.m; sourceTree = "<group>"; };
@@ -3731,6 +3737,7 @@
 				5B8A2CC51AAEE0AD00C8F9DE /* Chat */,
 				5BB9A5341AB6EC3100B5B2D8 /* Business */,
 				5B5266331AC3B4B800EF8185 /* Contracts */,
+				D3D483F61ADFBADE004AF972 /* AskPriceMessage */,
 				0426C05519922D5900CD8822 /* Tools */,
 				0426BFF919922CE400CD8822 /* AppDelegate.h */,
 				0426BFFA19922CE400CD8822 /* AppDelegate.m */,
@@ -5153,6 +5160,8 @@
 		5B3B5D461AAD935E002FB444 /* 二期新图片 */ = {
 			isa = PBXGroup;
 			children = (
+				D3D483EE1ADF5FF6004AF972 /* 等待验证120.png */,
+				D3D483EF1ADF5FF6004AF972 /* 等待验证120@2x.png */,
 				D3D483EA1ADF41FF004AF972 /* 等待验证.png */,
 				D3D483EB1ADF41FF004AF972 /* 等待验证@2x.png */,
 				D3D9F8DA1ADE7FBE002BBB06 /* 加好友带字.png */,
@@ -6280,6 +6289,7 @@
 		D3AC618B19B6BF930015B62F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D3D483F21ADF8805004AF972 /* ContractsModel */,
 				D3DA3D2B1ABBBA71001D1EEA /* AskPriceModel */,
 				D3FF3E7E1AAEC8FF005195CC /* ChoseContactModel */,
 				D3D4A2DF1AAE98290071B3EA /* ChatMessageModel */,
@@ -6584,6 +6594,24 @@
 				D3D321261A3EAE2E0009AEEA /* PooCodeView.m */,
 			);
 			path = AuthCode;
+			sourceTree = "<group>";
+		};
+		D3D483F21ADF8805004AF972 /* ContractsModel */ = {
+			isa = PBXGroup;
+			children = (
+				D3D483F31ADF884A004AF972 /* ContractsApi.h */,
+				D3D483F41ADF884A004AF972 /* ContractsApi.m */,
+			);
+			path = ContractsModel;
+			sourceTree = "<group>";
+		};
+		D3D483F61ADFBADE004AF972 /* AskPriceMessage */ = {
+			isa = PBXGroup;
+			children = (
+				D3D483F71ADFBB08004AF972 /* AskPriceMessageViewController.h */,
+				D3D483F81ADFBB08004AF972 /* AskPriceMessageViewController.m */,
+			);
+			path = AskPriceMessage;
 			sourceTree = "<group>";
 		};
 		D3D4A2DF1AAE98290071B3EA /* ChatMessageModel */ = {
@@ -7487,7 +7515,6 @@
 				5BE08E841A3586EA00495EEB /* 030027.png in Resources */,
 				04BC413019D7E5B3006B5C7B /* controls_03.png in Resources */,
 				5B95ADE21AB1986100797EA6 /* 已选择联系人.png in Resources */,
-				5B7715931ADF4423004CA4D1 /* 等待验证120@2x.png in Resources */,
 				D3D6861B1ABAC43D005D9ED6 /* 交易_添加@2x.png in Resources */,
 				5BE08DD91A3586EA00495EEB /* 010035@2x.png in Resources */,
 				5BE08D9D1A3586EA00495EEB /* 010005@2x.png in Resources */,
@@ -7499,6 +7526,7 @@
 				04BC42B319D7E5B3006B5C7B /* 面部采集_07@2x.png in Resources */,
 				D3AD609119AC56CB001FD483 /* MJRefresh.bundle in Resources */,
 				5BE08D9F1A3586EA00495EEB /* 010006@2x.png in Resources */,
+				D3D483F01ADF5FF6004AF972 /* 等待验证120.png in Resources */,
 				5BE08DD21A3586EA00495EEB /* 010032.png in Resources */,
 				5B95ADBE1AB122F100797EA6 /* Vector-Smart-Object.png in Resources */,
 				5BE08EA51A3586EA00495EEB /* 040016@2x.png in Resources */,
@@ -7797,6 +7825,7 @@
 				5BE08DF71A3586EA00495EEB /* 010050@2x.png in Resources */,
 				5BE08E091A3586EA00495EEB /* 010059@2x.png in Resources */,
 				5BE08EB61A3586EA00495EEB /* 040025.png in Resources */,
+				D3D483F11ADF5FF6004AF972 /* 等待验证120@2x.png in Resources */,
 				5BE08E721A3586EA00495EEB /* 030018.png in Resources */,
 				04BC410119D7E5B3006B5C7B /* 015.png in Resources */,
 				5BE08DEB1A3586EA00495EEB /* 010044@2x.png in Resources */,
@@ -7846,7 +7875,6 @@
 				5BE08DCE1A3586EA00495EEB /* 010030.png in Resources */,
 				04BC41D319D7E5B3006B5C7B /* 人脉－发布动态_07a.png in Resources */,
 				5BE08E1D1A3586EA00495EEB /* 020005@2x.png in Resources */,
-				5B7715921ADF4423004CA4D1 /* 等待验证120.png in Resources */,
 				D3EDC9F91ACE687C002AF865 /* word@2x.png in Resources */,
 				5B9FDEA01A6CD47000215485 /* 项目详情默认0@2x.png in Resources */,
 				04BC435C19D7E5B3006B5C7B /* 高级搜索-多选_09a.png in Resources */,
@@ -8024,6 +8052,7 @@
 				D3DCDACA1ADBA66C0029DB95 /* GetAddressBook.m in Sources */,
 				D3EDCA4F1ACE90A6002AF865 /* NSData+ImageContentType.m in Sources */,
 				D3EDCA5D1ACE90A6002AF865 /* UIView+WebCacheOperation.m in Sources */,
+				D3D483F91ADFBB08004AF972 /* AskPriceMessageViewController.m in Sources */,
 				D31BBB9A1AD3E3F500919B8B /* SWTableViewCell.m in Sources */,
 				D3EDCA4E1ACE90A6002AF865 /* MKAnnotationView+WebCache.m in Sources */,
 				D3AD616C19ADB9F7001FD483 /* RecordSqlite.m in Sources */,
@@ -8049,6 +8078,7 @@
 				0426C30119922D5A00CD8822 /* UIRefreshControl+AFNetworking.m in Sources */,
 				0426C29519922D5A00CD8822 /* GPUImageMotionDetector.m in Sources */,
 				0426C29319922D5A00CD8822 /* GPUImageMosaicFilter.m in Sources */,
+				D3D483F51ADF884A004AF972 /* ContractsApi.m in Sources */,
 				0426C2C319922D5A00CD8822 /* GPUImageSwirlFilter.m in Sources */,
 				0426C2C119922D5A00CD8822 /* GPUImageStretchDistortionFilter.m in Sources */,
 				0426C2B619922D5A00CD8822 /* GPUImageSingleComponentFastBlurFilter.m in Sources */,

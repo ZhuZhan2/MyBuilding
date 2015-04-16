@@ -201,6 +201,11 @@
 }
 
 -(void)sendMessage:(NSString*)content{
+    if(content.length >1000){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"不能超过1000个字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     if([self.type isEqualToString:@"01"]){
         [dic setObject:@"user" forKey:@"msgType"];

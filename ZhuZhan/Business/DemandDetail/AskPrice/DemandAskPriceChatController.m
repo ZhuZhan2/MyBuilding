@@ -60,6 +60,7 @@
     model.time = commentModel.a_createdTime;
     model.content = commentModel.a_contents;
     model.isSelf = commentModel.a_isSelf;
+    model.isHonesty = commentModel.a_isHonesty;
     cell.model=model;
     return cell;
 }

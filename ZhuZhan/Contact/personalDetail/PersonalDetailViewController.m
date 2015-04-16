@@ -20,8 +20,12 @@
 #import "MJRefresh.h"
 #import "ProjectApi.h"
 #import "AddressBookApi.h"
+#import "ChatViewController.h"
 @interface PersonalDetailViewController ()
-
+@property(nonatomic,strong)UIButton *secondBtn;
+@property(nonatomic,strong)UIButton *gotoMessageBtn;
+@property(nonatomic,strong)UIButton *threeBtnsView;
+@property(nonatomic,strong)NSString *name;
 @end
 
 @implementation PersonalDetailViewController
@@ -81,10 +85,10 @@
 }
 
 -(void)getThreeBtn{
-    UIButton *threeBtnsView = [UIButton buttonWithType:UIButtonTypeCustom];
-    threeBtnsView.frame = CGRectMake(0, 170, kScreenWidth, 50);
+    self.threeBtnsView = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.threeBtnsView.frame = CGRectMake(0, 170, kScreenWidth, 50);
     //    threeBtnsView.backgroundColor=[UIColor whiteColor];
-    [_pathCover addSubview:threeBtnsView];
+    [_pathCover addSubview:self.threeBtnsView];
     
     CGFloat width=kScreenWidth/3;
     
@@ -100,17 +104,27 @@
 //    firstBtn.layer.cornerRadius = 4.0;
 //    [threeBtnsView addSubview:firstBtn];
     
-    UIButton *secondBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    secondBtn.frame = CGRectMake(width+8, 12, width-15, 25);
-    [secondBtn setTitle:@"添加好友" forState:UIControlStateNormal];
-    [secondBtn addTarget:self action:@selector(addFriend) forControlEvents:UIControlEventTouchUpInside];
-    secondBtn.tag = 2;
-    secondBtn.titleLabel.font=[UIFont systemFontOfSize:12];
-    secondBtn.backgroundColor = [UIColor blackColor];
-    secondBtn.alpha = .8;
-    secondBtn.layer.masksToBounds = YES;
-    secondBtn.layer.cornerRadius = 4.0;
-    [threeBtnsView addSubview:secondBtn];
+    self.secondBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.secondBtn.frame = CGRectMake(width+8, 12, width-15, 25);
+    [self.secondBtn setTitle:@"添加好友" forState:UIControlStateNormal];
+    [self.secondBtn addTarget:self action:@selector(addFriend) forControlEvents:UIControlEventTouchUpInside];
+    self.secondBtn.tag = 2;
+    self.secondBtn.titleLabel.font=[UIFont systemFontOfSize:12];
+    self.secondBtn.backgroundColor = [UIColor blackColor];
+    self.secondBtn.alpha = .8;
+    self.secondBtn.layer.masksToBounds = YES;
+    self.secondBtn.layer.cornerRadius = 4.0;
+    
+    self.gotoMessageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.gotoMessageBtn.frame = CGRectMake(width+8, 12, width-15, 25);
+    [self.gotoMessageBtn setTitle:@"发送消息" forState:UIControlStateNormal];
+    [self.gotoMessageBtn addTarget:self action:@selector(gotoMessageBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    self.gotoMessageBtn.tag = 2;
+    self.gotoMessageBtn.titleLabel.font=[UIFont systemFontOfSize:12];
+    self.gotoMessageBtn.backgroundColor = [UIColor blackColor];
+    self.gotoMessageBtn.alpha = .8;
+    self.gotoMessageBtn.layer.masksToBounds = YES;
+    self.gotoMessageBtn.layer.cornerRadius = 4.0;
     
 //    UIButton *thirdBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    thirdBtn.frame = CGRectMake(width*2+8, 12, width-15, 25);
@@ -229,12 +243,17 @@
 
 //获取网络数据
 -(void)getNetWorkData{
-    NSLog(@"%@",self.contactId);
     [ContactModel UserDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             if(posts.count !=0){
                 self.contactModel = posts[0];
-                NSLog(@"posts===.%@",self.contactModel.a_userName);
+                self.isFriend = self.contactModel.a_isFriend;
+                self.name = self.contactModel.a_userName;
+                if([self.isFriend isEqualToString:@"0"]){
+                    [self.threeBtnsView addSubview:self.secondBtn];
+                }else{
+                    [self.threeBtnsView addSubview:self.gotoMessageBtn];
+                }
                 if([posts[1] isKindOfClass:[ParticularsModel class]]){
                     self.parModel = posts[1];
                     contactbackgroundview = [ContactBackgroundView setFram:self.parModel];
@@ -688,8 +707,17 @@
         if(!error){
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
+            [self.secondBtn setTitle:@"已发送" forState:UIControlStateNormal];
+            self.secondBtn.enabled = NO;
         }
     } dic:dic noNetWork:nil];
 }
-    
+
+-(void)gotoMessageBtnAction{
+    ChatViewController *view = [[ChatViewController alloc] init];
+    view.contactId = self.contactId;
+    view.titleStr = self.name;
+    view.type = @"01";
+    [self.navigationController pushViewController:view animated:YES];
+}
 @end

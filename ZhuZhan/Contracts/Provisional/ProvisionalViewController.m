@@ -14,7 +14,10 @@
 #import "ContractView.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
-@interface ProvisionalViewController ()<UITableViewDataSource,UITableViewDelegate,MoneyViewDelegate,ContractViewDelegate,StartManViewDelegate,ReceiveViewDelegate>
+#import "SearchContactViewController.h"
+#import "ContractsApi.h"
+#import "ConstractListController.h"
+@interface ProvisionalViewController ()<UITableViewDataSource,UITableViewDelegate,MoneyViewDelegate,ContractViewDelegate,StartManViewDelegate,ReceiveViewDelegate,UIActionSheetDelegate,SearchContactViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *viewArr;
 @property(nonatomic,strong)StartManView *startMainView;
@@ -29,6 +32,7 @@
 @property(nonatomic,strong)NSString *personaName;
 @property(nonatomic,strong)NSString *moneyStr;
 @property(nonatomic,strong)NSString *contractStr;
+@property(nonatomic,strong)NSString *personaId;
 
 @property(nonatomic)BOOL isOpen;
 @end
@@ -86,7 +90,76 @@
 }
 
 -(void)rightBtnClicked{
+    if([self.personaStr1 isEqualToString:@""] || !self.personaStr1){
+        [self showAlertView:@"请选择自己的角色"];
+        return;
+    }
     
+    if([self.myCompanyName isEqualToString:@""] || !self.myCompanyName){
+        [self showAlertView:@"请填写自己公司抬头"];
+        return;
+    }
+    
+    if([self.personaId isEqualToString:@""] || !self.personaId){
+        [self showAlertView:@"请选择参与用户"];
+        return;
+    }
+    
+    if([self.personaStr2 isEqualToString:@""] || !self.personaStr1){
+        [self showAlertView:@"请选择对方的角色"];
+        return;
+    }
+    
+    if([self.otherCompanyName isEqualToString:@""] || !self.otherCompanyName){
+        [self showAlertView:@"请填写对方公司抬头"];
+        return;
+    }
+    
+    if([self.moneyStr isEqualToString:@""] || !self.moneyStr){
+        [self showAlertView:@"请填写金额"];
+        return;
+    }
+    
+    if([self.contractStr isEqualToString:@""] || !self.contractStr){
+        [self showAlertView:@"请填写合同条款"];
+        return;
+    }
+    
+    if(![self isPureFloat:self.moneyStr]){
+        [self showAlertView:@"金额请填写数字"];
+        return;
+    }
+    
+    [self sendPostRequest];
+}
+
+
+- (BOOL)isPureFloat:(NSString *)string{
+    NSScanner* scan = [NSScanner scannerWithString:string];
+    float val;
+    return [scan scanFloat:&val] && [scan isAtEnd];
+}
+
+-(void)showAlertView:(NSString *)msg{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
+}
+
+-(void)sendPostRequest{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:self.personaStr1 forKey:@"createdByType"];
+    [dic setObject:self.personaStr2 forKey:@"pecipientType"];
+    [dic setObject:self.myCompanyName forKey:@"partyA"];
+    [dic setObject:self.otherCompanyName forKey:@"partyB"];
+    [dic setObject:self.moneyStr forKey:@"contractsMoney"];
+    [dic setObject:self.contractStr forKey:@"contentMain"];
+    [dic setObject:self.personaId forKey:@"recipientId"];
+    [ContractsApi PostContractWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            ConstractListController *view = [[ConstractListController alloc] init];
+            [self.navigationController pushViewController:view animated:YES];
+        }
+    } dic:dic noNetWork:nil];
 }
 
 //-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
@@ -339,6 +412,38 @@
 -(void)endTextView:(NSString *)str{
     NSLog(@"%@",str);
     self.contractStr = str;
+}
+
+-(void)showActionSheet{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"销售方" otherButtonTitles:@"供应商", nil];
+    actionSheet.tag = 0;
+    [actionSheet showInView:self.view];
+}
+
+-(void)showSearchView{
+    SearchContactViewController *searchView = [[SearchContactViewController alloc] init];
+    searchView.delegate =self;
+    [self.navigationController pushViewController:searchView animated:YES];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(actionSheet.tag == 0){
+        if(buttonIndex == 0){
+            self.personaStr1 = @"销售方";
+            self.personaStr2 = @"供应商";
+        }else{
+            self.personaStr1 = @"供应商";
+            self.personaStr2 = @"销售方";
+        }
+        [self reloadStartMainView];
+        [self reloadReceiveView];
+    }
+}
+
+-(void)selectContact:(UserOrCompanyModel *)model{
+    self.personaId = model.a_loginId;
+    self.personaName = model.a_loginName;
+    [self reloadReceiveView];
 }
 
 #pragma mark - 键盘处理

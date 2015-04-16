@@ -36,6 +36,7 @@
 #import "LoadingView.h"
 #import "MyTableView.h"
 #import "ContactProductView.h"
+#import "ChatViewController.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()<CompanyDetailDelegate>
 
@@ -625,6 +626,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     CompanyDetailViewController *detailView = [[CompanyDetailViewController alloc] init];
     detailView.companyId = lasetCompanyID;
     [self.navigationController pushViewController:detailView animated:NO];
+}
+
+-(void)gotoChatView:(NSString *)contactId name:(NSString *)name{
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    ChatViewController *view = [[ChatViewController alloc] init];
+    view.contactId = contactId;
+    view.titleStr = name;
+    view.type = @"01";
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 -(void)gotoContactDetailView:(NSString *)contactId{

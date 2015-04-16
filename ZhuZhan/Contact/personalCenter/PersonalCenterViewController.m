@@ -24,6 +24,7 @@
 #import "PersonalCenterCompanyTableViewCell.h"
 #import "ProductModel.h"
 #import "AskPriceViewController.h"
+#import "ConstractListController.h"
 @interface PersonalCenterViewController ()
 
 @end
@@ -153,7 +154,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     UIButton *thirdBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     thirdBtn.frame = CGRectMake(width*2+8, 12, width-15, 25);
     [thirdBtn setTitle:@"合同列表" forState:UIControlStateNormal];
-    //[thirdBtn addTarget:self action:@selector(gotoAskPrice:) forControlEvents:UIControlEventTouchUpInside];
+    [thirdBtn addTarget:self action:@selector(gotoConstractList:) forControlEvents:UIControlEventTouchUpInside];
     thirdBtn.tag = 3;
     thirdBtn.titleLabel.font=[UIFont systemFontOfSize:12];
     thirdBtn.backgroundColor = [UIColor blackColor];
@@ -458,6 +459,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     AskPriceViewController *view = [[AskPriceViewController alloc] initWithOtherStr:otherStr];
 
+    [self.navigationController pushViewController:view animated:YES];
+}
+
+-(void)gotoConstractList:(UIButton *)button{
+    ConstractListController *view = [[ConstractListController alloc] init];
     [self.navigationController pushViewController:view animated:YES];
 }
 @end

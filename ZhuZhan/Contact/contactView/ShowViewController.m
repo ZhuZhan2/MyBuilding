@@ -18,6 +18,7 @@
 @interface ShowViewController ()
 @property(nonatomic,strong)UIActivityIndicatorView* indicatorView;
 @property(nonatomic,strong)UIView* bgVIew;
+@property(nonatomic,strong)NSString *name;
 @end
 
 @implementation ShowViewController
@@ -81,20 +82,29 @@
     concernBtn.backgroundColor = [UIColor blackColor];
     concernBtn.layer.cornerRadius = 5;//设置那个圆角的有多圆
     concernBtn.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
-    [concernBtn addTarget:self action:@selector(addFriend) forControlEvents:UIControlEventTouchUpInside];
+    [concernBtn addTarget:self action:@selector(gotoConcern) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:concernBtn];
     concernBtn.alpha = 0.8;
     
-    UIButton *addFriendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    addFriendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     addFriendBtn.frame = CGRectMake(190, 220, 75, 28);
     addFriendBtn.backgroundColor = [UIColor blackColor];
     [addFriendBtn setTitle:@"添加好友" forState:UIControlStateNormal];
     addFriendBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
     addFriendBtn.layer.cornerRadius = 5;//设置那个圆角的有多圆
     addFriendBtn.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
-    [addFriendBtn addTarget:self action:@selector(gotoConcern) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:addFriendBtn];
+    [addFriendBtn addTarget:self action:@selector(addFriend) forControlEvents:UIControlEventTouchUpInside];
     addFriendBtn.alpha = 0.8;
+    
+    gotoMessageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    gotoMessageBtn.frame = CGRectMake(190, 220, 75, 28);
+    gotoMessageBtn.backgroundColor = [UIColor blackColor];
+    [gotoMessageBtn setTitle:@"发送消息" forState:UIControlStateNormal];
+    gotoMessageBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
+    gotoMessageBtn.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    gotoMessageBtn.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
+    [gotoMessageBtn addTarget:self action:@selector(gotoMessageBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    gotoMessageBtn.alpha = 0.8;
     
     
     [self loadIndicatorView];
@@ -105,6 +115,7 @@
             [tempImageView sd_setImageWithURL:[NSURL URLWithString:model.personalBackground] placeholderImage:[GetImagePath getImagePath:@"默认主图01"]];
             [icon sd_setImageWithURL:[NSURL URLWithString:model.userImage] placeholderImage:[GetImagePath getImagePath:@"人脉_超大2"]];
             userName.text = model.userName;
+            self.name = model.userName;
             message.text = [NSString stringWithFormat:@"%@项目，%@动态",model.projectNum,model.dynamicNum];
             if([model.isFocus isEqualToString:@"1"]){
                 [concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
@@ -112,6 +123,12 @@
             }else{
                 [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
                 isFoucsed = 0;
+            }
+            
+            if([model.isFriend isEqualToString:@"0"]){
+                [self.view addSubview:addFriendBtn];
+            }else{
+                [self.view addSubview:gotoMessageBtn];
             }
             [self endIndicatorView];
         }else{
@@ -197,10 +214,18 @@
         if(!error){
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
+            [addFriendBtn setTitle:@"已发送" forState:UIControlStateNormal];
+            addFriendBtn.enabled = NO;
         }else{
             [LoginAgain AddLoginView:NO];
         }
     } dic:dic noNetWork:nil];
+}
+
+-(void)gotoMessageBtnAction{
+    if([self.delegate respondsToSelector:@selector(gotoChatView:name:)]){
+        [self.delegate gotoChatView:contactId name:self.name];
+    }
 }
 
 -(void)loginCompleteWithDelayBlock:(void (^)())block{

@@ -10,6 +10,7 @@
 @protocol StartManViewDelegate <NSObject>
 -(void)textFiedDidBegin:(UITextField *)textField;
 -(void)textFiedDidEnd:(NSString *)str textField:(UITextField *)textField;
+-(void)showActionSheet;
 @end
 @interface StartManView : UIView<UITextFieldDelegate>
 @property(nonatomic,strong)UILabel *titleLabel;

@@ -21,6 +21,7 @@
 #import "AskPriceMainViewController.h"
 #import "MainContractsBaseController.h"
 #import "ProvisionalViewController.h"
+#import "AskPriceMessageViewController.h"
 #define contentHeight (kScreenHeight==480?431:519)
 @interface HomePageViewController ()<LoginViewDelegate>
 @property(nonatomic,strong)UINavigationController *navigatin;
@@ -266,15 +267,15 @@
 {
     NSLog(@"===>%ld",(long)idx);
     if(idx == 0){
-        NSLog(@"推荐信");
-        quadCurveVC=[[MainContractsBaseController alloc]init];
+        NSLog(@"发佣金");
+        //quadCurveVC=[[MainContractsBaseController alloc]init];
+        quadCurveVC=[[ProvisionalViewController alloc]init];
     }else if(idx == 1){
-        NSLog(@"通知");
+        NSLog(@"发询价");
         quadCurveVC=[[AskPriceMainViewController alloc]init];
     }else if(idx == 2){
-        NSLog(@"加好友");
-        quadCurveVC=[[AddFriendViewController alloc]init];
-        //quadCurveVC=[[ConstractListController alloc]init];
+        NSLog(@"消息");
+        quadCurveVC=[[AskPriceMessageViewController alloc]init];
     }else if (idx == 3){
         NSLog(@"会话");
         quadCurveVC=[[ChatListViewController alloc]init];
