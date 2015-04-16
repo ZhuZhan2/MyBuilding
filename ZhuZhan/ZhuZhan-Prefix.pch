@@ -48,6 +48,8 @@
 #define AllLightGrayColor RGBCOLOR(152,150,150)//浅灰
 #define AllNoDataColor RGBCOLOR(187,187,187)//最浅灰，无数据、搜索框描述内容
 #define AllGreenColor RGBCOLOR(141,196,62)//绿
+#define AllRedColor RGBCOLOR(237,85,100)//红
+
 
 //背景色
 #define AllBackMiddleGrayColor RGBCOLOR(247,247,248)//上导航的颜色
