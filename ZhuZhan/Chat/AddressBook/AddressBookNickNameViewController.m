@@ -38,6 +38,17 @@
 }
 
 -(void)rightBtnClicked{
+    if(self.textField.text.length >20){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"不能超过20个字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
+    
+    if([self.textField.text isEqualToString:@""]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"备注不能为空" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
     NSMutableDictionary* dic=[@{
                                 @"userId":self.targetId,
                                 @"nickName":self.textField.text
@@ -69,7 +80,7 @@
         _textField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
         _textField.leftView.userInteractionEnabled = NO;
         _textField.leftViewMode = UITextFieldViewModeAlways;
-        _textField.placeholder = @"填写备注名";
+        _textField.placeholder = @"填写备注名(1-20字)";
         _textField.font = [UIFont systemFontOfSize:15];
         _textField.returnKeyType = UIReturnKeyDone;
         _textField.delegate = self;
@@ -80,7 +91,6 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.textField resignFirstResponder];
-    [self rightBtnClicked];
     return YES;
 }
 @end

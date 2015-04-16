@@ -71,7 +71,6 @@
         _userDescribelabel=[[UILabel alloc]initWithFrame:CGRectZero];
         _userDescribelabel.numberOfLines=0;
         _userDescribelabel.font=Font(13);
-        _userDescribelabel.textColor=AllGreenColor;
     }
     return _userDescribelabel;
 }
@@ -134,6 +133,11 @@
         self.userDescribelabel.hidden=NO;
         height+=2;
         self.userDescribelabel.text=self.model.userDescribe;
+        if(self.model.isHonesty){
+            self.userDescribelabel.textColor = BlueColor;
+        }else{
+            self.userDescribelabel.textColor = [UIColor redColor];
+        }
         size=[DemandChatViewCell carculateLabel:self.userDescribelabel width:ContentWidth];
         frame=CGRectMake(distance, height, size.width, size.height);
         self.userDescribelabel.frame=frame;

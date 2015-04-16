@@ -13,6 +13,7 @@
 @property(nonatomic,strong)NSString *dynamicNum;
 @property(nonatomic,strong)NSString *isFocus;
 @property(nonatomic,strong) NSString *userId;
+@property(nonatomic,strong)NSString *isFriend;
 
 //公司名称
 @property (nonatomic,strong) NSString *companyName;

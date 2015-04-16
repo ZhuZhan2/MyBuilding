@@ -23,7 +23,7 @@
     }else if([model.type isEqualToString:@"pdf"]){
         image = [GetImagePath getImagePath:@"人脉_06a2"];
     }else{
-        image = [GetImagePath getImagePath:@"人脉_06a2"];
+        image = [GetImagePath getImagePath:@"询价上传图片默认图"];
     }
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:view.bounds];

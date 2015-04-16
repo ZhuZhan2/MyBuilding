@@ -49,6 +49,7 @@
     self.projectNum = [ProjectStage ProjectStrStage:dict[@"projectNum"]];
     self.dynamicNum = [ProjectStage ProjectStrStage:dict[@"dynamicNum"]];
     self.isFocus = [ProjectStage ProjectStrStage:dict[@"isFocus"]];
+    self.isFriend = [ProjectStage ProjectStrStage:dict[@"isFriend"]];
 }
 
 //POST:

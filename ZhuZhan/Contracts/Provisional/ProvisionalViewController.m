@@ -14,7 +14,10 @@
 #import "ContractView.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
-@interface ProvisionalViewController ()<UITableViewDataSource,UITableViewDelegate,MoneyViewDelegate>
+#import "SearchContactViewController.h"
+#import "ContractsApi.h"
+#import "ConstractListController.h"
+@interface ProvisionalViewController ()<UITableViewDataSource,UITableViewDelegate,MoneyViewDelegate,ContractViewDelegate,StartManViewDelegate,ReceiveViewDelegate,UIActionSheetDelegate,SearchContactViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *viewArr;
 @property(nonatomic,strong)StartManView *startMainView;
@@ -29,6 +32,9 @@
 @property(nonatomic,strong)NSString *personaName;
 @property(nonatomic,strong)NSString *moneyStr;
 @property(nonatomic,strong)NSString *contractStr;
+@property(nonatomic,strong)NSString *personaId;
+
+@property(nonatomic)BOOL isOpen;
 @end
 
 @implementation ProvisionalViewController
@@ -49,6 +55,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = YES;
+    [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
+    self.leftBtnIsBack = YES;
+    self.needAnimaiton = YES;
     [self setRightBtnWithText:@"提交"];
     self.title = @"填写佣金合同条款";
     
@@ -81,9 +90,76 @@
 }
 
 -(void)rightBtnClicked{
-    self.leftBtnIsBack = YES;
-    self.needAnimaiton = YES;
-    [self leftBtnClicked];
+    if([self.personaStr1 isEqualToString:@""] || !self.personaStr1){
+        [self showAlertView:@"请选择自己的角色"];
+        return;
+    }
+    
+    if([self.myCompanyName isEqualToString:@""] || !self.myCompanyName){
+        [self showAlertView:@"请填写自己公司抬头"];
+        return;
+    }
+    
+    if([self.personaId isEqualToString:@""] || !self.personaId){
+        [self showAlertView:@"请选择参与用户"];
+        return;
+    }
+    
+    if([self.personaStr2 isEqualToString:@""] || !self.personaStr1){
+        [self showAlertView:@"请选择对方的角色"];
+        return;
+    }
+    
+    if([self.otherCompanyName isEqualToString:@""] || !self.otherCompanyName){
+        [self showAlertView:@"请填写对方公司抬头"];
+        return;
+    }
+    
+    if([self.moneyStr isEqualToString:@""] || !self.moneyStr){
+        [self showAlertView:@"请填写金额"];
+        return;
+    }
+    
+    if([self.contractStr isEqualToString:@""] || !self.contractStr){
+        [self showAlertView:@"请填写合同条款"];
+        return;
+    }
+    
+    if(![self isPureFloat:self.moneyStr]){
+        [self showAlertView:@"金额请填写数字"];
+        return;
+    }
+    
+    [self sendPostRequest];
+}
+
+
+- (BOOL)isPureFloat:(NSString *)string{
+    NSScanner* scan = [NSScanner scannerWithString:string];
+    float val;
+    return [scan scanFloat:&val] && [scan isAtEnd];
+}
+
+-(void)showAlertView:(NSString *)msg{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
+}
+
+-(void)sendPostRequest{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:self.personaStr1 forKey:@"createdByType"];
+    [dic setObject:self.personaStr2 forKey:@"pecipientType"];
+    [dic setObject:self.myCompanyName forKey:@"partyA"];
+    [dic setObject:self.otherCompanyName forKey:@"partyB"];
+    [dic setObject:self.moneyStr forKey:@"contractsMoney"];
+    [dic setObject:self.contractStr forKey:@"contentMain"];
+    [dic setObject:self.personaId forKey:@"recipientId"];
+    [ContractsApi PostContractWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            ConstractListController *view = [[ConstractListController alloc] init];
+            [self.navigationController pushViewController:view animated:YES];
+        }
+    } dic:dic noNetWork:nil];
 }
 
 //-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
@@ -179,6 +255,7 @@
 -(StartManView *)startMainView{
     if(!_startMainView){
         _startMainView = [[StartManView alloc] initWithFrame:CGRectMake(0, 0, 320, 180)];
+        _startMainView.delegate = self;
         if(self.personaStr1){
             _startMainView.contactLabel.text = self.personaStr1;
         }
@@ -193,6 +270,7 @@
 -(ReceiveView *)receiveView{
     if(!_receiveView){
         _receiveView = [[ReceiveView alloc] initWithFrame:CGRectMake(0, 0, 320, 180)];
+        _receiveView.delegate = self;
         if(self.personaName){
             _receiveView.personaLabel.text = self.personaName;
         }
@@ -211,6 +289,7 @@
 -(MoneyView *)moneyView{
     if(!_moneyView){
         _moneyView = [[MoneyView alloc] initWithFrame:CGRectMake(0, 0, 320, 48)];
+        _moneyView.delegate = self;
         if(self.moneyStr){
             _moneyView.textFied.text = self.moneyStr;
         }
@@ -221,6 +300,7 @@
 -(ContractView *)contractView{
     if(!_contractView){
         _contractView = [[ContractView alloc] initWithFrame:CGRectMake(0, 0, 320, 290)];
+        _contractView.delegate = self;
         if(self.contractStr){
             _contractView.textView.text = self.contractStr;
         }
@@ -288,14 +368,94 @@
     [self.tableView reloadData];
 }
 
+-(void)reloadMoneyView{
+    [self.moneyView removeFromSuperview];
+    self.moneyView = nil;
+    [self.viewArr replaceObjectAtIndex:2 withObject:self.moneyView];
+    [self.tableView reloadData];
+}
+
+-(void)reloadContractView{
+    [self.contractView removeFromSuperview];
+    self.contractView = nil;
+    [self.viewArr replaceObjectAtIndex:3 withObject:self.contractView];
+    [self.tableView reloadData];
+}
+
+-(void)textFiedDidBegin:(UITextField *)textField{
+    if(textField == self.startMainView.textField){
+        NSLog(@"startMainView");
+        self.isOpen = NO;
+    }else if (textField == self.receiveView.textField){
+        NSLog(@"receiveView");
+        self.isOpen = YES;
+    }else{
+        NSLog(@"moneyView");
+        self.isOpen = YES;
+    }
+}
+
+-(void)textFiedDidEnd:(NSString *)str textField:(UITextField *)textField{
+    if(textField == self.startMainView.textField){
+        self.myCompanyName = str;
+    }else if (textField == self.receiveView.textField){
+        self.otherCompanyName = str;
+    }else{
+        self.moneyStr = str;
+    }
+}
+
+-(void)beginTextView{
+    self.isOpen = YES;
+}
+
+-(void)endTextView:(NSString *)str{
+    NSLog(@"%@",str);
+    self.contractStr = str;
+}
+
+-(void)showActionSheet{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"销售方" otherButtonTitles:@"供应商", nil];
+    actionSheet.tag = 0;
+    [actionSheet showInView:self.view];
+}
+
+-(void)showSearchView{
+    SearchContactViewController *searchView = [[SearchContactViewController alloc] init];
+    searchView.delegate =self;
+    [self.navigationController pushViewController:searchView animated:YES];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(actionSheet.tag == 0){
+        if(buttonIndex == 0){
+            self.personaStr1 = @"销售方";
+            self.personaStr2 = @"供应商";
+        }else{
+            self.personaStr1 = @"供应商";
+            self.personaStr2 = @"销售方";
+        }
+        [self reloadStartMainView];
+        [self reloadReceiveView];
+    }
+}
+
+-(void)selectContact:(UserOrCompanyModel *)model{
+    self.personaId = model.a_loginId;
+    self.personaName = model.a_loginName;
+    [self reloadReceiveView];
+}
+
 #pragma mark - 键盘处理
 #pragma mark 键盘即将显示
 - (void)keyBoardWillShow:(NSNotification *)note{
-    CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGFloat ty = - rect.size.height;
-    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]-0.01 animations:^{
-        self.view.transform = CGAffineTransformMakeTranslation(0, ty);
-    }];
+    if(self.isOpen){
+        CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        CGFloat ty = - rect.size.height;
+        [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]-0.01 animations:^{
+            self.view.transform = CGAffineTransformMakeTranslation(0, ty);
+        }];
+    }
 }
 #pragma mark 键盘即将退出
 - (void)keyBoardWillHide:(NSNotification *)note{

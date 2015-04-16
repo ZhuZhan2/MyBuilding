@@ -11,19 +11,23 @@
 #import "ContractsBaseViewController.h"
 #import "DemandStageChooseController.h"
 #import "ContractsListSearchController.h"
+#import "ContractsApi.h"
 
 @interface ConstractListController ()<DemandStageChooseControllerDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property (nonatomic)NSInteger nowStage;
+@property(nonatomic,strong)NSString *archiveStatus;
 @end
 
 @implementation ConstractListController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.archiveStatus = @"";
     [self initNavi];
-    [self initStageChooseViewWithStages:@[@"全部",@"待审核",@"待确认",@"已关闭",@"已完成"]  numbers:nil];
+    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"",@"已完成",@"已关闭"]  numbers:nil];
     [self initTableView];
+    [self firstNetWork];
 }
 
 -(void)initNavi{
@@ -67,6 +71,14 @@
     UIViewController* vc=[[ContractsListSearchController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
     //[self presentViewController:vc animated:YES completion:nil];
+}
+
+-(void)firstNetWork{
+    [ContractsApi GetContractsAllListsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+        
+        }
+    } archiveStatus:self.archiveStatus startIndex:0 noNetWork:nil];
 }
 
 -(NSMutableArray *)showArr{

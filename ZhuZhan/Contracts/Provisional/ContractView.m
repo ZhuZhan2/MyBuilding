@@ -26,6 +26,7 @@
         _textView.placeHolder = @"请输入合同主要条款";
         _textView.delegate = self;
         _textView.backgroundColor = [UIColor clearColor];
+        _textView.returnKeyType  = UIReturnKeyDone;
     }
     return _textView;
 }
@@ -40,5 +41,13 @@
     if([self.delegate respondsToSelector:@selector(endTextView:)]){
         [self.delegate endTextView:textView.text];
     }
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
 }
 @end

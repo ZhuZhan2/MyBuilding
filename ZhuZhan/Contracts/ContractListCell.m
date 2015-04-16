@@ -25,7 +25,7 @@
 
 @implementation ContractListCell
 +(CGFloat)carculateTotalHeightWithContents:(NSArray*)contents{
-    return headerHeight+seperatorHeight+mainViewTopDistance+mainViewBottomDistance+[RKTwoView carculateNormalTotalHeightWithNumber:5];
+    return headerHeight+seperatorHeight+mainViewTopDistance+mainViewBottomDistance+[RKTwoView carculateNormalTotalHeightWithNumber:4];
 }
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -69,9 +69,9 @@
     
     RKTwoView* view1=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:userType rightContent:self.contents[0] needAuto:NO];
     RKTwoView* view2=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"接收者" rightContent:self.contents[1] needAuto:NO];
-    RKTwoView* view3=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"甲    方" rightContent:self.contents[2] needAuto:NO];
-    RKTwoView* view4=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"乙    方" rightContent:self.contents[3] needAuto:NO];
-    RKTwoView* view5=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"金    额" rightContent:self.contents[4] needAuto:NO];
+    RKTwoView* view3=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"销售方" rightContent:self.contents[2] needAuto:NO];
+    RKTwoView* view4=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"供应商" rightContent:self.contents[3] needAuto:NO];
+    //RKTwoView* view5=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"金    额" rightContent:self.contents[4] needAuto:NO];
     
     CGRect frame=view1.frame;
     frame.origin.y+=mainViewTopDistance;
@@ -93,10 +93,10 @@
     view4.frame=frame;
     [self.mainView addSubview:view4];
     
-    frame=view5.frame;
-    frame.origin.y=CGRectGetMaxY(view4.frame);
-    view5.frame=frame;
-    [self.mainView addSubview:view5];
+//    frame=view5.frame;
+//    frame.origin.y=CGRectGetMaxY(view4.frame);
+//    view5.frame=frame;
+//    [self.mainView addSubview:view5];
 }
 
 -(void)setContents:(NSArray *)contents{
@@ -112,7 +112,7 @@
     self.cellHeader.frame=CGRectMake(0, 0, kScreenWidth, headerHeight);
     self.seperatorLineInCell.frame=CGRectMake(0, CGRectGetMaxY(self.cellHeader.frame)-CGRectGetHeight(self.seperatorLineInCell.frame), kScreenWidth, CGRectGetHeight(self.seperatorLineInCell.frame));
     
-    CGFloat height=[RKTwoView carculateNormalTotalHeightWithNumber:5]+mainViewTopDistance+mainViewBottomDistance;
+    CGFloat height=[RKTwoView carculateNormalTotalHeightWithNumber:4]+mainViewTopDistance+mainViewBottomDistance;
     self.mainView.frame=CGRectMake(0, CGRectGetMaxY(self.cellHeader.frame), kScreenWidth, height);
     self.seperatorLineOutCell.frame=CGRectMake(0, CGRectGetMaxY(self.mainView.frame), kScreenWidth, seperatorHeight);
 }

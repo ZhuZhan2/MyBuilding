@@ -271,12 +271,11 @@
         NSLog(@"推荐信");
         quadCurveVC=[[OtherContractsBaseController alloc]init];
     }else if(idx == 1){
-        NSLog(@"通知");
+        NSLog(@"发询价");
         quadCurveVC=[[AskPriceMainViewController alloc]init];
     }else if(idx == 2){
-        NSLog(@"加好友");
-        quadCurveVC=[[AddFriendViewController alloc]init];
-        //quadCurveVC=[[ConstractListController alloc]init];
+        NSLog(@"消息");
+        quadCurveVC=[[AskPriceMessageViewController alloc]init];
     }else if (idx == 3){
         NSLog(@"会话");
         quadCurveVC=[[ChatListViewController alloc]init];

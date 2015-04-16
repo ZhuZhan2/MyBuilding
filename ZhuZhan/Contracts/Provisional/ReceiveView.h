@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ReceiveView : UIView
+@protocol ReceiveViewDelegate <NSObject>
+-(void)textFiedDidBegin:(UITextField *)textField;
+-(void)textFiedDidEnd:(NSString *)str textField:(UITextField *)textField;
+-(void)showActionSheet;
+-(void)showSearchView;
+@end
+@interface ReceiveView : UIView<UITextFieldDelegate>
 @property(nonatomic,strong)UIButton *addPersona;
 @property(nonatomic,strong)UILabel *personaLabel;
 @property(nonatomic,strong)UIImageView *addImageView;
@@ -19,4 +24,5 @@
 @property(nonatomic,strong)UITextField *textField;
 @property(nonatomic,strong)UILabel *messageLabel;
 @property(nonatomic,strong)UIView *bottomView;
+@property(nonatomic,weak)id<ReceiveViewDelegate>delegate;
 @end

@@ -32,4 +32,5 @@
 @property (nonatomic,strong)ParticularsModel *parModel;
 @property (nonatomic,strong)NSMutableArray *showArr;
 @property (nonatomic,strong)NSString *isFocused;
+@property (nonatomic,strong)NSString *isFriend;
 @end

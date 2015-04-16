@@ -41,5 +41,6 @@
     }else{
         self.a_backgroundImage=[ProjectStage ProjectStrStage:dict[@"backgroundImageId"]];
     }
+    self.a_isFriend = [ProjectStage ProjectStrStage:dict[@"isFriend"]];
 }
 @end

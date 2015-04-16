@@ -90,6 +90,7 @@
         _textField.placeholder = @"请输入公司全名";
         _textField.font = [UIFont systemFontOfSize:15];
         _textField.returnKeyType = UIReturnKeyDone;
+        _textField.delegate = self;
         [_textField setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
     }
     return _textField;
@@ -122,10 +123,31 @@
 }
 
 -(void)addPersonaAction{
-    NSLog(@"addPersonaAction");
+    if([self.delegate respondsToSelector:@selector(showSearchView)]){
+        [self.delegate showSearchView];
+    }
 }
 
 -(void)contactBtnAction{
-    NSLog(@"contactBtnAction");
+    if([self.delegate respondsToSelector:@selector(showActionSheet)]){
+        [self.delegate showActionSheet];
+    }
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    if([self.delegate respondsToSelector:@selector(textFiedDidBegin:)]){
+        [self.delegate textFiedDidBegin:textField];
+    }
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    if([self.delegate respondsToSelector:@selector(textFiedDidEnd:textField:)]){
+        [self.delegate textFiedDidEnd:textField.text textField:textField];
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.textField resignFirstResponder];
+    return YES;
 }
 @end

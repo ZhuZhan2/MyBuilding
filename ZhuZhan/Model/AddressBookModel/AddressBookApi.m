@@ -128,8 +128,8 @@
                 block(nil,nil);
             }
         }else{
-            NSLog(@"error==%@",
-                  JSON[@"status"][@"errorMsg"]);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -154,8 +154,8 @@
                 block(nil,nil);
             }
         }else{
-            NSLog(@"error==%@",
-                  JSON[@"status"][@"errorMsg"]);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -180,8 +180,8 @@
                 block(nil,nil);
             }
         }else{
-            NSLog(@"error==%@",
-                  JSON[@"status"][@"errorMsg"]);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -207,8 +207,8 @@
                 block(nil,nil);
             }
         }else{
-            NSLog(@"error==%@",
-                  JSON[@"status"][@"errorMsg"]);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -233,8 +233,8 @@
                 block(nil,nil);
             }
         }else{
-            NSLog(@"error==%@",
-                  JSON[@"status"][@"errorMsg"]);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -358,8 +358,8 @@
                 block(datas,nil);
             }
         }else{
-            NSLog(@"error==%@",
-                  JSON[@"status"][@"errorMsg"]);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

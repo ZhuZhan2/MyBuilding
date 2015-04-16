@@ -47,7 +47,7 @@
     [self.addFriendBtn addSubview:seperatorLine];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 40, 40)];
-    imageView.backgroundColor = [UIColor redColor];
+    imageView.image = [GetImagePath getImagePath:@"新的朋友"];
     [self.addFriendBtn addSubview:imageView];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(65, 10, 180, 30)];

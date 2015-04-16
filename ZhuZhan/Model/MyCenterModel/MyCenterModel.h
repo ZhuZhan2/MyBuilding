@@ -40,6 +40,7 @@
 @property (nonatomic,strong) NSString *a_city;
 //区
 @property (nonatomic,strong) NSString *a_district;
+@property (nonatomic,strong) NSString *a_isFriend;
 @property(nonatomic,strong)NSString* a_backgroundImage;
 @property (nonatomic, strong) NSDictionary *dict;
 @end

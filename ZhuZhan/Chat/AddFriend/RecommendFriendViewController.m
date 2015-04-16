@@ -88,8 +88,8 @@
     label.font = [UIFont systemFontOfSize:15];
     [self.topView addSubview:label];
     
-    CGFloat height=kScreenHeight-y;
-    self.tableView.frame = CGRectMake(0, y+CGRectGetHeight(self.topView.frame), 320, height-40);
+    CGFloat height=kScreenHeight-y-40;
+    self.tableView.frame = CGRectMake(0, y+CGRectGetHeight(self.topView.frame), 320, height);
 }
 
 -(void)initNavi{

@@ -67,6 +67,18 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 0){
         UITextField *tf=[alertView textFieldAtIndex:0];
+        if(tf.text.length >15){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"不能超过20个字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+            return;
+        }
+        
+        if([tf.text isEqualToString:@""]){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"群名称不能为空" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+            return;
+        }
+        
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         [dic setObject:tf.text forKey:@"name"];
         __block NSString* userIds=@"";
