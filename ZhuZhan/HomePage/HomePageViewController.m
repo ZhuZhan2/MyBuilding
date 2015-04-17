@@ -269,8 +269,8 @@
     NSLog(@"===>%ld",(long)idx);
     if(idx == 0){
         NSLog(@"推荐信");
-       // quadCurveVC=[[ConstractListController alloc]init];
-        quadCurveVC=[[MainContractsBaseController alloc]init];
+        quadCurveVC=[[ConstractListController alloc]init];
+        //quadCurveVC=[[MainContractsBaseController alloc]init];
     }else if(idx == 1){
         NSLog(@"发询价");
         quadCurveVC=[[AskPriceMainViewController alloc]init];
@@ -282,12 +282,12 @@
         quadCurveVC=[[ChatListViewController alloc]init];
     }else{
         NSLog(@"通讯录");
-        quadCurveVC = [[AddressBookViewController alloc] init];
+       // quadCurveVC = [[AddressBookViewController alloc] init];
         //Class class=NSClassFromString(@"AskPriceMainViewController");
         //Class class=NSClassFromString(@"AskPriceDetailViewController");
         //Class class=NSClassFromString(@"QuotesDetailViewController");
-        //Class class=NSClassFromString(@"ProvisionalViewController");
-        //quadCurveVC=[[class alloc]init];
+        Class class=NSClassFromString(@"ProvisionalViewController");
+        quadCurveVC=[[class alloc]init];
     }
     [self addAnimation];
     [nav pushViewController:quadCurveVC animated:NO];

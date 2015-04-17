@@ -79,11 +79,9 @@
 }
 
 -(void)firstNetWork{
-    [ContractsApi GetContractsAllListsWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
+    [ContractsApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
         
-        }
-    } archiveStatus:self.archiveStatus startIndex:0 noNetWork:nil];
+    } startIndex:0 noNetWork:nil];
 }
 
 -(NSMutableArray *)showArr{

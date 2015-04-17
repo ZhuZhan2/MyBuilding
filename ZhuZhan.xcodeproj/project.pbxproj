@@ -783,6 +783,7 @@
 		5B7AA6EA1A58D93E000FBFF2 /* icon03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6E21A58D93E000FBFF2 /* icon03@2x.png */; };
 		5B7AA6EB1A58D93E000FBFF2 /* icon04.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6E31A58D93E000FBFF2 /* icon04.png */; };
 		5B7AA6EC1A58D93E000FBFF2 /* icon04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6E41A58D93E000FBFF2 /* icon04@2x.png */; };
+		5B7CE6061AE0A2AE000E9A36 /* ContractsListSingleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7CE6051AE0A2AE000E9A36 /* ContractsListSingleModel.m */; };
 		5B7E58FE1ABBB2880063B400 /* 上导航阴影.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E58FC1ABBB2880063B400 /* 上导航阴影.png */; };
 		5B7E58FF1ABBB2880063B400 /* 上导航阴影@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E58FD1ABBB2880063B400 /* 上导航阴影@2x.png */; };
 		5B7E59061ABBD9B90063B400 /* ProvidePriceInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E59051ABBD9B90063B400 /* ProvidePriceInfoController.m */; };
@@ -2676,6 +2677,8 @@
 		5B7AA6E21A58D93E000FBFF2 /* icon03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon03@2x.png"; sourceTree = "<group>"; };
 		5B7AA6E31A58D93E000FBFF2 /* icon04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon04.png; sourceTree = "<group>"; };
 		5B7AA6E41A58D93E000FBFF2 /* icon04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon04@2x.png"; sourceTree = "<group>"; };
+		5B7CE6041AE0A2AE000E9A36 /* ContractsListSingleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractsListSingleModel.h; sourceTree = "<group>"; };
+		5B7CE6051AE0A2AE000E9A36 /* ContractsListSingleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractsListSingleModel.m; sourceTree = "<group>"; };
 		5B7E58FC1ABBB2880063B400 /* 上导航阴影.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上导航阴影.png"; sourceTree = "<group>"; };
 		5B7E58FD1ABBB2880063B400 /* 上导航阴影@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上导航阴影@2x.png"; sourceTree = "<group>"; };
 		5B7E59041ABBD9B90063B400 /* ProvidePriceInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvidePriceInfoController.h; sourceTree = "<group>"; };
@@ -6684,6 +6687,8 @@
 			children = (
 				D3D483F31ADF884A004AF972 /* ContractsApi.h */,
 				D3D483F41ADF884A004AF972 /* ContractsApi.m */,
+				5B7CE6041AE0A2AE000E9A36 /* ContractsListSingleModel.h */,
+				5B7CE6051AE0A2AE000E9A36 /* ContractsListSingleModel.m */,
 			);
 			path = ContractsModel;
 			sourceTree = "<group>";
@@ -8510,6 +8515,7 @@
 				042D9E0E19B559FC00689C5D /* BaiDuMapViewController.m in Sources */,
 				D3EDCA541ACE90A6002AF865 /* SDWebImageDownloaderOperation.m in Sources */,
 				D3A4281B19C1A2E700BAB6C7 /* GTMBase64.m in Sources */,
+				5B7CE6061AE0A2AE000E9A36 /* ContractsListSingleModel.m in Sources */,
 				5B76706B1AB6BDB800E154C5 /* RemindListViewController.m in Sources */,
 				5BF31B6B1AB025FD00DA87F5 /* ImageAndLabelView.m in Sources */,
 				0426C26219922D5A00CD8822 /* GPUImageDissolveBlendFilter.m in Sources */,
