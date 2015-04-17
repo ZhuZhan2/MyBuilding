@@ -47,7 +47,7 @@
     }
     
     
-    NSString *urlStr = [NSString stringWithFormat:@"api/contract/getContractsAllLists?archiveStatus=%@&pageSize=10&pageIndex=%d",archiveStatus,startIndex];
+    NSString *urlStr = [NSString stringWithFormat:@"api/contract/list?archiveStatus=%@&pageSize=10&pageIndex=%d",archiveStatus,startIndex];
     NSLog(@"=====%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON==>%@",JSON);

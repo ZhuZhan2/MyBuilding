@@ -1294,6 +1294,7 @@
 		D3BAA7B71A58CB9A008E613F /* 人的详情88-03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BAA7AF1A58CB9A008E613F /* 人的详情88-03@2x.png */; };
 		D3BAA7B81A58CB9A008E613F /* 人的详情88-04.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BAA7B01A58CB9A008E613F /* 人的详情88-04.png */; };
 		D3BAA7B91A58CB9A008E613F /* 人的详情88-04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BAA7B11A58CB9A008E613F /* 人的详情88-04@2x.png */; };
+		D3C0218F1AE09520000F1742 /* TableViewHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C0218E1AE09520000F1742 /* TableViewHeightCell.m */; };
 		D3CF0D871AB81A4C00D71CEB /* AskPriceMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF0D861AB81A4C00D71CEB /* AskPriceMainViewController.m */; };
 		D3CF0D8C1AB81A7800D71CEB /* AddContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF0D891AB81A7800D71CEB /* AddContactView.m */; };
 		D3CF0D8D1AB81A7800D71CEB /* TopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF0D8B1AB81A7800D71CEB /* TopView.m */; };
@@ -1331,6 +1332,9 @@
 		D3D483F11ADF5FF6004AF972 /* 等待验证120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D483EF1ADF5FF6004AF972 /* 等待验证120@2x.png */; };
 		D3D483F51ADF884A004AF972 /* ContractsApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D483F41ADF884A004AF972 /* ContractsApi.m */; };
 		D3D483F91ADFBB08004AF972 /* AskPriceMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D483F81ADFBB08004AF972 /* AskPriceMessageViewController.m */; };
+		D3D483FF1ADFC4E8004AF972 /* AskPriceMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D483FE1ADFC4E8004AF972 /* AskPriceMessageCell.m */; };
+		D3D484021ADFCE31004AF972 /* ContractsListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D484011ADFCE31004AF972 /* ContractsListModel.m */; };
+		D3D484061ADFCEA1004AF972 /* AskPriceMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D484051ADFCEA1004AF972 /* AskPriceMessageModel.m */; };
 		D3D4A2E21AAE98390071B3EA /* ChatMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4A2E11AAE98390071B3EA /* ChatMessageModel.m */; };
 		D3D4FB301A0872770033BB34 /* CompanyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4FB2F1A0872770033BB34 /* CompanyCenterViewController.m */; };
 		D3D4FB331A087A830033BB34 /* 公司－账号设置_03a-05.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D4FB311A087A830033BB34 /* 公司－账号设置_03a-05.png */; };
@@ -3343,6 +3347,9 @@
 		D3BAA7AF1A58CB9A008E613F /* 人的详情88-03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人的详情88-03@2x.png"; sourceTree = "<group>"; };
 		D3BAA7B01A58CB9A008E613F /* 人的详情88-04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人的详情88-04.png"; sourceTree = "<group>"; };
 		D3BAA7B11A58CB9A008E613F /* 人的详情88-04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人的详情88-04@2x.png"; sourceTree = "<group>"; };
+		D3C0218C1AE09421000F1742 /* CellHeightDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellHeightDelegate.h; sourceTree = "<group>"; };
+		D3C0218D1AE09520000F1742 /* TableViewHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewHeightCell.h; sourceTree = "<group>"; };
+		D3C0218E1AE09520000F1742 /* TableViewHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewHeightCell.m; sourceTree = "<group>"; };
 		D3CF0D851AB81A4C00D71CEB /* AskPriceMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceMainViewController.h; sourceTree = "<group>"; };
 		D3CF0D861AB81A4C00D71CEB /* AskPriceMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPriceMainViewController.m; sourceTree = "<group>"; };
 		D3CF0D881AB81A7800D71CEB /* AddContactView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContactView.h; sourceTree = "<group>"; };
@@ -3396,6 +3403,12 @@
 		D3D483F41ADF884A004AF972 /* ContractsApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractsApi.m; sourceTree = "<group>"; };
 		D3D483F71ADFBB08004AF972 /* AskPriceMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceMessageViewController.h; sourceTree = "<group>"; };
 		D3D483F81ADFBB08004AF972 /* AskPriceMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPriceMessageViewController.m; sourceTree = "<group>"; };
+		D3D483FD1ADFC4E8004AF972 /* AskPriceMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceMessageCell.h; sourceTree = "<group>"; };
+		D3D483FE1ADFC4E8004AF972 /* AskPriceMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPriceMessageCell.m; sourceTree = "<group>"; };
+		D3D484001ADFCE31004AF972 /* ContractsListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractsListModel.h; sourceTree = "<group>"; };
+		D3D484011ADFCE31004AF972 /* ContractsListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractsListModel.m; sourceTree = "<group>"; };
+		D3D484041ADFCEA1004AF972 /* AskPriceMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceMessageModel.h; sourceTree = "<group>"; };
+		D3D484051ADFCEA1004AF972 /* AskPriceMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPriceMessageModel.m; sourceTree = "<group>"; };
 		D3D49EE919FE0B76002B3B99 /* HeadImageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadImageDelegate.h; sourceTree = "<group>"; };
 		D3D4A2E01AAE98390071B3EA /* ChatMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageModel.h; sourceTree = "<group>"; };
 		D3D4A2E11AAE98390071B3EA /* ChatMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageModel.m; sourceTree = "<group>"; };
@@ -3855,6 +3868,7 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3C0218B1AE09400000F1742 /* CellHeight */,
 				D3DCDAC71ADBA66C0029DB95 /* GetAddressBook */,
 				D31BBB8A1AD3E3F500919B8B /* PodFiles */,
 				D3EDCA2C1ACE90A6002AF865 /* SDWebImage */,
@@ -6289,6 +6303,7 @@
 		D3AC618B19B6BF930015B62F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D3D484031ADFCE8B004AF972 /* AskPriceMessageModel */,
 				D3D483F21ADF8805004AF972 /* ContractsModel */,
 				D3DA3D2B1ABBBA71001D1EEA /* AskPriceModel */,
 				D3FF3E7E1AAEC8FF005195CC /* ChoseContactModel */,
@@ -6526,6 +6541,16 @@
 			path = PopView;
 			sourceTree = "<group>";
 		};
+		D3C0218B1AE09400000F1742 /* CellHeight */ = {
+			isa = PBXGroup;
+			children = (
+				D3C0218C1AE09421000F1742 /* CellHeightDelegate.h */,
+				D3C0218D1AE09520000F1742 /* TableViewHeightCell.h */,
+				D3C0218E1AE09520000F1742 /* TableViewHeightCell.m */,
+			);
+			path = CellHeight;
+			sourceTree = "<group>";
+		};
 		D3CF0D841AB81A3900D71CEB /* AskPriceMainView */ = {
 			isa = PBXGroup;
 			children = (
@@ -6601,6 +6626,8 @@
 			children = (
 				D3D483F31ADF884A004AF972 /* ContractsApi.h */,
 				D3D483F41ADF884A004AF972 /* ContractsApi.m */,
+				D3D484001ADFCE31004AF972 /* ContractsListModel.h */,
+				D3D484011ADFCE31004AF972 /* ContractsListModel.m */,
 			);
 			path = ContractsModel;
 			sourceTree = "<group>";
@@ -6610,8 +6637,19 @@
 			children = (
 				D3D483F71ADFBB08004AF972 /* AskPriceMessageViewController.h */,
 				D3D483F81ADFBB08004AF972 /* AskPriceMessageViewController.m */,
+				D3D483FD1ADFC4E8004AF972 /* AskPriceMessageCell.h */,
+				D3D483FE1ADFC4E8004AF972 /* AskPriceMessageCell.m */,
 			);
 			path = AskPriceMessage;
+			sourceTree = "<group>";
+		};
+		D3D484031ADFCE8B004AF972 /* AskPriceMessageModel */ = {
+			isa = PBXGroup;
+			children = (
+				D3D484041ADFCEA1004AF972 /* AskPriceMessageModel.h */,
+				D3D484051ADFCEA1004AF972 /* AskPriceMessageModel.m */,
+			);
+			path = AskPriceMessageModel;
 			sourceTree = "<group>";
 		};
 		D3D4A2DF1AAE98290071B3EA /* ChatMessageModel */ = {
@@ -8008,6 +8046,7 @@
 				5B6289DD1AB7C10000F30059 /* RKTwoView.m in Sources */,
 				5B5773DC1AC1320400C17DBF /* DemandDetailProvidePriceController.m in Sources */,
 				D3F7275A1AD6941900B52A66 /* RecommendFriendCell.m in Sources */,
+				D3C0218F1AE09520000F1742 /* TableViewHeightCell.m in Sources */,
 				5B3AD9E419F7CA7B008132B2 /* CompanyMemberCell.m in Sources */,
 				D3D4A2E21AAE98390071B3EA /* ChatMessageModel.m in Sources */,
 				0426C2A919922D5A00CD8822 /* GPUImageRawDataInput.m in Sources */,
@@ -8111,11 +8150,13 @@
 				0426C2C419922D5A00CD8822 /* GPUImageTextureInput.m in Sources */,
 				0426C2DB19922D5A00CD8822 /* GPUImageContext.m in Sources */,
 				0426C26A19922D5A00CD8822 /* GPUImageFASTCornerDetectionFilter.m in Sources */,
+				D3D483FF1ADFC4E8004AF972 /* AskPriceMessageCell.m in Sources */,
 				0426C24E19922D5A00CD8822 /* GPUImageCannyEdgeDetectionFilter.m in Sources */,
 				0426C23519922D5A00CD8822 /* ACTimeScroller.m in Sources */,
 				04D10C3019AF3C120097C0C6 /* ShowViewController.m in Sources */,
 				D3AC86AB19CBD3E30009673C /* GetImagePath.m in Sources */,
 				0426C25C19922D5A00CD8822 /* GPUImageCrosshatchFilter.m in Sources */,
+				D3D484061ADFCEA1004AF972 /* AskPriceMessageModel.m in Sources */,
 				D36040E919F51E9F00E9727D /* CompanyApi.m in Sources */,
 				D3D7DB2F19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m in Sources */,
 				5B8A2CEF1AAEE0AD00C8F9DE /* ChatModel.m in Sources */,
@@ -8206,6 +8247,7 @@
 				0426C2A119922D5A00CD8822 /* GPUImagePinchDistortionFilter.m in Sources */,
 				5B8650471ABFA1B90096BEF0 /* DemandStageCell.m in Sources */,
 				0426C29819922D5A00CD8822 /* GPUImageNobleCornerDetectionFilter.m in Sources */,
+				D3D484021ADFCE31004AF972 /* ContractsListModel.m in Sources */,
 				0426C27219922D5A00CD8822 /* GPUImageGlassSphereFilter.m in Sources */,
 				0426C28619922D5A00CD8822 /* GPUImageLightenBlendFilter.m in Sources */,
 				0426C30219922D5A00CD8822 /* UIWebView+AFNetworking.m in Sources */,
