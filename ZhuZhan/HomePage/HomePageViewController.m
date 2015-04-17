@@ -21,6 +21,7 @@
 #import "AskPriceMainViewController.h"
 #import "MainContractsBaseController.h"
 #import "ProvisionalViewController.h"
+#import "OtherContractsBaseController.h"
 #import "AskPriceMessageViewController.h"
 #define contentHeight (kScreenHeight==480?431:519)
 @interface HomePageViewController ()<LoginViewDelegate>
@@ -267,9 +268,9 @@
 {
     NSLog(@"===>%ld",(long)idx);
     if(idx == 0){
-        NSLog(@"发佣金");
+        NSLog(@"推荐信");
+        quadCurveVC=[[ConstractListController alloc]init];
         //quadCurveVC=[[MainContractsBaseController alloc]init];
-        quadCurveVC=[[ProvisionalViewController alloc]init];
     }else if(idx == 1){
         NSLog(@"发询价");
         quadCurveVC=[[AskPriceMainViewController alloc]init];
@@ -281,12 +282,12 @@
         quadCurveVC=[[ChatListViewController alloc]init];
     }else{
         NSLog(@"通讯录");
-        quadCurveVC = [[AddressBookViewController alloc] init];
+       // quadCurveVC = [[AddressBookViewController alloc] init];
         //Class class=NSClassFromString(@"AskPriceMainViewController");
         //Class class=NSClassFromString(@"AskPriceDetailViewController");
         //Class class=NSClassFromString(@"QuotesDetailViewController");
-        //Class class=NSClassFromString(@"ProvisionalViewController");
-        //quadCurveVC=[[class alloc]init];
+        Class class=NSClassFromString(@"ProvisionalViewController");
+        quadCurveVC=[[class alloc]init];
     }
     [self addAnimation];
     [nav pushViewController:quadCurveVC animated:NO];

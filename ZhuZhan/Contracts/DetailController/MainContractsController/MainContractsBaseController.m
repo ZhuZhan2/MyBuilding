@@ -10,18 +10,34 @@
 #import "ContractsUserView.h"
 #import "ContractsTradeCodeView.h"
 #import "ContractsMainClauseView.h"
-@interface MainContractsBaseController ()
+#import "ContractsBtnToolBar.h"
+@interface MainContractsBaseController ()<ContractsBtnToolBarDelegate>
 @property (nonatomic, strong)ContractsUserView* userView1;
 @property (nonatomic, strong)ContractsUserView* userView2;
 @property (nonatomic, strong)ContractsMainClauseView* mainClauseView;
+@property (nonatomic, strong)ContractsBtnToolBar* btnToolBar;
 @property (nonatomic, strong)NSMutableArray* cellViews;
 @end
 
 @implementation MainContractsBaseController
 -(void)viewDidLoad{
     [super viewDidLoad];
+    [self initNaviExtra];
     [self initTableView];
     [self initTableViewExtra];
+}
+
+-(void)initNaviExtra{
+    self.title=@"佣金合同条款";
+    [self setRightBtnWithText:@"取消"];
+}
+
+-(void)rightBtnClicked{
+    NSLog(@"取消咯");
+}
+
+-(void)contractsBtnToolBarClickedWithBtn:(UIButton *)btn index:(NSInteger)index{
+    NSLog(@"index=%d",(int)index);
 }
 
 -(void)initTableViewExtra{
@@ -33,6 +49,10 @@
     
     self.tableView.backgroundColor=AllBackDeepGrayColor;
     [self.view insertSubview:self.tableView belowSubview:self.tradeCodeView];
+    
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
+    view.backgroundColor=AllBackDeepGrayColor;
+    self.tableView.tableFooterView=view;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -76,9 +96,38 @@
     return _mainClauseView;
 }
 
+
+/*
+ 同意带字 不同意带字 关闭带字 修改带字
+ 同意小带字 不同意小带字 上传小带字
+ 同意迷你带字 不同意迷你带字 上传迷你带字 选项按钮
+ */
+-(ContractsBtnToolBar *)btnToolBar{
+    if (!_btnToolBar) {
+        NSMutableArray* btns=[NSMutableArray array];
+//        NSArray* imageNames=@[@"不同意迷你带字",@"同意迷你带字",@"上传迷你带字",@"选项按钮"];
+        NSArray* imageNames=@[@"不同意小带字",@"同意小带字",@"上传小带字"];
+        //NSArray* imageNames=@[@"不同意带字",@"同意带字"];
+
+        for (int i=0;i<imageNames.count;i++) {
+            UIButton* btn=[UIButton buttonWithType:UIButtonTypeCustom];
+            UIImage* image=[GetImagePath getImagePath:imageNames[i]];
+            btn.frame=CGRectMake(0, 0, image.size.width, image.size.height);
+            [btn setBackgroundImage:image forState:UIControlStateNormal];
+            [btns addObject:btn];
+        }
+
+        _btnToolBar=[ContractsBtnToolBar contractsBtnToolBarWithBtns:btns contentMaxWidth:295 top:5 bottom:30 contentHeight:37];
+      //  _btnToolBar=[ContractsBtnToolBar contractsBtnToolBarWithBtns:btns contentMaxWidth:270 top:5 bottom:30 contentHeight:37];
+
+        _btnToolBar.delegate=self;
+    }
+    return _btnToolBar;
+}
+
 -(NSMutableArray *)cellViews{
     if (!_cellViews) {
-        _cellViews=[@[self.userView1,self.userView2,self.mainClauseView] mutableCopy];
+        _cellViews=[@[self.userView1,self.userView2,self.mainClauseView,self.btnToolBar] mutableCopy];
     }
     return _cellViews;
 }

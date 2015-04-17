@@ -55,6 +55,7 @@
     self.userNameLabel.text=userName;
     self.userBussniessLabel.text=time;
     [self.rightBtn setBackgroundImage:[GetImagePath getImagePath:isFinished?@"added":@"accept_green_button"] forState:UIControlStateNormal];
+    self.rightBtn.userInteractionEnabled=!isFinished;
     self.rightBtn.tag=indexPathRow;
     self.headBtn.tag=indexPathRow;
 }
