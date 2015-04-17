@@ -270,27 +270,34 @@
     if(idx == 0){
         NSLog(@"推荐信");
         quadCurveVC=[[ConstractListController alloc]init];
-        //quadCurveVC=[[MainContractsBaseController alloc]init];
+        [self addAnimation];
+        [nav pushViewController:quadCurveVC animated:NO];
     }else if(idx == 1){
         NSLog(@"发询价");
         quadCurveVC=[[AskPriceMainViewController alloc]init];
+        [self addAnimation];
+        [nav pushViewController:quadCurveVC animated:NO];
     }else if(idx == 2){
         NSLog(@"消息");
         quadCurveVC=[[AskPriceMessageViewController alloc]init];
+        [self addAnimation];
+        [nav pushViewController:quadCurveVC animated:NO];
     }else if (idx == 3){
         NSLog(@"会话");
         quadCurveVC=[[ChatListViewController alloc]init];
+        if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"]){
+            [self addAnimation];
+            [nav pushViewController:quadCurveVC animated:NO];
+        }
     }else{
         NSLog(@"通讯录");
-       // quadCurveVC = [[AddressBookViewController alloc] init];
-        //Class class=NSClassFromString(@"AskPriceMainViewController");
-        //Class class=NSClassFromString(@"AskPriceDetailViewController");
-        //Class class=NSClassFromString(@"QuotesDetailViewController");
-        Class class=NSClassFromString(@"ProvisionalViewController");
-        quadCurveVC=[[class alloc]init];
+        NSLog(@"%@",[LoginSqlite getdata:@"userType"]);
+        quadCurveVC = [[AddressBookViewController alloc] init];
+        if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"]){
+            [self addAnimation];
+            [nav pushViewController:quadCurveVC animated:NO];
+        }
     }
-    [self addAnimation];
-    [nav pushViewController:quadCurveVC animated:NO];
 }
 
 -(void)gotoLoginView{

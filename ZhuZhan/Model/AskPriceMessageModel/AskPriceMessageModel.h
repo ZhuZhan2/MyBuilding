@@ -13,5 +13,9 @@
 @property(nonatomic,strong)NSString *a_title;
 @property(nonatomic,strong)NSString *a_time;
 @property(nonatomic,strong)NSString *a_content;
+@property(nonatomic,strong)NSString *a_messageSourceId;
+@property(nonatomic,strong)NSString *a_messageObjectId;
+@property(nonatomic,strong)NSString *a_messageType;
+@property(nonatomic,strong)NSString *a_status;
 @property(nonatomic,strong)NSDictionary *dict;
 @end

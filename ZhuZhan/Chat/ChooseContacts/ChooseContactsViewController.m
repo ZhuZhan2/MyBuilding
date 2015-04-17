@@ -73,7 +73,7 @@
             return;
         }
         
-        if([tf.text isEqualToString:@""]){
+        if([[tf.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]){
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"群名称不能为空" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
             return;

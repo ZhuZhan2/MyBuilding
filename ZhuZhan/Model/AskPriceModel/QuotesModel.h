@@ -34,6 +34,7 @@
 @property(nonatomic,strong)NSString *a_quoteContent;
 //平台认证
 @property(nonatomic,strong)NSString *a_quoteIsVerified;
+@property(nonatomic)BOOL a_isHonesty;
 //报价人的名字
 @property(nonatomic,strong)NSString *a_quoteUser;
 //状态

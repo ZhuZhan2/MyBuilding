@@ -208,18 +208,26 @@
 }
 
 -(void)addFriend{
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setValue:self.createdBy forKey:@"userId"];
-    [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alertView show];
-            [addFriendBtn setTitle:@"已发送" forState:UIControlStateNormal];
-            addFriendBtn.enabled = NO;
-        }else{
-            [LoginAgain AddLoginView:NO];
-        }
-    } dic:dic noNetWork:nil];
+    if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:self.createdBy forKey:@"userId"];
+        [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+                [addFriendBtn setTitle:@"已发送" forState:UIControlStateNormal];
+                addFriendBtn.enabled = NO;
+            }else{
+                [LoginAgain AddLoginView:NO];
+            }
+        } dic:dic noNetWork:nil];
+    }else{
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.delegate = self;
+        loginVC.needDelayCancel = YES;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }
 }
 
 -(void)gotoMessageBtnAction{

@@ -107,13 +107,19 @@
 }
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    NSLog(@"%d",(int)textView.text.length+(int)text.length);
     if ([text isEqualToString:@"\n"]) {
-        if ([self.delegate respondsToSelector:@selector(chatToolSendBtnClickedWithContent:)]) {
-            [self.delegate chatToolSendBtnClickedWithContent:textView.text];
+        if((int)textView.text.length+(int)text.length >1000){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"不能超过1000个字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }else{
+            if ([self.delegate respondsToSelector:@selector(chatToolSendBtnClickedWithContent:)]) {
+                [self.delegate chatToolSendBtnClickedWithContent:textView.text];
+            }
+            textView.text=@"";
+            [self textViewDidChange:textView];
+            [textView resignFirstResponder];
         }
-        textView.text=@"";
-        [self textViewDidChange:textView];
-        [textView resignFirstResponder];
         return NO;
     }else{
         return YES;

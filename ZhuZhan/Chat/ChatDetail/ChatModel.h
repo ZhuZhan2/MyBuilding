@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface ChatModel : NSObject
+@property(nonatomic,copy)NSString* ID;
 @property(nonatomic,copy)NSString* time;
 @property(nonatomic,copy)NSString* userImageStr;
 @property(nonatomic,copy)NSString* userNameStr;

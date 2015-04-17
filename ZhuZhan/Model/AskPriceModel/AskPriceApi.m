@@ -9,7 +9,6 @@
 #import "AskPriceApi.h"
 #import "ConnectionAvailable.h"
 #import "LoginSqlite.h"
-#import "AskPriceModel.h"
 #import "QuotesModel.h"
 #import "UserOrCompanyModel.h"
 #import "CategoryModel.h"
@@ -87,7 +86,7 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)GetAskPriceDetailsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block tradeId:(NSString *)tradeId noNetWork:(void(^)())noNetWork{
++ (NSURLSessionDataTask *)GetAskPriceDetailsWithBlock:(void (^)(NSMutableArray *posts,AskPriceModel *model ,NSError *error))block tradeId:(NSString *)tradeId noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
             noNetWork();
@@ -107,6 +106,8 @@
                 [mutablePosts addObject:model];
                 NSLog(@"item==%@",item);
             }
+            AskPriceModel *model = [[AskPriceModel alloc] init];
+            [model setDict:JSON[@"data"][@"tradeDetails"]];
             if(mutablePosts.count !=0){
                 [arr addObject:mutablePosts];
             }else{
@@ -114,7 +115,7 @@
             }
             [arr addObject:JSON[@"data"][@"isQuoted"]];
             if (block) {
-                block([NSMutableArray arrayWithArray:arr], nil);
+                block([NSMutableArray arrayWithArray:arr], model,nil);
             }
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -123,7 +124,7 @@
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {
-            block([NSMutableArray array], error);
+            block([NSMutableArray array],nil ,error);
         }
     }];
 }

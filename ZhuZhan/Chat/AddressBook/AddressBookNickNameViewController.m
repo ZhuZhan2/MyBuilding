@@ -43,12 +43,7 @@
         [alertView show];
         return;
     }
-    
-    if([self.textField.text isEqualToString:@""]){
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"备注不能为空" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
-        return;
-    }
+
     NSMutableDictionary* dic=[@{
                                 @"userId":self.targetId,
                                 @"nickName":self.textField.text

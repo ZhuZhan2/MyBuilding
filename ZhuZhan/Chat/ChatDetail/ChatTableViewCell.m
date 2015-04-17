@@ -11,7 +11,7 @@
 
 @interface ChatTableViewCell ()
 @property(nonatomic,strong)UILabel* timeLine;
-@property(nonatomic,strong)UIImageView* userImageView;
+@property(nonatomic,strong)UIButton* userImageBtn;
 @property(nonatomic,strong)UILabel* nameLabel;
 @property(nonatomic,strong)UIView* seperatorLine;
 @property(nonatomic,strong)ChatContentView* chatContentView;
@@ -60,14 +60,15 @@
     return _seperatorLine;
 }
 
--(UIImageView *)userImageView{
-    if (!_userImageView) {
-        _userImageView=[[UIImageView alloc]init];
-        _userImageView.frame=CGRectMake(0, 0, 35, 35);
-        _userImageView.layer.cornerRadius=2;
-        _userImageView.layer.masksToBounds=YES;
+-(UIButton *)userImageBtn{
+    if (!_userImageBtn) {
+        _userImageBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+        _userImageBtn.frame=CGRectMake(0, 0, 35, 35);
+        _userImageBtn.layer.cornerRadius=2;
+        _userImageBtn.layer.masksToBounds=YES;
+        [_userImageBtn addTarget:self action:@selector(userImageBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _userImageView;
+    return _userImageBtn;
 }
 
 -(UILabel *)nameLabel{
@@ -99,7 +100,7 @@
 -(void)setUp{
     self.clipsToBounds=YES;
     [self.contentView addSubview:self.timeLine];
-    [self.contentView addSubview:self.userImageView];
+    [self.contentView addSubview:self.userImageBtn];
     [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.chatContentView];
     //[self.contentView addSubview:self.seperatorLine];
@@ -109,7 +110,7 @@
     _model=chatModel;
     
     self.timeLine.text=chatModel.time;
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:chatModel.userImageStr] placeholderImage:[GetImagePath getImagePath:@"未设置"]];
+    [self.userImageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:chatModel.userImageStr] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"未设置"]];
     self.nameLabel.text=chatModel.userNameStr;
     [self.chatContentView setText:chatModel.chatContent isSelf:chatModel.isSelf];
     self.isSelf=chatModel.isSelf;
@@ -118,8 +119,8 @@
 -(void)layoutSubviews{
     CGFloat topDistance=8+CGRectGetHeight(self.timeLine.frame);
     
-    CGFloat userImageDistanceFromSide=14+self.userImageView.frame.size.width*0.5;
-    self.userImageView.center=CGPointMake((self.model.isSelf?kScreenWidth-userImageDistanceFromSide:userImageDistanceFromSide), topDistance+self.userImageView.frame.size.height*0.5);
+    CGFloat userImageDistanceFromSide=14+self.userImageBtn.frame.size.width*0.5;
+    self.userImageBtn.center=CGPointMake((self.model.isSelf?kScreenWidth-userImageDistanceFromSide:userImageDistanceFromSide), topDistance+self.userImageBtn.frame.size.height*0.5);
 
     self.nameLabel.alpha=!self.model.isSelf;
     self.nameLabel.frame=self.nameLabel.alpha?CGRectMake(57, topDistance, 250, 15):CGRectZero;
@@ -131,5 +132,13 @@
     self.chatContentView.center=CGPointMake(chatContentViceCenterX, chatContentViceCenterY);
     
     self.seperatorLine.frame=CGRectMake(0, self.frame.size.height-1, kScreenWidth, 1);
+}
+
+-(void)userImageBtnAction{
+    if(!self.model.isSelf){
+        if([self.delegate respondsToSelector:@selector(gotoContactDetailView:)]){
+            [self.delegate gotoContactDetailView:self.model.ID];
+        }
+    }
 }
 @end

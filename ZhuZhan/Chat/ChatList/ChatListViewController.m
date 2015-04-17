@@ -27,6 +27,7 @@
     [self initNavi];
     //[self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
     [self initTableView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadList) name:@"loadList" object:nil];
 }
 
 -(void)initSocket{
@@ -50,6 +51,10 @@
             [self.tableView reloadData];
         }
     } noNetWork:nil];
+}
+
+-(void)loadList{
+    [self firstNetWork];
 }
 
 -(void)initNavi{
@@ -158,5 +163,9 @@
 -(void)reloadList{
     [self.models removeAllObjects];
     [self firstNetWork];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loadList" object:nil];
 }
 @end

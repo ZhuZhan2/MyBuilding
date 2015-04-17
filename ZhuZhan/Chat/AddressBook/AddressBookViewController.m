@@ -17,6 +17,7 @@
 #import "AddressBookNickNameViewController.h"
 #import "ChatViewController.h"
 #import "PersonalDetailViewController.h"
+#import "MyTableView.h"
 #define seperatorLineColor RGBCOLOR(229, 229, 229)
 @interface AddressBookViewController()<AddressBookViewCellDelegate,SWTableViewCellDelegate,AddressBookNickNameViewControllerDelegate,AddressBookSearchBarCellDelegate>
 @property(nonatomic,strong)NSMutableArray *groupArr;
@@ -57,7 +58,7 @@
     
     [self.addFriendBtn addTarget:self action:@selector(addFriend) forControlEvents:UIControlEventTouchUpInside];
     
-    CGFloat height=kScreenHeight-y;
+    CGFloat height=kScreenHeight-y-50;
     self.tableView.frame = CGRectMake(0, y+CGRectGetHeight(self.addFriendBtn.frame), 320, height);
 }
 
@@ -71,7 +72,7 @@
     NSMutableArray *rightUtilityButtons = [NSMutableArray new];
     [rightUtilityButtons sw_addUtilityButtonWithColor:
      [UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]
-                                                title:@"更多"];
+                                                title:@"备注"];
     [rightUtilityButtons sw_addUtilityButtonWithColor:
      [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
                                                 title:@"删除"];
@@ -196,12 +197,12 @@
 }
 
 -(NSInteger)searchBarTableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    AddressBookModel *model = self.searchDataArr[section];
-    return [self sectionSelectedArrayContainsSection:section]?0:model.contactArr.count;
-}
-
--(NSInteger)searchBarNumberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    if(self.searchDataArr.count !=0){
+        AddressBookModel *model = self.searchDataArr[section];
+        return [self sectionSelectedArrayContainsSection:section]?0:model.contactArr.count;
+    }else{
+        return 0;
+    }
 }
 
 -(UITableViewCell *)searchBarTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -238,51 +239,6 @@
     });
 }
 
--(CGFloat)searchBarTableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30;
-}
-
--(UIView *)searchBarTableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    AddressBookModel *model = self.searchDataArr[section];
-    BOOL isShow=![self sectionSelectedArrayContainsSection:section];
-    CGFloat sectionHeight=30;
-    UIButton* view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, sectionHeight)];
-    view.backgroundColor=[UIColor whiteColor];
-    
-    NSString* text=model.a_name;
-    UIFont* textFont=[UIFont systemFontOfSize:14];
-    CGFloat labelWidth=[text boundingRectWithSize:CGSizeMake(9999, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:textFont} context:nil].size.width;
-    UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(11, 0, labelWidth, sectionHeight)];
-    label.text=text;
-    label.textColor=GrayColor;
-    label.font=[UIFont systemFontOfSize:14];
-    [view addSubview:label];
-    
-    CGFloat imageViewOrginX=CGRectGetWidth(label.frame)+CGRectGetMinX(label.frame)+5;
-    UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(imageViewOrginX, 11, 8, 8)];
-    imageView.image=[GetImagePath getImagePath:isShow?@"分组打开":@"分组关闭"];
-    [view addSubview:imageView];
-    
-    CGFloat numberLabelWidth=100;
-    UILabel* numberLabel=[[UILabel alloc]initWithFrame:CGRectMake(kScreenWidth-13-numberLabelWidth, 0, numberLabelWidth, sectionHeight)];
-    numberLabel.text=model.a_count;
-    numberLabel.textAlignment=NSTextAlignmentRight;
-    numberLabel.textColor=isShow?[UIColor redColor]:GrayColor;
-    numberLabel.font=[UIFont systemFontOfSize:13];
-    [view addSubview:numberLabel];
-    
-    UIView* seperatorLine0=[AddressBookViewCell fullSeperatorLine];
-    seperatorLine0.center=CGPointMake(view.center.x, 0);
-    [view addSubview:seperatorLine0];
-    UIView* seperatorLine1=[AddressBookViewCell fullSeperatorLine];
-    seperatorLine1.center=CGPointMake(view.center.x, CGRectGetHeight(view.frame));
-    [view addSubview:seperatorLine1];
-    
-    [view addTarget:self action:@selector(sectionDidSelectWithBtnSearch:) forControlEvents:UIControlEventTouchUpInside];
-    view.tag=section;
-    return view;
-}
-
 -(void)sectionDidSelectWithBtnSearch:(UIButton*)btn{
     NSInteger section=btn.tag;
     [self sectionViewClickedWithSection:section];
@@ -297,8 +253,16 @@
 -(void)searchData:(NSString *)keyWords{
     [AddressBookApi GetAddressBookListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            self.searchDataArr = posts;
-            [self reloadSearchBarTableViewData];
+            if(posts.count !=0){
+                self.searchDataArr = posts;
+                [self reloadSearchBarTableViewData];
+                [MyTableView removeFootView:self.searchBarTableView];
+            }else{
+                self.searchDataArr = posts;
+                [self reloadSearchBarTableViewData];
+                [MyTableView reloadDataWithTableView:self.searchBarTableView];
+                [MyTableView hasData:self.searchBarTableView];
+            }
         }
     }keywords:keyWords noNetWork:nil];
 }

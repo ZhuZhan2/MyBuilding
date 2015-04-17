@@ -10,8 +10,13 @@
 #import "AskPriceMessageCell.h"
 #import "AskPriceMessageModel.h"
 #import "MJRefresh.h"
+#import "AskPriceMessageApi.h"
+#import "AskPriceDetailViewController.h"
+#import "QuotesDetailViewController.h"
 @interface AskPriceMessageViewController ()
 @property(nonatomic,strong)NSMutableArray *showArr;
+@property(nonatomic,strong)NSString *type;
+@property(nonatomic)int startIndex;
 @end
 
 @implementation AskPriceMessageViewController
@@ -19,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.startIndex = 0;
     [self initNavi];
     [self initStageChooseViewWithStages:@[@"询价提醒",@"报价提醒",@"合同提醒"]  numbers:nil];
     [self initTableView];
@@ -29,6 +35,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)loadList{
+    [AskPriceMessageApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.showArr = posts;
+            [self.tableView reloadData];
+        }
+    } messageType:self.type startIndex:0 noNetWork:nil];
 }
 
 /**
@@ -45,12 +60,26 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
-    
+    [AskPriceMessageApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self.showArr removeAllObjects];
+            self.showArr = posts;
+            [self.tableView reloadData];
+            [self.tableView headerEndRefreshing];
+        }
+    } messageType:self.type startIndex:0 noNetWork:nil];
 }
 
 - (void)footerRereshing
 {
-    
+    [AskPriceMessageApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.startIndex ++;
+            [self.showArr addObjectsFromArray:posts];
+            [self.tableView reloadData];
+            [self.tableView footerEndRefreshing];
+        }
+    } messageType:self.type startIndex:self.startIndex+1 noNetWork:nil];
 }
 
 -(void)initNavi{
@@ -62,19 +91,6 @@
 -(NSMutableArray *)showArr{
     if(!_showArr){
         _showArr = [[NSMutableArray alloc] init];
-        for(int i=0;i<10;i++){
-            AskPriceMessageModel *model = [[AskPriceMessageModel alloc] init];
-            model.a_title = @"您有一个报价提醒";
-            model.a_time = @"2014-09-23";
-            if(i%3==0){
-                model.a_content = @"阿斯顿发送到发送到阿士大夫撒打发士大夫啊";
-            }else if (i%3==1){
-                model.a_content = @"阿斯顿发送到发送到阿士大夫撒打发士大夫啊阿斯顿发送到发送到阿士大夫撒打发士大夫啊阿斯顿发送到发送到阿士大夫撒打发士大夫啊阿斯顿发送到发送到阿士大夫撒打发士大夫啊";
-            }else{
-                model.a_content = @"阿斯顿发送到发送到阿士大夫撒打发士大夫啊阿斯顿发送到发送到阿士大夫撒打发士大夫啊阿斯顿发送到发送到阿士大夫撒打发士大夫啊阿斯顿发送到发送到阿士大夫撒打发士大夫啊阿斯顿发送到发送到阿士大夫撒打发士大夫啊阿斯顿发送到发送到阿士大夫撒打发士大夫啊阿斯顿发送到发送到阿士大夫撒打发士大夫啊阿斯顿发送到发送到阿士大夫撒打发士大夫啊";
-            }
-            [_showArr addObject:model];
-        }
     }
     return _showArr;
 }
@@ -93,6 +109,19 @@
     return cellSize.height;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+     AskPriceMessageModel *model = self.showArr[indexPath.row];
+    if([model.a_messageType isEqualToString:@"06"]){
+        AskPriceDetailViewController *view = [[AskPriceDetailViewController alloc] init];
+        view.tradId = model.a_messageSourceId;
+        [self.navigationController pushViewController:view animated:YES];
+    }else if ([model.a_messageType isEqualToString:@"07"]){
+        QuotesDetailViewController *view = [[QuotesDetailViewController alloc] init];
+        view.tradId = model.a_messageSourceId;
+        [self.navigationController pushViewController:view animated:YES];
+    }
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     AskPriceMessageCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
@@ -101,6 +130,41 @@
     }
     AskPriceMessageModel *model = self.showArr[indexPath.row];
     cell.model = model;
+    cell.selectionStyle = NO;
     return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete){
+        AskPriceMessageModel* model=self.showArr[indexPath.row];
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:model.a_id forKey:@"messageId"];
+        [AskPriceMessageApi DeleteMessageWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"删除成功" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil]show];
+                [self.showArr removeObjectAtIndex:indexPath.row];
+                NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+                [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            }
+        } dic:dic noNetWork:nil];
+    }
+}
+
+-(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{
+    NSArray* stages=@[@"06",@"07",@"08"];
+    self.type=stages[stageNumber];
+    [self loadList];
 }
 @end

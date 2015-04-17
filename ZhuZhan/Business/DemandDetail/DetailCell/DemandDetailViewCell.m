@@ -223,6 +223,11 @@
     
     height+=2;
     self.userDescribelabel.text=self.model.userDescribe;
+    if(self.model.isHonesty){
+        self.userDescribelabel.textColor = BlueColor;
+    }else{
+        self.userDescribelabel.textColor = [UIColor redColor];
+    }
     size=[DemandDetailViewCell carculateLabel:self.userDescribelabel width:ContentWidth];
     frame=CGRectMake(distance, height, size.width, size.height);
     self.userDescribelabel.frame=frame;

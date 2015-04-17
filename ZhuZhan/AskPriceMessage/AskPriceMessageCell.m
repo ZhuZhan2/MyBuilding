@@ -37,7 +37,7 @@
 
 -(UILabel *)timeLabel{
     if(!_timeLabel){
-        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 10, 130, 16)];
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(225, 10, 130, 16)];
         _timeLabel.font = [UIFont systemFontOfSize:16];
     }
     return _timeLabel;
@@ -48,6 +48,7 @@
         _contentLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _contentLabel.numberOfLines = 0;
         _contentLabel.font = [UIFont systemFontOfSize:14];
+        _contentLabel.textColor = AllLightGrayColor;
     }
     return _contentLabel;
 }
@@ -57,9 +58,9 @@
     CGRect frame = [self frame];
     self.timeLabel.text = model.a_time;
     self.titleLabel.text = model.a_title;
-    CGSize size =CGSizeMake(290,500);
+    CGSize size =CGSizeMake(295,500);
     CGSize actualsize =[model.a_content boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
-    self.contentLabel.frame = CGRectMake(15, 36, 290, actualsize.height);
+    self.contentLabel.frame = CGRectMake(15, 36, 295, actualsize.height);
     self.contentLabel.text = model.a_content;
     self.cutLine.frame = CGRectMake(0, 36+actualsize.height+10, 320, 1);
     frame.size.height = 36+actualsize.height+11;
