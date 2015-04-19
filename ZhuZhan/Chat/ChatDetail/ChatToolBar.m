@@ -41,6 +41,13 @@
     return _maxTextCount;
 }
 
+-(NSInteger)maxTextCountInChat{
+    if (_maxTextCountInChat==0) {
+        _maxTextCountInChat=NSIntegerMax;
+    }
+    return _maxTextCountInChat;
+}
+
 -(UITextView *)textView{
     if (!_textView) {
         _textView=[[UITextView alloc]initWithFrame:CGRectMake(0, 0, kChatTextViewWidth, kChatTextViewInitialHeight)];
@@ -107,7 +114,7 @@
 }
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-    NSInteger limitNumber=self.maxTextCount;
+    NSInteger limitNumber=self.maxTextCountInChat;
     NSLog(@"%d",(int)textView.text.length+(int)text.length);
     if ([text isEqualToString:@"\n"]) {
         if((int)textView.text.length+(int)text.length >limitNumber){
