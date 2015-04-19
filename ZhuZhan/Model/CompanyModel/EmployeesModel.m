@@ -22,5 +22,16 @@
     self.a_duties = [ProjectStage ProjectStrStage:dict[@"duties"]];
     self.a_department = [ProjectStage ProjectBoolStage:dict[@"department"]];
     self.a_company = [ProjectStage ProjectStrStage:dict[@"company"]];
+    
+    /*
+     @property (nonatomic)BOOL isFriend;
+     @property (nonatomic)BOOL isWaiting;
+     */
+    if (dict[@"isFriend"]) {
+        self.a_isFriend=[dict[@"isFriend"] isEqualToString:@"1"];
+    }
+    if (dict[@"waiting"]) {
+        self.a_isWaiting=[dict[@"waiting"] isEqualToString:@"1"];
+    }
 }
 @end

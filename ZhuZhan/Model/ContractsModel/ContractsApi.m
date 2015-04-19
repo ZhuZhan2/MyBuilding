@@ -8,6 +8,7 @@
 
 #import "ContractsApi.h"
 #import "ConnectionAvailable.h"
+#import "ContractsListSingleModel.h"
 @implementation ContractsApi
 + (NSURLSessionDataTask *)PostContractWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
@@ -38,7 +39,7 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex noNetWork:(void(^)())noNetWork{
++ (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block keyWords:(NSString*)keyWords archiveStatus:(NSString*)archiveStatus typeContracts:(NSString*)typeContracts startIndex:(int)startIndex noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
             noNetWork();
@@ -46,14 +47,18 @@
         return nil;
     }
     
-    NSString *urlStr = [NSString stringWithFormat:@"api/contract/list?pageSize=10&pageIndex=%d",startIndex];
+    NSString *urlStr = [NSString stringWithFormat:@"api/contract/list?pageSize=10&pageIndex=%d&keywords=%@&archiveStatus=%@&typeContracts=%@",startIndex,keyWords,archiveStatus,typeContracts];
     NSLog(@"=====%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON==>%@",JSON);
         //        NSLog(@"JSON[@\"data\"][@\"rows\"]===>%@",JSON[@"data"][@"rows"]);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            
+            for (NSDictionary* item in JSON[@"data"][@"list"]) {
+                ContractsListSingleModel* singleModel=[[ContractsListSingleModel alloc]init];
+                singleModel.dict=item;
+                [mutablePosts addObject:singleModel];
+            }
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }

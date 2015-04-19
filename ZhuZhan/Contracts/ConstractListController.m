@@ -12,10 +12,19 @@
 #import "DemandStageChooseController.h"
 #import "ContractsListSearchController.h"
 #import "ContractsApi.h"
-
+#import "ContractsListSingleModel.h"
+#import "LoginSqlite.h"
 @interface ConstractListController ()<DemandStageChooseControllerDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property (nonatomic)NSInteger nowStage;
+@property (nonatomic,copy,readonly)NSString* nowStageStr;
+/*
+ 所有合同	0
+ 主条款列表	1
+ 供应商合同	2
+ 销售合同	3
+ 撤销合同	4
+ */
 @property(nonatomic,strong)NSString *archiveStatus;
 @end
 
@@ -23,12 +32,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.archiveStatus = @"";
     [self initNavi];
-    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已完成",@"已关闭"]  numbers:nil];
+    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已完成",@"已关闭"]  numbers:@[@"33",@"44",@"55",@"66"]];
     [self initTableView];
     [self initTableViewExtra];
-    [self firstNetWork];
+    [self loadList];
 }
 
 -(void)initTableViewExtra{
@@ -67,7 +75,7 @@
 }
 
 -(void)selectStage{
-    DemandStageChooseController* vc=[[DemandStageChooseController alloc]initWithIndex:self.nowStage stageNames:@[@"全部佣金合同",@"主要合同条款",@"供应商佣金合同",@"销售佣金合同"]];
+    DemandStageChooseController* vc=[[DemandStageChooseController alloc]initWithIndex:self.nowStage stageNames:@[@"全部佣金合同",@"供应商佣金合同",@"销售佣金合同",@"佣金撤销流程"]];
     vc.delegate=self;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -78,18 +86,18 @@
     //[self presentViewController:vc animated:YES completion:nil];
 }
 
--(void)firstNetWork{
+-(void)loadList{
     [ContractsApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
-        
-    } startIndex:0 noNetWork:nil];
+        if (!error) {
+            self.showArr=posts;
+            [self.tableView reloadData];
+        }
+    } keyWords:@"" archiveStatus:self.archiveStatus typeContracts:self.nowStageStr startIndex:0 noNetWork:nil];
 }
 
 -(NSMutableArray *)showArr{
     if (!_showArr) {
         _showArr=[NSMutableArray array];
-        for (int i=0;i<15;i++) {
-            [_showArr addObject:@[@"发起者",@"接收者",@"甲  方",@"乙  方",@"金  额",@"合同条款",@"状态"]];
-        }
     }
     return _showArr;
 }
@@ -108,7 +116,17 @@
         cell=[[ContractListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.clipsToBounds=YES;
     }
-    cell.contents=self.showArr[indexPath.row];
+    
+    ContractsListSingleModel* singleModel=self.showArr[indexPath.row];
+    NSString* sendName=singleModel.a_createdBy;
+    NSString* receiveName=singleModel.a_recipientName;
+    NSString* provider=singleModel.a_providerCompanyName;
+    NSString* saler=singleModel.a_salerCompanyName;
+    NSString* contractsName=singleModel.a_contractsType;
+    NSString* contractsStatus=singleModel.a_archiveStatus;
+    NSInteger index=[@[@"进行中",@"已完成",@"已关闭"] indexOfObject:contractsStatus];
+    NSArray* colors=@[BlueColor,AllGreenColor,AllLightGrayColor];
+    cell.contents=@[sendName,receiveName,saler,provider,colors[index],contractsName,contractsStatus];
     return cell;
 }
 
@@ -122,11 +140,26 @@
 }
 
 -(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{
-    self.nowStage=stageNumber;
+    NSArray* archiveStatus=@[@"",@"0",@"1",@"2"];
+    self.archiveStatus=archiveStatus[stageNumber];
+    [self loadList];
 }
 
 -(void)finishSelectedWithStageName:(NSString *)stageName index:(int)index{
     self.nowStage=index;
-    [self initTitleViewWithTitle:stageName];
+    NSArray* titles=@[@"佣金合同列表",@"供应商佣金合同",@"销售佣金合同",@"佣金撤销流程"];
+    [self initTitleViewWithTitle:titles[index]];
+    [self loadList];
+}
+
+-(NSString *)nowStageStr{
+    return @[@"0",@"2",@"3",@"4"][self.nowStage];
+}
+
+-(NSString *)archiveStatus{
+    if (!_archiveStatus) {
+        _archiveStatus=@"";
+    }
+    return _archiveStatus;
 }
 @end

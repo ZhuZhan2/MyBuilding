@@ -10,27 +10,64 @@
 /*
  archiveStatus = 0;
  companyName = "";
- contractsMoney = 9999;
+ contractsMoney = 88888888;
  contractsRecordId = "";
  contractsType = 0;
  createdBy = wy0003;
  createdById = "d859009b-51b4-4415-ada1-d5ea09ca4130";
- createdTime = "2015/4/17 10:04:44";
+ createdByType = 1;
+ createdTime = "2015/4/17 11:11:05";
  fileName = "";
- id = "3b38603d-cd96-45e6-8a29-98aa4720759f";
- partyA = xiaoshou;
- partyB = gongyingshang;
+ id = "f3ab3693-a62b-4095-a4ef-a1f585f1917e";
+ partyA = "\U9500\U552e\U65b9\U516c\U53f8\U5168\U540d";
+ partyB = "\U9500\U552e\U65b9\U516c\U53f8\U5168\U540d";
  pecipientName = "";
  recipientId = "4dab083a-3f09-4854-839a-f45995b6047f";
  recipientName = wy0002;
  remark = "";
  remarkOne = "";
  remarkRecord = "";
- serialNumber = 4796B2955914D6;
+ serialNumber = 4796B295FBBFDF;
  serialNumberRecord = "";
  status = 1;
  */
 @interface ContractsListSingleModel : NSObject
+//进行中0，已完成1，已关闭2
 @property (nonatomic, copy)NSString* a_archiveStatus;
-
+/*
+ 所有合同	0
+ 主条款列表	1
+ 供应商合同	2
+ 销售合同	3
+ 撤销合同	4
+ */
+@property (nonatomic, copy)NSString* a_contractsType;
+@property (nonatomic, copy)NSString* a_createdBy;
+//接收者用户名
+@property (nonatomic, copy)NSString* a_recipientName;
+//销售方的公司全称
+@property (nonatomic, copy)NSString* a_salerCompanyName;
+//供应方的公司全称
+@property (nonatomic, copy)NSString* a_providerCompanyName;
+//@"1"供应商,@"2"销售方
+@property (nonatomic, copy)NSString* a_createdByType;
+//合同金额
+@property (nonatomic, copy)NSString* a_contractsMoney;
+//创建人的id
+@property (nonatomic, copy)NSString* a_createdById;
+//流水号
+@property (nonatomic, copy)NSString* a_serialNumber;
+/*
+ 主条款已创建	1
+ 不同意主条款	2
+ 同意主条款	3
+ 不同意佣金合同	4
+ 同意佣金合同	5
+ 客服不同意佣金	6
+ 客服同意佣金	7
+ 已导出佣金合同	8
+ 上传敲章合同	9
+ */
+@property (nonatomic, copy)NSString* a_status;
+@property (nonatomic, strong)NSDictionary* dict;
 @end
