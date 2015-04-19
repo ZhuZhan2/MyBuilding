@@ -48,7 +48,13 @@
             self.rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 52, 52)];
             self.rightBtn.center=CGPointMake(285, 40.5);
             [self addSubview:self.rightBtn];
+            
+            self.rightBtn2=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 26)];
+            self.rightBtn2.center=CGPointMake(235, 40.5);
+            [self addSubview:self.rightBtn2];
         }
+        
+
         
         self.separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 80, 320, 1)];
         self.separatorLine.backgroundColor=RGBCOLOR(229, 229, 229);
@@ -68,6 +74,16 @@
     if (self.needRightBtn) {
         [self.rightBtn setImage:[GetImagePath getImagePath:isFocesed?@"公司认证员工_08a":@"公司认证员工_18a"] forState:UIControlStateNormal];
         self.rightBtn.tag=indexPathRow;
+        
+        if (model.a_isWaiting) {
+            [self.rightBtn2 setBackgroundImage:[GetImagePath getImagePath:@"等待验证120"] forState:UIControlStateNormal];
+            self.rightBtn2.userInteractionEnabled=NO;
+        }else{
+            [self.rightBtn2 setBackgroundImage:[GetImagePath getImagePath:model.a_isFriend?@"added":@"add_green_button"] forState:UIControlStateNormal];
+            self.rightBtn2.userInteractionEnabled=!model.a_isFriend;
+        }
+        self.rightBtn2.tag=indexPathRow;
+
     }
     self.userImageView.tag=indexPathRow;
 }

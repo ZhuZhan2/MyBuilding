@@ -23,5 +23,8 @@
 @property (nonatomic,strong) NSString *a_department;
 //公司名称
 @property (nonatomic,strong) NSString *a_company;
+
+@property (nonatomic)BOOL a_isFriend;
+@property (nonatomic)BOOL a_isWaiting;
 @property (nonatomic, strong) NSDictionary *dict;
 @end

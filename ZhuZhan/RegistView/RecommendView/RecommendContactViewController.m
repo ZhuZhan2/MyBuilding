@@ -19,6 +19,7 @@
 #import "ContactModel.h"
 #import "RecommendContactTableViewCell.h"
 #import "IsFocusedApi.h"
+#import "AddressBookApi.h"
 @interface RecommendContactViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UITableView* tableView;
@@ -87,6 +88,8 @@
     if (!cell) {
         cell=[[RecommendContactTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell" needRightBtn:YES];
         [cell.rightBtn addTarget:self action:@selector(chooseApprove:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.rightBtn2 addTarget:self action:@selector(chooseApprove2:) forControlEvents:UIControlEventTouchUpInside];
+
     }
     [cell setModel:self.showArr[indexPath.row] indexPathRow:indexPath.row needCompanyName:YES];
     return cell;
@@ -126,6 +129,31 @@
     }
 }
 
+
+-(void)chooseApprove2:(UIButton*)btn{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    btn.userInteractionEnabled=NO;
+    EmployeesModel *model = self.showArr[btn.tag];
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:model.a_id forKey:@"userId"];
+    [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+            model.a_isWaiting=YES;
+            btn.userInteractionEnabled=NO;
+            [self.tableView reloadData];
+        }else{
+            btn.userInteractionEnabled=YES;
+            [LoginAgain AddLoginView:NO];
+        }
+    } dic:dic noNetWork:nil];
+
+}
 //===============================================================
 //===============================================================
 //===============================================================

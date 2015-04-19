@@ -11,6 +11,7 @@
 @interface RecommendContactTableViewCell : UITableViewCell
 @property(nonatomic,strong)UIImageView* userImageView;
 @property(nonatomic,strong)UIButton* rightBtn;
+@property (nonatomic, strong)UIButton* rightBtn2;
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier needRightBtn:(BOOL)needRightBtn;
 -(void)setModel:(EmployeesModel *)model indexPathRow:(NSInteger)indexPathRow needCompanyName:(BOOL)needCompanyName;
 @end
