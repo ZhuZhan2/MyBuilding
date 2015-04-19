@@ -1266,6 +1266,10 @@
 		D3A4281B19C1A2E700BAB6C7 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281819C1A2E700BAB6C7 /* GTMBase64.m */; };
 		D3A4283819C9401C00BAB6C7 /* LoginSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4283719C9401C00BAB6C7 /* LoginSqlite.m */; };
 		D3A4283B19C94E5E00BAB6C7 /* ActivesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4283A19C94E5E00BAB6C7 /* ActivesModel.m */; };
+		D3A81BA61AE366BE00E9AC73 /* hetong.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A81BA21AE366BE00E9AC73 /* hetong.png */; };
+		D3A81BA71AE366BE00E9AC73 /* hetong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A81BA31AE366BE00E9AC73 /* hetong@2x.png */; };
+		D3A81BA81AE366BE00E9AC73 /* xunjia.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A81BA41AE366BE00E9AC73 /* xunjia.png */; };
+		D3A81BA91AE366BE00E9AC73 /* xunjia@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A81BA51AE366BE00E9AC73 /* xunjia@2x.png */; };
 		D3A8713A1A5E7A1600C0B83C /* LoginAgain.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A871391A5E7A1600C0B83C /* LoginAgain.m */; };
 		D3AC612B19B5C7D10015B62F /* ContactProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC612A19B5C7D10015B62F /* ContactProjectTableViewCell.m */; };
 		D3AC61A819B6BF930015B62F /* ConditionsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC618E19B6BF930015B62F /* ConditionsModel.m */; };
@@ -3307,6 +3311,10 @@
 		D3A4283719C9401C00BAB6C7 /* LoginSqlite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSqlite.m; sourceTree = "<group>"; };
 		D3A4283919C94E5E00BAB6C7 /* ActivesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivesModel.h; sourceTree = "<group>"; };
 		D3A4283A19C94E5E00BAB6C7 /* ActivesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivesModel.m; sourceTree = "<group>"; };
+		D3A81BA21AE366BE00E9AC73 /* hetong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hetong.png; sourceTree = "<group>"; };
+		D3A81BA31AE366BE00E9AC73 /* hetong@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hetong@2x.png"; sourceTree = "<group>"; };
+		D3A81BA41AE366BE00E9AC73 /* xunjia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xunjia.png; sourceTree = "<group>"; };
+		D3A81BA51AE366BE00E9AC73 /* xunjia@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xunjia@2x.png"; sourceTree = "<group>"; };
 		D3A871381A5E7A1600C0B83C /* LoginAgain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAgain.h; sourceTree = "<group>"; };
 		D3A871391A5E7A1600C0B83C /* LoginAgain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginAgain.m; sourceTree = "<group>"; };
 		D3AC612919B5C7D10015B62F /* ContactProjectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactProjectTableViewCell.h; sourceTree = "<group>"; };
@@ -5232,6 +5240,10 @@
 		5B3B5D461AAD935E002FB444 /* 二期新图片 */ = {
 			isa = PBXGroup;
 			children = (
+				D3A81BA21AE366BE00E9AC73 /* hetong.png */,
+				D3A81BA31AE366BE00E9AC73 /* hetong@2x.png */,
+				D3A81BA41AE366BE00E9AC73 /* xunjia.png */,
+				D3A81BA51AE366BE00E9AC73 /* xunjia@2x.png */,
 				D3D483EE1ADF5FF6004AF972 /* 等待验证120.png */,
 				D3D483EF1ADF5FF6004AF972 /* 等待验证120@2x.png */,
 				D3D483EA1ADF41FF004AF972 /* 等待验证.png */,
@@ -7225,6 +7237,7 @@
 				D3D74ED719FA308000ED8B62 /* 面部识别登录_02@2x.png in Resources */,
 				5B6699381AB975A800C4B54F /* 大卡片阴影上@2x.png in Resources */,
 				5B7E591B1ABC0C7E0063B400 /* 交易_上传资质@2x.png in Resources */,
+				D3A81BA81AE366BE00E9AC73 /* xunjia.png in Resources */,
 				5BE08E281A3586EA00495EEB /* 020011.png in Resources */,
 				04BC419019D7E5B3006B5C7B /* 人脉_57a@2x.png in Resources */,
 				04BC436119D7E5B3006B5C7B /* ＋人脉－个人中心2_30a@2x.png in Resources */,
@@ -7313,6 +7326,7 @@
 				5BE08E021A3586EA00495EEB /* 010056.png in Resources */,
 				5B6C4B021ADF8ADE003B8DA8 /* 不同意迷你带字.png in Resources */,
 				5B70CC431AC9377B00FC8353 /* PDF1.png in Resources */,
+				D3A81BA61AE366BE00E9AC73 /* hetong.png in Resources */,
 				5BE08EB01A3586EA00495EEB /* 040022.png in Resources */,
 				04BC42AB19D7E5B3006B5C7B /* 面部识别登录_03@2x.png in Resources */,
 				5BE08DFF1A3586EA00495EEB /* 010054@2x.png in Resources */,
@@ -7490,6 +7504,7 @@
 				5B71323E1AA44F7E0043E37D /* ＋@2x.png in Resources */,
 				5B86504A1ABFAF370096BEF0 /* DemandStageSelected.png in Resources */,
 				04BC425619D7E5B3006B5C7B /* 搜索_10@2x.png in Resources */,
+				D3A81BA71AE366BE00E9AC73 /* hetong@2x.png in Resources */,
 				5BE08E371A3586EA00495EEB /* 020018@2x.png in Resources */,
 				04BC433519D7E5B3006B5C7B /* 项目－项目专题_03a@2x.png in Resources */,
 				5B7AA6CA1A58D6B0000FBFF2 /* 03@2x.png in Resources */,
@@ -8053,6 +8068,7 @@
 				04BC419C19D7E5B3006B5C7B /* 人脉_74a@2x.png in Resources */,
 				04BC40F819D7E5B3006B5C7B /* 010@2x.png in Resources */,
 				04BC435D19D7E5B3006B5C7B /* 高级搜索-多选_09a@2x.png in Resources */,
+				D3A81BA91AE366BE00E9AC73 /* xunjia@2x.png in Resources */,
 				D39937D91A42B539007081C1 /* 推荐页面05a@2x.png in Resources */,
 				04BC41D719D7E5B3006B5C7B /* 人脉－发布动态_11a.png in Resources */,
 				5BE08E221A3586EA00495EEB /* 020008.png in Resources */,

@@ -94,17 +94,17 @@
     // Camera MenuItem.
     QuadCurveMenuItem *cameraMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
                                                                 highlightedImage:storyMenuItemImagePressed
-                                                                    ContentImage:[GetImagePath getImagePath:@"tuijianxin"]
+                                                                    ContentImage:[GetImagePath getImagePath:@"hetong"]
                                                          highlightedContentImage:nil flag:0];
     // People MenuItem.
     QuadCurveMenuItem *peopleMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
                                                                 highlightedImage:storyMenuItemImagePressed
-                                                                    ContentImage:[GetImagePath getImagePath:@"tongzhi"]
+                                                                    ContentImage:[GetImagePath getImagePath:@"xunjia"]
                                                          highlightedContentImage:nil flag:0];
     // Place MenuItem.
     QuadCurveMenuItem *placeMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
                                                                highlightedImage:storyMenuItemImagePressed
-                                                                   ContentImage:[GetImagePath getImagePath:@"jiahaoyou"]
+                                                                   ContentImage:[GetImagePath getImagePath:@"tongzhi"]
                                                         highlightedContentImage:nil flag:0];
     // Music MenuItem.
     QuadCurveMenuItem *musicMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
