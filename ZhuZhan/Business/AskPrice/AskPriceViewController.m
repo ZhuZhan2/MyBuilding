@@ -91,7 +91,7 @@
     [self initTitleViewWithTitle:[self getTitle]];
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
     [self setRightBtnWithImage:[GetImagePath getImagePath:@"搜索按钮"]];
-    self.needAnimaiton=YES;
+    //self.needAnimaiton=YES;
 }
 
 -(void)initTitleViewWithTitle:(NSString*)title{

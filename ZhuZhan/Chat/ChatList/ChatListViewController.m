@@ -15,6 +15,7 @@
 #import "JSONKit.h"
 #import "LoginSqlite.h"
 #import "ChatMessageApi.h"
+#import "MJRefresh.h"
 @interface ChatListViewController ()<UIAlertViewDelegate,ChatViewControllerDelegate>
 @property (nonatomic, strong)NSMutableArray* models;
 @end
@@ -22,26 +23,13 @@
 @implementation ChatListViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //[self initSocket];
     [self firstNetWork];
     [self initNavi];
     //[self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
     [self initTableView];
+    //集成刷新控件
+    [self setupRefresh];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadList) name:@"loadList" object:nil];
-}
-
--(void)initSocket{
-    AppDelegate *app = [AppDelegate instance];
-    
-    [app.socket connectToServer:@socketServer withPort:socketPort];
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setObject:@"event" forKey:@"msgType"];
-    [dic setObject:@"login" forKey:@"event"];
-    [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
-    NSString *str = [dic JSONString];
-    str = [NSString stringWithFormat:@"%@\r\n",str];
-    [app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
-    [app.socket readDataWithTimeout:-1 tag:0];
 }
 
 -(void)firstNetWork{
@@ -49,6 +37,21 @@
         if(!error){
             self.models = posts;
             [self.tableView reloadData];
+        }
+    } noNetWork:nil];
+}
+
+-(void)setupRefresh{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+}
+
+-(void)headerRereshing{
+    [ChatMessageApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.models = posts;
+            [self.tableView reloadData];
+            [self.tableView headerEndRefreshing];
         }
     } noNetWork:nil];
 }
