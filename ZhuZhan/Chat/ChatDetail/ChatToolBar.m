@@ -41,6 +41,13 @@
     return _maxTextCount;
 }
 
+-(NSInteger)maxTextCountInChat{
+    if (_maxTextCountInChat==0) {
+        _maxTextCountInChat=NSIntegerMax;
+    }
+    return _maxTextCountInChat;
+}
+
 -(UITextView *)textView{
     if (!_textView) {
         _textView=[[UITextView alloc]initWithFrame:CGRectMake(0, 0, kChatTextViewWidth, kChatTextViewInitialHeight)];
@@ -107,10 +114,11 @@
 }
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    NSInteger limitNumber=self.maxTextCountInChat;
     NSLog(@"%d",(int)textView.text.length+(int)text.length);
     if ([text isEqualToString:@"\n"]) {
-        if((int)textView.text.length+(int)text.length >1000){
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"不能超过1000个字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        if((int)textView.text.length+(int)text.length >limitNumber){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:[NSString stringWithFormat:@"不能超过%d个字",(int)limitNumber] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
         }else{
             if ([self.delegate respondsToSelector:@selector(chatToolSendBtnClickedWithContent:)]) {

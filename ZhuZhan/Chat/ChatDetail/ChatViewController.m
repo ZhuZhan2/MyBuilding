@@ -58,6 +58,7 @@
     //集成刷新控件
     [self setupRefresh];
     [self initChatToolBar];
+    self.chatToolBar.maxTextCountInChat=1000;
     [self initTableViewHeaderView];
     [self addKeybordNotification];
     [self firstNetWork];

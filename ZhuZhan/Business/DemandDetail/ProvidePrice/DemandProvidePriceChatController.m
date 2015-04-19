@@ -70,6 +70,7 @@
  *contents
  */
 -(void)sendWithContent:(NSString*)content{
+    if (!content.length) return;
     NSString* tradeUserAndCommentUser=[NSString stringWithFormat:@"%@:%@",self.askPriceModel.a_createdBy,[LoginSqlite getdata:@"userId"]];
     NSMutableDictionary* dic=[@{@"tradeId":self.askPriceModel.a_id,
                                 @"tradeCode":self.askPriceModel.a_tradeCode,
