@@ -16,5 +16,5 @@
 + (NSURLSessionDataTask *)GetContractsAllListsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block archiveStatus:(NSString *)archiveStatus startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
 
 //获取所有列表
-+ (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
++ (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block keyWords:(NSString*)keyWords archiveStatus:(NSString*)archiveStatus typeContracts:(NSString*)typeContracts startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
 @end

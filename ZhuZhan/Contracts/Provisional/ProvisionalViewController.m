@@ -147,8 +147,8 @@
 
 -(void)sendPostRequest{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setObject:self.personaStr1 forKey:@"createdByType"];
-    [dic setObject:self.personaStr2 forKey:@"pecipientType"];
+    [dic setObject:[self.personaStr1 isEqualToString:@"供应商"]?@"1":@"2" forKey:@"createdByType"];
+    [dic setObject:[self.personaStr2 isEqualToString:@"供应商"]?@"1":@"2" forKey:@"pecipientType"];
     [dic setObject:self.myCompanyName forKey:@"partyA"];
     [dic setObject:self.otherCompanyName forKey:@"partyB"];
     [dic setObject:self.moneyStr forKey:@"contractsMoney"];

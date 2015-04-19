@@ -104,7 +104,7 @@
     
     [self setUpMainViewWithUserType:@"发起者"];
     
-    [self.cellHeader changeStageName:contents[5] code:contents[6] stageColor:[UIColor blackColor] codeColor:@[AllGreenColor,AllDeepGrayColor,AllLightGrayColor][arc4random()%3]];
+    [self.cellHeader changeStageName:contents[5] code:contents[6] stageColor:[UIColor blackColor] codeColor:contents[4]];
     [self reloadAllFrames];
 }
 
