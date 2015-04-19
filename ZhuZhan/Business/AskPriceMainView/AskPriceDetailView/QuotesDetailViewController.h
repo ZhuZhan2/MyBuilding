@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "AskPriceModel.h"
 @interface QuotesDetailViewController : UIViewController
-@property(nonatomic,strong)AskPriceModel *askPriceModel;
+@property(nonatomic,strong)NSString *tradId;
 @end

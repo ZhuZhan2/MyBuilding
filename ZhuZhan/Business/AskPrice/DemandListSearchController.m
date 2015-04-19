@@ -129,12 +129,12 @@
     if([model.a_category isEqualToString:@"0"]){
         NSLog(@"自己发");
         AskPriceDetailViewController *view = [[AskPriceDetailViewController alloc] init];
-        view.askPriceModel = model;
+        view.tradId = model.a_id;
         [self.navigationController pushViewController:view animated:YES];
     }else{
         NSLog(@"别人发");
         QuotesDetailViewController *view = [[QuotesDetailViewController alloc] init];
-        view.askPriceModel = model;
+        view.tradId = model.a_id;
         [self.navigationController pushViewController:view animated:YES];
     }
     self.searchBarAnimationBackView.hidden=YES;

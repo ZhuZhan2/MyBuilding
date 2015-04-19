@@ -21,6 +21,7 @@
 @property(nonatomic)int classificationViewHeight;
 @property(nonatomic,strong)NSMutableArray *viewArr;
 @property(nonatomic,strong)NSMutableArray *invitedUserArr;
+@property(nonatomic,strong)AskPriceModel *askPriceModel;
 @end
 
 @implementation AskPriceDetailViewController
@@ -34,7 +35,6 @@
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.title=@"询价详情";
     
-    self.viewArr = [[NSMutableArray alloc] initWithObjects:self.classificationView, nil];
     [self.view addSubview:self.tableView];
     
     [self loadList];
@@ -66,14 +66,16 @@
 }
 
 -(void)loadList{
-    [AskPriceApi GetAskPriceDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
+    [AskPriceApi GetAskPriceDetailsWithBlock:^(NSMutableArray *posts,AskPriceModel *model ,NSError *error) {
         if(!error){
+            self.askPriceModel = model;
             self.invitedUserArr = posts[0];
+            self.viewArr = [[NSMutableArray alloc] initWithObjects:self.classificationView, nil];
             [self.tableView reloadData];
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } tradeId:self.askPriceModel.a_id noNetWork:nil];
+    } tradeId:self.tradId noNetWork:nil];
 }
 
 -(NSMutableArray *)invitedUserArr{

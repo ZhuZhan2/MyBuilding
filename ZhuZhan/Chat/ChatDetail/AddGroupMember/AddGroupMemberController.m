@@ -153,6 +153,7 @@
         if (!error) {
             NSInteger index=self.navigationController.viewControllers.count-3;
             [self.navigationController popToViewController:self.navigationController.viewControllers[index] animated:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"loadList" object:nil];
         }
     } dic:dic noNetWork:nil];
 }

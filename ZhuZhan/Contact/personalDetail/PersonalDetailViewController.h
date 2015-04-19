@@ -33,4 +33,6 @@
 @property (nonatomic,strong)NSMutableArray *showArr;
 @property (nonatomic,strong)NSString *isFocused;
 @property (nonatomic,strong)NSString *isFriend;
+@property(nonatomic,strong)NSString *fromViewName;
+@property(nonatomic,strong)NSString *chatType;
 @end

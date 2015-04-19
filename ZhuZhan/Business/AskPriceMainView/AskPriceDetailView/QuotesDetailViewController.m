@@ -15,6 +15,7 @@
 #import "ProvidePriceInfoController.h"
 #import "DemandDetailProvidePriceController.h"
 @interface QuotesDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DemandDetailProvidePriceDelegate>
+@property(nonatomic,strong)AskPriceModel *askPriceModel;
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UIView *classificationView;
@@ -37,12 +38,8 @@
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.title=@"询价详情";
     
-    [self loadList];
-    
-    self.viewArr = [[NSMutableArray alloc] init];
-    [self.viewArr addObject:self.classificationView];
-    [self.viewArr addObject:self.remarkView];
     [self.view addSubview:self.tableView];
+    [self loadList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,15 +68,19 @@
 }
 
 -(void)loadList{
-    [AskPriceApi GetAskPriceDetailsWithBlock:^(NSMutableArray *posts, NSError *error) {
+    [AskPriceApi GetAskPriceDetailsWithBlock:^(NSMutableArray *posts,AskPriceModel *model ,NSError *error) {
         if(!error){
+            self.askPriceModel = model;
             self.invitedUserArr = posts[0];
             self.isQuoted = posts[1];
+            self.viewArr = [[NSMutableArray alloc] init];
+            [self.viewArr addObject:self.classificationView];
+            [self.viewArr addObject:self.remarkView];
             [self.tableView reloadData];
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } tradeId:self.askPriceModel.a_id noNetWork:nil];
+    } tradeId:self.tradId noNetWork:nil];
 }
 
 -(UITableView *)tableView{

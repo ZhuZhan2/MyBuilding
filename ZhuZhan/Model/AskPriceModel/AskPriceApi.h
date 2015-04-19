@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "AskPriceModel.h"
 @interface AskPriceApi : NSObject
 //发起询价
 + (NSURLSessionDataTask *)PostAskPriceWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
@@ -16,7 +16,7 @@
 + (NSURLSessionDataTask *)GetAskPriceWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block status:(NSString *)status startIndex:(int)startIndex other:(NSString *)other keyWorks:(NSString *)keyWorks noNetWork:(void(^)())noNetWork;
 
 //获取询价列表详情
-+ (NSURLSessionDataTask *)GetAskPriceDetailsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block tradeId:(NSString *)tradeId noNetWork:(void(^)())noNetWork;
++ (NSURLSessionDataTask *)GetAskPriceDetailsWithBlock:(void (^)(NSMutableArray *posts,AskPriceModel *model ,NSError *error))block tradeId:(NSString *)tradeId noNetWork:(void(^)())noNetWork;
 
 //报价
 + (NSURLSessionDataTask *)AddQuotesWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;

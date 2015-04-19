@@ -25,6 +25,7 @@ typedef enum DemandControllerCategory{
 @property(nonatomic,copy)NSString* time;
 @property(nonatomic,copy)NSString* numberDescribe;
 @property(nonatomic,copy)NSString* content;
+@property(nonatomic)BOOL isHonesty;
 @property(nonatomic,strong)NSArray* array1;
 @property(nonatomic,strong)NSArray* array2;
 @property(nonatomic,strong)NSArray* array3;

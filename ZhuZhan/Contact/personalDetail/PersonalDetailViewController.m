@@ -701,23 +701,51 @@
 }
 
 -(void)addFriend{
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setValue:self.contactId forKey:@"userId"];
-    [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alertView show];
-            [self.secondBtn setTitle:@"已发送" forState:UIControlStateNormal];
-            self.secondBtn.enabled = NO;
-        }
-    } dic:dic noNetWork:nil];
+    if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:self.contactId forKey:@"userId"];
+        [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+                [self.secondBtn setTitle:@"已发送" forState:UIControlStateNormal];
+                self.secondBtn.enabled = NO;
+            }
+        } dic:dic noNetWork:nil];
+    }else{
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.needDelayCancel=NO;
+        loginVC.delegate = self;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }
 }
 
 -(void)gotoMessageBtnAction{
-    ChatViewController *view = [[ChatViewController alloc] init];
-    view.contactId = self.contactId;
-    view.titleStr = self.name;
-    view.type = @"01";
-    [self.navigationController pushViewController:view animated:YES];
+    NSLog(@"%@",self.fromViewName);
+    NSLog(@"%@",self.chatType);
+    if([self.fromViewName isEqualToString:@"chatView"]){
+        if([self.chatType isEqualToString:@"02"]){
+            ChatViewController *view = [[ChatViewController alloc] init];
+            view.contactId = self.contactId;
+            view.titleStr = self.name;
+            view.type = @"01";
+            [self.navigationController pushViewController:view animated:YES];
+        }else{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }else{
+        ChatViewController *view = [[ChatViewController alloc] init];
+        view.contactId = self.contactId;
+        view.titleStr = self.name;
+        view.type = @"01";
+        [self.navigationController pushViewController:view animated:YES];
+    }
+    
+//    ChatViewController *view = [[ChatViewController alloc] init];
+//    view.contactId = self.contactId;
+//    view.titleStr = self.name;
+//    view.type = @"01";
+//    [self.navigationController pushViewController:view animated:YES];
 }
 @end

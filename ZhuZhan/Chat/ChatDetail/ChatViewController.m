@@ -18,12 +18,17 @@
 #import "AppDelegate.h"
 #import "MJRefresh.h"
 #import "MessageTableView.h"
-@interface ChatViewController ()<UIAlertViewDelegate,MessageTableViewDelegate>
+#import "PersonalDetailViewController.h"
+#import "ProjectStage.h"
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
+@interface ChatViewController ()<UIAlertViewDelegate,MessageTableViewDelegate,ChatTableViewCellDelegate>
 @property (nonatomic, strong)NSMutableArray* models;
 @property(nonatomic,strong)MessageTableView *tableView;
 @property(nonatomic)int startIndex;
-
+@property(nonatomic,strong)NSString *lastId;
 @property (nonatomic)NSInteger popViewControllerIndex;
+@property(nonatomic,strong)AppDelegate *app;
 @end
 
 @implementation ChatViewController
@@ -57,6 +62,7 @@
     [self addKeybordNotification];
     [self firstNetWork];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(newMessage:) name:@"newMessage" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(errorMessage) name:@"errorMessage" object:nil];
 }
 
 -(void)leftBtnClicked{
@@ -85,35 +91,35 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
-    ChatMessageModel* dataModel=[self.models lastObject];
-    NSLog(@"%@",dataModel.a_id);
     [ChatMessageApi GetMessageListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.startIndex++;
             NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:
                                    NSMakeRange(0,[posts count])];
             [self.models insertObjects:posts atIndexes:indexes];
+            ChatMessageModel* dataModel=[posts firstObject];
+            self.lastId = dataModel.a_id;
             [self.tableView reloadData];
             //[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.models.count-4 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
         }else{
             [LoginAgain AddLoginView:NO];
         }
         [self.tableView headerEndRefreshing];
-    } userId:self.contactId chatlogId:dataModel.a_id startIndex:self.startIndex+1 noNetWork:nil];
+    } userId:self.contactId chatlogId:self.lastId startIndex:self.startIndex+1 noNetWork:nil];
 }
 
 -(void)initSocket{
-    AppDelegate *app = [AppDelegate instance];
+    self.app = [AppDelegate instance];
     
-    [app.socket connectToServer:@socketServer withPort:socketPort];
+    [self.app.socket connectToServer:@socketServer withPort:socketPort];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:@"event" forKey:@"msgType"];
     [dic setObject:@"login" forKey:@"event"];
     [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
     NSString *str = [dic JSONString];
     str = [NSString stringWithFormat:@"%@\r\n",str];
-    [app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
-    [app.socket readDataWithTimeout:-1 tag:0];
+    [self.app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
+    [self.app.socket readDataWithTimeout:-1 tag:0];
 }
 
 -(void)newMessage:(NSNotification*)noti{
@@ -133,6 +139,10 @@
     }
 }
 
+-(void)errorMessage{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void)appearNewData{
     [self.tableView reloadData];
     if(self.models.count !=0){
@@ -144,6 +154,8 @@
     [ChatMessageApi GetMessageListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.models = posts;
+            ChatMessageModel* dataModel=[self.models lastObject];
+            self.lastId = dataModel.a_id;
             [self appearNewData];
         }else{
             [LoginAgain AddLoginView:NO];
@@ -189,23 +201,39 @@
     model.isSelf=dataModel.a_type;
     model.time=dataModel.a_time;
     model.userImageStr=dataModel.a_avatarUrl;
-    
+    model.ID = dataModel.a_userId;
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     cell.model=model;
+    cell.delegate = self;
     return cell;
 }
 
 -(void)chatToolSendBtnClickedWithContent:(NSString *)content{
-    [self sendMessage:content];
-    [self addModelWithContent:content];
+    NSLog(@"isConnected===>%d",self.app.socket.isConnected);
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+    }else{
+        if(self.app.socket.isConnected){
+            [self sendMessage:content];
+            [self addModelWithContent:content];
+        }else{
+            [self.app.socket connectToServer:@socketServer withPort:socketPort];
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setObject:@"event" forKey:@"msgType"];
+            [dic setObject:@"login" forKey:@"event"];
+            [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
+            NSString *str = [dic JSONString];
+            str = [NSString stringWithFormat:@"%@\r\n",str];
+            [self.app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
+            [self.app.socket readDataWithTimeout:-1 tag:0];
+            
+            [self sendMessage:content];
+            [self addModelWithContent:content];
+        }
+    }
 }
 
 -(void)sendMessage:(NSString*)content{
-    if(content.length >1000){
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"不能超过1000个字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
-        return;
-    }
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     if([self.type isEqualToString:@"01"]){
         [dic setObject:@"user" forKey:@"msgType"];
@@ -216,6 +244,7 @@
     [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
     [dic setObject:self.contactId forKey:@"toUserId"];
     [dic setObject:content forKey:@"content"];
+    NSLog(@"%@",dic);
     NSString *str = [dic JSONString];
     str = [NSString stringWithFormat:@"%@\r\n",str];
     
@@ -235,7 +264,7 @@
     NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
     formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";
     NSString* time=[formatter stringFromDate:date];
-    model.a_time=time;
+    model.a_time=[ProjectStage ChatMessageTimeStage:time];
     
     [self.models addObject:model];
     [self appearNewData];
@@ -262,5 +291,13 @@
         _popViewControllerIndex=self.navigationController.viewControllers.count-2;
     }
     return _popViewControllerIndex;
+}
+
+-(void)gotoContactDetailView:(NSString *)contactId{
+    PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
+    personalVC.contactId = contactId;
+    personalVC.fromViewName = @"chatView";
+    personalVC.chatType = self.type;
+    [self.navigationController pushViewController:personalVC animated:YES];
 }
 @end

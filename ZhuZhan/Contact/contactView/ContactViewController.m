@@ -635,6 +635,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     view.titleStr = name;
     view.type = @"01";
     [self.navigationController pushViewController:view animated:YES];
+    [showVC.view removeFromSuperview];
+    showVC = nil;
 }
 
 -(void)gotoContactDetailView:(NSString *)contactId{

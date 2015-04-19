@@ -370,7 +370,7 @@
         if (!error) {
             if(posts.count !=0){
                 NSDictionary *item = posts[0];
-                [LoginSqlite insertData:[item objectForKey:@"userId"] datakey:@"userId"];
+                [LoginSqlite insertData:[item objectForKey:@"loginId"] datakey:@"userId"];
                 [LoginSqlite insertData:[item objectForKey:@"token"] datakey:@"token"];
                 [LoginSqlite insertData:item[@"loginName"] datakey:@"userName"];
                 [LoginSqlite insertData:@"01" datakey:@"userType"];

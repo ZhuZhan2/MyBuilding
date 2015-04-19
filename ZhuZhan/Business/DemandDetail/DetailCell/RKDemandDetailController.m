@@ -75,6 +75,7 @@
     
     cellModel.userName=dataModel.a_quoteUser;
     cellModel.userDescribe=dataModel.a_quoteIsVerified;
+    cellModel.isHonesty = dataModel.a_isHonesty;
     cellModel.time=dataModel.a_createdTime;
     //cellModel.numberDescribe=[NSString stringWithFormat:@"第%@次报价",dataModel.a_quoteTimes];
     cellModel.numberDescribe = dataModel.a_quoteTimes;

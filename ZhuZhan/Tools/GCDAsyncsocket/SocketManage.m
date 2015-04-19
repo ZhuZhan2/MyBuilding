@@ -61,6 +61,10 @@
     NSLog(@"socket:%p didWriteDataWithTag:%ld", sock, tag);
 }
 
+- (BOOL)isConnected{
+    return self.socket.isConnected;
+}
+
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
     NSLog(@"socket:%p didReadData:withTag:%ld", sock, tag);
     [self.socket readDataWithTimeout:-1 tag:0];
@@ -83,8 +87,8 @@
         }else{
             [self alertError:dic[@"event"]];
         }
-    }else{
-    
+    }else if([dic[@"msgType"] isEqualToString:@"error"]){
+        [self alertError:dic[@"event"]];
     }
 }
 
@@ -114,5 +118,7 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"服务器异常" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"errorMessage" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"loadList" object:nil];
 }
 @end
