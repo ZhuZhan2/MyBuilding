@@ -32,6 +32,9 @@
  status = 1;
  */
 @interface ContractsListSingleModel : NSObject
+
+@property (nonatomic, copy)NSString* a_id;
+
 //进行中0，已完成1，已关闭2
 @property (nonatomic, copy)NSString* a_archiveStatus;
 /*
@@ -45,6 +48,12 @@
 @property (nonatomic, copy)NSString* a_createdBy;
 //接收者用户名
 @property (nonatomic, copy)NSString* a_recipientName;
+
+//销售方的用户名
+@property (nonatomic, copy)NSString* a_salerName;
+//供应方的用户名
+@property (nonatomic, copy)NSString* a_providerName;
+
 //销售方的公司全称
 @property (nonatomic, copy)NSString* a_salerCompanyName;
 //供应方的公司全称
@@ -68,6 +77,10 @@
  已导出佣金合同	8
  上传敲章合同	9
  */
-@property (nonatomic, copy)NSString* a_status;
+@property (nonatomic)NSInteger a_status;
+@property (nonatomic, copy)NSString* a_fileName;
+@property (nonatomic, copy)NSString* a_createdTime;
+@property (nonatomic)BOOL a_isSelfCreated;
+@property (nonatomic)BOOL a_isSaler;
 @property (nonatomic, strong)NSDictionary* dict;
 @end

@@ -9,12 +9,10 @@
 #import "OtherContractsBaseController.h"
 #import "ContractsBtnToolBar.h"
 #import "RKShadowView.h"
-#import "ContractsBtnToolBar.h"
 #import "ContractsTradeCodeView.h"
-@interface OtherContractsBaseController ()<ContractsBtnToolBarDelegate>
-@property (nonatomic, strong)UIButton* clauseMainBtn;
-@property (nonatomic, strong)UIView* PDFView;
-@property (nonatomic, strong)ContractsBtnToolBar* btnToolBar;
+
+@interface OtherContractsBaseController ()
+
 @end
 
 @implementation OtherContractsBaseController
@@ -65,9 +63,11 @@
 
 -(void)initBtnToolBar{
     [self.view addSubview:self.btnToolBar];
+    NSLog(@"frame=%@",NSStringFromCGRect(self.btnToolBar.frame));
     CGRect frame=self.btnToolBar.frame;
     frame.origin.y=CGRectGetMaxY(self.PDFView.frame);
     self.btnToolBar.frame=frame;
+    NSLog(@"frame=%@",NSStringFromCGRect(self.btnToolBar.frame));
 }
 
 -(UIButton *)clauseMainBtn{
@@ -151,9 +151,7 @@
 -(ContractsBtnToolBar *)btnToolBar{
     if (!_btnToolBar) {
         NSMutableArray* btns=[NSMutableArray array];
-        //        NSArray* imageNames=@[@"不同意迷你带字",@"同意迷你带字",@"上传迷你带字",@"选项按钮"];
-        //NSArray* imageNames=@[@"不同意小带字",@"同意小带字",@"上传小带字"];
-        NSArray* imageNames=@[@"不同意带字",@"同意带字"];
+        NSArray* imageNames=@[@"不同意小带字",@"同意小带字",@"上传小带字"];
         
         for (int i=0;i<imageNames.count;i++) {
             UIButton* btn=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -162,9 +160,7 @@
             [btn setBackgroundImage:image forState:UIControlStateNormal];
             [btns addObject:btn];
         }
-        
-        //_btnToolBar=[ContractsBtnToolBar contractsBtnToolBarWithBtns:btns contentMaxWidth:295 top:5 bottom:30 contentHeight:37];
-        _btnToolBar=[ContractsBtnToolBar contractsBtnToolBarWithBtns:btns contentMaxWidth:270 top:5 bottom:30 contentHeight:37];
+        _btnToolBar=[ContractsBtnToolBar contractsBtnToolBarWithBtns:btns contentMaxWidth:295 top:5 bottom:30 contentHeight:37];
         
         _btnToolBar.delegate=self;
     }

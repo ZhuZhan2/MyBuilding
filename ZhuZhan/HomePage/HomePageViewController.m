@@ -269,7 +269,7 @@
     NSLog(@"===>%ld",(long)idx);
     if(idx == 0){
         NSLog(@"推荐信");
-        quadCurveVC=[[ConstractListController alloc]init];
+        quadCurveVC=[[ProvisionalViewController alloc]init];
         [self addAnimation];
         [nav pushViewController:quadCurveVC animated:NO];
     }else if(idx == 1){

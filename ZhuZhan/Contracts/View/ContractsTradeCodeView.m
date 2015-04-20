@@ -41,7 +41,7 @@
 
 -(UILabel *)tradeCodeLabel{
     if (!_tradeCodeLabel) {
-        _tradeCodeLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, 0, 160, kTotalHeight)];
+        _tradeCodeLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, 0, 180, kTotalHeight)];
         _tradeCodeLabel.font=kContentFont;
         _tradeCodeLabel.textColor=AllDeepGrayColor;
         _tradeCodeLabel.text=self.tradeCode;
@@ -51,7 +51,7 @@
 
 -(UILabel *)timeLabel{
     if (!_timeLabel) {
-        _timeLabel=[[UILabel alloc]initWithFrame:CGRectMake(200, 0, 120, kTotalHeight)];
+        _timeLabel=[[UILabel alloc]initWithFrame:CGRectMake(180, 0, 140, kTotalHeight)];
         _timeLabel.font=kContentFont;
         _timeLabel.textColor=AllDeepGrayColor;
         _timeLabel.text=self.time;

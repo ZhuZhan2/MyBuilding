@@ -12,10 +12,7 @@
 #import "RKContractsStagesView.h"
 #import "ContractsTradeCodeView.h"
 @interface ContractsBaseViewController ()<ContractsViewDelegate>
-
-//@property (nonatomic, strong)ProvisionalViewController *provisionalView;
-//@property (nonatomic, strong)BaseContractsView* providerConstractView;
-//@property (nonatomic, strong)BaseContractsView* salerConstractView;
+@property (nonatomic, strong)UIAlertView* sucessAlertView;
 @end
 
 @implementation ContractsBaseViewController
@@ -26,9 +23,6 @@
     [self initNavi];
     [self initStagesView];
     [self initTradeCodeView];
-//    [self initProvisionalView];
-//    [self initProviderConstractView];
-//    [self initSalerConstractView];
 }
 
 -(void)initNavi{
@@ -47,39 +41,16 @@
     self.tradeCodeView.frame=frame;
 }
 
-//-(void)initProvisionalView{
-//    [self.view insertSubview:self.provisionalView.view belowSubview:self.contractsStagesView];
-//}
-//
-//-(void)initProviderConstractView{
-//    [self.view addSubview:self.providerConstractView];
-//    CGRect frame=self.providerConstractView.frame;
-//    frame.origin.y=CGRectGetMaxY(self.contractsStagesView.frame);
-//    self.providerConstractView.frame=frame;
-//}
-//
-//-(void)initSalerConstractView{
-//    [self.view addSubview:self.salerConstractView];
-//    CGRect frame=self.salerConstractView.frame;
-//    frame.origin.y=CGRectGetMaxY(self.contractsStagesView.frame);
-//    self.salerConstractView.frame=frame;
-//}
+-(void)sucessPost{
+    self.sucessAlertView=[[UIAlertView alloc]initWithTitle:@"提醒" message:@"操作成功" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+    [self.sucessAlertView show];
+}
 
-//-(BaseContractsView *)providerConstractView{
-//    if (!_providerConstractView) {
-//        _providerConstractView=[BaseContractsView contractsViewWithPDFImageName:@[@"PDF1",@"PDF2"][arc4random()%2] btnImageNmaes:@[@"small不同意",@"small上传我的模版",@"small同--意"] delegate:self size:CGSizeMake(kScreenWidth, kScreenHeight-CGRectGetMaxY(self.contractsStagesView.frame))];
-//        _providerConstractView.hidden=YES;
-//    }
-//    return _providerConstractView;
-//}
-//
-//-(BaseContractsView *)salerConstractView{
-//    if (!_salerConstractView) {
-//        _salerConstractView=[BaseContractsView contractsViewWithPDFImageName:@"PDF3" btnImageNmaes:@[@"big不同意",@"big同--意"] delegate:self size:CGSizeMake(kScreenWidth, kScreenHeight-CGRectGetMaxY(self.contractsStagesView.frame))];
-//        _salerConstractView.hidden=YES;
-//    }
-//    return _salerConstractView;
-//}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (self.sucessAlertView==alertView) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 
 -(UIView *)stagesView{
     if (!_stagesView) {
@@ -93,15 +64,9 @@
 
 -(ContractsTradeCodeView *)tradeCodeView{
     if (!_tradeCodeView) {
-        _tradeCodeView=[ContractsTradeCodeView contractsTradeCodeViewWithTradeCode:@"流水号:32948238476283" time:@"2015-03-21 22:34"];
+        NSString* tradeCode=[NSString stringWithFormat:@"流水号:%@",self.listSingleModel.a_serialNumber];
+        _tradeCodeView=[ContractsTradeCodeView contractsTradeCodeViewWithTradeCode:tradeCode time:self.listSingleModel.a_createdTime];
     }
     return _tradeCodeView;
 }
-
-//-(ProvisionalViewController *)provisionalView{
-//    if(!_provisionalView){
-//        _provisionalView = [[ProvisionalViewController alloc] init];
-//    }
-//    return _provisionalView;
-//}
 @end

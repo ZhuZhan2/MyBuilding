@@ -7,9 +7,7 @@
 //
 
 #import "ContractsListSingleModel.h"
-
-
-
+#import "LoginSqlite.h"
 @implementation ContractsListSingleModel
 -(void)setDict:(NSDictionary *)dict{
     _dict=dict;
@@ -26,34 +24,42 @@
      @property (nonatomic, copy)NSString* a_serialNumber;
      @property (nonatomic, copy)NSString* a_status;
      */
+    self.a_id=dict[@"id"];
     self.a_createdBy=dict[@"createdBy"];
     self.a_recipientName=dict[@"recipientName"];
-    
     self.a_createdByType=dict[@"createdByType"];
     self.a_contractsMoney=dict[@"contractsMoney"];
     self.a_createdById=dict[@"createdById"];
     self.a_serialNumber=dict[@"serialNumber"];
-    self.a_status=dict[@"status"];
+    self.a_status=[dict[@"status"] integerValue];
+    self.a_fileName=dict[@"fileName"];
+    self.a_createdTime=dict[@"createdTime"];
     
     if ([self.a_createdByType isEqualToString:@"2"]) {
         self.a_providerCompanyName=dict[@"partyB"];
         self.a_salerCompanyName=dict[@"partyA"];
+        
+        self.a_providerName=dict[@"recipientName"];
+        self.a_salerName=dict[@"createdBy"];
     }else{
         self.a_providerCompanyName=dict[@"partyA"];
         self.a_salerCompanyName=dict[@"partyB"];
+        
+        self.a_providerName=dict[@"createdBy"];
+        self.a_salerName=dict[@"recipientName"];
     }
     
-    NSInteger index1=[dict[@"contractsType"] integerValue];
-    if (index1==4) {
-        self.a_contractsType=@"佣金撤销流程";
-    }else{
-        NSDictionary* contractsTypes=@{
-                                  @"1":@"供应商佣金合同",
-                                  @"2":@"销售佣金合同"
-                                  };
-        self.a_contractsType=contractsTypes[self.a_createdByType];
-    }
-
+    self.a_isSaler=[self.a_salerName isEqualToString:[LoginSqlite getdata:@"userName"]];
+    
+    self.a_isSelfCreated=[dict[@"createdBy"] isEqualToString:[LoginSqlite getdata:@"userName"]];
+    
+    NSDictionary* contractsTypes=@{
+                                   @"1":@"供应商佣金合同",
+                                   @"2":@"销售佣金合同",
+                                   @"3":@"佣金撤销流程"
+                                   };
+    self.a_contractsType=contractsTypes[dict[@"contractsType"]];
+    
     NSArray* archiveStatus=@[@"进行中",@"已完成",@"已关闭"];
     NSInteger index2=[dict[@"archiveStatus"] integerValue];
     self.a_archiveStatus=archiveStatus[index2];
