@@ -199,14 +199,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 block();
             }
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
     } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
-        self.tableView.scrollEnabled=NO;
-        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
-            self.tableView.scrollEnabled=YES;
-            [self downLoad:block];
-        }];
+        [ErrorCode alert];
     }];
 }
 
@@ -244,16 +244,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             }
             _timeScroller.hidden=NO;
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
         [self.tableView footerEndRefreshing];
     } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex+1 noNetWork:^{
         [self.tableView footerEndRefreshing];
-        self.tableView.scrollEnabled=NO;
-        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
-            self.tableView.scrollEnabled=YES;
-            [self footerRereshing];
-        }];
+        [ErrorCode alert];
     }];
 }
 

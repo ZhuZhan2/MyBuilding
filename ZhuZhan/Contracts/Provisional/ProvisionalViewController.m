@@ -158,8 +158,16 @@
         if(!error){
             ConstractListController *view = [[ConstractListController alloc] init];
             [self.navigationController pushViewController:view animated:YES];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dic:dic noNetWork:nil];
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 //-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{

@@ -85,9 +85,15 @@
             dataModel.a_isWaiting=YES;
             [self.tableView reloadData];
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dic:dic noNetWork:nil];
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(NSMutableArray *)models{

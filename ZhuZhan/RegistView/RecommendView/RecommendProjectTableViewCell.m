@@ -169,8 +169,16 @@
             if(!error){
                 isFocused = 1;
                 [attentionBtn setBackgroundImage:[GetImagePath getImagePath:@"公司认证员工_08a"] forState:UIControlStateNormal];
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     }else{
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         [dic setObject:projectId forKey:@"targetId"];
@@ -179,8 +187,16 @@
             if(!error){
                 isFocused = 0;
                 [attentionBtn setBackgroundImage:[GetImagePath getImagePath:@"公司认证员工_18a"] forState:UIControlStateNormal];
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     }
 }
 @end

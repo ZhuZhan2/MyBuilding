@@ -106,6 +106,14 @@
                     [MyTableView removeFootView:self.tableView];
                     [self.tableView reloadData];
                 }
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                        [self firstNetWork];
+                    }];
+                }
             }
         } startIndex:startIndex keywords:self.searchStr noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
@@ -129,6 +137,14 @@
                 }else{
                     [MyTableView removeFootView:self.tableView];
                     [self.tableView reloadData];
+                }
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                        [self firstNetWork];
+                    }];
                 }
             }
         } dic:self.dic startIndex:startIndex noNetWork:^{
@@ -189,6 +205,14 @@
                     [MyTableView removeFootView:self.tableView];
                     [self.tableView reloadData];
                 }
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                        [self firstNetWork];
+                    }];
+                }
             }
             [self.tableView headerEndRefreshing];
         } startIndex:0 keywords:self.searchStr noNetWork:^{
@@ -214,6 +238,14 @@
                 }else{
                     [MyTableView removeFootView:self.tableView];
                     [self.tableView reloadData];
+                }
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                        [self firstNetWork];
+                    }];
                 }
             }
             [self.tableView headerEndRefreshing];
@@ -246,8 +278,16 @@
                     [MyTableView removeFootView:self.tableView];
                     [self.tableView reloadData];
                 }
-                [self.tableView footerEndRefreshing];
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                        [self firstNetWork];
+                    }];
+                }
             }
+            [self.tableView footerEndRefreshing];
         } startIndex:startIndex keywords:self.searchStr noNetWork:^{
             [self.tableView footerEndRefreshing];
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
@@ -272,6 +312,14 @@
                     [self.tableView reloadData];
                 }
                 [self.tableView footerEndRefreshing];
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                        [self firstNetWork];
+                    }];
+                }
             }
         } dic:self.dic startIndex:startIndex noNetWork:^{
             [self.tableView footerEndRefreshing];

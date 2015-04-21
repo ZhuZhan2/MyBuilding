@@ -37,8 +37,20 @@
         if(!error){
             self.models = posts;
             [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
-    } noNetWork:nil];
+    } noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 -(void)setupRefresh{
@@ -52,8 +64,20 @@
             self.models = posts;
             [self.tableView reloadData];
             [self.tableView headerEndRefreshing];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
-    } noNetWork:nil];
+    } noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 -(void)loadList{
@@ -148,8 +172,16 @@
                 [self.models removeObjectAtIndex:indexPath.row];
                 NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
                 [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     }
 }
 

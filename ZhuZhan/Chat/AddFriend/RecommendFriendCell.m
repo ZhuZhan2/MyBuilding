@@ -93,9 +93,15 @@
                 self.addBtn.userInteractionEnabled=NO;
                 [self.addBtn setBackgroundImage:[GetImagePath getImagePath:@"等待验证120"] forState:UIControlStateNormal];
             }else{
-                [LoginAgain AddLoginView:NO];
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     }
 }
 @end

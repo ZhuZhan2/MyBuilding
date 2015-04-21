@@ -42,8 +42,24 @@
         if(!error){
             self.showArr = posts;
             [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                self.tableView.scrollEnabled=NO;
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    self.tableView.scrollEnabled=YES;
+                    [self loadList];
+                }];
+            }
         }
-    } messageType:self.type startIndex:0 noNetWork:nil];
+    } messageType:self.type startIndex:0 noNetWork:^{
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+            [self loadList];
+        }];
+    }];
 }
 
 /**
@@ -66,8 +82,24 @@
             self.showArr = posts;
             [self.tableView reloadData];
             [self.tableView headerEndRefreshing];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                self.tableView.scrollEnabled=NO;
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    self.tableView.scrollEnabled=YES;
+                    [self loadList];
+                }];
+            }
         }
-    } messageType:self.type startIndex:0 noNetWork:nil];
+    } messageType:self.type startIndex:0 noNetWork:^{
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+            [self loadList];
+        }];
+    }];
 }
 
 - (void)footerRereshing
@@ -78,8 +110,24 @@
             [self.showArr addObjectsFromArray:posts];
             [self.tableView reloadData];
             [self.tableView footerEndRefreshing];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                self.tableView.scrollEnabled=NO;
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    self.tableView.scrollEnabled=YES;
+                    [self loadList];
+                }];
+            }
         }
-    } messageType:self.type startIndex:self.startIndex+1 noNetWork:nil];
+    } messageType:self.type startIndex:self.startIndex+1 noNetWork:^{
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+            [self loadList];
+        }];
+    }];
 }
 
 -(void)initNavi{
@@ -157,8 +205,20 @@
                 [self.showArr removeObjectAtIndex:indexPath.row];
                 NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
                 [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            self.tableView.scrollEnabled=NO;
+            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                self.tableView.scrollEnabled=YES;
+                [self loadList];
+            }];
+        }];
     }
 }
 

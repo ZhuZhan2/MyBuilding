@@ -350,9 +350,9 @@
             for (NSDictionary* dic in JSON[@"data"]) {
                 ValidatePlatformContactModel* model=[[ValidatePlatformContactModel alloc]init];
                 model.dict=dic;
-                if (model.a_isPlatformUser) {
+                //if (model.a_isPlatformUser) {
                     [datas addObject:model];
-                }
+                //}
             }
             if (block) {
                 block(datas,nil);

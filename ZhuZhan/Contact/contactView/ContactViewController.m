@@ -186,7 +186,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             self.tableView.scrollEnabled=YES;
             loadingView = nil;
         }else{
-            [LoginAgain AddLoginView:YES];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
     } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
         self.tableView.scrollEnabled=NO;
@@ -268,7 +272,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 _timeScroller.hidden=NO;
             });
         }else{
-            [LoginAgain AddLoginView:YES];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
         [self.tableView footerEndRefreshing];
     } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex+1 noNetWork:^{
@@ -709,8 +717,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [addCommentView finishNetWork];
         if(!error){
             [self finishPostCommentWithPosts:posts activesModel:model];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dic:dic noNetWork:nil];
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 //评论发送完后的页面tableView刷新
@@ -831,7 +847,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }else{
             __weak ContactViewController *wself = self;
             [wself.pathCover stopRefresh];
-            [LoginAgain AddLoginView:YES];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
     } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
         self.tableView.scrollEnabled=NO;

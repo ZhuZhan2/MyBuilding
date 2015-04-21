@@ -36,8 +36,16 @@
         if (!error) {
             self.mainClauseModel=posts[0];
             [self reload];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dic:dic noNetWork:nil];
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 -(void)reload{
     self.mainClauseView=nil;
@@ -66,8 +74,16 @@
                 if (!error) {
                     NSLog(@"关闭成功");
                     [self sucessPost];
+                }else{
+                    if([ErrorCode errorCode:error]== 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
                 }
-            } dic:dic noNetWork:nil];
+            } dic:dic noNetWork:^{
+                [ErrorCode alert];
+            }];
         //修改
         }else if (index==1){
             NSLog(@"用户选择了修改，之后应跳转至修改页面，即汪洋写的创建页面");
@@ -79,16 +95,32 @@
                 if (!error) {
                     [self sucessPost];
                     NSLog(@"不同意成功");
+                }else{
+                    if([ErrorCode errorCode:error]== 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
                 }
-            } dic:dic noNetWork:nil];
+            } dic:dic noNetWork:^{
+                [ErrorCode alert];
+            }];
         //同意
         }else if (index==1){
             [ContractsApi PostAgreeWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if (!error) {
                     [self sucessPost];
                     NSLog(@"同意成功");
+                }else{
+                    if([ErrorCode errorCode:error]== 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
                 }
-            } dic:dic noNetWork:nil];
+            } dic:dic noNetWork:^{
+                [ErrorCode alert];
+            }];
         }
     }
 }

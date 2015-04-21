@@ -73,9 +73,19 @@
             self.viewArr = [[NSMutableArray alloc] initWithObjects:self.classificationView, nil];
             [self.tableView reloadData];
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self loadList];
+                }];
+            }
         }
-    } tradeId:self.tradId noNetWork:nil];
+    } tradeId:self.tradId noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self loadList];
+        }];
+    }];
 }
 
 -(NSMutableArray *)invitedUserArr{

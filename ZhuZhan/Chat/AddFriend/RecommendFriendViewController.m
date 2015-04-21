@@ -56,9 +56,21 @@
             [self.models removeAllObjects];
             self.models = posts;
             [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
         [self.tableView headerEndRefreshing];
-    } startIndex:0 noNetWork:nil];
+    } startIndex:0 noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 - (void)footerRereshing
@@ -68,9 +80,21 @@
             self.startIndex++;
             [self.models addObjectsFromArray:posts];
             [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
         [self.tableView footerEndRefreshing];
-    } startIndex:self.startIndex+1 noNetWork:nil];
+    } startIndex:self.startIndex+1 noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 -(void)initTopView{
@@ -102,8 +126,20 @@
         if(!error){
             self.models = posts;
             [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
-    } startIndex:0 noNetWork:nil];
+    } startIndex:0 noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

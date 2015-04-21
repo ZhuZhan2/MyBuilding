@@ -317,9 +317,15 @@ static BOOL isFirst;
                 [alert show];
                 [self inputViewGetNew];
             }else{
-                [LoginAgain AddLoginView:NO];
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
-        } dic:dic imgData:self.imageData noNetWork:nil];
+        } dic:dic imgData:self.imageData noNetWork:^{
+            [ErrorCode alert];
+        }];
         isPublish=NO;
     }else if (PublishNum ==2) {
         //NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithObjectsAndKeys:publishContent,@"ProductDescription",userIdStr,@"CreatedBy",publishImageStr,@"ProductImageStrings", nil];

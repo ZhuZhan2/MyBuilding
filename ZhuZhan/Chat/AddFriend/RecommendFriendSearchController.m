@@ -45,8 +45,16 @@
         if (!error) {
             self.models = posts;
             [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error]==403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } keywords:keyWords startIndex:0 noNetWork:nil];
+    } keywords:keyWords startIndex:0 noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -54,8 +54,16 @@
                 [self.delegate addressBookNickNameViewControllerFinish];
             }
             [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            if([ErrorCode errorCode:error]){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dic:dic noNetWork:nil];
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(UILabel *)titleLabel{

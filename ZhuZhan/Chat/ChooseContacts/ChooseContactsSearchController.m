@@ -48,8 +48,16 @@
                 [self.models addObjectsFromArray:ABmodel.contactArr];
             }];
             [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    }keywords:keyWords noNetWork:nil];
+    }keywords:keyWords noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

@@ -201,7 +201,6 @@
             [alert show];
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        NSLog(@"error ==> %@",error);
         if (block) {
             block([NSMutableArray array], error);
         }

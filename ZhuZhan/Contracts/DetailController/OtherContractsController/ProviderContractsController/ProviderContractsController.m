@@ -29,16 +29,32 @@
             if (!error) {
                 NSLog(@"不同意成功");
                 [self sucessPost];
+            }else{
+                if([ErrorCode errorCode:error]==403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     //同意
     }else if (index==1){
         [ContractsApi PostCommissionAgreeWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 NSLog(@"同意成功");
                 [self sucessPost];
+            }else{
+                if([ErrorCode errorCode:error]==403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     //上传模板
     }else if (index==2){
         NSLog(@"上传模板");

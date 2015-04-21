@@ -62,7 +62,13 @@
                 [self.tableView reloadData];
             }
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
     } startIndex:startIndex noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
@@ -110,7 +116,13 @@
                 [self.tableView reloadData];
             }
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
         [self.tableView headerEndRefreshing];
     }startIndex:0 noNetWork:^{
@@ -135,7 +147,13 @@
                 [self.tableView reloadData];
             }
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
         [self.tableView footerEndRefreshing];
     }startIndex:startIndex+1 noNetWork:^{

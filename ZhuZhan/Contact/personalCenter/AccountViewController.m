@@ -268,7 +268,12 @@ static int count =0;//记录生日textField 的时间被触发的次数
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    }data:imageData dic:nil noNetWork:nil];
+    }data:imageData dic:nil noNetWork:^{
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+        }];
+    }];
 }
 
 -(void)changeBackgroundImage:(NSString *)imageStr AndImage:(UIImage *)image imageData:(NSData *)imageData{
@@ -280,7 +285,12 @@ static int count =0;//记录生日textField 的时间被触发的次数
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    }data:imageData dic:nil noNetWork:nil];
+    }data:imageData dic:nil noNetWork:^{
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+        }];
+    }];
 }
 
 /**********************************************************************/
@@ -350,7 +360,12 @@ static int count =0;//记录生日textField 的时间被触发的次数
         }else{
             [LoginAgain AddLoginView:NO];
         }
-    } dic:parameter noNetWork:nil];
+    } dic:parameter noNetWork:^{
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+        }];
+    }];
 }
 
 #pragma mark  AccountCellDelegate----------

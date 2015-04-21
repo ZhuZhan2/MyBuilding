@@ -112,9 +112,17 @@
             if (!error) {
                 model.a_isFocused=@"0";
                 [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
             btn.enabled=YES;
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     }else{
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         [dic setObject:model.a_id forKey:@"targetId"];
@@ -123,9 +131,17 @@
             if(!error){
                 model.a_isFocused=@"1";
                 [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
             btn.enabled=YES;
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     }
 }
 
@@ -149,9 +165,15 @@
             [self.tableView reloadData];
         }else{
             btn.userInteractionEnabled=YES;
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dic:dic noNetWork:nil];
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 
 }
 //===============================================================

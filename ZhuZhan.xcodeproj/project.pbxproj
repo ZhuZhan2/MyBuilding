@@ -1372,6 +1372,7 @@
 		D3D483FF1ADFC4E8004AF972 /* AskPriceMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D483FE1ADFC4E8004AF972 /* AskPriceMessageCell.m */; };
 		D3D484061ADFCEA1004AF972 /* AskPriceMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D484051ADFCEA1004AF972 /* AskPriceMessageModel.m */; };
 		D3D4A2E21AAE98390071B3EA /* ChatMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4A2E11AAE98390071B3EA /* ChatMessageModel.m */; };
+		D3D4E7431AE62B96001BF0A9 /* ErrorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4E7421AE62B96001BF0A9 /* ErrorCode.m */; };
 		D3D4FB301A0872770033BB34 /* CompanyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4FB2F1A0872770033BB34 /* CompanyCenterViewController.m */; };
 		D3D4FB331A087A830033BB34 /* 公司－账号设置_03a-05.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D4FB311A087A830033BB34 /* 公司－账号设置_03a-05.png */; };
 		D3D4FB341A087A830033BB34 /* 公司－账号设置_03a-05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D4FB321A087A830033BB34 /* 公司－账号设置_03a-05@2x.png */; };
@@ -3490,6 +3491,8 @@
 		D3D49EE919FE0B76002B3B99 /* HeadImageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadImageDelegate.h; sourceTree = "<group>"; };
 		D3D4A2E01AAE98390071B3EA /* ChatMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageModel.h; sourceTree = "<group>"; };
 		D3D4A2E11AAE98390071B3EA /* ChatMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageModel.m; sourceTree = "<group>"; };
+		D3D4E7411AE62B96001BF0A9 /* ErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorCode.h; sourceTree = "<group>"; };
+		D3D4E7421AE62B96001BF0A9 /* ErrorCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorCode.m; sourceTree = "<group>"; };
 		D3D4FB2E1A0872770033BB34 /* CompanyCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyCenterViewController.h; sourceTree = "<group>"; };
 		D3D4FB2F1A0872770033BB34 /* CompanyCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyCenterViewController.m; sourceTree = "<group>"; };
 		D3D4FB311A087A830033BB34 /* 公司－账号设置_03a-05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－账号设置_03a-05.png"; sourceTree = "<group>"; };
@@ -3946,6 +3949,7 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3D4E7401AE62B84001BF0A9 /* ErrorCode */,
 				D3C0218B1AE09400000F1742 /* CellHeight */,
 				D3DCDAC71ADBA66C0029DB95 /* GetAddressBook */,
 				D31BBB8A1AD3E3F500919B8B /* PodFiles */,
@@ -6789,6 +6793,15 @@
 			path = ChatMessageModel;
 			sourceTree = "<group>";
 		};
+		D3D4E7401AE62B84001BF0A9 /* ErrorCode */ = {
+			isa = PBXGroup;
+			children = (
+				D3D4E7411AE62B96001BF0A9 /* ErrorCode.h */,
+				D3D4E7421AE62B96001BF0A9 /* ErrorCode.m */,
+			);
+			path = ErrorCode;
+			sourceTree = "<group>";
+		};
 		D3D5B42C1AB130B900E8EB04 /* GCDAsyncsocket */ = {
 			isa = PBXGroup;
 			children = (
@@ -8497,6 +8510,7 @@
 				0426C26E19922D5A00CD8822 /* GPUImageGammaFilter.m in Sources */,
 				5B8A2CF61AAEE0AD00C8F9DE /* ChooseContactsViewController.m in Sources */,
 				D39937C71A42B481007081C1 /* RecommendContactTableViewCell.m in Sources */,
+				D3D4E7431AE62B96001BF0A9 /* ErrorCode.m in Sources */,
 				D3EDCA5A1ACE90A6002AF865 /* UIImage+WebP.m in Sources */,
 				0426C29919922D5A00CD8822 /* GPUImageNonMaximumSuppressionFilter.m in Sources */,
 				D3AC61B219B6BF930015B62F /* TopicsModel.m in Sources */,

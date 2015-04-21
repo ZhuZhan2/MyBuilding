@@ -63,8 +63,10 @@
     _model=model;
     _indexPath=indexPath;
     self.mainLabel.text=model.mainLabelText;
-    [self.assistBtn setBackgroundImage:[self.class assistImageChooseWithStyle:model.assistStyle] forState:UIControlStateNormal];
-    self.assistBtn.userInteractionEnabled=model.assistStyle==AddressBookFriendCellAssistNotFinished;
+    if(model.isPlatformUser){
+        [self.assistBtn setBackgroundImage:[self.class assistImageChooseWithStyle:model.assistStyle] forState:UIControlStateNormal];
+        self.assistBtn.userInteractionEnabled=model.assistStyle==AddressBookFriendCellAssistNotFinished;
+    }
 }
 
 +(UIImage*)assistImageChooseWithStyle:(AddressBookFriendCellAssistStyle)style{

@@ -41,10 +41,16 @@
 }
 
 -(void)popNavi{
-    UIViewController* vc=self.navigationController.viewControllers[self.popViewControllerIndex];
-    [self.navigationController popToViewController:vc animated:YES];
-    if([self.delegate respondsToSelector:@selector(reloadList)]){
-        [self.delegate reloadList];
+    if([self.fromView isEqualToString:@"qun"]){
+        UIViewController* vc=self.navigationController.viewControllers[1];
+        [self.navigationController popToViewController:vc animated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadList" object:nil];
+    }else{
+        UIViewController* vc=self.navigationController.viewControllers[self.popViewControllerIndex];
+        [self.navigationController popToViewController:vc animated:YES];
+        if([self.delegate respondsToSelector:@selector(reloadList)]){
+            [self.delegate reloadList];
+        }
     }
 }
 
@@ -76,10 +82,26 @@
             [ChatMessageApi LeaveWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
                     [self popNavi];
+                }else{
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
                 }
-            } dic:dic2 noNetWork:nil];
+            } dic:dic2 noNetWork:^{
+                [ErrorCode alert];
+            }];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    }dic:dic noNetWork:nil];
+    }dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(void)initMessageTableView{
@@ -109,10 +131,16 @@
             [self.tableView reloadData];
             //[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.models.count-4 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
         [self.tableView headerEndRefreshing];
-    } userId:self.contactId chatlogId:self.lastId startIndex:self.startIndex+1 noNetWork:nil];
+    } userId:self.contactId chatlogId:self.lastId startIndex:self.startIndex+1 noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(void)initSocket{
@@ -165,9 +193,15 @@
             self.lastId = dataModel.a_id;
             [self appearNewData];
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } userId:self.contactId chatlogId:@"" startIndex:0 noNetWork:nil];
+    } userId:self.contactId chatlogId:@"" startIndex:0 noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(void)initNavi{

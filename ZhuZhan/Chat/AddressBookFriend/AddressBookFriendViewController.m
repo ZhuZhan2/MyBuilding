@@ -74,19 +74,38 @@
     [dic setObject:tels forKey:@"tels"];
     [AddressBookApi ValidatePlatformContactsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            [self.phones enumerateObjectsUsingBlock:^(ValidatePlatformContactModel* localModel, NSUInteger idx, BOOL *stop) {
-                for (ValidatePlatformContactModel* serverModel in posts) {
+//            [self.phones enumerateObjectsUsingBlock:^(ValidatePlatformContactModel* localModel, NSUInteger idx, BOOL *stop) {
+//                for (ValidatePlatformContactModel* serverModel in posts) {
+//                    if ([serverModel.a_loginTel isEqualToString:localModel.a_loginTel]) {
+//                        localModel.dict=serverModel.dict;
+//                        [self.models addObject:localModel];
+//                        NSLog(@"%@,%@",localModel.a_userPhoneName,localModel.dict);
+//                    }
+//                }
+//            }];
+            [posts enumerateObjectsUsingBlock:^(ValidatePlatformContactModel* serverModel, NSUInteger idx, BOOL *stop) {
+                [self.phones enumerateObjectsUsingBlock:^(ValidatePlatformContactModel* localModel, NSUInteger idx, BOOL *stop) {
                     if ([serverModel.a_loginTel isEqualToString:localModel.a_loginTel]) {
                         localModel.dict=serverModel.dict;
                         [self.models addObject:localModel];
-                        NSLog(@"%@,%@",localModel.a_userPhoneName,localModel.dict);
                     }
-                }
+                }];
             }];
-            
             [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self postPhones];
+                }];
+            }
         }
-    } dic:dic noNetWork:nil];
+    } dic:dic noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self postPhones];
+        }];
+    }];
 }
 
 -(void)initNavi{
@@ -111,6 +130,7 @@
     ValidatePlatformContactModel* dataModel=self.models[indexPath.row];
     AddressBookFriendCellModel* model=[[AddressBookFriendCellModel alloc]init];
     model.mainLabelText=dataModel.a_userPhoneName;
+    model.isPlatformUser=dataModel.a_isPlatformUser;
     model.assistStyle=dataModel.a_isWaiting?2:dataModel.a_isFriend;
     [cell setModel:model indexPath:indexPath];
     
@@ -127,9 +147,15 @@
             [self.tableView reloadData];
             [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil]show];
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dic:dic noNetWork:nil];
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(void)setUpSearchBarTableView{

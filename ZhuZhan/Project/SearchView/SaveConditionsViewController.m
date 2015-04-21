@@ -140,8 +140,16 @@
                     if([self.delegate respondsToSelector:@selector(finshSave)]){//保存
                         [self.delegate finshSave];
                     }
+                }else{
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
                 }
-            } dic:dic noNetWork:nil];
+            } dic:dic noNetWork:^{
+                [ErrorCode alert];
+            }];
         }
     }
 }

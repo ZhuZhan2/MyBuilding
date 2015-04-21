@@ -181,9 +181,15 @@
                     isFoucsed = 1;
                     concernBtn.enabled = YES;
                 }else{
-                    [LoginAgain AddLoginView:NO];
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
                 }
-            } dic:dic noNetWork:nil];
+            } dic:dic noNetWork:^{
+                [ErrorCode alert];
+            }];
         }else{
             NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
             [dic setObject:self.createdBy forKey:@"targetId"];
@@ -194,9 +200,15 @@
                     isFoucsed = 0;
                     concernBtn.enabled = YES;
                 }else{
-                    [LoginAgain AddLoginView:NO];
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
                 }
-            } dic:dic noNetWork:nil];
+            } dic:dic noNetWork:^{
+                [ErrorCode alert];
+            }];
         }
     }else{
         LoginViewController *loginVC = [[LoginViewController alloc] init];
@@ -218,9 +230,15 @@
                 [addFriendBtn setTitle:@"已发送" forState:UIControlStateNormal];
                 addFriendBtn.enabled = NO;
             }else{
-                [LoginAgain AddLoginView:NO];
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     }else{
         LoginViewController *loginVC = [[LoginViewController alloc] init];
         loginVC.delegate = self;

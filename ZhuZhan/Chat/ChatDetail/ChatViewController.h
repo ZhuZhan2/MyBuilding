@@ -17,6 +17,7 @@
 @property(nonatomic,strong)NSString *contactId;
 @property(nonatomic,strong)NSString *type;
 @property(nonatomic,strong)NSString *titleStr;
+@property(nonatomic,strong)NSString *fromView;
 @property(nonatomic,weak)id<ChatViewControllerDelegate>delegate;
 -(instancetype)initWithPopViewControllerIndex:(NSInteger)index;
 @end

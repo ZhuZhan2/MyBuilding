@@ -145,9 +145,16 @@
     [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"已成功申请好友" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil]show];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dic:dic noNetWork:nil];
-    NSLog(@"btntag=%d",(int)btn.tag);
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 - (void)_refreshing {
@@ -177,12 +184,18 @@
     [ProjectApi GetMyProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             [self.showArr addObjectsFromArray:posts];
-            [self.tableView footerEndRefreshing];
             [self.tableView reloadData];
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } userId:self.contactId startIndex:startIndex noNetWork:nil];
+        [self.tableView footerEndRefreshing];
+    } userId:self.contactId startIndex:startIndex noNetWork:^{
+         [ErrorCode alert];
+    }];
 }
 /******************************************************************************************************************/
 
@@ -231,7 +244,13 @@
                 self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocus"]];
                 [self getNetWorkData];
             }else{
-                [LoginAgain AddLoginView:NO];
+                if([ErrorCode errorCode:error] ==403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                        [self firstNetWork];
+                    }];
+                }
             }
         } userId:[LoginSqlite getdata:@"userId"] targetId:self.contactId noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
@@ -266,14 +285,28 @@
                     if(!error){
                         self.showArr = posts;
                         [self.tableView reloadData];
+                    }else{
+                        if([ErrorCode errorCode:error] == 403){
+                            [LoginAgain AddLoginView:NO];
+                        }else{
+                            [ErrorCode alert];
+                        }
                     }
-                } userId:self.contactId startIndex:startIndex noNetWork:nil];
+                } userId:self.contactId startIndex:startIndex noNetWork:^{
+                    [ErrorCode alert];
+                }];
             }
             [LoadingView removeLoadingView:loadingView];
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } userId:self.contactId noNetWork:nil];
+    } userId:self.contactId noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -294,9 +327,15 @@
                     [alertView show];
                     self.isFocused = @"1";
                 }else{
-                    [LoginAgain AddLoginView:NO];
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
                 }
-            } dic:dic noNetWork:nil];
+            } dic:dic noNetWork:^{
+                [ErrorCode alert];
+            }];
         }else{
             NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
             [dic setObject:self.contactId forKey:@"targetId"];
@@ -307,9 +346,15 @@
                     [alertView show];
                     self.isFocused = @"0";
                 }else{
-                    [LoginAgain AddLoginView:NO];
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
                 }
-            } dic:dic noNetWork:nil];
+            } dic:dic noNetWork:^{
+                [ErrorCode alert];
+            }];
         }
     }else{
         NSLog(@"取消");
@@ -710,8 +755,16 @@
                 [alertView show];
                 [self.secondBtn setTitle:@"已发送" forState:UIControlStateNormal];
                 self.secondBtn.enabled = NO;
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     }else{
         LoginViewController *loginVC = [[LoginViewController alloc] init];
         loginVC.needDelayCancel=NO;

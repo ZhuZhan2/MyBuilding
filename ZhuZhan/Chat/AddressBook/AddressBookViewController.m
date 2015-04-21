@@ -19,10 +19,12 @@
 #import "PersonalDetailViewController.h"
 #import "MyTableView.h"
 #define seperatorLineColor RGBCOLOR(229, 229, 229)
-@interface AddressBookViewController()<AddressBookViewCellDelegate,SWTableViewCellDelegate,AddressBookNickNameViewControllerDelegate,AddressBookSearchBarCellDelegate>
+@interface AddressBookViewController()<AddressBookViewCellDelegate,SWTableViewCellDelegate,AddressBookNickNameViewControllerDelegate,AddressBookSearchBarCellDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)NSMutableArray *groupArr;
 @property(nonatomic,strong)NSMutableArray *searchDataArr;
 @property(nonatomic,strong)UIButton *addFriendBtn;
+@property(nonatomic,strong)SWTableViewCell *swCell;
+@property(nonatomic,strong)NSIndexPath *cellIndexPath;
 @end
 
 @implementation AddressBookViewController
@@ -85,8 +87,20 @@
         if(!error){
             self.groupArr = posts;
             [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
-    }keywords:@"" noNetWork:nil];
+    }keywords:@"" noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 -(void)initNavi{
@@ -182,6 +196,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.swCell hideUtilityButtonsAnimated:YES];
     AddressBookModel *ABmodel = self.groupArr[indexPath.section];
     AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];
     ChatViewController *view = [[ChatViewController alloc] init];
@@ -227,6 +242,7 @@
 
 -(void)searchBarTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self disappearAnimation:self.searchBar];
+    [self.swCell hideUtilityButtonsAnimated:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         AddressBookModel *ABmodel = self.searchDataArr[indexPath.section];
         AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];
@@ -263,8 +279,20 @@
                 [MyTableView reloadDataWithTableView:self.searchBarTableView];
                 [MyTableView hasData:self.searchBarTableView];
             }
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
-    }keywords:keyWords noNetWork:nil];
+    }keywords:keyWords noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
@@ -296,27 +324,70 @@
                     if(!error){
                         [self firstNetWork];
                     }else{
-                        [LoginAgain AddLoginView:NO];
+                        if([ErrorCode errorCode:error]){
+                            [LoginAgain AddLoginView:NO];
+                        }else{
+                            [ErrorCode alert];
+                        }
                     }
-                } dic:dic noNetWork:nil];
+                } dic:dic noNetWork:^{
+                    [ErrorCode alert];
+                }];
             }else{
-                NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
-                AddressBookModel *ABmodel = self.groupArr[cellIndexPath.section];
-                AddressBookContactModel *contactModel = ABmodel.contactArr[cellIndexPath.row];
-                NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-                [dic setObject:contactModel.a_contactId forKey:@"userId"];
-                [AddressBookApi DeleteContactsWithBlock:^(NSMutableArray *posts, NSError *error) {
-                    if(!error){
-                        [self firstNetWork];
-                    }else{
-                        [LoginAgain AddLoginView:NO];
-                    }
-                } dic:dic noNetWork:nil];
+                self.cellIndexPath = [self.tableView indexPathForCell:cell];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"确认是否删除此联系人，同时删除与该联系人的聊天记录，将不可进行对话" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                [alertView show];
             };
             break;
         }
         default:
             break;
+    }
+}
+
+- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
+{
+    // allow just one cell's utility button to be open at once
+    return YES;
+}
+
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell scrollingToState:(SWCellState)state
+{
+    switch (state) {
+        case 0:
+            NSLog(@"utility buttons closed");
+            break;
+        case 1:
+            NSLog(@"left utility buttons open");
+            break;
+        case 2:
+            NSLog(@"right utility buttons open");
+            self.swCell = cell;
+            break;
+        default:
+            break;
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 1){
+        AddressBookModel *ABmodel = self.groupArr[self.cellIndexPath.section];
+        AddressBookContactModel *contactModel = ABmodel.contactArr[self.cellIndexPath.row];
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:contactModel.a_contactId forKey:@"userId"];
+        [AddressBookApi DeleteContactsWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                [self firstNetWork];
+            }else{
+                if([ErrorCode errorCode:error]){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
+            }
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     }
 }
 
@@ -326,8 +397,20 @@
             [self.groupArr removeAllObjects];
             self.groupArr = posts;
             [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
-    }keywords:@"" noNetWork:nil];
+    }keywords:@"" noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 -(void)headClick:(NSIndexPath *)indexPath{
