@@ -14,6 +14,9 @@
 #import "ContractsApi.h"
 #import "ContractsListSingleModel.h"
 #import "LoginSqlite.h"
+#import "MainContractsBaseController.h"
+#import "ProviderContractsController.h"
+#import "SalerContractsController.h"
 @interface ConstractListController ()<DemandStageChooseControllerDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property (nonatomic)NSInteger nowStage;
@@ -36,7 +39,6 @@
     [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已完成",@"已关闭"]  numbers:@[@"33",@"44",@"55",@"66"]];
     [self initTableView];
     [self initTableViewExtra];
-    [self loadList];
 }
 
 -(void)initTableViewExtra{
@@ -83,7 +85,6 @@
 -(void)rightBtnClicked{
     UIViewController* vc=[[ContractsListSearchController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
-    //[self presentViewController:vc animated:YES completion:nil];
 }
 
 -(void)loadList{
@@ -92,7 +93,7 @@
             self.showArr=posts;
             [self.tableView reloadData];
         }
-    } keyWords:@"" archiveStatus:self.archiveStatus typeContracts:self.nowStageStr startIndex:0 noNetWork:nil];
+    } keyWords:@"" archiveStatus:self.archiveStatus contractsType:self.nowStageStr startIndex:0 noNetWork:nil];
 }
 
 -(NSMutableArray *)showArr{
@@ -131,12 +132,33 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.row==0){
-        ContractsBaseViewController* vc=[[ContractsBaseViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }else{
-        
+    ContractsListSingleModel* singleModel=self.showArr[indexPath.row];
+    UIViewController* pushVC;
+    BOOL hasFile=![singleModel.a_fileName isEqualToString:@""];
+    BOOL isSaler=singleModel.a_isSaler;
+    if (singleModel.a_status<=3&&!hasFile) {
+        MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
+        vc.listSingleModel=singleModel;
+        pushVC=vc;
+    }else if (hasFile&&singleModel.a_status>=3&&singleModel.a_status!=9){
+        //销售商
+        if (isSaler) {
+            MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
+            vc.listSingleModel=singleModel;
+            pushVC=vc;
+        //供应商
+        }else{
+            ProviderContractsController* vc=[[ProviderContractsController alloc]init];
+            vc.listSingleModel=singleModel;
+            pushVC=vc;
+        }
+    }else if (hasFile&&singleModel.a_status==9&&isSaler){
+        SalerContractsController* vc=[[SalerContractsController alloc]init];
+        vc.listSingleModel=singleModel;
+        pushVC=vc;
     }
+    
+    [self.navigationController pushViewController:pushVC animated:YES];
 }
 
 -(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{

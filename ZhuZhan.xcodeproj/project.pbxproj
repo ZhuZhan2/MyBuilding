@@ -728,6 +728,10 @@
 		5B6C4B2D1ADFBC12003B8DA8 /* 绿色箭头@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6C4B2B1ADFBC12003B8DA8 /* 绿色箭头@2x.png */; };
 		5B6C4B301ADFC01B003B8DA8 /* PDF.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6C4B2E1ADFC01B003B8DA8 /* PDF.png */; };
 		5B6C4B311ADFC01B003B8DA8 /* PDF@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6C4B2F1ADFC01B003B8DA8 /* PDF@2x.png */; };
+		5B6FF6F81AE49DC000F3A3E0 /* ContractsMainClauseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FF6F71AE49DC000F3A3E0 /* ContractsMainClauseModel.m */; };
+		5B6FF6FE1AE4EC3300F3A3E0 /* ProviderContractsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FF6FD1AE4EC3300F3A3E0 /* ProviderContractsController.m */; };
+		5B6FF7011AE4EC4B00F3A3E0 /* SalerContractsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FF7001AE4EC4B00F3A3E0 /* SalerContractsController.m */; };
+		5B6FF7041AE50F9500F3A3E0 /* ContractsSalerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FF7031AE50F9500F3A3E0 /* ContractsSalerModel.m */; };
 		5B70CC391AC8EF7300FC8353 /* RKMuchBtnAssistView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B70CC381AC8EF7300FC8353 /* RKMuchBtnAssistView.m */; };
 		5B70CC3C1AC92A3F00FC8353 /* BaseContractsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B70CC3B1AC92A3F00FC8353 /* BaseContractsView.m */; };
 		5B70CC431AC9377B00FC8353 /* PDF1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B70CC3D1AC9377B00FC8353 /* PDF1.png */; };
@@ -2617,6 +2621,14 @@
 		5B6C4B2B1ADFBC12003B8DA8 /* 绿色箭头@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "绿色箭头@2x.png"; sourceTree = "<group>"; };
 		5B6C4B2E1ADFC01B003B8DA8 /* PDF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PDF.png; sourceTree = "<group>"; };
 		5B6C4B2F1ADFC01B003B8DA8 /* PDF@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PDF@2x.png"; sourceTree = "<group>"; };
+		5B6FF6F61AE49DC000F3A3E0 /* ContractsMainClauseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractsMainClauseModel.h; sourceTree = "<group>"; };
+		5B6FF6F71AE49DC000F3A3E0 /* ContractsMainClauseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractsMainClauseModel.m; sourceTree = "<group>"; };
+		5B6FF6FC1AE4EC3300F3A3E0 /* ProviderContractsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProviderContractsController.h; sourceTree = "<group>"; };
+		5B6FF6FD1AE4EC3300F3A3E0 /* ProviderContractsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProviderContractsController.m; sourceTree = "<group>"; };
+		5B6FF6FF1AE4EC4B00F3A3E0 /* SalerContractsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalerContractsController.h; sourceTree = "<group>"; };
+		5B6FF7001AE4EC4B00F3A3E0 /* SalerContractsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalerContractsController.m; sourceTree = "<group>"; };
+		5B6FF7021AE50F9500F3A3E0 /* ContractsSalerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractsSalerModel.h; sourceTree = "<group>"; };
+		5B6FF7031AE50F9500F3A3E0 /* ContractsSalerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractsSalerModel.m; sourceTree = "<group>"; };
 		5B70CC371AC8EF7300FC8353 /* RKMuchBtnAssistView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKMuchBtnAssistView.h; sourceTree = "<group>"; };
 		5B70CC381AC8EF7300FC8353 /* RKMuchBtnAssistView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKMuchBtnAssistView.m; sourceTree = "<group>"; };
 		5B70CC3A1AC92A3F00FC8353 /* BaseContractsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseContractsView.h; sourceTree = "<group>"; };
@@ -5477,6 +5489,8 @@
 		5B5837061AD7CF0100F8E7C3 /* ProviderContractsController */ = {
 			isa = PBXGroup;
 			children = (
+				5B6FF6FC1AE4EC3300F3A3E0 /* ProviderContractsController.h */,
+				5B6FF6FD1AE4EC3300F3A3E0 /* ProviderContractsController.m */,
 			);
 			path = ProviderContractsController;
 			sourceTree = "<group>";
@@ -5484,6 +5498,8 @@
 		5B5837071AD7CF0100F8E7C3 /* SalerContractsController */ = {
 			isa = PBXGroup;
 			children = (
+				5B6FF6FF1AE4EC4B00F3A3E0 /* SalerContractsController.h */,
+				5B6FF7001AE4EC4B00F3A3E0 /* SalerContractsController.m */,
 			);
 			path = SalerContractsController;
 			sourceTree = "<group>";
@@ -6724,8 +6740,12 @@
 			children = (
 				D3C021901AE0A4EF000F1742 /* ContractsListSingleModel.h */,
 				D3C021911AE0A4EF000F1742 /* ContractsListSingleModel.m */,
+				5B6FF6F61AE49DC000F3A3E0 /* ContractsMainClauseModel.h */,
+				5B6FF6F71AE49DC000F3A3E0 /* ContractsMainClauseModel.m */,
 				D3D483F31ADF884A004AF972 /* ContractsApi.h */,
 				D3D483F41ADF884A004AF972 /* ContractsApi.m */,
+				5B6FF7021AE50F9500F3A3E0 /* ContractsSalerModel.h */,
+				5B6FF7031AE50F9500F3A3E0 /* ContractsSalerModel.m */,
 			);
 			path = ContractsModel;
 			sourceTree = "<group>";
@@ -8524,6 +8544,7 @@
 				D3D21EB71A36F9C700ADD653 /* LocalProjectModel.m in Sources */,
 				D3CF0D8D1AB81A7800D71CEB /* TopView.m in Sources */,
 				0426C2A219922D5A00CD8822 /* GPUImagePixellateFilter.m in Sources */,
+				5B6FF6FE1AE4EC3300F3A3E0 /* ProviderContractsController.m in Sources */,
 				D3D6862A1ABACF44005D9ED6 /* SearchContactTableViewCell.m in Sources */,
 				0426C2BD19922D5A00CD8822 /* GPUImageSolidColorGenerator.m in Sources */,
 				0426C24D19922D5A00CD8822 /* GPUImageBulgeDistortionFilter.m in Sources */,
@@ -8531,6 +8552,7 @@
 				042D9DC719B4A1C600689C5D /* JSONKit.m in Sources */,
 				5BF31B6A1AB025FD00DA87F5 /* DiscussionGroupView.m in Sources */,
 				D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */,
+				5B6FF7011AE4EC4B00F3A3E0 /* SalerContractsController.m in Sources */,
 				5B55D57E1A3EB63200CAEF8B /* ForgetPasswordSecondController.m in Sources */,
 				5B58370A1AD7CFD900F8E7C3 /* OtherContractsBaseController.m in Sources */,
 				5B8A2CF01AAEE0AD00C8F9DE /* ChatTableViewCell.m in Sources */,
@@ -8613,6 +8635,7 @@
 				5B7670621AB6B92B00E154C5 /* ChatBaseViewController.m in Sources */,
 				042D9E1819B559FC00689C5D /* ScrollViewController.m in Sources */,
 				0426C2C819922D5A00CD8822 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
+				5B6FF7041AE50F9500F3A3E0 /* ContractsSalerModel.m in Sources */,
 				0426C2FC19922D5A00CD8822 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				0426C24819922D5A00CD8822 /* GPUImageAverageLuminanceThresholdFilter.m in Sources */,
 				0426C2C719922D5A00CD8822 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
@@ -8628,6 +8651,7 @@
 				D3F787471AADA40300ED754B /* AddressBookModel.m in Sources */,
 				D3AD609319AC56CB001FD483 /* MJRefreshConst.m in Sources */,
 				0426C28419922D5A00CD8822 /* GPUImageLaplacianFilter.m in Sources */,
+				5B6FF6F81AE49DC000F3A3E0 /* ContractsMainClauseModel.m in Sources */,
 				0426BFF719922CE400CD8822 /* main.m in Sources */,
 				0426C2C619922D5A00CD8822 /* GPUImageThreeInputFilter.m in Sources */,
 				0426C2CC19922D5A00CD8822 /* GPUImageToonFilter.m in Sources */,

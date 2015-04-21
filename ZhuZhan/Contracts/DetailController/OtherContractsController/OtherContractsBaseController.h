@@ -7,7 +7,12 @@
 //
 
 #import "ContractsBaseViewController.h"
-
-@interface OtherContractsBaseController : ContractsBaseViewController
-
+#import "ContractsBtnToolBar.h"
+@interface OtherContractsBaseController : ContractsBaseViewController<ContractsBtnToolBarDelegate>{
+    @protected
+    ContractsBtnToolBar* _btnToolBar;
+}
+@property (nonatomic, strong)UIButton* clauseMainBtn;
+@property (nonatomic, strong)UIView* PDFView;
+@property (nonatomic, strong)ContractsBtnToolBar* btnToolBar;
 @end

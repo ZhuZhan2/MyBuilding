@@ -19,6 +19,9 @@
 
 @implementation ContractsBtnToolBar
 +(ContractsBtnToolBar*)contractsBtnToolBarWithBtns:(NSArray*)btns contentMaxWidth:(CGFloat)contentMaxWidth top:(CGFloat)top bottom:(CGFloat)bottom contentHeight:(CGFloat)contentHeight{
+    if (!btns.count) {
+        return [[ContractsBtnToolBar alloc]initWithFrame:CGRectZero];
+    }
     ContractsBtnToolBar* btnToolBar=[[ContractsBtnToolBar alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, top+bottom+contentHeight)];
     btnToolBar.backgroundColor=AllBackDeepGrayColor;
     btnToolBar.top=top;

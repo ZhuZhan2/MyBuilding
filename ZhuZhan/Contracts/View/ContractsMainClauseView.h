@@ -10,4 +10,5 @@
 
 @interface ContractsMainClauseView : UIView
 +(ContractsMainClauseView*)mainClauseViewWithTitle:(NSString*)title content:(NSString*)content;
+//-(void)setContent:(NSString*)content;
 @end

@@ -7,9 +7,12 @@
 //
 
 #import "ChatBaseViewController.h"
+#import "ContractsListSingleModel.h"
 @class RKContractsStagesView;
 @class ContractsTradeCodeView;
-@interface ContractsBaseViewController : ChatBaseViewController
+@interface ContractsBaseViewController : ChatBaseViewController<UIAlertViewDelegate>
 @property (nonatomic, strong)UIView* stagesView;
 @property (nonatomic, strong)ContractsTradeCodeView* tradeCodeView;
+@property (nonatomic, strong)ContractsListSingleModel* listSingleModel;
+-(void)sucessPost;
 @end

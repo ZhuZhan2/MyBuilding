@@ -11,6 +11,7 @@
 #import "ContractsTradeCodeView.h"
 #import "ContractsMainClauseView.h"
 #import "ContractsBtnToolBar.h"
+#import "ContractsApi.h"
 @interface MainContractsBaseController ()<ContractsBtnToolBarDelegate>
 @property (nonatomic, strong)ContractsUserView* userView1;
 @property (nonatomic, strong)ContractsUserView* userView2;
@@ -25,8 +26,24 @@
     [self initNaviExtra];
     [self initTableView];
     [self initTableViewExtra];
+    [self loadList];
 }
 
+-(void)loadList{
+    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+    [dic setObject:self.listSingleModel.a_id forKey:@"contractId"];
+    [ContractsApi PostDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            self.mainClauseModel=posts[0];
+            [self reload];
+        }
+    } dic:dic noNetWork:nil];
+}
+-(void)reload{
+    self.mainClauseView=nil;
+    self.cellViews=nil;
+    [self.tableView reloadData];
+}
 -(void)initNaviExtra{
     self.title=@"佣金合同条款";
     [self setRightBtnWithText:@"取消"];
@@ -37,7 +54,43 @@
 }
 
 -(void)contractsBtnToolBarClickedWithBtn:(UIButton *)btn index:(NSInteger)index{
-    NSLog(@"index=%d",(int)index);
+    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+    BOOL isSelfCreated=self.listSingleModel.a_isSelfCreated;
+    NSString* contractsId=self.listSingleModel.a_id;
+    [dic setObject:contractsId forKey:@"id"];
+
+    if (isSelfCreated) {
+        //关闭
+        if (index==0) {
+            [ContractsApi PostCloseWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if (!error) {
+                    NSLog(@"关闭成功");
+                    [self sucessPost];
+                }
+            } dic:dic noNetWork:nil];
+        //修改
+        }else if (index==1){
+            NSLog(@"用户选择了修改，之后应跳转至修改页面，即汪洋写的创建页面");
+        }
+    }else{
+        //不同意
+        if (index==0) {
+            [ContractsApi PostDisagreeWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if (!error) {
+                    [self sucessPost];
+                    NSLog(@"不同意成功");
+                }
+            } dic:dic noNetWork:nil];
+        //同意
+        }else if (index==1){
+            [ContractsApi PostAgreeWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if (!error) {
+                    [self sucessPost];
+                    NSLog(@"同意成功");
+                }
+            } dic:dic noNetWork:nil];
+        }
+    }
 }
 
 -(void)initTableViewExtra{
@@ -77,21 +130,21 @@
 
 -(ContractsUserView *)userView1{
     if (!_userView1) {
-        _userView1=[ContractsUserView contractsUserViewWithUserName:@"用户名" userCategory:@"销售方" companyName:@"上海东方科技有限公司" remarkContent:@"这里输入的公司全称将用于合同和开票信息"];
+        _userView1=[ContractsUserView contractsUserViewWithUserName:self.listSingleModel.a_salerName userCategory:@"销售方" companyName:self.listSingleModel.a_salerCompanyName remarkContent:@"这里输入的公司全称将用于合同和开票信息"];
     }
     return _userView1;
 }
 
 -(ContractsUserView *)userView2{
     if (!_userView2) {
-        _userView2=[ContractsUserView contractsUserViewWithUserName:@"用户名" userCategory:@"供应商供应商供应商供应商供应商供应商供应商供应商供应商供应商供应商供应商供应商供应商供应商供应商" companyName:@"上海东方科技有限公司上海东方科技有限公司上海东方科技有限公司上海东方科技有限公司上海东方科技有限公司上海东方科技有限公司上海东方科技有限公司上海东方科技有限公司上海东方科技有限公司上海东方科技有限公司上海东方科技有限公司" remarkContent:@"这里输入的公司全称将用于合同和开票信息"];
+        _userView2=[ContractsUserView contractsUserViewWithUserName:self.listSingleModel.a_providerName userCategory:@"供应商" companyName:self.listSingleModel.a_providerCompanyName remarkContent:@"这里输入的公司全称将用于合同和开票信息"];
     }
     return _userView2;
 }
 
 -(ContractsMainClauseView *)mainClauseView{
     if (!_mainClauseView) {
-        _mainClauseView=[ContractsMainClauseView mainClauseViewWithTitle:@"￥123456789.00" content:@"1.迪斯科打撒娇的老师交代啦\n2.垃圾点撒，点撒扣篮对就饿啊阑珊口来多久了\n3.安康大量考水帘洞ASAD阿萨大时代ASAS安师大烧烤老倔绝境逢生的地方科技大厦电视卡达拉斯：拉大来看"];
+        _mainClauseView=[ContractsMainClauseView mainClauseViewWithTitle:self.listSingleModel.a_contractsMoney content:self.mainClauseModel.a_contentMain];
     }
     return _mainClauseView;
 }
@@ -105,10 +158,26 @@
 -(ContractsBtnToolBar *)btnToolBar{
     if (!_btnToolBar) {
         NSMutableArray* btns=[NSMutableArray array];
-//        NSArray* imageNames=@[@"不同意迷你带字",@"同意迷你带字",@"上传迷你带字",@"选项按钮"];
-        NSArray* imageNames=@[@"不同意小带字",@"同意小带字",@"上传小带字"];
-        //NSArray* imageNames=@[@"不同意带字",@"同意带字"];
-
+        
+        BOOL hasFile=![self.listSingleModel.a_fileName isEqualToString:@""];
+        NSArray* imageNames;
+        if (!hasFile) {
+            if (self.listSingleModel.a_isSelfCreated) {
+                if (self.listSingleModel.a_status==2) {
+                    imageNames=@[@"不同意带字",@"同意带字"];
+                }else{
+                    
+                }
+            }else{
+                if (self.listSingleModel.a_status==1) {
+                    imageNames=@[@"不同意带字",@"同意带字"];
+                }else{
+                    
+                }
+            }
+        }
+        
+        
         for (int i=0;i<imageNames.count;i++) {
             UIButton* btn=[UIButton buttonWithType:UIButtonTypeCustom];
             UIImage* image=[GetImagePath getImagePath:imageNames[i]];
@@ -116,9 +185,8 @@
             [btn setBackgroundImage:image forState:UIControlStateNormal];
             [btns addObject:btn];
         }
-
-        _btnToolBar=[ContractsBtnToolBar contractsBtnToolBarWithBtns:btns contentMaxWidth:295 top:5 bottom:30 contentHeight:37];
-      //  _btnToolBar=[ContractsBtnToolBar contractsBtnToolBarWithBtns:btns contentMaxWidth:270 top:5 bottom:30 contentHeight:37];
+        
+        _btnToolBar=[ContractsBtnToolBar contractsBtnToolBarWithBtns:btns contentMaxWidth:270 top:5 bottom:30 contentHeight:37];
 
         _btnToolBar.delegate=self;
     }
