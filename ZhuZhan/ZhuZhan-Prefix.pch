@@ -23,19 +23,19 @@
 #import "UIButton+WebCache.h"
 #endif
 
-//#define  serverAddress "http://10.1.5.104:9090/server"//测试用服务器
-#define  serverAddress "http://10.1.5.104:8080/server"//开发用服务器
+#define  serverAddress "http://10.1.5.104:9090/server"//测试用服务器
+//#define  serverAddress "http://10.1.5.104:8080/server"//开发用服务器
 //#define  serverAddress "http://10.1.1.138:9090/service"//马恩伟本机地址
 //#define  serverAddress "http://10.1.1.204:9090/service"
 //#define  serverAddress "http://10.1.1.135:9090/service"
 
 //#define socketServer "10.1.1.138"//马恩伟本地
 #define socketServer "10.1.5.104"//服务器
-#define socketPort 44455//开发
-//#define socketPort 54455//测试
+//#define socketPort 44455//开发
+#define socketPort 54455//测试
 
-#define socketHttp "http://10.1.5.104:8080/im"//开发用
-//#define socketHttp "http://10.1.5.104:9090/im"//测试用
+//#define socketHttp "http://10.1.5.104:8080/im"//开发用
+#define socketHttp "http://10.1.5.104:9090/im"//测试用
 //#define socketHttp "http://10.1.1.138:9092/im"//马恩伟本地
 
 #define  kScreenWidth  [[UIScreen mainScreen] bounds].size.width

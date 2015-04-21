@@ -71,7 +71,13 @@
     [dic setValue:@"02" forKey:@"deviceType"];
     [ChatMessageApi LogoutWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            [self popNavi];
+             NSMutableDictionary *dic2 = [[NSMutableDictionary alloc] init];
+            [dic2 setObject:self.contactId forKey:@"userId"];
+            [ChatMessageApi LeaveWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    [self popNavi];
+                }
+            } dic:dic2 noNetWork:nil];
         }
     }dic:dic noNetWork:nil];
 }
