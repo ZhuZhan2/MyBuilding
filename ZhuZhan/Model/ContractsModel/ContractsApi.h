@@ -15,7 +15,7 @@
 //获取所有列表
 + (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block keyWords:(NSString*)keyWords archiveStatus:(NSString*)archiveStatus contractsType:(NSString*)contractsType startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
 
-//主条款详情
+//主条款详情//供应商合同详情
 + (NSURLSessionDataTask *)PostDetailWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 
 //同意主条款
