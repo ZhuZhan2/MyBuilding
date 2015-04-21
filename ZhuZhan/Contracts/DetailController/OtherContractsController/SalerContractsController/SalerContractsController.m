@@ -9,16 +9,28 @@
 #import "SalerContractsController.h"
 #import "ContractsApi.h"
 #import "ContractsSalerModel.h"
-@interface SalerContractsController ()<UIActionSheetDelegate,UIAlertViewDelegate>
+@interface SalerContractsController ()
 @property (nonatomic, strong)ContractsSalerModel* salerModel;
-@property (nonatomic, strong)UIAlertView* sureCloseAlertView;
 @end
 
 @implementation SalerContractsController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initNaviExtra];
     [self loadList];
+}
+
+-(void)initNavi{
+    [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
+}
+
+-(void)initNaviExtra{
+    self.title=self.title;
+}
+
+-(NSString *)title{
+    return @"销售佣金合同";
 }
 
 -(void)loadList{
@@ -31,32 +43,15 @@
         if (!error) {
             self.salerModel=posts[0];
             self.btnToolBar.userInteractionEnabled=YES;
+            [self reload];
         }
     } dic:dic noNetWork:nil];
 }
 
--(void)rightBtnClicked{
-    UIActionSheet* sheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"关闭", nil];
-    [sheet showInView:self.view.window];
-}
-
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    self.sureCloseAlertView=[[UIAlertView alloc]initWithTitle:@"提醒" message:@"请问确认关闭吗？" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定",@"取消", nil];
-    [self.sureCloseAlertView show];
-}
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    [super alertView:alertView clickedButtonAtIndex:buttonIndex];
-    if (self.sureCloseAlertView==alertView&&buttonIndex==0) {
-        NSMutableDictionary* dic=[NSMutableDictionary dictionary];
-        NSString* contractsId=self.salerModel.a_id;
-        [dic setObject:contractsId forKey:@"id"];
-        [ContractsApi PostSalesCloseWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if (!error) {
-                [self sucessPost];
-            }
-        } dic:dic noNetWork:nil];
-    }
+-(void)reload{
+    [self.btnToolBar removeFromSuperview];
+    self.btnToolBar=nil;
+    [self initBtnToolBar];
 }
 
 -(void)contractsBtnToolBarClickedWithBtn:(UIButton *)btn index:(NSInteger)index{
@@ -91,7 +86,10 @@
 -(ContractsBtnToolBar *)btnToolBar{
     if (!_btnToolBar) {
         NSMutableArray* btns=[NSMutableArray array];
-        NSArray* imageNames=@[@"不同意带字",@"同意带字"];
+        NSArray* imageNames;
+        if (self.salerModel.a_status==1) {
+            imageNames=@[@"不同意带字",@"同意带字"];
+        }
         
         for (int i=0;i<imageNames.count;i++) {
             UIButton* btn=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -106,5 +104,4 @@
     }
     return _btnToolBar;
 }
-
 @end

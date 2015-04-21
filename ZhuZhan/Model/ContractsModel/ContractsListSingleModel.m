@@ -34,6 +34,15 @@
     self.a_status=[dict[@"status"] integerValue];
     self.a_fileName=dict[@"fileName"];
     self.a_createdTime=dict[@"createdTime"];
+    self.a_partyA=dict[@"partyA"];
+    self.a_partyB=dict[@"partyB"];
+
+    /*
+     @property (nonatomic)BOOL a_provideHas;
+     @property (nonatomic)BOOL a_saleHas;
+     */
+    self.a_provideHas=[dict[@"recordHas"] isEqualToString:@"1"];
+    self.a_saleHas=[dict[@"saleHas"] isEqualToString:@"1"];
     
     if ([self.a_createdByType isEqualToString:@"2"]) {
         self.a_providerCompanyName=dict[@"partyB"];
@@ -61,7 +70,7 @@
     self.a_contractsType=contractsTypes[dict[@"contractsType"]];
     
     NSArray* archiveStatus=@[@"进行中",@"已完成",@"已关闭"];
-    NSInteger index2=[dict[@"archiveStatus"] integerValue];
-    self.a_archiveStatus=archiveStatus[index2];
+    self.a_archiveStatusInt=[dict[@"archiveStatus"] integerValue];
+    self.a_archiveStatus=archiveStatus[self.a_archiveStatusInt];
 }
 @end

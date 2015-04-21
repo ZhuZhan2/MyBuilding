@@ -36,13 +36,13 @@
 @property (nonatomic, copy)NSString* a_id;
 
 //进行中0，已完成1，已关闭2
+@property (nonatomic)NSInteger a_archiveStatusInt;
 @property (nonatomic, copy)NSString* a_archiveStatus;
 /*
  所有合同	0
- 主条款列表	1
- 供应商合同	2
- 销售合同	3
- 撤销合同	4
+ 供应商合同	1
+ 销售合同	2
+ 撤销合同	3
  */
 @property (nonatomic, copy)NSString* a_contractsType;
 @property (nonatomic, copy)NSString* a_createdBy;
@@ -58,6 +58,13 @@
 @property (nonatomic, copy)NSString* a_salerCompanyName;
 //供应方的公司全称
 @property (nonatomic, copy)NSString* a_providerCompanyName;
+
+//A方的公司全称
+@property (nonatomic, copy)NSString* a_partyA;
+//B方的公司全称
+@property (nonatomic, copy)NSString* a_partyB;
+
+
 //@"1"供应商,@"2"销售方
 @property (nonatomic, copy)NSString* a_createdByType;
 //合同金额
@@ -82,5 +89,8 @@
 @property (nonatomic, copy)NSString* a_createdTime;
 @property (nonatomic)BOOL a_isSelfCreated;
 @property (nonatomic)BOOL a_isSaler;
+@property (nonatomic)BOOL a_provideHas;
+@property (nonatomic)BOOL a_saleHas;
+
 @property (nonatomic, strong)NSDictionary* dict;
 @end

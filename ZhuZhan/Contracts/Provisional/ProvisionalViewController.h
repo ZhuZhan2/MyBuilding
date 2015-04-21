@@ -16,8 +16,9 @@
 @property(nonatomic,strong)NSString *personaName;
 @property(nonatomic,strong)NSString *moneyStr;
 @property(nonatomic,strong)NSString *contractStr;
+@property (nonatomic, copy)NSString* modifiedId;
 @end
 
 @interface ProvisionalViewController : CommissionBaseViewController
--(id)initWithView:(ProvisionalModel *)model;
+-(id)initWithView:(ProvisionalModel *)model targetPopVC:(UIViewController*)targetPopVC;
 @end

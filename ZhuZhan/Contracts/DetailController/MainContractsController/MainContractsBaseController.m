@@ -12,6 +12,8 @@
 #import "ContractsMainClauseView.h"
 #import "ContractsBtnToolBar.h"
 #import "ContractsApi.h"
+#import "ProvisionalViewController.h"
+#import "RKContractsStagesView.h"
 @interface MainContractsBaseController ()<ContractsBtnToolBarDelegate>
 @property (nonatomic, strong)ContractsUserView* userView1;
 @property (nonatomic, strong)ContractsUserView* userView2;
@@ -39,18 +41,20 @@
         }
     } dic:dic noNetWork:nil];
 }
+
 -(void)reload{
+    [self.stagesView removeFromSuperview];
+    self.stagesView=nil;
+    [self initStagesView];
+    
     self.mainClauseView=nil;
+    self.btnToolBar=nil;
     self.cellViews=nil;
     [self.tableView reloadData];
 }
+
 -(void)initNaviExtra{
     self.title=@"佣金合同条款";
-    [self setRightBtnWithText:@"取消"];
-}
-
--(void)rightBtnClicked{
-    NSLog(@"取消咯");
 }
 
 -(void)contractsBtnToolBarClickedWithBtn:(UIButton *)btn index:(NSInteger)index{
@@ -58,19 +62,25 @@
     BOOL isSelfCreated=self.listSingleModel.a_isSelfCreated;
     NSString* contractsId=self.listSingleModel.a_id;
     [dic setObject:contractsId forKey:@"id"];
-
+    
     if (isSelfCreated) {
-        //关闭
-        if (index==0) {
-            [ContractsApi PostCloseWithBlock:^(NSMutableArray *posts, NSError *error) {
-                if (!error) {
-                    NSLog(@"关闭成功");
-                    [self sucessPost];
-                }
-            } dic:dic noNetWork:nil];
         //修改
-        }else if (index==1){
-            NSLog(@"用户选择了修改，之后应跳转至修改页面，即汪洋写的创建页面");
+        if (index==0) {
+            ContractsListSingleModel* dataModel=self.listSingleModel;
+            ProvisionalModel* model=[[ProvisionalModel alloc]init];
+
+            BOOL crateIsSaler=[dataModel.a_createdByType isEqualToString:@"2"];
+            model.personaStr1=crateIsSaler?@"销售商":@"供应商";
+            model.personaStr2=!crateIsSaler?@"销售商":@"供应商";
+            model.myCompanyName=dataModel.a_partyA;
+            model.otherCompanyName=dataModel.a_partyB;
+            model.personaName=dataModel.a_recipientName;
+            model.moneyStr=dataModel.a_contractsMoney;
+            model.contractStr=self.mainClauseModel.a_contentMain;
+            model.modifiedId=self.listSingleModel.a_id;
+            
+            ProvisionalViewController* vc=[[ProvisionalViewController alloc]initWithView:model targetPopVC:self];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }else{
         //不同意
@@ -81,7 +91,7 @@
                     NSLog(@"不同意成功");
                 }
             } dic:dic noNetWork:nil];
-        //同意
+            //同意
         }else if (index==1){
             [ContractsApi PostAgreeWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if (!error) {
@@ -108,6 +118,22 @@
     self.tableView.tableFooterView=view;
 }
 
+-(void)closeBtnClicked{
+    if (self.listSingleModel.a_isSelfCreated&&self.mainClauseModel.a_status!=2) {
+        [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"目前状态无法进行关闭" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
+        return;
+    }
+    
+    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+    NSString* contractsId=self.listSingleModel.a_id;
+    [dic setObject:contractsId forKey:@"id"];
+    [ContractsApi PostCloseWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            [self sucessPost];
+        }
+    } dic:dic noNetWork:nil];
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.cellViews.count;
 }
@@ -126,6 +152,29 @@
     [cell.contentView addSubview:self.cellViews[indexPath.row]];
     return cell;
 }
+
+-(UIView *)stagesView{
+    if (!_stagesView) {
+        NSInteger status=self.mainClauseModel.a_status;
+        BOOL hasProviderFile=self.listSingleModel.a_provideHas;
+        NSArray* bigStages=@[@"合同主要条款",@"供应商佣金合同",@"销售佣金合同"];
+        NSArray* array;
+        {
+            if (status<=2) {
+                array=[self stylesWithNumber:2 count:3];
+            }else if (status>=3){
+                array=[self stylesWithNumber:3 count:3];
+            }
+        }
+        
+        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"填写条款",@"待审核",@"生成条款"],@[hasProviderFile?(status==9?@"已完成":@"进行中"):@"未开始"],@[@"未开始"]] smallStageStyles:@[array,@[hasProviderFile?@0:@1],@[@1]] isClosed:NO];
+        CGRect frame=_stagesView.frame;
+        frame.origin.y=64;
+        _stagesView.frame=frame;
+    }
+    return _stagesView;
+}
+
 
 
 -(ContractsUserView *)userView1{
@@ -149,7 +198,6 @@
     return _mainClauseView;
 }
 
-
 /*
  同意带字 不同意带字 关闭带字 修改带字
  同意小带字 不同意小带字 上传小带字
@@ -159,35 +207,31 @@
     if (!_btnToolBar) {
         NSMutableArray* btns=[NSMutableArray array];
         
-        BOOL hasFile=![self.listSingleModel.a_fileName isEqualToString:@""];
         NSArray* imageNames;
-        if (!hasFile) {
-            if (self.listSingleModel.a_isSelfCreated) {
-                if (self.listSingleModel.a_status==2) {
-                    imageNames=@[@"不同意带字",@"同意带字"];
-                }else{
-                    
-                }
+        if (self.listSingleModel.a_isSelfCreated) {
+            if (self.mainClauseModel.a_status==2) {
+                imageNames=@[@"修改大带子"];
             }else{
-                if (self.listSingleModel.a_status==1) {
-                    imageNames=@[@"不同意带字",@"同意带字"];
-                }else{
-                    
-                }
+                
+            }
+        }else{
+            if (self.mainClauseModel.a_status==1) {
+                imageNames=@[@"不同意带字",@"同意带字"];
+            }else{
+                
             }
         }
-        
         
         for (int i=0;i<imageNames.count;i++) {
             UIButton* btn=[UIButton buttonWithType:UIButtonTypeCustom];
             UIImage* image=[GetImagePath getImagePath:imageNames[i]];
-            btn.frame=CGRectMake(0, 0, image.size.width, image.size.height);
+            btn.frame=CGRectMake(0, 0, MIN(image.size.width, 270) , image.size.height);
             [btn setBackgroundImage:image forState:UIControlStateNormal];
             [btns addObject:btn];
         }
         
         _btnToolBar=[ContractsBtnToolBar contractsBtnToolBarWithBtns:btns contentMaxWidth:270 top:5 bottom:30 contentHeight:37];
-
+        
         _btnToolBar.delegate=self;
     }
     return _btnToolBar;

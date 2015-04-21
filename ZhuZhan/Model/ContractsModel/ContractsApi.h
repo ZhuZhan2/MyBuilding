@@ -12,6 +12,9 @@
 //发起佣金
 + (NSURLSessionDataTask *)PostContractWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 
+//修改主条款
++ (NSURLSessionDataTask *)PostUpdateWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
+
 //获取所有列表
 + (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block keyWords:(NSString*)keyWords archiveStatus:(NSString*)archiveStatus contractsType:(NSString*)contractsType startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
 

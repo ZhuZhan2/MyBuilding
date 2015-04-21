@@ -20,7 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=AllBackDeepGrayColor;
-    [self initNaviExtra];
     [self initClauseMainBtn];
     [self initPDFView];
     [self initBtnToolBar];
@@ -36,15 +35,6 @@
 
 -(void)clauseMainBtnClicked{
     NSLog(@"clauseMainBtnClicked");
-}
-
--(void)rightBtnClicked{
-    NSLog(@"更多");
-}
-
--(void)initNaviExtra{
-    self.title=@"供应商或销售商佣金合同";
-    [self setRightBtnWithText:@"更多"];
 }
 
 -(void)initClauseMainBtn{
@@ -113,7 +103,7 @@
             {
                 UILabel* label1=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 140, 40)];
                 label1.center=CGPointMake(80, 141);
-                label1.text=@"点击预览供应商";
+                label1.text=@"点击预览";
                 label1.textAlignment=NSTextAlignmentCenter;
                 label1.textColor=AllDeepGrayColor;
                 label1.font=[UIFont systemFontOfSize:16];
@@ -122,7 +112,7 @@
             {
                 UILabel* label1=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 140, 40)];
                 label1.center=CGPointMake(80, 166);
-                label1.text=@"佣金合同(临时)";
+                label1.text=self.title;
                 label1.textAlignment=NSTextAlignmentCenter;
                 label1.textColor=AllDeepGrayColor;
                 label1.font=[UIFont systemFontOfSize:16];
