@@ -447,9 +447,9 @@
     self.contractStr = str;
 }
 
--(void)showActionSheet{
+-(void)showActionSheet:(int)index{
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"销售方" otherButtonTitles:@"供应商", nil];
-    actionSheet.tag = 0;
+    actionSheet.tag = index;
     [actionSheet showInView:self.view];
 }
 
@@ -467,6 +467,16 @@
         }else if(buttonIndex == 1){
             self.personaStr1 = @"供应商";
             self.personaStr2 = @"销售方";
+        }
+        [self reloadStartMainView];
+        [self reloadReceiveView];
+    }else{
+        if(buttonIndex == 0){
+            self.personaStr2 = @"销售方";
+            self.personaStr1 = @"供应商";
+        }else if(buttonIndex == 1){
+            self.personaStr2 = @"供应商";
+            self.personaStr1 = @"销售方";
         }
         [self reloadStartMainView];
         [self reloadReceiveView];

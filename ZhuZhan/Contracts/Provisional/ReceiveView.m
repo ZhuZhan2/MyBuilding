@@ -134,8 +134,8 @@
 }
 
 -(void)contactBtnAction{
-    if([self.delegate respondsToSelector:@selector(showActionSheet)]){
-        [self.delegate showActionSheet];
+    if([self.delegate respondsToSelector:@selector(showActionSheet:)]){
+        [self.delegate showActionSheet:1];
     }
 }
 
