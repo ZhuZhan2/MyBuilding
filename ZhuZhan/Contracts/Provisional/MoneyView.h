@@ -18,4 +18,5 @@
 @property(nonatomic,strong)UITextField *textFied;
 @property(nonatomic,strong)UIView *cutLine;
 @property(nonatomic,weak)id<MoneyViewDelegate>delegate;
+-(id)initWithFrame:(CGRect)frame isModified:(BOOL)isModified;
 @end

@@ -25,4 +25,5 @@
 @property(nonatomic,strong)UILabel *messageLabel;
 @property(nonatomic,strong)UIView *bottomView;
 @property(nonatomic,weak)id<ReceiveViewDelegate>delegate;
+-(id)initWithFrame:(CGRect)frame isModified:(BOOL)isModified;
 @end

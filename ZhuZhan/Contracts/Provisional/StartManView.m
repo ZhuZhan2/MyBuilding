@@ -10,7 +10,7 @@
 #import "RKShadowView.h"
 #import "LoginSqlite.h"
 @implementation StartManView
--(id)initWithFrame:(CGRect)frame{
+-(id)initWithFrame:(CGRect)frame isModified:(BOOL)isModified{
     self = [super initWithFrame:frame];
     if(self){
         [self addCutLine];
@@ -21,6 +21,10 @@
         [self addSubview:self.textField];
         [self addSubview:self.messageLabel];
         [self addSubview:self.bottomView];
+        if(isModified){
+            self.contactBtn.enabled = NO;
+            self.textField.enabled = NO;
+        }
     }
     return self;
 }

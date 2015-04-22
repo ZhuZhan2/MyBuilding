@@ -48,6 +48,9 @@
         [textView resignFirstResponder];
         return NO;
     }
+    if([self.delegate respondsToSelector:@selector(endTextView:)]){
+        [self.delegate endTextView:textView.text];
+    }
     return YES;
 }
 @end

@@ -21,7 +21,7 @@
     }else if ([[model.type substringToIndex:2] isEqualToString:@"do"]){
         image = [GetImagePath getImagePath:@"word"];
     }else if([model.type isEqualToString:@"pdf"]){
-        image = [GetImagePath getImagePath:@"人脉_06a2"];
+        image = [GetImagePath getImagePath:@"pdf-icon"];
     }else{
         image = [GetImagePath getImagePath:@"询价上传图片默认图"];
     }

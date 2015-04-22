@@ -11,12 +11,15 @@
 #import "RKShadowView.h"
 @implementation MoneyView
 
--(id)initWithFrame:(CGRect)frame{
+-(id)initWithFrame:(CGRect)frame isModified:(BOOL)isModified{
     self = [super initWithFrame:frame];
     if(self){
         [self addSubview:self.textFied];
         [self addSubview:self.cutLine];
         [EndEditingGesture addGestureToView:self];
+        if(isModified){
+            self.textFied.enabled = NO;
+        }
     }
     return self;
 }
