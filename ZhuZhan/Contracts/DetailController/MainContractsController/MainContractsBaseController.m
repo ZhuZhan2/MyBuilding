@@ -36,7 +36,7 @@
 
 -(void)initNavi{
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
-    if (self.contractsStagesViewData) {
+    if (!self.contractsStagesViewData) {
         [self setRightBtnWithText:@"更多"];
     }
 }
