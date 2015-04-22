@@ -66,11 +66,11 @@
     if (self.sucessAlertView==alertView) {
         [self.navigationController popViewControllerAnimated:YES];
     }else if (self.sureCloseAlertView==alertView){
-        [self closeBtnClicked];
+        [self closeBtnClickedWithContent:nil];
     }
 }
 
--(void)closeBtnClicked{
+-(void)closeBtnClickedWithContent:(NSString*)content{
     NSLog(@"关闭");
 }
 

@@ -26,6 +26,10 @@
     [self loadList];
 }
 
+-(void)initNavi{
+    [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
+}
+
 -(void)initNaviExtra{
     self.title=self.title;
 }
@@ -160,6 +164,20 @@
         _stagesView.frame=frame;
     }
     return _stagesView;
+}
+
+-(NSMutableArray*)contractsStagesViewData{
+    NSMutableArray* datas=[NSMutableArray array];
+    {
+        NSArray* bigStageNames=@[@"合同主要条款",@"供应商佣金合同",@"填写撤销协议"];
+        NSArray* smallStageNames=@[@[@"填写条款",@"待审核",@"生成条款"],@[@"已完成"],@[self.listSingleModel.a_archiveStatusInt==1?@"已完成":@"进行中"]];
+        NSArray* smallStageStyles=@[@[@0,@0,@0],@[@0],@[@0]];
+        
+        [datas addObject:bigStageNames];
+        [datas addObject:smallStageNames];
+        [datas addObject:smallStageStyles];
+    }
+    return datas;
 }
 
 -(ContractsTradeCodeView *)tradeCodeView{

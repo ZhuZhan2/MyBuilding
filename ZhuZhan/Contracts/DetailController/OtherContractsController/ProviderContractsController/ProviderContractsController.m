@@ -97,7 +97,7 @@
     }
 }
 
--(void)closeBtnClicked{
+-(void)closeBtnClickedWithContent:(NSString*)content{
     if (self.mainClauseModel.a_status==3) {
             [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"目前状态无法进行关闭" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
             return;
@@ -130,7 +130,7 @@
             }
         }
         
-        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"已完成"],@[@"填写合同",@"审核中",@"生成",@"上传"],@[hasSalerFile?(self.listSingleModel.a_archiveStatusInt==1?@"已完成":@"进行中"):@"未开始"]] smallStageStyles:@[@[@0],array,@[hasSalerFile?@0:@1]] isClosed:NO];
+        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"已完成"],@[@"填写合同",@"审核中",@"生成",@"上传"],@[self.mainClauseModel.a_salestatus==0?@"未开始":(self.listSingleModel.a_archiveStatusInt==5?@"已完成":@"进行中")]] smallStageStyles:@[@[@0],array,@[hasSalerFile?@0:@1]] isClosed:NO];
         CGRect frame=_stagesView.frame;
         frame.origin.y=64;
         _stagesView.frame=frame;
@@ -142,8 +142,8 @@
     NSMutableArray* datas=[NSMutableArray array];
     {
         NSArray* bigStageNames=@[@"合同主要条款",@"供应商佣金合同",@"销售佣金合同"];
-        NSArray* smallStageNames=@[@[@"填写条款",@"待审核",@"生成条款"],@[self.listSingleModel.a_archiveStatus],@[@"未开始"]];
-        NSArray* smallStageStyles=@[@[@0,@0,@0],@[@0],@[@1]];
+        NSArray* smallStageNames=@[@[@"填写条款",@"待审核",@"生成条款"],@[self.listSingleModel.a_archiveStatus],@[self.mainClauseModel.a_salestatus==0?@"未开始":(self.listSingleModel.a_archiveStatusInt==5?@"已完成":@"进行中")]];
+        NSArray* smallStageStyles=@[@[@0,@0,@0],@[@0],@[self.mainClauseModel.a_salestatus==0?@1:@0]];
         
         [datas addObject:bigStageNames];
         [datas addObject:smallStageNames];
