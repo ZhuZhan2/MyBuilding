@@ -9,5 +9,4 @@
 #import "ChatBaseViewController.h"
 
 @interface ConstractListController : ChatBaseViewController
-
 @end

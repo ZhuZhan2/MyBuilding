@@ -47,6 +47,7 @@
 -(void)sucessPost{
     self.sucessAlertView=[[UIAlertView alloc]initWithTitle:@"提醒" message:@"操作成功" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
     [self.sucessAlertView show];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"ConstractListControllerReloadDataNotification" object:nil];
 }
 
 -(void)rightBtnClicked{
@@ -57,10 +58,18 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     //关闭
     if (buttonIndex==0) {
-        self.sureCloseAlertView=[[UIAlertView alloc] initWithTitle:@"确定要关闭合同？" message:@"关闭后将无法恢复。若确认关闭，请填写您的备注信息。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        self.sureCloseAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-        [self.sureCloseAlertView show];
+        if ([self canClose]) {
+            self.sureCloseAlertView=[[UIAlertView alloc] initWithTitle:@"确定要关闭合同？" message:@"关闭后将无法恢复。若确认关闭，请填写您的备注信息。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            self.sureCloseAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+            [self.sureCloseAlertView show];
+        }else{
+            [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"目前状态无法进行关闭" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
+        }
     }
+}
+
+-(BOOL)canClose{
+    return NO;
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
