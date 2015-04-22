@@ -18,10 +18,12 @@
 #import "ProviderContractsController.h"
 #import "SalerContractsController.h"
 #import "RepealContractsController.h"
+#import "MJRefresh.h"
 @interface ConstractListController ()<DemandStageChooseControllerDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property (nonatomic)NSInteger nowStage;
 @property (nonatomic,copy,readonly)NSString* nowStageStr;
+@property(nonatomic)int startIndex;
 /*
  所有合同	0
  主条款列表	1
@@ -38,8 +40,11 @@
     [super viewDidLoad];
     [self initNavi];
     [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已完成",@"已关闭"]  numbers:@[@"33",@"44",@"55",@"66"]];
+    
     [self initTableView];
     [self initTableViewExtra];
+    //集成刷新控件
+    [self setupRefresh];
 }
 
 -(void)initTableViewExtra{
@@ -103,6 +108,67 @@
             }
         }
     } keyWords:@"" archiveStatus:self.archiveStatus contractsType:self.nowStageStr startIndex:0 noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self loadList];
+        }];
+    }];
+}
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    //[_tableView headerBeginRefreshing];
+    
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    [ContractsApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            [self.showArr removeAllObjects];
+            self.showArr=posts;
+            [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self loadList];
+                }];
+            }
+        }
+        [self.tableView headerEndRefreshing];
+    } keyWords:@"" archiveStatus:self.archiveStatus contractsType:self.nowStageStr startIndex:0 noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self loadList];
+        }];
+    }];
+}
+
+- (void)footerRereshing
+{
+    [ContractsApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            self.startIndex++;
+            [self.showArr addObjectsFromArray:posts];
+            [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self loadList];
+                }];
+            }
+        }
+        [self.tableView footerEndRefreshing];
+    } keyWords:@"" archiveStatus:self.archiveStatus contractsType:self.nowStageStr startIndex:self.startIndex+1 noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
             [self loadList];
         }];

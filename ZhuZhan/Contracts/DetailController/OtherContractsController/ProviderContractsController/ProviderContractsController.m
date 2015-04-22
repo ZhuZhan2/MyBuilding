@@ -9,6 +9,7 @@
 #import "ProviderContractsController.h"
 #import "ContractsApi.h"
 #import "RKContractsStagesView.h"
+#import "PDFViewController.h"
 @interface ProviderContractsController ()
 
 @end
@@ -27,6 +28,14 @@
 
 -(NSString *)title{
     return @"供应商佣金合同";
+}
+
+-(void)PDFBtnClicked{
+    PDFViewController *view = [[PDFViewController alloc] init];
+    view.ID = self.listSingleModel.a_id;
+    view.type = @"0";
+    view.name = self.listSingleModel.a_fileName;
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 -(void)loadList{
