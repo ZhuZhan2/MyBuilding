@@ -140,6 +140,11 @@
         return;
     }
     
+    if(self.myCompanyName.length >20||self.otherCompanyName.length >20){
+        [self showAlertView:@"公司名字不能超过20个字"];
+        return;
+    }
+    
     [self sendPostRequest];
 }
 
@@ -429,6 +434,7 @@
 }
 
 -(void)textFiedDidEnd:(NSString *)str textField:(UITextField *)textField{
+    NSLog(@"====>%f",[str doubleValue]);
     if(textField == self.startMainView.textField){
         self.myCompanyName = str;
     }else if (textField == self.receiveView.textField){

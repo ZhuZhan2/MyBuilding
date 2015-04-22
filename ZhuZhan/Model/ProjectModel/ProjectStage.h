@@ -33,6 +33,9 @@
 //处理高级搜索的搜索条件
 +(NSString *)SearchProjectStage:(NSString *)str;
 
+//处理金额的方法
++(NSString *)stringtoRBM:(NSString *)text;
+
 //判断业主类型
 //+(NSString *)JudgeOwenType:(NSString *)str;
 @end

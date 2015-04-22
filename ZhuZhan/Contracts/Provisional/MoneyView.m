@@ -9,6 +9,7 @@
 #import "MoneyView.h"
 #import "EndEditingGesture.h"
 #import "RKShadowView.h"
+#import "ProjectStage.h"
 @implementation MoneyView
 
 -(id)initWithFrame:(CGRect)frame isModified:(BOOL)isModified{
@@ -34,6 +35,7 @@
         _textFied.placeholder = @"请输入金额";
         _textFied.font = [UIFont systemFontOfSize:15];
         _textFied.returnKeyType = UIReturnKeyDone;
+        //_textFied.keyboardType = UIKeyboardTypeNumberPad;
         [_textFied setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
     }
     return _textFied;
@@ -54,8 +56,21 @@
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
-    if([self.delegate respondsToSelector:@selector(textFiedDidEnd:textField:)]){
-        [self.delegate textFiedDidEnd:textField.text textField:textField];
+    NSString *str=[ProjectStage stringtoRBM:[textField.text stringByReplacingOccurrencesOfString:@"￥" withString:@""]];
+    if(str){
+        if([textField.text doubleValue]>=1000000000){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"金额不能超过1000000000" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+            self.textFied.text = @"";
+        }else{
+            NSString*formattedPrice= [NSString stringWithFormat:@"￥%@",str];
+            if([self.delegate respondsToSelector:@selector(textFiedDidEnd:textField:)]){
+                [self.delegate textFiedDidEnd:textField.text textField:textField];
+            }
+            self.textFied.text = formattedPrice;
+        }
+    }else{
+        self.textFied.text = @"";
     }
 }
 

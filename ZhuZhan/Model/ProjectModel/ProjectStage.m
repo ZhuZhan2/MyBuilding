@@ -278,6 +278,22 @@
     return string;
 }
 
++(NSString *)stringtoRBM:(NSString *)text{
+    NSNumberFormatter*numberFormatter= [[NSNumberFormatter alloc] init];
+    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    numberFormatter.currencyCode = @"￥";
+    id result;
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    result=[f numberFromString:text];
+    if(!(result))
+    {
+        result=text;
+    }
+    NSString *str =[numberFormatter stringFromNumber:result];
+    return str;
+}
+
 ////判断业主类型
 //+(NSString *)JudgeOwenType:(NSString *)str{
 //    NSMutableString *owenType = [[NSMutableString alloc] init];
