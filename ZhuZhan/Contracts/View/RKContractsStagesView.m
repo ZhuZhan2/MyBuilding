@@ -29,6 +29,34 @@
 @implementation RKContractsStagesView
 +(UIView*)contractsStagesViewWithBigStageNames:(NSArray *)bigStageNames smallStageNames:(NSArray *)smallStageNames smallStageStyles:(NSArray *)smallStageStyles isClosed:(BOOL)isClosed{
 //    NSLog(@"bigStageNames=%@,smallStageNames=%@,smallStageStyles=%@",bigStageNames,smallStageNames,smallStageStyles);
+    if (isClosed) {
+        {
+            NSMutableArray* tmpSmallStageNames=[smallStageNames mutableCopy];
+            
+            NSMutableArray* tmpArr=tmpSmallStageNames.lastObject;
+            [tmpArr removeLastObject];
+            [tmpArr addObject:@"已关闭"];
+            
+            [tmpSmallStageNames removeLastObject];
+            [tmpSmallStageNames addObject:tmpArr];
+            smallStageNames=tmpSmallStageNames;
+        }
+        
+        {
+            NSMutableArray* tmpSmallStageStyles=[NSMutableArray array];
+            for (NSArray* arr in smallStageStyles) {
+                NSMutableArray* tmp=[NSMutableArray array];
+                for (int i=0;i<arr.count;i++) {
+                    [tmp addObject:@2];
+                }
+                [tmpSmallStageStyles addObject:tmp];
+            }
+            smallStageStyles=tmpSmallStageStyles;
+        }
+    }
+    
+    
+    
     RKContractsStagesView* stagesView=[[self alloc]initWithBigStageNames:bigStageNames smallStageNames:smallStageNames smallStageStyles:smallStageStyles isClosed:isClosed];
     
     UIView* stagesViewAddedShadow=[[UIView alloc]initWithFrame:stagesView.frame];

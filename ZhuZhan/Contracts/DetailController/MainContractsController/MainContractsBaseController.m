@@ -157,14 +157,13 @@
     self.tableView.tableFooterView=view;
 }
 
--(void)closeBtnClickedWithContent:(NSString*)content{
+-(BOOL)canClose{
     BOOL hasProviderFile=self.listSingleModel.a_provideHas;
     BOOL canClose=self.listSingleModel.a_isSelfCreated&&self.mainClauseModel.a_status==2&&!hasProviderFile;
-    if (!canClose) {
-        [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"目前状态无法进行关闭" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
-        return;
-    }
-    
+    return canClose;
+}
+
+-(void)closeBtnClickedWithContent:(NSString*)content{
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
     NSString* contractsId=self.listSingleModel.a_id;
     [dic setObject:contractsId forKey:@"id"];
@@ -209,7 +208,7 @@
             }
         }
         
-        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"填写条款",@"待审核",@"生成条款"],@[hasProviderFile?(status==9?@"已完成":@"进行中"):@"未开始"],@[@"未开始"]] smallStageStyles:@[array,@[hasProviderFile?@0:@1],@[@1]] isClosed:NO];
+        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"填写条款",@"待审核",@"生成条款"],@[hasProviderFile?(status==9?@"已完成":@"进行中"):@"未开始"],@[@"未开始"]] smallStageStyles:@[array,@[hasProviderFile?@0:@1],@[@1]] isClosed:self.listSingleModel.a_archiveStatusInt==2];
         CGRect frame=_stagesView.frame;
         frame.origin.y=64;
         _stagesView.frame=frame;

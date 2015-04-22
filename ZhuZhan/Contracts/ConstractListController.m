@@ -45,6 +45,11 @@
     [self initTableViewExtra];
     //集成刷新控件
     [self setupRefresh];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reload) name:@"ConstractListControllerReloadDataNotification" object:nil];
+}
+
+-(void)reload{
+    [self headerRereshing];
 }
 
 -(void)initTableViewExtra{
@@ -288,5 +293,9 @@
         _archiveStatus=@"";
     }
     return _archiveStatus;
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"ConstractListControllerReloadDataNotification" object:nil];
 }
 @end
