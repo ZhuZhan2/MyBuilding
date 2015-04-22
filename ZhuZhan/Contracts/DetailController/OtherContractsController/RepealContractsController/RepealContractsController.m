@@ -85,33 +85,24 @@
 
 -(UIView *)PDFView{
     if (!_PDFView) {
-        UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 0)];
+        UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 265+10)];
         view.backgroundColor=[UIColor whiteColor];
         
         {
-            UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, kScreenWidth-20, 0)];
-            label.text=self.repealModel.a_content;
-            label.numberOfLines=0;
-            CGRect frame1=label.frame;
-            frame1.size.height=[label.text boundingRectWithSize:CGSizeMake(CGRectGetWidth(label.frame), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:label.font} context:nil].size.height;
-            label.frame=frame1;
-            [view addSubview:label];
-            
-            CGRect frame2=view.frame;
-            frame2.size.height+=CGRectGetHeight(frame1)+20;
-            view.frame=frame2;
+            UITextView* textView=[[UITextView alloc]initWithFrame:CGRectMake(10, 10, kScreenWidth-20, 0)];
+            textView.backgroundColor=[UIColor redColor];
+            textView.text=self.repealModel.a_content;
+            NSLog(@"text=%@",textView.text);
+            textView.userInteractionEnabled=NO;
+            [view addSubview:textView];
         }
         
         {
             UIView* line=[RKShadowView seperatorLineShadowViewWithHeight:10];
             CGRect frame1=line.frame;
-            frame1.origin.y=CGRectGetHeight(view.frame);
+            frame1.origin.y=CGRectGetHeight(view.frame)-10;
             line.frame=frame1;
             [view addSubview:line];
-            
-            CGRect frame2=view.frame;
-            frame2.size.height+=CGRectGetHeight(frame1);
-            view.frame=frame2;
         }
         
         _PDFView=view;
