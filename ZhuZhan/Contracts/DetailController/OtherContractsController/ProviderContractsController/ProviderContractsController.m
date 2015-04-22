@@ -8,6 +8,7 @@
 
 #import "ProviderContractsController.h"
 #import "ContractsApi.h"
+#import "RKContractsStagesView.h"
 @interface ProviderContractsController ()
 
 @end
@@ -16,6 +17,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initNaviExtra];
+    [self loadList];
+}
+
+-(void)initNaviExtra{
+    self.title=self.title;
+}
+
+-(NSString *)title{
+    return @"供应商佣金合同";
+}
+
+-(void)loadList{
+    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+    [dic setObject:self.listSingleModel.a_id forKey:@"contractId"];
+    [ContractsApi PostDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            self.mainClauseModel=posts[0];
+            [self reload];
+        }
+    } dic:dic noNetWork:nil];
+}
+
+-(void)reload{
+    [self.stagesView removeFromSuperview];
+    self.stagesView=nil;
+    [self initStagesView];
+    
+    [self.btnToolBar removeFromSuperview];
+    self.btnToolBar=nil;
+    [self initBtnToolBar];
 }
 
 -(void)contractsBtnToolBarClickedWithBtn:(UIButton *)btn index:(NSInteger)index{
@@ -52,13 +84,49 @@
                     [ErrorCode alert];
                 }
             }
-        } dic:dic noNetWork:^{
-            [ErrorCode alert];
-        }];
-    //上传模板
-    }else if (index==2){
-        NSLog(@"上传模板");
+        } dic:dic noNetWork:nil];
     }
+}
+
+-(void)closeBtnClicked{
+    if (self.mainClauseModel.a_status==3) {
+            [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"目前状态无法进行关闭" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
+            return;
+    }
+    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+    NSString* contractsId=self.listSingleModel.a_id;
+    [dic setObject:contractsId forKey:@"id"];
+    [ContractsApi PostCommissionCloseWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            [self sucessPost];
+        }
+    } dic:dic noNetWork:nil];
+}
+
+-(UIView *)stagesView{
+    if (!_stagesView) {
+        NSInteger status=self.mainClauseModel.a_status;
+        BOOL hasSalerFile=self.listSingleModel.a_saleHas;
+        NSArray* bigStages=@[@"合同主要条款",@"供应商佣金合同",@"销售佣金合同"];
+        NSArray* array;
+        {
+            if (status==5||status==7||status==8) {
+                array=[self stylesWithNumber:3 count:4];
+            }else if (status==9){
+                array=[self stylesWithNumber:4 count:4];
+            }else if (status==3||status==4||status==6){
+                array=[self stylesWithNumber:2 count:4];
+            }else{
+                array=[self stylesWithNumber:1 count:4];
+            }
+        }
+        
+        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"已完成"],@[@"填写合同",@"审核中",@"生成",@"上传"],@[hasSalerFile?(self.listSingleModel.a_archiveStatusInt==1?@"已完成":@"进行中"):@"未开始"]] smallStageStyles:@[@[@0],array,@[hasSalerFile?@0:@1]] isClosed:NO];
+        CGRect frame=_stagesView.frame;
+        frame.origin.y=64;
+        _stagesView.frame=frame;
+    }
+    return _stagesView;
 }
 
 /*
@@ -69,7 +137,11 @@
 -(ContractsBtnToolBar *)btnToolBar{
     if (!_btnToolBar) {
         NSMutableArray* btns=[NSMutableArray array];
-        NSArray* imageNames=@[@"不同意小带字",@"同意小带字",@"上传小带字"];
+        NSArray* imageNames;
+
+        if (self.mainClauseModel.a_status==3) {
+            imageNames=@[@"不同意带字",@"同意带字"];
+        }
         
         for (int i=0;i<imageNames.count;i++) {
             UIButton* btn=[UIButton buttonWithType:UIButtonTypeCustom];

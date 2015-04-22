@@ -10,5 +10,6 @@
 
 @interface ContractsSalerModel : NSObject
 @property (nonatomic, copy)NSString* a_id;
+@property (nonatomic)NSInteger a_status;
 @property (nonatomic, strong)NSDictionary* dict;
 @end

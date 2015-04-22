@@ -15,4 +15,5 @@
 @property (nonatomic, strong)UIButton* clauseMainBtn;
 @property (nonatomic, strong)UIView* PDFView;
 @property (nonatomic, strong)ContractsBtnToolBar* btnToolBar;
+-(void)initBtnToolBar;
 @end

@@ -10,4 +10,5 @@
 #import "ContractsMainClauseModel.h"
 @interface MainContractsBaseController : ContractsBaseViewController
 @property (nonatomic, strong)ContractsMainClauseModel* mainClauseModel;
+
 @end

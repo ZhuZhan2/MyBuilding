@@ -11,8 +11,10 @@
 #import "ProvisionalViewController.h"
 #import "RKContractsStagesView.h"
 #import "ContractsTradeCodeView.h"
+#import "ContractsApi.h"
 @interface ContractsBaseViewController ()<ContractsViewDelegate>
-@property (nonatomic, strong)UIAlertView* sucessAlertView;
+@property (nonatomic, strong)UIAlertView* sucessAlertView;//成功发送
+@property (nonatomic, strong)UIAlertView* sureCloseAlertView;//确认关闭
 @end
 
 @implementation ContractsBaseViewController
@@ -27,7 +29,7 @@
 
 -(void)initNavi{
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
-    self.needAnimaiton=YES;
+    [self setRightBtnWithText:@"更多"];
 }
 
 -(void)initStagesView{
@@ -46,10 +48,29 @@
     [self.sucessAlertView show];
 }
 
+-(void)rightBtnClicked{
+    UIActionSheet* sheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"关闭", nil];
+    [sheet showInView:self.view.window];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    //关闭
+    if (buttonIndex==0) {
+        self.sureCloseAlertView=[[UIAlertView alloc] initWithTitle:@"提醒" message:@"确认要关闭吗？" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定",@"取消", nil];
+        [self.sureCloseAlertView show];
+    }
+}
+
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (self.sucessAlertView==alertView) {
         [self.navigationController popViewControllerAnimated:YES];
+    }else if (self.sureCloseAlertView==alertView){
+        [self closeBtnClicked];
     }
+}
+
+-(void)closeBtnClicked{
+    NSLog(@"关闭");
 }
 
 -(UIView *)stagesView{
@@ -68,5 +89,14 @@
         _tradeCodeView=[ContractsTradeCodeView contractsTradeCodeViewWithTradeCode:tradeCode time:self.listSingleModel.a_createdTime];
     }
     return _tradeCodeView;
+}
+
+-(NSArray*)stylesWithNumber:(NSInteger)number count:(NSInteger)count{
+    NSMutableArray* array=[NSMutableArray array];
+    for (int i=0;i<count;i++) {
+        [array addObject:number>0?@0:@1];
+        number--;
+    }
+    return array;
 }
 @end

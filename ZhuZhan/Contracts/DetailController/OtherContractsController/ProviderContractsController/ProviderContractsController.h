@@ -7,7 +7,8 @@
 //
 
 #import "OtherContractsBaseController.h"
+#import "ContractsMainClauseModel.h"
 
 @interface ProviderContractsController : OtherContractsBaseController
-
+@property (nonatomic, strong)ContractsMainClauseModel* mainClauseModel;
 @end

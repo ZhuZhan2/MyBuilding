@@ -17,7 +17,7 @@
 #import "SearchContactViewController.h"
 #import "ContractsApi.h"
 #import "ConstractListController.h"
-@interface ProvisionalViewController ()<UITableViewDataSource,UITableViewDelegate,MoneyViewDelegate,ContractViewDelegate,StartManViewDelegate,ReceiveViewDelegate,UIActionSheetDelegate,SearchContactViewDelegate>
+@interface ProvisionalViewController ()<UITableViewDataSource,UITableViewDelegate,MoneyViewDelegate,ContractViewDelegate,StartManViewDelegate,ReceiveViewDelegate,UIActionSheetDelegate,SearchContactViewDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *viewArr;
 @property(nonatomic,strong)StartManView *startMainView;
@@ -35,10 +35,14 @@
 @property(nonatomic,strong)NSString *personaId;
 
 @property(nonatomic)BOOL isOpen;
+
+@property(nonatomic,weak)UIViewController* targetPopVC;
+@property (nonatomic)BOOL isModified;
+@property (nonatomic, copy)NSString* modifiedId;
 @end
 
 @implementation ProvisionalViewController
--(id)initWithView:(ProvisionalModel *)model{
+-(id)initWithView:(ProvisionalModel *)model targetPopVC:(UIViewController*)targetPopVC{
     if(self = [super init]){
         self.personaStr1 = model.personaStr1;
         self.personaStr2 = model.personaStr2;
@@ -47,30 +51,27 @@
         self.personaName = model.personaName;
         self.moneyStr = model.moneyStr;
         self.contractStr = model.contractStr;
+        self.modifiedId=model.modifiedId;
+        self.targetPopVC=targetPopVC;
+        self.isModified=YES;
     }
     return self;
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = YES;
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
     self.leftBtnIsBack = YES;
-    self.needAnimaiton = YES;
+    self.needAnimaiton = !self.isModified;
     [self setRightBtnWithText:@"提交"];
-    self.title = @"填写佣金合同条款";
+    self.title = self.isModified?@"修改佣金合同条款":@"填写佣金合同条款";
     
     [self.view addSubview:self.tableView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -90,6 +91,15 @@
 }
 
 -(void)rightBtnClicked{
+    if (self.isModified) {
+        if([self.contractStr isEqualToString:@""] || !self.contractStr){
+            [self showAlertView:@"请填写合同条款"];
+            return;
+        }
+        [self sendPostRequest];
+        return;
+    }
+    
     if([self.personaStr1 isEqualToString:@""] || !self.personaStr1){
         [self showAlertView:@"请选择自己的角色"];
         return;
@@ -145,29 +155,44 @@
     [alertView show];
 }
 
+-(void)showAlertViewNeedDelegate:(NSString *)msg{
+    [[[UIAlertView alloc]initWithTitle:@"提醒" message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSInteger index=self.navigationController.viewControllers.count;
+    UIViewController* vc=self.navigationController.viewControllers[index-3];
+    [self.navigationController popToViewController:vc animated:YES];
+}
+
 -(void)sendPostRequest{
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setObject:[self.personaStr1 isEqualToString:@"供应商"]?@"1":@"2" forKey:@"createdByType"];
-    [dic setObject:[self.personaStr2 isEqualToString:@"供应商"]?@"1":@"2" forKey:@"pecipientType"];
-    [dic setObject:self.myCompanyName forKey:@"partyA"];
-    [dic setObject:self.otherCompanyName forKey:@"partyB"];
-    [dic setObject:self.moneyStr forKey:@"contractsMoney"];
-    [dic setObject:self.contractStr forKey:@"contentMain"];
-    [dic setObject:self.personaId forKey:@"recipientId"];
-    [ContractsApi PostContractWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            ConstractListController *view = [[ConstractListController alloc] init];
-            [self.navigationController pushViewController:view animated:YES];
-        }else{
-            if([ErrorCode errorCode:error] == 403){
-                [LoginAgain AddLoginView:NO];
-            }else{
-                [ErrorCode alert];
+    //创建
+    if (!self.isModified) {
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:[self.personaStr1 isEqualToString:@"供应商"]?@"1":@"2" forKey:@"createdByType"];
+        [dic setObject:[self.personaStr2 isEqualToString:@"供应商"]?@"1":@"2" forKey:@"pecipientType"];
+        [dic setObject:self.myCompanyName forKey:@"partyA"];
+        [dic setObject:self.otherCompanyName forKey:@"partyB"];
+        [dic setObject:self.moneyStr forKey:@"contractsMoney"];
+        [dic setObject:self.contractStr forKey:@"contentMain"];
+        [dic setObject:self.personaId forKey:@"recipientId"];
+        [ContractsApi PostContractWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                ConstractListController *view = [[ConstractListController alloc] init];
+                [self.navigationController pushViewController:view animated:YES];
             }
-        }
-    } dic:dic noNetWork:^{
-        [ErrorCode alert];
-    }];
+        } dic:dic noNetWork:nil];
+    //修改
+    }else{
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:self.contractStr forKey:@"contentMain"];
+        [dic setObject:self.modifiedId forKey:@"id"];
+        [ContractsApi PostUpdateWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                [self showAlertViewNeedDelegate:@"操作成功"];
+            }
+        } dic:dic noNetWork:nil];
+    }
 }
 
 //-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{

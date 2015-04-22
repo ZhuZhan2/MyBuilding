@@ -12,5 +12,6 @@
 -(void)setDict:(NSDictionary *)dict{
     _dict=dict;
     self.a_id=dict[@"id"];
+    self.a_status=[dict[@"status"] integerValue];
 }
 @end

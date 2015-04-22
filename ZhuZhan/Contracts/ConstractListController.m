@@ -17,6 +17,7 @@
 #import "MainContractsBaseController.h"
 #import "ProviderContractsController.h"
 #import "SalerContractsController.h"
+#import "RepealContractsController.h"
 @interface ConstractListController ()<DemandStageChooseControllerDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property (nonatomic)NSInteger nowStage;
@@ -145,32 +146,47 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ContractsListSingleModel* singleModel=self.showArr[indexPath.row];
-    UIViewController* pushVC;
-    BOOL hasFile=![singleModel.a_fileName isEqualToString:@""];
+    
+    ContractsBaseViewController* pushVC;
     BOOL isSaler=singleModel.a_isSaler;
-    if (singleModel.a_status<=3&&!hasFile) {
+    BOOL hasSaleFile=singleModel.a_saleHas;
+    BOOL hasProviderFile=singleModel.a_provideHas;
+    BOOL hasRepealFile=[singleModel.a_contractsType isEqualToString:@"3"];
+    
+    if (!hasSaleFile&&!hasProviderFile&&!hasRepealFile) {
         MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
-        vc.listSingleModel=singleModel;
         pushVC=vc;
-    }else if (hasFile&&singleModel.a_status>=3&&singleModel.a_status!=9){
-        //销售商
-        if (isSaler) {
-            MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
-            vc.listSingleModel=singleModel;
-            pushVC=vc;
-        //供应商
-        }else{
+    }else if (hasRepealFile){
+        RepealContractsController* vc=[[RepealContractsController alloc]init];
+        pushVC=vc;
+    //供应商合同阶段
+    }else if (!isSaler){
+        if (hasProviderFile) {
             ProviderContractsController* vc=[[ProviderContractsController alloc]init];
-            vc.listSingleModel=singleModel;
+            pushVC=vc;
+        }else{
+            MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
             pushVC=vc;
         }
-    }else if (hasFile&&singleModel.a_status==9&&isSaler){
-        SalerContractsController* vc=[[SalerContractsController alloc]init];
-        vc.listSingleModel=singleModel;
-        pushVC=vc;
+    //销售方合同阶段
+    }else if (isSaler){
+        if (hasSaleFile) {
+            SalerContractsController* vc=[[SalerContractsController alloc]init];
+            pushVC=vc;
+        }else{
+            MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
+            pushVC=vc;
+        }
+    }else{
+        [self error];
     }
+    pushVC.listSingleModel=singleModel;
     
     [self.navigationController pushViewController:pushVC animated:YES];
+}
+
+-(void)error{
+    [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"请测试记下当前的合同各个状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
 }
 
 -(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{
