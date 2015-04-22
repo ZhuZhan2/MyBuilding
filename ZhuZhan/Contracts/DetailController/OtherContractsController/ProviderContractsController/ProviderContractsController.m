@@ -41,6 +41,10 @@
 }
 
 -(void)reload{
+    [self.stagesView removeFromSuperview];
+    self.stagesView=nil;
+    [self initStagesView];
+    
     [self.btnToolBar removeFromSuperview];
     self.btnToolBar=nil;
     [self initBtnToolBar];
@@ -98,6 +102,8 @@
                 array=[self stylesWithNumber:4 count:4];
             }else if (status==3||status==4||status==6){
                 array=[self stylesWithNumber:2 count:4];
+            }else{
+                array=[self stylesWithNumber:1 count:4];
             }
         }
         
