@@ -10,18 +10,111 @@
 #import "ContractsApi.h"
 #import "ContractListCell.h"
 #import "ContractsListSingleModel.h"
+
+#import "AskPriceApi.h"
+#import "AskPriceViewCell.h"
+#import "AskPriceDetailViewController.h"
+#import "QuotesDetailViewController.h"
+#import "MJRefresh.h"
+
+
 @interface ContractsListSearchController ()
-@property(nonatomic,strong)NSString *keyWords;
+@property(nonatomic,strong)NSString *statusStr;
+@property(nonatomic,strong)NSString *otherStr;
 @property(nonatomic,strong)NSMutableArray* models;
+@property(nonatomic,strong)NSString *keyWords;
+@property (nonatomic)NSInteger startIndex;
 @end
 
 @implementation ContractsListSearchController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.statusStr = @"";
+    self.otherStr = @"-1";
     [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
     [self setSearchBarTableViewBackColor:AllBackDeepGrayColor];
     [self.searchBar becomeFirstResponder];
+    
+    //集成刷新控件
+    [self setupRefresh];
+}
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.searchBarTableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    
+    [self.searchBarTableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [super searchBarSearchButtonClicked:searchBar];
+    [self searchListWithKeyword:searchBar.text];
+}
+
+-(void)searchListWithKeyword:(NSString*)keyword{
+    self.keyWords = keyword;
+    [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.models = posts[0];
+            [self.searchBarTableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
+        }
+    } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:keyword noNetWork:^{
+        [ErrorCode alert];
+    }];
+}
+
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self.models removeAllObjects];
+            self.models = posts[0];
+            [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
+            [self.searchBarTableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
+        }
+        [self.searchBarTableView headerEndRefreshing];
+    } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:self.keyWords noNetWork:^{
+        [ErrorCode alert];
+    }];
+}
+
+- (void)footerRereshing
+{
+    [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.startIndex++;
+            [self.models addObjectsFromArray:posts[0]];
+            [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
+            [self.searchBarTableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
+        }
+        [self.searchBarTableView footerEndRefreshing];
+    } status:self.statusStr startIndex:(int)self.startIndex+1 other:self.otherStr keyWorks:self.keyWords noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(NSInteger)searchBarNumberOfSectionsInTableView:(UITableView *)tableView{
@@ -29,39 +122,46 @@
 }
 
 -(NSInteger)searchBarTableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"count +++> %d",(int)self.models.count);
     return self.models.count;
 }
-
 -(CGFloat)searchBarTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"height==>%f",[ContractListCell carculateTotalHeightWithContents:self.models[indexPath.row]]);
-    return [ContractListCell carculateTotalHeightWithContents:self.models[indexPath.row]];
+    AskPriceModel *model = self.models[indexPath.row];
+    if([model.a_category isEqualToString:@"0"]){
+        return [AskPriceViewCell carculateTotalHeightWithContents:@[model.a_invitedUser,model.a_productBigCategory,model.a_productCategory,model.a_remark]];
+    }else{
+        return [AskPriceViewCell carculateTotalHeightWithContents:@[model.a_requestName,model.a_productBigCategory,model.a_productCategory,model.a_remark]];
+    }
 }
 
 -(UITableViewCell *)searchBarTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"searchBarTableView");
-    ContractListCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
+    AskPriceViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
-        cell=[[ContractListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell=[[AskPriceViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.clipsToBounds=YES;
     }
-    
-    ContractsListSingleModel* singleModel=self.models[indexPath.row];
-    NSLog(@"===>%@",self.models[indexPath.row]);
-    NSString* sendName=singleModel.a_createdBy;
-    NSString* receiveName=singleModel.a_recipientName;
-    NSString* provider=singleModel.a_providerCompanyName;
-    NSString* saler=singleModel.a_salerCompanyName;
-    NSString* contractsName=singleModel.a_contractsType;
-    NSString* contractsStatus=singleModel.a_archiveStatus;
-    NSInteger index=[@[@"进行中",@"已完成",@"已关闭"] indexOfObject:contractsStatus];
-    NSArray* colors=@[BlueColor,AllGreenColor,AllLightGrayColor];
-    cell.contents=@[sendName,receiveName,saler,provider,colors[index],contractsName,contractsStatus];
+    AskPriceModel *model = self.models[indexPath.row];
+    if([model.a_category isEqualToString:@"0"]){
+        cell.contents=@[model.a_invitedUser,model.a_productBigCategory,model.a_productCategory,model.a_remark,model.a_category,model.a_tradeStatus,model.a_tradeCode];
+    }else{
+        cell.contents=@[model.a_requestName,model.a_productBigCategory,model.a_productCategory,model.a_remark,model.a_category,model.a_tradeStatus,model.a_tradeCode];
+    }
     return cell;
 }
 
 -(void)searchBarTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    AskPriceModel *model = self.models[indexPath.row];
+    if([model.a_category isEqualToString:@"0"]){
+        NSLog(@"自己发");
+        AskPriceDetailViewController *view = [[AskPriceDetailViewController alloc] init];
+        view.tradId = model.a_id;
+        [self.navigationController pushViewController:view animated:YES];
+    }else{
+        NSLog(@"别人发");
+        QuotesDetailViewController *view = [[QuotesDetailViewController alloc] init];
+        view.tradId = model.a_id;
+        [self.navigationController pushViewController:view animated:YES];
+    }
+    self.searchBarAnimationBackView.hidden=YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -95,28 +195,5 @@
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     [self.navigationController popViewControllerAnimated:YES];
-}
-
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    //[super searchBarSearchButtonClicked:searchBar];
-    [self searchListWithKeyword:searchBar.text];
-}
-
--(void)searchListWithKeyword:(NSString*)keyword{
-    self.keyWords = keyword;
-    [ContractsApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            self.models=posts[0];
-            [self.searchBarTableView reloadData];
-        }else{
-            if([ErrorCode errorCode:error] == 403){
-                [LoginAgain AddLoginView:NO];
-            }else{
-                [ErrorCode alert];
-            }
-        }
-    } keyWords:keyword archiveStatus:self.archiveStatus contractsType:self.nowStageStr startIndex:0 noNetWork:^{
-        [ErrorCode alert];
-    }];
 }
 @end
