@@ -10,28 +10,21 @@
 #import "ContractsApi.h"
 #import "ContractListCell.h"
 #import "ContractsListSingleModel.h"
-
-#import "AskPriceApi.h"
-#import "AskPriceViewCell.h"
-#import "AskPriceDetailViewController.h"
-#import "QuotesDetailViewController.h"
+#import "MainContractsBaseController.h"
+#import "ProviderContractsController.h"
+#import "SalerContractsController.h"
+#import "RepealContractsController.h"
 #import "MJRefresh.h"
-
-
 @interface ContractsListSearchController ()
-@property(nonatomic,strong)NSString *statusStr;
-@property(nonatomic,strong)NSString *otherStr;
 @property(nonatomic,strong)NSMutableArray* models;
 @property(nonatomic,strong)NSString *keyWords;
-@property (nonatomic)NSInteger startIndex;
+@property (nonatomic)int startIndex;
 @end
 
 @implementation ContractsListSearchController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.statusStr = @"";
-    self.otherStr = @"-1";
     [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
     [self setSearchBarTableViewBackColor:AllBackDeepGrayColor];
     [self.searchBar becomeFirstResponder];
@@ -58,9 +51,9 @@
 
 -(void)searchListWithKeyword:(NSString*)keyword{
     self.keyWords = keyword;
-    [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            self.models = posts[0];
+    [ContractsApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            self.models=posts[0];
             [self.searchBarTableView reloadData];
         }else{
             if([ErrorCode errorCode:error] == 403){
@@ -69,7 +62,7 @@
                 [ErrorCode alert];
             }
         }
-    } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:keyword noNetWork:^{
+    } keyWords:keyword archiveStatus:self.archiveStatus contractsType:self.nowStageStr startIndex:0 noNetWork:^{
         [ErrorCode alert];
     }];
 }
@@ -77,11 +70,10 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
-    [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
+    [ContractsApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
             [self.models removeAllObjects];
             self.models = posts[0];
-            [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
             [self.searchBarTableView reloadData];
         }else{
             if([ErrorCode errorCode:error] == 403){
@@ -91,19 +83,18 @@
             }
         }
         [self.searchBarTableView headerEndRefreshing];
-    } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:self.keyWords noNetWork:^{
+    } keyWords:self.keyWords archiveStatus:self.archiveStatus contractsType:self.nowStageStr startIndex:0 noNetWork:^{
         [ErrorCode alert];
     }];
 }
 
 - (void)footerRereshing
 {
-    [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
+    [ContractsApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
             self.startIndex++;
             [self.models addObjectsFromArray:posts[0]];
-            [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
-            [self.searchBarTableView reloadData];
+            [self.tableView reloadData];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -112,7 +103,7 @@
             }
         }
         [self.searchBarTableView footerEndRefreshing];
-    } status:self.statusStr startIndex:(int)self.startIndex+1 other:self.otherStr keyWorks:self.keyWords noNetWork:^{
+    } keyWords:self.keyWords archiveStatus:self.archiveStatus contractsType:self.nowStageStr startIndex:self.startIndex+1 noNetWork:^{
         [ErrorCode alert];
     }];
 }
@@ -125,43 +116,74 @@
     return self.models.count;
 }
 -(CGFloat)searchBarTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    AskPriceModel *model = self.models[indexPath.row];
-    if([model.a_category isEqualToString:@"0"]){
-        return [AskPriceViewCell carculateTotalHeightWithContents:@[model.a_invitedUser,model.a_productBigCategory,model.a_productCategory,model.a_remark]];
-    }else{
-        return [AskPriceViewCell carculateTotalHeightWithContents:@[model.a_requestName,model.a_productBigCategory,model.a_productCategory,model.a_remark]];
-    }
+    return [ContractListCell carculateTotalHeightWithContents:self.models[indexPath.row]];
 }
 
 -(UITableViewCell *)searchBarTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    AskPriceViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
+    ContractListCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
-        cell=[[AskPriceViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell=[[ContractListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.clipsToBounds=YES;
     }
-    AskPriceModel *model = self.models[indexPath.row];
-    if([model.a_category isEqualToString:@"0"]){
-        cell.contents=@[model.a_invitedUser,model.a_productBigCategory,model.a_productCategory,model.a_remark,model.a_category,model.a_tradeStatus,model.a_tradeCode];
-    }else{
-        cell.contents=@[model.a_requestName,model.a_productBigCategory,model.a_productCategory,model.a_remark,model.a_category,model.a_tradeStatus,model.a_tradeCode];
-    }
+    
+    ContractsListSingleModel* singleModel=self.models[indexPath.row];
+    NSString* sendName=singleModel.a_createdBy;
+    NSString* receiveName=singleModel.a_recipientName;
+    NSString* provider=singleModel.a_providerCompanyName;
+    NSString* saler=singleModel.a_salerCompanyName;
+    NSString* contractsName=singleModel.a_contractsType;
+    NSString* contractsStatus=singleModel.a_archiveStatus;
+    NSInteger index=[@[@"进行中",@"已完成",@"已关闭"] indexOfObject:contractsStatus];
+    NSArray* colors=@[BlueColor,AllGreenColor,AllLightGrayColor];
+    cell.contents=@[sendName,receiveName,saler,provider,colors[index],contractsName,contractsStatus];
     return cell;
 }
 
 -(void)searchBarTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    AskPriceModel *model = self.models[indexPath.row];
-    if([model.a_category isEqualToString:@"0"]){
-        NSLog(@"自己发");
-        AskPriceDetailViewController *view = [[AskPriceDetailViewController alloc] init];
-        view.tradId = model.a_id;
-        [self.navigationController pushViewController:view animated:YES];
+    ContractsListSingleModel* singleModel=self.models[indexPath.row];
+    
+    ContractsBaseViewController* pushVC;
+    BOOL isSaler=singleModel.a_isSaler;
+    BOOL hasSaleFile=singleModel.a_saleHas;
+    BOOL hasProviderFile=singleModel.a_provideHas;
+    BOOL hasRepealFile=singleModel.a_contractsTypeInt==3;
+    
+    if (!hasSaleFile&&!hasProviderFile&&!hasRepealFile) {
+        MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
+        pushVC=vc;
+    }else if (hasRepealFile){
+        RepealContractsController* vc=[[RepealContractsController alloc]init];
+        pushVC=vc;
+        //供应商合同阶段
+    }else if (!isSaler){
+        if (hasProviderFile) {
+            ProviderContractsController* vc=[[ProviderContractsController alloc]init];
+            pushVC=vc;
+        }else{
+            MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
+            pushVC=vc;
+        }
+        //销售方合同阶段
+    }else if (isSaler){
+        if (hasSaleFile) {
+            SalerContractsController* vc=[[SalerContractsController alloc]init];
+            pushVC=vc;
+        }else{
+            MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
+            pushVC=vc;
+        }
     }else{
-        NSLog(@"别人发");
-        QuotesDetailViewController *view = [[QuotesDetailViewController alloc] init];
-        view.tradId = model.a_id;
-        [self.navigationController pushViewController:view animated:YES];
+        [self error];
     }
+    pushVC.listSingleModel=singleModel;
+    
+    [self.navigationController pushViewController:pushVC animated:YES];
+    
     self.searchBarAnimationBackView.hidden=YES;
+}
+
+-(void)error{
+    [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"请测试记下当前的合同各个状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

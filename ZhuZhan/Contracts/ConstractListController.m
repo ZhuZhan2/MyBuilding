@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initNavi];
-    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已完成",@"已关闭"]  numbers:@[@"33",@"44",@"55",@"66"]];
+    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已完成",@"已关闭"]  numbers:@[@"0",@"0",@"0",@"0"]];
     
     [self initTableView];
     [self initTableViewExtra];
