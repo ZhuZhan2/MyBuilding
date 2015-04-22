@@ -287,7 +287,7 @@
 
 -(StartManView *)startMainView{
     if(!_startMainView){
-        _startMainView = [[StartManView alloc] initWithFrame:CGRectMake(0, 0, 320, 180)];
+        _startMainView = [[StartManView alloc] initWithFrame:CGRectMake(0, 0, 320, 180) isModified:self.isModified];
         _startMainView.delegate = self;
         if(self.personaStr1){
             _startMainView.contactLabel.text = self.personaStr1;
@@ -302,7 +302,7 @@
 
 -(ReceiveView *)receiveView{
     if(!_receiveView){
-        _receiveView = [[ReceiveView alloc] initWithFrame:CGRectMake(0, 0, 320, 180)];
+        _receiveView = [[ReceiveView alloc] initWithFrame:CGRectMake(0, 0, 320, 180) isModified:self.isModified];
         _receiveView.delegate = self;
         if(self.personaName){
             _receiveView.personaLabel.text = self.personaName;
@@ -321,7 +321,7 @@
 
 -(MoneyView *)moneyView{
     if(!_moneyView){
-        _moneyView = [[MoneyView alloc] initWithFrame:CGRectMake(0, 0, 320, 48)];
+        _moneyView = [[MoneyView alloc] initWithFrame:CGRectMake(0, 0, 320, 48) isModified:self.isModified];
         _moneyView.delegate = self;
         if(self.moneyStr){
             _moneyView.textFied.text = self.moneyStr;
@@ -464,7 +464,7 @@
         if(buttonIndex == 0){
             self.personaStr1 = @"销售方";
             self.personaStr2 = @"供应商";
-        }else{
+        }else if(buttonIndex == 1){
             self.personaStr1 = @"供应商";
             self.personaStr2 = @"销售方";
         }
