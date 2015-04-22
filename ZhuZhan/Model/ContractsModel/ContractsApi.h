@@ -54,4 +54,6 @@
 //销售佣金合同详情
 + (NSURLSessionDataTask *)PostSalesDetailWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 
+//撤销合同详情
++ (NSURLSessionDataTask *)PostRevocationDetailWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 @end

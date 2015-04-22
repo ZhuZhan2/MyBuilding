@@ -9,6 +9,7 @@
 #import "SalerContractsController.h"
 #import "ContractsApi.h"
 #import "ContractsSalerModel.h"
+#import "RKContractsStagesView.h"
 @interface SalerContractsController ()
 @property (nonatomic, strong)ContractsSalerModel* salerModel;
 @end
@@ -34,21 +35,22 @@
 }
 
 -(void)loadList{
-    self.btnToolBar.userInteractionEnabled=NO;
-    
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
     NSString* contractsId=self.listSingleModel.a_id;
     [dic setObject:contractsId forKey:@"contractId"];
     [ContractsApi PostSalesDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             self.salerModel=posts[0];
-            self.btnToolBar.userInteractionEnabled=YES;
             [self reload];
         }
     } dic:dic noNetWork:nil];
 }
 
 -(void)reload{
+    [self.stagesView removeFromSuperview];
+    self.stagesView=nil;
+    [self initStagesView];
+    
     [self.btnToolBar removeFromSuperview];
     self.btnToolBar=nil;
     [self initBtnToolBar];
@@ -76,6 +78,29 @@
             }
         } dic:dic noNetWork:nil];
     }
+}
+
+-(UIView *)stagesView{
+    if (!_stagesView) {
+        NSInteger status=self.salerModel.a_status;
+        NSArray* bigStages=@[@"合同主要条款",@"供应商佣金合同",@"销售佣金合同"];
+        NSArray* array;
+        {
+            if (status<3) {
+                array=[self stylesWithNumber:1 count:4];
+            }else if (status>=3&&status!=9){
+                array=[self stylesWithNumber:3 count:4];
+            }else if (status==9){
+                array=[self stylesWithNumber:4 count:4];
+            }
+        }
+        
+        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"已完成"],@[@"已完成"],@[@"填写合同",@"审核中",@"生成",@"完成"]] smallStageStyles:@[@[@0],@[@0],array] isClosed:NO];
+        CGRect frame=_stagesView.frame;
+        frame.origin.y=64;
+        _stagesView.frame=frame;
+    }
+    return _stagesView;
 }
 
 /*
