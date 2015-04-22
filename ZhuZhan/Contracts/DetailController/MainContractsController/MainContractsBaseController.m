@@ -158,7 +158,9 @@
 }
 
 -(void)closeBtnClickedWithContent:(NSString*)content{
-    if (self.listSingleModel.a_isSelfCreated&&self.mainClauseModel.a_status!=2) {
+    BOOL hasProviderFile=self.listSingleModel.a_provideHas;
+    BOOL canClose=self.listSingleModel.a_isSelfCreated&&self.mainClauseModel.a_status==2&&!hasProviderFile;
+    if (!canClose) {
         [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"目前状态无法进行关闭" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
         return;
     }
