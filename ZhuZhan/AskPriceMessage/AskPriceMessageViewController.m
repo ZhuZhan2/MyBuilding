@@ -81,7 +81,6 @@
             [self.showArr removeAllObjects];
             self.showArr = posts;
             [self.tableView reloadData];
-            [self.tableView headerEndRefreshing];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -93,6 +92,7 @@
                 }];
             }
         }
+        [self.tableView headerEndRefreshing];
     } messageType:self.type startIndex:0 noNetWork:^{
         self.tableView.scrollEnabled=NO;
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
@@ -109,7 +109,6 @@
             self.startIndex ++;
             [self.showArr addObjectsFromArray:posts];
             [self.tableView reloadData];
-            [self.tableView footerEndRefreshing];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -121,6 +120,7 @@
                 }];
             }
         }
+        [self.tableView footerEndRefreshing];
     } messageType:self.type startIndex:self.startIndex+1 noNetWork:^{
         self.tableView.scrollEnabled=NO;
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{

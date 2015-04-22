@@ -168,6 +168,7 @@
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
     NSString* contractsId=self.listSingleModel.a_id;
     [dic setObject:contractsId forKey:@"id"];
+    [dic setObject:content forKey:@"remark"];
     [ContractsApi PostCloseWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [self sucessPost];

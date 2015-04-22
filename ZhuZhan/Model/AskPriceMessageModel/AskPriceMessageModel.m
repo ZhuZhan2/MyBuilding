@@ -35,6 +35,7 @@
     }
     
     NSString *typeStr = @"";
+    BOOL isContracts = NO;
     self.a_messageType = dict[@"messageType"];
     if([self.a_messageType isEqualToString:@"06"]){
         self.a_title = @"您有一个询价提醒";
@@ -43,7 +44,20 @@
         self.a_title = @"您有一个报价提醒";
         typeStr = @"报价单";
     }else{
-        self.a_title = @"您有一个合同提醒";
+        if([self.a_status isEqualToString:@"08"]){
+            //新建
+            self.a_title = @"新合同提醒";
+        }else if ([self.a_status isEqualToString:@"09"]){
+            //更新
+            self.a_title = @"合同状态更新提醒";
+        }else if([self.a_status isEqualToString:@"10"]){
+            //完成
+            self.a_title = @"合同完成提醒";
+        }else{
+            //关闭
+            self.a_title = @"合同关闭提醒";
+        }
+        isContracts = YES;
     }
     
     NSString *messageContent = dict[@"messageContent"];
@@ -51,6 +65,10 @@
         self.a_content = [NSString stringWithFormat:@"参与用户 \"%@\" %@了您的需求描述：%@...的%@",dict[@"loginName"],str,[messageContent substringToIndex:20],typeStr];
     }else{
         self.a_content = [NSString stringWithFormat:@"参与用户 %@ %@您的需求描述：%@的%@ ",dict[@"loginName"],str,messageContent,typeStr];
+    }
+    
+    if(isContracts){
+        self.a_content =messageContent;
     }
 }
 @end

@@ -212,7 +212,7 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/contract/agree"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/contract/close"];
     NSLog(@"=====%@,dic=%@",urlStr,dic);
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
