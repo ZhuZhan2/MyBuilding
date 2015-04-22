@@ -33,10 +33,14 @@
     self.a_serialNumber=dict[@"serialNumber"];
     self.a_status=[dict[@"status"] integerValue];
     self.a_fileName=dict[@"fileName"];
-    self.a_createdTime=dict[@"createdTime"];
     self.a_partyA=dict[@"partyA"];
     self.a_partyB=dict[@"partyB"];
 
+    {
+        NSString* createdTime=dict[@"createdTime"];
+        self.a_createdTime=[createdTime substringToIndex:createdTime.length-3];
+    }
+    
     /*
      @property (nonatomic)BOOL a_provideHas;
      @property (nonatomic)BOOL a_saleHas;

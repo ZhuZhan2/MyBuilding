@@ -138,6 +138,20 @@
     return _stagesView;
 }
 
+-(NSMutableArray*)contractsStagesViewData{
+    NSMutableArray* datas=[NSMutableArray array];
+    {
+        NSArray* bigStageNames=@[@"合同主要条款",@"供应商佣金合同",@"销售佣金合同"];
+        NSArray* smallStageNames=@[@[@"填写条款",@"待审核",@"生成条款"],@[self.listSingleModel.a_archiveStatus],@[@"未开始"]];
+        NSArray* smallStageStyles=@[@[@0,@0,@0],@[@0],@[@1]];
+        
+        [datas addObject:bigStageNames];
+        [datas addObject:smallStageNames];
+        [datas addObject:smallStageStyles];
+    }
+    return datas;
+}
+
 /*
  同意带字 不同意带字 关闭带字 修改带字
  同意小带字 不同意小带字 上传小带字

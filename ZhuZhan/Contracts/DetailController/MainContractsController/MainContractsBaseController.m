@@ -16,6 +16,8 @@
 #import "RKContractsStagesView.h"
 #import "ErrorCode.h"
 @interface MainContractsBaseController ()<ContractsBtnToolBarDelegate>
+@property (nonatomic, strong)ContractsMainClauseModel* mainClauseModel;
+
 @property (nonatomic, strong)ContractsUserView* userView1;
 @property (nonatomic, strong)ContractsUserView* userView2;
 @property (nonatomic, strong)ContractsMainClauseView* mainClauseView;
@@ -32,9 +34,23 @@
     [self loadList];
 }
 
+-(void)initNavi{
+    [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
+    if (self.contractsStagesViewData) {
+        [self setRightBtnWithText:@"更多"];
+    }
+}
+
+-(NSString *)contractId{
+    if (!_contractId) {
+        _contractId=self.listSingleModel.a_id;
+    }
+    return _contractId;
+}
+
 -(void)loadList{
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
-    [dic setObject:self.listSingleModel.a_id forKey:@"contractId"];
+    [dic setObject:self.contractId forKey:@"contractId"];
     [ContractsApi PostDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             self.mainClauseModel=posts[0];
@@ -177,7 +193,7 @@
 }
 
 -(UIView *)stagesView{
-    if (!_stagesView) {
+    if (!_stagesView&&!self.contractsStagesViewData) {
         NSInteger status=self.mainClauseModel.a_status;
         BOOL hasProviderFile=self.listSingleModel.a_provideHas;
         NSArray* bigStages=@[@"合同主要条款",@"供应商佣金合同",@"销售佣金合同"];
@@ -194,11 +210,14 @@
         CGRect frame=_stagesView.frame;
         frame.origin.y=64;
         _stagesView.frame=frame;
+    }else if (!_stagesView&&self.contractsStagesViewData) {
+        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:self.contractsStagesViewData[0] smallStageNames:self.contractsStagesViewData[1] smallStageStyles:self.contractsStagesViewData[2] isClosed:NO];
+        CGRect frame=_stagesView.frame;
+        frame.origin.y=64;
+        _stagesView.frame=frame;
     }
     return _stagesView;
 }
-
-
 
 -(ContractsUserView *)userView1{
     if (!_userView1) {

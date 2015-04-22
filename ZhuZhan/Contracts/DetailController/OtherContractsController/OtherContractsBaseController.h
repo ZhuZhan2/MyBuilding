@@ -11,9 +11,11 @@
 @interface OtherContractsBaseController : ContractsBaseViewController<ContractsBtnToolBarDelegate>{
     @protected
     ContractsBtnToolBar* _btnToolBar;
+    UIView* _PDFView;
 }
 @property (nonatomic, strong)UIButton* clauseMainBtn;
 @property (nonatomic, strong)UIView* PDFView;
 @property (nonatomic, strong)ContractsBtnToolBar* btnToolBar;
+-(void)initPDFView;
 -(void)initBtnToolBar;
 @end

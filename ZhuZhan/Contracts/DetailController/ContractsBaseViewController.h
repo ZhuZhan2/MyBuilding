@@ -13,11 +13,13 @@
 @interface ContractsBaseViewController : ChatBaseViewController<UIActionSheetDelegate,UIAlertViewDelegate>{
     @protected
     UIView* _stagesView;
+    ContractsTradeCodeView* _tradeCodeView;
 }
 @property (nonatomic, strong)UIView* stagesView;
 @property (nonatomic, strong)ContractsTradeCodeView* tradeCodeView;
 @property (nonatomic, strong)ContractsListSingleModel* listSingleModel;
 -(void)initStagesView;
+-(void)initTradeCodeView;
 -(void)sucessPost;
 -(NSArray*)stylesWithNumber:(NSInteger)number count:(NSInteger)count;
 @end

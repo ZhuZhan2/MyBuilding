@@ -14,5 +14,10 @@
     self.a_id=dict[@"id"];
     self.a_fileName=dict[@"fileName"];
     self.a_status=[dict[@"status"] integerValue];
+    self.a_serialNumber=dict[@"serialNumber"];
+    {
+        NSString* createdTime=dict[@"createdTime"];
+        self.a_createdTime=[createdTime substringToIndex:createdTime.length-3];
+    }
 }
 @end
