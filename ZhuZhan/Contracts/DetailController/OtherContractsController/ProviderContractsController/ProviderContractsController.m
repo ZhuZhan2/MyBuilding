@@ -165,7 +165,7 @@
         NSMutableArray* btns=[NSMutableArray array];
         NSArray* imageNames;
 
-        if (self.mainClauseModel.a_status==3) {
+        if (self.mainClauseModel.a_status==3||self.mainClauseModel.a_status==6) {
             imageNames=@[@"不同意带字",@"同意带字"];
         }
         
