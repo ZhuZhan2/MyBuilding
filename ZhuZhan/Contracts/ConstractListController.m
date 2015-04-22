@@ -89,7 +89,9 @@
 }
 
 -(void)rightBtnClicked{
-    UIViewController* vc=[[ContractsListSearchController alloc]init];
+    ContractsListSearchController* vc=[[ContractsListSearchController alloc]init];
+    vc.archiveStatus = self.archiveStatus;
+    vc.nowStageStr = self.nowStageStr;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -135,7 +137,10 @@
     [ContractsApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [self.showArr removeAllObjects];
-            self.showArr=posts;
+            self.showArr=posts[0];
+            if([self.archiveStatus isEqualToString:@""]){
+                [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"inProgressCount"],posts[1][@"completeCount"],posts[1][@"closeCount"]]];
+            }
             [self.tableView reloadData];
         }else{
             if([ErrorCode errorCode:error] == 403){
@@ -159,7 +164,10 @@
     [ContractsApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             self.startIndex++;
-            [self.showArr addObjectsFromArray:posts];
+            [self.showArr addObjectsFromArray:posts[0]];
+            if([self.archiveStatus isEqualToString:@""]){
+                [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"inProgressCount"],posts[1][@"completeCount"],posts[1][@"closeCount"]]];
+            }
             [self.tableView reloadData];
         }else{
             if([ErrorCode errorCode:error] == 403){

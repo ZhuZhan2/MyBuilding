@@ -6,8 +6,9 @@
 //
 //
 
-#import "DemandListSearchController.h"
+#import "ChatBaseViewController.h"
 
-@interface ContractsListSearchController : DemandListSearchController
-
+@interface ContractsListSearchController : ChatBaseViewController
+@property(nonatomic,strong)NSString *archiveStatus;
+@property(nonatomic,strong)NSString *nowStageStr;
 @end
