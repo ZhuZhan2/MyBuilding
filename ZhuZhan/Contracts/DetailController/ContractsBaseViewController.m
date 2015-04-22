@@ -79,7 +79,7 @@
     }
 }
 
--(void)closeBtnClicked{
+-(void)closeBtnClickedWithContent:(NSString*)content{
     NSLog(@"关闭");
 }
 
