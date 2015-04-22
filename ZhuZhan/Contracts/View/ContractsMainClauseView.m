@@ -8,6 +8,7 @@
 
 #import "ContractsMainClauseView.h"
 #import "RKShadowView.h"
+#import "ProjectStage.h"
 @interface ContractsMainClauseView()
 @property (nonatomic, strong)UILabel* titleLabel;
 @property (nonatomic, strong)UILabel* contentLabel;
@@ -66,7 +67,7 @@
 -(UILabel *)titleLabel{
     if (!_titleLabel) {
         UILabel* label=[[UILabel alloc]init];
-        label.text=self.title;
+        label.text=[NSString stringWithFormat:@"￥%@",[ProjectStage stringtoRBM:self.title]];
         label.font=titleFont;
         label.textColor=titleLabelColor;
         CGPoint origin=CGPointMake(sideDistance, topDistance);
