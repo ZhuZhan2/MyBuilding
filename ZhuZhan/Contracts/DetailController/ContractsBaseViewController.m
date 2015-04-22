@@ -74,7 +74,7 @@
                 [alertView show];
                 return;
             }
-            [self closeBtnClicked];
+            [self closeBtnClickedWithContent:tf.text];
         }
     }
 }
