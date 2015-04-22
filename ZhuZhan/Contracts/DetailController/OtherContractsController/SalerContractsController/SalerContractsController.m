@@ -10,6 +10,7 @@
 #import "ContractsApi.h"
 #import "ContractsSalerModel.h"
 #import "RKContractsStagesView.h"
+#import "PDFViewController.h"
 @interface SalerContractsController ()
 @property (nonatomic, strong)ContractsSalerModel* salerModel;
 @end
@@ -32,6 +33,14 @@
 
 -(NSString *)title{
     return @"销售佣金合同";
+}
+
+-(void)PDFBtnClicked{
+    PDFViewController *view = [[PDFViewController alloc] init];
+    view.ID = self.salerModel.a_id;
+    view.type = @"1";
+    view.name = self.salerModel.a_fileName;
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 -(void)loadList{

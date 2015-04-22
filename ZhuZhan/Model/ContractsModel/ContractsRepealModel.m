@@ -1,14 +1,14 @@
 //
-//  ContractsSalerModel.m
+//  ContractsRepealModel.m
 //  ZhuZhan
 //
-//  Created by 孙元侃 on 15/4/20.
+//  Created by 孙元侃 on 15/4/22.
 //
 //
 
-#import "ContractsSalerModel.h"
+#import "ContractsRepealModel.h"
 
-@implementation ContractsSalerModel
+@implementation ContractsRepealModel
 -(void)setDict:(NSDictionary *)dict{
     _dict=dict;
     self.a_id=dict[@"id"];

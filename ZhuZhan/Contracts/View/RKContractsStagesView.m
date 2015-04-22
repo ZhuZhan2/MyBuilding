@@ -28,7 +28,7 @@
 
 @implementation RKContractsStagesView
 +(UIView*)contractsStagesViewWithBigStageNames:(NSArray *)bigStageNames smallStageNames:(NSArray *)smallStageNames smallStageStyles:(NSArray *)smallStageStyles isClosed:(BOOL)isClosed{
-    NSLog(@"bigStageNames=%@,smallStageNames=%@,smallStageStyles=%@",bigStageNames,smallStageNames,smallStageStyles);
+//    NSLog(@"bigStageNames=%@,smallStageNames=%@,smallStageStyles=%@",bigStageNames,smallStageNames,smallStageStyles);
     RKContractsStagesView* stagesView=[[self alloc]initWithBigStageNames:bigStageNames smallStageNames:smallStageNames smallStageStyles:smallStageStyles isClosed:isClosed];
     
     UIView* stagesViewAddedShadow=[[UIView alloc]initWithFrame:stagesView.frame];

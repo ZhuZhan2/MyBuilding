@@ -32,7 +32,7 @@
  status = 1;
  */
 @interface ContractsListSingleModel : NSObject
-
+//非撤销合同时是主条款、供应商合同id,撤销时是撤销id
 @property (nonatomic, copy)NSString* a_id;
 
 //进行中0，已完成1，已关闭2
@@ -44,6 +44,7 @@
  销售合同	2
  撤销合同	3
  */
+@property (nonatomic)NSInteger a_contractsTypeInt;
 @property (nonatomic, copy)NSString* a_contractsType;
 @property (nonatomic, copy)NSString* a_createdBy;
 //接收者用户名
@@ -91,6 +92,8 @@
 @property (nonatomic)BOOL a_isSaler;
 @property (nonatomic)BOOL a_provideHas;
 @property (nonatomic)BOOL a_saleHas;
+//撤销合同下的主条款、供应商合同id
+@property (nonatomic, copy)NSString* a_contractsRecordId;
 
 @property (nonatomic, strong)NSDictionary* dict;
 @end
