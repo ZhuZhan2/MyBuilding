@@ -96,7 +96,10 @@
 -(void)loadList{
     [ContractsApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            self.showArr=posts;
+            self.showArr=posts[0];
+            if([self.archiveStatus isEqualToString:@""]){
+                [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"inProgressCount"],posts[1][@"completeCount"],posts[1][@"closeCount"]]];
+            }
             [self.tableView reloadData];
         }else{
             if([ErrorCode errorCode:error] == 403){

@@ -14,6 +14,7 @@
 #import "ContractsApi.h"
 #import "ProvisionalViewController.h"
 #import "RKContractsStagesView.h"
+#import "ErrorCode.h"
 @interface MainContractsBaseController ()<ContractsBtnToolBarDelegate>
 @property (nonatomic, strong)ContractsUserView* userView1;
 @property (nonatomic, strong)ContractsUserView* userView2;
