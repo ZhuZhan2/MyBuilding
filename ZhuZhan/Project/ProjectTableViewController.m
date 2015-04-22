@@ -110,13 +110,19 @@
                 self.tableView.scrollEnabled = YES;
                 loadingView = nil;
             }else{
-                //[LoginAgain AddLoginView];
+                self.tableView.scrollEnabled = NO;
+                [LoadingView removeLoadingView:loadingView];
+                loadingView = nil;
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    self.tableView.scrollEnabled = YES;
+                    [self firstWork];
+                }];
             }
         } startIndex:startIndex noNetWork:^{
             self.tableView.scrollEnabled = NO;
             [LoadingView removeLoadingView:loadingView];
             loadingView = nil;
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
                 self.tableView.scrollEnabled = YES;
                 [self firstWork];
             }];
@@ -151,13 +157,19 @@
                 self.tableView.scrollEnabled = YES;
                 loadingView = nil;
             }else{
-                [LoginAgain AddLoginView:NO];
+                self.tableView.scrollEnabled = NO;
+                [LoadingView removeLoadingView:loadingView];
+                loadingView = nil;
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    self.tableView.scrollEnabled = YES;
+                    [self firstWork];
+                }];
             }
         } projectIds:projectIds noNetWork:^{
             self.tableView.scrollEnabled = NO;
             [LoadingView removeLoadingView:loadingView];
             loadingView = nil;
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
                 self.tableView.scrollEnabled = YES;
                 [self firstWork];
             }];
@@ -216,7 +228,7 @@
             [self.tableView headerEndRefreshing];
         }startIndex:0 noNetWork:^{
             [self.tableView headerEndRefreshing];
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
                 [self headerRereshing];
             }];
         }];
@@ -248,7 +260,7 @@
                 [self.tableView headerEndRefreshing];
             } projectIds:projectIds noNetWork:^{
                 [self.tableView headerEndRefreshing];
-                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
                     [self headerRereshing];
                 }];
             }];
@@ -276,7 +288,7 @@
             [self.tableView footerEndRefreshing];
         }startIndex:startIndex+1 noNetWork:^{
             [self.tableView footerEndRefreshing];
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
                 [self footerRereshing];
             }];
         }];
@@ -300,7 +312,7 @@
                 [self.tableView footerEndRefreshing];
             }startIndex:startIndex+1 noNetWork:^{
                 [self.tableView footerEndRefreshing];
-                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
                     [self footerRereshing];
                 }];
             }];

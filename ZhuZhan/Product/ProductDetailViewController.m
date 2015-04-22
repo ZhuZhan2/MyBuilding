@@ -183,6 +183,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocus"]];
                 self.productModel.a_focusedNum=posts[0][@"focusNum"];
                 [self getNetWorkData];
+            }else{
+                if([ErrorCode errorCode:error] ==403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                        [self firstNetWork];
+                    }];
+                }
             }
         } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
@@ -206,10 +214,18 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             self.commentModels=posts;
             [self getTableViewContents];
             [self myTableViewReloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
     } entityId:self.entityID entityType:self.type noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
-            [self getNetWorkData];
+            [self firstNetWork];
         }];
     }];
 //    //产品详情的评论 或者个人中心的产品详情
@@ -669,8 +685,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             if ([self.delegate respondsToSelector:@selector(finishAddCommentFromDetailWithPosts:)]) {
                 //[self.delegate finishAddCommentFromDetailWithPosts:posts];
             }
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dic:[@{@"paramId":self.entityID,@"content":comment,@"commentType":@"03"} mutableCopy] noNetWork:nil];
+    } dic:[@{@"paramId":self.entityID,@"content":comment,@"commentType":@"03"} mutableCopy] noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 //添加产品详情的评论
@@ -679,8 +703,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [self.vc finishNetWork];
         if (!error) {
             [self finishAddComment:comment aid:posts[0]];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dic:[@{@"paramId":self.entityID,@"commentType":@"01",@"content":comment} mutableCopy] noNetWork:nil];
+    } dic:[@{@"paramId":self.entityID,@"commentType":@"01",@"content":comment} mutableCopy] noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 //给tableView添加数据
@@ -895,9 +927,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     self.noticeLabel.text=[NSString stringWithFormat:@"%@ 关注",self.productModel.a_focusedNum];
                     NSLog(@"关注数===》%@",posts[0][@"focusNum"]);
                 }else{
-                    [LoginAgain AddLoginView:NO];
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
                 }
-            } dic:dic noNetWork:nil];
+            } dic:dic noNetWork:^{
+                [ErrorCode alert];
+            }];
         }else{
             NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
             [dic setObject:self.entityID forKey:@"targetId"];
@@ -911,9 +949,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     self.noticeLabel.text=[NSString stringWithFormat:@"%@ 关注",self.productModel.a_focusedNum];
                     NSLog(@"关注数===》%@",posts[0][@"focusNum"]);
                 }else{
-                    [LoginAgain AddLoginView:NO];
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
                 }
-            } dic:dic noNetWork:nil];
+            } dic:dic noNetWork:^{
+                [ErrorCode alert];
+            }];
         }
     }else{
         NSLog(@"取消");
@@ -956,8 +1000,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 if(self.commentModels.count==0){
                     [self myTableViewReloadData];
                 }
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
-        } dic:[@{@"commentId":model.a_id,@"commentType":self.type} mutableCopy] noNetWork:nil];
+        } dic:[@{@"commentId":model.a_id,@"commentType":self.type} mutableCopy] noNetWork:^{
+            [ErrorCode alert];
+        }];
     }
 }
 @end

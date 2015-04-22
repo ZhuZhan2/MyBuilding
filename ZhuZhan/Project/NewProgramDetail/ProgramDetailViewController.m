@@ -274,7 +274,13 @@
                 self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocus"]];
                 [self getContentList];
             }else{
-                [LoginAgain AddLoginView:NO];
+                if([ErrorCode errorCode:error] ==403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                        [self firstNetWork];
+                    }];
+                }
             }
         } userId:[LoginSqlite getdata:@"userId"] targetId:self.projectId noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
@@ -295,7 +301,13 @@
                 [self loadSelf];
             }
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
         [self endIndicatorView];
     } projectId:self.projectId noNetWork:^{
@@ -470,7 +482,11 @@
                     [alertView show];
                     self.isFocused = @"1";
                 }else{
-                    [LoginAgain AddLoginView:NO];
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
                 }
             } dic:dic noNetWork:nil];
         }else{
@@ -483,9 +499,15 @@
                     [alertView show];
                     self.isFocused = @"0";
                 }else{
-                    [LoginAgain AddLoginView:NO];
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
                 }
-            } dic:dic noNetWork:nil];
+            } dic:dic noNetWork:^{
+                [ErrorCode alert];
+            }];
         }
         
     }else if (buttonIndex==1){
@@ -521,9 +543,15 @@
         if (!error) {
             NSLog(@"sucess");
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dic:[@{@"paramId":self.model.a_id,@"commentType":@"02",@"content":comment} mutableCopy] noNetWork:nil];
+    } dic:[@{@"paramId":self.model.a_id,@"commentType":@"02",@"content":comment} mutableCopy] noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 //***************************************************************

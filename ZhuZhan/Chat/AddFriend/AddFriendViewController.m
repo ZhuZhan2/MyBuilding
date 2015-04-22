@@ -75,8 +75,20 @@
         if (!error) {
             self.models = posts;
             [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
-    } pageIndex:0 noNetWork:nil];
+    } pageIndex:0 noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 -(void)setupRefresh{
@@ -95,9 +107,21 @@
             [self.models removeAllObjects];
             self.models = posts;
             [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
         [self.tableView headerEndRefreshing];
-    } pageIndex:0 noNetWork:nil];
+    } pageIndex:0 noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 - (void)footerRereshing
@@ -107,9 +131,21 @@
             self.startIndex++;
             [self.models addObjectsFromArray:posts];
             [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
         [self.tableView footerEndRefreshing];
-    } pageIndex:self.startIndex+1 noNetWork:nil];
+    } pageIndex:self.startIndex+1 noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -159,8 +195,16 @@
                 [self.models removeObjectAtIndex:indexPath.row];
                 NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
                 [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            }else{
+                if([ErrorCode errorCode:error]){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     }
 }
 
@@ -177,8 +221,16 @@
             model.a_isFinished = YES;
             [self.models replaceObjectAtIndex:btn.tag withObject:model];
             [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        }else{
+            if([ErrorCode errorCode:error] ==403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dic:dic noNetWork:nil];
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(void)rightBtnClicked{
@@ -187,8 +239,16 @@
         if(!error){
             [self.models removeAllObjects];
             [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } noNetWork:nil];
+    } noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(NSMutableArray *)models{

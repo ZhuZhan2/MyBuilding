@@ -57,6 +57,7 @@
         CGFloat y=CGRectGetHeight(self.frame)*0.5;
         _textView.center=CGPointMake(x, y);
         _textView.delegate=self;
+        _textView.enablesReturnKeyAutomatically = YES;
     }
     return _textView;
 }

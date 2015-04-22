@@ -85,9 +85,15 @@
                 [self.tableView reloadData];
             }
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } companyId:[LoginSqlite getdata:@"userId"] noNetWork:nil];
+    } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

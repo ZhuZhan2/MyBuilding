@@ -218,8 +218,16 @@
         if(!error){
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发布成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dic:@{@"productName":tempStr,@"productDesc":tempStr2} imgData:UIImageJPEGRepresentation(self.cameraImage, 0.3) noNetWork:nil];
+    } dic:@{@"productName":tempStr,@"productDesc":tempStr2} imgData:UIImageJPEGRepresentation(self.cameraImage, 0.3) noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(void)textViewDidChange:(UITextView *)textView{

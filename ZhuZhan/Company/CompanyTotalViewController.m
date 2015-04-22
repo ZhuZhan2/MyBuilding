@@ -39,7 +39,13 @@
                     self.companyVC.navigationItem.hidesBackButton=YES;
                     [self.navigationController pushViewController:self.companyVC animated:NO];
                 }else{
-                    [LoginAgain AddLoginView:NO];
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                            [self firstNetWork];
+                        }];
+                    }
                 }
                 [self removeMyLoadingView];
             } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
@@ -64,13 +70,27 @@
                                 self.companyVC.navigationItem.hidesBackButton=YES;
                                 [self.navigationController pushViewController:self.companyVC animated:NO];
                             }else{
-                                [LoginAgain AddLoginView:NO];
+                                if([ErrorCode errorCode:error] == 403){
+                                    [LoginAgain AddLoginView:NO];
+                                }else{
+                                    [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                                        [self firstNetWork];
+                                    }];
+                                }
                             }
                             [self removeMyLoadingView];
                         } companyId:posts[0][@"companyId"] noNetWork:^{
                             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64-49) superView:self.view reloadBlock:^{
                                 [self firstNetWork];
                             }];
+                        }];
+                    }
+                }else{
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                            [self firstNetWork];
                         }];
                     }
                 }

@@ -60,7 +60,13 @@
                             [self initThirdView];
                         }
                     }else{
-                        [LoginAgain AddLoginView:NO];
+                        if([ErrorCode errorCode:error] == 403){
+                            [LoginAgain AddLoginView:NO];
+                        }else{
+                            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                                [self firstNetWork];
+                            }];
+                        }
                     }
                     [self removeMyLoadingView];
                 } companyId:self.companyId noNetWork:^{
@@ -68,6 +74,14 @@
                         [self firstNetWork];
                     }];
                 }];
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                        [self firstNetWork];
+                    }];
+                }
             }
         } noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64-49) superView:self.view reloadBlock:^{
@@ -84,7 +98,13 @@
                     [self initThirdView];
                 }
             }else{
-                [LoginAgain AddLoginView:NO];
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                        [self firstNetWork];
+                    }];
+                }
             }
             [self removeMyLoadingView];
         } companyId:self.companyId noNetWork:^{
@@ -274,9 +294,15 @@
                     self.model.a_focused=@"0";
                     [self handleContent];
                 }else{
-                    [LoginAgain AddLoginView:NO];
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
                 }
-            } dic:dic noNetWork:nil];
+            } dic:dic noNetWork:^{
+                [ErrorCode alert];
+            }];
         }else{
             [dic setObject:self.model.a_id forKey:@"targetId"];
             [dic setObject:@"02" forKey:@"targetCategory"];
@@ -285,8 +311,16 @@
                 if(!error){
                     self.model.a_focused=@"1";
                     [self handleContent];
+                }else{
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
                 }
-            } dic:dic noNetWork:nil];
+            } dic:dic noNetWork:^{
+                [ErrorCode alert];
+            }];
         }
     }else{
         LoginViewController *loginVC = [[LoginViewController alloc] init];
@@ -368,9 +402,15 @@
                 [alertView show];
 
             }else{
-                [LoginAgain AddLoginView:NO];
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     }
 }
 @end

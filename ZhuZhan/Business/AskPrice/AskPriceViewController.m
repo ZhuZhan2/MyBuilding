@@ -21,6 +21,7 @@
 #import "AskPriceDetailViewController.h"
 #import "QuotesDetailViewController.h"
 #import "MJRefresh.h"
+#import "ErrorView.h"
 @interface AskPriceViewController ()<DemandStageChooseControllerDelegate,RKStageChooseViewDelegate>
 @property(nonatomic,strong)NSString *otherStr;
 @property(nonatomic,strong)NSString *statusStr;
@@ -82,9 +83,19 @@
            [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
             [self.tableView reloadData];
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self loadList];
+                }];
+            }
         }
-    } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:@"" noNetWork:nil];
+    } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:@"" noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self loadList];
+        }];
+    }];
 }
 
 -(void)initNavi{
@@ -210,10 +221,20 @@
             [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
             [self.tableView reloadData];
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self loadList];
+                }];
+            }
         }
         [self.tableView headerEndRefreshing];
-    } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:@"" noNetWork:nil];
+    } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:@"" noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self loadList];
+        }];
+    }];
 }
 
 - (void)footerRereshing
@@ -225,9 +246,19 @@
             [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
             [self.tableView reloadData];
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self loadList];
+                }];
+            }
         }
         [self.tableView footerEndRefreshing];
-    } status:self.statusStr startIndex:self.startIndex+1 other:self.otherStr keyWorks:@"" noNetWork:nil];
+    } status:self.statusStr startIndex:self.startIndex+1 other:self.otherStr keyWorks:@"" noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self loadList];
+        }];
+    }];
 }
 @end

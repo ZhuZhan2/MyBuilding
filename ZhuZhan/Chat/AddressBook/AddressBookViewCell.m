@@ -58,7 +58,7 @@
 
 -(UILabel *)mainLabel{
     if (!_mainLabel) {
-        _mainLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 20)];
+        _mainLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 280, 20)];
         _mainLabel.font=mainLabelFont;
     }
     return _mainLabel;

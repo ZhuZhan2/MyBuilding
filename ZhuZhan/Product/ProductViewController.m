@@ -106,7 +106,14 @@
             }
             [self endIndicatorView];
         }else{
-            [LoginAgain AddLoginView:NO];
+            [self endIndicatorView];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
     } startIndex:0 keyWords:self.keyWords noNetWork:^{
         [self endIndicatorView];
@@ -211,7 +218,13 @@
                 [self addNoProductView];
             }
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
     } startIndex:0 keyWords:self.keyWords noNetWork:^{
         [qtmquitView headerEndRefreshing];
@@ -240,7 +253,13 @@
                 [self addNoProductView];
             }
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
     } startIndex:startIndex+1 keyWords:self.keyWords noNetWork:^{
         [qtmquitView footerEndRefreshing];

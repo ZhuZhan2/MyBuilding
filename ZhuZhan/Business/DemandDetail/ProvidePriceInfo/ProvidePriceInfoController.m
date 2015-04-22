@@ -92,9 +92,15 @@
             NSString* quotesId=posts[0];
             [self secondPostFirstStepWithQuotesId:quotesId];
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dic:dic noNetWork:nil];
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(void)secondPostFirstStepWithQuotesId:(NSString*)quotesId{
@@ -140,9 +146,15 @@
         if (!error) {
             [self secondPostSecondStepWithImagesListNames:imagesListNames quotesId:quotesId];
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dataArr:imageDatas dic:dic noNetWork:nil];
+    } dataArr:imageDatas dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(void)initNavi{

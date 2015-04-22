@@ -85,7 +85,13 @@
                 }
                 [_tableView reloadData];
             }else{
-                [LoginAgain AddLoginView:NO];
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                        [self firstNetWork];
+                    }];
+                }
             }
         }userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
@@ -210,9 +216,15 @@
             if(!error){
                 
             }else{
-                [LoginAgain AddLoginView:NO];
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
         [showArr removeObjectAtIndex:indexPath.row-2];
         NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
         [_tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
@@ -397,9 +409,19 @@
             }
             [_tableView reloadData];
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
-    }userId:[LoginSqlite getdata:@"userId"] noNetWork:nil];
+    }userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 -(void)backView{

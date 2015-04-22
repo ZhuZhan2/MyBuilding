@@ -61,9 +61,19 @@
             self.showArr = posts;
             [self.tableView reloadData];
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self loadList];
+                }];
+            }
         }
-    } keyWorks:self.keyWorks noNetWork:nil];
+    } keyWorks:self.keyWorks noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self loadList];
+        }];
+    }];
 }
 
 -(UISearchBar *)searchBar{

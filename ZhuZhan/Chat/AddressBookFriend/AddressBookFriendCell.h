@@ -16,6 +16,7 @@ typedef enum AddressBookFriendCellAssistStyle{
 
 @interface AddressBookFriendCellModel : NSObject
 @property(nonatomic,copy)NSString* mainLabelText;
+@property(nonatomic)BOOL isPlatformUser;
 @property(nonatomic)AddressBookFriendCellAssistStyle assistStyle;
 @end
 

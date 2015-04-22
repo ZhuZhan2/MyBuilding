@@ -57,9 +57,15 @@
             self.models = posts[0];
             [self.searchBarTableView reloadData];
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:keyword noNetWork:nil];
+    } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:keyword noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 #pragma mark 开始进入刷新状态
@@ -72,10 +78,16 @@
             [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
             [self.searchBarTableView reloadData];
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
         [self.searchBarTableView headerEndRefreshing];
-    } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:self.keyWords noNetWork:nil];
+    } status:self.statusStr startIndex:0 other:self.otherStr keyWorks:self.keyWords noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 - (void)footerRereshing
@@ -87,10 +99,16 @@
             [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
             [self.searchBarTableView reloadData];
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
         [self.searchBarTableView footerEndRefreshing];
-    } status:self.statusStr startIndex:(int)self.startIndex+1 other:self.otherStr keyWorks:self.keyWords noNetWork:nil];
+    } status:self.statusStr startIndex:(int)self.startIndex+1 other:self.otherStr keyWorks:self.keyWords noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(NSInteger)searchBarNumberOfSectionsInTableView:(UITableView *)tableView{

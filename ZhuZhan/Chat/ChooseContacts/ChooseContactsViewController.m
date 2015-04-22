@@ -38,8 +38,20 @@
         if(!error){
             self.groupArr = posts;
             [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
-    }keywords:@"" noNetWork:nil];
+    }keywords:@"" noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 -(void)initNavi{
@@ -68,7 +80,7 @@
     if(buttonIndex == 0){
         UITextField *tf=[alertView textFieldAtIndex:0];
         if(tf.text.length >15){
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"不能超过20个字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"不能超过15个字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
             return;
         }
@@ -91,8 +103,16 @@
         [ChatMessageApi CreateWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 [self gotoDetailWithGroupId:posts[0]];
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     }
 }
 /*
@@ -103,6 +123,7 @@
     ChatViewController* vc=[[ChatViewController alloc]init];
     vc.contactId=groupId;
     vc.type=@"02";
+    vc.fromView = @"qun";
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -38,8 +38,16 @@
         if (!error) {
             self.mainClauseModel=posts[0];
             [self reload];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dic:dic noNetWork:nil];
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(void)reload{
@@ -89,6 +97,12 @@
                 if (!error) {
                     [self sucessPost];
                     NSLog(@"不同意成功");
+                }else{
+                    if([ErrorCode errorCode:error]== 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
                 }
             } dic:dic noNetWork:nil];
             //同意
@@ -97,8 +111,16 @@
                 if (!error) {
                     [self sucessPost];
                     NSLog(@"同意成功");
+                }else{
+                    if([ErrorCode errorCode:error]== 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
                 }
-            } dic:dic noNetWork:nil];
+            } dic:dic noNetWork:^{
+                [ErrorCode alert];
+            }];
         }
     }
 }

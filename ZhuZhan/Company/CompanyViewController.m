@@ -172,10 +172,16 @@
                 self.model.a_focused=@"0";
                 [self handleContent];
             }else{
-                [LoginAgain AddLoginView:NO];
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
             btn.userInteractionEnabled=YES;
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     }else{
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         [dic setObject:self.model.a_id forKey:@"targetId"];
@@ -185,10 +191,16 @@
                 self.model.a_focused=@"1";
                 [self handleContent];
             }else{
-                [LoginAgain AddLoginView:NO];
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
             btn.userInteractionEnabled=YES;
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     }
 
     NSLog(@"用户选择了关注");

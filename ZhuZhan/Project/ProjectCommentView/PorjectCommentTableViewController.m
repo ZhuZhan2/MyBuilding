@@ -82,7 +82,13 @@
                 [MyTableView hasData:self.tableView];
             }
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
     } entityId:projectId entityType:@"02" noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
@@ -265,9 +271,15 @@
                 [MyTableView hasData:self.tableView];
             }
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dic:dic noNetWork:nil];
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(void)cancelFromAddComment{
@@ -301,8 +313,16 @@
                 [_datasource removeObjectAtIndex:path.row-1];
                 NSArray *indexPaths = [NSArray arrayWithObject:path];
                 [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
-        } dic:[@{@"commentId":model.a_id,@"commentType":@"02"} mutableCopy] noNetWork:nil];
+        } dic:[@{@"commentId":model.a_id,@"commentType":@"02"} mutableCopy] noNetWork:^{
+            [ErrorCode alert];
+        }];
     }
 }
 

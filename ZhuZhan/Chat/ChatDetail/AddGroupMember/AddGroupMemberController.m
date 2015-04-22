@@ -43,8 +43,16 @@
                 [self.btn setBackgroundImage:[GetImagePath getImagePath:@"退出本群带字"] forState:UIControlStateNormal];
             }
             [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } groupId:self.contactId noNetWork:nil];
+    } groupId:self.contactId noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(void)initNavi{
@@ -154,8 +162,16 @@
             NSInteger index=self.navigationController.viewControllers.count-3;
             [self.navigationController popToViewController:self.navigationController.viewControllers[index] animated:YES];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadList" object:nil];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dic:dic noNetWork:nil];
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(void)exitBtnClicked{
