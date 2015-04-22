@@ -280,7 +280,7 @@
 }
 
 -(NSString *)nowStageStr{
-    return @[@"0",@"2",@"3",@"4"][self.nowStage];
+    return @[@"0",@"1",@"2",@"3"][self.nowStage];
 }
 
 -(NSString *)archiveStatus{
