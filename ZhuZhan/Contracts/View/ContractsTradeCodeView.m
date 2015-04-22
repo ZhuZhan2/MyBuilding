@@ -51,8 +51,9 @@
 
 -(UILabel *)timeLabel{
     if (!_timeLabel) {
-        _timeLabel=[[UILabel alloc]initWithFrame:CGRectMake(180, 0, 140, kTotalHeight)];
+        _timeLabel=[[UILabel alloc]initWithFrame:CGRectMake(190, 0, 120, kTotalHeight)];
         _timeLabel.font=kContentFont;
+        _timeLabel.textAlignment=NSTextAlignmentRight;
         _timeLabel.textColor=AllDeepGrayColor;
         _timeLabel.text=self.time;
     }

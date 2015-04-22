@@ -10,7 +10,7 @@
 #import "ContractsBtnToolBar.h"
 #import "RKShadowView.h"
 #import "ContractsTradeCodeView.h"
-
+#import "MainContractsBaseController.h"
 @interface OtherContractsBaseController ()
 
 @end
@@ -34,7 +34,23 @@
 }
 
 -(void)clauseMainBtnClicked{
-    NSLog(@"clauseMainBtnClicked");
+    MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
+    vc.listSingleModel=self.listSingleModel;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(NSMutableArray*)contractsStagesViewData{
+    NSMutableArray* datas=[NSMutableArray array];
+    {
+        NSArray* bigStageNames=@[@"合同主要条款",@"供应商佣金合同",@"销售佣金合同"];
+        NSArray* smallStageNames=@[@[@"填写条款",@"待审核",@"生成条款"],@[@"未开始"],@[@"未开始"]];
+        NSArray* smallStageStyles=@[@[@0,@0,@0],@[@1],@[@1]];
+        
+        [datas addObject:bigStageNames];
+        [datas addObject:smallStageNames];
+        [datas addObject:smallStageStyles];
+    }
+    return datas;
 }
 
 -(void)initClauseMainBtn{

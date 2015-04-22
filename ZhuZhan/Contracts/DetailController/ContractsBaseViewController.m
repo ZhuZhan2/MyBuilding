@@ -15,6 +15,7 @@
 @interface ContractsBaseViewController ()<ContractsViewDelegate>
 @property (nonatomic, strong)UIAlertView* sucessAlertView;//成功发送
 @property (nonatomic, strong)UIAlertView* sureCloseAlertView;//确认关闭
+@property (nonatomic, strong)UIAlertView* closeRemarkAlertView;//关闭时的备注
 @end
 
 @implementation ContractsBaseViewController

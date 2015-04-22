@@ -10,6 +10,10 @@
 #import "ContractsApi.h"
 #import "PDFViewController.h"
 #import "ContractsRepealModel.h"
+#import "RKContractsStagesView.h"
+#import "ContractsTradeCodeView.h"
+#import "MainContractsBaseController.h"
+#import "RKShadowView.h"
 @interface RepealContractsController ()
 @property (nonatomic, strong)ContractsRepealModel* repealModel;
 @end
@@ -42,6 +46,13 @@
     } dic:dic noNetWork:nil];
 }
 
+-(void)clauseMainBtnClicked{
+    MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
+    vc.listSingleModel=self.listSingleModel;
+    vc.contractId=self.listSingleModel.a_contractsRecordId;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 -(void)PDFBtnClicked{
     PDFViewController *view = [[PDFViewController alloc] init];
     view.ID = self.repealModel.a_id;
@@ -55,9 +66,53 @@
     self.stagesView=nil;
     [self initStagesView];
     
+    [self.tradeCodeView removeFromSuperview];
+    self.tradeCodeView=nil;
+    [self initTradeCodeView];
+    
+    [self.PDFView removeFromSuperview];
+    self.PDFView=nil;
+    [self initPDFView];
+    
     [self.btnToolBar removeFromSuperview];
     self.btnToolBar=nil;
     [self initBtnToolBar];
+}
+
+-(UIView *)PDFView{
+    if (!_PDFView) {
+        UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 0)];
+        view.backgroundColor=[UIColor whiteColor];
+        
+        {
+            UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, kScreenWidth-20, 0)];
+            label.text=self.repealModel.a_content;
+            label.numberOfLines=0;
+            CGRect frame1=label.frame;
+            frame1.size.height=[label.text boundingRectWithSize:CGSizeMake(CGRectGetWidth(label.frame), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:label.font} context:nil].size.height;
+            label.frame=frame1;
+            [view addSubview:label];
+            
+            CGRect frame2=view.frame;
+            frame2.size.height+=CGRectGetHeight(frame1)+20;
+            view.frame=frame2;
+        }
+        
+        {
+            UIView* line=[RKShadowView seperatorLineShadowViewWithHeight:10];
+            CGRect frame1=line.frame;
+            frame1.origin.y=CGRectGetHeight(view.frame);
+            line.frame=frame1;
+            [view addSubview:line];
+            
+            CGRect frame2=view.frame;
+            frame2.size.height+=CGRectGetHeight(frame1);
+            view.frame=frame2;
+        }
+        
+        _PDFView=view;
+    }
+    return _PDFView;
 }
 
 -(void)contractsBtnToolBarClickedWithBtn:(UIButton *)btn index:(NSInteger)index{
@@ -82,6 +137,37 @@
             }
         } dic:dic noNetWork:nil];
     }
+}
+
+-(UIView *)stagesView{
+    if (!_stagesView) {
+        NSInteger status=self.listSingleModel.a_status;
+        NSArray* bigStages=@[@"合同主要条款",@"供应商佣金合同",@"合同撤销流程"];
+        NSArray* array;
+        {
+            if (status<3) {
+                array=[self stylesWithNumber:2 count:4];
+            }else if (self.listSingleModel.a_archiveStatusInt==1){
+                array=[self stylesWithNumber:4 count:4];
+            }else{
+                array=[self stylesWithNumber:3 count:4];
+            }
+        }
+        
+        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"已完成"],@[@"已完成"],@[@"填写撤销协议",@"审核中",@"生成",@"完成"]] smallStageStyles:@[@[@0],@[@0],array] isClosed:NO];
+        CGRect frame=_stagesView.frame;
+        frame.origin.y=64;
+        _stagesView.frame=frame;
+    }
+    return _stagesView;
+}
+
+-(ContractsTradeCodeView *)tradeCodeView{
+    if (!_tradeCodeView) {
+        NSString* tradeCode=[NSString stringWithFormat:@"流水号:%@",self.repealModel.a_serialNumber];
+        _tradeCodeView=[ContractsTradeCodeView contractsTradeCodeViewWithTradeCode:tradeCode time:self.repealModel.a_createdTime];
+    }
+    return _tradeCodeView;
 }
 
 /*
