@@ -228,7 +228,7 @@
     BOOL isSaler=singleModel.a_isSaler;
     BOOL hasSaleFile=singleModel.a_saleHas;
     BOOL hasProviderFile=singleModel.a_provideHas;
-    BOOL hasRepealFile=[singleModel.a_contractsType isEqualToString:@"3"];
+    BOOL hasRepealFile=singleModel.a_contractsTypeInt==3;
     
     if (!hasSaleFile&&!hasProviderFile&&!hasRepealFile) {
         MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];

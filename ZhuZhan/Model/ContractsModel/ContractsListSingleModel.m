@@ -67,10 +67,12 @@
                                    @"2":@"销售佣金合同",
                                    @"3":@"佣金撤销流程"
                                    };
+    self.a_contractsTypeInt=[dict[@"contractsType"] integerValue];
     self.a_contractsType=contractsTypes[dict[@"contractsType"]];
     
     NSArray* archiveStatus=@[@"进行中",@"已完成",@"已关闭"];
     self.a_archiveStatusInt=[dict[@"archiveStatus"] integerValue];
     self.a_archiveStatus=archiveStatus[self.a_archiveStatusInt];
+    self.a_contractsRecordId=dict[@"contractsRecordId"];
 }
 @end

@@ -56,4 +56,10 @@
 
 //撤销合同详情
 + (NSURLSessionDataTask *)PostRevocationDetailWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
+
+//同意撤销合同
++ (NSURLSessionDataTask *)PostRevocationAgreeWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
+
+//不同意撤销合同
++ (NSURLSessionDataTask *)PostRevocationDisagreeWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 @end

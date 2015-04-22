@@ -604,6 +604,7 @@
 		5B4E6CA41A68F19A0008E5D5 /* 项目详情默认.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4E6CA21A68F19A0008E5D5 /* 项目详情默认.png */; };
 		5B4E6CA51A68F19A0008E5D5 /* 项目详情默认@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4E6CA31A68F19A0008E5D5 /* 项目详情默认@2x.png */; };
 		5B4E8A5819F8EA9800EA9AFF /* CompanyTotalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E8A5719F8EA9800EA9AFF /* CompanyTotalViewController.m */; };
+		5B4F6AD81AE75B78005CD38A /* ContractsRepealModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4F6AD71AE75B78005CD38A /* ContractsRepealModel.m */; };
 		5B4F98141AE63ADC009E0F78 /* RepealContractsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4F98131AE63ADC009E0F78 /* RepealContractsController.m */; };
 		5B4F98171AE652A7009E0F78 /* 修改大带子.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4F98151AE652A7009E0F78 /* 修改大带子.png */; };
 		5B4F98181AE652A7009E0F78 /* 修改大带子@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4F98161AE652A7009E0F78 /* 修改大带子@2x.png */; };
@@ -2460,6 +2461,8 @@
 		5B4E6CA31A68F19A0008E5D5 /* 项目详情默认@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情默认@2x.png"; sourceTree = "<group>"; };
 		5B4E8A5619F8EA9800EA9AFF /* CompanyTotalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyTotalViewController.h; sourceTree = "<group>"; };
 		5B4E8A5719F8EA9800EA9AFF /* CompanyTotalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyTotalViewController.m; sourceTree = "<group>"; };
+		5B4F6AD61AE75B78005CD38A /* ContractsRepealModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractsRepealModel.h; sourceTree = "<group>"; };
+		5B4F6AD71AE75B78005CD38A /* ContractsRepealModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractsRepealModel.m; sourceTree = "<group>"; };
 		5B4F98121AE63ADC009E0F78 /* RepealContractsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepealContractsController.h; sourceTree = "<group>"; };
 		5B4F98131AE63ADC009E0F78 /* RepealContractsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepealContractsController.m; sourceTree = "<group>"; };
 		5B4F98151AE652A7009E0F78 /* 修改大带子.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "修改大带子.png"; sourceTree = "<group>"; };
@@ -6780,6 +6783,8 @@
 				D3D483F41ADF884A004AF972 /* ContractsApi.m */,
 				5B6FF7021AE50F9500F3A3E0 /* ContractsSalerModel.h */,
 				5B6FF7031AE50F9500F3A3E0 /* ContractsSalerModel.m */,
+				5B4F6AD61AE75B78005CD38A /* ContractsRepealModel.h */,
+				5B4F6AD71AE75B78005CD38A /* ContractsRepealModel.m */,
 			);
 			path = ContractsModel;
 			sourceTree = "<group>";
@@ -8411,6 +8416,7 @@
 				5B90E0FF1ADE325000436CED /* ContractsTradeCodeView.m in Sources */,
 				5BAA14D619EE35AC00C7ECD9 /* MD5.m in Sources */,
 				0426C22F19922D5A00CD8822 /* LoginEvent.m in Sources */,
+				5B4F6AD81AE75B78005CD38A /* ContractsRepealModel.m in Sources */,
 				D3D5B42F1AB130B900E8EB04 /* GCDAsyncSocket.m in Sources */,
 				5B8A2CEC1AAEE0AD00C8F9DE /* AddressBookFriendViewController.m in Sources */,
 				0426C2E819922D5A00CD8822 /* FaceppInfo.m in Sources */,
