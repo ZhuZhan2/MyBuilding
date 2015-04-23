@@ -16,7 +16,6 @@
 #import "RKContractsStagesView.h"
 #import "ErrorCode.h"
 @interface MainContractsBaseController ()<ContractsBtnToolBarDelegate>
-@property (nonatomic, strong)ContractsMainClauseModel* mainClauseModel;
 
 @property (nonatomic, strong)ContractsUserView* userView1;
 @property (nonatomic, strong)ContractsUserView* userView2;
@@ -49,22 +48,26 @@
 }
 
 -(void)loadList{
-    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
-    [dic setObject:self.contractId forKey:@"contractId"];
-    [ContractsApi PostDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            self.mainClauseModel=posts[0];
-            [self reload];
-        }else{
-            if([ErrorCode errorCode:error] == 403){
-                [LoginAgain AddLoginView:NO];
+    if (self.mainClauseModel) {
+        [self reload];
+    }else{
+        NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+        [dic setObject:self.contractId forKey:@"contractId"];
+        [ContractsApi PostDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                self.mainClauseModel=posts[0];
+                [self reload];
             }else{
-                [ErrorCode alert];
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
-        }
-    } dic:dic noNetWork:^{
-        [ErrorCode alert];
-    }];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
+    }
 }
 
 -(void)reload{
@@ -97,7 +100,7 @@
     if (isSelfCreated) {
         //修改
         if (index==0) {
-            ContractsListSingleModel* dataModel=self.listSingleModel;
+            ContractsMainClauseModel* dataModel=self.mainClauseModel;
             ProvisionalModel* model=[[ProvisionalModel alloc]init];
 
             BOOL crateIsSaler=[dataModel.a_createdByType isEqualToString:@"2"];
@@ -107,8 +110,8 @@
             model.otherCompanyName=dataModel.a_partyB;
             model.personaName=dataModel.a_recipientName;
             model.moneyStr=dataModel.a_contractsMoney;
-            model.contractStr=self.mainClauseModel.a_contentMain;
-            model.modifiedId=self.listSingleModel.a_id;
+            model.contractStr=dataModel.a_contentMain;
+            model.modifiedId=dataModel.a_id;
             
             ProvisionalViewController* vc=[[ProvisionalViewController alloc]initWithView:model targetPopVC:self];
             [self.navigationController pushViewController:vc animated:YES];

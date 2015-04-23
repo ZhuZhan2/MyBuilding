@@ -8,11 +8,9 @@
 
 #import "SalerContractsController.h"
 #import "ContractsApi.h"
-#import "ContractsSalerModel.h"
 #import "RKContractsStagesView.h"
 #import "PDFViewController.h"
 @interface SalerContractsController ()
-@property (nonatomic, strong)ContractsSalerModel* salerModel;
 @end
 
 @implementation SalerContractsController
@@ -44,6 +42,9 @@
 }
 
 -(void)loadList{
+    if (self.salerModel) {
+        [self reload];
+    }else{
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
     NSString* contractsId=self.listSingleModel.a_id;
     [dic setObject:contractsId forKey:@"contractId"];
@@ -53,6 +54,7 @@
             [self reload];
         }
     } dic:dic noNetWork:nil];
+    }
 }
 
 -(void)reload{

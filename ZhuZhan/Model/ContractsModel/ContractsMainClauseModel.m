@@ -19,6 +19,7 @@
     self.a_isSelfCreated=[dict[@"createdBy"] isEqualToString:[LoginSqlite getdata:@"userName"]];
     self.a_contractsMoney=dict[@"contractsMoney"];
     self.a_serialNumber=dict[@"serialNumber"];
+    self.a_recipientName=dict[@"recipientName"];
 
     if ([self.a_createdByType isEqualToString:@"2"]) {
         self.a_providerCompanyName=dict[@"partyB"];

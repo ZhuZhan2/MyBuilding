@@ -18,6 +18,8 @@
 @property (nonatomic, copy)NSString* a_createdTime;
 //流水号
 @property (nonatomic, copy)NSString* a_serialNumber;
+//接收者用户名
+@property (nonatomic, copy)NSString* a_recipientName;
 @property (nonatomic)NSInteger a_status;
 /*
  未开始  0
