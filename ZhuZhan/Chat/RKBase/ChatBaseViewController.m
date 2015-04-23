@@ -343,6 +343,10 @@
     self.tableView.transform=CGAffineTransformMakeTranslation(0, [ChatToolBar orginChatToolBarHeight]-height);
 }
 
+-(void)startLoadingViewWithOption:(NSInteger)option{
+    UIView* back;
+}
+
 -(void)dealloc{
     self.tableView.delegate=nil;
     self.tableView.dataSource=nil;

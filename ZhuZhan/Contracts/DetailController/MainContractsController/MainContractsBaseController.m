@@ -72,6 +72,12 @@
     self.stagesView=nil;
     [self initStagesView];
     
+    [self.tradeCodeView removeFromSuperview];
+    self.tradeCodeView=nil;
+    [self initTradeCodeView];
+    
+    self.userView1=nil;
+    self.userView2=nil;
     self.mainClauseView=nil;
     self.btnToolBar=nil;
     self.cellViews=nil;
@@ -84,8 +90,8 @@
 
 -(void)contractsBtnToolBarClickedWithBtn:(UIButton *)btn index:(NSInteger)index{
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
-    BOOL isSelfCreated=self.listSingleModel.a_isSelfCreated;
-    NSString* contractsId=self.listSingleModel.a_id;
+    BOOL isSelfCreated=self.mainClauseModel.a_isSelfCreated;
+    NSString* contractsId=self.mainClauseModel.a_id;
     [dic setObject:contractsId forKey:@"id"];
     
     if (isSelfCreated) {
@@ -159,7 +165,7 @@
 
 -(BOOL)canClose{
     BOOL hasProviderFile=self.listSingleModel.a_provideHas;
-    BOOL canClose=self.listSingleModel.a_isSelfCreated&&self.mainClauseModel.a_status==2&&!hasProviderFile;
+    BOOL canClose=self.mainClauseModel.a_isSelfCreated&&self.mainClauseModel.a_status==2&&!hasProviderFile&&self.mainClauseModel.a_archiveStatus!=2;
     return canClose;
 }
 
@@ -223,23 +229,31 @@
 
 -(ContractsUserView *)userView1{
     if (!_userView1) {
-        _userView1=[ContractsUserView contractsUserViewWithUserName:self.listSingleModel.a_salerName userCategory:@"销售方" companyName:self.listSingleModel.a_salerCompanyName remarkContent:@"这里输入的公司全称将用于合同和开票信息"];
+        _userView1=[ContractsUserView contractsUserViewWithUserName:self.mainClauseModel.a_salerName userCategory:@"销售方" companyName:self.mainClauseModel.a_salerCompanyName remarkContent:@"这里输入的公司全称将用于合同和开票信息"];
     }
     return _userView1;
 }
 
 -(ContractsUserView *)userView2{
     if (!_userView2) {
-        _userView2=[ContractsUserView contractsUserViewWithUserName:self.listSingleModel.a_providerName userCategory:@"供应商" companyName:self.listSingleModel.a_providerCompanyName remarkContent:@"这里输入的公司全称将用于合同和开票信息"];
+        _userView2=[ContractsUserView contractsUserViewWithUserName:self.mainClauseModel.a_providerName userCategory:@"供应商" companyName:self.mainClauseModel.a_providerCompanyName remarkContent:@"这里输入的公司全称将用于合同和开票信息"];
     }
     return _userView2;
 }
 
 -(ContractsMainClauseView *)mainClauseView{
     if (!_mainClauseView) {
-        _mainClauseView=[ContractsMainClauseView mainClauseViewWithTitle:self.listSingleModel.a_contractsMoney content:self.mainClauseModel.a_contentMain];
+        _mainClauseView=[ContractsMainClauseView mainClauseViewWithTitle:self.mainClauseModel.a_contractsMoney content:self.mainClauseModel.a_contentMain];
     }
     return _mainClauseView;
+}
+
+-(ContractsTradeCodeView *)tradeCodeView{
+    if (!_tradeCodeView) {
+        NSString* tradeCode=[NSString stringWithFormat:@"流水号:%@",self.mainClauseModel.a_serialNumber];
+        _tradeCodeView=[ContractsTradeCodeView contractsTradeCodeViewWithTradeCode:tradeCode time:self.mainClauseModel.a_createdTime];
+    }
+    return _tradeCodeView;
 }
 
 /*
@@ -252,8 +266,8 @@
         NSMutableArray* btns=[NSMutableArray array];
         
         NSArray* imageNames;
-        if (self.listSingleModel.a_isSelfCreated) {
-            if (self.mainClauseModel.a_status==2) {
+        if (self.mainClauseModel.a_isSelfCreated) {
+            if (self.mainClauseModel.a_status==2&&self.mainClauseModel.a_archiveStatus!=2) {
                 imageNames=@[@"修改大带子"];
             }else{
                 
