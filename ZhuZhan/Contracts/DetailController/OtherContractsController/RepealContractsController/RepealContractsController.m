@@ -9,13 +9,11 @@
 #import "RepealContractsController.h"
 #import "ContractsApi.h"
 #import "PDFViewController.h"
-#import "ContractsRepealModel.h"
 #import "RKContractsStagesView.h"
 #import "ContractsTradeCodeView.h"
 #import "MainContractsBaseController.h"
 #import "RKShadowView.h"
 @interface RepealContractsController ()
-@property (nonatomic, strong)ContractsRepealModel* repealModel;
 @end
 
 @implementation RepealContractsController
@@ -39,15 +37,19 @@
 }
 
 -(void)loadList{
-    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
-    NSString* contractsId=self.listSingleModel.a_contractsRecordId;
-    [dic setObject:contractsId forKey:@"contractId"];
-    [ContractsApi PostRevocationDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            self.repealModel=posts[0];
-            [self reload];
-        }
-    } dic:dic noNetWork:nil];
+    if (self.repealModel) {
+        [self reload];
+    }else{
+        NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+        NSString* contractsId=self.listSingleModel.a_contractsRecordId;
+        [dic setObject:contractsId forKey:@"contractId"];
+        [ContractsApi PostRevocationDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                self.repealModel=posts[0];
+                [self reload];
+            }
+        } dic:dic noNetWork:nil];
+    }
 }
 
 -(void)clauseMainBtnClicked{
@@ -123,7 +125,7 @@
             }
         } dic:dic noNetWork:nil];
         
-    //同意
+        //同意
     }else if (index==1){
         [ContractsApi PostRevocationAgreeWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {

@@ -39,14 +39,18 @@
 }
 
 -(void)loadList{
-    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
-    [dic setObject:self.listSingleModel.a_id forKey:@"contractId"];
-    [ContractsApi PostDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            self.mainClauseModel=posts[0];
-            [self reload];
-        }
-    } dic:dic noNetWork:nil];
+    if (self.mainClauseModel) {
+        [self reload];
+    }else{
+        NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+        [dic setObject:self.listSingleModel.a_id forKey:@"contractId"];
+        [ContractsApi PostDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                self.mainClauseModel=posts[0];
+                [self reload];
+            }
+        } dic:dic noNetWork:nil];
+    }
 }
 
 -(void)reload{
@@ -80,7 +84,7 @@
         } dic:dic noNetWork:^{
             [ErrorCode alert];
         }];
-    //同意
+        //同意
     }else if (index==1){
         [ContractsApi PostCommissionAgreeWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
@@ -132,7 +136,7 @@
                 array=[self stylesWithNumber:1 count:4];
             }
         }
-
+        
         _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"已完成"],@[@"填写合同",@"审核中",@"生成",@"上传"],@[self.mainClauseModel.a_salestatus==0?@"未开始":(self.listSingleModel.a_archiveStatusInt==5?@"已完成":@"进行中")]] smallStageStyles:@[@[@0],array,@[hasSalerFile?@0:@1]] isClosed:self.listSingleModel.a_archiveStatusInt==2];
         CGRect frame=_stagesView.frame;
         frame.origin.y=64;
@@ -164,7 +168,7 @@
     if (!_btnToolBar) {
         NSMutableArray* btns=[NSMutableArray array];
         NSArray* imageNames;
-
+        
         if (self.mainClauseModel.a_status==3||self.mainClauseModel.a_status==6) {
             imageNames=@[@"不同意带字",@"同意带字"];
         }

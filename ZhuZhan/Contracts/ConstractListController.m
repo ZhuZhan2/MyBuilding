@@ -281,6 +281,13 @@
 -(void)finishSelectedWithStageName:(NSString *)stageName index:(int)index{
     self.nowStage=index;
     NSArray* titles=@[@"佣金合同列表",@"供应商佣金合同",@"销售佣金合同",@"佣金撤销流程"];
+    if (index==0) {
+        [self setRightBtnWithImage:[GetImagePath getImagePath:nil]];
+
+    }else{
+        [self setRightBtnWithImage:[GetImagePath getImagePath:@"搜索按钮"]];
+
+    }
     [self initTitleViewWithTitle:titles[index]];
     [self loadList];
 }

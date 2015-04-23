@@ -7,7 +7,9 @@
 //
 
 #import "OtherContractsBaseController.h"
+#import "ContractsSalerModel.h"
 
 @interface SalerContractsController : OtherContractsBaseController
+@property (nonatomic, strong)ContractsSalerModel* salerModel;
 
 @end

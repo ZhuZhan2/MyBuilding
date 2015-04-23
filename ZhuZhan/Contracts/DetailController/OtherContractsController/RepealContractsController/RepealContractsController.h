@@ -7,7 +7,8 @@
 //
 
 #import "OtherContractsBaseController.h"
+#import "ContractsRepealModel.h"
 
 @interface RepealContractsController : OtherContractsBaseController
-
+@property (nonatomic, strong)ContractsRepealModel* repealModel;
 @end

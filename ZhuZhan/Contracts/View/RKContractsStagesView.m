@@ -33,7 +33,7 @@
         {
             NSMutableArray* tmpSmallStageNames=[smallStageNames mutableCopy];
             
-            NSMutableArray* tmpArr=tmpSmallStageNames.lastObject;
+            NSMutableArray* tmpArr=[tmpSmallStageNames.lastObject mutableCopy];
             [tmpArr removeLastObject];
             [tmpArr addObject:@"已关闭"];
             
