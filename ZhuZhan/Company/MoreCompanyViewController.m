@@ -65,6 +65,7 @@
 }
 
 -(void)firstNetWork{
+    startIndex = 0;
     [CompanyApi GetCompanyListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.showArr = posts;

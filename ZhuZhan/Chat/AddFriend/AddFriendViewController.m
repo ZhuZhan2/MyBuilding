@@ -71,6 +71,7 @@
 }
 
 -(void)firstNetWork{
+    self.startIndex = 0;
     [AddressBookApi GetFriendRequestListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             self.models = posts;

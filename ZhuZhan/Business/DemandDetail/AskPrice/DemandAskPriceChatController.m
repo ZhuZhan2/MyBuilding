@@ -27,6 +27,7 @@
 
 
 -(void)loadList{
+    self.startIndex = 0;
     [AskPriceApi GetCommentListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.chatModels = posts;

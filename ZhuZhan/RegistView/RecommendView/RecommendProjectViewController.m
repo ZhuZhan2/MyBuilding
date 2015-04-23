@@ -119,6 +119,7 @@
 }
 
 -(void)loadList{
+    startIndex = 0;
     [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.showArr = posts;

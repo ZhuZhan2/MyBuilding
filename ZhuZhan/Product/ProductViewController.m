@@ -92,6 +92,7 @@
 }
 
 -(void)firstNetWork{
+    startIndex = 0;
     [ProductModel GetProductInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             showArr = posts;

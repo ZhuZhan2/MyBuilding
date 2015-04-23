@@ -101,6 +101,7 @@
 }
 
 -(void)loadList{
+    self.startIndex = 0;
     [ContractsApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             self.showArr=posts[0];

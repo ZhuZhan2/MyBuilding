@@ -56,11 +56,10 @@
 
 -(void)searchListWithKeyword:(NSString*)keyword{
     self.keyWords = keyword;
+    self.startIndex = 0;
     [ContractsApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             self.models=posts[0];
-            NSLog(@"%@",self.models);
-            NSLog(@"%d",(int)self.models.count);
             if(self.models.count ==0){
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"无搜索结果" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertView show];

@@ -76,6 +76,7 @@
 }
 
 -(void)loadList{
+    self.startIndex = 0;
     [AskPriceMessageApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.showArr = posts;
@@ -286,11 +287,10 @@
     [ContractsApi PostDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             ContractsMainClauseModel* mainModel=posts[0];
-            NSLog(@"===>%@",mainModel.a_fileName);
             if([mainModel.a_fileName isEqualToString:@""]){
                 MainContractsBaseController *view = [[MainContractsBaseController alloc] init];
+                view.mainClauseModel = mainModel;
                 [self.navigationController pushViewController:view animated:YES];
-                [self stopLoadingView];
             }
         }else{
             if([ErrorCode errorCode:error] == 403){
@@ -299,6 +299,7 @@
                 [ErrorCode alert];
             }
         }
+        [self stopLoadingView];
     } dic:dic noNetWork:^{
         self.tableView.scrollEnabled=NO;
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
@@ -314,7 +315,10 @@
     [dic setObject:ID forKey:@"contractId"];
     [ContractsApi PostSalesDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-        
+            ContractsSalerModel *saleModel = posts[0];
+            SalerContractsController *view = [[SalerContractsController alloc] init];
+            view.salerModel = saleModel;
+            [self.navigationController pushViewController:view animated:YES];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -322,6 +326,7 @@
                 [ErrorCode alert];
             }
         }
+        [self stopLoadingView];
     } dic:dic noNetWork:^{
         self.tableView.scrollEnabled=NO;
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
@@ -337,7 +342,10 @@
     [dic setObject:ID forKey:@"contractId"];
     [ContractsApi PostRevocationDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            
+            ContractsRepealModel *repealModel = posts[0];
+            RepealContractsController *view = [[RepealContractsController alloc] init];
+            view.repealModel = repealModel;
+            [self.navigationController pushViewController:view animated:YES];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -345,6 +353,7 @@
                 [ErrorCode alert];
             }
         }
+        [self stopLoadingView];
     } dic:dic noNetWork:^{
         self.tableView.scrollEnabled=NO;
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{

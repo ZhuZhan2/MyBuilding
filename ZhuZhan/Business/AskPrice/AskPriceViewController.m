@@ -76,6 +76,7 @@
 }
 
 -(void)loadList{
+    self.startIndex = 0;
     [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             [self.showArr removeAllObjects];

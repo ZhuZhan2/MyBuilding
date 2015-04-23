@@ -52,6 +52,7 @@
 
 -(void)searchListWithKeyword:(NSString*)keyword{
     self.keyWords = keyword;
+    self.startIndex = 0;
     [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.models = posts[0];

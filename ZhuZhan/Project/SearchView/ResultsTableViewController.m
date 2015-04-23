@@ -260,10 +260,10 @@
 
 - (void)footerRereshing
 {
-    startIndex++;
     if(self.flag == 0){
         [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
+                startIndex++;
                 if(posts.count !=0){
                     [showArr addObjectsFromArray:posts[0]];
                     allCount = posts[1];
