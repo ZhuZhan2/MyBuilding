@@ -13,10 +13,20 @@
 #import "AskPriceMessageApi.h"
 #import "AskPriceDetailViewController.h"
 #import "QuotesDetailViewController.h"
+#import "MainContractsBaseController.h"
+#import "ProviderContractsController.h"
+#import "SalerContractsController.h"
+#import "RepealContractsController.h"
+#import "ContractsApi.h"
+#import "ContractsMainClauseModel.h"
+#import "ContractsRepealModel.h"
+#import "ContractsSalerModel.h"
 @interface AskPriceMessageViewController ()
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)NSString *type;
 @property(nonatomic)int startIndex;
+@property(nonatomic,strong)UIActivityIndicatorView* activityView;
+@property(nonatomic,strong)UIView* loadingView;
 @end
 
 @implementation AskPriceMessageViewController
@@ -35,6 +45,34 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(UIActivityIndicatorView *)activityView{
+    if (!_activityView) {
+        _activityView=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    }
+    return _activityView;
+}
+
+-(void)startLoadingView{
+    [self.activityView startAnimating];
+    [self.navigationController.view addSubview:self.loadingView];
+}
+
+-(void)stopLoadingView{
+    [self.activityView stopAnimating];
+    [self.loadingView removeFromSuperview];
+}
+
+-(UIView *)loadingView{
+    if (!_loadingView) {
+        _loadingView=[[UIView alloc]initWithFrame:self.view.bounds];
+        _loadingView.backgroundColor=[[UIColor alloc]initWithRed:0 green:0 blue:0 alpha:.5];
+        
+        self.activityView.center=_loadingView.center;
+        [_loadingView addSubview:self.activityView];
+    }
+    return _loadingView;
 }
 
 -(void)loadList{
@@ -76,6 +114,7 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
+    self.startIndex = 0;
     [AskPriceMessageApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             [self.showArr removeAllObjects];
@@ -158,15 +197,27 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-     AskPriceMessageModel *model = self.showArr[indexPath.row];
+    [self startLoadingView];
+    AskPriceMessageModel *model = self.showArr[indexPath.row];
     if([model.a_messageType isEqualToString:@"06"]){
         AskPriceDetailViewController *view = [[AskPriceDetailViewController alloc] init];
         view.tradId = model.a_messageSourceId;
         [self.navigationController pushViewController:view animated:YES];
+        [self stopLoadingView];
     }else if ([model.a_messageType isEqualToString:@"07"]){
         QuotesDetailViewController *view = [[QuotesDetailViewController alloc] init];
         view.tradId = model.a_messageSourceId;
         [self.navigationController pushViewController:view animated:YES];
+        [self stopLoadingView];
+    }else if ([model.a_messageType isEqualToString:@"08"]){
+        NSLog(@"08");
+        [self MainContractsData:model.a_messageSourceId];
+    }else if ([model.a_messageType isEqualToString:@"09"]){
+        [self ProviderContractsData:model.a_messageSourceId];
+    }else if ([model.a_messageType isEqualToString:@"10"]){
+        [self RepealContractsData:model.a_messageSourceId];
+        //RepealContractsController *view = [[RepealContractsController alloc] init];
+        //[self.navigationController pushViewController:view animated:YES];
     }
 }
 
@@ -226,5 +277,80 @@
     NSArray* stages=@[@"06",@"07",@"08"];
     self.type=stages[stageNumber];
     [self loadList];
+}
+
+//主条款或者供应商合同
+-(void)MainContractsData:(NSString *)ID{
+    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+    [dic setObject:ID forKey:@"contractId"];
+    [ContractsApi PostDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            ContractsMainClauseModel* mainModel=posts[0];
+            NSLog(@"===>%@",mainModel.a_fileName);
+            if([mainModel.a_fileName isEqualToString:@""]){
+                MainContractsBaseController *view = [[MainContractsBaseController alloc] init];
+                [self.navigationController pushViewController:view animated:YES];
+                [self stopLoadingView];
+            }
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
+        }
+    } dic:dic noNetWork:^{
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+            [self loadList];
+        }];
+    }];
+}
+
+//销售合同
+-(void)ProviderContractsData:(NSString *)ID{
+    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+    [dic setObject:ID forKey:@"contractId"];
+    [ContractsApi PostSalesDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+        
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
+        }
+    } dic:dic noNetWork:^{
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+            [self loadList];
+        }];
+    }];
+}
+
+//撤销合同
+-(void)RepealContractsData:(NSString *)ID{
+    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+    [dic setObject:ID forKey:@"contractId"];
+    [ContractsApi PostRevocationDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
+        }
+    } dic:dic noNetWork:^{
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+            [self loadList];
+        }];
+    }];
 }
 @end

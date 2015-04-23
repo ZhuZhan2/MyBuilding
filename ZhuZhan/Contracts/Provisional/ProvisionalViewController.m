@@ -140,8 +140,8 @@
         return;
     }
     
-    if(self.myCompanyName.length >20||self.otherCompanyName.length >20){
-        [self showAlertView:@"公司名字不能超过20个字"];
+    if(self.myCompanyName.length >16||self.otherCompanyName.length >16){
+        [self showAlertView:@"公司名字不能超过16个字"];
         return;
     }
     

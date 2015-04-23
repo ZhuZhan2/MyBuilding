@@ -59,7 +59,14 @@
     [ContractsApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             self.models=posts[0];
-            [self.searchBarTableView reloadData];
+            NSLog(@"%@",self.models);
+            NSLog(@"%d",(int)self.models.count);
+            if(self.models.count ==0){
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"无搜索结果" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+            }else{
+                [self.searchBarTableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -75,11 +82,16 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
+    self.startIndex = 0;
     [ContractsApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [self.models removeAllObjects];
-            self.models = posts[0];
-            [self.searchBarTableView reloadData];
+            if(self.models.count ==0){
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"无搜索结果" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+            }else{
+                [self.searchBarTableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
