@@ -14,6 +14,7 @@
 #import "MainContractsBaseController.h"
 #import "RKShadowView.h"
 @interface RepealContractsController ()
+@property (nonatomic, strong)UIAlertView* sureModifiAlertView;
 @end
 
 @implementation RepealContractsController
@@ -40,6 +41,7 @@
     if (self.repealModel) {
         [self reload];
     }else{
+        [self startLoadingViewWithOption:0];
         NSMutableDictionary* dic=[NSMutableDictionary dictionary];
         NSString* contractsId=self.listSingleModel.a_contractsRecordId;
         [dic setObject:contractsId forKey:@"contractId"];
@@ -48,6 +50,7 @@
                 self.repealModel=posts[0];
                 [self reload];
             }
+            [self stopLoadingView];
         } dic:dic noNetWork:nil];
     }
 }
@@ -113,19 +116,18 @@
 }
 
 -(void)contractsBtnToolBarClickedWithBtn:(UIButton *)btn index:(NSInteger)index{
+    [self startLoadingViewWithOption:1];
+    
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
     NSString* contractsId=self.listSingleModel.a_id;
     [dic setObject:contractsId forKey:@"id"];
     //不同意
     if (index==0) {
-        [ContractsApi PostRevocationDisagreeWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if (!error) {
-                NSLog(@"不同意成功");
-                [self sucessPost];
-            }
-        } dic:dic noNetWork:nil];
-        
-        //同意
+        NSLog(@"不同意成功");
+        self.sureModifiAlertView=[[UIAlertView alloc]initWithTitle:@"提醒" message:@"是否同意客服进行修改？" delegate:self cancelButtonTitle:nil otherButtonTitles:@"不同意",@"同意", nil];
+        [self.sureModifiAlertView show];
+    
+    //同意
     }else if (index==1){
         [ContractsApi PostRevocationAgreeWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
@@ -133,6 +135,32 @@
                 [self sucessPost];
             }
         } dic:dic noNetWork:nil];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    [super alertView:alertView clickedButtonAtIndex:buttonIndex];
+    if (self.sureModifiAlertView==alertView) {
+        NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+        NSString* contractsId=self.listSingleModel.a_id;
+        [dic setObject:contractsId forKey:@"id"];
+        //不同意修改
+        if (buttonIndex) {
+            [ContractsApi PostRevocationDisagreeWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if (!error) {
+                    NSLog(@"不同意客服修改成功");
+                    [self sucessPost];
+                }
+            } dic:dic noNetWork:nil];
+            //同意修改
+        }else{
+            [ContractsApi PostRevocationModifyWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if (!error) {
+                    NSLog(@"同意客服修改成功");
+                    [self sucessPost];
+                }
+            } dic:dic noNetWork:nil];
+        }
     }
 }
 

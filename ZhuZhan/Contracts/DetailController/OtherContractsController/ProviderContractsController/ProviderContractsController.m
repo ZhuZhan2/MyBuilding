@@ -42,6 +42,7 @@
     if (self.mainClauseModel) {
         [self reload];
     }else{
+        [self startLoadingViewWithOption:0];
         NSMutableDictionary* dic=[NSMutableDictionary dictionary];
         [dic setObject:self.listSingleModel.a_id forKey:@"contractId"];
         [ContractsApi PostDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -49,6 +50,7 @@
                 self.mainClauseModel=posts[0];
                 [self reload];
             }
+            [self stopLoadingView];
         } dic:dic noNetWork:nil];
     }
 }
@@ -64,6 +66,8 @@
 }
 
 -(void)contractsBtnToolBarClickedWithBtn:(UIButton *)btn index:(NSInteger)index{
+    [self startLoadingViewWithOption:1];
+
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
     NSString* contractsId=self.listSingleModel.a_id;
     [dic setObject:contractsId forKey:@"id"];
@@ -108,6 +112,8 @@
 }
 
 -(void)closeBtnClickedWithContent:(NSString*)content{
+    [self startLoadingViewWithOption:1];
+
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
     NSString* contractsId=self.listSingleModel.a_id;
     [dic setObject:contractsId forKey:@"id"];
