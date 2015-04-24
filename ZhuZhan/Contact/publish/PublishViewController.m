@@ -226,15 +226,27 @@ static BOOL isFirst;
 
 //范俊说以后如果这个被枪毙了，可以考虑当超出150字的时候提示alertView超出字数，并只出现一次
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-    if ([@"\n" isEqualToString:text] == YES) { //发送的操作
-        [self goToPublish];
-        return NO;
+    if(textView.text.length > kPublishLimitNumber){
+        NSArray *array = [UITextInputMode activeInputModes];
+        if (array.count > 0) {
+            UITextInputMode *textInputMode = [array firstObject];
+            NSString *lang = [textInputMode primaryLanguage];
+            if ([lang isEqualToString:@"zh-Hans"]) {
+                return YES;
+            }else{
+                return NO;
+            }
+        }else{
+            return NO;
+        }
+    }else{
+        if ([text isEqualToString:@"\n"]) { //发送的操作
+            [self goToPublish];
+            return NO;
+        }else{
+            return YES;
+        }
     }
-    NSLog(@"range.length=%ld",(unsigned long)range.length);
-//    if (range.length == 0 && textView.text.length >= kPublishLimitNumber) {
-//        return NO;
-//    }
-    return YES;
 }
 
 
@@ -253,15 +265,15 @@ static BOOL isFirst;
         NSString *lang = [textInputMode primaryLanguage];
         if ([lang isEqualToString:@"zh-Hans"]) {
             if (textView.text.length != 0) {
-                int a = [textView.text characterAtIndex:textView.text.length - 1];
-                if( a > 0x4e00 && a < 0x9fff) { // PINYIN 手写的时候 才做处理
-                    if (textView.text.length >= kPublishLimitNumber) {
+                UITextRange *selectedRange = [textView markedTextRange];
+                //获取高亮部分
+                UITextPosition *position = [textView positionFromPosition:selectedRange.start offset:0];
+                if (!position) {
+                    if (textView.text.length > kPublishLimitNumber) {
                         textView.text = [textView.text substringToIndex:kPublishLimitNumber];
                     }
                 }else{
-                    if (textView.text.length >= kPublishLimitNumber) {
-                        textView.text = [textView.text substringToIndex:kPublishLimitNumber];
-                    }
+                    
                 }
             }
         } else {

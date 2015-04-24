@@ -94,15 +94,15 @@
         NSString *lang = [textInputMode primaryLanguage];
         if ([lang isEqualToString:@"zh-Hans"]) {
             if (textView.text.length != 0) {
-                int a = [textView.text characterAtIndex:textView.text.length - 1];
-                if( a > 0x4e00 && a < 0x9fff) { // PINYIN 手写的时候 才做处理
-                    if (textView.text.length >= limitNumber) {
+                UITextRange *selectedRange = [textView markedTextRange];
+                //获取高亮部分
+                UITextPosition *position = [textView positionFromPosition:selectedRange.start offset:0];
+                if (!position) {
+                    if (textView.text.length > limitNumber) {
                         textView.text = [textView.text substringToIndex:limitNumber];
                     }
                 }else{
-                    if (textView.text.length >= limitNumber) {
-                        textView.text = [textView.text substringToIndex:limitNumber];
-                    }
+                    
                 }
             }
         } else {

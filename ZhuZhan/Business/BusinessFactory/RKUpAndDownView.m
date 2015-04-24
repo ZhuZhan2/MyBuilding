@@ -152,13 +152,27 @@
 }
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-    if ([text isEqualToString:@"\n"]) {
-        [textView resignFirstResponder];
-        return NO;
+    if (textView.text.length > strCount) {
+        NSArray *array = [UITextInputMode activeInputModes];
+        if (array.count > 0) {
+            UITextInputMode *textInputMode = [array firstObject];
+            NSString *lang = [textInputMode primaryLanguage];
+            if ([lang isEqualToString:@"zh-Hans"]) {
+                return YES;
+            }else{
+                return NO;
+            }
+        }else{
+            return NO;
+        }
     }else{
-        return YES;
+        if ([text isEqualToString:@"\n"]) {
+            [textView resignFirstResponder];
+            return NO;
+        }else{
+            return YES;
+        }
     }
-    
 }
 
 -(void)textViewDidChange:(UITextView *)textView{
@@ -168,15 +182,15 @@
         NSString *lang = [textInputMode primaryLanguage];
         if ([lang isEqualToString:@"zh-Hans"]) {
             if (textView.text.length != 0) {
-                int a = [textView.text characterAtIndex:textView.text.length - 1];
-                if( a > 0x4e00 && a < 0x9fff) { // PINYIN 手写的时候 才做处理
-                    if (textView.text.length >= strCount) {
+                UITextRange *selectedRange = [textView markedTextRange];
+                //获取高亮部分
+                UITextPosition *position = [textView positionFromPosition:selectedRange.start offset:0];
+                if (!position) {
+                    if (textView.text.length > strCount) {
                         textView.text = [textView.text substringToIndex:strCount];
                     }
                 }else{
-                    if (textView.text.length >= strCount) {
-                        textView.text = [textView.text substringToIndex:strCount];
-                    }
+                
                 }
             }
         } else {
@@ -187,5 +201,12 @@
     }
     
     self.placeLabel.alpha=!textView.text.length;
+}
+
+-(NSString *)trimString:(NSString *)target
+{
+    target = [target stringByReplacingOccurrencesOfString:@" " withString:@""];
+    target = [target stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    return target;
 }
 @end
