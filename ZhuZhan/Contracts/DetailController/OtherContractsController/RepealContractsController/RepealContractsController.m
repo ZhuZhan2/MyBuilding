@@ -145,17 +145,17 @@
         [dic setObject:contractsId forKey:@"id"];
         //不同意修改
         if (buttonIndex) {
-            [ContractsApi PostRevocationDisagreeWithBlock:^(NSMutableArray *posts, NSError *error) {
+            [ContractsApi PostRevocationModifyWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if (!error) {
-                    NSLog(@"不同意客服修改成功");
+                    NSLog(@"同意客服修改成功");
                     [self sucessPost];
                 }
             } dic:dic noNetWork:nil];
             //同意修改
-        }else{
-            [ContractsApi PostRevocationModifyWithBlock:^(NSMutableArray *posts, NSError *error) {
+        }else{            
+            [ContractsApi PostRevocationDisagreeWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if (!error) {
-                    NSLog(@"同意客服修改成功");
+                    NSLog(@"不同意客服修改成功");
                     [self sucessPost];
                 }
             } dic:dic noNetWork:nil];
@@ -217,7 +217,7 @@
     if (!_btnToolBar) {
         NSMutableArray* btns=[NSMutableArray array];
         NSArray* imageNames;
-        if (self.listSingleModel.a_status==1) {
+        if (self.repealModel.a_status==1) {
             imageNames=@[@"不同意带字",@"同意带字"];
         }
         

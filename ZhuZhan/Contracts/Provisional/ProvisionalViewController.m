@@ -17,6 +17,7 @@
 #import "SearchContactViewController.h"
 #import "ContractsApi.h"
 #import "ConstractListController.h"
+#import "ProjectStage.h"
 @interface ProvisionalViewController ()<UITableViewDataSource,UITableViewDelegate,MoneyViewDelegate,ContractViewDelegate,StartManViewDelegate,ReceiveViewDelegate,UIActionSheetDelegate,SearchContactViewDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *viewArr;
@@ -44,16 +45,20 @@
 @implementation ProvisionalViewController
 -(id)initWithView:(ProvisionalModel *)model targetPopVC:(UIViewController*)targetPopVC{
     if(self = [super init]){
+        self.isModified=YES;
         self.personaStr1 = model.personaStr1;
         self.personaStr2 = model.personaStr2;
         self.myCompanyName = model.myCompanyName;
         self.otherCompanyName = model.otherCompanyName;
         self.personaName = model.personaName;
-        self.moneyStr = model.moneyStr;
+        if(self.isModified){
+            self.moneyStr = [NSString stringWithFormat:@"￥%@",[ProjectStage stringtoRBM:model.moneyStr]];
+        }else{
+            self.moneyStr = model.moneyStr;
+        }
         self.contractStr = model.contractStr;
         self.modifiedId=model.modifiedId;
         self.targetPopVC=targetPopVC;
-        self.isModified=YES;
     }
     return self;
 }
