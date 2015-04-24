@@ -132,11 +132,12 @@
         NSArray* bigStageNames=@[@"合同主要条款",@"供应商佣金合同",@"销售佣金合同"];
         NSArray* smallStageNames=@[@[@"填写条款",@"待审核",@"生成条款"],@[@"已完成"],@[self.salerModel.a_archiveStatus==1?@"已完成":@"进行中"]];
         BOOL isClosed=self.salerModel.a_archiveStatus==1;
-        NSArray* smallStageStyles=@[@[@0,@0,@0],@[@0],@[@0],@(isClosed)];
+        NSArray* smallStageStyles=@[@[@0,@0,@0],@[@0],@[@0]];
         
         [datas addObject:bigStageNames];
         [datas addObject:smallStageNames];
         [datas addObject:smallStageStyles];
+        [datas addObject:@(isClosed)];
     }
     return datas;
 }

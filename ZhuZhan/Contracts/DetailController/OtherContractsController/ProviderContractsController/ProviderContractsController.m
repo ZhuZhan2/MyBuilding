@@ -169,11 +169,12 @@
         
         NSArray* smallStageNames=@[@[@"填写条款",@"待审核",@"生成条款"],@[self.mainClauseModel.a_archiveStatus==2?@"已关闭":(self.mainClauseModel.a_archiveStatus==1?@"已完成":@"进行中")],@[self.mainClauseModel.a_salestatus==0?@"未开始":(self.mainClauseModel.a_saleArchiveStatus==1?@"已完成":@"进行中")]];
         BOOL isClosed=self.mainClauseModel.a_archiveStatus==2||self.mainClauseModel.a_saleArchiveStatus==2;
-        NSArray* smallStageStyles=@[@[@0,@0,@0],@[@0],@[self.mainClauseModel.a_salestatus==0?@1:@0],@(isClosed)];
+        NSArray* smallStageStyles=@[@[@0,@0,@0],@[@0],@[self.mainClauseModel.a_salestatus==0?@1:@0]];
         
         [datas addObject:bigStageNames];
         [datas addObject:smallStageNames];
         [datas addObject:smallStageStyles];
+        [datas addObject:@(isClosed)];
     }
     return datas;
 }
