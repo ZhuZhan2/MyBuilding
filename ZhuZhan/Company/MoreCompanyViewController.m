@@ -305,9 +305,9 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     self.keywords = searchBar.text;
+    startIndex = 0;
     [CompanyApi GetCompanyListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            startIndex = 0;
             self.showArr = posts;
             if(self.showArr.count == 0){
                 [MyTableView reloadDataWithTableView:self.tableView];
