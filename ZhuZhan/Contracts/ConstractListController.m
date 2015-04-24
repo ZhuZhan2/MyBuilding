@@ -259,17 +259,12 @@
             MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
             pushVC=vc;
         }
-    }else{
-        [self error];
     }
     pushVC.listSingleModel=singleModel;
     
     [self.navigationController pushViewController:pushVC animated:YES];
 }
 
--(void)error{
-    [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"请测试记下当前的合同各个状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
-}
 
 -(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{
     NSArray* archiveStatus=@[@"",@"0",@"1",@"2"];
@@ -281,7 +276,7 @@
     self.nowStage=index;
     NSArray* titles=@[@"佣金合同列表",@"供应商佣金合同",@"销售佣金合同",@"佣金撤销流程"];
     if (index==0) {
-        [self setRightBtnWithImage:[GetImagePath getImagePath:nil]];
+        [self setRightBtnWithImage:nil];
 
     }else{
         [self setRightBtnWithImage:[GetImagePath getImagePath:@"搜索按钮"]];

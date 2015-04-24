@@ -124,7 +124,7 @@
     //不同意
     if (index==0) {
         NSLog(@"不同意成功");
-        self.sureModifiAlertView=[[UIAlertView alloc]initWithTitle:@"提醒" message:@"是否同意客服进行修改？" delegate:self cancelButtonTitle:nil otherButtonTitles:@"不同意",@"同意", nil];
+        self.sureModifiAlertView=[[UIAlertView alloc]initWithTitle:@"" message:@"是否接受客服修改合同？" delegate:self cancelButtonTitle:nil otherButtonTitles:@"不接受",@"接受", nil];
         [self.sureModifiAlertView show];
     
     //同意

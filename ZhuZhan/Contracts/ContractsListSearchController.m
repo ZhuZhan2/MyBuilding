@@ -58,6 +58,7 @@
     self.keyWords = keyword;
     [ContractsApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
+            self.startIndex=0;
             self.models=posts[0];
             [self.searchBarTableView reloadData];
         }else{

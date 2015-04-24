@@ -36,6 +36,7 @@
 -(void)clauseMainBtnClicked{
     MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
     vc.listSingleModel=self.listSingleModel;
+    vc.contractsStagesViewData=[self contractsStagesViewData];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
