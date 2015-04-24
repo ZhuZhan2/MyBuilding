@@ -42,11 +42,6 @@
 
 -(NSString *)contractId{
     if (!_contractId) {
-//        if(self.listSingleModel.a_contractsTypeInt == 2 ||self.listSingleModel.a_contractsTypeInt == 3){
-//            _contractId=self.listSingleModel.a_contractsRecordId;
-//        }else{
-//            _contractId=self.listSingleModel.a_id;
-//        }
         _contractId=self.listSingleModel.a_id;
     }
     return _contractId;
@@ -99,7 +94,6 @@
 }
 
 -(void)contractsBtnToolBarClickedWithBtn:(UIButton *)btn index:(NSInteger)index{
-    [self startLoadingViewWithOption:1];
     
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
     BOOL isSelfCreated=self.mainClauseModel.a_isSelfCreated;
@@ -126,6 +120,7 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
     }else{
+        [self startLoadingViewWithOption:1];
         //不同意
         if (index==0) {
             [ContractsApi PostDisagreeWithBlock:^(NSMutableArray *posts, NSError *error) {

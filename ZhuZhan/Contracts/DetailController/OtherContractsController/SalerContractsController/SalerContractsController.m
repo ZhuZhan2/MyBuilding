@@ -110,12 +110,12 @@
         NSArray* bigStages=@[@"合同主要条款",@"供应商佣金合同",@"销售佣金合同"];
         NSArray* array;
         {
-            if (status<3) {
-                array=[self stylesWithNumber:1 count:4];
-            }else if (status>=3&&status!=9){
-                array=[self stylesWithNumber:3 count:4];
-            }else if (status==9){
+            if (status<=2) {
+                array=[self stylesWithNumber:2 count:4];
+            }else if (status==5){
                 array=[self stylesWithNumber:4 count:4];
+            }else{
+                array=[self stylesWithNumber:3 count:4];
             }
         }
         
