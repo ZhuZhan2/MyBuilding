@@ -47,6 +47,7 @@
 -(void)sucessPost{
     self.sucessAlertView=[[UIAlertView alloc]initWithTitle:@"提醒" message:@"操作成功" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
     [self.sucessAlertView show];
+    [self stopLoadingView];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"ConstractListControllerReloadDataNotification" object:nil];
 }
 

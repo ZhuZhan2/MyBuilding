@@ -64,6 +64,10 @@
 @property(nonatomic,strong)RKStageChooseView* stageChooseView;
 -(void)initStageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers;
 
+//0为白背景，1为黑透明背景
+-(void)startLoadingViewWithOption:(NSInteger)option;
+-(void)stopLoadingView;
+
 -(void)addKeybordNotification;
 -(void)keybordWillChangeFrame:(NSNotification*)noti;
 -(void)reloadSearchBarTableViewData;

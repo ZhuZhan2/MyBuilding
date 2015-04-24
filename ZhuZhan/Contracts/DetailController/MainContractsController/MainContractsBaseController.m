@@ -42,11 +42,12 @@
 
 -(NSString *)contractId{
     if (!_contractId) {
-        if(self.listSingleModel.a_contractsTypeInt == 2 ||self.listSingleModel.a_contractsTypeInt == 3){
-            _contractId=self.listSingleModel.a_contractsRecordId;
-        }else{
-            _contractId=self.listSingleModel.a_id;
-        }
+//        if(self.listSingleModel.a_contractsTypeInt == 2 ||self.listSingleModel.a_contractsTypeInt == 3){
+//            _contractId=self.listSingleModel.a_contractsRecordId;
+//        }else{
+//            _contractId=self.listSingleModel.a_id;
+//        }
+        _contractId=self.listSingleModel.a_id;
     }
     return _contractId;
 }
@@ -55,6 +56,7 @@
     if (self.mainClauseModel) {
         [self reload];
     }else{
+        [self startLoadingViewWithOption:0];
         NSMutableDictionary* dic=[NSMutableDictionary dictionary];
         [dic setObject:self.contractId forKey:@"contractId"];
         [ContractsApi PostDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -68,6 +70,7 @@
                     [ErrorCode alert];
                 }
             }
+            [self stopLoadingView];
         } dic:dic noNetWork:^{
             [ErrorCode alert];
         }];
@@ -96,6 +99,8 @@
 }
 
 -(void)contractsBtnToolBarClickedWithBtn:(UIButton *)btn index:(NSInteger)index{
+    [self startLoadingViewWithOption:1];
+    
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
     BOOL isSelfCreated=self.mainClauseModel.a_isSelfCreated;
     NSString* contractsId=self.mainClauseModel.a_id;
@@ -177,6 +182,7 @@
 }
 
 -(void)closeBtnClickedWithContent:(NSString*)content{
+    [self startLoadingViewWithOption:1];
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
     NSString* contractsId=self.listSingleModel.a_id;
     [dic setObject:contractsId forKey:@"id"];

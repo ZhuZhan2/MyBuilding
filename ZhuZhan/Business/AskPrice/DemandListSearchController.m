@@ -55,6 +55,7 @@
     self.startIndex = 0;
     [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
+            self.startIndex=0;
             self.models = posts[0];
             [self.searchBarTableView reloadData];
         }else{

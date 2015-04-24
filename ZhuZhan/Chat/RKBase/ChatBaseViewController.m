@@ -11,12 +11,11 @@
 #import "AppDelegate.h"
 #import "SearchBarTableViewController.h"
 @interface ChatBaseViewController()
-
-
-
 @property(nonatomic)BOOL searchBarIsTableViewHeader;
 
 @property(nonatomic)BOOL searchBarIsAnimating;
+
+@property (nonatomic, strong)UIActivityIndicatorView* indicatorView;
 @end
 
 @implementation ChatBaseViewController
@@ -344,7 +343,20 @@
 }
 
 -(void)startLoadingViewWithOption:(NSInteger)option{
-    UIView* back;
+    UIView* backgroundView=[[UIView alloc]initWithFrame:self.view.bounds];
+    backgroundView.backgroundColor=option==0?[UIColor whiteColor]:[[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:.5];
+    [self.view addSubview:backgroundView];
+    
+    self.indicatorView=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:option==0?UIActivityIndicatorViewStyleGray:UIActivityIndicatorViewStyleWhiteLarge];
+    self.indicatorView.center=backgroundView.center;
+    [self.indicatorView startAnimating];
+    [backgroundView addSubview:self.indicatorView];
+}
+
+-(void)stopLoadingView{
+    [self.indicatorView stopAnimating];
+    [self.indicatorView.superview removeFromSuperview];
+    [self.indicatorView removeFromSuperview];
 }
 
 -(void)dealloc{

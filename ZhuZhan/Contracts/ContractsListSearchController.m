@@ -59,6 +59,7 @@
     self.startIndex = 0;
     [ContractsApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
+            self.startIndex=0;
             self.models=posts[0];
             if(self.models.count ==0){
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"无搜索结果" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

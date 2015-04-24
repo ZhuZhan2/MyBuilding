@@ -10,6 +10,7 @@
 #import "ContractsApi.h"
 #import "RKContractsStagesView.h"
 #import "PDFViewController.h"
+#import "MainContractsBaseController.h"
 @interface ProviderContractsController ()
 
 @end
@@ -32,9 +33,9 @@
 
 -(void)PDFBtnClicked{
     PDFViewController *view = [[PDFViewController alloc] init];
-    view.ID = self.listSingleModel.a_id;
+    view.ID = self.mainClauseModel.a_id;
     view.type = @"0";
-    view.name = self.listSingleModel.a_fileName;
+    view.name = self.mainClauseModel.a_fileName;
     [self.navigationController pushViewController:view animated:YES];
 }
 
@@ -42,6 +43,7 @@
     if (self.mainClauseModel) {
         [self reload];
     }else{
+        [self startLoadingViewWithOption:0];
         NSMutableDictionary* dic=[NSMutableDictionary dictionary];
         [dic setObject:self.listSingleModel.a_id forKey:@"contractId"];
         [ContractsApi PostDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -49,6 +51,7 @@
                 self.mainClauseModel=posts[0];
                 [self reload];
             }
+            [self stopLoadingView];
         } dic:dic noNetWork:nil];
     }
 }
@@ -63,7 +66,17 @@
     [self initBtnToolBar];
 }
 
+-(void)clauseMainBtnClicked{
+    MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
+    vc.listSingleModel=self.listSingleModel;
+    vc.contractId=self.mainClauseModel.a_id;
+    vc.contractsStagesViewData=[self contractsStagesViewData];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 -(void)contractsBtnToolBarClickedWithBtn:(UIButton *)btn index:(NSInteger)index{
+    [self startLoadingViewWithOption:1];
+
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
     NSString* contractsId=self.listSingleModel.a_id;
     [dic setObject:contractsId forKey:@"id"];
@@ -108,6 +121,8 @@
 }
 
 -(void)closeBtnClickedWithContent:(NSString*)content{
+    [self startLoadingViewWithOption:1];
+
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
     NSString* contractsId=self.listSingleModel.a_id;
     [dic setObject:contractsId forKey:@"id"];

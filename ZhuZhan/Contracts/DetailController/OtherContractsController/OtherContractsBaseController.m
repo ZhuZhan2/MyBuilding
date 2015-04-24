@@ -34,8 +34,11 @@
 }
 
 -(void)clauseMainBtnClicked{
+    NSLog(@"合同主要条款点击");
+    return;
     MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
     vc.listSingleModel=self.listSingleModel;
+    vc.contractsStagesViewData=[self contractsStagesViewData];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

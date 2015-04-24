@@ -10,6 +10,7 @@
 #import "ContractsApi.h"
 #import "RKContractsStagesView.h"
 #import "PDFViewController.h"
+#import "MainContractsBaseController.h"
 @interface SalerContractsController ()
 @end
 
@@ -45,15 +46,17 @@
     if (self.salerModel) {
         [self reload];
     }else{
-    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
-    NSString* contractsId=self.listSingleModel.a_id;
-    [dic setObject:contractsId forKey:@"contractId"];
-    [ContractsApi PostSalesDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            self.salerModel=posts[0];
-            [self reload];
-        }
-    } dic:dic noNetWork:nil];
+        [self startLoadingViewWithOption:0];
+        NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+        NSString* contractsId=self.listSingleModel.a_id;
+        [dic setObject:contractsId forKey:@"contractId"];
+        [ContractsApi PostSalesDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                self.salerModel=posts[0];
+                [self reload];
+            }
+            [self stopLoadingView];
+        } dic:dic noNetWork:nil];
     }
 }
 
@@ -67,7 +70,17 @@
     [self initBtnToolBar];
 }
 
+-(void)clauseMainBtnClicked{
+    MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
+    vc.listSingleModel=self.listSingleModel;
+    vc.contractId=self.salerModel.a_contractsRecordId;
+    vc.contractsStagesViewData=[self contractsStagesViewData];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 -(void)contractsBtnToolBarClickedWithBtn:(UIButton *)btn index:(NSInteger)index{
+    [self startLoadingViewWithOption:1];
+
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
     NSString* contractsId=self.salerModel.a_id;
     [dic setObject:contractsId forKey:@"id"];
@@ -79,8 +92,8 @@
                 [self sucessPost];
             }
         } dic:dic noNetWork:nil];
-    
-    //同意
+        
+        //同意
     }else if (index==1){
         [ContractsApi PostSalesAgreeWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
@@ -149,7 +162,7 @@
             [btns addObject:btn];
         }
         _btnToolBar=[ContractsBtnToolBar contractsBtnToolBarWithBtns:btns contentMaxWidth:270 top:5 bottom:30 contentHeight:37];
-
+        
         _btnToolBar.delegate=self;
     }
     return _btnToolBar;
