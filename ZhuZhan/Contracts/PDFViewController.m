@@ -26,7 +26,7 @@
     
     self.webView = [[UIWebView alloc] initWithFrame:self.view.frame];
     self.webView.delegate =self;
-    self.webView.scrollView.bounces=NO;
+    //self.webView.scrollView.bounces=NO;
     self.webView.scalesPageToFit = YES;
     
     NSString *urlstr = [NSString stringWithFormat:@"%s/api/contract/download?contractId=%@&fileType=%@",serverAddress,self.ID,self.type];
