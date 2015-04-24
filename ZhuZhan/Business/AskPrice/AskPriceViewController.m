@@ -76,6 +76,7 @@
 }
 
 -(void)loadList{
+    self.startIndex = 0;
     [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             [self.showArr removeAllObjects];
@@ -214,6 +215,7 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
+    self.startIndex = 0;
     [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             [self.showArr removeAllObjects];

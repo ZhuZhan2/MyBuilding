@@ -122,6 +122,7 @@
 }
 
 -(void)firstNetWork{
+    self.startIndex = 0;
     [AddressBookApi GetUserRecommendInfoWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.models = posts;

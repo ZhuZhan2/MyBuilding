@@ -47,6 +47,7 @@
 }
 
 -(void)loadList{
+    self.startIndex = 0;
     [AskPriceApi GetQuotesListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.detailModels=posts;

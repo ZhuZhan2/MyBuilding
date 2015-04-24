@@ -13,7 +13,9 @@
 @property(nonatomic,strong)NSString *a_title;
 @property(nonatomic,strong)NSString *a_time;
 @property(nonatomic,strong)NSString *a_content;
+//合同id
 @property(nonatomic,strong)NSString *a_messageSourceId;
+//合同接收人id
 @property(nonatomic,strong)NSString *a_messageObjectId;
 @property(nonatomic,strong)NSString *a_messageType;
 @property(nonatomic,strong)NSString *a_status;

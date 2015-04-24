@@ -104,6 +104,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)firstNetWork{
     self.tableView.scrollEnabled=NO;
+    startIndex = 0;
     loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view];
     if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
         if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){

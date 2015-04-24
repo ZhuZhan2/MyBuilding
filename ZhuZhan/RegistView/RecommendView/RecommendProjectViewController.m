@@ -119,6 +119,7 @@
 }
 
 -(void)loadList{
+    startIndex = 0;
     [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.showArr = posts;
@@ -143,6 +144,7 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
+    startIndex = 0;
     [self.showArr removeAllObjects];
     [self loadList];
 }

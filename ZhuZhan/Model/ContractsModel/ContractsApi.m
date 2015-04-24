@@ -80,8 +80,9 @@
     }
     
     NSString *urlStr = [NSString stringWithFormat:@"api/contract/list?pageIndex=%d&pageSize=5&archiveStatus=%@&contractsType=%@&keyword=%@",startIndex,archiveStatus,contractsType,keyWords];
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)urlStr, NULL, NULL,  kCFStringEncodingUTF8 ));
     NSLog(@"=====%@",urlStr);
-    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+    return [[AFAppDotNetAPIClient sharedNewClient] GET:encodedString parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON==>%@",JSON);
         //        NSLog(@"JSON[@\"data\"][@\"rows\"]===>%@",JSON[@"data"][@"rows"]);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
@@ -126,7 +127,6 @@
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             {
                 NSDictionary* item=JSON[@"data"][@"info"];
-                NSLog(@"itme =%@",item);
                 ContractsMainClauseModel* model=[ContractsMainClauseModel new];
                 model.dict=item;
                 model.a_salestatus=[JSON[@"data"][@"salestatus"] integerValue];
