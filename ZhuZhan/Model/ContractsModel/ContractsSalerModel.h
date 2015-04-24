@@ -17,5 +17,6 @@
 @property (nonatomic, copy)NSString* a_serialNumber;
 //非主条款、供应商合同状态下的他们的id
 @property (nonatomic, copy)NSString* a_contractsRecordId;
+@property (nonatomic)NSInteger a_archiveStatus;
 @property (nonatomic, strong)NSDictionary* dict;
 @end

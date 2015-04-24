@@ -19,6 +19,7 @@
     }
     self.a_contractsRecordId=dict[@"contractsRecordId"];
     self.a_serialNumber=dict[@"serialNumber"];
+    self.a_archiveStatus=[dict[@"archiveStatus"] integerValue];
     self.a_content=dict[@"contents"];
     self.a_status=[dict[@"status"] integerValue];
 }

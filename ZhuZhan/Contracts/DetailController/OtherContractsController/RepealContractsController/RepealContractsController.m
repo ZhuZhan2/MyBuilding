@@ -57,7 +57,6 @@
 
 -(void)clauseMainBtnClicked{
     MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
-    vc.listSingleModel=self.listSingleModel;
     vc.contractId=self.repealModel.a_contractsRecordId;
     vc.contractsStagesViewData=[self contractsStagesViewData];
     [self.navigationController pushViewController:vc animated:YES];
@@ -118,7 +117,7 @@
     [self startLoadingViewWithOption:1];
     
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
-    NSString* contractsId=self.listSingleModel.a_id;
+    NSString* contractsId=self.repealModel.a_id;
     [dic setObject:contractsId forKey:@"id"];
     //不同意
     if (index==0) {
@@ -141,7 +140,7 @@
     [super alertView:alertView clickedButtonAtIndex:buttonIndex];
     if (self.sureModifiAlertView==alertView) {
         NSMutableDictionary* dic=[NSMutableDictionary dictionary];
-        NSString* contractsId=self.listSingleModel.a_id;
+        NSString* contractsId=self.repealModel.a_id;
         [dic setObject:contractsId forKey:@"id"];
         //不同意修改
         if (buttonIndex) {
@@ -165,20 +164,20 @@
 
 -(UIView *)stagesView{
     if (!_stagesView) {
-        NSInteger status=self.listSingleModel.a_status;
+        NSInteger const status=self.repealModel.a_status;
         NSArray* bigStages=@[@"合同主要条款",@"供应商佣金合同",@"合同撤销流程"];
         NSArray* array;
         {
-            if (status<3) {
-                array=[self stylesWithNumber:2 count:4];
-            }else if (self.listSingleModel.a_archiveStatusInt==1){
+            if (self.repealModel.a_archiveStatus==1) {
                 array=[self stylesWithNumber:4 count:4];
-            }else{
+            }else if (status==4||status==5){
                 array=[self stylesWithNumber:3 count:4];
+            }else{
+                array=[self stylesWithNumber:2 count:4];
             }
         }
         
-        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"已完成"],@[@"已完成"],@[@"填写撤销协议",@"审核中",@"生成",@"完成"]] smallStageStyles:@[@[@0],@[@0],array] isClosed:NO];
+        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"已完成"],@[@"已完成"],@[@"填写撤销协议",@"审核中",@"生成",@"完成"]] smallStageStyles:@[@[@0],@[@0],array] isClosed:self.repealModel.a_archiveStatus==2];
         CGRect frame=_stagesView.frame;
         frame.origin.y=64;
         _stagesView.frame=frame;
@@ -190,8 +189,9 @@
     NSMutableArray* datas=[NSMutableArray array];
     {
         NSArray* bigStageNames=@[@"合同主要条款",@"供应商佣金合同",@"填写撤销协议"];
-        NSArray* smallStageNames=@[@[@"填写条款",@"待审核",@"生成条款"],@[@"已完成"],@[self.listSingleModel.a_archiveStatusInt==1?@"已完成":@"进行中"]];
-        NSArray* smallStageStyles=@[@[@0,@0,@0],@[@0],@[@0]];
+        NSArray* smallStageNames=@[@[@"填写条款",@"待审核",@"生成条款"],@[@"已完成"],@[self.repealModel.a_archiveStatus==1?@"已完成":@"进行中"]];
+        BOOL isClosed=self.repealModel.a_archiveStatus==2;
+        NSArray* smallStageStyles=@[@[@0,@0,@0],@[@0],@[@0],@(isClosed)];
         
         [datas addObject:bigStageNames];
         [datas addObject:smallStageNames];
@@ -217,7 +217,7 @@
     if (!_btnToolBar) {
         NSMutableArray* btns=[NSMutableArray array];
         NSArray* imageNames;
-        if (self.listSingleModel.a_status==1) {
+        if (self.repealModel.a_status==1) {
             imageNames=@[@"不同意带字",@"同意带字"];
         }
         

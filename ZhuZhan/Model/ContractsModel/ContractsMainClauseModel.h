@@ -46,9 +46,13 @@
 //B方的公司全称
 @property (nonatomic, copy)NSString* a_partyB;
 
+@property (nonatomic)BOOL a_provideHas;
 
 //@"1"供应商,@"2"销售方
 @property (nonatomic, copy)NSString* a_createdByType;
+
+//销售合同的archiveStatus
+@property (nonatomic)NSInteger a_saleArchiveStatus;
 
 @property (nonatomic, strong)NSDictionary* dict;
 @end
