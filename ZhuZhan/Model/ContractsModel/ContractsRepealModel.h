@@ -16,5 +16,7 @@
 //流水号
 @property (nonatomic, copy)NSString* a_serialNumber;
 @property (nonatomic, copy)NSString* a_content;
+//非主条款、供应商合同状态下的他们的id
+@property (nonatomic, copy)NSString* a_contractsRecordId;
 @property (nonatomic, strong)NSDictionary* dict;
 @end

@@ -10,6 +10,7 @@
 #import "ContractsApi.h"
 #import "RKContractsStagesView.h"
 #import "PDFViewController.h"
+#import "MainContractsBaseController.h"
 @interface SalerContractsController ()
 @end
 
@@ -67,6 +68,14 @@
     [self.btnToolBar removeFromSuperview];
     self.btnToolBar=nil;
     [self initBtnToolBar];
+}
+
+-(void)clauseMainBtnClicked{
+    MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
+    vc.listSingleModel=self.listSingleModel;
+    vc.contractId=self.salerModel.a_contractsRecordId;
+    vc.contractsStagesViewData=[self contractsStagesViewData];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)contractsBtnToolBarClickedWithBtn:(UIButton *)btn index:(NSInteger)index{

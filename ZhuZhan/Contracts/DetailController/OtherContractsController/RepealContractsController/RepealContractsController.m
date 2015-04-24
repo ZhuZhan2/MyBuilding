@@ -58,7 +58,8 @@
 -(void)clauseMainBtnClicked{
     MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
     vc.listSingleModel=self.listSingleModel;
-    vc.contractId=self.listSingleModel.a_contractsRecordId;
+    vc.contractId=self.repealModel.a_contractsRecordId;
+    vc.contractsStagesViewData=[self contractsStagesViewData];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

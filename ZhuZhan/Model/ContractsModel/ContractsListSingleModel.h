@@ -92,7 +92,7 @@
 @property (nonatomic)BOOL a_isSaler;
 @property (nonatomic)BOOL a_provideHas;
 @property (nonatomic)BOOL a_saleHas;
-//撤销合同下的主条款、供应商合同id
+//非主条款、供应商合同状态下的他们的id
 @property (nonatomic, copy)NSString* a_contractsRecordId;
 
 @property (nonatomic, strong)NSDictionary* dict;

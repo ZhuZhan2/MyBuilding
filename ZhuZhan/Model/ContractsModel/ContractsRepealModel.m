@@ -17,6 +17,7 @@
         NSString* createdTime=dict[@"createdTime"];
         self.a_createdTime=[createdTime substringToIndex:createdTime.length-3];
     }
+    self.a_contractsRecordId=dict[@"contractsRecordId"];
     self.a_serialNumber=dict[@"serialNumber"];
     self.a_content=dict[@"contents"];
     self.a_status=[dict[@"status"] integerValue];

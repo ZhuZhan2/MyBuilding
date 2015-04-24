@@ -42,11 +42,12 @@
 
 -(NSString *)contractId{
     if (!_contractId) {
-        if(self.listSingleModel.a_contractsTypeInt == 2 ||self.listSingleModel.a_contractsTypeInt == 3){
-            _contractId=self.listSingleModel.a_contractsRecordId;
-        }else{
-            _contractId=self.listSingleModel.a_id;
-        }
+//        if(self.listSingleModel.a_contractsTypeInt == 2 ||self.listSingleModel.a_contractsTypeInt == 3){
+//            _contractId=self.listSingleModel.a_contractsRecordId;
+//        }else{
+//            _contractId=self.listSingleModel.a_id;
+//        }
+        _contractId=self.listSingleModel.a_id;
     }
     return _contractId;
 }
