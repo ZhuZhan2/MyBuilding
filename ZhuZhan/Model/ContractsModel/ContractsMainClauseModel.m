@@ -36,6 +36,8 @@
     }
     self.a_partyA=dict[@"partyA"];
     self.a_partyB=dict[@"partyB"];
+    self.a_provideHas=self.a_fileName.length;
+    self.a_saleArchiveStatus=[dict[@"saleArchiveStatus"] integerValue];
     NSString* createdTime=dict[@"createdTime"];
     self.a_createdTime=[createdTime substringToIndex:createdTime.length-3];
 }

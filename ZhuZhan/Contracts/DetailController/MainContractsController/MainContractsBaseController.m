@@ -171,7 +171,7 @@
 }
 
 -(BOOL)canClose{
-    BOOL hasProviderFile=self.listSingleModel.a_provideHas;
+    BOOL hasProviderFile=self.mainClauseModel.a_provideHas;
     BOOL canClose=self.mainClauseModel.a_isSelfCreated&&self.mainClauseModel.a_status==2&&!hasProviderFile&&self.mainClauseModel.a_archiveStatus!=2;
     return canClose;
 }
@@ -179,7 +179,7 @@
 -(void)closeBtnClickedWithContent:(NSString*)content{
     [self startLoadingViewWithOption:1];
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
-    NSString* contractsId=self.listSingleModel.a_id;
+    NSString* contractsId=self.mainClauseModel.a_id;
     [dic setObject:contractsId forKey:@"id"];
     [dic setObject:content forKey:@"remark"];
     [ContractsApi PostCloseWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -210,8 +210,10 @@
 
 -(UIView *)stagesView{
     if (!_stagesView&&!self.contractsStagesViewData) {
-        NSInteger status=self.mainClauseModel.a_status;
-        BOOL hasProviderFile=self.listSingleModel.a_provideHas;
+        NSInteger const status=self.mainClauseModel.a_status;
+        BOOL hasProviderFile=self.mainClauseModel.a_provideHas;
+        NSInteger archiveStatus=self.mainClauseModel.a_archiveStatus;
+        
         NSArray* bigStages=@[@"合同主要条款",@"供应商佣金合同",@"销售佣金合同"];
         NSArray* array;
         {
@@ -222,12 +224,15 @@
             }
         }
         
-        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"填写条款",@"待审核",@"生成条款"],@[hasProviderFile?(status==9?@"已完成":@"进行中"):@"未开始"],@[@"未开始"]] smallStageStyles:@[array,@[hasProviderFile?@0:@1],@[@1]] isClosed:self.listSingleModel.a_archiveStatusInt==2];
+        //isClosed只考虑进这个页面的类型为非销售商的，因为销售商的关闭情况不可能出现在这个还没生产销售合同的阶段
+        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"填写条款",@"待审核",@"生成条款"],@[hasProviderFile?(archiveStatus==1?@"已完成":@"进行中"):@"未开始"],@[@"未开始"]] smallStageStyles:@[array,@[hasProviderFile?@0:@1],@[@1]] isClosed:archiveStatus==2];
+        
         CGRect frame=_stagesView.frame;
         frame.origin.y=64;
         _stagesView.frame=frame;
     }else if (!_stagesView&&self.contractsStagesViewData) {
-        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:self.contractsStagesViewData[0] smallStageNames:self.contractsStagesViewData[1] smallStageStyles:self.contractsStagesViewData[2] isClosed:NO];
+        BOOL isClosed=[self.contractsStagesViewData[3] boolValue];
+        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:self.contractsStagesViewData[0] smallStageNames:self.contractsStagesViewData[1] smallStageStyles:self.contractsStagesViewData[2] isClosed:isClosed];
         CGRect frame=_stagesView.frame;
         frame.origin.y=64;
         _stagesView.frame=frame;

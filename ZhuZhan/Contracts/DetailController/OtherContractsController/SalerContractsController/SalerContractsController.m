@@ -48,6 +48,7 @@
     }else{
         [self startLoadingViewWithOption:0];
         NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+#warning 需要查看这个id是否对，可能是contractsRecordId
         NSString* contractsId=self.listSingleModel.a_id;
         [dic setObject:contractsId forKey:@"contractId"];
         [ContractsApi PostSalesDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -72,7 +73,6 @@
 
 -(void)clauseMainBtnClicked{
     MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
-    vc.listSingleModel=self.listSingleModel;
     vc.contractId=self.salerModel.a_contractsRecordId;
     vc.contractsStagesViewData=[self contractsStagesViewData];
     [self.navigationController pushViewController:vc animated:YES];
@@ -106,7 +106,7 @@
 
 -(UIView *)stagesView{
     if (!_stagesView) {
-        NSInteger status=self.salerModel.a_status;
+        NSInteger const status=self.salerModel.a_status;
         NSArray* bigStages=@[@"合同主要条款",@"供应商佣金合同",@"销售佣金合同"];
         NSArray* array;
         {
@@ -118,8 +118,7 @@
                 array=[self stylesWithNumber:3 count:4];
             }
         }
-        
-        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"已完成"],@[@"已完成"],@[@"填写合同",@"审核中",@"生成",@"完成"]] smallStageStyles:@[@[@0],@[@0],array] isClosed:NO];
+        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"已完成"],@[@"已完成"],@[@"填写合同",@"审核中",@"生成",@"完成"]] smallStageStyles:@[@[@0],@[@0],array] isClosed:self.salerModel.a_archiveStatus==2];
         CGRect frame=_stagesView.frame;
         frame.origin.y=64;
         _stagesView.frame=frame;
@@ -131,8 +130,9 @@
     NSMutableArray* datas=[NSMutableArray array];
     {
         NSArray* bigStageNames=@[@"合同主要条款",@"供应商佣金合同",@"销售佣金合同"];
-        NSArray* smallStageNames=@[@[@"填写条款",@"待审核",@"生成条款"],@[@"已完成"],@[self.salerModel.a_status==9?@"已完成":@"进行中"]];
-        NSArray* smallStageStyles=@[@[@0,@0,@0],@[@0],@[@0]];
+        NSArray* smallStageNames=@[@[@"填写条款",@"待审核",@"生成条款"],@[@"已完成"],@[self.salerModel.a_archiveStatus==1?@"已完成":@"进行中"]];
+        BOOL isClosed=self.salerModel.a_archiveStatus==1;
+        NSArray* smallStageStyles=@[@[@0,@0,@0],@[@0],@[@0],@(isClosed)];
         
         [datas addObject:bigStageNames];
         [datas addObject:smallStageNames];
