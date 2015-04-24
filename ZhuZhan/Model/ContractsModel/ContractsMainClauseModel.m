@@ -34,7 +34,8 @@
         self.a_providerName=dict[@"createdBy"];
         self.a_salerName=dict[@"recipientName"];
     }
-    
+    self.a_partyA=dict[@"partyA"];
+    self.a_partyB=dict[@"partyB"];
     NSString* createdTime=dict[@"createdTime"];
     self.a_createdTime=[createdTime substringToIndex:createdTime.length-3];
 }

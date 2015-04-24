@@ -95,10 +95,8 @@
         view.backgroundColor=[UIColor whiteColor];
         
         {
-            UILabel* textView=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, kScreenWidth-20, 0)];
-            textView.backgroundColor=[UIColor redColor];
+            UITextView* textView=[[UITextView alloc]initWithFrame:CGRectMake(10, 10, kScreenWidth-20, 255)];
             textView.text=self.repealModel.a_content;
-            NSLog(@"text=%@",textView.text);
             textView.userInteractionEnabled=NO;
             [view addSubview:textView];
         }
