@@ -211,14 +211,11 @@
         [self.navigationController pushViewController:view animated:YES];
         [self stopLoadingView];
     }else if ([model.a_messageType isEqualToString:@"08"]){
-        NSLog(@"08");
-        [self MainContractsData:model.a_messageSourceId];
+        [self providerContractsWithId:model.a_messageSourceId];
     }else if ([model.a_messageType isEqualToString:@"09"]){
-        [self ProviderContractsData:model.a_messageSourceId];
+        [self salerContractsWithId:model.a_messageSourceId];
     }else if ([model.a_messageType isEqualToString:@"10"]){
-        [self RepealContractsData:model.a_messageSourceId];
-        //RepealContractsController *view = [[RepealContractsController alloc] init];
-        //[self.navigationController pushViewController:view animated:YES];
+        [self repealContractsWithId:model.a_messageSourceId];
     }
 }
 
@@ -280,45 +277,49 @@
     [self loadList];
 }
 
-//主条款或者供应商合同
--(void)MainContractsData:(NSString *)ID{
-    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
-    [dic setObject:ID forKey:@"contractId"];
-    [ContractsApi PostDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            ContractsMainClauseModel* mainModel=posts[0];
-            if([mainModel.a_fileName isEqualToString:@""]){
-                MainContractsBaseController *view = [[MainContractsBaseController alloc] init];
-                view.mainClauseModel = mainModel;
-                [self.navigationController pushViewController:view animated:YES];
-            }
-        }else{
-            if([ErrorCode errorCode:error] == 403){
-                [LoginAgain AddLoginView:NO];
-            }else{
-                [ErrorCode alert];
-            }
+//供应商合同
+-(void)providerContractsWithId:(NSString *)ID{
+    [self repealContractsDetailWithId:ID sucessBlock:^(ContractsRepealModel *model) {
+        
+    } needStop:YES];
+    
+    return;
+    [self providerContractsDetailWithId:ID sucessBlock:^(ContractsMainClauseModel *model) {
+        if([model.a_fileName isEqualToString:@""]){
+            MainContractsBaseController *view = [[MainContractsBaseController alloc] init];
+            view.mainClauseModel = model;
+            [self.navigationController pushViewController:view animated:YES];
         }
-        [self stopLoadingView];
-    } dic:dic noNetWork:^{
-        self.tableView.scrollEnabled=NO;
-        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
-            self.tableView.scrollEnabled=YES;
-            [self loadList];
-        }];
-    }];
+    } needStop:YES];
 }
 
 //销售合同
--(void)ProviderContractsData:(NSString *)ID{
+-(void)salerContractsWithId:(NSString *)ID{
+    [self salerContractsDetailWithId:ID sucessBlock:^(ContractsSalerModel *model) {
+        SalerContractsController *view = [[SalerContractsController alloc] init];
+        view.salerModel = model;
+        [self.navigationController pushViewController:view animated:YES];
+    } needStop:YES];
+}
+
+//撤销合同
+-(void)repealContractsWithId:(NSString *)ID{
+    [self repealContractsDetailWithId:ID sucessBlock:^(ContractsRepealModel *model) {
+        RepealContractsController *view = [[RepealContractsController alloc] init];
+        view.repealModel = model;
+        [self.navigationController pushViewController:view animated:YES];
+    } needStop:YES];
+}
+
+//主条款和供应商合同详情
+-(void)providerContractsDetailWithId:(NSString*)Id sucessBlock:(void(^)(ContractsMainClauseModel* model))sucessBlock needStop:(BOOL)needStop{
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
-    [dic setObject:ID forKey:@"contractId"];
-    [ContractsApi PostSalesDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+    [dic setObject:Id forKey:@"contractId"];
+    [ContractsApi PostDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            ContractsSalerModel *saleModel = posts[0];
-            SalerContractsController *view = [[SalerContractsController alloc] init];
-            view.salerModel = saleModel;
-            [self.navigationController pushViewController:view animated:YES];
+            if (sucessBlock) {
+                sucessBlock(posts[0]);
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -326,7 +327,36 @@
                 [ErrorCode alert];
             }
         }
-        [self stopLoadingView];
+        if (needStop) {
+            [self stopLoadingView];
+        }
+    } dic:dic noNetWork:^{
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+            [self loadList];
+        }];
+    }];
+}
+//销售方合同详情
+-(void)salerContractsDetailWithId:(NSString*)Id sucessBlock:(void(^)(ContractsSalerModel* model))sucessBlock needStop:(BOOL)needStop{
+    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+    [dic setObject:Id forKey:@"contractId"];
+    [ContractsApi PostSalesDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            if (sucessBlock) {
+                sucessBlock(posts[0]);
+            }
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
+        }
+        if (needStop) {
+            [self stopLoadingView];
+        }
     } dic:dic noNetWork:^{
         self.tableView.scrollEnabled=NO;
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
@@ -336,16 +366,15 @@
     }];
 }
 
-//撤销合同
--(void)RepealContractsData:(NSString *)ID{
+//撤销合同详情
+-(void)repealContractsDetailWithId:(NSString*)Id sucessBlock:(void(^)(ContractsRepealModel* model))sucessBlock needStop:(BOOL)needStop{
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
-    [dic setObject:ID forKey:@"contractId"];
+    [dic setObject:Id forKey:@"contractId"];
     [ContractsApi PostRevocationDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            ContractsRepealModel *repealModel = posts[0];
-            RepealContractsController *view = [[RepealContractsController alloc] init];
-            view.repealModel = repealModel;
-            [self.navigationController pushViewController:view animated:YES];
+            if (sucessBlock) {
+                sucessBlock(posts[0]);
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -353,7 +382,9 @@
                 [ErrorCode alert];
             }
         }
-        [self stopLoadingView];
+        if (needStop) {
+            [self stopLoadingView];
+        }
     } dic:dic noNetWork:^{
         self.tableView.scrollEnabled=NO;
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
@@ -361,5 +392,6 @@
             [self loadList];
         }];
     }];
+
 }
 @end
