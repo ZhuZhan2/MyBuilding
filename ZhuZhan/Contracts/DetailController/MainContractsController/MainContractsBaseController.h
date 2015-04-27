@@ -9,7 +9,7 @@
 #import "ContractsBaseViewController.h"
 #import "ContractsMainClauseModel.h"
 @interface MainContractsBaseController : ContractsBaseViewController
-//只允许全部佣金列表页
+//只声明,不用传
 @property (nonatomic, strong)ContractsMainClauseModel* mainClauseModel;
 
 //只允许在消息列表传,主条款id

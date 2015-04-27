@@ -316,33 +316,6 @@
     }];
 }
 
-//销售合同
--(void)salerContractsWithId:(NSString *)ID{
-    [self salerContractsDetailWithId:ID sucessBlock:^(ContractsSalerModel *model) {
-        SalerContractsController *view = [[SalerContractsController alloc] init];
-        view.salerModel = model;
-        [self.navigationController pushViewController:view animated:YES];
-    } needStop:YES];
-}
-
-//撤销合同
--(void)repealContractsWithId:(NSString *)ID{
-    [self repealContractsDetailWithId:ID sucessBlock:^(ContractsRepealModel *model) {
-        RepealContractsController *view = [[RepealContractsController alloc] init];
-        view.repealModel = model;
-        [self.navigationController pushViewController:view animated:YES];
-    } needStop:YES];
-}
-
-//主条款和供应商合同详情
--(void)providerContractsDetailWithId:(NSString*)Id sucessBlock:(void(^)(ContractsMainClauseModel* model))sucessBlock needStop:(BOOL)needStop{
-    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
-    [dic setObject:Id forKey:@"contractId"];
-    [ContractsApi PostDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            if (sucessBlock) {
-                sucessBlock(posts[0]);
-            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -350,10 +323,8 @@
                 [ErrorCode alert];
             }
         }
-        if (needStop) {
-            [self stopLoadingView];
-        }
-    } dic:dic noNetWork:^{
+        [self stopLoadingView];
+    } messageType:type contractId:contractsId noNetWork:^{
         self.tableView.scrollEnabled=NO;
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
             self.tableView.scrollEnabled=YES;
@@ -361,60 +332,108 @@
         }];
     }];
 }
-//销售方合同详情
--(void)salerContractsDetailWithId:(NSString*)Id sucessBlock:(void(^)(ContractsSalerModel* model))sucessBlock needStop:(BOOL)needStop{
-    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
-    [dic setObject:Id forKey:@"contractId"];
-    [ContractsApi PostSalesDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            if (sucessBlock) {
-                sucessBlock(posts[0]);
-            }
-        }else{
-            if([ErrorCode errorCode:error] == 403){
-                [LoginAgain AddLoginView:NO];
-            }else{
-                [ErrorCode alert];
-            }
-        }
-        if (needStop) {
-            [self stopLoadingView];
-        }
-    } dic:dic noNetWork:^{
-        self.tableView.scrollEnabled=NO;
-        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
-            self.tableView.scrollEnabled=YES;
-            [self loadList];
-        }];
-    }];
-}
+//
+////销售合同
+//-(void)salerContractsWithId:(NSString *)ID{
+//    [self salerContractsDetailWithId:ID sucessBlock:^(ContractsSalerModel *model) {
+//        SalerContractsController *view = [[SalerContractsController alloc] init];
+//        view.salerModel = model;
+//        [self.navigationController pushViewController:view animated:YES];
+//    } needStop:YES];
+//}
+//
+////撤销合同
+//-(void)repealContractsWithId:(NSString *)ID{
+//    [self repealContractsDetailWithId:ID sucessBlock:^(ContractsRepealModel *model) {
+//        RepealContractsController *view = [[RepealContractsController alloc] init];
+//        view.repealModel = model;
+//        [self.navigationController pushViewController:view animated:YES];
+//    } needStop:YES];
+//}
 
-//撤销合同详情
--(void)repealContractsDetailWithId:(NSString*)Id sucessBlock:(void(^)(ContractsRepealModel* model))sucessBlock needStop:(BOOL)needStop{
-    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
-    [dic setObject:Id forKey:@"contractId"];
-    [ContractsApi PostRevocationDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            if (sucessBlock) {
-                sucessBlock(posts[0]);
-            }
-        }else{
-            if([ErrorCode errorCode:error] == 403){
-                [LoginAgain AddLoginView:NO];
-            }else{
-                [ErrorCode alert];
-            }
-        }
-        if (needStop) {
-            [self stopLoadingView];
-        }
-    } dic:dic noNetWork:^{
-        self.tableView.scrollEnabled=NO;
-        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
-            self.tableView.scrollEnabled=YES;
-            [self loadList];
-        }];
-    }];
+////主条款和供应商合同详情
+//-(void)providerContractsDetailWithId:(NSString*)Id sucessBlock:(void(^)(ContractsMainClauseModel* model))sucessBlock needStop:(BOOL)needStop{
+//    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+//    [dic setObject:Id forKey:@"contractId"];
+//    [ContractsApi PostDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+//        if(!error){
+//            if (sucessBlock) {
+//                sucessBlock(posts[0]);
+//            }
+//        }else{
+//            if([ErrorCode errorCode:error] == 403){
+//                [LoginAgain AddLoginView:NO];
+//            }else{
+//                [ErrorCode alert];
+//            }
+//        }
+//        if (needStop) {
+//            [self stopLoadingView];
+//        }
+//    } dic:dic noNetWork:^{
+//        self.tableView.scrollEnabled=NO;
+//        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+//            self.tableView.scrollEnabled=YES;
+//            [self loadList];
+//        }];
+//    }];
+//}
 
-}
+
+////销售方合同详情
+//-(void)salerContractsDetailWithId:(NSString*)Id sucessBlock:(void(^)(ContractsSalerModel* model))sucessBlock needStop:(BOOL)needStop{
+//    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+//    [dic setObject:Id forKey:@"contractId"];
+//    [ContractsApi PostSalesDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+//        if(!error){
+//            if (sucessBlock) {
+//                sucessBlock(posts[0]);
+//            }
+//        }else{
+//            if([ErrorCode errorCode:error] == 403){
+//                [LoginAgain AddLoginView:NO];
+//            }else{
+//                [ErrorCode alert];
+//            }
+//        }
+//        if (needStop) {
+//            [self stopLoadingView];
+//        }
+//    } dic:dic noNetWork:^{
+//        self.tableView.scrollEnabled=NO;
+//        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+//            self.tableView.scrollEnabled=YES;
+//            [self loadList];
+//        }];
+//    }];
+//}
+//
+////撤销合同详情
+//-(void)repealContractsDetailWithId:(NSString*)Id sucessBlock:(void(^)(ContractsRepealModel* model))sucessBlock needStop:(BOOL)needStop{
+//    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+//    [dic setObject:Id forKey:@"contractId"];
+//    [ContractsApi PostRevocationDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+//        if(!error){
+//            if (sucessBlock) {
+//                sucessBlock(posts[0]);
+//            }
+//        }else{
+//            if([ErrorCode errorCode:error] == 403){
+//                [LoginAgain AddLoginView:NO];
+//            }else{
+//                [ErrorCode alert];
+//            }
+//        }
+//        if (needStop) {
+//            [self stopLoadingView];
+//        }
+//    } dic:dic noNetWork:^{
+//        self.tableView.scrollEnabled=NO;
+//        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+//            self.tableView.scrollEnabled=YES;
+//            [self loadList];
+//        }];
+//    }];
+//
+//}
 @end

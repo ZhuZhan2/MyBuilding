@@ -30,11 +30,9 @@
 
 //Navi相关
 -(void)setRightBtnWithImage:(UIImage*)image{
-    if (!_rightBtn) {
-        _rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
-        [_rightBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:_rightBtn];
-    }
+    _rightBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
+    [_rightBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:_rightBtn];
     [_rightBtn setBackgroundImage:image forState:UIControlStateNormal];
 }
 
@@ -301,7 +299,7 @@
     NSNumber* duration=noti.userInfo[UIKeyboardAnimationDurationUserInfoKey];
     CGRect keybordBounds=[noti.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat upHeight=kScreenHeight-keybordBounds.origin.y;
-
+    
     [UIView animateWithDuration:[duration floatValue]  animations:^{
         self.view.transform=CGAffineTransformMakeTranslation(0, -upHeight);
     }];
@@ -317,7 +315,7 @@
 
 -(void)initStageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers{
     self.stageChooseView=[RKStageChooseView stageChooseViewWithStages:
-                  stages numbers:numbers delegate:self];
+                          stages numbers:numbers delegate:self];
     CGRect frame=self.stageChooseView.frame;
     frame.origin=CGPointMake(0, 64);
     self.stageChooseView.frame=frame;
