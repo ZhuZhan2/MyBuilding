@@ -289,10 +289,16 @@
     } needStop:YES];
 }
 
+
 -(void)getContractsInfo:(NSString *)type contractsId:(NSString *)contractsId{
     [AskPriceMessageApi GetDetailsForIdWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-        
+            ContractsMainClauseModel *model = posts[0];
+            if([model.a_fileName isEqualToString:@""]){
+                MainContractsBaseController *view = [[MainContractsBaseController alloc] init];
+                view.mainClauseModel = model;
+                [self.navigationController pushViewController:view animated:YES];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -300,6 +306,7 @@
                 [ErrorCode alert];
             }
         }
+        [self stopLoadingView];
     } messageType:type contractId:contractsId noNetWork:^{
         self.tableView.scrollEnabled=NO;
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{

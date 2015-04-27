@@ -373,7 +373,7 @@
                 [LoginSqlite insertData:[item objectForKey:@"loginId"] datakey:@"userId"];
                 [LoginSqlite insertData:[item objectForKey:@"token"] datakey:@"token"];
                 [LoginSqlite insertData:item[@"loginName"] datakey:@"userName"];
-                [LoginSqlite insertData:@"01" datakey:@"userType"];
+                [LoginSqlite insertData:@"Personal" datakey:@"userType"];
                 RecommendProjectViewController *recProjectView = [[RecommendProjectViewController alloc] init];
                 [self.navigationController pushViewController:recProjectView animated:YES];
             }

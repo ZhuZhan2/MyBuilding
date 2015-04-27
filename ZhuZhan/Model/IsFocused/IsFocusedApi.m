@@ -17,6 +17,7 @@
         return nil;
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/focus/isFocus?targetId=%@",targetId];
+    NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON Focused===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){

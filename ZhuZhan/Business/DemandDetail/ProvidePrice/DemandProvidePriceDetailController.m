@@ -12,6 +12,7 @@
 #import "MJRefresh.h"
 #import "RKImageModel.h"
 #import "WebViewController.h"
+#import "MyTableView.h"
 @interface DemandProvidePriceDetailController ()<UIAlertViewDelegate>
 @property(nonatomic)int startIndex;
 @end
@@ -30,7 +31,13 @@
     [AskPriceApi GetQuotesListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.detailModels=posts;
-            [self.tableView reloadData];
+            if(self.detailModels.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -136,7 +143,13 @@
         if(!error){
             [self.detailModels removeAllObjects];
             self.detailModels=posts;
-            [self.tableView reloadData];
+            if(self.detailModels.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
