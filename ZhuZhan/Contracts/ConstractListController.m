@@ -58,7 +58,7 @@
 
 -(void)initNavi{
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
-    [self setRightBtnWithImage:[GetImagePath getImagePath:@"搜索按钮"]];
+    [self setRightBtnWithImage:self.nowStage?[GetImagePath getImagePath:@"搜索按钮"]:nil];
     [self initTitleViewWithTitle:@"佣金合同列表"];
 }
 

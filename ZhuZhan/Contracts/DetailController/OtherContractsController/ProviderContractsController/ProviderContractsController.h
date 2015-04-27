@@ -10,5 +10,6 @@
 #import "ContractsMainClauseModel.h"
 
 @interface ProviderContractsController : OtherContractsBaseController
+//消息页传
 @property (nonatomic, strong)ContractsMainClauseModel* mainClauseModel;
 @end

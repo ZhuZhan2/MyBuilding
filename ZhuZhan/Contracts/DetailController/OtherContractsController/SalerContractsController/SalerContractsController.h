@@ -10,6 +10,7 @@
 #import "ContractsSalerModel.h"
 
 @interface SalerContractsController : OtherContractsBaseController
+//消息页传
 @property (nonatomic, strong)ContractsSalerModel* salerModel;
 
 @end

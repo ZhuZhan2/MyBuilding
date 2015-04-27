@@ -635,8 +635,6 @@
 		5B5836FB1AD7A3D200F8E7C3 /* accept_green_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5836F51AD7A3D200F8E7C3 /* accept_green_button@2x.png */; };
 		5B5836FC1AD7A3D200F8E7C3 /* add_green_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5836F61AD7A3D200F8E7C3 /* add_green_button.png */; };
 		5B5836FD1AD7A3D200F8E7C3 /* add_green_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5836F71AD7A3D200F8E7C3 /* add_green_button@2x.png */; };
-		5B5836FE1AD7A3D200F8E7C3 /* added.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5836F81AD7A3D200F8E7C3 /* added.png */; };
-		5B5836FF1AD7A3D200F8E7C3 /* added@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5836F91AD7A3D200F8E7C3 /* added@2x.png */; };
 		5B5837031AD7CE0900F8E7C3 /* ContractsBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5837021AD7CE0900F8E7C3 /* ContractsBaseViewController.m */; };
 		5B58370A1AD7CFD900F8E7C3 /* OtherContractsBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5837091AD7CFD900F8E7C3 /* OtherContractsBaseController.m */; };
 		5B5894F119FF9D24001CC09E /* EndEditingGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5894F019FF9D24001CC09E /* EndEditingGesture.m */; };
@@ -888,6 +886,8 @@
 		5BA938AD1A49720300BB8A96 /* ContactProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA938AC1A49720300BB8A96 /* ContactProductView.m */; };
 		5BA938B01A4972B200BB8A96 /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA938AF1A4972B200BB8A96 /* ContactTableViewCell.m */; };
 		5BAA14D619EE35AC00C7ECD9 /* MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAA14D519EE35AC00C7ECD9 /* MD5.m */; };
+		5BAAD8B71AEE157D00AB3467 /* added.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BAAD8B51AEE157D00AB3467 /* added.png */; };
+		5BAAD8B81AEE157D00AB3467 /* added@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BAAD8B61AEE157D00AB3467 /* added@2x.png */; };
 		5BB9A53A1AB6EE4300B5B2D8 /* RKStageChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9A5391AB6EE4300B5B2D8 /* RKStageChooseView.m */; };
 		5BB9A53D1AB6F84300B5B2D8 /* AskPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9A53C1AB6F84300B5B2D8 /* AskPriceViewController.m */; };
 		5BC234461AA81D7400312D9D /* 05.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC234421AA81D7400312D9D /* 05.png */; };
@@ -2511,8 +2511,6 @@
 		5B5836F51AD7A3D200F8E7C3 /* accept_green_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "accept_green_button@2x.png"; sourceTree = "<group>"; };
 		5B5836F61AD7A3D200F8E7C3 /* add_green_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_green_button.png; sourceTree = "<group>"; };
 		5B5836F71AD7A3D200F8E7C3 /* add_green_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_green_button@2x.png"; sourceTree = "<group>"; };
-		5B5836F81AD7A3D200F8E7C3 /* added.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = added.png; sourceTree = "<group>"; };
-		5B5836F91AD7A3D200F8E7C3 /* added@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "added@2x.png"; sourceTree = "<group>"; };
 		5B5837011AD7CE0900F8E7C3 /* ContractsBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractsBaseViewController.h; sourceTree = "<group>"; };
 		5B5837021AD7CE0900F8E7C3 /* ContractsBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractsBaseViewController.m; sourceTree = "<group>"; };
 		5B5837081AD7CFD900F8E7C3 /* OtherContractsBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherContractsBaseController.h; sourceTree = "<group>"; };
@@ -2904,6 +2902,8 @@
 		5BA938AF1A4972B200BB8A96 /* ContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
 		5BAA14D419EE35AC00C7ECD9 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5.h; sourceTree = "<group>"; };
 		5BAA14D519EE35AC00C7ECD9 /* MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5.m; sourceTree = "<group>"; };
+		5BAAD8B51AEE157D00AB3467 /* added.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = added.png; sourceTree = "<group>"; };
+		5BAAD8B61AEE157D00AB3467 /* added@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "added@2x.png"; sourceTree = "<group>"; };
 		5BB9A5381AB6EE4300B5B2D8 /* RKStageChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKStageChooseView.h; sourceTree = "<group>"; };
 		5BB9A5391AB6EE4300B5B2D8 /* RKStageChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKStageChooseView.m; sourceTree = "<group>"; };
 		5BB9A53B1AB6F84300B5B2D8 /* AskPriceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceViewController.h; sourceTree = "<group>"; };
@@ -5299,8 +5299,8 @@
 				5B5836F51AD7A3D200F8E7C3 /* accept_green_button@2x.png */,
 				5B5836F61AD7A3D200F8E7C3 /* add_green_button.png */,
 				5B5836F71AD7A3D200F8E7C3 /* add_green_button@2x.png */,
-				5B5836F81AD7A3D200F8E7C3 /* added.png */,
-				5B5836F91AD7A3D200F8E7C3 /* added@2x.png */,
+				5BAAD8B51AEE157D00AB3467 /* added.png */,
+				5BAAD8B61AEE157D00AB3467 /* added@2x.png */,
 				5B5836F01AD7A12800F8E7C3 /* add_both_button.png */,
 				5B5836F11AD7A12800F8E7C3 /* add_both_button@2x.png */,
 				5B819F6C1ACBC81300A1A593 /* 报价灰.png */,
@@ -7496,6 +7496,7 @@
 				D3D5B8121AAD62790049A5E0 /* tongxunlu.png in Resources */,
 				D3D9C90B1A1343CF001D3A64 /* 主菜单01b@2x.png in Resources */,
 				5BE08E671A3586EA00495EEB /* 030012@2x.png in Resources */,
+				5BAAD8B81AEE157D00AB3467 /* added@2x.png in Resources */,
 				5B70CC521AC9394700FC8353 /* small上传我的模版@2x.png in Resources */,
 				5BE08E571A3586EA00495EEB /* 030004@2x.png in Resources */,
 				5BE08E5F1A3586EA00495EEB /* 030008@2x.png in Resources */,
@@ -7562,7 +7563,6 @@
 				5BE08E261A3586EA00495EEB /* 020010.png in Resources */,
 				04BC413719D7E5B3006B5C7B /* hourhand@2x.png in Resources */,
 				5B6C4B041ADF8ADE003B8DA8 /* 不同意小带字.png in Resources */,
-				5B5836FF1AD7A3D200F8E7C3 /* added@2x.png in Resources */,
 				D3D9F8D91ADE6A4F002BBB06 /* 询价上传图片默认图@2x.png in Resources */,
 				04BC40F719D7E5B3006B5C7B /* 010.png in Resources */,
 				04BC414B19D7E5B3006B5C7B /* mapsearch-1@2x.png in Resources */,
@@ -7596,7 +7596,6 @@
 				D3D9C9111A1343CF001D3A64 /* 主菜单04b@2x.png in Resources */,
 				5B6C4B211ADF8AF9003B8DA8 /* 修改带字@2x.png in Resources */,
 				5BC234471AA81D7400312D9D /* 05@2x.png in Resources */,
-				5B5836FE1AD7A3D200F8E7C3 /* added.png in Resources */,
 				5B6373701ABA656F007CF1F8 /* 关--闭.png in Resources */,
 				D3D7D86719FF4B9800AE5765 /* 项目－搜索_09a@2x.png in Resources */,
 				D3D4FB341A087A830033BB34 /* 公司－账号设置_03a-05@2x.png in Resources */,
@@ -7721,6 +7720,7 @@
 				D3BAA7B61A58CB9A008E613F /* 人的详情88-03.png in Resources */,
 				5BE08DE71A3586EA00495EEB /* 010042@2x.png in Resources */,
 				D3D74E8A19FA2FEC00ED8B62 /* 登录_24@2x.png in Resources */,
+				5BAAD8B71AEE157D00AB3467 /* added.png in Resources */,
 				5BE08D941A3586EA00495EEB /* 010001.png in Resources */,
 				04BC419419D7E5B3006B5C7B /* 人脉_61a@2x.png in Resources */,
 				5B6A1D661A4A65280072B916 /* 主站－人脉03.png in Resources */,

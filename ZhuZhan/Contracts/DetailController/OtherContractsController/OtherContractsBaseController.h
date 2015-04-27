@@ -16,6 +16,10 @@
 @property (nonatomic, strong)UIButton* clauseMainBtn;
 @property (nonatomic, strong)UIView* PDFView;
 @property (nonatomic, strong)ContractsBtnToolBar* btnToolBar;
+
+//只允许在消息列表传,各合同自身id
+@property (nonatomic, copy)NSString* contractId;
+
 -(void)initPDFView;
 -(void)initBtnToolBar;
 @end

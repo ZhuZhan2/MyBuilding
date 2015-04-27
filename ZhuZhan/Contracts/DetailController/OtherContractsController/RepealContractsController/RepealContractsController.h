@@ -10,5 +10,6 @@
 #import "ContractsRepealModel.h"
 
 @interface RepealContractsController : OtherContractsBaseController
+//消息页传
 @property (nonatomic, strong)ContractsRepealModel* repealModel;
 @end
