@@ -11,6 +11,7 @@
 #import "RKContractsStagesView.h"
 #import "PDFViewController.h"
 #import "MainContractsBaseController.h"
+#import "ContractsTradeCodeView.h"
 @interface SalerContractsController ()
 @end
 
@@ -44,7 +45,7 @@
 
 -(void)loadList{
     if (self.salerModel) {
-        [self reload];
+        //[self reload];
     }else{
         [self startLoadingViewWithOption:0];
         NSMutableDictionary* dic=[NSMutableDictionary dictionary];
@@ -65,6 +66,10 @@
     [self.stagesView removeFromSuperview];
     self.stagesView=nil;
     [self initStagesView];
+    
+    [self.tradeCodeView removeFromSuperview];
+    self.tradeCodeView=nil;
+    [self initTradeCodeView];
     
     [self.btnToolBar removeFromSuperview];
     self.btnToolBar=nil;
@@ -167,5 +172,13 @@
         _btnToolBar.delegate=self;
     }
     return _btnToolBar;
+}
+
+-(ContractsTradeCodeView *)tradeCodeView{
+    if (!_tradeCodeView) {
+        NSString* tradeCode=[NSString stringWithFormat:@"流水号:%@",self.salerModel.a_serialNumber];
+        _tradeCodeView=[ContractsTradeCodeView contractsTradeCodeViewWithTradeCode:tradeCode time:self.salerModel.a_createdTime];
+    }
+    return _tradeCodeView;
 }
 @end

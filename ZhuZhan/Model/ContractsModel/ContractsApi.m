@@ -129,7 +129,6 @@
                 NSDictionary* item=JSON[@"data"][@"info"];
                 ContractsMainClauseModel* model=[ContractsMainClauseModel new];
                 model.dict=item;
-                model.a_salestatus=[JSON[@"data"][@"salestatus"] integerValue];
                 [mutablePosts addObject:model];
             }
             if (block) {

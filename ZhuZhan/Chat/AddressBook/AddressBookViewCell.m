@@ -43,6 +43,8 @@
     if (!_mainImageView) {
         _mainImageView=[[UIImageView alloc]init];
         _mainImageView.frame=CGRectMake(0, 0, 35, 35);
+        _mainImageView.layer.cornerRadius=3;
+        _mainImageView.layer.masksToBounds=YES;
     }
     return _mainImageView;
 }
