@@ -210,12 +210,8 @@
         view.tradId = model.a_messageSourceId;
         [self.navigationController pushViewController:view animated:YES];
         [self stopLoadingView];
-    }else if ([model.a_messageType isEqualToString:@"08"]){
-        [self providerContractsWithId:model.a_messageSourceId];
-    }else if ([model.a_messageType isEqualToString:@"09"]){
-        [self salerContractsWithId:model.a_messageSourceId];
-    }else if ([model.a_messageType isEqualToString:@"10"]){
-        [self repealContractsWithId:model.a_messageSourceId];
+    }else{
+        [self getContractsInfo:model.a_messageType contractsId:model.a_messageSourceId];
     }
 }
 
@@ -291,6 +287,26 @@
             [self.navigationController pushViewController:view animated:YES];
         }
     } needStop:YES];
+}
+
+-(void)getContractsInfo:(NSString *)type contractsId:(NSString *)contractsId{
+    [AskPriceMessageApi GetDetailsForIdWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+        
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
+        }
+    } messageType:type contractId:contractsId noNetWork:^{
+        self.tableView.scrollEnabled=NO;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            self.tableView.scrollEnabled=YES;
+            [self loadList];
+        }];
+    }];
 }
 
 //销售合同

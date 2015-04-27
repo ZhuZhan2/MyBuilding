@@ -14,4 +14,7 @@
 
 //删除消息
 + (NSURLSessionDataTask *)DeleteMessageWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
+
+//获取佣金消息详情
++ (NSURLSessionDataTask *)GetDetailsForIdWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block messageType:(NSString *)messageType contractId:(NSString *)contractId noNetWork:(void(^)())noNetWork;
 @end

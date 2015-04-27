@@ -58,8 +58,8 @@
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     NSString *str=[ProjectStage stringtoRBM:[textField.text stringByReplacingOccurrencesOfString:@"￥" withString:@""]];
     if(str){
-        if([textField.text doubleValue]>=1000000000){
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"金额不能超过1000000000" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        if([textField.text doubleValue]>=1000000000 || [textField.text doubleValue]<1){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"金额不能超过1000000000或者小于1" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
             self.textFied.text = @"";
         }else{
