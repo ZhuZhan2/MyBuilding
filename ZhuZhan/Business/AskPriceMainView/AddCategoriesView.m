@@ -7,7 +7,7 @@
 //
 
 #import "AddCategoriesView.h"
-
+#import "RKShadowView.h"
 @implementation AddCategoriesView
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -19,10 +19,9 @@
     return self;
 }
 
--(UIImageView *)cutLine{
+-(UIView *)cutLine{
     if(!_cutLine){
-        _cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
-        _cutLine.backgroundColor = [UIColor lightGrayColor];
+        _cutLine = [RKShadowView seperatorLine];
     }
     return _cutLine;
 }

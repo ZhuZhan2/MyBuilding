@@ -15,7 +15,7 @@
 
 @interface AddMarkView : UIView<UITextViewDelegate>
 @property(nonatomic,strong)UILabel *titleLabel;
-@property(nonatomic,strong)UIImageView *cutLine;
+@property(nonatomic,strong)UIView *cutLine;
 @property(nonatomic,strong)UITextView *textView;
 @property(nonatomic,strong)UILabel *placeLabel;
 @property(nonatomic,weak)id<AddMarkViewDelegate>delegate;
