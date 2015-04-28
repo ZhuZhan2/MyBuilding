@@ -13,6 +13,7 @@
 #import "ChatGroupMemberModel.h"
 #import "LoginSqlite.h"
 #import "RKShadowView.h"
+#import "PersonalDetailViewController.h"
 @interface AddGroupMemberController ()<AddImageViewDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)AddImageView* addImageView;
 @property(nonatomic,strong)UIView* secondView;

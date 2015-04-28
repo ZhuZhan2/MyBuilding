@@ -16,5 +16,8 @@
 @property (nonatomic, copy)NSString* contractId;
 
 //详细阶段的数据,只有在非主条款页面进入主条款页面才允许传
-@property (nonatomic, strong)NSMutableArray* contractsStagesViewData;
+//暂时取消，需要则重新打开
+//@property (nonatomic, strong)NSMutableArray* contractsStagesViewData;
+//当从另一个详情页进来的时候赋值为YES
+@property (nonatomic)BOOL isFromDetailView;
 @end

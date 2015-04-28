@@ -35,7 +35,7 @@
 
 -(void)initNavi{
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
-    if (!self.contractsStagesViewData) {
+    if (!self.isFromDetailView) {
         [self setRightBtnWithText:@"更多"];
     }
 }
@@ -209,7 +209,7 @@
 }
 
 -(UIView *)stagesView{
-    if (!_stagesView&&!self.contractsStagesViewData) {
+    if (!_stagesView&&!self.isFromDetailView) {
         NSInteger const status=self.mainClauseModel.a_status;
         BOOL hasProviderFile=self.mainClauseModel.a_provideHas;
         NSInteger archiveStatus=self.mainClauseModel.a_archiveStatus;
@@ -230,9 +230,11 @@
         CGRect frame=_stagesView.frame;
         frame.origin.y=64;
         _stagesView.frame=frame;
-    }else if (!_stagesView&&self.contractsStagesViewData) {
-        BOOL isClosed=[self.contractsStagesViewData[3] boolValue];
-        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:self.contractsStagesViewData[0] smallStageNames:self.contractsStagesViewData[1] smallStageStyles:self.contractsStagesViewData[2] isClosed:isClosed];
+    }else if (!_stagesView&&self.isFromDetailView) {
+        _stagesView=[[UIView alloc]initWithFrame:CGRectZero];
+//以下注释打开并且上面这行代码注释掉即可实现里面的阶段条
+//        BOOL isClosed=[self.contractsStagesViewData[3] boolValue];
+//        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:self.contractsStagesViewData[0] smallStageNames:self.contractsStagesViewData[1] smallStageStyles:self.contractsStagesViewData[2] isClosed:isClosed];
         CGRect frame=_stagesView.frame;
         frame.origin.y=64;
         _stagesView.frame=frame;
