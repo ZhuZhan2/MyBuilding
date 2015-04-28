@@ -23,13 +23,20 @@
         self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"createUser"][@"loginImagesId"]];
     }
     self.a_time = [ProjectStage ProjectDateStage:dict[@"createdTime"]];
+    
+    self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageWidth"]]];
+    self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageHeight"]]];
+    NSString *height = nil;
+    if([self.a_imageWidth intValue]>310){
+        height = [NSString stringWithFormat:@"%f",[self.a_imageHeight floatValue]/[self.a_imageWidth floatValue]*310];
+        self.a_imageWidth = @"310";
+        self.a_imageHeight = height;
+    }
     if(![[ProjectStage ProjectStrStage:dict[@"dynamicImagesId"]] isEqualToString:@""]){
-        self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"dynamicImagesId"], @"dynamic", @"", @"", @"")];
+        self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"dynamicImagesId"], @"dynamic", self.a_imageWidth, self.a_imageHeight, @"")];
     }else{
         self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"dynamicImagesId"]];
     }
-    self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageWidth"]]];
-    self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageHeight"]]];
     if([dict[@"sourceCode"] isEqualToString:@"00"]){
         self.a_category = @"Personal";
         self.a_content=[[ProjectStage ProjectStrStage:dict[@"content"]] stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];

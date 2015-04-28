@@ -80,7 +80,7 @@
     startIndex = 0;
     isReload = NO;
     showArr = [[NSMutableArray alloc] init];
-    
+    RecommendArr = [[NSMutableArray alloc] init];
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     self.tableView.separatorStyle = NO;
     //集成刷新控件
@@ -94,21 +94,45 @@
         self.tableView.scrollEnabled = NO;
         sectionHeight = 0;
         loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view];
-        [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts,int count ,NSError *error) {
             if(!error){
                 showArr = posts;
                 sectionHeight = 50;
                 isReload = NO;
-                if(showArr.count == 0){
-                    [MyTableView reloadDataWithTableView:self.tableView];
-                    [MyTableView hasData:self.tableView];
+                if(showArr.count < 5 || showArr.count == 0){
+                    [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
+                        if(!error){
+                            [showArr addObjectsFromArray:posts[0]];
+                            if(showArr.count == 0){
+                                [MyTableView reloadDataWithTableView:self.tableView];
+                                [MyTableView hasData:self.tableView];
+                            }else{
+                                [MyTableView removeFootView:self.tableView];
+                                [self.tableView reloadData];
+                            }
+                            [LoadingView removeLoadingView:loadingView];
+                            self.tableView.scrollEnabled = YES;
+                            loadingView = nil;
+                            allStartIndex++;
+                        }
+                    }startIndex:0 keywords:@"" noNetWork:^{
+                        [self.tableView footerEndRefreshing];
+                        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                            [self footerRereshing];
+                        }];
+                    }];
                 }else{
-                    [MyTableView removeFootView:self.tableView];
-                    [self.tableView reloadData];
+                    if(showArr.count == 0){
+                        [MyTableView reloadDataWithTableView:self.tableView];
+                        [MyTableView hasData:self.tableView];
+                    }else{
+                        [MyTableView removeFootView:self.tableView];
+                        [self.tableView reloadData];
+                    }
+                    [LoadingView removeLoadingView:loadingView];
+                    self.tableView.scrollEnabled = YES;
+                    loadingView = nil;
                 }
-                [LoadingView removeLoadingView:loadingView];
-                self.tableView.scrollEnabled = YES;
-                loadingView = nil;
             }else{
                 self.tableView.scrollEnabled = NO;
                 [LoadingView removeLoadingView:loadingView];
@@ -209,18 +233,42 @@
 {
     NSMutableArray* localDatas=[ProjectSqlite loadList];
     if (!localDatas.count) {
-        [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, int count,NSError *error) {
             if(!error){
                 startIndex = 0;
                 [showArr removeAllObjects];
+                allStartIndex = 0;
+                [RecommendArr removeAllObjects];
                 showArr = posts;
                 isReload = NO;
-                if(showArr.count == 0){
-                    [MyTableView reloadDataWithTableView:self.tableView];
-                    [MyTableView hasData:self.tableView];
+                
+                if(showArr.count < 5 || showArr.count == 0){
+                    [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
+                        if(!error){
+                            [showArr addObjectsFromArray:posts[0]];
+                            if(showArr.count == 0){
+                                [MyTableView reloadDataWithTableView:self.tableView];
+                                [MyTableView hasData:self.tableView];
+                            }else{
+                                [MyTableView removeFootView:self.tableView];
+                                [self.tableView reloadData];
+                            }
+                            allStartIndex++;
+                        }
+                    }startIndex:0 keywords:@"" noNetWork:^{
+                        [self.tableView footerEndRefreshing];
+                        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                            [self footerRereshing];
+                        }];
+                    }];
                 }else{
-                    [MyTableView removeFootView:self.tableView];
-                    [self.tableView reloadData];
+                    if(showArr.count == 0){
+                        [MyTableView reloadDataWithTableView:self.tableView];
+                        [MyTableView hasData:self.tableView];
+                    }else{
+                        [MyTableView removeFootView:self.tableView];
+                        [self.tableView reloadData];
+                    }
                 }
             }else{
                 [LoginAgain AddLoginView:NO];
@@ -245,6 +293,8 @@
                 if(!error){
                     startIndex = 0;
                     [showArr removeAllObjects];
+                    allStartIndex = 0;
+                    [RecommendArr removeAllObjects];
                     showArr = posts;
                     isReload = YES;
                     if(showArr.count == 0){
@@ -271,16 +321,32 @@
 - (void)footerRereshing
 {
     if(!isReload){
-        [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts,int count ,NSError *error) {
             if(!error){
                 startIndex++;
+                [RecommendArr addObjectsFromArray:posts];
                 [showArr addObjectsFromArray:posts];
-                if(showArr.count == 0){
-                    [MyTableView reloadDataWithTableView:self.tableView];
-                    [MyTableView hasData:self.tableView];
-                }else{
-                    [MyTableView removeFootView:self.tableView];
-                    [self.tableView reloadData];
+                if(RecommendArr.count < count || RecommendArr.count == 0){
+                    [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
+                        if(!error){
+                            allStartIndex++;
+                            [showArr addObjectsFromArray:posts[0]];
+                            if(showArr.count == 0){
+                                [MyTableView reloadDataWithTableView:self.tableView];
+                                [MyTableView hasData:self.tableView];
+                            }else{
+                                [MyTableView removeFootView:self.tableView];
+                                [self.tableView reloadData];
+                            }
+                        }else{
+                            [LoginAgain AddLoginView:NO];
+                        }
+                    }startIndex:allStartIndex keywords:@"" noNetWork:^{
+                        [self.tableView footerEndRefreshing];
+                        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                            [self footerRereshing];
+                        }];
+                    }];
                 }
             }else{
                 [LoginAgain AddLoginView:NO];
@@ -295,7 +361,7 @@
     }else{
         NSMutableArray* localDatas=[ProjectSqlite loadList];
         if(localDatas.count ==0){
-            [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+            [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts,int count ,NSError *error) {
                 if(!error){
                     startIndex++;
                     [showArr addObjectsFromArray:posts];
@@ -365,7 +431,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if(section == 0){
-        return 30;
+        return 50;
     }
     return 5;
 }

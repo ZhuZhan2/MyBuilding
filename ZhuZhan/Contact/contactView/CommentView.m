@@ -28,16 +28,16 @@
     BOOL imageUrlExist=![model.a_imageUrl isEqualToString:@""];
     //动态图像
     if(imageUrlExist){
-        if([model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310<50){
+        if([model.a_imageHeight floatValue]<50){
             imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 310,50)];
             height+=50;
         }else{
-            if([model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310>=568){
+            if([model.a_imageHeight floatValue]>=568){
                 imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 310,568)];
                 height+=568;
                 imageView.contentMode = UIViewContentModeScaleAspectFill;
             }else{
-                imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 310,[model.a_imageHeight floatValue]/[model.a_imageWidth floatValue]*310)];
+                imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 310,[model.a_imageHeight floatValue])];
                 height+=imageView.frame.size.height;
             }
         }

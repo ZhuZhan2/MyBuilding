@@ -553,7 +553,7 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)GetRecommenddProjectsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex noNetWork:(void(^)())noNetWork{
++ (NSURLSessionDataTask *)GetRecommenddProjectsWithBlock:(void (^)(NSMutableArray *posts,int count ,NSError *error))block startIndex:(int)startIndex noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
             noNetWork();
@@ -573,7 +573,7 @@
                 [mutablePosts addObject:model];
             }
             if (block) {
-                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+                block([NSMutableArray arrayWithArray:mutablePosts],[JSON[@"data"][@"total"] intValue] ,nil);
             }
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -582,7 +582,7 @@
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {
-            block([NSMutableArray array], error);
+            block([NSMutableArray array], 0,error);
         }
     }];
 }
