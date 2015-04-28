@@ -310,6 +310,8 @@
         return;
     }
     
+    NSLog(@"%d",(int)accountField.text.length);
+    
     if (accountField.text.length<1||accountField.text.length>20) {
         [self remindErrorView:@"用户名1-20位"];
         return;
@@ -321,6 +323,7 @@
         [self remindErrorView:@"用户名不能包含空格"];
         return;
     }
+    
     
     if ([self isAllNumber:accountField.text]) {
         return;

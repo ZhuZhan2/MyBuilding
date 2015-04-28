@@ -55,7 +55,7 @@
 + (NSURLSessionDataTask *)GetMapSearchWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block longitude:(NSString*)longitude latitude:(NSString*)latitude radius:(NSString *)radius startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
 
 //获取推荐项目
-+ (NSURLSessionDataTask *)GetRecommenddProjectsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
++ (NSURLSessionDataTask *)GetRecommenddProjectsWithBlock:(void (^)(NSMutableArray *posts,int count ,NSError *error))block startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
 
 //我的项目
 + (NSURLSessionDataTask *)GetMyProjectsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
