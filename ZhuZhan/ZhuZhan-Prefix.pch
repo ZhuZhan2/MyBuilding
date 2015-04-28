@@ -37,6 +37,9 @@
 //开发服务器
 #define  serverAddress "http://10.1.5.104:8080/server"
 
+//马恩伟本机
+//#define  serverAddress "http://10.1.1.138:9090/service/"
+
 /*************************************************************/
 //正式socket连接地址
 //#define socketServer "apis.mybuilding.cn"

@@ -12,6 +12,7 @@
 #import "ChatMessageApi.h"
 #import "ChatGroupMemberModel.h"
 #import "LoginSqlite.h"
+#import "RKShadowView.h"
 #import "PersonalDetailViewController.h"
 @interface AddGroupMemberController ()<AddImageViewDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)AddImageView* addImageView;
@@ -19,6 +20,7 @@
 @property(nonatomic,strong)NSString *createdUserId;
 @property(nonatomic,strong)UIButton* btn;
 @property (nonatomic, strong)NSArray* groupMemberModels;
+@property (nonatomic)BOOL isGroupOwner;
 @end
 
 #define backColor RGBCOLOR(240, 239, 245)
@@ -29,7 +31,7 @@
     [self firstNetWork];
     [self initNavi];
     [self initTableView];
-    self.tableView.backgroundColor=backColor;
+    self.tableView.backgroundColor=AllBackDeepGrayColor;
 }
 
 -(void)firstNetWork{
@@ -38,11 +40,9 @@
             self.groupMemberModels=posts[0];
             self.addImageView=nil;
             self.createdUserId = posts[1];
-            if([[LoginSqlite getdata:@"userId"] isEqualToString:posts[1]]){
-                [self.btn setBackgroundImage:[GetImagePath getImagePath:@"解散本群带字"] forState:UIControlStateNormal];
-            }else{
-                [self.btn setBackgroundImage:[GetImagePath getImagePath:@"退出本群带字"] forState:UIControlStateNormal];
-            }
+            self.isGroupOwner=[[LoginSqlite getdata:@"userId"] isEqualToString:posts[1]];
+            [self.btn setBackgroundImage:[GetImagePath getImagePath:self.isGroupOwner?@"解散本群带字":@"退出本群带字"] forState:UIControlStateNormal];
+
             [self.tableView reloadData];
         }else{
             if([ErrorCode errorCode:error] == 403){
@@ -107,6 +107,14 @@
             [array addObject:model];
         }
         _addImageView=[AddImageView addImageViewWithModels:array];
+        
+        
+        UIView* shadowView=[RKShadowView seperatorLineShadowViewWithHeight:10];
+        CGRect frame=shadowView.frame;
+        frame.origin.y=CGRectGetHeight(_addImageView.frame);
+        shadowView.frame=frame;
+        [_addImageView addSubview:shadowView];
+        
         _addImageView.delegate=self;
     }
     return _addImageView;
@@ -115,7 +123,7 @@
 -(UIView *)secondView{
     if (!_secondView) {
         _secondView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 175)];
-        _secondView.backgroundColor=backColor;
+        _secondView.backgroundColor=AllBackDeepGrayColor;
         [self setUpSecondView];
     }
     return _secondView;
@@ -177,7 +185,12 @@
 }
 
 -(void)exitBtnClicked{
-    UIAlertView* alertView=[[UIAlertView alloc]initWithTitle:@"退出本群" message:@"退出后，将不再接受此群聊消息" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认",@"取消",nil];
+    UIAlertView* alertView;
+    if (self.isGroupOwner) {
+        alertView=[[UIAlertView alloc]initWithTitle:@"退出并解散本群？" message:@"此群将被解散，且本操作不可恢复，确认继续？" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认",@"取消",nil];
+    }else{
+        alertView=[[UIAlertView alloc]initWithTitle:@"退出本群" message:@"退出后，将不再接受此群聊消息" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认",@"取消",nil];
+    }
     [alertView show];
 }
 

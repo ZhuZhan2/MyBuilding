@@ -58,7 +58,8 @@
 -(void)clauseMainBtnClicked{
     MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
     vc.contractId=self.repealModel.a_contractsRecordId;
-    vc.contractsStagesViewData=[self contractsStagesViewData];
+    vc.isFromDetailView=YES;
+    //vc.contractsStagesViewData=[self contractsStagesViewData];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -210,7 +211,10 @@
     if (!_btnToolBar) {
         NSMutableArray* btns=[NSMutableArray array];
         NSArray* imageNames;
-        if (self.repealModel.a_status==1) {
+        
+        if (self.repealModel.a_archiveStatus==2) {
+            
+        }else if (self.repealModel.a_status==1) {
             imageNames=@[@"不同意带字",@"同意带字"];
         }
         
