@@ -32,12 +32,12 @@
 //#define  serverAddress "http://apis.shenjigroup.com:15427/WebService"
 
 //测试服务器
-#define  serverAddress "http://10.1.5.104:9090/server"
+//#define  serverAddress "http://10.1.5.104:9090/server"
 
 //开发服务器
-//#define  serverAddress "http://10.1.5.104:8080/server"
+#define  serverAddress "http://10.1.5.104:8080/server"
 
-
+/*************************************************************/
 //正式socket连接地址
 //#define socketServer "apis.mybuilding.cn"
 //#define socketPort 1428
@@ -47,14 +47,15 @@
 //#define socketPort 1428
 
 //测试socket连接地址
-#define socketServer "10.1.5.104"
-#define socketPort 54455
+//#define socketServer "10.1.5.104"
+//#define socketPort 54455
 
 //开发socket连接地址
-//#define socketServer "10.1.5.104"
-//#define socketPort 44455
+#define socketServer "10.1.5.104"
+#define socketPort 44455
 
 
+/*************************************************************/
 //正式聊天服务器
 //#define socketHttp "http://apis.mybuilding.cn:15428/ImService"
 
@@ -62,10 +63,10 @@
 //#define socketHttp "http://apis.shenjigroup.com:15428/ImService"
 
 //测试聊天服务器
-#define socketHttp "http://10.1.5.104:9090/im"
+//#define socketHttp "http://10.1.5.104:9090/im"
 
 //开发聊天服务器
-//#define socketHttp "http://10.1.5.104:8080/im"
+#define socketHttp "http://10.1.5.104:8080/im"
 
 
 #define  kScreenWidth  [[UIScreen mainScreen] bounds].size.width

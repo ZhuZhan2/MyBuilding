@@ -1209,6 +1209,11 @@
 		5BF31B6A1AB025FD00DA87F5 /* DiscussionGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B631AB025FD00DA87F5 /* DiscussionGroupView.m */; };
 		5BF31B6B1AB025FD00DA87F5 /* ImageAndLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B651AB025FD00DA87F5 /* ImageAndLabelView.m */; };
 		5BFCE5C11ADBABB00049F009 /* ChatGroupMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCE5C01ADBABB00049F009 /* ChatGroupMemberModel.m */; };
+		D30062161AEF62FD009E35C8 /* 会话列表－个人.png in Resources */ = {isa = PBXBuildFile; fileRef = D30062121AEF62FD009E35C8 /* 会话列表－个人.png */; };
+		D30062171AEF62FD009E35C8 /* 会话列表－个人@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D30062131AEF62FD009E35C8 /* 会话列表－个人@2x.png */; };
+		D30062181AEF62FD009E35C8 /* 会话列表－群聊.png in Resources */ = {isa = PBXBuildFile; fileRef = D30062141AEF62FD009E35C8 /* 会话列表－群聊.png */; };
+		D30062191AEF62FD009E35C8 /* 会话列表－群聊@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D30062151AEF62FD009E35C8 /* 会话列表－群聊@2x.png */; };
+		D300621F1AEF65E4009E35C8 /* ALLProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D300621E1AEF65E4009E35C8 /* ALLProjectViewController.m */; };
 		D300F40B1A84AE7A002AFAC0 /* mapdef.png in Resources */ = {isa = PBXBuildFile; fileRef = D300F4091A84AE7A002AFAC0 /* mapdef.png */; };
 		D300F40C1A84AE7A002AFAC0 /* mapdef@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D300F40A1A84AE7A002AFAC0 /* mapdef@2x.png */; };
 		D3049A681A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3049A671A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m */; };
@@ -3239,6 +3244,12 @@
 		5BF31B651AB025FD00DA87F5 /* ImageAndLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAndLabelView.m; sourceTree = "<group>"; };
 		5BFCE5BF1ADBABB00049F009 /* ChatGroupMemberModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroupMemberModel.h; sourceTree = "<group>"; };
 		5BFCE5C01ADBABB00049F009 /* ChatGroupMemberModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroupMemberModel.m; sourceTree = "<group>"; };
+		D30062121AEF62FD009E35C8 /* 会话列表－个人.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "会话列表－个人.png"; sourceTree = "<group>"; };
+		D30062131AEF62FD009E35C8 /* 会话列表－个人@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "会话列表－个人@2x.png"; sourceTree = "<group>"; };
+		D30062141AEF62FD009E35C8 /* 会话列表－群聊.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "会话列表－群聊.png"; sourceTree = "<group>"; };
+		D30062151AEF62FD009E35C8 /* 会话列表－群聊@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "会话列表－群聊@2x.png"; sourceTree = "<group>"; };
+		D300621D1AEF65E4009E35C8 /* ALLProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALLProjectViewController.h; sourceTree = "<group>"; };
+		D300621E1AEF65E4009E35C8 /* ALLProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALLProjectViewController.m; sourceTree = "<group>"; };
 		D300F4091A84AE7A002AFAC0 /* mapdef.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapdef.png; sourceTree = "<group>"; };
 		D300F40A1A84AE7A002AFAC0 /* mapdef@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapdef@2x.png"; sourceTree = "<group>"; };
 		D3049A661A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterCompanyTableViewCell.h; sourceTree = "<group>"; };
@@ -4566,6 +4577,8 @@
 				042D9DE519B559FC00689C5D /* ProjectTableViewCell.m */,
 				042D9DE619B559FC00689C5D /* ProjectTableViewController.h */,
 				042D9DE719B559FC00689C5D /* ProjectTableViewController.m */,
+				D300621D1AEF65E4009E35C8 /* ALLProjectViewController.h */,
+				D300621E1AEF65E4009E35C8 /* ALLProjectViewController.m */,
 				042D9DE819B559FC00689C5D /* SearchView */,
 				042D9E0519B559FC00689C5D /* Topics */,
 			);
@@ -5273,6 +5286,10 @@
 		5B3B5D461AAD935E002FB444 /* 二期新图片 */ = {
 			isa = PBXGroup;
 			children = (
+				D30062121AEF62FD009E35C8 /* 会话列表－个人.png */,
+				D30062131AEF62FD009E35C8 /* 会话列表－个人@2x.png */,
+				D30062141AEF62FD009E35C8 /* 会话列表－群聊.png */,
+				D30062151AEF62FD009E35C8 /* 会话列表－群聊@2x.png */,
 				D3D4E7441AE72CC8001BF0A9 /* pdf-icon.png */,
 				D3D4E7451AE72CC8001BF0A9 /* pdf-icon@2x.png */,
 				D3A81BA21AE366BE00E9AC73 /* hetong.png */,
@@ -7344,6 +7361,7 @@
 				04BC435019D7E5B3006B5C7B /* 项目－高级搜索－2_22a.png in Resources */,
 				5BE08E421A3586EA00495EEB /* 020024.png in Resources */,
 				5BE08E5C1A3586EA00495EEB /* 030007.png in Resources */,
+				D30062171AEF62FD009E35C8 /* 会话列表－个人@2x.png in Resources */,
 				5B819F751ACBC81300A1A593 /* 报价灰@2x.png in Resources */,
 				5B95ADBB1AB1225E00797EA6 /* 退出本群@2x.png in Resources */,
 				04BC420419D7E5B3006B5C7B /* 公司认证员工_05a@2x.png in Resources */,
@@ -7675,6 +7693,7 @@
 				5BE08E191A3586EA00495EEB /* 020003@2x.png in Resources */,
 				5BE08E481A3586EA00495EEB /* 020027.png in Resources */,
 				04BC41A819D7E5B3006B5C7B /* 人脉－个人中心_07a@2x.png in Resources */,
+				D30062181AEF62FD009E35C8 /* 会话列表－群聊.png in Resources */,
 				5BE08E681A3586EA00495EEB /* 030013.png in Resources */,
 				04BC433C19D7E5B3006B5C7B /* 项目－项目专题_17a.png in Resources */,
 				5B7E591E1ABC1E4B0063B400 /* priceX@2x.png in Resources */,
@@ -7711,6 +7730,7 @@
 				5BE08D9A1A3586EA00495EEB /* 010004.png in Resources */,
 				04BC412619D7E5B3006B5C7B /* bg-menuitem-highlighted.png in Resources */,
 				5B5121361A07968200A77997 /* 地图搜索1_05.png in Resources */,
+				D30062191AEF62FD009E35C8 /* 会话列表－群聊@2x.png in Resources */,
 				04BC40F019D7E5B3006B5C7B /* +项目-首页_25a.png in Resources */,
 				5B95ADBA1AB1225E00797EA6 /* 退出本群.png in Resources */,
 				5B7AA6E91A58D93E000FBFF2 /* icon03.png in Resources */,
@@ -8048,6 +8068,7 @@
 				5B5836FB1AD7A3D200F8E7C3 /* accept_green_button@2x.png in Resources */,
 				04BC412719D7E5B3006B5C7B /* bg-menuitem-highlighted@2x.png in Resources */,
 				D3D1A7B719F8E9B40006F954 /* 公司－我的公司_05b.png in Resources */,
+				D30062161AEF62FD009E35C8 /* 会话列表－个人.png in Resources */,
 				D3E1AAFE1A7648FC00BFC6E1 /* Shape-1@2x.png in Resources */,
 				5BC234461AA81D7400312D9D /* 05.png in Resources */,
 				5BE08DDD1A3586EA00495EEB /* 010037@2x.png in Resources */,
@@ -8407,6 +8428,7 @@
 				042D9E2219B559FC00689C5D /* ResultsTableViewController.m in Sources */,
 				0426C29619922D5A00CD8822 /* GPUImageMovie.m in Sources */,
 				0426C2FA19922D5A00CD8822 /* XHWaterDropRefresh.m in Sources */,
+				D300621F1AEF65E4009E35C8 /* ALLProjectViewController.m in Sources */,
 				D3AD60A019AC574A001FD483 /* ConnectionAvailable.m in Sources */,
 				D3F727511AD660E200B52A66 /* RecommendFriendViewController.m in Sources */,
 				D3D5B42B1AB12CB800E8EB04 /* ChatSqlite.m in Sources */,

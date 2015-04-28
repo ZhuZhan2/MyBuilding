@@ -20,6 +20,7 @@
 #import "ProjectSqlite.h"
 #import "LocalProjectModel.h"
 #import "MyTableView.h"
+#import "ALLProjectViewController.h"
 @interface ProjectTableViewController ()
 
 @end
@@ -45,8 +46,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:19], NSFontAttributeName,
-                                                                     nil]];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:19], NSFontAttributeName,nil]];
     
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -376,24 +376,38 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if(section == 0){
-        UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 291.5, 30)];
+        UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 291.5, 50)];
         [bgView setBackgroundColor:RGBCOLOR(239, 237, 237)];
-
-        UILabel* countLabel=[[UILabel alloc] initWithFrame:CGRectMake(80, 10, 160, 20)];
-        countLabel.font = [UIFont systemFontOfSize:17];
-        countLabel.textColor = BlueColor;
-        countLabel.textAlignment = NSTextAlignmentCenter;
-        countLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)showArr.count];
-        //[bgView addSubview:countLabel];
         
-        UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 10, 160, 20)];
-        tempLabel.font = [UIFont systemFontOfSize:12];
+        //        UILabel* countLabel=[[UILabel alloc] initWithFrame:CGRectMake(-38, 10, 160, 20)];
+        //        countLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:17];
+        //        countLabel.textColor = BlueColor;
+        //        countLabel.textAlignment = NSTextAlignmentCenter;
+        //        countLabel.text = [NSString stringWithFormat:@"%d",showArr.count];
+        //        //[bgView addSubview:countLabel];
+        
+        UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(18, 25, 160, 20)];
+        tempLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:13];
         tempLabel.textColor = GrayColor;
-        tempLabel.textAlignment = NSTextAlignmentCenter;
+        //        tempLabel.textAlignment = NSTextAlignmentCenter;
         NSMutableArray* localDatas=[ProjectSqlite loadList];
         if(localDatas.count !=0){
             if(isReload){
                 tempLabel.text = [NSString stringWithFormat:@"历史浏览记录"];
+                
+                UIButton* allProjectBtn=[UIButton buttonWithType:UIButtonTypeSystem];
+                [allProjectBtn setTitle:@"查看全部项目" forState:UIControlStateNormal];
+                allProjectBtn.frame=CGRectMake(227, 15, 79, 40);
+                //                allProjectBtn.titleLabel.textColor=RGBCOLOR(110,121,183);
+                [allProjectBtn setTitleColor:BlueColor forState:UIControlStateNormal];
+                allProjectBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:13];
+                [allProjectBtn addTarget:self action:@selector(allProjectBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+                [bgView addSubview:allProjectBtn];
+                
+                UIView* view=[[UIView alloc]initWithFrame:CGRectMake(228, 42, 76, 1)];
+                view.backgroundColor=BlueColor;
+                [bgView addSubview:view];
+                
             }else{
                 tempLabel.text = [NSString stringWithFormat:@"推荐项目"];
             }
@@ -401,6 +415,8 @@
             tempLabel.text = [NSString stringWithFormat:@"推荐项目"];
         }
         [bgView addSubview:tempLabel];
+        
+        
         return bgView;
     }
     return nil;
@@ -412,5 +428,10 @@
     projectCommentView.projectId = model.a_id;
     projectCommentView.projectName = model.a_projectName;
     [self.navigationController pushViewController:projectCommentView animated:YES];
+}
+
+-(void)allProjectBtnClicked{
+    ALLProjectViewController* vc=[[ALLProjectViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

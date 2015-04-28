@@ -217,6 +217,7 @@
     AddGroupMemberController* vc=[[AddGroupMemberController alloc]init];
     vc.contactId=self.contactId;
     vc.titleStr = self.titleStr;
+    vc.type = self.type;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

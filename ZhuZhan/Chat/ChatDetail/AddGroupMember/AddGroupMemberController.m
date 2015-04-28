@@ -12,6 +12,7 @@
 #import "ChatMessageApi.h"
 #import "ChatGroupMemberModel.h"
 #import "LoginSqlite.h"
+#import "PersonalDetailViewController.h"
 @interface AddGroupMemberController ()<AddImageViewDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)AddImageView* addImageView;
 @property(nonatomic,strong)UIView* secondView;
@@ -102,6 +103,7 @@
             AddImageViewModel* model=[[AddImageViewModel alloc]init];
             model.name=[dataModel.a_nickName isEqualToString:@""]?dataModel.a_loginName:dataModel.a_nickName;
             model.imageUrl=dataModel.a_loginImagesId;
+            model.userId = dataModel.a_loginId;
             [array addObject:model];
         }
         _addImageView=[AddImageView addImageViewWithModels:array];
@@ -184,7 +186,16 @@
 }
 
 -(void)addImageBtnClicked{
+    NSLog(@"addImageBtnClicked");
     ChooseContactsViewController* vc=[[ChooseContactsViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)headClick:(NSString *)userId{
+    PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
+    personalVC.contactId = userId;
+    personalVC.fromViewName = @"chatView";
+    personalVC.chatType = self.type;
+    [self.navigationController pushViewController:personalVC animated:YES];
 }
 @end
