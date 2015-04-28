@@ -48,6 +48,15 @@
     return twoView;
 }
 
+-(void)rightLabelMoveX:(CGFloat)x y:(CGFloat)y reduceWidth:(CGFloat)reduceWidth{
+    CGRect frame=self.rightLabel.frame;
+    frame.origin.x+=x;
+    frame.origin.y+=y;
+    frame.size.width-=reduceWidth;
+    frame.size.height-=y;
+    self.rightLabel.frame=frame;
+}
+
 -(UILabel *)leftLabel{
     if (!_leftLabel) {
         _leftLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth/4, kTotalHeight)];
