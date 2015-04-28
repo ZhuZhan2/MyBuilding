@@ -280,7 +280,9 @@
         NSMutableArray* btns=[NSMutableArray array];
         
         NSArray* imageNames;
-        if (self.mainClauseModel.a_isSelfCreated) {
+        if (self.mainClauseModel.a_archiveStatus==2) {
+            
+        }else if (self.mainClauseModel.a_isSelfCreated) {
             if (self.mainClauseModel.a_status==2&&self.mainClauseModel.a_archiveStatus!=2) {
                 imageNames=@[@"修改大带子"];
             }else{

@@ -156,7 +156,9 @@
     if (!_btnToolBar) {
         NSMutableArray* btns=[NSMutableArray array];
         NSArray* imageNames;
-        if (self.salerModel.a_status==1) {
+        if (self.salerModel.a_archiveStatus==2) {
+            
+        }else if (self.salerModel.a_status==1) {
             imageNames=@[@"不同意带字",@"同意带字"];
         }
         
