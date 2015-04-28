@@ -68,30 +68,40 @@
     [self.mainView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
     RKTwoView* view1=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:userType rightContent:self.contents[0] needAuto:NO];
-    RKTwoView* view2=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"接收者" rightContent:self.contents[1] needAuto:NO];
-    RKTwoView* view3=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"销售方" rightContent:self.contents[2] needAuto:NO];
-    RKTwoView* view4=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"供应商" rightContent:self.contents[3] needAuto:NO];
+    RKTwoView* view2=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"供应用户名" rightContent:self.contents[1] needAuto:NO];
+    RKTwoView* view3=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"销售公司名" rightContent:self.contents[2] needAuto:NO];
+    RKTwoView* view4=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"供应公司名" rightContent:self.contents[3] needAuto:NO];
     //RKTwoView* view5=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"金    额" rightContent:self.contents[4] needAuto:NO];
+    
+    CGFloat moveX=12;
     
     CGRect frame=view1.frame;
     frame.origin.y+=mainViewTopDistance;
+    frame.origin.x+=moveX;
     view1.frame=frame;
     [self.mainView addSubview:view1];
+    [view1 rightLabelMoveX:10 y:0 reduceWidth:moveX+10];
     
     frame=view2.frame;
     frame.origin.y=CGRectGetMaxY(view1.frame);
+    frame.origin.x+=moveX;
     view2.frame=frame;
     [self.mainView addSubview:view2];
+    [view2 rightLabelMoveX:10 y:0 reduceWidth:moveX+10];
     
     frame=view3.frame;
     frame.origin.y=CGRectGetMaxY(view2.frame);
+    frame.origin.x+=moveX;
     view3.frame=frame;
     [self.mainView addSubview:view3];
-    
+    [view3 rightLabelMoveX:10 y:0 reduceWidth:moveX+10];
+
     frame=view4.frame;
     frame.origin.y=CGRectGetMaxY(view3.frame);
+    frame.origin.x+=moveX;
     view4.frame=frame;
     [self.mainView addSubview:view4];
+    [view4 rightLabelMoveX:10 y:0 reduceWidth:moveX+10];
     
 //    frame=view5.frame;
 //    frame.origin.y=CGRectGetMaxY(view4.frame);
@@ -102,7 +112,7 @@
 -(void)setContents:(NSArray *)contents{
     _contents=contents;
     
-    [self setUpMainViewWithUserType:@"发起者"];
+    [self setUpMainViewWithUserType:@"销售用户名"];
     
     [self.cellHeader changeStageName:contents[5] code:contents[6] stageColor:[UIColor blackColor] codeColor:contents[4]];
     [self reloadAllFrames];

@@ -229,15 +229,15 @@
     }
     
     ContractsListSingleModel* singleModel=self.showArr[indexPath.row];
-    NSString* sendName=singleModel.a_createdBy;
-    NSString* receiveName=singleModel.a_recipientName;
+    NSString* saleName=singleModel.a_salerName;
+    NSString* providerName=singleModel.a_providerName;
     NSString* provider=singleModel.a_providerCompanyName;
     NSString* saler=singleModel.a_salerCompanyName;
     NSString* contractsName=singleModel.a_contractsType;
     NSString* contractsStatus=singleModel.a_archiveStatus;
     NSInteger index=[@[@"进行中",@"已完成",@"已关闭"] indexOfObject:contractsStatus];
     NSArray* colors=@[BlueColor,AllGreenColor,AllLightGrayColor];
-    cell.contents=@[sendName,receiveName,saler,provider,colors[index],contractsName,contractsStatus];
+    cell.contents=@[saleName,providerName,saler,provider,colors[index],contractsName,contractsStatus];
     return cell;
 }
 
