@@ -19,6 +19,7 @@
 #import "SalerContractsController.h"
 #import "RepealContractsController.h"
 #import "MJRefresh.h"
+#import "MyTableView.h"
 @interface ConstractListController ()<DemandStageChooseControllerDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property (nonatomic)NSInteger nowStage;
@@ -108,7 +109,13 @@
             //if([self.archiveStatus isEqualToString:@""]){
                 [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"inProgressCount"],posts[1][@"completeCount"],posts[1][@"closeCount"]]];
             //}
-            [self.tableView reloadData];
+            if(self.showArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -148,7 +155,13 @@
             //if([self.archiveStatus isEqualToString:@""]){
                 [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"inProgressCount"],posts[1][@"completeCount"],posts[1][@"closeCount"]]];
             //}
-            [self.tableView reloadData];
+            if(self.showArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];

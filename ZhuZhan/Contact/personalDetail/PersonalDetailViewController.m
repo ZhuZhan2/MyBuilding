@@ -268,10 +268,12 @@
                 self.contactModel = posts[0];
                 self.isFriend = self.contactModel.a_isFriend;
                 self.name = self.contactModel.a_userName;
-                if([self.isFriend isEqualToString:@"0"]){
-                    [self.threeBtnsView addSubview:self.secondBtn];
-                }else{
-                    [self.threeBtnsView addSubview:self.gotoMessageBtn];
+                if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"]){
+                    if([self.isFriend isEqualToString:@"0"]){
+                        [self.threeBtnsView addSubview:self.secondBtn];
+                    }else{
+                        [self.threeBtnsView addSubview:self.gotoMessageBtn];
+                    }
                 }
                 if([posts[1] isKindOfClass:[ParticularsModel class]]){
                     self.parModel = posts[1];

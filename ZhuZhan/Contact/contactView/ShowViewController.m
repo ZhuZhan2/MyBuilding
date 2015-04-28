@@ -66,7 +66,11 @@
     [tempImageView addSubview:message];
     
     UIButton *visitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    visitBtn.frame =CGRectMake(15, 220, 60, 28);
+    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"]){
+        visitBtn.frame =CGRectMake(15, 220, 60, 28);
+    }else{
+        visitBtn.frame =CGRectMake(70, 220, 60, 28);
+    }
     visitBtn.backgroundColor = [UIColor blackColor];
     [visitBtn setTitle:@"访问" forState:UIControlStateNormal];
     visitBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
@@ -77,7 +81,11 @@
     visitBtn.alpha = 0.8;
     
     concernBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    concernBtn.frame = CGRectMake(95, 220, 75, 28);
+    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"]){
+        concernBtn.frame = CGRectMake(95, 220, 75, 28);
+    }else{
+        concernBtn.frame =CGRectMake(160, 220, 60, 28);
+    }
     concernBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
     concernBtn.backgroundColor = [UIColor blackColor];
     concernBtn.layer.cornerRadius = 5;//设置那个圆角的有多圆
@@ -125,10 +133,12 @@
                 isFoucsed = 0;
             }
             
-            if([model.isFriend isEqualToString:@"0"]){
-                [self.view addSubview:addFriendBtn];
-            }else{
-                [self.view addSubview:gotoMessageBtn];
+            if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"]){
+                if([model.isFriend isEqualToString:@"0"]){
+                    [self.view addSubview:addFriendBtn];
+                }else{
+                    [self.view addSubview:gotoMessageBtn];
+                }
             }
             [self endIndicatorView];
         }else{

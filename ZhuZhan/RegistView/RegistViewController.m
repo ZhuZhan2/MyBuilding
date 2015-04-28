@@ -310,8 +310,8 @@
         return;
     }
     
-    if (accountField.text.length<6||accountField.text.length>20) {
-        [self remindErrorView:@"用户名6-20位"];
+    if (accountField.text.length<1||accountField.text.length>20) {
+        [self remindErrorView:@"用户名1-20位"];
         return;
     }
     

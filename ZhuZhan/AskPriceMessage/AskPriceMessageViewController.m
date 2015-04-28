@@ -273,48 +273,64 @@
     [self loadList];
 }
 
-//供应商合同
--(void)providerContractsWithId:(NSString *)ID{
-    [self repealContractsDetailWithId:ID sucessBlock:^(ContractsRepealModel *model) {
-        
-    } needStop:YES];
-    
-    return;
-    [self providerContractsDetailWithId:ID sucessBlock:^(ContractsMainClauseModel *model) {
-        if([model.a_fileName isEqualToString:@""]){
-            MainContractsBaseController *view = [[MainContractsBaseController alloc] init];
-            view.mainClauseModel = model;
-            [self.navigationController pushViewController:view animated:YES];
-        }
-    } needStop:YES];
-}
-
-
+////供应商合同
+//-(void)providerContractsWithId:(NSString *)ID{
+//    [self repealContractsDetailWithId:ID sucessBlock:^(ContractsRepealModel *model) {
+//        
+//    } needStop:YES];
+//    
+//    return;
+//    [self providerContractsDetailWithId:ID sucessBlock:^(ContractsMainClauseModel *model) {
+//        if([model.a_fileName isEqualToString:@""]){
+//            MainContractsBaseController *view = [[MainContractsBaseController alloc] init];
+//            view.mainClauseModel = model;
+//            [self.navigationController pushViewController:view animated:YES];
+//        }
+//    } needStop:YES];
+//}
+//
 -(void)getContractsInfo:(NSString *)type contractsId:(NSString *)contractsId{
     [AskPriceMessageApi GetDetailsForIdWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            ContractsMainClauseModel *model = posts[0];
-            if([model.a_fileName isEqualToString:@""]){
-                MainContractsBaseController *view = [[MainContractsBaseController alloc] init];
-                view.mainClauseModel = model;
-                [self.navigationController pushViewController:view animated:YES];
+            ContractsBaseViewController* pushVC;
+            NSDictionary* dic=posts[0];
+            NSInteger recordType=[dic[@"recordType"] integerValue];
+            switch (recordType) {
+                case 0:
+                case 2:{
+                    MainContractsBaseController* vc=[[MainContractsBaseController alloc]init];
+                    ContractsMainClauseModel* model=[[ContractsMainClauseModel alloc]init];
+                    model.dict=dic;
+                    vc.mainClauseModel=model;
+                    pushVC=vc;
+                    break;
+                }
+                case 1:{
+                    ProviderContractsController* vc=[[ProviderContractsController alloc]init];
+                    ContractsMainClauseModel* model=[[ContractsMainClauseModel alloc]init];
+                    model.dict=dic;
+                    vc.mainClauseModel=model;
+                    pushVC=vc;
+                    break;
+                }
+                case 3:{
+                    SalerContractsController* vc=[[SalerContractsController alloc]init];
+                    ContractsSalerModel* model=[[ContractsSalerModel alloc]init];
+                    model.dict=dic;
+                    vc.salerModel=model;
+                    pushVC=vc;
+                    break;
+                }
+                case 4:{
+                    RepealContractsController* vc=[[RepealContractsController alloc]init];
+                    ContractsRepealModel* model=[[ContractsRepealModel alloc]init];
+                    model.dict=dic;
+                    vc.repealModel=model;
+                    pushVC=vc;
+                    break;
+                }
             }
-        }else{
-            if([ErrorCode errorCode:error] == 403){
-                [LoginAgain AddLoginView:NO];
-            }else{
-                [ErrorCode alert];
-            }
-        }
-        [self stopLoadingView];
-    } messageType:type contractId:contractsId noNetWork:^{
-        self.tableView.scrollEnabled=NO;
-        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
-            self.tableView.scrollEnabled=YES;
-            [self loadList];
-        }];
-    }];
-}
+            [self.navigationController pushViewController:pushVC animated:YES];
 
         }else{
             if([ErrorCode errorCode:error] == 403){

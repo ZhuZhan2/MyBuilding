@@ -15,6 +15,7 @@
 #import "SalerContractsController.h"
 #import "RepealContractsController.h"
 #import "MJRefresh.h"
+#import "MyTableView.h"
 @interface ContractsListSearchController ()
 @property(nonatomic,strong)NSMutableArray* models;
 @property(nonatomic,strong)NSString *keyWords;
@@ -61,10 +62,11 @@
         if (!error) {
             self.startIndex=0;
             self.models=posts[0];
-            if(self.models.count ==0){
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"无搜索结果" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alertView show];
+            if(self.models.count == 0){
+                [MyTableView reloadDataWithTableView:self.searchBarTableView];
+                [MyTableView hasData:self.searchBarTableView];
             }else{
+                [MyTableView removeFootView:self.searchBarTableView];
                 [self.searchBarTableView reloadData];
             }
         }else{
@@ -86,10 +88,12 @@
     [ContractsApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             [self.models removeAllObjects];
-            if(self.models.count ==0){
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"无搜索结果" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alertView show];
+            self.models = posts[0];
+            if(self.models.count == 0){
+                [MyTableView reloadDataWithTableView:self.searchBarTableView];
+                [MyTableView hasData:self.searchBarTableView];
             }else{
+                [MyTableView removeFootView:self.searchBarTableView];
                 [self.searchBarTableView reloadData];
             }
         }else{
@@ -111,7 +115,7 @@
         if (!error) {
             self.startIndex++;
             [self.models addObjectsFromArray:posts[0]];
-            [self.tableView reloadData];
+            [self.searchBarTableView reloadData];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];

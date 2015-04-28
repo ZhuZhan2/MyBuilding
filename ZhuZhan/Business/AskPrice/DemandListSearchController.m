@@ -12,6 +12,7 @@
 #import "AskPriceDetailViewController.h"
 #import "QuotesDetailViewController.h"
 #import "MJRefresh.h"
+#import "MyTableView.h"
 @interface DemandListSearchController ()
 @property(nonatomic,strong)NSString *statusStr;
 @property(nonatomic,strong)NSString *otherStr;
@@ -57,7 +58,13 @@
         if(!error){
             self.startIndex=0;
             self.models = posts[0];
-            [self.searchBarTableView reloadData];
+            if(self.models.count == 0){
+                [MyTableView reloadDataWithTableView:self.searchBarTableView];
+                [MyTableView hasData:self.searchBarTableView];
+            }else{
+                [MyTableView removeFootView:self.searchBarTableView];
+                [self.searchBarTableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -79,7 +86,13 @@
             [self.models removeAllObjects];
             self.models = posts[0];
             [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
-            [self.searchBarTableView reloadData];
+            if(self.models.count == 0){
+                [MyTableView reloadDataWithTableView:self.searchBarTableView];
+                [MyTableView hasData:self.searchBarTableView];
+            }else{
+                [MyTableView removeFootView:self.searchBarTableView];
+                [self.searchBarTableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];

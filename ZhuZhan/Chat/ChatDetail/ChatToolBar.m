@@ -118,7 +118,7 @@
     NSInteger limitNumber=self.maxTextCountInChat;
     NSLog(@"%d",(int)textView.text.length+(int)text.length);
     if ([text isEqualToString:@"\n"]) {
-        if((int)textView.text.length+(int)text.length >limitNumber){
+        if((int)textView.text.length+(int)text.length >limitNumber+1){
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:[NSString stringWithFormat:@"不能超过%d个字",(int)limitNumber] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
         }else{
