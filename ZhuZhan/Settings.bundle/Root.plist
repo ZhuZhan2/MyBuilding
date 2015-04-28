@@ -13,14 +13,32 @@
 			</array>
 			<key>Titles</key>
 			<array>
-				<string>19.0</string>
+				<string>预生产</string>
 			</array>
 			<key>DefaultValue</key>
 			<string>VERSION</string>
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>Title</key>
-			<string>Pilot</string>
+			<string>环境</string>
+			<key>Key</key>
+			<string>VERSION_INFO_LABEL</string>
+		</dict>
+		<dict>
+			<key>Values</key>
+			<array>
+				<string>VERSION</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>1.0</string>
+			</array>
+			<key>DefaultValue</key>
+			<string>VERSION</string>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>RC</string>
 			<key>Key</key>
 			<string>VERSION_INFO_LABEL</string>
 		</dict>
