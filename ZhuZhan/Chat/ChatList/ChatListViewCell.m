@@ -69,11 +69,12 @@
 }
 
 -(void)setModel:(ChatListModel *)model{
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_loginImageUrl]] placeholderImage:[GetImagePath getImagePath:@"35px未设置"]];
     if([model.a_type isEqualToString:@"01"]){
         self.userNameLabel.text=model.a_loginName;
+        [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_loginImageUrl]] placeholderImage:[GetImagePath getImagePath:@"会话列表－个人"]];
     }else{
         self.userNameLabel.text=model.a_groupName;
+        [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_loginImageUrl]] placeholderImage:[GetImagePath getImagePath:@"会话列表－群聊"]];
     }
     self.userBussniessLabel.text=model.a_content;
 

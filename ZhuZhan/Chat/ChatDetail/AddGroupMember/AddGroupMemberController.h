@@ -11,4 +11,5 @@
 @interface AddGroupMemberController : ChatBaseViewController
 @property(nonatomic,strong)NSString *contactId;
 @property(nonatomic,strong)NSString *titleStr;
+@property(nonatomic,strong)NSString *type;
 @end

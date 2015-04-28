@@ -103,7 +103,7 @@
 -(void)setModel:(AddressBookCellModel *)model indexPath:(NSIndexPath*)indexPath{
     _model=model;
     _indexPath=indexPath;
-    [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:model.mainImageUrl] placeholderImage:[GetImagePath getImagePath:@"35px未设置"]];
+    [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:model.mainImageUrl] placeholderImage:[GetImagePath getImagePath:@"会话列表－个人"]];
     self.mainLabel.text=model.mainLabelText;
     //[self.assistBtn setBackgroundImage:[GetImagePath getImagePath:model.isHighlight?@"已选择联系人":@"未选择联系人"] forState:UIControlStateNormal];
 

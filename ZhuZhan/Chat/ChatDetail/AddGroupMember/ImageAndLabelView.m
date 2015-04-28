@@ -7,13 +7,15 @@
 //
 
 #import "ImageAndLabelView.h"
+#import "LoginSqlite.h"
 @interface ImageAndLabelView ()
-@property(nonatomic,strong)UIImageView* imageView;
+@property(nonatomic,strong)UIButton* headBtn;
 @property(nonatomic,strong)UILabel* contentLabel;
 @property(nonatomic,strong)UIButton* addBtn;
 
 @property(nonatomic,copy)NSString* imageUrl;
 @property(nonatomic,copy)NSString* content;
+@property(nonatomic,copy)NSString *userId;
 
 @property(nonatomic)BOOL isAddImage;
 
@@ -27,11 +29,12 @@
 #define kContentFont [UIFont systemFontOfSize:16]
 
 @implementation ImageAndLabelView
-+(ImageAndLabelView *)imageAndLabelViewWithImageUrl:(NSString *)imageUrl content:(NSString *)content isAddImage:(BOOL)isAddImage delegate:(id<ImageAndLabelViewDelegate>)delegate{
++(ImageAndLabelView *)imageAndLabelViewWithImageUrl:(NSString *)imageUrl content:(NSString *)content userId:(NSString *)userId isAddImage:(BOOL)isAddImage delegate:(id<ImageAndLabelViewDelegate>)delegate{
     ImageAndLabelView* view=[[ImageAndLabelView alloc]initWithFrame:CGRectMake(0, 0, kImageWidth, kTotalHeight)];
     view.imageUrl=imageUrl;
     view.content=content;
     view.isAddImage=isAddImage;
+    view.userId = userId;
     view.delegate=delegate;
     [view setUp];
     
@@ -39,7 +42,7 @@
 }
 
 -(void)setUp{
-    [self addSubview:self.isAddImage?self.addBtn:self.imageView];
+    [self addSubview:self.isAddImage?self.addBtn:self.headBtn];
     [self addSubview:self.contentLabel];
 }
 
@@ -52,15 +55,16 @@
     return _addBtn;
 }
 
--(UIImageView *)imageView{
-    if (!_imageView) {
+-(UIButton *)headBtn{
+    if (!_headBtn) {
         //[GetImagePath getImagePath:@"未设置"]
-        _imageView=[[UIImageView alloc]init];
-        [_imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrl] placeholderImage:[GetImagePath getImagePath:@"未设置"]];
+        _headBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+        [_headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:self.imageUrl]  forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"未设置"]];
+        [_headBtn addTarget:self action:@selector(headAction) forControlEvents:UIControlEventTouchUpInside];
 #warning  图片名为"未设置"和"加载中"为对应状态的图,暂时不作区分,等接口好了再调整
-        _imageView.frame=CGRectMake(0, 0, kImageWidth, kImageWidth);
+        _headBtn.frame=CGRectMake(0, 0, kImageWidth, kImageWidth);
     }
-    return _imageView;
+    return _headBtn;
 }
 
 -(UILabel *)contentLabel{
@@ -76,6 +80,14 @@
 -(void)addImageBtnClicked{
     if ([self.delegate respondsToSelector:@selector(addImageBtnClicked)]) {
         [self.delegate addImageBtnClicked];
+    }
+}
+
+-(void)headAction{
+    if(![self.userId isEqualToString:[LoginSqlite getdata:@"userId"]]){
+        if([self.delegate respondsToSelector:@selector(headClick:)]){
+            [self.delegate headClick:self.userId];
+        }
     }
 }
 @end

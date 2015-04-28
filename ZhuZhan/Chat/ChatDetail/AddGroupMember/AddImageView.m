@@ -35,7 +35,7 @@
     NSMutableArray* array=[NSMutableArray array];
     for (int i=0; i<self.models.count; i++) {
         AddImageViewModel* model=self.models[i];
-        ImageAndLabelView* view=[ImageAndLabelView imageAndLabelViewWithImageUrl:model.imageUrl content:model.name isAddImage:NO delegate:nil];
+        ImageAndLabelView* view=[ImageAndLabelView imageAndLabelViewWithImageUrl:model.imageUrl content:model.name userId:model.userId isAddImage:NO delegate:self];
         [array addObject:view];
     }
 //    ImageAndLabelView* view=[ImageAndLabelView imageAndLabelViewWithImageUrl:@"" content:@"" isAddImage:YES delegate:self];
@@ -59,6 +59,12 @@
 -(void)addImageBtnClicked{
     if ([self.delegate respondsToSelector:@selector(addImageBtnClicked)]) {
         [self.delegate addImageBtnClicked];
+    }
+}
+
+-(void)headClick:(NSString *)userId{
+    if ([self.delegate respondsToSelector:@selector(headClick:)]) {
+        [self.delegate headClick:userId];
     }
 }
 @end

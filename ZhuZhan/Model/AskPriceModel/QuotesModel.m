@@ -34,7 +34,7 @@
     self.a_createdTime = [ProjectStage ProjectTimeStage:dict[@"createdTime"]];
     self.a_isAccepted = dict[@"isAccepted"];
     self.a_quoteContent = dict[@"quoteContent"];
-    if([dict[@"quoteIsVerified"] isEqualToString:@"00"]){
+    if([dict[@"userType"] isEqualToString:@"01"]){
         self.a_quoteIsVerified = @"平台未认证公司资质，请注意交流过程中的风险。";
         self.a_isHonesty = NO;
     }else{
