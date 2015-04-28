@@ -11,6 +11,7 @@
 #import "RKContractsStagesView.h"
 #import "PDFViewController.h"
 #import "MainContractsBaseController.h"
+#import "ContractsTradeCodeView.h"
 @interface ProviderContractsController ()
 
 @end
@@ -42,7 +43,7 @@
 -(void)loadList{
     //消息页进来
     if (self.mainClauseModel) {
-        [self reload];
+//        [self reload];
         
     //全部佣金列表页进来
     }else{
@@ -63,6 +64,10 @@
     [self.stagesView removeFromSuperview];
     self.stagesView=nil;
     [self initStagesView];
+    
+    [self.tradeCodeView removeFromSuperview];
+    self.tradeCodeView=nil;
+    [self initTradeCodeView];
     
     [self.btnToolBar removeFromSuperview];
     self.btnToolBar=nil;
@@ -205,5 +210,13 @@
         _btnToolBar.delegate=self;
     }
     return _btnToolBar;
+}
+
+-(ContractsTradeCodeView *)tradeCodeView{
+    if (!_tradeCodeView) {
+        NSString* tradeCode=[NSString stringWithFormat:@"流水号:%@",self.mainClauseModel.a_serialNumber];
+        _tradeCodeView=[ContractsTradeCodeView contractsTradeCodeViewWithTradeCode:tradeCode time:self.mainClauseModel.a_createdTime];
+    }
+    return _tradeCodeView;
 }
 @end

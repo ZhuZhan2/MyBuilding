@@ -49,7 +49,7 @@
 
 -(void)loadList{
     if (self.mainClauseModel) {
-        [self reload];
+        //[self reload];
     }else{
         [self startLoadingViewWithOption:0];
         NSMutableDictionary* dic=[NSMutableDictionary dictionary];

@@ -39,7 +39,7 @@
 
 -(void)loadList{
     if (self.repealModel) {
-        [self reload];
+        //[self reload];
     }else{
         [self startLoadingViewWithOption:0];
         NSMutableDictionary* dic=[NSMutableDictionary dictionary];
@@ -201,14 +201,6 @@
     return datas;
 }
 
--(ContractsTradeCodeView *)tradeCodeView{
-    if (!_tradeCodeView) {
-        NSString* tradeCode=[NSString stringWithFormat:@"流水号:%@",self.repealModel.a_serialNumber];
-        _tradeCodeView=[ContractsTradeCodeView contractsTradeCodeViewWithTradeCode:tradeCode time:self.repealModel.a_createdTime];
-    }
-    return _tradeCodeView;
-}
-
 /*
  同意带字 不同意带字 关闭带字 修改带字
  同意小带字 不同意小带字 上传小带字
@@ -234,5 +226,13 @@
         _btnToolBar.delegate=self;
     }
     return _btnToolBar;
+}
+
+-(ContractsTradeCodeView *)tradeCodeView{
+    if (!_tradeCodeView) {
+        NSString* tradeCode=[NSString stringWithFormat:@"流水号:%@",self.repealModel.a_serialNumber];
+        _tradeCodeView=[ContractsTradeCodeView contractsTradeCodeViewWithTradeCode:tradeCode time:self.repealModel.a_createdTime];
+    }
+    return _tradeCodeView;
 }
 @end
