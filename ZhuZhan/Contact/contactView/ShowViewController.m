@@ -66,10 +66,14 @@
     [tempImageView addSubview:message];
     
     UIButton *visitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    visitBtn.frame =CGRectMake(15, 220, 60, 28);
+    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"]){
+        visitBtn.frame =CGRectMake(15, 220, 60, 28);
+    }else{
+        visitBtn.frame =CGRectMake(70, 220, 60, 28);
+    }
     visitBtn.backgroundColor = [UIColor blackColor];
     [visitBtn setTitle:@"访问" forState:UIControlStateNormal];
-    visitBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
+    visitBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     visitBtn.layer.cornerRadius = 5;//设置那个圆角的有多圆
     visitBtn.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
     [visitBtn addTarget:self action:@selector(beginToVisitDetail) forControlEvents:UIControlEventTouchUpInside];
@@ -77,8 +81,12 @@
     visitBtn.alpha = 0.8;
     
     concernBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    concernBtn.frame = CGRectMake(95, 220, 75, 28);
-    concernBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
+    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"]){
+        concernBtn.frame = CGRectMake(95, 220, 75, 28);
+    }else{
+        concernBtn.frame =CGRectMake(160, 220, 60, 28);
+    }
+    concernBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     concernBtn.backgroundColor = [UIColor blackColor];
     concernBtn.layer.cornerRadius = 5;//设置那个圆角的有多圆
     concernBtn.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
@@ -90,7 +98,7 @@
     addFriendBtn.frame = CGRectMake(190, 220, 75, 28);
     addFriendBtn.backgroundColor = [UIColor blackColor];
     [addFriendBtn setTitle:@"添加好友" forState:UIControlStateNormal];
-    addFriendBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
+    addFriendBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     addFriendBtn.layer.cornerRadius = 5;//设置那个圆角的有多圆
     addFriendBtn.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
     [addFriendBtn addTarget:self action:@selector(addFriend) forControlEvents:UIControlEventTouchUpInside];
@@ -100,7 +108,7 @@
     gotoMessageBtn.frame = CGRectMake(190, 220, 75, 28);
     gotoMessageBtn.backgroundColor = [UIColor blackColor];
     [gotoMessageBtn setTitle:@"发送消息" forState:UIControlStateNormal];
-    gotoMessageBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:14];
+    gotoMessageBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     gotoMessageBtn.layer.cornerRadius = 5;//设置那个圆角的有多圆
     gotoMessageBtn.layer.masksToBounds = YES;//设为NO去试试。设置YES是保证添加的图片覆盖视图的效果
     [gotoMessageBtn addTarget:self action:@selector(gotoMessageBtnAction) forControlEvents:UIControlEventTouchUpInside];
@@ -125,10 +133,12 @@
                 isFoucsed = 0;
             }
             
-            if([model.isFriend isEqualToString:@"0"]){
-                [self.view addSubview:addFriendBtn];
-            }else{
-                [self.view addSubview:gotoMessageBtn];
+            if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"]){
+                if([model.isFriend isEqualToString:@"0"]){
+                    [self.view addSubview:addFriendBtn];
+                }else{
+                    [self.view addSubview:gotoMessageBtn];
+                }
             }
             [self endIndicatorView];
         }else{

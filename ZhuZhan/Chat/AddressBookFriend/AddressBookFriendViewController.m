@@ -61,6 +61,7 @@
 }
 
 -(void)postPhones{
+    if (self.phones.count==0) return;
     __block NSString* tels=@"";
     [self.phones enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         ValidatePlatformContactModel* model=obj;

@@ -25,20 +25,43 @@
 #import "ErrorCode.h"
 #endif
 
+//正式服务器
+//#define  serverAddress "http://apis.mybuilding.cn:15427/WebService"
+
+//预生产服务器
+//#define  serverAddress "http://apis.shenjigroup.com:15427/WebService"
+
+
+//正式socket连接地址
+//#define socketServer "http://apis.mybuilding.cn"
+//#define socketPort 1428//开发
+
+//预生产socket连接地址
+//#define socketServer "http://apis.shenjigroup.com"
+//#define socketPort 1428//开发
+
+
+//正式聊天服务器
+//#define socketHttp "http://apis.mybuilding.cn:15428/ImService"
+
+//预生产聊天服务器
+//#define socketHttp "http://apis.shenjigroup.com:15428/ImService"
+
+
 //#define  serverAddress "http://10.1.5.104:9090/server"//测试用服务器
 #define  serverAddress "http://10.1.5.104:8080/server"//开发用服务器
 //#define  serverAddress "http://10.1.1.138:9090/service"//马恩伟本机地址
 //#define  serverAddress "http://10.1.1.204:9090/service"
 //#define  serverAddress "http://10.1.1.135:9090/service"
 
+#define socketHttp "http://10.1.5.104:8080/im"//开发用
+//#define socketHttp "http://10.1.5.104:9090/im"//测试用
+//#define socketHttp "http://10.1.1.138:9092/im"//马恩伟本地
+
 //#define socketServer "10.1.1.138"//马恩伟本地
 #define socketServer "10.1.5.104"//服务器
 #define socketPort 44455//开发
 //#define socketPort 54455//测试
-
-#define socketHttp "http://10.1.5.104:8080/im"//开发用
-//#define socketHttp "http://10.1.5.104:9090/im"//测试用
-//#define socketHttp "http://10.1.1.138:9092/im"//马恩伟本地
 
 #define  kScreenWidth  [[UIScreen mainScreen] bounds].size.width
 #define  kScreenHeight [[UIScreen mainScreen] bounds].size.height

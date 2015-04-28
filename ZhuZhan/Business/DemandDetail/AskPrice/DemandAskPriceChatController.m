@@ -11,6 +11,7 @@
 #import "DemandChatViewCell.h"
 #import "AskPriceComment.h"
 #import "MJRefresh.h"
+#import "MyTableView.h"
 @interface DemandAskPriceChatController ()
 @property(nonatomic)int startIndex;
 @end
@@ -31,7 +32,13 @@
     [AskPriceApi GetCommentListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.chatModels = posts;
-            [self.tableView reloadData];
+            if(self.chatModels.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -135,7 +142,13 @@
         if(!error){
             [self.chatModels removeAllObjects];
             self.chatModels = posts;
-            [self.tableView reloadData];
+            if(self.chatModels.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];

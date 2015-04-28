@@ -22,6 +22,7 @@
 #import "QuotesDetailViewController.h"
 #import "MJRefresh.h"
 #import "ErrorView.h"
+#import "MyTableView.h"
 @interface AskPriceViewController ()<DemandStageChooseControllerDelegate,RKStageChooseViewDelegate>
 @property(nonatomic,strong)NSString *otherStr;
 @property(nonatomic,strong)NSString *statusStr;
@@ -82,7 +83,13 @@
             [self.showArr removeAllObjects];
             self.showArr = posts[0];
            [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
-            [self.tableView reloadData];
+            if(self.showArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -108,7 +115,7 @@
 
 -(void)initTitleViewWithTitle:(NSString*)title{
     NSString* titleStr=title;
-    UIFont* font=[UIFont fontWithName:@"GurmukhiMN-Bold" size:19];
+    UIFont* font=[UIFont boldSystemFontOfSize:19];
     UILabel* titleLabel=[[UILabel alloc]init];
     titleLabel.text=titleStr;
     titleLabel.font=font;
@@ -221,7 +228,13 @@
             [self.showArr removeAllObjects];
             self.showArr = posts[0];
             [self.stageChooseView changeNumbers:@[posts[1][@"totalCount"],posts[1][@"processingCount"],posts[1][@"completeCount"],posts[1][@"offCount"]]];
-            [self.tableView reloadData];
+            if(self.showArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];

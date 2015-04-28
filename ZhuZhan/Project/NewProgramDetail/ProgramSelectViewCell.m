@@ -39,7 +39,7 @@
         //小阶段名称label
         cell.stageLabel=[[UILabel alloc]initWithFrame:CGRectMake(47, 8, 150, 20)];
         cell.stageLabel.text=arrayTotal[indexPath.section][indexPath.row];
-        cell.stageLabel.font=[UIFont fontWithName:@"GurmukhiMN" size:14];;
+        cell.stageLabel.font=[UIFont systemFontOfSize:14];;
         cell.stageLabel.textColor=textColor;
         [cell.contentView addSubview:cell.stageLabel];
         

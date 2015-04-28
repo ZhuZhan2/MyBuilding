@@ -48,7 +48,7 @@
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     //标题和标题设置
     self.title = @"注册";
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:19], NSFontAttributeName,nil]];
 }
 
 -(void)back{
@@ -310,8 +310,8 @@
         return;
     }
     
-    if (accountField.text.length<6||accountField.text.length>20) {
-        [self remindErrorView:@"用户名6-20位"];
+    if (accountField.text.length<1||accountField.text.length>20) {
+        [self remindErrorView:@"用户名1-20位"];
         return;
     }
     
@@ -373,7 +373,7 @@
                 [LoginSqlite insertData:[item objectForKey:@"loginId"] datakey:@"userId"];
                 [LoginSqlite insertData:[item objectForKey:@"token"] datakey:@"token"];
                 [LoginSqlite insertData:item[@"loginName"] datakey:@"userName"];
-                [LoginSqlite insertData:@"01" datakey:@"userType"];
+                [LoginSqlite insertData:@"Personal" datakey:@"userType"];
                 RecommendProjectViewController *recProjectView = [[RecommendProjectViewController alloc] init];
                 [self.navigationController pushViewController:recProjectView animated:YES];
             }

@@ -375,7 +375,7 @@
         UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 291.5, 50)];
         [bgView setBackgroundColor:RGBCOLOR(239, 237, 237)];
         UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 10, 160, 20)];
-        countLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
+        countLabel.font = [UIFont systemFontOfSize:12];
         countLabel.textColor = GrayColor;
         countLabel.textAlignment = NSTextAlignmentCenter;
         countLabel.text = [NSString stringWithFormat:@"共计%@条",allCount];
