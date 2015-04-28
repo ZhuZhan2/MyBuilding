@@ -50,7 +50,7 @@
     [bgImgView addSubview:nameLabel];
     
     UILabel *investmentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,51,85,20)];
-    investmentLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+    investmentLabel.font = [UIFont systemFontOfSize:14];
     investmentLabel.textColor = BlueColor;
     investmentLabel.text = @"投资额(百万)";
     [bgImgView addSubview:investmentLabel];
@@ -72,7 +72,7 @@
     [bgImgView addSubview:investmentcountLabel];
     
     UILabel *areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(120,51,85,20)];
-    areaLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+    areaLabel.font = [UIFont systemFontOfSize:14];
     areaLabel.textColor = BlueColor;
     areaLabel.text = @"建筑面积(㎡)";
     [bgImgView addSubview:areaLabel];
@@ -143,7 +143,7 @@
     [bgImgView addSubview:lingImage];
     
     UILabel *zoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(50,115,60,20)];
-    zoneLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:14];
+    zoneLabel.font = [UIFont systemFontOfSize:14];
     if([model.a_city isEqualToString:@""]){
         zoneLabel.text = @"区域 -";
         zoneLabel.textColor = RGBCOLOR(166, 166, 166);

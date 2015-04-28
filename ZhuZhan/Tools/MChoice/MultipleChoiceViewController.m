@@ -83,7 +83,7 @@
     }
     [complated setTitle:@"确认" forState:UIControlStateNormal];
     [complated setTitleColor:BlueColor forState:UIControlStateNormal];
-    complated.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:16];
+    complated.titleLabel.font = [UIFont systemFontOfSize:16];
     [complated addTarget:self action:@selector(complatedClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:complated];
     
@@ -95,14 +95,14 @@
     }
     [cancel setTitle:@"取消" forState:UIControlStateNormal];
     [cancel setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    cancel.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:16];
+    cancel.titleLabel.font = [UIFont systemFontOfSize:16];
     [cancel addTarget:self action:@selector(CancelClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancel];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 3, 270, 50)];
     titleLabel.text = @"请选择搜索条件";
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:18];
+    titleLabel.font = [UIFont boldSystemFontOfSize:18];
     [self.view addSubview:titleLabel];
 }
 

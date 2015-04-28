@@ -145,7 +145,7 @@
 
 -(void)loadNavi{
     self.title = @"产品";
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,nil]];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:19], NSFontAttributeName,nil]];
     
     UIButton* btn=[UIButton buttonWithType:UIButtonTypeCustom];
     [btn setBackgroundImage:[GetImagePath getImagePath:@"＋"] forState:UIControlStateNormal];

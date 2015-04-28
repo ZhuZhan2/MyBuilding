@@ -72,7 +72,7 @@
 -(void)addtittle:(NSString *)title{
     UILabel *topLabel = [[UILabel alloc] init];
     topLabel.frame = CGRectMake(100, 25, 120, 28);
-    topLabel.font = [UIFont fontWithName:@"GurmukhiMN-Bold" size:19];
+    topLabel.font = [UIFont boldSystemFontOfSize:19];
     topLabel.textColor = [UIColor whiteColor];
     topLabel.text = title;
     topLabel.textAlignment = NSTextAlignmentCenter;

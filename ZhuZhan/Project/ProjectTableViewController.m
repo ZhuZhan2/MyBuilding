@@ -45,7 +45,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"GurmukhiMN-Bold" size:19], NSFontAttributeName,
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:19], NSFontAttributeName,
                                                                      nil]];
     
     //RightButton设置属性
@@ -380,14 +380,14 @@
         [bgView setBackgroundColor:RGBCOLOR(239, 237, 237)];
 
         UILabel* countLabel=[[UILabel alloc] initWithFrame:CGRectMake(80, 10, 160, 20)];
-        countLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:17];
+        countLabel.font = [UIFont systemFontOfSize:17];
         countLabel.textColor = BlueColor;
         countLabel.textAlignment = NSTextAlignmentCenter;
         countLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)showArr.count];
         //[bgView addSubview:countLabel];
         
         UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 10, 160, 20)];
-        tempLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:12];
+        tempLabel.font = [UIFont systemFontOfSize:12];
         tempLabel.textColor = GrayColor;
         tempLabel.textAlignment = NSTextAlignmentCenter;
         NSMutableArray* localDatas=[ProjectSqlite loadList];

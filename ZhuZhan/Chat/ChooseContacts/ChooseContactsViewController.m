@@ -102,7 +102,7 @@
         [dic setObject:userIds forKey:@"user"];
         [ChatMessageApi CreateWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                [self gotoDetailWithGroupId:posts[0]];
+                [self gotoDetailWithGroupId:posts[0] title:tf.text];
             }else{
                 if([ErrorCode errorCode:error] == 403){
                     [LoginAgain AddLoginView:NO];
@@ -119,9 +119,10 @@
  @property(nonatomic,strong)NSString *contactId;
  @property(nonatomic,strong)NSString *type;
  */
--(void)gotoDetailWithGroupId:(NSString*)groupId{
+-(void)gotoDetailWithGroupId:(NSString*)groupId title:(NSString *)title{
     ChatViewController* vc=[[ChatViewController alloc]init];
     vc.contactId=groupId;
+    vc.titleStr = title;
     vc.type=@"02";
     vc.fromView = @"qun";
     [self.navigationController pushViewController:vc animated:YES];

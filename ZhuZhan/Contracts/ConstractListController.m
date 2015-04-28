@@ -65,7 +65,7 @@
 
 -(void)initTitleViewWithTitle:(NSString*)title{
     NSString* titleStr=title;
-    UIFont* font=[UIFont fontWithName:@"GurmukhiMN-Bold" size:19];
+    UIFont* font=[UIFont boldSystemFontOfSize:19];
     UILabel* titleLabel=[[UILabel alloc]init];
     titleLabel.text=titleStr;
     titleLabel.font=font;

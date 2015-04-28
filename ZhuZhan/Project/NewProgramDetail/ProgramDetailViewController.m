@@ -779,7 +779,7 @@
     NSArray* ary=@[@"土地信息阶段",@"主体设计阶段",@"主体施工阶段",@"装修阶段"];
     label.text=ary[section];
     label.textColor=stageLight?[UIColor blackColor]:RGBCOLOR(197, 197, 197);
-    label.font=[UIFont fontWithName:@"GurmukhiMN-Bold" size:16];
+    label.font=[UIFont boldSystemFontOfSize:16];
     [view addSubview:label];
     
     UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(47, 36.5, 273, 1)];
