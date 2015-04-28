@@ -170,7 +170,7 @@
         {
             if (self.repealModel.a_archiveStatus==1) {
                 array=[self stylesWithNumber:4 count:4];
-            }else if (status==4||status==5){
+            }else if (status==4||status==5||status==6){
                 array=[self stylesWithNumber:3 count:4];
             }else{
                 array=[self stylesWithNumber:2 count:4];
