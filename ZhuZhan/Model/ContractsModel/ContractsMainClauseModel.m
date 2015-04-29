@@ -21,7 +21,11 @@
     self.a_serialNumber=dict[@"serialNumber"];
     self.a_recipientName=dict[@"recipientName"];
     self.a_createdByType=dict[@"createdByType"];
-    self.a_salestatus=[dict[@"saleStatus"] integerValue];
+    if ([dict[@"saleStatus"] isEqualToString:@""]) {
+        self.a_salestatus=0;
+    }else{
+        self.a_salestatus=[dict[@"saleStatus"] integerValue];
+    }
 
     if ([self.a_createdByType isEqualToString:@"2"]) {
         self.a_providerCompanyName=dict[@"partyB"];
@@ -39,7 +43,11 @@
     self.a_partyA=dict[@"partyA"];
     self.a_partyB=dict[@"partyB"];
     self.a_provideHas=self.a_fileName.length;
-    self.a_saleArchiveStatus=[dict[@"saleArchiveStatus"] integerValue];
+    if ([dict[@"saleArchiveStatus"] isEqualToString:@""]) {
+        self.a_saleArchiveStatus=-1;
+    }else{
+        self.a_saleArchiveStatus=[dict[@"saleArchiveStatus"] integerValue];
+    }
     NSString* createdTime=dict[@"createdTime"];
     self.a_createdTime=[createdTime substringToIndex:createdTime.length-3];
 }
