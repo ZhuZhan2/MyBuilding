@@ -52,7 +52,7 @@
             if (block) {
                 block(nil, nil);
             }
-        }else if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"1331"]){
+        }else if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"11008"]){
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发送太频繁请稍后再试" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }else{

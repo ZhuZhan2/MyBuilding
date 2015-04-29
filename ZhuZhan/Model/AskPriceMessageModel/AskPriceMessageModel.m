@@ -59,17 +59,6 @@
         }
         isContracts = YES;
     }
-    
-    NSString *messageContent = dict[@"messageContent"];
-    NSLog(@"===>%@",messageContent);
-    if(messageContent.length >20){
-        self.a_content = [NSString stringWithFormat:@"参与用户 \"%@\" %@了您的需求描述：%@...的%@",dict[@"loginName"],str,[messageContent substringToIndex:20],typeStr];
-    }else{
-        self.a_content = [NSString stringWithFormat:@"参与用户 %@ %@您的需求描述：%@的%@ ",dict[@"loginName"],str,messageContent,typeStr];
-    }
-    
-    if(isContracts){
-        self.a_content =messageContent;
-    }
+    self.a_content =dict[@"messageContent"];
 }
 @end

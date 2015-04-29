@@ -17,6 +17,7 @@
 @interface ChooseContactsViewController()<ChooseContactsViewCellDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)NSMutableArray *groupArr;
 @property (nonatomic, strong)NSMutableArray* selectedUserIds;
+@property (nonatomic, strong)NSMutableArray* nameArr;
 @property(nonatomic,strong)ChooseContactsSearchController* searchBarTableViewController;
 @end
 
@@ -67,6 +68,9 @@
     }else if(self.selectedUserIds.count ==1){
         ChatViewController* vc=[[ChatViewController alloc]init];
         vc.contactId=self.selectedUserIds[0];
+        if(self.nameArr.count !=0){
+            vc.titleStr = self.nameArr[0];
+        }
         vc.type=@"01";
         [self.navigationController pushViewController:vc animated:YES];
     }else{
@@ -213,11 +217,20 @@
     AddressBookModel *ABmodel = self.groupArr[indexPath.section];
     AddressBookContactModel *contactModel = ABmodel.contactArr[indexPath.row];
     NSString* userId=contactModel.a_contactId;
+    NSString* name = nil;
+    if([contactModel.a_nickName isEqualToString:@""]){
+        name = contactModel.a_loginName;
+    }else{
+        name = contactModel.a_nickName;
+    }
+    
     BOOL hasUserId=[self.selectedUserIds containsObject:userId];
     if (hasUserId) {
         [self.selectedUserIds removeObject:userId];
+        [self.nameArr removeObject:name];
     }else{
         [self.selectedUserIds addObject:userId];
+        [self.nameArr addObject:name];
     }
     [self.tableView reloadData];
 }
@@ -243,5 +256,12 @@
         _selectedUserIds=[NSMutableArray array];
     }
     return _selectedUserIds;
+}
+
+-(NSMutableArray *)nameArr{
+    if(!_nameArr){
+        _nameArr = [NSMutableArray array];
+    }
+    return _nameArr;
 }
 @end
