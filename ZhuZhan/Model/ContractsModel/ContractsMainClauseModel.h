@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface ContractsMainClauseModel : NSObject
+
++(NSString*)getArchiveStatusStringWithArchiveStatus:(NSInteger)archiveStatus;
+
 //非撤销合同时是主条款、供应商合同id,撤销时是撤销id
 @property (nonatomic, copy)NSString* a_id;
 @property (nonatomic)BOOL a_isSelfCreated;

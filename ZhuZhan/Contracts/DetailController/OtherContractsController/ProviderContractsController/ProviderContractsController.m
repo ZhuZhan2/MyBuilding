@@ -155,7 +155,9 @@
     if (!_stagesView) {
         NSInteger const status=self.mainClauseModel.a_status;
         NSInteger const saleStatus=self.mainClauseModel.a_salestatus;
-        BOOL hasSalerFile=saleStatus;
+        NSInteger const saleArchiveStatus=self.mainClauseModel.a_saleArchiveStatus;
+        NSInteger const archiveStatus=self.mainClauseModel.a_archiveStatus;
+        BOOL const hasSalerFile=saleStatus;
         
         NSArray* bigStages=@[@"合同主要条款",@"供应商佣金合同",@"销售佣金合同"];
         NSArray* array;
@@ -168,8 +170,15 @@
                 array=[self stylesWithNumber:2 count:4];
             }
         }
-
-        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"已完成"],@[@"填写合同",@"审核中",@"生成",@"上传"],@[hasSalerFile?(saleStatus==5?@"已完成":@"进行中"):@"未开始"]] smallStageStyles:@[@[@0],array,@[hasSalerFile?@0:@1]] isClosed:self.mainClauseModel.a_archiveStatus==2||self.mainClauseModel.a_saleArchiveStatus==2];
+        
+        if (self.mainClauseModel.a_saleArchiveStatus==2&&self.mainClauseModel.a_archiveStatus!=2) {
+            _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"已完成"],@[@"填写合同",@"审核中",@"生成",@"上传"],@[@"已关闭"]] smallStageStyles:@[@[@0],@[@0,@0,@0,@0],@[@2]] isClosed:NO];
+        }else{
+            NSString* smallStageName=[ContractsMainClauseModel getArchiveStatusStringWithArchiveStatus:saleArchiveStatus];
+            
+            _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"已完成"],@[@"填写合同",@"审核中",@"生成",@"上传"],@[smallStageName]] smallStageStyles:@[@[@0],array,@[saleArchiveStatus==-1?@1:@0]] isClosed:archiveStatus==2||saleArchiveStatus==2];
+        }
+        
         CGRect frame=_stagesView.frame;
         frame.origin.y=64;
         _stagesView.frame=frame;

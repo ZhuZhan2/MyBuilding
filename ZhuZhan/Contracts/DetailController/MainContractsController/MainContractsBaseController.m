@@ -213,25 +213,29 @@
 -(UIView *)stagesView{
     if (!_stagesView&&!self.isFromDetailView) {
         NSInteger const status=self.mainClauseModel.a_status;
-        BOOL hasProviderFile=self.mainClauseModel.a_provideHas;
-        NSInteger archiveStatus=self.mainClauseModel.a_archiveStatus;
+        BOOL const hasProviderFile=self.mainClauseModel.a_provideHas;
+        NSInteger const archiveStatus=self.mainClauseModel.a_archiveStatus;
         
         NSArray* bigStages=@[@"合同主要条款",@"供应商佣金合同",@"销售佣金合同"];
+        
         NSArray* array;
-        {
-            if (status<=2) {
-                array=[self stylesWithNumber:2 count:3];
-            }else if (status>=3){
-                array=[self stylesWithNumber:3 count:3];
-            }
+        if (status<=2) {
+            array=[self stylesWithNumber:2 count:3];
+        }else if (status>=3){
+            array=[self stylesWithNumber:3 count:3];
         }
         
-        //isClosed只考虑进这个页面的类型为非销售商的，因为销售商的关闭情况不可能出现在这个还没生产销售合同的阶段
-        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"填写条款",@"待审核",@"生成条款"],@[hasProviderFile?(archiveStatus==1?@"已完成":@"进行中"):@"未开始"],@[@"未开始"]] smallStageStyles:@[array,@[hasProviderFile?@0:@1],@[@1]] isClosed:archiveStatus==2];
         
+        //因为archiveStatus的状态是主条款和供应商合同共享的，所以当没供应商合同文件的时候是未开始
+        NSString* smallStageName=hasProviderFile?[ContractsMainClauseModel getArchiveStatusStringWithArchiveStatus:archiveStatus]:@"未开始";
+        
+        //isClosed只考虑进这个页面的类型为非销售商的，因为销售商的关闭情况不可能出现在这个还没生产销售合同的阶段
+        _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"填写条款",@"待审核",@"生成条款"],@[smallStageName],@[@"未开始"]] smallStageStyles:@[array,@[hasProviderFile?@0:@1],@[@1]] isClosed:archiveStatus==2];
+
         CGRect frame=_stagesView.frame;
         frame.origin.y=64;
         _stagesView.frame=frame;
+        
     }else if (!_stagesView&&self.isFromDetailView) {
         _stagesView=[[UIView alloc]initWithFrame:CGRectZero];
 //以下注释打开并且上面这行代码注释掉即可实现里面的阶段条
