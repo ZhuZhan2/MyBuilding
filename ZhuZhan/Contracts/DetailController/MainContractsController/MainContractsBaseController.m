@@ -35,7 +35,7 @@
 
 -(void)initNavi{
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
-    if (!self.isFromDetailView) {
+    if (!self.isFromDetailView&&[self canClose]) {
         [self setRightBtnWithText:@"更多"];
     }
 }
