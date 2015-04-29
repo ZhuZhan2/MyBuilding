@@ -161,15 +161,15 @@
         
         NSArray* bigStages=@[@"合同主要条款",@"供应商佣金合同",@"销售佣金合同"];
         NSArray* array;
-        {
-            if (status==5||status==7||status==8) {
-                array=[self stylesWithNumber:3 count:4];
-            }else if (status==9){
+        
+            if (status==9||hasSalerFile) {
                 array=[self stylesWithNumber:4 count:4];
+            }else if (status==5||status==7||status==8){
+                array=[self stylesWithNumber:3 count:4];
             }else{
                 array=[self stylesWithNumber:2 count:4];
             }
-        }
+        
         
         if (self.mainClauseModel.a_saleArchiveStatus==2&&self.mainClauseModel.a_archiveStatus!=2) {
             _stagesView=[RKContractsStagesView contractsStagesViewWithBigStageNames:bigStages smallStageNames:@[@[@"已完成"],@[@"填写合同",@"审核中",@"生成",@"上传"],@[@"已关闭"]] smallStageStyles:@[@[@0],@[@0,@0,@0,@0],@[@2]] isClosed:NO];

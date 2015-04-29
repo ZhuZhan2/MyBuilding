@@ -219,12 +219,11 @@
         NSArray* bigStages=@[@"合同主要条款",@"供应商佣金合同",@"销售佣金合同"];
         
         NSArray* array;
-        if (status<=2) {
-            array=[self stylesWithNumber:2 count:3];
-        }else if (status>=3){
+        if (status>=3) {
             array=[self stylesWithNumber:3 count:3];
+        }else if (status<=2){
+            array=[self stylesWithNumber:2 count:3];
         }
-        
         
         //因为archiveStatus的状态是主条款和供应商合同共享的，所以当没供应商合同文件的时候是未开始
         NSString* smallStageName=hasProviderFile?[ContractsMainClauseModel getArchiveStatusStringWithArchiveStatus:archiveStatus]:@"未开始";
