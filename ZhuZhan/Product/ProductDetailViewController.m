@@ -989,8 +989,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         UITableViewCell * cell = (UITableViewCell *)[[self.button superview] superview];
         NSIndexPath * path = [self.tableView indexPathForCell:cell];
         ContactCommentModel *model = self.commentModels[path.row-1];
-        NSLog(@"a_id==> %@",model.a_id);
-        NSLog(@"a_id==> %@",self.type);
         [CommentApi DelEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 [self.commentModels removeObjectAtIndex:path.row-1];

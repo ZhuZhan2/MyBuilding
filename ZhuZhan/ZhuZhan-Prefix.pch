@@ -40,6 +40,9 @@
 //马恩伟本机
 //#define  serverAddress "http://10.1.1.138:9090/service/"
 
+//蒋慧吉本机
+//#define  serverAddress "http://10.1.1.204:9090/service"
+
 /*************************************************************/
 //正式socket连接地址
 //#define socketServer "apis.mybuilding.cn"
