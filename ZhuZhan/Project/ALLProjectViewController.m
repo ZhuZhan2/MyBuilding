@@ -15,6 +15,7 @@
 #import "MJRefresh.h"
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
+#import "ProgramDetailViewController.h"
 @interface ALLProjectViewController ()<UITableViewDataSource,UITableViewDelegate,ProjectTableViewCellDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *showArr;
@@ -205,6 +206,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 290;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ProgramDetailViewController* vc=[[ProgramDetailViewController alloc]init];
+    projectModel *model = self.showArr[indexPath.row];
+    vc.projectId = model.a_id;
+    vc.isFocused = model.isFocused;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)addProjectCommentView:(int)index{
