@@ -564,7 +564,7 @@
 -(void)gotoCallPhone:(NSString *)phone//打电话
 {
     if(![self validateMobile:phone]){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"不是手机号码" delegate:nil cancelButtonTitle:@"是" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"不是手机号码" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
         return;
     }

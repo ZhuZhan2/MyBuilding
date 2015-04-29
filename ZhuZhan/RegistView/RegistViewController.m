@@ -197,8 +197,8 @@
 }
 
 -(void)chooseClause{
-//    ClauseViewController* vc=[[ClauseViewController alloc]init];
-//    [self.navigationController pushViewController:vc animated:YES];
+    ClauseViewController* vc=[[ClauseViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)loadRegisterBtn{

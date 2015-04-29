@@ -72,6 +72,7 @@
 }
 
 -(void)setModel:(TopicsModel *)model{
+    NSLog(@"%@",model.a_image);
     [headImageView sd_setImageWithURL:[NSURL URLWithString:model.a_image] placeholderImage:[GetImagePath getImagePath:@"项目详情默认0"]];
     titleLabel.text = model.a_title;
     contentLabel.text = model.a_content;

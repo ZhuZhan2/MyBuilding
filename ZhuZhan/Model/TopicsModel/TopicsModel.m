@@ -15,7 +15,7 @@
     self.a_title = [ProjectStage ProjectStrStage:dict[@"topicName"]];
     self.a_content = [ProjectStage ProjectStrStage:dict[@"topicDesc"]];
     if(![[ProjectStage ProjectStrStage:dict[@"topicImagesId"]] isEqualToString:@""]){
-        self.a_image = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"topicImagesId"]], @"project", @"", @"", @"")];
+        self.a_image = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"topicImagesId"]], @"topic", @"", @"", @"")];
     }else{
         self.a_image = [ProjectStage ProjectStrStage:dict[@"topicImagesId"]];
     }

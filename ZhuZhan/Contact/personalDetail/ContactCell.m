@@ -108,7 +108,7 @@
             cellPhoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             cellPhoneBtn.frame = CGRectMake(260, 110, 42, 36);
             //cellPhoneBtn.backgroundColor = [UIColor yellowColor];
-            [cellPhoneBtn addTarget:self action:@selector(CallPhone) forControlEvents:UIControlEventTouchUpInside];
+            //[cellPhoneBtn addTarget:self action:@selector(CallPhone) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:cellPhoneBtn];
         }else{
             self.phone = model.a_cellPhone;
@@ -125,7 +125,7 @@
             cellPhoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             cellPhoneBtn.frame = CGRectMake(260, 57, 42, 36);
             //cellPhoneBtn.backgroundColor = [UIColor yellowColor];
-            [cellPhoneBtn addTarget:self action:@selector(CallPhone) forControlEvents:UIControlEventTouchUpInside];
+            //[cellPhoneBtn addTarget:self action:@selector(CallPhone) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:cellPhoneBtn];
         }
     }else{
