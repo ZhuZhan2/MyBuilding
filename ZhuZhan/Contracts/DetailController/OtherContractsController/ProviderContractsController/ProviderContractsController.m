@@ -82,6 +82,13 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+-(void)initNavi{
+    [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
+    if ([self canClose]) {
+        [self setRightBtnWithText:@"更多"];
+    }
+}
+
 -(void)contractsBtnToolBarClickedWithBtn:(UIButton *)btn index:(NSInteger)index{
     [self startLoadingViewWithOption:1];
 
