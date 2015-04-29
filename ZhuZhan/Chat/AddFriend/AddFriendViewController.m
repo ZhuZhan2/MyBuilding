@@ -193,9 +193,10 @@
         [AddressBookApi DelSingleFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"删除成功" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil]show];
-                [self.models removeObjectAtIndex:indexPath.row];
-                NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
-                [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+//                [self.models removeObjectAtIndex:indexPath.row];
+//                NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+//                [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+                [self firstNetWork];
             }else{
                 if([ErrorCode errorCode:error]){
                     [LoginAgain AddLoginView:NO];
