@@ -43,4 +43,12 @@
     NSString* createdTime=dict[@"createdTime"];
     self.a_createdTime=[createdTime substringToIndex:createdTime.length-3];
 }
++(NSString*)getArchiveStatusStringWithArchiveStatus:(NSInteger)archiveStatus{
+    NSMutableDictionary* stageNameDic=[NSMutableDictionary dictionary];
+    [stageNameDic setObject:@"未开始" forKey:@-1];
+    [stageNameDic setObject:@"进行中" forKey:@0];
+    [stageNameDic setObject:@"已完成" forKey:@1];
+    [stageNameDic setObject:@"已关闭" forKey:@2];
+    return stageNameDic[@(archiveStatus)];
+}
 @end

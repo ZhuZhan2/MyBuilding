@@ -49,7 +49,6 @@
     }else{
         [self startLoadingViewWithOption:0];
         NSMutableDictionary* dic=[NSMutableDictionary dictionary];
-#warning 需要查看这个id是否对，可能是contractsRecordId
         NSString* contractsId=self.listSingleModel.a_id;
         [dic setObject:contractsId forKey:@"contractId"];
         [ContractsApi PostSalesDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
