@@ -35,7 +35,7 @@
 
 -(void)initNavi{
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
-    if (!self.isFromDetailView&&[self canClose]) {
+    if ((!self.isFromDetailView)&&[self canClose]) {
         [self setRightBtnWithText:@"更多"];
     }
 }
@@ -73,6 +73,8 @@
 }
 
 -(void)reload{
+    [self initNavi];
+    
     [self.stagesView removeFromSuperview];
     self.stagesView=nil;
     [self initStagesView];

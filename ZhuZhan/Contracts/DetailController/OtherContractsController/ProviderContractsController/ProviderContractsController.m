@@ -61,6 +61,8 @@
 }
 
 -(void)reload{
+    [self initNavi];
+    
     [self.stagesView removeFromSuperview];
     self.stagesView=nil;
     [self initStagesView];

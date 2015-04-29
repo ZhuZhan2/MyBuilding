@@ -54,19 +54,19 @@
     self.a_contractsTypeInt=[dict[@"contractsType"] integerValue];
     self.a_contractsType=contractsTypes[dict[@"contractsType"]];
     
-    NSArray* archiveStatus=@[@"进行中",@"已完成",@"已关闭"];
     {
+        NSArray* archiveStatuses=@[@"进行中",@"已完成",@"已关闭"];
         NSInteger archiveStatus=[dict[@"archiveStatus"] integerValue];
-        if (self.a_isSaler) {
-            if (archiveStatus==1&&self.a_saleHas) {
-                archiveStatus=1;
-            }else if(archiveStatus!=2){
-                archiveStatus=0;
-            }
-        }
+        //        if (self.a_isSaler) {
+        //            if (archiveStatus==1&&self.a_saleHas) {
+        //                archiveStatus=1;
+        //            }else if(archiveStatus!=2){
+        //                archiveStatus=0;
+        //            }
+        //        }
         self.a_archiveStatusInt=archiveStatus;
+        self.a_archiveStatus=archiveStatuses[self.a_archiveStatusInt];
     }
-    self.a_archiveStatus=archiveStatus[self.a_archiveStatusInt];
     self.a_contractsRecordId=dict[@"contractsRecordId"];
 }
 @end
