@@ -761,6 +761,8 @@
 		5B7670651AB6B92B00E154C5 /* SearchBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7670611AB6B92B00E154C5 /* SearchBarTableViewController.m */; };
 		5B7670681AB6BD8100E154C5 /* RecommendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7670671AB6BD8100E154C5 /* RecommendListViewController.m */; };
 		5B76706B1AB6BDB800E154C5 /* RemindListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B76706A1AB6BDB800E154C5 /* RemindListViewController.m */; };
+		5B78511E1AF8BC6300BBD12C /* MarketSearchProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B78511D1AF8BC6300BBD12C /* MarketSearchProductController.m */; };
+		5B7851211AF8C27F00BBD12C /* MarketSearchProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7851201AF8C27F00BBD12C /* MarketSearchProductCell.m */; };
 		5B78D68E1ADCB40900E08C4A /* ValidatePlatformContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B78D68D1ADCB40900E08C4A /* ValidatePlatformContactModel.m */; };
 		5B78D6911ADCDF5A00E08C4A /* AddressBookFriendSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B78D6901ADCDF5A00E08C4A /* AddressBookFriendSearchController.m */; };
 		5B7AA6C51A58D6B0000FBFF2 /* 01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6BD1A58D6AF000FBFF2 /* 01.png */; };
@@ -899,6 +901,9 @@
 		5BC234501AA81D9300312D9D /* 017.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC2344C1AA81D9300312D9D /* 017.png */; };
 		5BC234511AA81D9300312D9D /* 017@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC2344D1AA81D9300312D9D /* 017@2x.png */; };
 		5BD9DE801AF88C3A007BF9B5 /* MarketSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD9DE7F1AF88C3A007BF9B5 /* MarketSearchViewController.m */; };
+		5BD9DE831AF89533007BF9B5 /* SearchMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD9DE821AF89533007BF9B5 /* SearchMenuView.m */; };
+		5BD9DE861AF89CBE007BF9B5 /* searcharrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD9DE841AF89CBE007BF9B5 /* searcharrow.png */; };
+		5BD9DE871AF89CBE007BF9B5 /* searcharrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD9DE851AF89CBE007BF9B5 /* searcharrow@2x.png */; };
 		5BE08D941A3586EA00495EEB /* 010001.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE08C6D1A3586EA00495EEB /* 010001.png */; };
 		5BE08D951A3586EA00495EEB /* 010001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE08C6E1A3586EA00495EEB /* 010001@2x.png */; };
 		5BE08D961A3586EA00495EEB /* 010002.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE08C6F1A3586EA00495EEB /* 010002.png */; };
@@ -2699,6 +2704,10 @@
 		5B7670671AB6BD8100E154C5 /* RecommendListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendListViewController.m; sourceTree = "<group>"; };
 		5B7670691AB6BDB800E154C5 /* RemindListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindListViewController.h; sourceTree = "<group>"; };
 		5B76706A1AB6BDB800E154C5 /* RemindListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindListViewController.m; sourceTree = "<group>"; };
+		5B78511C1AF8BC6300BBD12C /* MarketSearchProductController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketSearchProductController.h; sourceTree = "<group>"; };
+		5B78511D1AF8BC6300BBD12C /* MarketSearchProductController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketSearchProductController.m; sourceTree = "<group>"; };
+		5B78511F1AF8C27F00BBD12C /* MarketSearchProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketSearchProductCell.h; sourceTree = "<group>"; };
+		5B7851201AF8C27F00BBD12C /* MarketSearchProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketSearchProductCell.m; sourceTree = "<group>"; };
 		5B78D68C1ADCB40900E08C4A /* ValidatePlatformContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidatePlatformContactModel.h; sourceTree = "<group>"; };
 		5B78D68D1ADCB40900E08C4A /* ValidatePlatformContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidatePlatformContactModel.m; sourceTree = "<group>"; };
 		5B78D68F1ADCDF5A00E08C4A /* AddressBookFriendSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookFriendSearchController.h; sourceTree = "<group>"; };
@@ -2938,6 +2947,10 @@
 		5BC2344D1AA81D9300312D9D /* 017@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "017@2x.png"; sourceTree = "<group>"; };
 		5BD9DE7E1AF88C3A007BF9B5 /* MarketSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketSearchViewController.h; sourceTree = "<group>"; };
 		5BD9DE7F1AF88C3A007BF9B5 /* MarketSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketSearchViewController.m; sourceTree = "<group>"; };
+		5BD9DE811AF89533007BF9B5 /* SearchMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMenuView.h; sourceTree = "<group>"; };
+		5BD9DE821AF89533007BF9B5 /* SearchMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMenuView.m; sourceTree = "<group>"; };
+		5BD9DE841AF89CBE007BF9B5 /* searcharrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = searcharrow.png; path = ../../../../../../Downloads/searcharrow.png; sourceTree = "<group>"; };
+		5BD9DE851AF89CBE007BF9B5 /* searcharrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "searcharrow@2x.png"; path = "../../../../../../Downloads/searcharrow@2x.png"; sourceTree = "<group>"; };
 		5BE08C6D1A3586EA00495EEB /* 010001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 010001.png; sourceTree = "<group>"; };
 		5BE08C6E1A3586EA00495EEB /* 010001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "010001@2x.png"; sourceTree = "<group>"; };
 		5BE08C6F1A3586EA00495EEB /* 010002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 010002.png; sourceTree = "<group>"; };
@@ -5986,6 +5999,12 @@
 			children = (
 				5BD9DE7E1AF88C3A007BF9B5 /* MarketSearchViewController.h */,
 				5BD9DE7F1AF88C3A007BF9B5 /* MarketSearchViewController.m */,
+				5B78511C1AF8BC6300BBD12C /* MarketSearchProductController.h */,
+				5B78511D1AF8BC6300BBD12C /* MarketSearchProductController.m */,
+				5B78511F1AF8C27F00BBD12C /* MarketSearchProductCell.h */,
+				5B7851201AF8C27F00BBD12C /* MarketSearchProductCell.m */,
+				5BD9DE811AF89533007BF9B5 /* SearchMenuView.h */,
+				5BD9DE821AF89533007BF9B5 /* SearchMenuView.m */,
 			);
 			path = MarketSearchViewController;
 			sourceTree = "<group>";
@@ -6771,6 +6790,8 @@
 		D3D08FFA1AF8658E00C8AC55 /* MarketImage */ = {
 			isa = PBXGroup;
 			children = (
+				5BD9DE841AF89CBE007BF9B5 /* searcharrow.png */,
+				5BD9DE851AF89CBE007BF9B5 /* searcharrow@2x.png */,
 				D3D090211AF88D4E00C8AC55 /* index_home.png */,
 				D3D090221AF88D4E00C8AC55 /* index_home@2x.png */,
 				D3D090181AF86E2A00C8AC55 /* 滚动广告 */,
@@ -7939,11 +7960,13 @@
 				5B5A24E21A4189CA0071BD90 /* 密码找回z@2x.png in Resources */,
 				5BE08E301A3586EA00495EEB /* 020015.png in Resources */,
 				5B6699441AB9AB7A00C4B54F /* 交易_回复@2x.png in Resources */,
+				5BD9DE871AF89CBE007BF9B5 /* searcharrow@2x.png in Resources */,
 				04BC422519D7E5B3006B5C7B /* 关注的动态－弹框_10a.png in Resources */,
 				04BC418219D7E5B3006B5C7B /* 人脉_29a@2x.png in Resources */,
 				D3D5B8171AAD62790049A5E0 /* tuijianxin@2x.png in Resources */,
 				D3D5B81A1AAD62850049A5E0 /* Group-7.png in Resources */,
 				D3EDC9F81ACE687C002AF865 /* word.png in Resources */,
+				5BD9DE861AF89CBE007BF9B5 /* searcharrow.png in Resources */,
 				5BE08E101A3586EA00495EEB /* 010063.png in Resources */,
 				5BE08E8C1A3586EA00495EEB /* 040004.png in Resources */,
 				5B3209FA1A11CD8900D19279 /* 公司－我的公司_11a@2x.png in Resources */,
@@ -8450,6 +8473,7 @@
 				0426C2C319922D5A00CD8822 /* GPUImageSwirlFilter.m in Sources */,
 				0426C2C119922D5A00CD8822 /* GPUImageStretchDistortionFilter.m in Sources */,
 				0426C2B619922D5A00CD8822 /* GPUImageSingleComponentFastBlurFilter.m in Sources */,
+				5BD9DE831AF89533007BF9B5 /* SearchMenuView.m in Sources */,
 				042D9ECD19B81BE400689C5D /* ContactCell.m in Sources */,
 				D3A4283B19C94E5E00BAB6C7 /* ActivesModel.m in Sources */,
 				5B5894F119FF9D24001CC09E /* EndEditingGesture.m in Sources */,
@@ -8739,6 +8763,7 @@
 				5B6FF7011AE4EC4B00F3A3E0 /* SalerContractsController.m in Sources */,
 				5B55D57E1A3EB63200CAEF8B /* ForgetPasswordSecondController.m in Sources */,
 				5B58370A1AD7CFD900F8E7C3 /* OtherContractsBaseController.m in Sources */,
+				5B7851211AF8C27F00BBD12C /* MarketSearchProductCell.m in Sources */,
 				5B8A2CF01AAEE0AD00C8F9DE /* ChatTableViewCell.m in Sources */,
 				D3DBCE591AC8DF0C00C9FEDE /* CommissionBaseViewController.m in Sources */,
 				0426C24C19922D5A00CD8822 /* GPUImageBuffer.m in Sources */,
@@ -8828,6 +8853,7 @@
 				D3376CFE1AC25D6100738B5F /* CategoryModel.m in Sources */,
 				0426C2DF19922D5A00CD8822 /* FaceppAPI.m in Sources */,
 				5B5773E81AC133E400C17DBF /* DemandProvidePriceChatController.m in Sources */,
+				5B78511E1AF8BC6300BBD12C /* MarketSearchProductController.m in Sources */,
 				D3376CFB1AC2549C00738B5F /* UserOrCompanyModel.m in Sources */,
 				0426C30319922D5A00CD8822 /* TFIndicatorView.m in Sources */,
 				5B8A2CEA1AAEE0AD00C8F9DE /* AddFriendViewController.m in Sources */,

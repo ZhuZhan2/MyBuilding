@@ -62,6 +62,7 @@
         return nil;
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/productInfo/getProductInfoPage?pageSize=10&pageIndex=%d&productDesc=%@",startIndex,keyWords];
+    
     NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)urlStr, NULL, NULL,  kCFStringEncodingUTF8 ));
     //NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:encodedString parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
