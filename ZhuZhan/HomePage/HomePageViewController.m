@@ -25,9 +25,10 @@
 #import "AskPriceMessageViewController.h"
 #import "MarketView.h"
 #define contentHeight (kScreenHeight==480?431:519)
-@interface HomePageViewController ()<LoginViewDelegate>
+@interface HomePageViewController ()<LoginViewDelegate,MarketViewDelegate,ContactViewDelegate>
 @property(nonatomic,strong)UINavigationController *navigatin;
 @property(nonatomic,strong)MarketView *marketView;
+@property(nonatomic)BOOL isOpenContactView;
 @end
 
 @implementation HomePageViewController
@@ -44,18 +45,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.isOpenContactView = NO;
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageView.image = [GetImagePath getImagePath:@"loading"];
     [self.view addSubview:imageView];
     self.view.backgroundColor = RGBCOLOR(240, 240, 240);
     contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, contentHeight)];
-    contactview = [[ContactViewController alloc] init];
-    nav = [[UINavigationController alloc] initWithRootViewController:contactview];
-    [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
-    nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
-    //[contentView addSubview:nav.view];
+//    contactview = [[ContactViewController alloc] init];
+//    nav = [[UINavigationController alloc] initWithRootViewController:contactview];
+//    [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
+//    nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
+//    [contentView addSubview:nav.view];
     
     self.marketView = [[MarketView alloc] initWithFrame:contentView.frame];
+    self.marketView.delegate = self;
     [contentView addSubview:self.marketView];
 
     toolView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-49, 320, 49)];
@@ -179,11 +182,18 @@
     switch (button.tag) {
         case 0:
             NSLog(@"人脉");
-            contactview = [[ContactViewController alloc] init];
-            nav = [[UINavigationController alloc] initWithRootViewController:contactview];
-            [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
-            nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
-            [contentView addSubview:nav.view];
+            if(self.isOpenContactView){
+                contactview = [[ContactViewController alloc] init];
+                contactview.delegate = self;
+                nav = [[UINavigationController alloc] initWithRootViewController:contactview];
+                [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
+                nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
+                [contentView addSubview:nav.view];
+            }else{
+                self.marketView = [[MarketView alloc] initWithFrame:contentView.frame];
+                self.marketView.delegate = self;
+                [contentView addSubview:self.marketView];
+            }
             [contactBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单01b"] forState:UIControlStateNormal];
             [projectBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单02a"] forState:UIControlStateNormal];
             [companyBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单03a"] forState:UIControlStateNormal];
@@ -317,5 +327,28 @@
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = @"rippleEffect";
     [self.view.layer addAnimation:transition forKey:nil];
+}
+
+-(void)gotoContactView{
+    self.isOpenContactView = YES;
+    for(int i=0;i<contentView.subviews.count;i++) {
+        [((UIView*)[contentView.subviews objectAtIndex:i]) removeFromSuperview];
+    }
+    contactview = [[ContactViewController alloc] init];
+    contactview.delegate = self;
+    nav = [[UINavigationController alloc] initWithRootViewController:contactview];
+    [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
+    nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
+    [contentView addSubview:nav.view];
+}
+
+-(void)backGotoMarketView{
+    self.isOpenContactView = NO;
+    for(int i=0;i<contentView.subviews.count;i++) {
+        [((UIView*)[contentView.subviews objectAtIndex:i]) removeFromSuperview];
+    }
+    self.marketView = [[MarketView alloc] initWithFrame:contentView.frame];
+    self.marketView.delegate = self;
+    [contentView addSubview:self.marketView];
 }
 @end
