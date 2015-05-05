@@ -55,12 +55,19 @@
         self.a_category = @"CompanyAgree";
         self.a_userName = [ProjectStage ProjectStrStage:dict[@"messageData"][@"companyName"]];
     }
-    
-    if(![[ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginImagesId"]] isEqualToString:@""]){
-        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginImagesId"]], @"login", @"", @"", @"")];
-    }else{
-        self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginImagesId"]];
-    }
     self.a_userType=[LoginSqlite getdata:@"userType"];
+    if(![self.a_category isEqualToString:@"CompanyAgree"]){
+        if(![[ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginImagesId"]] isEqualToString:@""]){
+            self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginImagesId"]], @"login", @"", @"", @"")];
+        }else{
+            self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginImagesId"]];
+        }
+    }else{
+        if(![[ProjectStage ProjectStrStage:dict[@"messageData"][@"loginImagesId"]] isEqualToString:@""]){
+            self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"messageData"][@"loginImagesId"]], @"login", @"", @"", @"")];
+        }else{
+            self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"messageData"][@"loginImagesId"]];
+        }
+    }
 }
 @end

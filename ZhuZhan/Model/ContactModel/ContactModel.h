@@ -14,6 +14,7 @@
 @property(nonatomic,strong)NSString *isFocus;
 @property(nonatomic,strong) NSString *userId;
 @property(nonatomic,strong)NSString *isFriend;
+@property(nonatomic,strong)NSString *userType;
 
 //公司名称
 @property (nonatomic,strong) NSString *companyName;

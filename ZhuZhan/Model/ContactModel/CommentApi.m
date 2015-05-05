@@ -84,6 +84,7 @@
         return nil;
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/comment/delComment"];
+    NSLog(@"%@",dic);
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){

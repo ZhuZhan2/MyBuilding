@@ -23,9 +23,11 @@
 #import "ProvisionalViewController.h"
 #import "OtherContractsBaseController.h"
 #import "AskPriceMessageViewController.h"
+#import "MarketView.h"
 #define contentHeight (kScreenHeight==480?431:519)
 @interface HomePageViewController ()<LoginViewDelegate>
 @property(nonatomic,strong)UINavigationController *navigatin;
+@property(nonatomic,strong)MarketView *marketView;
 @end
 
 @implementation HomePageViewController
@@ -51,7 +53,10 @@
     nav = [[UINavigationController alloc] initWithRootViewController:contactview];
     [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
     nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
-    [contentView addSubview:nav.view];
+    //[contentView addSubview:nav.view];
+    
+    self.marketView = [[MarketView alloc] initWithFrame:contentView.frame];
+    [contentView addSubview:self.marketView];
 
     toolView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-49, 320, 49)];
    [toolView setBackgroundColor:RGBCOLOR(229, 229, 229)];

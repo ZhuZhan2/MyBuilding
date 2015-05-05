@@ -42,5 +42,6 @@
 @property (nonatomic,strong) NSString *a_district;
 @property (nonatomic,strong) NSString *a_isFriend;
 @property(nonatomic,strong)NSString* a_backgroundImage;
+@property(nonatomic,strong)NSString* a_userType;
 @property (nonatomic, strong) NSDictionary *dict;
 @end

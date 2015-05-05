@@ -492,6 +492,9 @@ int j;
             tempStartIndex=startIndex-1;
         }
     }
+    
+    self.nextBtn.enabled = NO;
+    self.lastBtn.enabled = NO;
     [ProjectApi GetMapSearchWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             CGPathCloseSubpath(pathRef);
@@ -596,7 +599,6 @@ int j;
 }
 
 -(void)lastPage{
-    NSLog(@"222");
     j = 0;
     [showArr removeAllObjects];
     [logArr removeAllObjects];

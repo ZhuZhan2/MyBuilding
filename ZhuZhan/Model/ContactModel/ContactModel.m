@@ -50,6 +50,11 @@
     self.dynamicNum = [ProjectStage ProjectStrStage:dict[@"dynamicNum"]];
     self.isFocus = [ProjectStage ProjectStrStage:dict[@"isFocus"]];
     self.isFriend = [ProjectStage ProjectStrStage:dict[@"isFriend"]];
+    if([dict[@"userType"] isEqualToString:@"01"]){
+        self.userType = @"Personal";
+    }else{
+        self.userType = @"Company";
+    }
 }
 
 //POST:

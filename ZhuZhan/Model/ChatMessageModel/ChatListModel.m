@@ -20,10 +20,10 @@
     }else{
         self.a_loginImageUrl = dict[@"loginImagesId"];
     }
-    if([dict[@"senderNickName"] isEqualToString:@""]){
+    if([dict[@"nickName"] isEqualToString:@""]){
         self.a_loginName = dict[@"loginName"];
     }else{
-        self.a_loginName = dict[@"senderNickName"];
+        self.a_loginName = dict[@"nickName"];
     }
     self.a_content = dict[@"content"];
     self.a_type = dict[@"type"];

@@ -184,6 +184,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.selectionStyle = NO;
+        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 17, 180, 16)];
         label.text = @"询价说明";
         label.textAlignment = NSTextAlignmentLeft;

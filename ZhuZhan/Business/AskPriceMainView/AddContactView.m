@@ -68,7 +68,7 @@
     int count = (int)labelArr.count;
     if(count !=0){
         [labelArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(106, idx*30+22, 180, 16)];
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(106, idx*30+22, 180, 17)];
             label.font = [UIFont systemFontOfSize:16];
             label.textAlignment = NSTextAlignmentLeft;
             label.text = obj;

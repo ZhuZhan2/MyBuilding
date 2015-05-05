@@ -42,5 +42,10 @@
         self.a_backgroundImage=[ProjectStage ProjectStrStage:dict[@"backgroundImageId"]];
     }
     self.a_isFriend = [ProjectStage ProjectStrStage:dict[@"isFriend"]];
+    if([dict[@"userType"] isEqualToString:@"01"]){
+        self.a_userType = @"Personal";
+    }else{
+        self.a_userType = @"Company";
+    }
 }
 @end

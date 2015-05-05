@@ -1345,6 +1345,7 @@
 		D3CF0D8C1AB81A7800D71CEB /* AddContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF0D891AB81A7800D71CEB /* AddContactView.m */; };
 		D3CF0D8D1AB81A7800D71CEB /* TopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF0D8B1AB81A7800D71CEB /* TopView.m */; };
 		D3CF278A1A008EFF00DDA30D /* ContactBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF27891A008EFF00DDA30D /* ContactBackgroundView.m */; };
+		D3D08FF91AF85E8200C8AC55 /* MarketView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D08FF81AF85E8200C8AC55 /* MarketView.m */; };
 		D3D1A7B719F8E9B40006F954 /* 公司－我的公司_05b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B519F8E9B40006F954 /* 公司－我的公司_05b.png */; };
 		D3D1A7B819F8E9B40006F954 /* 公司－我的公司_05b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B619F8E9B40006F954 /* 公司－我的公司_05b@2x.png */; };
 		D3D1A7BB19F8F6250006F954 /* 公司－公司详情_05b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B919F8F6250006F954 /* 公司－公司详情_05b.png */; };
@@ -3463,6 +3464,8 @@
 		D3CF0D8B1AB81A7800D71CEB /* TopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopView.m; sourceTree = "<group>"; };
 		D3CF27881A008EFF00DDA30D /* ContactBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactBackgroundView.h; sourceTree = "<group>"; };
 		D3CF27891A008EFF00DDA30D /* ContactBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactBackgroundView.m; sourceTree = "<group>"; };
+		D3D08FF71AF85E8200C8AC55 /* MarketView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketView.h; sourceTree = "<group>"; };
+		D3D08FF81AF85E8200C8AC55 /* MarketView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketView.m; sourceTree = "<group>"; };
 		D3D1A7B319F8A68F0006F954 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D3D1A7B419F8A68F0006F954 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D3D1A7B519F8E9B40006F954 /* 公司－我的公司_05b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_05b.png"; sourceTree = "<group>"; };
@@ -3851,6 +3854,7 @@
 				04D10BA819AE01690097C0C6 /* Contact */,
 				D3EACDEA199337750058FC9D /* Message */,
 				0426C01919922D5900CD8822 /* Company */,
+				D3D08FF61AF85E5F00C8AC55 /* MarketView */,
 				0426C01F19922D5900CD8822 /* HomePage */,
 				0426C04419922D5900CD8822 /* LoginView */,
 				0426C04E19922D5900CD8822 /* RegistView */,
@@ -6712,6 +6716,15 @@
 			path = AskPriceMainView;
 			sourceTree = "<group>";
 		};
+		D3D08FF61AF85E5F00C8AC55 /* MarketView */ = {
+			isa = PBXGroup;
+			children = (
+				D3D08FF71AF85E8200C8AC55 /* MarketView.h */,
+				D3D08FF81AF85E8200C8AC55 /* MarketView.m */,
+			);
+			path = MarketView;
+			sourceTree = "<group>";
+		};
 		D3D29B7A1A0DB9AC00CAB1EB /* IsFocused */ = {
 			isa = PBXGroup;
 			children = (
@@ -7209,7 +7222,7 @@
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					0426BFE619922CE400CD8822 = {
-						DevelopmentTeam = M8S6DXYEZE;
+						DevelopmentTeam = AU89D3J45E;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -8527,6 +8540,7 @@
 				5B0A00A419B587CD00500C05 /* TMQuiltViewCell.m in Sources */,
 				0426C28819922D5A00CD8822 /* GPUImageLineGenerator.m in Sources */,
 				5B13C70919B6E53A008EA7A0 /* ProductCommentView.m in Sources */,
+				D3D08FF91AF85E8200C8AC55 /* MarketView.m in Sources */,
 				042D9E1519B559FC00689C5D /* MyView.m in Sources */,
 				D3D5B4321AB1325100E8EB04 /* SocketManage.m in Sources */,
 				D3DA3D2E1ABBBA8A001D1EEA /* AskPriceApi.m in Sources */,

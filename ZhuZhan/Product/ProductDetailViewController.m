@@ -681,7 +681,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         [self.vc finishNetWork];
         if(!error){
-            [self finishAddComment:comment aid:@""];
+            [self finishAddComment:comment aid:posts[0]];
             if ([self.delegate respondsToSelector:@selector(finishAddCommentFromDetailWithPosts:)]) {
                 //[self.delegate finishAddCommentFromDetailWithPosts:posts];
             }
