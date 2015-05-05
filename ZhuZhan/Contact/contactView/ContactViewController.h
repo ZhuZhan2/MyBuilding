@@ -21,6 +21,11 @@
 #import "LoadingView.h"
 #import "MyTableView.h"
 #import "ContactProductView.h"
+
+@protocol ContactViewDelegate <NSObject>
+-(void)backGotoMarketView;
+@end
+
 @interface ContactViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate,showControllerDelegate,HeadImageDelegate,CommentViewDelegate,AddCommentDelegate,ErrorViewDelegate,ProductDetailDelegate,LoginViewDelegate>{
     NSMutableArray *_datasource;
     ACTimeScroller *_timeScroller;
@@ -38,5 +43,6 @@
 }
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong) UIView *transparent;
+@property(nonatomic,weak)id<ContactViewDelegate>delegate;
 - (void)_refreshing ;
 @end

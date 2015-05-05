@@ -52,6 +52,15 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:19], NSFontAttributeName,
                                                                      nil]];
     
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftButton setFrame:CGRectMake(0, 0, 24, 21)];
+    //[rightButton setBackgroundImage:[GetImagePath getImagePath:@"项目-首页_03a"] forState:UIControlStateNormal];
+    [leftButton setImage:[GetImagePath getImagePath:@"index_home"] forState:UIControlStateNormal];
+    leftButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = leftButtonItem;
+    
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setFrame:CGRectMake(0, 0, 21, 22)];
@@ -100,6 +109,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changName" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeBackgroundImage) name:@"changBackground" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstNetWork) name:@"reloadData" object:nil];
+}
+
+-(void)leftBtnClick{
+    if([self.delegate respondsToSelector:@selector(backGotoMarketView)]){
+        [self.delegate backGotoMarketView];
+    }
 }
 
 -(void)firstNetWork{
