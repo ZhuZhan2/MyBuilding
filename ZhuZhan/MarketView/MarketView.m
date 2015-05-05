@@ -7,6 +7,7 @@
 //
 
 #import "MarketView.h"
+#import "MarketSearchViewController.h"
 #define contentHeight (kScreenHeight==480?431:519)
 @implementation MarketView
 
@@ -20,6 +21,11 @@
         [self.scrollView addSubview:self.centerImageView];
         [self.scrollView addSubview:self.phoneImageView];
         [self addSubview:self.contactBtn];
+        
+        UIButton* btn = [UIButton buttonWithType:UIButtonTypeSystem];
+        [btn setTitle:@"搜索" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(search) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:btn];
     }
     return self;
 }
@@ -81,5 +87,9 @@
     if([self.delegate respondsToSelector:@selector(gotoContactView)]){
         [self.delegate gotoContactView];
     }
+}
+
+- (void)search{
+    MarketSearchViewController* vc = [[MarketSearchViewController alloc] init];
 }
 @end

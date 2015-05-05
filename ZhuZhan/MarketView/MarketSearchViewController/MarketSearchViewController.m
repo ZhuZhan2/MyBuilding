@@ -16,21 +16,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setUpsearchBarExtra];
     
-    
-    [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
-//    
-//    self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeSentences;//控制大小写
-//    self.searchBar.autocorrectionType = UITextAutocorrectionTypeYes;
-//    self.searchBar.keyboardType = UIKeyboardTypeWebSearch;
-//    
-//    UITextField* textField = [self.searchBar valueForKeyPath:@"_searchField"];
-//    UILabel* placeholderLabel = [textField valueForKeyPath:@"_placeholderLabel"];
-//    
-//    placeholderLabel.text = @"请搜索";
-//    
-//    
-//    
+    [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];   
     [self setSearchBarTableViewBackColor:AllBackDeepGrayColor];
     
     [self.searchBar becomeFirstResponder];
@@ -38,6 +26,8 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reload) name:@"ConstractListControllerReloadDataNotification" object:nil];
 }
 
+- (void)setUpsearchBarExtra{
+}
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [super searchBarSearchButtonClicked:searchBar];

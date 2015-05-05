@@ -37,6 +37,7 @@
 #import "MyTableView.h"
 #import "ContactProductView.h"
 #import "ChatViewController.h"
+#import "MarketSearchViewController.h"
 static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier";
 @interface ContactViewController ()<CompanyDetailDelegate>
 
@@ -44,6 +45,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 @implementation ContactViewController
 @synthesize transparent;
+
+- (void)gotoSearch{
+    MarketSearchViewController* vc = [[MarketSearchViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)viewDidLoad
 {
@@ -221,6 +227,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)publish
 {
+    [self gotoSearch];
+    return;
     NSLog(@"发布产品");
     
     NSString *deviceToken = [LoginSqlite getdata:@"token"];
