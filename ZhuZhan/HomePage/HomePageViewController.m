@@ -57,9 +57,16 @@
 //    nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
 //    [contentView addSubview:nav.view];
     
-    self.marketView = [[MarketView alloc] initWithFrame:contentView.frame];
+    UIViewController *controller = [[UIViewController alloc] init];
+    self.marketView = [[MarketView alloc] initWithFrame:contentView.frame controller:controller];
     self.marketView.delegate = self;
-    [contentView addSubview:self.marketView];
+    controller.view =self.marketView;
+    nav = [[UINavigationController alloc] initWithRootViewController:controller];
+    [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
+    nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
+    [contentView addSubview:nav.view];
+    nav.navigationBarHidden = YES;
+    
 
     toolView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-49, 320, 49)];
    [toolView setBackgroundColor:RGBCOLOR(229, 229, 229)];
@@ -190,9 +197,15 @@
                 nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
                 [contentView addSubview:nav.view];
             }else{
-                self.marketView = [[MarketView alloc] initWithFrame:contentView.frame];
+                UIViewController *controller = [[UIViewController alloc] init];
+                self.marketView = [[MarketView alloc] initWithFrame:contentView.frame controller:controller];
                 self.marketView.delegate = self;
-                [contentView addSubview:self.marketView];
+                controller.view =self.marketView;
+                nav = [[UINavigationController alloc] initWithRootViewController:controller];
+                [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
+                nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
+                [contentView addSubview:nav.view];
+                nav.navigationBarHidden = YES;
             }
             [contactBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单01b"] forState:UIControlStateNormal];
             [projectBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单02a"] forState:UIControlStateNormal];
@@ -347,8 +360,14 @@
     for(int i=0;i<contentView.subviews.count;i++) {
         [((UIView*)[contentView.subviews objectAtIndex:i]) removeFromSuperview];
     }
-    self.marketView = [[MarketView alloc] initWithFrame:contentView.frame];
+    UIViewController *controller = [[UIViewController alloc] init];
+    self.marketView = [[MarketView alloc] initWithFrame:contentView.frame controller:controller];
     self.marketView.delegate = self;
-    [contentView addSubview:self.marketView];
+    controller.view =self.marketView;
+    nav = [[UINavigationController alloc] initWithRootViewController:controller];
+    [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
+    nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
+    [contentView addSubview:nav.view];
+    nav.navigationBarHidden = YES;
 }
 @end

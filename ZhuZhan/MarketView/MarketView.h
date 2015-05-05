@@ -20,6 +20,10 @@
 @property(nonatomic,strong)AdScrollView *adScrollView;
 @property(nonatomic,strong)UIImageView *centerImageView;
 @property(nonatomic,strong)UIImageView *phoneImageView;
+@property(nonatomic,strong)UIImageView *homeImageView;
 @property(nonatomic,strong)UIButton *contactBtn;
+@property(nonatomic,strong)UIButton *searchBtn;
+@property(nonatomic,strong)UIViewController *controller;
 @property(nonatomic,weak)id<MarketViewDelegate>delegate;
+-(id)initWithFrame:(CGRect)frame controller:(UIViewController *)controller;
 @end

@@ -10,10 +10,11 @@
 #define contentHeight (kScreenHeight==480?431:519)
 @implementation MarketView
 
--(id)initWithFrame:(CGRect)frame{
+-(id)initWithFrame:(CGRect)frame controller:(UIViewController *)controller{
     self = [super initWithFrame:frame];
     if(self){
         self.backgroundColor = RGBCOLOR(237, 237, 237);
+        self.controller = controller;
         [self addSubview:self.scrollView];
         [self addSubview:self.headImageView];
         [self.scrollView addSubview:self.adScrollView];
@@ -39,6 +40,14 @@
         _headImageView.image = [GetImagePath getImagePath:@"index_head"];
     }
     return _headImageView;
+}
+
+-(UIImageView *)homeImageView{
+    if(!_homeImageView){
+        _homeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 21)];
+        _homeImageView.image = [GetImagePath getImagePath:@"index_home"];
+    }
+    return _homeImageView;
 }
 
 -(AdScrollView *)adScrollView{
@@ -77,9 +86,22 @@
     return _contactBtn;
 }
 
+-(UIButton *)searchBtn{
+    if(!_searchBtn){
+        _searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _searchBtn.frame = CGRectMake(5, 15, 40, 40);
+        [_searchBtn addTarget:self action:@selector(searchAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _contactBtn;
+}
+
 -(void)contactAction{
     if([self.delegate respondsToSelector:@selector(gotoContactView)]){
         [self.delegate gotoContactView];
     }
+}
+
+-(void)searchAction{
+    [self.controller.navigationController pushViewController:nil animated:YES];
 }
 @end
