@@ -399,6 +399,7 @@
     [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 -(void)initThemeView{

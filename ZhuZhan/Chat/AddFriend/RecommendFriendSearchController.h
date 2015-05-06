@@ -10,4 +10,5 @@
 
 @interface RecommendFriendSearchController : SearchBarTableViewController
 -(void)loadListWithKeyWords:(NSString*)keyWords;
+@property (nonatomic, strong)UIViewController* nowViewController;
 @end

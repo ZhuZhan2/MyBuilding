@@ -50,7 +50,7 @@
 }
 
 -(void)leftBtnClick{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.nowViewController.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -88,7 +88,7 @@
         }
         [LoadingView removeLoadingView:self.loadingView];
         self.loadingView = nil;
-    } startIndex:0 keywords:@"" noNetWork:^{
+    } startIndex:0 keywords:self.keywords noNetWork:^{
         [LoadingView removeLoadingView:self.loadingView];
         self.loadingView = nil;
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
@@ -124,7 +124,7 @@
             [LoginAgain AddLoginView:NO];
         }
         [self.tableView headerEndRefreshing];
-    }startIndex:0 keywords:@"" noNetWork:^{
+    }startIndex:0 keywords:self.keywords noNetWork:^{
         [self.tableView headerEndRefreshing];
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self headerRereshing];
@@ -150,7 +150,7 @@
             [LoginAgain AddLoginView:NO];
         }
         [self.tableView footerEndRefreshing];
-    }startIndex:self.startIndex+1 keywords:@"" noNetWork:^{
+    }startIndex:self.startIndex+1 keywords:self.keywords noNetWork:^{
         [self.tableView footerEndRefreshing];
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self footerRereshing];
@@ -212,7 +212,7 @@
     projectModel *model = self.showArr[indexPath.row];
     vc.projectId = model.a_id;
     vc.isFocused = model.isFocused;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.nowViewController.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)addProjectCommentView:(int)index{
@@ -220,6 +220,20 @@
     PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
     projectCommentView.projectId = model.a_id;
     projectCommentView.projectName = model.a_projectName;
-    [self.navigationController pushViewController:projectCommentView animated:YES];
+    [self.nowViewController.navigationController pushViewController:projectCommentView animated:YES];
+}
+
+- (NSString *)keywords{
+    if (!_keywords) {
+        _keywords = @"";
+    }
+    return _keywords;
+}
+
+- (UIViewController *)nowViewController{
+    if (!_nowViewController) {
+        _nowViewController = self;
+    }
+    return _nowViewController;
 }
 @end

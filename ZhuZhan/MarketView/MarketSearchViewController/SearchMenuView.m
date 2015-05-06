@@ -36,10 +36,8 @@
     return self.titles.count;
 }
 
-
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 20;
+    return 47;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -48,11 +46,11 @@
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
-        cell.contentView.backgroundColor = [[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:.8];
+//        cell.contentView.backgroundColor = [UIColor redColor];
     }
-    cell.textLabel.text = self.titles[indexPath.row];
+//    cell.textLabel.text = self.titles[indexPath.row];
     cell.textLabel.textColor = [UIColor whiteColor];
-    cell.textLabel.font = [UIFont systemFontOfSize:14];
+    cell.textLabel.font = [UIFont systemFontOfSize:17];
     return cell;
 }
 
@@ -74,13 +72,22 @@
 
 - (UITableView *)tableView{
     if (!_tableView) {
-        CGFloat height = self.titles.count*20+20;
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(self.originPoint.x, self.originPoint.y, 100, height) style:UITableViewStylePlain];
+        CGFloat lineHeight = [self tableView:nil heightForRowAtIndexPath:nil];
+        CGFloat height = self.titles.count*lineHeight+10;
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(self.originPoint.x, self.originPoint.y, 149, height) style:UITableViewStylePlain];
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.scrollEnabled = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        
+        UIView* headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 149, 10)];
+        _tableView.tableHeaderView = headerView;
+        
+        UIImageView* back = [[UIImageView alloc]initWithFrame:_tableView.bounds];
+        back.image = [GetImagePath getImagePath:@"Group-1"];
+        _tableView.backgroundView = back;
+        
     }
     return _tableView;
 }

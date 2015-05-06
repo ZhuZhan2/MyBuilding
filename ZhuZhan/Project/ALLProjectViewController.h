@@ -10,4 +10,6 @@
 
 @interface ALLProjectViewController : UIViewController
 @property(nonatomic,strong)UITableView *tableView;
+@property(nonatomic,strong)NSString *keywords;
+@property (nonatomic, strong)UIViewController* nowViewController;
 @end

@@ -9,6 +9,11 @@
 #import "RecommendFriendCell.h"
 #import "RKShadowView.h"
 #import "AddressBookApi.h"
+#import "LoginSqlite.h"
+#import "LoginViewController.h"
+@interface RecommendFriendCell()<LoginViewDelegate>
+@end
+
 @implementation RecommendFriendCell
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -82,26 +87,38 @@
 }
 
 -(void)addFriendAction{
+    
+    
     if(!self.model.a_isisFriend){
-        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        [dic setValue:self.model.a_id forKey:@"userId"];
-        [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alertView show];
-                self.model.a_isWaiting=YES;
-                self.addBtn.userInteractionEnabled=NO;
-                [self.addBtn setBackgroundImage:[GetImagePath getImagePath:@"等待验证120"] forState:UIControlStateNormal];
-            }else{
-                if([ErrorCode errorCode:error] == 403){
-                    [LoginAgain AddLoginView:NO];
+        
+        if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setValue:self.model.a_id forKey:@"userId"];
+            [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alertView show];
+                    self.model.a_isWaiting=YES;
+                    self.addBtn.userInteractionEnabled=NO;
+                    [self.addBtn setBackgroundImage:[GetImagePath getImagePath:@"等待验证120"] forState:UIControlStateNormal];
                 }else{
-                    [ErrorCode alert];
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
                 }
-            }
-        } dic:dic noNetWork:^{
-            [ErrorCode alert];
-        }];
+            } dic:dic noNetWork:^{
+                [ErrorCode alert];
+            }];
+            
+        }else{
+            LoginViewController *loginVC = [[LoginViewController alloc] init];
+            loginVC.needDelayCancel=YES;
+            loginVC.delegate = self;
+            UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+            [self.window.rootViewController presentViewController:nv animated:YES completion:nil];
+        }
     }
 }
 @end

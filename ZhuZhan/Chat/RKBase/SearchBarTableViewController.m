@@ -88,4 +88,10 @@
         return 0;
     }
 }
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    if ([self.delegate respondsToSelector:@selector(searchBarTableViewWillBeginDragging:)]) {
+        [self.delegate searchBarTableViewWillBeginDragging:self.tableView];
+    }
+}
 @end

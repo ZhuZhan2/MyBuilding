@@ -15,6 +15,7 @@
 -(instancetype)init{
     self=[super init];
     if (self) {
+        self.originImage=[GetImagePath getImagePath:@"项目详情默认"];
         self.myImageView=[[UIImageView alloc]init];
         self.myImageView.frame=CGRectMake(0, 0, 320, 215.5);
         [self addSubview:self.myImageView];

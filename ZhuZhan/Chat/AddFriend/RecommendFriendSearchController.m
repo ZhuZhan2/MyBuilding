@@ -83,4 +83,11 @@
     
     return cell;
 }
+
+- (UIViewController *)nowViewController{
+    if (!_nowViewController) {
+        _nowViewController = self;
+    }
+    return _nowViewController;
+}
 @end
