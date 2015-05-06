@@ -126,8 +126,13 @@
 
 -(void)addNoProductView{
     if(self.noProductView == nil){
-        self.noProductView = [[NoProductView alloc] initWithFrame:CGRectMake(0, 64+self.searchBar.frame.size.height, 320, kScreenHeight-49-64-self.searchBar.frame.size.height)];
-        [self.view addSubview:self.noProductView];
+        if([self.keyWords isEqualToString:@""]){
+            self.noProductView = [[NoProductView alloc] initWithFrame:CGRectMake(0, 64+self.searchBar.frame.size.height, 320, kScreenHeight-49-64-self.searchBar.frame.size.height)];
+            [self.view addSubview:self.noProductView];
+        }else{
+            self.noProductView = [[NoProductView alloc] initWithFrameSearch:CGRectMake(0, 64+self.searchBar.frame.size.height, 320, kScreenHeight-49-64-self.searchBar.frame.size.height)];
+            [self.view addSubview:self.noProductView];
+        }
     }
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
     [self.noProductView addHeaderWithTarget:self action:@selector(headerRereshing)];

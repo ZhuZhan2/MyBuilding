@@ -36,6 +36,7 @@ typedef NSUInteger BMKAnnotationViewDragState;
     BMKAnnotationViewInternal *_internal;
     BOOL _enabled3D;
     CGPoint _originPt;
+    CGPoint startPoint;
 }
 
 /**
@@ -90,10 +91,10 @@ typedef NSUInteger BMKAnnotationViewDragState;
 ///当为YES时，view被选中时会弹出气泡，annotation必须实现了title这个方法
 @property (nonatomic) BOOL canShowCallout;
 
-///显示在气泡左侧的view
+///显示在气泡左侧的view(使用默认气泡时，view的width最大值为32，height最大值为41，大于则使用最大值）
 @property (strong, nonatomic) UIView *leftCalloutAccessoryView;
 
-///显示在气泡右侧的view
+///显示在气泡右侧的view(使用默认气泡时，view的width最大值为32，height最大值为41，大于则使用最大值）
 @property (strong, nonatomic) UIView *rightCalloutAccessoryView;
 
 ///当设为YES并实现了setCoordinate:方法时，支持将view在地图上拖动, ios 3.2以后支持

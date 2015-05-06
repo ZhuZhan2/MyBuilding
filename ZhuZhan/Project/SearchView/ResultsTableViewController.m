@@ -101,7 +101,7 @@
                 }
                 if(showArr.count == 0){
                     [MyTableView reloadDataWithTableView:self.tableView];
-                    [MyTableView hasData:self.tableView];
+                    [MyTableView noSearchData:self.tableView];
                 }else{
                     [MyTableView removeFootView:self.tableView];
                     [self.tableView reloadData];
@@ -133,7 +133,7 @@
                 }
                 if(showArr.count == 0){
                     [MyTableView reloadDataWithTableView:self.tableView];
-                    [MyTableView hasData:self.tableView];
+                    [MyTableView noSearchData:self.tableView];
                 }else{
                     [MyTableView removeFootView:self.tableView];
                     [self.tableView reloadData];
@@ -200,7 +200,7 @@
                 }
                 if(showArr.count == 0){
                     [MyTableView reloadDataWithTableView:self.tableView];
-                    [MyTableView hasData:self.tableView];
+                    [MyTableView noSearchData:self.tableView];
                 }else{
                     [MyTableView removeFootView:self.tableView];
                     [self.tableView reloadData];
@@ -234,7 +234,7 @@
                 }
                 if(showArr.count == 0){
                     [MyTableView reloadDataWithTableView:self.tableView];
-                    [MyTableView hasData:self.tableView];
+                    [MyTableView noSearchData:self.tableView];
                 }else{
                     [MyTableView removeFootView:self.tableView];
                     [self.tableView reloadData];
@@ -273,7 +273,7 @@
                 }
                 if(showArr.count == 0){
                     [MyTableView reloadDataWithTableView:self.tableView];
-                    [MyTableView hasData:self.tableView];
+                    [MyTableView noSearchData:self.tableView];
                 }else{
                     [MyTableView removeFootView:self.tableView];
                     [self.tableView reloadData];
@@ -306,7 +306,7 @@
                 }
                 if(showArr.count == 0){
                     [MyTableView reloadDataWithTableView:self.tableView];
-                    [MyTableView hasData:self.tableView];
+                    [MyTableView noSearchData:self.tableView];
                 }else{
                     [MyTableView removeFootView:self.tableView];
                     [self.tableView reloadData];

@@ -12,5 +12,6 @@
 @property(nonatomic,strong)NSString *className;
 +(void)reloadDataWithTableView:(UITableView*)tableView;
 +(void)hasData:(UITableView*)tableView;
++(void)noSearchData:(UITableView*)tableView;
 +(void)removeFootView:(UITableView*)tableView;
 @end

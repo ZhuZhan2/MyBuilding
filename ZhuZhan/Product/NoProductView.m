@@ -22,4 +22,14 @@
     return self;
 }
 
+- (id)initWithFrameSearch:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self) {
+        super.alwaysBounceVertical = YES;
+        UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(80.5, 148, 151, 157)];
+        [bgImage setImage:[GetImagePath getImagePath:@"search_empty"]];
+        [self addSubview:bgImage];
+    }
+    return self;
+}
 @end

@@ -65,7 +65,11 @@
             self.showArr = posts;
             if(self.showArr.count == 0){
                 [MyTableView reloadDataWithTableView:self.tableView];
-                [MyTableView hasData:self.tableView];
+                if([self.keyKords isEqualToString:@""]){
+                    [MyTableView hasData:self.tableView];
+                }else{
+                    [MyTableView noSearchData:self.tableView];
+                }
             }else{
                 [MyTableView removeFootView:self.tableView];
                 [self.tableView reloadData];
@@ -111,7 +115,11 @@
             self.showArr = posts;
             if(self.showArr.count == 0){
                 [MyTableView reloadDataWithTableView:self.tableView];
-                [MyTableView hasData:self.tableView];
+                if([self.keyKords isEqualToString:@""]){
+                    [MyTableView hasData:self.tableView];
+                }else{
+                    [MyTableView noSearchData:self.tableView];
+                }
             }else{
                 [MyTableView removeFootView:self.tableView];
                 [self.tableView reloadData];
@@ -142,7 +150,11 @@
             [self.showArr addObjectsFromArray:posts];
             if(self.showArr.count == 0){
                 [MyTableView reloadDataWithTableView:self.tableView];
-                [MyTableView hasData:self.tableView];
+                if([self.keyKords isEqualToString:@""]){
+                    [MyTableView hasData:self.tableView];
+                }else{
+                    [MyTableView noSearchData:self.tableView];
+                }
             }else{
                 [MyTableView removeFootView:self.tableView];
                 [self.tableView reloadData];
@@ -323,7 +335,7 @@
             self.showArr = posts;
             if(self.showArr.count == 0){
                 [MyTableView reloadDataWithTableView:self.tableView];
-                [MyTableView hasData:self.tableView];
+                [MyTableView noSearchData:self.tableView];
             }else{
                 [MyTableView removeFootView:self.tableView];
                 [self.tableView reloadData];
@@ -343,6 +355,7 @@
             [self searchBarSearchButtonClicked:searchBar];
         }];
     }];
+    [self.searchBar resignFirstResponder];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
@@ -355,7 +368,11 @@
             self.showArr = posts;
             if(self.showArr.count == 0){
                 [MyTableView reloadDataWithTableView:self.tableView];
-                [MyTableView hasData:self.tableView];
+                if([self.keyKords isEqualToString:@""]){
+                    [MyTableView hasData:self.tableView];
+                }else{
+                    [MyTableView noSearchData:self.tableView];
+                }
             }else{
                 [MyTableView removeFootView:self.tableView];
                 [self.tableView reloadData];

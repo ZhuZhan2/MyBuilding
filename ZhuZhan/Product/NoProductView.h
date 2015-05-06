@@ -10,4 +10,5 @@
 
 @interface NoProductView : UIScrollView
 - (id)initWithFrame:(CGRect)frame;
+- (id)initWithFrameSearch:(CGRect)frame;
 @end

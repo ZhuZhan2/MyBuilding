@@ -355,6 +355,58 @@ UIKIT_EXTERN BOOL BMKMapRectSpans180thMeridian(BMKMapRect rect);
 UIKIT_EXTERN BMKMapRect BMKMapRectRemainder(BMKMapRect rect);
 
 /**
+ *判断点是否在圆内
+ *@param point 待判断的平面坐标点
+ *@param center 目标圆形的中心点平面坐标
+ *@param radius 目标圆形的半径，单位m
+ *@return 如果在内，返回YES，否则返回NO
+ */
+UIKIT_EXTERN BOOL BMKCircleContainsPoint(BMKMapPoint point, BMKMapPoint center, double radius);
+
+/**
+ *判断点是否在圆内
+ *@param point 待判断的经纬度坐标点
+ *@param center 目标圆形的中心点经纬度坐标
+ *@param radius 目标圆形的半径，单位m
+ *@return 如果在内，返回YES，否则返回NO
+ */
+UIKIT_EXTERN BOOL BMKCircleContainsCoordinate(CLLocationCoordinate2D point, CLLocationCoordinate2D center, double radius);
+/**
+ *判断点是否在多边形内
+ *@param point 待判断的平面坐标点
+ *@param polygon 目标多边形的顶点数组
+ *@param count 目标多边形顶点数组元素个数
+ *@return 如果在内，返回YES，否则返回NO
+ */
+UIKIT_EXTERN BOOL BMKPolygonContainsPoint(BMKMapPoint point, BMKMapPoint *polygon, NSUInteger count);
+
+/**
+ *判断点是否在多边形内
+ *@param point 待判断的经纬度点
+ *@param polygon 目标多边形的顶点数组
+ *@param count 目标多边形顶点数组元素个数
+ *@return 如果在内，返回YES，否则返回NO
+ */
+UIKIT_EXTERN BOOL BMKPolygonContainsCoordinate(CLLocationCoordinate2D point, CLLocationCoordinate2D *polygon, NSUInteger count);
+
+/**
+ *获取折线外某点到这线上距离最近的点
+ *@param point 待判断的经纬度点
+ *@param polyline 目标折线的顶点数组
+ *@param count 目标折线顶点数组元素个数
+ *@return 返回折线上的点（距离point最近）
+ */
+UIKIT_EXTERN BMKMapPoint BMKGetNearestMapPointFromPolyline(BMKMapPoint point, BMKMapPoint* polyline, NSUInteger count);
+
+/**
+ *计算地理矩形区域的面积
+ *@param leftTop 左上角经纬度坐标点
+ *@param rightBottom 右下角经纬度坐标点
+ *@return 返回区域面积，单位：平方米
+ */
+UIKIT_EXTERN double BMKAreaBetweenCoordinates(CLLocationCoordinate2D leftTop, CLLocationCoordinate2D rightBottom);
+
+/**
  *坐标转换函数，从原始GPS坐标，mapbar坐标,google坐标，51地图坐标，mapabc坐标转换为百度坐标（51地图坐标需要显出10000）
  *@param coordinate 待转换的坐标
  *@param type 待转换的坐标系类型，GPS为原始GPS坐标，COMMON为google坐标，51地图坐标，mapabc坐标

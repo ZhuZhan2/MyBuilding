@@ -34,6 +34,13 @@ typedef enum
 	BMK_DRIVING_FEE_FIRST,		//少走高速(自驾)
 
 }BMKDrivingPolicy;
+
+typedef enum
+{
+    BMK_DRIVING_REQUEST_TRAFFICE_TYPE_NONE = 0,                 //不带路况
+    BMK_DRIVING_REQUEST_TRAFFICE_TYPE_PATH_AND_TRAFFICE = 1,    //道路和路况
+}BMKDrivingRequestTrafficType;
+
 ///打车信息类
 @interface BMKTaxiInfo : NSObject{
     NSString* _desc;
@@ -175,6 +182,11 @@ typedef enum
 @property (nonatomic, strong) NSString* instruction;
 ///路段需要转弯数
 @property (nonatomic) int numTurns;
+///路段是否有路况信息
+@property (nonatomic) BOOL hasTrafficsInfo;
+///路段的路况信息，成员为NSNumber。0：无数据；1：畅通；2：缓慢；3：拥堵
+@property (nonatomic, strong) NSArray* traffics;
+
 @end
 ///此类表示步行路线中的一个路段
 @interface BMKWalkingStep : BMKRouteStep{
@@ -228,10 +240,10 @@ typedef enum
 @end
 ///此类表示一条驾车路线
 @interface BMKDrivingRouteLine : BMKRouteLine{
-    bool                 _isSupportTraffic;
+    bool                 _isSupportTraffic;//从2.7.0开始，废弃
     NSArray*             _wayPoints;
 }
-///该路线所在区域是否含有交通流量信息
+///该路线所在区域是否含有交通流量信息，从2.7.0开始，废弃
 @property (nonatomic) bool isSupportTraffic;
 ///路线途经点列表，成员类型为BMKPlanNode
 @property (nonatomic, strong) NSArray* wayPoints;
@@ -316,7 +328,7 @@ typedef enum
 @property (nonatomic, strong) BMKTaxiInfo* taxiInfo;
 ///返回起点或终点的地址信息结果
 @property (nonatomic, strong) BMKSuggestAddrInfo* suggestAddrResult;
-///驾车结果,现在只返回一条。成员类型为BMKDrivingRouteLine
+///驾车结果,支持多路线。成员类型为BMKDrivingRouteLine
 @property (nonatomic, strong) NSArray* routes;
 @end
 

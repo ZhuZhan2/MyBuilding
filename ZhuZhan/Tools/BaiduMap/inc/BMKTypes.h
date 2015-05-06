@@ -54,6 +54,7 @@ typedef enum{
     BMK_SEARCH_NOT_SUPPORT_BUS_2CITY,///<不支持跨城市公交
     BMK_SEARCH_RESULT_NOT_FOUND,///<没有找到检索结果
     BMK_SEARCH_ST_EN_TOO_NEAR,///<起终点太近
+    BMK_SEARCH_KEY_ERROR,///<key错误
 }BMKSearchErrorCode;
 
 ///表示一个经纬度范围

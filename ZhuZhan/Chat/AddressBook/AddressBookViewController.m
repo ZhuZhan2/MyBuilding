@@ -277,7 +277,7 @@
                 self.searchDataArr = posts;
                 [self reloadSearchBarTableViewData];
                 [MyTableView reloadDataWithTableView:self.searchBarTableView];
-                [MyTableView hasData:self.searchBarTableView];
+                [MyTableView noSearchData:self.searchBarTableView];
             }
         }else{
             if([ErrorCode errorCode:error] == 403){

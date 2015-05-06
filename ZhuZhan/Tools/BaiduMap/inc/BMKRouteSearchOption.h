@@ -32,9 +32,11 @@
     BMKDrivingPolicy _drivingPolicy;
 }
 @property (nonatomic, strong) NSArray  *wayPointsArray;
-///驾车检索策略
+///驾车检索策略，默认使用BMK_DRIVING_TIME_FIRST
 @property (nonatomic) BMKDrivingPolicy drivingPolicy;
 
+///驾车检索获取路线每一个step的路况，默认使用BMK_DRIVING_REQUEST_TRAFFICE_TYPE_NONE
+@property (nonatomic) BMKDrivingRequestTrafficType drivingRequestTrafficType;
 
 
 @end
@@ -46,7 +48,7 @@
 }
 ///城市名，用于在哪个城市内进行检索
 @property (nonatomic, strong) NSString *city;
-///公交检索策略
+///公交检索策略，默认使用BMK_TRANSIT_TIME_FIRST
 @property (nonatomic) BMKTransitPolicy transitPolicy;
 
 @end

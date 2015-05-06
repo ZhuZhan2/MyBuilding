@@ -11,6 +11,7 @@
 #import "FriendModel.h"
 #import "RecommendFriendCell.h"
 #import "RKShadowView.h"
+#import "MyTableView.h"
 @interface RecommendFriendSearchController ()
 @property (nonatomic)NSInteger startIndex;
 @property (nonatomic, strong)NSMutableArray* models;
@@ -44,7 +45,13 @@
     [AddressBookApi SearchUserWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             self.models = posts;
-            [self.tableView reloadData];
+            if(self.models.count ==0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView noSearchData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error]==403){
                 [LoginAgain AddLoginView:NO];
