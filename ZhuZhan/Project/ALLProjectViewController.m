@@ -163,7 +163,7 @@
         _tableView = [[UITableView alloc] initWithFrame:self.view.frame];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.backgroundColor = RGBCOLOR(239, 237, 237);
+        _tableView.backgroundColor = AllBackLightGratColor;
         _tableView.separatorStyle = NO;
     }
     return _tableView;
