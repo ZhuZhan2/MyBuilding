@@ -22,7 +22,7 @@
 @implementation MarketSearchViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
     [self setSearchBarTableViewBackColor:AllBackDeepGrayColor];
     [self setUpSearchBarExtra];
@@ -59,10 +59,25 @@
 
 - (void)menuBtnClicked{
     CGPoint originPoint = CGPointMake(50, 40);
-    SearchMenuView* menuView = [SearchMenuView searchMenuViewWithTitles:@[@"用户",@"公司",@"项目",@"产品"] originPoint:originPoint];
+    NSLog(@"%@",self.menuTitles);
+    SearchMenuView* menuView = [SearchMenuView searchMenuViewWithTitles:self.menuTitles originPoint:originPoint];
     menuView.delegate = self;
     [self.view addSubview:menuView];
     NSLog(@"menuBtnClicked");
+}
+
+-(NSString *)searchCategory{
+    if (!_searchCategory) {
+        _searchCategory = @"用户";
+    }
+    return _searchCategory;
+}
+
+- (NSArray *)menuTitles{
+    if (!_menuTitles) {
+        _menuTitles = @[@"用户",@"公司",@"项目",@"产品"];
+    }
+    return _menuTitles;
 }
 
 - (void)searchMenuViewClickedWithTitle:(NSString *)title index:(NSInteger)index{
@@ -75,53 +90,45 @@
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [self.searchBar resignFirstResponder];
     NSInteger index = [self.menuTitles indexOfObject:self.searchCategory];
-//    switch (<#expression#>) {
-//        case <#constant#>:
-//            <#statements#>
-//            break;
-//            
-//        default:
-//            break;
-//    }
-//        RecommendFriendSearchController* vc = [[RecommendFriendSearchController alloc] initWithTableViewBounds:self.view.bounds];
-//        [vc view];
-//    
-//        CGRect frame = vc.tableView.frame;
-//        frame.origin.y += CGRectGetMaxY(self.searchBar.frame);
-//        frame.size.height -= CGRectGetMaxY(self.searchBar.frame);
-//        vc.tableView.frame = frame;
-//        [self.view addSubview:vc.tableView];
-//    
-//        [vc loadListWithKeyWords:searchBar.text];
-    
-    
-//        ALLProjectViewController* vc = [[ALLProjectViewController alloc] init];
-//        [vc view];
-//            CGRect frame = vc.tableView.frame;
-//            frame.origin.y += CGRectGetMaxY(self.searchBar.frame);
-//            frame.size.height -= CGRectGetMaxY(self.searchBar.frame);
-//            vc.tableView.frame = frame;
-//            [self.view addSubview:vc.tableView];
-    
-//    MoreCompanyViewController* vc = [[MoreCompanyViewController alloc] init];
-//    [vc view];
-//    CGRect frame = vc.tableView.frame;
-//    frame.origin.y = CGRectGetMaxY(self.searchBar.frame);
-//    frame.size.height = kScreenHeight-CGRectGetMaxY(self.searchBar.frame);
-//    vc.tableView.frame = frame;
-//    [self.view addSubview:vc.tableView];
-    
-    MarketSearchProductController* vc = [[MarketSearchProductController alloc] init];
-    vc.keyWords = searchBar.text;
-    vc.superViewController = self;
-    [vc view];
-    CGRect frame = vc.tableView.frame;
+    UITableView* tableView;
+    switch (index) {
+        case 0:{
+            RecommendFriendSearchController* vc = [[RecommendFriendSearchController alloc] initWithTableViewBounds:self.view.bounds];
+            [vc view];
+            tableView = vc.tableView;
+            [vc loadListWithKeyWords:searchBar.text];
+            self.vc = vc;
+            break;
+        }
+        case 1:{
+            ALLProjectViewController* vc = [[ALLProjectViewController alloc] init];
+            [vc view];
+            tableView = vc.tableView;
+            self.vc = vc;
+            break;
+        }
+        case 2:{
+            MoreCompanyViewController* vc = [[MoreCompanyViewController alloc] init];
+            [vc view];
+            tableView = vc.tableView;
+            self.vc = vc;
+            break;
+        }
+        case 3:{
+            MarketSearchProductController* vc = [[MarketSearchProductController alloc] init];
+            vc.keyWords = searchBar.text;
+            vc.superViewController = self;
+            [vc view];
+            tableView = vc.tableView;
+            self.vc = vc;
+            break;
+        }
+    }
+    CGRect frame = tableView.frame;
     frame.origin.y = CGRectGetMaxY(self.searchBar.frame);
     frame.size.height = kScreenHeight-CGRectGetMaxY(self.searchBar.frame);
-    vc.tableView.frame = frame;
-    [self.view addSubview:vc.tableView];
-    
-    self.vc = vc;
+    tableView.frame = frame;
+    [self.view addSubview:tableView];
 }
 
 -(NSInteger)searchBarNumberOfSectionsInTableView:(UITableView *)tableView{
