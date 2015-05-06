@@ -18,6 +18,7 @@
     self.a_userId = [ProjectStage ProjectStrStage:dict[@"loginId"]];
     self.a_deviceToken = [ProjectStage ProjectStrStage:dict[@"token"]];
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"loginName"]];
+    self.a_phone = [ProjectStage ProjectStrStage:dict[@"loginTel"]];
     if([dict[@"userType"] isEqualToString:@"01"]){
         self.a_userType = @"Personal";
     }else{

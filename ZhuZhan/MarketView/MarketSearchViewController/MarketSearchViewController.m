@@ -242,6 +242,7 @@
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     [self.navigationController popViewControllerAnimated:YES];
+    self.navigationController.navigationBarHidden = YES;
 }
 
 -(void)dealloc{

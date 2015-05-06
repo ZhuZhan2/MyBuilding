@@ -135,6 +135,7 @@
                 if(!error){
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发起成功是否去列表查看" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                     [alertView show];
+                    [self reloadTable];
                 }else{
                     if([ErrorCode errorCode:error] == 403){
                         [LoginAgain AddLoginView:NO];
@@ -150,6 +151,31 @@
             [alertView show];
         }
     }
+}
+
+-(void)reloadTable{
+    [self.laberStrArr removeAllObjects];
+    [self.userIdArr removeAllObjects];
+    [self.addContactView removeFromSuperview];
+    self.addContactView = nil;
+    [self.viewArr replaceObjectAtIndex:0 withObject:self.addContactView];
+    
+    self.categoryStr = nil;
+    self.categoryId = nil;
+    [self.addCategoriesView removeFromSuperview];
+    self.addCategoriesView = nil;
+    [self.viewArr replaceObjectAtIndex:1 withObject:self.addCategoriesView];
+    
+    self.classifcationStr = nil;
+    self.classifcationIdStr = nil;
+    [self.addClassificationView removeFromSuperview];
+    self.addClassificationView = nil;
+    [self.viewArr replaceObjectAtIndex:2 withObject:self.addClassificationView];
+    
+    [self.addMarkView removeFromSuperview];
+    self.addMarkView = nil;
+    [self.viewArr replaceObjectAtIndex:3 withObject:self.addMarkView];
+    [self.tableView reloadData];
 }
 
 -(void)addAnimation{
@@ -171,12 +197,10 @@
     if(!_addContactView){
         _addContactView = [[AddContactView alloc] init];
         _addContactView.delegate = self;
-        //_addContactView.backgroundColor = [UIColor yellowColor];
         [_addContactView GetHeightWithBlock:^(double height) {
             if(height<=60){
                 height = 60;
             }
-            NSLog(@"%f",height);
             _addContactView.frame = CGRectMake(0, 0, 320, height);
             self.addContactViewHeight = height;
         } labelArr:self.laberStrArr];

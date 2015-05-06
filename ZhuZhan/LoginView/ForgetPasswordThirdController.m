@@ -117,12 +117,12 @@
         return;
     }
     
-    NSRange passWordFieldRange = [passWordField.text rangeOfString:@" "];
-    if (passWordFieldRange.location != NSNotFound) {
-        //有空格
-        [RemindView remindViewWithContent:@"密码不能包含空格" superView:self.view centerY:210];
-        return;
-    }
+//    NSRange passWordFieldRange = [passWordField.text rangeOfString:@" "];
+//    if (passWordFieldRange.location != NSNotFound) {
+//        //有空格
+//        [RemindView remindViewWithContent:@"密码不能包含空格" superView:self.view centerY:210];
+//        return;
+//    }
     
 //    if (![self isRule:passWordField.text]) {
 //        return;

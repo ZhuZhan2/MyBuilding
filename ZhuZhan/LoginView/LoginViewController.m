@@ -168,10 +168,12 @@
         return;
     }
     
-//    if([self isContainsEmoji:_userNameTextField.text]){
-//        UIAlertView *alertView = [UIAlertView alloc] initWithTitle:@"提醒" message:@"用户名不能" delegate:<#(id)#> cancelButtonTitle:<#(NSString *)#> otherButtonTitles:<#(NSString *), ...#>, nil
-//        return;
-//    }
+    if([_userNameTextField.text isEqualToString:@""]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"用户名不能为空" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
+    
     self.loginBtn.enabled=NO;
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:_userNameTextField.text forKey:@"userNameOrCellPhone"];
@@ -182,13 +184,13 @@
         if(!error){
             if(posts.count !=0){
                 LoginModel *model = posts[0];
-                NSLog(@" ==> %@",model.a_userImage);
                 [LoginSqlite insertData:model.a_deviceToken datakey:@"token"];
                 [LoginSqlite insertData:model.a_userId datakey:@"userId"];
                 [LoginSqlite insertData:model.a_userName datakey:@"userName"];
                 [LoginSqlite insertData:model.a_userImage datakey:@"userImage"];
                 [LoginSqlite insertData:model.a_backgroundImage datakey:@"backgroundImage"];
                 [LoginSqlite insertData:model.a_userType datakey:@"userType"];
+                [LoginSqlite insertData:model.a_phone datakey:@"userPhone"];
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
                 if (self.needDelayCancel) {
                     if([self.delegate respondsToSelector:@selector(loginCompleteWithDelayBlock:)]){
