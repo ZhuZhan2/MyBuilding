@@ -166,13 +166,24 @@
 }
 
 -(void)showAlertViewNeedDelegate:(NSString *)msg{
-    [[[UIAlertView alloc]initWithTitle:@"提醒" message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
+   UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:@"提醒" message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    alertView.tag = 0;
+    [alertView show];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    NSInteger index=self.navigationController.viewControllers.count;
-    UIViewController* vc=self.navigationController.viewControllers[index-3];
-    [self.navigationController popToViewController:vc animated:YES];
+    if(alertView.tag == 0){
+        NSInteger index=self.navigationController.viewControllers.count;
+        UIViewController* vc=self.navigationController.viewControllers[index-3];
+        [self.navigationController popToViewController:vc animated:YES];
+    }else{
+        if(buttonIndex == 0){
+            [self leftBtnClicked];
+        }else{
+            ConstractListController *view = [[ConstractListController alloc] init];
+            [self.navigationController pushViewController:view animated:YES];
+        }
+    }
 }
 
 -(void)sendPostRequest{
@@ -188,8 +199,10 @@
         [dic setObject:self.personaId forKey:@"recipientId"];
         [ContractsApi PostContractWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                ConstractListController *view = [[ConstractListController alloc] init];
-                [self.navigationController pushViewController:view animated:YES];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发起成功是否去列表查看" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                alertView.tag = 1;
+                [alertView show];
+                [self reloadTable];
             }
         } dic:dic noNetWork:nil];
     //修改
@@ -203,6 +216,35 @@
             }
         } dic:dic noNetWork:nil];
     }
+}
+
+-(void)reloadTable{
+    self.personaStr1 = nil;
+    self.personaStr2 = nil;
+    self.myCompanyName = nil;
+    self.otherCompanyName = nil;
+    self.moneyStr = nil;
+    self.contractStr = nil;
+    self.personaId = nil;
+    self.personaName = nil;
+    
+    [self.startMainView removeFromSuperview];
+    self.startMainView = nil;
+    [self.viewArr replaceObjectAtIndex:0 withObject:self.startMainView];
+    
+    [self.receiveView removeFromSuperview];
+    self.receiveView = nil;
+    [self.viewArr replaceObjectAtIndex:1 withObject:self.receiveView];
+    
+    [self.moneyView removeFromSuperview];
+    self.moneyView = nil;
+    [self.viewArr replaceObjectAtIndex:2 withObject:self.moneyView];
+    
+    [self.contractView removeFromSuperview];
+    self.contractView = nil;
+    [self.viewArr replaceObjectAtIndex:3 withObject:self.contractView];
+    
+    [self.tableView reloadData];
 }
 
 //-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{

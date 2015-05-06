@@ -902,8 +902,6 @@
 		5BC234511AA81D9300312D9D /* 017@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC2344D1AA81D9300312D9D /* 017@2x.png */; };
 		5BD9DE801AF88C3A007BF9B5 /* MarketSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD9DE7F1AF88C3A007BF9B5 /* MarketSearchViewController.m */; };
 		5BD9DE831AF89533007BF9B5 /* SearchMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD9DE821AF89533007BF9B5 /* SearchMenuView.m */; };
-		5BD9DE861AF89CBE007BF9B5 /* searcharrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD9DE841AF89CBE007BF9B5 /* searcharrow.png */; };
-		5BD9DE871AF89CBE007BF9B5 /* searcharrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD9DE851AF89CBE007BF9B5 /* searcharrow@2x.png */; };
 		5BE08D941A3586EA00495EEB /* 010001.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE08C6D1A3586EA00495EEB /* 010001.png */; };
 		5BE08D951A3586EA00495EEB /* 010001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE08C6E1A3586EA00495EEB /* 010001@2x.png */; };
 		5BE08D961A3586EA00495EEB /* 010002.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE08C6F1A3586EA00495EEB /* 010002.png */; };
@@ -2961,8 +2959,6 @@
 		5BD9DE7F1AF88C3A007BF9B5 /* MarketSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketSearchViewController.m; sourceTree = "<group>"; };
 		5BD9DE811AF89533007BF9B5 /* SearchMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMenuView.h; sourceTree = "<group>"; };
 		5BD9DE821AF89533007BF9B5 /* SearchMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMenuView.m; sourceTree = "<group>"; };
-		5BD9DE841AF89CBE007BF9B5 /* searcharrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = searcharrow.png; path = ../../../../../../Downloads/searcharrow.png; sourceTree = "<group>"; };
-		5BD9DE851AF89CBE007BF9B5 /* searcharrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "searcharrow@2x.png"; path = "../../../../../../Downloads/searcharrow@2x.png"; sourceTree = "<group>"; };
 		5BE08C6D1A3586EA00495EEB /* 010001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 010001.png; sourceTree = "<group>"; };
 		5BE08C6E1A3586EA00495EEB /* 010001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "010001@2x.png"; sourceTree = "<group>"; };
 		5BE08C6F1A3586EA00495EEB /* 010002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 010002.png; sourceTree = "<group>"; };
@@ -8020,13 +8016,11 @@
 				5B5A24E21A4189CA0071BD90 /* 密码找回z@2x.png in Resources */,
 				5BE08E301A3586EA00495EEB /* 020015.png in Resources */,
 				5B6699441AB9AB7A00C4B54F /* 交易_回复@2x.png in Resources */,
-				5BD9DE871AF89CBE007BF9B5 /* searcharrow@2x.png in Resources */,
 				04BC422519D7E5B3006B5C7B /* 关注的动态－弹框_10a.png in Resources */,
 				04BC418219D7E5B3006B5C7B /* 人脉_29a@2x.png in Resources */,
 				D3D5B8171AAD62790049A5E0 /* tuijianxin@2x.png in Resources */,
 				D3D5B81A1AAD62850049A5E0 /* Group-7.png in Resources */,
 				D3EDC9F81ACE687C002AF865 /* word.png in Resources */,
-				5BD9DE861AF89CBE007BF9B5 /* searcharrow.png in Resources */,
 				5BE08E101A3586EA00495EEB /* 010063.png in Resources */,
 				5BE08E8C1A3586EA00495EEB /* 040004.png in Resources */,
 				5B3209FA1A11CD8900D19279 /* 公司－我的公司_11a@2x.png in Resources */,

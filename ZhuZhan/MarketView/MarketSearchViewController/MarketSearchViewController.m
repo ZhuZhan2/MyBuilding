@@ -22,10 +22,8 @@
 @implementation MarketSearchViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden = YES;
-    [self setUpsearchBarExtra];
-    
-    [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];   
+
+    [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
     [self setSearchBarTableViewBackColor:AllBackDeepGrayColor];
     [self setUpSearchBarExtra];
     
