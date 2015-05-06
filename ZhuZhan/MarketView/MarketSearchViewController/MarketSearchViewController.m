@@ -29,7 +29,7 @@
     [self setUpSearchBarExtra];
     self.searchBarTableView.backgroundColor = [UIColor whiteColor];
     UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 152, 158)];
-    imageView.center = CGPointMake(kScreenWidth*0.5, 15 0);
+    imageView.center = CGPointMake(kScreenWidth*0.5, 150);
     imageView.image = [GetImagePath getImagePath:@"search_empty"];
     UIView* noDataView = [[UIView alloc]init];
     noDataView.backgroundColor = [UIColor whiteColor];
