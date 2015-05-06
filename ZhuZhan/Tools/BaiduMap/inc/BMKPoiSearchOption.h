@@ -7,6 +7,12 @@
  */
 #import <Foundation/Foundation.h>
 #import "BMKTypes.h"
+
+typedef enum{
+    BMK_POI_SORT_BY_COMPOSITE = 0,//综合排序
+    BMK_POI_SORT_BY_DISTANCE,//距离由近到远排序
+}BMKPoiSortType;
+
 /// 检索基础信息类，所有类型Poi检索的基类
 @interface BMKBasePoiSearchOption : NSObject
 {
@@ -20,6 +26,7 @@
 @property (nonatomic, assign) int      pageIndex;
 ///分页数量，可选，默认为10，最多为50
 @property (nonatomic, assign) int      pageCapacity;
+
 @end
 
 ///本地云检索参数信息类
@@ -39,6 +46,9 @@
 @property (nonatomic, assign) CLLocationCoordinate2D location;
 ///周边检索半径
 @property (nonatomic, assign) int      radius;
+//搜索结果排序规则，可选，默认BMK_POI_SORT_BY_COMPOSITE
+@property (nonatomic, assign) BMKPoiSortType sortType;
+
 @end
 
 ///矩形云检索参数信息类

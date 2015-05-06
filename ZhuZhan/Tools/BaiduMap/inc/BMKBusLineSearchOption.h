@@ -6,6 +6,7 @@
  *
  */
 
+#import <Foundation/Foundation.h>
 /// 公交线路检索信息类
 @interface BMKBusLineSearchOption : NSObject
 {

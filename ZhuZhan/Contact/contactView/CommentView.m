@@ -42,6 +42,7 @@
             }
         }
         imageView.backgroundColor = RGBCOLOR(219, 219, 219);
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
         [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_imageUrl]]];
         [forCornerView addSubview:imageView];
     }

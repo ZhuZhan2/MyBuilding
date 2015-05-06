@@ -31,7 +31,6 @@ typedef enum {
 	BMKUserTrackingModeFollowWithHeading,    /// 定位罗盘模式
 } BMKUserTrackingMode;
 
-
 ///地图View类，使用此View可以显示地图窗口，并且对地图进行相关的操作
 @interface BMKMapView : UIView
 
@@ -46,8 +45,6 @@ typedef enum {
 
 /// 指南针的位置，设定坐标以BMKMapView左上角为原点，向右向下增长
 @property (nonatomic) CGPoint compassPosition;
-
-
 
 /// 当前地图的中心点，改变该值时，地图的比例尺级别不会发生变化
 @property (nonatomic) CLLocationCoordinate2D centerCoordinate;
@@ -81,7 +78,6 @@ typedef enum {
 @property(nonatomic, getter=isOverlookEnabled) BOOL overlookEnabled;
 ///设定地图View能否支持旋转
 @property(nonatomic, getter=isRotateEnabled) BOOL rotateEnabled;
-
 
 /// 设定是否显式比例尺
 @property (nonatomic) BOOL showMapScaleBar;
@@ -150,6 +146,12 @@ typedef enum {
  *@return 返回view范围内的截取的UIImage
  */
 -(UIImage*) takeSnapshot;
+
+/**
+ *获得地图区域区域截图
+ *@return 返回指定区域的截取的UIImage
+ */
+-(UIImage*) takeSnapshot:(CGRect)rect;
 
 /**
  *设定当前地图的显示范围,采用直角坐标系表示
@@ -229,6 +231,20 @@ typedef enum {
  */
 - (BMKMapRect)convertRect:(CGRect)rect toMapRectFromView:(UIView *)view;
 
+/**
+ *将BMKMapPoint转换为opengles可以直接使用的坐标
+ @param mapPoint BMKMapPoint坐标
+ @return opengles 直接支持的坐标
+ */
+- (CGPoint)glPointForMapPoint:(BMKMapPoint)mapPoint;
+
+/**
+ *批量将BMKMapPoint转换为opengles可以直接使用的坐标
+ @param mapPoints BMKMapPoint坐标数据指针
+ @param count 个数,count不能大于数组长度
+ @return opengles 直接支持的坐标数据指针(需要调用者手动释放)
+ */
+- (CGPoint *)glPointsForMapPoints:(BMKMapPoint *)mapPoints count:(NSUInteger)count;
 
 /**
  * 设置地图中心点在地图中的屏幕坐标位置
@@ -282,7 +298,6 @@ typedef enum {
 /// 返回定位坐标点是否在当前地图可视区域内
 @property (nonatomic, readonly, getter=isUserLocationVisible) BOOL userLocationVisible;
 
-
 /**
  *动态定制我的位置样式
  *	@param	[in]	locationViewDisplayParam	样式参数
@@ -328,7 +343,6 @@ typedef enum {
  */
 - (void)removeAnnotations:(NSArray *)annotations;
 
-
 /**
  *查找指定标注对应的View，如果该标注尚未显示，返回nil
  *@param annotation 指定的标注
@@ -342,7 +356,6 @@ typedef enum {
  *@return 返回可被复用的标注View
  */
 - (BMKAnnotationView *)dequeueReusableAnnotationViewWithIdentifier:(NSString *)identifier;
-
 
 /**
  *选中指定的标注，本版暂不支持animate效果
@@ -446,7 +459,6 @@ typedef enum {
 - (void)removeHeatMap;
 
 @end
-
 
 /// MapView的Delegate，mapView通过此类来通知用户对应的事件
 @protocol BMKMapViewDelegate <NSObject>
@@ -575,5 +587,3 @@ typedef enum {
 - (void)mapStatusDidChanged:(BMKMapView *)mapView;
 
 @end
-
-

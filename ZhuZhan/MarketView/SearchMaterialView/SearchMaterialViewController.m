@@ -117,6 +117,7 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(24, i*65+69, 272, 18)];
         label.text = arr[i];
         label.font = FONT;
+        label.textColor = RGBCOLOR(85, 103, 166);
         [self.view addSubview:label];
     }
 }
@@ -154,7 +155,7 @@
         _nameTextField.leftViewMode = UITextFieldViewModeAlways;
         _nameTextField.returnKeyType = UIReturnKeyDone;
         [_nameTextField setValue:[UIFont systemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
-        [_nameTextField setValue:[UIColor blackColor] forKeyPath:@"_placeholderLabel.textColor"];
+        [_nameTextField setValue:AllNoDataColor forKeyPath:@"_placeholderLabel.textColor"];
         if(![[LoginSqlite getdata:@"userName"] isEqualToString:@""]){
             _nameTextField.text = [LoginSqlite getdata:@"userName"];
         }
@@ -172,7 +173,7 @@
         _phoneTextField.returnKeyType = UIReturnKeyDone;
         _phoneTextField.keyboardType = UIKeyboardTypePhonePad;
         [_phoneTextField setValue:[UIFont systemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
-        [_phoneTextField setValue:[UIColor blackColor] forKeyPath:@"_placeholderLabel.textColor"];
+        [_phoneTextField setValue:AllNoDataColor forKeyPath:@"_placeholderLabel.textColor"];
         if(![[LoginSqlite getdata:@"userPhone"] isEqualToString:@""]){
             _phoneTextField.text = [LoginSqlite getdata:@"userPhone"];
         }
@@ -204,6 +205,7 @@
         _categoryLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 260, 35)];
         _categoryLabel.text = @"请选择分类";
         _categoryLabel.font = FONT;
+        _categoryLabel.textColor = AllNoDataColor;
     }
     return _categoryLabel;
 }
@@ -251,6 +253,7 @@
     }else {
         self.categoryStr = self.singleView.selectStr;
         self.categoryLabel.text = self.singleView.selectStr;
+        self.categoryLabel.textColor = [UIColor blackColor];
     }
     [self.bgBtn removeFromSuperview];
     self.bgBtn = nil;

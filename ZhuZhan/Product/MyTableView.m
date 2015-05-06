@@ -39,6 +39,13 @@
     [tableView.tableFooterView addSubview:imageView];
 }
 
++(void)noSearchData:(UITableView*)tableView{
+    CGFloat orginFooterHeight=tableView.tableFooterView.frame.size.height;
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(81.5,(orginFooterHeight-157)/2, 151, 157)];
+    imageView.image = [GetImagePath getImagePath:@"search_empty"];
+    [tableView.tableFooterView addSubview:imageView];
+}
+
 +(void)removeFootView:(UITableView*)tableView{
     tableView.tableFooterView=nil;
 }

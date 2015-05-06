@@ -64,7 +64,7 @@
             self.models=posts[0];
             if(self.models.count == 0){
                 [MyTableView reloadDataWithTableView:self.searchBarTableView];
-                [MyTableView hasData:self.searchBarTableView];
+                [MyTableView noSearchData:self.searchBarTableView];
             }else{
                 [MyTableView removeFootView:self.searchBarTableView];
                 [self.searchBarTableView reloadData];

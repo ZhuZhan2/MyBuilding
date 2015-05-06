@@ -11,6 +11,7 @@
 #import "RKShadowView.h"
 #import "AddressBookApi.h"
 #import "ValidatePlatformContactModel.h"
+#import "MyTableView.h"
 @interface AddressBookFriendSearchController ()<AddressBookFriendCellDelegate>
 @property (nonatomic, strong)NSMutableArray* models;
 @end
@@ -51,7 +52,13 @@
             continue;
         }
     }
-    [self.tableView reloadData];
+    if(self.models.count ==0){
+        [MyTableView reloadDataWithTableView:self.tableView];
+        [MyTableView noSearchData:self.tableView];
+    }else{
+        [MyTableView removeFootView:self.tableView];
+        [self.tableView reloadData];
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

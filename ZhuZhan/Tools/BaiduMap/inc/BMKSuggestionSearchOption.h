@@ -6,6 +6,7 @@
  *
  */
 
+#import <Foundation/Foundation.h>
 /// sug检索信息类
 @interface BMKSuggestionSearchOption : NSObject
 {

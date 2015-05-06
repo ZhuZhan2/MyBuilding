@@ -37,6 +37,8 @@
 @property (nonatomic,strong) NSString *a_companyProvince;
 //市
 @property (nonatomic,strong) NSString *a_companyCity;
+//区
+@property (nonatomic,strong)NSString *a_companyDistrict;
 //是否申请认证
 @property (nonatomic,strong) NSString *a_reviewStatus;
 

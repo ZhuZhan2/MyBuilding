@@ -27,8 +27,9 @@
     self.a_companyContactCellphone = [ProjectStage ProjectStrStage:dict[@"contactTel"]];
     self.a_companyContactEmail = [ProjectStage ProjectStrStage:dict[@"companyEmail"]];
     self.a_companyLocation = [ProjectStage ProjectStrStage:dict[@"address"]];
-    self.a_companyProvince = [ProjectStage ProjectStrStage:dict[@"companyProvince"]];
-    self.a_companyCity = [ProjectStage ProjectStrStage:dict[@"companyCity"]];
+    self.a_companyProvince = [ProjectStage ProjectStrStage:dict[@"landProvince"]];
+    self.a_companyCity = [ProjectStage ProjectStrStage:dict[@"landCity"]];
+    self.a_companyDistrict = [ProjectStage ProjectStrStage:dict[@"landDistrict"]];
     self.a_reviewStatus = [ProjectStage ProjectStrStage:dict[@"reviewStatus"]];
 }
 @end

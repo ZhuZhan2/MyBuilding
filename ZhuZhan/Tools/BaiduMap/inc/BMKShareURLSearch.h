@@ -26,7 +26,7 @@
 
 /**
  *获取poi详情短串分享url
- *异步函数，返回结果在BMKShareUrlSearchDelegate的onGetShareUrl通知
+ *异步函数，返回结果在BMKShareUrlSearchDelegate的onGetPoiDetailShareURLResult通知
  *@param poiDetailShareUrlSearchOption poi详情短串分享检索信息类
  *@return 成功返回YES，否则返回NO
  */
@@ -34,7 +34,7 @@
 
 /**
  *获取反geo短串分享url
- *异步函数，返回结果在BMKShareUrlSearchDelegate的onGetShareUrl通知
+ *异步函数，返回结果在BMKShareUrlSearchDelegate的onGetLocationShareURLResult通知
  *@param reverseGeoShareUrlSearchOption 反geo短串分享检索信息类
  *@return 成功返回YES，否则返回NO
  */
