@@ -71,9 +71,9 @@ static NSUInteger currentImage = 1;//记录中间图片的下标,开始总是为
 {
     _imageNameArray = imageNameArray;
 
-    //_leftImageView.image = [UIImage imageNamed:_imageNameArray[1]];
-    _centerImageView.image = [UIImage imageNamed:_imageNameArray[0]];
-    //_rightImageView.image = [UIImage imageNamed:_imageNameArray[2]];
+    _leftImageView.image = [UIImage imageNamed:_imageNameArray[0]];
+    _centerImageView.image = [UIImage imageNamed:_imageNameArray[1]];
+    _rightImageView.image = [UIImage imageNamed:_imageNameArray[2]];
 }
 
 #pragma mark - 设置每个对应广告对应的广告语

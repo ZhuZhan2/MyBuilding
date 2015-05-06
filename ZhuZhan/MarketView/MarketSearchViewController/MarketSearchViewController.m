@@ -15,7 +15,7 @@
 @implementation MarketSearchViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationController.navigationBarHidden = YES;
     [self setUpsearchBarExtra];
     
     [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];   
@@ -97,6 +97,7 @@
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     [self.navigationController popViewControllerAnimated:YES];
+    self.navigationController.navigationBarHidden = YES;
 }
 
 -(void)dealloc{

@@ -188,12 +188,12 @@
         return;
     }
     
-    NSRange newPassWordTextFieldRange = [newPassWordTextField.text rangeOfString:@" "];
-    if (newPassWordTextFieldRange.location != NSNotFound) {
-        //有空格
-        [RemindView remindViewWithContent:@"密码不能包含空格" superView:self.view centerY:260];
-        return;
-    }
+//    NSRange newPassWordTextFieldRange = [newPassWordTextField.text rangeOfString:@" "];
+//    if (newPassWordTextFieldRange.location != NSNotFound) {
+//        //有空格
+//        [RemindView remindViewWithContent:@"密码不能包含空格" superView:self.view centerY:260];
+//        return;
+//    }
     
     if(![newPassWordTextField.text isEqualToString:newAgainPassWordTextField.text]){
         [RemindView remindViewWithContent:@"密码输入不一致，请重新输入" superView:self.view centerY:260];

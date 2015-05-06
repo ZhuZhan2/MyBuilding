@@ -344,12 +344,12 @@
         return;
     }
     
-    NSRange passWordFieldRange = [passWordField.text rangeOfString:@" "];
-    if (passWordFieldRange.location != NSNotFound) {
-        //有空格
-        [self remindErrorView:@"密码不能包含空格"];
-        return;
-    }
+//    NSRange passWordFieldRange = [passWordField.text rangeOfString:@" "];
+//    if (passWordFieldRange.location != NSNotFound) {
+//        //有空格
+//        [self remindErrorView:@"密码不能包含空格"];
+//        return;
+//    }
     
     if([passWordField.text isEqualToString:@""]||[_phoneNumberTextField.text isEqualToString:@""]||[verifyPassWordField.text isEqualToString:@""])
     {
@@ -376,6 +376,7 @@
                 [LoginSqlite insertData:[item objectForKey:@"loginId"] datakey:@"userId"];
                 [LoginSqlite insertData:[item objectForKey:@"token"] datakey:@"token"];
                 [LoginSqlite insertData:item[@"loginName"] datakey:@"userName"];
+                [LoginSqlite insertData:item[@"loginTel"] datakey:@"userPhone"];
                 [LoginSqlite insertData:@"Personal" datakey:@"userType"];
                 RecommendProjectViewController *recProjectView = [[RecommendProjectViewController alloc] init];
                 [self.navigationController pushViewController:recProjectView animated:YES];

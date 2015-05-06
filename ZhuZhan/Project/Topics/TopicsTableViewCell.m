@@ -65,18 +65,17 @@
     projectCount.textColor = [UIColor redColor];
     [bgView addSubview:projectCount];
     
-    dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(225, 83, 100, 20)];
-    dateLabel.font = [UIFont systemFontOfSize:14];
-    dateLabel.textColor = [UIColor grayColor];
-    [bgView addSubview:dateLabel];
+//    dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(225, 83, 100, 20)];
+//    dateLabel.font = [UIFont systemFontOfSize:14];
+//    dateLabel.textColor = [UIColor grayColor];
+//    [bgView addSubview:dateLabel];
 }
 
 -(void)setModel:(TopicsModel *)model{
-    NSLog(@"%@",model.a_image);
     [headImageView sd_setImageWithURL:[NSURL URLWithString:model.a_image] placeholderImage:[GetImagePath getImagePath:@"项目详情默认0"]];
     titleLabel.text = model.a_title;
     contentLabel.text = model.a_content;
     projectCount.text = model.a_projectCount;
-    dateLabel.text = model.a_publishTime;
+    //dateLabel.text = model.a_publishTime;
 }
 @end
