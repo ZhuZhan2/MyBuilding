@@ -37,6 +37,13 @@
     
 }
 
++(void)delAllRecordWithType:(NSInteger)type{
+    SqliteHelper *sqlite = [[SqliteHelper alloc] init];
+    if ([sqlite open:DataBaseName]) {
+        [sqlite executeQuery:[NSString stringWithFormat:@"DELETE FROM t_marketSearch WHERE type =%d",(int)type]];
+    }
+}
+
 +(void)insertRecord:(NSString *)record type:(NSInteger)type {
     SqliteHelper *sqlite = [[SqliteHelper alloc] init];
     if ([sqlite open:DataBaseName]) {

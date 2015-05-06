@@ -14,4 +14,5 @@
 
 @interface RKBaseTableView : UITableView
 @property(nonatomic,weak)id<RKBaseTableViewDelegate>delegate;
+@property (nonatomic, strong)UIView* noDataView;
 @end

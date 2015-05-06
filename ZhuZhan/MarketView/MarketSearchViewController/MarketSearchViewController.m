@@ -24,15 +24,44 @@
 @implementation MarketSearchViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
     [self setSearchBarTableViewBackColor:AllBackDeepGrayColor];
     [self setUpSearchBarExtra];
+    self.searchBarTableView.backgroundColor = [UIColor whiteColor];
+    UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 152, 158)];
+    imageView.center = CGPointMake(kScreenWidth*0.5, 15 0);
+    imageView.image = [GetImagePath getImagePath:@"search_empty"];
+    UIView* noDataView = [[UIView alloc]init];
+    noDataView.backgroundColor = [UIColor whiteColor];
+    noDataView.contentMode = UIViewContentModeCenter;
+    [noDataView addSubview:imageView];
+    
+    self.searchBarTableView.noDataView = noDataView;
+    [self setTableViewFooterView];
     
     NSLog(@"path=%@",NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES));
     [self.searchBar becomeFirstResponder];
+}
 
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reload) name:@"ConstractListControllerReloadDataNotification" object:nil];
+- (void)setTableViewFooterView{
+    UIButton* btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 60)];
+    [btn addTarget:self action:@selector(deleteAllRecord) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 110, 35)];
+    imageView.center = btn.center;
+    imageView.image = [GetImagePath getImagePath:@"search_cleanios"];
+//    [btn addSubview:imageView];
+    
+    [btn setImage:imageView.image forState:UIControlStateNormal];
+
+    self.searchBarTableView.tableFooterView = btn;
+}
+
+- (void)deleteAllRecord{
+    NSInteger type = [self.menuTitles indexOfObject:self.searchCategory];
+    [MarketSearchSqlite delAllRecordWithType:type];
+    [self reloadSearchModelWithCategory:self.searchCategory type:type];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -68,7 +97,7 @@
 }
 
 - (void)menuBtnClicked{
-    CGPoint originPoint = CGPointMake(17, 52);
+    CGPoint originPoint = CGPointMake(!self.searchBar.text.length&&!self.searchBar.isFirstResponder?68:16, 52);
     SearchMenuView* menuView = [SearchMenuView searchMenuViewWithTitles:self.menuTitles originPoint:originPoint];
     menuView.delegate = self;
     [self.view addSubview:menuView];
@@ -94,14 +123,18 @@
     [leftView.subviews[0] setText:title];
     NSLog(@"搜索条件变更");
     
+
+    [self reloadSearchModelWithCategory:title type:index];
+    [self searchNewDataWithRecord:self.searchBar.text];
+}
+
+- (void)reloadSearchModelWithCategory:(NSString*)category type:(NSInteger)type{
     //搜索条件变更
-    self.searchCategory = title;
+    self.searchCategory = category;
     //搜索历史记录模型变更
-    self.models = [MarketSearchSqlite loadList:index];
+    self.models = [MarketSearchSqlite loadList:type];
     //搜索历史记录表更新
     [self.searchBarTableView reloadData];
-    //
-    [self searchNewDataWithRecord:self.searchBar.text];
 }
 
 - (void)searchNewDataWithRecord:(NSString*)record{
@@ -197,6 +230,7 @@
     UIView* seperatorLine = [RKShadowView seperatorLine];
     CGRect frame = seperatorLine.frame;
     frame.origin.y = 45;
+    seperatorLine.frame = frame;
     [cell.contentView addSubview:seperatorLine];
     
     NSString* record = self.models[indexPath.row];
@@ -243,9 +277,5 @@
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     [self.navigationController popViewControllerAnimated:YES];
     self.navigationController.navigationBarHidden = YES;
-}
-
--(void)dealloc{
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"ConstractListControllerReloadDataNotification" object:nil];
 }
 @end
