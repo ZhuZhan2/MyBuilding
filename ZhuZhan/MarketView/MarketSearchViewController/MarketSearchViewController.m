@@ -12,10 +12,12 @@
 #import "ALLProjectViewController.h"
 #import "MoreCompanyViewController.h"
 #import "MarketSearchProductController.h"
+#import "MarketSearchSqlite.h"
+#import "RKShadowView.h"
 @interface MarketSearchViewController ()<SearchMenuViewDelegate>
 @property(nonatomic,strong)NSMutableArray* models;
 @property (nonatomic, strong)NSArray* menuTitles;
-@property (nonatomic, strong)UIViewController* vc;
+@property (nonatomic, strong)id vc;
 @property (nonatomic, copy)NSString* searchCategory;
 @end
 
@@ -27,9 +29,17 @@
     [self setSearchBarTableViewBackColor:AllBackDeepGrayColor];
     [self setUpSearchBarExtra];
     
+    NSLog(@"path=%@",NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES));
     [self.searchBar becomeFirstResponder];
-    
+
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reload) name:@"ConstractListControllerReloadDataNotification" object:nil];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if (!self.searchBarTableViewController.view.superview) {
+        [self searchBarTableViewAppear];
+    }
 }
 
 - (void)setUpSearchBarExtra{
@@ -58,8 +68,7 @@
 }
 
 - (void)menuBtnClicked{
-    CGPoint originPoint = CGPointMake(50, 40);
-    NSLog(@"%@",self.menuTitles);
+    CGPoint originPoint = CGPointMake(17, 52);
     SearchMenuView* menuView = [SearchMenuView searchMenuViewWithTitles:self.menuTitles originPoint:originPoint];
     menuView.delegate = self;
     [self.view addSubview:menuView];
@@ -84,42 +93,66 @@
     UIView* leftView=[self.searchBar valueForKeyPath:@"_searchField.leftView"];
     [leftView.subviews[0] setText:title];
     NSLog(@"搜索条件变更");
+    
+    //搜索条件变更
     self.searchCategory = title;
+    //搜索历史记录模型变更
+    self.models = [MarketSearchSqlite loadList:index];
+    //搜索历史记录表更新
+    [self.searchBarTableView reloadData];
+    //
+    [self searchNewDataWithRecord:self.searchBar.text];
 }
 
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    [self.searchBar resignFirstResponder];
+- (void)searchNewDataWithRecord:(NSString*)record{
+    NSLog(@"searchBar=%d",self.searchBar.isFirstResponder);
+    UITableView* oldTableView = [self.vc tableView];
+    [oldTableView removeFromSuperview];
+    self.vc = nil;
+    
+    if (record.length==0) return;
+    
     NSInteger index = [self.menuTitles indexOfObject:self.searchCategory];
+    [MarketSearchSqlite insertRecord:record type:index];
+    
+    [self.searchBar resignFirstResponder];
     UITableView* tableView;
     switch (index) {
         case 0:{
             RecommendFriendSearchController* vc = [[RecommendFriendSearchController alloc] initWithTableViewBounds:self.view.bounds];
             [vc view];
             tableView = vc.tableView;
-            [vc loadListWithKeyWords:searchBar.text];
+            vc.nowViewController = self;
+            [vc loadListWithKeyWords:record];
             self.vc = vc;
             break;
         }
         case 1:{
-            ALLProjectViewController* vc = [[ALLProjectViewController alloc] init];
+            MoreCompanyViewController* vc = [[MoreCompanyViewController alloc] init];
+            vc.keywords = record;
             [vc view];
             tableView = vc.tableView;
+            vc.nowViewController = self;
             self.vc = vc;
             break;
         }
         case 2:{
-            MoreCompanyViewController* vc = [[MoreCompanyViewController alloc] init];
+            ALLProjectViewController* vc = [[ALLProjectViewController alloc] init];
+            vc.keywords = record;
             [vc view];
             tableView = vc.tableView;
+            vc.nowViewController = self;
             self.vc = vc;
             break;
+            
         }
         case 3:{
             MarketSearchProductController* vc = [[MarketSearchProductController alloc] init];
-            vc.keyWords = searchBar.text;
+            vc.keyWords = record;
             vc.superViewController = self;
             [vc view];
             tableView = vc.tableView;
+            vc.nowViewController = self;
             self.vc = vc;
             break;
         }
@@ -131,6 +164,17 @@
     [self.view addSubview:tableView];
 }
 
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+//    [super searchBarSearchButtonClicked:searchBar];
+//    [self.searchBar resignFirstResponder];
+//    [self.view becomeFirstResponder];
+    [self searchNewDataWithRecord:searchBar.text];
+}
+
+-(void)searchBarTableViewWillBeginDragging:(UITableView *)tableView{
+    [self.view endEditing:YES];
+}
+
 -(NSInteger)searchBarNumberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
@@ -139,26 +183,31 @@
     return self.models.count;
 }
 -(CGFloat)searchBarTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 66;
+    return 46;
 }
 
 -(UITableViewCell *)searchBarTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        cell.clipsToBounds=YES;
+        cell.clipsToBounds = YES;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    UIView* seperatorLine = [RKShadowView seperatorLine];
+    CGRect frame = seperatorLine.frame;
+    frame.origin.y = 45;
+    [cell.contentView addSubview:seperatorLine];
     
-    cell.textLabel.text=[NSString stringWithFormat:@"%d",(int)indexPath.row];
+    NSString* record = self.models[indexPath.row];
+    cell.textLabel.text = record;
+    cell.textLabel.font = [UIFont systemFontOfSize:17];
     return cell;
 }
 
 -(void)searchBarTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"indexpath=%d",indexPath.row);
-}
-
--(void)error{
-    [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"请测试记下当前的合同各个状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
+    NSString* record = self.models[indexPath.row];
+    [self searchNewDataWithRecord:record];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -178,10 +227,8 @@
 
 -(NSMutableArray *)models{
     if (!_models) {
-        _models=[NSMutableArray array];
-        for (int i=0;i<10;i++) {
-            [_models addObject:@""];
-        }
+        NSInteger index = [self.menuTitles indexOfObject:self.searchCategory];
+        _models = [MarketSearchSqlite loadList:index];
     }
     return _models;
 }

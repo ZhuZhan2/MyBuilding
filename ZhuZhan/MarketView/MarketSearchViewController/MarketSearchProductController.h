@@ -15,4 +15,5 @@
 @property (nonatomic, weak)UIViewController* superViewController;
 @property (nonatomic, strong)UITableView* tableView;
 @property(nonatomic,strong)NSString *keyWords;
+@property (nonatomic, strong)UIViewController* nowViewController;
 @end

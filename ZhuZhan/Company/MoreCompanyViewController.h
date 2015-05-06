@@ -12,5 +12,7 @@
     int startIndex;
 }
 @property(nonatomic,strong)UITableView* tableView;
+@property(nonatomic,strong)NSString *keywords;
 @property(nonatomic)BOOL isCompanyIdentify;
+@property (nonatomic, strong)UIViewController* nowViewController;
 @end

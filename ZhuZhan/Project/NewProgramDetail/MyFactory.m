@@ -228,12 +228,18 @@ static NSString* hasUserTypeContent(NSString* string){
 
 //图加图的数量
 +(UIView*)getImageViewWithImageUrl:(NSString*)imageUrl count:(NSInteger)count{
-    MyView* view=[[MyView alloc]init];
-    view.frame=CGRectMake(0, 0, 320, 215.5);
-    view.layer.masksToBounds=YES;
-    view.backgroundColor=[UIColor grayColor];
-    [view observeImage];
-    [view.myImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]] placeholderImage:[GetImagePath getImagePath:@"项目详情默认"]];
+//    MyView* view=[[MyView alloc]init];
+//    view.frame=CGRectMake(0, 0, 320, 215.5);
+//    view.layer.masksToBounds=YES;
+//    view.backgroundColor=[UIColor grayColor];
+//    [view observeImage];
+//    [view.myImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]] placeholderImage:[GetImagePath getImagePath:@"项目详情默认"]];
+    UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 216)];
+    imageView.backgroundColor = [UIColor grayColor];
+    imageView.contentMode = UIViewContentModeScaleAspectFit|UIViewContentModeCenter;
+    
+    imageView.userInteractionEnabled = YES;
+    [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]] placeholderImage:[GetImagePath getImagePath:@"项目详情默认"]];
     
     
     //图片数量label
@@ -243,9 +249,9 @@ static NSString* hasUserTypeContent(NSString* string){
     label.textColor=[UIColor whiteColor];
     label.font=[UIFont systemFontOfSize:14.5];
     label.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:.7];
-    [view addSubview:label];
+    [imageView addSubview:label];
     
-    return view;
+    return imageView;
 }
 
 +(void)addButtonToView:(UIView*)view target:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents{

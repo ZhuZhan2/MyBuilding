@@ -25,6 +25,7 @@
 #import "JSONKit.h"
 #import "GetAddressBook.h"
 #import "ImageSqlite.h"
+#import "MarketSearchSqlite.h"
 @implementation AppDelegate
 
 + (AppDelegate *)instance {
@@ -109,6 +110,7 @@
     [RecordSqlite opensql];
     [ProjectSqlite opensql];
     [ImageSqlite opensql];
+    [MarketSearchSqlite opensql];
     
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;

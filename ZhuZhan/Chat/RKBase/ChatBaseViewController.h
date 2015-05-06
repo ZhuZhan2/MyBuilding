@@ -19,6 +19,7 @@
 -(void)searchBarTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 -(UIView *)searchBarTableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;
 -(CGFloat)searchBarTableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
+-(void)searchBarTableViewWillBeginDragging:(UITableView*)tableView;
 @end
 
 @class SearchBarTableViewController;
@@ -52,6 +53,7 @@
 
 @property(nonatomic,strong)SearchBarTableViewController* searchBarTableViewController;
 @property(nonatomic,strong)UITableView* searchBarTableView;
+-(void)searchBarTableViewAppear;
 -(void)setSearchBarTableViewBackColor:(UIColor*)color;
 
 @property(nonatomic,strong)NSMutableArray* sectionSelectedArray;

@@ -22,7 +22,6 @@
 @interface MoreCompanyViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UIScrollViewDelegate,CompanyDetailDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UISearchBar* searchBar;
-@property(nonatomic,strong)NSString *keywords;
 @property(nonatomic)NSInteger lastIndex;
 @property(nonatomic,strong)LoadingView *loadingView;
 @end
@@ -85,7 +84,7 @@
             }
         }
         [self removeMyLoadingView];
-    } startIndex:0 keyWords:@"" noNetWork:^{
+    } startIndex:0 keyWords:self.keywords noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
@@ -181,7 +180,7 @@
 }
 
 -(void)back{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.nowViewController.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)changeButtonImage:(UIButton*)button{
@@ -210,7 +209,7 @@
     CompanyDetailViewController* vc=[[CompanyDetailViewController alloc]init];
     vc.delegate=self;
     vc.companyId = model.a_id;
-    [self.navigationController pushViewController:vc animated:needAnimation];
+    [self.nowViewController.navigationController pushViewController:vc animated:needAnimation];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -248,7 +247,6 @@
 
 -(void)initSearchView{
     startIndex = 0;
-    self.keywords = @"";
     self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, 320, 43)];
     self.searchBar.placeholder = @"搜索";
     self.searchBar.tintColor = [UIColor grayColor];
@@ -326,7 +324,7 @@
             }
 
         }
-    }startIndex:0 keyWords:[NSString stringWithFormat:@"%@",searchBar.text] noNetWork:^{
+    }startIndex:0 keyWords:self.keywords noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self searchBarSearchButtonClicked:searchBar];
         }];
@@ -357,10 +355,24 @@
                 }];
             }
         }
-    } startIndex:0 keyWords:@"" noNetWork:^{
+    } startIndex:0 keyWords:self.keywords noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self searchBarCancelButtonClicked:searchBar];
         }];
     }];
+}
+
+- (NSString *)keywords{
+    if (!_keywords) {
+        _keywords = @"";
+    }
+    return _keywords;
+}
+
+- (UIViewController *)nowViewController{
+    if (!_nowViewController) {
+        _nowViewController = self;
+    }
+    return _nowViewController;
 }
 @end

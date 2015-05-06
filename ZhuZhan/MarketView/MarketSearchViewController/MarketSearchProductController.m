@@ -81,7 +81,7 @@
 }
 
 -(void)leftBtnClick{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.nowViewController.navigationController popViewControllerAnimated:YES];
 }
 
 /**
@@ -212,5 +212,12 @@
         _tableView.dataSource = self;
     }
     return _tableView;
+}
+
+- (UIViewController *)nowViewController{
+    if (!_nowViewController) {
+        _nowViewController = self;
+    }
+    return _nowViewController;
 }
 @end

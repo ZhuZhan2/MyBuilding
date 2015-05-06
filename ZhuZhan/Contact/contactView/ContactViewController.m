@@ -46,11 +46,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 @implementation ContactViewController
 @synthesize transparent;
 
-- (void)gotoSearch{
-    MarketSearchViewController* vc = [[MarketSearchViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -227,8 +222,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)publish
 {
-    [self gotoSearch];
-    return;
     NSLog(@"发布产品");
     
     NSString *deviceToken = [LoginSqlite getdata:@"token"];

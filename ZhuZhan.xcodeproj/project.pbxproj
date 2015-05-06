@@ -755,6 +755,9 @@
 		5B71323D1AA44F7E0043E37D /* ＋.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B71323B1AA44F7E0043E37D /* ＋.png */; };
 		5B71323E1AA44F7E0043E37D /* ＋@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B71323C1AA44F7E0043E37D /* ＋@2x.png */; };
 		5B7132411AA458D90043E37D /* ProductPublishController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7132401AA458D90043E37D /* ProductPublishController.m */; };
+		5B75F4DF1AF9A2B60091162C /* MarketSearchSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B75F4DE1AF9A2B60091162C /* MarketSearchSqlite.m */; };
+		5B75F4EA1AF9F3FC0091162C /* Group-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B75F4E81AF9F3FC0091162C /* Group-1.png */; };
+		5B75F4EB1AF9F3FC0091162C /* Group-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B75F4E91AF9F3FC0091162C /* Group-1@2x.png */; };
 		5B7670621AB6B92B00E154C5 /* ChatBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B76705B1AB6B92B00E154C5 /* ChatBaseViewController.m */; };
 		5B7670631AB6B92B00E154C5 /* RKBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B76705D1AB6B92B00E154C5 /* RKBaseTableView.m */; };
 		5B7670641AB6B92B00E154C5 /* SearchBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B76705F1AB6B92B00E154C5 /* SearchBarCell.m */; };
@@ -2692,6 +2695,10 @@
 		5B71323C1AA44F7E0043E37D /* ＋@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "＋@2x.png"; sourceTree = "<group>"; };
 		5B71323F1AA458D90043E37D /* ProductPublishController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductPublishController.h; sourceTree = "<group>"; };
 		5B7132401AA458D90043E37D /* ProductPublishController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductPublishController.m; sourceTree = "<group>"; };
+		5B75F4DD1AF9A2B60091162C /* MarketSearchSqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketSearchSqlite.h; sourceTree = "<group>"; };
+		5B75F4DE1AF9A2B60091162C /* MarketSearchSqlite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketSearchSqlite.m; sourceTree = "<group>"; };
+		5B75F4E81AF9F3FC0091162C /* Group-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Group-1.png"; sourceTree = "<group>"; };
+		5B75F4E91AF9F3FC0091162C /* Group-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Group-1@2x.png"; sourceTree = "<group>"; };
 		5B76705A1AB6B92B00E154C5 /* ChatBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBaseViewController.h; sourceTree = "<group>"; };
 		5B76705B1AB6B92B00E154C5 /* ChatBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatBaseViewController.m; sourceTree = "<group>"; };
 		5B76705C1AB6B92B00E154C5 /* RKBaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKBaseTableView.h; sourceTree = "<group>"; };
@@ -6705,6 +6712,8 @@
 				D3D538461ADD1D3C003727C1 /* ImageSqlite.m */,
 				D3D538481ADD1FC8003727C1 /* ImageModel.h */,
 				D3D538491ADD1FC8003727C1 /* ImageModel.m */,
+				5B75F4DD1AF9A2B60091162C /* MarketSearchSqlite.h */,
+				5B75F4DE1AF9A2B60091162C /* MarketSearchSqlite.m */,
 			);
 			path = Sqlite3;
 			sourceTree = "<group>";
@@ -6790,6 +6799,8 @@
 		D3D08FFA1AF8658E00C8AC55 /* MarketImage */ = {
 			isa = PBXGroup;
 			children = (
+				5B75F4E81AF9F3FC0091162C /* Group-1.png */,
+				5B75F4E91AF9F3FC0091162C /* Group-1@2x.png */,
 				5BD9DE841AF89CBE007BF9B5 /* searcharrow.png */,
 				5BD9DE851AF89CBE007BF9B5 /* searcharrow@2x.png */,
 				D3D090211AF88D4E00C8AC55 /* index_home.png */,
@@ -7726,6 +7737,7 @@
 				5B6C4B2C1ADFBC12003B8DA8 /* 绿色箭头.png in Resources */,
 				D3E1AB021A7649D900BFC6E1 /* 重新加载@2x.png in Resources */,
 				5BE08E0D1A3586EA00495EEB /* 010061@2x.png in Resources */,
+				5B75F4EB1AF9F3FC0091162C /* Group-1@2x.png in Resources */,
 				5BF31B541AB0162D00DA87F5 /* 添加联系人入群.png in Resources */,
 				5BE08E3A1A3586EA00495EEB /* 020020.png in Resources */,
 				5B5E14541A71E85E0069B40D /* 注-----册@2x.png in Resources */,
@@ -8175,6 +8187,7 @@
 				D3D34A251ACA861B004733D2 /* agree@2x.png in Resources */,
 				5B7AA6D51A58D6E4000FBFF2 /* 筛选中01.png in Resources */,
 				D3D3212E1A3ED4340009AEEA /* 注册_03.png in Resources */,
+				5B75F4EA1AF9F3FC0091162C /* Group-1.png in Resources */,
 				5B4E6C9D1A68DB140008E5D5 /* 动态产品评论02@2x.png in Resources */,
 				04BC424E19D7E5B3006B5C7B /* 扫描页面_03@2x.png in Resources */,
 				5BE264DE1A78BF9500EF7D1B /* 背景.png in Resources */,
@@ -8910,6 +8923,7 @@
 				0426C2A619922D5A00CD8822 /* GPUImagePolkaDotFilter.m in Sources */,
 				0426C28019922D5A00CD8822 /* GPUImageJFAVoronoiFilter.m in Sources */,
 				5B7670631AB6B92B00E154C5 /* RKBaseTableView.m in Sources */,
+				5B75F4DF1AF9A2B60091162C /* MarketSearchSqlite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
