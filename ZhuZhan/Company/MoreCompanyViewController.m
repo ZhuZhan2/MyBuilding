@@ -21,7 +21,6 @@
 #import "MyTableView.h"
 @interface MoreCompanyViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UIScrollViewDelegate,CompanyDetailDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
-@property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)UISearchBar* searchBar;
 @property(nonatomic,strong)NSString *keywords;
 @property(nonatomic)NSInteger lastIndex;

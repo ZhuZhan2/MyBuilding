@@ -16,7 +16,8 @@
     self.a_fileName=dict[@"fileName"];
     self.a_status=[dict[@"status"] integerValue];
     self.a_archiveStatus=[dict[@"archiveStatus"] integerValue];
-    self.a_isSelfCreated=[dict[@"createdBy"] isEqualToString:[LoginSqlite getdata:@"userName"]];
+    self.a_createdById=dict[@"createdById"];
+    self.a_isSelfCreated=[self.a_createdById isEqualToString:[LoginSqlite getdata:@"userId"]];
     self.a_contractsMoney=dict[@"contractsMoney"];
     self.a_serialNumber=dict[@"serialNumber"];
     self.a_recipientName=dict[@"recipientName"];

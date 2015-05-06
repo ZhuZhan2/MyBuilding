@@ -17,7 +17,6 @@
 #import "AppDelegate.h"
 #import "ProgramDetailViewController.h"
 @interface ALLProjectViewController ()<UITableViewDataSource,UITableViewDelegate,ProjectTableViewCellDelegate>
-@property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)LoadingView *loadingView;
 @property(nonatomic)int startIndex;
