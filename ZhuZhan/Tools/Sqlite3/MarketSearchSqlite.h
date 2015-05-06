@@ -10,7 +10,7 @@
 
 @interface MarketSearchSqlite : NSObject
 +(void)opensql;
-+(void)delAll;
++(void)delAllRecordWithType:(NSInteger)type;
 +(void)insertRecord:(NSString *)record type:(NSInteger)type ;
 +(NSMutableArray *)loadList:(NSInteger)type;
 @end

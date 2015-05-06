@@ -8,7 +8,7 @@
 
 #import "SearchBarTableViewController.h"
 
-@interface SearchBarTableViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface SearchBarTableViewController ()<UITableViewDataSource,RKBaseTableViewDelegate>
 @property (nonatomic)CGRect tableViewBounds;
 @end
 
@@ -29,7 +29,7 @@
     [self.tableView reloadData];
 }
 -(void)initTableView{
-    self.tableView=[[UITableView alloc]initWithFrame:self.tableViewBounds];
+    self.tableView=[[RKBaseTableView alloc]initWithFrame:self.tableViewBounds];
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;

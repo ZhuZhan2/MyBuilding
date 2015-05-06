@@ -129,7 +129,7 @@
     }
 }
 
--(UITableView*)searchBarTableView{
+-(RKBaseTableView*)searchBarTableView{
     return self.searchBarTableViewController.tableView;
 }
 

@@ -52,7 +52,7 @@
 @property(nonatomic,weak)UIView* searchBarBackBtn;
 
 @property(nonatomic,strong)SearchBarTableViewController* searchBarTableViewController;
-@property(nonatomic,strong)UITableView* searchBarTableView;
+@property(nonatomic,strong)RKBaseTableView* searchBarTableView;
 -(void)searchBarTableViewAppear;
 -(void)setSearchBarTableViewBackColor:(UIColor*)color;
 
