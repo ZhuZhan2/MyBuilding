@@ -44,18 +44,15 @@
 }
 
 - (void)setTableViewFooterView{
-    UIButton* btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 60)];
-    [btn addTarget:self action:@selector(deleteAllRecord) forControlEvents:UIControlEventTouchUpInside];
+    UIView* back = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 60)];
     
+    UIButton* imageViewBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 110, 35)];
+    imageViewBtn.center = back.center;
+    [imageViewBtn setImage:[GetImagePath getImagePath:@"search_cleanios"] forState:UIControlStateNormal];
+    [imageViewBtn addTarget:self action:@selector(deleteAllRecord) forControlEvents:UIControlEventTouchUpInside];
+    [back addSubview:imageViewBtn];
     
-    UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 110, 35)];
-    imageView.center = btn.center;
-    imageView.image = [GetImagePath getImagePath:@"search_cleanios"];
-//    [btn addSubview:imageView];
-    
-    [btn setImage:imageView.image forState:UIControlStateNormal];
-
-    self.searchBarTableView.tableFooterView = btn;
+    self.searchBarTableView.tableFooterView = back;
 }
 
 - (void)deleteAllRecord{
