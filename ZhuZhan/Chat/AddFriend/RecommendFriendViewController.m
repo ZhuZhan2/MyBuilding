@@ -14,7 +14,7 @@
 #import "MJRefresh.h"
 #import "PersonalDetailViewController.h"
 #define seperatorLineColor RGBCOLOR(229, 229, 229)
-@interface RecommendFriendViewController ()<RecommendFriendCellDelegate>
+@interface RecommendFriendViewController ()<RecommendFriendCellDelegate,RecommendFriendSearchControllerDelegate>
 @property(nonatomic,strong)NSMutableArray* models;
 @property(nonatomic)int startIndex;
 @property(nonatomic,strong)UIView *topView;
@@ -168,6 +168,7 @@
 -(void)setUpSearchBarTableView{
     self.searchBarTableViewController=[[RecommendFriendSearchController alloc]initWithTableViewBounds:CGRectMake(0, 0, kScreenWidth, kScreenHeight-CGRectGetMinY(self.searchBar.frame))];
     self.searchBarTableViewController.delegate=self;
+    self.searchBarTableViewController.headImageDelegate = self;
     self.searchBarTableViewController.nowViewController = self;
 }
 
@@ -178,6 +179,11 @@
 
 -(void)headClick:(int)index{
     FriendModel *model = self.models[index];
+    [self headClickWithModel:model];
+}
+
+- (void)headClickWithModel:(FriendModel *)model{
+    [self searchBarCancelButtonClicked:self.searchBar];
     PersonalDetailViewController *view = [[PersonalDetailViewController alloc] init];
     view.contactId = model.a_id;
     [self.navigationController pushViewController:view animated:YES];
