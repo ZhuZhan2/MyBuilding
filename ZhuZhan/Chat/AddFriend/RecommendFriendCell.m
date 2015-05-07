@@ -96,8 +96,9 @@
             [dic setValue:self.model.a_id forKey:@"userId"];
             [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alertView show];
+                    if([self.delegate respondsToSelector:@selector(addFriend)]){
+                        [self.delegate addFriend];
+                    }
                     self.model.a_isWaiting=YES;
                     self.addBtn.userInteractionEnabled=NO;
                     [self.addBtn setBackgroundImage:[GetImagePath getImagePath:@"等待验证120"] forState:UIControlStateNormal];
@@ -123,6 +124,9 @@
 }
 
 -(void)loginCompleteWithDelayBlock:(void (^)())block{
+    if ([self.delegate respondsToSelector:@selector(reload)]) {
+        [self.delegate reload];
+    }
     if(block){
         block();
     }

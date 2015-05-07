@@ -12,9 +12,11 @@
 #import "RecommendFriendCell.h"
 #import "RKShadowView.h"
 #import "MyTableView.h"
-@interface RecommendFriendSearchController ()
+#import "PersonalDetailViewController.h"
+@interface RecommendFriendSearchController ()<RecommendFriendCellDelegate>
 @property (nonatomic)NSInteger startIndex;
 @property (nonatomic, strong)NSMutableArray* models;
+@property (nonatomic, copy)NSString* keyword;
 @end
 
 @implementation RecommendFriendSearchController
@@ -42,6 +44,7 @@
 }
 
 -(void)loadListWithKeyWords:(NSString*)keyWords{
+    self.keyword = keyWords;
     [AddressBookApi SearchUserWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             self.models = posts;
@@ -59,9 +62,25 @@
                 [ErrorCode alert];
             }
         }
-    } keywords:keyWords startIndex:0 noNetWork:^{
+    } keywords:self.keyword startIndex:0 noNetWork:^{
         [ErrorCode alert];
     }];
+}
+
+- (void)reload{
+    [self loadListWithKeyWords:self.keyword];
+}
+
+- (void)headClick:(int)index{
+    FriendModel *model = self.models[index];
+    PersonalDetailViewController *view = [[PersonalDetailViewController alloc] init];
+    view.contactId = model.a_id;
+    [self.nowViewController.navigationController pushViewController:view animated:YES];
+}
+
+-(void)addFriend{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -79,6 +98,7 @@
     }
     FriendModel *model = self.models[indexPath.row];
     cell.model = model;
+    cell.delegate = self;
     cell.selectionStyle = NO;
     
     return cell;
