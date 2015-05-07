@@ -110,4 +110,8 @@
     }
     return _nowViewController;
 }
+
+- (UIView *)noDataView{
+    return nil;
+}
 @end
