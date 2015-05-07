@@ -15,6 +15,7 @@
 //非撤销合同时是主条款、供应商合同id,撤销时是撤销id
 @property (nonatomic, copy)NSString* a_id;
 @property (nonatomic)BOOL a_isSelfCreated;
+@property (nonatomic)BOOL a_ifDisAgreeIsFile;
 @property (nonatomic, copy)NSString* a_createdById;
 @property (nonatomic)NSInteger a_archiveStatus;
 @property (nonatomic, copy)NSString* a_contentMain;

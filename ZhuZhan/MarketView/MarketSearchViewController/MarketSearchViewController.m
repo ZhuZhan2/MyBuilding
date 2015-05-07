@@ -28,15 +28,9 @@
     [self setSearchBarTableViewBackColor:AllBackDeepGrayColor];
     [self setUpSearchBarExtra];
     self.searchBarTableView.backgroundColor = [UIColor whiteColor];
-    UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 152, 158)];
-    imageView.center = CGPointMake(kScreenWidth*0.5, 150);
-    imageView.image = [GetImagePath getImagePath:@"search_empty"];
-    UIView* noDataView = [[UIView alloc]init];
-    noDataView.backgroundColor = [UIColor whiteColor];
-    noDataView.contentMode = UIViewContentModeCenter;
-    [noDataView addSubview:imageView];
     
-    self.searchBarTableView.noDataView = noDataView;
+    
+//    self.searchBarTableView.noDataView = noDataView;
     [self setTableViewFooterView];
     
     NSLog(@"path=%@",NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES));
@@ -135,12 +129,11 @@
 }
 
 - (void)searchNewDataWithRecord:(NSString*)record{
-    NSLog(@"searchBar=%d",self.searchBar.isFirstResponder);
     UITableView* oldTableView = [self.vc tableView];
     [oldTableView removeFromSuperview];
     self.vc = nil;
     
-    if (record.length==0) return;
+    if (record.length == 0) return;
     
     NSInteger index = [self.menuTitles indexOfObject:self.searchCategory];
     [MarketSearchSqlite insertRecord:record type:index];
@@ -274,5 +267,17 @@
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     [self.navigationController popViewControllerAnimated:YES];
     self.navigationController.navigationBarHidden = YES;
+}
+
+- (UIView *)searchBarTableViewNoDataView{
+    UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 152, 158)];
+    imageView.center = CGPointMake(kScreenWidth*0.5, 150);
+    imageView.image = [GetImagePath getImagePath:@"search_empty"];
+    
+    UIView* noDataView = [[UIView alloc]init];
+    noDataView.backgroundColor = [UIColor whiteColor];
+    noDataView.contentMode = UIViewContentModeCenter;
+    [noDataView addSubview:imageView];
+    return noDataView;
 }
 @end

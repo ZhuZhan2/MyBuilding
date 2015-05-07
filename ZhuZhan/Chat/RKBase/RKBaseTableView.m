@@ -18,7 +18,7 @@
 
 - (void)reloadData{
     [super reloadData];
-    ;
+
     if (!self.noDataView) return;
     if (![self.dataSource tableView:self numberOfRowsInSection:0]) {
         self.userInteractionEnabled = NO;

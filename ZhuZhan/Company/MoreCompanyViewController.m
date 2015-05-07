@@ -266,6 +266,7 @@
 -(void)initMyTableViewAndNavi{
     self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, self.searchBar.frame.origin.y+self.searchBar.frame.size.height, 320, self.isCompanyIdentify?kScreenHeight-43-64:kScreenHeight-49-43-64) style:UITableViewStylePlain];
     [self.tableView registerClass:[MoreCompanyViewCell class] forCellReuseIdentifier:@"Cell"];
+    self.tableView.backgroundColor = AllBackLightGratColor;
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
