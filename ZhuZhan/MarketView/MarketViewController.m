@@ -34,9 +34,9 @@
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:19], NSFontAttributeName,nil]];
     
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftButton setFrame:CGRectMake(0, 0, 24, 21)];
+    [leftButton setFrame:CGRectMake(0, 0, 30, 30)];
     //[rightButton setBackgroundImage:[GetImagePath getImagePath:@"项目-首页_03a"] forState:UIControlStateNormal];
-    [leftButton setImage:[GetImagePath getImagePath:@"index_home"] forState:UIControlStateNormal];
+    [leftButton setTitle:@"收起" forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
@@ -131,8 +131,9 @@
     if(!_searchBtn){
         _searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _searchBtn.frame = CGRectMake(0, 0, 254, 28);
-        [_searchBtn setImage:[GetImagePath getImagePath:@"MarketSearch"] forState:UIControlStateNormal];
+        [_searchBtn setBackgroundImage:[GetImagePath getImagePath:@"MarketSearch"] forState:UIControlStateNormal];
         [_searchBtn addTarget:self action:@selector(searchAction) forControlEvents:UIControlEventTouchUpInside];
+        _searchBtn.adjustsImageWhenHighlighted = NO;
     }
     return _searchBtn;
 }

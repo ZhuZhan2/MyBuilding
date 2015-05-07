@@ -18,7 +18,7 @@
     self.a_entityUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"entityUrl"]]];
     self.a_userName=[[ProjectStage ProjectStrStage:dict[@"createUser"][@"loginName"]] stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
     if(![[ProjectStage ProjectStrStage:dict[@"createUser"][@"loginImagesId"]] isEqualToString:@""]){
-        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"createUser"][@"loginImagesId"], @"login", @"", @"", @"")];
+        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"createUser"][@"loginImagesId"], @"login", @"37", @"37", @"")];
     }else{
         self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"createUser"][@"loginImagesId"]];
     }
@@ -28,7 +28,7 @@
     self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageHeight"]]];
     NSString *height = nil;
     if([self.a_imageWidth intValue]>310){
-        height = [NSString stringWithFormat:@"%f",[self.a_imageHeight floatValue]/[self.a_imageWidth floatValue]*310];
+        height = [NSString stringWithFormat:@"%d",(int)([self.a_imageHeight floatValue]/([self.a_imageWidth floatValue]/310))];
         self.a_imageWidth = @"310";
         self.a_imageHeight = height;
     }
@@ -86,7 +86,7 @@
     }
     
     if(![[ProjectStage ProjectStrStage:dict[@"operationData"][@"productImagesId"]] isEqualToString:@""]){
-        self.a_productImage = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"operationData"][@"productImagesId"], @"product", @"", @"", @"")];
+        self.a_productImage = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"operationData"][@"productImagesId"], @"product", self.a_imageWidth, self.a_imageHeight, @"")];
     }else{
         self.a_productImage = [ProjectStage ProjectStrStage:dict[@"operationData"][@"productImagesId"]];
     }

@@ -23,7 +23,7 @@
 #import "SocketManage.h"
 #import "GCDAsyncSocket.h"
 #import "JSONKit.h"
-#import "GetAddressBook.h"
+#import "PostAddressBook.h"
 #import "ImageSqlite.h"
 #import "MarketSearchSqlite.h"
 @implementation AppDelegate
@@ -33,12 +33,12 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        GetAddressBook *addressBook = [[GetAddressBook alloc] init];
-//        [addressBook registerAddressBook:^(bool granted, NSError *error) {
-//            
-//        }];
-//    });
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        PostAddressBook *postAddressBook = [[PostAddressBook alloc] init];
+        [postAddressBook registerAddressBook:^(bool granted, NSError *error) {
+            
+        }];
+    });
     
     self.socket = [SocketManage sharedManager];
     
@@ -99,7 +99,7 @@
 	_mapManager = [[BMKMapManager alloc]init];
     //9uNmKMAvjHLBdkWD42j21yEp 299
     //57gqKHfcRsYLwlxioZvblI5G 99
-	BOOL ret = [_mapManager start:@"57gqKHfcRsYLwlxioZvblI5G" generalDelegate:self];
+	BOOL ret = [_mapManager start:@"9uNmKMAvjHLBdkWD42j21yEp" generalDelegate:self];
 	if (!ret) {
 		NSLog(@"manager start failed!");
     }else{
@@ -112,6 +112,18 @@
     [ImageSqlite opensql];
     [MarketSearchSqlite opensql];
     
+#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    if (IS_OS_8_OR_LATER) {
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound) categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    } else {
+        [application registerForRemoteNotificationTypes:
+         UIRemoteNotificationTypeBadge |
+         UIRemoteNotificationTypeAlert |
+         UIRemoteNotificationTypeSound];
+    }
+    
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;
     [self.window makeKeyAndVisible];
@@ -119,6 +131,12 @@
         NSLog(@"第一次启动程序");
         FirstOpenAppAnimationView* firstAnimationView=[[FirstOpenAppAnimationView alloc]initWithFrame:self.window.frame];
         [self.window addSubview:firstAnimationView];
+    }
+    
+    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    NSLog(@"launchOptions===>%@",launchOptions);
+    if(userInfo) {
+        //[self handleRemoteNotification:application userInfo:userInfo];
     }
 
     return YES;
@@ -156,5 +174,20 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
+{
+    //将device token转换为字符串
+    NSString *deviceTokenStr = [NSString stringWithFormat:@"%@",newDeviceToken];
+    //modify the token, remove the  "<, >"
+    NSLog(@"    deviceTokenStr  lentgh:  %d  ->%@", (int)[deviceTokenStr length], [[deviceTokenStr substringWithRange:NSMakeRange(0, 72)] substringWithRange:NSMakeRange(1, 71)]);
+    deviceTokenStr = [[deviceTokenStr substringWithRange:NSMakeRange(0, 72)] substringWithRange:NSMakeRange(1, 71)];
+    deviceTokenStr = [deviceTokenStr stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSLog(@"deviceTokenStr = %@",deviceTokenStr);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    NSLog(@"error === >%@",error);
 }
 @end

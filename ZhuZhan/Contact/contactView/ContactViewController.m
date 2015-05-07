@@ -53,9 +53,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:19], NSFontAttributeName,nil]];
     
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftButton setFrame:CGRectMake(0, 0, 24, 21)];
+    [leftButton setFrame:CGRectMake(0, 0, 30, 30)];
     //[rightButton setBackgroundImage:[GetImagePath getImagePath:@"项目-首页_03a"] forState:UIControlStateNormal];
-    [leftButton setImage:[GetImagePath getImagePath:@"index_home"] forState:UIControlStateNormal];
+    [leftButton setTitle:@"首页" forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];

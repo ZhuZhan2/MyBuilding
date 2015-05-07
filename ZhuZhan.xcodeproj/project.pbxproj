@@ -1481,6 +1481,7 @@
 		D3D710331AD4EC5400E43124 /* AcceptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D710321AD4EC5400E43124 /* AcceptViewController.m */; };
 		D3D710391AD505CB00E43124 /* AccpetUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D710381AD505CB00E43124 /* AccpetUserModel.m */; };
 		D3D7103C1AD54A9C00E43124 /* AddressBookSearchBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7103B1AD54A9C00E43124 /* AddressBookSearchBarCell.m */; };
+		D3D747A91AFB2C4200B21F02 /* PostAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D747A81AFB2C4200B21F02 /* PostAddressBook.m */; };
 		D3D74E8319FA2FEC00ED8B62 /* 登录_14.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D74E7B19FA2FEC00ED8B62 /* 登录_14.png */; };
 		D3D74E8419FA2FEC00ED8B62 /* 登录_14@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D74E7C19FA2FEC00ED8B62 /* 登录_14@2x.png */; };
 		D3D74E8519FA2FEC00ED8B62 /* 登录_19.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D74E7D19FA2FEC00ED8B62 /* 登录_19.png */; };
@@ -3684,6 +3685,8 @@
 		D3D710381AD505CB00E43124 /* AccpetUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccpetUserModel.m; sourceTree = "<group>"; };
 		D3D7103A1AD54A9C00E43124 /* AddressBookSearchBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookSearchBarCell.h; sourceTree = "<group>"; };
 		D3D7103B1AD54A9C00E43124 /* AddressBookSearchBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookSearchBarCell.m; sourceTree = "<group>"; };
+		D3D747A71AFB2C4200B21F02 /* PostAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostAddressBook.h; sourceTree = "<group>"; };
+		D3D747A81AFB2C4200B21F02 /* PostAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostAddressBook.m; sourceTree = "<group>"; };
 		D3D74E7B19FA2FEC00ED8B62 /* 登录_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "登录_14.png"; sourceTree = "<group>"; };
 		D3D74E7C19FA2FEC00ED8B62 /* 登录_14@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "登录_14@2x.png"; sourceTree = "<group>"; };
 		D3D74E7D19FA2FEC00ED8B62 /* 登录_19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "登录_19.png"; sourceTree = "<group>"; };
@@ -7260,6 +7263,8 @@
 			children = (
 				D3DCDAC81ADBA66C0029DB95 /* GetAddressBook.h */,
 				D3DCDAC91ADBA66C0029DB95 /* GetAddressBook.m */,
+				D3D747A71AFB2C4200B21F02 /* PostAddressBook.h */,
+				D3D747A81AFB2C4200B21F02 /* PostAddressBook.m */,
 			);
 			path = GetAddressBook;
 			sourceTree = "<group>";
@@ -7416,7 +7421,7 @@
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					0426BFE619922CE400CD8822 = {
-						DevelopmentTeam = AU89D3J45E;
+						DevelopmentTeam = M8S6DXYEZE;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -8562,6 +8567,7 @@
 				5B0A008B19B587B200500C05 /* EGORefreshTableHeaderView.m in Sources */,
 				D3F8970C1AD8F68F00DE3AB4 /* ChatListModel.m in Sources */,
 				D3FF3E911AAEEB83005195CC /* pinyin.c in Sources */,
+				D3D747A91AFB2C4200B21F02 /* PostAddressBook.m in Sources */,
 				0426C25819922D5A00CD8822 /* GPUImageColorPackingFilter.m in Sources */,
 				D3CF0D8C1AB81A7800D71CEB /* AddContactView.m in Sources */,
 				5B5173A21A368F8E0009E0AE /* FirstOpenAppAnimationView.m in Sources */,
