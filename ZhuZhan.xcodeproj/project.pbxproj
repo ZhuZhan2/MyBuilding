@@ -687,6 +687,8 @@
 		5B6373AE1ABAE32A007CF1F8 /* ChooseProductSmallStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373AA1ABAE32A007CF1F8 /* ChooseProductSmallStage.m */; };
 		5B6373B11ABAE3C8007CF1F8 /* 导航下三角.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6373AF1ABAE3C8007CF1F8 /* 导航下三角.png */; };
 		5B6373B21ABAE3C8007CF1F8 /* 导航下三角@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6373B01ABAE3C8007CF1F8 /* 导航下三角@2x.png */; };
+		5B63B53D1AFB741000638078 /* MarketSearchProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B63B5381AFB741000638078 /* MarketSearchProductCell.m */; };
+		5B63B53E1AFB741000638078 /* MarketSearchProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B63B53A1AFB741000638078 /* MarketSearchProductController.m */; };
 		5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
 		5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF819932E36007D79A8 /* QuadCurveMenu.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5B656CFC19932E36007D79A8 /* QuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CFA19932E36007D79A8 /* QuadCurveMenuItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -780,8 +782,6 @@
 		5B7670651AB6B92B00E154C5 /* SearchBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7670611AB6B92B00E154C5 /* SearchBarTableViewController.m */; };
 		5B7670681AB6BD8100E154C5 /* RecommendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7670671AB6BD8100E154C5 /* RecommendListViewController.m */; };
 		5B76706B1AB6BDB800E154C5 /* RemindListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B76706A1AB6BDB800E154C5 /* RemindListViewController.m */; };
-		5B78511E1AF8BC6300BBD12C /* MarketSearchProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B78511D1AF8BC6300BBD12C /* MarketSearchProductController.m */; };
-		5B7851211AF8C27F00BBD12C /* MarketSearchProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7851201AF8C27F00BBD12C /* MarketSearchProductCell.m */; };
 		5B78D68E1ADCB40900E08C4A /* ValidatePlatformContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B78D68D1ADCB40900E08C4A /* ValidatePlatformContactModel.m */; };
 		5B78D6911ADCDF5A00E08C4A /* AddressBookFriendSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B78D6901ADCDF5A00E08C4A /* AddressBookFriendSearchController.m */; };
 		5B7AA6C51A58D6B0000FBFF2 /* 01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6BD1A58D6AF000FBFF2 /* 01.png */; };
@@ -2630,6 +2630,10 @@
 		5B6373AA1ABAE32A007CF1F8 /* ChooseProductSmallStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseProductSmallStage.m; sourceTree = "<group>"; };
 		5B6373AF1ABAE3C8007CF1F8 /* 导航下三角.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "导航下三角.png"; sourceTree = "<group>"; };
 		5B6373B01ABAE3C8007CF1F8 /* 导航下三角@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "导航下三角@2x.png"; sourceTree = "<group>"; };
+		5B63B5371AFB741000638078 /* MarketSearchProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketSearchProductCell.h; sourceTree = "<group>"; };
+		5B63B5381AFB741000638078 /* MarketSearchProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketSearchProductCell.m; sourceTree = "<group>"; };
+		5B63B5391AFB741000638078 /* MarketSearchProductController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketSearchProductController.h; sourceTree = "<group>"; };
+		5B63B53A1AFB741000638078 /* MarketSearchProductController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketSearchProductController.m; sourceTree = "<group>"; };
 		5B656CF419931275007D79A8 /* CompanyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMemberViewController.h; sourceTree = "<group>"; };
 		5B656CF519931275007D79A8 /* CompanyMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyMemberViewController.m; sourceTree = "<group>"; };
 		5B656CF719932E36007D79A8 /* QuadCurveMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadCurveMenu.h; sourceTree = "<group>"; };
@@ -2746,10 +2750,6 @@
 		5B7670671AB6BD8100E154C5 /* RecommendListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendListViewController.m; sourceTree = "<group>"; };
 		5B7670691AB6BDB800E154C5 /* RemindListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindListViewController.h; sourceTree = "<group>"; };
 		5B76706A1AB6BDB800E154C5 /* RemindListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindListViewController.m; sourceTree = "<group>"; };
-		5B78511C1AF8BC6300BBD12C /* MarketSearchProductController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketSearchProductController.h; sourceTree = "<group>"; };
-		5B78511D1AF8BC6300BBD12C /* MarketSearchProductController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketSearchProductController.m; sourceTree = "<group>"; };
-		5B78511F1AF8C27F00BBD12C /* MarketSearchProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketSearchProductCell.h; sourceTree = "<group>"; };
-		5B7851201AF8C27F00BBD12C /* MarketSearchProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketSearchProductCell.m; sourceTree = "<group>"; };
 		5B78D68C1ADCB40900E08C4A /* ValidatePlatformContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidatePlatformContactModel.h; sourceTree = "<group>"; };
 		5B78D68D1ADCB40900E08C4A /* ValidatePlatformContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidatePlatformContactModel.m; sourceTree = "<group>"; };
 		5B78D68F1ADCDF5A00E08C4A /* AddressBookFriendSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookFriendSearchController.h; sourceTree = "<group>"; };
@@ -5717,6 +5717,38 @@
 			path = Small;
 			sourceTree = "<group>";
 		};
+		5B63B5351AFB741000638078 /* SearchCompany */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SearchCompany;
+			sourceTree = "<group>";
+		};
+		5B63B5361AFB741000638078 /* SearchProduct */ = {
+			isa = PBXGroup;
+			children = (
+				5B63B5371AFB741000638078 /* MarketSearchProductCell.h */,
+				5B63B5381AFB741000638078 /* MarketSearchProductCell.m */,
+				5B63B5391AFB741000638078 /* MarketSearchProductController.h */,
+				5B63B53A1AFB741000638078 /* MarketSearchProductController.m */,
+			);
+			path = SearchProduct;
+			sourceTree = "<group>";
+		};
+		5B63B53B1AFB741000638078 /* SearchProject */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SearchProject;
+			sourceTree = "<group>";
+		};
+		5B63B53C1AFB741000638078 /* SearchUser */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SearchUser;
+			sourceTree = "<group>";
+		};
 		5B6699261AB948EB00C4B54F /* DemandDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -6058,12 +6090,12 @@
 			children = (
 				5BD9DE7E1AF88C3A007BF9B5 /* MarketSearchViewController.h */,
 				5BD9DE7F1AF88C3A007BF9B5 /* MarketSearchViewController.m */,
-				5B78511C1AF8BC6300BBD12C /* MarketSearchProductController.h */,
-				5B78511D1AF8BC6300BBD12C /* MarketSearchProductController.m */,
-				5B78511F1AF8C27F00BBD12C /* MarketSearchProductCell.h */,
-				5B7851201AF8C27F00BBD12C /* MarketSearchProductCell.m */,
 				5BD9DE811AF89533007BF9B5 /* SearchMenuView.h */,
 				5BD9DE821AF89533007BF9B5 /* SearchMenuView.m */,
+				5B63B53C1AFB741000638078 /* SearchUser */,
+				5B63B5351AFB741000638078 /* SearchCompany */,
+				5B63B5361AFB741000638078 /* SearchProduct */,
+				5B63B53B1AFB741000638078 /* SearchProject */,
 			);
 			path = MarketSearchViewController;
 			sourceTree = "<group>";
@@ -8839,6 +8871,7 @@
 				0426C2F919922D5A00CD8822 /* XHSoundManager.m in Sources */,
 				D3AD619C19AEEE30001FD483 /* LocateView.m in Sources */,
 				D3D321271A3EAE2E0009AEEA /* PooCodeView.m in Sources */,
+				5B63B53E1AFB741000638078 /* MarketSearchProductController.m in Sources */,
 				5B3209FE1A11E78600D19279 /* RemindView.m in Sources */,
 				5B6373AD1ABAE32A007CF1F8 /* ChooseProductSmallCell.m in Sources */,
 				0426C23919922D5A00CD8822 /* AFNetworkReachabilityManager.m in Sources */,
@@ -8882,7 +8915,6 @@
 				5B6FF7011AE4EC4B00F3A3E0 /* SalerContractsController.m in Sources */,
 				5B55D57E1A3EB63200CAEF8B /* ForgetPasswordSecondController.m in Sources */,
 				5B58370A1AD7CFD900F8E7C3 /* OtherContractsBaseController.m in Sources */,
-				5B7851211AF8C27F00BBD12C /* MarketSearchProductCell.m in Sources */,
 				5B8A2CF01AAEE0AD00C8F9DE /* ChatTableViewCell.m in Sources */,
 				D3DBCE591AC8DF0C00C9FEDE /* CommissionBaseViewController.m in Sources */,
 				0426C24C19922D5A00CD8822 /* GPUImageBuffer.m in Sources */,
@@ -8942,6 +8974,7 @@
 				5B51212F1A0781F900A77997 /* MapContentView.m in Sources */,
 				042D9E1319B559FC00689C5D /* MyFactory.m in Sources */,
 				D3AD60A119AC574A001FD483 /* networkConnect.m in Sources */,
+				5B63B53D1AFB741000638078 /* MarketSearchProductCell.m in Sources */,
 				D3AC61DF19B85CA50015B62F /* ProjectCommentView.m in Sources */,
 				0426C2D519922D5A00CD8822 /* GPUImageVignetteFilter.m in Sources */,
 				0426C23D19922D5A00CD8822 /* AFURLResponseSerialization.m in Sources */,
@@ -8972,7 +9005,6 @@
 				D3376CFE1AC25D6100738B5F /* CategoryModel.m in Sources */,
 				0426C2DF19922D5A00CD8822 /* FaceppAPI.m in Sources */,
 				5B5773E81AC133E400C17DBF /* DemandProvidePriceChatController.m in Sources */,
-				5B78511E1AF8BC6300BBD12C /* MarketSearchProductController.m in Sources */,
 				D3376CFB1AC2549C00738B5F /* UserOrCompanyModel.m in Sources */,
 				0426C30319922D5A00CD8822 /* TFIndicatorView.m in Sources */,
 				5B8A2CEA1AAEE0AD00C8F9DE /* AddFriendViewController.m in Sources */,

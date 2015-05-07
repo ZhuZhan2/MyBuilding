@@ -56,7 +56,7 @@
 
 -(UILabel *)nameLabel{
     if(!_nameLabel){
-        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(65, 21, 200, 15)];
+        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(65, 17, 200, 23)];
         _nameLabel.font=[UIFont boldSystemFontOfSize:15];
         _nameLabel.textColor=RGBCOLOR(89, 89, 89);
     }
@@ -96,9 +96,6 @@
             [dic setValue:self.model.a_id forKey:@"userId"];
             [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
-                    if([self.delegate respondsToSelector:@selector(addFriend)]){
-                        [self.delegate addFriend];
-                    }
                     self.model.a_isWaiting=YES;
                     self.addBtn.userInteractionEnabled=NO;
                     [self.addBtn setBackgroundImage:[GetImagePath getImagePath:@"等待验证120"] forState:UIControlStateNormal];

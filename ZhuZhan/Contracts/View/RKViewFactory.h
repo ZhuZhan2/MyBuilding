@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface RKViewFactory : NSObject
++ (UIView*)noHistorySearchResultsViewWithTop:(CGFloat)top;
 
++ (UIView*)noSearchResultsViewWithTop:(CGFloat)top;
 @end

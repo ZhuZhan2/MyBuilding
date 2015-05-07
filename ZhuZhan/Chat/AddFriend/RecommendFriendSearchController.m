@@ -13,6 +13,7 @@
 #import "RKShadowView.h"
 #import "MyTableView.h"
 #import "PersonalDetailViewController.h"
+#import "RKViewFactory.h"
 @interface RecommendFriendSearchController ()<RecommendFriendCellDelegate>
 @property (nonatomic)NSInteger startIndex;
 @property (nonatomic, strong)NSMutableArray* models;
@@ -72,15 +73,17 @@
 }
 
 - (void)headClick:(int)index{
-    FriendModel *model = self.models[index];
-    PersonalDetailViewController *view = [[PersonalDetailViewController alloc] init];
-    view.contactId = model.a_id;
-    [self.nowViewController.navigationController pushViewController:view animated:YES];
-}
-
--(void)addFriend{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alertView show];
+    if (self.headImageDelegate) {
+        if ([self.headImageDelegate respondsToSelector:@selector(headClickWithModel:)]) {
+            FriendModel *model = self.models[index];
+            [self.headImageDelegate headClickWithModel:model];
+        }
+    }else{
+        FriendModel *model = self.models[index];
+        PersonalDetailViewController *view = [[PersonalDetailViewController alloc] init];
+        view.contactId = model.a_id;
+        [self.nowViewController.navigationController pushViewController:view animated:YES];
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -112,6 +115,6 @@
 }
 
 - (UIView *)noDataView{
-    return nil;
+    return [RKViewFactory noSearchResultsViewWithTop:165];
 }
 @end

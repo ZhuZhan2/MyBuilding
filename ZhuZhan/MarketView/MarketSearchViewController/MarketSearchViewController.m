@@ -14,23 +14,24 @@
 #import "MarketSearchProductController.h"
 #import "MarketSearchSqlite.h"
 #import "RKShadowView.h"
+#import "RKViewFactory.h"
 @interface MarketSearchViewController ()<SearchMenuViewDelegate>
 @property(nonatomic,strong)NSMutableArray* models;
 @property (nonatomic, strong)NSArray* menuTitles;
 @property (nonatomic, strong)id vc;
+@property (nonatomic, strong)id vc1;
+
 @property (nonatomic, copy)NSString* searchCategory;
 @end
 
 @implementation MarketSearchViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
     [self setSearchBarTableViewBackColor:AllBackDeepGrayColor];
     [self setUpSearchBarExtra];
     self.searchBarTableView.backgroundColor = [UIColor whiteColor];
-    
-    
-//    self.searchBarTableView.noDataView = noDataView;
     [self setTableViewFooterView];
     
     NSLog(@"path=%@",NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES));
@@ -270,14 +271,6 @@
 }
 
 - (UIView *)searchBarTableViewNoDataView{
-    UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 152, 158)];
-    imageView.center = CGPointMake(kScreenWidth*0.5, 150);
-    imageView.image = [GetImagePath getImagePath:@"search_empty"];
-    
-    UIView* noDataView = [[UIView alloc]init];
-    noDataView.backgroundColor = [UIColor whiteColor];
-    noDataView.contentMode = UIViewContentModeCenter;
-    [noDataView addSubview:imageView];
-    return noDataView;
+    return [RKViewFactory noHistorySearchResultsViewWithTop:70];
 }
 @end

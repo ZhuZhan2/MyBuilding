@@ -10,7 +10,6 @@
 #import "FriendModel.h"
 @protocol RecommendFriendCellDelegate <NSObject>
 -(void)headClick:(int)index;
--(void)addFriend;
 -(void)reload;
 @end
 
