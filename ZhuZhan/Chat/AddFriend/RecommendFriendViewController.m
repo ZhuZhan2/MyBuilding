@@ -168,6 +168,7 @@
 -(void)setUpSearchBarTableView{
     self.searchBarTableViewController=[[RecommendFriendSearchController alloc]initWithTableViewBounds:CGRectMake(0, 0, kScreenWidth, kScreenHeight-CGRectGetMinY(self.searchBar.frame))];
     self.searchBarTableViewController.delegate=self;
+    self.searchBarTableViewController.nowViewController = self;
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
