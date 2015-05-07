@@ -36,17 +36,17 @@
         cell.myImageView.frame = CGRectMake(19, 16.5, 61, 61);
         
         //公司名称
-        cell.companyNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(99, 18, 210, 15)];
+        cell.companyNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(99, 18, 210, 18)];
         cell.companyNameLabel.textColor=RGBCOLOR(62, 127, 226);
         cell.companyNameLabel.font=[UIFont boldSystemFontOfSize:15];
         
         //公司行业
-        cell.companyBusiness=[[UILabel alloc]initWithFrame:CGRectMake(99, 39, 210, 15)];
+        cell.companyBusiness=[[UILabel alloc]initWithFrame:CGRectMake(99, 39, 210, 18)];
         cell.companyBusiness.font=[UIFont boldSystemFontOfSize:13];
         cell.companyBusiness.textColor=RGBCOLOR(98, 98, 98);
         
         //公司介绍
-        cell.companyIntroduce=[[UILabel alloc]initWithFrame:CGRectMake(99, 58, 210, 15)];
+        cell.companyIntroduce=[[UILabel alloc]initWithFrame:CGRectMake(99, 58, 210, 18)];
         cell.companyIntroduce.font=[UIFont boldSystemFontOfSize:13];
         cell.companyIntroduce.textColor=RGBCOLOR(98, 98, 98);
         cell.companyIntroduce.numberOfLines=2;

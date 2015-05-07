@@ -191,6 +191,8 @@
                 [LoginSqlite insertData:model.a_backgroundImage datakey:@"backgroundImage"];
                 [LoginSqlite insertData:model.a_userType datakey:@"userType"];
                 [LoginSqlite insertData:model.a_phone datakey:@"userPhone"];
+                [LoginSqlite insertData:model.a_contactName datakey:@"contactName"];
+                [LoginSqlite insertData:model.a_contactTel datakey:@"contactTel"];
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
                 if (self.needDelayCancel) {
                     if([self.delegate respondsToSelector:@selector(loginCompleteWithDelayBlock:)]){

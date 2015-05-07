@@ -314,8 +314,7 @@
 +(void)ContactsAddWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block arr:(NSMutableArray*)arr noNetWork:(void(^)())noNetWork{
     if ([ConnectionAvailable isConnectionAvailable]) {
         //NSString* str=[arr JSONString];
-        NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] init];
-        [dataDic setObject:arr forKey:@"data"];
+        
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         //申明返回的结果是json类型
         manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -326,7 +325,7 @@
         //你的接口地址
         NSString *url=[NSString stringWithFormat:@"%s/api/telContacts/saveTelContacts",serverAddress];
         //发送请求
-        [manager POST:url parameters:dataDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager POST:url parameters:arr success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"JSON: %@", responseObject);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);

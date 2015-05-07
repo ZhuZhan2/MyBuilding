@@ -182,4 +182,9 @@
     view.contactId = model.a_id;
     [self.navigationController pushViewController:view animated:YES];
 }
+
+-(void)addFriend{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
+}
 @end

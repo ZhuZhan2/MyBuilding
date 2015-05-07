@@ -24,6 +24,8 @@
     }else{
         self.a_userType = @"Company";
     }
+    self.a_contactName = [ProjectStage ProjectStrStage:dict[@"contactName"]];
+    self.a_contactTel = [ProjectStage ProjectStrStage:dict[@"contactTel"]];
     //self.a_loginStatus = [ProjectStage ProjectStrStage:dict[@"loginStatus"]];
     if(![[ProjectStage ProjectStrStage:dict[@"head"]] isEqualToString:@""]){
         self.a_userImage = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"head"]], @"login", @"", @"", @"")];

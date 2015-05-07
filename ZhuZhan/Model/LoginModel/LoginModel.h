@@ -25,6 +25,8 @@
 @property (nonatomic,strong) NSString *a_userImage;
 @property(nonatomic,strong)NSString *a_phone;
 @property(nonatomic,strong)NSString* a_backgroundImage;
+@property(nonatomic,strong)NSString* a_contactName;
+@property(nonatomic,strong)NSString* a_contactTel;
 @property (nonatomic,strong) NSDictionary *dict;
 
 
