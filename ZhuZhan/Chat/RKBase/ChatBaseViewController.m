@@ -97,6 +97,7 @@
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    self.tableView.noDataView = self.tableViewNoDataView;
     if (self.searchBar&&!self.searchBarIsTableViewHeader) {
         [self.view insertSubview:self.tableView belowSubview:self.searchBar];
     }else if (self.stageChooseView){
@@ -136,6 +137,7 @@
 -(void)setUpSearchBarTableView{
     self.searchBarTableViewController=[[SearchBarTableViewController alloc]initWithTableViewBounds:CGRectMake(0, 0, kScreenWidth, kScreenHeight-CGRectGetMinY(self.searchBar.frame))];
     self.searchBarTableViewController.delegate=self;
+    self.searchBarTableViewController.noDataView = self.searchBarTableViewNoDataView;
 }
 
 -(void)setSearchBarTableViewBackColor:(UIColor*)color{

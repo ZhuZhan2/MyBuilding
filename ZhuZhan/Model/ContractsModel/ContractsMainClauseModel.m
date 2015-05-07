@@ -22,6 +22,7 @@
     self.a_serialNumber=dict[@"serialNumber"];
     self.a_recipientName=dict[@"recipientName"];
     self.a_createdByType=dict[@"createdByType"];
+    self.a_ifDisAgreeIsFile=[dict[@"ifDisAgreeIsFile"] isEqualToString:@"1"];
     if ([dict[@"saleStatus"] isEqualToString:@""]) {
         self.a_salestatus=0;
     }else{

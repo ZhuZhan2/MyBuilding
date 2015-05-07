@@ -133,7 +133,7 @@
 
 -(BOOL)canClose{
 //    BOOL hasSaleFile=self.listSingleModel.a_saleHas;
-    BOOL canClose=self.mainClauseModel.a_status==4;//&&!hasSaleFile;
+    BOOL canClose=self.mainClauseModel.a_status==4&&!self.mainClauseModel.a_ifDisAgreeIsFile;//&&!hasSaleFile;
     return canClose;
 }
 

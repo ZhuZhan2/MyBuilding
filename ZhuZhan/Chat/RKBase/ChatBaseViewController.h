@@ -42,6 +42,7 @@
 -(void)rightBtnClicked;
 
 @property(nonatomic,strong)RKBaseTableView* tableView;
+@property(nonatomic,strong)UIView* tableViewNoDataView;
 -(void)initTableView;
 
 @property(nonatomic,strong)UISearchBar* searchBar;
@@ -53,6 +54,7 @@
 
 @property(nonatomic,strong)SearchBarTableViewController* searchBarTableViewController;
 @property(nonatomic,strong)RKBaseTableView* searchBarTableView;
+@property(nonatomic,strong)UIView* searchBarTableViewNoDataView;
 -(void)searchBarTableViewAppear;
 -(void)setSearchBarTableViewBackColor:(UIColor*)color;
 

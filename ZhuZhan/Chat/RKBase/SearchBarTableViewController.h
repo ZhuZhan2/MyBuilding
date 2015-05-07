@@ -11,6 +11,7 @@
 @class RKBaseTableView;
 @interface SearchBarTableViewController : UIViewController
 @property(nonatomic,strong)RKBaseTableView* tableView;
+@property(nonatomic,strong)UIView* noDataView;
 @property(nonatomic,weak)id<SearchBarTableViewDelegate>delegate;
 -(void)reloadSearchBarTableViewData;
 -(instancetype)initWithTableViewBounds:(CGRect)bounds;

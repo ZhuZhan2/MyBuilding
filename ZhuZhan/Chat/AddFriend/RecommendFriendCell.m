@@ -121,4 +121,10 @@
         }
     }
 }
+
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
+    if(block){
+        block();
+    }
+}
 @end
