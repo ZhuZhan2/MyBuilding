@@ -23,7 +23,7 @@
 #import "SocketManage.h"
 #import "GCDAsyncSocket.h"
 #import "JSONKit.h"
-#import "GetAddressBook.h"
+#import "PostAddressBook.h"
 #import "ImageSqlite.h"
 #import "MarketSearchSqlite.h"
 @implementation AppDelegate
@@ -33,12 +33,12 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        GetAddressBook *addressBook = [[GetAddressBook alloc] init];
-//        [addressBook registerAddressBook:^(bool granted, NSError *error) {
-//            
-//        }];
-//    });
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        PostAddressBook *postAddressBook = [[PostAddressBook alloc] init];
+        [postAddressBook registerAddressBook:^(bool granted, NSError *error) {
+            
+        }];
+    });
     
     self.socket = [SocketManage sharedManager];
     

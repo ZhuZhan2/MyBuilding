@@ -324,7 +324,7 @@
         //如果报接受类型不一致请替换一致text/html或别的
         //manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
         //你的接口地址
-        NSString *url=[NSString stringWithFormat:@"%sapi/Contacts/ContactsAdd",serverAddress];
+        NSString *url=[NSString stringWithFormat:@"%s/api/telContacts/saveTelContacts",serverAddress];
         //发送请求
         [manager POST:url parameters:dataDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"JSON: %@", responseObject);

@@ -24,6 +24,7 @@
 @property(nonatomic,strong)UIImageView *imageView2;
 @property(nonatomic,strong)UIImageView *imageView3;
 @property(nonatomic,strong)UITextView *textView;
+@property(nonatomic,strong)UILabel *placeLabel;
 @property(nonatomic,strong)UIButton *categoryBtn;
 @property(nonatomic,strong)UIButton *submitBtn;
 @property(nonatomic,strong)UILabel *categoryLabel;
@@ -47,8 +48,9 @@
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
     
-    [self.searchView addSubview:self.searchBtn];
-    self.navigationItem.titleView = self.searchView;
+    //[self.searchView addSubview:self.searchBtn];
+    //self.navigationItem.titleView = self.searchView;
+    self.title = @"小布帮你找";
     
     [self addTitle];
     [self.view addSubview:self.imageView1];
@@ -59,6 +61,7 @@
     [self.view addSubview:self.categoryBtn];
     [self.categoryBtn addSubview:self.categoryLabel];
     [self.view addSubview:self.textView];
+    [self.view addSubview:self.placeLabel];
     [self.view addSubview:self.submitBtn];
     
     [EndEditingGesture addGestureToView:self.view];
@@ -75,6 +78,7 @@
         _searchBtn.frame = CGRectMake(0, 0, 254, 28);
         [_searchBtn setImage:[GetImagePath getImagePath:@"MarketSearch"] forState:UIControlStateNormal];
         [_searchBtn addTarget:self action:@selector(searchAction) forControlEvents:UIControlEventTouchUpInside];
+        _searchBtn.adjustsImageWhenHighlighted = NO;
     }
     return _searchBtn;
 }
@@ -112,7 +116,7 @@
 }
 
 -(void)addTitle{
-    NSArray *arr = [[NSArray alloc] initWithObjects:@"联系人",@"联系电话",@"寻材分类",@"寻材描述", nil];
+    NSArray *arr = [[NSArray alloc] initWithObjects:@"联系人",@"联系电话",@"主题", nil];
     for(int i=0;i<arr.count;i++){
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(24, i*65+69, 272, 18)];
         label.text = arr[i];
@@ -140,7 +144,7 @@
 
 -(UIImageView *)imageView3{
     if(!_imageView3){
-        _imageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(24, 290, 272, 130)];
+        _imageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(24, 270, 272, 130)];
         _imageView3.image = [GetImagePath getImagePath:@"find_insetbox2"];
     }
     return _imageView3;
@@ -154,6 +158,7 @@
         _nameTextField.leftView.userInteractionEnabled = NO;
         _nameTextField.leftViewMode = UITextFieldViewModeAlways;
         _nameTextField.returnKeyType = UIReturnKeyDone;
+        _nameTextField.delegate = self;
         [_nameTextField setValue:[UIFont systemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
         [_nameTextField setValue:AllNoDataColor forKeyPath:@"_placeholderLabel.textColor"];
         if(![[LoginSqlite getdata:@"userName"] isEqualToString:@""]){
@@ -171,6 +176,7 @@
         _phoneTextField.leftView.userInteractionEnabled = NO;
         _phoneTextField.leftViewMode = UITextFieldViewModeAlways;
         _phoneTextField.returnKeyType = UIReturnKeyDone;
+        _phoneTextField.delegate = self;
         _phoneTextField.keyboardType = UIKeyboardTypePhonePad;
         [_phoneTextField setValue:[UIFont systemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
         [_phoneTextField setValue:AllNoDataColor forKeyPath:@"_placeholderLabel.textColor"];
@@ -183,11 +189,24 @@
 
 -(UITextView *)textView{
     if(!_textView){
-        _textView = [[UITextView alloc] initWithFrame:CGRectMake(24, 290, 272, 130)];
+        _textView = [[UITextView alloc] initWithFrame:CGRectMake(32, 270, 257, 130)];
         _textView.delegate = self;
+        _textView.font = FONT;
+        _textView.returnKeyType = UIReturnKeyDone;
         _textView.backgroundColor = [UIColor clearColor];
     }
     return _textView;
+}
+
+-(UILabel *)placeLabel{
+    if(!_placeLabel){
+        _placeLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 270, 272, 35)];
+        _placeLabel.font = FONT;
+        _placeLabel.textColor = AllNoDataColor;
+        _placeLabel.numberOfLines = 2;
+        _placeLabel.text = @"请把让我们帮你的事情输入";
+    }
+    return _placeLabel;
 }
 
 -(UIButton *)categoryBtn{
@@ -238,12 +257,25 @@
     [self.singleView showInView:self.view];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.nameTextField resignFirstResponder];
+    return YES;
+}
+
 -(void)textViewDidBeginEditing:(UITextView *)textView{
     self.view.transform = CGAffineTransformMakeTranslation(0, -200);
 }
 
 -(void)textViewDidEndEditing:(UITextView *)textView{
     self.view.transform = CGAffineTransformIdentity;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    self.placeLabel.alpha=!textView.text.length;
+    if ([@"\n" isEqualToString:text]){
+        [textView resignFirstResponder];
+    }
+    return YES;
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -299,6 +331,19 @@
     [MarketApi AddWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             [self showAlertView:@"提交成功"];
+            if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+                self.categoryStr = @"";
+                self.categoryLabel.text = @"请选择分类";
+                self.categoryLabel.textColor = AllNoDataColor;
+                self.textView.text = @"";
+            }else{
+                self.nameTextField.text = @"";
+                self.phoneTextField.text = @"";
+                self.categoryStr = @"";
+                self.categoryLabel.text = @"请选择分类";
+                self.categoryLabel.textColor = AllNoDataColor;
+                self.textView.text = @"";
+            }
         }else{
             [ErrorCode alert];
         }
