@@ -136,7 +136,7 @@
     NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     NSLog(@"launchOptions===>%@",launchOptions);
     if(userInfo) {
-        //[self handleRemoteNotification:application userInfo:userInfo];
+        [self handleRemoteNotification:application userInfo:userInfo];
     }
 
     return YES;
@@ -189,5 +189,25 @@
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
     NSLog(@"error === >%@",error);
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
+    NSLog(@"notification ======>%@",notification.alertBody);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:notification.alertBody delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [alert show];
+    // 图标上的数字减1
+    application.applicationIconBadgeNumber -= 1;
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    NSLog(@"userInfo ====>%@",userInfo);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:userInfo[@"aps"][@"alert"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [alert show];
+    application.applicationIconBadgeNumber -= 1;
+}
+
+- (void)handleRemoteNotification:(UIApplication *)application userInfo:(NSDictionary *)userInfo {
+    NSLog(@"=====>%@",userInfo);
+    
 }
 @end
