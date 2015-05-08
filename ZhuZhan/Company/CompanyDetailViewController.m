@@ -215,8 +215,6 @@
     
     self.memberBtn=[[UIButton alloc]initWithFrame:CGRectMake(116, 0, 204, 49)];
     [self.memberBtn addTarget:self action:@selector(applyForCertification) forControlEvents:UIControlEventTouchUpInside];
-    NSLog(@"hasCompany===>%@",self.hasCompany);
-    NSLog(@"a_reviewStatus===>%@",self.model.a_reviewStatus);
     if([self.hasCompany isEqualToString:@"1"]){
         self.memberCountLabel.textColor=[UIColor lightGrayColor];
         self.memberBtn.enabled = NO;
