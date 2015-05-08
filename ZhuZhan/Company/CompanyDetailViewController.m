@@ -31,10 +31,15 @@
 @property(nonatomic,strong)UILabel* memberCountLabel;
 @property(nonatomic,strong)UIImageView *focusedImage;
 @property(nonatomic,strong)UIImageView *authenticationImageView;
+@property (nonatomic)BOOL isCompanySelf;
 @end
 @implementation CompanyDetailViewController
 -(BOOL)isFocused{
     return [self.model.a_focused isEqualToString:@"1"];
+}
+
+- (BOOL)isCompanySelf{
+    return [self.companyId isEqualToString:[LoginSqlite getdata:@"userId"]];
 }
 
 - (void)viewDidLoad
@@ -56,7 +61,7 @@
                         if(posts.count !=0){
                             self.model = posts[0];
                             [self initFirstView];//第一个文字view初始
-                            if (![self.companyId isEqualToString:[LoginSqlite getdata:@"userId"]])[self initSecondView];//第二个文字view初始
+                            if (!self.isCompanySelf)[self initSecondView];//第二个文字view初始
                             [self initThirdView];
                         }
                     }else{
@@ -94,7 +99,7 @@
                 if(posts.count !=0){
                     self.model = posts[0];
                     [self initFirstView];//第一个文字view初始
-                    if (![self.companyId isEqualToString:[LoginSqlite getdata:@"userId"]])[self initSecondView];//第二个文字view初始
+                    if (!self.isCompanySelf)[self initSecondView];//第二个文字view初始
                     [self initThirdView];
                 }
             }else{
@@ -252,7 +257,7 @@
     [view addSubview:label];
     [self scrollViewAddView:view];
     
-    if ([self.companyId isEqualToString:[LoginSqlite getdata:@"userId"]]) {
+    if (self.isCompanySelf) {
         UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 4)];
         imageView.image=[GetImagePath getImagePath:@"公司－我的公司_11a"];
         [view addSubview:imageView];
@@ -270,11 +275,22 @@
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:19], NSFontAttributeName,nil]];
     
     //左back button
-    UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,0,29,28.5)];
-    [button setImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
+    UIButton* leftButton=[[UIButton alloc]initWithFrame:CGRectMake(0,0,29,28.5)];
+    [leftButton setImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:leftButton];
+    
+    //右按钮 询价 button
+    UIButton* rightButton=[[UIButton alloc]initWithFrame:CGRectMake(0,0,30,30)];
+    rightButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    [rightButton setTitle:@"询价" forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:rightButton];
 
+}
+
+- (void)rightBtnClicked{
+    NSLog(@"询价");
 }
 
 -(void)gotoNoticeView{
