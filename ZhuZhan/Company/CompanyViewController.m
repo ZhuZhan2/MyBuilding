@@ -16,12 +16,15 @@
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "IsFocusedApi.h"
+#import "AskPriceMainViewController.h"
+
 @interface CompanyViewController ()
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic)NSInteger memberNumber;
 @property(nonatomic,strong)UIImageView* imageView;
 @property(nonatomic,strong)UILabel* noticeLabel;
 @property(nonatomic)BOOL isFocused;
+@property (nonatomic, strong)UIButton* askPriceBtn;
 @end
 
 @implementation CompanyViewController
@@ -50,7 +53,7 @@
 
 -(void)initFirstView{
     //view的初始,后面为在上添加label button等
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 115)];
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, self.needNoticeView?155:115)];
     [self scrollViewAddView:view];
     
     UIImage *appleImage = [GetImagePath getImagePath:@"公司－我的公司_02a"] ;
@@ -61,7 +64,7 @@
     companyImageView.layer.masksToBounds=YES;
     companyImageView.frame=CGRectMake(15, 20, 75, 75);
     [view addSubview:companyImageView];
-
+    
     //公司名称label
     UILabel* companyLabel=[[UILabel alloc]initWithFrame:CGRectMake(105, 20, 200, 50)];
     //companyLabel.backgroundColor=[UIColor yellowColor];
@@ -78,6 +81,11 @@
     businessLabel.font=[UIFont boldSystemFontOfSize:15];
     businessLabel.textColor=RGBCOLOR(168, 168, 168);
     [view addSubview:businessLabel];
+    
+    //发起均价按钮
+    if (!self.needNoticeView) return;
+    self.askPriceBtn.center = CGPointMake(kScreenWidth*0.5, 102+CGRectGetHeight(self.askPriceBtn.frame)*0.5);
+    [view addSubview:self.askPriceBtn];
 }
 
 -(void)handleContent{
@@ -202,7 +210,7 @@
             [ErrorCode alert];
         }];
     }
-
+    
     NSLog(@"用户选择了关注");
 }
 
@@ -218,10 +226,23 @@
     [self.navigationController pushViewController:moreVC animated:YES];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)gotoAskPrice{
+    NSLog(@"询价");
+    //因为该界面为自己公司的详情，所以一定登录了，不用判断是否登录
+    AskPriceMainViewController *view = [[AskPriceMainViewController alloc] init];
+    view.userId = self.model.a_id;
+    view.userName = self.model.a_loginName;
+    view.closeAnimation = YES;
+    [self.navigationController pushViewController:view animated:YES];
 }
 
+- (UIButton *)askPriceBtn{
+    if (!_askPriceBtn) {
+        _askPriceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _askPriceBtn.frame = CGRectMake(0, 0, kScreenWidth, 44);
+        [_askPriceBtn setImage:[GetImagePath getImagePath:@"发起询价"] forState:UIControlStateNormal];
+        [_askPriceBtn addTarget:self action:@selector(gotoAskPrice) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _askPriceBtn;
+}
 @end

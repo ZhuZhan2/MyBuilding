@@ -32,6 +32,9 @@
 @property(nonatomic,strong)UILabel* memberCountLabel;
 @property(nonatomic,strong)UIImageView *focusedImage;
 @property(nonatomic,strong)UIImageView *authenticationImageView;
+
+@property (nonatomic, strong)UIButton* askPriceBtn;
+
 @property (nonatomic)BOOL isCompanySelf;
 @end
 @implementation CompanyDetailViewController
@@ -137,7 +140,7 @@
 
 -(void)initFirstView{
     //view的初始,后面为在上添加label button等
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 115)];
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, self.isCompanySelf?115:155)];
     [self scrollViewAddView:view];
     
     //公司图标
@@ -165,6 +168,11 @@
     businessLabel.font=[UIFont boldSystemFontOfSize:15];
     businessLabel.textColor=RGBCOLOR(168, 168, 168);
     [view addSubview:businessLabel];
+    
+    if (self.isCompanySelf) return;
+    //发起均价按钮
+    self.askPriceBtn.center = CGPointMake(kScreenWidth*0.5, 102+CGRectGetHeight(self.askPriceBtn.frame)*0.5);
+    [view addSubview:self.askPriceBtn];
 }
 
 -(void)handleContent{
@@ -195,7 +203,7 @@
 -(void)initSecondView{
     self.noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(70, 16, 100, 20)];
     [self handleContent];
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, self.myScrollView.contentSize.height, self.imageView.frame.size.width, self.imageView.frame.size.height)];
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, self.myScrollView.contentSize.height, self.imageView.frame.size.width, self.imageView.frame.size.height+CGRectGetHeight(self.askPriceBtn.frame))];
     [self scrollViewAddView:view];
     [view addSubview:self.imageView];
     
@@ -215,8 +223,8 @@
     
     self.memberBtn=[[UIButton alloc]initWithFrame:CGRectMake(116, 0, 204, 49)];
     [self.memberBtn addTarget:self action:@selector(applyForCertification) forControlEvents:UIControlEventTouchUpInside];
-    NSLog(@"hasCompany===>%@",self.hasCompany);
-    NSLog(@"a_reviewStatus===>%@",self.model.a_reviewStatus);
+    [view addSubview:self.memberBtn];
+    
     if([self.hasCompany isEqualToString:@"1"]){
         self.memberCountLabel.textColor=[UIColor lightGrayColor];
         self.memberBtn.enabled = NO;
@@ -241,8 +249,6 @@
             self.memberBtn.enabled = ![[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"];
         }
     }
-    NSLog(@"%d",self.memberBtn.enabled);
-    [view addSubview:self.memberBtn];
 }
 
 -(void)initThirdView{
@@ -280,25 +286,24 @@
     [leftButton setImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:leftButton];
-    
-    
-    if (self.isCompanySelf) return;
-    //右按钮 询价 button
-    UIButton* rightButton=[[UIButton alloc]initWithFrame:CGRectMake(0,0,30,30)];
-    rightButton.titleLabel.font = [UIFont systemFontOfSize:15];
-    [rightButton setTitle:@"询价" forState:UIControlStateNormal];
-    [rightButton addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:rightButton];
-
 }
 
-- (void)rightBtnClicked{
+- (void)gotoAskPrice{
     NSLog(@"询价");
-    AskPriceMainViewController *view = [[AskPriceMainViewController alloc] init];
-    view.userId = self.companyId;
-    view.userName = self.model.a_loginName;
-    view.closeAnimation = YES;
-    [self.navigationController pushViewController:view animated:YES];
+    if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
+        AskPriceMainViewController *view = [[AskPriceMainViewController alloc] init];
+        view.userId = self.companyId;
+        view.userName = self.model.a_loginName;
+        view.closeAnimation = YES;
+        [self.navigationController pushViewController:view animated:YES];
+
+    }else{
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.delegate = self;
+        loginVC.needDelayCancel = YES;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }
 }
 
 -(void)gotoNoticeView{
@@ -368,12 +373,6 @@
     }
 }
 
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     //恢复tabBar
@@ -394,18 +393,14 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)loginComplete{
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
+    if (block) {
+        block();
+    }
     [self.navigationController popViewControllerAnimated:NO];
     if ([self.delegate respondsToSelector:@selector(gotoCompanyDetail:)]) {
         [self.delegate gotoCompanyDetail:NO];
     }
-}
-
--(void)loginCompleteWithDelayBlock:(void (^)())block{
-//    [self.navigationController popViewControllerAnimated:NO];
-//    if ([self.delegate respondsToSelector:@selector(gotoCompanyDetail:)]) {
-//        [self.delegate gotoCompanyDetail:NO];
-//    }
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -437,4 +432,15 @@
         }];
     }
 }
+
+- (UIButton *)askPriceBtn{
+    if (!_askPriceBtn) {
+        _askPriceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _askPriceBtn.frame = CGRectMake(0, 0, kScreenWidth, 44);
+        [_askPriceBtn setImage:[GetImagePath getImagePath:@"发起询价"] forState:UIControlStateNormal];
+        [_askPriceBtn addTarget:self action:@selector(gotoAskPrice) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _askPriceBtn;
+}
+
 @end

@@ -208,6 +208,5 @@
 
 - (void)handleRemoteNotification:(UIApplication *)application userInfo:(NSDictionary *)userInfo {
     NSLog(@"=====>%@",userInfo);
-    
 }
 @end
