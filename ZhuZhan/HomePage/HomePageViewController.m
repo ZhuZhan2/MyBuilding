@@ -295,7 +295,7 @@
         [nav pushViewController:quadCurveVC animated:NO];
     }else if(idx == 1){
         NSLog(@"发询价");
-        quadCurveVC=[[AskPriceMainViewController alloc]init];
+        quadCurveVC=[[AskPriceMainViewController alloc]init]; 
         [self addAnimation];
         [nav pushViewController:quadCurveVC animated:NO];
     }else if(idx == 2){
