@@ -189,9 +189,6 @@
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-//    [super searchBarSearchButtonClicked:searchBar];
-//    [self.searchBar resignFirstResponder];
-//    [self.view becomeFirstResponder];
     [self searchNewDataWithRecord:searchBar.text];
 }
 
@@ -232,6 +229,7 @@
 
 -(void)searchBarTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString* record = self.models[indexPath.row];
+    self.searchBar.text = record;
     [self searchNewDataWithRecord:record];
 }
 
