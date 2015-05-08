@@ -63,8 +63,17 @@
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
+    
     self.laberStrArr = [[NSMutableArray alloc] init];
     self.userIdArr = [[NSMutableArray alloc] init];
+    
+    if(self.userName){
+        [self.laberStrArr addObject:self.userName];
+    }
+    if(self.userId){
+        [self.userIdArr addObject:self.userId];
+    }
+    
     [self.view addSubview:self.tableView];
     self.viewArr = [[NSMutableArray alloc] init];
     [self.viewArr addObject:self.addContactView];
@@ -369,7 +378,6 @@
     if(idStr.length !=0){
         self.classifcationIdStr = [idStr substringWithRange:NSMakeRange(0,idStr.length-1)];
     }
-    NSLog(@"%@",self.classifcationIdStr);
     
     self.categoryStr = str;
     self.categoryId = catroyId;
