@@ -280,6 +280,8 @@
     [leftButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:leftButton];
     
+    
+    if (self.isCompanySelf) return;
     //右按钮 询价 button
     UIButton* rightButton=[[UIButton alloc]initWithFrame:CGRectMake(0,0,30,30)];
     rightButton.titleLabel.font = [UIFont systemFontOfSize:15];
