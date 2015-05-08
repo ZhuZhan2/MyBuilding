@@ -295,11 +295,9 @@
         [nav pushViewController:quadCurveVC animated:NO];
     }else if(idx == 1){
         NSLog(@"发询价");
-        AskPriceMainViewController *aa=[[AskPriceMainViewController alloc]init];
-        aa.userName = @"aaa";
-        aa.userId = @"111";
+        quadCurveVC=[[AskPriceMainViewController alloc]init];
         [self addAnimation];
-        [nav pushViewController:aa animated:NO];
+        [nav pushViewController:quadCurveVC animated:NO];
     }else if(idx == 2){
         NSLog(@"消息");
         quadCurveVC=[[AskPriceMessageViewController alloc]init];

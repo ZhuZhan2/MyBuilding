@@ -18,6 +18,7 @@
 #import "LoginViewController.h"
 #import "LoadingView.h"
 #import "IsFocusedApi.h"
+#import "AskPriceMainViewController.h"
 @interface CompanyDetailViewController ()<LoginViewDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)UIScrollView* myScrollView;
 @property(nonatomic,strong)UIImageView* imageView;
@@ -293,6 +294,11 @@
 
 - (void)rightBtnClicked{
     NSLog(@"询价");
+    AskPriceMainViewController *view = [[AskPriceMainViewController alloc] init];
+    view.userId = self.companyId;
+    view.userName = self.model.a_loginName;
+    view.closeAnimation = YES;
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 -(void)gotoNoticeView{

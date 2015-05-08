@@ -31,5 +31,6 @@
     self.a_companyCity = [ProjectStage ProjectStrStage:dict[@"landCity"]];
     self.a_companyDistrict = [ProjectStage ProjectStrStage:dict[@"landDistrict"]];
     self.a_reviewStatus = [ProjectStage ProjectStrStage:dict[@"reviewStatus"]];
+    self.a_loginName = [ProjectStage ProjectStrStage:dict[@"loginName"]];
 }
 @end

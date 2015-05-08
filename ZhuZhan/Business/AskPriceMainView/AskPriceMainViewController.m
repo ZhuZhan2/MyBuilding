@@ -108,7 +108,9 @@
 }
 
 -(void)back{
-    [self addAnimation];
+    if(!self.closeAnimation){
+        [self addAnimation];
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -413,8 +415,10 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 0){
-        [self addAnimation];
-        [self.navigationController popViewControllerAnimated:NO];
+        if(!self.closeAnimation){
+            [self addAnimation];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
     }else{
         AskPriceViewController *view = [[AskPriceViewController alloc] initWithOtherStr:@"-1"];
 

@@ -11,4 +11,5 @@
 @interface AskPriceMainViewController : UIViewController
 @property(nonatomic,strong)NSString *userName;
 @property(nonatomic,strong)NSString *userId;
+@property(nonatomic)BOOL closeAnimation;
 @end
