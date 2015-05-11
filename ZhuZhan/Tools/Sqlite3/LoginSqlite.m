@@ -16,7 +16,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documents = [paths objectAtIndex:0];
     NSString *database_path = [documents stringByAppendingPathComponent:DataBaseName];
-    NSLog(@"%@,=========%@",paths,database_path);
+    //NSLog(@"%@,=========%@",paths,database_path);
     if (sqlite3_open([database_path UTF8String], &zhuZhanDB)==SQLITE_OK) {
         NSLog(@"打开数据库成功!");
         
