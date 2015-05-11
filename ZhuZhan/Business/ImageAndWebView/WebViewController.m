@@ -72,11 +72,6 @@
     [self.view addSubview:self.webView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 -(void)back{
 //    if([self.type isEqualToString:@"pdf"]){
 //        NSFileManager *fileManage = [NSFileManager defaultManager];
