@@ -154,11 +154,11 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    BOOL backgroundAccepted = [[UIApplication sharedApplication] setKeepAliveTimeout:600 handler:^{ [self backgroundHandler]; }];
-    if (backgroundAccepted)
-    {
-        NSLog(@"VOIP backgrounding accepted");
-    }
+//    BOOL backgroundAccepted = [[UIApplication sharedApplication] setKeepAliveTimeout:600 handler:^{ [self backgroundHandler]; }];
+//    if (backgroundAccepted)
+//    {
+//        NSLog(@"VOIP backgrounding accepted");
+//    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

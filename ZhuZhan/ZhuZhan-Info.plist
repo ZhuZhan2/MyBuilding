@@ -28,11 +28,6 @@
 	<string>始终开启定位</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>开启定位</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>audio</string>
-		<string>voip</string>
-	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

@@ -7499,7 +7499,7 @@
 						DevelopmentTeam = M8S6DXYEZE;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};

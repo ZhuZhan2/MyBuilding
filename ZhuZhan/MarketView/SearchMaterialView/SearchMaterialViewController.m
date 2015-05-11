@@ -162,7 +162,7 @@
         [_nameTextField setValue:[UIFont systemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
         [_nameTextField setValue:AllNoDataColor forKeyPath:@"_placeholderLabel.textColor"];
         if(![[LoginSqlite getdata:@"userName"] isEqualToString:@""]){
-            _nameTextField.text = [LoginSqlite getdata:@"userName"];
+            _nameTextField.text = [LoginSqlite getdata:@"contactName"];
         }
     }
     return _nameTextField;
@@ -181,7 +181,7 @@
         [_phoneTextField setValue:[UIFont systemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
         [_phoneTextField setValue:AllNoDataColor forKeyPath:@"_placeholderLabel.textColor"];
         if(![[LoginSqlite getdata:@"userPhone"] isEqualToString:@""]){
-            _phoneTextField.text = [LoginSqlite getdata:@"userPhone"];
+            _phoneTextField.text = [LoginSqlite getdata:@"contactTel"];
         }
     }
     return _phoneTextField;

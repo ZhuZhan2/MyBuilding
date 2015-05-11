@@ -7,7 +7,7 @@
 
 #define HIGHT self.bounds.origin.y //由于_pageControl是添加进父视图的,所以实际位置要参考,滚动视图的y坐标
 
-static CGFloat const chageImageTime = 3.0;
+static CGFloat const chageImageTime = 4.0;
 static NSUInteger currentImage = 1;//记录中间图片的下标,开始总是为1
 
 @interface AdScrollView ()
@@ -59,7 +59,7 @@ static NSUInteger currentImage = 1;//记录中间图片的下标,开始总是为
         _rightImageView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH*2, 0, UISCREENWIDTH, UISCREENHEIGHT)];
         [self addSubview:_rightImageView];
         
-        //_moveTime = [NSTimer scheduledTimerWithTimeInterval:chageImageTime target:self selector:@selector(animalMoveImage) userInfo:nil repeats:YES];
+        _moveTime = [NSTimer scheduledTimerWithTimeInterval:chageImageTime target:self selector:@selector(animalMoveImage) userInfo:nil repeats:YES];
         _isTimeUp = NO;
         
     }
