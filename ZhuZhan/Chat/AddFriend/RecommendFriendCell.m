@@ -37,6 +37,7 @@
         [self.addBtn setBackgroundImage:[GetImagePath getImagePath:model.a_isisFriend?@"added":@"add_green_button"] forState:UIControlStateNormal];
         self.addBtn.userInteractionEnabled=!model.a_isisFriend;
     }
+    self.addBtn.hidden = [[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"];
 }
 
 -(void)setIndexPathRow:(int)indexPathRow{
