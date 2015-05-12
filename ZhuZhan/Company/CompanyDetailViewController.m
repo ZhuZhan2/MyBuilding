@@ -354,6 +354,7 @@
         }
     }else{
         LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.needDelayCancel = YES;
         loginVC.delegate = self;
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
@@ -368,6 +369,7 @@
         [alertView show];
     }else{
         LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.needDelayCancel = YES;
         loginVC.delegate = self;
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
