@@ -7,15 +7,15 @@
 //
 
 #import "MarketViewController.h"
-#import "AdScrollView.h"
 #import "AdDataModel.h"
 #import "MarketSearchViewController.h"
 #import "SearchMaterialViewController.h"
+#import "ZWAdView.h"
 #define contentHeight (kScreenHeight==480?431:519)
-@interface MarketViewController ()
+@interface MarketViewController ()<ZWAdViewDelagate>
 @property(nonatomic,strong)UIScrollView *scrollView;
 @property(nonatomic,strong)UIImageView *headImageView;
-@property(nonatomic,strong)AdScrollView *adScrollView;
+@property(nonatomic,strong)ZWAdView *zwAdView;
 @property(nonatomic,strong)UIImageView *centerImageView;
 @property(nonatomic,strong)UIImageView *phoneImageView;
 @property(nonatomic,strong)UIImageView *homeImageView;
@@ -46,7 +46,7 @@
     self.navigationItem.titleView = self.searchView;
     
     [self.view addSubview:self.scrollView];
-    [self.scrollView addSubview:self.adScrollView];
+    [self.scrollView addSubview:self.zwAdView];
     [self.scrollView addSubview:self.centerImageView];
     [self.scrollView addSubview:self.phoneImageView];
     [self.scrollView addSubview:self.centerBtn];
@@ -82,15 +82,21 @@
     return _homeImageView;
 }
 
--(AdScrollView *)adScrollView{
-    if(!_adScrollView){
-        _adScrollView = [[AdScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 100)];
+-(ZWAdView *)zwAdView{
+    if(!_zwAdView){
+        _zwAdView=[[ZWAdView alloc]initWithFrame:CGRectMake(0, 0,320 , 100)];
+        _zwAdView.delegate=self;
+        /**广告链接*/
         AdDataModel * dataModel = [AdDataModel adDataModelWithImageName];
-        //_adScrollView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
-        _adScrollView.imageNameArray = dataModel.imageNameArray;
-        [_adScrollView setAdTitleArray:dataModel.adTitleArray withShowStyle:AdTitleShowStyleLeft];
+        _zwAdView.adDataArray=[NSMutableArray arrayWithArray:dataModel.imageNameArray];
+        _zwAdView.pageControlPosition=ZWPageControlPosition_BottomCenter;/**设置圆点的位置*/
+        _zwAdView.hidePageControl=NO;/**设置圆点是否隐藏*/
+        _zwAdView.adAutoplay=YES;/**自动播放*/
+        _zwAdView.adPeriodTime=4.0;/**时间间隔*/
+        _zwAdView.placeImageSource=@"banner1";/**设置默认广告*/
+        [_zwAdView loadAdDataThenStart];
     }
-    return _adScrollView;
+    return _zwAdView;
 }
 
 -(UIImageView *)centerImageView{
