@@ -217,6 +217,9 @@
 
 -(void)rightBtnClick{
     if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        if([[LoginSqlite getdata:@"userId"] isEqualToString:self.contactId]){
+            return;
+        }
         NSString *string = nil;
         if([self.isFocused isEqualToString:@"0"]){
             string = @"添加关注";
@@ -680,11 +683,33 @@
 }
 
 -(void)loginComplete{
-    NSLog(@"asfasdf");
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:self.contactId]){
+        self.navigationItem.rightBarButtonItem = nil;
+        self.secondBtn.hidden = YES;
+    }else{
+        [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocus"]];
+                [self getNetWorkData];
+            }else{
+                if([ErrorCode errorCode:error] ==403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                        [self firstNetWork];
+                    }];
+                }
+            }
+        } userId:[LoginSqlite getdata:@"userId"] targetId:self.contactId noNetWork:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                [self firstNetWork];
+            }];
+        }];
+    }
 }
 
 -(void)loginCompleteWithDelayBlock:(void (^)())block{
-
+    NSLog(@"loginCompleteWithDelayBlock");
 }
 
 -(void)gotoMyCenter{
@@ -749,6 +774,9 @@
 
 -(void)addFriend{
     if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        if([[LoginSqlite getdata:@"userId"] isEqualToString:self.contactId]){
+            return;
+        }
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         [dic setValue:self.contactId forKey:@"userId"];
         [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -777,8 +805,6 @@
 }
 
 -(void)gotoMessageBtnAction{
-    NSLog(@"%@",self.fromViewName);
-    NSLog(@"%@",self.chatType);
     if([self.fromViewName isEqualToString:@"chatView"]){
         if([self.chatType isEqualToString:@"02"]){
             ChatViewController *view = [[ChatViewController alloc] init];

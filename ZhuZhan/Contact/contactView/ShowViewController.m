@@ -65,7 +65,7 @@
     message.textColor = [UIColor whiteColor];
     [tempImageView addSubview:message];
     
-    UIButton *visitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    visitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     visitBtn.frame =CGRectMake(70, 220, 60, 28);
     visitBtn.backgroundColor = [UIColor blackColor];
     [visitBtn setTitle:@"访问" forState:UIControlStateNormal];
@@ -263,24 +263,42 @@
 
 -(void)loginCompleteWithDelayBlock:(void (^)())block{
     NSLog(@"已登录");
-    [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            ContactModel *model = posts[0];
-            if([model.isFocus isEqualToString:@"1"]){
-                [concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
-                isFoucsed = 1;
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:self.createdBy]){
+        visitBtn.hidden = YES;
+        addFriendBtn.hidden = YES;
+        concernBtn.hidden = YES;
+        gotoMessageBtn.hidden = YES;
+        if(block){
+            block();
+        }
+    }else{
+        [LoginModel GetUserInformationWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                ContactModel *model = posts[0];
+                contactId = model.userId;
+                self.name = model.userName;
+                if([model.isFocus isEqualToString:@"1"]){
+                    [concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+                    isFoucsed = 1;
+                }else{
+                    [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
+                    isFoucsed = 0;
+                }
+                
+                if([model.isFriend isEqualToString:@"0"]){
+                    [self.view addSubview:addFriendBtn];
+                }else{
+                    [self.view addSubview:gotoMessageBtn];
+                }
             }else{
-                [concernBtn setTitle:@"添加关注" forState:UIControlStateNormal];
-                isFoucsed = 0;
+                [LoginAgain AddLoginView:NO];
             }
             
             if(block){
                 block();
             }
-        }else{
-            [LoginAgain AddLoginView:NO];
-        }
-    } userId:self.createdBy noNetWork:nil];
+        } userId:self.createdBy noNetWork:nil];
+    }
 }
 
 -(void)loginComplete{

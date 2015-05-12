@@ -697,6 +697,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
 }
 
+
 -(void)jumpToGetRecommend:(NSDictionary *)dic
 {
     //NSLog(@"获得推荐");

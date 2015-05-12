@@ -17,6 +17,7 @@
     UIButton *concernBtn;
     int isFoucsed;
     NSString *contactId;
+    UIButton *visitBtn;
     UIButton *addFriendBtn;
     UIButton *gotoMessageBtn;
 }
