@@ -116,7 +116,7 @@
 }
 
 -(void)addTitle{
-    NSArray *arr = [[NSArray alloc] initWithObjects:@"联系人",@"联系电话",@"主题", nil];
+    NSArray *arr = [[NSArray alloc] initWithObjects:@"姓名",@"联系电话",@"主题", nil];
     for(int i=0;i<arr.count;i++){
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(24, i*65+69, 272, 18)];
         label.text = arr[i];

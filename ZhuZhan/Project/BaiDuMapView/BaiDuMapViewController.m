@@ -516,12 +516,12 @@ int j;
             if([posts[1] intValue] == 0){
                 [[[UIAlertView alloc] initWithTitle:@"提示" message:@"没有找到项目" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil,nil]show];
                 //[self judgeBtnEnable];
-                [imageView removeFromSuperview];
-                imageView = nil;
             }else{
                 [self addAnnotation:posts[0] isNext:isNext];
                 //[self judgeBtnEnable];
             }
+            [imageView removeFromSuperview];
+            imageView = nil;
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -530,6 +530,8 @@ int j;
                     [self getMapSearch:centerLocation startIndex:YES dis:[NSString stringWithFormat:@"%f",dis/1000]];
                 }];
             }
+            [imageView removeFromSuperview];
+            imageView = nil;
         }
     } longitude:[NSString stringWithFormat:@"%lf",centerLocation.longitude] latitude:[NSString stringWithFormat:@"%lf",centerLocation.latitude] radius:distance startIndex:tempStartIndex noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{

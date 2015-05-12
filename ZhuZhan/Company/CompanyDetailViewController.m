@@ -98,6 +98,7 @@
             }];
         }];
     }else{
+        self.hasCompany = @"0";
         [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 if(posts.count !=0){
@@ -223,6 +224,8 @@
     
     self.memberBtn=[[UIButton alloc]initWithFrame:CGRectMake(116, 0, 204, 49)];
     [self.memberBtn addTarget:self action:@selector(applyForCertification) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:self.memberBtn];
+    
     if([self.hasCompany isEqualToString:@"1"]){
         self.memberCountLabel.textColor=[UIColor lightGrayColor];
         self.memberBtn.enabled = NO;

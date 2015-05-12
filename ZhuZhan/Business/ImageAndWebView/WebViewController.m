@@ -25,8 +25,6 @@
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     
-    NSLog(@"%@",self.name);
-    
     self.webView = [[UIWebView alloc] initWithFrame:self.view.frame];
     self.webView.delegate =self;
     self.webView.scrollView.bounces=NO;

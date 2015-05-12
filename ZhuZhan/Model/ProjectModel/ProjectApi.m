@@ -526,7 +526,7 @@
     NSString *urlStr = [NSString stringWithFormat:@"api/projects/mapSearch?lat=%@&lng=%@&radius=%@&pageSize=26&pageIndex=%d",latitude,longitude,radius,startIndex];
     NSLog(@"urlStr==%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON[@"d"]);
+        NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             NSMutableArray *arr = [[NSMutableArray alloc] init];
