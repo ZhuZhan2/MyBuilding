@@ -288,7 +288,7 @@
                 }
             }
             [self.tableView footerEndRefreshing];
-        } startIndex:startIndex keywords:self.searchStr noNetWork:^{
+        } startIndex:startIndex+1 keywords:self.searchStr noNetWork:^{
             [self.tableView footerEndRefreshing];
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
                 [self footerRereshing];
@@ -297,6 +297,7 @@
     }else{
         [ProjectApi AdvanceSearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
+                startIndex++;
                 if(posts.count !=0){
                     [showArr addObjectsFromArray:posts[0]];
                     allCount = posts[1];
@@ -321,7 +322,7 @@
                     }];
                 }
             }
-        } dic:self.dic startIndex:startIndex noNetWork:^{
+        } dic:self.dic startIndex:startIndex+1 noNetWork:^{
             [self.tableView footerEndRefreshing];
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
                 [self footerRereshing];

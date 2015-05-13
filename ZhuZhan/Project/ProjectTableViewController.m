@@ -78,6 +78,7 @@
     self.navigationItem.titleView = bgView;
     
     startIndex = 0;
+    allStartIndex = 0;
     isReload = NO;
     showArr = [[NSMutableArray alloc] init];
     RecommendArr = [[NSMutableArray alloc] init];
