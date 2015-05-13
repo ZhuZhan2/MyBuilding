@@ -389,6 +389,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         productModel.a_name = model.a_entityName;
         productModel.a_content = model.a_content;
         productModel.a_imageUrl = model.a_imageUrl;
+        productModel.a_originImageUrl = model.a_imageOriginalUrl;
         productModel.a_createdBy = [LoginSqlite getdata:@"userId"];
         productModel.a_imageWidth = model.a_imageWidth;
         productModel.a_imageHeight = model.a_imageHeight;
