@@ -80,13 +80,18 @@
     self.tradeCodeView=nil;
     [self initTradeCodeView];
     
-    [self.PDFView removeFromSuperview];
-    self.PDFView=nil;
-    [self initPDFView];
-    
-    [self.btnToolBar removeFromSuperview];
-    self.btnToolBar=nil;
-    [self initBtnToolBar];
+    self.PDFView = nil;
+    self.btnToolBar = nil;
+    self.cellViews=nil;
+    [self.tableView reloadData];
+//    return;
+//    [self.PDFView removeFromSuperview];
+//    self.PDFView=nil;
+//    [self initPDFView];
+//    
+//    [self.btnToolBar removeFromSuperview];
+//    self.btnToolBar=nil;
+//    [self initBtnToolBar];
 }
 
 -(UIView *)PDFView{

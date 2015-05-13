@@ -14,10 +14,13 @@
     @protected
     UIView* _stagesView;
     ContractsTradeCodeView* _tradeCodeView;
+    NSMutableArray* _cellViews;
 }
 @property (nonatomic, strong)UIView* stagesView;
 @property (nonatomic, strong)ContractsTradeCodeView* tradeCodeView;
 @property (nonatomic, strong)ContractsListSingleModel* listSingleModel;
+@property (nonatomic, strong)NSMutableArray* cellViews;
+
 -(void)initStagesView;
 -(void)initTradeCodeView;
 -(void)sucessPost;

@@ -21,15 +21,13 @@
 @property (nonatomic, strong)ContractsUserView* userView2;
 @property (nonatomic, strong)ContractsMainClauseView* mainClauseView;
 @property (nonatomic, strong)ContractsBtnToolBar* btnToolBar;
-@property (nonatomic, strong)NSMutableArray* cellViews;
 @end
 
 @implementation MainContractsBaseController
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self initNaviExtra];
-    [self initTableView];
-    [self initTableViewExtra];
+
     [self loadList];
 }
 
@@ -157,20 +155,7 @@
     }
 }
 
--(void)initTableViewExtra{
-    CGRect frame=self.tableView.frame;
-    CGFloat changeHeight=CGRectGetMaxY(self.tradeCodeView.frame)-CGRectGetMinY(self.tableView.frame);
-    frame.origin.y+=changeHeight;
-    frame.size.height-=changeHeight;
-    self.tableView.frame=frame;
-    
-    self.tableView.backgroundColor=AllBackDeepGrayColor;
-    [self.view insertSubview:self.tableView belowSubview:self.tradeCodeView];
-    
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
-    view.backgroundColor=AllBackDeepGrayColor;
-    self.tableView.tableFooterView=view;
-}
+
 
 -(BOOL)canClose{
     BOOL hasProviderFile=self.mainClauseModel.a_provideHas;
@@ -191,24 +176,7 @@
     } dic:dic noNetWork:nil];
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.cellViews.count;
-}
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return CGRectGetHeight([self.cellViews[indexPath.row] frame]);
-}
-
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    }
-    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [cell.contentView addSubview:self.cellViews[indexPath.row]];
-    return cell;
-}
 
 -(UIView *)stagesView{
     if (!_stagesView&&!self.isFromDetailView) {

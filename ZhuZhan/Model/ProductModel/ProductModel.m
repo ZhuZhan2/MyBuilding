@@ -47,6 +47,20 @@
     self.a_focusedNum = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"focusNum"]]];
 }
 
+- (NSString *)a_imageWidth{
+    if ([_a_imageWidth isEqualToString:@""]) {
+        _a_imageWidth = @"0";
+    }
+    return _a_imageWidth;
+}
+
+- (NSString *)a_imageHeight{
+    if ([_a_imageHeight isEqualToString:@""]) {
+        _a_imageHeight = @"0";
+    }
+    return _a_imageHeight;
+}
+
 -(NSString *)a_commentNumber{
     if ([_a_commentNumber isEqualToString:@""]) {
         _a_commentNumber=@"0";
