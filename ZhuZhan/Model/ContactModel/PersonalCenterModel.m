@@ -37,7 +37,7 @@
             self.a_imageOriginalUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"messageData"][@"productImagesId"]], @"product", @"", @"", @"")];
         }else{
             self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"messageData"][@"productImagesId"]];
-            self.a_imageOriginalUrl = [ProjectStage ProjectStrStage:dict[@"messageData"][@"dynamicImagesId"]];
+            self.a_imageOriginalUrl = [ProjectStage ProjectStrStage:dict[@"messageData"][@"productImagesId"]];
         }
     }else{
         self.a_content = [ProjectStage ProjectStrStage:dict[@"messageContent"]];

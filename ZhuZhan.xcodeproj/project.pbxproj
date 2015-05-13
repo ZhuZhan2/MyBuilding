@@ -254,7 +254,6 @@
 		042D9E1519B559FC00689C5D /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DDC19B559FC00689C5D /* MyView.m */; };
 		042D9E1619B559FC00689C5D /* ProgramDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DDE19B559FC00689C5D /* ProgramDetailViewController.m */; };
 		042D9E1719B559FC00689C5D /* ProgramSelectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DE019B559FC00689C5D /* ProgramSelectViewCell.m */; };
-		042D9E1819B559FC00689C5D /* ScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DE219B559FC00689C5D /* ScrollViewController.m */; };
 		042D9E1919B559FC00689C5D /* ProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DE519B559FC00689C5D /* ProjectTableViewCell.m */; };
 		042D9E1A19B559FC00689C5D /* ProjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DE719B559FC00689C5D /* ProjectTableViewController.m */; };
 		042D9E1B19B559FC00689C5D /* AdvancedSearchConditionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DEA19B559FC00689C5D /* AdvancedSearchConditionsTableViewCell.m */; };
@@ -2116,8 +2115,6 @@
 		042D9DDE19B559FC00689C5D /* ProgramDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramDetailViewController.m; sourceTree = "<group>"; };
 		042D9DDF19B559FC00689C5D /* ProgramSelectViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramSelectViewCell.h; sourceTree = "<group>"; };
 		042D9DE019B559FC00689C5D /* ProgramSelectViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramSelectViewCell.m; sourceTree = "<group>"; };
-		042D9DE119B559FC00689C5D /* ScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewController.h; sourceTree = "<group>"; };
-		042D9DE219B559FC00689C5D /* ScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewController.m; sourceTree = "<group>"; };
 		042D9DE319B559FC00689C5D /* ShowPageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPageDelegate.h; sourceTree = "<group>"; };
 		042D9DE419B559FC00689C5D /* ProjectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTableViewCell.h; sourceTree = "<group>"; };
 		042D9DE519B559FC00689C5D /* ProjectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTableViewCell.m; sourceTree = "<group>"; };
@@ -4749,8 +4746,6 @@
 				042D9DDC19B559FC00689C5D /* MyView.m */,
 				042D9DDF19B559FC00689C5D /* ProgramSelectViewCell.h */,
 				042D9DE019B559FC00689C5D /* ProgramSelectViewCell.m */,
-				042D9DE119B559FC00689C5D /* ScrollViewController.h */,
-				042D9DE219B559FC00689C5D /* ScrollViewController.m */,
 				042D9DE319B559FC00689C5D /* ShowPageDelegate.h */,
 			);
 			path = NewProgramDetail;
@@ -9073,7 +9068,6 @@
 				D3DBCE5C1AC8E1A400C9FEDE /* ProvisionalViewController.m in Sources */,
 				0426C29C19922D5A00CD8822 /* GPUImageOpeningFilter.m in Sources */,
 				5B7670621AB6B92B00E154C5 /* ChatBaseViewController.m in Sources */,
-				042D9E1819B559FC00689C5D /* ScrollViewController.m in Sources */,
 				0426C2C819922D5A00CD8822 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
 				5B6FF7041AE50F9500F3A3E0 /* ContractsSalerModel.m in Sources */,
 				0426C2FC19922D5A00CD8822 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
