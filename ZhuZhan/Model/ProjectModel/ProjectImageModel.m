@@ -18,13 +18,13 @@
     }else{
         self.a_imageCompressLocation = [ProjectStage ProjectStrStage:dict[@"projectImagesId"]];
     }
-    NSLog(@"imageID==%@",self.a_imageCompressLocation);
+
     if(![[ProjectStage ProjectStrStage:dict[@"projectImagesId"]] isEqualToString:@""]){
-        self.a_imageOriginalLocation = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"projectImagesId"]], @"project", @"", @"", @"")];
+        self.a_imageOriginalLocation = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"projectImagesId"]], @"project", @"300", @"", @"")];
     }else{
         self.a_imageOriginalLocation = [ProjectStage ProjectStrStage:dict[@"projectImagesId"]];
     }
-    //NSLog(@"a_imageOriginalLocation====%@",self.a_imageOriginalLocation);
+
     self.a_imageCategory = [ProjectStage ProjectStrStage:dict[@"imageCategory"]];
     self.a_imageHeight=[ProjectStage ProjectStrStage:dict[@"imageHeight"]];;
     self.a_imageWidth=[ProjectStage ProjectStrStage:dict[@"imageWidth"]];

@@ -7,7 +7,7 @@
 //
 
 #import "MarketSearchProductCell.h"
-
+#import "RKViewFactory.h"
 @implementation MarketSearchProductCell
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -43,8 +43,7 @@
     
     headImageView = [[UIImageView alloc] init];
     [headImageView setFrame:CGRectMake(3, 2.7, 132, 105)];
-    headImageView.contentMode = UIViewContentModeScaleAspectFill|UIViewContentModeCenter;
-    headImageView.clipsToBounds = YES;
+    headImageView.backgroundColor = [UIColor grayColor];
     [bgView addSubview:headImageView];
     
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(147, 8, 157, 30)];
@@ -69,7 +68,7 @@
 }
 
 -(void)setModel:(ProductModel *)model{
-    [headImageView sd_setImageWithURL:[NSURL URLWithString:model.a_imageUrl] placeholderImage:[GetImagePath getImagePath:@"项目详情默认0"]];
+    [RKViewFactory imageViewWithImageView:headImageView imageUrl:model.a_marketImageUrl defaultImageName:@"项目详情默认0"];
     titleLabel.text = model.a_name;
     contentLabel.text = model.a_content;
     projectCount.text = model.a_commentNumber;

@@ -14,8 +14,14 @@
 @property (nonatomic,strong) NSString *a_name;
 //内容
 @property (nonatomic,strong) NSString *a_content;
-//图片
+
+//产品列表压缩图片
 @property (nonatomic,strong) NSString *a_imageUrl;
+//推广搜索页压缩图片
+@property (nonatomic,strong) NSString *a_marketImageUrl;
+//原图片
+@property (nonatomic,strong) NSString *a_originImageUrl;
+
 //评论数
 @property (nonatomic,strong) NSString *a_commentNumber;
 @property (nonatomic,strong) NSString *a_createdBy;

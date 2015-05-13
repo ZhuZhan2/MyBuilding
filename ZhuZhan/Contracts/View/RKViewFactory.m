@@ -30,4 +30,25 @@
     [noDataView addSubview:imageView];
     return noDataView;
 }
+
++ (void)imageViewWithImageView:(UIImageView*)imageView imageUrl:(NSString*)imageUrl defaultImageName:(NSString*)defaultImageName{
+    imageView.backgroundColor = [UIColor grayColor];
+    imageView.userInteractionEnabled = YES;
+    imageView.clipsToBounds = YES;
+    [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:defaultImageName] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (!image) return;
+        UIImage* newImage = [self reSizeImage:image toSize:imageView.frame.size];
+        imageView.image = newImage;
+    }];
+}
+
++ (UIImage *)reSizeImage:(UIImage *)image toSize:(CGSize)reSize{
+    UIGraphicsBeginImageContext(CGSizeMake(reSize.width, reSize.height));
+    CGFloat x = -(image.size.width/2-reSize.width)/2;
+    CGFloat y = -(image.size.height/2-reSize.height)/2;
+    [image drawInRect:CGRectMake(x, y, image.size.width/2, image.size.height/2)];
+    UIImage *reSizeImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return reSizeImage;
+}
 @end

@@ -12,4 +12,6 @@
 + (UIView*)noHistorySearchResultsViewWithTop:(CGFloat)top;
 
 + (UIView*)noSearchResultsViewWithTop:(CGFloat)top;
+
++ (void)imageViewWithImageView:(UIImageView*)imageView imageUrl:(NSString*)imageUrl defaultImageName:(NSString*)defaultImageName;
 @end

@@ -8,6 +8,7 @@
 
 #import "MyFactory.h"
 #import "MyView.h"
+#import "RKViewFactory.h"
 
 #define NoDataColor RGBCOLOR(166, 166, 166)
 #define HasDataColor RGBCOLOR(125, 125, 125)
@@ -228,20 +229,9 @@ static NSString* hasUserTypeContent(NSString* string){
 
 //图加图的数量
 +(UIView*)getImageViewWithImageUrl:(NSString*)imageUrl count:(NSInteger)count{
-//    MyView* view=[[MyView alloc]init];
-//    view.frame=CGRectMake(0, 0, 320, 215.5);
-//    view.layer.masksToBounds=YES;
-//    view.backgroundColor=[UIColor grayColor];
-//    [view observeImage];
-//    [view.myImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]] placeholderImage:[GetImagePath getImagePath:@"项目详情默认"]];
     UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 216)];
-//    imageView.backgroundColor = [UIColor redColor];
-    imageView.contentMode = UIViewContentModeCenter;
-    
-    imageView.userInteractionEnabled = YES;
-    imageView.clipsToBounds = YES;
-    [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]] placeholderImage:[GetImagePath getImagePath:@"项目详情默认"]];
-    
+    imageView.backgroundColor = [UIColor grayColor];
+    [RKViewFactory imageViewWithImageView:imageView imageUrl:imageUrl defaultImageName:@"项目详情默认"];
     
     //图片数量label
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 164, 58, 26)];
