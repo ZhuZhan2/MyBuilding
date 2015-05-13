@@ -285,7 +285,7 @@
     if ([model.a_imageUrl isEqualToString:@""]) {
         size=CGSizeMake(151, 113);
     }else{
-    size=CGSizeMake([model.a_imageWidth floatValue]*.5, [model.a_imageHeight floatValue]*.5);
+        size=CGSizeMake([model.a_imageWidth floatValue]*.5, [model.a_imageHeight floatValue]*.5);
     }
     return size;
     //return CGSizeMake(151, 113);
