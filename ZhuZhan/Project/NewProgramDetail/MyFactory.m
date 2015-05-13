@@ -235,10 +235,11 @@ static NSString* hasUserTypeContent(NSString* string){
 //    [view observeImage];
 //    [view.myImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]] placeholderImage:[GetImagePath getImagePath:@"项目详情默认"]];
     UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 216)];
-    imageView.backgroundColor = [UIColor redColor];
-//    imageView.contentMode = UIViewContentModeScaleAspectFit|UIViewContentModeCenter;
+//    imageView.backgroundColor = [UIColor redColor];
+    imageView.contentMode = UIViewContentModeCenter;
     
     imageView.userInteractionEnabled = YES;
+    imageView.clipsToBounds = YES;
     [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]] placeholderImage:[GetImagePath getImagePath:@"项目详情默认"]];
     
     

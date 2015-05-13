@@ -18,6 +18,7 @@
     }else{
         self.a_imageCompressLocation = [ProjectStage ProjectStrStage:dict[@"projectImagesId"]];
     }
+    NSLog(@"imageID==%@",self.a_imageCompressLocation);
     if(![[ProjectStage ProjectStrStage:dict[@"projectImagesId"]] isEqualToString:@""]){
         self.a_imageOriginalLocation = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"projectImagesId"]], @"project", @"", @"", @"")];
     }else{
