@@ -163,7 +163,7 @@ int j;
         _MapContent.userInteractionEnabled = YES;
         [self.view addSubview:_MapContent];
         [UIView animateWithDuration:0.5 animations:^{
-            _MapContent.frame = CGRectMake(0, 378, 611, 260);
+            _MapContent.frame = CGRectMake(0, kScreenHeight-190, 611, 260);
         }];
     }else{
         if(!self.isSelect){

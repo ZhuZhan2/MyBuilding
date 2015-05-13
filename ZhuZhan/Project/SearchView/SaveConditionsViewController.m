@@ -65,6 +65,7 @@
     nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(23, 84, 225, 29)];
     nameTextField.placeholder = @"Name";
     nameTextField.delegate = self;
+    nameTextField.returnKeyType = UIReturnKeyDone;
     //[nameTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:nameTextField];
     
@@ -95,7 +96,10 @@
 //        [alert show];
 //    }
 //}
-
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
 {  //string就是此时输入的那个字符textField就是此时正在输入的那个输入框返回YES就是可以改变输入框的值NO相反

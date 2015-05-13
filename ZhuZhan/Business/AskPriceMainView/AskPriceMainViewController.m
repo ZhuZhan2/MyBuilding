@@ -431,14 +431,25 @@
 - (void)keyBoardWillShow:(NSNotification *)note{
     CGFloat ty = 0;
     CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    if(self.addContactViewHeight == 205){
-        ty = - rect.size.height+(self.tableView.frame.size.height-(self.addContactViewHeight+self.addCategoriesViewHeight+self.addClassificationViewHeight+260));
+    if(kScreenHeight == 480){
+        if(self.addContactViewHeight == 210){
+            ty = - rect.size.height+(self.tableView.frame.size.height-(self.addContactViewHeight+self.addCategoriesViewHeight+self.addClassificationViewHeight+260))+160;
+        }else{
+            ty = - rect.size.height+(self.tableView.frame.size.height-(self.addContactViewHeight+self.addCategoriesViewHeight+self.addClassificationViewHeight+260))-10;
+        }
+        [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]-0.01 animations:^{
+            self.view.transform = CGAffineTransformMakeTranslation(0, ty);
+        }];
     }else{
-        ty = - rect.size.height+(self.tableView.frame.size.height-(self.addContactViewHeight+self.addCategoriesViewHeight+self.addClassificationViewHeight+260))-40;
+        if(self.addContactViewHeight == 205){
+            ty = - rect.size.height+(self.tableView.frame.size.height-(self.addContactViewHeight+self.addCategoriesViewHeight+self.addClassificationViewHeight+260));
+        }else{
+            ty = - rect.size.height+(self.tableView.frame.size.height-(self.addContactViewHeight+self.addCategoriesViewHeight+self.addClassificationViewHeight+260))-40;
+        }
+        [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]-0.01 animations:^{
+            self.view.transform = CGAffineTransformMakeTranslation(0, ty);
+        }];
     }
-    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]-0.01 animations:^{
-        self.view.transform = CGAffineTransformMakeTranslation(0, ty);
-    }];
 }
 #pragma mark 键盘即将退出
 - (void)keyBoardWillHide:(NSNotification *)note{
