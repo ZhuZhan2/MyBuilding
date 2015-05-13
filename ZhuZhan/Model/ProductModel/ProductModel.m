@@ -18,18 +18,25 @@
     self.a_content = [ProjectStage ProjectStrStage:_dict[@"productDesc"]];
     self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"imageWidth"]]];
     self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"imageHeight"]]];
+
     NSString *height = nil;
     if([self.a_imageWidth intValue]>151){
         height = [NSString stringWithFormat:@"%d",[self.a_imageHeight intValue]/([self.a_imageWidth intValue]/151)];
         self.a_imageWidth = @"151";
         self.a_imageHeight = height;
     }
+
     if(![[ProjectStage ProjectStrStage:_dict[@"productImagesId"]] isEqualToString:@""]){
         self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"productImagesId"]], @"product", self.a_imageWidth, self.a_imageHeight, @"")];
+        self.a_marketImageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"productImagesId"]], @"product", @"264", @"210", @"1")];
+        self.a_originImageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"productImagesId"]], @"product", @"", @"", @"")];
     }else{
         self.a_imageUrl = [ProjectStage ProjectStrStage:_dict[@"productImagesId"]];
+        self.a_marketImageUrl = [ProjectStage ProjectStrStage:_dict[@"productImagesId"]];
+        self.a_originImageUrl = [ProjectStage ProjectStrStage:_dict[@"productImagesId"]];
     }
-    NSLog(@"%@",self.a_imageUrl);
+    NSLog(@"market=%@",self.a_marketImageUrl);
+    
     self.a_commentNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"commentsNum"]]];
     if(![[ProjectStage ProjectStrStage:_dict[@"loginImagesId"]] isEqualToString:@""]){
         self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"loginImagesId"]], @"login", @"", @"", @"")];
