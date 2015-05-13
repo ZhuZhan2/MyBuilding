@@ -99,7 +99,7 @@
 
 -(void)loadRegisterBtn{
     self.registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.registerBtn.frame = CGRectMake(22, 500, 276, 42);
+    self.registerBtn.frame = CGRectMake(22, kScreenHeight-68, 276, 42);
     [self.registerBtn setBackgroundImage:[GetImagePath getImagePath:@"密码找回z"] forState:UIControlStateNormal];
     [self.registerBtn addTarget:self action:@selector(beginToCollect) forControlEvents:UIControlEventTouchUpInside];
     self.registerBtn.tag =2014072401;

@@ -143,7 +143,7 @@
 
 -(void)loadRegisterBtn{
     self.registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.registerBtn.frame = CGRectMake(22.5, 500, 275, 42);
+    self.registerBtn.frame = CGRectMake(22.5, kScreenHeight-68, 275, 42);
     [self.registerBtn setBackgroundImage:[GetImagePath getImagePath:@"验-----证"] forState:UIControlStateNormal];
     [self.registerBtn addTarget:self action:@selector(beginToCollect) forControlEvents:UIControlEventTouchUpInside];
     self.registerBtn.tag =2014072401;
