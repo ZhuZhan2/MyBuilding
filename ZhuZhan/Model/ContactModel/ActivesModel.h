@@ -13,6 +13,7 @@
 @property (nonatomic, copy) NSString *a_entityId;
 @property (nonatomic, copy) NSString *a_entityUrl;
 @property (nonatomic, copy) NSString *a_projectName;
+@property (nonatomic, copy) NSString *a_projectCode;
 @property (nonatomic, copy) NSString *a_projectStage;
 @property (nonatomic, copy) NSString *a_content;
 @property (nonatomic, copy) NSString *a_title;

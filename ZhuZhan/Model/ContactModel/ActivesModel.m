@@ -18,7 +18,7 @@
     self.a_entityUrl = [NSString stringWithFormat:@"%s%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"entityUrl"]]];
     self.a_userName=[[ProjectStage ProjectStrStage:dict[@"createUser"][@"loginName"]] stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
     if(![[ProjectStage ProjectStrStage:dict[@"createUser"][@"loginImagesId"]] isEqualToString:@""]){
-        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"createUser"][@"loginImagesId"], @"login", @"37", @"37", @"")];
+        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"createUser"][@"loginImagesId"], @"login", @"74", @"74", @"")];
     }else{
         self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"createUser"][@"loginImagesId"]];
     }
@@ -33,7 +33,7 @@
         self.a_imageHeight = height;
     }
     if(![[ProjectStage ProjectStrStage:dict[@"dynamicImagesId"]] isEqualToString:@""]){
-        self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"dynamicImagesId"], @"dynamic", @"310", @"", @"")];
+        self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"dynamicImagesId"], @"dynamic", @"620", @"", @"")];
     }else{
         self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"dynamicImagesId"]];
     }
@@ -73,6 +73,7 @@
     }else{
         self.a_eventType = @"Automatic";
     }
+    self.a_projectCode = dict[@"operationCode"];
     //self.a_eventType = [ProjectStage ProjectStrStage:dict[@"actives"][@"eventType"]];
     self.a_projectName = [ProjectStage ProjectStrStage:dict[@"operationData"][@"projectName"]];
     self.a_projectStage = [ProjectStage ProjectStrStage:dict[@"operationData"][@"projectStage"]];
@@ -86,7 +87,7 @@
     }
     
     if(![[ProjectStage ProjectStrStage:dict[@"operationData"][@"productImagesId"]] isEqualToString:@""]){
-        self.a_productImage = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"operationData"][@"productImagesId"], @"product", @"310", @"", @"")];
+        self.a_productImage = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"operationData"][@"productImagesId"], @"product", @"620", @"", @"")];
     }else{
         self.a_productImage = [ProjectStage ProjectStrStage:dict[@"operationData"][@"productImagesId"]];
     }

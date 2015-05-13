@@ -16,6 +16,7 @@
 @property (nonatomic, copy) NSString *a_projectStage;
 @property (nonatomic, copy) NSString *a_content;
 @property (nonatomic, copy) NSString *a_imageUrl;
+@property (nonatomic, copy) NSString *a_imageOriginalUrl;
 @property (nonatomic, copy) NSString *a_imageWidth;
 @property (nonatomic, copy) NSString *a_imageHeight;
 @property (nonatomic, copy) NSDate *a_time;

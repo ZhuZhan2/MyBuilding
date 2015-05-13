@@ -88,7 +88,11 @@
     }else{
         [stageImage setImage:[GetImagePath getImagePath:@"人脉_57a"]];
     }
-    titleLabel.text = [NSString stringWithFormat:@"%@%@",model.a_userName,model.a_title];
+    if([model.a_projectCode isEqualToString:@"02"]){
+        titleLabel.text = [NSString stringWithFormat:@"%@%@",model.a_userName,model.a_title];
+    }else{
+        titleLabel.text = [NSString stringWithFormat:@"%@",model.a_title];
+    }
     contentLabel.text = model.a_content;
     [headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_avatarUrl]] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
 }
