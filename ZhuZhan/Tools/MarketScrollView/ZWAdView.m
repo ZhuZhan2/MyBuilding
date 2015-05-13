@@ -241,6 +241,6 @@
 
 #pragma mark - 点击
 -(void)adImgClick{
-    [self.delegate adView:self didDeselectAdAtNum:self.pageControl.currentPage];
+    //[self.delegate adView:self didDeselectAdAtNum:self.pageControl.currentPage];
 }
 @end

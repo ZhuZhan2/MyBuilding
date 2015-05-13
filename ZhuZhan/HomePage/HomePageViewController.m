@@ -63,6 +63,7 @@
     [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
     nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
     [contentView addSubview:nav.view];
+    self.marketView = nil;
     
     toolView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-49, 320, 49)];
    [toolView setBackgroundColor:RGBCOLOR(229, 229, 229)];
@@ -352,6 +353,7 @@
     [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
     nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
     [contentView addSubview:nav.view];
+    contactview = nil;
 }
 
 -(void)backGotoMarketView{
@@ -365,5 +367,6 @@
     [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
     nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
     [contentView addSubview:nav.view];
+    self.marketView = nil;
 }
 @end

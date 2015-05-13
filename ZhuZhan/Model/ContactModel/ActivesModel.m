@@ -33,7 +33,7 @@
         self.a_imageHeight = height;
     }
     if(![[ProjectStage ProjectStrStage:dict[@"dynamicImagesId"]] isEqualToString:@""]){
-        self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"dynamicImagesId"], @"dynamic", self.a_imageWidth, self.a_imageHeight, @"")];
+        self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"dynamicImagesId"], @"dynamic", @"310", @"", @"")];
     }else{
         self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"dynamicImagesId"]];
     }
@@ -86,7 +86,7 @@
     }
     
     if(![[ProjectStage ProjectStrStage:dict[@"operationData"][@"productImagesId"]] isEqualToString:@""]){
-        self.a_productImage = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"operationData"][@"productImagesId"], @"product", self.a_imageWidth, self.a_imageHeight, @"")];
+        self.a_productImage = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"operationData"][@"productImagesId"], @"product", @"310", @"", @"")];
     }else{
         self.a_productImage = [ProjectStage ProjectStrStage:dict[@"operationData"][@"productImagesId"]];
     }
@@ -103,5 +103,7 @@
             [self.a_commentsArr insertObject:@"" atIndex:2];
         }
     }
+    NSLog(@"a_imageUrl===>%@",self.a_imageUrl);
+    NSLog(@"a_productImage===>%@",self.a_productImage);
 }
 @end
