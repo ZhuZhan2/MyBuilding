@@ -44,7 +44,10 @@
 
 -(UITextView *)textView{
     if(!_textView){
-        _textView = [[UITextView alloc] initWithFrame:CGRectMake(26-4, 42, 280, 200)];
+        _textView = [[UITextView alloc] initWithFrame:CGRectMake(22, 42, 280, 200)];
+        if(kScreenHeight == 480){
+            _textView.frame = CGRectMake(22, 42, 280, 150);
+        }
         _textView.delegate = self;
         _textView.returnKeyType = UIReturnKeyDone;
         _textView.font = [UIFont systemFontOfSize:15];
