@@ -20,9 +20,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=AllBackDeepGrayColor;
-    [self initClauseMainBtn];
-    [self initPDFView];
-    [self initBtnToolBar];
+    self.tableView.scrollEnabled = kScreenHeight < 568;
+
+//    [self initClauseMainBtn];
+//    [self initPDFView];
+//    [self initBtnToolBar];
 }
 
 -(void)PDFBtnClicked{
@@ -57,28 +59,28 @@
     return datas;
 }
 
--(void)initClauseMainBtn{
-    [self.view addSubview:self.clauseMainBtn];
-    CGRect frame=self.clauseMainBtn.frame;
-    frame.origin.y=CGRectGetMaxY(self.tradeCodeView.frame);
-    self.clauseMainBtn.frame=frame;
-}
-
--(void)initPDFView{
-    [self.view addSubview:self.PDFView];
-    CGRect frame=self.PDFView.frame;
-    frame.origin.y=CGRectGetMaxY(self.clauseMainBtn.frame);
-    self.PDFView.frame=frame;
-}
-
--(void)initBtnToolBar{
-    [self.view addSubview:self.btnToolBar];
-    NSLog(@"frame=%@",NSStringFromCGRect(self.btnToolBar.frame));
-    CGRect frame=self.btnToolBar.frame;
-    frame.origin.y=CGRectGetMaxY(self.PDFView.frame);
-    self.btnToolBar.frame=frame;
-    NSLog(@"frame=%@",NSStringFromCGRect(self.btnToolBar.frame));
-}
+//-(void)initClauseMainBtn{
+//    [self.view addSubview:self.clauseMainBtn];
+//    CGRect frame=self.clauseMainBtn.frame;
+//    frame.origin.y=CGRectGetMaxY(self.tradeCodeView.frame);
+//    self.clauseMainBtn.frame=frame;
+//}
+//
+//-(void)initPDFView{
+//    [self.view addSubview:self.PDFView];
+//    CGRect frame=self.PDFView.frame;
+//    frame.origin.y=CGRectGetMaxY(self.clauseMainBtn.frame);
+//    self.PDFView.frame=frame;
+//}
+//
+//-(void)initBtnToolBar{
+//    [self.view addSubview:self.btnToolBar];
+//    NSLog(@"frame=%@",NSStringFromCGRect(self.btnToolBar.frame));
+//    CGRect frame=self.btnToolBar.frame;
+//    frame.origin.y=CGRectGetMaxY(self.PDFView.frame);
+//    self.btnToolBar.frame=frame;
+//    NSLog(@"frame=%@",NSStringFromCGRect(self.btnToolBar.frame));
+//}
 
 -(UIButton *)clauseMainBtn{
     if (!_clauseMainBtn) {
@@ -175,5 +177,12 @@
         _btnToolBar.delegate=self;
     }
     return _btnToolBar;
+}
+
+-(NSMutableArray *)cellViews{
+    if (!_cellViews) {
+        _cellViews=[@[self.clauseMainBtn,self.PDFView,self.btnToolBar] mutableCopy];
+    }
+    return _cellViews;
 }
 @end

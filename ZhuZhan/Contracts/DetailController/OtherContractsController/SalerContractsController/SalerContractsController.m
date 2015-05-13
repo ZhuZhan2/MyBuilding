@@ -70,9 +70,13 @@
     self.tradeCodeView=nil;
     [self initTradeCodeView];
     
-    [self.btnToolBar removeFromSuperview];
     self.btnToolBar=nil;
-    [self initBtnToolBar];
+    self.cellViews=nil;
+    [self.tableView reloadData];
+//    return;
+//    [self.btnToolBar removeFromSuperview];
+//    self.btnToolBar=nil;
+//    [self initBtnToolBar];
 }
 
 -(void)clauseMainBtnClicked{

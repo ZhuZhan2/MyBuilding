@@ -24,6 +24,7 @@
             self.a_imageOriginalUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"messageData"][@"dynamicImagesId"]], @"dynamic", @"", @"", @"")];
         }else{
             self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"messageData"][@"dynamicImagesId"]];
+            self.a_imageOriginalUrl = [ProjectStage ProjectStrStage:dict[@"messageData"][@"dynamicImagesId"]];
         }
     }else if([[ProjectStage ProjectStrStage:dict[@"messageType"]] isEqualToString:@"02"]){
         self.a_entityName = [ProjectStage ProjectStrStage:dict[@"messageData"][@"projectName"]];
@@ -36,6 +37,7 @@
             self.a_imageOriginalUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"messageData"][@"productImagesId"]], @"product", @"", @"", @"")];
         }else{
             self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"messageData"][@"productImagesId"]];
+            self.a_imageOriginalUrl = [ProjectStage ProjectStrStage:dict[@"messageData"][@"dynamicImagesId"]];
         }
     }else{
         self.a_content = [ProjectStage ProjectStrStage:dict[@"messageContent"]];
