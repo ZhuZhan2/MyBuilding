@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ProjectTableViewCell.h"
+#import "LoadingView.h"
 @interface ResultsTableViewController : UITableViewController<ProjectTableViewCellDelegate>{
     NSMutableArray *showArr;
     int startIndex;
     NSString *allCount;
+    LoadingView *loadingView;
 }
 @property(nonatomic,strong)NSString *searchStr;
 @property(nonatomic,strong)NSMutableDictionary *dic;

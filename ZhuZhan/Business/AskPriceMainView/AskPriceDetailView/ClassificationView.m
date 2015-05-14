@@ -48,7 +48,7 @@
     __block int height = 60;
     if(![str isEqualToString:@""]){
         CGRect bounds=[str boundingRectWithSize:CGSizeMake(280, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil];
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 42, 240, bounds.size.height)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(26, 42, 280, bounds.size.height)];
         label.textAlignment = NSTextAlignmentLeft;
         label.numberOfLines =0;
         label.lineBreakMode = NSLineBreakByWordWrapping;

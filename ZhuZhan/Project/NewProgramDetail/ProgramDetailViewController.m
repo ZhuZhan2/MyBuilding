@@ -284,7 +284,7 @@
                 }
             }
         } userId:[LoginSqlite getdata:@"userId"] targetId:self.projectId noNetWork:^{
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
                 [self firstNetWork];
             }];
         }];
@@ -305,14 +305,14 @@
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
             }else{
-                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
                     [self firstNetWork];
                 }];
             }
         }
         [self endIndicatorView];
     } projectId:self.projectId noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];
@@ -351,7 +351,7 @@
     self.contents=[[NSMutableArray alloc]init];
     [self contentsAddObject:self.landInfo];
     
-    self.contentTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 64+50, 320, 568-64-50) style:UITableViewStylePlain];
+    self.contentTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 64+50, 320, kScreenHeight-64-50) style:UITableViewStylePlain];
     self.contentTableView.dataSource=self;
     self.contentTableView.delegate=self;
     self.contentTableView.backgroundColor=RGBCOLOR(229, 229, 229);
@@ -1083,7 +1083,7 @@
             [LoginAgain AddLoginView:NO];
         }
     } userId:[LoginSqlite getdata:@"userId"] targetId:self.projectId noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];

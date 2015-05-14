@@ -11,7 +11,7 @@
 @implementation ErrorCode
 +(int)errorCode:(NSError *)error{
     int obj = 0;
-    NSLog(@"%@",error.localizedDescription);
+    NSLog(@"localizedDescription===》%@",error.localizedDescription);
     if([error.localizedDescription isEqualToString:@"Request failed: forbidden (403)"]||[error.localizedDescription isEqualToString:@"Request failed: 已禁止 (403)"]){
         obj = 403;
     }

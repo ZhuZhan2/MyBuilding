@@ -40,6 +40,8 @@
 @property(nonatomic,strong)NSMutableArray *userIdArr;
 @property(nonatomic,strong)NSString *categoryId;
 @property(nonatomic,strong)NSString *classifcationIdStr;
+@property(nonatomic,strong)UIView* loadingView;
+@property(nonatomic,strong)UIActivityIndicatorView* activityView;
 @end
 
 @implementation AskPriceMainViewController
@@ -137,6 +139,7 @@
                 [alertView show];
                 return;
             }
+            [self startLoadingView];
             NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
             [dic setValue:[str substringWithRange:NSMakeRange(0,str.length-1)] forKey:@"invitedUser"];
             [dic setValue:self.categoryId forKey:@"productBigCategory"];
@@ -154,8 +157,10 @@
                         [ErrorCode alert];
                     }
                 }
+                [self stopLoadingView];
             } dic:dic noNetWork:^{
                 [ErrorCode alert];
+                [self stopLoadingView];
             }];
         }else{
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请选择参与用户" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -424,6 +429,34 @@
 
         [self.navigationController pushViewController:view animated:YES];
     }
+}
+
+-(UIView *)loadingView{
+    if (!_loadingView) {
+        _loadingView=[[UIView alloc]initWithFrame:self.view.bounds];
+        _loadingView.backgroundColor=[[UIColor alloc]initWithRed:0 green:0 blue:0 alpha:.5];
+        
+        self.activityView.center=_loadingView.center;
+        [_loadingView addSubview:self.activityView];
+    }
+    return _loadingView;
+}
+
+-(UIActivityIndicatorView *)activityView{
+    if (!_activityView) {
+        _activityView=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    }
+    return _activityView;
+}
+
+-(void)startLoadingView{
+    [self.activityView startAnimating];
+    [self.navigationController.view addSubview:self.loadingView];
+}
+
+-(void)stopLoadingView{
+    [self.activityView stopAnimating];
+    [self.loadingView removeFromSuperview];
 }
 
 #pragma mark - 键盘处理
