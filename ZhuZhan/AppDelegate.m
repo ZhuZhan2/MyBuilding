@@ -33,7 +33,6 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSLog(@"asdfasdfasdfasdfasdfasdfasdfasdf");
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         PostAddressBook *postAddressBook = [[PostAddressBook alloc] init];
         [postAddressBook registerAddressBook:^(bool granted, NSError *error) {

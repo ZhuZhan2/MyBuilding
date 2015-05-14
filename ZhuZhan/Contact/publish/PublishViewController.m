@@ -94,7 +94,12 @@
 
 static BOOL isFirst;
 -(void)initInputView{
-    inputView = [[UITextView alloc] initWithFrame:CGRectMake(15, 42-24+(isFirst?64:0), 290, 220+84-(isFirst?64:0))];
+    inputView = [[UITextView alloc] init];
+    if(kScreenHeight == 480){
+        inputView.frame = CGRectMake(15, 42-24+(isFirst?64:0), 290, 120+84-(isFirst?64:0));
+    }else{
+        inputView.frame = CGRectMake(15, 42-24+(isFirst?64:0), 290, 220+84-(isFirst?64:0));
+    }
     isFirst=YES;
     UIEdgeInsets tempInsets=inputView.textContainerInset;
     inputView.textContainerInset=UIEdgeInsetsMake(tempInsets.top+24, tempInsets.left, tempInsets.bottom, tempInsets.right);
