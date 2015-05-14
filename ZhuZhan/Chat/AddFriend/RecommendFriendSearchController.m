@@ -102,6 +102,7 @@
     FriendModel *model = self.models[indexPath.row];
     cell.model = model;
     cell.delegate = self;
+    cell.indexPathRow = (int)indexPath.row;
     cell.selectionStyle = NO;
     
     return cell;
