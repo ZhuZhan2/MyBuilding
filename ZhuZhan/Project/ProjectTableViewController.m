@@ -115,6 +115,18 @@
                             self.tableView.scrollEnabled = YES;
                             loadingView = nil;
                             allStartIndex++;
+                        }else{
+                            self.tableView.scrollEnabled = NO;
+                            [LoadingView removeLoadingView:loadingView];
+                            loadingView = nil;
+                            if([ErrorCode errorCode:error] == 403){
+                                [LoginAgain AddLoginView:NO];
+                            }else{
+                                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                                    self.tableView.scrollEnabled = YES;
+                                    [self firstWork];
+                                }];
+                            }
                         }
                     }startIndex:0 keywords:@"" noNetWork:^{
                         [self.tableView footerEndRefreshing];
@@ -138,10 +150,14 @@
                 self.tableView.scrollEnabled = NO;
                 [LoadingView removeLoadingView:loadingView];
                 loadingView = nil;
-                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
-                    self.tableView.scrollEnabled = YES;
-                    [self firstWork];
-                }];
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                        self.tableView.scrollEnabled = YES;
+                        [self firstWork];
+                    }];
+                }
             }
         } startIndex:startIndex noNetWork:^{
             self.tableView.scrollEnabled = NO;
@@ -185,10 +201,14 @@
                 self.tableView.scrollEnabled = NO;
                 [LoadingView removeLoadingView:loadingView];
                 loadingView = nil;
-                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
-                    self.tableView.scrollEnabled = YES;
-                    [self firstWork];
-                }];
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                        self.tableView.scrollEnabled = YES;
+                        [self firstWork];
+                    }];
+                }
             }
         } projectIds:projectIds noNetWork:^{
             self.tableView.scrollEnabled = NO;

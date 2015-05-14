@@ -71,6 +71,9 @@ int startIndex;
     [bgView addSubview:_searchBar];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 104, 320, 220)];
+    if(kScreenHeight == 480){
+        _tableView.frame = CGRectMake(0, 104, 320, 120);
+    }
     _tableView.backgroundColor=RGBCOLOR(232, 232, 232);
     //[_tableView setBackgroundColor:[UIColor colorWithRed:(239/255.0)  green:(237/255.0)  blue:(237/255.0)  alpha:1.0]];
     _tableView.delegate = self;

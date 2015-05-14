@@ -40,6 +40,9 @@
 @property(nonatomic,weak)UIViewController* targetPopVC;
 @property (nonatomic)BOOL isModified;
 @property (nonatomic, copy)NSString* modifiedId;
+
+@property(nonatomic,strong)UIView* loadingView;
+@property(nonatomic,strong)UIActivityIndicatorView* activityView;
 @end
 
 @implementation ProvisionalViewController
@@ -187,6 +190,7 @@
 }
 
 -(void)sendPostRequest{
+    [self startLoadingView];
     //创建
     if (!self.isModified) {
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
@@ -204,6 +208,7 @@
                 [alertView show];
                 [self reloadTable];
             }
+            [self stopLoadingView];
         } dic:dic noNetWork:nil];
     //修改
     }else{
@@ -214,6 +219,7 @@
             if (!error) {
                 [self showAlertViewNeedDelegate:@"操作成功"];
             }
+            [self stopLoadingView];
         } dic:dic noNetWork:nil];
     }
 }
@@ -562,6 +568,34 @@
 
 -(void)dealloc{
     
+}
+
+-(UIView *)loadingView{
+    if (!_loadingView) {
+        _loadingView=[[UIView alloc]initWithFrame:self.view.bounds];
+        _loadingView.backgroundColor=[[UIColor alloc]initWithRed:0 green:0 blue:0 alpha:.5];
+        
+        self.activityView.center=_loadingView.center;
+        [_loadingView addSubview:self.activityView];
+    }
+    return _loadingView;
+}
+
+-(UIActivityIndicatorView *)activityView{
+    if (!_activityView) {
+        _activityView=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    }
+    return _activityView;
+}
+
+-(void)startLoadingView{
+    [self.activityView startAnimating];
+    [self.navigationController.view addSubview:self.loadingView];
+}
+
+-(void)stopLoadingView{
+    [self.activityView stopAnimating];
+    [self.loadingView removeFromSuperview];
 }
 @end
 

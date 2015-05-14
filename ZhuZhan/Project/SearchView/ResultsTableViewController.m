@@ -89,6 +89,8 @@
 }
 
 -(void)firstNetWork{
+    self.tableView.scrollEnabled = NO;
+    loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view];
     if(self.flag == 0){
         [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
@@ -106,6 +108,9 @@
                     [MyTableView removeFootView:self.tableView];
                     [self.tableView reloadData];
                 }
+                [LoadingView removeLoadingView:loadingView];
+                self.tableView.scrollEnabled = YES;
+                loadingView = nil;
             }else{
                 if([ErrorCode errorCode:error] == 403){
                     [LoginAgain AddLoginView:NO];
@@ -114,6 +119,9 @@
                         [self firstNetWork];
                     }];
                 }
+                [LoadingView removeLoadingView:loadingView];
+                self.tableView.scrollEnabled = YES;
+                loadingView = nil;
             }
         } startIndex:startIndex keywords:self.searchStr noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
@@ -138,6 +146,9 @@
                     [MyTableView removeFootView:self.tableView];
                     [self.tableView reloadData];
                 }
+                [LoadingView removeLoadingView:loadingView];
+                self.tableView.scrollEnabled = YES;
+                loadingView = nil;
             }else{
                 if([ErrorCode errorCode:error] == 403){
                     [LoginAgain AddLoginView:NO];
@@ -146,6 +157,9 @@
                         [self firstNetWork];
                     }];
                 }
+                [LoadingView removeLoadingView:loadingView];
+                self.tableView.scrollEnabled = YES;
+                loadingView = nil;
             }
         } dic:self.dic startIndex:startIndex noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
