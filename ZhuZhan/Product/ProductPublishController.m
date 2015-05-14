@@ -96,6 +96,9 @@
 -(UITextView *)contentTextView{
     if (!_contentTextView) {
         _contentTextView=[[UITextView alloc]initWithFrame:CGRectMake( 10, 64+80, 300, 160)];
+        if(kScreenHeight == 480){
+            _contentTextView.frame = CGRectMake(10, 64+80, 300,72);
+        }
         _contentTextView.backgroundColor=[UIColor clearColor];
         _contentTextView.font=ProductContentFont;
         _contentTextView.delegate=self;
