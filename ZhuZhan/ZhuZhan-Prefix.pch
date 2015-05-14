@@ -43,6 +43,10 @@
 //蒋慧吉本机
 //#define  serverAddress "http://10.1.1.204:9090/service"
 
+//一期生产服务器
+//#define  serverAddress "http://apis.mybuilding.cn:15427/WebService"
+
+
 /*************************************************************/
 //正式socket连接地址
 //#define socketServer "apis.mybuilding.cn"
