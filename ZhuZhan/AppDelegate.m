@@ -26,6 +26,7 @@
 #import "PostAddressBook.h"
 #import "ImageSqlite.h"
 #import "MarketSearchSqlite.h"
+#import "ForcedUpdateApi.h"
 @implementation AppDelegate
 
 + (AppDelegate *)instance {
@@ -39,7 +40,45 @@
             
         }];
     });
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
     
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.window.bounds];
+    imageView.image = [GetImagePath getImagePath:@"loading"];
+    [self.window addSubview:imageView];
+    
+    [ForcedUpdateApi GetLastestReleaseWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            NSString* statusCode = posts[0];
+            BOOL needUpdate = [statusCode isEqualToString:@"200"];
+            if (needUpdate) {
+                [self showForcedAlertView];
+            }else{
+                [self startCode];
+                [imageView removeFromSuperview];
+            }
+        }
+    } userVersion:@"1.0.0" deviceType:@"03" downloadType:@"01" noNetWork:nil];
+    return YES;
+}
+
+- (void)showForcedAlertView{
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"需要下载最新版本" delegate:self cancelButtonTitle:nil otherButtonTitles:@"下载", nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSString* urlStr_99 = @"itms-apps://itunes.apple.com/app/id962715759?mt=8";
+    NSString* urlStr_299 = @"https://app.mybuilding.cn/download/mobile-download.html";
+    NSURL* url = [NSURL URLWithString:urlStr_299];
+    
+//    url = [NSURL URLWithString:@"itms-apps://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftwareUpdate?id=692579125&mt=8"];
+    [[UIApplication sharedApplication] openURL:url];
+    [self showForcedAlertView];
+}
+
+- (void)startCode{
     self.socket = [SocketManage sharedManager];
     
     
@@ -49,10 +88,10 @@
         
         _locationManager.delegate = self;
         
-//        _locationManager.desiredAccuracy = kCLLocationAccuracyBest; //控制定位精度,越高耗电量越大。
-//        
-//        _locationManager.distanceFilter = 100; //控制定位服务更新频率。单位是“米”
-//        
+        //        _locationManager.desiredAccuracy = kCLLocationAccuracyBest; //控制定位精度,越高耗电量越大。
+        //
+        //        _locationManager.distanceFilter = 100; //控制定位服务更新频率。单位是“米”
+        //
         [_locationManager startUpdatingLocation];
         
         //在ios 8.0下要授权
@@ -63,7 +102,7 @@
         
     }
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     //设置log等级，此处log为默认在documents目录下的msc.log文件
     [IFlySetting setLogFile:LVL_NONE];
     
@@ -84,7 +123,7 @@
     
     
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+//    self.window.backgroundColor = [UIColor whiteColor];
     NSString *API_KEY = KAPI_KEY;
     NSString *API_SECRET = KAPI_SECRET;
     
@@ -96,12 +135,12 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     // 要使用百度地图，请先启动BaiduMapManager
-	_mapManager = [[BMKMapManager alloc]init];
+    _mapManager = [[BMKMapManager alloc]init];
     //9uNmKMAvjHLBdkWD42j21yEp 299
     //57gqKHfcRsYLwlxioZvblI5G 99
-	BOOL ret = [_mapManager start:@"9uNmKMAvjHLBdkWD42j21yEp" generalDelegate:self];
-	if (!ret) {
-		NSLog(@"manager start failed!");
+    BOOL ret = [_mapManager start:@"9uNmKMAvjHLBdkWD42j21yEp" generalDelegate:self];
+    if (!ret) {
+        NSLog(@"manager start failed!");
     }else{
         NSLog(@"success");
     }
@@ -112,34 +151,33 @@
     [ImageSqlite opensql];
     [MarketSearchSqlite opensql];
     
-//#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-//    if (IS_OS_8_OR_LATER) {
-//        [[UIApplication sharedApplication] registerForRemoteNotifications];
-//        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound) categories:nil];
-//        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-//    } else {
-//        [application registerForRemoteNotificationTypes:
-//         UIRemoteNotificationTypeBadge |
-//         UIRemoteNotificationTypeAlert |
-//         UIRemoteNotificationTypeSound];
-//    }
+    //#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    //    if (IS_OS_8_OR_LATER) {
+    //        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    //        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound) categories:nil];
+    //        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    //    } else {
+    //        [application registerForRemoteNotificationTypes:
+    //         UIRemoteNotificationTypeBadge |
+    //         UIRemoteNotificationTypeAlert |
+    //         UIRemoteNotificationTypeSound];
+    //    }
     
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;
-    [self.window makeKeyAndVisible];
+//    [self.window makeKeyAndVisible];
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"firstLaunch"]){
         NSLog(@"第一次启动程序");
         FirstOpenAppAnimationView* firstAnimationView=[[FirstOpenAppAnimationView alloc]initWithFrame:self.window.frame];
         [self.window addSubview:firstAnimationView];
     }
     
-//    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-//    NSLog(@"launchOptions===>%@",launchOptions);
-//    if(userInfo) {
-//        [self handleRemoteNotification:application userInfo:userInfo];
-//    }
+    //    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    //    NSLog(@"launchOptions===>%@",launchOptions);
+    //    if(userInfo) {
+    //        [self handleRemoteNotification:application userInfo:userInfo];
+    //    }
 
-    return YES;
 }
 
 -(void)backgroundHandler{

@@ -26,7 +26,7 @@
 #endif
 
 //正式服务器
-#define  serverAddress "http://apis.mybuilding.cn:15427/WebService"
+//#define  serverAddress "http://apis.mybuilding.cn:15427/WebService"
 
 //预生产服务器
 //#define  serverAddress "http://apis.shenjigroup.com:15427/WebService"
@@ -35,13 +35,16 @@
 //#define  serverAddress "http://10.1.5.104:9090/server"
 
 //开发服务器
-//#define  serverAddress "http://10.1.5.104:8080/server"
+#define  serverAddress "http://10.1.5.104:8080/server"
 
 //马恩伟本机
 //#define  serverAddress "http://10.1.1.140:9090/service/"
 
 //蒋慧吉本机
 //#define  serverAddress "http://10.1.1.204:9090/service"
+
+//闵杰本机
+//#define  serverAddress "http://10.1.1.179:9090/service"
 
 //一期生产服务器
 //#define  serverAddress "http://apis.mybuilding.cn:15427/WebService"
