@@ -1240,6 +1240,7 @@
 		5BF31B671AB025FD00DA87F5 /* AddImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B5D1AB025FD00DA87F5 /* AddImageView.m */; };
 		5BF31B6A1AB025FD00DA87F5 /* DiscussionGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B631AB025FD00DA87F5 /* DiscussionGroupView.m */; };
 		5BF31B6B1AB025FD00DA87F5 /* ImageAndLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B651AB025FD00DA87F5 /* ImageAndLabelView.m */; };
+		5BFC82931B058D5B00CD9ED6 /* ForcedUpdateApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFC82921B058D5B00CD9ED6 /* ForcedUpdateApi.m */; };
 		5BFCE5C11ADBABB00049F009 /* ChatGroupMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCE5C01ADBABB00049F009 /* ChatGroupMemberModel.m */; };
 		D30062161AEF62FD009E35C8 /* 会话列表－个人.png in Resources */ = {isa = PBXBuildFile; fileRef = D30062121AEF62FD009E35C8 /* 会话列表－个人.png */; };
 		D30062171AEF62FD009E35C8 /* 会话列表－个人@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D30062131AEF62FD009E35C8 /* 会话列表－个人@2x.png */; };
@@ -3336,6 +3337,8 @@
 		5BF31B631AB025FD00DA87F5 /* DiscussionGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscussionGroupView.m; sourceTree = "<group>"; };
 		5BF31B641AB025FD00DA87F5 /* ImageAndLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAndLabelView.h; sourceTree = "<group>"; };
 		5BF31B651AB025FD00DA87F5 /* ImageAndLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAndLabelView.m; sourceTree = "<group>"; };
+		5BFC82911B058D5B00CD9ED6 /* ForcedUpdateApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForcedUpdateApi.h; sourceTree = "<group>"; };
+		5BFC82921B058D5B00CD9ED6 /* ForcedUpdateApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForcedUpdateApi.m; sourceTree = "<group>"; };
 		5BFCE5BF1ADBABB00049F009 /* ChatGroupMemberModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroupMemberModel.h; sourceTree = "<group>"; };
 		5BFCE5C01ADBABB00049F009 /* ChatGroupMemberModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroupMemberModel.m; sourceTree = "<group>"; };
 		D30062121AEF62FD009E35C8 /* 会话列表－个人.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "会话列表－个人.png"; sourceTree = "<group>"; };
@@ -6502,6 +6505,15 @@
 			path = AddGroupMember;
 			sourceTree = "<group>";
 		};
+		5BFC82901B058D3400CD9ED6 /* ForcedUpdate */ = {
+			isa = PBXGroup;
+			children = (
+				5BFC82911B058D5B00CD9ED6 /* ForcedUpdateApi.h */,
+				5BFC82921B058D5B00CD9ED6 /* ForcedUpdateApi.m */,
+			);
+			path = ForcedUpdate;
+			sourceTree = "<group>";
+		};
 		D31BBB8A1AD3E3F500919B8B /* PodFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -6650,6 +6662,7 @@
 		D3AC618B19B6BF930015B62F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5BFC82901B058D3400CD9ED6 /* ForcedUpdate */,
 				D3D090401AF8C3CC00C8AC55 /* MarketModel */,
 				D3D484031ADFCE8B004AF972 /* AskPriceMessageModel */,
 				D3D483F21ADF8805004AF972 /* ContractsModel */,
@@ -8753,6 +8766,7 @@
 				042D9E2C19B559FC00689C5D /* TopicsTableViewController.m in Sources */,
 				5BE08ED21A35900000495EEB /* FirstAnimationView.m in Sources */,
 				0426C29E19922D5A00CD8822 /* GPUImageOverlayBlendFilter.m in Sources */,
+				5BFC82931B058D5B00CD9ED6 /* ForcedUpdateApi.m in Sources */,
 				0426C2B119922D5A00CD8822 /* GPUImageSaturationFilter.m in Sources */,
 				04BF13B419C4162A002E02C9 /* AFAppDotNetAPIClient.m in Sources */,
 				0426C2BE19922D5A00CD8822 /* GPUImageSourceOverBlendFilter.m in Sources */,
