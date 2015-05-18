@@ -17,14 +17,13 @@
 #import "ChatMessageApi.h"
 #import "AppDelegate.h"
 #import "MJRefresh.h"
-#import "MessageTableView.h"
 #import "PersonalDetailViewController.h"
 #import "ProjectStage.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
-@interface ChatViewController ()<UIAlertViewDelegate,MessageTableViewDelegate,ChatTableViewCellDelegate>
+@interface ChatViewController ()<UIAlertViewDelegate,ChatTableViewCellDelegate>
 @property (nonatomic, strong)NSMutableArray* models;
-@property(nonatomic,strong)MessageTableView *tableView;
+@property(nonatomic,strong)RKBaseTableView *tableView;
 @property(nonatomic)int startIndex;
 @property(nonatomic,strong)NSString *lastId;
 @property (nonatomic)NSInteger popViewControllerIndex;
@@ -59,12 +58,12 @@
     self.startIndex = 0;
     [self initSocket];
     [self initNavi];
-    [self initMessageTableView];
-    //[self initTableView];
+    [self initTableView];
+    self.tableView.isChatType = YES;
     //集成刷新控件
     [self setupRefresh];
-    [self initChatToolBar];
-    self.chatToolBar.maxTextCountInChat=1000;
+    [self initChatToolBarWithNeedAddBtn:YES];
+    self.chatToolBar.maxTextCountInChat = 1000;
     [self initTableViewHeaderView];
     [self addKeybordNotification];
     [self firstNetWork];
@@ -102,14 +101,6 @@
     }dic:dic noNetWork:^{
         [ErrorCode alert];
     }];
-}
-
--(void)initMessageTableView{
-    self.tableView = [[MessageTableView alloc] initWithFrame:CGRectMake(0, 64, 320,kScreenHeight-64)];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.tableView];
 }
 
 -(void)setupRefresh{
@@ -322,10 +313,6 @@
         _models=[NSMutableArray array];
     }
     return _models;
-}
-
--(void)touchesBeganInMessageTableView{
-    [self.view endEditing:YES];
 }
 
 -(NSInteger)popViewControllerIndex{

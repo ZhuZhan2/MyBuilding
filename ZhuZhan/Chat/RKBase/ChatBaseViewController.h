@@ -64,6 +64,8 @@
 
 @property(nonatomic,strong)ChatToolBar* chatToolBar;
 -(void)initChatToolBar;
+-(void)initChatToolBarWithNeedAddBtn:(BOOL)needAddBtn;
+@property(nonatomic,strong)UIView* chatMoreSelectView;
 
 @property(nonatomic,strong)RKStageChooseView* stageChooseView;
 -(void)initStageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers;

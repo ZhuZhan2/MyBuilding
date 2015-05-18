@@ -67,7 +67,9 @@
 #define socketServer "10.1.5.104"
 #define socketPort 44455
 
-
+//蒋慧吉本机socket连接地址
+//#define socketServer "10.1.1.80"
+//#define socketPort 44455
 /*************************************************************/
 //正式聊天服务器
 //#define socketHttp "http://apis.mybuilding.cn:15428/ImService"
@@ -81,6 +83,8 @@
 //开发聊天服务器
 #define socketHttp "http://10.1.5.104:8080/im"
 
+//蒋慧吉本机
+//#define socketHttp "http://10.1.1.80:9092/im"
 
 #define  kScreenWidth  [[UIScreen mainScreen] bounds].size.width
 #define  kScreenHeight [[UIScreen mainScreen] bounds].size.height
