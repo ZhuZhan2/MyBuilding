@@ -61,7 +61,7 @@
     [self initNavi];
     [self initTableView];
     self.tableView.isChatType = YES;
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     //集成刷新控件
     [self setupRefresh];
     [self initChatToolBarWithNeedAddBtn:YES];
