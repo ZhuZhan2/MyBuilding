@@ -21,6 +21,7 @@
 #import "ProjectStage.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
+#import "ChatImageCell.h"
 @interface ChatViewController ()<UIAlertViewDelegate,ChatTableViewCellDelegate>
 @property (nonatomic, strong)NSMutableArray* models;
 @property(nonatomic,strong)RKBaseTableView *tableView;
@@ -60,6 +61,7 @@
     [self initNavi];
     [self initTableView];
     self.tableView.isChatType = YES;
+    self.view.backgroundColor = [UIColor redColor];
     //集成刷新控件
     [self setupRefresh];
     [self initChatToolBarWithNeedAddBtn:YES];

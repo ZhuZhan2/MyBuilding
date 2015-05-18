@@ -97,6 +97,7 @@
     }
     
     CGFloat height=kScreenHeight-y;
+    NSLog(@"%f,%f",y,height);
     self.tableView=[[RKBaseTableView alloc]initWithFrame:CGRectMake(0, y, kScreenWidth, height) style:UITableViewStylePlain];
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
@@ -320,7 +321,11 @@
     if (self.chatToolBar.textView.isFirstResponder) {
         if (!self.chatMoreSelectView.superview) {
             [self.view addSubview:self.chatMoreSelectView];
-            self.chatMoreSelectView.transform = self.chatToolBar.transform;
+            
+            CGRect frame = self.chatMoreSelectView.frame;
+            frame.origin.y = CGRectGetMaxY(self.chatToolBar.frame);
+            self.chatMoreSelectView.frame = frame;
+            
             upHeight = CGRectGetHeight(self.chatMoreSelectView.frame);
             [self changeFrameWithUpHeight:upHeight duration:duration];
         }
@@ -328,7 +333,11 @@
     }else{
         if (!self.chatMoreSelectView.superview) {
             [self.view addSubview:self.chatMoreSelectView];
-            self.chatMoreSelectView.transform = self.chatToolBar.transform;
+            
+            CGRect frame = self.chatMoreSelectView.frame;
+            frame.origin.y = CGRectGetMaxY(self.chatToolBar.frame);
+            self.chatMoreSelectView.frame = frame;
+            
             upHeight = CGRectGetHeight(self.chatMoreSelectView.frame);
             [self changeFrameWithUpHeight:upHeight duration:duration];
         }else{
@@ -338,16 +347,24 @@
     }
     
     if (!self.chatMoreSelectView.superview) return;
+    CGRect frame = self.chatMoreSelectView.frame;
+    frame.origin.y = CGRectGetMaxY(self.chatToolBar.frame);
     [UIView animateWithDuration:duration animations:^{
-        self.chatMoreSelectView.transform = CGAffineTransformMakeTranslation(0, -upHeight);
+        self.chatMoreSelectView.frame = frame;
     }];
 }
 
 //聊天内容tableView和聊天工具条chatToolBar
 -(void)changeFrameWithUpHeight:(CGFloat)upHeight duration:(NSTimeInterval)duration{
+    NSLog(@"upHeight=%f,duration=%f",upHeight,duration);
     [UIView animateWithDuration:duration  animations:^{
-        self.tableView.transform = CGAffineTransformMakeTranslation(0, -upHeight);
-        self.chatToolBar.transform = CGAffineTransformMakeTranslation(0, -upHeight);
+        CGRect frame = self.tableView.frame;
+        frame.origin.y = 64-upHeight-(CGRectGetHeight(self.chatToolBar.frame)-[ChatToolBar orginChatToolBarHeight]);
+        self.tableView.frame = frame;
+        
+        frame = self.chatToolBar.frame;
+        frame.origin.y = CGRectGetMaxY(self.tableView.frame);
+        self.chatToolBar.frame = frame;
     }];
 }
 
@@ -378,12 +395,23 @@
 
 //所有复原
 -(void)touchesBeganInRKBaseTableView{
+    BOOL chatToolBarIsFirstResponder = self.chatToolBar.textView.isFirstResponder;
     [self.view endEditing:YES];
-
+    
+    if (!self.chatToolBar) return;
+    if (chatToolBarIsFirstResponder) return;
     [UIView animateWithDuration:0.25 animations:^{
-        self.tableView.transform = CGAffineTransformIdentity;
-        self.chatToolBar.transform = CGAffineTransformIdentity;
-        self.chatMoreSelectView.transform = CGAffineTransformIdentity;
+        CGRect frame = self.tableView.frame;
+        frame.origin.y = 64-(CGRectGetHeight(self.chatToolBar.frame)-[ChatToolBar orginChatToolBarHeight]);
+        self.tableView.frame = frame;
+        
+        frame = self.chatToolBar.frame;
+        frame.origin.y = CGRectGetMaxY(self.tableView.frame);
+        self.chatToolBar.frame = frame;
+        
+        frame = self.chatMoreSelectView.frame;
+        frame.origin.y = kScreenHeight;
+        self.chatMoreSelectView.frame = frame;
     } completion:^(BOOL finished) {
         [self.chatMoreSelectView removeFromSuperview];
     }];
@@ -422,6 +450,7 @@
 
 -(void)chatToolBarSizeChangeWithHeight:(CGFloat)height{
     self.tableView.transform=CGAffineTransformMakeTranslation(0, [ChatToolBar orginChatToolBarHeight]-height);
+//    self.tableView.transform = CGAffineTransformTranslate(self.tableView.transform, 0, [ChatToolBar orginChatToolBarHeight]-height);
 }
 
 -(void)startLoadingViewWithOption:(NSInteger)option{

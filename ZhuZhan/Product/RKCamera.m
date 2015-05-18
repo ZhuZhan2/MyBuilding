@@ -7,7 +7,7 @@
 //
 
 #import "RKCamera.h"
-
+#import "RKViewFactory.h"
 @interface RKCamera ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property(nonatomic,weak)id<RKCameraDelegate>delegate;
 @property(nonatomic)UIImagePickerControllerSourceType sourceType;
@@ -62,11 +62,11 @@
         CGFloat width=originQualityImage.size.width;
         CGFloat height=originQualityImage.size.height;
         UIView* view=[self getImageViewWithImage:originQualityImage size:CGSizeMake(width, height)];
-        originQualityImage = [self convertViewAsImage:view];
+        originQualityImage = [RKViewFactory convertViewAsImage:view];
         width=self.demandSize.width?2*self.demandSize.width:originQualityImage.size.width;
         height=self.demandSize.height?2*self.demandSize.height:originQualityImage.size.height;
         view=[self getImageViewWithImage:originQualityImage size:CGSizeMake(width, height)];
-        UIImage* lowQualityImage= [self convertViewAsImage:view];
+        UIImage* lowQualityImage= [RKViewFactory convertViewAsImage:view];
         
         [self.delegate cameraWillFinishWithLowQualityImage:lowQualityImage originQualityImage:originQualityImage isCancel:isCancel];
     }
@@ -76,13 +76,5 @@
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     imageView.image=image;
     return imageView;
-}
-
-- (UIImage *)convertViewAsImage:(UIView *)aview {
-    UIGraphicsBeginImageContext(aview.bounds.size);
-    [aview.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
 }
 @end

@@ -37,6 +37,7 @@
 +(ChatToolBar*)chatToolBarWithNeedAddBtn:(BOOL)needAddBtn{
     ChatToolBar* chatToolBar = [[ChatToolBar alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kChatToolInitialHeight)];
     chatToolBar.needAddBtn = needAddBtn;
+    chatToolBar.backgroundColor = [UIColor redColor];
     [chatToolBar setUp];
     return chatToolBar;
 }
