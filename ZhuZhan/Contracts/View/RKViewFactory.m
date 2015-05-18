@@ -37,18 +37,32 @@
     imageView.clipsToBounds = YES;
     [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:defaultImageName] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (!image) return;
-        UIImage* newImage = [self reSizeImage:image toSize:imageView.frame.size];
+        UIImage* newImage = [self resizeImage:image toSize:imageView.frame.size];
         imageView.image = newImage;
     }];
 }
 
-+ (UIImage *)reSizeImage:(UIImage *)image toSize:(CGSize)reSize{
-    UIGraphicsBeginImageContext(CGSizeMake(reSize.width, reSize.height));
-    CGFloat x = -(image.size.width/2-reSize.width)/2;
-    CGFloat y = -(image.size.height/2-reSize.height)/2;
-    [image drawInRect:CGRectMake(x, y, image.size.width/2, image.size.height/2)];
-    UIImage *reSizeImage = UIGraphicsGetImageFromCurrentImageContext();
++ (UIImage *)resizeImage:(UIImage *)image toSize:(CGSize)reSize{
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, reSize.width, reSize.height)];
+    view.clipsToBounds = YES;
+    
+    CGSize imageSize = CGSizeMake(image.size.width/2, image.size.height/2);
+    
+    CGFloat x = (reSize.width-imageSize.width)/2;
+    CGFloat y = (reSize.height-imageSize.height)/2;
+
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, imageSize.width, imageSize.height)];
+    imageView.image=image;
+    [view addSubview:imageView];
+    
+    return [self convertViewAsImage:view];
+}
+
++ (UIImage *)convertViewAsImage:(UIView *)aview {
+    UIGraphicsBeginImageContext(aview.bounds.size);
+    [aview.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    return reSizeImage;
+    return image;
 }
 @end

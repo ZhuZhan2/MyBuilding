@@ -11,7 +11,8 @@
 #import "AppDelegate.h"
 #import "SearchBarTableViewController.h"
 #import "RKCamera.h"
-@interface ChatBaseViewController()<RKCameraDelegate>
+#import "ChatMoreSelectView.h"
+@interface ChatBaseViewController()<RKCameraDelegate,ChatMoreSelectViewDelegate>
 @property(nonatomic)BOOL searchBarIsTableViewHeader;
 
 @property(nonatomic)BOOL searchBarIsAnimating;
@@ -352,28 +353,21 @@
 
 - (UIView *)chatMoreSelectView{
     if (!_chatMoreSelectView) {
-        _chatMoreSelectView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, 200)];
+        UIImageView* photoImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 59, 78)];
+        photoImgView.userInteractionEnabled = YES;
+        photoImgView.image = [GetImagePath getImagePath:@"会话－照片"];
+        
+        UIImageView* cameraImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 59, 78)];
+        cameraImgView.userInteractionEnabled = YES;
+        cameraImgView.image = [GetImagePath getImagePath:@"会话－拍摄"];
+        
+        _chatMoreSelectView = [ChatMoreSelectView chatMoreSelectViewWithViews:@[photoImgView,cameraImgView] delegate:self];
         _chatMoreSelectView.backgroundColor = AllBackLightGratColor;
-        
-        UIButton* photoBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        photoBtn.tag = 0;
-        photoBtn.frame = CGRectMake(10, 10, 50, 50);
-        [photoBtn setTitle:@"照片" forState:UIControlStateNormal];
-        [photoBtn addTarget:self action:@selector(chatMoreSelectViewClickedWithBtn:) forControlEvents:UIControlEventTouchUpInside];
-        [_chatMoreSelectView addSubview:photoBtn];
-        
-        UIButton* cameraBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        cameraBtn.tag = 1;
-        cameraBtn.frame = CGRectMake(70, 10, 50, 50);
-        [cameraBtn setTitle:@"拍摄" forState:UIControlStateNormal];
-        [cameraBtn addTarget:self action:@selector(chatMoreSelectViewClickedWithBtn:) forControlEvents:UIControlEventTouchUpInside];
-        [_chatMoreSelectView addSubview:cameraBtn];
     }
     return _chatMoreSelectView;
 }
 
-- (void)chatMoreSelectViewClickedWithBtn:(UIButton*)btn{
-    NSInteger index = btn.tag;
+- (void)chatMoreSelectViewClickedWithIndex:(NSInteger)index{
     self.camera = [RKCamera cameraWithType:index allowEdit:YES deleate:self presentViewController:self demandSize:CGSizeZero];
 }
 

@@ -9,7 +9,7 @@
 #import "ChatToolBar.h"
 
 @interface ChatToolBar ()<UITextViewDelegate>
-@property(nonatomic,strong)UIView* seperatorLine;
+@property(nonatomic,strong)UIView* topSeperatorLine;
 @property(nonatomic,strong)UIButton* addBtn;
 
 @property(nonatomic,strong)UILabel* placeLabel;
@@ -75,11 +75,9 @@
 -(UIButton *)addBtn{
     if (!_addBtn) {
         CGFloat x = CGRectGetMaxX(self.textView.frame)+15;
-        CGFloat y = CGRectGetMinY(self.textView.frame);
-        _addBtn = [[UIButton alloc] initWithFrame:CGRectMake(x, y, 35, 35)];
-        [_addBtn setTitle:@"添加" forState:UIControlStateNormal];
-        [_addBtn setTitleColor:BlueColor forState:UIControlStateNormal];
-        _addBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+        CGFloat y = CGRectGetMinY(self.textView.frame)+2;
+        _addBtn = [[UIButton alloc] initWithFrame:CGRectMake(x, y, 28, 28)];
+        [_addBtn setImage:[GetImagePath getImagePath:@"会话－加号"] forState:UIControlStateNormal];
         [_addBtn addTarget:self action:@selector(addBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addBtn;
@@ -99,12 +97,12 @@
     return _placeLabel;
 }
 
--(UIView *)seperatorLine{
-    if (!_seperatorLine) {
-        _seperatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0,kScreenWidth, 1)];
-        _seperatorLine.backgroundColor=seperatorLineColor;
+-(UIView *)topSeperatorLine{
+    if (!_topSeperatorLine) {
+        _topSeperatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0,kScreenWidth, 1)];
+        _topSeperatorLine.backgroundColor=seperatorLineColor;
     }
-    return _seperatorLine;
+    return _topSeperatorLine;
 }
 
 -(CGFloat)lastContentSizeHeight{
@@ -116,7 +114,7 @@
 
 -(void)setUp{
     self.backgroundColor=backColor;
-    [self addSubview:self.seperatorLine];
+    [self addSubview:self.topSeperatorLine];
     [self addSubview:self.textView];
     if (self.needAddBtn) [self addSubview:self.addBtn];
     [self.textView addSubview:self.placeLabel];

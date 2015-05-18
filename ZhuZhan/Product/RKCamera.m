@@ -38,7 +38,7 @@
     imagePickerController.sourceType=sourceType;
     imagePickerController.delegate=self;
     imagePickerController.allowsEditing=allowsEditing;
-    [presentViewController presentViewController:imagePickerController animated:NO completion:nil];
+    [presentViewController presentViewController:imagePickerController animated:YES completion:nil];
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
@@ -48,7 +48,7 @@
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [self cameraFinishWithPicker:picker info:nil isCancel:YES];
 }
-
+ 
 -(void)cameraFinishWithPicker:(UIImagePickerController*)picker info:(NSDictionary*)info isCancel:(BOOL)isCancel{
     [picker dismissViewControllerAnimated:YES completion:nil];
     if ([self.delegate respondsToSelector:@selector(cameraWillFinishWithLowQualityImage:originQualityImage:isCancel:)]) {
