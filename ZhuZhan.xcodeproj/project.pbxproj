@@ -1263,6 +1263,8 @@
 		D31BBB9A1AD3E3F500919B8B /* SWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D31BBB921AD3E3F500919B8B /* SWTableViewCell.m */; };
 		D31BBB9B1AD3E3F500919B8B /* SWUtilityButtonTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D31BBB941AD3E3F500919B8B /* SWUtilityButtonTapGestureRecognizer.m */; };
 		D31BBB9C1AD3E3F500919B8B /* SWUtilityButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = D31BBB961AD3E3F500919B8B /* SWUtilityButtonView.m */; };
+		D31C0DFB1B0984E30014A5E4 /* ChatMessageImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D31C0DFA1B0984E30014A5E4 /* ChatMessageImageView.m */; };
+		D31F2B931B05E67E006BD6A8 /* ChatImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D31F2B921B05E67E006BD6A8 /* ChatImageCell.m */; };
 		D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */; };
 		D3376CFB1AC2549C00738B5F /* UserOrCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376CFA1AC2549C00738B5F /* UserOrCompanyModel.m */; };
 		D3376CFE1AC25D6100738B5F /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376CFD1AC25D6100738B5F /* CategoryModel.m */; };
@@ -3378,6 +3380,10 @@
 		D31BBB941AD3E3F500919B8B /* SWUtilityButtonTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonTapGestureRecognizer.m; sourceTree = "<group>"; };
 		D31BBB951AD3E3F500919B8B /* SWUtilityButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonView.h; sourceTree = "<group>"; };
 		D31BBB961AD3E3F500919B8B /* SWUtilityButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonView.m; sourceTree = "<group>"; };
+		D31C0DF91B0984E30014A5E4 /* ChatMessageImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageImageView.h; sourceTree = "<group>"; };
+		D31C0DFA1B0984E30014A5E4 /* ChatMessageImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageImageView.m; sourceTree = "<group>"; };
+		D31F2B911B05E67E006BD6A8 /* ChatImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatImageCell.h; sourceTree = "<group>"; };
+		D31F2B921B05E67E006BD6A8 /* ChatImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImageCell.m; sourceTree = "<group>"; };
 		D32C88CD19D79E0800D1BA1D /* PersonalCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterModel.h; sourceTree = "<group>"; };
 		D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterModel.m; sourceTree = "<group>"; };
 		D3376CF91AC2549C00738B5F /* UserOrCompanyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserOrCompanyModel.h; sourceTree = "<group>"; };
@@ -5936,6 +5942,7 @@
 		5B8A2CD21AAEE0AD00C8F9DE /* ChatDetail */ = {
 			isa = PBXGroup;
 			children = (
+				D31C0DF51B0984BD0014A5E4 /* ChatMessageImage */,
 				5B8A2CD91AAEE0AD00C8F9DE /* ChatViewController.h */,
 				5B8A2CDA1AAEE0AD00C8F9DE /* ChatViewController.m */,
 				5B8A2CD71AAEE0AD00C8F9DE /* ChatTableViewCell.h */,
@@ -5951,6 +5958,8 @@
 				5BF31B591AB025FD00DA87F5 /* AddGroupMember */,
 				D3F897071AD8EB2F00DE3AB4 /* MessageTableView.h */,
 				D3F897081AD8EB2F00DE3AB4 /* MessageTableView.m */,
+				D31F2B911B05E67E006BD6A8 /* ChatImageCell.h */,
+				D31F2B921B05E67E006BD6A8 /* ChatImageCell.m */,
 			);
 			path = ChatDetail;
 			sourceTree = "<group>";
@@ -6554,6 +6563,15 @@
 				D31BBB961AD3E3F500919B8B /* SWUtilityButtonView.m */,
 			);
 			path = PodFiles;
+			sourceTree = "<group>";
+		};
+		D31C0DF51B0984BD0014A5E4 /* ChatMessageImage */ = {
+			isa = PBXGroup;
+			children = (
+				D31C0DF91B0984E30014A5E4 /* ChatMessageImageView.h */,
+				D31C0DFA1B0984E30014A5E4 /* ChatMessageImageView.m */,
+			);
+			path = ChatMessageImage;
 			sourceTree = "<group>";
 		};
 		D35163CF1A67903F000051F4 /* 默认图像 */ = {
@@ -8622,6 +8640,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D31C0DFB1B0984E30014A5E4 /* ChatMessageImageView.m in Sources */,
 				5B70CC391AC8EF7300FC8353 /* RKMuchBtnAssistView.m in Sources */,
 				D3AC61EA19B961120015B62F /* SvGifView.m in Sources */,
 				D31BBB971AD3E3F500919B8B /* NSMutableArray+SWUtilityButtons.m in Sources */,
@@ -8960,6 +8979,7 @@
 				0426C27B19922D5A00CD8822 /* GPUImageHistogramGenerator.m in Sources */,
 				0426C22E19922D5A00CD8822 /* FaceLoginViewController.m in Sources */,
 				5B656CFC19932E36007D79A8 /* QuadCurveMenuItem.m in Sources */,
+				D31F2B931B05E67E006BD6A8 /* ChatImageCell.m in Sources */,
 				0426C27A19922D5A00CD8822 /* GPUImageHistogramFilter.m in Sources */,
 				D3B51BC41ABA96A600C7D57A /* AddMarkView.m in Sources */,
 				0426C23A19922D5A00CD8822 /* AFSecurityPolicy.m in Sources */,

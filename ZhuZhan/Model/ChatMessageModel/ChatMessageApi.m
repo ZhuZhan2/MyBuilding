@@ -265,4 +265,28 @@
     }];
 
 }
+
++ (NSURLSessionDataTask *)AddImageWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block data:(NSData *)data dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"api/chatlog/image"];
+    NSLog(@"=====%@",dic);
+    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:data name:@"file" fileName:@"chatImage_0.jpg" mimeType:@"image/jpg"];
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"responseObject ==> %@",responseObject);
+        if(block){
+            block([NSMutableArray arrayWithObjects:responseObject, nil], nil);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
 @end

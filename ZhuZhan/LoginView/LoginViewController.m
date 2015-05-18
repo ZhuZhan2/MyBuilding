@@ -172,7 +172,7 @@
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:_userNameTextField.text forKey:@"userNameOrCellPhone"];
     [dic setValue:[MD5 md5HexDigest:_passWordTextField.text] forKey:@"password"];
-    [dic setValue:@"02" forKey:@"deviceType"];
+    [dic setValue:@"03" forKey:@"deviceType"];
     [LoginModel LoginWithBlock:^(NSMutableArray *posts, NSError *error) {
         self.loginBtn.enabled=YES;
         if(!error){
