@@ -15,23 +15,9 @@
         [self.contentView addSubview:self.timeLabel];
         [self.contentView addSubview:self.userHeadBtn];
         [self.contentView addSubview:self.userNameLabel];
+        //[self.contentView addSubview:self.messageImageView];
     }
     return self;
-}
-
--(void)layoutSubviews{
-    CGFloat topDistance=8+CGRectGetHeight(self.timeLabel.frame);
-    
-    CGFloat userImageDistanceFromSide=14+self.userHeadBtn.frame.size.width*0.5;
-    self.userHeadBtn.center=CGPointMake((self.isSelf?kScreenWidth-userImageDistanceFromSide:userImageDistanceFromSide), topDistance+self.userHeadBtn.frame.size.height*0.5);
-    
-    self.userNameLabel.alpha=!self.isSelf;
-    self.userNameLabel.frame=self.userNameLabel.alpha?CGRectMake(57, topDistance, 250, 15):CGRectZero;
-    
-    CGFloat chatSideDistance=(kScreenWidth-100)*0.5;
-    CGFloat chatContentViceCenterX=self.isSelf?(kScreenWidth-chatSideDistance-self.messageImageView.frame.size.width*0.5)+55:(chatSideDistance+self.messageImageView.frame.size.width*0.5)-55;
-    CGFloat chatContentViceCenterY=topDistance+(self.userNameLabel.alpha?8+CGRectGetHeight(self.userNameLabel.frame):0)+self.messageImageView.frame.size.height*.5;
-    self.messageImageView.center=CGPointMake(chatContentViceCenterX, chatContentViceCenterY);
 }
 
 -(UILabel *)timeLabel{
@@ -67,6 +53,7 @@
 
 -(ChatMessageImageView *)chatMessageImageView{
     if(!_chatMessageImageView){
+        NSLog(@"%f",self.messageImageView.frame.size.width);
         _chatMessageImageView = [[ChatMessageImageView alloc] initWithFrame:self.messageImageView.frame isSelf:self.isSelf];
     }
     return _chatMessageImageView;
@@ -80,8 +67,23 @@
 }
 
 -(void)setModel:(ChatMessageModel *)model{
+    [self.chatMessageImageView removeFromSuperview];
+    self.chatMessageImageView = nil;
     CGRect frame = [self frame];
     self.isSelf = model.a_type;
+    
+    CGFloat topDistance=8+CGRectGetHeight(self.timeLabel.frame);
+    
+    CGFloat userImageDistanceFromSide=14+self.userHeadBtn.frame.size.width*0.5;
+    self.userHeadBtn.center=CGPointMake((self.isSelf?kScreenWidth-userImageDistanceFromSide:userImageDistanceFromSide), topDistance+self.userHeadBtn.frame.size.height*0.5);
+    
+    self.userNameLabel.alpha=!self.isSelf;
+    self.userNameLabel.frame=self.userNameLabel.alpha?CGRectMake(57, topDistance, 250, 15):CGRectZero;
+    
+    CGFloat chatSideDistance=(kScreenWidth-100)*0.5;
+    CGFloat chatContentViceCenterX=self.isSelf?(kScreenWidth-chatSideDistance-self.messageImageView.frame.size.width*0.5)+55:(chatSideDistance+self.messageImageView.frame.size.width*0.5)-55;
+    CGFloat chatContentViceCenterY=topDistance+(self.userNameLabel.alpha?8+CGRectGetHeight(self.userNameLabel.frame):0)+self.messageImageView.frame.size.height*.5;
+    self.messageImageView.center=CGPointMake(chatContentViceCenterX, chatContentViceCenterY);
     
     [self.messageImageView sd_setImageWithURL:[NSURL URLWithString:model.a_message] placeholderImage:[GetImagePath getImagePath:@"首页_16"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.imageWidth = image.size.width/2;
@@ -90,7 +92,7 @@
         temp.size.width = self.imageWidth;
         temp.size.height = self.imageHeight;
         self.messageImageView.frame = temp;
-        
+
         [self.contentView addSubview:self.chatMessageImageView];
         if(!error){
             self.chatMessageImageView.image = image;
@@ -98,12 +100,11 @@
             self.chatMessageImageView.image = [GetImagePath getImagePath:@"首页_16"];
         }
     }];
+    
     self.timeLabel.text=model.a_time;
     [self.userHeadBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:model.a_avatarUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"未设置"]];
     self.userNameLabel.text=model.a_name;
-//    frame.size.height = 20 + self.userNameLabel.frame.origin.y + 15 + self.chatMessageImageView.frame.origin.y + self.chatMessageImageView.frame.size.height + 10;
-//    NSLog(@"height==>%f",frame.size.height);
-//    
-//    self.frame = frame;
+    frame.size.height = 65 + self.chatMessageImageView.frame.size.height;
+    self.frame = frame;
 }
 @end
