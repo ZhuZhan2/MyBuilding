@@ -72,14 +72,14 @@
     NSDictionary *dic = [httpResponse objectFromJSONString];
     NSLog(@"HTTP Response:\n%@", dic);
     if([dic[@"msgType"] isEqualToString:@"user"]){
-        if([dic[@"event"] isEqualToString:@"text"]){
+        if([dic[@"event"] isEqualToString:@"text"]||[dic[@"event"] isEqualToString:@"image"]){
             [self snedUserMessage:dic[@"chatlog"]];
         }else{
             [self alertError:dic[@"event"]];
         }
     }else if ([dic[@"msgType"] isEqualToString:@"group"]){
-        if([dic[@"event"] isEqualToString:@"text"]){
-            if([dic[@"event"] isEqualToString:@"text"]){
+        if([dic[@"event"] isEqualToString:@"text"]||[dic[@"event"] isEqualToString:@"image"]){
+            if([dic[@"event"] isEqualToString:@"text"]||[dic[@"event"] isEqualToString:@"image"]){
                 [self snedUserMessage:dic[@"chatlog"]];
             }else{
                 [self alertError:dic[@"event"]];

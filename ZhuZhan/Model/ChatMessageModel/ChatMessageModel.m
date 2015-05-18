@@ -23,7 +23,17 @@
     }else{
         self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"senderImageId"]];
     }
-    self.a_message = [ProjectStage ProjectStrStage:dict[@"content"]];
+    
+    if([dict[@"msgType"] isEqualToString:@"01"]){
+        self.a_message = [ProjectStage ProjectStrStage:dict[@"content"]];
+    }else{
+        if(![[ProjectStage ProjectStrStage:dict[@"content"]] isEqualToString:@""]){
+            self.a_message = [NSString stringWithFormat:@"%s%@",socketHttp,image([ProjectStage ProjectStrStage:dict[@"content"]], @"chatImage", @"200", @"200", @"")];
+        }else{
+            self.a_message = [ProjectStage ProjectStrStage:dict[@"content"]];
+        }
+    }
+    
     self.a_time = [ProjectStage ChatMessageTimeStage:dict[@"createdTime"]];
     self.a_userId = [ProjectStage ProjectStrStage:dict[@"sender"]];
     if([[LoginSqlite getdata:@"userId"] isEqualToString:dict[@"sender"]]){
@@ -33,5 +43,6 @@
     }
     self.a_groupId = [ProjectStage ProjectStrStage:dict[@"groupId"]];
     self.a_groupName = [ProjectStage ProjectStrStage:dict[@"groupName"]];
+    self.a_msgType = [ProjectStage ProjectStrStage:dict[@"msgType"]];
 }
 @end

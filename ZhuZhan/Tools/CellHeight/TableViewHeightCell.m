@@ -30,6 +30,7 @@
     }
     cell = block((id<CellHeightDelegate>)cell);
     CGSize size = cell.frame.size;
+    NSLog(@"===>%f",size.height);
     size.width = MAX(defaultSize.width, size.width);
     return size;
 }

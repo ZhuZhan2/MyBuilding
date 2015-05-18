@@ -9,7 +9,7 @@
 #import "ChatNetAPIClient.h"
 #import "LoginSqlite.h"
 @implementation ChatNetAPIClient
-static NSString * const AFAppDotNetAPIBaseURLString = @socketHttp;//开发用
+static NSString * const AFAppDotNetAPIBaseURLString = @socketHttp;
 
 + (instancetype)sharedClient {
     static ChatNetAPIClient *_sharedClient = nil;

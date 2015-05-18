@@ -32,4 +32,7 @@
 
 //聊天群详情
 + (NSURLSessionDataTask *)GetInfoWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block groupId:(NSString *)groupId noNetWork:(void(^)())noNetWork;
+
+//聊天上传图片
++ (NSURLSessionDataTask *)AddImageWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block data:(NSData *)data dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 @end

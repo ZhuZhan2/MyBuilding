@@ -44,6 +44,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+    
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.window.bounds];
     imageView.image = [GetImagePath getImagePath:@"loading"];
     [self.window addSubview:imageView];

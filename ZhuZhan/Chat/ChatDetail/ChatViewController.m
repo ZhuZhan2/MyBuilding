@@ -22,6 +22,7 @@
 #import "ProjectStage.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
+#import "ChatImageCell.h"
 @interface ChatViewController ()<UIAlertViewDelegate,MessageTableViewDelegate,ChatTableViewCellDelegate>
 @property (nonatomic, strong)NSMutableArray* models;
 @property(nonatomic,strong)MessageTableView *tableView;
@@ -227,27 +228,49 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     ChatMessageModel* model=self.models[indexPath.row];
-    NSString* content=model.a_message;
-    return [ChatTableViewCell carculateTotalHeightWithContentStr:content isSelf:model.a_type];
+    if([model.a_msgType isEqualToString:@"01"]){
+        NSString* content=model.a_message;
+        return [ChatTableViewCell carculateTotalHeightWithContentStr:content isSelf:model.a_type];
+
+    }else{
+//        CGSize defaultSize = DEFAULT_CELL_SIZE;
+//        CGSize cellSize = [ChatImageCell sizeForCellWithDefaultSize:defaultSize setupCellBlock:^id(id<CellHeightDelegate> cellToSetup) {
+//            [((ChatImageCell *)cellToSetup) setModel:model];
+//            return cellToSetup;
+//        }];
+//        return cellSize.height;
+        return 200;
+    }
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ChatTableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell=[[ChatTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
     ChatMessageModel* dataModel=self.models[indexPath.row];
-    ChatModel* model=[[ChatModel alloc]init];
-    model.userNameStr=dataModel.a_name;
-    model.chatContent=dataModel.a_message;
-    model.isSelf=dataModel.a_type;
-    model.time=dataModel.a_time;
-    model.userImageStr=dataModel.a_avatarUrl;
-    model.ID = dataModel.a_userId;
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    cell.model=model;
-    cell.delegate = self;
-    return cell;
+    if([dataModel.a_msgType isEqualToString:@"01"]){
+        ChatTableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (!cell) {
+            cell=[[ChatTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        }
+        ChatModel* model=[[ChatModel alloc]init];
+        model.userNameStr=dataModel.a_name;
+        model.chatContent=dataModel.a_message;
+        model.isSelf=dataModel.a_type;
+        model.time=dataModel.a_time;
+        model.userImageStr=dataModel.a_avatarUrl;
+        model.ID = dataModel.a_userId;
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        cell.model=model;
+        cell.delegate = self;
+        return cell;
+    }else{
+        ChatImageCell* cell=[tableView dequeueReusableCellWithIdentifier:@"ChatImageCell"];
+        if (!cell) {
+            cell=[[ChatImageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ChatImageCell"];
+            cell.clipsToBounds=YES;
+        }
+        cell.model = dataModel;
+        cell.selectionStyle = NO;
+        return cell;
+    }
 }
 
 -(void)chatToolSendBtnClickedWithContent:(NSString *)content{
