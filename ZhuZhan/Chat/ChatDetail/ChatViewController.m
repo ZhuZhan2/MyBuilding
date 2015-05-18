@@ -119,8 +119,6 @@
             NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:
                                    NSMakeRange(0,[posts count])];
             [self.models insertObjects:posts atIndexes:indexes];
-            ChatMessageModel* dataModel=[posts firstObject];
-            self.lastId = dataModel.a_id;
             [self.tableView reloadData];
             //[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.models.count-4 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
         }else{
@@ -151,9 +149,7 @@
 }
 
 -(void)newMessage:(NSNotification*)noti{
-    NSLog(@"noti=%@",noti.userInfo[@"message"]);
     ChatMessageModel* dataModel=noti.userInfo[@"message"];
-    NSLog(@"%@",self.type);
     if([self.type isEqualToString:@"01"]){
         if([self.contactId isEqualToString:dataModel.a_userId]){
             [self.models addObject:noti.userInfo[@"message"]];
@@ -225,13 +221,12 @@
         return [ChatTableViewCell carculateTotalHeightWithContentStr:content isSelf:model.a_type];
 
     }else{
-//        CGSize defaultSize = DEFAULT_CELL_SIZE;
-//        CGSize cellSize = [ChatImageCell sizeForCellWithDefaultSize:defaultSize setupCellBlock:^id(id<CellHeightDelegate> cellToSetup) {
-//            [((ChatImageCell *)cellToSetup) setModel:model];
-//            return cellToSetup;
-//        }];
-//        return cellSize.height;
-        return 200;
+        CGSize defaultSize = DEFAULT_CELL_SIZE;
+        CGSize cellSize = [ChatImageCell sizeForCellWithDefaultSize:defaultSize setupCellBlock:^id(id<CellHeightDelegate> cellToSetup) {
+            [((ChatImageCell *)cellToSetup) setModel:model];
+            return cellToSetup;
+        }];
+        return cellSize.height;
     }
 }
 
