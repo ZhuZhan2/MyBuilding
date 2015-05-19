@@ -299,7 +299,9 @@
     [app.socket readDataWithTimeout:-1 tag:0];
 }
 
-- ch
+- (void)cameraWillFinishWithLowQualityImage:(UIImage *)lowQualityimage originQualityImage:(UIImage *)originQualityImage isCancel:(BOOL)isCancel{
+    NSLog(@"lowQualityimage=%@",lowQualityimage);
+}
 
 -(void)addModelWithContent:(NSString*)content{
     ChatMessageModel* model=[[ChatMessageModel alloc]init];
