@@ -9,12 +9,14 @@
 #import "ChatToolBar.h"
 
 @interface ChatToolBar ()<UITextViewDelegate>
-@property(nonatomic,strong)UIView* seperatorLine;
-@property(nonatomic,strong)UITextView* textView;
+@property(nonatomic,strong)UIView* topSeperatorLine;
+@property(nonatomic,strong)UIButton* addBtn;
 
 @property(nonatomic,strong)UILabel* placeLabel;
 
 @property(nonatomic)CGFloat lastContentSizeHeight;
+
+@property(nonatomic)BOOL needAddBtn;
 @end
 
 #define kChatToolInitialHeight 51
@@ -29,7 +31,13 @@
 
 @implementation ChatToolBar
 +(ChatToolBar*)chatToolBar{
-    ChatToolBar* chatToolBar=[[ChatToolBar alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kChatToolInitialHeight)];
+    return [ChatToolBar chatToolBarWithNeedAddBtn:NO];
+}
+
++(ChatToolBar*)chatToolBarWithNeedAddBtn:(BOOL)needAddBtn{
+    ChatToolBar* chatToolBar = [[ChatToolBar alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kChatToolInitialHeight)];
+    chatToolBar.needAddBtn = needAddBtn;
+    chatToolBar.backgroundColor = [UIColor redColor];
     [chatToolBar setUp];
     return chatToolBar;
 }
@@ -50,24 +58,52 @@
 
 -(UITextView *)textView{
     if (!_textView) {
-        _textView=[[UITextView alloc]initWithFrame:CGRectMake(0, 0, kChatTextViewWidth, kChatTextViewInitialHeight)];
+        _textView=[[UITextView alloc]initWithFrame:CGRectZero];
         _textView.layer.cornerRadius=3;
         _textView.returnKeyType = UIReturnKeySend;
-        CGFloat x=CGRectGetWidth(self.frame)*0.5;
-        CGFloat y=CGRectGetHeight(self.frame)*0.5;
-        _textView.center=CGPointMake(x, y);
         _textView.delegate=self;
         _textView.enablesReturnKeyAutomatically = YES;
+        
+        CGFloat x = kSideDistance;
+        CGFloat height = kChatTextViewInitialHeight;
+        CGFloat y=(CGRectGetHeight(self.frame)-height)/2;
+        CGFloat width = kChatTextViewWidth-(self.needAddBtn?50:0);
+        _textView.frame = CGRectMake(x, y, width, height);
     }
     return _textView;
 }
 
--(UIView *)seperatorLine{
-    if (!_seperatorLine) {
-        _seperatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0,kScreenWidth, 1)];
-        _seperatorLine.backgroundColor=seperatorLineColor;
+-(UIButton *)addBtn{
+    if (!_addBtn) {
+        CGFloat x = CGRectGetMaxX(self.textView.frame)+15;
+        CGFloat y = CGRectGetMinY(self.textView.frame)+2;
+        _addBtn = [[UIButton alloc] initWithFrame:CGRectMake(x, y, 28, 28)];
+        [_addBtn setImage:[GetImagePath getImagePath:@"会话－加号"] forState:UIControlStateNormal];
+        [_addBtn addTarget:self action:@selector(addBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _seperatorLine;
+    return _addBtn;
+}
+
+-(UILabel *)placeLabel{
+    if (!_placeLabel) {
+        NSString* placeText=[NSString stringWithFormat:@"请输入内容..."];
+        CGFloat height=CGRectGetHeight(self.textView.frame);
+        _placeLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, 0, 200, height)];
+        
+        _placeLabel.font=textFont;
+        _placeLabel.textColor=AllNoDataColor;
+        _placeLabel.text=placeText;
+        _placeLabel.backgroundColor=[UIColor clearColor];
+    }
+    return _placeLabel;
+}
+
+-(UIView *)topSeperatorLine{
+    if (!_topSeperatorLine) {
+        _topSeperatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0,kScreenWidth, 1)];
+        _topSeperatorLine.backgroundColor=seperatorLineColor;
+    }
+    return _topSeperatorLine;
 }
 
 -(CGFloat)lastContentSizeHeight{
@@ -79,10 +115,17 @@
 
 -(void)setUp{
     self.backgroundColor=backColor;
-    [self addSubview:self.seperatorLine];
+    [self addSubview:self.topSeperatorLine];
     [self addSubview:self.textView];
+    if (self.needAddBtn) [self addSubview:self.addBtn];
     [self.textView addSubview:self.placeLabel];
     [self.textView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+-(void)addBtnClicked{
+    if ([self.delegate respondsToSelector:@selector(chatToolBarAddBtnClicked)]) {
+        [self.delegate chatToolBarAddBtnClicked];
+    }
 }
 
 -(void)textViewDidChange:(UITextView *)textView{
@@ -135,20 +178,6 @@
     }
 }
 
--(UILabel *)placeLabel{
-    if (!_placeLabel) {
-        NSString* placeText=[NSString stringWithFormat:@"请输入内容..."];
-        CGFloat height=CGRectGetHeight(self.textView.frame);
-        _placeLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, 0, 200, height)];
-        
-        _placeLabel.font=textFont;
-        _placeLabel.textColor=AllNoDataColor;
-        _placeLabel.text=placeText;
-        _placeLabel.backgroundColor=[UIColor clearColor];
-    }
-    return _placeLabel;
-}
-
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     if (object==self.textView) {
         NSLog(@"change==%lf,%lf",self.textView.frame.size.height,self.textView.contentSize.height);
@@ -158,7 +187,6 @@
 
 -(void)updateFrames{
     static CGFloat const orginContentSizeHeight=kChatTextViewInitialHeight;
-    //NSLog(@"orginContentSizeHeight==%lf,lastContentSizeHeight==%lf",orginContentSizeHeight,self.lastContentSizeHeight);
     CGFloat extraContentHeight=self.textView.contentSize.height-self.lastContentSizeHeight;
     if (extraContentHeight<=5&&extraContentHeight>=-5) {
         return;
@@ -175,7 +203,6 @@
     if (self.textView.contentSize.height>maxSizeHeight) {
         extraHeight=maxSizeHeight-orginContentSizeHeight;
     }
-    //NSLog(@"extraHeight==%lf",extraHeight);
     
     {
         CGFloat leftDownHeight=CGRectGetMaxY(self.frame);
@@ -187,7 +214,7 @@
     }
     
     {
-        CGFloat needHeight=kChatTextViewInitialHeight+extraHeight;
+        CGFloat needHeight=orginContentSizeHeight+extraHeight;
         CGRect frame=self.textView.frame;
         frame.size.height=needHeight;
         self.textView.frame=frame;

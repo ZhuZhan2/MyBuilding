@@ -60,7 +60,10 @@
                 [imageView removeFromSuperview];
             }
         }
-    } userVersion:@"1.0.0" deviceType:@"03" downloadType:@"01" noNetWork:nil];
+    } userVersion:@"1.0.0" deviceType:@"03" downloadType:@"01" noNetWork:^{
+        [self startCode];
+        [imageView removeFromSuperview];
+    }];
     return YES;
 }
 
@@ -74,7 +77,6 @@
     NSString* urlStr_299 = @"https://app.mybuilding.cn/download/mobile-download.html";
     NSURL* url = [NSURL URLWithString:urlStr_299];
     
-//    url = [NSURL URLWithString:@"itms-apps://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftwareUpdate?id=692579125&mt=8"];
     [[UIApplication sharedApplication] openURL:url];
     [self showForcedAlertView];
 }
