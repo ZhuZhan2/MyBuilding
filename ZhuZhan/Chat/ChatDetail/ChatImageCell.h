@@ -10,7 +10,12 @@
 #import "ChatMessageModel.h"
 #import "ChatMessageImageView.h"
 
+@protocol ChatImageCellDelegate <NSObject>
+-(void)gotoBigImage:(NSInteger)index;
+@end
+
 @interface ChatImageCell : TableViewHeightCell
+@property(nonatomic,strong)NSIndexPath *indexPath;
 @property(nonatomic,strong)UILabel *timeLabel;
 @property(nonatomic,strong)UIButton *userHeadBtn;
 @property(nonatomic,strong)UILabel *userNameLabel;
@@ -21,5 +26,5 @@
 @property(nonatomic)CGFloat chatContentViceCenterY;
 @property(nonatomic)BOOL isSelf;
 @property(nonatomic,strong)ChatMessageModel *model;
-
+@property(nonatomic,weak)id<ChatImageCellDelegate>delegate;
 @end

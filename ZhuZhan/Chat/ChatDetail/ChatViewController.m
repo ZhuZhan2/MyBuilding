@@ -22,13 +22,15 @@
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "ChatImageCell.h"
-@interface ChatViewController ()<UIAlertViewDelegate,ChatTableViewCellDelegate>
+#import "VIPhotoView.h"
+@interface ChatViewController ()<UIAlertViewDelegate,ChatTableViewCellDelegate,ChatImageCellDelegate,VIPhotoViewDelegate>
 @property (nonatomic, strong)NSMutableArray* models;
 @property(nonatomic,strong)RKBaseTableView *tableView;
 @property(nonatomic)int startIndex;
 @property(nonatomic,strong)NSString *lastId;
 @property (nonatomic)NSInteger popViewControllerIndex;
 @property(nonatomic,strong)AppDelegate *app;
+@property(nonatomic,strong)VIPhotoView *photoView;
 @end
 
 @implementation ChatViewController
@@ -249,7 +251,9 @@
             cell.clipsToBounds=YES;
         }
         cell.model = dataModel;
+        cell.indexPath = indexPath;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegate = self;
         return cell;
     }
 }
@@ -381,5 +385,23 @@
     personalVC.fromViewName = @"chatView";
     personalVC.chatType = self.type;
     [self.navigationController pushViewController:personalVC animated:YES];
+}
+
+-(void)gotoBigImage:(NSInteger)index{
+    ChatMessageModel *model = self.models[index];
+    if(!self.photoView){
+        self.photoView = [[VIPhotoView alloc] initWithFrame:self.view.frame imageUrl:model.a_bigImageUrl];
+        self.photoView.bigImageDelegate = self;
+        self.photoView.autoresizingMask = (1 << 6) -1;
+        self.photoView.backgroundColor = [UIColor blackColor];
+        [self.view addSubview:self.photoView];
+        self.navigationController.navigationBarHidden = YES;
+    }
+}
+
+-(void)closeBigImage{
+    [self.photoView removeFromSuperview];
+    self.photoView = nil;
+    self.navigationController.navigationBarHidden = NO;
 }
 @end

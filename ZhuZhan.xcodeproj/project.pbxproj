@@ -1573,6 +1573,7 @@
 		D3DBCE591AC8DF0C00C9FEDE /* CommissionBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE581AC8DF0C00C9FEDE /* CommissionBaseViewController.m */; };
 		D3DBCE5C1AC8E1A400C9FEDE /* ProvisionalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE5B1AC8E1A400C9FEDE /* ProvisionalViewController.m */; };
 		D3DBCE5F1AC8E77A00C9FEDE /* StartManView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE5E1AC8E77A00C9FEDE /* StartManView.m */; };
+		D3DCB9581B0B1BFB005CC798 /* VIPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB9571B0B1BFB005CC798 /* VIPhotoView.m */; };
 		D3DCDACA1ADBA66C0029DB95 /* GetAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCDAC91ADBA66C0029DB95 /* GetAddressBook.m */; };
 		D3E0E94B1A398A3600A41D42 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3E0E94A1A398A3600A41D42 /* Settings.bundle */; };
 		D3E1AAFD1A7648FC00BFC6E1 /* Shape-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E1AAFB1A7648FC00BFC6E1 /* Shape-1.png */; };
@@ -3820,6 +3821,8 @@
 		D3DBCE5B1AC8E1A400C9FEDE /* ProvisionalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvisionalViewController.m; sourceTree = "<group>"; };
 		D3DBCE5D1AC8E77A00C9FEDE /* StartManView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartManView.h; sourceTree = "<group>"; };
 		D3DBCE5E1AC8E77A00C9FEDE /* StartManView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartManView.m; sourceTree = "<group>"; };
+		D3DCB9561B0B1BFB005CC798 /* VIPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPhotoView.h; sourceTree = "<group>"; };
+		D3DCB9571B0B1BFB005CC798 /* VIPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPhotoView.m; sourceTree = "<group>"; };
 		D3DCDAC81ADBA66C0029DB95 /* GetAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAddressBook.h; sourceTree = "<group>"; };
 		D3DCDAC91ADBA66C0029DB95 /* GetAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAddressBook.m; sourceTree = "<group>"; };
 		D3E0E94A1A398A3600A41D42 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -4129,6 +4132,7 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3DCB9551B0B1BFB005CC798 /* VIPhotoView */,
 				D3D08FFF1AF86CC900C8AC55 /* MarketScrollView */,
 				D3D4E7401AE62B84001BF0A9 /* ErrorCode */,
 				D3C0218B1AE09400000F1742 /* CellHeight */,
@@ -7400,6 +7404,15 @@
 			path = BaseView;
 			sourceTree = "<group>";
 		};
+		D3DCB9551B0B1BFB005CC798 /* VIPhotoView */ = {
+			isa = PBXGroup;
+			children = (
+				D3DCB9561B0B1BFB005CC798 /* VIPhotoView.h */,
+				D3DCB9571B0B1BFB005CC798 /* VIPhotoView.m */,
+			);
+			path = VIPhotoView;
+			sourceTree = "<group>";
+		};
 		D3DCDAC71ADBA66C0029DB95 /* GetAddressBook */ = {
 			isa = PBXGroup;
 			children = (
@@ -8691,6 +8704,7 @@
 				5BB9A53D1AB6F84300B5B2D8 /* AskPriceViewController.m in Sources */,
 				5B5836D71AD771AF00F8E7C3 /* RecommendFriendSearchController.m in Sources */,
 				D35E12441ABD68B5007C6726 /* CatoryTableViewCell.m in Sources */,
+				D3DCB9581B0B1BFB005CC798 /* VIPhotoView.m in Sources */,
 				0426C24619922D5A00CD8822 /* GPUImageAmatorkaFilter.m in Sources */,
 				D3D6B7421AD6A51500C8BF91 /* ChatNetAPIClient.m in Sources */,
 				0426C2EB19922D5A00CD8822 /* FaceppTrainer.m in Sources */,

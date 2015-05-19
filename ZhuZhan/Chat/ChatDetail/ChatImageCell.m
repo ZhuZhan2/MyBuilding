@@ -51,8 +51,10 @@
 
 -(ChatMessageImageView *)chatMessageImageView{
     if(!_chatMessageImageView){
-        NSLog(@"===>%f",self.imageWidth);
         _chatMessageImageView = [[ChatMessageImageView alloc] initWithFrame:CGRectMake(self.chatContentViceCenterX, self.chatContentViceCenterY, self.imageWidth, self.imageHeight) isSelf:self.isSelf];
+        _chatMessageImageView.userInteractionEnabled=YES;
+        UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onClickImage)];
+        [_chatMessageImageView addGestureRecognizer:singleTap];
     }
     return _chatMessageImageView;
 }
@@ -80,8 +82,8 @@
     
     self.chatContentViceCenterX=self.isSelf?(kScreenWidth-chatSideDistance-self.imageWidth)+55:chatSideDistance-55;
     self.chatContentViceCenterY=topDistance+(self.userNameLabel.alpha?8+CGRectGetHeight(self.userNameLabel.frame):0);
-    
     self.timeLabel.text=model.a_time;
+    
     [self.userHeadBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:model.a_avatarUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"未设置"]];
     self.userNameLabel.text=model.a_name;
     
@@ -89,10 +91,17 @@
     if(model.a_isLocal){
         self.chatMessageImageView.image = model.a_localImage;
     }else{
-        NSLog(@"%@",model.a_message);
         [self.chatMessageImageView sd_setImageWithURL:[NSURL URLWithString:model.a_message] placeholderImage:[GetImagePath getImagePath:@"首页_16"]];
     }
-    
-    //[self.chatMessageImageView sd_setImageWithURL:[NSURL URLWithString:model.a_message] placeholderImage:[GetImagePath getImagePath:@"首页_16"]];
+}
+
+-(void)setIndexPath:(NSIndexPath *)indexPath{
+    _indexPath = indexPath;
+}
+
+-(void)onClickImage{
+    if([self.delegate respondsToSelector:@selector(gotoBigImage:)]){
+        [self.delegate gotoBigImage:self.indexPath.row];
+    }
 }
 @end

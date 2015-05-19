@@ -49,6 +49,9 @@
 //一期生产服务器
 //#define  serverAddress "http://apis.mybuilding.cn:15427/WebService"
 
+//分支测试服
+//#define serverAddress "http://10.1.5.104:7070/server/"
+
 
 /*************************************************************/
 //正式socket连接地址
@@ -67,6 +70,10 @@
 #define socketServer "10.1.5.104"
 #define socketPort 44455
 
+//分支socket连接地址
+//#define socketServer "10.1.5.104"
+//#define socketPort 4455
+
 //蒋慧吉本机socket连接地址
 //#define socketServer "10.1.1.80"
 //#define socketPort 44455
@@ -82,6 +89,9 @@
 
 //开发聊天服务器
 #define socketHttp "http://10.1.5.104:8080/im"
+
+//分支聊天测试服
+//#define socketHttp "http://10.1.5.104:7070/im/"
 
 //蒋慧吉本机
 //#define socketHttp "http://10.1.1.80:9092/im"

@@ -29,8 +29,10 @@
     }else{
         if(![[ProjectStage ProjectStrStage:dict[@"content"]] isEqualToString:@""]){
             self.a_message = [NSString stringWithFormat:@"%s%@",socketHttp,image([ProjectStage ProjectStrStage:dict[@"content"]], @"chatImage", @"200", @"200", @"")];
+            self.a_bigImageUrl = [NSString stringWithFormat:@"%s%@",socketHttp,image([ProjectStage ProjectStrStage:dict[@"content"]], @"chatImage", @"", @"", @"")];
         }else{
             self.a_message = [ProjectStage ProjectStrStage:dict[@"content"]];
+            self.a_bigImageUrl = [ProjectStage ProjectStrStage:dict[@"content"]];
         }
     }
     
