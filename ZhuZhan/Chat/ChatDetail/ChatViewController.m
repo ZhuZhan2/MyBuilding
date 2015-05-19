@@ -299,6 +299,10 @@
     [app.socket readDataWithTimeout:-1 tag:0];
 }
 
+- (void)chatMoreSelectViewClickedWithIndex:(NSInteger)index{
+    self.camera = [RKCamera cameraWithType:index allowEdit:YES deleate:self presentViewController:self.view.window.rootViewController demandSize:CGSizeZero];
+}
+
 - (void)cameraWillFinishWithLowQualityImage:(UIImage *)lowQualityimage originQualityImage:(UIImage *)originQualityImage isCancel:(BOOL)isCancel{
     NSData *imageData = UIImageJPEGRepresentation(originQualityImage, 1);
     NSMutableArray *imageArr = [[NSMutableArray alloc] init];
