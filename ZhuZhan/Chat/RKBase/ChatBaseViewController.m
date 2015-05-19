@@ -10,9 +10,7 @@
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
 #import "SearchBarTableViewController.h"
-#import "RKCamera.h"
-#import "ChatMoreSelectView.h"
-@interface ChatBaseViewController()<RKCameraDelegate,ChatMoreSelectViewDelegate>
+@interface ChatBaseViewController()
 @property(nonatomic)BOOL searchBarIsTableViewHeader;
 
 @property(nonatomic)BOOL searchBarIsAnimating;
@@ -385,12 +383,11 @@
 }
 
 - (void)chatMoreSelectViewClickedWithIndex:(NSInteger)index{
-    self.camera = [RKCamera cameraWithType:index allowEdit:YES deleate:self presentViewController:self demandSize:CGSizeZero];
+    self.camera = [RKCamera cameraWithType:index allowEdit:YES deleate:self presentViewController:self.view.window.rootViewController demandSize:CGSizeZero];
 }
 
 - (void)cameraWillFinishWithLowQualityImage:(UIImage *)lowQualityimage originQualityImage:(UIImage *)originQualityImage isCancel:(BOOL)isCancel{
-    UIImage* image = originQualityImage;
-    NSLog(@"%@,%f,%f",image,image.size.width,image.size.height);
+    NSLog(@"Base cameraWillFinishWithLowQualityImage");
 }
 
 //所有复原
@@ -402,7 +399,8 @@
     if (chatToolBarIsFirstResponder) return;
     [UIView animateWithDuration:0.25 animations:^{
         CGRect frame = self.tableView.frame;
-        frame.origin.y = 64-(CGRectGetHeight(self.chatToolBar.frame)-[ChatToolBar orginChatToolBarHeight]);
+        frame.origin.y = 64+(CGRectGetHeight(self.stageChooseView.frame))-(CGRectGetHeight(self.chatToolBar.frame)-[ChatToolBar orginChatToolBarHeight]);
+        NSLog(@"y=%f,stage=%f,toolBar=%f",frame.origin.y,CGRectGetHeight(self.stageChooseView.frame),(CGRectGetHeight(self.chatToolBar.frame)-[ChatToolBar orginChatToolBarHeight]));
         self.tableView.frame = frame;
         
         frame = self.chatToolBar.frame;
