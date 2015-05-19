@@ -306,11 +306,11 @@
 }
 
 - (void)chatMoreSelectViewClickedWithIndex:(NSInteger)index{
-    self.camera = [RKCamera cameraWithType:index allowEdit:YES deleate:self presentViewController:self.view.window.rootViewController demandSize:CGSizeZero];
+    self.camera = [RKCamera cameraWithType:index allowEdit:YES deleate:self presentViewController:self.view.window.rootViewController demandSize:CGSizeMake(150, 100) needFullImage:NO];
 }
 
 - (void)cameraWillFinishWithLowQualityImage:(UIImage *)lowQualityimage originQualityImage:(UIImage *)originQualityImage isCancel:(BOOL)isCancel{
-    NSLog(@"lowQualityimage=%@",lowQualityimage);
+    NSLog(@"originQuality=%@,lowQualityimage=%@",originQualityImage,lowQualityimage);
 }
 
 -(void)addModelWithContent:(NSString*)content{
