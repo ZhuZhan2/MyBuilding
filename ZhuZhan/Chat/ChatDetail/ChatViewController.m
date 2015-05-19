@@ -300,7 +300,14 @@
 }
 
 - (void)cameraWillFinishWithLowQualityImage:(UIImage *)lowQualityimage originQualityImage:(UIImage *)originQualityImage isCancel:(BOOL)isCancel{
-    NSLog(@"lowQualityimage=%@",lowQualityimage);
+    NSData *imageData = UIImageJPEGRepresentation(originQualityImage, 1);
+    NSMutableArray *imageArr = [[NSMutableArray alloc] init];
+    [imageArr addObject:imageData];
+    [ChatMessageApi AddImageWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            
+        }
+    } dataArr:imageArr dic:[@{@"userId":self.contactId,@"userType":self.type} mutableCopy] noNetWork:nil];
 }
 
 -(void)addModelWithContent:(NSString*)content{

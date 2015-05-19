@@ -275,7 +275,7 @@
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/chatlog/image"];
     NSLog(@"=====%@",dic);
-    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    return [[ChatNetAPIClient sharedNewClient] POST:urlStr parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [dataArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             [formData appendPartWithFileData:obj name:@"file" fileName:[NSString stringWithFormat:@"chatImage_0_%lu.jpg",(unsigned long)idx] mimeType:@"image/jpg"];
         }];
