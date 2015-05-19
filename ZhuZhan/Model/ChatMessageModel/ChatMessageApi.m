@@ -266,7 +266,7 @@
 
 }
 
-+ (NSURLSessionDataTask *)AddImageWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block data:(NSData *)data dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
++ (NSURLSessionDataTask *)AddImageWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dataArr:(NSMutableArray *)dataArr dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
             noNetWork();
@@ -275,8 +275,10 @@
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/chatlog/image"];
     NSLog(@"=====%@",dic);
-    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:data name:@"file" fileName:@"chatImage_0.jpg" mimeType:@"image/jpg"];
+    return [[ChatNetAPIClient sharedNewClient] POST:urlStr parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [dataArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [formData appendPartWithFileData:obj name:@"file" fileName:[NSString stringWithFormat:@"chatImage_0_%lu.jpg",(unsigned long)idx] mimeType:@"image/jpg"];
+        }];
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"responseObject ==> %@",responseObject);
         if(block){

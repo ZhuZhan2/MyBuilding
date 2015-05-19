@@ -44,5 +44,40 @@
     self.a_groupId = [ProjectStage ProjectStrStage:dict[@"groupId"]];
     self.a_groupName = [ProjectStage ProjectStrStage:dict[@"groupName"]];
     self.a_msgType = [ProjectStage ProjectStrStage:dict[@"msgType"]];
+    self.a_isLocal = NO;
+    
+    CGSize size = [ChatMessageModel getImageWidth:dict[@"imageWidth"] height:dict[@"imageHeight"]];
+    self.a_imageWidth = size.width;
+    self.a_imageHeight = size.height;
+}
+
++(CGSize)getImageWidth:(NSString *)width height:(NSString *)height{
+    CGSize newSize ;
+    CGFloat newWidth = [width intValue];
+    CGFloat newHeight = [height intValue];
+    if(newWidth > newHeight){
+        if(newWidth>200){
+            newWidth = 200;
+        }
+        double origin = 200/[width floatValue];
+        newHeight = newHeight*origin;
+        newSize.width = (int)newWidth;
+        newSize.height = (int)newHeight;
+        return newSize;
+    }else if(newWidth == newHeight){
+        newSize.width = 200;
+        newSize.height = 200;
+        return newSize;
+    }else{
+        if(newHeight>200){
+            newHeight = 200;
+        }
+        CGFloat origin = 200/[height floatValue];
+        newWidth = newWidth*origin;
+        newSize.width = newWidth;
+        newSize.height = newHeight;
+        return newSize;
+    }
+    
 }
 @end
