@@ -299,6 +299,8 @@
     [app.socket readDataWithTimeout:-1 tag:0];
 }
 
+- ch
+
 -(void)addModelWithContent:(NSString*)content{
     ChatMessageModel* model=[[ChatMessageModel alloc]init];
     model.a_name=[LoginSqlite getdata:@"userName"];
