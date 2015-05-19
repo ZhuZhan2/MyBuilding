@@ -304,14 +304,19 @@
 }
 
 - (void)cameraWillFinishWithLowQualityImage:(UIImage *)lowQualityimage originQualityImage:(UIImage *)originQualityImage isCancel:(BOOL)isCancel{
-    NSData *imageData = UIImageJPEGRepresentation(originQualityImage, 1);
-    NSMutableArray *imageArr = [[NSMutableArray alloc] init];
-    [imageArr addObject:imageData];
-    [ChatMessageApi AddImageWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            
-        }
-    } dataArr:imageArr dic:[@{@"userId":self.contactId,@"userType":self.type} mutableCopy] noNetWork:nil];
+    if(!isCancel){
+        NSData *imageData = UIImageJPEGRepresentation(originQualityImage, 1);
+        NSMutableArray *imageArr = [[NSMutableArray alloc] init];
+        [imageArr addObject:imageData];
+        [ChatMessageApi AddImageWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                [self addModelWithImage:posts[0][@"data"]];
+                [imageArr removeAllObjects];
+            }
+        } dataArr:imageArr dic:[@{@"userId":self.contactId,@"userType":self.type} mutableCopy] noNetWork:nil];
+        originQualityImage = nil;
+        lowQualityimage = nil;
+    }
 }
 
 -(void)addModelWithContent:(NSString*)content{
@@ -320,13 +325,33 @@
     model.a_message=content;
     model.a_type=chatTypeMe;
     model.a_avatarUrl=[LoginSqlite getdata:@"userImage"];
-    
+    model.a_msgType = @"01";
     NSDate* date=[NSDate date];
     NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
     formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";
     NSString* time=[formatter stringFromDate:date];
     model.a_time=[ProjectStage ChatMessageTimeStage:time];
     
+    [self.models addObject:model];
+    [self appearNewData];
+}
+
+-(void)addModelWithImage:(NSDictionary *)dic{
+    ChatMessageModel *model = [[ChatMessageModel alloc] init];
+    model.a_name=[LoginSqlite getdata:@"userName"];
+    model.a_message = [NSString stringWithFormat:@"%s%@",socketHttp,image([ProjectStage ProjectStrStage:dic[@"fileId"]], @"chatImage", @"200", @"200", @"")];
+    model.a_type=chatTypeMe;
+    model.a_avatarUrl=[LoginSqlite getdata:@"userImage"];
+    model.a_isLocal = YES;
+    NSDate* date=[NSDate date];
+    NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
+    formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";
+    NSString* time=[formatter stringFromDate:date];
+    model.a_time=[ProjectStage ChatMessageTimeStage:time];
+    CGSize size = [ChatMessageModel getImageWidth:dic[@"imageWidth"] height:dic[@"imageHeight"]];
+    model.a_imageWidth = size.width;
+    model.a_imageHeight = size.height;
+    model.a_msgType = @"02";
     [self.models addObject:model];
     [self appearNewData];
 }

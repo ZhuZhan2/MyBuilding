@@ -22,7 +22,10 @@ typedef enum {
 @property(nonatomic,strong)NSString *a_groupId;
 @property(nonatomic,strong)NSString *a_groupName;
 @property(nonatomic,strong)NSString *a_msgType;
+@property(nonatomic,strong)UIImage  *a_localImage;
+@property(nonatomic)BOOL a_isLocal;
 @property(nonatomic)CGFloat a_imageWidth;
 @property(nonatomic)CGFloat a_imageHeight;
 @property(nonatomic,strong)NSDictionary *dict;
++(CGSize)getImageWidth:(NSString *)width height:(NSString *)height;
 @end

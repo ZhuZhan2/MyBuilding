@@ -51,7 +51,7 @@
 
 -(ChatMessageImageView *)chatMessageImageView{
     if(!_chatMessageImageView){
-        //NSLog(@"===>%f",self.messageImageView.frame.size.width);
+        NSLog(@"===>%f",self.imageWidth);
         _chatMessageImageView = [[ChatMessageImageView alloc] initWithFrame:CGRectMake(self.chatContentViceCenterX, self.chatContentViceCenterY, self.imageWidth, self.imageHeight) isSelf:self.isSelf];
     }
     return _chatMessageImageView;
@@ -86,10 +86,13 @@
     self.userNameLabel.text=model.a_name;
     
     [self.contentView addSubview:self.chatMessageImageView];
-    if(self.isSelf){
-        self.chatMessageImageView.image = [GetImagePath getImagePath:@"首页_16"];
-    }else{
-        [self.chatMessageImageView sd_setImageWithURL:[NSURL URLWithString:model.a_message] placeholderImage:[GetImagePath getImagePath:@"首页_16"]];
-    }
+//    if(model.a_isLocal){
+//        self.chatMessageImageView.image = model.a_localImage;
+//    }else{
+//        NSLog(@"%@",model.a_message);
+//        [self.chatMessageImageView sd_setImageWithURL:[NSURL URLWithString:model.a_message] placeholderImage:[GetImagePath getImagePath:@"首页_16"]];
+//    }
+    NSLog(@"%@",model.a_message);
+    [self.chatMessageImageView sd_setImageWithURL:[NSURL URLWithString:model.a_message] placeholderImage:[GetImagePath getImagePath:@"首页_16"]];
 }
 @end
