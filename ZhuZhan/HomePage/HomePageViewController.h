@@ -12,6 +12,7 @@
 #import "CompanyTotalViewController.h"
 #import "QuadCurveMenu.h"
 #import "ProductViewController.h"
+#import "ALLProjectViewController.h"
 @interface HomePageViewController : UIViewController<QuadCurveMenuDelegate>{
     UIButton *contactBtn;
     UIButton *projectBtn;
@@ -21,7 +22,7 @@
     UIView *contentView;
     UIView *toolView;
     ContactViewController *contactview;
-    ProjectTableViewController *projectview;
+    ALLProjectViewController *projectview;
     CompanyTotalViewController *companyview;
     ProductViewController *productView;
     UIViewController* testVC;

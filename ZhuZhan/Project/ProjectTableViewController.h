@@ -14,9 +14,7 @@
 #import "LoadingView.h"
 @interface ProjectTableViewController : UITableViewController<ProjectTableViewCellDelegate>{
     NSMutableArray *showArr;
-    NSMutableArray *RecommendArr;
     int startIndex;
-    int allStartIndex;
     LoadingView *loadingView;
     int sectionHeight;
     BOOL isReload;

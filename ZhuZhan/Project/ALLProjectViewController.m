@@ -16,6 +16,8 @@
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
 #import "ProgramDetailViewController.h"
+#import "ProjectSqlite.h"
+#import "ProjectTableViewController.h"
 @interface ALLProjectViewController ()<UITableViewDataSource,UITableViewDelegate,ProjectTableViewCellDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)LoadingView *loadingView;
@@ -27,15 +29,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //LeftButton设置属性
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftButton setFrame:CGRectMake(0, 0, 25, 22)];
-    [leftButton setBackgroundImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
-    [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
-    self.navigationItem.leftBarButtonItem = leftButtonItem;
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:19], NSFontAttributeName,nil]];
     
-    self.title = @"全部项目";
+    //RightButton设置属性
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setFrame:CGRectMake(0, 0, 60, 36.5)];
+    //[rightButton setBackgroundImage:[GetImagePath getImagePath:@"项目-首页_03a"] forState:UIControlStateNormal];
+    [rightButton setTitle:@"项目专题" forState:UIControlStateNormal];
+    rightButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
+    
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 155, 30)];
+    [bgView setBackgroundColor:[UIColor clearColor]];
+    UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [searchBtn setFrame:CGRectMake(0, 0, 155, 30)];
+    [searchBtn setBackgroundImage:[GetImagePath getImagePath:@"项目-首页_08a"] forState:UIControlStateNormal];
+    [searchBtn addTarget:self action:@selector(serachClick) forControlEvents:UIControlEventTouchUpInside];
+    [bgView addSubview:searchBtn];
+    
+    UIImageView *searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 8, 15, 15)];
+    [searchImage setImage:[GetImagePath getImagePath:@"搜索结果_09a"]];
+    [bgView addSubview:searchImage];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 120, 30)];
+    label.textColor = [UIColor whiteColor];
+    label.text = @"寻找项目，发现机会";
+    label.font = [UIFont systemFontOfSize:12];
+    [bgView addSubview:label];
+    self.navigationItem.titleView = bgView;
     
     [self.view addSubview:self.tableView];
     self.startIndex = 0;
@@ -49,24 +72,14 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)leftBtnClick{
-    [self.nowViewController.navigationController popViewControllerAnimated:YES];
+-(void)rightBtnClick{
+    TopicsTableViewController *topicsview = [[TopicsTableViewController alloc] init];
+    [self.navigationController pushViewController:topicsview animated:YES];
 }
 
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    //恢复tabBar
-    AppDelegate* app=[AppDelegate instance];
-    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-    [homeVC homePageTabBarRestore];
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    //隐藏tabBar
-    AppDelegate* app=[AppDelegate instance];
-    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-    [homeVC homePageTabBarHide];
+-(void)serachClick{
+    SearchViewController *searchView = [[SearchViewController alloc] init];
+    [self.navigationController pushViewController:searchView animated:YES];
 }
 
 -(void)loadList{
@@ -203,6 +216,13 @@
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if(section == 0){
+        return 50;
+    }
+    return 5;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 290;
 }
@@ -235,5 +255,39 @@
         _nowViewController = self;
     }
     return _nowViewController;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if(section == 0){
+        UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 291.5, 50)];
+        [bgView setBackgroundColor:RGBCOLOR(239, 237, 237)];
+        
+        UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(18, 25, 160, 20)];
+        tempLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:13];
+        tempLabel.textColor = GrayColor;
+        tempLabel.text = [NSString stringWithFormat:@"全部项目"];
+        
+        UIButton* projectBtn=[UIButton buttonWithType:UIButtonTypeSystem];
+        [projectBtn setTitle:@"查看历史记录" forState:UIControlStateNormal];
+        projectBtn.frame=CGRectMake(227, 15, 79, 40);
+        [projectBtn setTitleColor:BlueColor forState:UIControlStateNormal];
+        projectBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:13];
+        [projectBtn addTarget:self action:@selector(projectBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+        [bgView addSubview:projectBtn];
+        
+        UIView* view=[[UIView alloc]initWithFrame:CGRectMake(228, 42, 76, 1)];
+        view.backgroundColor=BlueColor;
+        [bgView addSubview:view];
+        [bgView addSubview:tempLabel];
+        
+        
+        return bgView;
+    }
+    return nil;
+}
+
+-(void)projectBtnClicked{
+    ProjectTableViewController *view = [[ProjectTableViewController alloc] init];
+    [self.navigationController pushViewController:view animated:YES];
 }
 @end

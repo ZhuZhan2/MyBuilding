@@ -209,7 +209,7 @@
             break;
         case 1:
             NSLog(@"项目");
-            projectview = [[ProjectTableViewController alloc] init];
+            projectview = [[ALLProjectViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:projectview];
             [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
