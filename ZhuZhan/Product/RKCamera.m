@@ -137,4 +137,8 @@
     imageView.image=image;
     return imageView;
 }
+
+- (void)setDemandSize:(CGSize)demandSize{
+    _demandSize = CGSizeMake(demandSize.width*2, demandSize.height*2);
+}
 @end
