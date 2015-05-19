@@ -128,7 +128,6 @@
                                    NSMakeRange(0,[posts count])];
             [self.models insertObjects:posts atIndexes:indexes];
             [self.tableView reloadData];
-            //[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.models.count-4 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -229,12 +228,7 @@
         return [ChatTableViewCell carculateTotalHeightWithContentStr:content isSelf:model.a_type];
 
     }else{
-        CGSize defaultSize = DEFAULT_CELL_SIZE;
-        CGSize cellSize = [ChatImageCell sizeForCellWithDefaultSize:defaultSize setupCellBlock:^id(id<CellHeightDelegate> cellToSetup) {
-            [((ChatImageCell *)cellToSetup) setModel:model];
-            return cellToSetup;
-        }];
-        return cellSize.height;
+        return 65+model.a_imageHeight/2;
     }
 }
 
@@ -263,7 +257,7 @@
             cell.clipsToBounds=YES;
         }
         cell.model = dataModel;
-        cell.selectionStyle = NO;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
 }

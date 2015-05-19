@@ -22,5 +22,7 @@ typedef enum {
 @property(nonatomic,strong)NSString *a_groupId;
 @property(nonatomic,strong)NSString *a_groupName;
 @property(nonatomic,strong)NSString *a_msgType;
+@property(nonatomic)CGFloat a_imageWidth;
+@property(nonatomic)CGFloat a_imageHeight;
 @property(nonatomic,strong)NSDictionary *dict;
 @end
