@@ -98,10 +98,9 @@
         
         UIImage* lowQualityImage = [self setUpLowQualityImageWithOriginImage:originQualityImage];
         
-        
-        
-        [self.delegate cameraWillFinishWithLowQualityImage:lowQualityImage originQualityImage:originQualityImage isCancel:isCancel];
-        
+        if ([self.delegate respondsToSelector:@selector(cameraWillFinishWithLowQualityImage:originQualityImage:isCancel:)]) {
+            [self.delegate cameraWillFinishWithLowQualityImage:lowQualityImage originQualityImage:originQualityImage isCancel:isCancel];
+        }
     }
 }
 
