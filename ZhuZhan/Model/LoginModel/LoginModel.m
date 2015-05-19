@@ -27,15 +27,15 @@
     self.a_contactName = [ProjectStage ProjectStrStage:dict[@"contactName"]];
     self.a_contactTel = [ProjectStage ProjectStrStage:dict[@"contactTel"]];
     //self.a_loginStatus = [ProjectStage ProjectStrStage:dict[@"loginStatus"]];
-    if(![[ProjectStage ProjectStrStage:dict[@"head"]] isEqualToString:@""]){
-        self.a_userImage = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"head"]], @"login", @"", @"", @"")];
+    if(![[ProjectStage ProjectStrStage:dict[@"headImageId"]] isEqualToString:@""]){
+        self.a_userImage = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"headImageId"]], @"login", @"", @"", @"")];
     }else{
-        self.a_userImage = [ProjectStage ProjectStrStage:dict[@"head"]];
+        self.a_userImage = [ProjectStage ProjectStrStage:dict[@"headImageId"]];
     }
-    if(![[ProjectStage ProjectStrStage:dict[@"background"]] isEqualToString:@""]){
-        self.a_backgroundImage=[NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"background"]], @"login", @"", @"", @"")];
+    if(![[ProjectStage ProjectStrStage:dict[@"backgroundImageId"]] isEqualToString:@""]){
+        self.a_backgroundImage=[NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"backgroundImageId"]], @"login", @"", @"", @"")];
     }else{
-        self.a_backgroundImage=[ProjectStage ProjectStrStage:dict[@"background"]];
+        self.a_backgroundImage=[ProjectStage ProjectStrStage:dict[@"backgroundImageId"]];
     }
     //self.a_hasCompany = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"hasCompany"]]];
 }
