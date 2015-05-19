@@ -14,37 +14,10 @@
 @property(nonatomic,weak)UIViewController* presentViewController;
 @property(nonatomic)BOOL allowsEditing;
 
-//demandSize和needFullImage只影响lowQualityImage的返回
-/*
- 图片所有内容都保留，图片可能会变形
- if (needFullImage == YES ){
-    if (demandSize != zero){
-        按尺寸返图
- 
-    }else if (demandSize == zero){
-        返原图
-    }
- 
- 图片所有内容都保留，图片不变形
- }else {
-    if (demandSize.width != 0 && demandSize.height != 0){
-        if  (originImageSize.width <= demandSize.width && originImageSize.height <= demandSize.height){
-            返原图
-        }else{
-            返回的图片满足以下规则
-            returnImageSize.width <= originImageSize.width && returnImageSize.height <= originImageSize.height && (returnImageSize.width == originImageSize.width || returnImageSize.height == originImageSize.height)
-        }
-    }else if (demandSize == zero ){
-        返原图
- 
-    }else if (demandSize.width和demandSize.height只有一个为0){
-        返回的图片满足以下规则(只限制不为0的那个参数)
-        returnImageSize.width <= originImageSize.width || retunImageSize.height <= originImageSize.height
-    }
- }
- */
 @property(nonatomic)CGSize demandSize;
 @property(nonatomic)BOOL needFullImage;
+
+@property(nonatomic)UIStatusBarStyle statusBarStyle;
 @end
 
 @implementation RKCamera
@@ -57,6 +30,7 @@
     camera.sourceType = sourceType;
     camera.demandSize = demandSize;
     camera.needFullImage = needFullImage;
+    camera.statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
     [camera setUp];
     return camera;
 }
@@ -66,11 +40,14 @@
 }
 
 -(void)setUpImagePickerControllerWithAllowsEditing:(BOOL)allowsEditing sourceType:(UIImagePickerControllerSourceType)sourceType presentViewController:(UIViewController*)presentViewController{
+    
     UIImagePickerController* imagePickerController=[[UIImagePickerController alloc]init];
     imagePickerController.sourceType=sourceType;
     imagePickerController.delegate=self;
     imagePickerController.allowsEditing=allowsEditing;
-    [presentViewController presentViewController:imagePickerController animated:YES completion:nil];
+    [presentViewController presentViewController:imagePickerController animated:YES completion:^{
+        if (sourceType == UIImagePickerControllerSourceTypePhotoLibrary) [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    }];
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
@@ -83,6 +60,8 @@
 
 -(void)cameraFinishWithPicker:(UIImagePickerController*)picker info:(NSDictionary*)info isCancel:(BOOL)isCancel{
     [picker dismissViewControllerAnimated:YES completion:nil];
+    [UIApplication sharedApplication].statusBarStyle = self.statusBarStyle;
+
     if ([self.delegate respondsToSelector:@selector(cameraWillFinishWithLowQualityImage:originQualityImage:isCancel:)]) {
         UIImage* originQualityImage=isCancel?nil:(info[self.allowsEditing?UIImagePickerControllerEditedImage:UIImagePickerControllerOriginalImage]);
         
@@ -122,7 +101,7 @@
         return originQualityImage;
     }else{
         CGFloat demandScale = self.demandSize.height / self.demandSize.width;
-        isRelyHeight = demandScale > imageScale;
+        isRelyHeight = imageScale > demandScale ;
     }
     
     CGFloat scale = isRelyHeight ? (self.demandSize.height/originQualityImage.size.height) : (self.demandSize.width/originQualityImage.size.width);

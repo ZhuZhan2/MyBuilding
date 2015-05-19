@@ -441,8 +441,9 @@
 }
 
 -(void)chatToolBarSizeChangeWithHeight:(CGFloat)height{
-    self.tableView.transform=CGAffineTransformMakeTranslation(0, [ChatToolBar orginChatToolBarHeight]-height);
-//    self.tableView.transform = CGAffineTransformTranslate(self.tableView.transform, 0, [ChatToolBar orginChatToolBarHeight]-height);
+    CGRect frame = self.tableView.frame;
+    frame.origin.y = CGRectGetMinY(self.chatToolBar.frame)-CGRectGetHeight(self.tableView.frame);
+    self.tableView.frame = frame;
 }
 
 -(void)startLoadingViewWithOption:(NSInteger)option{
