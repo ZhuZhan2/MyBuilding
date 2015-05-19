@@ -300,7 +300,7 @@
 }
 
 - (void)chatMoreSelectViewClickedWithIndex:(NSInteger)index{
-    self.camera = [RKCamera cameraWithType:index allowEdit:YES deleate:self presentViewController:self.view.window.rootViewController demandSize:CGSizeMake(100, 100) needFullImage:NO];
+    self.camera = [RKCamera cameraWithType:index allowEdit:NO deleate:self presentViewController:self.view.window.rootViewController demandSize:CGSizeMake(100, 100) needFullImage:NO];
 }
 
 - (void)cameraWillFinishWithLowQualityImage:(UIImage *)lowQualityimage originQualityImage:(UIImage *)originQualityImage isCancel:(BOOL)isCancel{
@@ -349,8 +349,8 @@
     NSString* time=[formatter stringFromDate:date];
     model.a_time=[ProjectStage ChatMessageTimeStage:time];
     
-    model.a_imageWidth = image.size.width*2;
-    model.a_imageHeight = image.size.height*2;
+    model.a_imageWidth = image.size.width;
+    model.a_imageHeight = image.size.height;
     model.a_msgType = @"02";
     [self.models addObject:model];
     [self appearNewData];
