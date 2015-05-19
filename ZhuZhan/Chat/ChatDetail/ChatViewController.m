@@ -300,17 +300,17 @@
 }
 
 - (void)chatMoreSelectViewClickedWithIndex:(NSInteger)index{
-    self.camera = [RKCamera cameraWithType:index allowEdit:YES deleate:self presentViewController:self.view.window.rootViewController demandSize:CGSizeMake(150, 100) needFullImage:NO];
+    self.camera = [RKCamera cameraWithType:index allowEdit:YES deleate:self presentViewController:self.view.window.rootViewController demandSize:CGSizeMake(100, 100) needFullImage:NO];
 }
 
 - (void)cameraWillFinishWithLowQualityImage:(UIImage *)lowQualityimage originQualityImage:(UIImage *)originQualityImage isCancel:(BOOL)isCancel{
     if(!isCancel){
+        [self addModelWithImage:lowQualityimage];
         NSData *imageData = UIImageJPEGRepresentation(originQualityImage, 1);
         NSMutableArray *imageArr = [[NSMutableArray alloc] init];
         [imageArr addObject:imageData];
         [ChatMessageApi AddImageWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                [self addModelWithImage:posts[0][@"data"]];
                 [imageArr removeAllObjects];
             }
         } dataArr:imageArr dic:[@{@"userId":self.contactId,@"userType":self.type} mutableCopy] noNetWork:nil];
@@ -336,10 +336,10 @@
     [self appearNewData];
 }
 
--(void)addModelWithImage:(NSDictionary *)dic{
+-(void)addModelWithImage:(UIImage *)image{
     ChatMessageModel *model = [[ChatMessageModel alloc] init];
     model.a_name=[LoginSqlite getdata:@"userName"];
-    model.a_message = [NSString stringWithFormat:@"%s%@",socketHttp,image([ProjectStage ProjectStrStage:dic[@"fileId"]], @"chatImage", @"200", @"200", @"")];
+    model.a_localImage = image;
     model.a_type=chatTypeMe;
     model.a_avatarUrl=[LoginSqlite getdata:@"userImage"];
     model.a_isLocal = YES;
@@ -348,9 +348,9 @@
     formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";
     NSString* time=[formatter stringFromDate:date];
     model.a_time=[ProjectStage ChatMessageTimeStage:time];
-    CGSize size = [ChatMessageModel getImageWidth:dic[@"imageWidth"] height:dic[@"imageHeight"]];
-    model.a_imageWidth = size.width;
-    model.a_imageHeight = size.height;
+    
+    model.a_imageWidth = image.size.width*2;
+    model.a_imageHeight = image.size.height*2;
     model.a_msgType = @"02";
     [self.models addObject:model];
     [self appearNewData];

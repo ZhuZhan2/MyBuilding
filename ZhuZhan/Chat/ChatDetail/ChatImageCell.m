@@ -86,13 +86,13 @@
     self.userNameLabel.text=model.a_name;
     
     [self.contentView addSubview:self.chatMessageImageView];
-//    if(model.a_isLocal){
-//        self.chatMessageImageView.image = model.a_localImage;
-//    }else{
-//        NSLog(@"%@",model.a_message);
-//        [self.chatMessageImageView sd_setImageWithURL:[NSURL URLWithString:model.a_message] placeholderImage:[GetImagePath getImagePath:@"首页_16"]];
-//    }
-    NSLog(@"%@",model.a_message);
-    [self.chatMessageImageView sd_setImageWithURL:[NSURL URLWithString:model.a_message] placeholderImage:[GetImagePath getImagePath:@"首页_16"]];
+    if(model.a_isLocal){
+        self.chatMessageImageView.image = model.a_localImage;
+    }else{
+        NSLog(@"%@",model.a_message);
+        [self.chatMessageImageView sd_setImageWithURL:[NSURL URLWithString:model.a_message] placeholderImage:[GetImagePath getImagePath:@"首页_16"]];
+    }
+    
+    //[self.chatMessageImageView sd_setImageWithURL:[NSURL URLWithString:model.a_message] placeholderImage:[GetImagePath getImagePath:@"首页_16"]];
 }
 @end
