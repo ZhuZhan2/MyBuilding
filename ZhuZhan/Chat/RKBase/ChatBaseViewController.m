@@ -16,8 +16,6 @@
 @property(nonatomic)BOOL searchBarIsAnimating;
 
 @property (nonatomic, strong)UIActivityIndicatorView* indicatorView;
-
-@property (nonatomic, strong)RKCamera* camera;
 @end
 
 @implementation ChatBaseViewController
@@ -95,7 +93,6 @@
     }
     
     CGFloat height=kScreenHeight-y;
-    NSLog(@"%f,%f",y,height);
     self.tableView=[[RKBaseTableView alloc]initWithFrame:CGRectMake(0, y, kScreenWidth, height) style:UITableViewStylePlain];
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
@@ -240,7 +237,6 @@
 -(void)subviewsDoAnimationWithSubviews:(NSArray*)subviews ty:(CGFloat)ty{
     [subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIView* view=obj;
-        NSLog(@"view==%@",view);
         CGRect frame=view.frame;
         frame.origin.y+=ty;
         [UIView animateWithDuration:0.3 animations:^{
@@ -354,7 +350,6 @@
 
 //聊天内容tableView和聊天工具条chatToolBar
 -(void)changeFrameWithUpHeight:(CGFloat)upHeight duration:(NSTimeInterval)duration{
-    NSLog(@"upHeight=%f,duration=%f",upHeight,duration);
     [UIView animateWithDuration:duration  animations:^{
         CGRect frame = self.tableView.frame;
         frame.origin.y = 64-upHeight-(CGRectGetHeight(self.chatToolBar.frame)-[ChatToolBar orginChatToolBarHeight]);
@@ -400,7 +395,6 @@
     [UIView animateWithDuration:0.25 animations:^{
         CGRect frame = self.tableView.frame;
         frame.origin.y = 64+(CGRectGetHeight(self.stageChooseView.frame))-(CGRectGetHeight(self.chatToolBar.frame)-[ChatToolBar orginChatToolBarHeight]);
-        NSLog(@"y=%f,stage=%f,toolBar=%f",frame.origin.y,CGRectGetHeight(self.stageChooseView.frame),(CGRectGetHeight(self.chatToolBar.frame)-[ChatToolBar orginChatToolBarHeight]));
         self.tableView.frame = frame;
         
         frame = self.chatToolBar.frame;
