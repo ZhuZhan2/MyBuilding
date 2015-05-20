@@ -126,8 +126,8 @@
             NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:
                                    NSMakeRange(0,[posts count])];
             [self.models insertObjects:posts atIndexes:indexes];
-            ChatMessageModel* dataModel=[posts firstObject];
-            self.lastId = dataModel.a_id;
+            //ChatMessageModel* dataModel=[posts firstObject];
+            //self.lastId = dataModel.a_id;
             [self.tableView reloadData];
             //[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.models.count-4 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
         }else{
