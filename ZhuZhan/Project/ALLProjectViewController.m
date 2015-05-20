@@ -18,7 +18,7 @@
 #import "ProgramDetailViewController.h"
 #import "ProjectSqlite.h"
 #import "ProjectTableViewController.h"
-@interface ALLProjectViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface ALLProjectViewController ()<UITableViewDataSource,UITableViewDelegate,ProjectTableViewCellDelegate,LoginViewDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)LoadingView *loadingView;
 @property(nonatomic)int startIndex;
@@ -189,7 +189,7 @@
 
 -(UITableView *)tableView{
     if(!_tableView){
-        _tableView = [[UITableView alloc] initWithFrame:self.view.frame];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, kScreenHeight-49)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = AllBackLightGratColor;
@@ -226,7 +226,7 @@
         cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.model = model;
-    cell.projectNameString = @"是打发第三方撒的发生的法师打发士大夫撒打发士大夫是打发第三方撒的发生的法师打发士大夫撒打发士大夫是打发第三方撒的发生的法师打发士大夫撒打发士大夫";
+    cell.delegate = self;
     cell.selectionStyle = NO;
     return cell;
 }
@@ -239,7 +239,13 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 290;
+    CGSize defaultSize = DEFAULT_CELL_SIZE;
+    CGSize cellSize = [ProjectTableViewCell sizeForCellWithDefaultSize:defaultSize setupCellBlock:^id(id<CellHeightDelegate> cellToSetup) {
+        projectModel *model = self.showArr[indexPath.row];
+        [((ProjectTableViewCell *)cellToSetup) setModel:model];
+        return cellToSetup;
+    }];
+    return cellSize.height;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -268,7 +274,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if(section == 0){
         UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 291.5, 50)];
-        [bgView setBackgroundColor:RGBCOLOR(239, 237, 237)];
+        [bgView setBackgroundColor:AllBackLightGratColor];
         
         UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(18, 25, 160, 20)];
         tempLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:13];
@@ -297,5 +303,22 @@
 -(void)projectBtnClicked{
     ProjectTableViewController *view = [[ProjectTableViewController alloc] init];
     [self.navigationController pushViewController:view animated:YES];
+}
+
+-(void)gotoLoginView{
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    loginVC.needDelayCancel=YES;
+    loginVC.delegate = self;
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+}
+
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
+    self.startIndex = 0;
+    [self.showArr removeAllObjects];
+    [self loadList];
+    if (block) {
+        block();
+    }
 }
 @end

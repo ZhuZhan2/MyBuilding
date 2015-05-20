@@ -56,6 +56,19 @@
     return date;
 }
 
++(NSString *)ProjectCardTimeStage:(NSString *)str{
+    NSString *string = nil;
+    if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@""]){
+        string = @"";
+    }else{
+        NSArray *arr = [str componentsSeparatedByString:@" "];
+        NSArray *dateArr = [arr[0] componentsSeparatedByString:@"-"];
+        NSArray *timeArr = [arr[1] componentsSeparatedByString:@":"];
+        string = [NSString stringWithFormat:@"%@/%@/%@ %@:%@",dateArr[0],dateArr[1],dateArr[2],timeArr[0],timeArr[1]];
+    }
+    return string;
+}
+
 +(NSString *)ChatMessageTimeStage:(NSString *)str{
     NSString *string = nil;
     if([[NSString stringWithFormat:@"%@",str] isEqualToString:@"(null)"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@"<null>"]||[[NSString stringWithFormat:@"%@",str] isEqualToString:@""]){

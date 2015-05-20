@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface projectModel : NSObject
+//最后更新时间
+@property(nonatomic,strong) NSString *a_lastUpdatedTime;
+//评论数
+@property(nonatomic,strong) NSString *a_commentsNum;
 //列表显示图片
 @property (nonatomic,strong) NSString *a_imageLocation;
 @property (nonatomic,strong) NSString *a_imageHeight;

@@ -13,6 +13,8 @@
 @implementation projectModel
 - (void)setDict:(NSDictionary *)dict{
     _dict = dict;
+    self.a_lastUpdatedTime = [ProjectStage ProjectCardTimeStage:dict[@"lastUpdatedTime"]];
+    self.a_commentsNum = [ProjectStage ProjectStrStage:dict[@"commentsNum"]];
     self.a_id = [ProjectStage ProjectStrStage:dict[@"projectId"]];
     self.a_landName = [ProjectStage ProjectStrStage:dict[@"landName"]];
     self.a_district = [ProjectStage ProjectStrStage:dict[@"landDistrict"]];
@@ -52,7 +54,6 @@
     }else{
         self.a_imageLocation = [ProjectStage ProjectStrStage:dict[@"projectImagesId"]];
     }
-    NSLog(@"%@",self.a_imageLocation);
     self.a_imageHeight = [ProjectStage ProjectStrStage:dict[@"imageHeight"]];
     self.a_imageWidth = [ProjectStage ProjectStrStage:dict[@"imageWidth"]];
 }
