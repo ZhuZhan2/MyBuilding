@@ -186,17 +186,20 @@
 }
 
 -(void)updateFrames{
-    static CGFloat const orginContentSizeHeight=kChatTextViewInitialHeight;
+    static CGFloat const orginContentSizeHeight=kChatTextViewInitialHeight-2;
     CGFloat extraContentHeight=self.textView.contentSize.height-self.lastContentSizeHeight;
+    if (self.textView.contentSize.height < kChatTextViewInitialHeight - 5) {
+        return;
+    }
     if (extraContentHeight<=5&&extraContentHeight>=-5) {
         return;
     }else{
         self.lastContentSizeHeight=self.textView.contentSize.height;
     }
     
-    CGFloat lineTextHeight=textFont.lineHeight;
-    CGFloat lineSpaceHeight=4;
-    CGFloat maxSizeHeight=3*lineTextHeight+2*lineSpaceHeight;
+    CGFloat const lineTextHeight=textFont.lineHeight;
+    CGFloat const lineSpaceHeight=4;
+    CGFloat const maxSizeHeight=3*lineTextHeight+2*lineSpaceHeight;
     
     CGFloat extraHeight=self.textView.contentSize.height-orginContentSizeHeight;
     

@@ -63,7 +63,7 @@
     [self initNavi];
     [self initTableView];
     self.tableView.isChatType = YES;
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = AllBackLightGratColor;
     //集成刷新控件
     [self setupRefresh];
     [self initChatToolBarWithNeedAddBtn:YES];
@@ -74,6 +74,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(newMessage:) name:@"newMessage" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(errorMessage) name:@"errorMessage" object:nil];
 }
+
 
 -(void)leftBtnClicked{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];

@@ -40,4 +40,14 @@
     }
     [super setContentSize:contentSize];
 }
+
+- (void)setFrame:(CGRect)frame{
+//    {
+//        CGFloat upHeight = self.frame.size.height - frame.size.height;
+//        CGPoint contentOffset = self.contentOffset;
+//        contentOffset.y += upHeight;
+//        self.contentOffset = contentOffset;
+//    }
+    [super setFrame:frame];
+}
 @end

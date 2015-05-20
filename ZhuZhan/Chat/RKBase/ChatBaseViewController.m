@@ -348,11 +348,12 @@
     }];
 }
 
-//聊天内容tableView和聊天工具条chatToolBar
+//聊天内容tableView和聊天工具条chatToolBar,键盘出来和moreSelectView出来时调的方法
+//upHeight为离底部的距离
 -(void)changeFrameWithUpHeight:(CGFloat)upHeight duration:(NSTimeInterval)duration{
     [UIView animateWithDuration:duration  animations:^{
         CGRect frame = self.tableView.frame;
-        frame.origin.y = 64-upHeight-(CGRectGetHeight(self.chatToolBar.frame)-[ChatToolBar orginChatToolBarHeight]);
+        frame.origin.y = kScreenHeight-upHeight-CGRectGetHeight(self.chatToolBar.frame)-CGRectGetHeight(self.tableView.frame);
         self.tableView.frame = frame;
         
         frame = self.chatToolBar.frame;
@@ -387,14 +388,30 @@
 
 //所有复原
 -(void)touchesBeganInRKBaseTableView{
+    
     BOOL chatToolBarIsFirstResponder = self.chatToolBar.textView.isFirstResponder;
     [self.view endEditing:YES];
     
     if (!self.chatToolBar) return;
+
+    if (!chatToolBarIsFirstResponder&&!self.chatMoreSelectView.superview) return;
+
+    CGRect frame = self.tableView.frame;
+    CGFloat changeHeight = CGRectGetHeight(self.chatToolBar.frame)-[ChatToolBar orginChatToolBarHeight];
+    frame.size.height = kScreenHeight-CGRectGetHeight(self.chatToolBar.frame)-64;
+    frame.origin.y = CGRectGetMinY(self.chatToolBar.frame)-CGRectGetHeight(frame);
+    self.tableView.frame = frame;
+    
+    CGPoint point = self.tableView.contentOffset;
+    point.y += changeHeight;
+    self.tableView.contentOffset = point;
+    
     if (chatToolBarIsFirstResponder) return;
+    //用于收moreSelectView
     [UIView animateWithDuration:0.25 animations:^{
         CGRect frame = self.tableView.frame;
-        frame.origin.y = 64+(CGRectGetHeight(self.stageChooseView.frame))-(CGRectGetHeight(self.chatToolBar.frame)-[ChatToolBar orginChatToolBarHeight]);
+        frame.origin.y = 64;
+        
         self.tableView.frame = frame;
         
         frame = self.chatToolBar.frame;
@@ -441,6 +458,7 @@
 }
 
 -(void)chatToolBarSizeChangeWithHeight:(CGFloat)height{
+    NSLog(@"height=%f",height);
     CGRect frame = self.tableView.frame;
     frame.origin.y = CGRectGetMinY(self.chatToolBar.frame)-CGRectGetHeight(self.tableView.frame);
     self.tableView.frame = frame;
