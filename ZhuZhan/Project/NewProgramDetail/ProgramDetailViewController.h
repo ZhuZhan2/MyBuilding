@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "projectModel.h"
-@interface ProgramDetailViewController : UIViewController
+#import "ChatBaseViewController.h"
+@interface ProgramDetailViewController : ChatBaseViewController
 @property(nonatomic,strong)NSString *projectId;
 @property(nonatomic,strong)NSString* isFocused;
 @end

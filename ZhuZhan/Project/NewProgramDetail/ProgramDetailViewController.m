@@ -216,21 +216,21 @@
     return _bigStages;
 }
 
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    //恢复tabBar
-    AppDelegate* app=[AppDelegate instance];
-    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-    [homeVC homePageTabBarRestore];
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    //隐藏tabBar
-    AppDelegate* app=[AppDelegate instance];
-    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-    [homeVC homePageTabBarHide];
-}
+//-(void)viewWillDisappear:(BOOL)animated{
+//    [super viewWillDisappear:animated];
+//    //恢复tabBar
+//    AppDelegate* app=[AppDelegate instance];
+//    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+//    [homeVC homePageTabBarRestore];
+//}
+//
+//-(void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//    //隐藏tabBar
+//    AppDelegate* app=[AppDelegate instance];
+//    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+//    [homeVC homePageTabBarHide];
+//}
 
 -(void)loadIndicatorView{
     self.indicatorView=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -365,18 +365,63 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//去评论项目 关注项目
--(void)rightBtnClick{
+//分享
+-(void)rightBtnClick1{
+    NSLog(@"rightBtnClick1");
+}
+
+//评论列表
+-(void)rightBtnClick2{
+    NSLog(@"rightBtnClick");
+    PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
+    projectCommentView.projectId = self.projectId;
+    projectCommentView.projectName = self.model.a_projectName;
+    [self.navigationController pushViewController:projectCommentView animated:YES];
+}
+
+//关注项目
+-(void)rightBtnClick3{
     NSLog(@"rightBtnClick");
     if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
-        NSString *string = nil;
         if([self.isFocused isEqualToString:@"0"]){
-            string = @"添加关注";
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setObject:self.model.a_id forKey:@"targetId"];
+            [dic setObject:@"03" forKey:@"targetCategory"];
+            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alertView show];
+                    self.isFocused = @"1";
+                    [self initNavi];
+                }else{
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
+                }
+            } dic:dic noNetWork:nil];
         }else{
-            string = @"取消关注";
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setObject:self.model.a_id forKey:@"targetId"];
+            [dic setObject:@"03" forKey:@"targetCategory"];
+            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alertView show];
+                    self.isFocused = @"0";
+                    [self initNavi];
+                }else{
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
+                }
+            } dic:dic noNetWork:^{
+                [ErrorCode alert];
+            }];
         }
-        UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:string,@"评论项目",@"评论列表", nil];
-        [actionSheet showInView:self.view];
     }else{
         LoginViewController *loginVC = [[LoginViewController alloc] init];
         loginVC.needDelayCancel=YES;
@@ -392,15 +437,38 @@
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.title=@"详情";
-    
+
+    [self setRightBtnWithText:@"当当"];
     //RightButton设置属性
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton setFrame:CGRectMake(0, 0, 25, 22)];
-    [rightButton setBackgroundImage:[GetImagePath getImagePath:@"019"] forState:UIControlStateNormal];
-    [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
-    self.navigationItem.rightBarButtonItem = rightButtonItem;
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    UIButton *rightButton1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton1 setFrame:CGRectMake(40, 0, 65, 44)];
+    [rightButton1 setTitle:@"分享" forState:UIControlStateNormal];
+    [rightButton1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    rightButton1.titleLabel.font = [UIFont systemFontOfSize:15];
+    [rightButton1 addTarget:self action:@selector(rightBtnClick1) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *rightButton2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton2 setFrame:CGRectMake(105, 0, 65, 44)];
+    [rightButton2 setTitle:@"评论" forState:UIControlStateNormal];
+    [rightButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    rightButton2.titleLabel.font = [UIFont systemFontOfSize:15];
+    [rightButton2 addTarget:self action:@selector(rightBtnClick2) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 170, 44)];
+    [view addSubview:rightButton1];
+    [view addSubview:rightButton2];
+    
+    self.navigationItem.titleView = view;
+    
+    UIButton *rightButton3 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton3 setFrame:CGRectMake(0, 0, 45, 22)];
+    [rightButton3 setTitle:[self.isFocused isEqualToString:@"1"]?@"已关注":@"加关注" forState:UIControlStateNormal];
+    [rightButton3 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    rightButton3.titleLabel.font = [UIFont systemFontOfSize:15];
+    [rightButton3 addTarget:self action:@selector(rightBtnClick3) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* barBtnItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton3];
+    
+    self.navigationItem.rightBarButtonItem = barBtnItem;
 }
 
 -(void)initThemeView{
@@ -1076,6 +1144,7 @@
     [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.isFocused = [NSString stringWithFormat:@"%@",posts[0][@"isFocus"]];
+            [self initNavi];
             if (block) {
                 block();
             }
