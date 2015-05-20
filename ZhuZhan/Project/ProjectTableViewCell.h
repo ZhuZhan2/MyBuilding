@@ -8,30 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "projectModel.h"
-@protocol ProjectTableViewCellDelegate <NSObject>
 
--(void)addProjectCommentView:(int)index;
-
-@end
-@interface ProjectTableViewCell : UITableViewCell{
-    NSString *stage;
-    UILabel *nameLabel;
-    UILabel *investmentLabel;
-    UILabel *investmentcountLabel;
-    UILabel *areaLabel;
-    UILabel *areacountLabel;
-    UIImageView *progressImage;
-    UILabel *startdateLabel;
-    UILabel *enddateLabel;
-    UILabel *addressLabel;
-    UILabel *zoneLabel;
-    UIImageView *bigImage;
-    float imageHight;
-    float imageWidth;
-    int flag;
-}
-@property(nonatomic,weak)projectModel *model;
-@property(nonatomic,weak)id<ProjectTableViewCellDelegate>delegate;
-@property(nonatomic)int indexRow;
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(projectModel *)model fromView:(NSString *)fromView;
+@interface ProjectTableViewCell : UITableViewCell
+@property(nonatomic,strong)UIImageView *topImageView;
+@property(nonatomic,strong)UIImageView *topContentImageView;
+@property(nonatomic,strong)UILabel *stageLabel;
+@property(nonatomic,strong)UILabel *detailLabel;
+@property(nonatomic,strong)UIImageView *arrowImageView;
+@property(nonatomic,strong)UIButton *detailBtn;
+@property(nonatomic,strong)UIImageView *cutLine;
+@property(nonatomic,strong)UIImageView *contentImageView;
+@property(nonatomic,strong)UILabel *projectName;
+@property(nonatomic,strong)UILabel *projectAddress;
+@property(nonatomic,strong)UILabel *projectInvestment;
+@property(nonatomic,strong)UILabel *projectArea;
+@property(nonatomic,strong)projectModel *model;
+@property(nonatomic,strong)NSIndexPath *indexPath;
+@property(nonatomic,strong)NSString *projectNameString;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TopicsModel.h"
 #import "ProjectTableViewCell.h"
-@interface TopicsDetailTableViewController : UITableViewController<ProjectTableViewCellDelegate>{
+@interface TopicsDetailTableViewController : UITableViewController{
     NSMutableArray *showArr;
     int startIndex;
 }

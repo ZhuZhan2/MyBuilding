@@ -8,219 +8,174 @@
 
 #import "ProjectTableViewCell.h"
 #import "ProjectStage.h"
+
+#define FONT [UIFont systemFontOfSize:15]
+#define LEFTMARGIN 16
+#define LEFTPADDING 14
 @implementation ProjectTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(projectModel *)model fromView:(NSString *)fromView
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
         self.backgroundColor = RGBCOLOR(239, 237, 237);
-        if([fromView isEqualToString:@"project"]){
-            flag = 0;
-        }else if([fromView isEqualToString:@"topics"]){
-            flag = 1;
-        }
-        [self addContent:model];
+        [self.contentView addSubview:self.topImageView];
+        [self.contentView addSubview:self.topContentImageView];
+        [self.contentView addSubview:self.stageLabel];
+        [self.contentView addSubview:self.detailLabel];
+        [self.contentView addSubview:self.arrowImageView];
+        [self.contentView addSubview:self.detailBtn];
+        [self.contentView addSubview:self.contentImageView];
+        [self.contentView addSubview:self.cutLine];
+        [self.contentView addSubview:self.projectName];
+        [self.contentView addSubview:self.projectAddress];
+        [self.contentView addSubview:self.projectInvestment];
     }
     return self;
 }
 
-- (void)awakeFromNib
-{
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
-
--(void)addContent:(projectModel *)model{
-    UIImageView *bgImgView = [[UIImageView alloc] init];
-    if(flag == 0){
-        [bgImgView setFrame:CGRectMake(14.5,0,292,270)];
-    }else if(flag == 1){
-        [bgImgView setFrame:CGRectMake(14.5,10,292,270)];
+-(UIImageView *)topImageView{
+    if(!_topImageView){
+        _topImageView = [[UIImageView alloc] initWithFrame:CGRectMake(LEFTMARGIN, 10, 288, 3)];
+        _topImageView.image = [GetImagePath getImagePath:@"project_head"];
     }
-    [bgImgView setImage:[GetImagePath getImagePath:@"全部项目_10"]];
-    [self addSubview:bgImgView];
-    
-    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,18,190,16)];
-    nameLabel.font = [UIFont boldSystemFontOfSize:17];
-    [bgImgView addSubview:nameLabel];
-    
-    investmentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,62,85,20)];
-    investmentLabel.font = [UIFont systemFontOfSize:14];
-    investmentLabel.textColor = BlueColor;
-    investmentLabel.text = @"投资额(百万)";
-    [bgImgView addSubview:investmentLabel];
-    
-    investmentcountLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,83,90,14)];
-    investmentcountLabel.font = [UIFont systemFontOfSize:14];
-    [bgImgView addSubview:investmentcountLabel];
-    
-    areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(115,62,85,20)];
-    areaLabel.font = [UIFont systemFontOfSize:14];
-    areaLabel.textColor = BlueColor;
-    areaLabel.text = @"建筑面积(㎡)";
-    [bgImgView addSubview:areaLabel];
-    
-    areacountLabel = [[UILabel alloc] initWithFrame:CGRectMake(115,83,90,14)];
-    areacountLabel.font = [UIFont systemFontOfSize:14];
-    [bgImgView addSubview:areacountLabel];
-    
-    progressImage = [[UIImageView alloc] initWithFrame:CGRectMake(220,16,52,52)];
-    if([model.a_projectstage isEqualToString:@"1"]){
-        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];
-    }else if([model.a_projectstage isEqualToString:@"2"]){
-        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_23a"]];
-    }else if([model.a_projectstage isEqualToString:@"3"]){
-        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_25a"]];
+    return _topImageView;
+}
+
+-(UIImageView *)topContentImageView{
+    if(!_topContentImageView){
+        _topContentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(LEFTMARGIN, 13, 288, 33)];
+        _topContentImageView.image = [GetImagePath getImagePath:@"proiect_content"];
+    }
+    return _topContentImageView;
+}
+
+-(UILabel *)stageLabel{
+    if(!_stageLabel){
+        _stageLabel = [[UILabel alloc] initWithFrame:CGRectMake(LEFTMARGIN+LEFTPADDING, 10, 130, 36)];
+        _stageLabel.textColor = BlueColor;
+        _stageLabel.font = FONT;
+        _stageLabel.text = @"主体设计阶段";
+    }
+    return _stageLabel;
+}
+
+-(UILabel *)detailLabel{
+    if(!_detailLabel){
+        _detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 116, 36)];
+        _detailLabel.textColor = AllDeepGrayColor;
+        _detailLabel.text = @"查看详情";
+        _detailLabel.font = FONT;
+        _detailLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _detailLabel;
+}
+
+-(UIImageView *)arrowImageView{
+    if(!_arrowImageView){
+        _arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(281, 22, 7, 12)];
+        _arrowImageView.image = [GetImagePath getImagePath:@"project_arrow"];
+    }
+    return _arrowImageView;
+}
+
+-(UIButton *)detailBtn{
+    if(!_detailBtn){
+        _detailBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _detailBtn.frame = CGRectMake(160, 10, 130, 36);
+    }
+    return _detailBtn;
+}
+
+-(UIImageView *)cutLine{
+    if(!_cutLine){
+        _cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(LEFTMARGIN, 46, 288, 1)];
+        _cutLine.image = [GetImagePath getImagePath:@"project_cutline"];
+    }
+    return _cutLine;
+}
+
+-(UIImageView *)contentImageView{
+    if(!_contentImageView){
+        _contentImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        _contentImageView.image = [GetImagePath getImagePath:@"proiect_content"];
+    }
+    return _contentImageView;
+}
+
+-(UILabel *)projectName{
+    if(!_projectName){
+        _projectName = [[UILabel alloc] initWithFrame:CGRectZero];
+        _projectName.numberOfLines = 0;
+        _projectName.font = [UIFont systemFontOfSize:19];
+    }
+    return _projectName;
+}
+
+-(UILabel *)projectAddress{
+    if(!_projectAddress){
+        _projectAddress = [[UILabel alloc] initWithFrame:CGRectZero];
+        _projectAddress.numberOfLines = 0;
+        _projectAddress.textColor = AllDeepGrayColor;
+    }
+    return _projectAddress;
+}
+
+-(UILabel *)projectInvestment{
+    if(!_projectInvestment){
+        _projectInvestment = [[UILabel alloc] initWithFrame:CGRectMake(LEFTMARGIN+LEFTPADDING, 0, 90, 20)];
+        _projectInvestment.text = @"投资额(百万)";
+        _projectInvestment.font = FONT;
+        _projectInvestment.textColor = BlueColor;
+    }
+    return _projectInvestment;
+}
+
+-(UILabel *)projectArea{
+    if(!_projectArea){
+        _projectArea = [[UILabel alloc] initWithFrame:CGRectMake(LEFTMARGIN+LEFTPADDING, 0, 90, 20)];
+    }
+    return _projectArea;
+}
+
+-(void)layoutSubviews{
+    CGFloat allHeight = 0;
+    CGFloat projectAddressheight = self.projectAddress.frame.size.height;
+    if(projectAddressheight == 0){
+        self.projectInvestment.center = CGPointMake(LEFTMARGIN+LEFTPADDING+45, self.projectName.frame.size.height + self.projectName.frame.origin.y+20);
+        allHeight += 35;
     }else{
-        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_27a"]];
+        self.projectInvestment.center = CGPointMake(LEFTMARGIN+LEFTPADDING+45, self.projectName.frame.size.height + self.projectAddress.frame.size.height + self.projectAddress.frame.origin.y-8);
+        allHeight += 30;
     }
-    [bgImgView addSubview:progressImage];
-    
-    startdateLabel = [[UILabel alloc] initWithFrame:CGRectMake(215,72,65,12)];
-    startdateLabel.font = [UIFont systemFontOfSize:12];
-    startdateLabel.textColor = GrayColor;
-    startdateLabel.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
-    startdateLabel.textAlignment = NSTextAlignmentCenter;
-    [bgImgView addSubview:startdateLabel];
-    
-    enddateLabel = [[UILabel alloc] initWithFrame:CGRectMake(215,85,65,12)];
-    enddateLabel.font = [UIFont systemFontOfSize:12];
-    enddateLabel.textColor = [UIColor orangeColor];
-    enddateLabel.textAlignment = NSTextAlignmentCenter;
-    enddateLabel.text = [model.a_exceptFinishTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
-    [bgImgView addSubview:enddateLabel];
-    
-    bigImage = [[UIImageView alloc] init];
-    bigImage.frame = CGRectMake(2.2,110,288,110);
-    //bigImage.delegate = self;
-    [bgImgView addSubview:bigImage];
-    
-    UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(13,232,18,23)];
-    [arrowImage setImage:[GetImagePath getImagePath:@"全部项目_17"]];
-    [bgImgView addSubview:arrowImage];
-    
-    UIImageView *dianImage = [[UIImageView alloc] initWithFrame:CGRectMake(275,232,21,24)];
-    if(flag == 1){
-        dianImage.frame = CGRectMake(275,240,21,24);
-    }
-    [dianImage setImage:[UIImage imageNamed:@"项目-首页_18a"]];
-    [self addSubview:dianImage];
-    
-    UIButton *dianBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [dianBtn setFrame:CGRectMake(265,220,30,30)];
-    //dianBtn.backgroundColor = [UIColor redColor];
-    [dianBtn addTarget:self action:@selector(dianBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:dianBtn];
-    
-    
-    zoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(37,233,60,20)];
-    zoneLabel.font = [UIFont systemFontOfSize:14];
-    zoneLabel.textColor = BlueColor;
-    [bgImgView addSubview:zoneLabel];
-    
-    addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(92,233,160,20)];
-    addressLabel.font = [UIFont systemFontOfSize:14];
-    addressLabel.textColor = [UIColor blackColor];
-    addressLabel.text = model.a_landAddress;
-    [bgImgView addSubview:addressLabel];
-}
-
--(void)dianBtnClick{
-    if([self.delegate respondsToSelector:@selector(addProjectCommentView:)]){
-        [self.delegate addProjectCommentView:self.indexRow];
-    }
+    allHeight += self.projectName.frame.size.height+self.projectAddress.frame.size.height+10;
+    self.contentImageView.frame = CGRectMake(LEFTMARGIN, 46, 288, allHeight);
 }
 
 -(void)setModel:(projectModel *)model{
     if([model.a_projectName isEqualToString:@""]){
-        nameLabel.text = @"项目名称";
-        nameLabel.textColor = RGBCOLOR(166, 166, 166);
+        self.projectName.frame = CGRectMake(LEFTMARGIN+LEFTPADDING+3, 52, 254, 30);
+        self.projectName.textColor = AllNoDataColor;
+        self.projectName.text = @"项目名称";
     }else{
-        nameLabel.text = model.a_projectName;
-        nameLabel.textColor = [UIColor blackColor];
+        CGSize projectNameSize =CGSizeMake(254,60);
+        CGSize projectNameActualsize =[model.a_projectName boundingRectWithSize:projectNameSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:19]} context:nil].size;
+        self.projectName.frame = CGRectMake(LEFTMARGIN+LEFTPADDING+3, 52, 254, projectNameActualsize.height);
+        self.projectName.text = model.a_projectName;
+        self.projectName.textColor = [UIColor blackColor];
     }
     
-    if([[NSString stringWithFormat:@"%@",model.a_investment] isEqualToString:@""]){
-        investmentcountLabel.text = @"－";
-        investmentcountLabel.textColor = RGBCOLOR(166, 166, 166);
+    if([model.a_city isEqualToString:@""] && [model.a_landAddress isEqualToString:@""]){
+        self.projectAddress.frame = CGRectZero;
     }else{
-        if([[NSString stringWithFormat:@"%@",model.a_investment] isEqualToString:@"0"]){
-            investmentcountLabel.text = @"－";
-            investmentcountLabel.textColor = RGBCOLOR(166, 166, 166);
-        }else{
-            investmentcountLabel.text = [NSString stringWithFormat:@"%@",model.a_investment];
-            investmentcountLabel.textColor = GrayColor;
-        }
+        NSString* tempStr = [NSString stringWithFormat:@"%@ %@",model.a_city,model.a_landAddress];
+        NSMutableAttributedString* attStr=[[NSMutableAttributedString alloc]initWithString:tempStr];
+        [attStr addAttribute:NSForegroundColorAttributeName value:BlueColor range:NSMakeRange(0, model.a_city.length)];
+        CGSize projectAddressSize =CGSizeMake(254,60);
+        CGSize projectAddressActualsize =[tempStr boundingRectWithSize:projectAddressSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:FONT} context:nil].size;
+        self.projectAddress.frame = CGRectMake(LEFTMARGIN+LEFTPADDING-1, 54+self.projectName.frame.size.height, 254, projectAddressActualsize.height+10);
+        self.projectAddress.attributedText = attStr;
     }
-    
-    if([[NSString stringWithFormat:@"%@",model.a_storeyArea] isEqualToString:@""]){
-        areacountLabel.text = @"－";
-        areacountLabel.textColor = RGBCOLOR(166, 166, 166);
-    }else{
-        if([[NSString stringWithFormat:@"%@",model.a_storeyArea] isEqualToString:@"0"]){
-            areacountLabel.text = @"－";
-            areacountLabel.textColor = RGBCOLOR(166, 166, 166);
-        }else{
-            areacountLabel.text = [NSString stringWithFormat:@"%@",model.a_storeyArea];
-            areacountLabel.textColor = GrayColor;
-        }
-    }
-    
-    NSLog(@"%@",model.a_projectstage);
-    if([model.a_projectstage isEqualToString:@"1"]){
-        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];
-    }else if([model.a_projectstage isEqualToString:@"2"]){
-        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_23a"]];
-    }else if([model.a_projectstage isEqualToString:@"3"]){
-        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_25a"]];
-    }else if([model.a_projectstage isEqualToString:@"4"]){
-        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_27a"]];
-    }else{
-        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];
-    }
-    
-    if([model.a_exceptStartTime isEqualToString:@""]){
-        startdateLabel.text = @"开工日期";
-        startdateLabel.textColor = RGBCOLOR(166, 166, 166);
-    }else{
-        startdateLabel.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
-        startdateLabel.textColor = GrayColor;
-    }
-    
-    if([model.a_exceptFinishTime isEqualToString:@""]){
-        enddateLabel.text = @"竣工日期";
-        enddateLabel.textColor = RGBCOLOR(166, 166, 166);
-    }else{
-        enddateLabel.text = [model.a_exceptFinishTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
-        enddateLabel.textColor = [UIColor orangeColor];
-    }
-    
-    if([model.a_city isEqualToString:@""]){
-        zoneLabel.text = @"区域 -";
-        zoneLabel.textColor = RGBCOLOR(166, 166, 166);
-        //zoneLabel.textAlignment = NSTextAlignmentCenter;
-    }else{
-        zoneLabel.text = [NSString stringWithFormat:@"%@ - ",model.a_city];
-        zoneLabel.textColor = BlueColor;
-        //zoneLabel.textAlignment = NSTextAlignmentLeft;
-    }
-    
-    if([model.a_landAddress isEqualToString:@""]){
-        addressLabel.text = @"地址";
-        addressLabel.textColor = RGBCOLOR(166, 166, 166);
-    }else{
-        addressLabel.text = model.a_landAddress;
-        addressLabel.textColor = [UIColor blackColor];
-    }
-    [bigImage sd_setImageWithURL:[NSURL URLWithString:model.a_imageLocation] placeholderImage:[GetImagePath getImagePath:@"mapdef"]];
 }
 @end

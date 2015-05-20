@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ProjectTableViewCell.h"
 #import "LoadingView.h"
-@interface ResultsTableViewController : UITableViewController<ProjectTableViewCellDelegate>{
+@interface ResultsTableViewController : UITableViewController{
     NSMutableArray *showArr;
     int startIndex;
     NSString *allCount;

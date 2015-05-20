@@ -18,7 +18,7 @@
 #import "ProgramDetailViewController.h"
 #import "ProjectSqlite.h"
 #import "ProjectTableViewController.h"
-@interface ALLProjectViewController ()<UITableViewDataSource,UITableViewDelegate,ProjectTableViewCellDelegate>
+@interface ALLProjectViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)LoadingView *loadingView;
 @property(nonatomic)int startIndex;
@@ -95,9 +95,13 @@
                 [self.tableView reloadData];
             }
         }else{
-            [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
-                [self loadList];
-            }];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self loadList];
+                }];
+            }
         }
         [LoadingView removeLoadingView:self.loadingView];
         self.loadingView = nil;
@@ -134,13 +138,19 @@
                 [self.tableView reloadData];
             }
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self loadList];
+                }];
+            }
         }
         [self.tableView headerEndRefreshing];
     }startIndex:0 keywords:self.keywords noNetWork:^{
         [self.tableView headerEndRefreshing];
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
-            [self headerRereshing];
+            [self loadList];
         }];
     }];
     [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
@@ -160,13 +170,19 @@
                 [self.tableView reloadData];
             }
         }else{
-            [LoginAgain AddLoginView:NO];
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self loadList];
+                }];
+            }
         }
         [self.tableView footerEndRefreshing];
     }startIndex:self.startIndex+1 keywords:self.keywords noNetWork:^{
         [self.tableView footerEndRefreshing];
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
-            [self footerRereshing];
+            [self loadList];
         }];
     }];
 }
@@ -207,11 +223,10 @@
     ProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     projectModel *model = self.showArr[indexPath.row];
     if(!cell){
-        cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:model fromView:@"project"];
+        cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.indexRow=(int)indexPath.row;
-    cell.delegate = self;
     cell.model = model;
+    cell.projectNameString = @"是打发第三方撒的发生的法师打发士大夫撒打发士大夫是打发第三方撒的发生的法师打发士大夫撒打发士大夫是打发第三方撒的发生的法师打发士大夫撒打发士大夫";
     cell.selectionStyle = NO;
     return cell;
 }
@@ -235,13 +250,6 @@
     [self.nowViewController.navigationController pushViewController:vc animated:YES];
 }
 
--(void)addProjectCommentView:(int)index{
-    projectModel *model = self.showArr[index];
-    PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
-    projectCommentView.projectId = model.a_id;
-    projectCommentView.projectName = model.a_projectName;
-    [self.nowViewController.navigationController pushViewController:projectCommentView animated:YES];
-}
 
 - (NSString *)keywords{
     if (!_keywords) {

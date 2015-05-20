@@ -352,10 +352,8 @@
     ProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     projectModel *model = showArr[indexPath.row];
     if(!cell){
-        cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:model fromView:@"project"];
+        cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.indexRow=(int)indexPath.row;
-    cell.delegate = self;
     cell.model = model;
     cell.selectionStyle = NO;
     return cell;
@@ -378,13 +376,6 @@
     return nil;
 }
 
--(void)addProjectCommentView:(int)index{
-    projectModel *model = showArr[index];
-    PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
-    projectCommentView.projectId = model.a_id;
-    projectCommentView.projectName = model.a_projectName;
-    [self.navigationController pushViewController:projectCommentView animated:YES];
-}
 
 -(void)allProjectBtnClicked{
     //ALLProjectViewController* vc=[[ALLProjectViewController alloc]init];

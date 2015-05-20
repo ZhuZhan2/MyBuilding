@@ -12,7 +12,7 @@
 #import "ProjectTableViewCell.h"
 #import "PorjectCommentTableViewController.h"
 #import "LoadingView.h"
-@interface ProjectTableViewController : UITableViewController<ProjectTableViewCellDelegate>{
+@interface ProjectTableViewController : UITableViewController{
     NSMutableArray *showArr;
     int startIndex;
     LoadingView *loadingView;
