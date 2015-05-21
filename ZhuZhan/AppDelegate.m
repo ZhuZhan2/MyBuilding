@@ -112,17 +112,17 @@
     [ImageSqlite opensql];
     [MarketSearchSqlite opensql];
     
-//#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-//    if (IS_OS_8_OR_LATER) {
-//        [[UIApplication sharedApplication] registerForRemoteNotifications];
-//        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound) categories:nil];
-//        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-//    } else {
-//        [application registerForRemoteNotificationTypes:
-//         UIRemoteNotificationTypeBadge |
-//         UIRemoteNotificationTypeAlert |
-//         UIRemoteNotificationTypeSound];
-//    }
+#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    if (IS_OS_8_OR_LATER) {
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound) categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    } else {
+        [application registerForRemoteNotificationTypes:
+         UIRemoteNotificationTypeBadge |
+         UIRemoteNotificationTypeAlert |
+         UIRemoteNotificationTypeSound];
+    }
     
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;
@@ -133,11 +133,11 @@
         [self.window addSubview:firstAnimationView];
     }
     
-//    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-//    NSLog(@"launchOptions===>%@",launchOptions);
-//    if(userInfo) {
-//        [self handleRemoteNotification:application userInfo:userInfo];
-//    }
+    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    NSLog(@"launchOptions===>%@",launchOptions);
+    if(userInfo) {
+        [self handleRemoteNotification:application userInfo:userInfo];
+    }
 
     return YES;
 }
@@ -176,38 +176,38 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
-//{
-//    //将device token转换为字符串
-//    NSString *deviceTokenStr = [NSString stringWithFormat:@"%@",newDeviceToken];
-//    //modify the token, remove the  "<, >"
-//    NSLog(@"    deviceTokenStr  lentgh:  %d  ->%@", (int)[deviceTokenStr length], [[deviceTokenStr substringWithRange:NSMakeRange(0, 72)] substringWithRange:NSMakeRange(1, 71)]);
-//    deviceTokenStr = [[deviceTokenStr substringWithRange:NSMakeRange(0, 72)] substringWithRange:NSMakeRange(1, 71)];
-//    deviceTokenStr = [deviceTokenStr stringByReplacingOccurrencesOfString:@" " withString:@""];
-//    NSLog(@"deviceTokenStr = %@",deviceTokenStr);
-//}
-//
-//- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
-//    NSLog(@"error === >%@",error);
-//}
-//
-//- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
-//    NSLog(@"notification ======>%@",notification.alertBody);
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:notification.alertBody delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-//    [alert show];
-//}
-//
-//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
-//    NSLog(@"userInfo ====>%@",userInfo);
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:userInfo[@"aps"][@"alert"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-//    [alert show];
-//    application.applicationIconBadgeNumber -= 1;
-//}
-//
-//- (void)handleRemoteNotification:(UIApplication *)application userInfo:(NSDictionary *)userInfo {
-//    NSLog(@"=====>%@",userInfo);
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:userInfo[@"aps"][@"alert"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-//    [alert show];
-//    application.applicationIconBadgeNumber -= 1;
-//}
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
+{
+    //将device token转换为字符串
+    NSString *deviceTokenStr = [NSString stringWithFormat:@"%@",newDeviceToken];
+    //modify the token, remove the  "<, >"
+    NSLog(@"    deviceTokenStr  lentgh:  %d  ->%@", (int)[deviceTokenStr length], [[deviceTokenStr substringWithRange:NSMakeRange(0, 72)] substringWithRange:NSMakeRange(1, 71)]);
+    deviceTokenStr = [[deviceTokenStr substringWithRange:NSMakeRange(0, 72)] substringWithRange:NSMakeRange(1, 71)];
+    deviceTokenStr = [deviceTokenStr stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSLog(@"deviceTokenStr = %@",deviceTokenStr);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    NSLog(@"error === >%@",error);
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
+    NSLog(@"notification ======>%@",notification.alertBody);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:notification.alertBody delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [alert show];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    NSLog(@"userInfo ====>%@",userInfo);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:userInfo[@"aps"][@"alert"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [alert show];
+    application.applicationIconBadgeNumber -= 1;
+}
+
+- (void)handleRemoteNotification:(UIApplication *)application userInfo:(NSDictionary *)userInfo {
+    NSLog(@"=====>%@",userInfo);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:userInfo[@"aps"][@"alert"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [alert show];
+    application.applicationIconBadgeNumber -= 1;
+}
 @end
