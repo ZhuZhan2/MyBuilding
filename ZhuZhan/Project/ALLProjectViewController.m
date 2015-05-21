@@ -489,7 +489,7 @@
     loginVC.needDelayCancel=YES;
     loginVC.delegate = self;
     UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
-    [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    [self.nowViewController.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
 }
 
 -(void)loginCompleteWithDelayBlock:(void (^)())block{

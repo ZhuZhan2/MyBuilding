@@ -9,10 +9,12 @@
 #import "ChatBaseViewController.h"
 
 @class RKBaseTableView;
-@interface SearchBarTableViewController : UIViewController
+@interface SearchBarTableViewController : NSObject
+@property(nonatomic,strong)UIView* view;
 @property(nonatomic,strong)RKBaseTableView* tableView;
 @property(nonatomic,strong)UIView* noDataView;
 @property(nonatomic,weak)id<SearchBarTableViewDelegate>delegate;
 -(void)reloadSearchBarTableViewData;
 -(instancetype)initWithTableViewBounds:(CGRect)bounds;
+- (void)setUp;
 @end

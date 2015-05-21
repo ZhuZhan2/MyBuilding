@@ -19,7 +19,6 @@
 @property(nonatomic,strong)NSMutableArray* models;
 @property (nonatomic, strong)NSArray* menuTitles;
 @property (nonatomic, strong)id vc;
-@property (nonatomic, strong)id vc1;
 
 @property (nonatomic, copy)NSString* searchCategory;
 @end
@@ -34,7 +33,6 @@
     self.searchBarTableView.backgroundColor = [UIColor whiteColor];
     [self setTableViewFooterView];
     
-    NSLog(@"path=%@",NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES));
     [self.searchBar becomeFirstResponder];
 }
 
@@ -67,21 +65,28 @@
     UITextField* searchField = [self.searchBar valueForKey:@"_searchField"];
     UILabel* placeholderLabel = [searchField valueForKey:@"_placeholderLabel"];
     
-    UIButton* leftView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 48, 20)];
+    UIImageView* leftView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 48, 20)];
     {
-        [leftView addTarget:self action:@selector(menuBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         searchField.leftView = leftView;
+        leftView.userInteractionEnabled = YES;
+        
+        UIView* backView = [[UIView alloc] initWithFrame:leftView.bounds];
+        backView.backgroundColor = [UIColor whiteColor];
+        [leftView addSubview:backView];
+        
+        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(menuBtnClicked)];
+        [backView addGestureRecognizer:tap];
         
         UILabel* textLabel = [[UILabel alloc]initWithFrame:CGRectMake(4, 0, 30, 20)];
         textLabel.font = [UIFont systemFontOfSize:15];
         textLabel.text = @"用户";
         textLabel.textColor = AllDeepGrayColor;
-        [leftView addSubview:textLabel];
+        [backView addSubview:textLabel];
         textLabel.userInteractionEnabled = NO;
         
         UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(39, 7.5, 10, 5)];
         imageView.image = [GetImagePath getImagePath:@"searcharrow"];
-        [leftView addSubview:imageView];
+        [backView addSubview:imageView];
     }
     
     
@@ -112,7 +117,7 @@
 
 - (void)searchMenuViewClickedWithTitle:(NSString *)title index:(NSInteger)index{
     UIView* leftView=[self.searchBar valueForKeyPath:@"_searchField.leftView"];
-    [leftView.subviews[0] setText:title];
+    [[leftView.subviews[0] subviews][0] setText:title];
     NSLog(@"搜索条件变更");
     
 
