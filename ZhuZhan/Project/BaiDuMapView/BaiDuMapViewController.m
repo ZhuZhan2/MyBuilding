@@ -16,12 +16,14 @@
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
 #import "ProgramDetailViewController.h"
-@interface BaiDuMapViewController ()<LocationErrorViewDelegate>
+@interface BaiDuMapViewController ()<LocationErrorViewDelegate,MapContentViewDelegate,LoginViewDelegate>
 @property(nonatomic)BOOL isSelect;
 @property(nonatomic,strong)UIButton* nextBtn;
 @property(nonatomic,strong)UIButton* lastBtn;
 @property(nonatomic)NSInteger pageCount;
 @property(nonatomic,strong)LocationErrorView *errorView;
+@property(nonatomic)int tempStartIndex;
+@property(nonatomic)BOOL isNext;
 @end
 
 @implementation BaiDuMapViewController
@@ -157,6 +159,7 @@ int j;
         [self.view addSubview:bgView];
         projectModel *model = [showArr objectAtIndex:button.tag];
         _MapContent = [[MapContentView alloc] initWithFrame:CGRectMake(0, kScreenHeight, 320, 190) model:model number:[numberArr objectAtIndex:button.tag]];
+        _MapContent.delegate = self;
         UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gotoProgramDetailView:)];
         [_MapContent addGestureRecognizer:tap];
         _MapContent.tag=button.tag;
@@ -305,12 +308,6 @@ int j;
     if (annotationView == nil) {
         annotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
 		[annotationView setImage:[GetImagePath getImagePath:@"地图搜索1_09"]];
-//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 28.5, 30)];
-//        label.textColor = [UIColor whiteColor];
-//        label.font = [UIFont fontWithName:nil size:14];
-//        label.text = [numberArr objectAtIndex:j];
-//        label.textAlignment = NSTextAlignmentCenter;
-//        [annotationView addSubview:label];
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setFrame:CGRectMake(0, 0, 28.5, 30)];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -436,49 +433,54 @@ int j;
             CLLocationCoordinate2D coordinate = [_mapView convertPoint:location toCoordinateFromView:_mapView];
             [coordinates addObject:[NSValue valueWithMKCoordinate:coordinate]];
             
-            NSInteger numberOfPoints = [coordinates count];
-            
-            if (numberOfPoints > 2)
-            {
-                double maxLongitude=-9999;
-                double minLongitude=9999;
-                double maxLatitude=-9999;
-                double minLatitude=9999;
-                
-                CLLocationCoordinate2D points[numberOfPoints];
-                for (NSInteger i = 0; i < numberOfPoints; i++) {
-                    points[i] = [coordinates[i] MKCoordinateValue];
-                    if (points[i].longitude>maxLongitude) {
-                        maxLongitude=points[i].longitude;
-                    }else if (points[i].longitude<minLongitude){
-                        minLongitude=points[i].longitude;
-                    }
-                    if (points[i].latitude>maxLatitude){
-                        maxLatitude=points[i].latitude;
-                    }else if (points[i].latitude<minLatitude){
-                        minLatitude=points[i].latitude;
-                    }
-                    
-                }
-                polygon = [BMKPolygon polygonWithCoordinates:points count:numberOfPoints];
-                [_mapView addOverlay:polygon];
-                
-                centerLocation=CLLocationCoordinate2DMake((maxLatitude+minLatitude)*0.5, (maxLongitude+minLongitude)*.5);
-                CLLocationCoordinate2D coor1=CLLocationCoordinate2DMake(maxLatitude,maxLongitude);
-                BMKMapPoint mp1 = BMKMapPointForCoordinate(coor1);
-                BMKMapPoint mp2 = BMKMapPointForCoordinate(centerLocation);
-                dis = BMKMetersBetweenMapPoints(mp1, mp2);
-                NSLog(@"%f",dis);
-                self.pageCount=0;
-                allCount=1;
-                startIndex=-1;
-               [self getMapSearch:centerLocation startIndex:YES dis:[NSString stringWithFormat:@"%f",dis/1000]];
-            }
+            [self drawMap];
         }
     }
 }
 
+-(void)drawMap{
+    NSInteger numberOfPoints = [coordinates count];
+    
+    if (numberOfPoints > 2)
+    {
+        double maxLongitude=-9999;
+        double minLongitude=9999;
+        double maxLatitude=-9999;
+        double minLatitude=9999;
+        
+        CLLocationCoordinate2D points[numberOfPoints];
+        for (NSInteger i = 0; i < numberOfPoints; i++) {
+            points[i] = [coordinates[i] MKCoordinateValue];
+            if (points[i].longitude>maxLongitude) {
+                maxLongitude=points[i].longitude;
+            }else if (points[i].longitude<minLongitude){
+                minLongitude=points[i].longitude;
+            }
+            if (points[i].latitude>maxLatitude){
+                maxLatitude=points[i].latitude;
+            }else if (points[i].latitude<minLatitude){
+                minLatitude=points[i].latitude;
+            }
+            
+        }
+        polygon = [BMKPolygon polygonWithCoordinates:points count:numberOfPoints];
+        [_mapView addOverlay:polygon];
+        
+        centerLocation=CLLocationCoordinate2DMake((maxLatitude+minLatitude)*0.5, (maxLongitude+minLongitude)*.5);
+        CLLocationCoordinate2D coor1=CLLocationCoordinate2DMake(maxLatitude,maxLongitude);
+        BMKMapPoint mp1 = BMKMapPointForCoordinate(coor1);
+        BMKMapPoint mp2 = BMKMapPointForCoordinate(centerLocation);
+        dis = BMKMetersBetweenMapPoints(mp1, mp2);
+        NSLog(@"%f",dis);
+        self.pageCount=0;
+        allCount=1;
+        startIndex=-1;
+        [self getMapSearch:centerLocation startIndex:YES dis:[NSString stringWithFormat:@"%f",dis/1000]];
+    }
+}
+
 -(void)getMapSearch:(CLLocationCoordinate2D)Location startIndex:(BOOL)isNext dis:(NSString *)distance{
+    self.isNext = isNext;
     int tempStartIndex;
     if (isNext) {
         if (startIndex>=allCount-1) {
@@ -493,7 +495,7 @@ int j;
             tempStartIndex=startIndex-1;
         }
     }
-    
+    self.tempStartIndex = tempStartIndex;
     self.nextBtn.enabled = NO;
     self.lastBtn.enabled = NO;
     [ProjectApi GetMapSearchWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -711,6 +713,95 @@ int j;
         self.errorView = [[LocationErrorView alloc] initWithFrame:self.view.frame];
         self.errorView.delegate = self;
         [self.view addSubview:self.errorView];
+    }
+}
+
+-(void)gotoLoginView{
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    loginVC.needDelayCancel=YES;
+    loginVC.delegate = self;
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+}
+
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
+    [self closeBgview];
+    j = 0;
+    [self removeAnnotationsOnTheMap];
+    NSInteger numberOfPoints = [coordinates count];
+    
+    if (numberOfPoints > 2)
+    {
+        double maxLongitude=-9999;
+        double minLongitude=9999;
+        double maxLatitude=-9999;
+        double minLatitude=9999;
+        
+        CLLocationCoordinate2D points[numberOfPoints];
+        for (NSInteger i = 0; i < numberOfPoints; i++) {
+            points[i] = [coordinates[i] MKCoordinateValue];
+            if (points[i].longitude>maxLongitude) {
+                maxLongitude=points[i].longitude;
+            }else if (points[i].longitude<minLongitude){
+                minLongitude=points[i].longitude;
+            }
+            if (points[i].latitude>maxLatitude){
+                maxLatitude=points[i].latitude;
+            }else if (points[i].latitude<minLatitude){
+                minLatitude=points[i].latitude;
+            }
+            
+        }
+        polygon = [BMKPolygon polygonWithCoordinates:points count:numberOfPoints];
+        [_mapView addOverlay:polygon];
+        
+        [ProjectApi GetMapSearchWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                [showArr removeAllObjects];
+                CGPathCloseSubpath(pathRef);
+                if([posts[1] intValue]%26 == 0){
+                    allCount = [posts[1] intValue]/26;
+                }else{
+                    allCount = ([posts[1] intValue]/26)+1;
+                }
+                
+                if (self.isNext) {
+                    if (startIndex<allCount-1) {
+                        startIndex++;
+                    }
+                }else{
+                    if (startIndex>0) {
+                        startIndex--;
+                    }
+                }
+                if([posts[1] intValue] == 0){
+                    [[[UIAlertView alloc] initWithTitle:@"提示" message:@"没有找到项目" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil,nil]show];
+                    //[self judgeBtnEnable];
+                }else{
+                    [self addAnnotation:posts[0] isNext:self.isNext];
+                    //[self judgeBtnEnable];
+                }
+                [imageView removeFromSuperview];
+                imageView = nil;
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                        [self getMapSearch:centerLocation startIndex:YES dis:[NSString stringWithFormat:@"%f",dis/1000]];
+                    }];
+                }
+                [imageView removeFromSuperview];
+                imageView = nil;
+            }
+        } longitude:[NSString stringWithFormat:@"%lf",centerLocation.longitude] latitude:[NSString stringWithFormat:@"%lf",centerLocation.latitude] radius:[NSString stringWithFormat:@"%f",dis/1000] startIndex:self.tempStartIndex noNetWork:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                [self getMapSearch:centerLocation startIndex:YES dis:[NSString stringWithFormat:@"%f",dis/1000]];
+            }];
+        }];
+    }
+    if (block) {
+        block();
     }
 }
 @end

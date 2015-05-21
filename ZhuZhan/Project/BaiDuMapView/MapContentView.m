@@ -8,6 +8,11 @@
 
 #import "MapContentView.h"
 #import "ProjectStage.h"
+#import "IsFocusedApi.h"
+#import "LoginSqlite.h"
+
+#define FONT [UIFont systemFontOfSize:15]
+#define OTHERFONT [UIFont systemFontOfSize:14]
 @implementation MapContentView
 
 - (id)initWithFrame:(CGRect)frame model:(projectModel *)model number:(NSString *)number;
@@ -15,169 +20,244 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self addContent:model number:number];
+        NSLog(@"=====> %@",model.isFocused);
+        self.model = model;
+        self.isFocused = model.isFocused;
+        self.number = number;
+        [self addSubview:self.backgroundImageView];
+        [self.backgroundImageView addSubview:self.cutLine];
+        [self.backgroundImageView addSubview:self.redImageView];
+        [self.redImageView addSubview:self.countLabel];
+        [self.backgroundImageView addSubview:self.stageLabel];
+        [self addSubview:self.focusBtn];
+        [self.backgroundImageView addSubview:self.projectName];
+        [self.backgroundImageView addSubview:self.projectAddress];
+        [self.backgroundImageView addSubview:self.projectInvestment];
+        [self.backgroundImageView addSubview:self.projectArea];
+        [self.backgroundImageView addSubview:self.projectInvestmentCount];
+        [self.backgroundImageView addSubview:self.projectAreaCount];
+        [self.backgroundImageView addSubview:self.lastUpdatedTime];
+        [self.backgroundImageView addSubview:self.lastUpdatedTimeCount];
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+-(UIImageView *)backgroundImageView{
+    if(!_backgroundImageView){
+        _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 15, 292, 167)];
+        _backgroundImageView.image = [GetImagePath getImagePath:@"map_projectBackgroud"];
+    }
+    return _backgroundImageView;
 }
-*/
 
--(void)addContent:(projectModel *)model number:(NSString *)number{
-    //NSLog(@"dic ===> %@",dic);
-    //NSLog(@"%@",[ProjectStage JudgmentProjectStage:dic]);
-    UIImageView *grayBgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 190)];
-    [grayBgView setImage:[GetImagePath getImagePath:@"地图搜索1_16"]];
-    
-    UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(15,25,291.5,151.5)];
-    [bgImgView setImage:[GetImagePath getImagePath:@"地图搜索1_05"]];
-    
-    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,5,160,36)];
-    nameLabel.font = [UIFont boldSystemFontOfSize:15];
-    if([model.a_projectName isEqualToString:@""]){
-        nameLabel.text = @"项目名称";
-        nameLabel.textColor = RGBCOLOR(166, 166, 166);
-    }else{
-        nameLabel.text = model.a_projectName;
-        nameLabel.textColor = [UIColor blackColor];
+-(UIImageView *)cutLine{
+    if(!_cutLine){
+        _cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, 42, 292, 1)];
+        _cutLine.image = [GetImagePath getImagePath:@"project_cutline"];
     }
-    [bgImgView addSubview:nameLabel];
-    
-    UILabel *investmentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,51,85,20)];
-    investmentLabel.font = [UIFont systemFontOfSize:14];
-    investmentLabel.textColor = BlueColor;
-    investmentLabel.text = @"投资额(百万)";
-    [bgImgView addSubview:investmentLabel];
-    
-    UILabel *investmentcountLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,71,140,20)];
-    investmentcountLabel.font = [UIFont systemFontOfSize:14];
-    if([[NSString stringWithFormat:@"%@",model.a_investment] isEqualToString:@""]){
-        investmentcountLabel.text = @"－";
-        investmentcountLabel.textColor = RGBCOLOR(166, 166, 166);
-    }else{
-        if([[NSString stringWithFormat:@"%@",model.a_investment] isEqualToString:@"0"]){
-            investmentcountLabel.text = @"－";
-            investmentcountLabel.textColor = RGBCOLOR(166, 166, 166);
+    return _cutLine;
+}
+
+-(UIImageView *)redImageView{
+    if(!_redImageView){
+        _redImageView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 14, 20, 20)];
+        _redImageView.image = [GetImagePath getImagePath:@"map_project_red"];
+    }
+    return _redImageView;
+}
+
+-(UILabel *)countLabel{
+    if(!_countLabel){
+        _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        _countLabel.center = CGPointMake(10, 10);
+        _countLabel.textColor = [UIColor whiteColor];
+        _countLabel.font = [UIFont systemFontOfSize:14];
+        _countLabel.text = self.number;
+        _countLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _countLabel;
+}
+
+-(UILabel *)stageLabel{
+    if(!_stageLabel){
+        _stageLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 6, 130, 36)];
+        _stageLabel.textColor = BlueColor;
+        _stageLabel.font = FONT;
+        if([self.model.a_projectstage isEqualToString:@"1"]){
+            _stageLabel.text = @"土地信息阶段";
+        }else if([self.model.a_projectstage isEqualToString:@"2"]){
+            _stageLabel.text = @"主体设计阶段";
+        }else if([self.model.a_projectstage isEqualToString:@"3"]){
+            _stageLabel.text = @"主体施工阶段";
+        }else if([self.model.a_projectstage isEqualToString:@"4"]){
+            _stageLabel.text = @"装修阶段";
         }else{
-            investmentcountLabel.text = [NSString stringWithFormat:@"%@",model.a_investment];
-            investmentcountLabel.textColor = [UIColor blackColor];
+            _stageLabel.text = @"土地信息阶段";
         }
     }
-    [bgImgView addSubview:investmentcountLabel];
-    
-    UILabel *areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(120,51,85,20)];
-    areaLabel.font = [UIFont systemFontOfSize:14];
-    areaLabel.textColor = BlueColor;
-    areaLabel.text = @"建筑面积(㎡)";
-    [bgImgView addSubview:areaLabel];
-    
-    UILabel *areacountLabel = [[UILabel alloc] initWithFrame:CGRectMake(120,71,140,20)];
-    areacountLabel.font = [UIFont systemFontOfSize:14];
-    if([[NSString stringWithFormat:@"%@",model.a_storeyArea] isEqualToString:@""]){
-        areacountLabel.text = @"－";
-        areacountLabel.textColor = RGBCOLOR(166, 166, 166);
-    }else{
-        if([[NSString stringWithFormat:@"%@",model.a_storeyArea] isEqualToString:@"0"]){
-            areacountLabel.text = @"－";
-            areacountLabel.textColor = RGBCOLOR(166, 166, 166);
+    return _stageLabel;
+}
+
+-(UIButton *)focusBtn{
+    if(!_focusBtn){
+        _focusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _focusBtn.frame = CGRectMake(210, 22, 81, 28);
+        if([self.model.isFocused isEqualToString:@"0"]){
+            [_focusBtn setImage:[GetImagePath getImagePath:@"addfocus"] forState:UIControlStateNormal];
         }else{
-            areacountLabel.text = [NSString stringWithFormat:@"%@",model.a_storeyArea];
-            areacountLabel.textColor = [UIColor blackColor];
+            [_focusBtn setImage:[GetImagePath getImagePath:@"cancelfocus"] forState:UIControlStateNormal];
+        }
+        [_focusBtn addTarget:self action:@selector(focusBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _focusBtn;
+}
+
+-(UILabel *)projectName{
+    if(!_projectName){
+        _projectName = [[UILabel alloc] initWithFrame:CGRectMake(14, 48, 264, 20)];
+        _projectName.text = self.model.a_projectName;
+        _projectName.font = [UIFont systemFontOfSize:19];
+    }
+    return _projectName;
+}
+
+-(UILabel *)projectAddress{
+    if(!_projectAddress){
+        _projectAddress = [[UILabel alloc] initWithFrame:CGRectMake(14, 70, 264, 20)];
+        _projectAddress.textColor = AllDeepGrayColor;
+        NSString* tempStr = [NSString stringWithFormat:@"%@ %@",self.model.a_city,self.model.a_landAddress];
+        NSMutableAttributedString* attStr=[[NSMutableAttributedString alloc]initWithString:tempStr];
+        [attStr addAttribute:NSForegroundColorAttributeName value:BlueColor range:NSMakeRange(0, self.model.a_city.length)];
+        _projectAddress.attributedText = attStr;
+        
+    }
+    return _projectAddress;
+}
+
+-(UILabel *)projectInvestment{
+    if(!_projectInvestment){
+        _projectInvestment = [[UILabel alloc] initWithFrame:CGRectMake(14, 95, 90, 20)];
+        _projectInvestment.text = @"投资额(百万)";
+        _projectInvestment.font = FONT;
+        _projectInvestment.textColor = BlueColor;
+    }
+    return _projectInvestment;
+}
+
+-(UILabel *)projectArea{
+    if(!_projectArea){
+        _projectArea = [[UILabel alloc] initWithFrame:CGRectMake(152, 95, 90, 20)];
+        _projectArea.textColor = BlueColor;
+        _projectArea.text = @"建筑面积(㎡)";
+        _projectArea.font = FONT;
+    }
+    return _projectArea;
+}
+
+-(UILabel *)projectInvestmentCount{
+    if(!_projectInvestmentCount){
+        _projectInvestmentCount = [[UILabel alloc] initWithFrame:CGRectMake(14, 115, 90, 20)];
+        _projectInvestmentCount.font = FONT;
+        if([[NSString stringWithFormat:@"%@",self.model.a_investment] isEqualToString:@""]){
+            _projectInvestmentCount.text = @"－";
+            _projectInvestmentCount.textColor = AllNoDataColor;
+        }else{
+            if([[NSString stringWithFormat:@"%@",self.model.a_investment] isEqualToString:@"0"]){
+                _projectInvestmentCount.text = @"－";
+                _projectInvestmentCount.textColor = AllNoDataColor;
+            }else{
+                _projectInvestmentCount.text = [NSString stringWithFormat:@"%@",self.model.a_investment];
+                _projectInvestmentCount.textColor = [UIColor blackColor];
+            }
         }
     }
-    [bgImgView addSubview:areacountLabel];
-    
-    UIImageView *progressImage = [[UIImageView alloc] initWithFrame:CGRectMake(220,5,52,52)];
-    if([model.a_projectstage isEqualToString:@"1"]){
-        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];
-    }else if([model.a_projectstage isEqualToString:@"2"]){
-        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_23a"]];
-    }else if([model.a_projectstage isEqualToString:@"3"]){
-        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_25a"]];
-    }else if([model.a_projectstage isEqualToString:@"4"]){
-        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_27a"]];
-    }else{
-        [progressImage setImage:[GetImagePath getImagePath:@"+项目-首页_21a"]];
+    return _projectInvestmentCount;
+}
+
+-(UILabel *)projectAreaCount{
+    if(!_projectAreaCount){
+        _projectAreaCount = [[UILabel alloc] initWithFrame:CGRectMake(152, 115, 90, 20)];
+        _projectAreaCount.font = FONT;
+        if([[NSString stringWithFormat:@"%@",self.model.a_storeyArea] isEqualToString:@""]){
+            _projectAreaCount.text = @"－";
+            _projectAreaCount.textColor = AllNoDataColor;
+        }else{
+            if([[NSString stringWithFormat:@"%@",self.model.a_storeyArea] isEqualToString:@"0"]){
+                _projectAreaCount.text = @"－";
+                _projectAreaCount.textColor = AllNoDataColor;
+            }else{
+                _projectAreaCount.text = [NSString stringWithFormat:@"%@",self.model.a_storeyArea];
+                _projectAreaCount.textColor = [UIColor blackColor];
+            }
+        }
     }
-    UIImageView *smailImage = [[UIImageView alloc] initWithFrame:CGRectMake(15,17,24.5,18.5)];
-    [smailImage setImage:[GetImagePath getImagePath:@"全部项目_21"]];
-    [progressImage addSubview:smailImage];
-    [bgImgView addSubview:progressImage];
-    
-    UILabel *startdateLabel = [[UILabel alloc] initWithFrame:CGRectMake(210,57,65,20)];
-    startdateLabel.font = [UIFont systemFontOfSize:12];
-    startdateLabel.textAlignment = NSTextAlignmentCenter;
-    if([model.a_exceptStartTime isEqualToString:@""]){
-        startdateLabel.text = @"开工日期";
-        startdateLabel.textColor = RGBCOLOR(166, 166, 166);
-    }else{
-        startdateLabel.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
-        startdateLabel.textColor = GrayColor;
+    return _projectAreaCount;
+}
+
+-(UILabel *)lastUpdatedTime{
+    if(!_lastUpdatedTime){
+        _lastUpdatedTime = [[UILabel alloc] initWithFrame:CGRectMake(14, 135, 100, 20)];
+        _lastUpdatedTime.font = OTHERFONT;
+        _lastUpdatedTime.text = @"最后更新时间";
     }
-    [bgImgView addSubview:startdateLabel];
-    
-    UILabel *enddateLabel = [[UILabel alloc] initWithFrame:CGRectMake(210,71,65,20)];
-    enddateLabel.font = [UIFont systemFontOfSize:12];
-    enddateLabel.textAlignment = NSTextAlignmentCenter;
-    if([model.a_exceptFinishTime isEqualToString:@""]){
-        enddateLabel.text = @"竣工日期";
-        enddateLabel.textColor = RGBCOLOR(166, 166, 166);
-    }else{
-        enddateLabel.text = [model.a_exceptFinishTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
-        enddateLabel.textColor = [UIColor orangeColor];
+    return _lastUpdatedTime;
+}
+
+-(UILabel *)lastUpdatedTimeCount{
+    if(!_lastUpdatedTimeCount){
+        _lastUpdatedTimeCount = [[UILabel alloc] initWithFrame:CGRectMake(108, 135, 140, 20)];
+        _lastUpdatedTimeCount.font = OTHERFONT;
+        _lastUpdatedTimeCount.text = [self.model.a_lastUpdatedTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     }
-    [bgImgView addSubview:enddateLabel];
-    
-    UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(20,115,20,20)];
-    [arrowImage setImage:[GetImagePath getImagePath:@"全部项目_17"]];
-    [bgImgView addSubview:arrowImage];
-    
-    UIImageView *lingImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 100, 250, 1)];
-    [lingImage setImage:[GetImagePath getImagePath:@"新建项目5_27"]];
-    [bgImgView addSubview:lingImage];
-    
-    UILabel *zoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(50,115,60,20)];
-    zoneLabel.font = [UIFont systemFontOfSize:14];
-    if([model.a_city isEqualToString:@""]){
-        zoneLabel.text = @"区域 -";
-        zoneLabel.textColor = RGBCOLOR(166, 166, 166);
-        zoneLabel.textAlignment = NSTextAlignmentCenter;
+    return _lastUpdatedTimeCount;
+}
+
+
+-(void)focusBtnAction{
+    if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        if([self.isFocused isEqualToString:@"0"]){
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setObject:self.model.a_id forKey:@"targetId"];
+            [dic setObject:@"03" forKey:@"targetCategory"];
+            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alertView show];
+                    self.isFocused = @"1";
+                    [self.focusBtn setImage:[GetImagePath getImagePath:@"cancelfocus"] forState:UIControlStateNormal];
+                }else{
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
+                }
+            } dic:dic noNetWork:nil];
+        }else{
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setObject:self.model.a_id forKey:@"targetId"];
+            [dic setObject:@"03" forKey:@"targetCategory"];
+            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alertView show];
+                    [self.focusBtn setImage:[GetImagePath getImagePath:@"addfocus"] forState:UIControlStateNormal];
+                    self.isFocused = @"0";
+                }else{
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorCode alert];
+                    }
+                }
+            } dic:dic noNetWork:^{
+                [ErrorCode alert];
+            }];
+        }
     }else{
-        zoneLabel.text = [NSString stringWithFormat:@"%@ - ",model.a_city];
-        zoneLabel.textColor = BlueColor;
-        zoneLabel.textAlignment = NSTextAlignmentLeft;
+        if([self.delegate respondsToSelector:@selector(gotoLoginView)]){
+            [self.delegate gotoLoginView];
+        }
     }
-    [bgImgView addSubview:zoneLabel];
-    
-    UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(100,115,160,20)];
-    addressLabel.font = [UIFont systemFontOfSize:14];
-    if([model.a_landAddress isEqualToString:@""]){
-        addressLabel.text = @"地址";
-        addressLabel.textColor = RGBCOLOR(166, 166, 166);
-    }else{
-        addressLabel.text = model.a_landAddress;
-        addressLabel.textColor = [UIColor blackColor];
-    }
-    [bgImgView addSubview:addressLabel];
-    
-    [grayBgView addSubview:bgImgView];
-    [self addSubview:grayBgView];
-    
-    UIImageView *numberImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 28.5, 40.5)];
-    [numberImageView setImage:[GetImagePath getImagePath:@"地图搜索1_09"]];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 28.5, 30)];
-    label.textColor = [UIColor whiteColor];
-    label.font = [UIFont fontWithName:nil size:14];
-    label.text = number;
-    label.textAlignment = NSTextAlignmentCenter;
-    [numberImageView addSubview:label];
-    [self addSubview:numberImageView];
 }
 @end

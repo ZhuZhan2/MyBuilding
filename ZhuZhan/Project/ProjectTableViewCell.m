@@ -27,8 +27,6 @@
         [self.contentView addSubview:self.topImageView];
         [self.contentView addSubview:self.topContentImageView];
         [self.contentView addSubview:self.stageLabel];
-        [self.contentView addSubview:self.detailLabel];
-        [self.contentView addSubview:self.arrowImageView];
         [self.contentView addSubview:self.contentImageView];
         [self.contentView addSubview:self.cutLine];
         [self.contentView addSubview:self.projectName];
@@ -37,15 +35,9 @@
         [self.contentView addSubview:self.projectArea];
         [self.contentView addSubview:self.projectInvestmentCount];
         [self.contentView addSubview:self.projectAreaCount];
-        [self.contentView addSubview:self.projectStartDate];
-        [self.contentView addSubview:self.projectEndDate];
-        [self.contentView addSubview:self.projectStartDateCount];
-        [self.contentView addSubview:self.projectEndDateCount];
         [self.contentView addSubview:self.mapImageVIew];
         [self.contentView addSubview:self.lastUpdatedTime];
         [self.contentView addSubview:self.lastUpdatedTimeCount];
-        [self.contentView addSubview:self.cutLine2];
-        [self.contentView addSubview:self.commentsNum];
         [self.contentView addSubview:self.focusBtn];
         [self.contentView addSubview:self.bottomImageView];
     }
@@ -70,35 +62,16 @@
 
 -(UILabel *)stageLabel{
     if(!_stageLabel){
-        _stageLabel = [[UILabel alloc] initWithFrame:CGRectMake(LEFTMARGIN+LEFTPADDING, 10, 130, 36)];
+        _stageLabel = [[UILabel alloc] initWithFrame:CGRectMake(LEFTMARGIN+LEFTPADDING, 14, 130, 36)];
         _stageLabel.textColor = BlueColor;
         _stageLabel.font = FONT;
     }
     return _stageLabel;
 }
 
--(UILabel *)detailLabel{
-    if(!_detailLabel){
-        _detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 116, 36)];
-        _detailLabel.textColor = AllDeepGrayColor;
-        _detailLabel.text = @"查看详情";
-        _detailLabel.font = FONT;
-        _detailLabel.textAlignment = NSTextAlignmentRight;
-    }
-    return _detailLabel;
-}
-
--(UIImageView *)arrowImageView{
-    if(!_arrowImageView){
-        _arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(281, 22, 7, 12)];
-        _arrowImageView.image = [GetImagePath getImagePath:@"project_arrow"];
-    }
-    return _arrowImageView;
-}
-
 -(UIImageView *)cutLine{
     if(!_cutLine){
-        _cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(LEFTMARGIN, 46, 288, 1)];
+        _cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(LEFTMARGIN, 52, 288, 1)];
         _cutLine.image = [GetImagePath getImagePath:@"project_cutline"];
     }
     return _cutLine;
@@ -166,42 +139,6 @@
     return _projectAreaCount;
 }
 
--(UILabel *)projectStartDate{
-    if(!_projectStartDate){
-        _projectStartDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 90, 20)];
-        _projectStartDate.font = FONT;
-        _projectStartDate.textColor = BlueColor;
-        _projectStartDate.text = @"预计开工时间";
-    }
-    return _projectStartDate;
-}
-
--(UILabel *)projectEndDate{
-    if(!_projectEndDate){
-        _projectEndDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 90, 20)];
-        _projectEndDate.font = FONT;
-        _projectEndDate.textColor = BlueColor;
-        _projectEndDate.text = @"预计竣工时间";
-    }
-    return _projectEndDate;
-}
-
--(UILabel *)projectStartDateCount{
-    if(!_projectStartDateCount){
-        _projectStartDateCount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 90, 20)];
-        _projectStartDateCount.font = FONT;
-    }
-    return _projectStartDateCount;
-}
-
--(UILabel *)projectEndDateCount{
-    if(!_projectEndDateCount){
-        _projectEndDateCount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 90, 20)];
-        _projectEndDateCount.font = FONT;
-    }
-    return _projectEndDateCount;
-}
-
 -(UIImageView *)mapImageVIew{
     if(!_mapImageVIew){
         _mapImageVIew = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 284, 110)];
@@ -227,27 +164,10 @@
     return _lastUpdatedTimeCount;
 }
 
--(UIImageView *)cutLine2{
-    if(!_cutLine2){
-        _cutLine2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 288, 1)];
-        _cutLine2.image = [GetImagePath getImagePath:@"project_cutline"];
-    }
-    return _cutLine2;
-}
-
--(UILabel *)commentsNum{
-    if(!_commentsNum){
-        _commentsNum = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 140, 20)];
-        _commentsNum.font = OTHERFONT;
-        _commentsNum.textColor = AllDeepGrayColor;
-    }
-    return _commentsNum;
-}
-
 -(UIButton *)focusBtn{
     if(!_focusBtn){
         _focusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _focusBtn.frame = CGRectMake(0, 0, 81, 28);
+        _focusBtn.frame = CGRectMake(210, 18, 81, 28);
         [_focusBtn addTarget:self action:@selector(focusBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _focusBtn;
@@ -277,29 +197,15 @@
     self.projectInvestmentCount.center = CGPointMake(LEFTMARGIN+LEFTPADDING+47, self.projectArea.frame.origin.y + self.projectArea.frame.size.height+10);
     self.projectAreaCount.center = CGPointMake(231, self.projectArea.frame.origin.y + self.projectArea.frame.size.height+10);
     
-    self.projectStartDate.center = CGPointMake(LEFTMARGIN+LEFTPADDING+45, self.projectInvestmentCount.frame.origin.y + self.projectInvestmentCount.frame.size.height+10);
-    self.projectEndDate.center = CGPointMake(229, self.projectAreaCount.frame.origin.y + self.projectAreaCount.frame.size.height+10);
-    
-    self.projectStartDateCount.center = CGPointMake(LEFTMARGIN+LEFTPADDING+47, self.projectStartDate.frame.origin.y + self.projectStartDate.frame.size.height+10);
-    self.projectEndDateCount.center = CGPointMake(231, self.projectEndDate.frame.origin.y + self.projectEndDate.frame.size.height+10);
-    
-    self.mapImageVIew.center = CGPointMake(LEFTMARGIN+144, self.projectEndDateCount.frame.origin.y + self.projectEndDateCount.frame.size.height+60);
+    self.mapImageVIew.center = CGPointMake(LEFTMARGIN+144, self.projectAreaCount.frame.origin.y + self.projectAreaCount.frame.size.height+60);
     
     self.lastUpdatedTime.center = CGPointMake(LEFTMARGIN+LEFTPADDING+50, self.mapImageVIew.frame.origin.y + self.mapImageVIew.frame.size.height+15);
     self.lastUpdatedTimeCount.center = CGPointMake(LEFTMARGIN+LEFTPADDING+90+72, self.mapImageVIew.frame.origin.y + self.mapImageVIew.frame.size.height+15);
     
-    self.cutLine2.center = CGPointMake(LEFTMARGIN+144, self.lastUpdatedTime.frame.origin.y + self.lastUpdatedTime.frame.size.height+5);
-    
-    self.commentsNum.center = CGPointMake(LEFTMARGIN+LEFTPADDING+70, self.cutLine2.frame.origin.y + self.cutLine2.frame.size.height+20);
-    self.focusBtn.center = CGPointMake(LEFTMARGIN+LEFTPADDING+140+81, self.cutLine2.frame.origin.y + self.cutLine2.frame.size.height+20);
-    
     allHeight += self.projectName.frame.size.height+self.projectAddress.frame.size.height+10;
     allHeight += self.projectArea.frame.size.height;
-    allHeight += self.projectStartDate.frame.size.height;
-    allHeight += self.projectStartDateCount.frame.size.height;
     allHeight += self.mapImageVIew.frame.size.height+10;
     allHeight += self.lastUpdatedTime.frame.size.height;
-    allHeight += self.commentsNum.frame.size.height+20;
     allHeight += self.bottomImageView.frame.size.height;
     self.contentImageView.frame = CGRectMake(LEFTMARGIN, 46, 288, allHeight);
     self.bottomImageView.center = CGPointMake(LEFTMARGIN+144, allHeight+46);
@@ -326,7 +232,7 @@
     }else{
         CGSize projectNameSize =CGSizeMake(254,60);
         CGSize projectNameActualsize =[model.a_projectName boundingRectWithSize:projectNameSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:19]} context:nil].size;
-        self.projectName.frame = CGRectMake(LEFTMARGIN+LEFTPADDING+2, 52, 254, projectNameActualsize.height);
+        self.projectName.frame = CGRectMake(LEFTMARGIN+LEFTPADDING+2, 58, 254, projectNameActualsize.height);
         self.projectName.text = model.a_projectName;
         self.projectName.textColor = [UIColor blackColor];
     }
@@ -339,7 +245,7 @@
         [attStr addAttribute:NSForegroundColorAttributeName value:BlueColor range:NSMakeRange(0, model.a_city.length)];
         CGSize projectAddressSize =CGSizeMake(254,60);
         CGSize projectAddressActualsize =[tempStr boundingRectWithSize:projectAddressSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:FONT} context:nil].size;
-        self.projectAddress.frame = CGRectMake(LEFTMARGIN+LEFTPADDING-2, 54+self.projectName.frame.size.height, 254, projectAddressActualsize.height+10);
+        self.projectAddress.frame = CGRectMake(LEFTMARGIN+LEFTPADDING-2, 58+self.projectName.frame.size.height, 254, projectAddressActualsize.height+10);
         self.projectAddress.attributedText = attStr;
     }
     
@@ -369,22 +275,6 @@
         }
     }
     
-    if([model.a_exceptStartTime isEqualToString:@""]){
-        self.projectStartDateCount.text = @"－";
-        self.projectStartDateCount.textColor = AllNoDataColor;
-    }else{
-        self.projectStartDateCount.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
-        self.projectStartDateCount.textColor = [UIColor blackColor];
-    }
-    
-    if([model.a_exceptFinishTime isEqualToString:@""]){
-        self.projectEndDateCount.text = @"－";
-        self.projectEndDateCount.textColor = AllNoDataColor;
-    }else{
-        self.projectEndDateCount.text = [model.a_exceptStartTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
-        self.projectEndDateCount.textColor = [UIColor blackColor];
-    }
-    
     if([model.a_longitude isEqualToString:@""] && [model.a_latitude isEqualToString:@""]){
         [self.mapImageVIew sd_setImageWithURL:[NSURL URLWithString:model.a_imageLocation] placeholderImage:[GetImagePath getImagePath:@"mapdef"]];
     }else{
@@ -393,7 +283,6 @@
     }
     
     self.lastUpdatedTimeCount.text = [model.a_lastUpdatedTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
-    self.commentsNum.text = [NSString stringWithFormat:@"评论 %@",model.a_commentsNum];
     
     self.isFocused = model.isFocused;
     if([model.isFocused isEqualToString:@"0"]){
@@ -405,18 +294,15 @@
     CGFloat allHeight = 0;
     CGFloat projectAddressheight = self.projectAddress.frame.size.height;
     if(projectAddressheight == 0){
-        allHeight += 36;
-    }else{
         allHeight += 30;
+    }else{
+        allHeight += 25;
     }
     allHeight += self.projectName.frame.size.height+self.projectAddress.frame.size.height+10;
     allHeight += self.projectInvestmentCount.frame.size.height;
-    allHeight += self.projectStartDate.frame.size.height;
-    allHeight += self.projectStartDateCount.frame.size.height;
     allHeight += self.mapImageVIew.frame.size.height;
     allHeight += self.lastUpdatedTime.frame.size.height;
-    allHeight += self.commentsNum.frame.size.height;
-    allHeight += 90;
+    allHeight += 66;
     
     CGRect frame = [self frame];
     frame.size.height = allHeight;

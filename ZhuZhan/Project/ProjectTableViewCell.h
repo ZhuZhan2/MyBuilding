@@ -18,8 +18,6 @@
 @property(nonatomic,strong)UIImageView *topImageView;
 @property(nonatomic,strong)UIImageView *topContentImageView;
 @property(nonatomic,strong)UILabel *stageLabel;
-@property(nonatomic,strong)UILabel *detailLabel;
-@property(nonatomic,strong)UIImageView *arrowImageView;
 @property(nonatomic,strong)UIButton *focusBtn;
 @property(nonatomic,strong)UIImageView *cutLine;
 @property(nonatomic,strong)UIImageView *contentImageView;
@@ -29,15 +27,9 @@
 @property(nonatomic,strong)UILabel *projectArea;
 @property(nonatomic,strong)UILabel *projectInvestmentCount;
 @property(nonatomic,strong)UILabel *projectAreaCount;
-@property(nonatomic,strong)UILabel *projectStartDate;
-@property(nonatomic,strong)UILabel *projectEndDate;
-@property(nonatomic,strong)UILabel *projectStartDateCount;
-@property(nonatomic,strong)UILabel *projectEndDateCount;
 @property(nonatomic,strong)UIImageView *mapImageVIew;
 @property(nonatomic,strong)UILabel *lastUpdatedTime;
 @property(nonatomic,strong)UILabel *lastUpdatedTimeCount;
-@property(nonatomic,strong)UILabel *commentsNum;
-@property(nonatomic,strong)UIImageView *cutLine2;
 @property(nonatomic,strong)UIImageView *bottomImageView;
 @property(nonatomic,strong)NSString *isFocused;
 @property(nonatomic,strong)NSString *projectID;
