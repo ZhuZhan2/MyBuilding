@@ -14,7 +14,7 @@
 #import "HomePageViewController.h"
 #import "ProgramDetailViewController.h"
 #import "MJRefresh.h"
-@interface TopicsDetailTableViewController ()
+@interface TopicsDetailTableViewController ()<ProjectTableViewCellDelegate>
 
 @end
 
@@ -195,7 +195,13 @@
     }else if(indexPath.row == 1){
         return 45;
     }
-    return 290;
+    CGSize defaultSize = DEFAULT_CELL_SIZE;
+    CGSize cellSize = [ProjectTableViewCell sizeForCellWithDefaultSize:defaultSize setupCellBlock:^id(id<CellHeightDelegate> cellToSetup) {
+        projectModel *model = showArr[indexPath.row-2];
+        [((ProjectTableViewCell *)cellToSetup) setModel:model];
+        return cellToSetup;
+    }];
+    return cellSize.height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -251,6 +257,7 @@
     ProgramDetailViewController* vc=[[ProgramDetailViewController alloc]init];
     projectModel *model = showArr[indexPath.row-2];
     vc.projectId=model.a_id;
+    vc.isFocused = model.isFocused;
     [self.navigationController pushViewController:vc animated:YES];
 }
 @end

@@ -273,6 +273,7 @@
         [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocus"]];
+                [self initNavi];
                 [self getContentList];
             }else{
                 if([ErrorCode errorCode:error] ==403){

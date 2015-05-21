@@ -264,16 +264,16 @@
 -(void)layoutSubviews{
     CGFloat allHeight = 0;
     CGFloat projectAddressheight = self.projectAddress.frame.size.height;
+    
     if(projectAddressheight == 0){
         self.projectInvestment.center = CGPointMake(LEFTMARGIN+LEFTPADDING+45, self.projectName.frame.size.height + self.projectName.frame.origin.y+20);
         self.projectArea.center = CGPointMake(229, self.projectName.frame.size.height + self.projectName.frame.origin.y+20);
-        allHeight += 35;
-    }else{
-        self.projectInvestment.center = CGPointMake(LEFTMARGIN+LEFTPADDING+45, self.projectName.frame.size.height + self.projectAddress.frame.size.height + self.projectAddress.frame.origin.y-8);
-        self.projectArea.center = CGPointMake(229, self.projectName.frame.size.height + self.projectAddress.frame.size.height + self.projectAddress.frame.origin.y-8);
         allHeight += 30;
+    }else{
+        self.projectInvestment.center = CGPointMake(LEFTMARGIN+LEFTPADDING+45, self.projectAddress.frame.origin.y + self.projectAddress.frame.size.height+13);
+        self.projectArea.center = CGPointMake(229, self.projectAddress.frame.origin.y + self.projectAddress.frame.size.height+13);
+        allHeight += 25;
     }
-    
     self.projectInvestmentCount.center = CGPointMake(LEFTMARGIN+LEFTPADDING+47, self.projectArea.frame.origin.y + self.projectArea.frame.size.height+10);
     self.projectAreaCount.center = CGPointMake(231, self.projectArea.frame.origin.y + self.projectArea.frame.size.height+10);
     
@@ -326,7 +326,7 @@
     }else{
         CGSize projectNameSize =CGSizeMake(254,60);
         CGSize projectNameActualsize =[model.a_projectName boundingRectWithSize:projectNameSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:19]} context:nil].size;
-        self.projectName.frame = CGRectMake(LEFTMARGIN+LEFTPADDING+3, 52, 254, projectNameActualsize.height);
+        self.projectName.frame = CGRectMake(LEFTMARGIN+LEFTPADDING+2, 52, 254, projectNameActualsize.height);
         self.projectName.text = model.a_projectName;
         self.projectName.textColor = [UIColor blackColor];
     }
@@ -339,7 +339,7 @@
         [attStr addAttribute:NSForegroundColorAttributeName value:BlueColor range:NSMakeRange(0, model.a_city.length)];
         CGSize projectAddressSize =CGSizeMake(254,60);
         CGSize projectAddressActualsize =[tempStr boundingRectWithSize:projectAddressSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:FONT} context:nil].size;
-        self.projectAddress.frame = CGRectMake(LEFTMARGIN+LEFTPADDING-1, 54+self.projectName.frame.size.height, 254, projectAddressActualsize.height+10);
+        self.projectAddress.frame = CGRectMake(LEFTMARGIN+LEFTPADDING-2, 54+self.projectName.frame.size.height, 254, projectAddressActualsize.height+10);
         self.projectAddress.attributedText = attStr;
     }
     

@@ -18,10 +18,14 @@
 #import "ProgramDetailViewController.h"
 #import "ProjectSqlite.h"
 #import "ProjectTableViewController.h"
-@interface ALLProjectViewController ()<UITableViewDataSource,UITableViewDelegate,ProjectTableViewCellDelegate,LoginViewDelegate>
+#import "RKStageChooseView.h"
+#import "LocalProjectModel.h"
+@interface ALLProjectViewController ()<UITableViewDataSource,UITableViewDelegate,ProjectTableViewCellDelegate,LoginViewDelegate,RKStageChooseViewDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)LoadingView *loadingView;
 @property(nonatomic)int startIndex;
+@property(nonatomic,strong)RKStageChooseView *stageChooseView;
+@property(nonatomic)NSInteger flag;
 @end
 
 @implementation ALLProjectViewController
@@ -60,9 +64,13 @@
     [bgView addSubview:label];
     self.navigationItem.titleView = bgView;
     
+    
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.stageChooseView];
+    
     self.startIndex = 0;
-    [self loadList];
+    self.flag = 0;
+    //[self loadList];
     //集成刷新控件
     [self setupRefresh];
 }
@@ -83,9 +91,12 @@
 }
 
 -(void)loadList{
-    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view];
+    self.startIndex = 0;
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view];
     [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
+            [self.showArr removeAllObjects];
             self.showArr = posts[0];
             if(self.showArr.count == 0){
                 [MyTableView reloadDataWithTableView:self.tableView];
@@ -98,7 +109,7 @@
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
             }else{
-                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
                     [self loadList];
                 }];
             }
@@ -108,23 +119,119 @@
     } startIndex:0 keywords:self.keywords noNetWork:^{
         [LoadingView removeLoadingView:self.loadingView];
         self.loadingView = nil;
-        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
             [self loadList];
         }];
     }];
+}
+
+-(void)loadLocalAndRecommended{
+    self.startIndex = 0;
+    NSMutableArray* localDatas=[ProjectSqlite loadList];
+    if (!localDatas.count) {
+        [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+        self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view];
+        [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts,int count ,NSError *error) {
+            if(!error){
+                self.showArr = posts;
+                if(self.showArr.count == 0){
+                    [MyTableView reloadDataWithTableView:self.tableView];
+                    [MyTableView hasData:self.tableView];
+                }else{
+                    [MyTableView removeFootView:self.tableView];
+                    [self.tableView reloadData];
+                }
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
+                        self.tableView.scrollEnabled = YES;
+                        [self loadLocalAndRecommended];
+                    }];
+                }
+            }
+            [LoadingView removeLoadingView:self.loadingView];
+            self.loadingView = nil;
+        } startIndex:self.startIndex noNetWork:^{
+            [LoadingView removeLoadingView:self.loadingView];
+            self.loadingView = nil;
+            [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
+                [self loadLocalAndRecommended];
+            }];
+        }];
+    }else{
+        [self.tableView removeFooter];
+        self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view];
+        [self requestSingleProgram:[ProjectSqlite loadList]];
+    }
+}
+
+-(void)requestSingleProgram:(NSMutableArray*)datas{
+    NSString* projectIds=@"";
+    for (int i=0; i<datas.count; i++) {
+        projectIds=[[NSString stringWithFormat:i?@"%@,":@"%@",projectIds] stringByAppendingString:[datas[i] a_projectId]];
+    }
+    if (datas.count) {
+        [ProjectApi LocalProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                self.showArr = posts;
+                if(self.showArr.count == 0){
+                    [MyTableView reloadDataWithTableView:self.tableView];
+                    [MyTableView hasData:self.tableView];
+                }else{
+                    [MyTableView removeFootView:self.tableView];
+                    [self.tableView reloadData];
+                }
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
+                        [self loadLocalAndRecommended];
+                    }];
+                }
+            }
+            [LoadingView removeLoadingView:self.loadingView];
+            self.loadingView = nil;
+        } projectIds:projectIds noNetWork:^{
+            [LoadingView removeLoadingView:self.loadingView];
+            self.loadingView = nil;
+            [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
+                [self loadLocalAndRecommended];
+            }];
+        }];
+    }
 }
 
 - (void)setupRefresh
 {
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
     [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
-    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
 }
 
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
     self.startIndex = 0;
+    if(self.flag == 0){
+        [self reloadList];
+    }else{
+        [self reloadLocalAndRecommended];
+    }
+}
+
+- (void)footerRereshing
+{
+    if(self.flag == 0){
+        [self addListData];
+    }else{
+        [self addRecommendedData];
+    }
+}
+
+-(void)reloadList{
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
     [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.startIndex = 0;
@@ -141,7 +248,7 @@
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
             }else{
-                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
                     [self loadList];
                 }];
             }
@@ -149,15 +256,83 @@
         [self.tableView headerEndRefreshing];
     }startIndex:0 keywords:self.keywords noNetWork:^{
         [self.tableView headerEndRefreshing];
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
             [self loadList];
         }];
     }];
-    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
 }
 
-- (void)footerRereshing
-{
+-(void)reloadLocalAndRecommended{
+    NSMutableArray* localDatas=[ProjectSqlite loadList];
+    if (!localDatas.count) {
+        [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+        [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, int count,NSError *error) {
+            if(!error){
+                [self.showArr removeAllObjects];
+                self.showArr = posts;
+                if(self.showArr.count == 0){
+                    [MyTableView reloadDataWithTableView:self.tableView];
+                    [MyTableView hasData:self.tableView];
+                }else{
+                    [MyTableView removeFootView:self.tableView];
+                    [self.tableView reloadData];
+                }
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
+                        [self loadLocalAndRecommended];
+                    }];
+                }
+            }
+            [self.tableView headerEndRefreshing];
+        }startIndex:0 noNetWork:^{
+            [self.tableView headerEndRefreshing];
+            [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
+                [self loadLocalAndRecommended];
+            }];
+        }];
+    }else{
+        [self.tableView removeFooter];
+        NSArray* datas=[ProjectSqlite loadList];
+        NSString* projectIds=@"";
+        for (int i=0; i<datas.count; i++) {
+            projectIds=[[NSString stringWithFormat:i?@"%@,":@"%@",projectIds] stringByAppendingString:[datas[i] a_projectId]];
+        }
+        if (datas.count) {
+            [ProjectApi LocalProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    [self.showArr removeAllObjects];
+                    self.showArr = posts;
+                    if(self.showArr.count == 0){
+                        [MyTableView reloadDataWithTableView:self.tableView];
+                        [MyTableView hasData:self.tableView];
+                    }else{
+                        [MyTableView removeFootView:self.tableView];
+                        [self.tableView reloadData];
+                    }
+                }else{
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
+                            [self loadLocalAndRecommended];
+                        }];
+                    }
+                }
+                [self.tableView headerEndRefreshing];
+            } projectIds:projectIds noNetWork:^{
+                [self.tableView headerEndRefreshing];
+                [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
+                    [self loadLocalAndRecommended];
+                }];
+            }];
+        }
+    }
+}
+
+-(void)addListData{
     [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.startIndex++;
@@ -173,7 +348,7 @@
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
             }else{
-                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
                     [self loadList];
                 }];
             }
@@ -181,15 +356,55 @@
         [self.tableView footerEndRefreshing];
     }startIndex:self.startIndex+1 keywords:self.keywords noNetWork:^{
         [self.tableView footerEndRefreshing];
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
             [self loadList];
         }];
     }];
 }
 
+-(void)addRecommendedData{
+    [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts,int count ,NSError *error) {
+        if(!error){
+            self.startIndex++;
+            [self.showArr addObjectsFromArray:posts];
+            if(self.showArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
+                    [self loadLocalAndRecommended];
+                }];
+            }
+        }
+        [self.tableView footerEndRefreshing];
+    }startIndex:self.startIndex+1 noNetWork:^{
+        [self.tableView footerEndRefreshing];
+        [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
+            [self loadLocalAndRecommended];
+        }];
+    }];
+}
+
+-(RKStageChooseView *)stageChooseView{
+    if(!_stageChooseView){
+        _stageChooseView = [RKStageChooseView stageChooseViewWithStages:@[@"全部项目",@"历史记录"] numbers:nil delegate:self];
+        CGRect frame=_stageChooseView.frame;
+        frame.origin=CGPointMake(0, 64);
+        _stageChooseView.frame=frame;
+    }
+    return _stageChooseView;
+}
+
 -(UITableView *)tableView{
     if(!_tableView){
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, kScreenHeight-49)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 50, 320, kScreenHeight-99)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = AllBackLightGratColor;
@@ -231,13 +446,6 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if(section == 0){
-        return 50;
-    }
-    return 5;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGSize defaultSize = DEFAULT_CELL_SIZE;
     CGSize cellSize = [ProjectTableViewCell sizeForCellWithDefaultSize:defaultSize setupCellBlock:^id(id<CellHeightDelegate> cellToSetup) {
@@ -271,35 +479,6 @@
     return _nowViewController;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if(section == 0){
-        UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 291.5, 50)];
-        [bgView setBackgroundColor:AllBackLightGratColor];
-        
-        UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(18, 25, 160, 20)];
-        tempLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:13];
-        tempLabel.textColor = GrayColor;
-        tempLabel.text = [NSString stringWithFormat:@"全部项目"];
-        
-        UIButton* projectBtn=[UIButton buttonWithType:UIButtonTypeSystem];
-        [projectBtn setTitle:@"查看历史记录" forState:UIControlStateNormal];
-        projectBtn.frame=CGRectMake(227, 15, 79, 40);
-        [projectBtn setTitleColor:BlueColor forState:UIControlStateNormal];
-        projectBtn.titleLabel.font = [UIFont fontWithName:@"GurmukhiMN" size:13];
-        [projectBtn addTarget:self action:@selector(projectBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-        [bgView addSubview:projectBtn];
-        
-        UIView* view=[[UIView alloc]initWithFrame:CGRectMake(228, 42, 76, 1)];
-        view.backgroundColor=BlueColor;
-        [bgView addSubview:view];
-        [bgView addSubview:tempLabel];
-        
-        
-        return bgView;
-    }
-    return nil;
-}
-
 -(void)projectBtnClicked{
     ProjectTableViewController *view = [[ProjectTableViewController alloc] init];
     [self.navigationController pushViewController:view animated:YES];
@@ -319,6 +498,20 @@
     [self loadList];
     if (block) {
         block();
+    }
+}
+
+-(void)stageBtnClickedWithNumber:(NSInteger)stageNumber{
+    self.flag = stageNumber;
+    switch (stageNumber) {
+        case 0:
+            [self loadList];
+            break;
+        case 1:
+            [self loadLocalAndRecommended];
+            break;
+        default:
+            break;
     }
 }
 @end

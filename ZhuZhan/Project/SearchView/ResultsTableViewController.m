@@ -17,7 +17,7 @@
 #import "ErrorView.h"
 #import "MyTableView.h"
 #import "PorjectCommentTableViewController.h"
-@interface ResultsTableViewController ()
+@interface ResultsTableViewController ()<ProjectTableViewCellDelegate,LoginViewDelegate>
 
 @end
 
@@ -80,7 +80,7 @@
     
     startIndex = 0;
     allCount = @"0";
-    self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
+    self.tableView.backgroundColor = AllBackLightGratColor;
     self.tableView.separatorStyle = NO;
     
     //集成刷新控件
@@ -367,7 +367,13 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 280;
+    CGSize defaultSize = DEFAULT_CELL_SIZE;
+    CGSize cellSize = [ProjectTableViewCell sizeForCellWithDefaultSize:defaultSize setupCellBlock:^id(id<CellHeightDelegate> cellToSetup) {
+        projectModel *model = showArr[indexPath.row];
+        [((ProjectTableViewCell *)cellToSetup) setModel:model];
+        return cellToSetup;
+    }];
+    return cellSize.height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -379,6 +385,7 @@
         cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.model = model;
+    cell.delegate = self;
     cell.selectionStyle = NO;
     return cell;
 }
@@ -386,7 +393,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if(section == 0){
         UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 291.5, 50)];
-        [bgView setBackgroundColor:RGBCOLOR(239, 237, 237)];
+        [bgView setBackgroundColor:AllBackLightGratColor];
         UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 10, 160, 20)];
         countLabel.font = [UIFont systemFontOfSize:12];
         countLabel.textColor = GrayColor;
@@ -403,6 +410,24 @@
     ProgramDetailViewController* vc=[[ProgramDetailViewController alloc]init];
     projectModel *model = showArr[indexPath.row];
     vc.projectId=model.a_id;
+    vc.isFocused = model.isFocused;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)gotoLoginView{
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    loginVC.needDelayCancel=YES;
+    loginVC.delegate = self;
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+}
+
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
+    startIndex = 0;
+    [showArr removeAllObjects];
+    [self firstNetWork];
+    if (block) {
+        block();
+    }
 }
 @end
