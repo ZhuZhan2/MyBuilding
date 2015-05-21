@@ -365,22 +365,8 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//分享
--(void)rightBtnClick1{
-    NSLog(@"rightBtnClick1");
-}
-
-//评论列表
--(void)rightBtnClick2{
-    NSLog(@"rightBtnClick");
-    PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
-    projectCommentView.projectId = self.projectId;
-    projectCommentView.projectName = self.model.a_projectName;
-    [self.navigationController pushViewController:projectCommentView animated:YES];
-}
-
 //关注项目
--(void)rightBtnClick3{
+-(void)rightBtnClick1{
     NSLog(@"rightBtnClick");
     if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
         if([self.isFocused isEqualToString:@"0"]){
@@ -431,6 +417,20 @@
     }
 }
 
+//分享
+-(void)rightBtnClick2{
+    NSLog(@"rightBtnClick1");
+}
+
+//评论列表
+-(void)rightBtnClick3{
+    NSLog(@"rightBtnClick");
+    PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
+    projectCommentView.projectId = self.projectId;
+    projectCommentView.projectName = self.model.a_projectName;
+    [self.navigationController pushViewController:projectCommentView animated:YES];
+}
+
 -(void)initNavi{
     UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,5,25,22)];
     [button setImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
@@ -441,30 +441,31 @@
     [self setRightBtnWithText:@"当当"];
     //RightButton设置属性
     UIButton *rightButton1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton1 setFrame:CGRectMake(40, 0, 65, 44)];
-    [rightButton1 setTitle:@"分享" forState:UIControlStateNormal];
+    BOOL isNoticed = [self.isFocused isEqualToString:@"1"];
+    [rightButton1 setFrame:CGRectMake(isNoticed?48:56, 0, 70, 44)];
+    [rightButton1 setTitle:isNoticed?@"取消关注":@"加关注" forState:UIControlStateNormal];
     [rightButton1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    rightButton1.titleLabel.font = [UIFont systemFontOfSize:15];
+    rightButton1.titleLabel.font = [UIFont systemFontOfSize:16];
     [rightButton1 addTarget:self action:@selector(rightBtnClick1) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *rightButton2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton2 setFrame:CGRectMake(105, 0, 65, 44)];
-    [rightButton2 setTitle:@"评论" forState:UIControlStateNormal];
+    [rightButton2 setFrame:CGRectMake(135, 0, 45, 44)];
+    [rightButton2 setTitle:@"分享" forState:UIControlStateNormal];
     [rightButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    rightButton2.titleLabel.font = [UIFont systemFontOfSize:15];
+    rightButton2.titleLabel.font = [UIFont systemFontOfSize:16];
     [rightButton2 addTarget:self action:@selector(rightBtnClick2) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 170, 44)];
+
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 44)];
     [view addSubview:rightButton1];
     [view addSubview:rightButton2];
     
     self.navigationItem.titleView = view;
-    
+
     UIButton *rightButton3 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton3 setFrame:CGRectMake(0, 0, 45, 22)];
-    [rightButton3 setTitle:[self.isFocused isEqualToString:@"1"]?@"已关注":@"加关注" forState:UIControlStateNormal];
+    [rightButton3 setFrame:CGRectMake(0, 0, 32, 44)];
+    [rightButton3 setTitle:@"评论" forState:UIControlStateNormal];
     [rightButton3 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    rightButton3.titleLabel.font = [UIFont systemFontOfSize:15];
+    rightButton3.titleLabel.font = [UIFont systemFontOfSize:16];
     [rightButton3 addTarget:self action:@selector(rightBtnClick3) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* barBtnItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton3];
     
