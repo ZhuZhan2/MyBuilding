@@ -16,12 +16,12 @@
 -(instancetype)initWithTableViewBounds:(CGRect)bounds{
     if (self=[super init]) {
         self.tableViewBounds=bounds;
+        [self setUp];
     }
     return self;
 }
 
--(void)viewDidLoad{
-    [super viewDidLoad];
+-(void)setUp{
     [self initTableView];
 }
 
@@ -94,5 +94,17 @@
     if ([self.delegate respondsToSelector:@selector(searchBarTableViewWillBeginDragging:)]) {
         [self.delegate searchBarTableViewWillBeginDragging:self.tableView];
     }
+}
+
+- (void)touchesBeganInRKBaseTableView{
+    [self.view endEditing:YES];
+}
+
+- (UIView *)view{
+    if (!_view) {
+        _view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+        _view.backgroundColor = [UIColor whiteColor];
+    }
+    return _view;
 }
 @end

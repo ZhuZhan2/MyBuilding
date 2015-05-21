@@ -182,6 +182,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             if (!error) {
                 self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocus"]];
                 self.productModel.a_focusedNum=posts[0][@"focusNum"];
+                [self initNavi];
                 [self getNetWorkData];
             }else{
                 if([ErrorCode errorCode:error] ==403){
@@ -228,53 +229,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             [self firstNetWork];
         }];
     }];
-//    //产品详情的评论 或者个人中心的产品详情
-//    if (self.productModel||(self.personalModel&&[self.category isEqualToString:@"Product"])) {
-//        [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
-//            [self removeMyLoadingView];
-//            if (!error) {
-//                self.commentModels=posts;
-//                [self getTableViewContents];
-//                [self myTableViewReloadData];
-//            }
-//        } entityId:self.entityID entityType:@"01" noNetWork:^{
-//            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
-//                [self getNetWorkData];
-//            }];
-//        }];
-//        
-//    //动态详情的评论 或者个人中心的个人动态
-//    }else if (self.activesModel||(self.personalModel||!([self.category isEqualToString:@"Product"]))){
-//        [CommentApi CommentUrlWithBlock:^(NSMutableArray *posts, NSError *error) {
-//            [self removeMyLoadingView];
-//            if (!error) {
-//                if(posts.count !=0){
-//                    self.activesModel=posts[0];
-//
-//                    if (!self.commentModels) self.commentModels=[[NSMutableArray alloc]init];
-//                    for (int i=0; i<self.activesModel.a_commentsArr.count; i++) {
-//                        //因为数组被处理过，当评论超过3条时会有一个字符串的元素，所以需要排除
-//                        if ([self.activesModel.a_commentsArr[i] isKindOfClass:[ContactCommentModel class]] ) {
-//                            [self.commentModels addObject:self.activesModel.a_commentsArr[i]];
-//                        }
-//                    }
-//                    if (self.activesModel&&[self.category isEqualToString:@"Product"]) {
-//                        self.content=self.activesModel.a_content;
-//                        self.imageUrl=self.activesModel.a_imageUrl;
-//                        self.imageWidth=self.activesModel.a_imageWidth;
-//                        self.imageHeight=self.activesModel.a_imageHeight;
-//                        self.userName=self.activesModel.a_userName;
-//                    }
-//                    [self getTableViewContents];
-//                    [self myTableViewReloadData];
-//                }
-//            }
-//        } url:self.entityUrl noNetWork:^{
-//            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
-//                [self getNetWorkData];
-//            }];
-//        }];
-//    }
 }
 
 //获得上方主要显示的图文内容
@@ -457,10 +411,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //调节有图无文字时候的下方留白高度
     //BOOL isHasImageNoContent=[self.content isEqualToString:@""]&&![self.imageUrl isEqualToString:@""];
     //if (isHasImageNoContent) {
-        CGRect tempFrame=productNameArea.frame;
-        tempFrame.size.height+=8;
-        productNameArea.frame=tempFrame;
-        height+=8;
+    CGRect tempFrame=productNameArea.frame;
+    tempFrame.size.height+=8;
+    productNameArea.frame=tempFrame;
+    height+=8;
     //}
     
     //设置总的view的frame
@@ -623,7 +577,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 - (NSDate *)timeScroller:(ACTimeScroller *)timeScroller dateForCell:(UITableViewCell *)cell{
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-   // NSLog(@"index==%@,%d",cell.contentView.subviews,indexPath.row);
+    // NSLog(@"index==%@,%d",cell.contentView.subviews,indexPath.row);
     if (!indexPath.row) {
         timeScroller.hidden=YES;
         return [NSDate date];
@@ -865,11 +819,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [button setImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
-    self.navigationItem.title=@"详情";//self.productModel?@"产品详情":@"动态详情";
+    
     if([self.category isEqualToString:@"Product"] ){
         UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [rightButton setFrame:CGRectMake(0, 0, 25, 22)];
-        [rightButton setBackgroundImage:[GetImagePath getImagePath:@"019"] forState:UIControlStateNormal];
+        [rightButton setTitle:[self.isFocused isEqualToString:@"1"]?@"取消关注":@"加关注" forState:UIControlStateNormal];
+        rightButton.titleLabel.font = [UIFont systemFontOfSize:16];
+        [rightButton setFrame:CGRectMake(0, 0, 70, 44)];
         [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
         self.navigationItem.rightBarButtonItem = rightButtonItem;
@@ -889,14 +844,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)rightBtnClick{
     if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
-        NSString *string = nil;
-        if([self.isFocused isEqualToString:@"0"]){
-            string = @"添加关注";
-        }else{
-            string = @"取消关注";
-        }
-        UIActionSheet* actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:string, nil];
-        [actionSheet showInView:self.view];
+        [self addNotice];
     }else{
         LoginViewController *loginVC = [[LoginViewController alloc] init];
         loginVC.needDelayCancel=YES;
@@ -906,61 +854,59 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+- (void)addNotice{
     if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
         return;
     }
     
-    if (buttonIndex==0) {
-        if([self.isFocused isEqualToString:@"0"]){
-            NSLog(@"关注");
-            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-            [dic setObject:self.entityID forKey:@"targetId"];
-            [dic setObject:@"04" forKey:@"targetCategory"];
-            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
-                if(!error){
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alertView show];
-                    self.isFocused = @"1";
-                    self.productModel.a_focusedNum = posts[0][@"focusNum"];
-                    self.noticeLabel.text=[NSString stringWithFormat:@"%@ 关注",self.productModel.a_focusedNum];
-                    NSLog(@"关注数===》%@",posts[0][@"focusNum"]);
+    if([self.isFocused isEqualToString:@"0"]){
+        NSLog(@"关注");
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:self.entityID forKey:@"targetId"];
+        [dic setObject:@"04" forKey:@"targetCategory"];
+        [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+                self.isFocused = @"1";
+                self.productModel.a_focusedNum = posts[0][@"focusNum"];
+                self.noticeLabel.text=[NSString stringWithFormat:@"%@ 关注",self.productModel.a_focusedNum];
+                [self initNavi];
+                NSLog(@"关注数===》%@",posts[0][@"focusNum"]);
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
                 }else{
-                    if([ErrorCode errorCode:error] == 403){
-                        [LoginAgain AddLoginView:NO];
-                    }else{
-                        [ErrorCode alert];
-                    }
+                    [ErrorCode alert];
                 }
-            } dic:dic noNetWork:^{
-                [ErrorCode alert];
-            }];
-        }else{
-            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-            [dic setObject:self.entityID forKey:@"targetId"];
-            [dic setObject:@"04" forKey:@"targetCategory"];
-            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
-                if(!error){
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alertView show];
-                    self.isFocused = @"0";
-                    self.productModel.a_focusedNum = posts[0][@"focusNum"];
-                    self.noticeLabel.text=[NSString stringWithFormat:@"%@ 关注",self.productModel.a_focusedNum];
-                    NSLog(@"关注数===》%@",posts[0][@"focusNum"]);
-                }else{
-                    if([ErrorCode errorCode:error] == 403){
-                        [LoginAgain AddLoginView:NO];
-                    }else{
-                        [ErrorCode alert];
-                    }
-                }
-            } dic:dic noNetWork:^{
-                [ErrorCode alert];
-            }];
-        }
+            }
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     }else{
-        NSLog(@"取消");
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:self.entityID forKey:@"targetId"];
+        [dic setObject:@"04" forKey:@"targetCategory"];
+        [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+                self.isFocused = @"0";
+                self.productModel.a_focusedNum = posts[0][@"focusNum"];
+                self.noticeLabel.text=[NSString stringWithFormat:@"%@ 关注",self.productModel.a_focusedNum];
+                [self initNavi];
+                NSLog(@"关注数===》%@",posts[0][@"focusNum"]);
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
+            }
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     }
 }
 

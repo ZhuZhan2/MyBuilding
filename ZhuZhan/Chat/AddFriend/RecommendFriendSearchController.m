@@ -22,8 +22,8 @@
 
 @implementation RecommendFriendSearchController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)setUp {
+    [super setUp];
     [self initTableViewHeader];
 }
 
@@ -106,13 +106,6 @@
     cell.selectionStyle = NO;
     
     return cell;
-}
-
-- (UIViewController *)nowViewController{
-    if (!_nowViewController) {
-        _nowViewController = self;
-    }
-    return _nowViewController;
 }
 
 - (UIView *)noDataView{

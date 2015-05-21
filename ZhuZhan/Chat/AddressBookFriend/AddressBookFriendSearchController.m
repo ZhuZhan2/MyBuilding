@@ -18,8 +18,8 @@
 
 @implementation AddressBookFriendSearchController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)setUp {
+    [super setUp];
     [self initTableViewHeader];
 }
 

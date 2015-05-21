@@ -437,28 +437,26 @@
     [button setImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
-    self.navigationItem.title=@"详情";
 
-    [self setRightBtnWithText:@"当当"];
     //RightButton设置属性
     UIButton *rightButton1 = [UIButton buttonWithType:UIButtonTypeCustom];
     BOOL isNoticed = [self.isFocused isEqualToString:@"1"];
-    [rightButton1 setFrame:CGRectMake(isNoticed?48:56, 0, 70, 44)];
+    [rightButton1 setFrame:CGRectMake(65+(isNoticed?48:56), 0, 70, 44)];
     [rightButton1 setTitle:isNoticed?@"取消关注":@"加关注" forState:UIControlStateNormal];
     [rightButton1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     rightButton1.titleLabel.font = [UIFont systemFontOfSize:16];
     [rightButton1 addTarget:self action:@selector(rightBtnClick1) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *rightButton2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton2 setFrame:CGRectMake(135, 0, 45, 44)];
-    [rightButton2 setTitle:@"分享" forState:UIControlStateNormal];
-    [rightButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    rightButton2.titleLabel.font = [UIFont systemFontOfSize:16];
-    [rightButton2 addTarget:self action:@selector(rightBtnClick2) forControlEvents:UIControlEventTouchUpInside];
+//    UIButton *rightButton2 = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [rightButton2 setFrame:CGRectMake(135, 0, 45, 44)];
+//    [rightButton2 setTitle:@"分享" forState:UIControlStateNormal];
+//    [rightButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    rightButton2.titleLabel.font = [UIFont systemFontOfSize:16];
+//    [rightButton2 addTarget:self action:@selector(rightBtnClick2) forControlEvents:UIControlEventTouchUpInside];
 
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 44)];
     [view addSubview:rightButton1];
-    [view addSubview:rightButton2];
+    //[view addSubview:rightButton2];
     
     self.navigationItem.titleView = view;
 
