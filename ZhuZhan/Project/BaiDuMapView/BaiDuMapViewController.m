@@ -181,6 +181,7 @@ int j;
     projectModel *model = [showArr objectAtIndex:tap.view.tag];
     ProgramDetailViewController* vc=[[ProgramDetailViewController alloc]init];
     vc.projectId=model.a_id;
+    vc.isFocused = model.isFocused;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
