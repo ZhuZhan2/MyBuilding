@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface IsFocusedApi : NSObject
-//获取所有公司列表
+//是否关注
 + (NSURLSessionDataTask *)GetIsFocusedListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId targetId:(NSString *)targetId noNetWork:(void(^)())noNetWork;
 
 //添加关注

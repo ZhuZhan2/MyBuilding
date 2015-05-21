@@ -456,7 +456,7 @@
     [rightButton2 addTarget:self action:@selector(rightBtnClick2) forControlEvents:UIControlEventTouchUpInside];
     
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 170, 44)];
-    [view addSubview:rightButton1];
+    //[view addSubview:rightButton1];
     [view addSubview:rightButton2];
     
     self.navigationItem.titleView = view;
