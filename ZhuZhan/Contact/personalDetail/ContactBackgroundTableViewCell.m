@@ -131,11 +131,42 @@
 }
 
 -(void)setModel:(MyCenterModel *)model{
-    realName.text = model.a_realName;
-    sex.text = model.a_sex;
-    location.text = model.a_location;
-    birthday.text = model.a_birthday;
-    constellation.text = model.a_constellation;
-    bloodType.text = model.a_bloodType;
+    if([model.a_realName isEqualToString:@""]){
+        realName.text = @"－";
+    }else{
+        realName.text = model.a_realName;
+    }
+    
+    if([model.a_sex isEqualToString:@""]){
+        sex.text = @"－";
+    }else{
+        sex.text = model.a_sex;
+    }
+    
+    NSLog(@"%@",model.a_location);
+    
+    if([model.a_location isEqualToString:@" "]){
+        location.text = @"－";
+    }else{
+        location.text = model.a_location;
+    }
+    
+    if([model.a_birthday isEqualToString:@""]){
+        birthday.text = @"－";
+    }else{
+        birthday.text = model.a_birthday;
+    }
+    
+    if([model.a_constellation isEqualToString:@""]){
+        constellation.text = @"－";
+    }else{
+        constellation.text = model.a_constellation;
+    }
+    
+    if([model.a_bloodType isEqualToString:@""]){
+        bloodType.text = @"－";
+    }else{
+        bloodType.text = model.a_bloodType;
+    }
 }
 @end

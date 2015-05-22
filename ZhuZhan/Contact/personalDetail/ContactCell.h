@@ -9,27 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "ContactModel.h"
 #import "MyCenterModel.h"
-@protocol  ContactCellDelegate<NSObject>
-
--(void)gotoCallEmail:(NSString *)email;
--(void)gotoCallPhone:(NSString *)phone;
-@end
-
-@interface ContactCell : UITableViewCell{
-    UILabel *commonLabel1;
-    UIButton *emailBtn;
-    UIImageView *line;
-    UIImageView *imageView;
-    UILabel *commonLabel2;
-    UIButton *cellPhoneBtn;
-    UIImageView *imageView1;
-    UILabel *commonLabel;
-    UIView *back;
-    UIImageView *topLineImage;
-    UIImageView *topImgaeView;
-}
+@interface ContactCell : UITableViewCell
 @property(nonatomic,strong)MyCenterModel *model;
-@property(nonatomic,strong)NSString *phone;
-@property(nonatomic,strong)NSString *email;
-@property (nonatomic ,weak) id<ContactCellDelegate> delegate;
+@property(nonatomic,strong)UILabel *phone;
+@property(nonatomic,strong)UILabel *email;
+@property(nonatomic,strong)UILabel *phoneTitle;
+@property(nonatomic,strong)UILabel *emailTitle;
+@property(nonatomic,strong)UIView *topBgView;
+@property(nonatomic,strong)UIImageView *topLineImage;
+@property(nonatomic,strong)UIImageView *topImgaeView;
+@property(nonatomic,strong)UIImageView *cutLine;
 @end

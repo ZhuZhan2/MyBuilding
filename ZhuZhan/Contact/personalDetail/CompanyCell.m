@@ -14,39 +14,28 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
-        companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 260, 30)];
-        companyLabel.textAlignment = NSTextAlignmentLeft;
-        companyLabel.font = [UIFont boldSystemFontOfSize:16];
-        [self addSubview:companyLabel];
-        
-        
-        positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 20, 150, 30)];
-        positionLabel.textAlignment = NSTextAlignmentLeft;
-        positionLabel.textColor = [UIColor grayColor];
-        positionLabel.font = [UIFont systemFontOfSize:14];
-        [self addSubview:positionLabel];
+        [self.contentView addSubview:self.nameLabel];
+        [self.contentView addSubview:self.statusLabel];
     }
     return self;
 }
 
-- (void)awakeFromNib
-{
-    // Initialization code
+-(UILabel *)nameLabel{
+    if(!_nameLabel){
+        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 260, 30)];
+        _nameLabel.textAlignment = NSTextAlignmentLeft;
+        _nameLabel.font = [UIFont boldSystemFontOfSize:16];
+    }
+    return _nameLabel;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
--(void)setCompanyStr:(NSString *)companyStr{
-    companyLabel.text = companyStr;
-}
-
--(void)setPositionStr:(NSString *)positionStr{
-    positionLabel.text = positionStr;
+-(UILabel *)statusLabel{
+    if(!_statusLabel){
+        _statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 20, 150, 30)];
+        _statusLabel.textAlignment = NSTextAlignmentLeft;
+        _statusLabel.textColor = AllLightGrayColor;
+        _statusLabel.font = [UIFont systemFontOfSize:14];
+    }
+    return _statusLabel;
 }
 @end
