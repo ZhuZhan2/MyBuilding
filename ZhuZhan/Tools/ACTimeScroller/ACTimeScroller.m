@@ -53,6 +53,7 @@
         self.transform = CGAffineTransformMakeTranslation(10.0f, 0.0f);
         
         _backgroundView = [[UIImageView alloc] init];
+        
         _backgroundView.frame = CGRectMake(CGRectGetWidth(self.frame) - 118.0f, 0.0f, 118.0f, CGRectGetHeight(self.frame));
         [_backgroundView setImage:[GetImagePath getImagePath:@"＋人脉－个人中心2_30a"]];
         [self addSubview:_backgroundView];
@@ -164,6 +165,7 @@
 - (void)updateDisplayWithCell:(UITableViewCell *)cell
 {
     NSDate *date = [self.delegate timeScroller:self dateForCell:cell];
+    
     if (!date || [date isEqualToDate:_lastDate])
     {
         return;
