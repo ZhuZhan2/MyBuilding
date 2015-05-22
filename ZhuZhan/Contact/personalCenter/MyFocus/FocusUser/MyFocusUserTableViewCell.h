@@ -11,6 +11,7 @@
 
 @protocol MyFocusUserTableViewCellDelegate <NSObject>
 -(void)addFocused:(NSIndexPath *)indexPath;
+-(void)userHeadClick:(NSIndexPath *)indexPath;
 @end
 
 @interface MyFocusUserTableViewCell : UITableViewCell

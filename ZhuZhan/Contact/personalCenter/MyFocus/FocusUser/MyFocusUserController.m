@@ -7,14 +7,10 @@
 //
 
 #import "MyFocusUserController.h"
-#import "projectModel.h"
-#import "ProjectTableViewCell.h"
-#import "ProgramDetailViewController.h"
-#import "ProjectApi.h"
-#import "ErrorCode.h"
 #import "MyFocusUserTableViewCell.h"
 #import "IsFocusedApi.h"
 #import "LoginSqlite.h"
+#import "PersonalDetailViewController.h"
 @interface MyFocusUserController()<MyFocusUserTableViewCellDelegate>
 
 @end
@@ -136,14 +132,6 @@
     return 62;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ProgramDetailViewController* vc=[[ProgramDetailViewController alloc]init];
-    projectModel *model = self.models[indexPath.row];
-    vc.projectId = model.a_id;
-    vc.isFocused = model.isFocused;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 -(void)addFocused:(NSIndexPath *)indexPath{
     MyCenterModel *model = self.models[indexPath.row];
     if([model.a_isFocus isEqualToString:@"0"]){
@@ -187,5 +175,12 @@
             [ErrorCode alert];
         }];
     }
+}
+
+-(void)userHeadClick:(NSIndexPath *)indexPath{
+    MyCenterModel *model = self.models[indexPath.row];
+    PersonalDetailViewController *view = [[PersonalDetailViewController alloc] init];
+    view.contactId = model.a_id;
+    [self.navigationController pushViewController:view animated:YES];
 }
 @end

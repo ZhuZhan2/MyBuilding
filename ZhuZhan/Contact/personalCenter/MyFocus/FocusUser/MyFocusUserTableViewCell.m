@@ -30,6 +30,7 @@
         _userHeadBtn.frame = CGRectMake(20, 12, 37, 37);
         _userHeadBtn.layer.cornerRadius=3;
         _userHeadBtn.layer.masksToBounds=YES;
+        [_userHeadBtn addTarget:self action:@selector(userHeadBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _userHeadBtn;
 }
@@ -89,6 +90,12 @@
 -(void)isFocusBtnAction{
     if([self.delegate respondsToSelector:@selector(addFocused:)]){
         [self.delegate addFocused:self.indexPath];
+    }
+}
+
+-(void)userHeadBtnAction{
+    if([self.delegate respondsToSelector:@selector(userHeadClick:)]){
+        [self.delegate userHeadClick:self.indexPath];
     }
 }
 @end
