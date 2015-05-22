@@ -30,6 +30,9 @@
 @property(nonatomic,strong)UIView *myFocusView;
 @property(nonatomic,strong)UILabel *myFocusViewTitle;
 @property(nonatomic,strong)UIButton *myFocusBtn;
+@property(nonatomic,strong)UIImageView *topCutLine;
+@property(nonatomic,strong)UIImageView *bottomCutLine;
+@property(nonatomic,strong)UIImageView *arrowImageView;
 @end
 
 @implementation PersonalCenterViewController
@@ -94,6 +97,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self.headView addSubview:self.pathCover];
     [self.myFocusView addSubview:self.myFocusViewTitle];
     [self.myFocusView addSubview:self.myFocusBtn];
+    [self.myFocusView addSubview:self.topCutLine];
+    [self.myFocusView addSubview:self.bottomCutLine];
+    [self.myFocusView addSubview:self.arrowImageView];
     [self.headView addSubview:self.myFocusView];
     [self getThreeBtn];
     
@@ -370,6 +376,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(UIView*)getSeparatorLine{
+    //
     UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 0.5)];
     separatorLine.backgroundColor=[UIColor blackColor];
     separatorLine.alpha=.1f;
@@ -507,6 +514,30 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [_myFocusBtn addTarget:self action:@selector(myFocusBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _myFocusBtn;
+}
+
+-(UIImageView *)topCutLine{
+    if(!_topCutLine){
+        _topCutLine = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 320, 1)];
+        _topCutLine.backgroundColor = RGBCOLOR(217, 217, 217);
+    }
+    return _topCutLine;
+}
+
+-(UIImageView *)bottomCutLine{
+    if(!_bottomCutLine){
+        _bottomCutLine = [[UIImageView alloc] initWithFrame:CGRectMake(0,42, 320, 1)];
+        _bottomCutLine.backgroundColor = RGBCOLOR(217, 217, 217);
+    }
+    return _bottomCutLine;
+}
+
+-(UIImageView *)arrowImageView{
+    if(!_arrowImageView){
+        _arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(303, 15, 7, 12)];
+        _arrowImageView.image = [GetImagePath getImagePath:@"人脉－个人中心_10a"];
+    }
+    return _arrowImageView;
 }
 
 -(void)myFocusBtnAction{
