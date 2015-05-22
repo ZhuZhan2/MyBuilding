@@ -59,7 +59,7 @@
 
 -(UILabel *)contentLabel{
     if(!_contentLabel){
-        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 250, 280, 20)];
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 25, 280, 20)];
         _contentLabel.font = [UIFont systemFontOfSize:12];
         _contentLabel.textAlignment = NSTextAlignmentLeft;
         _contentLabel.textColor = [UIColor lightGrayColor];
@@ -68,7 +68,6 @@
 }
 
 -(void)setModel:(PersonalCenterModel *)model{
-    NSLog(@"===>%@",model.a_id);
     self.contentLabel.text = @"项目有新评论";
     self.titleLabel.text = model.a_entityName;
 }

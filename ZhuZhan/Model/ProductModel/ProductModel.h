@@ -44,4 +44,7 @@
 
 //发布产品信息
 + (NSURLSessionDataTask *)PublishProductInformationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
+
+//获取产品列表
++ (NSURLSessionDataTask *)GetProductListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex productDesc:(NSString *)productDesc userId:(NSString *)userId productIds:(NSString *)productIds noNetWork:(void(^)())noNetWork;
 @end

@@ -25,6 +25,7 @@
 #import "ProductModel.h"
 #import "AskPriceViewController.h"
 #import "ConstractListController.h"
+#import "IsFocusedApi.h"
 @interface PersonalCenterViewController ()
 @property(nonatomic,strong)UIView *headView;
 @property(nonatomic,strong)UIView *myFocusView;
@@ -531,6 +532,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)myFocusBtnAction{
-    NSLog(@"myFocusBtnAction");
+    
 }
 @end
