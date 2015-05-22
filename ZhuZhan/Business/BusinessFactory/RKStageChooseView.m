@@ -20,29 +20,29 @@
 @property(nonatomic,weak)id<RKStageChooseViewDelegate>delegate;
 
 @property(nonatomic)BOOL underLineIsWhole;
+@property(nonatomic,strong)UIColor* normalColor;
+@property(nonatomic,strong)UIColor* highlightColor;
 @end
 
 #define kChooseViewHeight 46
 #define kChooseViewWidth kScreenWidth
-#define SelectedColor BlueColor
-#define NoSeletedFourStageColor [UIColor blackColor]
-#define NoSeletedTwoStageColor AllLightGrayColor
 #define StageFont [UIFont systemFontOfSize:16]
 
 @implementation RKStageChooseView
-+(RKStageChooseView*)stageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers delegate:(id<RKStageChooseViewDelegate>)delegate{
-    RKStageChooseView* stageChooseView=[[RKStageChooseView alloc]initWithFrame:CGRectMake(0, 0, kChooseViewWidth, kChooseViewHeight)];
-    stageChooseView.delegate=delegate;
-    stageChooseView.stages=stages;
-    stageChooseView.numbers=numbers;
-    stageChooseView.underLineIsWhole=stages.count==2;
++(RKStageChooseView*)stageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers delegate:(id<RKStageChooseViewDelegate>)delegate underLineIsWhole:(BOOL)underLineIsWhole normalColor:(UIColor*)normalColor highlightColor:(UIColor*)highlightColor{
+    RKStageChooseView* stageChooseView = [[RKStageChooseView alloc] initWithFrame:CGRectMake(0, 0, kChooseViewWidth, kChooseViewHeight)];
+    stageChooseView.delegate = delegate;
+    stageChooseView.stages = stages;
+    stageChooseView.numbers = numbers;
+    stageChooseView.underLineIsWhole = underLineIsWhole;
+    stageChooseView.normalColor = normalColor;
+    stageChooseView.highlightColor = highlightColor;
     [stageChooseView setUp];
     return stageChooseView;
 }
 
 -(void)changeNumbers:(NSArray *)numbers{
     [self.labels enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSLog(@"%d",(int)[numbers[idx] integerValue]);
         [(RKStageAndNumberView*)obj changeNumber:[numbers[idx] integerValue]];
     }];
 }
@@ -110,7 +110,7 @@
     self.nowStageNumber=sequence;
     
     [self.labels enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [(RKStageAndNumberView*)obj changeColor:idx==sequence?SelectedColor:(self.stages.count>2?NoSeletedFourStageColor:NoSeletedTwoStageColor)];
+        [(RKStageAndNumberView*)obj changeColor:idx==sequence?self.highlightColor:self.normalColor];
     }];
     RKStageAndNumberView* stageLabel=self.labels[sequence];
     
@@ -134,5 +134,19 @@
 
 -(void)setNowStageNumber:(NSInteger)nowStageNumber{
     _nowStageNumber=nowStageNumber;
+}
+
+- (UIColor *)normalColor{
+    if (!_normalColor) {
+        _normalColor = [UIColor blackColor];
+    }
+    return _normalColor;
+}
+
+- (UIColor *)highlightColor{
+    if (!_highlightColor) {
+        _highlightColor = BlueColor;
+    }
+    return _highlightColor;
 }
 @end

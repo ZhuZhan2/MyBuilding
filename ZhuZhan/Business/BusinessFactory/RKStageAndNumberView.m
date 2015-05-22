@@ -8,9 +8,6 @@
 
 #import "RKStageAndNumberView.h"
 
-#define SelectedColor BlueColor
-#define NoSeletedFourStageColor [UIColor blackColor]
-#define NoSeletedTwoStageColor AllLightGrayColor
 #define StageFont [UIFont systemFontOfSize:16]
 #define Font(size) [UIFont systemFontOfSize:size]
 
@@ -22,6 +19,9 @@
 
 @property(nonatomic,copy)NSString* stageStr;
 @property(nonatomic)NSInteger number;
+
+@property(nonatomic,strong)UIColor* normalColor;
+@property(nonatomic,strong)UIColor* highlightColor;
 @end
 
 @implementation RKStageAndNumberView

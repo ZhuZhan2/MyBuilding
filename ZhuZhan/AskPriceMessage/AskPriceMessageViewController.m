@@ -36,7 +36,7 @@
     // Do any additional setup after loading the view.
     self.startIndex = 0;
     [self initNavi];
-    [self initStageChooseViewWithStages:@[@"询价提醒",@"报价提醒",@"合同提醒"]  numbers:nil];
+    [self initStageChooseViewWithStages:@[@"询价提醒",@"报价提醒",@"合同提醒"]  numbers:nil underLineIsWhole:NO normalColor:[UIColor blackColor] highlightColor:BlueColor];
     [self initTableView];
     //集成刷新控件
     [self setupRefresh];
