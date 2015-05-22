@@ -68,6 +68,10 @@
 @property(nonatomic,strong)RKStageChooseView* stageChooseView;
 -(void)initStageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers underLineIsWhole:(BOOL)underLineIsWhole normalColor:(UIColor *)normalColor highlightColor:(UIColor *)highlightColor;
 
+- (void)setUpRefreshWithNeedHeaderRefresh:(BOOL)needHeaderRefresh needFooterRefresh:(BOOL)needFooterRefresh;
+- (void)headerRereshing;
+- (void)footerRereshing;
+
 //0为白背景，1为黑透明背景
 -(void)startLoadingViewWithOption:(NSInteger)option;
 -(void)stopLoadingView;

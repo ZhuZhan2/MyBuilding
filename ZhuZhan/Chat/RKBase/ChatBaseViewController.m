@@ -10,6 +10,7 @@
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
 #import "SearchBarTableViewController.h"
+#import "MJRefresh.h"
 @interface ChatBaseViewController()
 @property(nonatomic)BOOL searchBarIsTableViewHeader;
 
@@ -364,5 +365,18 @@
     self.tableView.dataSource=nil;
     self.searchBar.delegate=nil;
     self.searchBarTableViewController.delegate=nil;
+}
+
+- (void)setUpRefreshWithNeedHeaderRefresh:(BOOL)needHeaderRefresh needFooterRefresh:(BOOL)needFooterRefresh{
+    if (needHeaderRefresh) [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    if (needFooterRefresh) [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+- (void)headerRereshing{
+
+}
+
+- (void)footerRereshing{
+    
 }
 @end
