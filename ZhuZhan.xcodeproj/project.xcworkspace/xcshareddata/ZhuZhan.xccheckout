@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>ED5A1204-C60A-413E-BF42-C845A106447A</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>ZhuZhan</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>B6E33D63AE6254BE1BB51185B52C78B84D5B50B6</key>
 		<string>https://github.com/ZhuZhan2/MyBuilding.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ZhuZhan.xcodeproj/project.xcworkspace</string>
+	<string>ZhuZhan.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>B6E33D63AE6254BE1BB51185B52C78B84D5B50B6</key>

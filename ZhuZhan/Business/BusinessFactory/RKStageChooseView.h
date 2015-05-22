@@ -13,7 +13,7 @@
 @end
 
 @interface RKStageChooseView : UIView
-+(RKStageChooseView*)stageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers delegate:(id<RKStageChooseViewDelegate>)delegate;
++(RKStageChooseView*)stageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers delegate:(id<RKStageChooseViewDelegate>)delegate underLineIsWhole:(BOOL)underLineIsWhole normalColor:(UIColor*)normalColor highlightColor:(UIColor*)highlightColor;
 @property(nonatomic,readonly)NSInteger nowStageNumber;
 -(void)stageLabelClickedWithSequence:(NSInteger)sequence;
 -(void)changeNumbers:(NSArray*)numbers;

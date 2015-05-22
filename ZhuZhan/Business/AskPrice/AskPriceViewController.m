@@ -50,7 +50,7 @@
     [super viewDidLoad];
     self.startIndex = 0;
     [self initNavi];
-    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已完成",@"已关闭"]  numbers:@[@"0",@"0",@"0",@"0"]];
+    [self initStageChooseViewWithStages:@[@"全部",@"进行中",@"已完成",@"已关闭"]  numbers:@[@"0",@"0",@"0",@"0"] underLineIsWhole:NO normalColor:[UIColor blackColor] highlightColor:BlueColor];
     [self initTableView];
     
     //集成刷新控件

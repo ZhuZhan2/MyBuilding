@@ -66,7 +66,7 @@
 -(void)initChatToolBar;
 
 @property(nonatomic,strong)RKStageChooseView* stageChooseView;
--(void)initStageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers;
+-(void)initStageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers underLineIsWhole:(BOOL)underLineIsWhole normalColor:(UIColor *)normalColor highlightColor:(UIColor *)highlightColor;
 
 //0为白背景，1为黑透明背景
 -(void)startLoadingViewWithOption:(NSInteger)option;

@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initNavi];
-    [self initStageChooseViewWithStages:@[@"报价",@"对话"] numbers:nil];
+    [self initStageChooseViewWithStages:@[@"报价",@"对话"] numbers:nil underLineIsWhole:YES normalColor:AllLightGrayColor highlightColor:BlueColor];
     [self.view insertSubview:self.contentView belowSubview:self.stageChooseView];
 }
 

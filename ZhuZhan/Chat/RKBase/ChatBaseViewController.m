@@ -315,9 +315,9 @@
     [self touchesBeganInRKBaseTableView];
 }
 
--(void)initStageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers{
+-(void)initStageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers underLineIsWhole:(BOOL)underLineIsWhole normalColor:(UIColor *)normalColor highlightColor:(UIColor *)highlightColor{
     self.stageChooseView=[RKStageChooseView stageChooseViewWithStages:
-                          stages numbers:numbers delegate:self];
+                          stages numbers:numbers delegate:self underLineIsWhole:underLineIsWhole normalColor:normalColor highlightColor:highlightColor];
     CGRect frame=self.stageChooseView.frame;
     frame.origin=CGPointMake(0, 64);
     self.stageChooseView.frame=frame;

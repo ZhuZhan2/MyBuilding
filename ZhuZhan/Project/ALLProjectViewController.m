@@ -394,7 +394,7 @@
 
 -(RKStageChooseView *)stageChooseView{
     if(!_stageChooseView){
-        _stageChooseView = [RKStageChooseView stageChooseViewWithStages:@[@"全部项目",@"历史记录"] numbers:nil delegate:self];
+        _stageChooseView = [RKStageChooseView stageChooseViewWithStages:@[@"全部项目",@"历史记录"] numbers:nil delegate:self underLineIsWhole:YES normalColor:AllLightGrayColor highlightColor:BlueColor];
         CGRect frame=_stageChooseView.frame;
         frame.origin=CGPointMake(0, 64);
         _stageChooseView.frame=frame;
