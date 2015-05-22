@@ -18,7 +18,7 @@
 
 - (void)reloadData{
     [super reloadData];
-
+    
     if (!self.noDataView) return;
     if (![self.dataSource tableView:self numberOfRowsInSection:0]) {
         self.userInteractionEnabled = NO;
@@ -28,5 +28,26 @@
         self.userInteractionEnabled = YES;
         [self.noDataView removeFromSuperview];
     }
+}
+
+- (void)setContentSize:(CGSize)contentSize{
+    BOOL returnBool = CGSizeEqualToSize(self.contentSize, CGSizeZero) || CGSizeEqualToSize(self.contentSize, contentSize) || self.contentSize.height > contentSize.height || !self.isChatType;
+    if (!returnBool){
+        CGFloat upHeight = contentSize.height - self.contentSize.height;
+        CGPoint contentOffset = self.contentOffset;
+        contentOffset.y += upHeight;
+        self.contentOffset = contentOffset;
+    }
+    [super setContentSize:contentSize];
+}
+
+- (void)setFrame:(CGRect)frame{
+//    {
+//        CGFloat upHeight = self.frame.size.height - frame.size.height;
+//        CGPoint contentOffset = self.contentOffset;
+//        contentOffset.y += upHeight;
+//        self.contentOffset = contentOffset;
+//    }
+    [super setFrame:frame];
 }
 @end

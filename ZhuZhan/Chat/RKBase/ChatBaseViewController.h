@@ -10,6 +10,8 @@
 #import "RKBaseTableView.h"
 #import "RKStageChooseView.h"
 #import "ChatToolBar.h"
+#import "ChatMoreSelectView.h"
+#import "RKCamera.h"
 
 @protocol SearchBarTableViewDelegate <NSObject>
 -(NSInteger)searchBarNumberOfSectionsInTableView:(UITableView *)tableView;
@@ -24,7 +26,7 @@
 
 @class SearchBarTableViewController;
 
-@interface ChatBaseViewController : UIViewController<UITableViewDataSource,RKBaseTableViewDelegate,UISearchBarDelegate,SearchBarTableViewDelegate,RKStageChooseViewDelegate,ChatToolBarDelegate>
+@interface ChatBaseViewController : UIViewController<UITableViewDataSource,RKBaseTableViewDelegate,UISearchBarDelegate,SearchBarTableViewDelegate,RKStageChooseViewDelegate,ChatToolBarDelegate,ChatMoreSelectViewDelegate,RKCameraDelegate>
 
 @property(nonatomic)BOOL needAnimaiton;
 
@@ -64,6 +66,9 @@
 
 @property(nonatomic,strong)ChatToolBar* chatToolBar;
 -(void)initChatToolBar;
+-(void)initChatToolBarWithNeedAddBtn:(BOOL)needAddBtn;
+@property(nonatomic,strong)UIView* chatMoreSelectView;
+@property (nonatomic, strong)RKCamera* camera;
 
 @property(nonatomic,strong)RKStageChooseView* stageChooseView;
 -(void)initStageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers underLineIsWhole:(BOOL)underLineIsWhole normalColor:(UIColor *)normalColor highlightColor:(UIColor *)highlightColor;

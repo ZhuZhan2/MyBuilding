@@ -35,6 +35,7 @@ static int BtnTag =0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     // Do any additional setup after loading the view.
 }
 
@@ -119,7 +120,7 @@ static int BtnTag =0;
         [self.view removeFromSuperview];
         
     }
-    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
@@ -130,7 +131,7 @@ static int BtnTag =0;
     }
     
     [self.view removeFromSuperview];
-    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
 
