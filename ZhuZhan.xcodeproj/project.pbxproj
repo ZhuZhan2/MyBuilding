@@ -916,6 +916,11 @@
 		5BAE1C5F1B0EFB9C004A4B3E /* RKController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C5E1B0EFB9C004A4B3E /* RKController.m */; };
 		5BAE1C621B0F152D004A4B3E /* MyFocusProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C611B0F152D004A4B3E /* MyFocusProductCell.m */; };
 		5BAE1C651B0F1ACF004A4B3E /* MyFocusProductCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C641B0F1ACF004A4B3E /* MyFocusProductCellModel.m */; };
+		5BAE1C6A1B0F2F3F004A4B3E /* PersonalActivesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C691B0F2F3F004A4B3E /* PersonalActivesViewController.m */; };
+		5BAE1C701B0F306D004A4B3E /* PersonalProjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C6F1B0F306D004A4B3E /* PersonalProjectController.m */; };
+		5BAE1C731B0F3080004A4B3E /* PersonalProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C721B0F3080004A4B3E /* PersonalProductController.m */; };
+		5BAE1C761B0F3090004A4B3E /* PersonalInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C751B0F3090004A4B3E /* PersonalInfoController.m */; };
+		5BAE1C791B0F33F8004A4B3E /* RKPersonalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C781B0F33F8004A4B3E /* RKPersonalController.m */; };
 		5BB9A53A1AB6EE4300B5B2D8 /* RKStageChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9A5391AB6EE4300B5B2D8 /* RKStageChooseView.m */; };
 		5BB9A53D1AB6F84300B5B2D8 /* AskPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9A53C1AB6F84300B5B2D8 /* AskPriceViewController.m */; };
 		5BC234461AA81D7400312D9D /* 05.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC234421AA81D7400312D9D /* 05.png */; };
@@ -926,6 +931,13 @@
 		5BC2344F1AA81D9300312D9D /* 016@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC2344B1AA81D9300312D9D /* 016@2x.png */; };
 		5BC234501AA81D9300312D9D /* 017.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC2344C1AA81D9300312D9D /* 017.png */; };
 		5BC234511AA81D9300312D9D /* 017@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC2344D1AA81D9300312D9D /* 017@2x.png */; };
+		5BC40E261B09B04A00184D1A /* ChatMoreSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC40E251B09B04A00184D1A /* ChatMoreSelectView.m */; };
+		5BC40E2B1B09B64800184D1A /* 会话－拍摄.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC40E271B09B64800184D1A /* 会话－拍摄.png */; };
+		5BC40E2C1B09B64800184D1A /* 会话－拍摄@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC40E281B09B64800184D1A /* 会话－拍摄@2x.png */; };
+		5BC40E2D1B09B64800184D1A /* 会话－照片.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC40E291B09B64800184D1A /* 会话－照片.png */; };
+		5BC40E2E1B09B64800184D1A /* 会话－照片@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC40E2A1B09B64800184D1A /* 会话－照片@2x.png */; };
+		5BC40E311B09BAA000184D1A /* 会话－加号.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC40E2F1B09BAA000184D1A /* 会话－加号.png */; };
+		5BC40E321B09BAA000184D1A /* 会话－加号@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC40E301B09BAA000184D1A /* 会话－加号@2x.png */; };
 		5BD9DE801AF88C3A007BF9B5 /* MarketSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD9DE7F1AF88C3A007BF9B5 /* MarketSearchViewController.m */; };
 		5BD9DE831AF89533007BF9B5 /* SearchMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD9DE821AF89533007BF9B5 /* SearchMenuView.m */; };
 		5BE08D941A3586EA00495EEB /* 010001.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE08C6D1A3586EA00495EEB /* 010001.png */; };
@@ -1248,6 +1260,7 @@
 		5BF31B671AB025FD00DA87F5 /* AddImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B5D1AB025FD00DA87F5 /* AddImageView.m */; };
 		5BF31B6A1AB025FD00DA87F5 /* DiscussionGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B631AB025FD00DA87F5 /* DiscussionGroupView.m */; };
 		5BF31B6B1AB025FD00DA87F5 /* ImageAndLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B651AB025FD00DA87F5 /* ImageAndLabelView.m */; };
+		5BFC82931B058D5B00CD9ED6 /* ForcedUpdateApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFC82921B058D5B00CD9ED6 /* ForcedUpdateApi.m */; };
 		5BFCE5C11ADBABB00049F009 /* ChatGroupMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCE5C01ADBABB00049F009 /* ChatGroupMemberModel.m */; };
 		D30062161AEF62FD009E35C8 /* 会话列表－个人.png in Resources */ = {isa = PBXBuildFile; fileRef = D30062121AEF62FD009E35C8 /* 会话列表－个人.png */; };
 		D30062171AEF62FD009E35C8 /* 会话列表－个人@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D30062131AEF62FD009E35C8 /* 会话列表－个人@2x.png */; };
@@ -1263,6 +1276,8 @@
 		D31BBB9A1AD3E3F500919B8B /* SWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D31BBB921AD3E3F500919B8B /* SWTableViewCell.m */; };
 		D31BBB9B1AD3E3F500919B8B /* SWUtilityButtonTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D31BBB941AD3E3F500919B8B /* SWUtilityButtonTapGestureRecognizer.m */; };
 		D31BBB9C1AD3E3F500919B8B /* SWUtilityButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = D31BBB961AD3E3F500919B8B /* SWUtilityButtonView.m */; };
+		D31C0DFB1B0984E30014A5E4 /* ChatMessageImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D31C0DFA1B0984E30014A5E4 /* ChatMessageImageView.m */; };
+		D31F2B931B05E67E006BD6A8 /* ChatImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D31F2B921B05E67E006BD6A8 /* ChatImageCell.m */; };
 		D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */; };
 		D3376CFB1AC2549C00738B5F /* UserOrCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376CFA1AC2549C00738B5F /* UserOrCompanyModel.m */; };
 		D3376CFE1AC25D6100738B5F /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376CFD1AC25D6100738B5F /* CategoryModel.m */; };
@@ -1587,6 +1602,7 @@
 		D3DBCE591AC8DF0C00C9FEDE /* CommissionBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE581AC8DF0C00C9FEDE /* CommissionBaseViewController.m */; };
 		D3DBCE5C1AC8E1A400C9FEDE /* ProvisionalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE5B1AC8E1A400C9FEDE /* ProvisionalViewController.m */; };
 		D3DBCE5F1AC8E77A00C9FEDE /* StartManView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE5E1AC8E77A00C9FEDE /* StartManView.m */; };
+		D3DCB9581B0B1BFB005CC798 /* VIPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB9571B0B1BFB005CC798 /* VIPhotoView.m */; };
 		D3DCDACA1ADBA66C0029DB95 /* GetAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCDAC91ADBA66C0029DB95 /* GetAddressBook.m */; };
 		D3E0E94B1A398A3600A41D42 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3E0E94A1A398A3600A41D42 /* Settings.bundle */; };
 		D3E1AAFD1A7648FC00BFC6E1 /* Shape-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E1AAFB1A7648FC00BFC6E1 /* Shape-1.png */; };
@@ -3031,6 +3047,16 @@
 		5BAE1C631B0F1ACF004A4B3E /* MyFocusProductCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFocusProductCellModel.h; sourceTree = "<group>"; };
 		5BAE1C641B0F1ACF004A4B3E /* MyFocusProductCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFocusProductCellModel.m; sourceTree = "<group>"; };
 		5BAE1C661B0F1C3F004A4B3E /* RKBtnStatusEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RKBtnStatusEnum.h; sourceTree = "<group>"; };
+		5BAE1C681B0F2F3F004A4B3E /* PersonalActivesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalActivesViewController.h; sourceTree = "<group>"; };
+		5BAE1C691B0F2F3F004A4B3E /* PersonalActivesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalActivesViewController.m; sourceTree = "<group>"; };
+		5BAE1C6E1B0F306D004A4B3E /* PersonalProjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProjectController.h; sourceTree = "<group>"; };
+		5BAE1C6F1B0F306D004A4B3E /* PersonalProjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProjectController.m; sourceTree = "<group>"; };
+		5BAE1C711B0F3080004A4B3E /* PersonalProductController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProductController.h; sourceTree = "<group>"; };
+		5BAE1C721B0F3080004A4B3E /* PersonalProductController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProductController.m; sourceTree = "<group>"; };
+		5BAE1C741B0F3090004A4B3E /* PersonalInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoController.h; sourceTree = "<group>"; };
+		5BAE1C751B0F3090004A4B3E /* PersonalInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoController.m; sourceTree = "<group>"; };
+		5BAE1C771B0F33F8004A4B3E /* RKPersonalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKPersonalController.h; sourceTree = "<group>"; };
+		5BAE1C781B0F33F8004A4B3E /* RKPersonalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKPersonalController.m; sourceTree = "<group>"; };
 		5BB9A5381AB6EE4300B5B2D8 /* RKStageChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKStageChooseView.h; sourceTree = "<group>"; };
 		5BB9A5391AB6EE4300B5B2D8 /* RKStageChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKStageChooseView.m; sourceTree = "<group>"; };
 		5BB9A53B1AB6F84300B5B2D8 /* AskPriceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceViewController.h; sourceTree = "<group>"; };
@@ -3043,6 +3069,14 @@
 		5BC2344B1AA81D9300312D9D /* 016@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "016@2x.png"; sourceTree = "<group>"; };
 		5BC2344C1AA81D9300312D9D /* 017.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 017.png; sourceTree = "<group>"; };
 		5BC2344D1AA81D9300312D9D /* 017@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "017@2x.png"; sourceTree = "<group>"; };
+		5BC40E241B09B04A00184D1A /* ChatMoreSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMoreSelectView.h; sourceTree = "<group>"; };
+		5BC40E251B09B04A00184D1A /* ChatMoreSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMoreSelectView.m; sourceTree = "<group>"; };
+		5BC40E271B09B64800184D1A /* 会话－拍摄.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "会话－拍摄.png"; sourceTree = "<group>"; };
+		5BC40E281B09B64800184D1A /* 会话－拍摄@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "会话－拍摄@2x.png"; sourceTree = "<group>"; };
+		5BC40E291B09B64800184D1A /* 会话－照片.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "会话－照片.png"; sourceTree = "<group>"; };
+		5BC40E2A1B09B64800184D1A /* 会话－照片@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "会话－照片@2x.png"; sourceTree = "<group>"; };
+		5BC40E2F1B09BAA000184D1A /* 会话－加号.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "会话－加号.png"; sourceTree = "<group>"; };
+		5BC40E301B09BAA000184D1A /* 会话－加号@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "会话－加号@2x.png"; sourceTree = "<group>"; };
 		5BD9DE7E1AF88C3A007BF9B5 /* MarketSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketSearchViewController.h; sourceTree = "<group>"; };
 		5BD9DE7F1AF88C3A007BF9B5 /* MarketSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketSearchViewController.m; sourceTree = "<group>"; };
 		5BD9DE811AF89533007BF9B5 /* SearchMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMenuView.h; sourceTree = "<group>"; };
@@ -3378,6 +3412,8 @@
 		5BF31B631AB025FD00DA87F5 /* DiscussionGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscussionGroupView.m; sourceTree = "<group>"; };
 		5BF31B641AB025FD00DA87F5 /* ImageAndLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAndLabelView.h; sourceTree = "<group>"; };
 		5BF31B651AB025FD00DA87F5 /* ImageAndLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAndLabelView.m; sourceTree = "<group>"; };
+		5BFC82911B058D5B00CD9ED6 /* ForcedUpdateApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForcedUpdateApi.h; sourceTree = "<group>"; };
+		5BFC82921B058D5B00CD9ED6 /* ForcedUpdateApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForcedUpdateApi.m; sourceTree = "<group>"; };
 		5BFCE5BF1ADBABB00049F009 /* ChatGroupMemberModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroupMemberModel.h; sourceTree = "<group>"; };
 		5BFCE5C01ADBABB00049F009 /* ChatGroupMemberModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroupMemberModel.m; sourceTree = "<group>"; };
 		D30062121AEF62FD009E35C8 /* 会话列表－个人.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "会话列表－个人.png"; sourceTree = "<group>"; };
@@ -3402,6 +3438,10 @@
 		D31BBB941AD3E3F500919B8B /* SWUtilityButtonTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonTapGestureRecognizer.m; sourceTree = "<group>"; };
 		D31BBB951AD3E3F500919B8B /* SWUtilityButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonView.h; sourceTree = "<group>"; };
 		D31BBB961AD3E3F500919B8B /* SWUtilityButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonView.m; sourceTree = "<group>"; };
+		D31C0DF91B0984E30014A5E4 /* ChatMessageImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageImageView.h; sourceTree = "<group>"; };
+		D31C0DFA1B0984E30014A5E4 /* ChatMessageImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageImageView.m; sourceTree = "<group>"; };
+		D31F2B911B05E67E006BD6A8 /* ChatImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatImageCell.h; sourceTree = "<group>"; };
+		D31F2B921B05E67E006BD6A8 /* ChatImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImageCell.m; sourceTree = "<group>"; };
 		D32C88CD19D79E0800D1BA1D /* PersonalCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterModel.h; sourceTree = "<group>"; };
 		D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterModel.m; sourceTree = "<group>"; };
 		D3376CF91AC2549C00738B5F /* UserOrCompanyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserOrCompanyModel.h; sourceTree = "<group>"; };
@@ -3854,6 +3894,8 @@
 		D3DBCE5B1AC8E1A400C9FEDE /* ProvisionalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvisionalViewController.m; sourceTree = "<group>"; };
 		D3DBCE5D1AC8E77A00C9FEDE /* StartManView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartManView.h; sourceTree = "<group>"; };
 		D3DBCE5E1AC8E77A00C9FEDE /* StartManView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartManView.m; sourceTree = "<group>"; };
+		D3DCB9561B0B1BFB005CC798 /* VIPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPhotoView.h; sourceTree = "<group>"; };
+		D3DCB9571B0B1BFB005CC798 /* VIPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPhotoView.m; sourceTree = "<group>"; };
 		D3DCDAC81ADBA66C0029DB95 /* GetAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAddressBook.h; sourceTree = "<group>"; };
 		D3DCDAC91ADBA66C0029DB95 /* GetAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAddressBook.m; sourceTree = "<group>"; };
 		D3E0E94A1A398A3600A41D42 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -4165,6 +4207,7 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3DCB9551B0B1BFB005CC798 /* VIPhotoView */,
 				D3D08FFF1AF86CC900C8AC55 /* MarketScrollView */,
 				D3D4E7401AE62B84001BF0A9 /* ErrorCode */,
 				D3C0218B1AE09400000F1742 /* CellHeight */,
@@ -5361,6 +5404,7 @@
 				D3D7DB2E19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m */,
 				D3CF27881A008EFF00DDA30D /* ContactBackgroundView.h */,
 				D3CF27891A008EFF00DDA30D /* ContactBackgroundView.m */,
+				5BAE1C671B0F2F16004A4B3E /* PersonalActives */,
 			);
 			path = personalDetail;
 			sourceTree = "<group>";
@@ -5476,6 +5520,12 @@
 		5B3B5D461AAD935E002FB444 /* 二期新图片 */ = {
 			isa = PBXGroup;
 			children = (
+				5BC40E2F1B09BAA000184D1A /* 会话－加号.png */,
+				5BC40E301B09BAA000184D1A /* 会话－加号@2x.png */,
+				5BC40E271B09B64800184D1A /* 会话－拍摄.png */,
+				5BC40E281B09B64800184D1A /* 会话－拍摄@2x.png */,
+				5BC40E291B09B64800184D1A /* 会话－照片.png */,
+				5BC40E2A1B09B64800184D1A /* 会话－照片@2x.png */,
 				D30062121AEF62FD009E35C8 /* 会话列表－个人.png */,
 				D30062131AEF62FD009E35C8 /* 会话列表－个人@2x.png */,
 				D30062141AEF62FD009E35C8 /* 会话列表－群聊.png */,
@@ -5977,6 +6027,7 @@
 		5B8A2CD21AAEE0AD00C8F9DE /* ChatDetail */ = {
 			isa = PBXGroup;
 			children = (
+				D31C0DF51B0984BD0014A5E4 /* ChatMessageImage */,
 				5B8A2CD91AAEE0AD00C8F9DE /* ChatViewController.h */,
 				5B8A2CDA1AAEE0AD00C8F9DE /* ChatViewController.m */,
 				5B8A2CD71AAEE0AD00C8F9DE /* ChatTableViewCell.h */,
@@ -5987,9 +6038,13 @@
 				5B8A2CD41AAEE0AD00C8F9DE /* ChatContentView.m */,
 				5B9624EC1AB2CE0C005728C5 /* ChatToolBar.h */,
 				5B9624ED1AB2CE0C005728C5 /* ChatToolBar.m */,
+				5BC40E241B09B04A00184D1A /* ChatMoreSelectView.h */,
+				5BC40E251B09B04A00184D1A /* ChatMoreSelectView.m */,
 				5BF31B591AB025FD00DA87F5 /* AddGroupMember */,
 				D3F897071AD8EB2F00DE3AB4 /* MessageTableView.h */,
 				D3F897081AD8EB2F00DE3AB4 /* MessageTableView.m */,
+				D31F2B911B05E67E006BD6A8 /* ChatImageCell.h */,
+				D31F2B921B05E67E006BD6A8 /* ChatImageCell.m */,
 			);
 			path = ChatDetail;
 			sourceTree = "<group>";
@@ -6179,6 +6234,47 @@
 				D3EE48581B0F24D100439ED9 /* MyFocusUserTableViewCell.m */,
 			);
 			path = FocusUser;
+			sourceTree = "<group>";
+		};
+		5BAE1C671B0F2F16004A4B3E /* PersonalActives */ = {
+			isa = PBXGroup;
+			children = (
+				5BAE1C681B0F2F3F004A4B3E /* PersonalActivesViewController.h */,
+				5BAE1C691B0F2F3F004A4B3E /* PersonalActivesViewController.m */,
+				5BAE1C771B0F33F8004A4B3E /* RKPersonalController.h */,
+				5BAE1C781B0F33F8004A4B3E /* RKPersonalController.m */,
+				5BAE1C6D1B0F301D004A4B3E /* PersonalProject */,
+				5BAE1C6C1B0F301D004A4B3E /* PersonalProduct */,
+				5BAE1C6B1B0F301D004A4B3E /* PersonalInfo */,
+			);
+			path = PersonalActives;
+			sourceTree = "<group>";
+		};
+		5BAE1C6B1B0F301D004A4B3E /* PersonalInfo */ = {
+			isa = PBXGroup;
+			children = (
+				5BAE1C741B0F3090004A4B3E /* PersonalInfoController.h */,
+				5BAE1C751B0F3090004A4B3E /* PersonalInfoController.m */,
+			);
+			path = PersonalInfo;
+			sourceTree = "<group>";
+		};
+		5BAE1C6C1B0F301D004A4B3E /* PersonalProduct */ = {
+			isa = PBXGroup;
+			children = (
+				5BAE1C711B0F3080004A4B3E /* PersonalProductController.h */,
+				5BAE1C721B0F3080004A4B3E /* PersonalProductController.m */,
+			);
+			path = PersonalProduct;
+			sourceTree = "<group>";
+		};
+		5BAE1C6D1B0F301D004A4B3E /* PersonalProject */ = {
+			isa = PBXGroup;
+			children = (
+				5BAE1C6E1B0F306D004A4B3E /* PersonalProjectController.h */,
+				5BAE1C6F1B0F306D004A4B3E /* PersonalProjectController.m */,
+			);
+			path = PersonalProject;
 			sourceTree = "<group>";
 		};
 		5BB9A5341AB6EC3100B5B2D8 /* Business */ = {
@@ -6622,6 +6718,15 @@
 			path = AddGroupMember;
 			sourceTree = "<group>";
 		};
+		5BFC82901B058D3400CD9ED6 /* ForcedUpdate */ = {
+			isa = PBXGroup;
+			children = (
+				5BFC82911B058D5B00CD9ED6 /* ForcedUpdateApi.h */,
+				5BFC82921B058D5B00CD9ED6 /* ForcedUpdateApi.m */,
+			);
+			path = ForcedUpdate;
+			sourceTree = "<group>";
+		};
 		D31BBB8A1AD3E3F500919B8B /* PodFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -6639,6 +6744,15 @@
 				D31BBB961AD3E3F500919B8B /* SWUtilityButtonView.m */,
 			);
 			path = PodFiles;
+			sourceTree = "<group>";
+		};
+		D31C0DF51B0984BD0014A5E4 /* ChatMessageImage */ = {
+			isa = PBXGroup;
+			children = (
+				D31C0DF91B0984E30014A5E4 /* ChatMessageImageView.h */,
+				D31C0DFA1B0984E30014A5E4 /* ChatMessageImageView.m */,
+			);
+			path = ChatMessageImage;
 			sourceTree = "<group>";
 		};
 		D35163CF1A67903F000051F4 /* 默认图像 */ = {
@@ -6793,6 +6907,7 @@
 		D3AC618B19B6BF930015B62F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5BFC82901B058D3400CD9ED6 /* ForcedUpdate */,
 				D3D090401AF8C3CC00C8AC55 /* MarketModel */,
 				D3D484031ADFCE8B004AF972 /* AskPriceMessageModel */,
 				D3D483F21ADF8805004AF972 /* ContractsModel */,
@@ -7489,6 +7604,15 @@
 			path = BaseView;
 			sourceTree = "<group>";
 		};
+		D3DCB9551B0B1BFB005CC798 /* VIPhotoView */ = {
+			isa = PBXGroup;
+			children = (
+				D3DCB9561B0B1BFB005CC798 /* VIPhotoView.h */,
+				D3DCB9571B0B1BFB005CC798 /* VIPhotoView.m */,
+			);
+			path = VIPhotoView;
+			sourceTree = "<group>";
+		};
 		D3DCDAC71ADBA66C0029DB95 /* GetAddressBook */ = {
 			isa = PBXGroup;
 			children = (
@@ -7898,6 +8022,7 @@
 				5B9624EB1AB2853A005728C5 /* Rectangle-3-copy@2x.png in Resources */,
 				D3D75E2B1B01E3D900754C1A /* banner_mobile_3@2x.png in Resources */,
 				5BE08E731A3586EA00495EEB /* 030018@2x.png in Resources */,
+				5BC40E2C1B09B64800184D1A /* 会话－拍摄@2x.png in Resources */,
 				D39937D81A42B539007081C1 /* 推荐页面05a.png in Resources */,
 				5BE180F31AFC9C1100251113 /* 已关注.png in Resources */,
 				04BC435F19D7E5B3006B5C7B /* 高级搜索－1_03a@2x.png in Resources */,
@@ -7930,6 +8055,7 @@
 				5BE08E9D1A3586EA00495EEB /* 040012@2x.png in Resources */,
 				5BE08EA91A3586EA00495EEB /* 040018@2x.png in Resources */,
 				04BC432E19D7E5B3006B5C7B /* 项目－评论列表_03a.png in Resources */,
+				5BC40E311B09BAA000184D1A /* 会话－加号.png in Resources */,
 				5BE08E4C1A3586EA00495EEB /* 020029.png in Resources */,
 				04BC415A19D7E5B3006B5C7B /* timescroll_pointer@2x.png in Resources */,
 				5BE08E781A3586EA00495EEB /* 030021.png in Resources */,
@@ -8142,6 +8268,7 @@
 				5BE08DB01A3586EA00495EEB /* 010015.png in Resources */,
 				5BE08DC41A3586EA00495EEB /* 010025.png in Resources */,
 				04BC432C19D7E5B3006B5C7B /* 项目－评论列表_03a-07.png in Resources */,
+				5BC40E321B09BAA000184D1A /* 会话－加号@2x.png in Resources */,
 				5BE08E621A3586EA00495EEB /* 030010.png in Resources */,
 				D3D090231AF88D4E00C8AC55 /* index_home.png in Resources */,
 				5BE08DAF1A3586EA00495EEB /* 010014@2x.png in Resources */,
@@ -8585,6 +8712,7 @@
 				D3D090161AF86DF400C8AC55 /* index_phone.png in Resources */,
 				5B7AA6E61A58D93E000FBFF2 /* icon01@2x.png in Resources */,
 				04BC40FA19D7E5B3006B5C7B /* 011@2x.png in Resources */,
+				5BC40E2D1B09B64800184D1A /* 会话－照片.png in Resources */,
 				04BC415519D7E5B3006B5C7B /* timescroll_hourhand.png in Resources */,
 				5BE08DAA1A3586EA00495EEB /* 010012.png in Resources */,
 				5B70CC591AC9398400FC8353 /* big不同意.png in Resources */,
@@ -8677,6 +8805,7 @@
 				5B112E701A63BA9200009CD3 /* 项目地图搜索02.png in Resources */,
 				D39937DA1A42B539007081C1 /* 推荐页面06a.png in Resources */,
 				5B75F5021AFA06F80091162C /* searcharrow.png in Resources */,
+				5BC40E2B1B09B64800184D1A /* 会话－拍摄.png in Resources */,
 				5BE08E051A3586EA00495EEB /* 010057@2x.png in Resources */,
 				5B4F98181AE652A7009E0F78 /* 修改大带子@2x.png in Resources */,
 				D3A85BBA1B0C568500333F56 /* project_head.png in Resources */,
@@ -8689,6 +8818,7 @@
 				5B628A011AB81CFE00F30059 /* 多选未选@2x.png in Resources */,
 				5B8A2D021AAEEAD600C8F9DE /* 单人会话@2x.png in Resources */,
 				04BC434D19D7E5B3006B5C7B /* 项目－高级搜索－2_15a@2x.png in Resources */,
+				5BC40E2E1B09B64800184D1A /* 会话－照片@2x.png in Resources */,
 				D3D9F8DE1ADE7FBE002BBB06 /* 加好友带字.png in Resources */,
 				D3D9F8CF1ADE678B002BBB06 /* 退出本群带字.png in Resources */,
 				04BC411A19D7E5B3006B5C7B /* 07.png in Resources */,
@@ -8739,11 +8869,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D31C0DFB1B0984E30014A5E4 /* ChatMessageImageView.m in Sources */,
 				5B70CC391AC8EF7300FC8353 /* RKMuchBtnAssistView.m in Sources */,
 				D3AC61EA19B961120015B62F /* SvGifView.m in Sources */,
 				D31BBB971AD3E3F500919B8B /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				D3AC61D319B84F770015B62F /* CommentApi.m in Sources */,
 				D3EDCA561ACE90A6002AF865 /* SDWebImagePrefetcher.m in Sources */,
+				5BC40E261B09B04A00184D1A /* ChatMoreSelectView.m in Sources */,
 				042D9EE519B8671900689C5D /* AccountCell.m in Sources */,
 				D3D511AF1A70923E000104E9 /* NoProductView.m in Sources */,
 				0426C23319922D5A00CD8822 /* PanViewController.m in Sources */,
@@ -8789,6 +8921,7 @@
 				5BB9A53D1AB6F84300B5B2D8 /* AskPriceViewController.m in Sources */,
 				5B5836D71AD771AF00F8E7C3 /* RecommendFriendSearchController.m in Sources */,
 				D35E12441ABD68B5007C6726 /* CatoryTableViewCell.m in Sources */,
+				D3DCB9581B0B1BFB005CC798 /* VIPhotoView.m in Sources */,
 				0426C24619922D5A00CD8822 /* GPUImageAmatorkaFilter.m in Sources */,
 				D3D6B7421AD6A51500C8BF91 /* ChatNetAPIClient.m in Sources */,
 				0426C2EB19922D5A00CD8822 /* FaceppTrainer.m in Sources */,
@@ -8871,6 +9004,7 @@
 				D3EDCA581ACE90A6002AF865 /* UIImage+GIF.m in Sources */,
 				0426C2D619922D5A00CD8822 /* GPUImageVoronoiConsumerFilter.m in Sources */,
 				5B95ADF21AB1B37E00797EA6 /* AddressBookViewCell.m in Sources */,
+				5BAE1C701B0F306D004A4B3E /* PersonalProjectController.m in Sources */,
 				D3CF278A1A008EFF00DDA30D /* ContactBackgroundView.m in Sources */,
 				0426C20A19922D5A00CD8822 /* CompanyViewController.m in Sources */,
 				0426C26C19922D5A00CD8822 /* GPUImageFilterGroup.m in Sources */,
@@ -8916,6 +9050,7 @@
 				042D9E2C19B559FC00689C5D /* TopicsTableViewController.m in Sources */,
 				5BE08ED21A35900000495EEB /* FirstAnimationView.m in Sources */,
 				0426C29E19922D5A00CD8822 /* GPUImageOverlayBlendFilter.m in Sources */,
+				5BFC82931B058D5B00CD9ED6 /* ForcedUpdateApi.m in Sources */,
 				0426C2B119922D5A00CD8822 /* GPUImageSaturationFilter.m in Sources */,
 				04BF13B419C4162A002E02C9 /* AFAppDotNetAPIClient.m in Sources */,
 				0426C2BE19922D5A00CD8822 /* GPUImageSourceOverBlendFilter.m in Sources */,
@@ -9033,6 +9168,7 @@
 				5B8A2CE91AAEE0AD00C8F9DE /* AddFriendCell.m in Sources */,
 				5B90E1051ADE491F00436CED /* MainContractsBaseController.m in Sources */,
 				D3AD616B19ADB9F7001FD483 /* RecordModel.m in Sources */,
+				5BAE1C761B0F3090004A4B3E /* PersonalInfoController.m in Sources */,
 				5B7E59061ABBD9B90063B400 /* ProvidePriceInfoController.m in Sources */,
 				0426C27919922D5A00CD8822 /* GPUImageHighPassFilter.m in Sources */,
 				0426C2E919922D5A00CD8822 /* FaceppPerson.m in Sources */,
@@ -9079,6 +9215,7 @@
 				0426C27B19922D5A00CD8822 /* GPUImageHistogramGenerator.m in Sources */,
 				0426C22E19922D5A00CD8822 /* FaceLoginViewController.m in Sources */,
 				5B656CFC19932E36007D79A8 /* QuadCurveMenuItem.m in Sources */,
+				D31F2B931B05E67E006BD6A8 /* ChatImageCell.m in Sources */,
 				0426C27A19922D5A00CD8822 /* GPUImageHistogramFilter.m in Sources */,
 				D3B51BC41ABA96A600C7D57A /* AddMarkView.m in Sources */,
 				0426C23A19922D5A00CD8822 /* AFSecurityPolicy.m in Sources */,
@@ -9169,6 +9306,7 @@
 				0426C26019922D5A00CD8822 /* GPUImageDirectionalNonMaximumSuppressionFilter.m in Sources */,
 				5BF31B671AB025FD00DA87F5 /* AddImageView.m in Sources */,
 				0426C2CB19922D5A00CD8822 /* GPUImageToneCurveFilter.m in Sources */,
+				5BAE1C731B0F3080004A4B3E /* PersonalProductController.m in Sources */,
 				042D9EEF19B8855100689C5D /* Camera.m in Sources */,
 				D368092B1ABFAB3200AFA097 /* ClassificationView.m in Sources */,
 				0426C23219922D5A00CD8822 /* FaceViewController.m in Sources */,
@@ -9234,6 +9372,7 @@
 				D3D2E60119F7A79500908D8B /* EmployeesModel.m in Sources */,
 				5B6373AB1ABAE32A007CF1F8 /* ChooseProductBigCell.m in Sources */,
 				D3DBCE5C1AC8E1A400C9FEDE /* ProvisionalViewController.m in Sources */,
+				5BAE1C791B0F33F8004A4B3E /* RKPersonalController.m in Sources */,
 				0426C29C19922D5A00CD8822 /* GPUImageOpeningFilter.m in Sources */,
 				5B7670621AB6B92B00E154C5 /* ChatBaseViewController.m in Sources */,
 				0426C2C819922D5A00CD8822 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
@@ -9259,6 +9398,7 @@
 				0426C2CC19922D5A00CD8822 /* GPUImageToonFilter.m in Sources */,
 				0426C29419922D5A00CD8822 /* GPUImageMotionBlurFilter.m in Sources */,
 				5B628A0C1AB826AA00F30059 /* ChooseProductCellModel.m in Sources */,
+				5BAE1C6A1B0F2F3F004A4B3E /* PersonalActivesViewController.m in Sources */,
 				5B5773E21AC1338000C17DBF /* DemandAskPriceChatController.m in Sources */,
 				5B8A2CF51AAEE0AD00C8F9DE /* ChooseContactsViewCell.m in Sources */,
 				D3AD619D19AEEE30001FD483 /* SinglePickerView.m in Sources */,

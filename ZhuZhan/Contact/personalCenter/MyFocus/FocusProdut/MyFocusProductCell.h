@@ -15,4 +15,5 @@
 @interface MyFocusProductCell : UITableViewCell
 @property (nonatomic, strong)MyFocusProductCellModel* model;
 @property (nonatomic, weak)id<MyFocusProductCellDelegate> delegate;
++ (CGFloat)totalHeight;
 @end

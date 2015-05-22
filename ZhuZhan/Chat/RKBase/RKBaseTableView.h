@@ -15,4 +15,5 @@
 @interface RKBaseTableView : UITableView
 @property(nonatomic,weak)id<RKBaseTableViewDelegate>delegate;
 @property (nonatomic, strong)UIView* noDataView;
+@property (nonatomic)BOOL isChatType;//判断这个tableView是否是聊天类型的
 @end

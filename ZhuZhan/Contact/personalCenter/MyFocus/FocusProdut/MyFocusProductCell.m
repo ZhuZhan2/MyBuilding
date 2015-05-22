@@ -26,7 +26,6 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.backgroundColor = AllBackMiddleGrayColor;
         [self setUp];
     }
     return self;
@@ -38,6 +37,7 @@
     [self addSubview:self.titleLabel];
     [self addSubview:self.contentLabel];
     [self addSubview:self.assistBtn];
+    [self addSubview:self.seperatorLineBottom];
 }
 
 - (void)setModel:(MyFocusProductCellModel *)model{
@@ -46,6 +46,11 @@
 }
 
 - (void)reload{
+    [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:self.model.mainImageUrl] placeholderImage:[GetImagePath getImagePath:@"addfocus"]];
+    self.titleLabel.text = self.model.title;
+    self.contentLabel.text = self.model.content;
+    [self.assistBtn setImage:[GetImagePath getImagePath:self.model.status == RKBtnStatusNotStart?@"addfocus":@"cancelfocus"] forState:UIControlStateNormal];
+    
     [self autoSizeLabel:self.titleLabel];
     [self autoSizeLabel:self.contentLabel];
     CGRect frame = self.titleLabel.frame;
@@ -54,6 +59,7 @@
     
     frame = self.contentLabel.frame;
     frame.origin = CGPointMake(143, CGRectGetMaxY(self.titleLabel.frame));
+    self.contentLabel.frame = frame;
 }
 
 - (void)assistBtnClicked{
@@ -97,10 +103,14 @@
 
 - (UIView *)seperatorLineTop{
     if (!_seperatorLineTop) {
-        _seperatorLineTop = [RKShadowView seperatorLine];
-        CGRect frame = _seperatorLineTop.frame;
+        _seperatorLineTop = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
+        _seperatorLineTop.backgroundColor = AllBackDeepGrayColor;
+        
+        UIView* seperatorLine = [RKShadowView seperatorLine];
+        CGRect frame = seperatorLine.frame;
         frame.origin.y = 9;
-        _seperatorLineTop.frame = frame;
+        seperatorLine.frame = frame;
+        [_seperatorLineTop addSubview:seperatorLine];
     }
     return _seperatorLineTop;
 }

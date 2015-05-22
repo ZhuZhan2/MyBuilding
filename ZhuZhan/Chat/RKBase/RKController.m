@@ -63,7 +63,7 @@
         _tableView.delegate=self;
         _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
         _tableView.noDataView = self.tableViewNoDataView;
-        _tableView.backgroundColor = AllBackLightGratColor;
+        _tableView.backgroundColor = AllBackDeepGrayColor;
     }
     return _tableView;
 }

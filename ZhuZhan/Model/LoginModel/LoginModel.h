@@ -21,7 +21,7 @@
 @property (nonatomic,strong) NSString *a_loginStatus;
 //是否有公司认证
 @property (nonatomic,strong) NSString *a_hasCompany;
-//是否有公司认证
+//头像
 @property (nonatomic,strong) NSString *a_userImage;
 @property(nonatomic,strong)NSString *a_phone;
 @property(nonatomic,strong)NSString* a_backgroundImage;

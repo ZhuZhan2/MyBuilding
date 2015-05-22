@@ -12,7 +12,7 @@
 #import "GCDAsyncSocket.h"
 #define KAPI_KEY @"25d987b4f4f915bf02aaecde055db243"//face++
 #define KAPI_SECRET @"S_rg7gvJpWXO4OJS4m7yaQt_VtTwszC7"
-@interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate,CLLocationManagerDelegate>{
+@interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate,CLLocationManagerDelegate,UIAlertViewDelegate>{
     BMKMapManager* _mapManager;
 }
 

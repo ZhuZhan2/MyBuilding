@@ -17,18 +17,20 @@
 #import "ChatMessageApi.h"
 #import "AppDelegate.h"
 #import "MJRefresh.h"
-#import "MessageTableView.h"
 #import "PersonalDetailViewController.h"
 #import "ProjectStage.h"
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
-@interface ChatViewController ()<UIAlertViewDelegate,MessageTableViewDelegate,ChatTableViewCellDelegate>
+#import "ChatImageCell.h"
+#import "VIPhotoView.h"
+@interface ChatViewController ()<UIAlertViewDelegate,ChatTableViewCellDelegate,ChatImageCellDelegate,VIPhotoViewDelegate>
 @property (nonatomic, strong)NSMutableArray* models;
-@property(nonatomic,strong)MessageTableView *tableView;
+@property(nonatomic,strong)RKBaseTableView *tableView;
 @property(nonatomic)int startIndex;
 @property(nonatomic,strong)NSString *lastId;
 @property (nonatomic)NSInteger popViewControllerIndex;
 @property(nonatomic,strong)AppDelegate *app;
+@property(nonatomic,strong)VIPhotoView *photoView;
 @end
 
 @implementation ChatViewController
@@ -59,18 +61,20 @@
     self.startIndex = 0;
     [self initSocket];
     [self initNavi];
-    [self initMessageTableView];
-    //[self initTableView];
+    [self initTableView];
+    self.tableView.isChatType = YES;
+    self.view.backgroundColor = AllBackLightGratColor;
     //集成刷新控件
     [self setupRefresh];
-    [self initChatToolBar];
-    self.chatToolBar.maxTextCountInChat=1000;
+    [self initChatToolBarWithNeedAddBtn:YES];
+    self.chatToolBar.maxTextCountInChat = 1000;
     [self initTableViewHeaderView];
     [self addKeybordNotification];
     [self firstNetWork];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(newMessage:) name:@"newMessage" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(errorMessage) name:@"errorMessage" object:nil];
 }
+
 
 -(void)leftBtnClicked{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
@@ -104,14 +108,6 @@
     }];
 }
 
--(void)initMessageTableView{
-    self.tableView = [[MessageTableView alloc] initWithFrame:CGRectMake(0, 64, 320,kScreenHeight-64)];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.tableView];
-}
-
 -(void)setupRefresh{
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
     [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
@@ -129,7 +125,6 @@
             //ChatMessageModel* dataModel=[posts firstObject];
             //self.lastId = dataModel.a_id;
             [self.tableView reloadData];
-            //[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.models.count-4 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -158,9 +153,7 @@
 }
 
 -(void)newMessage:(NSNotification*)noti{
-    NSLog(@"noti=%@",noti.userInfo[@"message"]);
     ChatMessageModel* dataModel=noti.userInfo[@"message"];
-    NSLog(@"%@",self.type);
     if([self.type isEqualToString:@"01"]){
         if([self.contactId isEqualToString:dataModel.a_userId]){
             [self.models addObject:noti.userInfo[@"message"]];
@@ -227,27 +220,45 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     ChatMessageModel* model=self.models[indexPath.row];
-    NSString* content=model.a_message;
-    return [ChatTableViewCell carculateTotalHeightWithContentStr:content isSelf:model.a_type];
+    if([model.a_msgType isEqualToString:@"01"]){
+        NSString* content=model.a_message;
+        return [ChatTableViewCell carculateTotalHeightWithContentStr:content isSelf:model.a_type];
+
+    }else{
+        return 65+model.a_imageHeight/2;
+    }
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ChatTableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell=[[ChatTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
     ChatMessageModel* dataModel=self.models[indexPath.row];
-    ChatModel* model=[[ChatModel alloc]init];
-    model.userNameStr=dataModel.a_name;
-    model.chatContent=dataModel.a_message;
-    model.isSelf=dataModel.a_type;
-    model.time=dataModel.a_time;
-    model.userImageStr=dataModel.a_avatarUrl;
-    model.ID = dataModel.a_userId;
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    cell.model=model;
-    cell.delegate = self;
-    return cell;
+    if([dataModel.a_msgType isEqualToString:@"01"]){
+        ChatTableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (!cell) {
+            cell=[[ChatTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        }
+        ChatModel* model=[[ChatModel alloc]init];
+        model.userNameStr=dataModel.a_name;
+        model.chatContent=dataModel.a_message;
+        model.isSelf=dataModel.a_type;
+        model.time=dataModel.a_time;
+        model.userImageStr=dataModel.a_avatarUrl;
+        model.ID = dataModel.a_userId;
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        cell.model=model;
+        cell.delegate = self;
+        return cell;
+    }else{
+        ChatImageCell* cell=[tableView dequeueReusableCellWithIdentifier:@"ChatImageCell"];
+        if (!cell) {
+            cell=[[ChatImageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ChatImageCell"];
+            cell.clipsToBounds=YES;
+        }
+        cell.model = dataModel;
+        cell.indexPath = indexPath;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegate = self;
+        return cell;
+    }
 }
 
 -(void)chatToolSendBtnClickedWithContent:(NSString *)content{
@@ -295,19 +306,59 @@
     [app.socket readDataWithTimeout:-1 tag:0];
 }
 
+- (void)chatMoreSelectViewClickedWithIndex:(NSInteger)index{
+    self.camera = [RKCamera cameraWithType:index allowEdit:NO deleate:self presentViewController:self.view.window.rootViewController demandSize:CGSizeMake(100, 100) needFullImage:NO];
+}
+
+- (void)cameraWillFinishWithLowQualityImage:(UIImage *)lowQualityimage originQualityImage:(UIImage *)originQualityImage isCancel:(BOOL)isCancel{
+    if(!isCancel){
+        [self addModelWithImage:lowQualityimage];
+        NSData *imageData = UIImageJPEGRepresentation(originQualityImage, 1);
+        NSMutableArray *imageArr = [[NSMutableArray alloc] init];
+        [imageArr addObject:imageData];
+        [ChatMessageApi AddImageWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                [imageArr removeAllObjects];
+            }
+        } dataArr:imageArr dic:[@{@"userId":self.contactId,@"userType":self.type} mutableCopy] noNetWork:nil];
+        originQualityImage = nil;
+        lowQualityimage = nil;
+    }
+}
+
 -(void)addModelWithContent:(NSString*)content{
     ChatMessageModel* model=[[ChatMessageModel alloc]init];
     model.a_name=[LoginSqlite getdata:@"userName"];
     model.a_message=content;
     model.a_type=chatTypeMe;
     model.a_avatarUrl=[LoginSqlite getdata:@"userImage"];
-    
+    model.a_msgType = @"01";
     NSDate* date=[NSDate date];
     NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
     formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";
     NSString* time=[formatter stringFromDate:date];
     model.a_time=[ProjectStage ChatMessageTimeStage:time];
     
+    [self.models addObject:model];
+    [self appearNewData];
+}
+
+-(void)addModelWithImage:(UIImage *)image{
+    ChatMessageModel *model = [[ChatMessageModel alloc] init];
+    model.a_name=[LoginSqlite getdata:@"userName"];
+    model.a_localImage = image;
+    model.a_type=chatTypeMe;
+    model.a_avatarUrl=[LoginSqlite getdata:@"userImage"];
+    model.a_isLocal = YES;
+    NSDate* date=[NSDate date];
+    NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
+    formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";
+    NSString* time=[formatter stringFromDate:date];
+    model.a_time=[ProjectStage ChatMessageTimeStage:time];
+    
+    model.a_imageWidth = image.size.width;
+    model.a_imageHeight = image.size.height;
+    model.a_msgType = @"02";
     [self.models addObject:model];
     [self appearNewData];
 }
@@ -324,10 +375,6 @@
     return _models;
 }
 
--(void)touchesBeganInMessageTableView{
-    [self.view endEditing:YES];
-}
-
 -(NSInteger)popViewControllerIndex{
     if (!_popViewControllerIndex) {
         _popViewControllerIndex=self.navigationController.viewControllers.count-2;
@@ -341,5 +388,23 @@
     personalVC.fromViewName = @"chatView";
     personalVC.chatType = self.type;
     [self.navigationController pushViewController:personalVC animated:YES];
+}
+
+-(void)gotoBigImage:(NSInteger)index{
+    ChatMessageModel *model = self.models[index];
+    if(!self.photoView){
+        self.photoView = [[VIPhotoView alloc] initWithFrame:self.view.frame imageUrl:model.a_bigImageUrl];
+        self.photoView.bigImageDelegate = self;
+        self.photoView.autoresizingMask = (1 << 6) -1;
+        self.photoView.backgroundColor = [UIColor blackColor];
+        [self.view addSubview:self.photoView];
+        self.navigationController.navigationBarHidden = YES;
+    }
+}
+
+-(void)closeBigImage{
+    [self.photoView removeFromSuperview];
+    self.photoView = nil;
+    self.navigationController.navigationBarHidden = NO;
 }
 @end

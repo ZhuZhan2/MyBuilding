@@ -364,7 +364,7 @@
     
     
     self.registerBtn.enabled=NO;
-    NSMutableDictionary *parameters =[[NSMutableDictionary alloc] initWithObjectsAndKeys:_phoneNumberTextField.text,@"cellPhone",[MD5 md5HexDigest:passWordField.text],@"password",@"02",@"deviceType",_yzmTextField.text,@"barCode",accountField.text,@"username",nil];
+    NSMutableDictionary *parameters =[[NSMutableDictionary alloc] initWithObjectsAndKeys:_phoneNumberTextField.text,@"cellPhone",[MD5 md5HexDigest:passWordField.text],@"password",@"05",@"deviceType",_yzmTextField.text,@"barCode",accountField.text,@"username",nil];
     //01网页,02移动
     NSLog(@"parameters==%@",parameters);
     
