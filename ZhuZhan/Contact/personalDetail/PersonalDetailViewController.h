@@ -20,17 +20,13 @@
 #import "ContactBackgroundView.h"
 #import "LoginViewController.h"
 #import "LoadingView.h"
-@interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate,MFMailComposeViewControllerDelegate,ContactCellDelegate,LoginViewDelegate,UIActionSheetDelegate>{
-    NSMutableArray *viewArr;
-    ContactBackgroundView *contactbackgroundview;
+@interface PersonalDetailViewController : UITableViewController<XHPathCoverDelegate,MFMailComposeViewControllerDelegate,LoginViewDelegate,UIActionSheetDelegate>{
     int startIndex;
     LoadingView *loadingView;
 }
 @property (nonatomic,strong) NSString *contactId;
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong)MyCenterModel *contactModel;
-@property (nonatomic,strong)ParticularsModel *parModel;
-@property (nonatomic,strong)NSMutableArray *showArr;
 @property (nonatomic,strong)NSString *isFocused;
 @property (nonatomic,strong)NSString *isFriend;
 @property(nonatomic,strong)NSString *fromViewName;

@@ -8,10 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ContactCell.h"
-@interface CompanyCell : UITableViewCell{
-    UILabel *companyLabel;
-    UILabel *positionLabel;
-}
-@property(nonatomic,strong)NSString *companyStr;
-@property(nonatomic,strong)NSString *positionStr;
+@interface CompanyCell : UITableViewCell
+@property(nonatomic,strong)UILabel *nameLabel;
+@property(nonatomic,strong)UILabel *statusLabel;
 @end

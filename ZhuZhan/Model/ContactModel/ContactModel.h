@@ -111,4 +111,7 @@
 
 //获取人的详情
 + (NSURLSessionDataTask *)UserDetailsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId noNetWork:(void(^)())noNetWork;
+
+//获取个人背景
++ (NSURLSessionDataTask *)UserBackGroundWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId noNetWork:(void(^)())noNetWork;
 @end

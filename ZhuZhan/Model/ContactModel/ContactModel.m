@@ -235,13 +235,6 @@
             MyCenterModel *model = [[MyCenterModel alloc] init];
             [model setDict:JSON[@"data"]];
             [mutablePosts addObject:model];
-            ParticularsModel *parModel = [[ParticularsModel alloc] init];
-            if(![[NSString stringWithFormat:@"%@",JSON[@"data"][@"workHistory"]] isEqualToString:@"<null>"]){
-                [parModel setDict:JSON[@"data"][@"workHistory"]];
-                [mutablePosts addObject:parModel];
-            }else{
-                [mutablePosts addObject:@"null"];
-            }
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
@@ -258,4 +251,35 @@
     }];
 }
 
++ (NSURLSessionDataTask *)UserBackGroundWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/userDetails?userId=%@",userId];
+    NSLog(@"%@",urlStr);
+    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            ParticularsModel *parModel = [[ParticularsModel alloc] init];
+            [parModel setDict:JSON[@"data"][@"workHistory"]];
+            [mutablePosts addObject:parModel];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+        
+    }];
+}
 @end

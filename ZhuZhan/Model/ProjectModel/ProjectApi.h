@@ -59,4 +59,7 @@
 
 //我的项目
 + (NSURLSessionDataTask *)GetMyProjectsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
+
+//项目搜索
++ (NSURLSessionDataTask *)SearchProjectsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userId:(NSString *)userId keywords:(NSString *)keywords projectIds:(NSString *)projectIds startIndex:(int)startIndex noNetWork:(void(^)())noNetWork;
 @end
