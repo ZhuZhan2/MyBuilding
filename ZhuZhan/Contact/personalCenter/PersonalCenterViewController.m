@@ -26,7 +26,13 @@
 #import "AskPriceViewController.h"
 #import "ConstractListController.h"
 @interface PersonalCenterViewController ()
-
+@property(nonatomic,strong)UIView *headView;
+@property(nonatomic,strong)UIView *myFocusView;
+@property(nonatomic,strong)UILabel *myFocusViewTitle;
+@property(nonatomic,strong)UIButton *myFocusBtn;
+@property(nonatomic,strong)UIImageView *topCutLine;
+@property(nonatomic,strong)UIImageView *bottomCutLine;
+@property(nonatomic,strong)UIImageView *arrowImageView;
 @end
 
 @implementation PersonalCenterViewController
@@ -88,9 +94,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
     
+    [self.headView addSubview:self.pathCover];
+    [self.myFocusView addSubview:self.myFocusViewTitle];
+    [self.myFocusView addSubview:self.myFocusBtn];
+    [self.myFocusView addSubview:self.topCutLine];
+    [self.myFocusView addSubview:self.bottomCutLine];
+    [self.myFocusView addSubview:self.arrowImageView];
+    [self.headView addSubview:self.myFocusView];
     [self getThreeBtn];
     
-    self.tableView.tableHeaderView = self.pathCover;
+    self.tableView.tableHeaderView = self.headView;
     
     //时间标签
     _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
@@ -322,9 +335,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         PersonalProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
             cell = [[PersonalProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            UIView* separatorLine=[self getSeparatorLine];
-            separatorLine.center=CGPointMake(160, 49.5);
-            [cell.contentView addSubview:separatorLine];
         }
         cell.model = model;
         cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
@@ -335,9 +345,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         PersonalCenterCompanyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
             cell = [[PersonalCenterCompanyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            UIView* separatorLine=[self getSeparatorLine];
-            separatorLine.center=CGPointMake(160, 49.5);
-            [cell.contentView addSubview:separatorLine];
         }
         cell.imageUrl = model.a_avatarUrl;
         cell.companyName = model.a_userName;
@@ -354,15 +361,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [cell.contentView addSubview:contentViews[indexPath.row]];
         cell.selectionStyle = NO;
         cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
-        
-        UIView* separatorLine=[self getSeparatorLine];
-        separatorLine.center=CGPointMake(160, [contentViews[indexPath.row] frame].size.height-0.5);
-        [cell.contentView addSubview:separatorLine];
         return cell;
     }
 }
 
 -(UIView*)getSeparatorLine{
+    //
     UIView* separatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 0.5)];
     separatorLine.backgroundColor=[UIColor blackColor];
     separatorLine.alpha=.1f;
@@ -409,7 +413,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         model = showArr[indexPath.row];
     }
     if([model.a_category isEqualToString:@"Project"]||[model.a_category isEqualToString:@"CompanyAgree"]){
-        return 50;
+        return 60;
     }else{
         return [contentViews[indexPath.row] frame].size.height;
     }
@@ -466,5 +470,67 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)gotoConstractList:(UIButton *)button{
     ConstractListController *view = [[ConstractListController alloc] init];
     [self.navigationController pushViewController:view animated:YES];
+}
+
+-(UIView *)headView{
+    if(!_headView){
+        _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 263)];
+        _headView.backgroundColor = RGBCOLOR(239, 237, 237);
+    }
+    return _headView;
+}
+
+-(UIView *)myFocusView{
+    if(!_myFocusView){
+        _myFocusView = [[UIView alloc] initWithFrame:CGRectMake(0, 210, 320, 43)];
+        _myFocusView.backgroundColor = [UIColor whiteColor];
+    }
+    return _myFocusView;
+}
+
+-(UILabel *)myFocusViewTitle{
+    if(!_myFocusViewTitle){
+        _myFocusViewTitle = [[UILabel alloc] initWithFrame:CGRectMake(14, 10, 100, 20)];
+        _myFocusViewTitle.text = @"我的关注";
+        _myFocusViewTitle.font = [UIFont systemFontOfSize:15];
+    }
+    return _myFocusViewTitle;
+}
+
+-(UIButton *)myFocusBtn{
+    if(!_myFocusBtn){
+        _myFocusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _myFocusBtn.frame = CGRectMake(0, 0, 320, 43);
+        [_myFocusBtn addTarget:self action:@selector(myFocusBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _myFocusBtn;
+}
+
+-(UIImageView *)topCutLine{
+    if(!_topCutLine){
+        _topCutLine = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 320, 1)];
+        _topCutLine.backgroundColor = RGBCOLOR(217, 217, 217);
+    }
+    return _topCutLine;
+}
+
+-(UIImageView *)bottomCutLine{
+    if(!_bottomCutLine){
+        _bottomCutLine = [[UIImageView alloc] initWithFrame:CGRectMake(0,42, 320, 1)];
+        _bottomCutLine.backgroundColor = RGBCOLOR(217, 217, 217);
+    }
+    return _bottomCutLine;
+}
+
+-(UIImageView *)arrowImageView{
+    if(!_arrowImageView){
+        _arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(299, 15, 7, 12)];
+        _arrowImageView.image = [GetImagePath getImagePath:@"project_arrow"];
+    }
+    return _arrowImageView;
+}
+
+-(void)myFocusBtnAction{
+    NSLog(@"myFocusBtnAction");
 }
 @end
