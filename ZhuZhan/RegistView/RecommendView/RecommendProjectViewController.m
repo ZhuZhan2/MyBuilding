@@ -118,6 +118,7 @@
     NSString *CellIdentifier = [NSString stringWithFormat:@"ProjectTableViewCell"];
     ProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     projectModel *model = self.showArr[indexPath.row];
+    
     if(!cell){
         cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
