@@ -15,58 +15,60 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        
-        [self addContent];
+        [self.bgView addSubview:self.cutLine1];
+        [self.bgView addSubview:self.cutLine2];
+        [self.bgView addSubview:self.titleLabel];
+        [self.bgView addSubview:self.contentLabel];
+        [self.contentView addSubview:self.bgView];
     }
     return self;
 }
 
-- (void)awakeFromNib
-{
-    // Initialization code
+-(UIView *)bgView{
+    if(!_bgView){
+        _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+        _bgView.backgroundColor = [UIColor whiteColor];
+    }
+    return _bgView;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(UIImageView *)cutLine1{
+    if(!_cutLine1){
+        _cutLine1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
+        _cutLine1.backgroundColor = RGBCOLOR(217, 217, 217);
+    }
+    return _cutLine1;
 }
 
--(void)addContent{
-    UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(35, 0, 2, 50)];
-    [lineImage2 setBackgroundColor:[UIColor blackColor]];
-    [self.contentView addSubview:lineImage2];
-    lineImage2.alpha = 0.08;
-    
-    stageImage = [[UIImageView alloc] initWithFrame:CGRectMake(23, 12, 26, 26)];
-    [self.contentView addSubview:stageImage];
-    
-    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 5, 200, 20)];
-    titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    titleLabel.textAlignment = NSTextAlignmentLeft;
-    [self.contentView addSubview:titleLabel];
-    
-    contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 25, 200, 20)];
-    contentLabel.font = [UIFont systemFontOfSize:12];
-    contentLabel.textAlignment = NSTextAlignmentLeft;
-    contentLabel.textColor = [UIColor lightGrayColor];
-    [self.contentView addSubview:contentLabel];
+-(UIImageView *)cutLine2{
+    if(!_cutLine2){
+        _cutLine2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 49, 320, 1)];
+        _cutLine2.backgroundColor = RGBCOLOR(217, 217, 217);
+    }
+    return _cutLine2;
+}
+
+-(UILabel *)titleLabel{
+    if(!_titleLabel){
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 280, 20)];
+        _titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        _titleLabel.textAlignment = NSTextAlignmentLeft;
+    }
+    return _titleLabel;
+}
+
+-(UILabel *)contentLabel{
+    if(!_contentLabel){
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 25, 280, 20)];
+        _contentLabel.font = [UIFont systemFontOfSize:12];
+        _contentLabel.textAlignment = NSTextAlignmentLeft;
+        _contentLabel.textColor = [UIColor lightGrayColor];
+    }
+    return _contentLabel;
 }
 
 -(void)setModel:(PersonalCenterModel *)model{
-    contentLabel.text = @"项目有新评论";
-    titleLabel.text = model.a_entityName;
-    if([model.a_projectStage isEqualToString:@"1"]){
-        [stageImage setImage:[GetImagePath getImagePath:@"人脉_57a"]];
-    }else if([model.a_projectStage isEqualToString:@"2"]){
-        [stageImage setImage:[GetImagePath getImagePath:@"人脉_59a"]];
-    }else if([model.a_projectStage isEqualToString:@"3"]){
-        [stageImage setImage:[GetImagePath getImagePath:@"人脉_61a"]];
-    }else if([model.a_projectStage isEqualToString:@"4"]){
-        [stageImage setImage:[GetImagePath getImagePath:@"人脉_63a"]];
-    }else{
-        [stageImage setImage:[GetImagePath getImagePath:@"人脉_57a"]];
-    }
+    self.contentLabel.text = @"项目有新评论";
+    self.titleLabel.text = model.a_entityName;
 }
 @end

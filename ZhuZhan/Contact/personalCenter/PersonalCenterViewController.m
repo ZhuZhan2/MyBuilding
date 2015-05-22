@@ -335,9 +335,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         PersonalProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
             cell = [[PersonalProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            UIView* separatorLine=[self getSeparatorLine];
-            separatorLine.center=CGPointMake(160, 49.5);
-            [cell.contentView addSubview:separatorLine];
         }
         cell.model = model;
         cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
@@ -348,9 +345,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         PersonalCenterCompanyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
             cell = [[PersonalCenterCompanyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            UIView* separatorLine=[self getSeparatorLine];
-            separatorLine.center=CGPointMake(160, 49.5);
-            [cell.contentView addSubview:separatorLine];
         }
         cell.imageUrl = model.a_avatarUrl;
         cell.companyName = model.a_userName;
@@ -367,10 +361,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [cell.contentView addSubview:contentViews[indexPath.row]];
         cell.selectionStyle = NO;
         cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
-        
-        UIView* separatorLine=[self getSeparatorLine];
-        separatorLine.center=CGPointMake(160, [contentViews[indexPath.row] frame].size.height-0.5);
-        [cell.contentView addSubview:separatorLine];
         return cell;
     }
 }
@@ -423,7 +413,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         model = showArr[indexPath.row];
     }
     if([model.a_category isEqualToString:@"Project"]||[model.a_category isEqualToString:@"CompanyAgree"]){
-        return 50;
+        return 60;
     }else{
         return [contentViews[indexPath.row] frame].size.height;
     }
@@ -534,8 +524,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(UIImageView *)arrowImageView{
     if(!_arrowImageView){
-        _arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(303, 15, 7, 12)];
-        _arrowImageView.image = [GetImagePath getImagePath:@"人脉－个人中心_10a"];
+        _arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(299, 15, 7, 12)];
+        _arrowImageView.image = [GetImagePath getImagePath:@"project_arrow"];
     }
     return _arrowImageView;
 }
