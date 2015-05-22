@@ -1633,6 +1633,7 @@
 		D3EDCA5B1ACE90A6002AF865 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDCA491ACE90A6002AF865 /* UIImageView+HighlightedWebCache.m */; };
 		D3EDCA5C1ACE90A6002AF865 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDCA4B1ACE90A6002AF865 /* UIImageView+WebCache.m */; };
 		D3EDCA5D1ACE90A6002AF865 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDCA4D1ACE90A6002AF865 /* UIView+WebCacheOperation.m */; };
+		D3EE48591B0F24D100439ED9 /* MyFocusUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EE48581B0F24D100439ED9 /* MyFocusUserTableViewCell.m */; };
 		D3F7274B1AD6570C00B52A66 /* AddressBookNickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F7274A1AD6570C00B52A66 /* AddressBookNickNameViewController.m */; };
 		D3F727511AD660E200B52A66 /* RecommendFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F727501AD660E200B52A66 /* RecommendFriendViewController.m */; };
 		D3F727571AD68FC400B52A66 /* FriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F727561AD68FC400B52A66 /* FriendModel.m */; };
@@ -3944,6 +3945,8 @@
 		D3EDCA4B1ACE90A6002AF865 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		D3EDCA4C1ACE90A6002AF865 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		D3EDCA4D1ACE90A6002AF865 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		D3EE48571B0F24D100439ED9 /* MyFocusUserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFocusUserTableViewCell.h; sourceTree = "<group>"; };
+		D3EE48581B0F24D100439ED9 /* MyFocusUserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFocusUserTableViewCell.m; sourceTree = "<group>"; };
 		D3F727491AD6570C00B52A66 /* AddressBookNickNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookNickNameViewController.h; sourceTree = "<group>"; };
 		D3F7274A1AD6570C00B52A66 /* AddressBookNickNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookNickNameViewController.m; sourceTree = "<group>"; };
 		D3F7274F1AD660E200B52A66 /* RecommendFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendFriendViewController.h; sourceTree = "<group>"; };
@@ -6227,6 +6230,8 @@
 			children = (
 				5BAE1C541B0EF5E6004A4B3E /* MyFocusUserController.h */,
 				5BAE1C551B0EF5E6004A4B3E /* MyFocusUserController.m */,
+				D3EE48571B0F24D100439ED9 /* MyFocusUserTableViewCell.h */,
+				D3EE48581B0F24D100439ED9 /* MyFocusUserTableViewCell.m */,
 			);
 			path = FocusUser;
 			sourceTree = "<group>";
@@ -9031,6 +9036,7 @@
 				5B18B46F19BFFC3700551F82 /* GradientView.m in Sources */,
 				5B4F98141AE63ADC009E0F78 /* RepealContractsController.m in Sources */,
 				D3AC61D019B849920015B62F /* PorjectCommentTableViewController.m in Sources */,
+				D3EE48591B0F24D100439ED9 /* MyFocusUserTableViewCell.m in Sources */,
 				D3D946A91A6CDD33003A68D5 /* YLLabel.m in Sources */,
 				5BF31B661AB025FD00DA87F5 /* AddGroupMemberController.m in Sources */,
 				0426C23C19922D5A00CD8822 /* AFURLRequestSerialization.m in Sources */,

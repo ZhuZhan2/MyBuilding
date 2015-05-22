@@ -41,5 +41,6 @@
     }else{
         self.a_userType = @"Company";
     }
+    self.a_isFocus = [ProjectStage ProjectStrStage:dict[@"isFocus"]];
 }
 @end

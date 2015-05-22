@@ -43,5 +43,6 @@
 @property (nonatomic,strong) NSString *a_isFriend;
 @property(nonatomic,strong)NSString* a_backgroundImage;
 @property(nonatomic,strong)NSString* a_userType;
+@property(nonatomic,strong)NSString *a_isFocus;
 @property (nonatomic, strong) NSDictionary *dict;
 @end
