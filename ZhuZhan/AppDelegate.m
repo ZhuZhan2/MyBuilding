@@ -90,11 +90,11 @@
         self.locationManager = [[CLLocationManager alloc] init];
         
         _locationManager.delegate = self;
+        
+        //        _locationManager.desiredAccuracy = kCLLocationAccuracyBest; //控制定位精度,越高耗电量越大。
         //
-//        _locationManager.desiredAccuracy = kCLLocationAccuracyBest; //控制定位精度,越高耗电量越大。
-//        
-//        _locationManager.distanceFilter = 100; //控制定位服务更新频率。单位是“米”
-//        
+        //        _locationManager.distanceFilter = 100; //控制定位服务更新频率。单位是“米”
+        //
         [_locationManager startUpdatingLocation];
         
         //在ios 8.0下要授权
@@ -154,17 +154,17 @@
     [ImageSqlite opensql];
     [MarketSearchSqlite opensql];
     
-#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-    if (IS_OS_8_OR_LATER) {
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound) categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    } else {
-        [application registerForRemoteNotificationTypes:
-         UIRemoteNotificationTypeBadge |
-         UIRemoteNotificationTypeAlert |
-         UIRemoteNotificationTypeSound];
-    }
+    //#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    //    if (IS_OS_8_OR_LATER) {
+    //        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    //        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound) categories:nil];
+    //        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    //    } else {
+    //        [application registerForRemoteNotificationTypes:
+    //         UIRemoteNotificationTypeBadge |
+    //         UIRemoteNotificationTypeAlert |
+    //         UIRemoteNotificationTypeSound];
+    //    }
     
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;
@@ -175,11 +175,11 @@
         [self.window addSubview:firstAnimationView];
     }
     
-    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-    NSLog(@"launchOptions===>%@",launchOptions);
-    if(userInfo) {
-        [self handleRemoteNotification:application userInfo:userInfo];
-    }
+    //    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    //    NSLog(@"launchOptions===>%@",launchOptions);
+    //    if(userInfo) {
+    //        [self handleRemoteNotification:application userInfo:userInfo];
+    //    }
 
 }
 
