@@ -11,7 +11,7 @@
 #import "ProjectApi.h"
 #import "projectModel.h"
 #import "MJRefresh.h"
-@interface RecommendProjectViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface RecommendProjectViewController ()<UITableViewDelegate,UITableViewDataSource,ProjectTableViewCellDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *showArr;
 @end
@@ -42,6 +42,7 @@
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+77, 320, kScreenHeight-64-77)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.backgroundColor = AllBackLightGratColor;
     [self.view addSubview:self.tableView];
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     startIndex = 0;
@@ -104,16 +105,24 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 107;
+    CGSize defaultSize = DEFAULT_CELL_SIZE;
+    CGSize cellSize = [ProjectTableViewCell sizeForCellWithDefaultSize:defaultSize setupCellBlock:^id(id<CellHeightDelegate> cellToSetup) {
+        projectModel *model = self.showArr[indexPath.row];
+        [((ProjectTableViewCell *)cellToSetup) setModel:model];
+        return cellToSetup;
+    }];
+    return cellSize.height;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *CellIdentifier = [NSString stringWithFormat:@"ProjectTableViewCell"];
+    ProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     projectModel *model = self.showArr[indexPath.row];
-    RecommendProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecommendProjectTableViewCell"];
     if(!cell){
-        cell=[[RecommendProjectTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"RecommendProjectTableViewCell"];
+        cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.model = model;
+    cell.delegate = self;
     cell.selectionStyle = NO;
     return cell;
 }

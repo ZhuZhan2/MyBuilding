@@ -26,7 +26,10 @@
 #import "AskPriceViewController.h"
 #import "ConstractListController.h"
 @interface PersonalCenterViewController ()
-
+@property(nonatomic,strong)UIView *headView;
+@property(nonatomic,strong)UIView *myFocusView;
+@property(nonatomic,strong)UILabel *myFocusViewTitle;
+@property(nonatomic,strong)UIButton *myFocusBtn;
 @end
 
 @implementation PersonalCenterViewController
@@ -88,9 +91,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
     
+    [self.headView addSubview:self.pathCover];
+    [self.myFocusView addSubview:self.myFocusViewTitle];
+    [self.myFocusView addSubview:self.myFocusBtn];
+    [self.headView addSubview:self.myFocusView];
     [self getThreeBtn];
     
-    self.tableView.tableHeaderView = self.pathCover;
+    self.tableView.tableHeaderView = self.headView;
     
     //时间标签
     _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
@@ -466,5 +473,43 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)gotoConstractList:(UIButton *)button{
     ConstractListController *view = [[ConstractListController alloc] init];
     [self.navigationController pushViewController:view animated:YES];
+}
+
+-(UIView *)headView{
+    if(!_headView){
+        _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 263)];
+        _headView.backgroundColor = RGBCOLOR(239, 237, 237);
+    }
+    return _headView;
+}
+
+-(UIView *)myFocusView{
+    if(!_myFocusView){
+        _myFocusView = [[UIView alloc] initWithFrame:CGRectMake(0, 210, 320, 43)];
+        _myFocusView.backgroundColor = [UIColor whiteColor];
+    }
+    return _myFocusView;
+}
+
+-(UILabel *)myFocusViewTitle{
+    if(!_myFocusViewTitle){
+        _myFocusViewTitle = [[UILabel alloc] initWithFrame:CGRectMake(14, 10, 100, 20)];
+        _myFocusViewTitle.text = @"我的关注";
+        _myFocusViewTitle.font = [UIFont systemFontOfSize:15];
+    }
+    return _myFocusViewTitle;
+}
+
+-(UIButton *)myFocusBtn{
+    if(!_myFocusBtn){
+        _myFocusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _myFocusBtn.frame = CGRectMake(0, 0, 320, 43);
+        [_myFocusBtn addTarget:self action:@selector(myFocusBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _myFocusBtn;
+}
+
+-(void)myFocusBtnAction{
+    NSLog(@"myFocusBtnAction");
 }
 @end

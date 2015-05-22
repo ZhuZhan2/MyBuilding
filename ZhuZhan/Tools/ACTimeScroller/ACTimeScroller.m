@@ -53,7 +53,6 @@
         self.transform = CGAffineTransformMakeTranslation(10.0f, 0.0f);
         
         _backgroundView = [[UIImageView alloc] init];
-        NSLog(@"frame3====>%f",CGRectGetWidth(self.frame) - 118.0f);
         _backgroundView.frame = CGRectMake(CGRectGetWidth(self.frame) - 118.0f, 0.0f, 118.0f, CGRectGetHeight(self.frame));
         [_backgroundView setImage:[GetImagePath getImagePath:@"＋人脉－个人中心2_30a"]];
         [self addSubview:_backgroundView];
@@ -165,7 +164,6 @@
 - (void)updateDisplayWithCell:(UITableViewCell *)cell
 {
     NSDate *date = [self.delegate timeScroller:self dateForCell:cell];
-    //NSLog(@"%@",date);
     if (!date || [date isEqualToDate:_lastDate])
     {
         return;
@@ -426,6 +424,7 @@
     point = [_scrollBar convertPoint:point toView:_tableView];
     
     UITableViewCell* cell=[_tableView cellForRowAtIndexPath:[_tableView indexPathForRowAtPoint:point]];
+    
     if (cell) {
         [self updateDisplayWithCell:cell];
         if (![self alpha])
