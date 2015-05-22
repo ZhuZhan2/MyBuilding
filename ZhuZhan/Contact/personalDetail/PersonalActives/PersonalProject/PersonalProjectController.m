@@ -1,23 +1,22 @@
 //
-//  MyFocusProductController.m
+//  MyFocusProjectController.m
 //  ZhuZhan
 //
 //  Created by 孙元侃 on 15/5/22.
 //
 //
 
-#import "MyFocusProductController.h"
-#import "MyFocusProductCellModel.h"
-#import "MyFocusProductCell.h"
-#import "IsFocusedApi.h"
+#import "PersonalProjectController.h"
+#import "projectModel.h"
+#import "ProjectTableViewCell.h"
+#import "ProgramDetailViewController.h"
+#import "ProjectApi.h"
 #import "ErrorCode.h"
-#import "LoginSqlite.h"
-#import "ProductModel.h"
-@interface MyFocusProductController()
+@interface PersonalProjectController()
 
 @end
 
-@implementation MyFocusProductController
+@implementation PersonalProjectController
 - (void)setUp{
     [super setUp];
     [self loadList];
@@ -27,7 +26,8 @@
 -(void)loadList{
     self.startIndex = 0;
     [self startLoading];
-    [IsFocusedApi GetProductFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+    NSLog(@"targetId=%@",self.targetId);
+    [ProjectApi SearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.models = posts;
             [self.tableView reloadData];
@@ -41,18 +41,17 @@
             }
         }
         [self endLoading];
-    } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
+    } userId:self.targetId keywords:@"" projectIds:@"" startIndex:0 noNetWork:^{
         [self endLoading];
         [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
             [self loadList];
         }];
-        
-    } ];
+    }];
 }
 
 - (void)headerRereshing{
     [self startLoading];
-    [IsFocusedApi GetProductFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+    [ProjectApi SearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.startIndex = 0;
             self.models = posts;
@@ -67,7 +66,7 @@
             }
         }
         [self endLoading];
-    } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
+    } userId:self.targetId keywords:@"" projectIds:@"" startIndex:0 noNetWork:^{
         [self endLoading];
         [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
             [self headerRereshing];
@@ -77,7 +76,7 @@
 
 - (void)footerRereshing{
     [self startLoading];
-    [IsFocusedApi GetProductFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+    [ProjectApi SearchProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.startIndex++;
             [self.models addObjectsFromArray:posts];
@@ -92,7 +91,7 @@
             }
         }
         [self endLoading];
-    } userId:[LoginSqlite getdata:@"userId"] startIndex:(int)self.startIndex+1 noNetWork:^{
+    } userId:self.targetId keywords:@"" projectIds:@"" startIndex:(int)self.startIndex+1 noNetWork:^{
         [self endLoading];
         [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
             [self footerRereshing];
@@ -117,28 +116,32 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MyFocusProductCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    NSString *CellIdentifier = [NSString stringWithFormat:@"ProjectTableViewCell"];
+    ProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    projectModel *model = self.models[indexPath.row];
     if(!cell){
-        cell = [[MyFocusProductCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[ProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    ProductModel* dataModel = self.models[indexPath.row];
-
-    MyFocusProductCellModel* cellModel = [[MyFocusProductCellModel alloc] init];
-    cellModel.mainImageUrl = dataModel.a_originImageUrl;
-    cellModel.title = dataModel.a_name;
-    cellModel.content = dataModel.a_content;
-    cellModel.status = [dataModel.a_isFocused isEqualToString:@"1"]?RKBtnStatusFinishSucess:RKBtnStatusNotStart;
-    
-    cell.model = cellModel;
+    cell.model = model;
     cell.selectionStyle = NO;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [MyFocusProductCell totalHeight];
+    CGSize defaultSize = DEFAULT_CELL_SIZE;
+    CGSize cellSize = [ProjectTableViewCell sizeForCellWithDefaultSize:defaultSize setupCellBlock:^id(id<CellHeightDelegate> cellToSetup) {
+        projectModel *model = self.models[indexPath.row];
+        [((ProjectTableViewCell *)cellToSetup) setModel:model];
+        return cellToSetup;
+    }];
+    return cellSize.height;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%d",indexPath.row);
+    ProgramDetailViewController* vc=[[ProgramDetailViewController alloc]init];
+    projectModel *model = self.models[indexPath.row];
+    vc.projectId = model.a_id;
+    vc.isFocused = model.isFocused;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

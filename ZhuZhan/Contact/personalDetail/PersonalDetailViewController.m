@@ -20,6 +20,7 @@
 #import "ProjectApi.h"
 #import "AddressBookApi.h"
 #import "ChatViewController.h"
+#import "PersonalActivesViewController.h"
 @interface PersonalDetailViewController ()
 @property(nonatomic,strong)UIButton *secondBtn;
 @property(nonatomic,strong)UIButton *thirdBtn;
@@ -416,7 +417,10 @@
 }
 
 -(void)gotoTaActive{
-    NSLog(@"gotoTaActive");
+    PersonalActivesViewController* vc = [[PersonalActivesViewController alloc] init];
+    vc.targetId = self.contactId;
+    NSLog(@"targetId=%@",vc.targetId);
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)addFocus{

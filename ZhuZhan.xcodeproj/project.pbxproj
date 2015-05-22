@@ -916,6 +916,11 @@
 		5BAE1C5F1B0EFB9C004A4B3E /* RKController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C5E1B0EFB9C004A4B3E /* RKController.m */; };
 		5BAE1C621B0F152D004A4B3E /* MyFocusProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C611B0F152D004A4B3E /* MyFocusProductCell.m */; };
 		5BAE1C651B0F1ACF004A4B3E /* MyFocusProductCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C641B0F1ACF004A4B3E /* MyFocusProductCellModel.m */; };
+		5BAE1C6A1B0F2F3F004A4B3E /* PersonalActivesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C691B0F2F3F004A4B3E /* PersonalActivesViewController.m */; };
+		5BAE1C701B0F306D004A4B3E /* PersonalProjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C6F1B0F306D004A4B3E /* PersonalProjectController.m */; };
+		5BAE1C731B0F3080004A4B3E /* PersonalProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C721B0F3080004A4B3E /* PersonalProductController.m */; };
+		5BAE1C761B0F3090004A4B3E /* PersonalInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C751B0F3090004A4B3E /* PersonalInfoController.m */; };
+		5BAE1C791B0F33F8004A4B3E /* RKPersonalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C781B0F33F8004A4B3E /* RKPersonalController.m */; };
 		5BB9A53A1AB6EE4300B5B2D8 /* RKStageChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9A5391AB6EE4300B5B2D8 /* RKStageChooseView.m */; };
 		5BB9A53D1AB6F84300B5B2D8 /* AskPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9A53C1AB6F84300B5B2D8 /* AskPriceViewController.m */; };
 		5BC234461AA81D7400312D9D /* 05.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC234421AA81D7400312D9D /* 05.png */; };
@@ -3041,6 +3046,16 @@
 		5BAE1C631B0F1ACF004A4B3E /* MyFocusProductCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFocusProductCellModel.h; sourceTree = "<group>"; };
 		5BAE1C641B0F1ACF004A4B3E /* MyFocusProductCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFocusProductCellModel.m; sourceTree = "<group>"; };
 		5BAE1C661B0F1C3F004A4B3E /* RKBtnStatusEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RKBtnStatusEnum.h; sourceTree = "<group>"; };
+		5BAE1C681B0F2F3F004A4B3E /* PersonalActivesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalActivesViewController.h; sourceTree = "<group>"; };
+		5BAE1C691B0F2F3F004A4B3E /* PersonalActivesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalActivesViewController.m; sourceTree = "<group>"; };
+		5BAE1C6E1B0F306D004A4B3E /* PersonalProjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProjectController.h; sourceTree = "<group>"; };
+		5BAE1C6F1B0F306D004A4B3E /* PersonalProjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProjectController.m; sourceTree = "<group>"; };
+		5BAE1C711B0F3080004A4B3E /* PersonalProductController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProductController.h; sourceTree = "<group>"; };
+		5BAE1C721B0F3080004A4B3E /* PersonalProductController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProductController.m; sourceTree = "<group>"; };
+		5BAE1C741B0F3090004A4B3E /* PersonalInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoController.h; sourceTree = "<group>"; };
+		5BAE1C751B0F3090004A4B3E /* PersonalInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoController.m; sourceTree = "<group>"; };
+		5BAE1C771B0F33F8004A4B3E /* RKPersonalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKPersonalController.h; sourceTree = "<group>"; };
+		5BAE1C781B0F33F8004A4B3E /* RKPersonalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKPersonalController.m; sourceTree = "<group>"; };
 		5BB9A5381AB6EE4300B5B2D8 /* RKStageChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKStageChooseView.h; sourceTree = "<group>"; };
 		5BB9A5391AB6EE4300B5B2D8 /* RKStageChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKStageChooseView.m; sourceTree = "<group>"; };
 		5BB9A53B1AB6F84300B5B2D8 /* AskPriceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceViewController.h; sourceTree = "<group>"; };
@@ -5386,6 +5401,7 @@
 				D3D7DB2E19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m */,
 				D3CF27881A008EFF00DDA30D /* ContactBackgroundView.h */,
 				D3CF27891A008EFF00DDA30D /* ContactBackgroundView.m */,
+				5BAE1C671B0F2F16004A4B3E /* PersonalActives */,
 			);
 			path = personalDetail;
 			sourceTree = "<group>";
@@ -6213,6 +6229,47 @@
 				5BAE1C551B0EF5E6004A4B3E /* MyFocusUserController.m */,
 			);
 			path = FocusUser;
+			sourceTree = "<group>";
+		};
+		5BAE1C671B0F2F16004A4B3E /* PersonalActives */ = {
+			isa = PBXGroup;
+			children = (
+				5BAE1C681B0F2F3F004A4B3E /* PersonalActivesViewController.h */,
+				5BAE1C691B0F2F3F004A4B3E /* PersonalActivesViewController.m */,
+				5BAE1C771B0F33F8004A4B3E /* RKPersonalController.h */,
+				5BAE1C781B0F33F8004A4B3E /* RKPersonalController.m */,
+				5BAE1C6D1B0F301D004A4B3E /* PersonalProject */,
+				5BAE1C6C1B0F301D004A4B3E /* PersonalProduct */,
+				5BAE1C6B1B0F301D004A4B3E /* PersonalInfo */,
+			);
+			path = PersonalActives;
+			sourceTree = "<group>";
+		};
+		5BAE1C6B1B0F301D004A4B3E /* PersonalInfo */ = {
+			isa = PBXGroup;
+			children = (
+				5BAE1C741B0F3090004A4B3E /* PersonalInfoController.h */,
+				5BAE1C751B0F3090004A4B3E /* PersonalInfoController.m */,
+			);
+			path = PersonalInfo;
+			sourceTree = "<group>";
+		};
+		5BAE1C6C1B0F301D004A4B3E /* PersonalProduct */ = {
+			isa = PBXGroup;
+			children = (
+				5BAE1C711B0F3080004A4B3E /* PersonalProductController.h */,
+				5BAE1C721B0F3080004A4B3E /* PersonalProductController.m */,
+			);
+			path = PersonalProduct;
+			sourceTree = "<group>";
+		};
+		5BAE1C6D1B0F301D004A4B3E /* PersonalProject */ = {
+			isa = PBXGroup;
+			children = (
+				5BAE1C6E1B0F306D004A4B3E /* PersonalProjectController.h */,
+				5BAE1C6F1B0F306D004A4B3E /* PersonalProjectController.m */,
+			);
+			path = PersonalProject;
 			sourceTree = "<group>";
 		};
 		5BB9A5341AB6EC3100B5B2D8 /* Business */ = {
@@ -8942,6 +8999,7 @@
 				D3EDCA581ACE90A6002AF865 /* UIImage+GIF.m in Sources */,
 				0426C2D619922D5A00CD8822 /* GPUImageVoronoiConsumerFilter.m in Sources */,
 				5B95ADF21AB1B37E00797EA6 /* AddressBookViewCell.m in Sources */,
+				5BAE1C701B0F306D004A4B3E /* PersonalProjectController.m in Sources */,
 				D3CF278A1A008EFF00DDA30D /* ContactBackgroundView.m in Sources */,
 				0426C20A19922D5A00CD8822 /* CompanyViewController.m in Sources */,
 				0426C26C19922D5A00CD8822 /* GPUImageFilterGroup.m in Sources */,
@@ -9104,6 +9162,7 @@
 				5B8A2CE91AAEE0AD00C8F9DE /* AddFriendCell.m in Sources */,
 				5B90E1051ADE491F00436CED /* MainContractsBaseController.m in Sources */,
 				D3AD616B19ADB9F7001FD483 /* RecordModel.m in Sources */,
+				5BAE1C761B0F3090004A4B3E /* PersonalInfoController.m in Sources */,
 				5B7E59061ABBD9B90063B400 /* ProvidePriceInfoController.m in Sources */,
 				0426C27919922D5A00CD8822 /* GPUImageHighPassFilter.m in Sources */,
 				0426C2E919922D5A00CD8822 /* FaceppPerson.m in Sources */,
@@ -9241,6 +9300,7 @@
 				0426C26019922D5A00CD8822 /* GPUImageDirectionalNonMaximumSuppressionFilter.m in Sources */,
 				5BF31B671AB025FD00DA87F5 /* AddImageView.m in Sources */,
 				0426C2CB19922D5A00CD8822 /* GPUImageToneCurveFilter.m in Sources */,
+				5BAE1C731B0F3080004A4B3E /* PersonalProductController.m in Sources */,
 				042D9EEF19B8855100689C5D /* Camera.m in Sources */,
 				D368092B1ABFAB3200AFA097 /* ClassificationView.m in Sources */,
 				0426C23219922D5A00CD8822 /* FaceViewController.m in Sources */,
@@ -9306,6 +9366,7 @@
 				D3D2E60119F7A79500908D8B /* EmployeesModel.m in Sources */,
 				5B6373AB1ABAE32A007CF1F8 /* ChooseProductBigCell.m in Sources */,
 				D3DBCE5C1AC8E1A400C9FEDE /* ProvisionalViewController.m in Sources */,
+				5BAE1C791B0F33F8004A4B3E /* RKPersonalController.m in Sources */,
 				0426C29C19922D5A00CD8822 /* GPUImageOpeningFilter.m in Sources */,
 				5B7670621AB6B92B00E154C5 /* ChatBaseViewController.m in Sources */,
 				0426C2C819922D5A00CD8822 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
@@ -9331,6 +9392,7 @@
 				0426C2CC19922D5A00CD8822 /* GPUImageToonFilter.m in Sources */,
 				0426C29419922D5A00CD8822 /* GPUImageMotionBlurFilter.m in Sources */,
 				5B628A0C1AB826AA00F30059 /* ChooseProductCellModel.m in Sources */,
+				5BAE1C6A1B0F2F3F004A4B3E /* PersonalActivesViewController.m in Sources */,
 				5B5773E21AC1338000C17DBF /* DemandAskPriceChatController.m in Sources */,
 				5B8A2CF51AAEE0AD00C8F9DE /* ChooseContactsViewCell.m in Sources */,
 				D3AD619D19AEEE30001FD483 /* SinglePickerView.m in Sources */,
