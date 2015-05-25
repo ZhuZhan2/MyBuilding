@@ -10,7 +10,7 @@
 
 @implementation RKPersonalController
 - (instancetype)initWithNavi:(UINavigationController *)navi targetId:(NSString *)targetId{
-    if (self = [super initWithNavi:navi]) {
+    if (self = [super init]) {
         self.navigationController = navi;
         self.targetId = targetId;
         [self setUp];

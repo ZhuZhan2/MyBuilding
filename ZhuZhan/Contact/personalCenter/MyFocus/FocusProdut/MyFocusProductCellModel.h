@@ -14,4 +14,5 @@
 @property(nonatomic,copy)NSString* title;
 @property(nonatomic,copy)NSString* content;
 @property(nonatomic)RKBtnStatusEnum status;
+@property(nonatomic,strong)NSIndexPath* indexPath;
 @end
