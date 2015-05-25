@@ -66,7 +66,7 @@
     self.view.backgroundColor = AllBackLightGratColor;
     //集成刷新控件
     [self setupRefresh];
-    [self initChatToolBarWithNeedAddBtn:YES];
+    [self initChatToolBarWithNeedAddBtn:NO];
     self.chatToolBar.maxTextCountInChat = 1000;
     [self initTableViewHeaderView];
     [self addKeybordNotification];
