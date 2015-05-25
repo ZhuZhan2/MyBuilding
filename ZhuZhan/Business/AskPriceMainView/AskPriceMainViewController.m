@@ -22,7 +22,8 @@
 #import "LoginViewController.h"
 #import "AskPriceViewController.h"
 #import "ChooseProductCellModel.h"
-@interface AskPriceMainViewController ()<AddContactViewDelegate,UITableViewDelegate,UITableViewDataSource,AddMarkViewDelegate,SearchContactViewDelegate,ChooseProductBigStageDelegate,ChooseProductSmallStageDelegate,UIAlertViewDelegate>
+#import "BusinessSucessCreateController.h"
+@interface AskPriceMainViewController ()<AddContactViewDelegate,UITableViewDelegate,UITableViewDataSource,AddMarkViewDelegate,SearchContactViewDelegate,ChooseProductBigStageDelegate,ChooseProductSmallStageDelegate,UIAlertViewDelegate,BusinessSucessCreateControllerDelegate>
 @property(nonatomic,strong)TopView *topView;
 @property(nonatomic,strong)NSMutableArray *laberStrArr;
 @property(nonatomic,strong)AddContactView *addContactView;
@@ -147,8 +148,9 @@
             [dic setValue:[self.remarkStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forKey:@"remark"];
             [AskPriceApi PostAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发起成功是否去列表查看" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-                    [alertView show];
+                    BusinessSucessCreateController* vc = [[BusinessSucessCreateController alloc] init];
+                    [self.navigationController pushViewController:vc animated:NO];
+                    vc.delegate = self;
                     [self reloadTable];
                 }else{
                     if([ErrorCode errorCode:error] == 403){
@@ -168,6 +170,8 @@
         }
     }
 }
+
+
 
 -(void)reloadTable{
     [self.laberStrArr removeAllObjects];
@@ -429,6 +433,19 @@
 
         [self.navigationController pushViewController:view animated:YES];
     }
+}
+
+-(void)businessSucessCreateControllerLeftBtnClicked{
+    AskPriceViewController *view = [[AskPriceViewController alloc] initWithOtherStr:@"-1"];
+    view.isFromCreated = YES;
+    [self.navigationController pushViewController:view animated:YES];
+}
+
+-(void)businessSucessCreateControllerRightBtnClicked{
+    NSInteger index=self.navigationController.viewControllers.count;
+    UIViewController* vc=self.navigationController.viewControllers[index-3];
+    [self addAnimation];
+    [self.navigationController popToViewController:vc animated:YES];
 }
 
 -(UIView *)loadingView{

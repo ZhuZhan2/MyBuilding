@@ -10,4 +10,5 @@
 
 @interface AskPriceViewController : ChatBaseViewController
 -(instancetype)initWithOtherStr:(NSString*)otherStr;
+@property(nonatomic)BOOL isFromCreated;
 @end

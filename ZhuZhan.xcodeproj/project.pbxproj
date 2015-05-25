@@ -911,6 +911,16 @@
 		5BA8F4E71B12FE8000E8656D /* 默认图_项目详情@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA8F4DD1B12FE8000E8656D /* 默认图_项目详情@2x.png */; };
 		5BA8F4EA1B13092500E8656D /* 默认图_公司头像.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA8F4E81B13092500E8656D /* 默认图_公司头像.png */; };
 		5BA8F4EB1B13092500E8656D /* 默认图_公司头像@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA8F4E91B13092500E8656D /* 默认图_公司头像@2x.png */; };
+		5BA8F4EF1B1311C800E8656D /* ContractSucessCreateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA8F4EE1B1311C800E8656D /* ContractSucessCreateController.m */; };
+		5BA8F4F21B13135800E8656D /* 佣金_提交成功.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA8F4F01B13135800E8656D /* 佣金_提交成功.png */; };
+		5BA8F4F31B13135800E8656D /* 佣金_提交成功@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA8F4F11B13135800E8656D /* 佣金_提交成功@2x.png */; };
+		5BA8F4F81B13136300E8656D /* 佣金_提交成功按钮_首页.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA8F4F41B13136300E8656D /* 佣金_提交成功按钮_首页.png */; };
+		5BA8F4F91B13136300E8656D /* 佣金_提交成功按钮_首页@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA8F4F51B13136300E8656D /* 佣金_提交成功按钮_首页@2x.png */; };
+		5BA8F4FA1B13136300E8656D /* 佣金_提交成功按钮_我的佣金列表.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA8F4F61B13136300E8656D /* 佣金_提交成功按钮_我的佣金列表.png */; };
+		5BA8F4FB1B13136300E8656D /* 佣金_提交成功按钮_我的佣金列表@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA8F4F71B13136300E8656D /* 佣金_提交成功按钮_我的佣金列表@2x.png */; };
+		5BA8F5031B131EF400E8656D /* BusinessSucessCreateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA8F5021B131EF400E8656D /* BusinessSucessCreateController.m */; };
+		5BA8F5061B1321B800E8656D /* 佣金_提交成功按钮_我的询价列表.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA8F5041B1321B800E8656D /* 佣金_提交成功按钮_我的询价列表.png */; };
+		5BA8F5071B1321B800E8656D /* 佣金_提交成功按钮_我的询价列表@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA8F5051B1321B800E8656D /* 佣金_提交成功按钮_我的询价列表@2x.png */; };
 		5BA938A61A4935FF00BB8A96 /* 密码找回_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA938A41A4935FF00BB8A96 /* 密码找回_03.png */; };
 		5BA938A71A4935FF00BB8A96 /* 密码找回_03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA938A51A4935FF00BB8A96 /* 密码找回_03@2x.png */; };
 		5BA938AD1A49720300BB8A96 /* ContactProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA938AC1A49720300BB8A96 /* ContactProductView.m */; };
@@ -3042,6 +3052,18 @@
 		5BA8F4DD1B12FE8000E8656D /* 默认图_项目详情@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_项目详情@2x.png"; sourceTree = "<group>"; };
 		5BA8F4E81B13092500E8656D /* 默认图_公司头像.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_公司头像.png"; sourceTree = "<group>"; };
 		5BA8F4E91B13092500E8656D /* 默认图_公司头像@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_公司头像@2x.png"; sourceTree = "<group>"; };
+		5BA8F4ED1B1311C800E8656D /* ContractSucessCreateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractSucessCreateController.h; sourceTree = "<group>"; };
+		5BA8F4EE1B1311C800E8656D /* ContractSucessCreateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractSucessCreateController.m; sourceTree = "<group>"; };
+		5BA8F4F01B13135800E8656D /* 佣金_提交成功.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "佣金_提交成功.png"; sourceTree = "<group>"; };
+		5BA8F4F11B13135800E8656D /* 佣金_提交成功@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "佣金_提交成功@2x.png"; sourceTree = "<group>"; };
+		5BA8F4F41B13136300E8656D /* 佣金_提交成功按钮_首页.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "佣金_提交成功按钮_首页.png"; sourceTree = "<group>"; };
+		5BA8F4F51B13136300E8656D /* 佣金_提交成功按钮_首页@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "佣金_提交成功按钮_首页@2x.png"; sourceTree = "<group>"; };
+		5BA8F4F61B13136300E8656D /* 佣金_提交成功按钮_我的佣金列表.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "佣金_提交成功按钮_我的佣金列表.png"; sourceTree = "<group>"; };
+		5BA8F4F71B13136300E8656D /* 佣金_提交成功按钮_我的佣金列表@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "佣金_提交成功按钮_我的佣金列表@2x.png"; sourceTree = "<group>"; };
+		5BA8F5011B131EF400E8656D /* BusinessSucessCreateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessSucessCreateController.h; sourceTree = "<group>"; };
+		5BA8F5021B131EF400E8656D /* BusinessSucessCreateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessSucessCreateController.m; sourceTree = "<group>"; };
+		5BA8F5041B1321B800E8656D /* 佣金_提交成功按钮_我的询价列表.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "佣金_提交成功按钮_我的询价列表.png"; sourceTree = "<group>"; };
+		5BA8F5051B1321B800E8656D /* 佣金_提交成功按钮_我的询价列表@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "佣金_提交成功按钮_我的询价列表@2x.png"; sourceTree = "<group>"; };
 		5BA938A41A4935FF00BB8A96 /* 密码找回_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码找回_03.png"; sourceTree = "<group>"; };
 		5BA938A51A4935FF00BB8A96 /* 密码找回_03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码找回_03@2x.png"; sourceTree = "<group>"; };
 		5BA938AB1A49720300BB8A96 /* ContactProductView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactProductView.h; sourceTree = "<group>"; };
@@ -5544,6 +5566,8 @@
 		5B3B5D461AAD935E002FB444 /* 二期新图片 */ = {
 			isa = PBXGroup;
 			children = (
+				5BA8F5041B1321B800E8656D /* 佣金_提交成功按钮_我的询价列表.png */,
+				5BA8F5051B1321B800E8656D /* 佣金_提交成功按钮_我的询价列表@2x.png */,
 				5BA8F4E81B13092500E8656D /* 默认图_公司头像.png */,
 				5BA8F4E91B13092500E8656D /* 默认图_公司头像@2x.png */,
 				5BA8F4D41B12FE8000E8656D /* 默认图_产品列表.png */,
@@ -6206,6 +6230,24 @@
 				D3F7274A1AD6570C00B52A66 /* AddressBookNickNameViewController.m */,
 			);
 			path = AddressBook;
+			sourceTree = "<group>";
+		};
+		5BA8F4EC1B13115600E8656D /* ContractSucess */ = {
+			isa = PBXGroup;
+			children = (
+				5BA8F4ED1B1311C800E8656D /* ContractSucessCreateController.h */,
+				5BA8F4EE1B1311C800E8656D /* ContractSucessCreateController.m */,
+			);
+			path = ContractSucess;
+			sourceTree = "<group>";
+		};
+		5BA8F5001B131EDA00E8656D /* BusinessSucess */ = {
+			isa = PBXGroup;
+			children = (
+				5BA8F5011B131EF400E8656D /* BusinessSucessCreateController.h */,
+				5BA8F5021B131EF400E8656D /* BusinessSucessCreateController.m */,
+			);
+			path = BusinessSucess;
 			sourceTree = "<group>";
 		};
 		5BAA14D319EE35AC00C7ECD9 /* MD5 */ = {
@@ -7212,6 +7254,7 @@
 				D3DBBC741AB91E110070DB98 /* AddClassificationView.m */,
 				D3B51BC21ABA96A600C7D57A /* AddMarkView.h */,
 				D3B51BC31ABA96A600C7D57A /* AddMarkView.m */,
+				5BA8F5001B131EDA00E8656D /* BusinessSucess */,
 			);
 			path = AskPriceMainView;
 			sourceTree = "<group>";
@@ -7315,6 +7358,12 @@
 		D3D2BFEC1AC94DDB003BB779 /* 佣金 */ = {
 			isa = PBXGroup;
 			children = (
+				5BA8F4F41B13136300E8656D /* 佣金_提交成功按钮_首页.png */,
+				5BA8F4F51B13136300E8656D /* 佣金_提交成功按钮_首页@2x.png */,
+				5BA8F4F61B13136300E8656D /* 佣金_提交成功按钮_我的佣金列表.png */,
+				5BA8F4F71B13136300E8656D /* 佣金_提交成功按钮_我的佣金列表@2x.png */,
+				5BA8F4F01B13135800E8656D /* 佣金_提交成功.png */,
+				5BA8F4F11B13135800E8656D /* 佣金_提交成功@2x.png */,
 				5B4F98151AE652A7009E0F78 /* 修改大带子.png */,
 				5B4F98161AE652A7009E0F78 /* 修改大带子@2x.png */,
 				5B6C4B2E1ADFC01B003B8DA8 /* PDF.png */,
@@ -7627,6 +7676,7 @@
 				D3D2BFE71AC94478003BB779 /* MoneyView.m */,
 				D3D2BFE91AC9497B003BB779 /* ContractView.h */,
 				D3D2BFEA1AC9497B003BB779 /* ContractView.m */,
+				5BA8F4EC1B13115600E8656D /* ContractSucess */,
 			);
 			path = Provisional;
 			sourceTree = "<group>";
@@ -7900,6 +7950,7 @@
 				5BE08DC51A3586EA00495EEB /* 010025@2x.png in Resources */,
 				5BE08EA61A3586EA00495EEB /* 040017.png in Resources */,
 				5BE08E8B1A3586EA00495EEB /* 040003@2x.png in Resources */,
+				5BA8F5071B1321B800E8656D /* 佣金_提交成功按钮_我的询价列表@2x.png in Resources */,
 				5BE08E211A3586EA00495EEB /* 020007@2x.png in Resources */,
 				D3D7D86619FF4B9800AE5765 /* 项目－搜索_09a.png in Resources */,
 				5BE08E7A1A3586EA00495EEB /* 030022.png in Resources */,
@@ -8236,6 +8287,7 @@
 				5BE08DC71A3586EA00495EEB /* 010026@2x.png in Resources */,
 				04BC40F919D7E5B3006B5C7B /* 011.png in Resources */,
 				D3D5D9B21A66919B0077C8C9 /* 公司详情图标04.png in Resources */,
+				5BA8F4F81B13136300E8656D /* 佣金_提交成功按钮_首页.png in Resources */,
 				5B95ADCA1AB13A0300797EA6 /* 未设置.png in Resources */,
 				5B6C4B2C1ADFBC12003B8DA8 /* 绿色箭头.png in Resources */,
 				D3E1AB021A7649D900BFC6E1 /* 重新加载@2x.png in Resources */,
@@ -8662,6 +8714,7 @@
 				04BC41EB19D7E5B3006B5C7B /* 人脉－账号设置_14a.png in Resources */,
 				5B75F4FD1AFA04AB0091162C /* find_insetbox2@2x.png in Resources */,
 				04BC41C419D7E5B3006B5C7B /* 人脉－人的详情_23a@2x.png in Resources */,
+				5BA8F4F31B13135800E8656D /* 佣金_提交成功@2x.png in Resources */,
 				5BE08E811A3586EA00495EEB /* 030025@2x.png in Resources */,
 				D3A85BCA1B0C8BDB00333F56 /* project_bottom.png in Resources */,
 				5B7AA6D81A58D6E4000FBFF2 /* 筛选中02@2x.png in Resources */,
@@ -8714,6 +8767,7 @@
 				5BE08DB31A3586EA00495EEB /* 010016@2x.png in Resources */,
 				D3D34A251ACA861B004733D2 /* agree@2x.png in Resources */,
 				5B7AA6D51A58D6E4000FBFF2 /* 筛选中01.png in Resources */,
+				5BA8F4F91B13136300E8656D /* 佣金_提交成功按钮_首页@2x.png in Resources */,
 				D3D3212E1A3ED4340009AEEA /* 注册_03.png in Resources */,
 				5B75F4EA1AF9F3FC0091162C /* Group-1.png in Resources */,
 				5B4E6C9D1A68DB140008E5D5 /* 动态产品评论02@2x.png in Resources */,
@@ -8721,6 +8775,7 @@
 				5BE264DE1A78BF9500EF7D1B /* 背景.png in Resources */,
 				D3D9C9201A13446B001D3A64 /* 主菜单04a.png in Resources */,
 				5BE08E2C1A3586EA00495EEB /* 020013.png in Resources */,
+				5BA8F4F21B13135800E8656D /* 佣金_提交成功.png in Resources */,
 				5BA8F4E51B12FE8000E8656D /* 默认图_项目列表@2x.png in Resources */,
 				5BA523231AAEEB9D00F44223 /* 多人会话@2x.png in Resources */,
 				0426BFFD19922CE400CD8822 /* Images.xcassets in Resources */,
@@ -8805,6 +8860,7 @@
 				5B7AA6DB1A58D6E4000FBFF2 /* 筛选中04.png in Resources */,
 				04BC42BE19D7E5B3006B5C7B /* 项目-首页_08a.png in Resources */,
 				04BC414919D7E5B3006B5C7B /* icon__09@2x.png in Resources */,
+				5BA8F4FA1B13136300E8656D /* 佣金_提交成功按钮_我的佣金列表.png in Resources */,
 				5BE08DCE1A3586EA00495EEB /* 010030.png in Resources */,
 				04BC41D319D7E5B3006B5C7B /* 人脉－发布动态_07a.png in Resources */,
 				5BE08E1D1A3586EA00495EEB /* 020005@2x.png in Resources */,
@@ -8876,6 +8932,7 @@
 				D3D9F8E11ADE7FBE002BBB06 /* 已添加带字@2x.png in Resources */,
 				D3D74E8719FA2FEC00ED8B62 /* 登录_22.png in Resources */,
 				5BA523221AAEEB9D00F44223 /* 多人会话.png in Resources */,
+				5BA8F4FB1B13136300E8656D /* 佣金_提交成功按钮_我的佣金列表@2x.png in Resources */,
 				04BC411F19D7E5B3006B5C7B /* 09@2x.png in Resources */,
 				5BE08E6A1A3586EA00495EEB /* 030014.png in Resources */,
 				5BE08E0B1A3586EA00495EEB /* 010060@2x.png in Resources */,
@@ -8899,6 +8956,7 @@
 				04BC418119D7E5B3006B5C7B /* 人脉_29a.png in Resources */,
 				04BC433219D7E5B3006B5C7B /* 项目－项目专题_02a.png in Resources */,
 				04BC433319D7E5B3006B5C7B /* 项目－项目专题_02a@2x.png in Resources */,
+				5BA8F5061B1321B800E8656D /* 佣金_提交成功按钮_我的询价列表.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9135,6 +9193,7 @@
 				5B0A00A519B587CD00500C05 /* TMQuiltViewController.m in Sources */,
 				5B90E0FF1ADE325000436CED /* ContractsTradeCodeView.m in Sources */,
 				5BAA14D619EE35AC00C7ECD9 /* MD5.m in Sources */,
+				5BA8F5031B131EF400E8656D /* BusinessSucessCreateController.m in Sources */,
 				0426C22F19922D5A00CD8822 /* LoginEvent.m in Sources */,
 				5B4F6AD81AE75B78005CD38A /* ContractsRepealModel.m in Sources */,
 				D3D5B42F1AB130B900E8EB04 /* GCDAsyncSocket.m in Sources */,
@@ -9267,6 +9326,7 @@
 				0426C27A19922D5A00CD8822 /* GPUImageHistogramFilter.m in Sources */,
 				D3B51BC41ABA96A600C7D57A /* AddMarkView.m in Sources */,
 				0426C23A19922D5A00CD8822 /* AFSecurityPolicy.m in Sources */,
+				5BA8F4EF1B1311C800E8656D /* ContractSucessCreateController.m in Sources */,
 				5B5837031AD7CE0900F8E7C3 /* ContractsBaseViewController.m in Sources */,
 				0426C2A719922D5A00CD8822 /* GPUImagePosterizeFilter.m in Sources */,
 				5B6373951ABAA7B0007CF1F8 /* RKDemandChatController.m in Sources */,
