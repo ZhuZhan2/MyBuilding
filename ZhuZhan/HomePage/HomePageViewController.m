@@ -106,7 +106,7 @@
     // Camera MenuItem.
     QuadCurveMenuItem *cameraMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
                                                                 highlightedImage:storyMenuItemImagePressed
-                                                                    ContentImage:[GetImagePath getImagePath:@"hetong"]
+                                                                    ContentImage:[GetImagePath getImagePath:@"yongjin"]
                                                          highlightedContentImage:nil flag:0];
     // People MenuItem.
     QuadCurveMenuItem *peopleMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
@@ -116,7 +116,7 @@
     // Place MenuItem.
     QuadCurveMenuItem *placeMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
                                                                highlightedImage:storyMenuItemImagePressed
-                                                                   ContentImage:[GetImagePath getImagePath:@"tongzhi"]
+                                                                   ContentImage:[GetImagePath getImagePath:@"xiaoxi"]
                                                         highlightedContentImage:nil flag:0];
     // Music MenuItem.
     QuadCurveMenuItem *musicMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
@@ -126,7 +126,7 @@
     // Thought MenuItem.
     QuadCurveMenuItem *thoughtMenuItem = [[QuadCurveMenuItem alloc] initWithImage:storyMenuItemImage
                                                                  highlightedImage:storyMenuItemImagePressed
-                                                                     ContentImage:[GetImagePath getImagePath:@"tongxunlu"]
+                                                                     ContentImage:[GetImagePath getImagePath:@"jiahaoyou"]
                                                           highlightedContentImage:nil flag:0];
     
     NSArray *menus = [NSArray arrayWithObjects:cameraMenuItem, peopleMenuItem, placeMenuItem, musicMenuItem, thoughtMenuItem, nil];

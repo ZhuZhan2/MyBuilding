@@ -34,7 +34,11 @@ highlightedContentImage:(UIImage *)hcimg flag:(int)flag;
         
         float width = _contentImageView.image.size.width;
         float height = _contentImageView.image.size.height;
-        _contentImageView.frame = CGRectMake(self.bounds.size.width/2 - width/2, self.bounds.size.height/2 - height/2, width, height);
+        if(flag == 0){
+            _contentImageView.frame = CGRectMake(self.bounds.size.width/2 - width/2-4, self.bounds.size.height/2 - height/2-4, width+8, height+8);
+        }else{
+            _contentImageView.frame = CGRectMake(self.bounds.size.width/2 - width/2, self.bounds.size.height/2 - height/2, width, height);
+        }
         
         [self addSubview:_contentImageView];
     }
