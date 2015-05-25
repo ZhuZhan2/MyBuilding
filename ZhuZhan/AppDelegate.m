@@ -40,48 +40,7 @@
             
         }];
     });
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
     
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.window.bounds];
-    imageView.image = [GetImagePath getImagePath:@"loading"];
-    [self.window addSubview:imageView];
-    
-    [ForcedUpdateApi GetLastestReleaseWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            NSString* statusCode = posts[0];
-            BOOL needUpdate = [statusCode isEqualToString:@"200"];
-            if (needUpdate) {
-                [self showForcedAlertView];
-            }else{
-                [self startCode];
-                [imageView removeFromSuperview];
-            }
-        }
-    } userVersion:@"1.0.0" deviceType:@"03" downloadType:@"01" noNetWork:^{
-        [self startCode];
-        [imageView removeFromSuperview];
-    }];
-    return YES;
-}
-
-- (void)showForcedAlertView{
-    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"需要下载最新版本" delegate:self cancelButtonTitle:nil otherButtonTitles:@"下载", nil];
-    [alertView show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    NSString* urlStr_99 = @"itms-apps://itunes.apple.com/app/id962715759?mt=8";
-    NSString* urlStr_299 = @"https://app.mybuilding.cn/download/mobile-download.html";
-    NSURL* url = [NSURL URLWithString:urlStr_299];
-    
-    [[UIApplication sharedApplication] openURL:url];
-    [self showForcedAlertView];
-}
-
-- (void)startCode{
     self.socket = [SocketManage sharedManager];
     
     
@@ -105,7 +64,7 @@
         
     }
     
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     //设置log等级，此处log为默认在documents目录下的msc.log文件
     [IFlySetting setLogFile:LVL_NONE];
     
@@ -126,7 +85,7 @@
     
     
     // Override point for customization after application launch.
-//    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor whiteColor];
     NSString *API_KEY = KAPI_KEY;
     NSString *API_SECRET = KAPI_SECRET;
     
@@ -154,33 +113,34 @@
     [ImageSqlite opensql];
     [MarketSearchSqlite opensql];
     
-    //#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-    //    if (IS_OS_8_OR_LATER) {
-    //        [[UIApplication sharedApplication] registerForRemoteNotifications];
-    //        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound) categories:nil];
-    //        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    //    } else {
-    //        [application registerForRemoteNotificationTypes:
-    //         UIRemoteNotificationTypeBadge |
-    //         UIRemoteNotificationTypeAlert |
-    //         UIRemoteNotificationTypeSound];
-    //    }
+#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    if (IS_OS_8_OR_LATER) {
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound) categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    } else {
+        [application registerForRemoteNotificationTypes:
+         UIRemoteNotificationTypeBadge |
+         UIRemoteNotificationTypeAlert |
+         UIRemoteNotificationTypeSound];
+    }
     
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;
-//    [self.window makeKeyAndVisible];
+    [self.window makeKeyAndVisible];
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"firstLaunch"]){
         NSLog(@"第一次启动程序");
         FirstOpenAppAnimationView* firstAnimationView=[[FirstOpenAppAnimationView alloc]initWithFrame:self.window.frame];
         [self.window addSubview:firstAnimationView];
     }
     
-    //    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-    //    NSLog(@"launchOptions===>%@",launchOptions);
-    //    if(userInfo) {
-    //        [self handleRemoteNotification:application userInfo:userInfo];
-    //    }
-
+    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    NSLog(@"launchOptions===>%@",launchOptions);
+    if(userInfo) {
+        [self handleRemoteNotification:application userInfo:userInfo];
+    }
+    
+    return YES;
 }
 
 -(void)backgroundHandler{
