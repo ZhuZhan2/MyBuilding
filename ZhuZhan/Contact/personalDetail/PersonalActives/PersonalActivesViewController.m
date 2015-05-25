@@ -22,12 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initNavi];
+    self.tableView.backgroundColor = AllBackLightGratColor;
     [self initStageChooseViewWithStages:@[@"发布的项目",@"发布的产品",@"个人背景"] numbers:nil underLineIsWhole:YES normalColor:AllLightGrayColor highlightColor:BlueColor];
 }
 
 -(void)initNavi{
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
-    self.title = @"我的关注";
+    self.title = @"个人动态";
 }
 
 - (void)stageBtnClickedWithNumber:(NSInteger)stageNumber{

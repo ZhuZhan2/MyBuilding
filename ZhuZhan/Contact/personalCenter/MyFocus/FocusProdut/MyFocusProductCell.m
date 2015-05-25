@@ -46,7 +46,7 @@
 }
 
 - (void)reload{
-    [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:self.model.mainImageUrl] placeholderImage:[GetImagePath getImagePath:@"addfocus"]];
+    [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:self.model.mainImageUrl] placeholderImage:[GetImagePath getImagePath:self.mainImageName]];
     self.titleLabel.text = self.model.title;
     self.contentLabel.text = self.model.content;
     [self.assistBtn setImage:[GetImagePath getImagePath:self.model.status == RKBtnStatusNotStart?@"addfocus":@"cancelfocus"] forState:UIControlStateNormal];
@@ -58,13 +58,13 @@
     self.titleLabel.frame = frame;
     
     frame = self.contentLabel.frame;
-    frame.origin = CGPointMake(143, CGRectGetMaxY(self.titleLabel.frame));
+    frame.origin = CGPointMake(143, CGRectGetMaxY(self.titleLabel.frame)+2);
     self.contentLabel.frame = frame;
 }
 
 - (void)assistBtnClicked{
-    if ([self.delegate respondsToSelector:@selector(focusBtnClicked)]) {
-        [self.delegate focusBtnClicked];
+    if ([self.delegate respondsToSelector:@selector(focusBtnClicked:)]) {
+        [self.delegate focusBtnClicked:self.model.indexPath];
     }
 }
 
@@ -81,6 +81,7 @@
     if (!_contentLabel) {
         _contentLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _contentLabel.font = [UIFont systemFontOfSize:14];
+        _contentLabel.textColor = AllDeepGrayColor;
         _contentLabel.numberOfLines = 2;
     }
     return _contentLabel;
@@ -88,7 +89,7 @@
 
 - (UIButton *)assistBtn{
     if (!_assistBtn) {
-        _assistBtn = [[UIButton alloc] initWithFrame:CGRectMake(140, 99, 81, 28)];
+        _assistBtn = [[UIButton alloc] initWithFrame:CGRectMake(140, 107, 81, 28)];
         [_assistBtn addTarget:self action:@selector(assistBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     }
     return _assistBtn;
@@ -129,5 +130,12 @@
     CGRect bounds = [label.text boundingRectWithSize:CGSizeMake(170, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:label.font} context:nil];
     bounds.size.height = bounds.size.height>40 ? 40:bounds.size.height;
     label.frame = bounds;
+}
+
+- (NSString *)mainImageName{
+    if (!_mainImageName) {
+        _mainImageName = @"默认图_产品列表";
+    }
+    return _mainImageName;
 }
 @end

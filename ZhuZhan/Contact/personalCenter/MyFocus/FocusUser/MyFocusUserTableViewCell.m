@@ -73,7 +73,7 @@
 -(void)setModel:(MyCenterModel *)model{
     self.contractId = model.a_id;
     self.isFocused = model.a_isFocus;
-    [self.userHeadBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:model.a_userImage] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+    [self.userHeadBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:model.a_userImage] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"默认图_人脉头像"]];
     self.nameLabel.text = model.a_userName;
     self.companyLabel.text = model.a_company;
     if([self.isFocused isEqualToString:@"0"]){

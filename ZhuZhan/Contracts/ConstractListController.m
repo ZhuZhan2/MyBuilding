@@ -49,6 +49,16 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reload) name:@"ConstractListControllerReloadDataNotification" object:nil];
 }
 
+- (void)leftBtnClicked{
+    if (self.isFromCreated) {
+        NSInteger index=self.navigationController.viewControllers.count;
+        UIViewController* vc=self.navigationController.viewControllers[index-3];
+        [self.navigationController popToViewController:vc animated:YES];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 -(void)reload{
     [self headerRereshing];
 }

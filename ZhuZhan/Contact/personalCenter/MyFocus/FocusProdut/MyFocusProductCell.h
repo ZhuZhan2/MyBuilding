@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "MyFocusProductCellModel.h"
 @protocol MyFocusProductCellDelegate <NSObject>
-- (void)focusBtnClicked;
+- (void)focusBtnClicked:(NSIndexPath*)indexPath;
 @end
 
 @interface MyFocusProductCell : UITableViewCell
 @property (nonatomic, strong)MyFocusProductCellModel* model;
 @property (nonatomic, weak)id<MyFocusProductCellDelegate> delegate;
+@property (nonatomic, copy)NSString* mainImageName;
 + (CGFloat)totalHeight;
 @end

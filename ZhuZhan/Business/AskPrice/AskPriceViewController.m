@@ -59,6 +59,16 @@
     self.tableView.backgroundColor=AllBackDeepGrayColor;
 }
 
+- (void)leftBtnClicked{
+    if (self.isFromCreated) {
+        NSInteger index=self.navigationController.viewControllers.count;
+        UIViewController* vc=self.navigationController.viewControllers[index-3];
+        [self.navigationController popToViewController:vc animated:YES];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 -(NSString*)getTitle{
     NSInteger index=[self getNowIndex];
     NSString* title=@[@"全部需求列表",@"报价需求列表",@"询价需求列表"][index];

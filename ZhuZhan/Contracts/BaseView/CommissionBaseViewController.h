@@ -18,5 +18,7 @@
 -(void)rightBtnClicked;
 -(void)leftBtnClicked;
 
+-(void)addAnimation;
+
 -(instancetype)initWithIsMainView:(BOOL)isMainView;
 @end

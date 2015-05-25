@@ -18,7 +18,8 @@
 #import "ContractsApi.h"
 #import "ConstractListController.h"
 #import "ProjectStage.h"
-@interface ProvisionalViewController ()<UITableViewDataSource,UITableViewDelegate,MoneyViewDelegate,ContractViewDelegate,StartManViewDelegate,ReceiveViewDelegate,UIActionSheetDelegate,SearchContactViewDelegate,UIAlertViewDelegate>
+#import "ContractSucessCreateController.h"
+@interface ProvisionalViewController ()<UITableViewDataSource,UITableViewDelegate,MoneyViewDelegate,ContractViewDelegate,StartManViewDelegate,ReceiveViewDelegate,UIActionSheetDelegate,SearchContactViewDelegate,UIAlertViewDelegate,ContractSucessCreateControllerDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *viewArr;
 @property(nonatomic,strong)StartManView *startMainView;
@@ -189,6 +190,19 @@
     }
 }
 
+-(void)contractSucessCreateControllerLeftBtnClicked{
+    ConstractListController *view = [[ConstractListController alloc] init];
+    view.isFromCreated = YES;
+    [self.navigationController pushViewController:view animated:YES];
+}
+
+-(void)contractSucessCreateControllerRightBtnClicked{
+    NSInteger index=self.navigationController.viewControllers.count;
+    UIViewController* vc=self.navigationController.viewControllers[index-3];
+    [self addAnimation];
+    [self.navigationController popToViewController:vc animated:YES];
+}
+
 -(void)sendPostRequest{
     [self startLoadingView];
     //创建
@@ -203,9 +217,9 @@
         [dic setObject:self.personaId forKey:@"recipientId"];
         [ContractsApi PostContractWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发起成功是否去列表查看" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-                alertView.tag = 1;
-                [alertView show];
+                ContractSucessCreateController* vc =[[ContractSucessCreateController alloc] init];
+                vc.delegate = self;
+                [self.navigationController pushViewController:vc animated:NO];
                 [self reloadTable];
             }
             [self stopLoadingView];

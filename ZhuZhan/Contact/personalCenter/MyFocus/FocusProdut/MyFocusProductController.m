@@ -13,7 +13,8 @@
 #import "ErrorCode.h"
 #import "LoginSqlite.h"
 #import "ProductModel.h"
-@interface MyFocusProductController()
+#import "ProductDetailViewController.h"
+@interface MyFocusProductController()<MyFocusProductCellDelegate>
 
 @end
 
@@ -120,14 +121,16 @@
     MyFocusProductCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if(!cell){
         cell = [[MyFocusProductCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell.delegate = self;
     }
     ProductModel* dataModel = self.models[indexPath.row];
-
+    
     MyFocusProductCellModel* cellModel = [[MyFocusProductCellModel alloc] init];
     cellModel.mainImageUrl = dataModel.a_originImageUrl;
     cellModel.title = dataModel.a_name;
     cellModel.content = dataModel.a_content;
     cellModel.status = [dataModel.a_isFocused isEqualToString:@"1"]?RKBtnStatusFinishSucess:RKBtnStatusNotStart;
+    cellModel.indexPath = indexPath;
     
     cell.model = cellModel;
     cell.selectionStyle = NO;
@@ -139,6 +142,35 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%d",indexPath.row);
+    ProductModel* model=self.models[indexPath.row];
+    ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithProductModel:model];
+    vc.type = @"01";
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)focusBtnClicked:(NSIndexPath *)indexPath{
+    ProductModel* dataModel = self.models[indexPath.row];
+    BOOL addNotice = ![dataModel.a_isFocused isEqualToString:@"1"];
+    NSString* productId = dataModel.a_id;
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:productId forKey:@"targetId"];
+    [dic setObject:@"04" forKey:@"targetCategory"];
+    [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:addNotice?@"关注成功":@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+            dataModel.a_isFocused = addNotice?@"1":@"0";
+            [self.tableView reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
+        }
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 @end
