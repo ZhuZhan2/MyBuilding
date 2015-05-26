@@ -12,6 +12,8 @@
 #import "ProgramDetailViewController.h"
 #import "ProjectApi.h"
 #import "ErrorCode.h"
+#import "IsFocusedApi.h"
+#import "LoginSqlite.h"
 @interface MyFocusProjectController()
 
 @end
@@ -26,9 +28,9 @@
 -(void)loadList{
     self.startIndex = 0;
     [self startLoading];
-    [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            self.models = posts[0];
+    [IsFocusedApi GetProjectFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
+    if(!error){
+            self.models = posts;
             [self.tableView reloadData];
         }else{
             if([ErrorCode errorCode:error] == 403){
@@ -40,7 +42,7 @@
             }
         }
         [self endLoading];
-    } startIndex:0 keywords:@"" noNetWork:^{
+    } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
         [self endLoading];
         [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
             [self loadList];
@@ -50,10 +52,10 @@
 
 - (void)headerRereshing{
     [self startLoading];
-    [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
+    [IsFocusedApi GetProjectFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.startIndex = 0;
-            self.models = posts[0];
+            self.models = posts;
             [self.tableView reloadData];
         }else{
             if([ErrorCode errorCode:error] == 403){
@@ -65,7 +67,7 @@
             }
         }
         [self endLoading];
-    }startIndex:0 keywords:@"" noNetWork:^{
+    } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
         [self endLoading];
         [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
             [self headerRereshing];
@@ -75,10 +77,10 @@
 
 - (void)footerRereshing{
     [self startLoading];
-    [ProjectApi GetPiProjectSeachWithBlock:^(NSMutableArray *posts, NSError *error) {
+    [IsFocusedApi GetProjectFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.startIndex++;
-            [self.models addObjectsFromArray:posts[0]];
+            [self.models addObjectsFromArray:posts];
             [self.tableView reloadData];
         }else{
             if([ErrorCode errorCode:error] == 403){
@@ -90,7 +92,7 @@
             }
         }
         [self endLoading];
-    }startIndex:(int)self.startIndex+1 keywords:@"" noNetWork:^{
+    } userId:[LoginSqlite getdata:@"userId"] startIndex:(int)self.startIndex+1 noNetWork:^{
         [self endLoading];
         [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
             [self footerRereshing];
