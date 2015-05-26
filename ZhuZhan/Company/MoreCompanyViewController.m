@@ -19,11 +19,14 @@
 #import "EndEditingGesture.h"
 #import "LoadingView.h"
 #import "MyTableView.h"
-@interface MoreCompanyViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UIScrollViewDelegate,CompanyDetailDelegate>
+#import "LoginSqlite.h"
+#import "CompanyViewController.h"
+@interface MoreCompanyViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UIScrollViewDelegate,CompanyDetailDelegate,LoginViewDelegate>
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)UISearchBar* searchBar;
 @property(nonatomic)NSInteger lastIndex;
 @property(nonatomic,strong)LoadingView *loadingView;
+@property(nonatomic)BOOL isHasCompany;
 @end
 
 @implementation MoreCompanyViewController
@@ -51,6 +54,13 @@
     [super viewDidLoad];
     [self initSearchView];
     [self initMyTableViewAndNavi];
+    
+    if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        [self hasCompany];
+    }else{
+        self.isHasCompany = NO;
+    }
+    
     //集成刷新控件
     [self setupRefresh];
     self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view];
@@ -60,6 +70,26 @@
 -(void)removeMyLoadingView{
     [LoadingView removeLoadingView:self.loadingView];
     self.loadingView = nil;
+}
+
+-(void)hasCompany{
+    [CompanyApi HasCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.isHasCompany = [posts[0][@"exists"] boolValue];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
+        }
+    } noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64-49) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 -(void)firstNetWork{
@@ -277,13 +307,30 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:19], NSFontAttributeName,nil]];
     
-    
-    //左back button
-    if (!self.isCompanyIdentify) return;
-    UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(0,0,29,28.5)];
-    [button setImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
+    UIButton* button=[UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, 60, 20);
+    button.titleLabel.font = [UIFont systemFontOfSize:15];
+    [button setTitle:@"我的公司" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(myCompanyAction) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
+}
+
+-(void)myCompanyAction{
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.needDelayCancel = YES;
+        loginVC.delegate = self;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }else{
+        if(self.isHasCompany){
+            CompanyViewController *view = [[CompanyViewController alloc] init];
+            [self.navigationController pushViewController:view animated:YES];
+        }else{
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"你还未申请加入公司或申请还没被批准，赶快搜索公司进行申请吧！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
+    }
 }
 
 -(void)dealloc{
@@ -390,5 +437,12 @@
         _nowViewController = self;
     }
     return _nowViewController;
+}
+
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
+    [self hasCompany];
+    if(block){
+        block();
+    }
 }
 @end

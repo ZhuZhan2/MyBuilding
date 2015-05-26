@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ContactViewController.h"
 #import "ProjectTableViewController.h"
-#import "CompanyTotalViewController.h"
+#import "MoreCompanyViewController.h"
 #import "QuadCurveMenu.h"
 #import "ProductViewController.h"
 #import "ALLProjectViewController.h"
@@ -23,7 +23,7 @@
     UIView *toolView;
     ContactViewController *contactview;
     ALLProjectViewController *projectview;
-    CompanyTotalViewController *companyview;
+    MoreCompanyViewController *companyview;
     ProductViewController *productView;
     UIViewController* testVC;
     UINavigationController *nav;

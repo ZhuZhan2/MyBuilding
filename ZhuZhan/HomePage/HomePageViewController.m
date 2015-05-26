@@ -225,7 +225,7 @@
             break;
         case 3:
             NSLog(@"公司");
-            companyview = [[CompanyTotalViewController alloc] init];
+            companyview = [[MoreCompanyViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:companyview];
             [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
             nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
