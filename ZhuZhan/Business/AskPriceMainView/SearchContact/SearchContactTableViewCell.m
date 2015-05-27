@@ -7,6 +7,7 @@
 //
 
 #import "SearchContactTableViewCell.h"
+#define seperatorLineColor RGBCOLOR(229, 229, 229)
 
 @implementation SearchContactTableViewCell
 
@@ -30,12 +31,18 @@
 -(UIImageView *)lineImageView{
     if(!_lineImageView){
         _lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 43, 320, 1)];
-        _lineImageView.backgroundColor = [UIColor lightGrayColor];
+        _lineImageView.backgroundColor = seperatorLineColor;
     }
     return _lineImageView;
 }
 
 -(void)setCompanyNameStr:(NSString *)companyNameStr{
     self.companyName.text = companyNameStr;
+}
+
++(UIView *)fullSeperatorLine{
+    UIView* seperatorLine=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 1)];
+    seperatorLine.backgroundColor=seperatorLineColor;
+    return seperatorLine;
 }
 @end

@@ -12,11 +12,15 @@
 #import "EndEditingGesture.h"
 #import "SearchContactTableViewCell.h"
 #import "AskPriceApi.h"
+#import "SearchContactDefaultView.h"
+
 @interface SearchContactViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UISearchBar *searchBar;
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)NSString *keyWorks;
+@property(nonatomic,strong)SearchContactDefaultView *searchContactDefaultView;
+@property(nonatomic)BOOL isShowDefaultView;
 @end
 
 @implementation SearchContactViewController
@@ -33,9 +37,10 @@
     
     self.showArr = [[NSMutableArray alloc] init];
     self.keyWorks = @"";
-    
+    self.isShowDefaultView = YES;
     [self.view addSubview:self.searchBar];
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.searchContactDefaultView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -97,6 +102,13 @@
     return _tableView;
 }
 
+-(SearchContactDefaultView *)searchContactDefaultView{
+    if(!_searchContactDefaultView){
+        _searchContactDefaultView = [[SearchContactDefaultView alloc] initWithFrame:CGRectMake(0, 107, 320, kScreenHeight-107)];
+    }
+    return _searchContactDefaultView;
+}
+
 
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
     searchBar.showsCancelButton = YES;
@@ -115,11 +127,15 @@
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    self.isShowDefaultView = NO;
+    [self showOrCloseDefaultView];
     self.keyWorks = searchBar.text;
     [self loadList];
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    self.isShowDefaultView = YES;
+    [self showOrCloseDefaultView];
     searchBar.showsCancelButton = NO;
     searchBar.text = @"";
     [searchBar resignFirstResponder];
@@ -165,6 +181,14 @@
     if([self.delegate respondsToSelector:@selector(selectContact:)]){
         [self.delegate selectContact:self.showArr[indexPath.row]];
         [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+-(void)showOrCloseDefaultView{
+    if(self.isShowDefaultView){
+        [self.view addSubview:self.searchContactDefaultView];
+    }else{
+        [self.searchContactDefaultView removeFromSuperview];
     }
 }
 @end

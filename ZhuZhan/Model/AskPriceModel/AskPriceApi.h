@@ -45,6 +45,9 @@
 //获取用户及公司列表
 + (NSURLSessionDataTask *)GetUserOrCompanyListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block keyWorks:(NSString *)keyWorks noNetWork:(void(^)())noNetWork;
 
+//获取好友及关注公司
++ (NSURLSessionDataTask *)GetFriendAndFocusCompanyListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block noNetWork:(void(^)())noNetWork;
+
 //询价单各用户报价状态
 + (NSURLSessionDataTask *)AcceptUsersListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block tradeId:(NSString *)tradeId noNetWork:(void(^)())noNetWork;
 @end
