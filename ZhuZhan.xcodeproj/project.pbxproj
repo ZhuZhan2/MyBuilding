@@ -1324,6 +1324,10 @@
 		D35163EF1A67903F000051F4 /* 公司－我的公司_02a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D35163DF1A67903F000051F4 /* 公司－我的公司_02a@2x.png */; };
 		D35163F21A6796E2000051F4 /* 人脉_超大2.png in Resources */ = {isa = PBXBuildFile; fileRef = D35163F01A6796E2000051F4 /* 人脉_超大2.png */; };
 		D35163F31A6796E2000051F4 /* 人脉_超大2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D35163F11A6796E2000051F4 /* 人脉_超大2@2x.png */; };
+		D351AAF51B143F3700A299C6 /* CompanyActivesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D351AAF41B143F3700A299C6 /* CompanyActivesViewController.m */; };
+		D351AAF81B143FC600A299C6 /* RKCompanyController.m in Sources */ = {isa = PBXBuildFile; fileRef = D351AAF71B143FC600A299C6 /* RKCompanyController.m */; };
+		D351AAFD1B14406E00A299C6 /* CompanyProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = D351AAFC1B14406E00A299C6 /* CompanyProductController.m */; };
+		D351AB001B14407E00A299C6 /* CompanyProjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = D351AAFF1B14407E00A299C6 /* CompanyProjectController.m */; };
 		D35E12411ABD65D8007C6726 /* AskPriceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D35E12401ABD65D8007C6726 /* AskPriceDetailViewController.m */; };
 		D35E12441ABD68B5007C6726 /* CatoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D35E12431ABD68B5007C6726 /* CatoryTableViewCell.m */; };
 		D36040E619F51E8600E9727D /* CompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D36040E519F51E8600E9727D /* CompanyModel.m */; };
@@ -3515,6 +3519,14 @@
 		D35163DF1A67903F000051F4 /* 公司－我的公司_02a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_02a@2x.png"; sourceTree = "<group>"; };
 		D35163F01A6796E2000051F4 /* 人脉_超大2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉_超大2.png"; sourceTree = "<group>"; };
 		D35163F11A6796E2000051F4 /* 人脉_超大2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人脉_超大2@2x.png"; sourceTree = "<group>"; };
+		D351AAF31B143F3700A299C6 /* CompanyActivesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyActivesViewController.h; sourceTree = "<group>"; };
+		D351AAF41B143F3700A299C6 /* CompanyActivesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyActivesViewController.m; sourceTree = "<group>"; };
+		D351AAF61B143FC600A299C6 /* RKCompanyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCompanyController.h; sourceTree = "<group>"; };
+		D351AAF71B143FC600A299C6 /* RKCompanyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCompanyController.m; sourceTree = "<group>"; };
+		D351AAFB1B14406E00A299C6 /* CompanyProductController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyProductController.h; sourceTree = "<group>"; };
+		D351AAFC1B14406E00A299C6 /* CompanyProductController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyProductController.m; sourceTree = "<group>"; };
+		D351AAFE1B14407E00A299C6 /* CompanyProjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyProjectController.h; sourceTree = "<group>"; };
+		D351AAFF1B14407E00A299C6 /* CompanyProjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyProjectController.m; sourceTree = "<group>"; };
 		D35E123F1ABD65D8007C6726 /* AskPriceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceDetailViewController.h; sourceTree = "<group>"; };
 		D35E12401ABD65D8007C6726 /* AskPriceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPriceDetailViewController.m; sourceTree = "<group>"; };
 		D35E12421ABD68B5007C6726 /* CatoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatoryTableViewCell.h; sourceTree = "<group>"; };
@@ -4184,6 +4196,7 @@
 		0426C01919922D5900CD8822 /* Company */ = {
 			isa = PBXGroup;
 			children = (
+				D351AAF21B143EE700A299C6 /* CompanyActives */,
 				5B4E8A5619F8EA9800EA9AFF /* CompanyTotalViewController.h */,
 				5B4E8A5719F8EA9800EA9AFF /* CompanyTotalViewController.m */,
 				0426C01A19922D5900CD8822 /* CompanyViewController.h */,
@@ -6866,6 +6879,37 @@
 			path = "默认图像";
 			sourceTree = "<group>";
 		};
+		D351AAF21B143EE700A299C6 /* CompanyActives */ = {
+			isa = PBXGroup;
+			children = (
+				D351AAF91B14403900A299C6 /* CompanyProduct */,
+				D351AAFA1B14403900A299C6 /* CompanyProject */,
+				D351AAF31B143F3700A299C6 /* CompanyActivesViewController.h */,
+				D351AAF41B143F3700A299C6 /* CompanyActivesViewController.m */,
+				D351AAF61B143FC600A299C6 /* RKCompanyController.h */,
+				D351AAF71B143FC600A299C6 /* RKCompanyController.m */,
+			);
+			path = CompanyActives;
+			sourceTree = "<group>";
+		};
+		D351AAF91B14403900A299C6 /* CompanyProduct */ = {
+			isa = PBXGroup;
+			children = (
+				D351AAFB1B14406E00A299C6 /* CompanyProductController.h */,
+				D351AAFC1B14406E00A299C6 /* CompanyProductController.m */,
+			);
+			path = CompanyProduct;
+			sourceTree = "<group>";
+		};
+		D351AAFA1B14403900A299C6 /* CompanyProject */ = {
+			isa = PBXGroup;
+			children = (
+				D351AAFE1B14407E00A299C6 /* CompanyProjectController.h */,
+				D351AAFF1B14407E00A299C6 /* CompanyProjectController.m */,
+			);
+			path = CompanyProject;
+			sourceTree = "<group>";
+		};
 		D35E123E1ABD6556007C6726 /* AskPriceDetailView */ = {
 			isa = PBXGroup;
 			children = (
@@ -9060,6 +9104,7 @@
 				D3D21EB11A36F77C00ADD653 /* ProjectSqlite.m in Sources */,
 				0426C2E019922D5A00CD8822 /* FaceppClient.m in Sources */,
 				D3DCDACA1ADBA66C0029DB95 /* GetAddressBook.m in Sources */,
+				D351AAF81B143FC600A299C6 /* RKCompanyController.m in Sources */,
 				D3EDCA4F1ACE90A6002AF865 /* NSData+ImageContentType.m in Sources */,
 				D3EDCA5D1ACE90A6002AF865 /* UIView+WebCacheOperation.m in Sources */,
 				D3D483F91ADFBB08004AF972 /* AskPriceMessageViewController.m in Sources */,
@@ -9075,6 +9120,7 @@
 				0426C25819922D5A00CD8822 /* GPUImageColorPackingFilter.m in Sources */,
 				D3CF0D8C1AB81A7800D71CEB /* AddContactView.m in Sources */,
 				5B5173A21A368F8E0009E0AE /* FirstOpenAppAnimationView.m in Sources */,
+				D351AAFD1B14406E00A299C6 /* CompanyProductController.m in Sources */,
 				0426C2B319922D5A00CD8822 /* GPUImageSepiaFilter.m in Sources */,
 				0426C2BC19922D5A00CD8822 /* GPUImageSoftLightBlendFilter.m in Sources */,
 				D3EDCA5C1ACE90A6002AF865 /* UIImageView+WebCache.m in Sources */,
@@ -9168,6 +9214,7 @@
 				D3EDCA5B1ACE90A6002AF865 /* UIImageView+HighlightedWebCache.m in Sources */,
 				0426C29D19922D5A00CD8822 /* GPUImageOutput.m in Sources */,
 				0426C27619922D5A00CD8822 /* GPUImageHarrisCornerDetectionFilter.m in Sources */,
+				D351AB001B14407E00A299C6 /* CompanyProjectController.m in Sources */,
 				5B6373AC1ABAE32A007CF1F8 /* ChooseProductBigStage.m in Sources */,
 				0426C2AA19922D5A00CD8822 /* GPUImageRawDataOutput.m in Sources */,
 				04BF13BA19C4162A002E02C9 /* ProjectStage.m in Sources */,
@@ -9261,6 +9308,7 @@
 				042D9E2319B559FC00689C5D /* SaveConditionsViewController.m in Sources */,
 				D3D75E2E1B0201A500754C1A /* ZWAdView.m in Sources */,
 				0426C2AC19922D5A00CD8822 /* GPUImageRGBDilationFilter.m in Sources */,
+				D351AAF51B143F3700A299C6 /* CompanyActivesViewController.m in Sources */,
 				0426C2C519922D5A00CD8822 /* GPUImageTextureOutput.m in Sources */,
 				5BA938AD1A49720300BB8A96 /* ContactProductView.m in Sources */,
 				0426C2D719922D5A00CD8822 /* GPUImageWeakPixelInclusionFilter.m in Sources */,
