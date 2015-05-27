@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserOrCompanyModel.h"
 
 @interface SearchContactTableViewCell : UITableViewCell
 @property(nonatomic,strong)UILabel *companyName;
-@property(nonatomic,strong)NSString *companyNameStr;
 @property(nonatomic,strong)UIImageView *lineImageView;
+@property(nonatomic,strong)UserOrCompanyModel *model;
 +(UIView*)fullSeperatorLine;
 @end

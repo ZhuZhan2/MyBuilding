@@ -172,7 +172,7 @@
         cell = [[SearchContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     UserOrCompanyModel *model = self.showArr[indexPath.row];
-    cell.companyNameStr = model.a_loginName;
+    cell.model = model;
     cell.selectionStyle = NO;
     return cell;
 }

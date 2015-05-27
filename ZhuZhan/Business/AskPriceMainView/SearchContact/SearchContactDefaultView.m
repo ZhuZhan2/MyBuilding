@@ -174,10 +174,10 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if(indexPath.section == 0){
         UserOrCompanyModel *model = self.friendArr[indexPath.row];
-        cell.companyNameStr = model.a_loginName;
+        cell.model = model;
     }else{
         UserOrCompanyModel *model = self.companyArr[indexPath.row];
-        cell.companyNameStr = model.a_loginName;
+        cell.model = model;
     }
     return cell;
 }

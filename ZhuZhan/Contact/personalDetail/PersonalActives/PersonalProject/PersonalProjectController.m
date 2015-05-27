@@ -22,7 +22,6 @@
     [super setUp];
     [self loadList];
     [self setUpRefreshWithNeedHeaderRefresh:YES needFooterRefresh:YES];
-    self.notiName = @"2132";
 }
 
 -(void)loadList{
