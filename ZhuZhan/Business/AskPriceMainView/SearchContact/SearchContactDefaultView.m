@@ -182,4 +182,15 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 0){
+        if([self.delegate respondsToSelector:@selector(selectContact:)]){
+            [self.delegate selectContact:self.friendArr[indexPath.row]];
+        }
+    }else{
+        if([self.delegate respondsToSelector:@selector(selectContact:)]){
+            [self.delegate selectContact:self.companyArr[indexPath.row]];
+        }
+    }
+}
 @end
