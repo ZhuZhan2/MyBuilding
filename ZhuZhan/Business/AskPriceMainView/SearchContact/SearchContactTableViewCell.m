@@ -36,8 +36,12 @@
     return _lineImageView;
 }
 
--(void)setCompanyNameStr:(NSString *)companyNameStr{
-    self.companyName.text = companyNameStr;
+-(void)setModel:(UserOrCompanyModel *)model{
+    if([model.a_nickName isEqualToString:@""]){
+        self.companyName.text = model.a_loginName;
+    }else{
+        self.companyName.text = [NSString stringWithFormat:@"%@ (%@)",model.a_loginName,model.a_nickName];
+    }
 }
 
 +(UIView *)fullSeperatorLine{

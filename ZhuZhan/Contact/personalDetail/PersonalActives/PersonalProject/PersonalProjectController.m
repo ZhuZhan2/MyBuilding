@@ -22,7 +22,6 @@
     [super setUp];
     [self loadList];
     [self setUpRefreshWithNeedHeaderRefresh:YES needFooterRefresh:YES];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(headerRefreshingNoti:) name:@"PersonalActivesHeaderRefreshingNoti" object:nil];
 }
 
 -(void)loadList{

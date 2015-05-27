@@ -174,12 +174,23 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if(indexPath.section == 0){
         UserOrCompanyModel *model = self.friendArr[indexPath.row];
-        cell.companyNameStr = model.a_loginName;
+        cell.model = model;
     }else{
         UserOrCompanyModel *model = self.companyArr[indexPath.row];
-        cell.companyNameStr = model.a_loginName;
+        cell.model = model;
     }
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 0){
+        if([self.delegate respondsToSelector:@selector(selectContact:)]){
+            [self.delegate selectContact:self.friendArr[indexPath.row]];
+        }
+    }else{
+        if([self.delegate respondsToSelector:@selector(selectContact:)]){
+            [self.delegate selectContact:self.companyArr[indexPath.row]];
+        }
+    }
+}
 @end
