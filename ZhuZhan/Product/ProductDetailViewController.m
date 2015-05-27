@@ -380,8 +380,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
     
     UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    commentBtn.frame = CGRectMake(265, tempHeight-40, 37, 37);
-    [commentBtn setImage:[GetImagePath getImagePath:@"点-copy-3"] forState:UIControlStateNormal];
+    commentBtn.frame = CGRectMake(235, tempHeight-40, 65, 29);
+    [commentBtn setImage:[GetImagePath getImagePath:@"addComment"] forState:UIControlStateNormal];
     [commentBtn addTarget:self action:@selector(chooseComment:) forControlEvents:UIControlEventTouchUpInside];
     [isNoImageNoContent?productNameArea:forCornerView addSubview:commentBtn];
     
@@ -502,8 +502,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //评论图标
     CGFloat tempHeight=imageView?imageView.frame.origin.y+imageView.frame.size.height:height;
     UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    commentBtn.frame = CGRectMake(265, tempHeight-40, 37, 37);
-    [commentBtn setImage:[GetImagePath getImagePath:@"点-copy-3"] forState:UIControlStateNormal];
+    commentBtn.frame = CGRectMake(235, tempHeight-40, 65, 29);
+    [commentBtn setImage:[GetImagePath getImagePath:@"addComment"] forState:UIControlStateNormal];
     [commentBtn addTarget:self action:@selector(chooseComment:) forControlEvents:UIControlEventTouchUpInside];
     [forCornerView addSubview:commentBtn];
     NSLog(@"frame=%@",NSStringFromCGRect(commentBtn.frame));

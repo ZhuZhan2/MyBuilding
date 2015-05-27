@@ -438,4 +438,48 @@
         }
     }];
 }
+
+
++ (NSURLSessionDataTask *)GetFriendAndFocusCompanyListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"api/account/getFriendAndFocusCompany"];
+    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            NSMutableArray *companyArr = [[NSMutableArray alloc] init];
+            NSMutableArray *friendArr = [[NSMutableArray alloc] init];
+            NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] init];
+            for(NSDictionary *item in JSON[@"data"][@"focusCompany"]){
+                UserOrCompanyModel *model = [[UserOrCompanyModel alloc] init];
+                [model setDict:item];
+                [companyArr addObject:model];
+            }
+            [dataDic setObject:companyArr forKey:@"focusCompany"];
+            for(NSDictionary *item in JSON[@"data"][@"friendList"]){
+                UserOrCompanyModel *model = [[UserOrCompanyModel alloc] init];
+                [model setDict:item];
+                [friendArr addObject:model];
+            }
+            [dataDic setObject:friendArr forKey:@"friendList"];
+            [mutablePosts addObject:dataDic];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
 @end

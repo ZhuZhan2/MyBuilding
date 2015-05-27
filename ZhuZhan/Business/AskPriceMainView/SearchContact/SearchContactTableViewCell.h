@@ -12,4 +12,5 @@
 @property(nonatomic,strong)UILabel *companyName;
 @property(nonatomic,strong)NSString *companyNameStr;
 @property(nonatomic,strong)UIImageView *lineImageView;
++(UIView*)fullSeperatorLine;
 @end
