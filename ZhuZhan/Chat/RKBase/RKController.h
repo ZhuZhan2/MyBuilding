@@ -33,8 +33,6 @@
 - (void)startLoading;
 - (void)endLoading;
 
-@property(nonatomic)BOOL needHeaderRefreshing;
-
 - (void)setUpRefreshWithNeedHeaderRefresh:(BOOL)needHeaderRefresh needFooterRefresh:(BOOL)needFooterRefresh;
 - (void)headerRereshing;
 - (void)footerRereshing;

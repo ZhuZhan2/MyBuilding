@@ -487,6 +487,7 @@
     self.tableView.dataSource=nil;
     self.searchBar.delegate=nil;
     self.searchBarTableViewController.delegate=nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)setUpRefreshWithNeedHeaderRefresh:(BOOL)needHeaderRefresh needFooterRefresh:(BOOL)needFooterRefresh{

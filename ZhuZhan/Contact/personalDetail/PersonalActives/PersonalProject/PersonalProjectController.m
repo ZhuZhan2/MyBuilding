@@ -100,6 +100,10 @@
     }];
 }
 
+- (void)headerRefreshingNoti:(NSNotification*)noti{
+    [self headerRereshing];
+}
+
 - (void)startLoading{
     [super startLoading];
     NSLog(@"开始");
@@ -156,7 +160,7 @@
 }
 
 - (void)loginCompleteWithDelayBlock:(void (^)())block{
-    [self headerRereshing];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PersonalActivesHeaderRefreshingNoti" object:nil];
     if (block) {
         block();
     }
