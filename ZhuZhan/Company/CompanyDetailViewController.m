@@ -22,6 +22,7 @@
 #import "RKViewFactory.h"
 #import "RKShadowView.h"
 #import "CompanyMemberViewController.h"
+#import "CompanyActivesViewController.h"
 @interface CompanyDetailViewController ()<LoginViewDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)CompanyModel* model;
 
@@ -193,6 +194,7 @@
         [_activeView addSubview:imageView];
         
         UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44)];
+        [btn addTarget:self action:@selector(gotoActiveView) forControlEvents:UIControlEventTouchUpInside];
         [_activeView addSubview:btn];
         
         UIView* line1 = [RKShadowView seperatorLine];
@@ -502,6 +504,15 @@
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }
+}
+
+/**********************************************************
+ 函数描述：去公司动态
+ **********************************************************/
+- (void)gotoActiveView{
+    CompanyActivesViewController* vc = [[CompanyActivesViewController alloc] init];
+    vc.targetId = self.model.a_id;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)loginCompleteWithDelayBlock:(void (^)())block{

@@ -6882,12 +6882,12 @@
 		D351AAF21B143EE700A299C6 /* CompanyActives */ = {
 			isa = PBXGroup;
 			children = (
-				D351AAF91B14403900A299C6 /* CompanyProduct */,
-				D351AAFA1B14403900A299C6 /* CompanyProject */,
 				D351AAF31B143F3700A299C6 /* CompanyActivesViewController.h */,
 				D351AAF41B143F3700A299C6 /* CompanyActivesViewController.m */,
 				D351AAF61B143FC600A299C6 /* RKCompanyController.h */,
 				D351AAF71B143FC600A299C6 /* RKCompanyController.m */,
+				D351AAF91B14403900A299C6 /* CompanyProduct */,
+				D351AAFA1B14403900A299C6 /* CompanyProject */,
 			);
 			path = CompanyActives;
 			sourceTree = "<group>";
