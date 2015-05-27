@@ -23,6 +23,7 @@
     [super setUp];
     [self loadList];
     [self setUpRefreshWithNeedHeaderRefresh:YES needFooterRefresh:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(headerRefreshingNoti:) name:@"CompanyActivesHeaderRefreshingNoti" object:nil];
 }
 
 -(void)loadList{
@@ -101,6 +102,10 @@
     }];
 }
 
+- (void)headerRefreshingNoti:(NSNotification*)noti{
+    [self headerRereshing];
+}
+
 - (void)startLoading{
     [super startLoading];
     NSLog(@"开始");
@@ -154,5 +159,12 @@
     loginVC.delegate = self;
     UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
     [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+}
+
+- (void)loginCompleteWithDelayBlock:(void (^)())block{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"CompanyActivesHeaderRefreshingNoti" object:nil];
+    if (block) {
+        block();
+    }
 }
 @end

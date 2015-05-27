@@ -25,6 +25,7 @@
     [super setUp];
     [self loadList];
     [self setUpRefreshWithNeedHeaderRefresh:YES needFooterRefresh:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(headerRefreshingNoti:) name:@"PersonalActivesHeaderRefreshingNoti" object:nil];
 }
 
 -(void)loadList{
@@ -102,6 +103,10 @@
             [self footerRereshing];
         }];
     }];
+}
+
+- (void)headerRefreshingNoti:(NSNotification*)noti{
+    [self headerRereshing];
 }
 
 - (void)startLoading{
@@ -187,7 +192,7 @@
 }
 
 - (void)loginCompleteWithDelayBlock:(void (^)())block{
-    [self headerRereshing];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PersonalActivesHeaderRefreshingNoti" object:nil];
     if (block) {
         block();
     }
