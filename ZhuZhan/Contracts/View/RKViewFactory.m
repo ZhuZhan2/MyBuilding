@@ -65,4 +65,16 @@
     UIGraphicsEndImageContext();
     return image;
 }
+
+/**********************************************************
+ 函数描述：传入label和最大宽度
+ 输出参数：自适应label
+ **********************************************************/
++ (void)autoLabel:(UILabel*)label maxWidth:(CGFloat)maxWidth{
+    CGRect bounds = [label.text boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:label.font} context:nil];
+    CGRect frame = label.frame;
+    frame.size = CGSizeMake(maxWidth, bounds.size.height);
+    label.frame = frame;
+    label.numberOfLines = 0;
+}
 @end

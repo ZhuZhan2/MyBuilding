@@ -17,4 +17,6 @@
 + (void)imageViewWithImageView:(UIImageView*)imageView imageUrl:(NSString*)imageUrl defaultImageName:(NSString*)defaultImageName;
 
 + (UIImage *)convertViewAsImage:(UIView *)aview;
+
++ (void)autoLabel:(UILabel*)label maxWidth:(CGFloat)maxWidth;
 @end
