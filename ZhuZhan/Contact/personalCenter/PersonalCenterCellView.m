@@ -19,7 +19,7 @@
         newCategory=@"个人";
     }else if([category isEqualToString:@"Company"]){
         path=@"人脉－个人中心_07a";
-        newCategory=@"公司";
+        newCategory=@"企业";
     }else if([category isEqualToString:@"Product"]){
         path=@"人脉－个人中心_06a";
         newCategory=@"产品";
