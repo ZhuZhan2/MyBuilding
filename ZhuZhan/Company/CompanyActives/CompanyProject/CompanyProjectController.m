@@ -11,8 +11,9 @@
 #import "ProjectTableViewCell.h"
 #import "ProgramDetailViewController.h"
 #import "ProjectApi.h"
+#import "LoginViewController.h"
 
-@interface CompanyProjectController()
+@interface CompanyProjectController()<LoginViewDelegate,ProjectTableViewCellDelegate>
 
 @end
 
@@ -125,6 +126,7 @@
     }
     cell.model = model;
     cell.selectionStyle = NO;
+    cell.delegate = self;
     return cell;
 }
 
@@ -146,4 +148,11 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)gotoLoginView{
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    loginVC.needDelayCancel=YES;
+    loginVC.delegate = self;
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+}
 @end

@@ -27,6 +27,7 @@
 @property(nonatomic)NSInteger lastIndex;
 @property(nonatomic,strong)LoadingView *loadingView;
 @property(nonatomic)BOOL isHasCompany;
+@property(nonatomic,copy)NSString* companyId;
 @end
 
 @implementation MoreCompanyViewController
@@ -76,6 +77,7 @@
     [CompanyApi HasCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.isHasCompany = [posts[0][@"exists"] boolValue];
+            self.companyId = posts[0][@"companyId"];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -324,7 +326,8 @@
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }else{
         if(self.isHasCompany){
-            CompanyViewController *view = [[CompanyViewController alloc] init];
+            CompanyDetailViewController *view = [[CompanyDetailViewController alloc] init];
+            view.companyId = self.companyId;
             [self.navigationController pushViewController:view animated:YES];
         }else{
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"你还未申请加入公司或申请还没被批准，赶快搜索公司进行申请吧！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

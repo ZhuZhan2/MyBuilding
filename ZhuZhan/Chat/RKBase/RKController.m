@@ -9,7 +9,12 @@
 #import "RKController.h"
 #import "MJRefresh.h"
 #import "RKViewFactory.h"
+@interface RKController()
+@property(nonatomic,copy)NSString* notiName;
+@end
+
 @implementation RKController
+@synthesize notiName=_notiName;
 - (instancetype)initWithNavi:(UINavigationController *)navi{
     if (self = [super init]) {
         self.navigationController = navi;
@@ -28,11 +33,11 @@
 }
 
 - (void)headerRereshing{
-
+    
 }
 
 - (void)footerRereshing{
-
+    
 }
 
 - (void)startLoading{
@@ -75,5 +80,20 @@
 - (void)setViewFrame:(CGRect)frame{
     self.view.frame = frame;
     self.tableView.frame = self.view.bounds;
+}
+
+- (void)setNeedHeaderRefreshing:(BOOL)needHeaderRefreshing{
+    if (needHeaderRefreshing&&!_needHeaderRefreshing) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(headerRereshing) name:self.notiName object:nil];
+    }else if (!needHeaderRefreshing&&_needHeaderRefreshing){
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:self.notiName object:nil];
+    }
+}
+
+- (void)setNotiName:(NSString *)notiName{
+    if ([_notiName isEqualToString:notiName]) return;
+    if (_notiName) [[NSNotificationCenter defaultCenter] removeObserver:self name:_notiName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(headerRereshing) name:notiName object:nil];
+    _notiName = notiName;
 }
 @end

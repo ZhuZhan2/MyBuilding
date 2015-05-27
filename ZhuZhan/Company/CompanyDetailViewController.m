@@ -19,274 +19,409 @@
 #import "LoadingView.h"
 #import "IsFocusedApi.h"
 #import "AskPriceMainViewController.h"
+#import "RKViewFactory.h"
+#import "RKShadowView.h"
+#import "CompanyMemberViewController.h"
+#import "CompanyActivesViewController.h"
 @interface CompanyDetailViewController ()<LoginViewDelegate,UIAlertViewDelegate>
-@property(nonatomic,strong)UIScrollView* myScrollView;
-@property(nonatomic,strong)UIImageView* imageView;
-@property(nonatomic,strong)UILabel* noticeLabel;
-@property(nonatomic)BOOL isFocused;
-@property(nonatomic,strong)CompanyModel *model;
-@property(nonatomic,strong)UIButton* noticeBtn;
-@property(nonatomic,strong)UIButton* memberBtn;
-@property(nonatomic,strong)LoadingView *loadingView;
-@property(nonatomic,strong)NSString *hasCompany;
-@property(nonatomic,strong)UILabel* memberCountLabel;
-@property(nonatomic,strong)UIImageView *focusedImage;
-@property(nonatomic,strong)UIImageView *authenticationImageView;
+@property(nonatomic,strong)CompanyModel* model;
 
-@property (nonatomic, strong)UIButton* askPriceBtn;
+@property(nonatomic,strong)UIView* mainView;
+@property(nonatomic,strong)UIView* assistView;
+@property(nonatomic,strong)UIView* activeView;
+@property(nonatomic,strong)UIView* authorizationView;
+@property(nonatomic,strong)UIView* memberView;
+@property(nonatomic,strong)UIView* contactsView;
+@property(nonatomic,strong)UIView* describeView;
 
-@property (nonatomic)BOOL isCompanySelf;
+@property(nonatomic,strong)NSMutableArray* views;
 @end
+
 @implementation CompanyDetailViewController
--(BOOL)isFocused{
-    return [self.model.a_focused isEqualToString:@"1"];
-}
-
-- (BOOL)isCompanySelf{
-    return [self.companyId isEqualToString:[LoginSqlite getdata:@"userId"]];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor=[UIColor whiteColor];
-    [self initMyScrollViewAndNavi];//scollview和navi初始
-    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view];
+    [self initNavi];
+    [self initTableView];
+    self.tableView.backgroundColor = AllBackDeepGrayColor;
     [self firstNetWork];
 }
 
--(void)firstNetWork{
-    if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
-        [CompanyApi HasCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                self.hasCompany = [NSString stringWithFormat:@"%@",posts[0][@"exists"]];
-                [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
-                    if(!error){
-                        if(posts.count !=0){
-                            self.model = posts[0];
-                            [self initFirstView];//第一个文字view初始
-                            if (!self.isCompanySelf)[self initSecondView];//第二个文字view初始
-                            [self initThirdView];
-                        }
-                    }else{
-                        if([ErrorCode errorCode:error] == 403){
-                            [LoginAgain AddLoginView:NO];
-                        }else{
-                            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
-                                [self firstNetWork];
-                            }];
-                        }
-                    }
-                    [self removeMyLoadingView];
-                } companyId:self.companyId noNetWork:^{
-                    [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
-                        [self firstNetWork];
-                    }];
-                }];
-            }else{
-                if([ErrorCode errorCode:error] == 403){
-                    [LoginAgain AddLoginView:NO];
-                }else{
-                    [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
-                        [self firstNetWork];
-                    }];
-                }
-            }
-        } noNetWork:^{
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64-49) superView:self.view reloadBlock:^{
-                [self firstNetWork];
-            }];
-        }];
-    }else{
-        self.hasCompany = @"0";
-        [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                if(posts.count !=0){
-                    self.model = posts[0];
-                    [self initFirstView];//第一个文字view初始
-                    if (!self.isCompanySelf)[self initSecondView];//第二个文字view初始
-                    [self initThirdView];
-                }
-            }else{
-                if([ErrorCode errorCode:error] == 403){
-                    [LoginAgain AddLoginView:NO];
-                }else{
-                    [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
-                        [self firstNetWork];
-                    }];
-                }
-            }
-            [self removeMyLoadingView];
-        } companyId:self.companyId noNetWork:^{
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
-                [self firstNetWork];
-            }];
-        }];
-    }
-}
-
--(void)removeMyLoadingView{
-    [LoadingView removeLoadingView:self.loadingView];
-    self.loadingView = nil;
-}
-
-//给MyScrollView的contentSize加高度
--(void)scrollViewAddView:(UIView*)view{
-    CGSize size=self.myScrollView.contentSize;
-    size.height+=view.frame.size.height;
-    self.myScrollView.contentSize=size;
-    
-    [self.myScrollView addSubview:view];
-}
-
--(void)initFirstView{
-    //view的初始,后面为在上添加label button等
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, self.isCompanySelf?115:155)];
-    [self scrollViewAddView:view];
-    
-    //公司图标
-    UIImageView* companyImageView=[[UIImageView alloc]init];
-    companyImageView.frame=CGRectMake(15, 20, 75, 75);
-    companyImageView.layer.cornerRadius=37.5;
-    companyImageView.layer.masksToBounds=YES;
-    [companyImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.model.a_companyLogo]] placeholderImage:[GetImagePath getImagePath:@"公司－公司组织_05a"]];
-    [view addSubview:companyImageView];
-    
-    //公司名称label
-    UILabel* companyLabel=[[UILabel alloc]initWithFrame:CGRectMake(105, 20, 200, 50)];
-    //companyLabel.backgroundColor=[UIColor yellowColor];
-    companyLabel.numberOfLines=2;
-    companyLabel.textColor=RGBCOLOR(62, 127, 226);
-    NSString* companyName=self.model.a_companyName;
-    companyLabel.text=companyName;
-    companyLabel.font=[UIFont boldSystemFontOfSize:19];
-    [view addSubview:companyLabel];
-    
-    //公司行业label
-    UILabel* businessLabel=[[UILabel alloc]initWithFrame:CGRectMake(105, 72, 300, 20)];
-    NSString* businessName=self.model.a_companyIndustry;
-    businessLabel.text=[NSString stringWithFormat:@"公司行业：%@",businessName];
-    businessLabel.font=[UIFont boldSystemFontOfSize:15];
-    businessLabel.textColor=RGBCOLOR(168, 168, 168);
-    [view addSubview:businessLabel];
-    
-    if (self.isCompanySelf) return;
-    //发起均价按钮
-    self.askPriceBtn.center = CGPointMake(kScreenWidth*0.5, 102+CGRectGetHeight(self.askPriceBtn.frame)*0.5);
-    [view addSubview:self.askPriceBtn];
-}
-
--(void)handleContent{
-//    NSString* imageName;
-//    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
-//        imageName=self.isFocused?@"公司－公司详情_05d":@"公司－公司详情_05c";
-//    }else{
-//        imageName=self.isFocused?@"公司－公司详情_05b":@"公司－公司详情_05a";
-//    }
-    UIImage* image=[GetImagePath getImagePath:@"公司详情图标bg"];
-    if (!self.imageView){
-        self.imageView=[[UIImageView alloc]initWithImage:image];
-    }else{
-        self.imageView.image=image;
-    }
-    self.noticeLabel.text=self.isFocused?@"已关注":@"加关注";
-    self.noticeLabel.textColor=self.isFocused?RGBCOLOR(141, 196, 62):RGBCOLOR(226, 97, 97);
-
-    if(!self.focusedImage){
-        self.focusedImage = [[UIImageView alloc] initWithFrame:CGRectMake(45, 18, 18, 18)];
-        self.focusedImage.image = [GetImagePath getImagePath:self.isFocused?@"公司详情图标04":@"公司详情图标01"];
-        [self.imageView addSubview:self.focusedImage];
-    }else{
-        self.focusedImage.image = [GetImagePath getImagePath:self.isFocused?@"公司详情图标04":@"公司详情图标01"];
-    }
-}
-
--(void)initSecondView{
-    self.noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(70, 16, 100, 20)];
-    [self handleContent];
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, self.myScrollView.contentSize.height, self.imageView.frame.size.width, self.imageView.frame.size.height+CGRectGetHeight(self.askPriceBtn.frame))];
-    [self scrollViewAddView:view];
-    [view addSubview:self.imageView];
-    
-    self.noticeLabel.font=[UIFont boldSystemFontOfSize:16];
-    [view addSubview:self.noticeLabel];
-    
-    self.noticeBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 116, 49)];
-    [self.noticeBtn addTarget:self action:@selector(gotoNoticeView) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:self.noticeBtn];
-    
-    self.memberCountLabel=[[UILabel alloc]initWithFrame:CGRectMake(225, 16, 150, 20)];
-    self.memberCountLabel.font=[UIFont boldSystemFontOfSize:16];
-    [view addSubview:self.memberCountLabel];
-    
-    self.authenticationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(200, 18, 18, 18)];
-    [view addSubview:self.authenticationImageView];
-    
-    self.memberBtn=[[UIButton alloc]initWithFrame:CGRectMake(116, 0, 204, 49)];
-    [self.memberBtn addTarget:self action:@selector(applyForCertification) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:self.memberBtn];
-    
-    if([self.hasCompany isEqualToString:@"1"]){
-        self.memberCountLabel.textColor=[UIColor lightGrayColor];
-        self.memberBtn.enabled = NO;
-        [self.authenticationImageView setImage:[GetImagePath getImagePath:@"公司详情图标03"]];
-        if([self.model.a_reviewStatus isEqualToString:@"01"]){
-            self.memberCountLabel.text=@"已认证";
-        }else if ([self.model.a_reviewStatus isEqualToString:@"00"]){
-            self.memberCountLabel.text=@"已申请";
-        }else{
-            self.memberCountLabel.text=@"申请认证";
-        }
-    }else{
-        if ([self.model.a_reviewStatus isEqualToString:@"00"]){
-            self.memberCountLabel.text=@"已申请";
-            self.memberCountLabel.textColor=[UIColor lightGrayColor];
-            self.memberBtn.enabled = NO;
-            [self.authenticationImageView setImage:[GetImagePath getImagePath:@"公司详情图标03"]];
-        }else{
-            self.memberCountLabel.text=@"申请认证";
-            [self.authenticationImageView setImage:[[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]?[GetImagePath getImagePath:@"公司详情图标03"]:[GetImagePath getImagePath:@"公司详情图标02"]];
-            self.memberCountLabel.textColor=[[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]?RGBCOLOR(170, 170, 170):RGBCOLOR(62, 127, 226);
-            self.memberBtn.enabled = ![[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"];
-        }
-    }
-}
-
--(void)initThirdView{
-    NSString* str=self.model.a_companyDescription;
-    CGRect bounds=[str boundingRectWithSize:CGSizeMake(280, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
-    UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(20, 15, 280, bounds.size.height)];
-    label.numberOfLines=0;
-    label.text=str;
-    label.font=[UIFont systemFontOfSize:15];
-    label.textColor=GrayColor;
-    
-    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, self.myScrollView.contentSize.height, 320, label.frame.size.height+30)];
-    [view addSubview:label];
-    [self scrollViewAddView:view];
-    
-    if (self.isCompanySelf) {
-        UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 4)];
-        imageView.image=[GetImagePath getImagePath:@"公司－我的公司_11a"];
-        [view addSubview:imageView];
-    }
-}
-
--(void)initMyScrollViewAndNavi{
-    //myScrollView初始化
-    self.myScrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, kScreenHeight)];
-    self.myScrollView.showsVerticalScrollIndicator=NO;
-    [self.view addSubview:self.myScrollView];
-    
-    //navi初始化
+-(void)initNavi{
     self.title = @"公司详情";
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:19], NSFontAttributeName,nil]];
+    [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.views.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIView* view = self.views[indexPath.row];
+    return CGRectGetHeight(view.frame);
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (!cell) {
+        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    [cell.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [cell addSubview:self.views[indexPath.row]];
+    return cell;
+}
+
+/**********************************************************
+ 函数描述：包括界面各元素
+ **********************************************************/
+- (NSMutableArray *)views{
+    if (!_views) {
+        _views = [NSMutableArray array];
+        [_views addObject:self.mainView];
+        
+        if (![self.companyId isEqualToString:[LoginSqlite getdata:@"userId"]]) {
+            [_views addObject:self.assistView];
+        }
+        
+        [_views addObject:self.activeView];
+        
+        if (![[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]&&![self.model.a_reviewStatus isEqualToString:@"01"]){
+            [_views addObject:self.authorizationView];
+        }
+        
+        if ([self.companyId isEqualToString:[LoginSqlite getdata:@"userId"]]||[self.model.a_reviewStatus isEqualToString:@"01"]) {
+            [_views addObject:self.memberView];
+        }
+        
+        [_views addObject:self.contactsView];
+        
+        [_views addObject:self.describeView];
+    }
+    return _views;
+}
+
+/**********************************************************
+ 函数描述：包含logo，名字，行业
+ **********************************************************/
+- (UIView *)mainView{
+    if (!_mainView) {
+        _mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 113)];
+        
+        UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 103, 103)];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:self.model.a_companyLogo] placeholderImage:[GetImagePath getImagePath:@"默认图_公司详情"]];
+        [_mainView addSubview:imageView];
+        
+        UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 14, 200, 40)];
+        titleLabel.font = [UIFont systemFontOfSize:17];
+        titleLabel.textColor = BlueColor;
+        titleLabel.text = self.model.a_companyName;
+        [RKViewFactory autoLabel:titleLabel maxWidth:200];
+        [_mainView addSubview:titleLabel];
+        
+        UILabel* industryLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, CGRectGetMaxY(titleLabel.frame)+5, 200, 40)];
+        industryLabel.font = [UIFont systemFontOfSize:16];
+        industryLabel.textColor = AllDeepGrayColor;
+        industryLabel.text = self.model.a_companyIndustry;
+        [self noDataLabel:industryLabel];
+        [RKViewFactory autoLabel:industryLabel maxWidth:200];
+        [_mainView addSubview:industryLabel];
+        
+        UIView* line = [self seperatorLine];
+        CGRect frame = line.frame;
+        frame.origin.y = CGRectGetMaxY(imageView.frame);
+        line.frame = frame;
+        [_mainView addSubview:line];
+    }
+    return _mainView;
+}
+
+/**********************************************************
+ 函数描述：包含询价和关注
+ **********************************************************/
+- (UIView *)assistView{
+    if (!_assistView) {
+        _assistView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 54)];
+        
+        UIButton* askPriceBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth/2, 44)];
+        [askPriceBtn setTitleColor:AllRedColor forState:UIControlStateNormal];
+        askPriceBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+        [askPriceBtn setTitle:@"发起询价" forState:UIControlStateNormal];
+        [askPriceBtn addTarget:self action:@selector(gotoAskPrice) forControlEvents:UIControlEventTouchUpInside];
+        [_assistView addSubview:askPriceBtn];
+        
+        BOOL isFocused = [self.model.a_focused isEqualToString:@"1"];
+        UIButton* noticeBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2, 0, kScreenWidth/2, 44)];
+        [noticeBtn setTitleColor:isFocused?RGBCOLOR(187, 187, 187):AllGreenColor forState:UIControlStateNormal];
+        noticeBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+        [noticeBtn setTitle:isFocused?@"取消关注":@"加关注" forState:UIControlStateNormal];
+        [noticeBtn addTarget:self action:@selector(gotoNoticeView:) forControlEvents:UIControlEventTouchUpInside];
+        [_assistView addSubview:noticeBtn];
+        
+        UIView* line1 = [RKShadowView seperatorLine];
+        [_assistView addSubview:line1];
+        
+        UIView* line2 = [self seperatorLine];
+        CGRect frame = line2.frame;
+        frame.origin.y = CGRectGetMaxY(askPriceBtn.frame);
+        line2.frame = frame;
+        [_assistView addSubview:line2];
+        
+        UIView* line3 = [RKShadowView seperatorLine];
+        frame = line3.frame;
+        frame.size = CGSizeMake(1, 30);
+        line3.frame = frame;
+        line3.center = CGPointMake(kScreenWidth/2, 22);
+        [_assistView addSubview:line3];
+    }
+    return _assistView;
+}
+
+/**********************************************************
+ 函数描述：公司动态
+ **********************************************************/
+- (UIView *)activeView{
+    if (!_activeView) {
+        _activeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 54)];
+        
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(17, 0, 250, 44)];
+        label.font = [UIFont systemFontOfSize:16];
+        label.text = @"公司动态";
+        [_activeView addSubview:label];
+        
+        UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(300, 15, 8, 13)];
+        imageView.image = [GetImagePath getImagePath:@"箭头001"];
+        [_activeView addSubview:imageView];
+        
+        UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44)];
+        [btn addTarget:self action:@selector(gotoActiveView) forControlEvents:UIControlEventTouchUpInside];
+        [_activeView addSubview:btn];
+        
+        UIView* line1 = [RKShadowView seperatorLine];
+        [_activeView addSubview:line1];
+        
+        UIView* line2 = [self seperatorLine];
+        CGRect frame = line2.frame;
+        frame.origin.y = CGRectGetMaxY(label.frame);
+        line2.frame = frame;
+        [_activeView addSubview:line2];
+    }
+    return _activeView;
+}
+
+/**********************************************************
+ 函数描述：公司认证
+ **********************************************************/
+- (UIView *)authorizationView{
+    if (!_authorizationView) {
+        _authorizationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 54)];
+        
+        BOOL notApply = [self.model.a_reviewStatus isEqualToString:@""];
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(17, 0, 250, 44)];
+        label.font = [UIFont systemFontOfSize:16];
+        label.text = notApply?@"认证成为该公司员工":@"认证中...";
+        label.textColor = notApply?[UIColor blackColor]:AllLightGrayColor;
+        [_authorizationView addSubview:label];
+        
+        if (notApply) {
+            UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(300, 15, 8, 13)];
+            imageView.image = [GetImagePath getImagePath:@"箭头001"];
+            [_authorizationView addSubview:imageView];
+            
+            UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44)];
+            if (notApply) [btn addTarget:self action:@selector(applyForCertification) forControlEvents:UIControlEventTouchUpInside];
+            [_authorizationView addSubview:btn];
+        }
+        
+        UIView* line1 = [RKShadowView seperatorLine];
+        [_authorizationView addSubview:line1];
+        
+        UIView* line2 = [self seperatorLine];
+        CGRect frame = line2.frame;
+        frame.origin.y = CGRectGetMaxY(label.frame);
+        line2.frame = frame;
+        [_authorizationView addSubview:line2];
+    }
+    return _authorizationView;
+}
+
+/**********************************************************
+ 函数描述：公司员工
+ **********************************************************/
+- (UIView *)memberView{
+    if (!_memberView) {
+        _memberView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 54)];
+        
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(17, 0, 250, 44)];
+        label.font = [UIFont systemFontOfSize:16];
+        label.text = [NSString stringWithFormat:@"公司员工%@人",self.model.a_companyEmployeeNumber];
+        [_memberView addSubview:label];
+        
+        UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(300, 15, 8, 13)];
+        imageView.image = [GetImagePath getImagePath:@"箭头001"];
+        [_memberView addSubview:imageView];
+        
+        UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44)];
+        [btn addTarget:self action:@selector(gotoMemberView) forControlEvents:UIControlEventTouchUpInside];
+        [_memberView addSubview:btn];
+        
+        UIView* line1 = [RKShadowView seperatorLine];
+        [_memberView addSubview:line1];
+        
+        UIView* line2 = [self seperatorLine];
+        CGRect frame = line2.frame;
+        frame.origin.y = CGRectGetMaxY(label.frame);
+        line2.frame = frame;
+        [_memberView addSubview:line2];
+    }
+    return _memberView;
+}
+
+/**********************************************************
+ 函数描述：联系人和邮箱
+ **********************************************************/
+- (UIView *)contactsView{
+    if (!_contactsView) {
+        _contactsView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 98)];
+        
+        UILabel* contactsLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(17, 0, 53, 44)];
+        contactsLabel1.font = [UIFont systemFontOfSize:16];
+        contactsLabel1.text = @"联系人 ";
+        [_contactsView addSubview:contactsLabel1];
+        
+        UILabel* contactsLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(contactsLabel1.frame), 0, kScreenWidth, 44)];
+        contactsLabel2.font = [UIFont systemFontOfSize:16];
+        contactsLabel2.text = self.model.a_companyContactCellphone;
+        [self noDataLabel:contactsLabel2];
+        [_contactsView addSubview:contactsLabel2];
+        
+        UILabel* emailLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(17, 44, 42, 44)];
+        emailLabel1.font = [UIFont systemFontOfSize:16];
+        emailLabel1.text = @"邮箱 ";
+        [_contactsView addSubview:emailLabel1];
+        
+        UILabel* emailLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(emailLabel1.frame), 44, kScreenWidth, 44)];
+        emailLabel2.font = [UIFont systemFontOfSize:16];
+        emailLabel2.text = self.model.a_companyContactEmail;
+        [self noDataLabel:emailLabel2];
+        [_contactsView addSubview:emailLabel2];
+        
+        UIView* line1 = [RKShadowView seperatorLine];
+        [_contactsView addSubview:line1];
+        
+        UIView* line2 = [self seperatorLine];
+        CGRect frame = line2.frame;
+        frame.origin.y = CGRectGetMaxY(emailLabel1.frame);
+        line2.frame = frame;
+        [_contactsView addSubview:line2];
+        
+        UIView* line3 = [RKShadowView seperatorLine];
+        frame = line3.frame;
+        frame.size = CGSizeMake(kScreenWidth-2*17, 1);
+        line3.frame = frame;
+        line3.center = CGPointMake(kScreenWidth/2, 44);
+        [_contactsView addSubview:line3];
+    }
+    return _contactsView;
+}
+
+/**********************************************************
+ 函数描述：公司介绍
+ **********************************************************/
+- (UIView *)describeView{
+    if (!_describeView) {
+        _describeView = [[UIView alloc] initWithFrame:CGRectZero];
+        
+        UILabel* describeTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(17, 0, 200, 44)];
+        describeTitleLabel.font = [UIFont systemFontOfSize:16];
+        describeTitleLabel.text = @"公司介绍";
+        [_describeView addSubview:describeTitleLabel];
+        
+        UILabel* describeContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(17, 54, 0, 0)];
+        describeContentLabel.font = [UIFont systemFontOfSize:16];
+        describeContentLabel.text = self.model.a_companyDescription;
+        [RKViewFactory autoLabel:describeContentLabel maxWidth:286];
+        [self noDataLabel:describeContentLabel];
+        [_describeView addSubview:describeContentLabel];
+        
+        UIView* line1 = [RKShadowView seperatorLine];
+        [_describeView addSubview:line1];
+        
+        UIView* line2 = [self seperatorLine];
+        CGRect frame = line2.frame;
+        frame.origin.y = CGRectGetMaxY(describeContentLabel.frame)+10;
+        line2.frame = frame;
+        [_describeView addSubview:line2];
+        
+        UIView* line3 = [RKShadowView seperatorLine];
+        frame = line3.frame;
+        frame.size = CGSizeMake(kScreenWidth-2*17, 1);
+        line3.frame = frame;
+        line3.center = CGPointMake(kScreenWidth/2, 44);
+        [_describeView addSubview:line3];
+        
+        _describeView.frame = CGRectMake(0, 0, kScreenWidth, CGRectGetMaxY(line2.frame));
+    }
+    return _describeView;
+}
+
+-(void)firstNetWork{
+    [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.model = posts[0];
+            [self reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
+        }
+    } companyId:self.companyId noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
+}
+
+/**********************************************************
+ 函数描述：刷新数据
+ **********************************************************/
+- (void)reloadData{
+    self.mainView = nil;
+    self.assistView = nil;
+    self.activeView = nil;
+    self.authorizationView = nil;
+    self.contactsView = nil;
+    self.describeView = nil;
+    self.views = nil;
+    [self.tableView reloadData];
+}
+
+/**********************************************************
+ 函数描述：分割线
+ **********************************************************/
+- (UIView*)seperatorLine{
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
+    view.backgroundColor = AllBackDeepGrayColor;
     
-    //左back button
-    UIButton* leftButton=[[UIButton alloc]initWithFrame:CGRectMake(0,0,29,28.5)];
-    [leftButton setImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
-    [leftButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:leftButton];
+    UIView* seperatorLine = [RKShadowView seperatorLine];
+    [view addSubview:seperatorLine];
+    
+    return view;
+}
+
+/**********************************************************
+ 函数描述：无数据的label处理
+ 输入参数：需要操作的label
+ **********************************************************/
+- (void)noDataLabel:(UILabel*)label{
+    if ([label.text isEqualToString:@""]) {
+        label.text = @"－";
+        label.textColor = AllNoDataColor;
+    }
 }
 
 - (void)gotoAskPrice{
@@ -297,7 +432,7 @@
         view.userName = self.model.a_loginName;
         view.closeAnimation = YES;
         [self.navigationController pushViewController:view animated:YES];
-
+        
     }else{
         LoginViewController *loginVC = [[LoginViewController alloc] init];
         loginVC.delegate = self;
@@ -307,51 +442,32 @@
     }
 }
 
--(void)gotoNoticeView{
+-(void)gotoNoticeView:(UIButton*)btn{
     if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
         if (![ConnectionAvailable isConnectionAvailable]) {
             [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
             return;
         }
-        self.noticeBtn.enabled=NO;
+        btn.enabled=NO;
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        if (self.isFocused) {
-            [dic setObject:self.model.a_id forKey:@"targetId"];
-            [dic setObject:@"02" forKey:@"targetCategory"];
-            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
-                self.noticeBtn.enabled=YES;
-                if (!error) {
-                    self.model.a_focused=@"0";
-                    [self handleContent];
+        BOOL isFocused = [self.model.a_focused isEqualToString:@"1"];
+        [dic setObject:self.model.a_id forKey:@"targetId"];
+        [dic setObject:@"02" forKey:@"targetCategory"];
+        [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+            btn.enabled=YES;
+            if (!error) {
+                self.model.a_focused=isFocused?@"0":@"1";
+                [self reloadData];
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
                 }else{
-                    if([ErrorCode errorCode:error] == 403){
-                        [LoginAgain AddLoginView:NO];
-                    }else{
-                        [ErrorCode alert];
-                    }
+                    [ErrorCode alert];
                 }
-            } dic:dic noNetWork:^{
-                [ErrorCode alert];
-            }];
-        }else{
-            [dic setObject:self.model.a_id forKey:@"targetId"];
-            [dic setObject:@"02" forKey:@"targetCategory"];
-            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
-                self.noticeBtn.enabled=YES;
-                if(!error){
-                    self.model.a_focused=@"1";
-                    [self handleContent];
-                }else{
-                    if([ErrorCode errorCode:error] == 403){
-                        [LoginAgain AddLoginView:NO];
-                    }else{
-                        [ErrorCode alert];
-                    }
-                }
-            } dic:dic noNetWork:^{
-                [ErrorCode alert];
-            }];
-        }
+            }
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     }else{
         LoginViewController *loginVC = [[LoginViewController alloc] init];
         loginVC.needDelayCancel = YES;
@@ -376,74 +492,60 @@
     }
 }
 
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    //恢复tabBar
-    AppDelegate* app=[AppDelegate instance];
-    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-    [homeVC homePageTabBarRestore];
+-(void)gotoMemberView{
+    if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
+        CompanyMemberViewController* memberVC=[[CompanyMemberViewController alloc]init];
+        memberVC.companyId = self.model.a_id;
+        [self.navigationController pushViewController:memberVC animated:YES];
+    }else{
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.needDelayCancel = YES;
+        loginVC.delegate = self;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    //    //隐藏tabBar
-    AppDelegate* app=[AppDelegate instance];
-    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
-    [homeVC homePageTabBarHide];
-}
-
--(void)back{
-    [self.navigationController popViewControllerAnimated:YES];
+/**********************************************************
+ 函数描述：去公司动态
+ **********************************************************/
+- (void)gotoActiveView{
+    CompanyActivesViewController* vc = [[CompanyActivesViewController alloc] init];
+    vc.targetId = self.model.a_id;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)loginCompleteWithDelayBlock:(void (^)())block{
+    [self firstNetWork];
     if (block) {
         block();
-    }
-    [self.navigationController popViewControllerAnimated:NO];
-    if ([self.delegate respondsToSelector:@selector(gotoCompanyDetail:)]) {
-        [self.delegate gotoCompanyDetail:NO];
     }
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex == 1){
-        if (![ConnectionAvailable isConnectionAvailable]) {
-            [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
-            return;
-        }
-        self.memberBtn.enabled=NO;
-        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        [dic setValue:self.model.a_id forKey:@"companyId"];
-        [CompanyApi AddCompanyEmployeeWithBlock:^(NSMutableArray *posts, NSError *error) {
-            self.memberCountLabel.text=@"已申请";
-            self.memberCountLabel.textColor = [UIColor lightGrayColor];
-            [self.authenticationImageView setImage:[GetImagePath getImagePath:@"公司详情图标03"]];
-            if(!error){
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"已申请认证" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alertView show];
-
+    if(buttonIndex == 0) return;
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:self.model.a_id forKey:@"companyId"];
+    [CompanyApi AddCompanyEmployeeWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.model.a_reviewStatus = @"00";
+            [self reloadData];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"已申请认证" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
             }else{
-                if([ErrorCode errorCode:error] == 403){
-                    [LoginAgain AddLoginView:NO];
-                }else{
-                    [ErrorCode alert];
-                }
+                [ErrorCode alert];
             }
-        } dic:dic noNetWork:^{
-            [ErrorCode alert];
-        }];
-    }
+        }
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
-
-- (UIButton *)askPriceBtn{
-    if (!_askPriceBtn) {
-        _askPriceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _askPriceBtn.frame = CGRectMake(0, 0, kScreenWidth, 44);
-        [_askPriceBtn setImage:[GetImagePath getImagePath:@"发起询价"] forState:UIControlStateNormal];
-        [_askPriceBtn addTarget:self action:@selector(gotoAskPrice) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _askPriceBtn;
-}
-
 @end
