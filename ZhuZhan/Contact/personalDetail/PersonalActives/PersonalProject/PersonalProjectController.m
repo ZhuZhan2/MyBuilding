@@ -12,7 +12,8 @@
 #import "ProgramDetailViewController.h"
 #import "ProjectApi.h"
 #import "ErrorCode.h"
-@interface PersonalProjectController()
+#import "LoginViewController.h"
+@interface PersonalProjectController()<ProjectTableViewCellDelegate,LoginViewDelegate>
 
 @end
 
@@ -124,6 +125,7 @@
     }
     cell.model = model;
     cell.selectionStyle = NO;
+    cell.delegate = self;
     return cell;
 }
 
@@ -143,5 +145,20 @@
     vc.projectId = model.a_id;
     vc.isFocused = model.isFocused;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)gotoLoginView{
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    loginVC.needDelayCancel=YES;
+    loginVC.delegate = self;
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+}
+
+- (void)loginCompleteWithDelayBlock:(void (^)())block{
+    [self headerRereshing];
+    if (block) {
+        block();
+    }
 }
 @end

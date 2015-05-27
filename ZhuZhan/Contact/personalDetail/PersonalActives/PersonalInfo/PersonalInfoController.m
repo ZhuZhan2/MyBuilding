@@ -67,7 +67,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.views.count;
+    BOOL noData = [self.model.a_company isEqualToString:@""]&&[self.model.a_inDate isEqualToString:@""]&&[self.model.a_outDate isEqualToString:@""]&&[self.model.a_information isEqualToString:@""];
+    return noData?0:self.views.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -137,7 +138,7 @@
         UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(17.5, 14, 0, 0)];
         label.font = [UIFont systemFontOfSize:15];
         label.numberOfLines = 0;
-        label.text = self.model.a_company;
+        label.text = self.model.a_information;
         [self autoLabel:label maxWidth:285];
         [_view3 addSubview:label];
         

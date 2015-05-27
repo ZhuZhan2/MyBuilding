@@ -145,7 +145,7 @@
         NSLog(@"JSON Focused===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            for(NSDictionary *item in JSON[@"d"][@"data"]){
+            for(NSDictionary *item in JSON[@"data"][@"rows"]){
                 projectModel *model = [[projectModel alloc] init];
                 [model setDict:item];
                 [mutablePosts addObject:model];

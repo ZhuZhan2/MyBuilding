@@ -14,7 +14,9 @@
 #import "LoginSqlite.h"
 #import "ProductModel.h"
 #import "ProductDetailViewController.h"
-@interface PersonalProductController()<MyFocusProductCellDelegate>
+#import "LoginViewController.h"
+
+@interface PersonalProductController()<MyFocusProductCellDelegate,LoginViewDelegate>
 
 @end
 
@@ -150,6 +152,15 @@
 }
 
 - (void)focusBtnClicked:(NSIndexPath *)indexPath{
+    if ([[LoginSqlite getdata:@"userId"] isEqualToString:@""]) {
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.needDelayCancel=YES;
+        loginVC.delegate = self;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+        return;
+    }
+    
     ProductModel* dataModel = self.models[indexPath.row];
     BOOL addNotice = ![dataModel.a_isFocused isEqualToString:@"1"];
     NSString* productId = dataModel.a_id;
@@ -175,4 +186,10 @@
     }];
 }
 
+- (void)loginCompleteWithDelayBlock:(void (^)())block{
+    [self headerRereshing];
+    if (block) {
+        block();
+    }
+}
 @end
