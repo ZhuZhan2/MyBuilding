@@ -445,12 +445,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     forCornerView.layer.masksToBounds=YES;
     
     CGFloat height=0;
-    
     UIImageView *imageView;
     //动态图像
     if(![self.imageUrl isEqualToString:@""]){
         imageView = [[UIImageView alloc] init];
-        imageView.backgroundColor=RGBCOLOR(219, 219, 219);
+        imageView.backgroundColor=RGBCOLOR(215, 216, 215);
         if([self.imageHeight floatValue]/[self.imageWidth floatValue]*310<50){
             imageView.frame = CGRectMake(0, 0, 310,50);
             //imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -459,7 +458,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             imageView.frame = CGRectMake(0, 0, 310,[self.imageHeight floatValue]/[self.imageWidth floatValue]*310);
             height+=imageView.frame.size.height;
         }
-        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imageUrl]]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imageUrl]] placeholderImage:[GetImagePath getImagePath:@"默认图_动态详情"]];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
         [forCornerView addSubview:imageView];
     }
     UIView* contentTotalView;
