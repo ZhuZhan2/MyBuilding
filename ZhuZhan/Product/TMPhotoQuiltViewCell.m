@@ -45,7 +45,7 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 - (UIImageView *)photoView {
     if (!_photoView) {
         _photoView = [[UIImageView alloc] init];
-        _photoView.backgroundColor = RGBCOLOR(219, 219, 219);
+        _photoView.backgroundColor = RGBCOLOR(215, 216, 215);
         _photoView.contentMode=UIViewContentModeScaleAspectFit;
         [self addSubview:_photoView];
     }
@@ -119,7 +119,7 @@ CGFloat returnOriginY(CGRect frame){
 
 
     if ([self.model.a_imageUrl isEqualToString:@""]) {
-        self.photoView.image=[GetImagePath getImagePath:@"动态产品评论02"];
+        self.photoView.image=[GetImagePath getImagePath:@"product_ default_list"];
     }
     
     NSString* name=@"产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称";

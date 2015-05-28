@@ -46,7 +46,7 @@
 
 -(UILabel *)companyLabel{
     if(!_companyLabel){
-        _companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(72, 30, 200, 20)];
+        _companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(72, 30, 140, 20)];
         _companyLabel.font=[UIFont systemFontOfSize:14];
         _companyLabel.textColor=RGBCOLOR(149, 149, 149);
     }
