@@ -21,7 +21,7 @@
 }
 
 + (UIView *)noSearchResultsViewWithTop:(CGFloat)top{
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 154, 123)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 130, 177)];
     imageView.center = CGPointMake(kScreenWidth*0.5, CGRectGetHeight(imageView.frame)*0.5+top);
     imageView.image = [GetImagePath getImagePath:@"nodata"];
     
