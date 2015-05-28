@@ -41,9 +41,9 @@
                 height+=imageView.frame.size.height;
             }
         }
-        imageView.backgroundColor = RGBCOLOR(219, 219, 219);
+        imageView.backgroundColor = RGBCOLOR(215, 216, 215);
         imageView.contentMode = UIViewContentModeScaleAspectFit;
-        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_imageUrl]]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_imageUrl]] placeholderImage:[GetImagePath getImagePath:@"contact_default_list"]];
         [forCornerView addSubview:imageView];
     }
     
