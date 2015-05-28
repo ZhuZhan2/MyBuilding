@@ -325,13 +325,19 @@
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }else{
-        if(self.isHasCompany){
+        if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
             CompanyDetailViewController *view = [[CompanyDetailViewController alloc] init];
-            view.companyId = self.companyId;
+            view.companyId = [LoginSqlite getdata:@"userId"];
             [self.navigationController pushViewController:view animated:YES];
         }else{
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"你还未申请加入公司或申请还没被批准，赶快搜索公司进行申请吧！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alertView show];
+            if(self.isHasCompany){
+                CompanyDetailViewController *view = [[CompanyDetailViewController alloc] init];
+                view.companyId = self.companyId;
+                [self.navigationController pushViewController:view animated:YES];
+            }else{
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"你还未申请加入公司或申请还没被批准，赶快搜索公司进行申请吧！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
         }
     }
 }

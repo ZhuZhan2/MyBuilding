@@ -34,15 +34,15 @@
     //tableView.tableFooterView.backgroundColor = [UIColor yellowColor];
     CGFloat orginFooterHeight=tableView.tableFooterView.frame.size.height;
     NSLog(@"orginFooterHeight ==> %f",orginFooterHeight);
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(83,(orginFooterHeight-123)/2, 154, 123)];
-    imageView.image = [GetImagePath getImagePath:@"暂无内容"];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(95,(orginFooterHeight-177)/2, 130, 177)];
+    imageView.image = [GetImagePath getImagePath:@"nodata"];
     [tableView.tableFooterView addSubview:imageView];
 }
 
 +(void)noSearchData:(UITableView*)tableView{
     CGFloat orginFooterHeight=tableView.tableFooterView.frame.size.height;
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(83,(orginFooterHeight-123)/2, 154, 123)];
-    imageView.image = [GetImagePath getImagePath:@"暂无内容"];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(95,(orginFooterHeight-177)/2, 130, 177)];
+    imageView.image = [GetImagePath getImagePath:@"nodata"];
     [tableView.tableFooterView addSubview:imageView];
 }
 

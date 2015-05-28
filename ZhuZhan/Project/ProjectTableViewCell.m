@@ -142,7 +142,7 @@
 -(UIImageView *)mapImageVIew{
     if(!_mapImageVIew){
         _mapImageVIew = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 284, 110)];
-        _mapImageVIew.backgroundColor = [UIColor yellowColor];
+        _mapImageVIew.backgroundColor = RGBCOLOR(215, 216, 215);
     }
     return _mapImageVIew;
 }
@@ -276,10 +276,10 @@
     }
     
     if([model.a_longitude isEqualToString:@""] && [model.a_latitude isEqualToString:@""]){
-        [self.mapImageVIew sd_setImageWithURL:[NSURL URLWithString:model.a_imageLocation] placeholderImage:[GetImagePath getImagePath:@"mapdef"]];
+        [self.mapImageVIew sd_setImageWithURL:[NSURL URLWithString:model.a_imageLocation] placeholderImage:[GetImagePath getImagePath:@"project_default_list"]];
     }else{
         NSString *urlStr = [NSString stringWithFormat:@"http://api.map.baidu.com/staticimage?width=568&height=220&center=%@,%@&zoom=14&markers=%@,%@&markerStyles=",model.a_longitude,model.a_latitude,model.a_longitude,model.a_latitude];
-        [self.mapImageVIew sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:[GetImagePath getImagePath:@"mapdef"]];
+        [self.mapImageVIew sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:[GetImagePath getImagePath:@"project_default_list"]];
     }
     
     self.lastUpdatedTimeCount.text = [model.a_lastUpdatedTime stringByReplacingOccurrencesOfString:@"-" withString:@"/"];

@@ -23,7 +23,7 @@
 + (UIView *)noSearchResultsViewWithTop:(CGFloat)top{
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 154, 123)];
     imageView.center = CGPointMake(kScreenWidth*0.5, CGRectGetHeight(imageView.frame)*0.5+top);
-    imageView.image = [GetImagePath getImagePath:@"暂无内容"];
+    imageView.image = [GetImagePath getImagePath:@"nodata"];
     
     UIView* noDataView = [[UIView alloc]init];
     noDataView.backgroundColor = AllBackLightGratColor;
