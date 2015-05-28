@@ -48,7 +48,7 @@
 }
 
 -(void)initNavi{
-    self.title = @"公司详情";
+    self.title = @"企业详情";
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
 }
 
@@ -219,7 +219,7 @@
         BOOL notApply = [self.model.a_reviewStatus isEqualToString:@""];
         UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(17, 0, 250, 44)];
         label.font = [UIFont systemFontOfSize:16];
-        label.text = notApply?@"认证成为该公司员工":@"认证中...";
+        label.text = notApply?@"认证成为该企业员工":@"认证中...";
         label.textColor = notApply?[UIColor blackColor]:AllLightGrayColor;
         [_authorizationView addSubview:label];
         
@@ -254,7 +254,7 @@
         
         UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(17, 0, 250, 44)];
         label.font = [UIFont systemFontOfSize:16];
-        label.text = [NSString stringWithFormat:@"公司员工%@人",self.model.a_companyEmployeeNumber];
+        label.text = [NSString stringWithFormat:@"企业员工%@人",self.model.a_companyEmployeeNumber];
         [_memberView addSubview:label];
         
         UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(300, 15, 8, 13)];
@@ -334,7 +334,7 @@
         
         UILabel* describeTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(17, 0, 200, 44)];
         describeTitleLabel.font = [UIFont systemFontOfSize:16];
-        describeTitleLabel.text = @"公司介绍";
+        describeTitleLabel.text = @"企业介绍";
         [_describeView addSubview:describeTitleLabel];
         
         UILabel* describeContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(17, 54, 0, 0)];
@@ -481,7 +481,7 @@
 -(void)applyForCertification{
     NSLog(@"用户选择了 申请认证");
     if(![[LoginSqlite getdata:@"token"] isEqualToString:@""]){
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"是否申请公司认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"是否申请企业认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
         [alertView show];
     }else{
         LoginViewController *loginVC = [[LoginViewController alloc] init];

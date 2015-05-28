@@ -268,7 +268,7 @@
     CompanyModel *model = self.showArr[indexPath.row];
     [cell.myImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_companyLogo]] placeholderImage:[GetImagePath getImagePath:@"公司－公司组织_05a"]];
     cell.companyNameLabel.text=[NSString stringWithFormat:@"%@",model.a_companyName];
-    cell.companyBusiness.text=[NSString stringWithFormat:@"公司行业：%@",model.a_companyIndustry];
+    cell.companyBusiness.text=[NSString stringWithFormat:@"企业行业：%@",model.a_companyIndustry];
     cell.companyIntroduce.text=[NSString stringWithFormat:@"%@位关注者",model.a_companyFocusNumber];
     cell.accessoryView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"公司－公司组织_03a"]];
     
@@ -305,14 +305,14 @@
     self.tableView.showsVerticalScrollIndicator=NO;
     [self.view addSubview:self.tableView];
     
-    self.title = @"公司组织";
+    self.title = @"企业组织";
     
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:19], NSFontAttributeName,nil]];
     
     UIButton* button=[UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(0, 0, 60, 20);
     button.titleLabel.font = [UIFont systemFontOfSize:15];
-    [button setTitle:@"我的公司" forState:UIControlStateNormal];
+    [button setTitle:@"我的企业" forState:UIControlStateNormal];
     [button addTarget:self action:@selector(myCompanyAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:button];
 }

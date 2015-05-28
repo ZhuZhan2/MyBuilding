@@ -61,7 +61,7 @@
     
     companyName = [[UITextField alloc] initWithFrame:CGRectMake(15, 55, 290, 40)];
     companyName.delegate = self;
-    companyName.placeholder = @"请输入相关公司名称";
+    companyName.placeholder = @"请输入相关企业名称";
     companyName.returnKeyType = UIReturnKeyDone;
     companyName.clearButtonMode = UITextFieldViewModeAlways;
     companyName.tag = 1;

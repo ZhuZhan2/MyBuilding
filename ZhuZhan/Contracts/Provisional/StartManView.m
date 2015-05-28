@@ -72,7 +72,7 @@
         _textField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 0)];
         _textField.leftView.userInteractionEnabled = NO;
         _textField.leftViewMode = UITextFieldViewModeAlways;
-        _textField.placeholder = @"请输入公司全名";
+        _textField.placeholder = @"请输入企业全名";
         _textField.font = [UIFont systemFontOfSize:15];
         _textField.returnKeyType = UIReturnKeyDone;
         _textField.delegate = self;
@@ -85,7 +85,7 @@
     if(!_messageLabel){
         _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 145, 250, 16)];
         _messageLabel.textColor = [UIColor redColor];
-        _messageLabel.text = @"这里输入的公司全称将用于合同和开票信息";
+        _messageLabel.text = @"这里输入的企业全称将用于合同和开票信息";
         _messageLabel.font = [UIFont systemFontOfSize:13];
     }
     return _messageLabel;

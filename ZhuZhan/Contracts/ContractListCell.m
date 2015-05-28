@@ -69,8 +69,8 @@
     
     RKTwoView* view1=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:userType rightContent:self.contents[0] needAuto:NO];
     RKTwoView* view2=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"供应用户名" rightContent:self.contents[1] needAuto:NO];
-    RKTwoView* view3=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"销售公司名" rightContent:self.contents[2] needAuto:NO];
-    RKTwoView* view4=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"供应公司名" rightContent:self.contents[3] needAuto:NO];
+    RKTwoView* view3=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"销售企业名" rightContent:self.contents[2] needAuto:NO];
+    RKTwoView* view4=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"供应企业名" rightContent:self.contents[3] needAuto:NO];
     //RKTwoView* view5=[RKTwoView twoViewWithViewMode:RKTwoViewWidthModeWholeLine assistMode:RKTwoViewAssistViewModeIsLabel leftContent:@"金    额" rightContent:self.contents[4] needAuto:NO];
     
     CGFloat moveX=12;

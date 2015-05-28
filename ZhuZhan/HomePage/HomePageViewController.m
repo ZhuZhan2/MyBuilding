@@ -311,7 +311,7 @@
             [self addAnimation];
             [nav pushViewController:quadCurveVC animated:NO];
         }else{
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"公司账号无此功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"企业账号无此功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
         }
     }else{
@@ -322,7 +322,7 @@
             [self addAnimation];
             [nav pushViewController:quadCurveVC animated:NO];
         }else{
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"公司账号无此功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"企业账号无此功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
         }
     }

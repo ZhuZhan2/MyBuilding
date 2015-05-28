@@ -277,7 +277,7 @@ static int textFieldTag =0;
         [self addSubview:imageView13];
         
         //在职公司
-        NSAttributedString *companyString = [[NSAttributedString alloc] initWithString:@"在职公司" attributes:@{NSKernAttributeName : @(0.8f)}];
+        NSAttributedString *companyString = [[NSAttributedString alloc] initWithString:@"在职企业" attributes:@{NSKernAttributeName : @(0.8f)}];
         UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 690, 80, 30)];
         //companyLabel.text = @"在职公司";
         [companyLabel setAttributedText:companyString];

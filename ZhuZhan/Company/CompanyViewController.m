@@ -77,7 +77,7 @@
     
     //公司行业label
     UILabel* businessLabel=[[UILabel alloc]initWithFrame:CGRectMake(105, 72                                                                                                                                        , 300, 20)];
-    businessLabel.text=[NSString stringWithFormat:@"公司行业：%@",self.model.a_companyIndustry];
+    businessLabel.text=[NSString stringWithFormat:@"企业行业：%@",self.model.a_companyIndustry];
     businessLabel.font=[UIFont boldSystemFontOfSize:15];
     businessLabel.textColor=RGBCOLOR(168, 168, 168);
     [view addSubview:businessLabel];
@@ -114,7 +114,7 @@
     [view addSubview:noticeBtn];
     
     UILabel* memberCountLabel=[[UILabel alloc]initWithFrame:CGRectMake(165, 16, 150, 20)];
-    memberCountLabel.text=[NSString stringWithFormat:@"公司员工%@人",self.model.a_companyEmployeeNumber];
+    memberCountLabel.text=[NSString stringWithFormat:@"企业员工%@人",self.model.a_companyEmployeeNumber];
     memberCountLabel.font=[UIFont boldSystemFontOfSize:16];
     memberCountLabel.textColor=RGBCOLOR(62, 127, 226);
     [view addSubview:memberCountLabel];
@@ -151,7 +151,7 @@
     [self.view addSubview:self.myScrollView];
     
     //navi初始化
-    self.title = @"我的公司";
+    self.title = @"我的企业";
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:19], NSFontAttributeName,nil]];
     
     UIButton* button=[UIButton buttonWithType:UIButtonTypeSystem];

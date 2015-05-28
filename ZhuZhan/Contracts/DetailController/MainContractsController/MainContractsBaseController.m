@@ -218,14 +218,14 @@
 -(ContractsUserView *)userView1{
     if (!_userView1) {
         NSLog(@"name=%@",self.mainClauseModel.a_salerName);
-        _userView1=[ContractsUserView contractsUserViewWithUserName:self.mainClauseModel.a_salerName userCategory:@"销售方" companyName:self.mainClauseModel.a_salerCompanyName remarkContent:@"这里输入的公司全称将用于合同和开票信息"];
+        _userView1=[ContractsUserView contractsUserViewWithUserName:self.mainClauseModel.a_salerName userCategory:@"销售方" companyName:self.mainClauseModel.a_salerCompanyName remarkContent:@"这里输入的企业全称将用于合同和开票信息"];
     }
     return _userView1;
 }
 
 -(ContractsUserView *)userView2{
     if (!_userView2) {
-        _userView2=[ContractsUserView contractsUserViewWithUserName:self.mainClauseModel.a_providerName userCategory:@"供应商" companyName:self.mainClauseModel.a_providerCompanyName remarkContent:@"这里输入的公司全称将用于合同和开票信息"];
+        _userView2=[ContractsUserView contractsUserViewWithUserName:self.mainClauseModel.a_providerName userCategory:@"供应商" companyName:self.mainClauseModel.a_providerCompanyName remarkContent:@"这里输入的企业全称将用于合同和开票信息"];
     }
     return _userView2;
 }
