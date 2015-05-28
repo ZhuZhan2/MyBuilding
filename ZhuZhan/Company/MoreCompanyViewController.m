@@ -335,7 +335,7 @@
                 view.companyId = self.companyId;
                 [self.navigationController pushViewController:view animated:YES];
             }else{
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"你还未申请加入公司或申请还没被批准，赶快搜索公司进行申请吧！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"你还未申请加入公司或申请还没被批准，赶快搜索企业进行申请吧！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertView show];
             }
         }
