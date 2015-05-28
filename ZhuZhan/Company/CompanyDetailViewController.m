@@ -394,6 +394,7 @@
     self.assistView = nil;
     self.activeView = nil;
     self.authorizationView = nil;
+    self.memberView = nil;
     self.contactsView = nil;
     self.describeView = nil;
     self.views = nil;
