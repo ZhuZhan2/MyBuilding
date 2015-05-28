@@ -6878,6 +6878,10 @@
 			children = (
 				D3DF8DE01B16DE8F00B7CF35 /* company_default_list.png */,
 				D3DF8DE11B16DE8F00B7CF35 /* company_default_list@2x.png */,
+				5BC9E9C31B16E4280051A26F /* 默认图_项目详情老.png */,
+				5BC9E9C41B16E4280051A26F /* 默认图_项目详情老@2x.png */,
+				5BC9E9BF1B16E14B0051A26F /* 默认图_动态详情.png */,
+				5BC9E9C01B16E14B0051A26F /* 默认图_动态详情@2x.png */,
 				D3DF8DDC1B16DACF00B7CF35 /* contact_default_list.png */,
 				D3DF8DDD1B16DACF00B7CF35 /* contact_default_list@2x.png */,
 				D3DF8DD01B16BB3E00B7CF35 /* nodata.png */,
