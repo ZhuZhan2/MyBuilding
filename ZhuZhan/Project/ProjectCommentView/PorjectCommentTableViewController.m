@@ -46,8 +46,9 @@
     
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton setFrame:CGRectMake(0, 0, 21, 23)];
-    [rightButton setBackgroundImage:[GetImagePath getImagePath:@"+项目详情-3_03a"] forState:UIControlStateNormal];
+    [rightButton setFrame:CGRectMake(0, 0, 60, 20)];
+    [rightButton setTitle:@"发布评论" forState:UIControlStateNormal];
+    rightButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
