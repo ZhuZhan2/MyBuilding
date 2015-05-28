@@ -244,7 +244,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //self.content=@"顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶";
     //self.userName=@"一二三四五六七八九十一二三四五六七八九十";
     //self.content=@"";
-    //self.imageUrl=@"";
+//    self.imageUrl=@"dsadsa";
     self.mainView = [[UIView alloc] initWithFrame:CGRectZero];
     UIView* forCornerView=[[UIView alloc]initWithFrame:CGRectZero];
     [self.mainView addSubview:forCornerView];
@@ -261,8 +261,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         imageView.backgroundColor=RGBCOLOR(215, 216, 215);
         if([self.imageHeight floatValue]/[self.imageWidth floatValue]*310<50){
             imageView.frame = CGRectMake(0, 0, 310,50);
-            //imageView.contentMode = UIViewContentModeScaleAspectFit;
-            height+=50;
+             height+=50;
         }else{
             imageView.frame = CGRectMake(0, 0, 310,[self.imageHeight floatValue]/[self.imageWidth floatValue]*310);
             height+=imageView.frame.size.height;
