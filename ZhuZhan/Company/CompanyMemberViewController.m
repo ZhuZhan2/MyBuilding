@@ -298,7 +298,7 @@
     self.tableView.showsVerticalScrollIndicator=NO;
     //self.tableView.tableHeaderView=self.searchBar;
     [self.view addSubview:self.tableView];
-    self.title = @"公司员工";
+    self.title = @"企业员工";
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:19], NSFontAttributeName,nil]];
     
     //左back button

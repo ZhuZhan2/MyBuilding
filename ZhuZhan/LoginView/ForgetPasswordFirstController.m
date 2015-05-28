@@ -123,7 +123,7 @@
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(43, 193, 150, 15)];
     label.textColor=RGBCOLOR(135, 135, 135);
     label.font=[UIFont systemFontOfSize:13.5];
-    label.text=@"公司账户请联系客服";
+    label.text=@"企业账户请联系客服";
     [self.view addSubview:label];
 }
 
@@ -190,7 +190,7 @@
         if (!error) {
             if ([[NSString stringWithFormat:@"%@",posts[0][@"status"][@"statusCode"]] isEqualToString:@"200"]) {
                 if ([posts[0][@"data"][@"userType"] isEqualToString:@"02"]) {
-                    [RemindView remindViewWithContent:@"公司账户请联系客服" superView:self.view centerY:240];
+                    [RemindView remindViewWithContent:@"企业账户请联系客服" superView:self.view centerY:240];
                 }else{
                     ForgetPasswordSecondController *forgetSecondView = [[ForgetPasswordSecondController alloc] init];
                     //forgetSecondView.userId = posts[0][@"data"][@"userId"];

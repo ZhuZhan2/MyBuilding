@@ -44,7 +44,7 @@
     contentLabel.font = [UIFont fontWithName:nil size:12];
     contentLabel.textAlignment = NSTextAlignmentLeft;
     contentLabel.textColor = [UIColor blackColor];
-    contentLabel.text = @"通过公司认证";
+    contentLabel.text = @"通过企业认证";
     [self.contentView addSubview:contentLabel];
 }
 

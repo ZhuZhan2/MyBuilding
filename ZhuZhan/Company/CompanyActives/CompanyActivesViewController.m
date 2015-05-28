@@ -33,7 +33,7 @@
 
 -(void)initNavi{
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
-    self.title = @"公司动态";
+    self.title = @"企业动态";
 }
 
 - (void)stageBtnClickedWithNumber:(NSInteger)stageNumber{

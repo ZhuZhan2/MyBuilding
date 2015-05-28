@@ -115,7 +115,7 @@
     }
     
     if([self.myCompanyName isEqualToString:@""] || !self.myCompanyName){
-        [self showAlertView:@"请填写自己公司抬头"];
+        [self showAlertView:@"请填写自己企业抬头"];
         return;
     }
     
@@ -130,7 +130,7 @@
     }
     
     if([self.otherCompanyName isEqualToString:@""] || !self.otherCompanyName){
-        [self showAlertView:@"请填写对方公司抬头"];
+        [self showAlertView:@"请填写对方企业抬头"];
         return;
     }
     
@@ -150,7 +150,7 @@
     }
     
     if(self.myCompanyName.length >16||self.otherCompanyName.length >16){
-        [self showAlertView:@"公司名字不能超过16个字"];
+        [self showAlertView:@"企业名字不能超过16个字"];
         return;
     }
     

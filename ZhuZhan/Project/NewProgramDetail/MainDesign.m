@@ -45,7 +45,7 @@
     
     NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     
-    UIView* view1=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs withContactCategory:@"地勘公司："];
+    UIView* view1=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs withContactCategory:@"地勘企业："];
     
     NSArray* tempAry=@[view2,view0,view1];
     CGFloat height=0;

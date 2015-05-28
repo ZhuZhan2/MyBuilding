@@ -59,7 +59,7 @@
         }
         
         UILabel *companyName = [[UILabel alloc] initWithFrame:CGRectMake(25, 10, 80, 30)];
-        companyName.text = @"公司全称";
+        companyName.text = @"企业全称";
         companyName.font = [UIFont systemFontOfSize:14];
         [bgView addSubview:companyName];
         

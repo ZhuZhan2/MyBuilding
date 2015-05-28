@@ -85,7 +85,7 @@
         _tableView.tableHeaderView = headerView;
         
         UIImageView* back = [[UIImageView alloc]initWithFrame:_tableView.bounds];
-        back.image = [GetImagePath getImagePath:@"Group-1"];
+        back.image = [GetImagePath getImagePath:@"首页_搜索分类"];
         _tableView.backgroundView = back;
         
     }

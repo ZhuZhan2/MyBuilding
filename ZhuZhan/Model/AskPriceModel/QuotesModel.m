@@ -35,10 +35,10 @@
     self.a_isAccepted = dict[@"isAccepted"];
     self.a_quoteContent = dict[@"quoteContent"];
     if([dict[@"userType"] isEqualToString:@"01"]){
-        self.a_quoteIsVerified = @"平台未认证公司资质，请注意交流过程中的风险。";
+        self.a_quoteIsVerified = @"平台未认证企业资质，请注意交流过程中的风险。";
         self.a_isHonesty = NO;
     }else{
-        self.a_quoteIsVerified = @"平台认证公司资质，诚实可信";
+        self.a_quoteIsVerified = @"平台认证企业资质，诚实可信";
         self.a_isHonesty = YES;
     }
     self.a_quoteUser = dict[@"quoteUser"];

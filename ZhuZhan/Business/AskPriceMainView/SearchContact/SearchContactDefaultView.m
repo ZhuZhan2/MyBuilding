@@ -136,7 +136,7 @@
     if(section == 0){
         text=@"通讯录联系人";
     }else{
-        text=@"关注的公司";
+        text=@"关注的企业";
     }
     UIFont* textFont=[UIFont systemFontOfSize:14];
     CGFloat labelWidth=[text boundingRectWithSize:CGSizeMake(9999, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:textFont} context:nil].size.width;

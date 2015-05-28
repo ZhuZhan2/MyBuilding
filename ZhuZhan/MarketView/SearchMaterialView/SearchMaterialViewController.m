@@ -253,7 +253,7 @@
     [self.phoneTextField resignFirstResponder];
     [self.textView resignFirstResponder];
     [self.view addSubview:self.bgBtn];
-    self.singleView = [[SinglePickerView alloc]initWithTitle:CGRectMake(0, 0, 320, 260) title:nil Arr:@[@"我要找项目",@"我要找材料",@"我要找公司",@"我要找关系",@"我要找合作",@"其他"] delegate:self];
+    self.singleView = [[SinglePickerView alloc]initWithTitle:CGRectMake(0, 0, 320, 260) title:nil Arr:@[@"我要找项目",@"我要找材料",@"我要找企业",@"我要找关系",@"我要找合作",@"其他"] delegate:self];
     [self.singleView showInView:self.view];
 }
 
