@@ -231,7 +231,7 @@ static NSString* hasUserTypeContent(NSString* string){
 +(UIView*)getImageViewWithImageUrl:(NSString*)imageUrl count:(NSInteger)count{
     UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 216)];
     imageView.backgroundColor = [UIColor grayColor];
-    [RKViewFactory imageViewWithImageView:imageView imageUrl:imageUrl defaultImageName:@"项目详情默认"];
+    [RKViewFactory imageViewWithImageView:imageView imageUrl:imageUrl defaultImageName:@"默认图_项目详情老"];
     
     //图片数量label
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 164, 58, 26)];
