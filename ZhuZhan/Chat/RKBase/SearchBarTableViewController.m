@@ -33,7 +33,6 @@
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    self.tableView.noDataView = self.noDataView;
     [self.view addSubview:self.tableView];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -106,5 +105,10 @@
         _view.backgroundColor = [UIColor whiteColor];
     }
     return _view;
+}
+
+- (void)setNoDataView:(UIView *)noDataView{
+    _noDataView = noDataView;
+    self.tableView.noDataView = _noDataView;
 }
 @end

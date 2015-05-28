@@ -21,6 +21,7 @@
 @property (nonatomic, strong)id vc;
 
 @property (nonatomic, copy)NSString* searchCategory;
+@property (nonatomic, strong)UILabel* placeholderLabel;
 @end
 
 @implementation MarketSearchViewController
@@ -89,8 +90,8 @@
         [backView addSubview:imageView];
     }
     
-    
-    placeholderLabel.text = @"请输入搜索词";
+    placeholderLabel.text = @"请输入手机号码或者用户名";
+    self.placeholderLabel = placeholderLabel;
 }
 
 - (void)menuBtnClicked{
@@ -120,6 +121,9 @@
     [[leftView.subviews[0] subviews][0] setText:title];
     NSLog(@"搜索条件变更");
     
+    [self.searchBar becomeFirstResponder];
+    
+    self.placeholderLabel.text = index == 0 ? @"请输入手机号码或者用户名":@"请输入搜索词";
 
     [self reloadSearchModelWithCategory:title type:index];
     [self searchNewDataWithRecord:self.searchBar.text];
