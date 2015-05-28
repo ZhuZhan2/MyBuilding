@@ -306,7 +306,7 @@
     cell.commentCountLabel.text= model.a_commentNumber;
     cell.imageSize = [self imageAtIndexPath:indexPath];
     BOOL imageExist=model.a_imageUrl&&![model.a_imageUrl isEqualToString:@""];
-    [cell.photoView sd_setImageWithURL:[NSURL URLWithString:imageExist?model.a_imageUrl:@""] placeholderImage:[GetImagePath getImagePath:@"动态产品评论02"]];
+    [cell.photoView sd_setImageWithURL:[NSURL URLWithString:imageExist?model.a_imageUrl:@""] placeholderImage:[GetImagePath getImagePath:@"product_ default_list"]];
     cell.model = model;
     return cell;
 }

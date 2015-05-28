@@ -143,7 +143,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     UIButton *firstBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     firstBtn.frame = CGRectMake(8, 12, width-15, 25);
-    [firstBtn setTitle:@"询价列表" forState:UIControlStateNormal];
+    [firstBtn setTitle:@"我的询价" forState:UIControlStateNormal];
     firstBtn.backgroundColor = [UIColor blackColor];
     firstBtn.titleLabel.font=[UIFont systemFontOfSize:12];
     firstBtn.tag = 1;
@@ -155,7 +155,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     UIButton *secondBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     secondBtn.frame = CGRectMake(width+8, 12, width-15, 25);
-    [secondBtn setTitle:@"报价列表" forState:UIControlStateNormal];
+    [secondBtn setTitle:@"我的报价" forState:UIControlStateNormal];
     [secondBtn addTarget:self action:@selector(gotoAskPrice:) forControlEvents:UIControlEventTouchUpInside];
     secondBtn.tag = 2;
     secondBtn.titleLabel.font=[UIFont systemFontOfSize:12];
@@ -167,7 +167,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     UIButton *thirdBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     thirdBtn.frame = CGRectMake(width*2+8, 12, width-15, 25);
-    [thirdBtn setTitle:@"合同列表" forState:UIControlStateNormal];
+    [thirdBtn setTitle:@"我的合同" forState:UIControlStateNormal];
     [thirdBtn addTarget:self action:@selector(gotoConstractList:) forControlEvents:UIControlEventTouchUpInside];
     thirdBtn.tag = 3;
     thirdBtn.titleLabel.font=[UIFont systemFontOfSize:12];

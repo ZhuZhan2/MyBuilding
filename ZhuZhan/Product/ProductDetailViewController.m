@@ -267,7 +267,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             imageView.frame = CGRectMake(0, 0, 310,[self.imageHeight floatValue]/[self.imageWidth floatValue]*310);
             height+=imageView.frame.size.height;
         }
-        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imageUrl]]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imageUrl]] placeholderImage:[GetImagePath getImagePath:@"product_default_detail"]];
         [forCornerView addSubview:imageView];
     }
     
