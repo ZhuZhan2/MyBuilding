@@ -224,7 +224,7 @@
             NSLog(@"更多");
             break;
         case 3:
-            NSLog(@"公司");
+            NSLog(@"企业");
             companyview = [[MoreCompanyViewController alloc] init];
             nav = [[UINavigationController alloc] initWithRootViewController:companyview];
             [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];

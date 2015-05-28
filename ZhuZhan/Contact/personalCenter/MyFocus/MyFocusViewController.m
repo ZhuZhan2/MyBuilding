@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initNavi];
-    [self initStageChooseViewWithStages:@[@"项目",@"人脉",@"产品",@"公司"] numbers:nil underLineIsWhole:YES normalColor:AllLightGrayColor highlightColor:BlueColor];
+    [self initStageChooseViewWithStages:@[@"项目",@"人脉",@"产品",@"企业"] numbers:nil underLineIsWhole:YES normalColor:AllLightGrayColor highlightColor:BlueColor];
 }
 
 -(void)initNavi{

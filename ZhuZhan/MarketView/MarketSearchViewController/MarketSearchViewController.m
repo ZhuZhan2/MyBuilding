@@ -110,7 +110,7 @@
 
 - (NSArray *)menuTitles{
     if (!_menuTitles) {
-        _menuTitles = @[@"用户",@"公司",@"项目",@"产品"];
+        _menuTitles = @[@"用户",@"企业",@"项目",@"产品"];
     }
     return _menuTitles;
 }

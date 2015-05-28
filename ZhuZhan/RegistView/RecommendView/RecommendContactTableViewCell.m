@@ -68,7 +68,7 @@
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_userIamge]] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     
     self.userNameLabel.text=model.a_userName;
-    self.userCompanyNameLabel.text=[model.a_company isEqualToString:@""]?@"公司":model.a_company;
+    self.userCompanyNameLabel.text=[model.a_company isEqualToString:@""]?@"企业":model.a_company;
     self.userBussniessLabel.text=[model.a_duties isEqualToString:@""]?@"职位":model.a_duties;
     
     if (self.needRightBtn) {
