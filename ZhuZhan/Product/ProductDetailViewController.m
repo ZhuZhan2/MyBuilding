@@ -258,7 +258,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //动态图像
     if(![self.imageUrl isEqualToString:@""]){
         imageView = [[UIImageView alloc] init];
-        imageView.backgroundColor=RGBCOLOR(219, 219, 219);
+        imageView.backgroundColor=RGBCOLOR(215, 216, 215);
         if([self.imageHeight floatValue]/[self.imageWidth floatValue]*310<50){
             imageView.frame = CGRectMake(0, 0, 310,50);
             //imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -268,6 +268,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             height+=imageView.frame.size.height;
         }
         [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imageUrl]] placeholderImage:[GetImagePath getImagePath:@"product_default_detail"]];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
         [forCornerView addSubview:imageView];
     }
     
