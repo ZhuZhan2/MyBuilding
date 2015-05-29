@@ -128,6 +128,7 @@ static BOOL isFirst;
 
 -(void)clearInputView{
     [inputView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    self.imageData = nil;
     alertLabel=nil;
     publishImage=nil;
     inputView=nil;

@@ -32,7 +32,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.navigationController.navigationBar.hidden = YES;
     //self.view.backgroundColor = RGBCOLOR(85, 103, 166);
     UIImageView* bgImageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"背景"]];
