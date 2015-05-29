@@ -1277,6 +1277,8 @@
 		5BE82BC21B180CCC00603F8A /* 默认图_动态详情@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE82BBE1B180CCC00603F8A /* 默认图_动态详情@2x.png */; };
 		5BE82BC31B180CCC00603F8A /* 默认图_项目详情老.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE82BBF1B180CCC00603F8A /* 默认图_项目详情老.png */; };
 		5BE82BC41B180CCC00603F8A /* 默认图_项目详情老@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE82BC01B180CCC00603F8A /* 默认图_项目详情老@2x.png */; };
+		5BE82BC71B182CF300603F8A /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE82BC61B182CF300603F8A /* BaseTableViewCell.m */; };
+		5BE82BCA1B182D2400603F8A /* BaseTableViewCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE82BC91B182D2400603F8A /* BaseTableViewCellModel.m */; };
 		5BEBAC701A79DB6100E29ADA /* 点-copy-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BEBAC6E1A79DB6100E29ADA /* 点-copy-3.png */; };
 		5BEBAC711A79DB6100E29ADA /* 点-copy-3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BEBAC6F1A79DB6100E29ADA /* 点-copy-3@2x.png */; };
 		5BF08A3A19B86C5D00782976 /* MoreCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */; };
@@ -3464,6 +3466,10 @@
 		5BE82BBE1B180CCC00603F8A /* 默认图_动态详情@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_动态详情@2x.png"; sourceTree = "<group>"; };
 		5BE82BBF1B180CCC00603F8A /* 默认图_项目详情老.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_项目详情老.png"; sourceTree = "<group>"; };
 		5BE82BC01B180CCC00603F8A /* 默认图_项目详情老@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_项目详情老@2x.png"; sourceTree = "<group>"; };
+		5BE82BC51B182CF300603F8A /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
+		5BE82BC61B182CF300603F8A /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
+		5BE82BC81B182D2400603F8A /* BaseTableViewCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCellModel.h; sourceTree = "<group>"; };
+		5BE82BC91B182D2400603F8A /* BaseTableViewCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCellModel.m; sourceTree = "<group>"; };
 		5BEBAC6E1A79DB6100E29ADA /* 点-copy-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "点-copy-3.png"; sourceTree = "<group>"; };
 		5BEBAC6F1A79DB6100E29ADA /* 点-copy-3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "点-copy-3@2x.png"; sourceTree = "<group>"; };
 		5BF08A3819B86C5D00782976 /* MoreCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCompanyViewController.h; sourceTree = "<group>"; };
@@ -6038,6 +6044,10 @@
 			children = (
 				5B76705A1AB6B92B00E154C5 /* ChatBaseViewController.h */,
 				5B76705B1AB6B92B00E154C5 /* ChatBaseViewController.m */,
+				5BE82BC51B182CF300603F8A /* BaseTableViewCell.h */,
+				5BE82BC61B182CF300603F8A /* BaseTableViewCell.m */,
+				5BE82BC81B182D2400603F8A /* BaseTableViewCellModel.h */,
+				5BE82BC91B182D2400603F8A /* BaseTableViewCellModel.m */,
 				5B76705C1AB6B92B00E154C5 /* RKBaseTableView.h */,
 				5B76705D1AB6B92B00E154C5 /* RKBaseTableView.m */,
 				5B76705E1AB6B92B00E154C5 /* SearchBarCell.h */,
@@ -9254,6 +9264,7 @@
 				D31BBB991AD3E3F500919B8B /* SWLongPressGestureRecognizer.m in Sources */,
 				042D9E2C19B559FC00689C5D /* TopicsTableViewController.m in Sources */,
 				5BE08ED21A35900000495EEB /* FirstAnimationView.m in Sources */,
+				5BE82BCA1B182D2400603F8A /* BaseTableViewCellModel.m in Sources */,
 				0426C29E19922D5A00CD8822 /* GPUImageOverlayBlendFilter.m in Sources */,
 				5BFC82931B058D5B00CD9ED6 /* ForcedUpdateApi.m in Sources */,
 				0426C2B119922D5A00CD8822 /* GPUImageSaturationFilter.m in Sources */,
@@ -9273,6 +9284,7 @@
 				0426C2AA19922D5A00CD8822 /* GPUImageRawDataOutput.m in Sources */,
 				04BF13BA19C4162A002E02C9 /* ProjectStage.m in Sources */,
 				0426C29219922D5A00CD8822 /* GPUImageMonochromeFilter.m in Sources */,
+				5BE82BC71B182CF300603F8A /* BaseTableViewCell.m in Sources */,
 				042D9E2419B559FC00689C5D /* SearchViewController.m in Sources */,
 				0426C2D319922D5A00CD8822 /* GPUImageUnsharpMaskFilter.m in Sources */,
 				0426C2EC19922D5A00CD8822 /* FaceppError.m in Sources */,
