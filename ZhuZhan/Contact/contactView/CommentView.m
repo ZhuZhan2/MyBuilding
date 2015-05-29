@@ -52,9 +52,9 @@
     if (![model.a_content isEqualToString:@""]) {
         UIFont * tfont = [UIFont systemFontOfSize:15];
         //用户名颜色
-        NSString * text = [NSString stringWithFormat:@"%@：%@",model.a_userName,model.a_content];
+        NSString * text = [NSString stringWithFormat:@"%@：%@",model.a_dynamicLoginName,model.a_content];
         NSMutableAttributedString* attributedText=[[NSMutableAttributedString alloc]initWithString:text];
-        NSRange range=NSMakeRange(0, model.a_userName.length+1);
+        NSRange range=NSMakeRange(0, model.a_dynamicLoginName.length+1);
         [attributedText addAttributes:@{NSForegroundColorAttributeName:BlueColor} range:range];
         [attributedText addAttributes:@{NSFontAttributeName:tfont} range:NSMakeRange(0, text.length)];
         
@@ -105,7 +105,7 @@
     userImageView.layer.masksToBounds = YES;
     userImageView.layer.cornerRadius = 3;
     userImageView.frame=CGRectMake(5,tempHeight,37,37);
-    [userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_avatarUrl]] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+    [userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_dynamicAvatarUrl]] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
     [forCornerView addSubview:userImageView];
     
     UIButton *uesrImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];

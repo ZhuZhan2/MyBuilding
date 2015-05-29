@@ -183,11 +183,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             showArr = posts;
             for(int i=0;i<showArr.count;i++){
                 ActivesModel *model = showArr[i];
-                if([model.a_eventType isEqualToString:@"Actives"]){
+                if(model.a_type == 0){
                     commentView = [CommentView setFram:model];
                     [viewArr addObject:commentView];
-                }else if([model.a_category isEqualToString:@"Product"]){
-                    productView=[[ContactProductView alloc]initWithUsrImgUrl:model.a_avatarUrl productImgUrl:model.a_productImage productContent:model.a_content];
+                }else if([model.a_sourceCode isEqualToString:@"03"]){
+                    productView=[[ContactProductView alloc]initWithUsrImgUrl:model.a_dynamicAvatarUrl productImgUrl:model.a_productImage productContent:model.a_productDesc];
                     [viewArr addObject:productView];
                 }else{
                     [viewArr addObject:@""];
@@ -268,11 +268,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             [showArr addObjectsFromArray:posts];
             for(int i=0;i<posts.count;i++){
                 ActivesModel *model = posts[i];
-                if([model.a_eventType isEqualToString:@"Actives"]){
+                if(model.a_type == 00){
                     commentView = [CommentView setFram:model];
                     [viewArr addObject:commentView];
-                }else if([model.a_category isEqualToString:@"Product"]){
-                    productView=[[ContactProductView alloc]initWithUsrImgUrl:model.a_avatarUrl productImgUrl:model.a_productImage productContent:model.a_content];
+                }else if([model.a_sourceCode isEqualToString:@"03"]){
+                    productView=[[ContactProductView alloc]initWithUsrImgUrl:model.a_dynamicAvatarUrl productImgUrl:model.a_productImage productContent:model.a_productDesc];
                     [viewArr addObject:productView];
                 }else{
                     [viewArr addObject:@""];
@@ -336,8 +336,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PSTableViewCellIdentifier];
     ActivesModel *model = showArr[indexPath.row];
-    NSLog(@"%@",model.a_category);
-    if([model.a_category isEqualToString:@"Project"]){
+    if(model.a_type == 2 || model.a_type == 5 || model.a_type == 6){
         NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
         ContactProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
@@ -348,89 +347,34 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         cell.model = model;
         cell.indexpath = indexPath;
         return cell;
-    }else if([model.a_category isEqualToString:@"Personal"]){
-        if([model.a_eventType isEqualToString:@"Actives"]){
-            NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if(!cell){
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            }
-            cell.selectionStyle = NO;
-            [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-            commentView = viewArr[indexPath.row];
-            commentView.indexpath = indexpath;
-            commentView.delegate = self;
-            commentView.headImageDelegate = self;
-            commentView.indexpath = indexPath;
-            commentView.showArr = model.a_commentsArr;
-            [cell.contentView addSubview:commentView];
-            return cell;
-        }else if([model.a_eventType isEqualToString:@"AutomaticProject"]){
-            NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
-            ContactProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if(!cell){
-                cell = [[ContactProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            }
-            cell.delegate = self;
-            cell.selectionStyle = NO;
-            cell.model = model;
-            cell.indexpath = indexPath;
-            return cell;
-        }else{
-            NSString *CellIdentifier = [NSString stringWithFormat:@"ContactTableViewCell"];
-            ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if(!cell){
-                cell = [[ContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            }
-            cell.delegate = self;
-            cell.selectionStyle = NO;
-            cell.model = model;
-            cell.indexpath = indexPath;
-            return cell;
+    }else if (model.a_type == 0){
+        NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-    }else if([model.a_category isEqualToString:@"Company"]){
-        if([model.a_eventType isEqualToString:@"Actives"]){
-            NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if(!cell){
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            }
-            cell.selectionStyle = NO;
-            for(int i=0;i<cell.contentView.subviews.count;i++) {
-                [((UIView*)[cell.contentView.subviews objectAtIndex:i]) removeFromSuperview];
-            }
-            commentView = viewArr[indexPath.row];
-            commentView.indexpath = indexpath;
-            commentView.delegate = self;
-            commentView.headImageDelegate = self;
-            commentView.indexpath = indexPath;
-            commentView.showArr = model.a_commentsArr;
-            [cell.contentView addSubview:commentView];
-            return cell;
-        }else if([model.a_eventType isEqualToString:@"AutomaticProject"]){
-            NSString *CellIdentifier = [NSString stringWithFormat:@"ContactProjectTableViewCell"];
-            ContactProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if(!cell){
-                cell = [[ContactProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            }
-            cell.delegate = self;
-            cell.selectionStyle = NO;
-            cell.model = model;
-            cell.indexpath = indexPath;
-            return cell;
-        }else{
-            NSString *CellIdentifier = [NSString stringWithFormat:@"ContactTableViewCell"];
-            ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if(!cell){
-                cell = [[ContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            }
-            cell.delegate = self;
-            cell.selectionStyle = NO;
-            cell.model = model;
-            cell.indexpath = indexPath;
-            return cell;
+        cell.selectionStyle = NO;
+        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        commentView = viewArr[indexPath.row];
+        commentView.indexpath = indexpath;
+        commentView.delegate = self;
+        commentView.headImageDelegate = self;
+        commentView.indexpath = indexPath;
+        commentView.showArr = model.a_commentsArr;
+        [cell.contentView addSubview:commentView];
+        return cell;
+    }else if (model.a_type == 1 || model.a_type == 3 || model.a_type == 4){
+        NSString *CellIdentifier = [NSString stringWithFormat:@"ContactTableViewCell"];
+        ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[ContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-    }else if ([model.a_category isEqualToString:@"Product"]){
+        cell.delegate = self;
+        cell.selectionStyle = NO;
+        cell.model = model;
+        cell.indexpath = indexPath;
+        return cell;
+    }else{
         NSString* cellIdentifier = [NSString stringWithFormat:@"productCell"];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if(!cell){
@@ -443,44 +387,23 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         productView.delegate = self;
         [cell.contentView addSubview:productView];
         return cell;
-    }else{
-        NSString *CellIdentifier = [NSString stringWithFormat:@"ContactTableViewCell"];
-        ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(!cell){
-            cell = [[ContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        cell.delegate = self;
-        cell.selectionStyle = NO;
-        cell.model = model;
-        cell.indexpath = indexPath;
-        return cell;
     }
+    
     return cell;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     ActivesModel *model = showArr[indexPath.row];
-    if([model.a_category isEqualToString:@"Project"]){
+    if(model.a_type == 2 || model.a_type == 5 || model.a_type == 6){
         return 50;
-    }else if([model.a_category isEqualToString:@"Personal"]){
-        if([model.a_eventType isEqualToString:@"Actives"]){
-            commentView = viewArr[indexPath.row];
-            return commentView.frame.size.height;
-        }else{
-            return 50;
-        }
-    }else if([model.a_category isEqualToString:@"Company"]){
-        if([model.a_eventType isEqualToString:@"Actives"]){
-            commentView = viewArr[indexPath.row];
-            return commentView.frame.size.height;
-        }else{
-            return 50;
-        }
-    }else if ([model.a_category isEqualToString:@"Product"]) {
-        return [viewArr[indexPath.row] frame].size.height;
+    }else if (model.a_type == 0){
+        commentView = viewArr[indexPath.row];
+        return commentView.frame.size.height;
+    }else if (model.a_type == 1 || model.a_type == 3 || model.a_type == 4){
+        return 50;
     }else{
-        return 50;
+        return [viewArr[indexPath.row] frame].size.height;
     }
     return 60;
 }
@@ -494,83 +417,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ActivesModel *model = showArr[indexPath.row];
     indexpath=indexPath;
-    NSLog(@"===>%@",model.a_category);
-    if([model.a_category isEqualToString:@"Project"]){
-        if (![model.a_eventType isEqualToString:@"Automatic"]) {
-            ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
-            vc.projectId = model.a_entityId;
-            [self.navigationController pushViewController:vc animated:YES];
-
-        }else{
-            PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
-            projectCommentView.projectId = model.a_entityId;
-            projectCommentView.projectName = model.a_projectName;
-            [self.navigationController pushViewController:projectCommentView animated:YES];
-        }
-    }else if([model.a_category isEqualToString:@"Personal"]){
-        NSLog(@"a_eventType===>%@",model.a_eventType);
-        if([model.a_eventType isEqualToString:@"Actives"]){
-            ActivesModel *model = showArr[indexPath.row];
-            ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
-            vc.delegate = self;
-            vc.type = @"03";
-            [self.navigationController pushViewController:vc animated:YES];
-        }else if([model.a_eventType isEqualToString:@"AutomaticProduct"]){
-            ActivesModel *model = showArr[indexPath.row];
-            ProductModel *productModel = [[ProductModel alloc] init];
-            productModel.a_id = model.a_entityId;
-            productModel.a_name = model.a_productName;
-            productModel.a_content = model.a_content;
-            productModel.a_imageUrl = model.a_productImage;
-            productModel.a_originImageUrl = model.a_productImage;
-            productModel.a_createdBy = model.a_createdBy;
-            productModel.a_imageWidth = model.a_imageWidth;
-            productModel.a_imageHeight = model.a_imageHeight;
-            productModel.a_avatarUrl = model.a_avatarUrl;
-            productModel.a_userName = model.a_userName;
-            productModel.a_userType = model.a_userType;
-            //ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
-            ProductDetailViewController* vc= [[ProductDetailViewController alloc] initWithProductModel:productModel];
-            vc.delegate = self;
-            vc.type = @"01";
-            [self.navigationController pushViewController:vc animated:YES];
-        }else if([model.a_eventType isEqualToString:@"AutomaticProject"]){
-            ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
-            vc.projectId = model.a_entityId;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-    }else if([model.a_category isEqualToString:@"Company"]){
-        if([model.a_eventType isEqualToString:@"Actives"]){
-            ActivesModel *model = showArr[indexPath.row];
-            ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
-            vc.delegate = self;
-            vc.type = @"03";
-            [self.navigationController pushViewController:vc animated:YES];
-        }else if([model.a_eventType isEqualToString:@"AutomaticProduct"]){
-            ActivesModel *model = showArr[indexPath.row];
-            ProductModel *productModel = [[ProductModel alloc] init];
-            productModel.a_id = model.a_entityId;
-            productModel.a_name = model.a_productName;
-            productModel.a_content = model.a_content;
-            productModel.a_imageUrl = model.a_productImage;
-            productModel.a_originImageUrl = model.a_productImage;
-            productModel.a_createdBy = model.a_createdBy;
-            productModel.a_imageWidth = model.a_imageWidth;
-            productModel.a_imageHeight = model.a_imageHeight;
-            productModel.a_avatarUrl = model.a_avatarUrl;
-            productModel.a_userName = model.a_userName;
-            productModel.a_userType = model.a_userType;
-            //ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
-            ProductDetailViewController* vc= [[ProductDetailViewController alloc] initWithProductModel:productModel];
-            vc.delegate = self;
-            vc.type = @"01";
-            [self.navigationController pushViewController:vc animated:YES];
-        }else if([model.a_eventType isEqualToString:@"AutomaticProject"]){
-            ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
-            vc.projectId = model.a_entityId;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-    }else{
+    if(model.a_type == 0){
+        ActivesModel *model = showArr[indexPath.row];
+        ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+        vc.delegate = self;
+        vc.type = @"03";
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (model.a_type == 1){
         ActivesModel *model = showArr[indexPath.row];
         ProductModel *productModel = [[ProductModel alloc] init];
         productModel.a_id = model.a_entityId;
@@ -578,13 +431,39 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         productModel.a_content = model.a_content;
         productModel.a_imageUrl = model.a_productImage;
         productModel.a_originImageUrl = model.a_productImage;
-        productModel.a_createdBy = model.a_createdBy;
-        productModel.a_imageWidth = model.a_imageWidth;
-        productModel.a_imageHeight = model.a_imageHeight;
-        productModel.a_avatarUrl = model.a_avatarUrl;
-        productModel.a_userName = model.a_userName;
-        productModel.a_userType = model.a_userType;
-        //ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+        productModel.a_createdBy = model.a_dynamicLoginId;
+        productModel.a_imageWidth = model.a_productImageWidth;
+        productModel.a_imageHeight = model.a_productImageHeight;
+        productModel.a_avatarUrl = model.a_dynamicAvatarUrl;
+        productModel.a_userName = model.a_dynamicLoginName;
+        productModel.a_userType = model.a_dynamicUserType;
+        ProductDetailViewController* vc= [[ProductDetailViewController alloc] initWithProductModel:productModel];
+        vc.delegate = self;
+        vc.type = @"01";
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if(model.a_type == 2 || model.a_type == 5){
+        ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
+        vc.projectId = model.a_entityId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (model.a_type == 6){
+        PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
+        projectCommentView.projectId = model.a_entityId;
+        projectCommentView.projectName = model.a_projectName;
+        [self.navigationController pushViewController:projectCommentView animated:YES];
+    }else if (model.a_type == 7){
+        ActivesModel *model = showArr[indexPath.row];
+        ProductModel *productModel = [[ProductModel alloc] init];
+        productModel.a_id = model.a_entityId;
+        productModel.a_name = model.a_productName;
+        productModel.a_content = model.a_content;
+        productModel.a_imageUrl = model.a_productImage;
+        productModel.a_originImageUrl = model.a_productImage;
+        productModel.a_createdBy = model.a_dynamicLoginId;
+        productModel.a_imageWidth = model.a_productImageWidth;
+        productModel.a_imageHeight = model.a_productImageHeight;
+        productModel.a_avatarUrl = model.a_dynamicAvatarUrl;
+        productModel.a_userName = model.a_dynamicLoginName;
+        productModel.a_userType = model.a_dynamicUserType;
         ProductDetailViewController* vc= [[ProductDetailViewController alloc] initWithProductModel:productModel];
         vc.delegate = self;
         vc.type = @"01";
@@ -627,14 +506,14 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
     
     ActivesModel *model = showArr[indexPath.row];
-    if([model.a_createdBy isEqualToString:[LoginSqlite getdata:@"userId"]]){
+    if([model.a_dynamicLoginId isEqualToString:[LoginSqlite getdata:@"userId"]]){
         return;
     }
-    NSLog(@"a_userType ===> %@",model.a_userType);
-    if([model.a_userType isEqualToString:@"Personal"]){
+    NSLog(@"a_userType ===> %@",model.a_dynamicUserType);
+    if([model.a_dynamicUserType isEqualToString:@"Personal"]){
         showVC = [[ShowViewController alloc] init];
         showVC.delegate =self;
-        showVC.createdBy = model.a_createdBy;
+        showVC.createdBy = model.a_dynamicLoginId;
         [showVC.view setFrame:CGRectMake(20, 70, 280, 300)];
         showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
         showVC.view.layer.masksToBounds = YES;
@@ -642,9 +521,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }else{
         CompanyDetailViewController *detailView = [[CompanyDetailViewController alloc] init];
         detailView.delegate=self;
-        NSLog(@"a_createdBy==>%@",model.a_createdBy);
-        detailView.companyId = model.a_createdBy;
-        lasetCompanyID=model.a_createdBy;
+        NSLog(@"a_createdBy==>%@",model.a_dynamicLoginId);
+        detailView.companyId = model.a_dynamicLoginId;
+        lasetCompanyID=model.a_dynamicLoginId;
         [self.navigationController pushViewController:detailView animated:YES];
     }
 }
@@ -732,7 +611,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:model.a_id forKey:@"paramId"];
     [dic setValue:[NSString stringWithFormat:@"%@",comment] forKey:@"content"];
-    [dic setValue:model.a_category forKey:@"commentType"];
+    //[dic setValue:model.a_category forKey:@"commentType"];
     [CommentApi AddEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         [addCommentView finishNetWork];
         if(!error){
@@ -847,11 +726,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             showArr = posts;
             for(int i=0;i<showArr.count;i++){
                 ActivesModel *model = showArr[i];
-                if([model.a_eventType isEqualToString:@"Actives"]){
+                if(model.a_type == 0){
                     commentView = [CommentView setFram:model];
                     [viewArr addObject:commentView];
-                }else if([model.a_category isEqualToString:@"Product"]){
-                    productView=[[ContactProductView alloc]initWithUsrImgUrl:model.a_avatarUrl productImgUrl:model.a_productImage productContent:model.a_content];
+                }else if([model.a_sourceCode isEqualToString:@"03"]){
+                    productView=[[ContactProductView alloc]initWithUsrImgUrl:model.a_dynamicAvatarUrl productImgUrl:model.a_productImage productContent:model.a_productDesc];
                     [viewArr addObject:productView];
                 }else{
                     [viewArr addObject:@""];
