@@ -186,7 +186,7 @@
         
         UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(17, 0, 250, 44)];
         label.font = [UIFont systemFontOfSize:16];
-        label.text = @"公司动态";
+        label.text = @"企业动态";
         [_activeView addSubview:label];
         
         UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(300, 15, 8, 13)];

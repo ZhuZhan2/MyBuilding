@@ -58,7 +58,12 @@
     if (!_imageView) {
         CGFloat widht = 183;
         CGFloat x = (kScreenWidth-widht)/2;
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(x, 95+64, widht, 183)];
+        CGFloat y = 95+64;
+        if (kScreenHeight < 568) {
+            y -= 568-480;
+            y += 50;
+        }
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, widht, 183)];
         _imageView.image = [GetImagePath getImagePath:@"佣金_提交成功"];
     }
     return _imageView;
@@ -75,7 +80,11 @@
 
 - (UIButton *)leftBtn{
     if (!_leftBtn) {
-        _leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(25, 425+64, 128, 37)];
+        CGFloat y = 425+64;
+        if (kScreenHeight < 568) {
+            y -= 568-480;
+        }
+        _leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(25, y, 128, 37)];
         [_leftBtn setBackgroundImage:[GetImagePath getImagePath:@"佣金_提交成功按钮_我的佣金列表"] forState:UIControlStateNormal];
         [_leftBtn addTarget:self action:@selector(leftBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -84,7 +93,11 @@
 
 - (UIButton *)rightBtn{
     if (!_rightBtn) {
-        _rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth-25-128, 425+64, 128, 37)];
+        CGFloat y = 425+64;
+        if (kScreenHeight < 568) {
+            y -= 568-480;
+        }
+        _rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth-25-128, y, 128, 37)];
         [_rightBtn setBackgroundImage:[GetImagePath getImagePath:@"佣金_提交成功按钮_首页"] forState:UIControlStateNormal];
         [_rightBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     }
