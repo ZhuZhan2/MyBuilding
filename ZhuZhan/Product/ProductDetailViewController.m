@@ -116,7 +116,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self=[super init];
     if (self) {
         self.activesModel=activesModel;
-        [self loadMyPropertyWithImgW:activesModel.a_imageWidth imgH:activesModel.a_imageHeight imgUrl:[activesModel.a_category isEqualToString:@"Product"]?activesModel.a_productImage:activesModel.a_imageUrl userImgUrl:activesModel.a_avatarUrl content:activesModel.a_content entityID:[activesModel.a_category isEqualToString:@"Product"]?activesModel.a_entityId:activesModel.a_id entityUrl:activesModel.a_entityUrl userName:activesModel.a_userName category:activesModel.a_category createdBy:activesModel.a_createdBy userType:activesModel.a_userType];
+//        [self loadMyPropertyWithImgW:activesModel.a_imageWidth imgH:activesModel.a_imageHeight imgUrl:[activesModel.a_category isEqualToString:@"Product"]?activesModel.a_productImage:activesModel.a_imageUrl userImgUrl:activesModel.a_avatarUrl content:activesModel.a_content entityID:[activesModel.a_category isEqualToString:@"Product"]?activesModel.a_entityId:activesModel.a_id entityUrl:activesModel.a_entityUrl userName:activesModel.a_userName category:activesModel.a_category createdBy:activesModel.a_createdBy userType:activesModel.a_userType];
+        
+        [self loadMyPropertyWithImgW:activesModel.a_imageWidth imgH:activesModel.a_imageHeight imgUrl:[activesModel.a_sourceCode isEqualToString:@"03"]?activesModel.a_productImage:activesModel.a_imageUrl userImgUrl:activesModel.a_dynamicAvatarUrl content:activesModel.a_content entityID:[activesModel.a_sourceCode isEqualToString:@"03"]?activesModel.a_entityId:activesModel.a_id entityUrl:@"" userName:activesModel.a_dynamicLoginName category:activesModel.a_sourceCode createdBy:activesModel.a_dynamicLoginId userType:activesModel.a_dynamicUserType];
     }
     return self;
 }

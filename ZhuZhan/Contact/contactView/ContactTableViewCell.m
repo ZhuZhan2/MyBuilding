@@ -84,18 +84,18 @@
 }
 
 -(void)setModel:(ActivesModel *)model{
-    [headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_avatarUrl]] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
-    titleLabel.text = [NSString stringWithFormat:@"%@%@",model.a_userName,model.a_title];
-    if([model.a_eventType isEqualToString:@"AutomaticProduct"]){
+    [headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_dynamicAvatarUrl]] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+    titleLabel.text = [NSString stringWithFormat:@"%@%@",model.a_dynamicLoginName,model.a_title];
+    if(model.a_type == 1){
         nameLabel.text = model.a_productName;
     }else{
         nameLabel.text = model.a_content;
     }
-    if([model.a_category isEqualToString:@"Personal"]){
+    if([model.a_sourceCode isEqualToString:@"00"]){
         [stageImage setImage:[GetImagePath getImagePath:@"人脉－个人中心_05a"]];
-    }else if([model.a_category isEqualToString:@"Company"]){
+    }else if([model.a_sourceCode isEqualToString:@"01"]){
         [stageImage setImage:[GetImagePath getImagePath:@"人脉－个人中心_07a"]];
-    }else if([model.a_category isEqualToString:@"Product"]){
+    }else if([model.a_sourceCode isEqualToString:@"03"]){
         [stageImage setImage:[GetImagePath getImagePath:@"人脉－个人中心_06a"]];
     }
 }

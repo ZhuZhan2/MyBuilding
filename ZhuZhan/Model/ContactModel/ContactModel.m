@@ -192,7 +192,7 @@
         return nil;
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/dynamicInfo/getDynamicInfoBySource?&pageSize=5&pageIndex=%d",startIndex];
-    NSLog(@"+++++++=====%@",urlStr);
+    NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         //NSLog(@"JSON===>%@",JSON[@"d"][@"data"][0][@"actives"][@"content"]);
