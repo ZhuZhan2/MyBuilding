@@ -297,7 +297,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
 //滚动是触发的事件
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.view endEditing:YES];
-    [_pathCover scrollViewDidScroll:scrollView];
+    [_pathCover scrollViewDidScroll:scrollView isMyDynamicList:NO];
     
 }
 

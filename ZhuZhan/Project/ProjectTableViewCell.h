@@ -12,6 +12,7 @@
 
 @protocol ProjectTableViewCellDelegate <NSObject>
 -(void)gotoLoginView;
+-(void)addFocused:(NSIndexPath *)indexPath;
 @end
 
 @interface ProjectTableViewCell : TableViewHeightCell

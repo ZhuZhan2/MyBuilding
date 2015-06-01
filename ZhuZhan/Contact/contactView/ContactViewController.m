@@ -108,7 +108,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeHeadImage) name:@"changHead" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changName" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeBackgroundImage) name:@"changBackground" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstNetWork) name:@"reloadData" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstNetWork) name:@"reloadData" object:nil];
 }
 
 -(void)leftBtnClick{
@@ -208,7 +208,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [ErrorCode alert];
             }
         }
-    } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
+    } startIndex:0 noNetWork:^{
         self.tableView.scrollEnabled=NO;
         [LoadingView removeLoadingView:loadingView];
         loadingView = nil;
@@ -295,7 +295,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             }
         }
         [self.tableView footerEndRefreshing];
-    } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex+1 noNetWork:^{
+    } startIndex:startIndex+1 noNetWork:^{
         [self.tableView footerEndRefreshing];
         self.tableView.scrollEnabled=NO;
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
@@ -308,7 +308,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 /******************************************************************************************************************/
 //滚动是触发的事件
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [_pathCover scrollViewDidScroll:scrollView];
+    [_pathCover scrollViewDidScroll:scrollView isMyDynamicList:NO];
     [_timeScroller scrollViewDidScroll];
 }
 
@@ -509,7 +509,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if([model.a_dynamicLoginId isEqualToString:[LoginSqlite getdata:@"userId"]]){
         return;
     }
-    NSLog(@"a_userType ===> %@",model.a_dynamicUserType);
     if([model.a_dynamicUserType isEqualToString:@"Personal"]){
         showVC = [[ShowViewController alloc] init];
         showVC.delegate =self;
@@ -521,7 +520,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }else{
         CompanyDetailViewController *detailView = [[CompanyDetailViewController alloc] init];
         detailView.delegate=self;
-        NSLog(@"a_createdBy==>%@",model.a_dynamicLoginId);
         detailView.companyId = model.a_dynamicLoginId;
         lasetCompanyID=model.a_dynamicLoginId;
         [self.navigationController pushViewController:detailView animated:YES];
@@ -752,7 +750,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [ErrorCode alert];
             }
         }
-    } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
+    } startIndex:0 noNetWork:^{
         self.tableView.scrollEnabled=NO;
         __weak ContactViewController *wself = self;
         [wself.pathCover stopRefresh];

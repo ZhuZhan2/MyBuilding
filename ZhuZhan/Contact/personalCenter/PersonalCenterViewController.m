@@ -274,7 +274,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //****************************************************************
 //滚动是触发的事件
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [_pathCover scrollViewDidScroll:scrollView];
+    [_pathCover scrollViewDidScroll:scrollView isMyDynamicList:NO];
     [_timeScroller scrollViewDidScroll];
 }
 

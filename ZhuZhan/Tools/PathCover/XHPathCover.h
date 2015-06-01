@@ -84,7 +84,9 @@ extern NSString *const XHTitkeKey;
 - (id)initWithFrame:(CGRect)frame bannerPlaceholderImageName:(NSString*)backgroundImageName;
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView;
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView isMyDynamicList:(BOOL)isMyDynamicList;
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;
+
+@property(nonatomic)BOOL isMyDynamicList;
 @end

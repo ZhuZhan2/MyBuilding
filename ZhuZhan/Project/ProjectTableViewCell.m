@@ -10,7 +10,6 @@
 #import "ProjectStage.h"
 #import "LoginSqlite.h"
 #import "LoginViewController.h"
-#import "IsFocusedApi.h"
 
 #define FONT [UIFont systemFontOfSize:15]
 #define OTHERFONT [UIFont systemFontOfSize:14]
@@ -309,46 +308,14 @@
     self.frame = frame;
 }
 
+-(void)setIndexPath:(NSIndexPath *)indexPath{
+    _indexPath = indexPath;
+}
+
 -(void)focusBtnAction{
     if(![[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
-        if([self.isFocused isEqualToString:@"0"]){
-            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-            [dic setObject:self.projectID forKey:@"targetId"];
-            [dic setObject:@"03" forKey:@"targetCategory"];
-            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
-                if(!error){
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alertView show];
-                    self.isFocused = @"1";
-                    [self.focusBtn setImage:[GetImagePath getImagePath:@"cancelfocus"] forState:UIControlStateNormal];
-                }else{
-                    if([ErrorCode errorCode:error] == 403){
-                        [LoginAgain AddLoginView:NO];
-                    }else{
-                        [ErrorCode alert];
-                    }
-                }
-            } dic:dic noNetWork:nil];
-        }else{
-            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-            [dic setObject:self.projectID forKey:@"targetId"];
-            [dic setObject:@"03" forKey:@"targetCategory"];
-            [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
-                if(!error){
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alertView show];
-                    [self.focusBtn setImage:[GetImagePath getImagePath:@"addfocus"] forState:UIControlStateNormal];
-                    self.isFocused = @"0";
-                }else{
-                    if([ErrorCode errorCode:error] == 403){
-                        [LoginAgain AddLoginView:NO];
-                    }else{
-                        [ErrorCode alert];
-                    }
-                }
-            } dic:dic noNetWork:^{
-                [ErrorCode alert];
-            }];
+        if([self.delegate respondsToSelector:@selector(addFocused:)]){
+            [self.delegate addFocused:self.indexPath];
         }
     }else{
         if([self.delegate respondsToSelector:@selector(gotoLoginView)]){

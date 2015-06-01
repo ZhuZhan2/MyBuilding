@@ -25,7 +25,7 @@
 #import "AskPriceMessageViewController.h"
 #import "MarketViewController.h"
 #define contentHeight (kScreenHeight==480?431:519)
-@interface HomePageViewController ()<LoginViewDelegate,MarketViewDelegate,ContactViewDelegate>
+@interface HomePageViewController ()<LoginViewDelegate,MarketViewDelegate,ContactViewDelegate,ActiveViewControllerDelegate>
 @property(nonatomic,strong)UINavigationController *navigatin;
 @property(nonatomic,strong)MarketViewController *marketView;
 @property(nonatomic)BOOL isOpenContactView;
@@ -187,12 +187,20 @@
         case 0:
             NSLog(@"人脉");
             if(self.isOpenContactView){
-                contactview = [[ContactViewController alloc] init];
-                contactview.delegate = self;
-                nav = [[UINavigationController alloc] initWithRootViewController:contactview];
+//                contactview = [[ContactViewController alloc] init];
+//                contactview.delegate = self;
+//                nav = [[UINavigationController alloc] initWithRootViewController:contactview];
+//                [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
+//                nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
+//                [contentView addSubview:nav.view];
+//                contactview = nil;
+                activeView = [[ActiveViewController alloc] init];
+                activeView.delegate = self;
+                nav = [[UINavigationController alloc] initWithRootViewController:activeView];
                 [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
                 nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
                 [contentView addSubview:nav.view];
+                activeView = nil;
             }else{
                 self.marketView = [[MarketViewController alloc] init];
                 self.marketView.delegate = self;
@@ -200,12 +208,12 @@
                 [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
                 nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
                 [contentView addSubview:nav.view];
+                self.marketView = nil;
             }
             [contactBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单01b"] forState:UIControlStateNormal];
             [projectBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单02a"] forState:UIControlStateNormal];
             [companyBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单03a"] forState:UIControlStateNormal];
             [tradeBtn setBackgroundImage:[GetImagePath getImagePath:@"主菜单04a"] forState:UIControlStateNormal];
-            contactview = nil;
             break;
         case 1:
             NSLog(@"项目");
@@ -347,13 +355,21 @@
     for(int i=0;i<contentView.subviews.count;i++) {
         [((UIView*)[contentView.subviews objectAtIndex:i]) removeFromSuperview];
     }
-    contactview = [[ContactViewController alloc] init];
-    contactview.delegate = self;
-    nav = [[UINavigationController alloc] initWithRootViewController:contactview];
+//    contactview = [[ContactViewController alloc] init];
+//    contactview.delegate = self;
+//    nav = [[UINavigationController alloc] initWithRootViewController:contactview];
+//    [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
+//    nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
+//    [contentView addSubview:nav.view];
+//    contactview = nil;
+    
+    activeView = [[ActiveViewController alloc] init];
+    activeView.delegate = self;
+    nav = [[UINavigationController alloc] initWithRootViewController:activeView];
     [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
     nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
     [contentView addSubview:nav.view];
-    contactview = nil;
+    activeView = nil;
 }
 
 -(void)backGotoMarketView{

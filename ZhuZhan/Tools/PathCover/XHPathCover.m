@@ -248,7 +248,8 @@ NSString *const XHTitkeKey = @"XHTitkeKey";
     self.touching = YES;
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView isMyDynamicList:(BOOL)isMyDynamicList{
+    self.isMyDynamicList = isMyDynamicList;
     self.offsetY = scrollView.contentOffset.y;
 }
 
@@ -285,7 +286,11 @@ NSString *const XHTitkeKey = @"XHTitkeKey";
     if ([[[UIDevice currentDevice] systemVersion] integerValue] >= 7.0) {
         fixAdaptorPadding = 64;
     }
-    y += fixAdaptorPadding;
+    if(self.isMyDynamicList){
+        y += fixAdaptorPadding-64;
+    }else{
+        y += fixAdaptorPadding;
+    }
     _offsetY = y;
     CGRect frame = _showView.frame;
     if(y < 0) {
@@ -324,7 +329,6 @@ NSString *const XHTitkeKey = @"XHTitkeKey";
         bannerSuper.frame = bframe;
         CGPoint center =  _bannerImageView.center;
         center.y = bannerSuper.frame.size.height / 2;
-        NSLog(@"%f",bframe.size.height);
         if(bframe.size.height<320){
             _bannerImageView.center = center;
         }else{

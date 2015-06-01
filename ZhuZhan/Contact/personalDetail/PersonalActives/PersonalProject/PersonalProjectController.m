@@ -13,6 +13,7 @@
 #import "ProjectApi.h"
 #import "ErrorCode.h"
 #import "LoginViewController.h"
+#import "IsFocusedApi.h"
 @interface PersonalProjectController()<ProjectTableViewCellDelegate,LoginViewDelegate>
 
 @end
@@ -130,6 +131,7 @@
     cell.model = model;
     cell.selectionStyle = NO;
     cell.delegate = self;
+    cell.indexPath = indexPath;
     return cell;
 }
 
@@ -163,6 +165,51 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PersonalActivesHeaderRefreshingNoti" object:nil];
     if (block) {
         block();
+    }
+}
+
+-(void)addFocused:(NSIndexPath *)indexPath{
+    projectModel *model = self.models[indexPath.row];
+    if([model.isFocused isEqualToString:@"0"]){
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:model.a_id forKey:@"targetId"];
+        [dic setObject:@"03" forKey:@"targetCategory"];
+        [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+                model.isFocused = @"1";
+                [self.models replaceObjectAtIndex:indexPath.row withObject:model];
+                [self.tableView reloadData];
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
+            }
+        } dic:dic noNetWork:nil];
+    }else{
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:model.a_id forKey:@"targetId"];
+        [dic setObject:@"03" forKey:@"targetCategory"];
+        [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+                model.isFocused = @"0";
+                [self.models replaceObjectAtIndex:indexPath.row withObject:model];
+                [self.tableView reloadData];
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
+            }
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
     }
 }
 @end

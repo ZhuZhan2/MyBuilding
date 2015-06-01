@@ -19,7 +19,7 @@
     }else{
         self.a_dynamicAvatarUrl = [ProjectStage ProjectStrStage:dict[@"createUser"][@"loginImagesId"]];
     }
-    self.a_dynamicLoginId = [ProjectStage ProjectStrStage:dict[@"loginId"]];
+    self.a_dynamicLoginId = [ProjectStage ProjectStrStage:dict[@"createUser"][@"loginId"]];
     if([[ProjectStage ProjectStrStage:dict[@"createUser"][@"userType"]] isEqualToString:@"01"]){
         self.a_dynamicUserType = @"Personal";
     }else{

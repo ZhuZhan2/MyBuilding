@@ -135,7 +135,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [_pathCover scrollViewDidScroll:scrollView];
+    [_pathCover scrollViewDidScroll:scrollView isMyDynamicList:NO];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {

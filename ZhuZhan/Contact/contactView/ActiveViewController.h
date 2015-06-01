@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ActiveViewController : UIViewController
+@protocol ActiveViewControllerDelegate <NSObject>
+-(void)backGotoMarketView;
+@end
 
+@interface ActiveViewController : UIViewController
+@property(nonatomic,weak)id<ActiveViewControllerDelegate>delegate;
 @end
