@@ -13,6 +13,7 @@
 #import "QuadCurveMenu.h"
 #import "ProductViewController.h"
 #import "ALLProjectViewController.h"
+#import "ActiveViewController.h"
 @interface HomePageViewController : UIViewController<QuadCurveMenuDelegate>{
     UIButton *contactBtn;
     UIButton *projectBtn;
@@ -29,7 +30,7 @@
     UINavigationController *nav;
     QuadCurveMenu *menu;
     UIViewController* quadCurveVC;
-    
+    ActiveViewController *activeView;
 }
 -(void)homePageTabBarHide;
 -(void)homePageTabBarRestore;

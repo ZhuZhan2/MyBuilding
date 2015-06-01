@@ -14,7 +14,9 @@
 #import "HomePageViewController.h"
 #import "ProgramDetailViewController.h"
 #import "MJRefresh.h"
-@interface TopicsDetailTableViewController ()<ProjectTableViewCellDelegate>
+#import "IsFocusedApi.h"
+
+@interface TopicsDetailTableViewController ()<ProjectTableViewCellDelegate,LoginViewDelegate>
 
 @end
 
@@ -245,6 +247,8 @@
         }
         cell.model = model;
         cell.selectionStyle = NO;
+        cell.delegate = self;
+        cell.indexPath = indexPath;
         return cell;
     }
     return nil;
@@ -259,5 +263,67 @@
     vc.projectId=model.a_id;
     vc.isFocused = model.isFocused;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)addFocused:(NSIndexPath *)indexPath{
+    projectModel *model = showArr[indexPath.row-2];
+    if([model.isFocused isEqualToString:@"0"]){
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:model.a_id forKey:@"targetId"];
+        [dic setObject:@"03" forKey:@"targetCategory"];
+        [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+                model.isFocused = @"1";
+                [showArr replaceObjectAtIndex:indexPath.row withObject:model];
+                [self.tableView reloadData];
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
+            }
+        } dic:dic noNetWork:nil];
+    }else{
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:model.a_id forKey:@"targetId"];
+        [dic setObject:@"03" forKey:@"targetCategory"];
+        [IsFocusedApi AddFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+                model.isFocused = @"0";
+                [showArr replaceObjectAtIndex:indexPath.row withObject:model];
+                [self.tableView reloadData];
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
+            }
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+        }];
+    }
+}
+
+-(void)gotoLoginView{
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    loginVC.needDelayCancel=YES;
+    loginVC.delegate = self;
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+}
+
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
+    startIndex = 0;
+    [showArr removeAllObjects];
+    [self firstNetWork];
+    if (block) {
+        block();
+    }
 }
 @end

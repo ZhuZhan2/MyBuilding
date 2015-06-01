@@ -1303,6 +1303,8 @@
 		D30062191AEF62FD009E35C8 /* 会话列表－群聊@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D30062151AEF62FD009E35C8 /* 会话列表－群聊@2x.png */; };
 		D300621F1AEF65E4009E35C8 /* ALLProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D300621E1AEF65E4009E35C8 /* ALLProjectViewController.m */; };
 		D3049A681A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3049A671A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m */; };
+		D30E1B231B1BF843009F6B51 /* AllDynamicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D30E1B221B1BF843009F6B51 /* AllDynamicListViewController.m */; };
+		D30E1B261B1BFD81009F6B51 /* MyDynamicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D30E1B251B1BFD81009F6B51 /* MyDynamicListViewController.m */; };
 		D314A3A71B156B2B00F6A86A /* SearchContactDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = D314A3A61B156B2B00F6A86A /* SearchContactDefaultView.m */; };
 		D314A3AA1B15977F00F6A86A /* addComment.png in Resources */ = {isa = PBXBuildFile; fileRef = D314A3A81B15977F00F6A86A /* addComment.png */; };
 		D314A3AB1B15977F00F6A86A /* addComment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D314A3A91B15977F00F6A86A /* addComment@2x.png */; };
@@ -3514,6 +3516,10 @@
 		D300621E1AEF65E4009E35C8 /* ALLProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALLProjectViewController.m; sourceTree = "<group>"; };
 		D3049A661A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterCompanyTableViewCell.h; sourceTree = "<group>"; };
 		D3049A671A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterCompanyTableViewCell.m; sourceTree = "<group>"; };
+		D30E1B211B1BF843009F6B51 /* AllDynamicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllDynamicListViewController.h; sourceTree = "<group>"; };
+		D30E1B221B1BF843009F6B51 /* AllDynamicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllDynamicListViewController.m; sourceTree = "<group>"; };
+		D30E1B241B1BFD81009F6B51 /* MyDynamicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDynamicListViewController.h; sourceTree = "<group>"; };
+		D30E1B251B1BFD81009F6B51 /* MyDynamicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDynamicListViewController.m; sourceTree = "<group>"; };
 		D314A3A51B156B2B00F6A86A /* SearchContactDefaultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchContactDefaultView.h; sourceTree = "<group>"; };
 		D314A3A61B156B2B00F6A86A /* SearchContactDefaultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchContactDefaultView.m; sourceTree = "<group>"; };
 		D314A3A81B15977F00F6A86A /* addComment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addComment.png; sourceTree = "<group>"; };
@@ -5444,6 +5450,7 @@
 		04D10BA919AE01690097C0C6 /* contactView */ = {
 			isa = PBXGroup;
 			children = (
+				D30E1B201B1BF838009F6B51 /* DynamicListViewController */,
 				D3D49EE919FE0B76002B3B99 /* HeadImageDelegate.h */,
 				D3B1C28119D155CC00E6D89F /* ContactCommentTableViewCell.h */,
 				D3B1C28219D155CC00E6D89F /* ContactCommentTableViewCell.m */,
@@ -6885,6 +6892,17 @@
 				5BFC82921B058D5B00CD9ED6 /* ForcedUpdateApi.m */,
 			);
 			path = ForcedUpdate;
+			sourceTree = "<group>";
+		};
+		D30E1B201B1BF838009F6B51 /* DynamicListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D30E1B211B1BF843009F6B51 /* AllDynamicListViewController.h */,
+				D30E1B221B1BF843009F6B51 /* AllDynamicListViewController.m */,
+				D30E1B241B1BFD81009F6B51 /* MyDynamicListViewController.h */,
+				D30E1B251B1BFD81009F6B51 /* MyDynamicListViewController.m */,
+			);
+			path = DynamicListViewController;
 			sourceTree = "<group>";
 		};
 		D31BBB8A1AD3E3F500919B8B /* PodFiles */ = {
@@ -9502,6 +9520,7 @@
 				042D9E1619B559FC00689C5D /* ProgramDetailViewController.m in Sources */,
 				5B90E1021ADE3ABB00436CED /* ContractsUserView.m in Sources */,
 				D3D0902F1AF89FD500C8AC55 /* SearchMaterialViewController.m in Sources */,
+				D30E1B231B1BF843009F6B51 /* AllDynamicListViewController.m in Sources */,
 				0426C24219922D5A00CD8822 /* GPUImage3x3TextureSamplingFilter.m in Sources */,
 				0426C25419922D5A00CD8822 /* GPUImageColorBurnBlendFilter.m in Sources */,
 				5B5773DF1AC1335C00C17DBF /* DemandAskPriceDetailController.m in Sources */,
@@ -9625,6 +9644,7 @@
 				D374BCAA1AC8F1E2002A7D58 /* ReceiveView.m in Sources */,
 				0426C2C219922D5A00CD8822 /* GPUImageSubtractBlendFilter.m in Sources */,
 				04D10BE519AE016A0097C0C6 /* PersonalDetailViewController.m in Sources */,
+				D30E1B261B1BFD81009F6B51 /* MyDynamicListViewController.m in Sources */,
 				0426C27E19922D5A00CD8822 /* GPUImageHueBlendFilter.m in Sources */,
 				D3EDCA531ACE90A6002AF865 /* SDWebImageDownloader.m in Sources */,
 				5B6373651ABA5E97007CF1F8 /* RKShadowView.m in Sources */,
