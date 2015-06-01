@@ -154,7 +154,6 @@
     ContactsActiveCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(!cell){
         cell = [[ContactsActiveCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        cell.clipsToBounds = YES;
     }
     ActivesModel* dataModel = self.modelsArr[indexPath.row];
     cell.model = [self cellModelWithDataModel:dataModel];
