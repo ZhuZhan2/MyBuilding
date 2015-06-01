@@ -19,4 +19,10 @@
 + (UIImage *)convertViewAsImage:(UIView *)aview;
 
 + (void)autoLabel:(UILabel*)label maxWidth:(CGFloat)maxWidth;
+
++ (CGFloat)autoLabelWithMaxWidth:(CGFloat)maxWidth font:(UIFont*)font content:(NSString*)content;
+
++ (void)autoLabel:(UILabel*)label maxWidth:(CGFloat)maxWidth maxHeight:(CGFloat)maxHieght;
+
++ (CGFloat)autoLabelWithMaxWidth:(CGFloat)maxWidth maxHeight:(CGFloat)maxHeight font:(UIFont*)font content:(NSString*)content;
 @end

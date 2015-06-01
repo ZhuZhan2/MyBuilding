@@ -8,14 +8,17 @@
 
 #import "ContactsActiveTitleView.h"
 @implementation ContactsActiveTitleView
++ (CGFloat)titleViewHeight{
+    return 40;
+}
+
 + (ContactsActiveTitleView *)titleView{
     return [[ContactsActiveTitleView alloc] init];
 }
 
 - (instancetype)init{
     if (self = [super init]) {
-        self.backgroundColor = [UIColor grayColor];
-        self.frame = CGRectMake(0, 0, 295, 40);
+        self.frame = CGRectMake(0, 0, kScreenWidth, [ContactsActiveTitleView titleViewHeight]);
         [self addSubview:self.userImageView];
         [self addSubview:self.titleLabel];
         [self addSubview:self.assistBtn];
@@ -29,22 +32,28 @@
     self.titleLabel.text = title;
     self.actionTimeLabel.text = actionTime;
     
-    CGRect frame = self.titleLabel.frame;
-    frame.origin = CGPointMake(60, 18);
+    CGRect frame = self.userImageView.frame;
+    frame.origin = CGPointMake(10, 0);
+    self.userImageView.frame = frame;
+    
+    frame = self.titleLabel.frame;
+    frame.origin = CGPointMake(60, 2);
     self.titleLabel.frame = frame;
     
     frame = self.actionTimeLabel.frame;
-    frame.origin = CGPointMake(60, 38);
+    frame.origin = CGPointMake(60, 22);
     self.actionTimeLabel.frame = frame;
     
     frame = self.assistBtn.frame;
-    frame.origin = CGPointMake(225, 15);
+    frame.origin = CGPointMake(225, 5);
     self.assistBtn.frame = frame;
 }
 
 - (UIImageView *)userImageView{
     if (!_userImageView) {
-        _userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
+        _userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+        _userImageView.layer.cornerRadius = 20;
+        _userImageView.layer.masksToBounds = YES;
         _userImageView.backgroundColor = [UIColor greenColor];
     }
     return _userImageView;
@@ -71,6 +80,7 @@
     if (!_actionTimeLabel) {
         _actionTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 15)];
         _actionTimeLabel.textColor = AllNoDataColor;
+        _actionTimeLabel.font = [UIFont systemFontOfSize:14];
     }
     return _actionTimeLabel;
 }

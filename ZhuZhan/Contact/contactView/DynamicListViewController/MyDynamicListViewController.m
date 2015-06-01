@@ -18,7 +18,9 @@
 #import "PersonalCenterViewController.h"
 #import "MJRefresh.h"
 #import "ContactModel.h"
-
+#import "ContactsActiveCell.h"
+#import "ActivesModel.h"
+#import "ContactCommentModel.h"
 @interface MyDynamicListViewController ()<XHPathCoverDelegate,UITableViewDelegate,UITableViewDataSource,LoginViewDelegate>
 @property(nonatomic,strong)XHPathCover *pathCover;
 @property(nonatomic,strong)UITableView *tableView;
@@ -130,25 +132,63 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = RGBCOLOR(242, 242, 242);
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.modelsArr.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ActivesModel* dataModel = self.modelsArr[indexPath.row];
+    ContactsActiveCellModel* cellModel = [self cellModelWithDataModel:dataModel];
+    return [ContactsActiveCell carculateCellHeightWithModel:cellModel];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString* cellIdentifier = [NSString stringWithFormat:@"productCell"];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    NSString* cellIdentifier = [NSString stringWithFormat:@"cell"];
+    ContactsActiveCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(!cell){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[ContactsActiveCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.clipsToBounds = YES;
     }
+    ActivesModel* dataModel = self.modelsArr[indexPath.row];
+    cell.model = [self cellModelWithDataModel:dataModel];
     cell.selectionStyle = NO;
     return cell;
+}
+
+- (ContactsActiveCellModel*)cellModelWithDataModel:(ActivesModel*)dataModel{
+    ContactsActiveCellModel* model = [[ContactsActiveCellModel alloc] init];
+    model.userImageUrl = dataModel.a_dynamicAvatarUrl;
+    model.title = dataModel.a_dynamicLoginName;
+    
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy/MM/dd HH:mm";
+    model.actionTime = [dateFormatter stringFromDate:dataModel.a_time];
+    
+    model.content = dataModel.a_content;
+    model.mainImageUrl = dataModel.a_imageUrl;
+    
+    [dataModel.a_commentsArr enumerateObjectsUsingBlock:^(ContactCommentModel* commentDataModel, NSUInteger idx, BOOL *stop) {
+        CommentModel* commentCellModel = [[CommentModel alloc] init];
+        commentCellModel.userImageUrl = commentDataModel.a_avatarUrl;
+        commentCellModel.userName = commentDataModel.a_userName;
+        
+        NSDateFormatter* tmpDateFormatter = [[NSDateFormatter alloc] init];
+        tmpDateFormatter.dateFormat = @"yyyy/MM/dd HH:mm";
+        commentCellModel.actionTime = [tmpDateFormatter stringFromDate:commentDataModel.a_time];
+        
+        commentCellModel.content = commentDataModel.a_commentContents;
+        
+        [model.commentArr addObject:commentCellModel];
+    }];
+    
+    return model;
 }
 
 -(void)changeHeadImage{
@@ -176,6 +216,7 @@
             [self.modelsArr addObjectsFromArray:posts];
             [self.tableView reloadData];
         }
+        [self.tableView footerEndRefreshing];
         [LoadingView removeLoadingView:self.loadingView];
         self.loadingView = nil;
         __weak MyDynamicListViewController *wself = self;

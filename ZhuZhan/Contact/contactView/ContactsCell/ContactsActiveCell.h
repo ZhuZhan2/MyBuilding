@@ -11,4 +11,5 @@
 
 @interface ContactsActiveCell :BaseTableViewCell
 @property (nonatomic, strong)ContactsActiveCellModel* model;
++ (CGFloat)carculateCellHeightWithModel:(ContactsActiveCellModel *)cellModel;
 @end

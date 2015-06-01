@@ -16,4 +16,6 @@
 
 + (ContactsActiveTitleView*)titleView;
 - (void)setImageUrl:(NSString*)imageUrl title:(NSString*)title actionTime:(NSString*)actionTime;
+
++ (CGFloat)titleViewHeight;
 @end

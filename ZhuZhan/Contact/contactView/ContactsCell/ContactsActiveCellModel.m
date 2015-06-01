@@ -9,5 +9,10 @@
 #import "ContactsActiveCellModel.h"
 
 @implementation ContactsActiveCellModel
-
+- (NSMutableArray *)commentArr{
+    if (!_commentArr) {
+        _commentArr = [NSMutableArray array];
+    }
+    return _commentArr;
+}
 @end

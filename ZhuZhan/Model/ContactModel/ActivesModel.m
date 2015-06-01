@@ -44,7 +44,7 @@
     self.a_entityId = [ProjectStage ProjectStrStage:dict[@"operationId"]];
     self.a_title = [ProjectStage ProjectStrStage:dict[@"title"]];
     self.a_content=[[ProjectStage ProjectStrStage:dict[@"content"]] stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
-    
+
     self.a_operationCode = [ProjectStage ProjectStrStage:dict[@"operationCode"]];
     self.a_sourceCode = [ProjectStage ProjectStrStage:dict[@"sourceCode"]];
     
@@ -67,10 +67,6 @@
             ContactCommentModel *model = [[ContactCommentModel alloc] init];
             [model setDict:item];
             [self.a_commentsArr addObject:model];
-        }
-        
-        if(self.a_commentsArr.count >=3){
-            [self.a_commentsArr insertObject:@"" atIndex:2];
         }
     }
     
