@@ -69,7 +69,7 @@
 - (void)_refreshing {
     // refresh your data sources
     self.startIndex = 0;
-    [self loadUserInfo];
+    [self loadList];
 }
 
 - (void)setupRefresh
@@ -213,18 +213,27 @@
         if(!error){
             self.startIndex ++;
             [self.modelsArr addObjectsFromArray:posts];
-            [self.tableView reloadData];
+            [MyTableView reloadDataWithTableView:self.tableView];
+            if(self.modelsArr.count == 0){
+                [MyTableView hasData:self.tableView];
+            }
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
+                    [self loadUserInfo];
+                }];
+            }
         }
         [self.tableView footerEndRefreshing];
         [LoadingView removeLoadingView:self.loadingView];
         self.loadingView = nil;
-        __weak MyDynamicListViewController *wself = self;
-        [wself.pathCover stopRefresh];
+        [self.tableView footerEndRefreshing];
     } startIndex:self.startIndex+1 noNetWork:^{
         [LoadingView removeLoadingView:self.loadingView];
         self.loadingView = nil;
-        __weak MyDynamicListViewController *wself = self;
-        [wself.pathCover stopRefresh];
+        [self.tableView footerEndRefreshing];
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
             [self loadUserInfo];
         }];
@@ -243,6 +252,14 @@
                         [LoginSqlite insertData:model.a_companyName datakey:@"userName"];
                         [_pathCover setHeadImageUrl:model.a_companyLogo];
                         [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.a_companyName, XHUserNameKey,@"", XHBirthdayKey, nil]];
+                    }
+                }else{
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
+                            [self loadUserInfo];
+                        }];
                     }
                 }
             } companyId:[LoginSqlite getdata:@"userId"] noNetWork:^{
@@ -267,6 +284,14 @@
                         [_pathCover setBackgroundImageUrlString:model.personalBackground];
                         [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.userName, XHUserNameKey,model.companyName, XHBirthdayKey,model.position,XHTitkeKey, nil]];
                     }
+                }else{
+                    if([ErrorCode errorCode:error] == 403){
+                        [LoginAgain AddLoginView:NO];
+                    }else{
+                        [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
+                            [self loadUserInfo];
+                        }];
+                    }
                 }
             } userId:[LoginSqlite getdata:@"userId"] noNetWork:^{
                 [LoadingView removeLoadingView:self.loadingView];
@@ -288,7 +313,21 @@
         if(!error){
             [self.modelsArr removeAllObjects];
             self.modelsArr = posts;
-            [self.tableView reloadData];
+            if(self.modelsArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
+                    [self loadUserInfo];
+                }];
+            }
         }
         [LoadingView removeLoadingView:self.loadingView];
         self.loadingView = nil;

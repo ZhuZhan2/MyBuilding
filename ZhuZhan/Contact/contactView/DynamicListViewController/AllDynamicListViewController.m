@@ -11,6 +11,7 @@
 #import "ContactModel.h"
 #import "LoadingView.h"
 #import "ActivesModel.h"
+#import "MyTableView.h"
 
 @interface AllDynamicListViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
@@ -56,7 +57,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.modelsArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -75,7 +76,21 @@
     [ContactModel AllActivesWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.modelsArr = posts;
-            [self.tableView reloadData];
+            if(self.modelsArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
         [LoadingView removeLoadingView:self.loadingView];
         self.loadingView = nil;
@@ -109,7 +124,21 @@
         if(!error){
             [self.modelsArr removeAllObjects];
             self.modelsArr = posts;
-            [self.tableView reloadData];
+            if(self.modelsArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
         [LoadingView removeLoadingView:self.loadingView];
         self.loadingView = nil;
@@ -128,7 +157,22 @@
         if(!error){
             self.startIndex ++;
             [self.modelsArr addObjectsFromArray:posts];
-            [self.tableView reloadData];
+            [MyTableView reloadDataWithTableView:self.tableView];
+            if(self.modelsArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
         }
         [self.tableView footerEndRefreshing];
     } startIndex:self.startIndex+1 noNetWork:^{
