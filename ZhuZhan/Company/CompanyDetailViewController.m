@@ -25,6 +25,7 @@
 #import "CompanyActivesViewController.h"
 @interface CompanyDetailViewController ()<LoginViewDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)CompanyModel* model;
+@property(nonatomic)BOOL hasCompany;
 
 @property(nonatomic,strong)UIView* mainView;
 @property(nonatomic,strong)UIView* assistView;
@@ -86,7 +87,7 @@
         
         [_views addObject:self.activeView];
         
-        if (![[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]&&![self.model.a_reviewStatus isEqualToString:@"01"]){
+        if (![[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]&&![self.model.a_reviewStatus isEqualToString:@"01"]&&!self.hasCompany){
             [_views addObject:self.authorizationView];
         }
         
@@ -366,10 +367,14 @@
 }
 
 -(void)firstNetWork{
-    [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+    if ([[LoginSqlite getdata:@"userId"] isEqualToString:@""]) {
+        [self secondNetWork];
+        return;
+    }
+    [CompanyApi HasCompanyWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            self.model = posts[0];
-            [self reloadData];
+            self.hasCompany = [posts[0][@"exists"] boolValue];
+            [self secondNetWork];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -379,11 +384,37 @@
                 }];
             }
         }
-    } companyId:self.companyId noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+    } noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64-49) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];
+}
+
+
+/**********************************************************
+ 函数描述：获取公司详情
+ **********************************************************/
+- (void)secondNetWork{
+    [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.model = posts[0];
+            [self reloadData];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self secondNetWork];
+                }];
+            }
+        }
+    } companyId:self.companyId noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self secondNetWork];
+        }];
+    }];
+
 }
 
 /**********************************************************
