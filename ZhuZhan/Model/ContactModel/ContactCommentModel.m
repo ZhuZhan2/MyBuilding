@@ -16,6 +16,8 @@
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"loginName"]];
     self.a_time = [ProjectStage ProjectDateStage:dict[@"createdTime"]];
     self.a_commentContents = [ProjectStage ProjectStrStage:dict[@"content"]];
+    self.a_commentContents = [NSString stringWithFormat:@"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd,dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd%@",self.a_commentContents];
+
     if(![[ProjectStage ProjectStrStage:dict[@"loginImagesId"]] isEqualToString:@""]){
         self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"loginImagesId"]], @"login", @"", @"", @"")];
     }else{

@@ -184,7 +184,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             for(int i=0;i<showArr.count;i++){
                 ActivesModel *model = showArr[i];
                 if(model.a_type == 0){
-                    commentView = [CommentView setFram:model];
+                    //commentView = [CommentView setFram:model];
                     [viewArr addObject:commentView];
                 }else if([model.a_sourceCode isEqualToString:@"03"]){
                     productView=[[ContactProductView alloc]initWithUsrImgUrl:model.a_dynamicAvatarUrl productImgUrl:model.a_productImage productContent:model.a_productDesc];
@@ -269,7 +269,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             for(int i=0;i<posts.count;i++){
                 ActivesModel *model = posts[i];
                 if(model.a_type == 00){
-                    commentView = [CommentView setFram:model];
+                    //commentView = [CommentView setFram:model];
                     [viewArr addObject:commentView];
                 }else if([model.a_sourceCode isEqualToString:@"03"]){
                     productView=[[ContactProductView alloc]initWithUsrImgUrl:model.a_dynamicAvatarUrl productImgUrl:model.a_productImage productContent:model.a_productDesc];
@@ -356,11 +356,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         cell.selectionStyle = NO;
         [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         commentView = viewArr[indexPath.row];
-        commentView.indexpath = indexpath;
-        commentView.delegate = self;
-        commentView.headImageDelegate = self;
-        commentView.indexpath = indexPath;
-        commentView.showArr = model.a_commentsArr;
+        //commentView.indexpath = indexpath;
+       //// commentView.delegate = self;
+       // commentView.headImageDelegate = self;
+       // commentView.indexpath = indexPath;
+       // commentView.showArr = model.a_commentsArr;
         [cell.contentView addSubview:commentView];
         return cell;
     }else if (model.a_type == 1 || model.a_type == 3 || model.a_type == 4){
@@ -642,7 +642,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }else{
         [model.a_commentsArr insertObject:commentModel atIndex:0];
     }
-    commentView = [CommentView setFram:model];
+   // commentView = [CommentView setFram:model];
     [showArr replaceObjectAtIndex:indexpath.row withObject:model];
     [viewArr replaceObjectAtIndex:indexpath.row withObject:commentView];
     [MyTableView reloadDataWithTableView:self.tableView];
@@ -725,7 +725,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             for(int i=0;i<showArr.count;i++){
                 ActivesModel *model = showArr[i];
                 if(model.a_type == 0){
-                    commentView = [CommentView setFram:model];
+                    //commentView = [CommentView setFram:model];
                     [viewArr addObject:commentView];
                 }else if([model.a_sourceCode isEqualToString:@"03"]){
                     productView=[[ContactProductView alloc]initWithUsrImgUrl:model.a_dynamicAvatarUrl productImgUrl:model.a_productImage productContent:model.a_productDesc];

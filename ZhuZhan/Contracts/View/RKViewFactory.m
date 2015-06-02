@@ -71,10 +71,43 @@
  输出参数：自适应label
  **********************************************************/
 + (void)autoLabel:(UILabel*)label maxWidth:(CGFloat)maxWidth{
-    CGRect bounds = [label.text boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:label.font} context:nil];
+    CGFloat height = [self autoLabelWithMaxWidth:maxWidth font:label.font content:label.text];
     CGRect frame = label.frame;
-    frame.size = CGSizeMake(maxWidth, bounds.size.height);
+    frame.size = CGSizeMake(maxWidth, height);
     label.frame = frame;
     label.numberOfLines = 0;
+}
+
+/**********************************************************
+ 函数描述：计算label所需要的高度
+ 输入参数：最大宽度，label的字体
+ 返回值：需要的高度
+ **********************************************************/
++ (CGFloat)autoLabelWithMaxWidth:(CGFloat)maxWidth font:(UIFont*)font content:(NSString*)content{
+    CGRect bounds = [content boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil];
+    return CGRectGetHeight(bounds);
+}
+
+/**********************************************************
+ 函数描述：传入label和最大宽度和最大高度
+ 输出参数：自适应label
+ **********************************************************/
++ (void)autoLabel:(UILabel*)label maxWidth:(CGFloat)maxWidth maxHeight:(CGFloat)maxHieght{
+    CGFloat height = [self autoLabelWithMaxWidth:maxWidth maxHeight:maxHieght font:label.font content:label.text];
+    
+    CGRect frame = label.frame;
+    frame.size = CGSizeMake(maxWidth, height);
+    label.frame = frame;
+    label.numberOfLines = 0;
+}
+
+/**********************************************************
+ 函数描述：计算label所需要的高度
+ 输入参数：最大宽度，最大高度，label的字体
+ 返回值：需要的高度
+ **********************************************************/
++ (CGFloat)autoLabelWithMaxWidth:(CGFloat)maxWidth maxHeight:(CGFloat)maxHeight font:(UIFont*)font content:(NSString*)content{
+    CGFloat height = [self autoLabelWithMaxWidth:maxWidth font:font content:content];
+    return height>maxHeight?maxHeight:height;
 }
 @end

@@ -18,9 +18,12 @@
 #import "PersonalCenterViewController.h"
 #import "MJRefresh.h"
 #import "ContactModel.h"
+#import "ContactsActiveCell.h"
+#import "ActivesModel.h"
+#import "ContactCommentModel.h"
 #import "MyTableView.h"
 
-@interface MyDynamicListViewController ()<XHPathCoverDelegate,UITableViewDelegate,UITableViewDataSource,LoginViewDelegate>
+@interface MyDynamicListViewController ()<XHPathCoverDelegate,UITableViewDelegate,UITableViewDataSource,LoginViewDelegate,ContactsActiveCellDelegate>
 @property(nonatomic,strong)XHPathCover *pathCover;
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)LoadingView *loadingView;
@@ -131,7 +134,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = RGBCOLOR(242, 242, 242);
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
 }
@@ -141,15 +144,63 @@
     return self.modelsArr.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ActivesModel* dataModel = self.modelsArr[indexPath.row];
+    ContactsActiveCellModel* cellModel = [self cellModelWithDataModel:dataModel indexPath:indexPath];
+    return [ContactsActiveCell carculateCellHeightWithModel:cellModel];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString* cellIdentifier = [NSString stringWithFormat:@"productCell"];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    NSString* cellIdentifier = [NSString stringWithFormat:@"cell"];
+    ContactsActiveCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(!cell){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[ContactsActiveCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    ActivesModel* dataModel = self.modelsArr[indexPath.row];
+    cell.model = [self cellModelWithDataModel:dataModel indexPath:indexPath];
+    cell.delegate = self;
     cell.selectionStyle = NO;
     return cell;
+}
+
+- (void)contactsUserImageClickedWithIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"userImageIndexPathRow=%d",(int)indexPath.row);
+}
+
+- (void)contactsCommentBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"commentIndexPathRow=%d",(int)indexPath.row);
+}
+
+- (ContactsActiveCellModel*)cellModelWithDataModel:(ActivesModel*)dataModel indexPath:(NSIndexPath*)indexPath{
+    ContactsActiveCellModel* model = [[ContactsActiveCellModel alloc] init];
+    model.userImageUrl = dataModel.a_dynamicAvatarUrl;
+    model.title = dataModel.a_dynamicLoginName;
+    
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy/MM/dd HH:mm";
+    model.actionTime = [dateFormatter stringFromDate:dataModel.a_time];
+    
+    model.content = dataModel.a_content;
+    model.mainImageUrl = dataModel.a_imageUrl;
+    
+    [dataModel.a_commentsArr enumerateObjectsUsingBlock:^(ContactCommentModel* commentDataModel, NSUInteger idx, BOOL *stop) {
+        CommentModel* commentCellModel = [[CommentModel alloc] init];
+        commentCellModel.userImageUrl = commentDataModel.a_avatarUrl;
+        commentCellModel.userName = commentDataModel.a_userName;
+        
+        NSDateFormatter* tmpDateFormatter = [[NSDateFormatter alloc] init];
+        tmpDateFormatter.dateFormat = @"yyyy/MM/dd HH:mm";
+        commentCellModel.actionTime = [tmpDateFormatter stringFromDate:commentDataModel.a_time];
+        
+        commentCellModel.content = commentDataModel.a_commentContents;
+        
+        [model.commentArr addObject:commentCellModel];
+    }];
+    
+    model.indexPath = indexPath;
+    
+    return model;
 }
 
 -(void)changeHeadImage{
@@ -188,6 +239,7 @@
                 }];
             }
         }
+        [self.tableView footerEndRefreshing];
         [LoadingView removeLoadingView:self.loadingView];
         self.loadingView = nil;
         [self.tableView footerEndRefreshing];
