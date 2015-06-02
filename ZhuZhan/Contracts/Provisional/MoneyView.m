@@ -32,7 +32,7 @@
         _textFied.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 0)];
         _textFied.leftView.userInteractionEnabled = NO;
         _textFied.leftViewMode = UITextFieldViewModeAlways;
-        _textFied.placeholder = @"请输入金额";
+        _textFied.placeholder = @"请输入合同金额数（数字格式，单位：元）。";
         _textFied.font = [UIFont systemFontOfSize:15];
         _textFied.returnKeyType = UIReturnKeyDone;
         //_textFied.keyboardType = UIKeyboardTypeNumberPad;

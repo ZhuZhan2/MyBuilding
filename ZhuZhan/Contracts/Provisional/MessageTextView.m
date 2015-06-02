@@ -15,11 +15,11 @@
         return;
     }
     
-    NSUInteger maxChars = [MessageTextView maxCharactersPerLine];
-    if([placeHolder length] > maxChars) {
-        placeHolder = [placeHolder substringToIndex:maxChars - 8];
-        placeHolder = [[placeHolder stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] stringByAppendingFormat:@"..."];
-    }
+//    NSUInteger maxChars = [MessageTextView maxCharactersPerLine];
+//    if([placeHolder length] > maxChars) {
+//        placeHolder = [placeHolder substringToIndex:maxChars - 8];
+//        placeHolder = [[placeHolder stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] stringByAppendingFormat:@"..."];
+//    }
     
     _placeHolder = placeHolder;
     [self setNeedsDisplay];
@@ -130,11 +130,16 @@
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
         paragraphStyle.alignment = self.textAlignment;
-        
         [self.placeHolder drawInRect:placeHolderRect
                       withAttributes:@{ NSFontAttributeName : self.font,
                                         NSForegroundColorAttributeName : self.placeHolderTextColor,
                                         NSParagraphStyleAttributeName : paragraphStyle }];
+        
+        
+//        UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 7, rect.size.width, rect.size.height)];
+//        textLabel.numberOfLines = 4;
+//        textLabel.text = self.placeHolder;
+//        [self addSubview:textLabel];
     }
 }
 @end

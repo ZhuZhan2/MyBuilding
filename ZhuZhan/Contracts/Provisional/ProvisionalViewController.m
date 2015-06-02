@@ -208,8 +208,8 @@
     //创建
     if (!self.isModified) {
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        [dic setObject:[self.personaStr1 isEqualToString:@"供应商"]?@"1":@"2" forKey:@"createdByType"];
-        [dic setObject:[self.personaStr2 isEqualToString:@"供应商"]?@"1":@"2" forKey:@"pecipientType"];
+        [dic setObject:[self.personaStr1 isEqualToString:@"付款方"]?@"1":@"2" forKey:@"createdByType"];
+        [dic setObject:[self.personaStr2 isEqualToString:@"付款方"]?@"1":@"2" forKey:@"pecipientType"];
         [dic setObject:self.myCompanyName forKey:@"partyA"];
         [dic setObject:self.otherCompanyName forKey:@"partyB"];
         [dic setObject:self.moneyStr forKey:@"contractsMoney"];
@@ -221,9 +221,18 @@
                 vc.delegate = self;
                 [self.navigationController pushViewController:vc animated:NO];
                 [self reloadTable];
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
             [self stopLoadingView];
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+            [self stopLoadingView];
+        }];
     //修改
     }else{
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
@@ -232,9 +241,18 @@
         [ContractsApi PostUpdateWithBlock:^(NSMutableArray *posts, NSError *error) {
             if (!error) {
                 [self showAlertViewNeedDelegate:@"操作成功"];
+            }else{
+                if([ErrorCode errorCode:error] == 403){
+                    [LoginAgain AddLoginView:NO];
+                }else{
+                    [ErrorCode alert];
+                }
             }
             [self stopLoadingView];
-        } dic:dic noNetWork:nil];
+        } dic:dic noNetWork:^{
+            [ErrorCode alert];
+            [self stopLoadingView];
+        }];
     }
 }
 
@@ -521,7 +539,7 @@
 }
 
 -(void)showActionSheet:(int)index{
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"销售方" otherButtonTitles:@"供应商", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"收款方" otherButtonTitles:@"付款方", nil];
     actionSheet.tag = index;
     [actionSheet showInView:self.view];
 }
@@ -535,21 +553,21 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(actionSheet.tag == 0){
         if(buttonIndex == 0){
-            self.personaStr1 = @"销售方";
-            self.personaStr2 = @"供应商";
+            self.personaStr1 = @"收款方";
+            self.personaStr2 = @"付款方";
         }else if(buttonIndex == 1){
             self.personaStr1 = @"供应商";
-            self.personaStr2 = @"销售方";
+            self.personaStr2 = @"付款方";
         }
         [self reloadStartMainView];
         [self reloadReceiveView];
     }else{
         if(buttonIndex == 0){
-            self.personaStr2 = @"销售方";
-            self.personaStr1 = @"供应商";
+            self.personaStr2 = @"收款方";
+            self.personaStr1 = @"付款方";
         }else if(buttonIndex == 1){
             self.personaStr2 = @"供应商";
-            self.personaStr1 = @"销售方";
+            self.personaStr1 = @"付款方";
         }
         [self reloadStartMainView];
         [self reloadReceiveView];
