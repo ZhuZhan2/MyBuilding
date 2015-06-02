@@ -107,8 +107,8 @@
             ProvisionalModel* model=[[ProvisionalModel alloc]init];
 
             BOOL crateIsSaler=[dataModel.a_createdByType isEqualToString:@"2"];
-            model.personaStr1=crateIsSaler?@"销售商":@"供应商";
-            model.personaStr2=!crateIsSaler?@"销售商":@"供应商";
+            model.personaStr1=crateIsSaler?@"收款方":@"付款方";
+            model.personaStr2=!crateIsSaler?@"收款方":@"付款方";
             model.myCompanyName=dataModel.a_partyA;
             model.otherCompanyName=dataModel.a_partyB;
             model.personaName=dataModel.a_recipientName;

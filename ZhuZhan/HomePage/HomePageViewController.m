@@ -355,21 +355,21 @@
     for(int i=0;i<contentView.subviews.count;i++) {
         [((UIView*)[contentView.subviews objectAtIndex:i]) removeFromSuperview];
     }
-//    contactview = [[ContactViewController alloc] init];
-//    contactview.delegate = self;
-//    nav = [[UINavigationController alloc] initWithRootViewController:contactview];
-//    [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
-//    nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
-//    [contentView addSubview:nav.view];
-//    contactview = nil;
-    
-    activeView = [[ActiveViewController alloc] init];
-    activeView.delegate = self;
-    nav = [[UINavigationController alloc] initWithRootViewController:activeView];
+    contactview = [[ContactViewController alloc] init];
+    contactview.delegate = self;
+    nav = [[UINavigationController alloc] initWithRootViewController:contactview];
     [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
     nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
     [contentView addSubview:nav.view];
-    activeView = nil;
+    contactview = nil;
+    
+//    activeView = [[ActiveViewController alloc] init];
+//    activeView.delegate = self;
+//    nav = [[UINavigationController alloc] initWithRootViewController:activeView];
+//    [nav.view setFrame:CGRectMake(0, 0, 320, contentHeight)];
+//    nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
+//    [contentView addSubview:nav.view];
+//    activeView = nil;
 }
 
 -(void)backGotoMarketView{

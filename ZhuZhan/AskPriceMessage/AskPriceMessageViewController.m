@@ -343,6 +343,7 @@
         [self stopLoadingView];
     } messageType:type contractId:contractsId noNetWork:^{
         self.tableView.scrollEnabled=NO;
+        [self stopLoadingView];
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
             self.tableView.scrollEnabled=YES;
             [self loadList];

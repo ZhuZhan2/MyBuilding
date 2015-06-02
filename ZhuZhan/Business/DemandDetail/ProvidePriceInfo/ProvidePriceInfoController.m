@@ -97,8 +97,10 @@
             }else{
                 [ErrorCode alert];
             }
+            [self stopLoadingView];
         }
     } dic:dic noNetWork:^{
+        [self stopLoadingView];
         [ErrorCode alert];
     }];
 }
@@ -151,9 +153,11 @@
             }else{
                 [ErrorCode alert];
             }
+            [self stopLoadingView];
         }
     } dataArr:imageDatas dic:dic noNetWork:^{
         [ErrorCode alert];
+        [self stopLoadingView];
     }];
 }
 
