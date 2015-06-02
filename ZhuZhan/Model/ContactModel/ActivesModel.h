@@ -27,6 +27,8 @@
 @property (nonatomic, copy) NSString *a_imageHeight;
 //动态的评论
 @property (nonatomic, strong) NSMutableArray *a_commentsArr;
+//动态评论的数量
+@property (nonatomic) NSInteger a_commentNum;
 //动态产生对象的id 如项目被评论 这个项目的id
 @property (nonatomic, copy) NSString *a_entityId;
 

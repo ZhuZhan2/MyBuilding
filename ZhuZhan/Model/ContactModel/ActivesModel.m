@@ -69,6 +69,7 @@
             [self.a_commentsArr addObject:model];
         }
     }
+    self.a_commentNum = [dict[@"commentNum"] integerValue];
     
     if([self.a_sourceCode isEqualToString:@"00"] && [self.a_operationCode isEqualToString:@"00"]){
         //个人 发布了动态

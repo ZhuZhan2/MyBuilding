@@ -8,15 +8,15 @@
 
 #import "CommentView.h"
 #import "RKViewFactory.h"
-
+#import "RKShadowView.h"
 #define kCommentContentWidth 300
 #define kCommentContentHeight 55
-#define kCommentContentFont [UIFont systemFontOfSize:14]
+#define kCommentContentFont [UIFont systemFontOfSize:16]
 
 @implementation CommentView
 + (CGFloat)carculateHeightWithContent:(NSString *)content{
     CGFloat height = [RKViewFactory autoLabelWithMaxWidth:kCommentContentWidth maxHeight:kCommentContentHeight font:kCommentContentFont content:content];
-    return 46+height+10;
+    return 50+height+10;
 }
 
 + (CommentView *)commentView{
@@ -34,40 +34,53 @@
     return self;
 }
 
-- (void)setImageUrl:(NSString *)imageUrl title:(NSString *)title actionTime:(NSString *)actionTime content:(NSString *)content{
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
+- (void)setImageUrl:(NSString *)imageUrl title:(NSString *)title actionTime:(NSString *)actionTime content:(NSString *)content needTopLine:(BOOL)needTopLine needBottomLine:(BOOL)needBottomLine{
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:@"默认图_人脉_评论头像"]];
     self.titleLabel.text = title;
     self.actionTimeLabel.text = actionTime;
     self.contentLabel.text = content;
     [RKViewFactory autoLabel:self.contentLabel maxWidth:kCommentContentWidth maxHeight:kCommentContentHeight];
     
     CGRect frame = self.userImageView.frame;
-    frame.origin = CGPointMake(10, 0);
+    frame.origin = CGPointMake(10, 10);
     self.userImageView.frame = frame;
     
     frame = self.titleLabel.frame;
-    frame.origin = CGPointMake(60, 2);
+    frame.origin = CGPointMake(55, 8);
     self.titleLabel.frame = frame;
     
     frame = self.actionTimeLabel.frame;
-    frame.origin = CGPointMake(60, 22);
+    frame.origin = CGPointMake(55, 28);
     self.actionTimeLabel.frame = frame;
     
     frame = self.contentLabel.frame;
-    frame.origin = CGPointMake(10, 46);
+    frame.origin = CGPointMake(10, 50);
     self.contentLabel.frame = frame;
     
     frame = self.frame;
     frame.size.height = CGRectGetMaxY(self.contentLabel.frame)+10;
     self.frame = frame;
+    
+    if (needTopLine) {
+        UIView* topLine = [RKShadowView seperatorLine];
+        [self addSubview:topLine];
+    }
+    
+    if (needBottomLine) {
+        UIView* bottomLine = [RKShadowView seperatorLine];
+        [self addSubview:bottomLine];
+        
+        frame = bottomLine.frame;
+        frame.origin.y = CGRectGetHeight(self.frame)-1;
+        bottomLine.frame = frame;
+    }
 }
 
 - (UIImageView *)userImageView{
     if (!_userImageView) {
-        _userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-        _userImageView.layer.cornerRadius = 20;
+        _userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+        _userImageView.layer.cornerRadius = 15;
         _userImageView.layer.masksToBounds = YES;
-        _userImageView.backgroundColor = [UIColor greenColor];
     }
     return _userImageView;
 }
@@ -94,9 +107,8 @@
 - (UILabel *)contentLabel{
     if (!_contentLabel) {
         _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kCommentContentWidth, 0)];
-        _contentLabel.textColor = RGBCOLOR(51, 51, 51);
+        _contentLabel.textColor = RGBCOLOR(97, 97, 97);
         _contentLabel.font = kCommentContentFont;
-        _contentLabel.backgroundColor = [UIColor yellowColor];
     }
     return _contentLabel;
 }

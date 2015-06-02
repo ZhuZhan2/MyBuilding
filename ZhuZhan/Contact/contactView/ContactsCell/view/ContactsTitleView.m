@@ -1,36 +1,41 @@
 //
-//  ContactsActiveTitleView.m
+//  ContactsTitleView.m
 //  ZhuZhan
 //
-//  Created by 孙元侃 on 15/6/1.
+//  Created by 孙元侃 on 15/6/2.
 //
 //
 
-#import "ContactsActiveTitleView.h"
-@implementation ContactsActiveTitleView
+#import "ContactsTitleView.h"
+#import "RKViewFactory.h"
+@implementation ContactsTitleView
 + (CGFloat)titleViewHeight{
     return 40;
 }
 
-+ (ContactsActiveTitleView *)titleView{
-    return [[ContactsActiveTitleView alloc] init];
++ (ContactsTitleView *)titleView{
+    return [[ContactsTitleView alloc] init];
 }
 
 - (instancetype)init{
     if (self = [super init]) {
-        self.frame = CGRectMake(0, 0, kScreenWidth, [ContactsActiveTitleView titleViewHeight]);
+        self.frame = CGRectMake(0, 0, kScreenWidth, [ContactsTitleView titleViewHeight]);
         [self addSubview:self.userImageView];
         [self addSubview:self.titleLabel];
-        [self addSubview:self.assistBtn];
+        [self addSubview:self.actionNameLabel];
         [self addSubview:self.actionTimeLabel];
     }
     return self;
 }
 
-- (void)setImageUrl:(NSString *)imageUrl title:(NSString *)title actionTime:(NSString *)actionTime{
+- (void)setImageUrl:(NSString*)imageUrl title:(NSString*)title actionName:(NSString*)actionName actionTime:(NSString*)actionTime{
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:@"默认图_人脉_卡片头像"]];
     self.titleLabel.text = title;
+    self.actionNameLabel.text = actionName;
     self.actionTimeLabel.text = actionTime;
+    
+    [RKViewFactory autoLabel:self.actionNameLabel];
+    
     
     CGRect frame = self.userImageView.frame;
     frame.origin = CGPointMake(10, 0);
@@ -40,13 +45,13 @@
     frame.origin = CGPointMake(60, 2);
     self.titleLabel.frame = frame;
     
-    frame = self.actionTimeLabel.frame;
+    frame = self.actionNameLabel.frame;
     frame.origin = CGPointMake(60, 22);
-    self.actionTimeLabel.frame = frame;
+    self.actionNameLabel.frame = frame;
     
-    frame = self.assistBtn.frame;
-    frame.origin = CGPointMake(225, 5);
-    self.assistBtn.frame = frame;
+    frame = self.actionTimeLabel.frame;
+    frame.origin = CGPointMake(CGRectGetMaxX(self.actionNameLabel.frame)+5, 22);
+    self.actionTimeLabel.frame = frame;
 }
 
 - (UIImageView *)userImageView{
@@ -62,24 +67,23 @@
     return _userImageView;
 }
 
-- (UIButton *)assistBtn{
-    if (!_assistBtn) {
-        _assistBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 27)];
-        [_assistBtn setImage:[GetImagePath getImagePath:@"人脉_写评论ios"] forState:UIControlStateNormal];
-        [_assistBtn addTarget:self action:@selector(assistBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _assistBtn;
-}
-
 - (UILabel *)titleLabel{
     if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 20)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 20)];
         _titleLabel.textColor = RGBCOLOR(51, 51, 51);
         _titleLabel.font = [UIFont systemFontOfSize:16];
     }
     return _titleLabel;
 }
 
+- (UILabel *)actionNameLabel{
+    if (!_actionNameLabel) {
+        _actionNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 15)];
+        _actionNameLabel.textColor = BlueColor;
+        _actionNameLabel.font = [UIFont systemFontOfSize:15];
+    }
+    return _actionNameLabel;
+}
 
 - (UILabel *)actionTimeLabel{
     if (!_actionTimeLabel) {
@@ -93,12 +97,6 @@
 - (void)userImageClicked{
     if ([self.delegate respondsToSelector:@selector(titleViewUserImageClicked)]) {
         [self.delegate titleViewUserImageClicked];
-    }
-}
-
-- (void)assistBtnClicked{
-    if ([self.delegate respondsToSelector:@selector(titleViewAssistBtnClicked)]) {
-        [self.delegate titleViewAssistBtnClicked];
     }
 }
 @end

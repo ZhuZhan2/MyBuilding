@@ -158,7 +158,7 @@
         cell = [[ContactsActiveCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     ActivesModel* dataModel = self.modelsArr[indexPath.row];
-    cell.model = [self cellModelWithDataModel:dataModel indexPath:indexPath];
+    [cell setModel:[self cellModelWithDataModel:dataModel indexPath:indexPath] isActive:NO];
     cell.delegate = self;
     cell.selectionStyle = NO;
     return cell;
@@ -184,6 +184,7 @@
     model.content = dataModel.a_content;
     model.mainImageUrl = dataModel.a_imageUrl;
     
+    model.commentNumber = dataModel.a_commentNum;
     [dataModel.a_commentsArr enumerateObjectsUsingBlock:^(ContactCommentModel* commentDataModel, NSUInteger idx, BOOL *stop) {
         CommentModel* commentCellModel = [[CommentModel alloc] init];
         commentCellModel.userImageUrl = commentDataModel.a_avatarUrl;

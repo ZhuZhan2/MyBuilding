@@ -103,11 +103,32 @@
 
 /**********************************************************
  函数描述：计算label所需要的高度
- 输入参数：最大宽度，最大高度，label的字体
+ 输入参数：最大宽度，最大高度，label的字体,字符串内容
  返回值：需要的高度
  **********************************************************/
 + (CGFloat)autoLabelWithMaxWidth:(CGFloat)maxWidth maxHeight:(CGFloat)maxHeight font:(UIFont*)font content:(NSString*)content{
     CGFloat height = [self autoLabelWithMaxWidth:maxWidth font:font content:content];
     return height>maxHeight?maxHeight:height;
+}
+
+/**********************************************************
+ 函数描述：计算label所需要的宽度
+ 输入参数：label的字体,字符串内容
+ 返回值：需要的宽度
+ **********************************************************/
++ (CGFloat)autoLabelWithFont:(UIFont*)font content:(NSString*)content{
+    CGFloat width = [content boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 40) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size.width;
+    return width;
+}
+
+/**********************************************************
+ 函数描述：计算label所需要的宽度
+ 输入参数：label
+ **********************************************************/
++ (void)autoLabel:(UILabel*)label{
+    CGFloat width = [self autoLabelWithFont:label.font content:label.text];
+    CGRect frame = label.frame;
+    frame.size.width = width;
+    label.frame = frame;
 }
 @end
