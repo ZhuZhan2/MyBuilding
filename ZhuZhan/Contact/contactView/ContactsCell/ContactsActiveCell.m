@@ -10,7 +10,7 @@
 #import "ContactsActiveTitleView.h"
 #import "RKViewFactory.h"
 #import "ManyCommentsView.h"
-@interface ContactsActiveCell ()
+@interface ContactsActiveCell ()<ContactsActiveTitleViewDelegate>
 //头顶上的用户信息及评论
 @property (nonatomic, strong)ContactsActiveTitleView* titleView;
 
@@ -100,6 +100,7 @@
 - (ContactsActiveTitleView *)titleView{
     if (!_titleView) {
         _titleView = [ContactsActiveTitleView titleView];
+        _titleView.delegate = self;
     }
     return _titleView;
 }
@@ -127,5 +128,17 @@
         _commentView.backgroundColor = [UIColor grayColor];
     }
     return _commentView;
+}
+
+- (void)titleViewUserImageClicked{
+    if ([self.delegate respondsToSelector:@selector(contactsUserImageClickedWithIndexPath:)]) {
+        [self.delegate contactsUserImageClickedWithIndexPath:self.model.indexPath];
+    }
+}
+
+- (void)titleViewAssistBtnClicked{
+    if ([self.delegate respondsToSelector:@selector(contactsCommentBtnClickedWithIndexPath:)]) {
+        [self.delegate contactsCommentBtnClickedWithIndexPath:self.model.indexPath];
+    }
 }
 @end

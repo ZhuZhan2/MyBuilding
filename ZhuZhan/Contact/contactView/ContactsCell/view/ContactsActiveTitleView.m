@@ -55,6 +55,10 @@
         _userImageView.layer.cornerRadius = 20;
         _userImageView.layer.masksToBounds = YES;
         _userImageView.backgroundColor = [UIColor greenColor];
+        
+        _userImageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userImageClicked)];
+        [_userImageView addGestureRecognizer:tap];
     }
     return _userImageView;
 }
@@ -63,6 +67,7 @@
     if (!_assistBtn) {
         _assistBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 27)];
         [_assistBtn setImage:[GetImagePath getImagePath:@"人脉_写评论ios"] forState:UIControlStateNormal];
+        [_assistBtn addTarget:self action:@selector(assistBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     }
     return _assistBtn;
 }
@@ -83,5 +88,17 @@
         _actionTimeLabel.font = [UIFont systemFontOfSize:14];
     }
     return _actionTimeLabel;
+}
+
+- (void)userImageClicked{
+    if ([self.delegate respondsToSelector:@selector(titleViewUserImageClicked)]) {
+        [self.delegate titleViewUserImageClicked];
+    }
+}
+
+- (void)assistBtnClicked{
+    if ([self.delegate respondsToSelector:@selector(titleViewAssistBtnClicked)]) {
+        [self.delegate titleViewAssistBtnClicked];
+    }
 }
 @end

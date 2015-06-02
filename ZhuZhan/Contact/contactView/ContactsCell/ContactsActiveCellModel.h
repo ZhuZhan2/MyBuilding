@@ -15,6 +15,7 @@
 @property (nonatomic, copy)NSString* content;
 @property (nonatomic, copy)NSString* mainImageUrl;
 
+@property (nonatomic, strong)NSIndexPath* indexPath;
 
 @property (nonatomic)NSInteger commentNumber;
 @property (nonatomic, strong)NSMutableArray* commentArr;

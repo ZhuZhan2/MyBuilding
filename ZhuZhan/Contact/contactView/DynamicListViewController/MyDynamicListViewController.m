@@ -21,7 +21,9 @@
 #import "ContactsActiveCell.h"
 #import "ActivesModel.h"
 #import "ContactCommentModel.h"
-@interface MyDynamicListViewController ()<XHPathCoverDelegate,UITableViewDelegate,UITableViewDataSource,LoginViewDelegate>
+#import "MyTableView.h"
+
+@interface MyDynamicListViewController ()<XHPathCoverDelegate,UITableViewDelegate,UITableViewDataSource,LoginViewDelegate,ContactsActiveCellDelegate>
 @property(nonatomic,strong)XHPathCover *pathCover;
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)LoadingView *loadingView;
@@ -144,7 +146,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     ActivesModel* dataModel = self.modelsArr[indexPath.row];
-    ContactsActiveCellModel* cellModel = [self cellModelWithDataModel:dataModel];
+    ContactsActiveCellModel* cellModel = [self cellModelWithDataModel:dataModel indexPath:indexPath];
     return [ContactsActiveCell carculateCellHeightWithModel:cellModel];
 }
 
@@ -156,12 +158,21 @@
         cell = [[ContactsActiveCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     ActivesModel* dataModel = self.modelsArr[indexPath.row];
-    cell.model = [self cellModelWithDataModel:dataModel];
+    cell.model = [self cellModelWithDataModel:dataModel indexPath:indexPath];
+    cell.delegate = self;
     cell.selectionStyle = NO;
     return cell;
 }
 
-- (ContactsActiveCellModel*)cellModelWithDataModel:(ActivesModel*)dataModel{
+- (void)contactsUserImageClickedWithIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"userImageIndexPathRow=%d",(int)indexPath.row);
+}
+
+- (void)contactsCommentBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"commentIndexPathRow=%d",(int)indexPath.row);
+}
+
+- (ContactsActiveCellModel*)cellModelWithDataModel:(ActivesModel*)dataModel indexPath:(NSIndexPath*)indexPath{
     ContactsActiveCellModel* model = [[ContactsActiveCellModel alloc] init];
     model.userImageUrl = dataModel.a_dynamicAvatarUrl;
     model.title = dataModel.a_dynamicLoginName;
@@ -186,6 +197,8 @@
         
         [model.commentArr addObject:commentCellModel];
     }];
+    
+    model.indexPath = indexPath;
     
     return model;
 }

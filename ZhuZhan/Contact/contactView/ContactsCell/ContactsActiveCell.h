@@ -9,7 +9,13 @@
 #import "BaseTableViewCell.h"
 #import "ContactsActiveCellModel.h"
 
+@protocol ContactsActiveCellDelegate <NSObject>
+- (void)contactsUserImageClickedWithIndexPath:(NSIndexPath*)indexPath;
+- (void)contactsCommentBtnClickedWithIndexPath:(NSIndexPath*)indexPath;
+@end
+
 @interface ContactsActiveCell :BaseTableViewCell
+@property (nonatomic, weak)id<ContactsActiveCellDelegate> delegate;
 @property (nonatomic, strong)ContactsActiveCellModel* model;
 + (CGFloat)carculateCellHeightWithModel:(ContactsActiveCellModel *)cellModel;
 @end
