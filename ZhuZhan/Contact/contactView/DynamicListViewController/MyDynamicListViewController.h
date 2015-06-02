@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MyDynamicListViewController : UIViewController
--(instancetype)initNav:(UINavigationController *)nav;
+#import "ShowViewController.h"
+@interface MyDynamicListViewController : UIViewController{
+    ShowViewController *showVC;
+}
+@property (nonatomic, strong)UIViewController* nowViewController;
 @end

@@ -28,10 +28,11 @@
     return self;
 }
 
-- (void)setImageUrl:(NSString*)imageUrl title:(NSString*)title actionName:(NSString*)actionName actionTime:(NSString*)actionTime{
+- (void)setImageUrl:(NSString*)imageUrl title:(NSString*)title actionName:(NSString*)actionName actionTime:(NSString*)actionTime actionNameColor:(UIColor*)actionNameColor{
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:@"默认图_人脉_卡片头像"]];
     self.titleLabel.text = title;
     self.actionNameLabel.text = actionName;
+    self.actionNameLabel.textColor = actionNameColor;
     self.actionTimeLabel.text = actionTime;
     
     [RKViewFactory autoLabel:self.actionNameLabel];
@@ -79,7 +80,6 @@
 - (UILabel *)actionNameLabel{
     if (!_actionNameLabel) {
         _actionNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 15)];
-        _actionNameLabel.textColor = BlueColor;
         _actionNameLabel.font = [UIFont systemFontOfSize:15];
     }
     return _actionNameLabel;
