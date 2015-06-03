@@ -88,9 +88,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover hidewaterDropRefresh];
     [_pathCover setNameFrame:CGRectMake(0, 0, 320, 20) font:[UIFont systemFontOfSize:14]];
     [_pathCover setHeadImageFrame:CGRectMake(125, -70, 70, 70)];
-    
-    [_pathCover.headImage.layer setMasksToBounds:YES];
-    [_pathCover.headImage.layer setCornerRadius:35];
+    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+        [_pathCover.headImage.layer setMasksToBounds:YES];
+        [_pathCover.headImage.layer setCornerRadius:5];
+    }else{
+        [_pathCover.headImage.layer setMasksToBounds:YES];
+        [_pathCover.headImage.layer setCornerRadius:23];
+    }
     [_pathCover setFootViewFrame:CGRectMake(0, -120, 320, 320)];
 
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
@@ -388,7 +392,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithPersonalCenterModel:model];
         vc.type = @"03";
         [self.navigationController pushViewController:vc animated:YES];
-    }else{
+    }else if([model.a_category isEqualToString:@"product"]){
         ProductModel *productModel = [[ProductModel alloc] init];
         productModel.a_id = model.a_entityId;
         productModel.a_name = model.a_entityName;

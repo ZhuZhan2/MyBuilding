@@ -89,6 +89,13 @@
         _pathCover.delegate = self;
         [_pathCover setHeadTaget];
         [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"匿名用户", XHUserNameKey,@"想要使用更多功能请登录",XHBirthdayKey, nil]];
+        if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+            [_pathCover.headImage.layer setMasksToBounds:YES];
+            [_pathCover.headImage.layer setCornerRadius:3];
+        }else{
+            [_pathCover.headImage.layer setMasksToBounds:YES];
+            [_pathCover.headImage.layer setCornerRadius:23];
+        }
     }
     return _pathCover;
 }
@@ -133,7 +140,7 @@
 
 -(UITableView *)tableView{
     if(!_tableView){
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320,kScreenHeight-160)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320,kScreenHeight-159)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = RGBCOLOR(242, 242, 242);

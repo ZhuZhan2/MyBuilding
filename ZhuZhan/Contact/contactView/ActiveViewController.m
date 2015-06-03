@@ -131,7 +131,7 @@
         self.allDynamicListView.nowViewController = self;
         self.allDynamicListView.view.center = CGPointMake(160, kScreenHeight/2+64+46);
     }
-    [self.view addSubview:self.allDynamicListView.view];
+    [self.view insertSubview:self.allDynamicListView.view atIndex:0];
 }
 
 -(void)addMyDynamicListView{
@@ -140,7 +140,7 @@
         self.myDynamicListView.nowViewController = self;
         self.myDynamicListView.view.center = CGPointMake(160, kScreenHeight/2+64+46);
     }
-    [self.view addSubview:self.myDynamicListView.view];
+    [self.view insertSubview:self.myDynamicListView.view atIndex:0];
 }
 
 -(void)loginCompleteWithDelayBlock:(void (^)())block{

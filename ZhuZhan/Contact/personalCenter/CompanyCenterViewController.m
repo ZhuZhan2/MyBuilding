@@ -66,7 +66,7 @@
     [_pathCover setHeadImageFrame:CGRectMake(125, -40, 70, 70)];
     [_pathCover setFootViewFrame:CGRectMake(0, -190, 320, 320)];
     [_pathCover.headImage.layer setMasksToBounds:YES];
-    [_pathCover.headImage.layer setCornerRadius:35];
+    [_pathCover.headImage.layer setCornerRadius:5];
     self.tableView.tableHeaderView = self.pathCover;
     
     UIButton *tempBtn =[UIButton buttonWithType:UIButtonTypeCustom];

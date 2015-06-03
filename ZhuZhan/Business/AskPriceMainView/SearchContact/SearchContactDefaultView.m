@@ -10,6 +10,7 @@
 #import "SearchContactTableViewCell.h"
 #import "AskPriceApi.h"
 #import "UserOrCompanyModel.h"
+#import "LoginSqlite.h"
 
 @interface SearchContactDefaultView ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
@@ -110,15 +111,23 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+        return 1;
+    }else{
+        return 2;
+    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 //    AddressBookModel *model = self.groupArr[section];
-    if(section == 0){
-        return [self sectionSelectedArrayContainsSection:section]?0:self.friendArr.count;
+    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+        return [self sectionSelectedArrayContainsSection:section]?0:self.companyArr.count;;
     }else{
-        return [self sectionSelectedArrayContainsSection:section]?0:self.companyArr.count;
+        if(section == 0){
+            return [self sectionSelectedArrayContainsSection:section]?0:self.friendArr.count;
+        }else{
+            return [self sectionSelectedArrayContainsSection:section]?0:self.companyArr.count;
+        }
     }
 }
 
@@ -133,11 +142,19 @@
     view.backgroundColor=[UIColor whiteColor];
     
     NSString* text;
-    if(section == 0){
-        text=@"通讯录联系人";
+    
+    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+        if(section == 0){
+            text=@"关注的企业";
+        }
     }else{
-        text=@"关注的企业";
+        if(section == 0){
+            text=@"通讯录联系人";
+        }else{
+            text=@"关注的企业";
+        }
     }
+    
     UIFont* textFont=[UIFont systemFontOfSize:14];
     CGFloat labelWidth=[text boundingRectWithSize:CGSizeMake(9999, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:textFont} context:nil].size.width;
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(11, 0, labelWidth, sectionHeight)];
@@ -172,12 +189,17 @@
         cell=[[SearchContactTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if(indexPath.section == 0){
-        UserOrCompanyModel *model = self.friendArr[indexPath.row];
-        cell.model = model;
-    }else{
+    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
         UserOrCompanyModel *model = self.companyArr[indexPath.row];
         cell.model = model;
+    }else{
+        if(indexPath.section == 0){
+            UserOrCompanyModel *model = self.friendArr[indexPath.row];
+            cell.model = model;
+        }else{
+            UserOrCompanyModel *model = self.companyArr[indexPath.row];
+            cell.model = model;
+        }
     }
     return cell;
 }

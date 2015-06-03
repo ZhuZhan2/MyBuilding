@@ -37,7 +37,7 @@
         _titleLabel.textColor = BlueColor;
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.font = [UIFont systemFontOfSize:16];
-        _titleLabel.text = @"询价说明";
+        _titleLabel.text = @"需求描述";
     }
     return _titleLabel;
 }

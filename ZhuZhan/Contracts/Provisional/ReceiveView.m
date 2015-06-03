@@ -92,7 +92,7 @@
         _textField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 0)];
         _textField.leftView.userInteractionEnabled = NO;
         _textField.leftViewMode = UITextFieldViewModeAlways;
-        _textField.placeholder = @"可以输入个人/公司名称";
+        _textField.placeholder = @"可以输入个人/企业名称";
         _textField.font = [UIFont systemFontOfSize:15];
         _textField.returnKeyType = UIReturnKeyDone;
         _textField.delegate = self;

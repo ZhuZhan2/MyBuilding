@@ -19,7 +19,7 @@
 }
 
 +(void)alert{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"服务器或网络连接错误" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"网络超时，请稍后再试！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     [alertView show];
 }
 @end

@@ -52,7 +52,7 @@
 
 -(UITableView *)tableView{
     if(!_tableView){
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320,kScreenHeight-160)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320,kScreenHeight-159)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = RGBCOLOR(242, 242, 242);
