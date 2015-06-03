@@ -51,7 +51,7 @@
     if (!_seperatorLine) {
         _seperatorLine=[RKShadowView seperatorLineInThemeView];
         CGRect frame=_seperatorLine.frame;
-        frame.origin.y=CGRectGetMaxY(self.frame);
+        frame.origin.y=CGRectGetHeight(self.frame);
         _seperatorLine.frame=frame;
     }
     return _seperatorLine;
@@ -97,20 +97,23 @@
     RKStageAndNumberView* stageLabel=self.numbers.count?[RKStageAndNumberView stageAndNumberViewWithStage:text number:[self.numbers[sequence] integerValue]]:[RKStageAndNumberView stageAndNumberViewWithStage:text];
     stageLabel.tag=sequence;
         
-    UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(stageLabelClicked:)];
-    [stageLabel addGestureRecognizer:tap];
+//    UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(stageLabelClicked:)];
+//    [stageLabel addGestureRecognizer:tap];
     return stageLabel;
 }
 
 -(void)stageLabelClicked:(UIGestureRecognizer*)gesture{
-    BOOL canChange = YES;
-    if ([self.delegate respondsToSelector:@selector(shouldChangeStageToNumber:)]) {
-        canChange = [self.delegate shouldChangeStageToNumber:gesture.view.tag];
-    }
-    if (canChange) [self stageLabelClickedWithSequence:gesture.view.tag];
+    [self stageLabelClickedWithSequence:gesture.view.tag];
 }
 
 -(void)stageLabelClickedWithSequence:(NSInteger)sequence{
+    BOOL canChange = YES;
+    if ([self.delegate respondsToSelector:@selector(shouldChangeStageToNumber:)]) {
+        canChange = [self.delegate shouldChangeStageToNumber:sequence];
+    }
+    if (!canChange) return;
+
+    
     self.nowStageNumber=sequence;
     
     [self.labels enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -152,5 +155,11 @@
         _highlightColor = BlueColor;
     }
     return _highlightColor;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    UITouch* touch = [touches anyObject] ;
+    CGPoint point = [touch locationInView:self];
+    [self stageLabelClickedWithSequence:point.x / (kChooseViewWidth/self.stages.count)];
 }
 @end
