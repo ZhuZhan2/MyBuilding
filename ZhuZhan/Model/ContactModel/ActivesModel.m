@@ -30,15 +30,17 @@
     self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageWidth"]]];
     self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"imageHeight"]]];
     NSString *height = nil;
-    if([self.a_imageWidth intValue]>310){
-        height = [NSString stringWithFormat:@"%d",(int)([self.a_imageHeight floatValue]/([self.a_imageWidth floatValue]/310))];
-        self.a_imageWidth = @"310";
+    if([self.a_imageWidth intValue]>320){
+        height = [NSString stringWithFormat:@"%d",(int)([self.a_imageHeight floatValue]/([self.a_imageWidth floatValue]/320))];
+        self.a_imageWidth = @"320";
         self.a_imageHeight = height;
     }
     if(![[ProjectStage ProjectStrStage:dict[@"dynamicImagesId"]] isEqualToString:@""]){
-        self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"dynamicImagesId"], @"dynamic", @"620", @"", @"")];
+        self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"dynamicImagesId"], @"dynamic", @"640", @"320", @"1")];
+        self.a_bigImageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"dynamicImagesId"], @"dynamic", @"640", @"", @"")];
     }else{
         self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"dynamicImagesId"]];
+        self.a_bigImageUrl = [ProjectStage ProjectStrStage:dict[@"dynamicImagesId"]];
     }
     
     self.a_entityId = [ProjectStage ProjectStrStage:dict[@"operationId"]];
@@ -59,9 +61,11 @@
     self.a_productImageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"operationData"][@"imageWidth"]]];
     self.a_productImageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"operationData"][@"imageHeight"]]];
     if(![[ProjectStage ProjectStrStage:dict[@"operationData"][@"productImagesId"]] isEqualToString:@""]){
-        self.a_productImage = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"operationData"][@"productImagesId"], @"product", @"620", @"", @"")];
+        self.a_productImage = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"operationData"][@"productImagesId"], @"product", @"640", @"320", @"1")];
+        self.a_bigProductImage = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"operationData"][@"productImagesId"], @"product", @"640", @"", @"")];
     }else{
         self.a_productImage = [ProjectStage ProjectStrStage:dict[@"operationData"][@"productImagesId"]];
+        self.a_bigProductImage = [ProjectStage ProjectStrStage:dict[@"operationData"][@"productImagesId"]];
     }
     
     self.a_commentsArr = [[NSMutableArray alloc] init];

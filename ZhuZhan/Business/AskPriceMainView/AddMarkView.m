@@ -57,11 +57,11 @@
 
 -(UILabel *)placeLabel{
     if(!_placeLabel){
-        _placeLabel = [[UILabel alloc] initWithFrame:CGRectMake(26, 51, 280, 40)];
+        _placeLabel = [[UILabel alloc] initWithFrame:CGRectMake(26, 51, 280, 80)];
         _placeLabel.font = [UIFont systemFontOfSize:15];
         _placeLabel.textColor = AllNoDataColor;
-        _placeLabel.numberOfLines = 2;
-        _placeLabel.text = @"请输入询价说明 (限500字并且不能含有表情)";
+        _placeLabel.numberOfLines = 4;
+        _placeLabel.text = @"您可以输入产品型号或者其他需求，以便供应方做出回复。例如：螺纹钢三级抗震螺纹钢 HRB400E 25*12 敬业松江库不含税";
     }
     return _placeLabel;
 }

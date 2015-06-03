@@ -324,8 +324,8 @@
         productModel.a_id = model.a_entityId;
         productModel.a_name = model.a_productName;
         productModel.a_content = model.a_content;
-        productModel.a_imageUrl = model.a_productImage;
-        productModel.a_originImageUrl = model.a_productImage;
+        productModel.a_imageUrl = model.a_bigProductImage;
+        productModel.a_originImageUrl = model.a_bigProductImage;
         productModel.a_createdBy = model.a_dynamicLoginId;
         productModel.a_imageWidth = model.a_productImageWidth;
         productModel.a_imageHeight = model.a_productImageHeight;
