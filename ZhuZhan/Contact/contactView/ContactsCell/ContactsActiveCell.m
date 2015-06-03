@@ -102,9 +102,9 @@
     _model = model;
     
     if (isActive) {
-        [self.activeTitleView setImageUrl:model.userImageUrl title:model.title actionTime:model.actionTime];
+        [self.activeTitleView setImageUrl:model.userImageUrl title:model.title actionTime:model.actionTime needRound:model.needRound];
     }else{
-        [self.titleView setImageUrl:model.userImageUrl title:model.title actionName:model.actionName actionTime:model.actionTime actionNameColor:model.actionNameColor];
+        [self.titleView setImageUrl:model.userImageUrl title:model.title actionName:model.actionName actionTime:model.actionTime actionNameColor:model.actionNameColor needRound:model.needRound];
     }
     self.activeTitleView.hidden = !isActive;
     self.titleView.hidden = isActive;

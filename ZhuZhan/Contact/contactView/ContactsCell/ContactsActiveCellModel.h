@@ -11,6 +11,7 @@
 #import "ActivesModel.h"
 @interface ContactsActiveCellModel : BaseTableViewCellModel
 @property (nonatomic, copy)NSString* userImageUrl;
+@property (nonatomic)BOOL needRound;
 @property (nonatomic, copy)NSString* title;
 @property (nonatomic, copy)NSString* actionName;
 @property (nonatomic, strong)UIColor* actionNameColor;

@@ -8,5 +8,5 @@
 
 #import <UIKit/UIKit.h>
 @interface ProductCommentView : UIView
--(instancetype)initWithCommentImageUrl:(NSString*)userImageUrl userName:(NSString*)userName commentContent:(NSString*)commentContent creatBy:(NSString *)creatBy;
+-(instancetype)initWithCommentImageUrl:(NSString*)userImageUrl userName:(NSString*)userName commentContent:(NSString*)commentContent creatBy:(NSString *)creatBy needRound:(BOOL)needRound;
 @end

@@ -20,7 +20,7 @@
 @property (nonatomic, weak)id<ContactsTitleViewDelegate> delegate;
 
 + (ContactsTitleView*)titleView;
-- (void)setImageUrl:(NSString*)imageUrl title:(NSString*)title actionName:(NSString*)actionName actionTime:(NSString*)actionTime actionNameColor:(UIColor*)actionNameColor;
+- (void)setImageUrl:(NSString*)imageUrl title:(NSString*)title actionName:(NSString*)actionName actionTime:(NSString*)actionTime actionNameColor:(UIColor*)actionNameColor needRound:(BOOL)needRound;
 
 + (CGFloat)titleViewHeight;
 @end

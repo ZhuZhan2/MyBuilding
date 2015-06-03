@@ -59,10 +59,11 @@
     if (!_headBtn) {
         //[GetImagePath getImagePath:@"未设置"]
         _headBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-        [_headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:self.imageUrl]  forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"未设置"]];
+        [_headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:self.imageUrl]  forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"默认图_用户头像_群组成员"]];
         [_headBtn addTarget:self action:@selector(headAction) forControlEvents:UIControlEventTouchUpInside];
-#warning  图片名为"未设置"和"加载中"为对应状态的图,暂时不作区分,等接口好了再调整
         _headBtn.frame=CGRectMake(0, 0, kImageWidth, kImageWidth);
+        _headBtn.layer.cornerRadius = kImageWidth/2;
+        _headBtn.layer.masksToBounds = YES;
     }
     return _headBtn;
 }

@@ -34,8 +34,9 @@
     return self;
 }
 
-- (void)setImageUrl:(NSString *)imageUrl title:(NSString *)title actionTime:(NSString *)actionTime content:(NSString *)content needTopLine:(BOOL)needTopLine needBottomLine:(BOOL)needBottomLine{
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:@"默认图_人脉_评论头像"]];
+- (void)setImageUrl:(NSString *)imageUrl title:(NSString *)title actionTime:(NSString *)actionTime content:(NSString *)content needTopLine:(BOOL)needTopLine needBottomLine:(BOOL)needBottomLine needRound:(BOOL)needRound{
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:needRound?@"默认图_人脉_评论头像":@"默认图_公司头像_评论头像"]];
+    self.userImageView.layer.cornerRadius = needRound?15:3;
     self.titleLabel.text = title;
     self.actionTimeLabel.text = actionTime;
     self.contentLabel.text = content;
@@ -79,7 +80,6 @@
 - (UIImageView *)userImageView{
     if (!_userImageView) {
         _userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-        _userImageView.layer.cornerRadius = 15;
         _userImageView.layer.masksToBounds = YES;
     }
     return _userImageView;

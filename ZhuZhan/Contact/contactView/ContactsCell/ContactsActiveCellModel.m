@@ -56,6 +56,7 @@
     
     ContactsActiveCellModel* model = [[ContactsActiveCellModel alloc] init];
     model.userImageUrl = dataModel.a_dynamicAvatarUrl;
+    model.needRound = dataModel.a_isPersonal;
     model.title = dataModel.a_dynamicLoginName;
     
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
@@ -74,6 +75,7 @@
         [dataModel.a_commentsArr enumerateObjectsUsingBlock:^(ContactCommentModel* commentDataModel, NSUInteger idx, BOOL *stop) {
             CommentModel* commentCellModel = [[CommentModel alloc] init];
             commentCellModel.userImageUrl = commentDataModel.a_avatarUrl;
+            commentCellModel.needRound = commentDataModel.a_isPersonal;
             commentCellModel.userName = commentDataModel.a_userName;
             
             NSDateFormatter* tmpDateFormatter = [[NSDateFormatter alloc] init];

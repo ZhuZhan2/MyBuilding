@@ -53,9 +53,6 @@
     [self.commentNumberView setNumber:commentNumber];
     
     self.commentArr = commentArr;
-    
-
-    
     return 0;
 }
 
@@ -70,7 +67,7 @@
     __block CGFloat height = CGRectGetMaxY(self.commentNumberView.frame);
     [commentArr enumerateObjectsUsingBlock:^(CommentModel* commentModel, NSUInteger idx, BOOL *stop) {
         CommentView* commentView = [CommentView commentView];
-        [commentView setImageUrl:commentModel.userImageUrl title:commentModel.userName actionTime:commentModel.actionTime content:commentModel.content needTopLine:idx needBottomLine:idx==2];
+        [commentView setImageUrl:commentModel.userImageUrl title:commentModel.userName actionTime:commentModel.actionTime content:commentModel.content needTopLine:idx needBottomLine:idx==2 needRound:commentModel.needRound];
         
         CGRect frame = commentView.frame;
         frame.origin = CGPointMake(0, height);

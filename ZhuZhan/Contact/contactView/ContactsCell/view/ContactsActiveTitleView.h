@@ -21,7 +21,7 @@
 @property (nonatomic, weak)id<ContactsActiveTitleViewDelegate> delegate;
 
 + (ContactsActiveTitleView*)titleView;
-- (void)setImageUrl:(NSString*)imageUrl title:(NSString*)title actionTime:(NSString*)actionTime;
+- (void)setImageUrl:(NSString*)imageUrl title:(NSString*)title actionTime:(NSString*)actionTime needRound:(BOOL)needRound;
 
 + (CGFloat)titleViewHeight;
 @end

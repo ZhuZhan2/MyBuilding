@@ -17,5 +17,5 @@
 + (CGFloat)carculateHeightWithContent:(NSString*)content;
 
 + (CommentView*)commentView;
-- (void)setImageUrl:(NSString *)imageUrl title:(NSString *)title actionTime:(NSString *)actionTime content:(NSString *)content needTopLine:(BOOL)needTopLine needBottomLine:(BOOL)needBottomLine;
+- (void)setImageUrl:(NSString *)imageUrl title:(NSString *)title actionTime:(NSString *)actionTime content:(NSString *)content needTopLine:(BOOL)needTopLine needBottomLine:(BOOL)needBottomLine needRound:(BOOL)needRound;
 @end

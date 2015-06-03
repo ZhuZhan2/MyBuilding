@@ -24,8 +24,10 @@
     }
     if([dict[@"userType"] isEqualToString:@"01"]){
         self.a_userType = @"Personal";
+        self.a_isPersonal = YES;
     }else{
         self.a_userType = @"Company";
+        self.a_isPersonal = NO;
     }
 }
 

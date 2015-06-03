@@ -16,19 +16,19 @@
 
 @implementation ProductCommentView
 
--(instancetype)initWithCommentImageUrl:(NSString*)userImageUrl userName:(NSString*)userName commentContent:(NSString*)commentContent creatBy:(NSString *)creatBy{
+-(instancetype)initWithCommentImageUrl:(NSString*)userImageUrl userName:(NSString*)userName commentContent:(NSString*)commentContent creatBy:(NSString *)creatBy needRound:(BOOL)needRound{
     if ([super init]) {
-        [self loadSelfWithCommentImageUrl:userImageUrl userName:userName commentContent:commentContent creatBy:creatBy];
+        [self loadSelfWithCommentImageUrl:userImageUrl userName:userName commentContent:commentContent creatBy:creatBy needRound:needRound];
     }
     return self;
 }
 
--(void)loadSelfWithCommentImageUrl:(NSString*)userImageUrl userName:(NSString*)userName commentContent:(NSString*)commentContent creatBy:(NSString *)creatBy{
+-(void)loadSelfWithCommentImageUrl:(NSString*)userImageUrl userName:(NSString*)userName commentContent:(NSString*)commentContent creatBy:(NSString *)creatBy needRound:(BOOL)needRound{
     //获取用户头像
     self.userImageView=[[UIImageView alloc]init];
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",userImageUrl]] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",userImageUrl]] placeholderImage:[GetImagePath getImagePath:needRound?@"默认图_用户头像_卡片头像":@"默认图_公司头像_卡片头像"]];
     self.userImageView.layer.masksToBounds=YES;
-    self.userImageView.layer.cornerRadius=3;
+    self.userImageView.layer.cornerRadius=needRound?18.5:3;
     self.userImageView.frame=CGRectMake(15, 15, 37, 37);
     [self addSubview:self.userImageView];
     

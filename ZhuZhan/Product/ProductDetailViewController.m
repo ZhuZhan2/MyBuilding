@@ -387,11 +387,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [isNoImageNoContent?productNameArea:forCornerView addSubview:commentBtn];
     
     //用户头像
+    BOOL isPersonal = [self.userType isEqualToString:@"Personal"];
     tempHeight=imageView?imageView.frame.origin.y:productNameArea.frame.origin.y;
     UIImageView* userImageView = [[UIImageView alloc] init];
     userImageView.layer.masksToBounds = YES;
-    userImageView.layer.cornerRadius = 3;
-    userImageView.frame=CGRectMake(5,tempHeight+5,37,37);
+    userImageView.layer.cornerRadius = isPersonal?20:3;
+    userImageView.frame=CGRectMake(5,tempHeight+5,40,40);
     [forCornerView addSubview:userImageView];
     
     UIButton* btn=[[UIButton alloc]initWithFrame:userImageView.frame];
@@ -406,7 +407,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self.noticeLabel.font=[UIFont systemFontOfSize:14];
     [forCornerView addSubview:self.noticeLabel];
     height+=self.noticeLabel.frame.size.height;
-    [userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userImageUrl]] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+    [userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userImageUrl]] placeholderImage:[GetImagePath getImagePath:isPersonal?@"默认图_用户头像_卡片头像":@"默认图_公司头像_卡片头像"]];
     [forCornerView addSubview:userImageView];
     
     //调节有图无文字时候的下方留白高度
@@ -509,20 +510,21 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [forCornerView addSubview:commentBtn];
     NSLog(@"frame=%@",NSStringFromCGRect(commentBtn.frame));
     //commentBtn.center=forCornerView.center;
-    
+
     //用户头像
+    BOOL isPersonal = [self.userType isEqualToString:@"Personal"];
     tempHeight=imageView?imageView.frame.origin.y:contentTotalView.frame.origin.y;
     UIImageView* userImageView = [[UIImageView alloc] init];
     userImageView.layer.masksToBounds = YES;
-    userImageView.layer.cornerRadius = 3;
-    userImageView.frame=CGRectMake(5,tempHeight+5,37,37);
+    userImageView.layer.cornerRadius = isPersonal?20:3;
+    userImageView.frame=CGRectMake(5,tempHeight+5,40,40);
     [forCornerView addSubview:userImageView];
     
     UIButton* btn=[[UIButton alloc]initWithFrame:userImageView.frame];
     btn.tag=0;
     [btn addTarget:self action:@selector(chooseUserImage:) forControlEvents:UIControlEventTouchUpInside];
     [forCornerView addSubview:btn];
-    [userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userImageUrl]] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+    [userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userImageUrl]] placeholderImage:[GetImagePath getImagePath:isPersonal?@"默认图_用户头像_卡片头像":@"默认图_公司头像_卡片头像"]];
     //[forCornerView addSubview:userImageView];
     
     //设置总的view的frame
@@ -552,7 +554,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)getTableViewContents{
     for (int i=0; i<self.commentModels.count; i++) {
         ContactCommentModel* model=self.commentModels[i];
-        ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_avatarUrl userName:model.a_userName commentContent:model.a_commentContents creatBy:model.a_createdBy];
+        ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:model.a_avatarUrl userName:model.a_userName commentContent:model.a_commentContents creatBy:model.a_createdBy needRound:model.a_isPersonal];
         [self.commentViews addObject:view];
     }
 }
@@ -672,7 +674,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 //给tableView添加数据
 -(void)addTableViewContentWithContent:(NSString*)content aid:(NSString *)aid{
-    ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:self.myImageUrl userName:self.myName commentContent:content creatBy:self.createdBy];
+    ProductCommentView* view=[[ProductCommentView alloc]initWithCommentImageUrl:self.myImageUrl userName:self.myName commentContent:content creatBy:self.createdBy needRound:[[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"]];
 
     ContactCommentModel* model=[[ContactCommentModel alloc]initWithID:aid entityID:nil createdBy:[LoginSqlite getdata:@"userId"] userName:self.myName commentContents:content avatarUrl:self.myImageUrl time:[NSDate date]];
     

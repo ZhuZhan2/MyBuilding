@@ -28,7 +28,7 @@
     if(!_userHeadBtn){
         _userHeadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _userHeadBtn.frame = CGRectMake(20, 12, 37, 37);
-        _userHeadBtn.layer.cornerRadius=3;
+        _userHeadBtn.layer.cornerRadius=18.5;
         _userHeadBtn.layer.masksToBounds=YES;
         [_userHeadBtn addTarget:self action:@selector(userHeadBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }

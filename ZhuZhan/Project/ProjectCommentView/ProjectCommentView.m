@@ -30,6 +30,7 @@
 
 -(instancetype)initWithCommentModel:(ContactCommentModel *)model{
     if ([super init]) {
+        self.model = model;
         [self loadSelfWithCommentModel:model];
         contactId = model.a_createdBy;
     }
@@ -40,9 +41,9 @@
     //获取用户头像
     self.userImageView=[[UIImageView alloc]init];
     self.userImageView.layer.masksToBounds=YES;
-    self.userImageView.layer.cornerRadius=5;
+    self.userImageView.layer.cornerRadius=commentModel.a_isPersonal?18.5:3;
     self.userImageView.frame=CGRectMake(15, 15, 37, 37);
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",commentModel.a_avatarUrl]] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",commentModel.a_avatarUrl]] placeholderImage:[GetImagePath getImagePath:commentModel.a_isPersonal?@"默认图_用户头像_卡片头像":@"默认图_公司头像_卡片头像"]];
     [self addSubview:self.userImageView];
     
     UIButton *headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -86,8 +87,8 @@
 }
 
 -(void)headActon{
-    if([self.delegate respondsToSelector:@selector(gotoContactDetail:)]){
-        [self.delegate gotoContactDetail:contactId];
+    if([self.delegate respondsToSelector:@selector(gotoContactDetail:isPersonal:)]){
+        [self.delegate gotoContactDetail:contactId isPersonal:self.model.a_isPersonal];
     }
 }
 @end

@@ -15,6 +15,7 @@
 #import "LoginSqlite.h"
 #import "PersonalDetailViewController.h"
 #import "MyTableView.h"
+#import "CompanyDetailViewController.h"
 @interface PorjectCommentTableViewController ()
 @property(nonatomic,strong)UIButton *button;
 @end
@@ -260,6 +261,7 @@
             NSLog(@"userImage ==> %@",[LoginSqlite getdata:@"userImage"]);
             model.a_userName = [LoginSqlite getdata:@"userName"];
             model.a_avatarUrl = [LoginSqlite getdata:@"userImage"];
+            model.a_isPersonal = [[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"];
             model.a_commentContents = [NSString stringWithFormat:@"%@",comment];
             model.a_time = [NSDate date];
             model.a_createdBy = [LoginSqlite getdata:@"userId"];
@@ -288,13 +290,19 @@
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
 
--(void)gotoContactDetail:(NSString *)aid{
+-(void)gotoContactDetail:(NSString *)aid isPersonal:(BOOL)isPersonal{
     if([aid isEqualToString:[LoginSqlite getdata:@"userId"]]){
         return;
     }
-    PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
-    personalVC.contactId = aid;
-    [self.navigationController pushViewController:personalVC animated:YES];
+    if (isPersonal) {
+        PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
+        personalVC.contactId = aid;
+        [self.navigationController pushViewController:personalVC animated:YES];
+    }else{
+        CompanyDetailViewController* vc = [[CompanyDetailViewController alloc] init];
+        vc.companyId = aid;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 -(void)delComment:(UIButton *)button{
