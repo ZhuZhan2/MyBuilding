@@ -103,7 +103,11 @@
 }
 
 -(void)stageLabelClicked:(UIGestureRecognizer*)gesture{
-    [self stageLabelClickedWithSequence:gesture.view.tag];
+    BOOL canChange = YES;
+    if ([self.delegate respondsToSelector:@selector(shouldChangeStageToNumber:)]) {
+        canChange = [self.delegate shouldChangeStageToNumber:gesture.view.tag];
+    }
+    if (canChange) [self stageLabelClickedWithSequence:gesture.view.tag];
 }
 
 -(void)stageLabelClickedWithSequence:(NSInteger)sequence{

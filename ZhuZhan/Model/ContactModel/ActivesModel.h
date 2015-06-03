@@ -27,6 +27,8 @@
 @property (nonatomic, copy) NSString *a_imageHeight;
 //动态的评论
 @property (nonatomic, strong) NSMutableArray *a_commentsArr;
+//动态评论的数量
+@property (nonatomic) NSInteger a_commentNum;
 //动态产生对象的id 如项目被评论 这个项目的id
 @property (nonatomic, copy) NSString *a_entityId;
 
@@ -40,6 +42,10 @@
 @property (nonatomic,copy)NSString *a_productDesc;
 @property (nonatomic,copy)NSString *a_productImageWidth;
 @property (nonatomic,copy)NSString *a_productImageHeight;
+@property (nonatomic,copy)NSString *a_landProvince;
+@property (nonatomic,copy)NSString *a_landCity;
+@property (nonatomic,copy)NSString *a_landDistrict;
+
 
 //operationCode : 00 表示发动态 01 表示发产品 02 表示发项目 03 表示被修改 04表示被评论 05 表示被认证
 @property (nonatomic, copy) NSString *a_operationCode;

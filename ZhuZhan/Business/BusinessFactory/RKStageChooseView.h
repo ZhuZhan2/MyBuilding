@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @protocol RKStageChooseViewDelegate <NSObject>
--(void)stageBtnClickedWithNumber:(NSInteger)stageNumber;
+- (void)stageBtnClickedWithNumber:(NSInteger)stageNumber;
+- (BOOL)shouldChangeStageToNumber:(NSInteger)stageNumber;
 @end
 
 @interface RKStageChooseView : UIView

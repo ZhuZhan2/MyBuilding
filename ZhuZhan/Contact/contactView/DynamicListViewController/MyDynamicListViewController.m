@@ -22,8 +22,19 @@
 #import "ActivesModel.h"
 #import "ContactCommentModel.h"
 #import "MyTableView.h"
-
-@interface MyDynamicListViewController ()<XHPathCoverDelegate,UITableViewDelegate,UITableViewDataSource,LoginViewDelegate,ContactsActiveCellDelegate>
+#import "ContactCommentModel.h"
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
+#import "ShowViewController.h"
+#import "LoginSqlite.h"
+#import "UIViewController+MJPopupViewController.h"
+#import "CompanyDetailViewController.h"
+#import "ChatViewController.h"
+#import "PersonalDetailViewController.h"
+#import "PorjectCommentTableViewController.h"
+#import "ProductDetailViewController.h"
+#import "ProgramDetailViewController.h"
+@interface MyDynamicListViewController ()<XHPathCoverDelegate,UITableViewDelegate,UITableViewDataSource,LoginViewDelegate,ContactsActiveCellDelegate,showControllerDelegate>
 @property(nonatomic,strong)XHPathCover *pathCover;
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)LoadingView *loadingView;
@@ -33,13 +44,6 @@
 @end
 
 @implementation MyDynamicListViewController
-
--(instancetype)initNav:(UINavigationController *)nav{
-    if(self = [super init]){
-        self.navigationController = nav;
-    }
-    return self;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -124,7 +128,7 @@
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }else{
         PersonalCenterViewController *personalVC = [[PersonalCenterViewController alloc] init];
-        [self.navigationController pushViewController:personalVC animated:YES];
+        [self.nowViewController.navigationController pushViewController:personalVC animated:YES];
     }
 }
 
@@ -146,7 +150,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     ActivesModel* dataModel = self.modelsArr[indexPath.row];
-    ContactsActiveCellModel* cellModel = [self cellModelWithDataModel:dataModel indexPath:indexPath];
+    ContactsActiveCellModel* cellModel = [ContactsActiveCellModel cellModelWithDataModel:dataModel indexPath:indexPath];
     return [ContactsActiveCell carculateCellHeightWithModel:cellModel];
 }
 
@@ -158,49 +162,12 @@
         cell = [[ContactsActiveCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     ActivesModel* dataModel = self.modelsArr[indexPath.row];
-    cell.model = [self cellModelWithDataModel:dataModel indexPath:indexPath];
+    ContactsActiveCellModel* cellModel = [ContactsActiveCellModel cellModelWithDataModel:dataModel indexPath:indexPath];
+    BOOL isActive = dataModel.a_type==0;
+    [cell setModel:cellModel isActive:isActive];
     cell.delegate = self;
     cell.selectionStyle = NO;
     return cell;
-}
-
-- (void)contactsUserImageClickedWithIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"userImageIndexPathRow=%d",(int)indexPath.row);
-}
-
-- (void)contactsCommentBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"commentIndexPathRow=%d",(int)indexPath.row);
-}
-
-- (ContactsActiveCellModel*)cellModelWithDataModel:(ActivesModel*)dataModel indexPath:(NSIndexPath*)indexPath{
-    ContactsActiveCellModel* model = [[ContactsActiveCellModel alloc] init];
-    model.userImageUrl = dataModel.a_dynamicAvatarUrl;
-    model.title = dataModel.a_dynamicLoginName;
-    
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy/MM/dd HH:mm";
-    model.actionTime = [dateFormatter stringFromDate:dataModel.a_time];
-    
-    model.content = dataModel.a_content;
-    model.mainImageUrl = dataModel.a_imageUrl;
-    
-    [dataModel.a_commentsArr enumerateObjectsUsingBlock:^(ContactCommentModel* commentDataModel, NSUInteger idx, BOOL *stop) {
-        CommentModel* commentCellModel = [[CommentModel alloc] init];
-        commentCellModel.userImageUrl = commentDataModel.a_avatarUrl;
-        commentCellModel.userName = commentDataModel.a_userName;
-        
-        NSDateFormatter* tmpDateFormatter = [[NSDateFormatter alloc] init];
-        tmpDateFormatter.dateFormat = @"yyyy/MM/dd HH:mm";
-        commentCellModel.actionTime = [tmpDateFormatter stringFromDate:commentDataModel.a_time];
-        
-        commentCellModel.content = commentDataModel.a_commentContents;
-        
-        [model.commentArr addObject:commentCellModel];
-    }];
-    
-    model.indexPath = indexPath;
-    
-    return model;
 }
 
 -(void)changeHeadImage{
@@ -359,5 +326,135 @@
 
 -(void)loginCompleteWithDelayBlock:(void (^)())block{
     
+}
+
+- (void)contactsUserImageClickedWithIndexPath:(NSIndexPath *)indexPath{
+    [self HeadImageAction:indexPath];
+}
+
+- (void)contactsCommentBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
+    [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+}
+
+-(void)HeadImageAction:(NSIndexPath *)indexPath{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    
+    ActivesModel *model = self.modelsArr[indexPath.row];
+    if([model.a_dynamicLoginId isEqualToString:[LoginSqlite getdata:@"userId"]]){
+        return;
+    }
+    if([model.a_dynamicUserType isEqualToString:@"Personal"]){
+        showVC = [[ShowViewController alloc] init];
+        showVC.delegate =self;
+        showVC.createdBy = model.a_dynamicLoginId;
+        [showVC.view setFrame:CGRectMake(20, 70, 280, 300)];
+        showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
+        showVC.view.layer.masksToBounds = YES;
+        [self.nowViewController presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
+    }else{
+        CompanyDetailViewController *detailView = [[CompanyDetailViewController alloc] init];
+        detailView.companyId = model.a_dynamicLoginId;
+        [self.nowViewController.navigationController pushViewController:detailView animated:YES];
+    }
+}
+
+-(void)gotoChatView:(NSString *)contactId name:(NSString *)name{
+    [self.nowViewController dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    ChatViewController *view = [[ChatViewController alloc] init];
+    view.contactId = contactId;
+    view.titleStr = name;
+    view.type = @"01";
+    [self.nowViewController.navigationController pushViewController:view animated:YES];
+    [showVC.view removeFromSuperview];
+    showVC = nil;
+}
+
+-(void)gotoContactDetailView:(NSString *)contactId{
+    [self.nowViewController dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
+    personalVC.contactId = contactId;
+    [self.nowViewController.navigationController pushViewController:personalVC animated:YES];
+    [showVC.view removeFromSuperview];
+    showVC = nil;
+}
+
+-(void)gotoContactDetail:(NSString *)aid userType:(NSString *)userType{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
+        return;
+    }
+    if([aid isEqualToString:[LoginSqlite getdata:@"userId"]]){
+        return;
+    }
+    if([userType isEqualToString:@"Personal"]){
+        showVC = [[ShowViewController alloc] init];
+        showVC.delegate =self;
+        showVC.createdBy = aid;
+        [showVC.view setFrame:CGRectMake(20, 70, 280, 300)];
+        showVC.view.layer.cornerRadius = 10;//设置那个圆角的有多圆
+        showVC.view.layer.masksToBounds = YES;
+        [self.nowViewController presentPopupViewController:showVC animationType:MJPopupViewAnimationFade flag:0];
+    }else{
+        CompanyDetailViewController *detailView = [[CompanyDetailViewController alloc] init];
+        detailView.companyId = aid;
+        [self.nowViewController.navigationController pushViewController:detailView animated:YES];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ActivesModel *model = self.modelsArr[indexPath.row];
+    
+    if(model.a_type == 0){
+        ActivesModel *model = self.modelsArr[indexPath.row];
+        ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithActivesModel:model];
+        vc.type = @"03";
+        [self.nowViewController.navigationController pushViewController:vc animated:YES];
+    }else if (model.a_type == 1){
+        ActivesModel *model = self.modelsArr[indexPath.row];
+        ProductModel *productModel = [[ProductModel alloc] init];
+        productModel.a_id = model.a_entityId;
+        productModel.a_name = model.a_productName;
+        productModel.a_content = model.a_content;
+        productModel.a_imageUrl = model.a_productImage;
+        productModel.a_originImageUrl = model.a_productImage;
+        productModel.a_createdBy = model.a_dynamicLoginId;
+        productModel.a_imageWidth = model.a_productImageWidth;
+        productModel.a_imageHeight = model.a_productImageHeight;
+        productModel.a_avatarUrl = model.a_dynamicAvatarUrl;
+        productModel.a_userName = model.a_dynamicLoginName;
+        productModel.a_userType = model.a_dynamicUserType;
+        ProductDetailViewController* vc= [[ProductDetailViewController alloc] initWithProductModel:productModel];
+        vc.type = @"01";
+        [self.nowViewController.navigationController pushViewController:vc animated:YES];
+    }else if(model.a_type == 2 || model.a_type == 5){
+        ProgramDetailViewController *vc = [[ProgramDetailViewController alloc] init];
+        vc.projectId = model.a_entityId;
+        [self.nowViewController.navigationController pushViewController:vc animated:YES];
+    }else if (model.a_type == 6){
+        PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
+        projectCommentView.projectId = model.a_entityId;
+        projectCommentView.projectName = model.a_projectName;
+        [self.nowViewController.navigationController pushViewController:projectCommentView animated:YES];
+    }else if (model.a_type == 7){
+        ActivesModel *model = self.modelsArr[indexPath.row];
+        ProductModel *productModel = [[ProductModel alloc] init];
+        productModel.a_id = model.a_entityId;
+        productModel.a_name = model.a_productName;
+        productModel.a_content = model.a_content;
+        productModel.a_imageUrl = model.a_productImage;
+        productModel.a_originImageUrl = model.a_productImage;
+        productModel.a_createdBy = model.a_dynamicLoginId;
+        productModel.a_imageWidth = model.a_productImageWidth;
+        productModel.a_imageHeight = model.a_productImageHeight;
+        productModel.a_avatarUrl = model.a_dynamicAvatarUrl;
+        productModel.a_userName = model.a_dynamicLoginName;
+        productModel.a_userType = model.a_dynamicUserType;
+        ProductDetailViewController* vc= [[ProductDetailViewController alloc] initWithProductModel:productModel];
+        vc.type = @"01";
+        [self.nowViewController.navigationController pushViewController:vc animated:YES];
+    }
 }
 @end

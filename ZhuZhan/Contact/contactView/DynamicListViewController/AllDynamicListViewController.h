@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface AllDynamicListViewController : UIViewController
-
+#import "ShowViewController.h"
+@interface AllDynamicListViewController : UIViewController{
+    ShowViewController *showVC;
+}
+@property (nonatomic, strong)UIViewController* nowViewController;
 @end

@@ -89,6 +89,17 @@
     [self.view addSubview:self.stageChooseView];
 }
 
+- (BOOL)shouldChangeStageToNumber:(NSInteger)stageNumber{
+    BOOL canChange = !(stageNumber == 1 && [[LoginSqlite getdata:@"userId"] isEqualToString:@""]);
+    if (!canChange) {
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.delegate = self;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }
+    return canChange;
+}
+
 - (void)stageBtnClickedWithNumber:(NSInteger)stageNumber{
     switch (stageNumber) {
         case 0:
@@ -117,6 +128,7 @@
 -(void)addAllDynamicListView{
     if(self.allDynamicListView == nil){
         self.allDynamicListView = [[AllDynamicListViewController alloc] init];
+        self.allDynamicListView.nowViewController = self;
         self.allDynamicListView.view.center = CGPointMake(160, kScreenHeight/2+65+46);
     }
     [self.view addSubview:self.allDynamicListView.view];
@@ -124,7 +136,8 @@
 
 -(void)addMyDynamicListView{
     if(self.myDynamicListView == nil){
-        self.myDynamicListView = [[MyDynamicListViewController alloc] initNav:self.navigationController];
+        self.myDynamicListView = [[MyDynamicListViewController alloc] init];
+        self.myDynamicListView.nowViewController = self;
         self.myDynamicListView.view.center = CGPointMake(160, kScreenHeight/2+65+46);
     }
     [self.view addSubview:self.myDynamicListView.view];

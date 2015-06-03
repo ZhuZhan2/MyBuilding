@@ -52,6 +52,9 @@
     self.a_projectStage = [ProjectStage ProjectStrStage:dict[@"operationData"][@"projectStage"]];
     
     self.a_productName = [ProjectStage ProjectStrStage:dict[@"operationData"][@"productName"]];
+    self.a_landProvince = [ProjectStage ProjectStrStage:dict[@"operationData"][@"landProvince"]];
+    self.a_landCity = [ProjectStage ProjectStrStage:dict[@"operationData"][@"landCity"]];
+    self.a_landDistrict = [ProjectStage ProjectStrStage:dict[@"operationData"][@"landDistrict"]];
     self.a_productDesc=[[ProjectStage ProjectStrStage:dict[@"operationData"][@"productDesc"]] stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
     self.a_productImageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"operationData"][@"imageWidth"]]];
     self.a_productImageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"operationData"][@"imageHeight"]]];
@@ -69,6 +72,7 @@
             [self.a_commentsArr addObject:model];
         }
     }
+    self.a_commentNum = [dict[@"commentNum"] integerValue];
     
     if([self.a_sourceCode isEqualToString:@"00"] && [self.a_operationCode isEqualToString:@"00"]){
         //个人 发布了动态

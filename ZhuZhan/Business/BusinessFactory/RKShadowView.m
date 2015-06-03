@@ -26,6 +26,19 @@
     return view;
 }
 
++ (UIView *)seperatorLineWithHeight:(CGFloat)height top:(CGFloat)top{
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height)];
+    view.backgroundColor = AllBackDeepGrayColor;
+    
+    UIView* seperatorLine = [self seperatorLine];
+    CGRect frame = seperatorLine.frame;
+    frame.origin.y = top;
+    seperatorLine.frame = frame;
+    [view addSubview:seperatorLine];
+    
+    return view;
+}
+
 +(UIView *)seperatorLineInThemeView{
     UIImageView* view=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 2)];
     view.image=[GetImagePath getImagePath:AllThemeViewShadowImageName];

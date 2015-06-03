@@ -16,6 +16,6 @@
 
 @interface ContactsActiveCell :BaseTableViewCell
 @property (nonatomic, weak)id<ContactsActiveCellDelegate> delegate;
-@property (nonatomic, strong)ContactsActiveCellModel* model;
 + (CGFloat)carculateCellHeightWithModel:(ContactsActiveCellModel *)cellModel;
+- (void)setModel:(ContactsActiveCellModel *)model isActive:(BOOL)isActive;
 @end

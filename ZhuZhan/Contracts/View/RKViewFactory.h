@@ -25,4 +25,8 @@
 + (void)autoLabel:(UILabel*)label maxWidth:(CGFloat)maxWidth maxHeight:(CGFloat)maxHieght;
 
 + (CGFloat)autoLabelWithMaxWidth:(CGFloat)maxWidth maxHeight:(CGFloat)maxHeight font:(UIFont*)font content:(NSString*)content;
+
++ (void)autoLabel:(UILabel*)label;
+
++ (CGFloat)autoLabelWithFont:(UIFont*)font content:(NSString*)content;
 @end

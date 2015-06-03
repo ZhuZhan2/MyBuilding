@@ -41,7 +41,7 @@
 
 -(void)setFrame:(CGRect)frame{
     [super setFrame:frame];
-    UIImage* image=[GetImagePath getImagePath:self.isSelf?@"自己会话框最小@2x":@"他人会话框最小"];
+    UIImage* image=[GetImagePath getImagePath:self.isSelf?@"自己会话框最小":@"他人会话框最小"];
     image=[image stretchableImageWithLeftCapWidth:image.size.width*.5 topCapHeight:image.size.height*.5];
     self.image=image;
 }
