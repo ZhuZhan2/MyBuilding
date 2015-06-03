@@ -93,7 +93,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         [_pathCover.headImage.layer setCornerRadius:5];
     }else{
         [_pathCover.headImage.layer setMasksToBounds:YES];
-        [_pathCover.headImage.layer setCornerRadius:23];
+        [_pathCover.headImage.layer setCornerRadius:35];
     }
     [_pathCover setFootViewFrame:CGRectMake(0, -120, 320, 320)];
 

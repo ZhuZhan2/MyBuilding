@@ -8,6 +8,7 @@
 
 #import "XHPathCover.h"
 #import "XHWaterDropRefresh.h"
+#import "LoginSqlite.h"
 
 NSString *const XHUserNameKey = @"XHUserName";
 NSString *const XHBirthdayKey = @"XHBirthday";
@@ -216,7 +217,11 @@ NSString *const XHTitkeKey = @"XHTitkeKey";
 
 -(void)setHeadImageUrl:(NSString *)imageUrl{
     if(imageUrl){
-        [_headImage sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:@"人脉_大"]];
+        if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+            [_headImage sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:@"默认图_公司头像_主头像"]];
+        }else{
+            [_headImage sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:@"默认图_用户头像_群组成员"]];
+        }
     }
 }
 
@@ -431,7 +436,7 @@ NSString *const XHTitkeKey = @"XHTitkeKey";
     _showView.backgroundColor = [UIColor clearColor];
     
     _headImage = [[UIImageView alloc] init];
-    [_headImage sd_setImageWithURL:nil placeholderImage:[GetImagePath getImagePath:@"人脉_大"]];
+    [_headImage sd_setImageWithURL:nil placeholderImage:[GetImagePath getImagePath:@"默认图_用户头像_群组成员"]];
     _headImage.frame = CGRectMake(45, 0, avatarButtonHeight, avatarButtonHeight);
     [_headImage.layer setMasksToBounds:YES];
     [_headImage.layer setCornerRadius:23];
