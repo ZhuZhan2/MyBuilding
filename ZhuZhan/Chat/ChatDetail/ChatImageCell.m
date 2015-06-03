@@ -32,7 +32,7 @@
     if(!_userHeadBtn){
         _userHeadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _userHeadBtn.frame=CGRectMake(0, 0, 35, 35);
-        _userHeadBtn.layer.cornerRadius=2;
+        _userHeadBtn.layer.cornerRadius=17.5;
         _userHeadBtn.layer.masksToBounds=YES;
         _userHeadBtn.backgroundColor = [UIColor yellowColor];
         //[_userHeadBtn addTarget:self action:@selector(userImageBtnAction) forControlEvents:UIControlEventTouchUpInside];
@@ -84,7 +84,7 @@
     self.chatContentViceCenterY=topDistance+(self.userNameLabel.alpha?8+CGRectGetHeight(self.userNameLabel.frame):0);
     self.timeLabel.text=model.a_time;
     
-    [self.userHeadBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:model.a_avatarUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"未设置"]];
+    [self.userHeadBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:model.a_avatarUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"默认图_用户头像_会话头像"]];
     self.userNameLabel.text=model.a_name;
     
     [self.contentView addSubview:self.chatMessageImageView];

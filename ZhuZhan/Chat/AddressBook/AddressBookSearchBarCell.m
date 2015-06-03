@@ -31,6 +31,8 @@
     if (!_mainImageView) {
         _mainImageView=[[UIImageView alloc]init];
         _mainImageView.frame=CGRectMake(0, 0, 37, 37);
+        _mainImageView.layer.cornerRadius = 18.5;
+        _mainImageView.layer.masksToBounds = YES;
     }
     return _mainImageView;
 }
@@ -71,7 +73,7 @@
 -(void)setModel:(AddressBookSearchBarCellModel *)model indexPath:(NSIndexPath *)indexPath{
     _model=model;
     _indexPath = indexPath;
-    [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:model.mainImageUrl] placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+    [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:model.mainImageUrl] placeholderImage:[GetImagePath getImagePath:@"默认图_用户头像_卡片头像"]];
     self.mainLabel.text=model.mainLabelText;
     
     self.mainImageView.center=CGPointMake(30, 47*0.5);

@@ -28,7 +28,7 @@
 
 -(void)setModel:(FriendModel *)model{
     _model = model;
-    [self.headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:model.a_avatarUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+    [self.headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:model.a_avatarUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"默认图_用户头像_会话头像"]];
     self.nameLabel.text = model.a_name;
     if (model.a_isWaiting) {
         [self.addBtn setBackgroundImage:[GetImagePath getImagePath:@"等待验证120"] forState:UIControlStateNormal];
@@ -47,7 +47,7 @@
 -(UIButton *)headBtn{
     if(!_headBtn){
         _headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _headBtn.layer.cornerRadius=3;
+        _headBtn.layer.cornerRadius=17.5;
         _headBtn.layer.masksToBounds=YES;
         _headBtn.frame=CGRectMake(15, 10, 35, 35);
         [_headBtn addTarget:self action:@selector(headImageAction) forControlEvents:UIControlEventTouchUpInside];

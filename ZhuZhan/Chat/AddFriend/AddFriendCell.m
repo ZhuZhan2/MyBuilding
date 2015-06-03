@@ -22,7 +22,7 @@
         self.needRightBtn=needRightBtn;
         
         self.headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.headBtn.layer.cornerRadius=3;
+        self.headBtn.layer.cornerRadius=17.5;
         self.headBtn.layer.masksToBounds=YES;
         self.headBtn.frame=CGRectMake(15, 12.5, 35, 35);
         [self.headBtn addTarget:self action:@selector(headAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -51,7 +51,7 @@
 }
 
 -(void)setUserName:(NSString*)userName time:(NSString*)time userImageUrl:(NSString*)userImageUrl isFinished:(BOOL)isFinished indexPathRow:(NSInteger)indexPathRow status:(NSString *)status{
-    [self.headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:userImageUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"人脉_06a2"]];
+    [self.headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:userImageUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"默认图_用户头像_会话头像"]];
     self.userNameLabel.text=userName;
     self.userBussniessLabel.text=time;
     [self.rightBtn setBackgroundImage:[GetImagePath getImagePath:isFinished?@"added":@"accept_green_button"] forState:UIControlStateNormal];
