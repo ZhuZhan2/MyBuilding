@@ -23,7 +23,7 @@
     if (self) {
         self.userImageView=[[UIImageView alloc]init];
         self.userImageView.layer.cornerRadius=17.5;
-//        self.userImageView.layer.masksToBounds=YES;
+        self.userImageView.layer.masksToBounds=YES;
         self.userImageView.frame=CGRectMake(12, 7.5, 35, 35);
         [self addSubview:self.userImageView];
         self.userImageView.userInteractionEnabled=YES;

@@ -50,6 +50,8 @@
     [self.addFriendBtn addSubview:seperatorLine];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 40, 40)];
+    imageView.layer.cornerRadius = 20;
+    imageView.layer.masksToBounds = YES;
     imageView.image = [GetImagePath getImagePath:@"新的朋友"];
     [self.addFriendBtn addSubview:imageView];
     
