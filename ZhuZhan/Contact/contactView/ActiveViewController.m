@@ -129,7 +129,7 @@
     if(self.allDynamicListView == nil){
         self.allDynamicListView = [[AllDynamicListViewController alloc] init];
         self.allDynamicListView.nowViewController = self;
-        self.allDynamicListView.view.center = CGPointMake(160, kScreenHeight/2+65+46);
+        self.allDynamicListView.view.center = CGPointMake(160, kScreenHeight/2+64+46);
     }
     [self.view addSubview:self.allDynamicListView.view];
 }
@@ -138,7 +138,7 @@
     if(self.myDynamicListView == nil){
         self.myDynamicListView = [[MyDynamicListViewController alloc] init];
         self.myDynamicListView.nowViewController = self;
-        self.myDynamicListView.view.center = CGPointMake(160, kScreenHeight/2+65+46);
+        self.myDynamicListView.view.center = CGPointMake(160, kScreenHeight/2+64+46);
     }
     [self.view addSubview:self.myDynamicListView.view];
 }

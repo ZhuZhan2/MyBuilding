@@ -23,6 +23,7 @@
 @property (nonatomic, copy) NSDate *a_time;
 //动态的图片和大小
 @property (nonatomic, copy) NSString *a_imageUrl;
+@property (nonatomic, copy) NSString *a_bigImageUrl;
 @property (nonatomic, copy) NSString *a_imageWidth;
 @property (nonatomic, copy) NSString *a_imageHeight;
 //动态的评论
@@ -39,6 +40,7 @@
 //动态里产品的信息
 @property (nonatomic, copy) NSString *a_productName;
 @property (nonatomic,copy)NSString* a_productImage;
+@property (nonatomic,copy)NSString* a_bigProductImage;
 @property (nonatomic,copy)NSString *a_productDesc;
 @property (nonatomic,copy)NSString *a_productImageWidth;
 @property (nonatomic,copy)NSString *a_productImageHeight;

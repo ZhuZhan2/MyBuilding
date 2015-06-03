@@ -118,7 +118,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         self.activesModel=activesModel;
 //        [self loadMyPropertyWithImgW:activesModel.a_imageWidth imgH:activesModel.a_imageHeight imgUrl:[activesModel.a_category isEqualToString:@"Product"]?activesModel.a_productImage:activesModel.a_imageUrl userImgUrl:activesModel.a_avatarUrl content:activesModel.a_content entityID:[activesModel.a_category isEqualToString:@"Product"]?activesModel.a_entityId:activesModel.a_id entityUrl:activesModel.a_entityUrl userName:activesModel.a_userName category:activesModel.a_category createdBy:activesModel.a_createdBy userType:activesModel.a_userType];
         
-        [self loadMyPropertyWithImgW:activesModel.a_imageWidth imgH:activesModel.a_imageHeight imgUrl:[activesModel.a_sourceCode isEqualToString:@"03"]?activesModel.a_productImage:activesModel.a_imageUrl userImgUrl:activesModel.a_dynamicAvatarUrl content:activesModel.a_content entityID:[activesModel.a_sourceCode isEqualToString:@"03"]?activesModel.a_entityId:activesModel.a_id entityUrl:@"" userName:activesModel.a_dynamicLoginName category:activesModel.a_sourceCode createdBy:activesModel.a_dynamicLoginId userType:activesModel.a_dynamicUserType];
+        [self loadMyPropertyWithImgW:activesModel.a_imageWidth imgH:activesModel.a_imageHeight imgUrl:[activesModel.a_sourceCode isEqualToString:@"03"]?activesModel.a_bigProductImage:activesModel.a_bigImageUrl userImgUrl:activesModel.a_dynamicAvatarUrl content:activesModel.a_content entityID:[activesModel.a_sourceCode isEqualToString:@"03"]?activesModel.a_entityId:activesModel.a_id entityUrl:@"" userName:activesModel.a_dynamicLoginName category:activesModel.a_sourceCode createdBy:activesModel.a_dynamicLoginId userType:activesModel.a_dynamicUserType];
     }
     return self;
 }
@@ -128,7 +128,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if (self) {
         self.personalModel=personalModel;
         if([personalModel.a_category isEqualToString:@"Product"]){
-            NSLog(@"asdfasdfasdfasdfsdfs");
             self.productModel = [[ProductModel alloc] init];
         }
         [self loadMyPropertyWithImgW:personalModel.a_imageWidth imgH:personalModel.a_imageHeight imgUrl:personalModel.a_imageOriginalUrl userImgUrl:self.myImageUrl content:personalModel.a_content entityID:personalModel.a_entityId entityUrl:personalModel.a_entityUrl userName:self.myName category:personalModel.a_category createdBy:[LoginSqlite getdata:@"userId"] userType:personalModel.a_userType];

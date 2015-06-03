@@ -556,7 +556,7 @@
             self.personaStr1 = @"收款方";
             self.personaStr2 = @"付款方";
         }else if(buttonIndex == 1){
-            self.personaStr1 = @"供应商";
+            self.personaStr1 = @"收款方";
             self.personaStr2 = @"付款方";
         }
         [self reloadStartMainView];
@@ -566,7 +566,7 @@
             self.personaStr2 = @"收款方";
             self.personaStr1 = @"付款方";
         }else if(buttonIndex == 1){
-            self.personaStr2 = @"供应商";
+            self.personaStr2 = @"收款方";
             self.personaStr1 = @"付款方";
         }
         [self reloadStartMainView];
