@@ -19,6 +19,8 @@
 @property (nonatomic, copy) NSString *a_dynamicLoginId;
 //发动态人的类型
 @property (nonatomic, copy) NSString *a_dynamicUserType;
+//发动态的人是否是个人
+@property (nonatomic) BOOL a_isPersonal;
 //发动态时间
 @property (nonatomic, copy) NSDate *a_time;
 //动态的图片和大小

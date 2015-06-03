@@ -10,6 +10,7 @@
 
 @interface CommentModel : NSObject
 @property (nonatomic, copy)NSString* userImageUrl;
+@property (nonatomic)BOOL needRound;
 @property (nonatomic, copy)NSString* userName;
 @property (nonatomic, copy)NSString* actionTime;
 @property (nonatomic, copy)NSString* content;

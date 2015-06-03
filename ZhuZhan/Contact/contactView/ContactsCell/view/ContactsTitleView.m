@@ -28,15 +28,15 @@
     return self;
 }
 
-- (void)setImageUrl:(NSString*)imageUrl title:(NSString*)title actionName:(NSString*)actionName actionTime:(NSString*)actionTime actionNameColor:(UIColor*)actionNameColor{
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:@"默认图_人脉_卡片头像"]];
+- (void)setImageUrl:(NSString*)imageUrl title:(NSString*)title actionName:(NSString*)actionName actionTime:(NSString*)actionTime actionNameColor:(UIColor*)actionNameColor needRound:(BOOL)needRound{
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:needRound?@"默认图_人脉_卡片头像":@"默认图_公司头像_卡片头像"]];
+    self.userImageView.layer.cornerRadius = needRound?20:3;
     self.titleLabel.text = title;
     self.actionNameLabel.text = actionName;
     self.actionNameLabel.textColor = actionNameColor;
     self.actionTimeLabel.text = actionTime;
     
     [RKViewFactory autoLabel:self.actionNameLabel];
-    
     
     CGRect frame = self.userImageView.frame;
     frame.origin = CGPointMake(10, 0);
@@ -58,7 +58,6 @@
 - (UIImageView *)userImageView{
     if (!_userImageView) {
         _userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-        _userImageView.layer.cornerRadius = 20;
         _userImageView.layer.masksToBounds = YES;
         
         _userImageView.userInteractionEnabled = YES;

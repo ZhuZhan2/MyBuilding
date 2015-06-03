@@ -22,8 +22,10 @@
     self.a_dynamicLoginId = [ProjectStage ProjectStrStage:dict[@"createUser"][@"loginId"]];
     if([[ProjectStage ProjectStrStage:dict[@"createUser"][@"userType"]] isEqualToString:@"01"]){
         self.a_dynamicUserType = @"Personal";
+        self.a_isPersonal = YES;
     }else{
         self.a_dynamicUserType = @"Company";
+        self.a_isPersonal = NO;
     }
     self.a_time = [ProjectStage ProjectDateStage:dict[@"createdTime"]];
     

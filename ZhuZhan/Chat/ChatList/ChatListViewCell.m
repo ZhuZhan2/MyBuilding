@@ -22,7 +22,7 @@
     self=[super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.userImageView=[[UIImageView alloc]init];
-        self.userImageView.layer.cornerRadius=3;
+        self.userImageView.layer.cornerRadius=17.5;
 //        self.userImageView.layer.masksToBounds=YES;
         self.userImageView.frame=CGRectMake(12, 7.5, 35, 35);
         [self addSubview:self.userImageView];
@@ -71,10 +71,10 @@
 -(void)setModel:(ChatListModel *)model{
     if([model.a_type isEqualToString:@"01"]){
         self.userNameLabel.text=model.a_loginName;
-        [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_loginImageUrl]] placeholderImage:[GetImagePath getImagePath:@"会话列表－个人"]];
+        [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_loginImageUrl]] placeholderImage:[GetImagePath getImagePath:@"默认图_用户头像_会话头像"]];
     }else{
         self.userNameLabel.text=model.a_groupName;
-        [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_loginImageUrl]] placeholderImage:[GetImagePath getImagePath:@"会话列表－群聊"]];
+        [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.a_loginImageUrl]] placeholderImage:[GetImagePath getImagePath:@"默认图_群组头像_会话头像"]];
     }
     self.userBussniessLabel.text=model.a_content;
 

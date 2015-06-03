@@ -11,7 +11,7 @@
 
 @protocol ProjectCommentViewDelegate <NSObject>
 
--(void)gotoContactDetail:(NSString *)aid;
+-(void)gotoContactDetail:(NSString *)aid isPersonal:(BOOL)isPersonal;
 
 @end
 @interface ProjectCommentView : UIView{
@@ -21,5 +21,6 @@
 @property(nonatomic,strong)UILabel* userNameLabel;
 @property(nonatomic,strong)UILabel* userCommentContent;
 @property(nonatomic,weak)id<ProjectCommentViewDelegate>delegate;
+@property (nonatomic, strong)ContactCommentModel* model;
 -(instancetype)initWithCommentModel:(ContactCommentModel*)model;
 @end

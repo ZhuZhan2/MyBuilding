@@ -31,7 +31,7 @@
     if (!cell.myImageView) {
         //公司图片
         cell.myImageView=[[UIImageView alloc]init];
-        cell.myImageView.layer.cornerRadius=30.5;
+        cell.myImageView.layer.cornerRadius=6;
         cell.myImageView.layer.masksToBounds=YES;
         cell.myImageView.frame = CGRectMake(19, 16.5, 61, 61);
         

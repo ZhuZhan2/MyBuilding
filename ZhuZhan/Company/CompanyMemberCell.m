@@ -21,7 +21,7 @@
         self.needRightBtn=needRightBtn;
         
         self.userImageView=[[UIImageView alloc]init];
-        self.userImageView.layer.cornerRadius=3;
+        self.userImageView.layer.cornerRadius=18.5;
         self.userImageView.layer.masksToBounds=YES;
         self.userImageView.frame=CGRectMake(20, 12, 37, 37);
         [self addSubview:self.userImageView];

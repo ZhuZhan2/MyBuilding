@@ -64,7 +64,7 @@
     if (!_userImageBtn) {
         _userImageBtn=[UIButton buttonWithType:UIButtonTypeCustom];
         _userImageBtn.frame=CGRectMake(0, 0, 35, 35);
-        _userImageBtn.layer.cornerRadius=2;
+        _userImageBtn.layer.cornerRadius=17.5;
         _userImageBtn.layer.masksToBounds=YES;
         [_userImageBtn addTarget:self action:@selector(userImageBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -110,7 +110,7 @@
     _model=chatModel;
     
     self.timeLine.text=chatModel.time;
-    [self.userImageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:chatModel.userImageStr] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"未设置"]];
+    [self.userImageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:chatModel.userImageStr] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"默认图_用户头像_会话头像"]];
     self.nameLabel.text=chatModel.userNameStr;
     [self.chatContentView setText:chatModel.chatContent isSelf:chatModel.isSelf];
     self.isSelf=chatModel.isSelf;
