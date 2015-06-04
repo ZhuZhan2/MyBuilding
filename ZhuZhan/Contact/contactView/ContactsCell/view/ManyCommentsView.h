@@ -10,8 +10,8 @@
 
 @interface ManyCommentsView : UIView
 
-+ (CGFloat)carculateHeightWithCommentArr:(NSMutableArray*)commentArr;
++ (CGFloat)carculateHeightWithCommentArr:(NSMutableArray*)commentArr needAssistView:(BOOL)needAssistView;
 
 + (ManyCommentsView*)manyCommentsView;
-- (CGFloat)setCommentNumber:(NSInteger)commentNumber commentArr:(NSMutableArray*)commentArr;
+- (CGFloat)setCommentNumber:(NSInteger)commentNumber commentArr:(NSMutableArray*)commentArr needAssistView:(BOOL)needAssistView;
 @end

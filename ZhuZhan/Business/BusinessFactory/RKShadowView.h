@@ -16,4 +16,6 @@
 + (UIView *)seperatorLine;//height=1px
 
 + (UIView *)seperatorLineInThemeView;//上导航阴影
+
++ (UIView*)seperatorLineInViews:(NSArray*)views;//把阴影加入views之间
 @end

@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "LoginSqlite.h"
 #import "MarketApi.h"
-
+#import "PublishRequirementViewController.h"
 @interface SearchMaterialViewController ()
 
 @end
@@ -36,6 +36,7 @@
 }
 
 -(void)rightBtnClick{
-
+    PublishRequirementViewController* vc = [[PublishRequirementViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

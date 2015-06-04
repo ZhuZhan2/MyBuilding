@@ -22,7 +22,7 @@
 @end
 
 @implementation ManyCommentsView
-+ (CGFloat)carculateHeightWithCommentArr:(NSMutableArray *)commentArr{
++ (CGFloat)carculateHeightWithCommentArr:(NSMutableArray*)commentArr needAssistView:(BOOL)needAssistView{
     __block CGFloat height = 0;
     [commentArr enumerateObjectsUsingBlock:^(CommentModel* commentModel, NSUInteger idx, BOOL *stop) {
         height += [CommentView carculateHeightWithContent:commentModel.content];
@@ -30,7 +30,7 @@
     
     height += [CommentNumberView commentNumberViewHeight];
     
-    if (commentArr.count >= 3) {
+    if (needAssistView) {
         height += 30;
     }
     return height;
@@ -49,14 +49,14 @@
     return self;
 }
 
-- (CGFloat)setCommentNumber:(NSInteger)commentNumber commentArr:(NSMutableArray*)commentArr{
+- (CGFloat)setCommentNumber:(NSInteger)commentNumber commentArr:(NSMutableArray*)commentArr needAssistView:(BOOL)needAssistView{
     [self.commentNumberView setNumber:commentNumber];
     
-    self.commentArr = commentArr;
+    [self setCommentArr:commentArr needAssistView:needAssistView];
     return 0;
 }
 
-- (void)setCommentArr:(NSMutableArray *)commentArr{
+- (void)setCommentArr:(NSMutableArray *)commentArr needAssistView:(BOOL)needAssistView{
     _commentArr = commentArr;
     
     [self.commentViewArr enumerateObjectsUsingBlock:^(UIView* view, NSUInteger idx, BOOL *stop) {
@@ -78,7 +78,7 @@
         height += CGRectGetHeight(commentView.frame);
     }];
     
-    if (commentArr.count >= 3) {
+    if (needAssistView) {
         self.moreCommentsLabel.hidden = NO;
         
         CGRect frame = self.moreCommentsLabel.frame;
