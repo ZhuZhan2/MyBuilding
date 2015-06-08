@@ -989,6 +989,7 @@
 		5BDDA1FA1B25704F00F4AABB /* PublishRequirementRelationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDDA1F91B25704F00F4AABB /* PublishRequirementRelationView.m */; };
 		5BDDA1FD1B25706300F4AABB /* PublishRequirementCooperationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDDA1FC1B25706300F4AABB /* PublishRequirementCooperationView.m */; };
 		5BDDA2001B25707400F4AABB /* PublishRequirementOtherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDDA1FF1B25707400F4AABB /* PublishRequirementOtherView.m */; };
+		5BDDA2031B25868800F4AABB /* ForcedUpdateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDDA2021B25868800F4AABB /* ForcedUpdateModel.m */; };
 		5BE08D941A3586EA00495EEB /* 010001.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE08C6D1A3586EA00495EEB /* 010001.png */; };
 		5BE08D951A3586EA00495EEB /* 010001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE08C6E1A3586EA00495EEB /* 010001@2x.png */; };
 		5BE08D961A3586EA00495EEB /* 010002.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE08C6F1A3586EA00495EEB /* 010002.png */; };
@@ -3237,6 +3238,8 @@
 		5BDDA1FC1B25706300F4AABB /* PublishRequirementCooperationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishRequirementCooperationView.m; sourceTree = "<group>"; };
 		5BDDA1FE1B25707400F4AABB /* PublishRequirementOtherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishRequirementOtherView.h; sourceTree = "<group>"; };
 		5BDDA1FF1B25707400F4AABB /* PublishRequirementOtherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishRequirementOtherView.m; sourceTree = "<group>"; };
+		5BDDA2011B25868800F4AABB /* ForcedUpdateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForcedUpdateModel.h; sourceTree = "<group>"; };
+		5BDDA2021B25868800F4AABB /* ForcedUpdateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForcedUpdateModel.m; sourceTree = "<group>"; };
 		5BE08C6D1A3586EA00495EEB /* 010001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 010001.png; sourceTree = "<group>"; };
 		5BE08C6E1A3586EA00495EEB /* 010001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "010001@2x.png"; sourceTree = "<group>"; };
 		5BE08C6F1A3586EA00495EEB /* 010002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 010002.png; sourceTree = "<group>"; };
@@ -7045,6 +7048,8 @@
 			children = (
 				5BFC82911B058D5B00CD9ED6 /* ForcedUpdateApi.h */,
 				5BFC82921B058D5B00CD9ED6 /* ForcedUpdateApi.m */,
+				5BDDA2011B25868800F4AABB /* ForcedUpdateModel.h */,
+				5BDDA2021B25868800F4AABB /* ForcedUpdateModel.m */,
 			);
 			path = ForcedUpdate;
 			sourceTree = "<group>";
@@ -9491,6 +9496,7 @@
 				5B52C5ED1AC500550035ABB8 /* RKMuchBtns.m in Sources */,
 				0426C27319922D5A00CD8822 /* GPUImageGrayscaleFilter.m in Sources */,
 				5B70CC5F1AC9420600FC8353 /* ConstractListController.m in Sources */,
+				5BDDA2031B25868800F4AABB /* ForcedUpdateModel.m in Sources */,
 				0426C2C419922D5A00CD8822 /* GPUImageTextureInput.m in Sources */,
 				0426C2DB19922D5A00CD8822 /* GPUImageContext.m in Sources */,
 				0426C26A19922D5A00CD8822 /* GPUImageFASTCornerDetectionFilter.m in Sources */,

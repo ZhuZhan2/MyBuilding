@@ -27,6 +27,7 @@
 #import "ImageSqlite.h"
 #import "MarketSearchSqlite.h"
 #import "ForcedUpdateApi.h"
+#import "ForcedUpdateModel.h"
 @implementation AppDelegate
 
 + (AppDelegate *)instance {
@@ -43,6 +44,14 @@
     
     self.socket = [SocketManage sharedManager];
     
+    [ForcedUpdateApi GetLastestReleaseWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            ForcedUpdateModel* model = posts[0];
+            self.updateUrl = model.a_downloadUrl;
+            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:model.a_releaseLog delegate:self cancelButtonTitle:nil otherButtonTitles:@"稍后更新",@"立即更新", nil];
+            [alertView show];
+        }
+    } userVersion:UserClientVersion deviceType:@"05" downloadType:UpdateDownloadType noNetWork:nil];
     
     if ([CLLocationManager locationServicesEnabled]) {
         
@@ -141,6 +150,12 @@
     }
     
     return YES;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.updateUrl]];
+    }
 }
 
 -(void)backgroundHandler{

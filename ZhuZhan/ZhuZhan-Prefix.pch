@@ -25,6 +25,11 @@
 #import "ErrorCode.h"
 #endif
 
+#define UserClientVersion @"1.0.1" //版本号
+
+#define UpdateDownloadType @"01" //苹果商城
+//#define UpdateDownloadType @"02" //官网安装
+
 //正式服务器
 //#define  serverAddress "http://apis.mybuilding.cn:15427/WebService"
 

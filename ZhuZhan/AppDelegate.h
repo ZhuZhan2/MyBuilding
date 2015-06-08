@@ -19,5 +19,6 @@
 @property (strong, nonatomic) UIWindow *window;
 @property(nonatomic,strong)SocketManage *socket;
 @property (nonatomic,strong)CLLocationManager *locationManager;
+@property (nonatomic, copy)NSString* updateUrl;
 + (AppDelegate *)instance;
 @end

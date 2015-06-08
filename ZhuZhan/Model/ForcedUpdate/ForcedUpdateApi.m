@@ -8,7 +8,7 @@
 
 #import "ForcedUpdateApi.h"
 #import "ConnectionAvailable.h"
-
+#import "ForcedUpdateModel.h"
 @implementation ForcedUpdateApi
 
 + (NSURLSessionDataTask *)GetLastestReleaseWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userVersion:(NSString*)userVersion deviceType:(NSString*)deviceType downloadType:(NSString*)downloadType noNetWork:(void(^)())noNetWork{
@@ -22,8 +22,13 @@
     NSString *urlStr = [NSString stringWithFormat:@"api/release/getLastestRelease?userVersion=%@&deviceType=%@&downloadType=%@",userVersion,deviceType,downloadType];
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON==>%@",JSON);
-        if (block) {
-            block([NSMutableArray arrayWithObject:[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]],nil);
+        if ([JSON[@"status"][@"statusCode"] isEqualToString:@"200"]) {
+            if (block) {
+                NSDictionary* dataDic = JSON[@"data"];
+                ForcedUpdateModel* model = [[ForcedUpdateModel alloc] init];
+                model.dict = dataDic;
+                block([NSMutableArray arrayWithObject:model],nil);
+            }
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         NSLog(@"error ==> %@",error);
