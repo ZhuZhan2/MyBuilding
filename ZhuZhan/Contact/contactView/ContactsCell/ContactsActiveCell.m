@@ -76,7 +76,7 @@
     }
     
     if (cellModel.commentArr.count) {
-        height += [ManyCommentsView carculateHeightWithCommentArr:cellModel.commentArr];
+        height += [ManyCommentsView carculateHeightWithCommentArr:cellModel.commentArr needAssistView:cellModel.commentNumber>3];
     }
     
     
@@ -135,7 +135,7 @@
     
     [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:model.mainImageUrl] placeholderImage:[GetImagePath getImagePath:@"默认图_动态详情"]];
     
-    [self.commentView setCommentNumber:model.commentNumber commentArr:model.commentArr];
+    [self.commentView setCommentNumber:model.commentNumber commentArr:model.commentArr needAssistView:model.commentNumber>3];
     
     CGFloat height = 0;
     

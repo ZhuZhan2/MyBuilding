@@ -21,6 +21,7 @@
 @implementation PersonalProjectController
 - (void)setUp{
     [super setUp];
+    self.tableView.backgroundColor = AllBackLightGratColor;
     [self loadList];
     [self setUpRefreshWithNeedHeaderRefresh:YES needFooterRefresh:YES];
 }

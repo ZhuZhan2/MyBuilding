@@ -44,4 +44,35 @@
     view.image=[GetImagePath getImagePath:AllThemeViewShadowImageName];
     return view;
 }
+
++ (UIView*)seperatorLineInViews:(NSArray *)views{
+    UIView* backView = [[UIView alloc] init];
+    __block CGFloat height = 0;
+    [views enumerateObjectsUsingBlock:^(UIView* view, NSUInteger idx, BOOL *stop) {
+        UIView* seperatorLine = [self seperatorLine];
+        CGRect frame = seperatorLine.frame;
+        frame.origin.y = height;
+        seperatorLine.frame = frame;
+        
+        [backView addSubview:seperatorLine];
+        height += CGRectGetHeight(seperatorLine.frame);
+        
+        frame  = view.frame;
+        frame.origin.y = height;
+        view.frame = frame;
+        
+        [backView addSubview:view];
+        height += CGRectGetHeight(view.frame);
+    }];
+    UIView* seperatorLine = [self seperatorLine];
+    CGRect frame = seperatorLine.frame;
+    frame.origin.y = height;
+    seperatorLine.frame = frame;
+    
+    [backView addSubview:seperatorLine];
+    height += CGRectGetHeight(seperatorLine.frame);
+    
+    backView.frame = CGRectMake(0, 0, kScreenWidth, height);
+    return backView;
+}
 @end

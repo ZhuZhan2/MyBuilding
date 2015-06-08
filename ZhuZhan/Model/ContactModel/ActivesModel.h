@@ -46,6 +46,7 @@
 @property (nonatomic,copy)NSString *a_productDesc;
 @property (nonatomic,copy)NSString *a_productImageWidth;
 @property (nonatomic,copy)NSString *a_productImageHeight;
+@property (nonatomic,copy)NSString *a_landAddress;
 @property (nonatomic,copy)NSString *a_landProvince;
 @property (nonatomic,copy)NSString *a_landCity;
 @property (nonatomic,copy)NSString *a_landDistrict;

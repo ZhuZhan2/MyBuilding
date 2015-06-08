@@ -56,6 +56,7 @@
     self.a_projectStage = [ProjectStage ProjectStrStage:dict[@"operationData"][@"projectStage"]];
     
     self.a_productName = [ProjectStage ProjectStrStage:dict[@"operationData"][@"productName"]];
+    self.a_landAddress = [ProjectStage ProjectStrStage:dict[@"operationData"][@"landAddress"]];
     self.a_landProvince = [ProjectStage ProjectStrStage:dict[@"operationData"][@"landProvince"]];
     self.a_landCity = [ProjectStage ProjectStrStage:dict[@"operationData"][@"landCity"]];
     self.a_landDistrict = [ProjectStage ProjectStrStage:dict[@"operationData"][@"landDistrict"]];
