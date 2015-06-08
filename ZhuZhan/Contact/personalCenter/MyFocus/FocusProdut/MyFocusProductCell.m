@@ -134,7 +134,7 @@
 
 - (NSString *)mainImageName{
     if (!_mainImageName) {
-        _mainImageName = @"默认图_产品列表";
+        _mainImageName = @"默认图_产品关注列表";
     }
     return _mainImageName;
 }

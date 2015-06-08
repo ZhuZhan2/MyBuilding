@@ -87,7 +87,7 @@
             [model.commentArr addObject:commentCellModel];
         }];
     }else{
-        NSArray* actionNameArr = @[@"",@"发布产品",@"新建项目",[dataModel.a_content isEqualToString:@"修改了头像"]?@"更新了头像":@"更新了资料",@"获得了公司认证",@"更新了项目",@"评论了项目",@"评论了产品"];
+        NSArray* actionNameArr = @[@"",@"发布产品",@"新建项目",[dataModel.a_content isEqualToString:@"修改了头像"]?@"更新了头像":@"更新了资料",@"获得了公司认证",@"更新了项目",@"项目有了新评论",@"产品有了新评论"];
         model.actionName = actionNameArr[dataModel.a_type];
         model.actionNameColor = (dataModel.a_type == 3 || dataModel.a_type == 4)?RGBCOLOR(51, 51, 51):BlueColor;
         if (dataModel.a_type == 7) {
@@ -98,8 +98,7 @@
             model.secondContent = dataModel.a_productName;
         }else if (isProject){
             model.secondContent = dataModel.a_projectName;
-            NSString* area = [NSString stringWithFormat:@"%@ %@ %@",dataModel.a_landProvince,dataModel.a_landCity,dataModel.a_landDistrict];
-            model.thirdContent = [area isEqualToString:@"  "]?@"":area;
+            model.thirdContent = dataModel.a_landAddress;
         }else if (dataModel.a_type == 4){
             model.secondContent = dataModel.a_content;
         }

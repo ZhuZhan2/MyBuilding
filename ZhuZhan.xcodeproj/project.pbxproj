@@ -893,10 +893,6 @@
 		5BA5BBDD1AD3B8A1004829AF /* AcceptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA5BBDC1AD3B8A1004829AF /* AcceptView.m */; };
 		5BA6E7CF1AD60EA50035A97D /* RKContractsStagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA6E7CE1AD60EA50035A97D /* RKContractsStagesView.m */; };
 		5BA8EACD1AA5501300996281 /* ActivePublishController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA8EACC1AA5501300996281 /* ActivePublishController.m */; };
-		5BA8F4DE1B12FE8000E8656D /* 默认图_产品列表.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA8F4D41B12FE8000E8656D /* 默认图_产品列表.png */; };
-		5BA8F4DF1B12FE8000E8656D /* 默认图_产品列表@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA8F4D51B12FE8000E8656D /* 默认图_产品列表@2x.png */; };
-		5BA8F4E01B12FE8000E8656D /* 默认图_产品详情.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA8F4D61B12FE8000E8656D /* 默认图_产品详情.png */; };
-		5BA8F4E11B12FE8000E8656D /* 默认图_产品详情@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA8F4D71B12FE8000E8656D /* 默认图_产品详情@2x.png */; };
 		5BA8F4E21B12FE8000E8656D /* 默认图_人脉头像.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA8F4D81B12FE8000E8656D /* 默认图_人脉头像.png */; };
 		5BA8F4E31B12FE8000E8656D /* 默认图_人脉头像@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA8F4D91B12FE8000E8656D /* 默认图_人脉头像@2x.png */; };
 		5BA8F4E41B12FE8000E8656D /* 默认图_项目列表.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA8F4DA1B12FE8000E8656D /* 默认图_项目列表.png */; };
@@ -985,6 +981,8 @@
 		5BC9E9BE1B16B3F30051A26F /* 首页_搜索分类@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC9E9BC1B16B3F30051A26F /* 首页_搜索分类@2x.png */; };
 		5BD9DE801AF88C3A007BF9B5 /* MarketSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD9DE7F1AF88C3A007BF9B5 /* MarketSearchViewController.m */; };
 		5BD9DE831AF89533007BF9B5 /* SearchMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD9DE821AF89533007BF9B5 /* SearchMenuView.m */; };
+		5BDDA1EB1B25292A00F4AABB /* 默认图_产品关注列表.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDDA1E91B25292A00F4AABB /* 默认图_产品关注列表.png */; };
+		5BDDA1EC1B25292A00F4AABB /* 默认图_产品关注列表@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDDA1EA1B25292A00F4AABB /* 默认图_产品关注列表@2x.png */; };
 		5BE08D941A3586EA00495EEB /* 010001.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE08C6D1A3586EA00495EEB /* 010001.png */; };
 		5BE08D951A3586EA00495EEB /* 010001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE08C6E1A3586EA00495EEB /* 010001@2x.png */; };
 		5BE08D961A3586EA00495EEB /* 010002.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE08C6F1A3586EA00495EEB /* 010002.png */; };
@@ -3097,10 +3095,6 @@
 		5BA6E7CE1AD60EA50035A97D /* RKContractsStagesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKContractsStagesView.m; sourceTree = "<group>"; };
 		5BA8EACB1AA5501300996281 /* ActivePublishController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivePublishController.h; sourceTree = "<group>"; };
 		5BA8EACC1AA5501300996281 /* ActivePublishController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivePublishController.m; sourceTree = "<group>"; };
-		5BA8F4D41B12FE8000E8656D /* 默认图_产品列表.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_产品列表.png"; sourceTree = "<group>"; };
-		5BA8F4D51B12FE8000E8656D /* 默认图_产品列表@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_产品列表@2x.png"; sourceTree = "<group>"; };
-		5BA8F4D61B12FE8000E8656D /* 默认图_产品详情.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_产品详情.png"; sourceTree = "<group>"; };
-		5BA8F4D71B12FE8000E8656D /* 默认图_产品详情@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_产品详情@2x.png"; sourceTree = "<group>"; };
 		5BA8F4D81B12FE8000E8656D /* 默认图_人脉头像.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_人脉头像.png"; sourceTree = "<group>"; };
 		5BA8F4D91B12FE8000E8656D /* 默认图_人脉头像@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_人脉头像@2x.png"; sourceTree = "<group>"; };
 		5BA8F4DA1B12FE8000E8656D /* 默认图_项目列表.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_项目列表.png"; sourceTree = "<group>"; };
@@ -3225,6 +3219,8 @@
 		5BD9DE7F1AF88C3A007BF9B5 /* MarketSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketSearchViewController.m; sourceTree = "<group>"; };
 		5BD9DE811AF89533007BF9B5 /* SearchMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMenuView.h; sourceTree = "<group>"; };
 		5BD9DE821AF89533007BF9B5 /* SearchMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMenuView.m; sourceTree = "<group>"; };
+		5BDDA1E91B25292A00F4AABB /* 默认图_产品关注列表.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_产品关注列表.png"; sourceTree = "<group>"; };
+		5BDDA1EA1B25292A00F4AABB /* 默认图_产品关注列表@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_产品关注列表@2x.png"; sourceTree = "<group>"; };
 		5BE08C6D1A3586EA00495EEB /* 010001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 010001.png; sourceTree = "<group>"; };
 		5BE08C6E1A3586EA00495EEB /* 010001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "010001@2x.png"; sourceTree = "<group>"; };
 		5BE08C6F1A3586EA00495EEB /* 010002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 010002.png; sourceTree = "<group>"; };
@@ -5717,14 +5713,12 @@
 				D314A3A91B15977F00F6A86A /* addComment@2x.png */,
 				5BA8F5041B1321B800E8656D /* 佣金_提交成功按钮_我的询价列表.png */,
 				5BA8F5051B1321B800E8656D /* 佣金_提交成功按钮_我的询价列表@2x.png */,
+				5BDDA1E91B25292A00F4AABB /* 默认图_产品关注列表.png */,
+				5BDDA1EA1B25292A00F4AABB /* 默认图_产品关注列表@2x.png */,
 				5BA8F4E81B13092500E8656D /* 默认图_公司头像.png */,
 				5BA8F4E91B13092500E8656D /* 默认图_公司头像@2x.png */,
 				5BAF1D181B1567FE009C47BD /* 默认图_公司详情.png */,
 				5BAF1D191B1567FE009C47BD /* 默认图_公司详情@2x.png */,
-				5BA8F4D41B12FE8000E8656D /* 默认图_产品列表.png */,
-				5BA8F4D51B12FE8000E8656D /* 默认图_产品列表@2x.png */,
-				5BA8F4D61B12FE8000E8656D /* 默认图_产品详情.png */,
-				5BA8F4D71B12FE8000E8656D /* 默认图_产品详情@2x.png */,
 				5BA8F4D81B12FE8000E8656D /* 默认图_人脉头像.png */,
 				5BA8F4D91B12FE8000E8656D /* 默认图_人脉头像@2x.png */,
 				5BA8F4DA1B12FE8000E8656D /* 默认图_项目列表.png */,
@@ -8506,7 +8500,6 @@
 				5BE180F51AFC9C1100251113 /* 已申请.png in Resources */,
 				5BBA27A91B20389800ADE3FC /* 需求_选择框_已选.png in Resources */,
 				5BE08D9B1A3586EA00495EEB /* 010004@2x.png in Resources */,
-				5BA8F4DE1B12FE8000E8656D /* 默认图_产品列表.png in Resources */,
 				5BFA14051B1ED6490026380A /* 默认图_用户头像_评论头像@2x.png in Resources */,
 				D3D9C90B1A1343CF001D3A64 /* 主菜单01b@2x.png in Resources */,
 				5BE08E671A3586EA00495EEB /* 030012@2x.png in Resources */,
@@ -8564,6 +8557,7 @@
 				04BC417519D7E5B3006B5C7B /* 人脉_02a.png in Resources */,
 				04BC42C119D7E5B3006B5C7B /* 项目-首页_18a@2x.png in Resources */,
 				D3D5D9AD1A66919B0077C8C9 /* 公司详情图标01@2x.png in Resources */,
+				5BDDA1EB1B25292A00F4AABB /* 默认图_产品关注列表.png in Resources */,
 				5B75F4F91AFA04AB0091162C /* find_findbutton@2x.png in Resources */,
 				D3A85BBE1B0C577400333F56 /* proiect_content.png in Resources */,
 				5BE08DE81A3586EA00495EEB /* 010043.png in Resources */,
@@ -8664,7 +8658,6 @@
 				5BE08E381A3586EA00495EEB /* 020019.png in Resources */,
 				5BE08E641A3586EA00495EEB /* 030011.png in Resources */,
 				5BE82BC11B180CCC00603F8A /* 默认图_动态详情.png in Resources */,
-				5BA8F4E01B12FE8000E8656D /* 默认图_产品详情.png in Resources */,
 				04BC41EC19D7E5B3006B5C7B /* 人脉－账号设置_14a@2x.png in Resources */,
 				D3D5D9B11A66919B0077C8C9 /* 公司详情图标03@2x.png in Resources */,
 				5B6C4B301ADFC01B003B8DA8 /* PDF.png in Resources */,
@@ -8728,6 +8721,7 @@
 				5BE08E9C1A3586EA00495EEB /* 040012.png in Resources */,
 				5BE08DD71A3586EA00495EEB /* 010034@2x.png in Resources */,
 				04BC42BA19D7E5B3006B5C7B /* 项目-首页_03a.png in Resources */,
+				5BDDA1EC1B25292A00F4AABB /* 默认图_产品关注列表@2x.png in Resources */,
 				5BE08DD11A3586EA00495EEB /* 010031@2x.png in Resources */,
 				D39937D31A42B527007081C1 /* 推荐页面03a@2x.png in Resources */,
 				5BE08EA41A3586EA00495EEB /* 040016.png in Resources */,
@@ -8824,7 +8818,6 @@
 				04BC41C319D7E5B3006B5C7B /* 人脉－人的详情_23a.png in Resources */,
 				04BC435119D7E5B3006B5C7B /* 项目－高级搜索－2_22a@2x.png in Resources */,
 				D3DF8DDE1B16DACF00B7CF35 /* contact_default_list.png in Resources */,
-				5BA8F4E11B12FE8000E8656D /* 默认图_产品详情@2x.png in Resources */,
 				04BC40F119D7E5B3006B5C7B /* +项目-首页_25a@2x.png in Resources */,
 				5B4E6CA41A68F19A0008E5D5 /* 项目详情默认.png in Resources */,
 				04BC414819D7E5B3006B5C7B /* icon__09.png in Resources */,
@@ -9117,7 +9110,6 @@
 				D3D6C7961A15D75D001D2071 /* 公司－公司详情_05d@2x.png in Resources */,
 				5B4C197219FA444800C6C57D /* 注册_05@2x.png in Resources */,
 				5BE180FC1AFCAB7900251113 /* 发起询价@2x.png in Resources */,
-				5BA8F4DF1B12FE8000E8656D /* 默认图_产品列表@2x.png in Resources */,
 				5B5836FB1AD7A3D200F8E7C3 /* accept_green_button@2x.png in Resources */,
 				04BC412719D7E5B3006B5C7B /* bg-menuitem-highlighted@2x.png in Resources */,
 				D3D1A7B719F8E9B40006F954 /* 公司－我的公司_05b.png in Resources */,
