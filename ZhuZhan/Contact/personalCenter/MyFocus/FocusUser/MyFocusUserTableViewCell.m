@@ -8,6 +8,7 @@
 
 #import "MyFocusUserTableViewCell.h"
 #import "IsFocusedApi.h"
+#import "LoginSqlite.h"
 @implementation MyFocusUserTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -73,7 +74,8 @@
 -(void)setModel:(MyCenterModel *)model{
     self.contractId = model.a_id;
     self.isFocused = model.a_isFocus;
-    [self.userHeadBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:model.a_userImage] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"默认图_人脉头像"]];
+    
+    [self.userHeadBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:model.a_userImage] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"默认图_用户头像_卡片头像"]];
     self.nameLabel.text = model.a_userName;
     self.companyLabel.text = model.a_company;
     if([self.isFocused isEqualToString:@"0"]){

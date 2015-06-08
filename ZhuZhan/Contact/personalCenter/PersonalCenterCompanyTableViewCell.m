@@ -17,9 +17,9 @@
         // Initialization code
         [self.bgView addSubview:self.cutLine1];
         [self.bgView addSubview:self.cutLine2];
-        [self.bgView addSubview:self.headImage];
         [self.bgView addSubview:self.titleLabel];
         [self.bgView addSubview:self.contentLabel];
+        [self.bgView addSubview:self.timeLabel];
         [self.contentView addSubview:self.bgView];
     }
     return self;
@@ -51,38 +51,38 @@
 
 -(UILabel *)titleLabel{
     if(!_titleLabel){
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 25, 200, 20)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 200, 20)];
         _titleLabel.font = [UIFont boldSystemFontOfSize:14];
     }
     return _titleLabel;
 }
 
+-(UILabel *)timeLabel{
+    if(!_timeLabel){
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 25, 120, 20)];
+        _timeLabel.font = [UIFont systemFontOfSize:14];
+        _timeLabel.textAlignment = NSTextAlignmentLeft;
+        _timeLabel.textColor = AllNoDataColor;
+    }
+    return _timeLabel;
+}
+
 -(UILabel *)contentLabel{
     if(!_contentLabel){
-        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 5, 200, 20)];
-        _contentLabel.font = [UIFont systemFontOfSize:12];
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 25, 100, 20)];
+        _contentLabel.font = [UIFont systemFontOfSize:14];
         _contentLabel.textAlignment = NSTextAlignmentLeft;
-        _contentLabel.textColor = [UIColor blackColor];
-        _contentLabel.text = @"通过企业认证";
+        _contentLabel.textColor = BlueColor;
+        _contentLabel.text = @"已通过企业认证";
     }
     return _contentLabel;
 }
 
--(UIImageView *)headImage{
-    if(!_headImage){
-        _headImage = [[UIImageView alloc] init];
-        _headImage.frame = CGRectMake(20.5, 9.5, 30, 30);
-        _headImage.layer.cornerRadius=15;
-        _headImage.layer.masksToBounds=YES;
-    }
-    return _headImage;
-}
-
--(void)setImageUrl:(NSString *)imageUrl{
-    [self.headImage sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:@"公司－我的公司_02a"]];
-}
-
 -(void)setCompanyName:(NSString *)companyName{
     self.titleLabel.text = companyName;
+}
+
+-(void)setTime:(NSString *)time{
+    self.timeLabel.text = time;
 }
 @end

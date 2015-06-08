@@ -88,6 +88,7 @@
         _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 154) bannerPlaceholderImageName:@"默认主图"];
         _pathCover.delegate = self;
         [_pathCover setHeadTaget];
+        [_pathCover hidewaterDropRefresh];
         [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"匿名用户", XHUserNameKey,@"想要使用更多功能请登录",XHBirthdayKey, nil]];
         if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
             [_pathCover.headImage.layer setMasksToBounds:YES];
@@ -423,7 +424,7 @@
         ProductModel *productModel = [[ProductModel alloc] init];
         productModel.a_id = model.a_entityId;
         productModel.a_name = model.a_productName;
-        productModel.a_content = model.a_content;
+        productModel.a_content = model.a_productDesc;
         productModel.a_imageUrl = model.a_bigProductImage;
         productModel.a_originImageUrl = model.a_bigProductImage;
         productModel.a_createdBy = model.a_dynamicLoginId;
@@ -449,7 +450,7 @@
         ProductModel *productModel = [[ProductModel alloc] init];
         productModel.a_id = model.a_entityId;
         productModel.a_name = model.a_productName;
-        productModel.a_content = model.a_content;
+        productModel.a_content = model.a_productDesc;
         productModel.a_imageUrl = model.a_bigProductImage;
         productModel.a_originImageUrl = model.a_bigProductImage;
         productModel.a_createdBy = model.a_dynamicLoginId;

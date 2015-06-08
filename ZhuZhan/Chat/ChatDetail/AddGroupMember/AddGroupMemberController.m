@@ -169,8 +169,8 @@
     [dic setObject:self.contactId forKey:@"groupId"];
     [ChatMessageApi DismissWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            NSInteger index=self.navigationController.viewControllers.count-3;
-            [self.navigationController popToViewController:self.navigationController.viewControllers[index] animated:YES];
+            //NSInteger index=self.navigationController.viewControllers.count-3;
+            [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadList" object:nil];
         }else{
             if([ErrorCode errorCode:error] == 403){

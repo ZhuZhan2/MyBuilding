@@ -19,10 +19,11 @@
 @property (nonatomic, copy) NSString *a_imageOriginalUrl;
 @property (nonatomic, copy) NSString *a_imageWidth;
 @property (nonatomic, copy) NSString *a_imageHeight;
-@property (nonatomic, copy) NSDate *a_time;
+@property (nonatomic, copy) NSString *a_time;
 @property (nonatomic, copy) NSString *a_category;
 @property (nonatomic, copy) NSString *a_avatarUrl;
 @property (nonatomic, copy) NSString *a_userName;
-@property (nonatomic, copy) NSString* a_userType;
+@property (nonatomic, copy) NSString *a_userType;
+@property (nonatomic, copy) NSString *a_address;
 @property (nonatomic, copy) NSDictionary *dict;
 @end
