@@ -108,7 +108,7 @@
 
 - (UITextField*)fieldWithContent:(NSString*)content placeholderStr:(NSString*)placeholderStr contentColor:(UIColor*)contentColor placeholderStrColor:(UIColor*)placeholderStrColor{
     UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(18, 40, kScreenWidth-36, 20)];
-    textField.font = [UIFont systemFontOfSize:17.5];
+    textField.font = [UIFont systemFontOfSize:17];
     textField.text = content;
     textField.placeholder = placeholderStr;
     

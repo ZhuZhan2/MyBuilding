@@ -204,7 +204,7 @@
 }
 
 -(void)error{
-    [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"请测试记下当前的合同各个状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
+    [[[UIAlertView alloc]initWithTitle:@"提醒" message:@"网络异常，请稍后再试" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

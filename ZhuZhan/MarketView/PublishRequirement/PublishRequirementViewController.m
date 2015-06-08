@@ -10,6 +10,7 @@
 #import "CategoryView.h"
 #import "PublishRequirementContactsInfoView.h"
 #import "PublishRequirementProjectView.h"
+#import "PublishRequirementMaterialView.h"
 #import "RKShadowView.h"
 @interface PublishRequirementViewController ()
 @property (nonatomic, strong)CategoryView* requirementCategoryView;
@@ -19,7 +20,7 @@
 @property (nonatomic, strong)NSArray* viewArr;
 
 @property (nonatomic, strong)PublishRequirementProjectView* projectView;
-@property (nonatomic, strong)UIView* materialView;
+@property (nonatomic, strong)PublishRequirementMaterialView* materialView;
 @property (nonatomic, strong)UIView* relationView;
 @property (nonatomic, strong)UIView* cooperationView;
 @property (nonatomic, strong)UIView* otherView;
@@ -36,6 +37,7 @@
 }
 
 - (void)initNavi{
+    self.title = @"发布需求";
     [self setLeftBtnWithImage:[GetImagePath getImagePath:@"013"]];
 }
 
@@ -87,7 +89,7 @@
 
 - (NSArray *)viewArr{
     if (!_viewArr) {
-        _viewArr = @[self.requirementCategoryView,self.contactsInfoView,self.projectView];
+        _viewArr = @[self.requirementCategoryView,self.contactsInfoView,self.materialView];
     }
     return _viewArr;
 }
@@ -97,5 +99,12 @@
         _projectView = [PublishRequirementProjectView projectView];
     }
     return _projectView;
+}
+
+- (PublishRequirementMaterialView *)materialView{
+    if (!_materialView) {
+        _materialView = [PublishRequirementMaterialView materialView];
+    }
+    return _materialView;
 }
 @end
