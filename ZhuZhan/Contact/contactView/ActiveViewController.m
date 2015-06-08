@@ -45,7 +45,7 @@
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
-    self.title = @"MYBUILDING";
+    self.title = @"人脉";
     
     [self initStageChooseViewWithStages:@[@"全部动态",@"我的动态"] numbers:nil underLineIsWhole:YES normalColor:AllLightGrayColor highlightColor:BlueColor];
 }

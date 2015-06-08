@@ -124,7 +124,7 @@
 
 -(UILabel *)projectInvestmentCount{
     if(!_projectInvestmentCount){
-        _projectInvestmentCount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 90, 20)];
+        _projectInvestmentCount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
         _projectInvestmentCount.font = FONT;
     }
     return _projectInvestmentCount;
@@ -132,7 +132,7 @@
 
 -(UILabel *)projectAreaCount{
     if(!_projectAreaCount){
-        _projectAreaCount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 90, 20)];
+        _projectAreaCount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
         _projectAreaCount.font = FONT;
     }
     return _projectAreaCount;
@@ -242,7 +242,7 @@
         NSString* tempStr = [NSString stringWithFormat:@"%@ %@",model.a_city,model.a_landAddress];
         NSMutableAttributedString* attStr=[[NSMutableAttributedString alloc]initWithString:tempStr];
         [attStr addAttribute:NSForegroundColorAttributeName value:BlueColor range:NSMakeRange(0, model.a_city.length)];
-        CGSize projectAddressSize =CGSizeMake(254,60);
+        CGSize projectAddressSize =CGSizeMake(254,50);
         CGSize projectAddressActualsize =[tempStr boundingRectWithSize:projectAddressSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:FONT} context:nil].size;
         self.projectAddress.frame = CGRectMake(LEFTMARGIN+LEFTPADDING-2, 58+self.projectName.frame.size.height, 254, projectAddressActualsize.height+10);
         self.projectAddress.attributedText = attStr;

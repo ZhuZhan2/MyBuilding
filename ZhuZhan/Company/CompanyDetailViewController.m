@@ -292,7 +292,7 @@
         
         UILabel* contactsLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(contactsLabel1.frame), 0, kScreenWidth, 44)];
         contactsLabel2.font = [UIFont systemFontOfSize:16];
-        contactsLabel2.text = self.model.a_companyContactCellphone;
+        contactsLabel2.text = self.model.a_companyContactName;
         [self noDataLabel:contactsLabel2];
         [_contactsView addSubview:contactsLabel2];
         

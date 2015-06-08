@@ -7600,6 +7600,7 @@
 			isa = PBXGroup;
 			children = (
 				D324B1831B2038BF00E29E07 /* MarketListViewController */,
+				5BBA27851B1FE31F00ADE3FC /* PublishRequirement */,
 				D3D0902C1AF89FC000C8AC55 /* SearchMaterialView */,
 				5BD9DE7D1AF88C21007BF9B5 /* MarketSearchViewController */,
 				D3D090251AF8964300C8AC55 /* MarketViewController.h */,

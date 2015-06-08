@@ -161,8 +161,14 @@
         _nameTextField.delegate = self;
         [_nameTextField setValue:[UIFont systemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
         [_nameTextField setValue:AllNoDataColor forKeyPath:@"_placeholderLabel.textColor"];
-        if(![[LoginSqlite getdata:@"userName"] isEqualToString:@""]){
-            _nameTextField.text = [LoginSqlite getdata:@"contactName"];
+        if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+            if(![[LoginSqlite getdata:@"contactName"] isEqualToString:@""]){
+                _nameTextField.text = [LoginSqlite getdata:@"contactName"];
+            }
+        }else{
+            if(![[LoginSqlite getdata:@"userName"] isEqualToString:@""]){
+                _nameTextField.text = [LoginSqlite getdata:@"userName"];
+            }
         }
     }
     return _nameTextField;
@@ -180,8 +186,14 @@
         _phoneTextField.keyboardType = UIKeyboardTypePhonePad;
         [_phoneTextField setValue:[UIFont systemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
         [_phoneTextField setValue:AllNoDataColor forKeyPath:@"_placeholderLabel.textColor"];
-        if(![[LoginSqlite getdata:@"userPhone"] isEqualToString:@""]){
-            _phoneTextField.text = [LoginSqlite getdata:@"contactTel"];
+        if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+            if(![[LoginSqlite getdata:@"contactTel"] isEqualToString:@""]){
+                _phoneTextField.text = [LoginSqlite getdata:@"contactTel"];
+            }
+        }else{
+            if(![[LoginSqlite getdata:@"userPhone"] isEqualToString:@""]){
+                _phoneTextField.text = [LoginSqlite getdata:@"userPhone"];
+            }
         }
     }
     return _phoneTextField;
