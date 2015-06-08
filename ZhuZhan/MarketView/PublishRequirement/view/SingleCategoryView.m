@@ -44,6 +44,6 @@
     _isSelected = isSelected;
     self.backgroundColor = isSelected?BlueColor:[UIColor whiteColor];
     self.textColor = isSelected?[UIColor whiteColor]:RGBCOLOR(150, 150, 150);
-    self.layer.borderWidth = isSelected?0:1;
+    self.layer.borderWidth = isSelected?0:0.5;
 }
 @end

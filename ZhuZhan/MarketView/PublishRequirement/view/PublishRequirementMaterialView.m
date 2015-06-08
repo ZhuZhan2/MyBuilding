@@ -1,41 +1,41 @@
 //
-//  PublishRequirementProjectView.m
+//  PublishRequirementMaterialView.m
 //  ZhuZhan
 //
-//  Created by 孙元侃 on 15/6/4.
+//  Created by 孙元侃 on 15/6/8.
 //
 //
 
-#import "PublishRequirementProjectView.h"
+#import "PublishRequirementMaterialView.h"
 #import "RKViewFactory.h"
 #import "PublishRequirementTitleView.h"
 #import "RKShadowView.h"
-@interface PublishRequirementProjectView ()<UITextViewDelegate>
+@interface PublishRequirementMaterialView ()<UITextViewDelegate>
 @property (nonatomic, strong)UITextField* areaField;
 @property (nonatomic, strong)UITextField* minMoneyField;
 @property (nonatomic, strong)UITextField* maxMoneyField;
 @property (nonatomic, strong)UITextField* requirementDescribeField;
 @end
 
-@implementation PublishRequirementProjectView
-+ (PublishRequirementProjectView *)projectView{
-    PublishRequirementProjectView* projectView = [[PublishRequirementProjectView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 375)];
-    [projectView setUp];
-    return projectView;
+@implementation PublishRequirementMaterialView
++ (PublishRequirementMaterialView *)materialView{
+    PublishRequirementMaterialView* materialView = [[PublishRequirementMaterialView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 375)];
+    [materialView setUp];
+    return materialView;
 }
 
 - (void)setUp{
     UIView* view1 = [PublishRequirementTitleView titleViewWithImageName:@"需求_标题_需求信息" title:@"需求信息"];
-    UIView* view2 = [self areaView];
-    UIView* view3 = [self moneyView];
+    UIView* view2 = [self bigCategoryView];
+    UIView* view3 = [self smallCategoryView];
     UIView* view4 = [self requirementView];
     [self addSubview:[RKShadowView seperatorLineInViews:@[view1,view2,view3,view4]]];
     self.frame = CGRectMake(0, 0, kScreenWidth, CGRectGetMaxY(view4.frame));
 }
 
-- (UIView*)areaView{
+- (UIView*)bigCategoryView{
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 70)];
-    [view addSubview:[self labelWithContent:@"需求所在地" assistContent:@"必填"]];
+    [view addSubview:[self labelWithContent:@"大类" assistContent:@"必填"]];
     
     UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(290, 27, 9, 13)];
     imageView.image = [GetImagePath getImagePath:@"需求_箭头"];
@@ -46,26 +46,15 @@
     return view;
 }
 
-- (UIView*)moneyView{
+- (UIView*)smallCategoryView{
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 70)];
-    [view addSubview:[self labelWithContent:@"项目金额要求（百万）" assistContent:nil]];
+    [view addSubview:[self labelWithContent:@"大类" assistContent:@"必填"]];
     
-    UITextField* field1 = [self fieldWithContent:nil placeholderStr:@"请输入最低金额" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187) width:120];
-    CGRect frame = field1.frame;
-    frame.origin.x = 18;
-    field1.frame = frame;
-    [view addSubview:field1];
+    UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(290, 27, 9, 13)];
+    imageView.image = [GetImagePath getImagePath:@"需求_箭头"];
+    [view addSubview:imageView];
     
-    UITextField* field2 = [self fieldWithContent:nil placeholderStr:@"请输入最高金额" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187) width:120];
-    frame = field2.frame;
-    frame.origin.x = 184;
-    field2.frame = frame;
-    [view addSubview:field2];
-    
-    UIView* sepe = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 33, 1)];
-    sepe.backgroundColor = RGBCOLOR(187, 187, 187);
-    sepe.center = CGPointMake(kScreenWidth/2, field1.center.y);
-    [view addSubview:sepe];
+    [view addSubview:[self fieldWithContent:nil placeholderStr:@"请选择" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187)]];
     
     return view;
 }
@@ -77,7 +66,7 @@
     UITextView* textView = [[UITextView alloc] initWithFrame:CGRectMake(18-5, 40, kScreenWidth-36+10, 160)];
     textView.font = [UIFont systemFontOfSize:17];
     textView.delegate = self;
-
+    
     UILabel* textPlaceLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 300, 20)];
     textPlaceLabel.text = @"请把让我们帮你的事情输入";
     textPlaceLabel.textColor = RGBCOLOR(187, 187, 187);
