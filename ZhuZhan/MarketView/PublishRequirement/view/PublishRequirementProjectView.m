@@ -14,7 +14,7 @@
 @property (nonatomic, strong)UITextField* areaField;
 @property (nonatomic, strong)UITextField* minMoneyField;
 @property (nonatomic, strong)UITextField* maxMoneyField;
-@property (nonatomic, strong)UITextField* requirementDescribeField;
+@property (nonatomic, strong)UITextView* requirementDescribeTextView;
 @end
 
 @implementation PublishRequirementProjectView
@@ -33,6 +33,12 @@
     self.frame = CGRectMake(0, 0, kScreenWidth, CGRectGetMaxY(view4.frame));
 }
 
+- (void)areaBtnCilciked{
+    if ([self.delegate respondsToSelector:@selector(projectViewAreaBtnClicked)]) {
+        [self.delegate projectViewAreaBtnClicked];
+    }
+}
+
 - (UIView*)areaView{
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 70)];
     [view addSubview:[self labelWithContent:@"需求所在地" assistContent:@"必填"]];
@@ -42,6 +48,10 @@
     [view addSubview:imageView];
     
     [view addSubview:[self fieldWithContent:nil placeholderStr:@"请选择" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187)]];
+    
+    UIButton* btn = [[UIButton alloc] initWithFrame:view.bounds];
+    [btn addTarget:self action:@selector(areaBtnCilciked) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:btn];
     
     return view;
 }
@@ -55,12 +65,14 @@
     frame.origin.x = 18;
     field1.frame = frame;
     [view addSubview:field1];
+    self.minMoneyField = field1;
     
     UITextField* field2 = [self fieldWithContent:nil placeholderStr:@"请输入最高金额" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187) width:120];
     frame = field2.frame;
     frame.origin.x = 184;
     field2.frame = frame;
     [view addSubview:field2];
+    self.maxMoneyField = field2;
     
     UIView* sepe = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 33, 1)];
     sepe.backgroundColor = RGBCOLOR(187, 187, 187);
@@ -77,7 +89,8 @@
     UITextView* textView = [[UITextView alloc] initWithFrame:CGRectMake(18-5, 40, kScreenWidth-36+10, 160)];
     textView.font = [UIFont systemFontOfSize:17];
     textView.delegate = self;
-
+    self.requirementDescribeTextView = textView;
+    
     UILabel* textPlaceLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 300, 20)];
     textPlaceLabel.text = @"请把让我们帮你的事情输入";
     textPlaceLabel.textColor = RGBCOLOR(187, 187, 187);
@@ -133,5 +146,17 @@
     }
     
     return textField;
+}
+
+- (NSString *)minMoney{
+    return self.minMoneyField.text;
+}
+
+- (NSString *)maxMoney{
+    return self.maxMoneyField.text;
+}
+
+- (NSString *)requirementDescribe{
+    return self.requirementDescribeTextView.text;
 }
 @end

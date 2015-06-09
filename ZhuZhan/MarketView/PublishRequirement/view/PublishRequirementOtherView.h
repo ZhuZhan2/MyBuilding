@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface PublishRequirementOtherView : UIView
-
++ (PublishRequirementOtherView*)otherView;
+@property (nonatomic, copy)NSString* requirementDescribe;
 @end
