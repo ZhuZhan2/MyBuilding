@@ -108,5 +108,6 @@
     if (!_categoryView) {
         _categoryView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
     }
+    return _categoryView;
 }
 @end

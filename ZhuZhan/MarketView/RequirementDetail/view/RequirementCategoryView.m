@@ -35,5 +35,6 @@
     if (!_assistView) {
         _assistView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     }
+    return _assistView;
 }
 @end
