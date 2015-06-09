@@ -17,7 +17,11 @@
 #import "RKShadowView.h"
 #import "LoginSqlite.h"
 #import "MarketApi.h"
-@interface PublishRequirementViewController ()<CategoryViewDelegate,PublishRequirementProjectViewDelegate,PublishRequirementMaterialViewDelegate,PublishRequirementRelationViewDelegate,PublishRequirementCooperationViewDelegate>
+#import "TwoStageLocateView.h"
+#import "ChooseProductBigStage.h"
+#import "ChooseProductCellModel.h"
+#import "ChooseProductSmallStage.h"
+@interface PublishRequirementViewController ()<CategoryViewDelegate,PublishRequirementProjectViewDelegate,PublishRequirementMaterialViewDelegate,PublishRequirementRelationViewDelegate,PublishRequirementCooperationViewDelegate,UIActionSheetDelegate,ChooseProductBigStageDelegate,ChooseProductSmallStageDelegate>
 @property (nonatomic, strong)CategoryView* requirementCategoryView;
 @property (nonatomic, strong)PublishRequirementContactsInfoView* contactsInfoView;
 @property (nonatomic, strong)UIView* requirementInfoView;
@@ -30,6 +34,8 @@
 @property (nonatomic, strong)PublishRequirementRelationView* relationView;
 @property (nonatomic, strong)PublishRequirementCooperationView* cooperationView;
 @property (nonatomic, strong)PublishRequirementOtherView* otherView;
+@property (nonatomic, strong)TwoStageLocateView *locateView;
+@property (nonatomic, strong)NSString *categoryId;
 @end
 
 @implementation PublishRequirementViewController
@@ -137,22 +143,38 @@
 
 - (void)projectViewAreaBtnClicked{
     NSLog(@"projectViewAreaBtnClicked");
+    self.locateView = [[TwoStageLocateView alloc] initWithTitle:CGRectMake(0, 0, 320, 260) title:nil delegate:self];
+    self.locateView.tag = 1;
+    [self.locateView showInView:self.view];
 }
 
 - (void)materialViewBigCategoryBtnClicked{
     NSLog(@"materialViewBigCategoryBtnClicked");
+    ChooseProductBigStage *categoryView = [[ChooseProductBigStage alloc] init];
+    categoryView.delegate = self;
+    [self.navigationController pushViewController:categoryView animated:YES];
 }
 
 - (void)materialViewSmallCategoryBtnClicked{
     NSLog(@"materialViewSmallCategoryBtnClicked");
+    ChooseProductSmallStage *classificationView = [[ChooseProductSmallStage alloc] init];
+    classificationView.delegate = self;
+    classificationView.categoryId = self.categoryId;
+    [self.navigationController pushViewController:classificationView animated:YES];
 }
 
 - (void)relationViewAreaBtnClicked{
     NSLog(@"relationViewAreaBtnClicked");
+    self.locateView = [[TwoStageLocateView alloc] initWithTitle:CGRectMake(0, 0, 320, 260) title:nil delegate:self];
+    self.locateView.tag = 2;
+    [self.locateView showInView:self.view];
 }
 
 - (void)cooperationViewAreaBtnClicked{
     NSLog(@"cooperationViewAreaBtnClicked");
+    self.locateView = [[TwoStageLocateView alloc] initWithTitle:CGRectMake(0, 0, 320, 260) title:nil delegate:self];
+    self.locateView.tag = 3;
+    [self.locateView showInView:self.view];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -251,5 +273,62 @@
         _otherView = [PublishRequirementOtherView otherView];
     }
     return _otherView;
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(actionSheet.tag == 0){
+        self.locateView = (TwoStageLocateView *)actionSheet;
+        if(buttonIndex == 0) {
+            NSLog(@"Cancel");
+        }else {
+            NSLog(@"%@,%@",self.locateView.proviceDictionary[@"provice"],self.locateView.proviceDictionary[@"city"]);
+        }
+    }else if(actionSheet.tag == 1){
+        self.locateView = (TwoStageLocateView *)actionSheet;
+        if(buttonIndex == 0) {
+            NSLog(@"Cancel");
+        }else {
+            NSLog(@"%@,%@",self.locateView.proviceDictionary[@"provice"],self.locateView.proviceDictionary[@"city"]);
+        }
+    }else{
+        self.locateView = (TwoStageLocateView *)actionSheet;
+        if(buttonIndex == 0) {
+            NSLog(@"Cancel");
+        }else {
+            NSLog(@"%@,%@",self.locateView.proviceDictionary[@"provice"],self.locateView.proviceDictionary[@"city"]);
+        }
+    }
+}
+
+-(void)chooseProductBigStage:(NSString *)str catroyId:(NSString *)catroyId allClassificationArr:(NSMutableArray *)allClassification{
+    NSMutableString *string = [[NSMutableString alloc] init];
+    NSMutableString *idStr = [[NSMutableString alloc] init];
+    [allClassification enumerateObjectsUsingBlock:^(ChooseProductCellModel *cellModel, NSUInteger idx, BOOL *stop) {
+        [string appendString:[NSString stringWithFormat:@"%@、",cellModel.content]];
+        [idStr appendString:[NSString stringWithFormat:@"%@,",cellModel.aid]];
+    }];
+    if(str.length !=0){
+        //self.classifcationStr = [str substringWithRange:NSMakeRange(0,str.length-1)];
+    }
+    if(idStr.length !=0){
+        //self.classifcationIdStr = [idStr substringWithRange:NSMakeRange(0,idStr.length-1)];
+    }
+    
+    self.categoryId = catroyId;
+}
+
+-(void)chooseProductSmallStage:(NSArray *)arr{
+    NSMutableString *str = [[NSMutableString alloc] init];
+    NSMutableString *idStr = [[NSMutableString alloc] init];
+    [arr enumerateObjectsUsingBlock:^(ChooseProductCellModel *cellModel, NSUInteger idx, BOOL *stop) {
+        [str appendString:[NSString stringWithFormat:@"%@、",cellModel.content]];
+        [idStr appendString:[NSString stringWithFormat:@"%@,",cellModel.aid]];
+    }];
+    if(str.length !=0){
+        //self.classifcationStr = [str substringWithRange:NSMakeRange(0,str.length-1)];
+    }
+    if(idStr.length !=0){
+        //self.classifcationIdStr = [idStr substringWithRange:NSMakeRange(0,idStr.length-1)];
+    }
 }
 @end

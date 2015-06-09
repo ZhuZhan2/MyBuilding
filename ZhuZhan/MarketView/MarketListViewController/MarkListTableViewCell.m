@@ -16,13 +16,14 @@
     height += [MarketListTitleView titleViewHeight]+5;
     height += [RKViewFactory autoLabelWithMaxWidth:300 maxHeight:60 font:[UIFont systemFontOfSize:14] content:cellModel.a_reqDesc]+5;
     if(cellModel.a_reqType != 5){
-        height += 40;
+        height += 45;
     }
     
-    if(cellModel.a_reqType != 5){
-        height += 20;
-        //height += [RKViewFactory autoLabelWithMaxWidth:300 maxHeight:60 font:[UIFont systemFontOfSize:14] content:cellModel.a_reqDesc]
+    if(cellModel.a_reqType == 1 || cellModel.a_reqType == 2){
+        height += 45;
     }
+    
+    height += [MarketListFootView footViewHeight];
     
     height +=15;
     return height;
@@ -32,6 +33,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self.contentView addSubview:self.bgView];
         [self.bgView addSubview:self.titleView];
+        [self.bgView addSubview:self.footView];
         [self.bgView addSubview:self.contentLabel];
         [self.bgView addSubview:self.firstTitleLabel];
         [self.bgView addSubview:self.firstContentLabel];
@@ -46,6 +48,14 @@
         _titleView = [[MarketListTitleView alloc] init];
     }
     return _titleView;
+}
+
+-(MarketListFootView *)footView{
+    if(!_footView){
+        _footView = [[MarketListFootView alloc] init];
+        _footView.delegate = self;
+    }
+    return _footView;
 }
 
 -(UIView *)bgView{
@@ -80,6 +90,27 @@
         _firstContentLabel.font = [UIFont systemFontOfSize:14];
     }
     return _firstContentLabel;
+}
+
+-(UILabel *)secondTitleLabel{
+    if(!_secondTitleLabel){
+        _secondTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 300, 20)];
+        _secondTitleLabel.textColor = AllNoDataColor;
+        _secondTitleLabel.font = [UIFont systemFontOfSize:14];
+    }
+    return _secondTitleLabel;
+}
+
+-(UILabel *)secondContentLabel{
+    if(!_secondContentLabel){
+        _secondContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 300, 20)];
+        _secondContentLabel.font = [UIFont systemFontOfSize:14];
+    }
+    return _secondContentLabel;
+}
+
+-(void)setIndexPath:(NSIndexPath *)indexPath{
+    _indexPath = indexPath;
 }
 
 -(void)setMarketModel:(MarketModel *)marketModel{
@@ -117,6 +148,26 @@
         }
     }
     
+    if(marketModel.a_reqType == 1){
+        self.secondTitleLabel.text = @"金额要求（百万）";
+        self.secondContentLabel.text = marketModel.a_money;
+        if([marketModel.a_money isEqualToString:@"-"]){
+            self.secondContentLabel.textColor = AllNoDataColor;
+        }else{
+            self.secondContentLabel.textColor = [UIColor blackColor];
+        }
+    }else if (marketModel.a_reqType == 2){
+        self.secondTitleLabel.text = @"分类";
+        self.secondContentLabel.text = marketModel.a_smallTypeCn;
+        if([marketModel.a_smallTypeCn isEqualToString:@"-"]){
+            self.secondContentLabel.textColor = AllNoDataColor;
+        }else{
+            self.secondContentLabel.textColor = [UIColor blackColor];
+        }
+    }
+    
+    [self.footView setCount:marketModel.a_commentCount isSelf:marketModel.a_isSelf];
+    
     CGFloat height = 0;
     CGRect frame = self.titleView.frame;
     height += CGRectGetHeight(self.titleView.frame)+5;
@@ -145,13 +196,44 @@
         frame = self.firstContentLabel.frame;
         frame.origin.y = height;
         self.firstContentLabel.frame = frame;
-        height += CGRectGetHeight(self.firstContentLabel.frame);
+        height += CGRectGetHeight(self.firstContentLabel.frame)+5;
     }else{
         self.firstContentLabel.hidden = YES;
     }
     
+    if(marketModel.a_reqType == 1 || marketModel.a_reqType == 2){
+        self.secondTitleLabel.hidden = NO;
+        frame = self.secondTitleLabel.frame;
+        frame.origin.y = height;
+        self.secondTitleLabel.frame = frame;
+        height += CGRectGetHeight(self.secondTitleLabel.frame);
+    }else{
+        self.secondTitleLabel.hidden = YES;
+    }
+    
+    if(marketModel.a_reqType == 1 || marketModel.a_reqType == 2){
+        self.secondContentLabel.hidden = NO;
+        frame = self.secondContentLabel.frame;
+        frame.origin.y = height;
+        self.secondContentLabel.frame = frame;
+        height += CGRectGetHeight(self.secondContentLabel.frame)+5;
+    }else{
+        self.secondContentLabel.hidden = YES;
+    }
+    
+    frame = self.footView.frame;
+    frame.origin.y = height;
+    self.footView.frame = frame;
+    height += CGRectGetHeight(self.footView.frame);
+    
     frame = self.bgView.frame;
     frame.size.height = height+5;
     self.bgView.frame = frame;
+}
+
+-(void)addFriend{
+    if([self.delegate respondsToSelector:@selector(addFriend:)]){
+        [self.delegate addFriend:self.indexPath];
+    }
 }
 @end

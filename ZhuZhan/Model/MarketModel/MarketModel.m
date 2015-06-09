@@ -8,6 +8,7 @@
 
 #import "MarketModel.h"
 #import "ProjectStage.h"
+#import "LoginSqlite.h"
 
 @implementation MarketModel
 -(void)setDict:(NSDictionary *)dict{
@@ -60,7 +61,7 @@
     if([dict[@"moneyMin"] isEqualToString:@""] && [dict[@"moneyMax"] isEqualToString:@""]){
         self.a_money = @"-";
     }else{
-        self.a_money = [NSString stringWithFormat:@"%@——%@",dict[@"moneyMin"],dict[@"moneyMax"]];
+        self.a_money = [NSString stringWithFormat:@"%@－%@",dict[@"moneyMin"],dict[@"moneyMax"]];
     }
     
     if([dict[@"bigTypeCn"] isEqualToString:@""]){
@@ -73,6 +74,24 @@
         self.a_smallTypeCn = @"-";
     }else{
         self.a_smallTypeCn = dict[@"smallTypeCn"];
+    }
+    
+    self.a_commentCount = dict[@"commentsNum"];
+    
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:dict[@"loginId"]]){
+        if(self.a_needRound){
+            self.a_isSelf = YES;
+        }else{
+            self.a_isSelf = NO;
+        }
+    }else{
+        self.a_isSelf = NO;
+    }
+    
+    if([dict[@"isFriend"] isEqualToString:@"0"]){
+        self.a_isFriend = NO;
+    }else{
+        self.a_isFriend = YES;
     }
 }
 @end

@@ -21,6 +21,7 @@
 @property(nonatomic,strong)NSString *requireType;
 @property(nonatomic)int startIndex;
 @property(nonatomic,strong)NSMutableArray *modelsArr;
+@property(nonatomic,strong)MarketPopView *popView;
 @end
 
 @implementation MarketPublicListViewController
@@ -112,7 +113,7 @@
 }
 
 -(void)screeningBtnAction{
-
+    [self.view.window addSubview:self.popView];
 }
 
 -(void)releaseBtnAction{
@@ -120,11 +121,58 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+-(void)closePopView{
+    [self.popView removeFromSuperview];
+    self.popView = nil;
+}
+
+-(void)selectIndex:(NSInteger)index{
+    [self.popView removeFromSuperview];
+    self.popView = nil;
+    switch (index) {
+        case 0:
+            //全部
+            self.requireType = @"";
+            break;
+        case 1:
+            //找项目
+            self.requireType = @"01";
+            break;
+        case 2:
+            //找材料
+            self.requireType = @"02";
+            break;
+        case 3:
+            //找合作
+            self.requireType = @"04";
+            break;
+        case 4:
+            //找关系
+            self.requireType = @"03";
+            break;
+        case 5:
+            //其他
+            self.requireType = @"05";
+            break;
+        default:
+            break;
+    }
+    [self loadList];
+}
+
 -(NSMutableArray *)modelsArr{
     if(!_modelsArr){
         _modelsArr = [NSMutableArray array];
     }
     return _modelsArr;
+}
+
+-(MarketPopView *)popView{
+    if(!_popView){
+        _popView = [[MarketPopView alloc] initWithFrame:self.view.bounds];
+        self.popView.delegate = self;
+    }
+    return _popView;
 }
 
 -(UITableView *)tableView{
@@ -157,6 +205,8 @@
     cell.marketModel = self.modelsArr[indexPath.row];
     cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.delegate = self;
+    cell.indexPath = indexPath;
     return cell;
 }
 
@@ -164,6 +214,61 @@
     MarketModel *model = self.modelsArr[indexPath.row];
     RequirementDetailViewController* vc = [[RequirementDetailViewController alloc] initWithTargetId:model.a_id];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)addFriend:(NSIndexPath *)indexPath{
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        [self gotoLoginView];
+    }else{
+        MarketModel *model = self.modelsArr[indexPath.row];
+        if(model.a_isFriend){
+            [self gotoChatView:model];
+        }else{
+            [self gotoAddFriend:model];
+        }
+    }
+}
+
+-(void)gotoLoginView{
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    loginVC.needDelayCancel=YES;
+    loginVC.delegate = self;
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+}
+
+-(void)gotoAddFriend:(MarketModel *)model{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:model.a_loginId forKey:@"userId"];
+    [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
+        }
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
+}
+
+-(void)gotoChatView:(MarketModel *)model{
+    ChatViewController* vc=[[ChatViewController alloc]init];
+    vc.contactId=model.a_loginId;
+    vc.titleStr = model.a_loginName;
+    vc.type=@"01";
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
+    [self loadList];
+    if(block){
+        block();
+    }
 }
 
 -(void)loadList{
