@@ -153,7 +153,13 @@
     }
     cell.marketModel = self.modelsArr[indexPath.row];
     cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    MarketModel *model = self.modelsArr[indexPath.row];
+    NSLog(@"%@",model.a_id);
 }
 
 -(void)loadList{

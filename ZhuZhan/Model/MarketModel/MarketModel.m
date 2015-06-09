@@ -51,14 +51,28 @@
         self.a_address = [NSString stringWithFormat:@"%@ %@",dict[@"province"],dict[@"city"]];
     }
     
-    self.a_reqDesc = dict[@"reqDesc"];
+    if([dict[@"reqDesc"] isEqualToString:@""]){
+        self.a_reqDesc = @"-";
+    }else{
+        self.a_reqDesc = dict[@"reqDesc"];
+    }
+    
     if([dict[@"moneyMin"] isEqualToString:@""] && [dict[@"moneyMax"] isEqualToString:@""]){
         self.a_money = @"-";
     }else{
         self.a_money = [NSString stringWithFormat:@"%@——%@",dict[@"moneyMin"],dict[@"moneyMax"]];
     }
     
-    self.a_bigTypeCn = dict[@"bigTypeCn"];
-    self.a_smallTypeCn = dict[@"smallTypeCn"];
+    if([dict[@"bigTypeCn"] isEqualToString:@""]){
+        self.a_bigTypeCn = @"-";
+    }else{
+        self.a_bigTypeCn = dict[@"bigTypeCn"];
+    }
+    
+    if([dict[@"smallTypeCn"] isEqualToString:@""]){
+        self.a_smallTypeCn = @"-";
+    }else{
+        self.a_smallTypeCn = dict[@"smallTypeCn"];
+    }
 }
 @end

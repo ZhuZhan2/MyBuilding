@@ -13,6 +13,12 @@
 
 @interface MarkListTableViewCell : BaseTableViewCell
 @property(nonatomic,strong)MarketListTitleView *titleView;
+@property(nonatomic,strong)UIView *bgView;
+@property(nonatomic,strong)UILabel *contentLabel;
+@property(nonatomic,strong)UILabel *firstTitleLabel;
+@property(nonatomic,strong)UILabel *firstContentLabel;
+@property(nonatomic,strong)UILabel *secondTitleLabel;
+@property(nonatomic,strong)UILabel *secondContentLabel;
 @property(nonatomic,strong)MarketModel *marketModel;
 + (CGFloat)carculateCellHeightWithModel:(MarketModel *)cellModel;
 @end
