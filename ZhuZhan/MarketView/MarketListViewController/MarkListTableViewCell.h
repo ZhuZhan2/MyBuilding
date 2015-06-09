@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewCell.h"
+#import "MarketListTitleView.h"
+#import "MarketModel.h"
 
-@interface MarkListTableViewCell : UITableViewCell
-
+@interface MarkListTableViewCell : BaseTableViewCell
+@property(nonatomic,strong)MarketListTitleView *titleView;
+@property(nonatomic,strong)MarketModel *marketModel;
++ (CGFloat)carculateCellHeightWithModel:(MarketModel *)cellModel;
 @end

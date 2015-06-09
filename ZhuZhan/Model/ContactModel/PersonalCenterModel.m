@@ -74,6 +74,6 @@
         }
     }
     
-    self.a_address = [NSString stringWithFormat:@"%@ %@",[ProjectStage ProjectStrStage:dict[@"landCity"]],[ProjectStage ProjectStrStage:dict[@"landAddress"]]];
+    self.a_address = [NSString stringWithFormat:@"%@ %@",[ProjectStage ProjectStrStage:dict[@"messageData"][@"landCity"]],[ProjectStage ProjectStrStage:dict[@"messageData"][@"landAddress"]]];
 }
 @end

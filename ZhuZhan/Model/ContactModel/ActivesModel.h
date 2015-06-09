@@ -38,6 +38,8 @@
 //动态里项目的信息
 @property (nonatomic, copy) NSString *a_projectName;
 @property (nonatomic, copy) NSString *a_projectStage;
+@property (nonatomic, copy) NSString *a_projectCity;
+@property (nonatomic, copy) NSString *a_projectAddress;
 
 //动态里产品的信息
 @property (nonatomic, copy) NSString *a_productName;

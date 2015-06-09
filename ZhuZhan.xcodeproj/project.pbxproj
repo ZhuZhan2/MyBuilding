@@ -1648,6 +1648,7 @@
 		D3D7DB2619FF73B800AE5765 /* 人脉－人的详情_02a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7DB2419FF73B800AE5765 /* 人脉－人的详情_02a@2x.png */; };
 		D3D7DB2F19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DB2E19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m */; };
 		D3D7DB3219FFAD1700AE5765 /* ParticularsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DB3119FFAD1700AE5765 /* ParticularsModel.m */; };
+		D3D7DD241B267ECC001A9577 /* MarketListTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DD231B267ECC001A9577 /* MarketListTitleView.m */; };
 		D3D7F94D1B0DAC9500DEB513 /* map_projectBackgroud.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7F94B1B0DAC9500DEB513 /* map_projectBackgroud.png */; };
 		D3D7F94E1B0DAC9500DEB513 /* map_projectBackgroud@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7F94C1B0DAC9500DEB513 /* map_projectBackgroud@2x.png */; };
 		D3D7F9511B0DAFA600DEB513 /* map_project_red.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7F94F1B0DAFA600DEB513 /* map_project_red.png */; };
@@ -4071,6 +4072,8 @@
 		D3D7DB2E19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactBackgroundTableViewCell.m; sourceTree = "<group>"; };
 		D3D7DB3019FFAD1700AE5765 /* ParticularsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticularsModel.h; sourceTree = "<group>"; };
 		D3D7DB3119FFAD1700AE5765 /* ParticularsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticularsModel.m; sourceTree = "<group>"; };
+		D3D7DD221B267ECC001A9577 /* MarketListTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketListTitleView.h; sourceTree = "<group>"; };
+		D3D7DD231B267ECC001A9577 /* MarketListTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketListTitleView.m; sourceTree = "<group>"; };
 		D3D7F94B1B0DAC9500DEB513 /* map_projectBackgroud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_projectBackgroud.png; sourceTree = "<group>"; };
 		D3D7F94C1B0DAC9500DEB513 /* map_projectBackgroud@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_projectBackgroud@2x.png"; sourceTree = "<group>"; };
 		D3D7F94F1B0DAFA600DEB513 /* map_project_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_project_red.png; sourceTree = "<group>"; };
@@ -7130,6 +7133,7 @@
 		D324B1831B2038BF00E29E07 /* MarketListViewController */ = {
 			isa = PBXGroup;
 			children = (
+				D3D7DD211B267EAE001A9577 /* View */,
 				D324B1841B2038F400E29E07 /* MarketPublicListViewController.h */,
 				D324B1851B2038F400E29E07 /* MarketPublicListViewController.m */,
 				D324B18A1B2042D900E29E07 /* MarketPopView.h */,
@@ -8021,6 +8025,15 @@
 				D3D798671A0B1DFE00194FF8 /* LoadingView.m */,
 			);
 			path = LoadingView;
+			sourceTree = "<group>";
+		};
+		D3D7DD211B267EAE001A9577 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D3D7DD221B267ECC001A9577 /* MarketListTitleView.h */,
+				D3D7DD231B267ECC001A9577 /* MarketListTitleView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		D3D946A61A6CDD33003A68D5 /* YLLabel */ = {
@@ -9801,6 +9814,7 @@
 				5B5837031AD7CE0900F8E7C3 /* ContractsBaseViewController.m in Sources */,
 				0426C2A719922D5A00CD8822 /* GPUImagePosterizeFilter.m in Sources */,
 				5B6373951ABAA7B0007CF1F8 /* RKDemandChatController.m in Sources */,
+				D3D7DD241B267ECC001A9577 /* MarketListTitleView.m in Sources */,
 				0426C2FE19922D5A00CD8822 /* UIButton+AFNetworking.m in Sources */,
 				5B7670641AB6B92B00E154C5 /* SearchBarCell.m in Sources */,
 				5B55D5381AA93C4C006501D8 /* RKCamera.m in Sources */,

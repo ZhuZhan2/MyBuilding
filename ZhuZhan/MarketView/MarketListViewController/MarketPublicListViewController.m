@@ -13,6 +13,7 @@
 #import "MarketApi.h"
 #import "MarketModel.h"
 #import "MyTableView.h"
+#import "MarkListTableViewCell.h"
 @interface MarketPublicListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSString *requireType;
@@ -128,23 +129,30 @@
         _tableView = [[UITableView alloc] initWithFrame:self.view.frame];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     }
     return _tableView;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.modelsArr.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [MarkListTableViewCell carculateCellHeightWithModel:self.modelsArr[indexPath.row]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString* cellIdentifier = [NSString stringWithFormat:@"Cell"];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    MarkListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(!cell){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[MarkListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    
+    cell.marketModel = self.modelsArr[indexPath.row];
+    cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
     return cell;
 }
 
@@ -170,7 +178,9 @@
                 }];
             }
         }
+        [self.tableView headerEndRefreshing];
     } startIndex:0 requireType:self.requireType keywords:@"" noNetWork:^{
+        [self.tableView headerEndRefreshing];
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
             [self loadList];
         }];
@@ -203,7 +213,9 @@
                 }];
             }
         }
+        [self.tableView footerEndRefreshing];
     } startIndex:self.startIndex+1 requireType:self.requireType keywords:@"" noNetWork:^{
+        [self.tableView footerEndRefreshing];
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
             [self loadList];
         }];
