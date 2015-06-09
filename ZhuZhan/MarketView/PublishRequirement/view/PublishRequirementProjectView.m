@@ -33,6 +33,12 @@
     self.frame = CGRectMake(0, 0, kScreenWidth, CGRectGetMaxY(view4.frame));
 }
 
+- (void)areaBtnCilciked{
+    if ([self.delegate respondsToSelector:@selector(projectViewAreaBtnClicked)]) {
+        [self.delegate projectViewAreaBtnClicked];
+    }
+}
+
 - (UIView*)areaView{
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 70)];
     [view addSubview:[self labelWithContent:@"需求所在地" assistContent:@"必填"]];
@@ -42,6 +48,10 @@
     [view addSubview:imageView];
     
     [view addSubview:[self fieldWithContent:nil placeholderStr:@"请选择" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187)]];
+    
+    UIButton* btn = [[UIButton alloc] initWithFrame:view.bounds];
+    [btn addTarget:self action:@selector(areaBtnCilciked) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:btn];
     
     return view;
 }

@@ -17,4 +17,5 @@
 + (CategoryView*)categoryViewWithCategoryArr:(NSArray*)categoryArr;
 @property (nonatomic, weak)id<CategoryViewDelegate> delegate;
 @property (nonatomic, strong)UIView* bottomView;
+- (void)singleCategoryViewClickedWithIndex:(NSInteger)index;
 @end

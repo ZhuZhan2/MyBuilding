@@ -34,27 +34,47 @@
     UIView* view5 = [self allUserSeeView];
     [self addSubview:[RKShadowView seperatorLineInViews:@[view1,view2,view3,view4,view5]]];
     self.frame = CGRectMake(0, 0, kScreenWidth, CGRectGetMaxY(view5.frame));
+    
+    self.allUserSee = YES;
+}
+
+- (void)setPublishUserName:(NSString *)publishUserName{
+    _publishUserName = publishUserName;
+    self.publishNameField.text = publishUserName;
+}
+
+- (void)setRealName:(NSString *)realName{
+    _realName = realName;
+    self.realNameField.text = realName;
+}
+
+- (void)setPhoneNumber:(NSString *)phoneNumber{
+    _phoneNumber = phoneNumber;
+    self.phoneNumberField.text = phoneNumber;
 }
 
 - (UIView*)publishUserView{
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 70)];
     [view addSubview:[self labelWithContent:@"发布人" assistContent:nil]];
-    [view addSubview:[self fieldWithContent:self.publishUserName placeholderStr:nil contentColor:RGBCOLOR(150, 150, 150) placeholderStrColor:RGBCOLOR(150, 150, 150)]];
-    
+    self.publishNameField = [self fieldWithContent:self.publishUserName placeholderStr:nil contentColor:RGBCOLOR(150, 150, 150) placeholderStrColor:RGBCOLOR(150, 150, 150)];
+    self.publishNameField.userInteractionEnabled = NO;
+    [view addSubview:self.publishNameField];
     return view;
 }
 
 - (UIView*)realNameView{
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 70)];
     [view addSubview:[self labelWithContent:@"真实姓名" assistContent:nil]];
-    [view addSubview:[self fieldWithContent:self.realName placeholderStr:@"输入姓名，提高联系可能性" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187)]];
+    self.realNameField = [self fieldWithContent:self.realName placeholderStr:@"输入姓名，提高联系可能性" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187)];
+    [view addSubview:self.realNameField];
     return view;
 }
 
 - (UIView*)phoneNumberView{
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 70)];
     [view addSubview:[self labelWithContent:@"联系电话" assistContent:@"必填"]];
-    [view addSubview:[self fieldWithContent:self.phoneNumber placeholderStr:@"输入联系电话" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187)]];
+    self.phoneNumberField = [self fieldWithContent:self.phoneNumber placeholderStr:@"输入联系电话" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187)];
+    [view addSubview:self.phoneNumberField];
     return view;
 }
 

@@ -43,9 +43,19 @@
 
 - (void)singleCategoryViewClicked:(SingleCategoryView *)clickedCategoryView{
     NSLog(@"index = %d",(int)clickedCategoryView.tag);
+    [self singleCategoryViewClickedWithIndex:clickedCategoryView.tag];
+}
+
+- (void)singleCategoryViewClickedWithIndex:(NSInteger)index{
     [self.categoryViewArr enumerateObjectsUsingBlock:^(SingleCategoryView* singleCategoryView, NSUInteger idx, BOOL *stop) {
-        singleCategoryView.isSelected = idx == clickedCategoryView.tag;
+        singleCategoryView.isSelected = idx == index;
+        if (singleCategoryView.isSelected) {
+            if ([self.delegate respondsToSelector:@selector(categoryViewClickedWithCategory:index:)]) {
+                [self.delegate categoryViewClickedWithCategory:singleCategoryView.text index:idx];
+            }
+        }
     }];
+
 }
 
 - (NSMutableArray *)categoryViewArr{
