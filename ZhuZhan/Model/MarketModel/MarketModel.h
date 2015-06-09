@@ -20,6 +20,7 @@
 @property(nonatomic,strong)NSString *a_money;
 @property(nonatomic,strong)NSString *a_bigTypeCn;
 @property(nonatomic,strong)NSString *a_smallTypeCn;
+@property(nonatomic,strong)NSString *a_commentCount;
 /*************************************
 找项目	1
 找材料	2
@@ -29,6 +30,8 @@
 *************************************/
 @property(nonatomic)int a_reqType;
 @property(nonatomic)BOOL a_needRound;
+@property(nonatomic)BOOL a_isSelf;
+@property(nonatomic)BOOL a_isFriend;
 
 @property(nonatomic,strong)NSDictionary *dict;
 @end

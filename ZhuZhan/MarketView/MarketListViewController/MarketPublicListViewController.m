@@ -15,7 +15,11 @@
 #import "MyTableView.h"
 #import "MarkListTableViewCell.h"
 #import "PublishRequirementViewController.h"
-@interface MarketPublicListViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "LoginSqlite.h"
+#import "LoginViewController.h"
+#import "ChatViewController.h"
+#import "AddressBookApi.h"
+@interface MarketPublicListViewController ()<UITableViewDelegate,UITableViewDataSource,MarkListTableViewCellDelegate,LoginViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSString *requireType;
 @property(nonatomic)int startIndex;
@@ -156,12 +160,69 @@
     cell.marketModel = self.modelsArr[indexPath.row];
     cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.delegate = self;
+    cell.indexPath = indexPath;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     MarketModel *model = self.modelsArr[indexPath.row];
     NSLog(@"%@",model.a_id);
+}
+
+-(void)addFriend:(NSIndexPath *)indexPath{
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        [self gotoLoginView];
+    }else{
+        MarketModel *model = self.modelsArr[indexPath.row];
+        if(model.a_isFriend){
+            [self gotoChatView:model];
+        }else{
+            [self gotoAddFriend:model];
+        }
+    }
+}
+
+-(void)gotoLoginView{
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    loginVC.needDelayCancel=YES;
+    loginVC.delegate = self;
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+}
+
+-(void)gotoAddFriend:(MarketModel *)model{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:model.a_loginId forKey:@"userId"];
+    [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
+        }
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
+}
+
+-(void)gotoChatView:(MarketModel *)model{
+    ChatViewController* vc=[[ChatViewController alloc]init];
+    vc.contactId=model.a_loginId;
+    vc.titleStr = model.a_loginName;
+    vc.type=@"01";
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
+    [self loadList];
+    if(block){
+        block();
+    }
 }
 
 -(void)loadList{

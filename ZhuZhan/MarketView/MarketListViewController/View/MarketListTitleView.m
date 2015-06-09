@@ -89,7 +89,7 @@
 
 -(UIImageView *)cutLine{
     if(!_cutLine){
-        _cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, 59, 320, 1)];
+        _cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, [MarketListTitleView titleViewHeight]-1, 320, 1)];
         _cutLine.image = [GetImagePath getImagePath:@"project_cutline"];
     }
     return _cutLine;
