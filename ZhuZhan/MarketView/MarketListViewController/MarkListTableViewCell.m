@@ -16,7 +16,7 @@
     height += [MarketListTitleView titleViewHeight]+5;
     height += [RKViewFactory autoLabelWithMaxWidth:300 maxHeight:60 font:[UIFont systemFontOfSize:14] content:cellModel.a_reqDesc]+5;
     if(cellModel.a_reqType != 5){
-        height += 40;
+        height += 45;
     }
     
     if(cellModel.a_reqType == 1 || cellModel.a_reqType == 2){
@@ -196,7 +196,7 @@
         frame = self.firstContentLabel.frame;
         frame.origin.y = height;
         self.firstContentLabel.frame = frame;
-        height += CGRectGetHeight(self.firstContentLabel.frame);
+        height += CGRectGetHeight(self.firstContentLabel.frame)+5;
     }else{
         self.firstContentLabel.hidden = YES;
     }

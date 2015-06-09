@@ -79,7 +79,11 @@
     self.a_commentCount = dict[@"commentsNum"];
     
     if([[LoginSqlite getdata:@"userId"] isEqualToString:dict[@"loginId"]]){
-        self.a_isSelf = YES;
+        if(self.a_needRound){
+            self.a_isSelf = YES;
+        }else{
+            self.a_isSelf = NO;
+        }
     }else{
         self.a_isSelf = NO;
     }

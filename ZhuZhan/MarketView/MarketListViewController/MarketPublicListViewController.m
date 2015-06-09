@@ -19,11 +19,14 @@
 #import "LoginViewController.h"
 #import "ChatViewController.h"
 #import "AddressBookApi.h"
-@interface MarketPublicListViewController ()<UITableViewDelegate,UITableViewDataSource,MarkListTableViewCellDelegate,LoginViewDelegate>
+#import "MarketPopView.h"
+
+@interface MarketPublicListViewController ()<UITableViewDelegate,UITableViewDataSource,MarkListTableViewCellDelegate,LoginViewDelegate,MarketPopViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSString *requireType;
 @property(nonatomic)int startIndex;
 @property(nonatomic,strong)NSMutableArray *modelsArr;
+@property(nonatomic,strong)MarketPopView *popView;
 @end
 
 @implementation MarketPublicListViewController
@@ -115,7 +118,7 @@
 }
 
 -(void)screeningBtnAction{
-
+    [self.view.window addSubview:self.popView];
 }
 
 -(void)releaseBtnAction{
@@ -123,11 +126,58 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+-(void)closePopView{
+    [self.popView removeFromSuperview];
+    self.popView = nil;
+}
+
+-(void)selectIndex:(NSInteger)index{
+    [self.popView removeFromSuperview];
+    self.popView = nil;
+    switch (index) {
+        case 0:
+            //全部
+            self.requireType = @"";
+            break;
+        case 1:
+            //找项目
+            self.requireType = @"01";
+            break;
+        case 2:
+            //找材料
+            self.requireType = @"02";
+            break;
+        case 3:
+            //找合作
+            self.requireType = @"04";
+            break;
+        case 4:
+            //找关系
+            self.requireType = @"03";
+            break;
+        case 5:
+            //其他
+            self.requireType = @"05";
+            break;
+        default:
+            break;
+    }
+    [self loadList];
+}
+
 -(NSMutableArray *)modelsArr{
     if(!_modelsArr){
         _modelsArr = [NSMutableArray array];
     }
     return _modelsArr;
+}
+
+-(MarketPopView *)popView{
+    if(!_popView){
+        _popView = [[MarketPopView alloc] initWithFrame:self.view.bounds];
+        self.popView.delegate = self;
+    }
+    return _popView;
 }
 
 -(UITableView *)tableView{

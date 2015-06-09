@@ -1358,7 +1358,6 @@
 		D31F2B931B05E67E006BD6A8 /* ChatImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D31F2B921B05E67E006BD6A8 /* ChatImageCell.m */; };
 		D324B1861B2038F400E29E07 /* MarketPublicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B1851B2038F400E29E07 /* MarketPublicListViewController.m */; };
 		D324B1891B203B2300E29E07 /* OtherSearchMaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B1881B203B2300E29E07 /* OtherSearchMaterialViewController.m */; };
-		D324B18C1B2042D900E29E07 /* MarketPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B18B1B2042D900E29E07 /* MarketPopView.m */; };
 		D324B18F1B204AE000E29E07 /* MarkListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B18E1B204AE000E29E07 /* MarkListTableViewCell.m */; };
 		D324B1921B20572700E29E07 /* PersonalCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B1911B20572700E29E07 /* PersonalCenterTableViewCell.m */; };
 		D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */; };
@@ -1653,6 +1652,9 @@
 		D3D7DD2D1B26B56F001A9577 /* touchTA.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7DD2B1B26B56F001A9577 /* touchTA.png */; };
 		D3D7DD2E1B26B56F001A9577 /* touchTA@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7DD2C1B26B56F001A9577 /* touchTA@2x.png */; };
 		D3D7DD311B26BF99001A9577 /* TwoStageLocateView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DD301B26BF99001A9577 /* TwoStageLocateView.m */; };
+		D3D7DD341B26C5A9001A9577 /* selectBox.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7DD321B26C5A9001A9577 /* selectBox.png */; };
+		D3D7DD351B26C5A9001A9577 /* selectBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7DD331B26C5A9001A9577 /* selectBox@2x.png */; };
+		D3D7DD381B26C71C001A9577 /* MarketPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DD371B26C71C001A9577 /* MarketPopView.m */; };
 		D3D7F94D1B0DAC9500DEB513 /* map_projectBackgroud.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7F94B1B0DAC9500DEB513 /* map_projectBackgroud.png */; };
 		D3D7F94E1B0DAC9500DEB513 /* map_projectBackgroud@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7F94C1B0DAC9500DEB513 /* map_projectBackgroud@2x.png */; };
 		D3D7F9511B0DAFA600DEB513 /* map_project_red.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7F94F1B0DAFA600DEB513 /* map_project_red.png */; };
@@ -3657,8 +3659,6 @@
 		D324B1851B2038F400E29E07 /* MarketPublicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketPublicListViewController.m; sourceTree = "<group>"; };
 		D324B1871B203B2300E29E07 /* OtherSearchMaterialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherSearchMaterialViewController.h; sourceTree = "<group>"; };
 		D324B1881B203B2300E29E07 /* OtherSearchMaterialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherSearchMaterialViewController.m; sourceTree = "<group>"; };
-		D324B18A1B2042D900E29E07 /* MarketPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketPopView.h; sourceTree = "<group>"; };
-		D324B18B1B2042D900E29E07 /* MarketPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketPopView.m; sourceTree = "<group>"; };
 		D324B18D1B204AE000E29E07 /* MarkListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkListTableViewCell.h; sourceTree = "<group>"; };
 		D324B18E1B204AE000E29E07 /* MarkListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkListTableViewCell.m; sourceTree = "<group>"; };
 		D324B1901B20572700E29E07 /* PersonalCenterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterTableViewCell.h; sourceTree = "<group>"; };
@@ -4084,6 +4084,10 @@
 		D3D7DD2C1B26B56F001A9577 /* touchTA@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "touchTA@2x.png"; sourceTree = "<group>"; };
 		D3D7DD2F1B26BF99001A9577 /* TwoStageLocateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoStageLocateView.h; sourceTree = "<group>"; };
 		D3D7DD301B26BF99001A9577 /* TwoStageLocateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoStageLocateView.m; sourceTree = "<group>"; };
+		D3D7DD321B26C5A9001A9577 /* selectBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectBox.png; sourceTree = "<group>"; };
+		D3D7DD331B26C5A9001A9577 /* selectBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selectBox@2x.png"; sourceTree = "<group>"; };
+		D3D7DD361B26C71C001A9577 /* MarketPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketPopView.h; sourceTree = "<group>"; };
+		D3D7DD371B26C71C001A9577 /* MarketPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketPopView.m; sourceTree = "<group>"; };
 		D3D7F94B1B0DAC9500DEB513 /* map_projectBackgroud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_projectBackgroud.png; sourceTree = "<group>"; };
 		D3D7F94C1B0DAC9500DEB513 /* map_projectBackgroud@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_projectBackgroud@2x.png"; sourceTree = "<group>"; };
 		D3D7F94F1B0DAFA600DEB513 /* map_project_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_project_red.png; sourceTree = "<group>"; };
@@ -7146,8 +7150,6 @@
 				D3D7DD211B267EAE001A9577 /* View */,
 				D324B1841B2038F400E29E07 /* MarketPublicListViewController.h */,
 				D324B1851B2038F400E29E07 /* MarketPublicListViewController.m */,
-				D324B18A1B2042D900E29E07 /* MarketPopView.h */,
-				D324B18B1B2042D900E29E07 /* MarketPopView.m */,
 				D324B18D1B204AE000E29E07 /* MarkListTableViewCell.h */,
 				D324B18E1B204AE000E29E07 /* MarkListTableViewCell.m */,
 			);
@@ -7661,6 +7663,8 @@
 		D3D08FFA1AF8658E00C8AC55 /* MarketImage */ = {
 			isa = PBXGroup;
 			children = (
+				D3D7DD321B26C5A9001A9577 /* selectBox.png */,
+				D3D7DD331B26C5A9001A9577 /* selectBox@2x.png */,
 				D3D7DD2B1B26B56F001A9577 /* touchTA.png */,
 				D3D7DD2C1B26B56F001A9577 /* touchTA@2x.png */,
 				D3D6EB7B1B1FF72600FB6D5A /* 卡片 */,
@@ -8044,6 +8048,8 @@
 		D3D7DD211B267EAE001A9577 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D3D7DD361B26C71C001A9577 /* MarketPopView.h */,
+				D3D7DD371B26C71C001A9577 /* MarketPopView.m */,
 				D3D7DD221B267ECC001A9577 /* MarketListTitleView.h */,
 				D3D7DD231B267ECC001A9577 /* MarketListTitleView.m */,
 				D3D7DD281B26B0C4001A9577 /* MarketListFootView.h */,
@@ -8868,6 +8874,7 @@
 				04BC40F019D7E5B3006B5C7B /* +项目-首页_25a.png in Resources */,
 				5B95ADBA1AB1225E00797EA6 /* 退出本群.png in Resources */,
 				5B7AA6E91A58D93E000FBFF2 /* icon03.png in Resources */,
+				D3D7DD351B26C5A9001A9577 /* selectBox@2x.png in Resources */,
 				5B75F4FE1AFA04AB0091162C /* MarketSearch.png in Resources */,
 				5BC234511AA81D9300312D9D /* 017@2x.png in Resources */,
 				5BE08E991A3586EA00495EEB /* 040010@2x.png in Resources */,
@@ -9033,6 +9040,7 @@
 				D3D6B6E01B130ED400C3DEBD /* yongjin@2x.png in Resources */,
 				D3A85BC71B0C885A00333F56 /* cancelfocus@2x.png in Resources */,
 				D3D9C91A1A13446B001D3A64 /* 主菜单01a.png in Resources */,
+				D3D7DD341B26C5A9001A9577 /* selectBox.png in Resources */,
 				5BFA140C1B1EF12C0026380A /* 默认图_用户头像_会话头像.png in Resources */,
 				5B75F5101AFA18600091162C /* search_empty.png in Resources */,
 				5B7AA6E81A58D93E000FBFF2 /* icon02@2x.png in Resources */,
@@ -9559,7 +9567,6 @@
 				D3EDCA5C1ACE90A6002AF865 /* UIImageView+WebCache.m in Sources */,
 				0426C2AB19922D5A00CD8822 /* GPUImageRGBClosingFilter.m in Sources */,
 				04D10BDD19AE016A0097C0C6 /* AccountViewController.m in Sources */,
-				D324B18C1B2042D900E29E07 /* MarketPopView.m in Sources */,
 				0426C2E519922D5A00CD8822 /* FaceppFaceset.m in Sources */,
 				0426C2AE19922D5A00CD8822 /* GPUImageRGBFilter.m in Sources */,
 				5B0C8AA619D79E550058C0EE /* PersonalCenterCellView.m in Sources */,
@@ -9788,6 +9795,7 @@
 				5B0A00A419B587CD00500C05 /* TMQuiltViewCell.m in Sources */,
 				0426C28819922D5A00CD8822 /* GPUImageLineGenerator.m in Sources */,
 				5B13C70919B6E53A008EA7A0 /* ProductCommentView.m in Sources */,
+				D3D7DD381B26C71C001A9577 /* MarketPopView.m in Sources */,
 				042D9E1519B559FC00689C5D /* MyView.m in Sources */,
 				D3D5B4321AB1325100E8EB04 /* SocketManage.m in Sources */,
 				D3DA3D2E1ABBBA8A001D1EEA /* AskPriceApi.m in Sources */,
