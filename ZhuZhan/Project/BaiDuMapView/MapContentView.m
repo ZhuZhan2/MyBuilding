@@ -20,7 +20,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        NSLog(@"=====> %@",model.isFocused);
         self.model = model;
         self.isFocused = model.isFocused;
         self.number = number;
@@ -156,7 +155,7 @@
 
 -(UILabel *)projectInvestmentCount{
     if(!_projectInvestmentCount){
-        _projectInvestmentCount = [[UILabel alloc] initWithFrame:CGRectMake(14, 115, 90, 20)];
+        _projectInvestmentCount = [[UILabel alloc] initWithFrame:CGRectMake(14, 115, 100, 20)];
         _projectInvestmentCount.font = FONT;
         if([[NSString stringWithFormat:@"%@",self.model.a_investment] isEqualToString:@""]){
             _projectInvestmentCount.text = @"－";
@@ -176,7 +175,7 @@
 
 -(UILabel *)projectAreaCount{
     if(!_projectAreaCount){
-        _projectAreaCount = [[UILabel alloc] initWithFrame:CGRectMake(152, 115, 90, 20)];
+        _projectAreaCount = [[UILabel alloc] initWithFrame:CGRectMake(152, 115, 100, 20)];
         _projectAreaCount.font = FONT;
         if([[NSString stringWithFormat:@"%@",self.model.a_storeyArea] isEqualToString:@""]){
             _projectAreaCount.text = @"－";

@@ -133,7 +133,7 @@
         self.thirdContentLabel.hidden = YES;
     }
     
-    [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:model.mainImageUrl]];
+    [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:model.mainImageUrl] placeholderImage:[GetImagePath getImagePath:@"默认图_动态详情"]];
     
     [self.commentView setCommentNumber:model.commentNumber commentArr:model.commentArr needAssistView:model.commentNumber>3];
     
@@ -244,6 +244,7 @@
 - (UIImageView *)mainImageView{
     if (!_mainImageView) {
         _mainImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 160)];
+        _mainImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _mainImageView;
 }

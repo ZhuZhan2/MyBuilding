@@ -26,6 +26,7 @@
 #import "AskPriceViewController.h"
 #import "ConstractListController.h"
 #import "MyFocusViewController.h"
+#import "PersonalCenterTableViewCell.h"
 @interface PersonalCenterViewController ()
 @property(nonatomic,strong)UIView *headView;
 @property(nonatomic,strong)UIView *myFocusView;
@@ -110,9 +111,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     
     self.tableView.tableHeaderView = self.headView;
     
-    //时间标签
-    _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
-    [[self tableView] registerClass:[UITableViewCell class] forCellReuseIdentifier:PSTableViewCellIdentifier];
     
     __weak PersonalCenterViewController *wself = self;
     [_pathCover setHandleRefreshEvent:^{
@@ -279,12 +277,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //滚动是触发的事件
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [_pathCover scrollViewDidScroll:scrollView isMyDynamicList:NO];
-    [_timeScroller scrollViewDidScroll];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [_pathCover scrollViewDidEndDecelerating:scrollView];
-    [_timeScroller scrollViewDidEndDecelerating];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
@@ -293,7 +289,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     [_pathCover scrollViewWillBeginDragging:scrollView];
-    [_timeScroller scrollViewWillBeginDragging];
 }
 
 
@@ -351,21 +346,31 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if(!cell){
             cell = [[PersonalCenterCompanyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        cell.imageUrl = model.a_avatarUrl;
+        cell.time = model.a_time;
         cell.companyName = model.a_userName;
         cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
         cell.selectionStyle = NO;
         return cell;
     }else{
+//        NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        if(!cell){
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//        }
+//        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+//        [cell.contentView addSubview:contentViews[indexPath.row]];
+//        cell.selectionStyle = NO;
+//        cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
+//        return cell;
+        
         NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        PersonalCenterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell = [[PersonalCenterTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [cell.contentView addSubview:contentViews[indexPath.row]];
-        cell.selectionStyle = NO;
         cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
+        cell.selectionStyle = NO;
+        cell.personalCentermodel = model;
         return cell;
     }
 }
@@ -383,6 +388,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if(showArr.count !=0){
         model = showArr[indexPath.row];
     }
+    NSLog(@"%@",model.a_category);
     if([model.a_category isEqualToString:@"Project"]){
         PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
         projectCommentView.projectId = model.a_entityId;
@@ -392,7 +398,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithPersonalCenterModel:model];
         vc.type = @"03";
         [self.navigationController pushViewController:vc animated:YES];
-    }else if([model.a_category isEqualToString:@"product"]){
+    }else if([model.a_category isEqualToString:@"Product"]){
         ProductModel *productModel = [[ProductModel alloc] init];
         productModel.a_id = model.a_entityId;
         productModel.a_name = model.a_entityName;
@@ -417,10 +423,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if(showArr.count !=0){
         model = showArr[indexPath.row];
     }
-    if([model.a_category isEqualToString:@"Project"]||[model.a_category isEqualToString:@"CompanyAgree"]){
+    if([model.a_category isEqualToString:@"CompanyAgree"]){
         return 60;
+    }else if([model.a_category isEqualToString:@"Project"]){
+        return 80;
     }else{
-        return [contentViews[indexPath.row] frame].size.height;
+        return [PersonalCenterTableViewCell carculateCellHeightWithModel:model];
     }
 }
 

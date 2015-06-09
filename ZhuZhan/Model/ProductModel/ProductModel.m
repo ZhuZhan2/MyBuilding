@@ -37,7 +37,7 @@
         self.a_avatarUrl = [ProjectStage ProjectStrStage:_dict[@"loginImagesId"]];
     }
     self.a_userName = [ProjectStage ProjectStrStage:_dict[@"loginName"]];
-    self.a_createdBy=[ProjectStage ProjectStrStage:_dict[@"createdUser"]];
+    self.a_createdBy=[ProjectStage ProjectStrStage:_dict[@"loginId"]];
     if([dict[@"userType"] isEqualToString:@"01"]){
         self.a_userType = @"Personal";
     }else{

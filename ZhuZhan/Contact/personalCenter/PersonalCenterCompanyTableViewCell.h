@@ -13,8 +13,9 @@
 @property(nonatomic,strong)UIImageView *cutLine2;
 @property(nonatomic,strong)UILabel *titleLabel;
 @property(nonatomic,strong)UILabel *contentLabel;
-@property(nonatomic,strong)UIImageView *headImage;
+@property(nonatomic,strong)UILabel *timeLabel;
 @property(nonatomic,strong)NSString *companyName;
-@property(nonatomic,strong)NSString *imageUrl;
+@property(nonatomic,strong)NSString *time;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 @end

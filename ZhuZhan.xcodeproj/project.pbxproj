@@ -1356,6 +1356,11 @@
 		D31BBB9C1AD3E3F500919B8B /* SWUtilityButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = D31BBB961AD3E3F500919B8B /* SWUtilityButtonView.m */; };
 		D31C0DFB1B0984E30014A5E4 /* ChatMessageImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D31C0DFA1B0984E30014A5E4 /* ChatMessageImageView.m */; };
 		D31F2B931B05E67E006BD6A8 /* ChatImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D31F2B921B05E67E006BD6A8 /* ChatImageCell.m */; };
+		D324B1861B2038F400E29E07 /* MarketPublicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B1851B2038F400E29E07 /* MarketPublicListViewController.m */; };
+		D324B1891B203B2300E29E07 /* OtherSearchMaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B1881B203B2300E29E07 /* OtherSearchMaterialViewController.m */; };
+		D324B18C1B2042D900E29E07 /* MarketPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B18B1B2042D900E29E07 /* MarketPopView.m */; };
+		D324B18F1B204AE000E29E07 /* MarkListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B18E1B204AE000E29E07 /* MarkListTableViewCell.m */; };
+		D324B1921B20572700E29E07 /* PersonalCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B1911B20572700E29E07 /* PersonalCenterTableViewCell.m */; };
 		D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */; };
 		D3376CFB1AC2549C00738B5F /* UserOrCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376CFA1AC2549C00738B5F /* UserOrCompanyModel.m */; };
 		D3376CFE1AC25D6100738B5F /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376CFD1AC25D6100738B5F /* CategoryModel.m */; };
@@ -1596,6 +1601,13 @@
 		D3D6C7921A15D73F001D2071 /* 公司－公司详情_05c@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6C7901A15D73F001D2071 /* 公司－公司详情_05c@2x.png */; };
 		D3D6C7951A15D75D001D2071 /* 公司－公司详情_05d.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6C7931A15D75D001D2071 /* 公司－公司详情_05d.png */; };
 		D3D6C7961A15D75D001D2071 /* 公司－公司详情_05d@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6C7941A15D75D001D2071 /* 公司－公司详情_05d@2x.png */; };
+		D3D6EB771B1FE42F00FB6D5A /* MarketFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6EB761B1FE42F00FB6D5A /* MarketFlowView.m */; };
+		D3D6EB7A1B1FF6B200FB6D5A /* MarkListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6EB791B1FF6B200FB6D5A /* MarkListView.m */; };
+		D3D6EB801B1FF72600FB6D5A /* card_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6EB7C1B1FF72600FB6D5A /* card_bg.png */; };
+		D3D6EB811B1FF72600FB6D5A /* card_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6EB7D1B1FF72600FB6D5A /* card_bg@2x.png */; };
+		D3D6EB821B1FF72600FB6D5A /* card_cut.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6EB7E1B1FF72600FB6D5A /* card_cut.png */; };
+		D3D6EB831B1FF72600FB6D5A /* card_cut@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6EB7F1B1FF72600FB6D5A /* card_cut@2x.png */; };
+		D3D6EB861B20319500FB6D5A /* MarketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6EB851B20319500FB6D5A /* MarketModel.m */; };
 		D3D710331AD4EC5400E43124 /* AcceptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D710321AD4EC5400E43124 /* AcceptViewController.m */; };
 		D3D710391AD505CB00E43124 /* AccpetUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D710381AD505CB00E43124 /* AccpetUserModel.m */; };
 		D3D7103C1AD54A9C00E43124 /* AddressBookSearchBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7103B1AD54A9C00E43124 /* AddressBookSearchBarCell.m */; };
@@ -1636,6 +1648,7 @@
 		D3D7DB2619FF73B800AE5765 /* 人脉－人的详情_02a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7DB2419FF73B800AE5765 /* 人脉－人的详情_02a@2x.png */; };
 		D3D7DB2F19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DB2E19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m */; };
 		D3D7DB3219FFAD1700AE5765 /* ParticularsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DB3119FFAD1700AE5765 /* ParticularsModel.m */; };
+		D3D7DD241B267ECC001A9577 /* MarketListTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DD231B267ECC001A9577 /* MarketListTitleView.m */; };
 		D3D7F94D1B0DAC9500DEB513 /* map_projectBackgroud.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7F94B1B0DAC9500DEB513 /* map_projectBackgroud.png */; };
 		D3D7F94E1B0DAC9500DEB513 /* map_projectBackgroud@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7F94C1B0DAC9500DEB513 /* map_projectBackgroud@2x.png */; };
 		D3D7F9511B0DAFA600DEB513 /* map_project_red.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7F94F1B0DAFA600DEB513 /* map_project_red.png */; };
@@ -3636,6 +3649,16 @@
 		D31C0DFA1B0984E30014A5E4 /* ChatMessageImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageImageView.m; sourceTree = "<group>"; };
 		D31F2B911B05E67E006BD6A8 /* ChatImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatImageCell.h; sourceTree = "<group>"; };
 		D31F2B921B05E67E006BD6A8 /* ChatImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImageCell.m; sourceTree = "<group>"; };
+		D324B1841B2038F400E29E07 /* MarketPublicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketPublicListViewController.h; sourceTree = "<group>"; };
+		D324B1851B2038F400E29E07 /* MarketPublicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketPublicListViewController.m; sourceTree = "<group>"; };
+		D324B1871B203B2300E29E07 /* OtherSearchMaterialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherSearchMaterialViewController.h; sourceTree = "<group>"; };
+		D324B1881B203B2300E29E07 /* OtherSearchMaterialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherSearchMaterialViewController.m; sourceTree = "<group>"; };
+		D324B18A1B2042D900E29E07 /* MarketPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketPopView.h; sourceTree = "<group>"; };
+		D324B18B1B2042D900E29E07 /* MarketPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketPopView.m; sourceTree = "<group>"; };
+		D324B18D1B204AE000E29E07 /* MarkListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkListTableViewCell.h; sourceTree = "<group>"; };
+		D324B18E1B204AE000E29E07 /* MarkListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkListTableViewCell.m; sourceTree = "<group>"; };
+		D324B1901B20572700E29E07 /* PersonalCenterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterTableViewCell.h; sourceTree = "<group>"; };
+		D324B1911B20572700E29E07 /* PersonalCenterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterTableViewCell.m; sourceTree = "<group>"; };
 		D32C88CD19D79E0800D1BA1D /* PersonalCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterModel.h; sourceTree = "<group>"; };
 		D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterModel.m; sourceTree = "<group>"; };
 		D3376CF91AC2549C00738B5F /* UserOrCompanyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserOrCompanyModel.h; sourceTree = "<group>"; };
@@ -3990,6 +4013,16 @@
 		D3D6C7901A15D73F001D2071 /* 公司－公司详情_05c@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－公司详情_05c@2x.png"; sourceTree = "<group>"; };
 		D3D6C7931A15D75D001D2071 /* 公司－公司详情_05d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－公司详情_05d.png"; sourceTree = "<group>"; };
 		D3D6C7941A15D75D001D2071 /* 公司－公司详情_05d@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－公司详情_05d@2x.png"; sourceTree = "<group>"; };
+		D3D6EB751B1FE42F00FB6D5A /* MarketFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketFlowView.h; sourceTree = "<group>"; };
+		D3D6EB761B1FE42F00FB6D5A /* MarketFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketFlowView.m; sourceTree = "<group>"; };
+		D3D6EB781B1FF6B200FB6D5A /* MarkListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkListView.h; sourceTree = "<group>"; };
+		D3D6EB791B1FF6B200FB6D5A /* MarkListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkListView.m; sourceTree = "<group>"; };
+		D3D6EB7C1B1FF72600FB6D5A /* card_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_bg.png; sourceTree = "<group>"; };
+		D3D6EB7D1B1FF72600FB6D5A /* card_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_bg@2x.png"; sourceTree = "<group>"; };
+		D3D6EB7E1B1FF72600FB6D5A /* card_cut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_cut.png; sourceTree = "<group>"; };
+		D3D6EB7F1B1FF72600FB6D5A /* card_cut@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_cut@2x.png"; sourceTree = "<group>"; };
+		D3D6EB841B20319500FB6D5A /* MarketModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketModel.h; sourceTree = "<group>"; };
+		D3D6EB851B20319500FB6D5A /* MarketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketModel.m; sourceTree = "<group>"; };
 		D3D710311AD4EC5400E43124 /* AcceptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptViewController.h; sourceTree = "<group>"; };
 		D3D710321AD4EC5400E43124 /* AcceptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptViewController.m; sourceTree = "<group>"; };
 		D3D710371AD505CB00E43124 /* AccpetUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccpetUserModel.h; sourceTree = "<group>"; };
@@ -4039,6 +4072,8 @@
 		D3D7DB2E19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactBackgroundTableViewCell.m; sourceTree = "<group>"; };
 		D3D7DB3019FFAD1700AE5765 /* ParticularsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticularsModel.h; sourceTree = "<group>"; };
 		D3D7DB3119FFAD1700AE5765 /* ParticularsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticularsModel.m; sourceTree = "<group>"; };
+		D3D7DD221B267ECC001A9577 /* MarketListTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketListTitleView.h; sourceTree = "<group>"; };
+		D3D7DD231B267ECC001A9577 /* MarketListTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketListTitleView.m; sourceTree = "<group>"; };
 		D3D7F94B1B0DAC9500DEB513 /* map_projectBackgroud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_projectBackgroud.png; sourceTree = "<group>"; };
 		D3D7F94C1B0DAC9500DEB513 /* map_projectBackgroud@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_projectBackgroud@2x.png"; sourceTree = "<group>"; };
 		D3D7F94F1B0DAFA600DEB513 /* map_project_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_project_red.png; sourceTree = "<group>"; };
@@ -5574,6 +5609,8 @@
 		04D10BB619AE016A0097C0C6 /* personalCenter */ = {
 			isa = PBXGroup;
 			children = (
+				D324B1901B20572700E29E07 /* PersonalCenterTableViewCell.h */,
+				D324B1911B20572700E29E07 /* PersonalCenterTableViewCell.m */,
 				D3D4FB381A08C0C90033BB34 /* UpdataPassWordViewController.h */,
 				D3D4FB391A08C0C90033BB34 /* UpdataPassWordViewController.m */,
 				04D10BB919AE016A0097C0C6 /* AccountViewController.h */,
@@ -7093,6 +7130,20 @@
 			path = ChatMessageImage;
 			sourceTree = "<group>";
 		};
+		D324B1831B2038BF00E29E07 /* MarketListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D3D7DD211B267EAE001A9577 /* View */,
+				D324B1841B2038F400E29E07 /* MarketPublicListViewController.h */,
+				D324B1851B2038F400E29E07 /* MarketPublicListViewController.m */,
+				D324B18A1B2042D900E29E07 /* MarketPopView.h */,
+				D324B18B1B2042D900E29E07 /* MarketPopView.m */,
+				D324B18D1B204AE000E29E07 /* MarkListTableViewCell.h */,
+				D324B18E1B204AE000E29E07 /* MarkListTableViewCell.m */,
+			);
+			path = MarketListViewController;
+			sourceTree = "<group>";
+		};
 		D35163CF1A67903F000051F4 /* 默认图像 */ = {
 			isa = PBXGroup;
 			children = (
@@ -7583,11 +7634,14 @@
 		D3D08FF61AF85E5F00C8AC55 /* MarketView */ = {
 			isa = PBXGroup;
 			children = (
+				D324B1831B2038BF00E29E07 /* MarketListViewController */,
 				5BBA27851B1FE31F00ADE3FC /* PublishRequirement */,
 				D3D0902C1AF89FC000C8AC55 /* SearchMaterialView */,
 				5BD9DE7D1AF88C21007BF9B5 /* MarketSearchViewController */,
 				D3D090251AF8964300C8AC55 /* MarketViewController.h */,
 				D3D090261AF8964300C8AC55 /* MarketViewController.m */,
+				D3D6EB781B1FF6B200FB6D5A /* MarkListView.h */,
+				D3D6EB791B1FF6B200FB6D5A /* MarkListView.m */,
 			);
 			path = MarketView;
 			sourceTree = "<group>";
@@ -7595,6 +7649,7 @@
 		D3D08FFA1AF8658E00C8AC55 /* MarketImage */ = {
 			isa = PBXGroup;
 			children = (
+				D3D6EB7B1B1FF72600FB6D5A /* 卡片 */,
 				5B75F5091AFA0F5E0091162C /* Rock */,
 				5B75F5001AFA06F80091162C /* searcharrow.png */,
 				5B75F5011AFA06F80091162C /* searcharrow@2x.png */,
@@ -7629,6 +7684,8 @@
 				D3D090061AF86D3E00C8AC55 /* AdDataPlist.plist */,
 				D3D090001AF86CC900C8AC55 /* AdDataModel.h */,
 				D3D090011AF86CC900C8AC55 /* AdDataModel.m */,
+				D3D6EB751B1FE42F00FB6D5A /* MarketFlowView.h */,
+				D3D6EB761B1FE42F00FB6D5A /* MarketFlowView.m */,
 			);
 			path = MarketScrollView;
 			sourceTree = "<group>";
@@ -7653,6 +7710,8 @@
 			children = (
 				D3D0902D1AF89FD500C8AC55 /* SearchMaterialViewController.h */,
 				D3D0902E1AF89FD500C8AC55 /* SearchMaterialViewController.m */,
+				D324B1871B203B2300E29E07 /* OtherSearchMaterialViewController.h */,
+				D324B1881B203B2300E29E07 /* OtherSearchMaterialViewController.m */,
 			);
 			path = SearchMaterialView;
 			sourceTree = "<group>";
@@ -7662,6 +7721,8 @@
 			children = (
 				D3D090411AF8C3DE00C8AC55 /* MarketApi.h */,
 				D3D090421AF8C3DE00C8AC55 /* MarketApi.m */,
+				D3D6EB841B20319500FB6D5A /* MarketModel.h */,
+				D3D6EB851B20319500FB6D5A /* MarketModel.m */,
 			);
 			path = MarketModel;
 			sourceTree = "<group>";
@@ -7877,6 +7938,17 @@
 			path = SearchContact;
 			sourceTree = "<group>";
 		};
+		D3D6EB7B1B1FF72600FB6D5A /* 卡片 */ = {
+			isa = PBXGroup;
+			children = (
+				D3D6EB7C1B1FF72600FB6D5A /* card_bg.png */,
+				D3D6EB7D1B1FF72600FB6D5A /* card_bg@2x.png */,
+				D3D6EB7E1B1FF72600FB6D5A /* card_cut.png */,
+				D3D6EB7F1B1FF72600FB6D5A /* card_cut@2x.png */,
+			);
+			path = "卡片";
+			sourceTree = "<group>";
+		};
 		D3D74E8B19FA302900ED8B62 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -7953,6 +8025,15 @@
 				D3D798671A0B1DFE00194FF8 /* LoadingView.m */,
 			);
 			path = LoadingView;
+			sourceTree = "<group>";
+		};
+		D3D7DD211B267EAE001A9577 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D3D7DD221B267ECC001A9577 /* MarketListTitleView.h */,
+				D3D7DD231B267ECC001A9577 /* MarketListTitleView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		D3D946A61A6CDD33003A68D5 /* YLLabel */ = {
@@ -8323,6 +8404,7 @@
 				04BC41A519D7E5B3006B5C7B /* 人脉－个人中心_06a.png in Resources */,
 				D3D74E8819FA2FEC00ED8B62 /* 登录_22@2x.png in Resources */,
 				5BE08E3C1A3586EA00495EEB /* 020021.png in Resources */,
+				D3D6EB811B1FF72600FB6D5A /* card_bg@2x.png in Resources */,
 				04BC423519D7E5B3006B5C7B /* 地图搜索_02.png in Resources */,
 				D3DF8DD61B16BD4900B7CF35 /* project_default_list.png in Resources */,
 				04BC434419D7E5B3006B5C7B /* 项目－高级搜索－2_03a.png in Resources */,
@@ -8509,6 +8591,7 @@
 				5B3B5D4B1AAD935E002FB444 /* 他人会话框最小.png in Resources */,
 				04BC41E619D7E5B3006B5C7B /* 人脉－账号设置_03a-05@2x.png in Resources */,
 				D3D090201AF86E5100C8AC55 /* image0@2x.png in Resources */,
+				D3D6EB801B1FF72600FB6D5A /* card_bg.png in Resources */,
 				D38D6B4E1A5CC1C30020CCBF /* 读取中icon.gif in Resources */,
 				5BE08DF81A3586EA00495EEB /* 010051.png in Resources */,
 				D3D090241AF88D4E00C8AC55 /* index_home@2x.png in Resources */,
@@ -8790,6 +8873,7 @@
 				D3A85BBB1B0C568500333F56 /* project_head@2x.png in Resources */,
 				5BE08DA41A3586EA00495EEB /* 010009.png in Resources */,
 				04BC423319D7E5B3006B5C7B /* 地图搜索_01.png in Resources */,
+				D3D6EB831B1FF72600FB6D5A /* card_cut@2x.png in Resources */,
 				5BE08DA01A3586EA00495EEB /* 010007.png in Resources */,
 				5BE08DC91A3586EA00495EEB /* 010027@2x.png in Resources */,
 				04BC41DA19D7E5B3006B5C7B /* 人脉－发布动态_13a@2x.png in Resources */,
@@ -9053,6 +9137,7 @@
 				5B5A24DD1A4189CA0071BD90 /* 密码找回_03z.png in Resources */,
 				5B5CB9B21AC01639000CF505 /* 交易_页头箭头@2x.png in Resources */,
 				04BC428519D7E5B3006B5C7B /* 登录1_03@2x.png in Resources */,
+				D3D6EB821B1FF72600FB6D5A /* card_cut.png in Resources */,
 				04BC412819D7E5B3006B5C7B /* bg-menuitem.png in Resources */,
 				5BE08DB21A3586EA00495EEB /* 010016.png in Resources */,
 				04BC414E19D7E5B3006B5C7B /* pointer.png in Resources */,
@@ -9345,8 +9430,10 @@
 			files = (
 				D31C0DFB1B0984E30014A5E4 /* ChatMessageImageView.m in Sources */,
 				5B70CC391AC8EF7300FC8353 /* RKMuchBtnAssistView.m in Sources */,
+				D3D6EB771B1FE42F00FB6D5A /* MarketFlowView.m in Sources */,
 				D3AC61EA19B961120015B62F /* SvGifView.m in Sources */,
 				D31BBB971AD3E3F500919B8B /* NSMutableArray+SWUtilityButtons.m in Sources */,
+				D3D6EB7A1B1FF6B200FB6D5A /* MarkListView.m in Sources */,
 				D3AC61D319B84F770015B62F /* CommentApi.m in Sources */,
 				D3EDCA561ACE90A6002AF865 /* SDWebImagePrefetcher.m in Sources */,
 				5BC40E261B09B04A00184D1A /* ChatMoreSelectView.m in Sources */,
@@ -9438,6 +9525,7 @@
 				D3EDCA4E1ACE90A6002AF865 /* MKAnnotationView+WebCache.m in Sources */,
 				D3AD616C19ADB9F7001FD483 /* RecordSqlite.m in Sources */,
 				5BAE1C461B0EF2AD004A4B3E /* MyFocusViewController.m in Sources */,
+				D324B1891B203B2300E29E07 /* OtherSearchMaterialViewController.m in Sources */,
 				D3D538471ADD1D3C003727C1 /* ImageSqlite.m in Sources */,
 				5B0A008B19B587B200500C05 /* EGORefreshTableHeaderView.m in Sources */,
 				D3F8970C1AD8F68F00DE3AB4 /* ChatListModel.m in Sources */,
@@ -9452,6 +9540,7 @@
 				D3EDCA5C1ACE90A6002AF865 /* UIImageView+WebCache.m in Sources */,
 				0426C2AB19922D5A00CD8822 /* GPUImageRGBClosingFilter.m in Sources */,
 				04D10BDD19AE016A0097C0C6 /* AccountViewController.m in Sources */,
+				D324B18C1B2042D900E29E07 /* MarketPopView.m in Sources */,
 				0426C2E519922D5A00CD8822 /* FaceppFaceset.m in Sources */,
 				0426C2AE19922D5A00CD8822 /* GPUImageRGBFilter.m in Sources */,
 				5B0C8AA619D79E550058C0EE /* PersonalCenterCellView.m in Sources */,
@@ -9522,6 +9611,7 @@
 				5BF31B661AB025FD00DA87F5 /* AddGroupMemberController.m in Sources */,
 				0426C23C19922D5A00CD8822 /* AFURLRequestSerialization.m in Sources */,
 				0426C26419922D5A00CD8822 /* GPUImageEmbossFilter.m in Sources */,
+				D324B1861B2038F400E29E07 /* MarketPublicListViewController.m in Sources */,
 				5B7670681AB6BD8100E154C5 /* RecommendListViewController.m in Sources */,
 				5BAE1C591B0EF5F9004A4B3E /* MyFocusProductController.m in Sources */,
 				D39937BE1A42B428007081C1 /* RecommendProjectViewController.m in Sources */,
@@ -9601,6 +9691,7 @@
 				5B656CFB19932E36007D79A8 /* QuadCurveMenu.m in Sources */,
 				5B7E590C1ABBFD760063B400 /* RKLeftAndRightView.m in Sources */,
 				D3FF3E811AAEC916005195CC /* ChoseContactModel.m in Sources */,
+				D3D6EB861B20319500FB6D5A /* MarketModel.m in Sources */,
 				0426C23819922D5A00CD8822 /* AFHTTPSessionManager.m in Sources */,
 				0426C25019922D5A00CD8822 /* GPUImageChromaKeyBlendFilter.m in Sources */,
 				0426C2F819922D5A00CD8822 /* XHPathCover.m in Sources */,
@@ -9686,6 +9777,7 @@
 				D3A4281019C1749E00BAB6C7 /* ErrorView.m in Sources */,
 				04BF13B719C4162A002E02C9 /* ProjectContactModel.m in Sources */,
 				D3D29B7D1A0DB9CA00CAB1EB /* IsFocusedApi.m in Sources */,
+				D324B18F1B204AE000E29E07 /* MarkListTableViewCell.m in Sources */,
 				0426C28119922D5A00CD8822 /* GPUImageKuwaharaFilter.m in Sources */,
 				0426C25D19922D5A00CD8822 /* GPUImageDarkenBlendFilter.m in Sources */,
 				0426C2FD19922D5A00CD8822 /* UIAlertView+AFNetworking.m in Sources */,
@@ -9722,6 +9814,7 @@
 				5B5837031AD7CE0900F8E7C3 /* ContractsBaseViewController.m in Sources */,
 				0426C2A719922D5A00CD8822 /* GPUImagePosterizeFilter.m in Sources */,
 				5B6373951ABAA7B0007CF1F8 /* RKDemandChatController.m in Sources */,
+				D3D7DD241B267ECC001A9577 /* MarketListTitleView.m in Sources */,
 				0426C2FE19922D5A00CD8822 /* UIButton+AFNetworking.m in Sources */,
 				5B7670641AB6B92B00E154C5 /* SearchBarCell.m in Sources */,
 				5B55D5381AA93C4C006501D8 /* RKCamera.m in Sources */,
@@ -9883,6 +9976,7 @@
 				0426C24819922D5A00CD8822 /* GPUImageAverageLuminanceThresholdFilter.m in Sources */,
 				0426C2C719922D5A00CD8822 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
 				0426C2E619922D5A00CD8822 /* FaceppGroup.m in Sources */,
+				D324B1921B20572700E29E07 /* PersonalCenterTableViewCell.m in Sources */,
 				D3376CFE1AC25D6100738B5F /* CategoryModel.m in Sources */,
 				0426C2DF19922D5A00CD8822 /* FaceppAPI.m in Sources */,
 				5B5773E81AC133E400C17DBF /* DemandProvidePriceChatController.m in Sources */,

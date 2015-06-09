@@ -98,7 +98,9 @@
             model.secondContent = dataModel.a_productName;
         }else if (isProject){
             model.secondContent = dataModel.a_projectName;
-            model.thirdContent = dataModel.a_landAddress;
+            NSString* address = [NSString stringWithFormat:@"%@ %@",dataModel.a_projectCity,dataModel.a_projectAddress];
+            address = [address isEqualToString:@" "]?@"":address;
+            model.thirdContent = address;
         }else if (dataModel.a_type == 4){
             model.secondContent = dataModel.a_content;
         }

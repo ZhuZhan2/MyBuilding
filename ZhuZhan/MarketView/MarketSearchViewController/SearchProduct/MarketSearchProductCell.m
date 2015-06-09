@@ -68,7 +68,7 @@
 }
 
 -(void)setModel:(ProductModel *)model{
-    [RKViewFactory imageViewWithImageView:headImageView imageUrl:model.a_marketImageUrl defaultImageName:@"项目详情默认0"];
+    [RKViewFactory imageViewWithImageView:headImageView imageUrl:model.a_marketImageUrl defaultImageName:@"product_ default_list"];
     titleLabel.text = model.a_name;
     contentLabel.text = model.a_content;
     projectCount.text = model.a_commentNumber;

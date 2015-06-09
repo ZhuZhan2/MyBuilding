@@ -14,5 +14,7 @@
 @property(nonatomic,strong)UIImageView *cutLine2;
 @property(nonatomic,strong)UILabel *titleLabel;
 @property(nonatomic,strong)UILabel *contentLabel;
+@property(nonatomic,strong)UILabel *timeLabel;
+@property(nonatomic,strong)UILabel *addressLabel;
 @property(nonatomic,strong)PersonalCenterModel *model;
 @end
