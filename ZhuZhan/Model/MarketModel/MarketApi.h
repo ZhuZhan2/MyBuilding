@@ -20,4 +20,7 @@
 
 //添加需求
 + (NSURLSessionDataTask *)AddRequireWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
+
+//需求详情
++ (NSURLSessionDataTask *)GetRequireInfoWithBlock:(void (^)(NSMutableArray *posts,NSError *error))block reqId:(NSString*)reqId noNetWork:(void(^)())noNetWork;
 @end

@@ -15,6 +15,7 @@
 #import "MyTableView.h"
 #import "MarkListTableViewCell.h"
 #import "PublishRequirementViewController.h"
+#import "RequirementDetailViewController.h"
 @interface MarketPublicListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSString *requireType;
@@ -161,7 +162,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     MarketModel *model = self.modelsArr[indexPath.row];
-    NSLog(@"%@",model.a_id);
+    RequirementDetailViewController* vc = [[RequirementDetailViewController alloc] initWithTargetId:model.a_id];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)loadList{
