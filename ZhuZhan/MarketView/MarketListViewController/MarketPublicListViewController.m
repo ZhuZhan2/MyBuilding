@@ -14,6 +14,7 @@
 #import "MarketModel.h"
 #import "MyTableView.h"
 #import "MarkListTableViewCell.h"
+#import "PublishRequirementViewController.h"
 @interface MarketPublicListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSString *requireType;
@@ -114,7 +115,8 @@
 }
 
 -(void)releaseBtnAction{
-    
+    PublishRequirementViewController* vc = [[PublishRequirementViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(NSMutableArray *)modelsArr{

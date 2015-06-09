@@ -12,7 +12,7 @@
 #import "RKShadowView.h"
 @interface PublishRequirementRelationView ()<UITextViewDelegate>
 @property (nonatomic, strong)UITextField* areaField;
-@property (nonatomic, strong)UITextField* requirementDescribeField;
+@property (nonatomic, strong)UITextView* requirementDescribeTextView;
 @end
 
 @implementation PublishRequirementRelationView
@@ -44,7 +44,8 @@
     imageView.image = [GetImagePath getImagePath:@"需求_箭头"];
     [view addSubview:imageView];
     
-    [view addSubview:[self fieldWithContent:nil placeholderStr:@"请选择" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187)]];
+    self.areaField = [self fieldWithContent:nil placeholderStr:@"请选择" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187)];
+    [view addSubview:self.areaField];
     
     UIButton* btn = [[UIButton alloc] initWithFrame:view.bounds];
     [btn addTarget:self action:@selector(areaBtnCilciked) forControlEvents:UIControlEventTouchUpInside];
@@ -60,6 +61,7 @@
     UITextView* textView = [[UITextView alloc] initWithFrame:CGRectMake(18-5, 40, kScreenWidth-36+10, 160)];
     textView.font = [UIFont systemFontOfSize:17];
     textView.delegate = self;
+    self.requirementDescribeTextView = textView;
     
     UILabel* textPlaceLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 300, 20)];
     textPlaceLabel.text = @"请把让我们帮你的事情输入";
@@ -116,5 +118,13 @@
     }
     
     return textField;
+}
+
+- (NSString *)area{
+    return self.areaField.text;
+}
+
+- (NSString *)requirementDescribe{
+    return self.requirementDescribeTextView.text;
 }
 @end

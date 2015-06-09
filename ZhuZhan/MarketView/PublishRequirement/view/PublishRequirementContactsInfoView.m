@@ -20,6 +20,10 @@
 @end
 
 @implementation PublishRequirementContactsInfoView
+@synthesize publishUserName = _publishUserName;
+@synthesize realName = _realName;
+@synthesize phoneNumber = _phoneNumber;
+
 + (PublishRequirementContactsInfoView *)infoView{
     PublishRequirementContactsInfoView* infoView = [[PublishRequirementContactsInfoView alloc] init];
     [infoView setUp];
@@ -43,14 +47,26 @@
     self.publishNameField.text = publishUserName;
 }
 
+- (NSString *)publishUserName{
+    return self.publishNameField.text;
+}
+
 - (void)setRealName:(NSString *)realName{
     _realName = realName;
     self.realNameField.text = realName;
 }
 
+- (NSString *)realName{
+    return self.realNameField.text;
+}
+
 - (void)setPhoneNumber:(NSString *)phoneNumber{
     _phoneNumber = phoneNumber;
     self.phoneNumberField.text = phoneNumber;
+}
+
+- (NSString *)phoneNumber{
+    return self.phoneNumberField.text;
 }
 
 - (UIView*)publishUserView{

@@ -11,7 +11,7 @@
 #import "PublishRequirementTitleView.h"
 #import "RKShadowView.h"
 @interface PublishRequirementOtherView ()<UITextViewDelegate>
-@property (nonatomic, strong)UITextField* requirementDescribeField;
+@property (nonatomic, strong)UITextView* requirementDescribeTextView;
 @end
 
 @implementation PublishRequirementOtherView
@@ -36,6 +36,7 @@
     UITextView* textView = [[UITextView alloc] initWithFrame:CGRectMake(18-5, 40, kScreenWidth-36+10, 160)];
     textView.font = [UIFont systemFontOfSize:17];
     textView.delegate = self;
+    self.requirementDescribeTextView = textView;
     
     UILabel* textPlaceLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 300, 20)];
     textPlaceLabel.text = @"请把让我们帮你的事情输入";
@@ -92,5 +93,9 @@
     }
     
     return textField;
+}
+
+- (NSString *)requirementDescribe{
+    return self.requirementDescribeTextView.text;
 }
 @end

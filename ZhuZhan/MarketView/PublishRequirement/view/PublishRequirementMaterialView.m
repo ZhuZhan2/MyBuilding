@@ -11,10 +11,9 @@
 #import "PublishRequirementTitleView.h"
 #import "RKShadowView.h"
 @interface PublishRequirementMaterialView ()<UITextViewDelegate>
-@property (nonatomic, strong)UITextField* areaField;
-@property (nonatomic, strong)UITextField* minMoneyField;
-@property (nonatomic, strong)UITextField* maxMoneyField;
-@property (nonatomic, strong)UITextField* requirementDescribeField;
+@property (nonatomic, strong)UITextField* bigCategoryField;
+@property (nonatomic, strong)UITextField* smallCategoryField;
+@property (nonatomic, strong)UITextView* requirementDescribeTextView;
 @end
 
 @implementation PublishRequirementMaterialView
@@ -53,7 +52,8 @@
     imageView.image = [GetImagePath getImagePath:@"需求_箭头"];
     [view addSubview:imageView];
     
-    [view addSubview:[self fieldWithContent:nil placeholderStr:@"请选择" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187)]];
+    self.bigCategoryField = [self fieldWithContent:nil placeholderStr:@"请选择" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187)];
+    [view addSubview:self.bigCategoryField];
     
     UIButton* btn = [[UIButton alloc] initWithFrame:view.bounds];
     [btn addTarget:self action:@selector(bigCategoryBtnClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -70,7 +70,8 @@
     imageView.image = [GetImagePath getImagePath:@"需求_箭头"];
     [view addSubview:imageView];
     
-    [view addSubview:[self fieldWithContent:nil placeholderStr:@"请选择" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187)]];
+    self.smallCategoryField = [self fieldWithContent:nil placeholderStr:@"请选择" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187)];
+    [view addSubview:self.smallCategoryField];
     
     UIButton* btn = [[UIButton alloc] initWithFrame:view.bounds];
     [btn addTarget:self action:@selector(smallCategoryBtnClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -86,6 +87,7 @@
     UITextView* textView = [[UITextView alloc] initWithFrame:CGRectMake(18-5, 40, kScreenWidth-36+10, 160)];
     textView.font = [UIFont systemFontOfSize:17];
     textView.delegate = self;
+    self.requirementDescribeTextView = textView;
     
     UILabel* textPlaceLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 300, 20)];
     textPlaceLabel.text = @"请把让我们帮你的事情输入";
@@ -142,5 +144,17 @@
     }
     
     return textField;
+}
+
+- (NSString *)bigCategory{
+    return self.bigCategoryField.text;
+}
+
+- (NSString *)smallCategory{
+    return self.smallCategoryField.text;
+}
+
+- (NSString *)requirementDescribe{
+    return self.requirementDescribeTextView.text;
 }
 @end
