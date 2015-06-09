@@ -15,8 +15,14 @@
 #import "MyTableView.h"
 #import "MarkListTableViewCell.h"
 #import "PublishRequirementViewController.h"
+#import "LoginSqlite.h"
+#import "LoginViewController.h"
+#import "ChatViewController.h"
+#import "AddressBookApi.h"
+#import "MarketPopView.h"
 #import "RequirementDetailViewController.h"
-@interface MarketPublicListViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@interface MarketPublicListViewController ()<UITableViewDelegate,UITableViewDataSource,MarkListTableViewCellDelegate,LoginViewDelegate,MarketPopViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSString *requireType;
 @property(nonatomic)int startIndex;

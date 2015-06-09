@@ -15,6 +15,13 @@
 @property (nonatomic, copy)NSString* a_createdTime;
 @property (nonatomic)BOOL a_isPsersonal;
 
+@property (nonatomic, copy)NSString* a_requireType;
+@property (nonatomic, copy)NSString* a_requireTypeName;
+
+@property (nonatomic, copy)NSString* a_realName;
+@property (nonatomic, copy)NSString* a_telphone;
+
+
 @property (nonatomic, strong)NSDictionary* dict;
 /*
  bigType =         {

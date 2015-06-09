@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface RequirementCategoryView : UIView
-- (void)setTitle:(NSString*)title assistView:(UIView*)assistView;
+- (void)setTitle:(NSString*)title;
 @end

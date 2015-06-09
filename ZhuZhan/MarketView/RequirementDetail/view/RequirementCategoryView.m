@@ -10,30 +10,36 @@
 
 @interface RequirementCategoryView ()
 @property (nonatomic, strong)UILabel* titleLabel;
-@property (nonatomic, strong)UIView* assistView;
+@property (nonatomic, strong)UIButton* assistView;
 @end
 
 @implementation RequirementCategoryView
-- (void)setTitle:(NSString *)title assistView:(UIView *)assistView{
-    [self.assistView removeFromSuperview];
-    
+- (instancetype)init{
+    if (self = [super initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)]) {
+        [self addSubview:self.titleLabel];
+        [self addSubview:self.assistView];
+    }
+    return self;
+}
+
+- (void)setTitle:(NSString *)title{    
     self.titleLabel.text = title;
-    
-    self.assistView = assistView;
-    [self addSubview:self.assistView];
-    self.assistView.center = CGPointMake(265, 20);
 }
 
 - (UILabel *)titleLabel{
     if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, CGRectGetHeight(self.frame))];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, kScreenWidth, CGRectGetHeight(self.frame))];
+        _titleLabel.textColor = BlueColor;
     }
     return _titleLabel;
 }
 
-- (UIView *)assistView{
+- (UIButton *)assistView{
     if (!_assistView) {
-        _assistView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+        _assistView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 82, 29)];
+        [_assistView setBackgroundImage:[GetImagePath getImagePath:@"touchTA"] forState:UIControlStateNormal];
+        _assistView.center = CGPointMake(260, 20);
+        _assistView.titleLabel.font = [UIFont systemFontOfSize:17];
     }
     return _assistView;
 }

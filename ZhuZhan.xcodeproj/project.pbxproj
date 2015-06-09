@@ -890,6 +890,12 @@
 		5B9F26D41B26CA350022B5A8 /* 默认图_需求详情_人头像126.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9F26D01B26CA350022B5A8 /* 默认图_需求详情_人头像126.png */; };
 		5B9F26D51B26CA350022B5A8 /* 默认图_需求详情_人头像126@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9F26D11B26CA350022B5A8 /* 默认图_需求详情_人头像126@2x.png */; };
 		5B9F26D81B26CEEE0022B5A8 /* RequirementCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26D71B26CEEE0022B5A8 /* RequirementCategoryView.m */; };
+		5B9F26DB1B26E0FD0022B5A8 /* RequirementContactsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26DA1B26E0FD0022B5A8 /* RequirementContactsInfoView.m */; };
+		5B9F26DF1B26EE220022B5A8 /* RequirementInfoPorjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26DE1B26EE220022B5A8 /* RequirementInfoPorjectView.m */; };
+		5B9F26E21B26EE750022B5A8 /* RequirementInfoMateialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26E11B26EE750022B5A8 /* RequirementInfoMateialView.m */; };
+		5B9F26E51B26EE860022B5A8 /* RequirementInfoRelationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26E41B26EE860022B5A8 /* RequirementInfoRelationView.m */; };
+		5B9F26E81B26EECF0022B5A8 /* RequirementInfoCooperationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26E71B26EECF0022B5A8 /* RequirementInfoCooperationView.m */; };
+		5B9F26EB1B26EEDF0022B5A8 /* RequirementInfoOtherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26EA1B26EEDF0022B5A8 /* RequirementInfoOtherView.m */; };
 		5B9FDE9F1A6CD47000215485 /* 项目详情默认0.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9FDE9D1A6CD47000215485 /* 项目详情默认0.png */; };
 		5B9FDEA01A6CD47000215485 /* 项目详情默认0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9FDE9E1A6CD47000215485 /* 项目详情默认0@2x.png */; };
 		5BA181A61A76170500191D31 /* Shadow-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA181A41A76170500191D31 /* Shadow-top.png */; };
@@ -3127,6 +3133,18 @@
 		5B9F26D11B26CA350022B5A8 /* 默认图_需求详情_人头像126@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_需求详情_人头像126@2x.png"; sourceTree = "<group>"; };
 		5B9F26D61B26CEEE0022B5A8 /* RequirementCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequirementCategoryView.h; sourceTree = "<group>"; };
 		5B9F26D71B26CEEE0022B5A8 /* RequirementCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequirementCategoryView.m; sourceTree = "<group>"; };
+		5B9F26D91B26E0FD0022B5A8 /* RequirementContactsInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequirementContactsInfoView.h; sourceTree = "<group>"; };
+		5B9F26DA1B26E0FD0022B5A8 /* RequirementContactsInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequirementContactsInfoView.m; sourceTree = "<group>"; };
+		5B9F26DD1B26EE220022B5A8 /* RequirementInfoPorjectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequirementInfoPorjectView.h; sourceTree = "<group>"; };
+		5B9F26DE1B26EE220022B5A8 /* RequirementInfoPorjectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequirementInfoPorjectView.m; sourceTree = "<group>"; };
+		5B9F26E01B26EE750022B5A8 /* RequirementInfoMateialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequirementInfoMateialView.h; sourceTree = "<group>"; };
+		5B9F26E11B26EE750022B5A8 /* RequirementInfoMateialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequirementInfoMateialView.m; sourceTree = "<group>"; };
+		5B9F26E31B26EE860022B5A8 /* RequirementInfoRelationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequirementInfoRelationView.h; sourceTree = "<group>"; };
+		5B9F26E41B26EE860022B5A8 /* RequirementInfoRelationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequirementInfoRelationView.m; sourceTree = "<group>"; };
+		5B9F26E61B26EECF0022B5A8 /* RequirementInfoCooperationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequirementInfoCooperationView.h; sourceTree = "<group>"; };
+		5B9F26E71B26EECF0022B5A8 /* RequirementInfoCooperationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequirementInfoCooperationView.m; sourceTree = "<group>"; };
+		5B9F26E91B26EEDF0022B5A8 /* RequirementInfoOtherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequirementInfoOtherView.h; sourceTree = "<group>"; };
+		5B9F26EA1B26EEDF0022B5A8 /* RequirementInfoOtherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequirementInfoOtherView.m; sourceTree = "<group>"; };
 		5B9FDE9D1A6CD47000215485 /* 项目详情默认0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情默认0.png"; sourceTree = "<group>"; };
 		5B9FDE9E1A6CD47000215485 /* 项目详情默认0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情默认0@2x.png"; sourceTree = "<group>"; };
 		5BA181A41A76170500191D31 /* Shadow-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shadow-top.png"; sourceTree = "<group>"; };
@@ -6498,8 +6516,28 @@
 				5B9F26C91B26B5DF0022B5A8 /* RequirementDetailTitleView.m */,
 				5B9F26D61B26CEEE0022B5A8 /* RequirementCategoryView.h */,
 				5B9F26D71B26CEEE0022B5A8 /* RequirementCategoryView.m */,
+				5B9F26D91B26E0FD0022B5A8 /* RequirementContactsInfoView.h */,
+				5B9F26DA1B26E0FD0022B5A8 /* RequirementContactsInfoView.m */,
+				5B9F26DC1B26ED350022B5A8 /* RequirementInfoView */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		5B9F26DC1B26ED350022B5A8 /* RequirementInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				5B9F26DD1B26EE220022B5A8 /* RequirementInfoPorjectView.h */,
+				5B9F26DE1B26EE220022B5A8 /* RequirementInfoPorjectView.m */,
+				5B9F26E01B26EE750022B5A8 /* RequirementInfoMateialView.h */,
+				5B9F26E11B26EE750022B5A8 /* RequirementInfoMateialView.m */,
+				5B9F26E31B26EE860022B5A8 /* RequirementInfoRelationView.h */,
+				5B9F26E41B26EE860022B5A8 /* RequirementInfoRelationView.m */,
+				5B9F26E61B26EECF0022B5A8 /* RequirementInfoCooperationView.h */,
+				5B9F26E71B26EECF0022B5A8 /* RequirementInfoCooperationView.m */,
+				5B9F26E91B26EEDF0022B5A8 /* RequirementInfoOtherView.h */,
+				5B9F26EA1B26EEDF0022B5A8 /* RequirementInfoOtherView.m */,
+			);
+			path = RequirementInfoView;
 			sourceTree = "<group>";
 		};
 		5BA8F4EC1B13115600E8656D /* ContractSucess */ = {
@@ -9559,6 +9597,7 @@
 				0426C27D19922D5A00CD8822 /* GPUImageHSBFilter.m in Sources */,
 				5B8A2CF21AAEE0AD00C8F9DE /* ChatListViewCell.m in Sources */,
 				5BD9DE801AF88C3A007BF9B5 /* MarketSearchViewController.m in Sources */,
+				5B9F26EB1B26EEDF0022B5A8 /* RequirementInfoOtherView.m in Sources */,
 				0426C2DC19922D5A00CD8822 /* GPUImageMovieWriter.m in Sources */,
 				5BB9A53D1AB6F84300B5B2D8 /* AskPriceViewController.m in Sources */,
 				5B5836D71AD771AF00F8E7C3 /* RecommendFriendSearchController.m in Sources */,
@@ -9679,6 +9718,7 @@
 				D3D484061ADFCEA1004AF972 /* AskPriceMessageModel.m in Sources */,
 				D36040E919F51E9F00E9727D /* CompanyApi.m in Sources */,
 				D3D7DB2F19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m in Sources */,
+				5B9F26DB1B26E0FD0022B5A8 /* RequirementContactsInfoView.m in Sources */,
 				5B8A2CEF1AAEE0AD00C8F9DE /* ChatModel.m in Sources */,
 				5B9238471ADB606F00281E94 /* ChatListViewController.m in Sources */,
 				042D9CFB19B40C4C00689C5D /* DKCircleButton.m in Sources */,
@@ -9757,6 +9797,7 @@
 				0426C2E819922D5A00CD8822 /* FaceppInfo.m in Sources */,
 				D3D7DD2A1B26B0C4001A9577 /* MarketListFootView.m in Sources */,
 				0426C2D919922D5A00CD8822 /* GPUImageXYDerivativeFilter.m in Sources */,
+				5B9F26E21B26EE750022B5A8 /* RequirementInfoMateialView.m in Sources */,
 				D3B1C28319D155CC00E6D89F /* ContactCommentTableViewCell.m in Sources */,
 				5B8A2CEB1AAEE0AD00C8F9DE /* AddressBookFriendCell.m in Sources */,
 				0426C27019922D5A00CD8822 /* GPUImageGaussianBlurPositionFilter.m in Sources */,
@@ -9922,6 +9963,7 @@
 				0426C24219922D5A00CD8822 /* GPUImage3x3TextureSamplingFilter.m in Sources */,
 				0426C25419922D5A00CD8822 /* GPUImageColorBurnBlendFilter.m in Sources */,
 				5B5773DF1AC1335C00C17DBF /* DemandAskPriceDetailController.m in Sources */,
+				5B9F26E81B26EECF0022B5A8 /* RequirementInfoCooperationView.m in Sources */,
 				0426C2F919922D5A00CD8822 /* XHSoundManager.m in Sources */,
 				D3AD619C19AEEE30001FD483 /* LocateView.m in Sources */,
 				D3D321271A3EAE2E0009AEEA /* PooCodeView.m in Sources */,
@@ -10081,6 +10123,7 @@
 				5BAE1C6A1B0F2F3F004A4B3E /* PersonalActivesViewController.m in Sources */,
 				5B5773E21AC1338000C17DBF /* DemandAskPriceChatController.m in Sources */,
 				5B8A2CF51AAEE0AD00C8F9DE /* ChooseContactsViewCell.m in Sources */,
+				5B9F26E51B26EE860022B5A8 /* RequirementInfoRelationView.m in Sources */,
 				D3AD619D19AEEE30001FD483 /* SinglePickerView.m in Sources */,
 				0426C2BA19922D5A00CD8822 /* GPUImageSobelEdgeDetectionFilter.m in Sources */,
 				D3D5384A1ADD1FC8003727C1 /* ImageModel.m in Sources */,
@@ -10105,6 +10148,7 @@
 				D3929F3E1AC538740017E93D /* AskPriceComment.m in Sources */,
 				D39937C11A42B453007081C1 /* RecommendContactViewController.m in Sources */,
 				0426C2D219922D5A00CD8822 /* GPUImageUIElement.m in Sources */,
+				5B9F26DF1B26EE220022B5A8 /* RequirementInfoPorjectView.m in Sources */,
 				0426C23F19922D5A00CD8822 /* BaseViewController.m in Sources */,
 				042D9E2B19B559FC00689C5D /* TopicsTableViewCell.m in Sources */,
 				0426C26919922D5A00CD8822 /* GPUImageFastBlurFilter.m in Sources */,
