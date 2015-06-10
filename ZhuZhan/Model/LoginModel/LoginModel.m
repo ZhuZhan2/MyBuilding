@@ -121,10 +121,10 @@
             NSNumber *errorcode = JSON[@"status"][@"statusCode"];
             switch ([errorcode intValue]) {
                 case 11002:
-                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"手机号已存在"];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"手机号已被注册"];
                     break;
                 case 11017:
-                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"用户名已经存在"];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"该用户已存在"];
                     break;
                 case 11005:
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"验证码错误"];
@@ -133,7 +133,28 @@
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"验证码过期"];
                     break;
                 case 11019:
-                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:JSON[@"status"][@"errorMsg"]];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"用户名不符合规则或含企业组织名称，请修改。"];
+                    break;
+                case 11004:
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"手机号格式错误"];
+                    break;
+                case 11012:
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"用户名长度小于6"];
+                    break;
+                case 11013:
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"用户名长度大于20"];
+                    break;
+                case 11014:
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"用户名不能为纯数字"];
+                    break;
+                case 11015:
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"用户名包含特殊字符"];
+                    break;
+                case 11011:
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"用户名已被注册"];
+                    break;
+                case 11023:
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"密码错误"];
                     break;
                 default:
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"注册失败，系统异常"];

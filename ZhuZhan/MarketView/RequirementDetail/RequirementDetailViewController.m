@@ -15,6 +15,11 @@
 #import "RequirementContactsInfoView.h"
 #import "LoginSqlite.h"
 #import "RequireCommentViewController.h"
+#import "RequirementInfoPorjectView.h"
+#import "RequirementInfoMateialView.h"
+#import "RequirementInfoRelationView.h"
+#import "RequirementInfoCooperationView.h"
+#import "RequirementInfoOtherView.h"
 @interface RequirementDetailViewController ()
 @property (nonatomic, strong)RequirementDetailTitleView* titleView;
 @property (nonatomic, strong)RequirementCategoryView* categoryView;
