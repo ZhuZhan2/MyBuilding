@@ -12,9 +12,19 @@
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
     self.a_id = [ProjectStage ProjectStrStage:dict[@"userId"]];
-    self.a_realName = [ProjectStage ProjectStrStage:dict[@"realName"]];
     self.a_company = [ProjectStage ProjectStrStage:dict[@"companyName"]];
     self.a_sex = [ProjectStage ProjectStrStage:dict[@"sexCn"]];
+    if([[ProjectStage ProjectStrStage:dict[@"self.a_realName"]] isEqualToString:@""]){
+        self.a_realName = [ProjectStage ProjectStrStage:dict[@"realName"]];
+    }else{
+        if([dict[@"sex"] isEqualToString:@"00"]){
+            self.a_realName = [NSString stringWithFormat:@"%@先生",[ProjectStage ProjectStrStage:dict[@"realName"]]];
+        }else if ([dict[@"sex"] isEqualToString:@"01"]){
+            self.a_realName = [NSString stringWithFormat:@"%@女士",[ProjectStage ProjectStrStage:dict[@"realName"]] ];
+        }else{
+            self.a_realName = [NSString stringWithFormat:@"%@先生/女士",[ProjectStage ProjectStrStage:dict[@"realName"]] ];
+        }
+    }
     self.a_cellPhone = [ProjectStage ProjectStrStage:dict[@"loginTel"]];
     self.a_email = [ProjectStage ProjectStrStage:dict[@"email"]];
     if(![[ProjectStage ProjectStrStage:dict[@"headImageId"]] isEqualToString:@""]){

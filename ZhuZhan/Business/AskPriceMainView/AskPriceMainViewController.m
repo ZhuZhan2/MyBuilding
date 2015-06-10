@@ -546,4 +546,8 @@
     }];
     return isEomji;
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.addMarkView.textView resignFirstResponder];
+}
 @end

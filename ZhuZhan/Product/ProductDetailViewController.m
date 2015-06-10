@@ -30,6 +30,7 @@
 #import "IsFocusedApi.h"
 #import "LoadingView.h"
 #import "MyTableView.h"
+#import "MJRefresh.h"
 @interface ProductDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AddCommentDelegate,ACTimeScrollerDelegate,LoginViewDelegate>
 @property(nonatomic,strong)MyTableView* tableView;
 
@@ -69,6 +70,8 @@
 
 @property(nonatomic,strong)LoadingView *loadingView;
 @property(nonatomic,strong)UIButton *button;
+
+@property(nonatomic)int startIndex;
 @end
 
 @implementation ProductDetailViewController
@@ -156,6 +159,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
     [self initNavi];
+    
+    self.startIndex = 0;
 
     [self initMyTableView];
     self.loadingView=[LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view];
@@ -167,6 +172,57 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     //}
     [self loadTimeScroller];
     [self firstNetWork];
+    
+    //集成刷新控件
+    [self setupRefresh];
+}
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    //[_tableView headerBeginRefreshing];
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    self.startIndex = 0;
+    [self firstNetWork];
+}
+
+- (void)footerRereshing
+{
+    [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            self.startIndex ++;
+            if(posts.count !=0){
+                [self.commentModels addObjectsFromArray:posts];
+                [self.commentViews removeAllObjects];
+                [self getTableViewContents];
+                [self.tableView reloadData];
+            }
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
+        }
+        [self.tableView footerEndRefreshing];
+    } entityId:self.entityID entityType:self.type startIndex:self.startIndex+1 noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 //初始化竖直滚动导航的时间标示
@@ -194,6 +250,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                     }];
                 }
             }
+            [self.tableView headerEndRefreshing];
         } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID noNetWork:^{
             [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
                 [self firstNetWork];
@@ -210,9 +267,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //获取网络数据
 -(void)getNetWorkData{
     NSLog(@"===>%@",self.type);
+    self.startIndex = 0;
     [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         [self removeMyLoadingView];
         if (!error) {
+            [self.commentModels removeAllObjects];
+            [self.commentViews removeAllObjects];
             self.commentModels=posts;
             [self getTableViewContents];
             [self myTableViewReloadData];
@@ -225,7 +285,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 }];
             }
         }
-    } entityId:self.entityID entityType:self.type noNetWork:^{
+    } entityId:self.entityID entityType:self.type startIndex:0 noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];

@@ -629,6 +629,13 @@
     [self.activityView stopAnimating];
     [self.loadingView removeFromSuperview];
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.startMainView.textField resignFirstResponder];
+    [self.receiveView.textField resignFirstResponder];
+    [self.moneyView.textFied resignFirstResponder];
+    [self.contractView.textView resignFirstResponder];
+}
 @end
 
 

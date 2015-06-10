@@ -13,14 +13,14 @@
 #import "PersonalCenterModel.h"
 #import "ConnectionAvailable.h"
 @implementation CommentApi
-+ (NSURLSessionDataTask *)GetEntityCommentsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block entityId:(NSString *)entityId entityType:(NSString *)entityType noNetWork:(void(^)())noNetWork{
++ (NSURLSessionDataTask *)GetEntityCommentsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block entityId:(NSString *)entityId entityType:(NSString *)entityType startIndex:(int)startIndex noNetWork:(void (^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
             noNetWork();
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/comment/listComment?paramId=%@&commentType=%@",entityId,entityType];
+    NSString *urlStr = [NSString stringWithFormat:@"api/comment/listComment?paramId=%@&commentType=%@&pageSize=10&pageIndex=%d",entityId,entityType,startIndex];
     NSLog(@"===>%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);

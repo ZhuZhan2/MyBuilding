@@ -160,7 +160,7 @@ static bool startListen =YES;
     if (startListen ==YES) {
         _textView.text =@"";
         bool ret = [_iFlySpeechUnderstander startListening];
-        
+        NSLog(@"==>%d",ret);
         if (ret) {
             timer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(circleBtn) userInfo:nil repeats:YES];
             startListen =NO;

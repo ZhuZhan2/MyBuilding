@@ -16,8 +16,10 @@
 #import "PersonalDetailViewController.h"
 #import "MyTableView.h"
 #import "CompanyDetailViewController.h"
+#import "MJRefresh.h"
 @interface PorjectCommentTableViewController ()
 @property(nonatomic,strong)UIButton *button;
+@property(nonatomic)int startIndex;
 @end
 
 @implementation PorjectCommentTableViewController
@@ -54,6 +56,8 @@
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
+    self.startIndex = 0;
+    
     _datasource = [NSMutableArray new];
     viewArr = [[NSMutableArray alloc] init];
     
@@ -63,9 +67,102 @@
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     
     [self firstNetWork];
+    
+    //集成刷新控件
+    [self setupRefresh];
+}
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    //[_tableView headerBeginRefreshing];
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    self.startIndex = 0;
+    [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [showArr removeAllObjects];
+            showArr = posts;
+            for(int i=0; i<posts.count;i++){
+                ContactCommentModel *model = posts[i];
+                projectCommentView = [[ProjectCommentView alloc] initWithCommentModel:model];
+                projectCommentView.delegate =self;
+                [viewArr addObject:projectCommentView];
+                [_datasource addObject:model.a_time];
+            }
+            [MyTableView reloadDataWithTableView:self.tableView];
+            if(showArr.count == 0){
+                [MyTableView hasData:self.tableView];
+            }
+            if(showArr.count == 0){
+                [MyTableView hasData:self.tableView];
+            }
+            [self.tableView headerEndRefreshing];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
+        }
+    } entityId:projectId entityType:@"02" startIndex:0 noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
+}
+
+- (void)footerRereshing
+{
+    [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.startIndex ++;
+            [showArr addObjectsFromArray:posts];
+            for(int i=0; i<posts.count;i++){
+                ContactCommentModel *model = posts[i];
+                projectCommentView = [[ProjectCommentView alloc] initWithCommentModel:model];
+                projectCommentView.delegate =self;
+                [viewArr addObject:projectCommentView];
+                [_datasource addObject:model.a_time];
+            }
+            [MyTableView reloadDataWithTableView:self.tableView];
+            if(showArr.count == 0){
+                [MyTableView hasData:self.tableView];
+            }
+            if(showArr.count == 0){
+                [MyTableView hasData:self.tableView];
+            }
+            [self.tableView footerEndRefreshing];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+                    [self firstNetWork];
+                }];
+            }
+        }
+    } entityId:projectId entityType:@"02" startIndex:self.startIndex+1 noNetWork:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
+            [self firstNetWork];
+        }];
+    }];
 }
 
 -(void)firstNetWork{
+    self.startIndex = 0;
     [CommentApi GetEntityCommentsWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             showArr = posts;
@@ -92,7 +189,7 @@
                 }];
             }
         }
-    } entityId:projectId entityType:@"02" noNetWork:^{
+    } entityId:projectId entityType:@"02" startIndex:0 noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];

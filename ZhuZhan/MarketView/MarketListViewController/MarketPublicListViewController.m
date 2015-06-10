@@ -20,6 +20,7 @@
 #import "ChatViewController.h"
 #import "AddressBookApi.h"
 #import "MarketPopView.h"
+#import "MarketListSearchViewController.h"
 
 @interface MarketPublicListViewController ()<UITableViewDelegate,UITableViewDataSource,MarkListTableViewCellDelegate,LoginViewDelegate,MarketPopViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
@@ -114,7 +115,8 @@
 }
 
 -(void)searchBtnAction{
-
+    MarketListSearchViewController *searchView = [[MarketListSearchViewController alloc] init];
+    [self.navigationController pushViewController:searchView animated:YES];
 }
 
 -(void)screeningBtnAction{

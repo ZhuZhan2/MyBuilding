@@ -32,4 +32,10 @@
     }
     return self;
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if([self.delegate respondsToSelector:@selector(closeKeboard)]){
+        [self.delegate closeKeboard];
+    }
+}
 @end

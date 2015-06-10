@@ -35,7 +35,7 @@
 }
 
 - (void)setImageUrl:(NSString *)imageUrl title:(NSString *)title actionTime:(NSString *)actionTime content:(NSString *)content needTopLine:(BOOL)needTopLine needBottomLine:(BOOL)needBottomLine needRound:(BOOL)needRound{
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:needRound?@"默认图_人脉_评论头像":@"默认图_公司头像_评论头像"]];
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:needRound?@"默认图_用户头像_评论头像":@"默认图_公司头像_评论头像"]];
     self.userImageView.layer.cornerRadius = needRound?15:3;
     self.titleLabel.text = title;
     self.actionTimeLabel.text = actionTime;

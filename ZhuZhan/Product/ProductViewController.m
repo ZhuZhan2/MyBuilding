@@ -20,7 +20,7 @@
 #import "LoginViewController.h"
 #import "MBProgressHUD.h"
 #import "AskPriceMainViewController.h"
-@interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate,ErrorViewDelegate,UISearchBarDelegate,ProductPublishControllerDelegate,UIActionSheetDelegate>
+@interface ProductViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate,ErrorViewDelegate,UISearchBarDelegate,ProductPublishControllerDelegate,UIActionSheetDelegate,NoProductViewDelegate>
 @property (nonatomic, strong) NSMutableArray *images;
 @property(nonatomic,strong)ErrorView* errorView;
 @property(nonatomic,strong)UIActivityIndicatorView* indicatorView;
@@ -73,20 +73,22 @@
 }
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    [self getCloseSearchBtn];
+    //[self getCloseSearchBtn];
     [self.searchBar setShowsCancelButton:YES animated:YES];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     self.keyWords = searchBar.text;
-    [self removeCloseSearchBtn];
+    [self.searchBar resignFirstResponder];
+    //[self removeCloseSearchBtn];
     [self firstNetWork];
     [self.searchBar setShowsCancelButton:NO animated:YES];
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     self.keyWords = @"";
-    [self removeCloseSearchBtn];
+    [self.searchBar resignFirstResponder];
+    //[self removeCloseSearchBtn];
     [self firstNetWork];
     [self.searchBar setShowsCancelButton:NO animated:YES];
 }
@@ -128,9 +130,11 @@
     if(self.noProductView == nil){
         if([self.keyWords isEqualToString:@""]){
             self.noProductView = [[NoProductView alloc] initWithFrame:CGRectMake(0, 64+self.searchBar.frame.size.height, 320, kScreenHeight-49-64-self.searchBar.frame.size.height)];
+            self.noProductView.delegate = self;
             [self.view addSubview:self.noProductView];
         }else{
             self.noProductView = [[NoProductView alloc] initWithFrameSearch:CGRectMake(0, 64+self.searchBar.frame.size.height, 320, kScreenHeight-49-64-self.searchBar.frame.size.height)];
+            self.noProductView.delegate = self;
             [self.view addSubview:self.noProductView];
         }
     }
@@ -153,8 +157,9 @@
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:19], NSFontAttributeName,nil]];
     
     UIButton* btn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setBackgroundImage:[GetImagePath getImagePath:@"＋"] forState:UIControlStateNormal];
-    btn.frame=CGRectMake(0, 0, 19, 19);
+    btn.frame=CGRectMake(0, 0, 60, 20);
+    btn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [btn setTitle:@"发布产品" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem* rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:btn];
@@ -350,6 +355,8 @@
 
 //选中cell调用的方法
 - (void)quiltView:(TMQuiltView *)quiltView didSelectCellAtIndexPath:(NSIndexPath *)indexPath{
+    [self.searchBar resignFirstResponder];
+    [self.searchBar setShowsCancelButton:NO animated:YES];
     ProductModel* model=showArr[indexPath.row];
     ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithProductModel:model];
     vc.type = @"01";
@@ -388,5 +395,15 @@
 -(void)successAddProduct{
     startIndex = 0;
     [self firstNetWork];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.searchBar resignFirstResponder];
+    [self.searchBar setShowsCancelButton:NO animated:YES];
+}
+
+-(void)closeKeboard{
+    [self.searchBar resignFirstResponder];
+    [self.searchBar setShowsCancelButton:NO animated:YES];
 }
 @end
