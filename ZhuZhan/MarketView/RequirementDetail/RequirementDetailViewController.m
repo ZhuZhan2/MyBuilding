@@ -14,6 +14,7 @@
 #import "RequirementCategoryView.h"
 #import "RequirementContactsInfoView.h"
 #import "LoginSqlite.h"
+#import "RequireCommentViewController.h"
 @interface RequirementDetailViewController ()
 @property (nonatomic, strong)RequirementDetailTitleView* titleView;
 @property (nonatomic, strong)RequirementCategoryView* categoryView;
@@ -69,6 +70,8 @@
 
 - (void)rightBtnClicked{
     NSLog(@"评论");
+    RequireCommentViewController *view = [[RequireCommentViewController alloc] init];
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

@@ -172,12 +172,9 @@
     CGRect frame = self.titleView.frame;
     height += CGRectGetHeight(self.titleView.frame)+5;
     
-    
-    CGSize size =CGSizeMake(300,60);
-    CGSize actualsize =[marketModel.a_reqDesc boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
+    [RKViewFactory autoLabel:self.contentLabel maxWidth:300 maxHeight:60];
     frame = self.contentLabel.frame;
     frame.origin.y = height;
-    frame.size.height = actualsize.height;
     self.contentLabel.frame = frame;
     height += CGRectGetHeight(self.contentLabel.frame)+5;
     

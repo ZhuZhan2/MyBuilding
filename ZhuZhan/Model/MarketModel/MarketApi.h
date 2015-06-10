@@ -23,4 +23,7 @@
 
 //需求详情
 + (NSURLSessionDataTask *)GetRequireInfoWithBlock:(void (^)(NSMutableArray *posts,NSError *error))block reqId:(NSString*)reqId noNetWork:(void(^)())noNetWork;
+
+//获取评论列表
++ (NSURLSessionDataTask *)GetCommentListWithBlock:(void (^)(NSMutableArray *posts,NSString *total,NSError *error))block startIndex:(int)startIndex paramId:(NSString *)paramId commentType:(NSString *)commentType noNetWork:(void(^)())noNetWork;
 @end

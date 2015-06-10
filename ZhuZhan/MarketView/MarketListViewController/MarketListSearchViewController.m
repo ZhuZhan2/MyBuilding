@@ -69,6 +69,13 @@
     [self.searchBarTableView addFooterWithTarget:self action:@selector(footerRereshing)];
 }
 
+-(void)getSearchBarBackBtn{
+    UIView* button=[[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.searchBar.frame)+64+CGRectGetHeight(self.stageChooseView.frame), kScreenWidth, CGRectGetHeight(self.view.frame))];
+    button.backgroundColor=[UIColor whiteColor];
+    self.searchBarBackBtn=button;
+    [self.view addSubview:self.searchBarBackBtn];
+}
+
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -80,23 +87,23 @@
 
 -(void)searchListWithKeyword:(NSString*)keyword{
     self.keyWords = keyword;
-    if(!self.isSelf){
+    if(self.isPublic){
         [self getPublicData];
     }else{
         
     }
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)searchBarTableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.modelsArr.count;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(CGFloat)searchBarTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [MarkListTableViewCell carculateCellHeightWithModel:self.modelsArr[indexPath.row]];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)searchBarTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString* cellIdentifier = [NSString stringWithFormat:@"Cell"];
     MarkListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -104,7 +111,7 @@
         cell = [[MarkListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     cell.marketModel = self.modelsArr[indexPath.row];
-    cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
+    cell.contentView.backgroundColor = AllBackLightGratColor;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
     cell.indexPath = indexPath;
@@ -114,7 +121,7 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
-    if(!self.isSelf){
+    if(self.isPublic){
         [self getPublicData];
     }else{
         
@@ -123,7 +130,7 @@
 
 - (void)footerRereshing
 {
-    if(!self.isSelf){
+    if(self.isPublic){
         [self getPublicDataMore];
     }else{
         
@@ -137,11 +144,11 @@
             [self.modelsArr removeAllObjects];
             self.modelsArr = posts;
             if(self.modelsArr.count == 0){
-                [MyTableView reloadDataWithTableView:self.tableView];
-                [MyTableView noSearchData:self.tableView];
+                [MyTableView reloadDataWithTableView:self.searchBarTableView];
+                [MyTableView noSearchData:self.searchBarTableView];
             }else{
-                [MyTableView removeFootView:self.tableView];
-                [self.tableView reloadData];
+                [MyTableView removeFootView:self.searchBarTableView];
+                [self.searchBarTableView reloadData];
             }
         }else{
             if([ErrorCode errorCode:error] == 403){
@@ -152,9 +159,9 @@
                 }];
             }
         }
-        [self.tableView headerEndRefreshing];
+        [self.searchBarTableView headerEndRefreshing];
     } startIndex:0 requireType:@"" keywords:self.keyWords noNetWork:^{
-        [self.tableView headerEndRefreshing];
+        [self.searchBarTableView headerEndRefreshing];
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
             [self searchListWithKeyword:self.keyWords];
         }];
@@ -167,13 +174,12 @@
             self.startIndex ++;
             [self.modelsArr addObjectsFromArray:posts];
             if(self.modelsArr.count == 0){
-                [MyTableView reloadDataWithTableView:self.tableView];
-                [MyTableView noSearchData:self.tableView];
+                [MyTableView reloadDataWithTableView:self.searchBarTableView];
+                [MyTableView noSearchData:self.searchBarTableView];
             }else{
-                [MyTableView removeFootView:self.tableView];
-                [self.tableView reloadData];
+                [MyTableView removeFootView:self.searchBarTableView];
+                [self.searchBarTableView reloadData];
             }
-            [self.tableView footerEndRefreshing];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -183,9 +189,9 @@
                 }];
             }
         }
-        [self.tableView headerEndRefreshing];
+        [self.searchBarTableView footerEndRefreshing];
     } startIndex:self.startIndex+1 requireType:@"" keywords:self.keyWords noNetWork:^{
-        [self.tableView headerEndRefreshing];
+        [self.searchBarTableView headerEndRefreshing];
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
             [self searchListWithKeyword:self.keyWords];
         }];

@@ -1731,6 +1731,8 @@
 		D3DF8DE31B16DE8F00B7CF35 /* company_default_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3DF8DE11B16DE8F00B7CF35 /* company_default_list@2x.png */; };
 		D3E0BECA1B27E25C002F01CF /* search_empty2.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E0BEC81B27E25C002F01CF /* search_empty2.png */; };
 		D3E0BECB1B27E25C002F01CF /* search_empty2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E0BEC91B27E25C002F01CF /* search_empty2@2x.png */; };
+		D3E0BECE1B27F6D2002F01CF /* RequireCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E0BECD1B27F6D2002F01CF /* RequireCommentViewController.m */; };
+		D3E0BED11B2801BF002F01CF /* RequireCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E0BED01B2801BF002F01CF /* RequireCommentTableViewCell.m */; };
 		D3E0E94B1A398A3600A41D42 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3E0E94A1A398A3600A41D42 /* Settings.bundle */; };
 		D3E1AAFD1A7648FC00BFC6E1 /* Shape-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E1AAFB1A7648FC00BFC6E1 /* Shape-1.png */; };
 		D3E1AAFE1A7648FC00BFC6E1 /* Shape-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E1AAFC1A7648FC00BFC6E1 /* Shape-1@2x.png */; };
@@ -4203,6 +4205,10 @@
 		D3DF8DE11B16DE8F00B7CF35 /* company_default_list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "company_default_list@2x.png"; sourceTree = "<group>"; };
 		D3E0BEC81B27E25C002F01CF /* search_empty2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_empty2.png; sourceTree = "<group>"; };
 		D3E0BEC91B27E25C002F01CF /* search_empty2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_empty2@2x.png"; sourceTree = "<group>"; };
+		D3E0BECC1B27F6D2002F01CF /* RequireCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequireCommentViewController.h; sourceTree = "<group>"; };
+		D3E0BECD1B27F6D2002F01CF /* RequireCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequireCommentViewController.m; sourceTree = "<group>"; };
+		D3E0BECF1B2801BF002F01CF /* RequireCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequireCommentTableViewCell.h; sourceTree = "<group>"; };
+		D3E0BED01B2801BF002F01CF /* RequireCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequireCommentTableViewCell.m; sourceTree = "<group>"; };
 		D3E0E94A1A398A3600A41D42 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D3E1AAFB1A7648FC00BFC6E1 /* Shape-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shape-1.png"; sourceTree = "<group>"; };
 		D3E1AAFC1A7648FC00BFC6E1 /* Shape-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shape-1@2x.png"; sourceTree = "<group>"; };
@@ -6512,6 +6518,10 @@
 				5B9F26C41B26AECD0022B5A8 /* RequirementDetailViewController.h */,
 				5B9F26C51B26AECD0022B5A8 /* RequirementDetailViewController.m */,
 				5B9F26C71B26B5C20022B5A8 /* view */,
+				D3E0BECC1B27F6D2002F01CF /* RequireCommentViewController.h */,
+				D3E0BECD1B27F6D2002F01CF /* RequireCommentViewController.m */,
+				D3E0BECF1B2801BF002F01CF /* RequireCommentTableViewCell.h */,
+				D3E0BED01B2801BF002F01CF /* RequireCommentTableViewCell.m */,
 			);
 			path = RequirementDetail;
 			sourceTree = "<group>";
@@ -9962,6 +9972,7 @@
 				D39937C71A42B481007081C1 /* RecommendContactTableViewCell.m in Sources */,
 				D3D4E7431AE62B96001BF0A9 /* ErrorCode.m in Sources */,
 				5BAE1C621B0F152D004A4B3E /* MyFocusProductCell.m in Sources */,
+				D3E0BECE1B27F6D2002F01CF /* RequireCommentViewController.m in Sources */,
 				D3EDCA5A1ACE90A6002AF865 /* UIImage+WebP.m in Sources */,
 				0426C29919922D5A00CD8822 /* GPUImageNonMaximumSuppressionFilter.m in Sources */,
 				D3AC61B219B6BF930015B62F /* TopicsModel.m in Sources */,
@@ -10059,6 +10070,7 @@
 				D3AD61AE19AEF80B001FD483 /* UIViewController+MJPopupViewController.m in Sources */,
 				5B6373841ABA796D007CF1F8 /* DemandDetailViewCell.m in Sources */,
 				0426C24919922D5A00CD8822 /* GPUImageBilateralFilter.m in Sources */,
+				D3E0BED11B2801BF002F01CF /* RequireCommentTableViewCell.m in Sources */,
 				5B6699291AB9490600C4B54F /* DemanDetailViewController.m in Sources */,
 				D3D4FB301A0872770033BB34 /* CompanyCenterViewController.m in Sources */,
 				5B78D68E1ADCB40900E08C4A /* ValidatePlatformContactModel.m in Sources */,

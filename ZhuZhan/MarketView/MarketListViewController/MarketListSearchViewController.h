@@ -10,5 +10,5 @@
 #import "ChatBaseViewController.h"
 
 @interface MarketListSearchViewController : ChatBaseViewController
-@property(nonatomic)BOOL isSelf;
+@property(nonatomic)BOOL isPublic;
 @end

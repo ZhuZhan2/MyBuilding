@@ -29,6 +29,8 @@
         self.a_userType = @"Company";
         self.a_isPersonal = NO;
     }
+    
+    self.a_createdTime = [ProjectStage ProjectCardTimeStage:dict[@"createdTime"]];
 }
 
 -(instancetype)initWithID:(NSString*)ID entityID:(NSString*)entityID createdBy:(NSString*)createdBy userName:(NSString*)userName commentContents:(NSString*)commentContents avatarUrl:(NSString*)avatarUrl time:(NSDate*)time{

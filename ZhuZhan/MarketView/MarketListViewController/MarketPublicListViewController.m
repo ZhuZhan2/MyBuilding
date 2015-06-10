@@ -117,7 +117,7 @@
 
 -(void)searchBtnAction{
     MarketListSearchViewController *searchView = [[MarketListSearchViewController alloc] init];
-    searchView.isSelf = NO;
+    searchView.isPublic = YES;
     [self.navigationController pushViewController:searchView animated:YES];
 }
 

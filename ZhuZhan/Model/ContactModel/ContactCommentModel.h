@@ -19,6 +19,7 @@
 @property (nonatomic) BOOL a_isPersonal;
 
 @property (nonatomic, copy) NSDate *a_time;
+@property (nonatomic, copy) NSString *a_createdTime;
 
 @property (nonatomic, copy) NSDictionary *dict;
 
