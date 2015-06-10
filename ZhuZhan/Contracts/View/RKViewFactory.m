@@ -21,6 +21,17 @@
 }
 
 + (UIView *)noSearchResultsViewWithTop:(CGFloat)top{
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 147, 158)];
+    imageView.center = CGPointMake(kScreenWidth*0.5, CGRectGetHeight(imageView.frame)*0.5+top);
+    imageView.image = [GetImagePath getImagePath:@"search_empty2"];
+    
+    UIView* noDataView = [[UIView alloc]init];
+    noDataView.backgroundColor = AllBackLightGratColor;
+    [noDataView addSubview:imageView];
+    return noDataView;
+}
+
++ (UIView *)noDataViewWithTop:(CGFloat)top{
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 130, 177)];
     imageView.center = CGPointMake(kScreenWidth*0.5, CGRectGetHeight(imageView.frame)*0.5+top);
     imageView.image = [GetImagePath getImagePath:@"nodata"];

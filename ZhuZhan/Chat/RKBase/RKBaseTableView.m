@@ -21,11 +21,9 @@
     
     if (!self.noDataView) return;
     if (![self.dataSource tableView:self numberOfRowsInSection:0]) {
-        self.userInteractionEnabled = NO;
         self.noDataView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
         [self addSubview:self.noDataView];
     }else{
-        self.userInteractionEnabled = YES;
         [self.noDataView removeFromSuperview];
     }
 }
