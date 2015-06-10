@@ -12,6 +12,7 @@
 #import "AddressBookApi.h"
 #import "ValidatePlatformContactModel.h"
 #import "AddressBookFriendSearchController.h"
+#import "MyTableView.h"
 @interface AddressBookFriendViewController()<AddressBookFriendCellDelegate>
 @property (nonatomic, strong)NSMutableArray* phones;
 @property (nonatomic, strong)NSMutableArray* models;
@@ -92,7 +93,13 @@
                     }
                 }];
             }];
-            [self.tableView reloadData];
+            if(self.models.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];

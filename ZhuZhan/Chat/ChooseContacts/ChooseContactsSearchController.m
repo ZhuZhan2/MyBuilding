@@ -11,6 +11,7 @@
 #import "AddressBookApi.h"
 #import "ChooseContactsViewCell.h"
 #import "AddressBookModel.h"
+#import "MyTableView.h"
 @interface ChooseContactsSearchController ()<ChooseContactsViewCellDelegate,UITableViewDataSource>
 @property (nonatomic, strong)NSMutableArray* models;
 @end
@@ -47,7 +48,13 @@
                 AddressBookModel *ABmodel = obj;
                 [self.models addObjectsFromArray:ABmodel.contactArr];
             }];
-            [self.tableView reloadData];
+            if(self.models.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView noSearchData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];

@@ -16,6 +16,7 @@
 #import "LoginSqlite.h"
 #import "ChatMessageApi.h"
 #import "MJRefresh.h"
+#import "MyTableView.h"
 @interface ChatListViewController ()<UIAlertViewDelegate,ChatViewControllerDelegate>
 @property (nonatomic, strong)NSMutableArray* models;
 @end
@@ -36,7 +37,13 @@
     [ChatMessageApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.models = posts;
-            [self.tableView reloadData];
+            if(self.models.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -62,8 +69,13 @@
     [ChatMessageApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.models = posts;
-            [self.tableView reloadData];
-            [self.tableView headerEndRefreshing];
+            if(self.models.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -73,6 +85,7 @@
                 }];
             }
         }
+        [self.tableView headerEndRefreshing];
     } noNetWork:^{
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
             [self firstNetWork];

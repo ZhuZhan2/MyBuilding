@@ -21,6 +21,7 @@
 #import "ContractsMainClauseModel.h"
 #import "ContractsRepealModel.h"
 #import "ContractsSalerModel.h"
+#import "MyTableView.h"
 @interface AskPriceMessageViewController ()
 @property(nonatomic,strong)NSMutableArray *showArr;
 @property(nonatomic,strong)NSString *type;
@@ -80,7 +81,13 @@
     [AskPriceMessageApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.showArr = posts;
-            [self.tableView reloadData];
+            if(self.showArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -120,7 +127,13 @@
         if(!error){
             [self.showArr removeAllObjects];
             self.showArr = posts;
-            [self.tableView reloadData];
+            if(self.showArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -148,7 +161,13 @@
         if(!error){
             self.startIndex ++;
             [self.showArr addObjectsFromArray:posts];
-            [self.tableView reloadData];
+            if(self.showArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];

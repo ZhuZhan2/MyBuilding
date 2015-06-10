@@ -14,6 +14,7 @@
 #import "ChatMessageApi.h"
 #import "ChooseContactsSearchController.h"
 #import "ChatViewController.h"
+#import "MyTableView.h"
 @interface ChooseContactsViewController()<ChooseContactsViewCellDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)NSMutableArray *groupArr;
 @property (nonatomic, strong)NSMutableArray* selectedUserIds;
@@ -38,7 +39,13 @@
     [AddressBookApi GetAddressBookListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.groupArr = posts;
-            [self.tableView reloadData];
+            if(self.groupArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];

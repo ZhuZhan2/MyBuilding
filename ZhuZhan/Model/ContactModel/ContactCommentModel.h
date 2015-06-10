@@ -17,7 +17,7 @@
 @property (nonatomic, copy) NSString *a_avatarUrl;
 @property (nonatomic, copy) NSString *a_userType;
 @property (nonatomic) BOOL a_isPersonal;
-
+@property (nonatomic) BOOL a_isSelf;
 @property (nonatomic, copy) NSDate *a_time;
 @property (nonatomic, copy) NSString *a_createdTime;
 

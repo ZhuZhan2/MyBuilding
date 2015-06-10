@@ -158,6 +158,7 @@ int j;
         [bgView addGestureRecognizer:bgViewtapGestureRecognizer];
         [self.view addSubview:bgView];
         projectModel *model = [showArr objectAtIndex:button.tag];
+        NSLog(@"===>%@",model.isFocused);
         _MapContent = [[MapContentView alloc] initWithFrame:CGRectMake(0, kScreenHeight, 320, 190) model:model number:[numberArr objectAtIndex:button.tag]];
         _MapContent.delegate = self;
         UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gotoProgramDetailView:)];
@@ -340,6 +341,7 @@ int j;
 -(void)drawFunction{
     j=0;
     if(imageView == nil){
+        [showArr removeAllObjects];
         topCount = 0;
         [topBgView removeFromSuperview];
         topBgView = nil;

@@ -14,7 +14,7 @@
     self.a_id = [ProjectStage ProjectStrStage:dict[@"userId"]];
     self.a_company = [ProjectStage ProjectStrStage:dict[@"companyName"]];
     self.a_sex = [ProjectStage ProjectStrStage:dict[@"sexCn"]];
-    if([[ProjectStage ProjectStrStage:dict[@"self.a_realName"]] isEqualToString:@""]){
+    if([[ProjectStage ProjectStrStage:dict[@"realName"]] isEqualToString:@""]){
         self.a_realName = [ProjectStage ProjectStrStage:dict[@"realName"]];
     }else{
         if([dict[@"sex"] isEqualToString:@"00"]){

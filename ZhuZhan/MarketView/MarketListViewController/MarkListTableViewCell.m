@@ -70,7 +70,7 @@
     if(!_contentLabel){
         _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 300, 0)];
         _contentLabel.numberOfLines = 0;
-        _contentLabel.font = [UIFont systemFontOfSize:14];
+        _contentLabel.font = [UIFont systemFontOfSize:15];
     }
     return _contentLabel;
 }
@@ -87,7 +87,7 @@
 -(UILabel *)firstContentLabel{
     if(!_firstContentLabel){
         _firstContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 300, 20)];
-        _firstContentLabel.font = [UIFont systemFontOfSize:14];
+        _firstContentLabel.font = [UIFont systemFontOfSize:16];
     }
     return _firstContentLabel;
 }
@@ -104,7 +104,7 @@
 -(UILabel *)secondContentLabel{
     if(!_secondContentLabel){
         _secondContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 300, 20)];
-        _secondContentLabel.font = [UIFont systemFontOfSize:14];
+        _secondContentLabel.font = [UIFont systemFontOfSize:16];
     }
     return _secondContentLabel;
 }
@@ -119,7 +119,7 @@
     if([marketModel.a_reqDesc isEqualToString:@"-"]){
         self.contentLabel.textColor = AllNoDataColor;
     }else{
-        self.contentLabel.textColor = [UIColor blackColor];
+        self.contentLabel.textColor = RGBCOLOR(51, 51, 51);
     }
     
     if(marketModel.a_reqType !=5){
@@ -136,14 +136,14 @@
             if([marketModel.a_address isEqualToString:@"-"]){
                 self.firstContentLabel.textColor = AllNoDataColor;
             }else{
-                self.firstContentLabel.textColor = [UIColor blackColor];
+                self.firstContentLabel.textColor = RGBCOLOR(51, 51, 51);
             }
         }else{
             self.firstContentLabel .text = marketModel.a_bigTypeCn;
             if([marketModel.a_bigTypeCn isEqualToString:@"-"]){
                 self.firstContentLabel.textColor = AllNoDataColor;
             }else{
-                self.firstContentLabel.textColor = [UIColor blackColor];
+                self.firstContentLabel.textColor = RGBCOLOR(51, 51, 51);
             }
         }
     }
@@ -154,7 +154,7 @@
         if([marketModel.a_money isEqualToString:@"-"]){
             self.secondContentLabel.textColor = AllNoDataColor;
         }else{
-            self.secondContentLabel.textColor = [UIColor blackColor];
+            self.secondContentLabel.textColor = RGBCOLOR(51, 51, 51);
         }
     }else if (marketModel.a_reqType == 2){
         self.secondTitleLabel.text = @"分类";
@@ -162,7 +162,7 @@
         if([marketModel.a_smallTypeCn isEqualToString:@"-"]){
             self.secondContentLabel.textColor = AllNoDataColor;
         }else{
-            self.secondContentLabel.textColor = [UIColor blackColor];
+            self.secondContentLabel.textColor = RGBCOLOR(51, 51, 51);
         }
     }
     

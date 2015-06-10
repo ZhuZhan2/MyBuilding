@@ -132,6 +132,9 @@
                 case 11006:
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"验证码过期"];
                     break;
+                case 11019:
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:JSON[@"status"][@"errorMsg"]];
+                    break;
                 default:
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"注册失败，系统异常"];
                     break;

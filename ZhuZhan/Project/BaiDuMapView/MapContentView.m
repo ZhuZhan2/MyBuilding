@@ -21,6 +21,7 @@
     if (self) {
         // Initialization code
         self.model = model;
+        NSLog(@"===>%@",self.model.isFocused);
         self.isFocused = model.isFocused;
         self.number = number;
         [self addSubview:self.backgroundImageView];
@@ -101,6 +102,9 @@
     if(!_focusBtn){
         _focusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _focusBtn.frame = CGRectMake(210, 22, 81, 28);
+        
+        NSLog(@"==>%@",self.isFocused);
+        
         if([self.model.isFocused isEqualToString:@"0"]){
             [_focusBtn setImage:[GetImagePath getImagePath:@"addfocus"] forState:UIControlStateNormal];
         }else{

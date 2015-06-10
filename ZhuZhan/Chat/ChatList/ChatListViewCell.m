@@ -44,15 +44,15 @@
         self.rightLabel.textColor=RGBCOLOR(149, 149, 149);
         [self addSubview:self.rightLabel];
         
-        self.remindNumberLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 12, 12)];
+        self.remindNumberLabel=[[UILabel alloc]initWithFrame:CGRectMake(42, 8, 12, 12)];
         self.remindNumberLabel.backgroundColor=[UIColor redColor];
         self.remindNumberLabel.layer.cornerRadius=6;
         self.remindNumberLabel.clipsToBounds=YES;
         self.remindNumberLabel.textAlignment=NSTextAlignmentCenter;
         self.remindNumberLabel.textColor=[UIColor whiteColor];
-        self.remindNumberLabel.center=CGPointMake(CGRectGetWidth(self.userImageView.frame), 0);
+        //self.remindNumberLabel.center=CGPointMake(CGRectGetWidth(self.userImageView.frame), 0);
         self.remindNumberLabel.font=[UIFont systemFontOfSize:9];
-        [self.userImageView addSubview:self.remindNumberLabel];
+        [self addSubview:self.remindNumberLabel];
         
         self.timeLabel=[[UILabel alloc]initWithFrame:CGRectMake(175, 8, 130, 16)];
         self.timeLabel.textAlignment=NSTextAlignmentRight;

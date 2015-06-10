@@ -52,6 +52,12 @@
         self.a_address = [NSString stringWithFormat:@"%@ %@",dict[@"province"],dict[@"city"]];
     }
     
+    if([dict[@"city"] isEqualToString:@""]){
+        self.a_city = @"-";
+    }else{
+        self.a_city = dict[@"city"];
+    }
+    
     if([dict[@"reqDesc"] isEqualToString:@""]){
         self.a_reqDesc = @"-";
     }else{
@@ -61,7 +67,14 @@
     if([dict[@"moneyMin"] isEqualToString:@""] && [dict[@"moneyMax"] isEqualToString:@""]){
         self.a_money = @"-";
     }else{
-        self.a_money = [NSString stringWithFormat:@"%@－%@",dict[@"moneyMin"],dict[@"moneyMax"]];
+        if([dict[@"moneyMin"] isEqualToString:@""]){
+            self.a_money = [NSString stringWithFormat:@"不限－%@",dict[@"moneyMax"]];
+
+        }else if ([dict[@"moneyMax"] isEqualToString:@""]){
+            self.a_money = [NSString stringWithFormat:@"%@－不限",dict[@"moneyMin"]];
+        }else{
+            self.a_money = [NSString stringWithFormat:@"%@－%@",dict[@"moneyMin"],dict[@"moneyMax"]];
+        }
     }
     
     if([dict[@"bigTypeCn"] isEqualToString:@""]){

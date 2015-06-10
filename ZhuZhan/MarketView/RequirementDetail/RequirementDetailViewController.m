@@ -71,6 +71,7 @@
 - (void)rightBtnClicked{
     NSLog(@"评论");
     RequireCommentViewController *view = [[RequireCommentViewController alloc] init];
+    view.paramId = self.targetId;
     [self.navigationController pushViewController:view animated:YES];
 }
 

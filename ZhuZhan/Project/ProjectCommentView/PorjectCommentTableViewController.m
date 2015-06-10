@@ -104,9 +104,6 @@
             if(showArr.count == 0){
                 [MyTableView hasData:self.tableView];
             }
-            if(showArr.count == 0){
-                [MyTableView hasData:self.tableView];
-            }
             [self.tableView headerEndRefreshing];
         }else{
             if([ErrorCode errorCode:error] == 403){
@@ -141,9 +138,6 @@
             if(showArr.count == 0){
                 [MyTableView hasData:self.tableView];
             }
-            if(showArr.count == 0){
-                [MyTableView hasData:self.tableView];
-            }
             [self.tableView footerEndRefreshing];
         }else{
             if([ErrorCode errorCode:error] == 403){
@@ -174,9 +168,6 @@
                 [_datasource addObject:model.a_time];
             }
             [MyTableView reloadDataWithTableView:self.tableView];
-            if(showArr.count == 0){
-                [MyTableView hasData:self.tableView];
-            }
             if(showArr.count == 0){
                 [MyTableView hasData:self.tableView];
             }

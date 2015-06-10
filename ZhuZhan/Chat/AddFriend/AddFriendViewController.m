@@ -16,6 +16,7 @@
 #import "RecommendFriendViewController.h"
 #import "AddressBookFriendViewController.h"
 #import "PersonalDetailViewController.h"
+#import "MyTableView.h"
 @interface AddFriendViewController ()<AddFriendCellDelegate>
 @property(nonatomic,strong)NSMutableArray* models;
 @property(nonatomic)int startIndex;
@@ -75,7 +76,13 @@
     [AddressBookApi GetFriendRequestListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             self.models = posts;
-            [self.tableView reloadData];
+            if(self.models.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -107,7 +114,13 @@
         if (!error) {
             [self.models removeAllObjects];
             self.models = posts;
-            [self.tableView reloadData];
+            if(self.models.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -131,7 +144,13 @@
         if (!error) {
             self.startIndex++;
             [self.models addObjectsFromArray:posts];
-            [self.tableView reloadData];
+            if(self.models.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];

@@ -13,6 +13,7 @@
 #import "RecommendFriendSearchController.h"
 #import "MJRefresh.h"
 #import "PersonalDetailViewController.h"
+#import "MyTableView.h"
 #define seperatorLineColor RGBCOLOR(229, 229, 229)
 @interface RecommendFriendViewController ()<RecommendFriendCellDelegate,RecommendFriendSearchControllerDelegate>
 @property(nonatomic,strong)NSMutableArray* models;
@@ -55,7 +56,13 @@
         if(!error){
             [self.models removeAllObjects];
             self.models = posts;
-            [self.tableView reloadData];
+            if(self.models.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -79,7 +86,13 @@
         if(!error){
             self.startIndex++;
             [self.models addObjectsFromArray:posts];
-            [self.tableView reloadData];
+            if(self.models.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -126,7 +139,13 @@
     [AddressBookApi GetUserRecommendInfoWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.models = posts;
-            [self.tableView reloadData];
+            if(self.models.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];

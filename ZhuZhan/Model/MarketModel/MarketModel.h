@@ -21,6 +21,7 @@
 @property(nonatomic,strong)NSString *a_bigTypeCn;
 @property(nonatomic,strong)NSString *a_smallTypeCn;
 @property(nonatomic,strong)NSString *a_commentCount;
+@property(nonatomic,strong)NSString *a_city;
 /*************************************
 找项目	1
 找材料	2

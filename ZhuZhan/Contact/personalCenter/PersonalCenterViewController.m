@@ -141,7 +141,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //    threeBtnsView.backgroundColor=[UIColor whiteColor];
     [_pathCover addSubview:threeBtnsView];
     
-    CGFloat width=kScreenWidth/3;
+    CGFloat width=kScreenWidth/4;
     
     UIButton *firstBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     firstBtn.frame = CGRectMake(8, 12, width-15, 25);
@@ -178,6 +178,18 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     thirdBtn.layer.masksToBounds = YES;
     thirdBtn.layer.cornerRadius = 4.0;
     [threeBtnsView addSubview:thirdBtn];
+    
+    UIButton *fourBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    fourBtn.frame = CGRectMake(width*3+8, 12, width-15, 25);
+    [fourBtn setTitle:@"我的需求" forState:UIControlStateNormal];
+    [fourBtn addTarget:self action:@selector(gotoMyMarket:) forControlEvents:UIControlEventTouchUpInside];
+    fourBtn.tag = 4;
+    fourBtn.titleLabel.font=[UIFont systemFontOfSize:12];
+    fourBtn.backgroundColor = [UIColor blackColor];
+    fourBtn.alpha = .8;
+    fourBtn.layer.masksToBounds = YES;
+    fourBtn.layer.cornerRadius = 4.0;
+    [threeBtnsView addSubview:fourBtn];
     
 //    for (int i=0;i<2;i++) {
 //        UIView* view=[[UIView alloc]initWithFrame:CGRectMake(width*(i+1), 10, 2, 30)];
@@ -483,6 +495,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)gotoConstractList:(UIButton *)button{
     ConstractListController *view = [[ConstractListController alloc] init];
     [self.navigationController pushViewController:view animated:YES];
+}
+
+-(void)gotoMyMarket{
+    
 }
 
 -(UIView *)headView{

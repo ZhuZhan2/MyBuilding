@@ -27,7 +27,7 @@
 }
 
 - (void)setImageUrl:(NSString*)imageUrl title:(NSString *)title type:(NSString *)type time:(NSString *)time needRound:(BOOL)needRound{
-    [self.headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:imageUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:needRound?@"默认图_人脉_卡片头像":@"默认图_公司头像_卡片头像"]];
+    [self.headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:imageUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:needRound?@"默认图_用户头像_卡片头像":@"默认图_公司头像_卡片头像"]];
     self.headBtn.layer.cornerRadius = needRound?20:3;
     self.titleLabel.text = title;
     self.typeLabel.text = type;

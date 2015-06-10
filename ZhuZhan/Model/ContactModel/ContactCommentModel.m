@@ -8,6 +8,7 @@
 
 #import "ContactCommentModel.h"
 #import "ProjectStage.h"
+#import "LoginSqlite.h"
 @implementation ContactCommentModel
 -(void)setDict:(NSDictionary *)dict{
     self.a_id = [ProjectStage ProjectStrStage:dict[@"commentId"]];
@@ -31,6 +32,12 @@
     }
     
     self.a_createdTime = [ProjectStage ProjectCardTimeStage:dict[@"createdTime"]];
+    
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:dict[@"loginId"]]){
+        self.a_isSelf = YES;
+    }else{
+        self.a_isSelf = NO;
+    }
 }
 
 -(instancetype)initWithID:(NSString*)ID entityID:(NSString*)entityID createdBy:(NSString*)createdBy userName:(NSString*)userName commentContents:(NSString*)commentContents avatarUrl:(NSString*)avatarUrl time:(NSDate*)time{

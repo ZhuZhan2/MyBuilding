@@ -1733,6 +1733,7 @@
 		D3E0BECB1B27E25C002F01CF /* search_empty2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E0BEC91B27E25C002F01CF /* search_empty2@2x.png */; };
 		D3E0BECE1B27F6D2002F01CF /* RequireCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E0BECD1B27F6D2002F01CF /* RequireCommentViewController.m */; };
 		D3E0BED11B2801BF002F01CF /* RequireCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E0BED01B2801BF002F01CF /* RequireCommentTableViewCell.m */; };
+		D3E0BED51B285190002F01CF /* MyMarketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E0BED41B285190002F01CF /* MyMarketViewController.m */; };
 		D3E0E94B1A398A3600A41D42 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3E0E94A1A398A3600A41D42 /* Settings.bundle */; };
 		D3E1AAFD1A7648FC00BFC6E1 /* Shape-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E1AAFB1A7648FC00BFC6E1 /* Shape-1.png */; };
 		D3E1AAFE1A7648FC00BFC6E1 /* Shape-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E1AAFC1A7648FC00BFC6E1 /* Shape-1@2x.png */; };
@@ -4209,6 +4210,8 @@
 		D3E0BECD1B27F6D2002F01CF /* RequireCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequireCommentViewController.m; sourceTree = "<group>"; };
 		D3E0BECF1B2801BF002F01CF /* RequireCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequireCommentTableViewCell.h; sourceTree = "<group>"; };
 		D3E0BED01B2801BF002F01CF /* RequireCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequireCommentTableViewCell.m; sourceTree = "<group>"; };
+		D3E0BED31B285190002F01CF /* MyMarketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMarketViewController.h; sourceTree = "<group>"; };
+		D3E0BED41B285190002F01CF /* MyMarketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMarketViewController.m; sourceTree = "<group>"; };
 		D3E0E94A1A398A3600A41D42 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D3E1AAFB1A7648FC00BFC6E1 /* Shape-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shape-1.png"; sourceTree = "<group>"; };
 		D3E1AAFC1A7648FC00BFC6E1 /* Shape-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shape-1@2x.png"; sourceTree = "<group>"; };
@@ -5674,6 +5677,7 @@
 		04D10BB619AE016A0097C0C6 /* personalCenter */ = {
 			isa = PBXGroup;
 			children = (
+				D3E0BED21B285164002F01CF /* MyMarket */,
 				D324B1901B20572700E29E07 /* PersonalCenterTableViewCell.h */,
 				D324B1911B20572700E29E07 /* PersonalCenterTableViewCell.m */,
 				D3D4FB381A08C0C90033BB34 /* UpdataPassWordViewController.h */,
@@ -8246,6 +8250,15 @@
 			path = GetAddressBook;
 			sourceTree = "<group>";
 		};
+		D3E0BED21B285164002F01CF /* MyMarket */ = {
+			isa = PBXGroup;
+			children = (
+				D3E0BED31B285190002F01CF /* MyMarketViewController.h */,
+				D3E0BED41B285190002F01CF /* MyMarketViewController.m */,
+			);
+			path = MyMarket;
+			sourceTree = "<group>";
+		};
 		D3EACDE3199327780058FC9D /* QuadCurveMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -10159,6 +10172,7 @@
 				D3D090041AF86CC900C8AC55 /* AdDataModel.m in Sources */,
 				D3AD61AC19AEF80B001FD483 /* MJPopupBackgroundView.m in Sources */,
 				0426C25619922D5A00CD8822 /* GPUImageColorInvertFilter.m in Sources */,
+				D3E0BED51B285190002F01CF /* MyMarketViewController.m in Sources */,
 				04D10C7719B074C70097C0C6 /* RecommendLetterViewController.m in Sources */,
 				0426C2CF19922D5A00CD8822 /* GPUImageTwoInputFilter.m in Sources */,
 				D3DA3D311ABBECAC001D1EEA /* AskPriceModel.m in Sources */,
