@@ -9,6 +9,7 @@
 #import "MarketApi.h"
 #import "ConnectionAvailable.h"
 #import "MarketModel.h"
+#import "RequirementDetailModel.h"
 @implementation MarketApi
 + (NSURLSessionDataTask *)AddWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
@@ -130,6 +131,34 @@
         NSLog(@"error ==> %@",error);
         if (block) {
             block([NSMutableArray array], error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)GetRequireInfoWithBlock:(void (^)(NSMutableArray *, NSError *))block reqId:(NSString *)reqId noNetWork:(void (^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"api/require/getRequireInfo?reqId=%@",reqId];
+    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON==>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){
+            RequirementDetailModel* model = [[RequirementDetailModel alloc] init];
+            model.dict = JSON[@"data"];
+            if (block) {
+                block([NSMutableArray arrayWithObject:model] ,nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"errorMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array] ,error);
         }
     }];
 }

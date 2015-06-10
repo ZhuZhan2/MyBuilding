@@ -35,6 +35,7 @@
     [self setTableViewFooterView];
     
     [self.searchBar becomeFirstResponder];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keybordHiden) name:@"keybordHiden" object:nil];
 }
 
 - (void)setTableViewFooterView{
@@ -279,5 +280,13 @@
 
 - (UIView *)searchBarTableViewNoDataView{
     return [RKViewFactory noHistorySearchResultsViewWithTop:70];
+}
+
+- (void)keybordHiden{
+    [self.searchBar resignFirstResponder];
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"keybordHiden" object:nil];
 }
 @end

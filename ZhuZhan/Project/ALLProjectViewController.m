@@ -466,7 +466,6 @@
     [self.nowViewController.navigationController pushViewController:vc animated:YES];
 }
 
-
 - (NSString *)keywords{
     if (!_keywords) {
         _keywords = @"";
@@ -560,5 +559,9 @@
             [ErrorCode alert];
         }];
     }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"keybordHiden" object:nil];
 }
 @end

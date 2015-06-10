@@ -111,4 +111,8 @@
 - (UIView *)noDataView{
     return [RKViewFactory noSearchResultsViewWithTop:165];
 }
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"keybordHiden" object:nil];
+}
 @end

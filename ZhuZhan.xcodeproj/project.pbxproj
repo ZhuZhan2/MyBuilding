@@ -882,6 +882,20 @@
 		5B9624EA1AB2853A005728C5 /* Rectangle-3-copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9624E81AB2853A005728C5 /* Rectangle-3-copy.png */; };
 		5B9624EB1AB2853A005728C5 /* Rectangle-3-copy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9624E91AB2853A005728C5 /* Rectangle-3-copy@2x.png */; };
 		5B9624EE1AB2CE0C005728C5 /* ChatToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9624ED1AB2CE0C005728C5 /* ChatToolBar.m */; };
+		5B9F26C61B26AECD0022B5A8 /* RequirementDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26C51B26AECD0022B5A8 /* RequirementDetailViewController.m */; };
+		5B9F26CA1B26B5DF0022B5A8 /* RequirementDetailTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26C91B26B5DF0022B5A8 /* RequirementDetailTitleView.m */; };
+		5B9F26CD1B26C57F0022B5A8 /* RequirementDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26CC1B26C57F0022B5A8 /* RequirementDetailModel.m */; };
+		5B9F26D21B26CA350022B5A8 /* 默认图_需求详情_公司头像126.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9F26CE1B26CA350022B5A8 /* 默认图_需求详情_公司头像126.png */; };
+		5B9F26D31B26CA350022B5A8 /* 默认图_需求详情_公司头像126@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9F26CF1B26CA350022B5A8 /* 默认图_需求详情_公司头像126@2x.png */; };
+		5B9F26D41B26CA350022B5A8 /* 默认图_需求详情_人头像126.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9F26D01B26CA350022B5A8 /* 默认图_需求详情_人头像126.png */; };
+		5B9F26D51B26CA350022B5A8 /* 默认图_需求详情_人头像126@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9F26D11B26CA350022B5A8 /* 默认图_需求详情_人头像126@2x.png */; };
+		5B9F26D81B26CEEE0022B5A8 /* RequirementCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26D71B26CEEE0022B5A8 /* RequirementCategoryView.m */; };
+		5B9F26DB1B26E0FD0022B5A8 /* RequirementContactsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26DA1B26E0FD0022B5A8 /* RequirementContactsInfoView.m */; };
+		5B9F26DF1B26EE220022B5A8 /* RequirementInfoPorjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26DE1B26EE220022B5A8 /* RequirementInfoPorjectView.m */; };
+		5B9F26E21B26EE750022B5A8 /* RequirementInfoMateialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26E11B26EE750022B5A8 /* RequirementInfoMateialView.m */; };
+		5B9F26E51B26EE860022B5A8 /* RequirementInfoRelationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26E41B26EE860022B5A8 /* RequirementInfoRelationView.m */; };
+		5B9F26E81B26EECF0022B5A8 /* RequirementInfoCooperationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26E71B26EECF0022B5A8 /* RequirementInfoCooperationView.m */; };
+		5B9F26EB1B26EEDF0022B5A8 /* RequirementInfoOtherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26EA1B26EEDF0022B5A8 /* RequirementInfoOtherView.m */; };
 		5B9FDE9F1A6CD47000215485 /* 项目详情默认0.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9FDE9D1A6CD47000215485 /* 项目详情默认0.png */; };
 		5B9FDEA01A6CD47000215485 /* 项目详情默认0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9FDE9E1A6CD47000215485 /* 项目详情默认0@2x.png */; };
 		5BA181A61A76170500191D31 /* Shadow-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA181A41A76170500191D31 /* Shadow-top.png */; };
@@ -3108,6 +3122,30 @@
 		5B9624E91AB2853A005728C5 /* Rectangle-3-copy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rectangle-3-copy@2x.png"; sourceTree = "<group>"; };
 		5B9624EC1AB2CE0C005728C5 /* ChatToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatToolBar.h; sourceTree = "<group>"; };
 		5B9624ED1AB2CE0C005728C5 /* ChatToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatToolBar.m; sourceTree = "<group>"; };
+		5B9F26C41B26AECD0022B5A8 /* RequirementDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequirementDetailViewController.h; sourceTree = "<group>"; };
+		5B9F26C51B26AECD0022B5A8 /* RequirementDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequirementDetailViewController.m; sourceTree = "<group>"; };
+		5B9F26C81B26B5DF0022B5A8 /* RequirementDetailTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequirementDetailTitleView.h; sourceTree = "<group>"; };
+		5B9F26C91B26B5DF0022B5A8 /* RequirementDetailTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequirementDetailTitleView.m; sourceTree = "<group>"; };
+		5B9F26CB1B26C57F0022B5A8 /* RequirementDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequirementDetailModel.h; sourceTree = "<group>"; };
+		5B9F26CC1B26C57F0022B5A8 /* RequirementDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequirementDetailModel.m; sourceTree = "<group>"; };
+		5B9F26CE1B26CA350022B5A8 /* 默认图_需求详情_公司头像126.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_需求详情_公司头像126.png"; sourceTree = "<group>"; };
+		5B9F26CF1B26CA350022B5A8 /* 默认图_需求详情_公司头像126@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_需求详情_公司头像126@2x.png"; sourceTree = "<group>"; };
+		5B9F26D01B26CA350022B5A8 /* 默认图_需求详情_人头像126.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_需求详情_人头像126.png"; sourceTree = "<group>"; };
+		5B9F26D11B26CA350022B5A8 /* 默认图_需求详情_人头像126@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_需求详情_人头像126@2x.png"; sourceTree = "<group>"; };
+		5B9F26D61B26CEEE0022B5A8 /* RequirementCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequirementCategoryView.h; sourceTree = "<group>"; };
+		5B9F26D71B26CEEE0022B5A8 /* RequirementCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequirementCategoryView.m; sourceTree = "<group>"; };
+		5B9F26D91B26E0FD0022B5A8 /* RequirementContactsInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequirementContactsInfoView.h; sourceTree = "<group>"; };
+		5B9F26DA1B26E0FD0022B5A8 /* RequirementContactsInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequirementContactsInfoView.m; sourceTree = "<group>"; };
+		5B9F26DD1B26EE220022B5A8 /* RequirementInfoPorjectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequirementInfoPorjectView.h; sourceTree = "<group>"; };
+		5B9F26DE1B26EE220022B5A8 /* RequirementInfoPorjectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequirementInfoPorjectView.m; sourceTree = "<group>"; };
+		5B9F26E01B26EE750022B5A8 /* RequirementInfoMateialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequirementInfoMateialView.h; sourceTree = "<group>"; };
+		5B9F26E11B26EE750022B5A8 /* RequirementInfoMateialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequirementInfoMateialView.m; sourceTree = "<group>"; };
+		5B9F26E31B26EE860022B5A8 /* RequirementInfoRelationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequirementInfoRelationView.h; sourceTree = "<group>"; };
+		5B9F26E41B26EE860022B5A8 /* RequirementInfoRelationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequirementInfoRelationView.m; sourceTree = "<group>"; };
+		5B9F26E61B26EECF0022B5A8 /* RequirementInfoCooperationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequirementInfoCooperationView.h; sourceTree = "<group>"; };
+		5B9F26E71B26EECF0022B5A8 /* RequirementInfoCooperationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequirementInfoCooperationView.m; sourceTree = "<group>"; };
+		5B9F26E91B26EEDF0022B5A8 /* RequirementInfoOtherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequirementInfoOtherView.h; sourceTree = "<group>"; };
+		5B9F26EA1B26EEDF0022B5A8 /* RequirementInfoOtherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequirementInfoOtherView.m; sourceTree = "<group>"; };
 		5B9FDE9D1A6CD47000215485 /* 项目详情默认0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情默认0.png"; sourceTree = "<group>"; };
 		5B9FDE9E1A6CD47000215485 /* 项目详情默认0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "项目详情默认0@2x.png"; sourceTree = "<group>"; };
 		5BA181A41A76170500191D31 /* Shadow-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shadow-top.png"; sourceTree = "<group>"; };
@@ -6464,6 +6502,47 @@
 			path = AddressBook;
 			sourceTree = "<group>";
 		};
+		5B9F26C31B26AEAD0022B5A8 /* RequirementDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5B9F26C41B26AECD0022B5A8 /* RequirementDetailViewController.h */,
+				5B9F26C51B26AECD0022B5A8 /* RequirementDetailViewController.m */,
+				5B9F26C71B26B5C20022B5A8 /* view */,
+			);
+			path = RequirementDetail;
+			sourceTree = "<group>";
+		};
+		5B9F26C71B26B5C20022B5A8 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				5B9F26C81B26B5DF0022B5A8 /* RequirementDetailTitleView.h */,
+				5B9F26C91B26B5DF0022B5A8 /* RequirementDetailTitleView.m */,
+				5B9F26D61B26CEEE0022B5A8 /* RequirementCategoryView.h */,
+				5B9F26D71B26CEEE0022B5A8 /* RequirementCategoryView.m */,
+				5B9F26D91B26E0FD0022B5A8 /* RequirementContactsInfoView.h */,
+				5B9F26DA1B26E0FD0022B5A8 /* RequirementContactsInfoView.m */,
+				5B9F26DC1B26ED350022B5A8 /* RequirementInfoView */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		5B9F26DC1B26ED350022B5A8 /* RequirementInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				5B9F26DD1B26EE220022B5A8 /* RequirementInfoPorjectView.h */,
+				5B9F26DE1B26EE220022B5A8 /* RequirementInfoPorjectView.m */,
+				5B9F26E01B26EE750022B5A8 /* RequirementInfoMateialView.h */,
+				5B9F26E11B26EE750022B5A8 /* RequirementInfoMateialView.m */,
+				5B9F26E31B26EE860022B5A8 /* RequirementInfoRelationView.h */,
+				5B9F26E41B26EE860022B5A8 /* RequirementInfoRelationView.m */,
+				5B9F26E61B26EECF0022B5A8 /* RequirementInfoCooperationView.h */,
+				5B9F26E71B26EECF0022B5A8 /* RequirementInfoCooperationView.m */,
+				5B9F26E91B26EEDF0022B5A8 /* RequirementInfoOtherView.h */,
+				5B9F26EA1B26EEDF0022B5A8 /* RequirementInfoOtherView.m */,
+			);
+			path = RequirementInfoView;
+			sourceTree = "<group>";
+		};
 		5BA8F4EC1B13115600E8656D /* ContractSucess */ = {
 			isa = PBXGroup;
 			children = (
@@ -7164,6 +7243,10 @@
 		D35163CF1A67903F000051F4 /* 默认图像 */ = {
 			isa = PBXGroup;
 			children = (
+				5B9F26CE1B26CA350022B5A8 /* 默认图_需求详情_公司头像126.png */,
+				5B9F26CF1B26CA350022B5A8 /* 默认图_需求详情_公司头像126@2x.png */,
+				5B9F26D01B26CA350022B5A8 /* 默认图_需求详情_人头像126.png */,
+				5B9F26D11B26CA350022B5A8 /* 默认图_需求详情_人头像126@2x.png */,
 				D3DE5B921B1EF9BB0018EC82 /* 默认图_公司头像_主头像.png */,
 				D3DE5B931B1EF9BB0018EC82 /* 默认图_公司头像_主头像@2x.png */,
 				5BFA140E1B1EF3040026380A /* 默认图_用户头像_群组成员.png */,
@@ -7653,6 +7736,7 @@
 		D3D08FF61AF85E5F00C8AC55 /* MarketView */ = {
 			isa = PBXGroup;
 			children = (
+				5B9F26C31B26AEAD0022B5A8 /* RequirementDetail */,
 				D324B1831B2038BF00E29E07 /* MarketListViewController */,
 				5BBA27851B1FE31F00ADE3FC /* PublishRequirement */,
 				D3D0902C1AF89FC000C8AC55 /* SearchMaterialView */,
@@ -7746,6 +7830,8 @@
 				D3D090421AF8C3DE00C8AC55 /* MarketApi.m */,
 				D3D6EB841B20319500FB6D5A /* MarketModel.h */,
 				D3D6EB851B20319500FB6D5A /* MarketModel.m */,
+				5B9F26CB1B26C57F0022B5A8 /* RequirementDetailModel.h */,
+				5B9F26CC1B26C57F0022B5A8 /* RequirementDetailModel.m */,
 			);
 			path = MarketModel;
 			sourceTree = "<group>";
@@ -8425,6 +8511,7 @@
 				04BC419019D7E5B3006B5C7B /* 人脉_57a@2x.png in Resources */,
 				04BC436119D7E5B3006B5C7B /* ＋人脉－个人中心2_30a@2x.png in Resources */,
 				5B6C4B011ADF8ADE003B8DA8 /* 不同意带字@2x.png in Resources */,
+				5B9F26D41B26CA350022B5A8 /* 默认图_需求详情_人头像126.png in Resources */,
 				5BAF1D1B1B1567FE009C47BD /* 默认图_公司详情@2x.png in Resources */,
 				D3D090151AF86DF400C8AC55 /* index_need@2x.png in Resources */,
 				D3D7D86D19FF710100AE5765 /* 人脉－个人中心_10a@2x.png in Resources */,
@@ -8804,6 +8891,7 @@
 				5BE82BC11B180CCC00603F8A /* 默认图_动态详情.png in Resources */,
 				04BC41EC19D7E5B3006B5C7B /* 人脉－账号设置_14a@2x.png in Resources */,
 				D3D5D9B11A66919B0077C8C9 /* 公司详情图标03@2x.png in Resources */,
+				5B9F26D21B26CA350022B5A8 /* 默认图_需求详情_公司头像126.png in Resources */,
 				5B6C4B301ADFC01B003B8DA8 /* PDF.png in Resources */,
 				04BC413519D7E5B3006B5C7B /* grayColor@2x.png in Resources */,
 				5BE08DF11A3586EA00495EEB /* 010047@2x.png in Resources */,
@@ -9176,6 +9264,7 @@
 				5BE264E31A78C34600EF7D1B /* mblogo@2x.png in Resources */,
 				5B4C198619FA543C00C6C57D /* 用户条款_05.png in Resources */,
 				5BE180F01AFC9C1100251113 /* 加关注@2x.png in Resources */,
+				5B9F26D51B26CA350022B5A8 /* 默认图_需求详情_人头像126@2x.png in Resources */,
 				5B95ADCB1AB13A0300797EA6 /* 未设置@2x.png in Resources */,
 				5BE08EA81A3586EA00495EEB /* 040018.png in Resources */,
 				04BC41EB19D7E5B3006B5C7B /* 人脉－账号设置_14a.png in Resources */,
@@ -9314,6 +9403,7 @@
 				04BC420219D7E5B3006B5C7B /* 公司认证员工_03a@2x.png in Resources */,
 				5BE08DBD1A3586EA00495EEB /* 010021@2x.png in Resources */,
 				5B90E1161ADE59B600436CED /* 流程点_已完成.png in Resources */,
+				5B9F26D31B26CA350022B5A8 /* 默认图_需求详情_公司头像126@2x.png in Resources */,
 				D3D9F8DF1ADE7FBE002BBB06 /* 加好友带字@2x.png in Resources */,
 				5BE08E0A1A3586EA00495EEB /* 010060.png in Resources */,
 				5BE82BC21B180CCC00603F8A /* 默认图_动态详情@2x.png in Resources */,
@@ -9481,6 +9571,7 @@
 				0426C28319922D5A00CD8822 /* GPUImageLanczosResamplingFilter.m in Sources */,
 				5BAE1C561B0EF5E6004A4B3E /* MyFocusUserController.m in Sources */,
 				5B7670651AB6B92B00E154C5 /* SearchBarTableViewController.m in Sources */,
+				5B9F26CD1B26C57F0022B5A8 /* RequirementDetailModel.m in Sources */,
 				D3AD619B19AEEE30001FD483 /* DatePickerView.m in Sources */,
 				0426C24A19922D5A00CD8822 /* GPUImageBoxBlurFilter.m in Sources */,
 				5B4E8A5819F8EA9800EA9AFF /* CompanyTotalViewController.m in Sources */,
@@ -9501,6 +9592,7 @@
 				D3DBBC721AB914E20070DB98 /* AddCategoriesView.m in Sources */,
 				5B6289DD1AB7C10000F30059 /* RKTwoView.m in Sources */,
 				5B5773DC1AC1320400C17DBF /* DemandDetailProvidePriceController.m in Sources */,
+				5B9F26C61B26AECD0022B5A8 /* RequirementDetailViewController.m in Sources */,
 				D3F7275A1AD6941900B52A66 /* RecommendFriendCell.m in Sources */,
 				D3C0218F1AE09520000F1742 /* TableViewHeightCell.m in Sources */,
 				5B3AD9E419F7CA7B008132B2 /* CompanyMemberCell.m in Sources */,
@@ -9511,6 +9603,7 @@
 				0426C27D19922D5A00CD8822 /* GPUImageHSBFilter.m in Sources */,
 				5B8A2CF21AAEE0AD00C8F9DE /* ChatListViewCell.m in Sources */,
 				5BD9DE801AF88C3A007BF9B5 /* MarketSearchViewController.m in Sources */,
+				5B9F26EB1B26EEDF0022B5A8 /* RequirementInfoOtherView.m in Sources */,
 				0426C2DC19922D5A00CD8822 /* GPUImageMovieWriter.m in Sources */,
 				5BB9A53D1AB6F84300B5B2D8 /* AskPriceViewController.m in Sources */,
 				5B5836D71AD771AF00F8E7C3 /* RecommendFriendSearchController.m in Sources */,
@@ -9557,6 +9650,7 @@
 				D31BBB9A1AD3E3F500919B8B /* SWTableViewCell.m in Sources */,
 				D3EDCA4E1ACE90A6002AF865 /* MKAnnotationView+WebCache.m in Sources */,
 				D3AD616C19ADB9F7001FD483 /* RecordSqlite.m in Sources */,
+				5B9F26CA1B26B5DF0022B5A8 /* RequirementDetailTitleView.m in Sources */,
 				5BAE1C461B0EF2AD004A4B3E /* MyFocusViewController.m in Sources */,
 				D324B1891B203B2300E29E07 /* OtherSearchMaterialViewController.m in Sources */,
 				D3D538471ADD1D3C003727C1 /* ImageSqlite.m in Sources */,
@@ -9630,6 +9724,7 @@
 				D3D484061ADFCEA1004AF972 /* AskPriceMessageModel.m in Sources */,
 				D36040E919F51E9F00E9727D /* CompanyApi.m in Sources */,
 				D3D7DB2F19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m in Sources */,
+				5B9F26DB1B26E0FD0022B5A8 /* RequirementContactsInfoView.m in Sources */,
 				5B8A2CEF1AAEE0AD00C8F9DE /* ChatModel.m in Sources */,
 				5B9238471ADB606F00281E94 /* ChatListViewController.m in Sources */,
 				042D9CFB19B40C4C00689C5D /* DKCircleButton.m in Sources */,
@@ -9708,6 +9803,7 @@
 				0426C2E819922D5A00CD8822 /* FaceppInfo.m in Sources */,
 				D3D7DD2A1B26B0C4001A9577 /* MarketListFootView.m in Sources */,
 				0426C2D919922D5A00CD8822 /* GPUImageXYDerivativeFilter.m in Sources */,
+				5B9F26E21B26EE750022B5A8 /* RequirementInfoMateialView.m in Sources */,
 				D3B1C28319D155CC00E6D89F /* ContactCommentTableViewCell.m in Sources */,
 				5B8A2CEB1AAEE0AD00C8F9DE /* AddressBookFriendCell.m in Sources */,
 				0426C27019922D5A00CD8822 /* GPUImageGaussianBlurPositionFilter.m in Sources */,
@@ -9737,6 +9833,7 @@
 				5B5773DB1AC1320400C17DBF /* DemandDetailAskPriceController.m in Sources */,
 				5B13C70019B6AB0C008EA7A0 /* ProductDetailViewController.m in Sources */,
 				D3EDCA591ACE90A6002AF865 /* UIImage+MultiFormat.m in Sources */,
+				5B9F26D81B26CEEE0022B5A8 /* RequirementCategoryView.m in Sources */,
 				5B6373851ABA796D007CF1F8 /* RKMuchImageViews.m in Sources */,
 				D3D686271ABAC8C0005D9ED6 /* SearchContactViewController.m in Sources */,
 				0426C2A119922D5A00CD8822 /* GPUImagePinchDistortionFilter.m in Sources */,
@@ -9872,6 +9969,7 @@
 				0426C24219922D5A00CD8822 /* GPUImage3x3TextureSamplingFilter.m in Sources */,
 				0426C25419922D5A00CD8822 /* GPUImageColorBurnBlendFilter.m in Sources */,
 				5B5773DF1AC1335C00C17DBF /* DemandAskPriceDetailController.m in Sources */,
+				5B9F26E81B26EECF0022B5A8 /* RequirementInfoCooperationView.m in Sources */,
 				0426C2F919922D5A00CD8822 /* XHSoundManager.m in Sources */,
 				D3AD619C19AEEE30001FD483 /* LocateView.m in Sources */,
 				D3D321271A3EAE2E0009AEEA /* PooCodeView.m in Sources */,
@@ -10031,6 +10129,7 @@
 				5BAE1C6A1B0F2F3F004A4B3E /* PersonalActivesViewController.m in Sources */,
 				5B5773E21AC1338000C17DBF /* DemandAskPriceChatController.m in Sources */,
 				5B8A2CF51AAEE0AD00C8F9DE /* ChooseContactsViewCell.m in Sources */,
+				5B9F26E51B26EE860022B5A8 /* RequirementInfoRelationView.m in Sources */,
 				D3AD619D19AEEE30001FD483 /* SinglePickerView.m in Sources */,
 				0426C2BA19922D5A00CD8822 /* GPUImageSobelEdgeDetectionFilter.m in Sources */,
 				D3D5384A1ADD1FC8003727C1 /* ImageModel.m in Sources */,
@@ -10055,6 +10154,7 @@
 				D3929F3E1AC538740017E93D /* AskPriceComment.m in Sources */,
 				D39937C11A42B453007081C1 /* RecommendContactViewController.m in Sources */,
 				0426C2D219922D5A00CD8822 /* GPUImageUIElement.m in Sources */,
+				5B9F26DF1B26EE220022B5A8 /* RequirementInfoPorjectView.m in Sources */,
 				0426C23F19922D5A00CD8822 /* BaseViewController.m in Sources */,
 				042D9E2B19B559FC00689C5D /* TopicsTableViewCell.m in Sources */,
 				0426C26919922D5A00CD8822 /* GPUImageFastBlurFilter.m in Sources */,

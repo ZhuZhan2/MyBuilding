@@ -219,7 +219,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     MarketModel *model = self.modelsArr[indexPath.row];
-    NSLog(@"%@",model.a_id);
+    RequirementDetailViewController* vc = [[RequirementDetailViewController alloc] initWithTargetId:model.a_id];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)addFriend:(NSIndexPath *)indexPath{

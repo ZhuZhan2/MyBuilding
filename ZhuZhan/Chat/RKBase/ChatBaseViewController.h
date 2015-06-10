@@ -22,6 +22,8 @@
 -(UIView *)searchBarTableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;
 -(CGFloat)searchBarTableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 -(void)searchBarTableViewWillBeginDragging:(UITableView*)tableView;
+- (void)touchesBeganInSearchBarTableView;
+
 @end
 
 @class SearchBarTableViewController;

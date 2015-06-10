@@ -233,6 +233,7 @@
     if ([self.searchBar isFirstResponder]) {
         [self.searchBar resignFirstResponder];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"keybordHiden" object:nil];
 }
 
 //======================================================================

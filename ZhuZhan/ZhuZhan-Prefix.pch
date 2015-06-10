@@ -120,7 +120,8 @@
 
 //背景色
 #define AllBackMiddleGrayColor RGBCOLOR(247,247,248)//上导航的颜色
-#define AllBackDeepGrayColor RGBCOLOR(231,231,231)//卡片深灰背景
+#define AllBackDeepGrayColor AllBackLightGratColor//卡片深灰背景
+//#define AllBackDeepGrayColor RGBCOLOR(231,231,231)//卡片深灰背景（暂时废弃）
 #define AllBackLightGratColor RGBCOLOR(242,242,242)//浅灰背景
 
 //分割线

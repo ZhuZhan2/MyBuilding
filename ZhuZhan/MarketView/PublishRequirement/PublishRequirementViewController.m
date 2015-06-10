@@ -50,19 +50,6 @@
 }
 
 - (void)rightBtnClicked{
-    /*
-     realName	string	真实姓名	可选	可为空
-     tel	string	手机号	必选	不可为空
-     isOpen	string	是否开放	必选	不可为空
-     requireType	string	需求类型	必选	不可为空
-     province	string	省	(requireType=01,该项为必选)可选	可为空
-     city	string	市	(requireType=01,该项为必选)可选	可为空
-     moneyMin	string	项目金额最小值	可选	可为空
-     moneyMax	string	项目金额最大值	可选	可为空
-     bigType	string	大类	(requireType=02,该项为必选)可选	可为空
-     smallType	string	小类	(requireType=02,该项为必选)可选	可为空
-     desc
-     */
     NSMutableDictionary* dic = [NSMutableDictionary dictionary];
     [dic setObject:self.contactsInfoView.realName forKey:@"realName"];
     [dic setObject:self.contactsInfoView.phoneNumber forKey:@"tel"];
