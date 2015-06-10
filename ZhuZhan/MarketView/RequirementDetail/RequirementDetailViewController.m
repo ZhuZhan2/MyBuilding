@@ -198,6 +198,8 @@
     projectView.minMoneyField.userInteractionEnabled = NO;
     projectView.maxMoneyField.userInteractionEnabled = NO;
 
+    projectView.area = [NSString stringWithFormat:@"%@ %@",self.model.a_province,self.model.a_city];
+    
     BOOL hasMin = ![self.model.a_moneyMin isEqualToString:@""];
     BOOL hasMax = ![self.model.a_moneyMax isEqualToString:@""];
     
@@ -223,12 +225,16 @@
 - (RequirementInfoRelationView*)getRelationView{
     RequirementInfoRelationView* relationView = [RequirementInfoRelationView relationViewWithRequirementDescribe:self.model.a_reqDesc];
     relationView.areaField.userInteractionEnabled = NO;
+    
+    relationView.area = [NSString stringWithFormat:@"%@ %@",self.model.a_province,self.model.a_city];
     return relationView;
 }
 
 - (RequirementInfoCooperationView*)getCooperationView{
     RequirementInfoCooperationView* cooperationView = [RequirementInfoCooperationView cooperationViewWithRequirementDescribe:self.model.a_reqDesc];
     cooperationView.areaField.userInteractionEnabled = NO;
+    
+    cooperationView.area = [NSString stringWithFormat:@"%@ %@",self.model.a_province,self.model.a_city];
     return cooperationView;
 }
 

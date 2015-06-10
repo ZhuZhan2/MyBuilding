@@ -27,6 +27,9 @@
     self.a_realName = dict[@"realName"];
     self.a_telphone = dict[@"telphone"];
     
+    self.a_province = dict[@"province"];
+    self.a_city = dict[@"city"];
+
     self.a_moneyMin = dict[@"moneyMin"];
     self.a_moneyMax = dict[@"moneyMax"];
     

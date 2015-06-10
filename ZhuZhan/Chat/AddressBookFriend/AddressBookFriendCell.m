@@ -64,8 +64,11 @@
     _indexPath=indexPath;
     self.mainLabel.text=model.mainLabelText;
     if(model.isPlatformUser){
+        self.assistBtn.hidden = NO;
         [self.assistBtn setBackgroundImage:[self.class assistImageChooseWithStyle:model.assistStyle] forState:UIControlStateNormal];
         self.assistBtn.userInteractionEnabled=model.assistStyle==AddressBookFriendCellAssistNotFinished;
+    }else{
+        self.assistBtn.hidden = YES;
     }
 }
 

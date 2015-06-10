@@ -25,6 +25,7 @@
     [self initNavi];
     [self setUpSearchBarWithNeedTableView:YES isTableViewHeader:NO];
     [self initTableView];
+    self.tableView.backgroundColor = AllBackLightGratColor;
     [self getAddressBookWithFinishBlock:^{
         [self postPhones];
     }];
@@ -63,6 +64,8 @@
 
 -(void)postPhones{
     if (self.phones.count==0) return;
+    [self startLoadingViewWithOption:0];
+
     __block NSString* tels=@"";
     [self.phones enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         ValidatePlatformContactModel* model=obj;
@@ -111,7 +114,9 @@
                 }];
             }
         }
+        [self stopLoadingView];
     } dic:dic noNetWork:^{
+        [self stopLoadingView];
         [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
             [self postPhones];
         }];
@@ -195,5 +200,9 @@
         _phones=[NSMutableArray array];
     }
     return _phones;
+}
+
+- (UIView *)tableViewNoDataView{
+    return [RKViewFactory noDataViewWithTop:140];
 }
 @end

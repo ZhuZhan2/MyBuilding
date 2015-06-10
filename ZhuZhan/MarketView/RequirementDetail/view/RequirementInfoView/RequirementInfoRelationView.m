@@ -115,4 +115,9 @@
 - (void)setRequirementDescribe:(NSString *)requirementDescribe{
     _requirementDescribe = requirementDescribe;
 }
+
+- (void)setArea:(NSString *)area{
+    _area = area;
+    self.areaField.text = area;
+}
 @end

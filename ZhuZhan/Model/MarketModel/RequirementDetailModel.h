@@ -21,6 +21,9 @@
 @property (nonatomic, copy)NSString* a_realName;
 @property (nonatomic, copy)NSString* a_telphone;
 
+@property (nonatomic, copy)NSString* a_province;
+@property (nonatomic, copy)NSString* a_city;
+
 @property (nonatomic, copy)NSString* a_moneyMax;
 @property (nonatomic, copy)NSString* a_moneyMin;
 
