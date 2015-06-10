@@ -13,7 +13,7 @@
 #import "RKShadowView.h"
 #import "RequirementCategoryView.h"
 #import "RequirementContactsInfoView.h"
-
+#import "LoginSqlite.h"
 @interface RequirementDetailViewController ()
 @property (nonatomic, strong)RequirementDetailTitleView* titleView;
 @property (nonatomic, strong)RequirementCategoryView* categoryView;
@@ -38,20 +38,24 @@
     [self initNavi];
     [self initTableView];
     [self firstNetWork];
+    self.tableView.backgroundColor = AllBackLightGratColor;
 }
 
 - (void)firstNetWork{
+    [self startLoadingViewWithOption:0];
     [MarketApi GetRequireInfoWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             self.model = posts[0];
             [self reloadData];
         }
+        [self stopLoadingView];
     } reqId:self.targetId noNetWork:nil];
 }
 
 - (void)reloadData{
     [self.titleView setUserImageUrl:self.model.a_loginImagesId title:self.model.a_loginName time:self.model.a_createdTime needRound:self.model.a_isPsersonal];
     [self.categoryView setTitle:self.model.a_requireTypeName];
+    self.categoryView.assistView.hidden = ([self.model.a_loginId isEqualToString:[LoginSqlite getdata:@"userId"]] || !self.model.a_isPsersonal);
     self.contactsInfoView.realName = self.model.a_realName;
     self.contactsInfoView.phoneNumber = self.model.a_telphone;
     [self.tableView reloadData];

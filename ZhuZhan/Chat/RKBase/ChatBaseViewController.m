@@ -431,6 +431,14 @@
     [self touchesBeganInRKBaseTableView];
 }
 
+- (void)searchBarTableViewWillBeginDragging:(UITableView *)tableView{
+    [self touchesBeganInSearchBarTableView];
+}
+
+- (void)touchesBeganInSearchBarTableView{
+    [self.searchBar resignFirstResponder];
+}
+
 -(void)initStageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers underLineIsWhole:(BOOL)underLineIsWhole normalColor:(UIColor *)normalColor highlightColor:(UIColor *)highlightColor{
     self.stageChooseView=[RKStageChooseView stageChooseViewWithStages:
                           stages numbers:numbers delegate:self underLineIsWhole:underLineIsWhole normalColor:normalColor highlightColor:highlightColor];

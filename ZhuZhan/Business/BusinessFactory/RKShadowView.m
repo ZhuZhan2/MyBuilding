@@ -28,7 +28,7 @@
 
 + (UIView *)seperatorLineWithHeight:(CGFloat)height top:(CGFloat)top{
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height)];
-    view.backgroundColor = AllBackDeepGrayColor;
+    view.backgroundColor = AllBackLightGratColor;
     
     UIView* seperatorLine = [self seperatorLine];
     CGRect frame = seperatorLine.frame;

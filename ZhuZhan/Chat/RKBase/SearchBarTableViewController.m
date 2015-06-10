@@ -8,7 +8,7 @@
 
 #import "SearchBarTableViewController.h"
 
-@interface SearchBarTableViewController ()<UITableViewDataSource,RKBaseTableViewDelegate>
+@interface SearchBarTableViewController ()<UITableViewDataSource>
 @property (nonatomic)CGRect tableViewBounds;
 @end
 
@@ -97,6 +97,9 @@
 
 - (void)touchesBeganInRKBaseTableView{
     [self.view endEditing:YES];
+    if ([self.delegate respondsToSelector:@selector(touchesBeganInSearchBarTableView)]) {
+        [self.delegate touchesBeganInSearchBarTableView];
+    }
 }
 
 - (UIView *)view{

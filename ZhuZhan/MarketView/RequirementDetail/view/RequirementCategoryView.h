@@ -10,4 +10,5 @@
 
 @interface RequirementCategoryView : UIView
 - (void)setTitle:(NSString*)title;
+@property (nonatomic, strong)UIButton* assistView;
 @end

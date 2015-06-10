@@ -10,7 +10,6 @@
 
 @interface RequirementCategoryView ()
 @property (nonatomic, strong)UILabel* titleLabel;
-@property (nonatomic, strong)UIButton* assistView;
 @end
 
 @implementation RequirementCategoryView

@@ -9,7 +9,7 @@
 #import "ChatBaseViewController.h"
 
 @class RKBaseTableView;
-@interface SearchBarTableViewController : NSObject
+@interface SearchBarTableViewController : NSObject<RKBaseTableViewDelegate>
 @property(nonatomic,strong)UIView* view;
 @property(nonatomic,strong)RKBaseTableView* tableView;
 @property(nonatomic,strong)UIView* noDataView;

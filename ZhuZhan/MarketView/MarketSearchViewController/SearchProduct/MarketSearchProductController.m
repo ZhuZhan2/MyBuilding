@@ -220,4 +220,8 @@
     }
     return _nowViewController;
 }
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"keybordHiden" object:nil];
+}
 @end
