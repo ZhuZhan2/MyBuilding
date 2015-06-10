@@ -64,16 +64,16 @@
     
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.zwAdView];
-    [self.scrollView addSubview:self.centerView];
-    [self.centerView addSubview:self.countLabel];
-    [self.centerView addSubview:self.marketFlowView];
-    [self.centerView addSubview:self.demandList];
+//    [self.scrollView addSubview:self.centerView];
+//    [self.centerView addSubview:self.countLabel];
+//    [self.centerView addSubview:self.marketFlowView];
+//    [self.centerView addSubview:self.demandList];
     [self.scrollView addSubview:self.phoneImageView];
     [self.scrollView addSubview:self.phoneBtn];
     [self loadList];
     
-//    [self.scrollView addSubview:self.centerImageView];
-//    [self.scrollView addSubview:self.centerBtn];
+    [self.scrollView addSubview:self.centerImageView];
+    [self.scrollView addSubview:self.centerBtn];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -129,77 +129,77 @@
     return _zwAdView;
 }
 
--(UIView *)centerView{
-    if(!_centerView){
-        _centerView = [[UIView alloc] initWithFrame:CGRectMake(0, 100, 320, 234)];
-        _centerView.backgroundColor = RGBCOLOR(237, 237, 237);
-    }
-    return _centerView;
-}
-
--(UILabel *)countLabel{
-    if(!_countLabel){
-        _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
-        _countLabel.textAlignment = NSTextAlignmentCenter;
-        _countLabel.font = [UIFont systemFontOfSize:16];
-        _countLabel.textColor = RGBCOLOR(51, 51, 51);
-        _countLabel.text = @"需求总数1234条";
-    }
-    return _countLabel;
-}
-
--(MarketFlowView *)marketFlowView{
-    if(!_marketFlowView){
-        _marketFlowView = [[MarketFlowView alloc] initWithFrame:CGRectMake(0, 30, 320, 160)];
-        _marketFlowView.backgroundColor = RGBCOLOR(237, 237, 237);
-        _marketFlowView.padding = 10;
-        _marketFlowView.dataSource = self;
-        _marketFlowView.delegate =self;
-        _marketFlowView.defaultImageView = [[UIImageView alloc] initWithImage:[GetImagePath getImagePath:@"nodata"]];
-    }
-    return _marketFlowView;
-}
-
--(UIView *)demandList{
-    if(!_demandList){
-        _demandList = [[UIView alloc] initWithFrame:CGRectMake(0, 196, 320, 39)];
-        _demandList.backgroundColor = [UIColor whiteColor];
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 39)];
-        label.font = [UIFont systemFontOfSize:16];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.text = @"查看所有需求";
-        label.textColor = RGBCOLOR(0, 122, 255);
-        [_demandList addSubview:label];
-        UIImageView *cutLine1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
-        cutLine1.backgroundColor = RGBCOLOR(217, 217, 217);
-        [_demandList addSubview:cutLine1];
-        UIImageView *cutLine2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 38, 320, 1)];
-        cutLine2.backgroundColor = RGBCOLOR(217, 217, 217);
-        [_demandList addSubview:cutLine2];
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = label.frame;
-        [btn addTarget:self action:@selector(demandListAction) forControlEvents:UIControlEventTouchUpInside];
-        [_demandList addSubview:btn];
-    }
-    return _demandList;
-}
-
--(UIImageView *)phoneImageView{
-    if(!_phoneImageView){
-        _phoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 344, 320, 121)];
-        _phoneImageView.image = [GetImagePath getImagePath:@"index_phone"];
-    }
-    return _phoneImageView;
-}
-
--(UIButton *)phoneBtn{
-    if(!_phoneBtn){
-        _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _phoneBtn.frame = CGRectMake(18, 390, 283, 49);
-        [_phoneBtn addTarget:self action:@selector(phoneBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _phoneBtn;
-}
+//-(UIView *)centerView{
+//    if(!_centerView){
+//        _centerView = [[UIView alloc] initWithFrame:CGRectMake(0, 100, 320, 234)];
+//        _centerView.backgroundColor = RGBCOLOR(237, 237, 237);
+//    }
+//    return _centerView;
+//}
+//
+//-(UILabel *)countLabel{
+//    if(!_countLabel){
+//        _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
+//        _countLabel.textAlignment = NSTextAlignmentCenter;
+//        _countLabel.font = [UIFont systemFontOfSize:16];
+//        _countLabel.textColor = RGBCOLOR(51, 51, 51);
+//        _countLabel.text = @"需求总数1234条";
+//    }
+//    return _countLabel;
+//}
+//
+//-(MarketFlowView *)marketFlowView{
+//    if(!_marketFlowView){
+//        _marketFlowView = [[MarketFlowView alloc] initWithFrame:CGRectMake(0, 30, 320, 160)];
+//        _marketFlowView.backgroundColor = RGBCOLOR(237, 237, 237);
+//        _marketFlowView.padding = 10;
+//        _marketFlowView.dataSource = self;
+//        _marketFlowView.delegate =self;
+//        _marketFlowView.defaultImageView = [[UIImageView alloc] initWithImage:[GetImagePath getImagePath:@"nodata"]];
+//    }
+//    return _marketFlowView;
+//}
+//
+//-(UIView *)demandList{
+//    if(!_demandList){
+//        _demandList = [[UIView alloc] initWithFrame:CGRectMake(0, 196, 320, 39)];
+//        _demandList.backgroundColor = [UIColor whiteColor];
+//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 39)];
+//        label.font = [UIFont systemFontOfSize:16];
+//        label.textAlignment = NSTextAlignmentCenter;
+//        label.text = @"查看所有需求";
+//        label.textColor = RGBCOLOR(0, 122, 255);
+//        [_demandList addSubview:label];
+//        UIImageView *cutLine1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
+//        cutLine1.backgroundColor = RGBCOLOR(217, 217, 217);
+//        [_demandList addSubview:cutLine1];
+//        UIImageView *cutLine2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 38, 320, 1)];
+//        cutLine2.backgroundColor = RGBCOLOR(217, 217, 217);
+//        [_demandList addSubview:cutLine2];
+//        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        btn.frame = label.frame;
+//        [btn addTarget:self action:@selector(demandListAction) forControlEvents:UIControlEventTouchUpInside];
+//        [_demandList addSubview:btn];
+//    }
+//    return _demandList;
+//}
+//
+//-(UIImageView *)phoneImageView{
+//    if(!_phoneImageView){
+//        _phoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 344, 320, 121)];
+//        _phoneImageView.image = [GetImagePath getImagePath:@"index_phone"];
+//    }
+//    return _phoneImageView;
+//}
+//
+//-(UIButton *)phoneBtn{
+//    if(!_phoneBtn){
+//        _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        _phoneBtn.frame = CGRectMake(18, 390, 283, 49);
+//        [_phoneBtn addTarget:self action:@selector(phoneBtnAction) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _phoneBtn;
+//}
 
 -(UIButton *)searchBtn{
     if(!_searchBtn){
@@ -333,42 +333,42 @@
 
 
 /***********************************************************/
-//-(UIImageView *)centerImageView{
-//    if(!_centerImageView){
-//        _centerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 100, 320, 224)];
-//        _centerImageView.image = [GetImagePath getImagePath:@"index_need"];
-//    }
-//    return _centerImageView;
-//}
-//
-//-(UIButton *)centerBtn{
-//    if(!_centerBtn){
-//        _centerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _centerBtn.frame = CGRectMake(18, 190, 283, 123);
-//        [_centerBtn addTarget:self action:@selector(centerBtnAction) forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    return _centerBtn;
-//}
-//
-//-(void)centerBtnAction{
-//    OtherSearchMaterialViewController *view = [[OtherSearchMaterialViewController alloc] init];
-//    [self.navigationController pushViewController:view animated:YES];
-//}
-//
-//-(UIImageView *)phoneImageView{
-//    if(!_phoneImageView){
-//        _phoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 334, 320, 121)];
-//        _phoneImageView.image = [GetImagePath getImagePath:@"index_phone"];
-//    }
-//    return _phoneImageView;
-//}
-//
-//-(UIButton *)phoneBtn{
-//    if(!_phoneBtn){
-//        _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _phoneBtn.frame = CGRectMake(18, 380, 283, 49);
-//        [_phoneBtn addTarget:self action:@selector(phoneBtnAction) forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    return _phoneBtn;
-//}
+-(UIImageView *)centerImageView{
+    if(!_centerImageView){
+        _centerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 100, 320, 224)];
+        _centerImageView.image = [GetImagePath getImagePath:@"index_need"];
+    }
+    return _centerImageView;
+}
+
+-(UIButton *)centerBtn{
+    if(!_centerBtn){
+        _centerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _centerBtn.frame = CGRectMake(18, 190, 283, 123);
+        [_centerBtn addTarget:self action:@selector(centerBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _centerBtn;
+}
+
+-(void)centerBtnAction{
+    OtherSearchMaterialViewController *view = [[OtherSearchMaterialViewController alloc] init];
+    [self.navigationController pushViewController:view animated:YES];
+}
+
+-(UIImageView *)phoneImageView{
+    if(!_phoneImageView){
+        _phoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 334, 320, 121)];
+        _phoneImageView.image = [GetImagePath getImagePath:@"index_phone"];
+    }
+    return _phoneImageView;
+}
+
+-(UIButton *)phoneBtn{
+    if(!_phoneBtn){
+        _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _phoneBtn.frame = CGRectMake(18, 380, 283, 49);
+        [_phoneBtn addTarget:self action:@selector(phoneBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _phoneBtn;
+}
 @end

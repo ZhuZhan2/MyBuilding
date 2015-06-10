@@ -93,6 +93,8 @@
                     }
                 }];
             }];
+
+            
             if(self.models.count == 0){
                 [MyTableView reloadDataWithTableView:self.tableView];
                 [MyTableView hasData:self.tableView];

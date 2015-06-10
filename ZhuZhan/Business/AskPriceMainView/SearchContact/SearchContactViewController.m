@@ -13,6 +13,7 @@
 #import "SearchContactTableViewCell.h"
 #import "AskPriceApi.h"
 #import "SearchContactDefaultView.h"
+#import "MyTableView.h"
 
 @interface SearchContactViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,SearchContactDefaultViewDelegate>
 @property(nonatomic,strong)UISearchBar *searchBar;
@@ -64,7 +65,13 @@
     [AskPriceApi GetUserOrCompanyListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.showArr = posts;
-            [self.tableView reloadData];
+            if(self.showArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -198,5 +205,9 @@
     }else{
         [self.searchContactDefaultView removeFromSuperview];
     }
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.searchBar resignFirstResponder];
 }
 @end

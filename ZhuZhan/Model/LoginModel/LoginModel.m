@@ -133,7 +133,7 @@
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"验证码过期"];
                     break;
                 case 11019:
-                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"用户名不符合规则或含企业组织名称，请修改。"];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"用户名不符合规则或含企业组织名称，请修改"];
                     break;
                 case 11004:
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"register" object:@"手机号格式错误"];

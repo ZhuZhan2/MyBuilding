@@ -27,6 +27,7 @@
 #import "ConstractListController.h"
 #import "MyFocusViewController.h"
 #import "PersonalCenterTableViewCell.h"
+#import "MyMarketViewController.h"
 @interface PersonalCenterViewController ()
 @property(nonatomic,strong)UIView *headView;
 @property(nonatomic,strong)UIView *myFocusView;
@@ -141,7 +142,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //    threeBtnsView.backgroundColor=[UIColor whiteColor];
     [_pathCover addSubview:threeBtnsView];
     
-    CGFloat width=kScreenWidth/4;
+    CGFloat width=kScreenWidth/3;
     
     UIButton *firstBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     firstBtn.frame = CGRectMake(8, 12, width-15, 25);
@@ -189,7 +190,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     fourBtn.alpha = .8;
     fourBtn.layer.masksToBounds = YES;
     fourBtn.layer.cornerRadius = 4.0;
-    [threeBtnsView addSubview:fourBtn];
+    //[threeBtnsView addSubview:fourBtn];
     
 //    for (int i=0;i<2;i++) {
 //        UIView* view=[[UIView alloc]initWithFrame:CGRectMake(width*(i+1), 10, 2, 30)];
@@ -497,8 +498,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self.navigationController pushViewController:view animated:YES];
 }
 
--(void)gotoMyMarket{
-    
+-(void)gotoMyMarket:(UIButton *)button{
+    MyMarketViewController *view = [[MyMarketViewController alloc] init];
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 -(UIView *)headView{

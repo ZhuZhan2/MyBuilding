@@ -12,8 +12,10 @@
 #import "RequirementDetailViewController.h"
 #import "PublishRequirementViewController.h"
 #import "RKStageChooseView.h"
+#import "AppDelegate.h"
+#import "HomePageViewController.h"
 
-@interface MyMarketViewController ()
+@interface MyMarketViewController ()<RKStageChooseViewDelegate>
 @property(nonatomic,strong)NSString *requireType;
 @property(nonatomic,strong)MarketPopView *popView;
 @property(nonatomic,strong)RKStageChooseView *stageChooseView;
@@ -25,6 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self initNav];
+    [self initStageChooseViewWithStages:@[@"公开需求",@"客服需求"] numbers:nil underLineIsWhole:YES normalColor:AllLightGrayColor highlightColor:BlueColor];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,6 +65,22 @@
     [releaseBtn addTarget:self action:@selector(releaseBtnAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *releaseItem = [[UIBarButtonItem alloc] initWithCustomView:releaseBtn];
     self.navigationItem.rightBarButtonItems = @[releaseItem,screeningItem,searchItem];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //恢复tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarRestore];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //    //隐藏tabBar
+    AppDelegate* app=[AppDelegate instance];
+    HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
+    [homeVC homePageTabBarHide];
 }
 
 -(void)leftBtnClick{
@@ -120,5 +139,14 @@
             break;
     }
     //[self loadList];
+}
+
+-(void)initStageChooseViewWithStages:(NSArray*)stages numbers:(NSArray*)numbers underLineIsWhole:(BOOL)underLineIsWhole normalColor:(UIColor *)normalColor highlightColor:(UIColor *)highlightColor{
+    self.stageChooseView=[RKStageChooseView stageChooseViewWithStages:
+                          stages numbers:numbers delegate:self underLineIsWhole:underLineIsWhole normalColor:normalColor highlightColor:highlightColor];
+    CGRect frame=self.stageChooseView.frame;
+    frame.origin=CGPointMake(0, 64);
+    self.stageChooseView.frame=frame;
+    [self.view addSubview:self.stageChooseView];
 }
 @end
