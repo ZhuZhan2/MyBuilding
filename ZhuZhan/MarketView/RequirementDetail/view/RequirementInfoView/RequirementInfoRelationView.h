@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface RequirementInfoRelationView : UIView
++ (RequirementInfoRelationView*)relationViewWithRequirementDescribe:(NSString*)requirementDescribe;
+@property (nonatomic, copy)NSString* area;
+@property (nonatomic, copy)NSString* requirementDescribe;
 
+
+@property (nonatomic, strong)UITextField* areaField;
+@property (nonatomic, strong)UILabel* requirementDescribeLabel;
 @end

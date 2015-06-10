@@ -29,7 +29,7 @@
     self.startIndex = 0;
     [self startLoading];
     [IsFocusedApi GetProjectFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
-    if(!error){
+        if(!error){
             self.models = posts;
             [self.tableView reloadData];
         }else{
@@ -51,7 +51,6 @@
 }
 
 - (void)headerRereshing{
-    [self startLoading];
     [IsFocusedApi GetProjectFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.startIndex = 0;
@@ -66,7 +65,6 @@
                 }];
             }
         }
-        [self endLoading];
     } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
         [self endLoading];
         [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
@@ -76,7 +74,6 @@
 }
 
 - (void)footerRereshing{
-    [self startLoading];
     [IsFocusedApi GetProjectFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.startIndex++;
@@ -91,9 +88,7 @@
                 }];
             }
         }
-        [self endLoading];
     } userId:[LoginSqlite getdata:@"userId"] startIndex:(int)self.startIndex+1 noNetWork:^{
-        [self endLoading];
         [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
             [self footerRereshing];
         }];

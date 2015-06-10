@@ -13,7 +13,6 @@
 #define NoDataColor RGBCOLOR(166, 166, 166)
 #define HasDataColor RGBCOLOR(125, 125, 125)
 #define NameColor RGBCOLOR(82, 125, 237)
-#define Heng @"－"
 #define TitleFont [UIFont systemFontOfSize:15]
 #define ContentFont [UIFont systemFontOfSize:14]
 

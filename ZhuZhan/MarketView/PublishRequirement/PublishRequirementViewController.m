@@ -144,7 +144,7 @@
 - (void)projectViewAreaBtnClicked{
     NSLog(@"projectViewAreaBtnClicked");
     self.locateView = [[TwoStageLocateView alloc] initWithTitle:CGRectMake(0, 0, 320, 260) title:nil delegate:self];
-    self.locateView.tag = 1;
+    self.locateView.tag = 0;
     [self.locateView showInView:self.view];
 }
 

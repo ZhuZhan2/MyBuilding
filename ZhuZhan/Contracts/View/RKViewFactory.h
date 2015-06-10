@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface RKViewFactory : NSObject
+//没有历史搜索记录
 + (UIView *)noHistorySearchResultsViewWithTop:(CGFloat)top;
 
+//没有搜索结果
 + (UIView *)noSearchResultsViewWithTop:(CGFloat)top;
 
+//没有结果
 + (UIView *)noDataViewWithTop:(CGFloat)top;
 
 //将url图片在固定区域内居中显示，只显示原图部分内容，不失真

@@ -135,3 +135,5 @@
 #define image(imgId,type,width,height,iscut) [NSString stringWithFormat:@"/image/show?imageId=%@&type=%@&width=%@&height=%@&cut=%@",imgId,type,width,height,iscut]
 
 #define ALPHA_ARRAY [NSArray arrayWithObjects: @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil]
+
+#define Heng @"－"

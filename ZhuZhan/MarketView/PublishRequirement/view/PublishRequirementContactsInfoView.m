@@ -36,8 +36,9 @@
     UIView* view3 = [self realNameView];
     UIView* view4 = [self phoneNumberView];
     UIView* view5 = [self allUserSeeView];
-    [self addSubview:[RKShadowView seperatorLineInViews:@[view1,view2,view3,view4,view5]]];
-    self.frame = CGRectMake(0, 0, kScreenWidth, CGRectGetMaxY(view5.frame));
+    UIView* allView = [RKShadowView seperatorLineInViews:@[view1,view2,view3,view4,view5]];
+    [self addSubview:allView];
+    self.frame = CGRectMake(0, 0, kScreenWidth, CGRectGetMaxY(allView.frame));
     
     self.allUserSee = YES;
 }

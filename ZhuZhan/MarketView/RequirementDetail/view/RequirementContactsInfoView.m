@@ -60,7 +60,7 @@
 
 - (UIView*)phoneNumberView{
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 70)];
-    [view addSubview:[self labelWithContent:@"联系电话" assistContent:@"必填"]];
+    [view addSubview:[self labelWithContent:@"联系电话" assistContent:nil]];
     self.phoneNumberField = [self fieldWithContent:self.phoneNumber placeholderStr:@"输入联系电话" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187)];
     [view addSubview:self.phoneNumberField];
     return view;

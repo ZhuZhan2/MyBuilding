@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface RequirementInfoOtherView : UIView
++ (RequirementInfoOtherView*)otherViewWithRequirementDescribe:(NSString*)requirementDescribe;
+@property (nonatomic, copy)NSString* requirementDescribe;
 
+@property (nonatomic, strong)UILabel* requirementDescribeLabel;
 @end

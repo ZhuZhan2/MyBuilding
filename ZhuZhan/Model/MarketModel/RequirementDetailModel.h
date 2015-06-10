@@ -21,6 +21,13 @@
 @property (nonatomic, copy)NSString* a_realName;
 @property (nonatomic, copy)NSString* a_telphone;
 
+@property (nonatomic, copy)NSString* a_moneyMax;
+@property (nonatomic, copy)NSString* a_moneyMin;
+
+@property (nonatomic, strong)NSString* a_bigTypeCn;
+@property (nonatomic, strong)NSString* a_smallTypeCn;
+
+@property (nonatomic, copy)NSString* a_reqDesc;
 
 @property (nonatomic, strong)NSDictionary* dict;
 /*
