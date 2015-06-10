@@ -39,7 +39,8 @@
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 70)];
     [view addSubview:[self labelWithContent:@"需求所在地" assistContent:nil]];
     
-    [view addSubview:[self fieldWithContent:nil placeholderStr:@"请选择" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187)]];
+    self.areaField = [self fieldWithContent:nil placeholderStr:@"请选择" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187)];
+    [view addSubview:self.areaField];
     
     return view;
 }
@@ -181,5 +182,10 @@
 
 - (void)setRequirementDescribe:(NSString *)requirementDescribe{
     _requirementDescribe = requirementDescribe;
+}
+
+- (void)setArea:(NSString *)area{
+    _area = area;
+    self.areaField.text = area;
 }
 @end

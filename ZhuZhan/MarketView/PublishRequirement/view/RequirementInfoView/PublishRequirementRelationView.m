@@ -16,6 +16,8 @@
 @end
 
 @implementation PublishRequirementRelationView
+@synthesize area = _area;
+
 + (PublishRequirementRelationView *)relationView{
     PublishRequirementRelationView* relationView = [[PublishRequirementRelationView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 375)];
     [relationView setUp];
@@ -118,6 +120,11 @@
     }
     
     return textField;
+}
+
+- (void)setArea:(NSString *)area{
+    _area = area;
+    self.areaField.text = area;
 }
 
 - (NSString *)area{

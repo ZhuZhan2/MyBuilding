@@ -17,6 +17,8 @@
 @end
 
 @implementation PublishRequirementMaterialView
+@synthesize bigCategory = _bigCategory;
+@synthesize smallCategory = _smallCategory;
 + (PublishRequirementMaterialView *)materialView{
     PublishRequirementMaterialView* materialView = [[PublishRequirementMaterialView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 375)];
     [materialView setUp];
@@ -150,8 +152,18 @@
     return self.bigCategoryField.text;
 }
 
+- (void)setBigCategory:(NSString *)bigCategory{
+    _bigCategory = bigCategory;
+    self.bigCategoryField.text = bigCategory;
+}
+
 - (NSString *)smallCategory{
     return self.smallCategoryField.text;
+}
+
+- (void)setSmallCategory:(NSString *)smallCategory{
+    _smallCategory = smallCategory;
+    self.smallCategoryField.text = smallCategory;
 }
 
 - (NSString *)requirementDescribe{

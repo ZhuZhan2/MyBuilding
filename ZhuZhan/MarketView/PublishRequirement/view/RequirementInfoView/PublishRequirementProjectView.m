@@ -18,6 +18,8 @@
 @end
 
 @implementation PublishRequirementProjectView
+@synthesize area = _area;
+
 + (PublishRequirementProjectView *)projectView{
     PublishRequirementProjectView* projectView = [[PublishRequirementProjectView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 375)];
     [projectView setUp];
@@ -47,7 +49,8 @@
     imageView.image = [GetImagePath getImagePath:@"需求_箭头"];
     [view addSubview:imageView];
     
-    [view addSubview:[self fieldWithContent:nil placeholderStr:@"请选择" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187)]];
+    self.areaField = [self fieldWithContent:nil placeholderStr:@"请选择" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187)];
+    [view addSubview:self.areaField];
     
     UIButton* btn = [[UIButton alloc] initWithFrame:view.bounds];
     [btn addTarget:self action:@selector(areaBtnCilciked) forControlEvents:UIControlEventTouchUpInside];
@@ -158,5 +161,14 @@
 
 - (NSString *)requirementDescribe{
     return self.requirementDescribeTextView.text;
+}
+
+- (void)setArea:(NSString *)area{
+    _area = area;
+    self.areaField.text = area;
+}
+
+- (NSString *)area{
+    return self.areaField.text;
 }
 @end

@@ -21,7 +21,7 @@
 #import "ChooseProductBigStage.h"
 #import "ChooseProductCellModel.h"
 #import "ChooseProductSmallStage.h"
-@interface PublishRequirementViewController ()<CategoryViewDelegate,PublishRequirementProjectViewDelegate,PublishRequirementMaterialViewDelegate,PublishRequirementRelationViewDelegate,PublishRequirementCooperationViewDelegate,UIActionSheetDelegate,ChooseProductBigStageDelegate,ChooseProductSmallStageDelegate>
+@interface PublishRequirementViewController ()<CategoryViewDelegate,PublishRequirementProjectViewDelegate,PublishRequirementMaterialViewDelegate,PublishRequirementRelationViewDelegate,PublishRequirementCooperationViewDelegate,UIActionSheetDelegate,ChooseProductBigStageDelegate,ChooseProductSmallStageDelegate,UIAlertViewDelegate>
 @property (nonatomic, strong)CategoryView* requirementCategoryView;
 @property (nonatomic, strong)PublishRequirementContactsInfoView* contactsInfoView;
 @property (nonatomic, strong)UIView* requirementInfoView;
@@ -34,8 +34,10 @@
 @property (nonatomic, strong)PublishRequirementRelationView* relationView;
 @property (nonatomic, strong)PublishRequirementCooperationView* cooperationView;
 @property (nonatomic, strong)PublishRequirementOtherView* otherView;
+
 @property (nonatomic, strong)TwoStageLocateView *locateView;
-@property (nonatomic, strong)NSString *categoryId;
+@property (nonatomic, strong)NSString* bigCategoryId;
+@property (nonatomic, strong)NSString* smallCategoryId;
 @end
 
 @implementation PublishRequirementViewController
@@ -63,8 +65,9 @@
     
     switch (self.nowIndex) {
         case 0:{
-            [dic setObject:@"" forKey:@"province"];
-            [dic setObject:@"" forKey:@"city"];
+            NSArray* array = [self.projectView.area componentsSeparatedByString:@" "];
+            [dic setObject:array[0] forKey:@"province"];
+            [dic setObject:array[1] forKey:@"city"];
 #warning 之后好了需要来这里比较下最小金额和最大金额的大小关系
             [dic setObject:self.projectView.maxMoney forKey:@"moneyMax"];
             [dic setObject:self.projectView.minMoney forKey:@"moneyMin"];
@@ -76,8 +79,8 @@
         }
             break;
         case 1:{
-            [dic setObject:self.materialView.bigCategory forKey:@"bigType"];
-            [dic setObject:self.materialView.smallCategory forKey:@"smallType"];
+            [dic setObject:self.bigCategoryId forKey:@"bigType"];
+            [dic setObject:self.smallCategoryId forKey:@"smallType"];
             [dic setObject:self.materialView.requirementDescribe forKey:@"desc"];
             if ([dic[@"bigType"] isEqualToString:@""]) {
                 [self showAlertWithContent:@"请选择需求信息中的大类"];
@@ -90,8 +93,9 @@
         }
             break;
         case 2:{
-            [dic setObject:@"" forKey:@"province"];
-            [dic setObject:@"" forKey:@"city"];
+            NSArray* array = [self.relationView.area componentsSeparatedByString:@" "];
+            [dic setObject:array[0] forKey:@"province"];
+            [dic setObject:array[1] forKey:@"city"];
             [dic setObject:self.relationView.requirementDescribe forKey:@"desc"];
             if ([dic[@"province"] isEqualToString:@""] || [dic[@"city"] isEqualToString:@""]) {
                 [self showAlertWithContent:@"请选择需求信息中的需求所在地"];
@@ -100,8 +104,9 @@
         }
             break;
         case 3:{
-            [dic setObject:@"" forKey:@"province"];
-            [dic setObject:@"" forKey:@"city"];
+            NSArray* array = [self.cooperationView.area componentsSeparatedByString:@" "];
+            [dic setObject:array[0] forKey:@"province"];
+            [dic setObject:array[1] forKey:@"city"];
             [dic setObject:self.cooperationView.requirementDescribe forKey:@"desc"];
             if ([dic[@"province"] isEqualToString:@""] || [dic[@"city"] isEqualToString:@""]) {
                 [self showAlertWithContent:@"请选择需求信息中的需求所在地"];
@@ -120,8 +125,14 @@
     }
 
     [MarketApi AddRequireWithBlock:^(NSMutableArray *posts, NSError *error) {
-        
+        if (!error) {
+            [[[UIAlertView alloc] initWithTitle:@"提醒" message:@"发布成功" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil] show];
+        }
     } dic:dic noNetWork:nil];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    [self leftBtnClicked];
 }
 
 - (void)showAlertWithContent:(NSString*)content{
@@ -159,7 +170,7 @@
     NSLog(@"materialViewSmallCategoryBtnClicked");
     ChooseProductSmallStage *classificationView = [[ChooseProductSmallStage alloc] init];
     classificationView.delegate = self;
-    classificationView.categoryId = self.categoryId;
+    classificationView.categoryId = self.bigCategoryId;
     [self.navigationController pushViewController:classificationView animated:YES];
 }
 
@@ -277,58 +288,48 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(actionSheet.tag == 0){
+        
         self.locateView = (TwoStageLocateView *)actionSheet;
         if(buttonIndex == 0) {
             NSLog(@"Cancel");
         }else {
-            NSLog(@"%@,%@",self.locateView.proviceDictionary[@"provice"],self.locateView.proviceDictionary[@"city"]);
+            self.projectView.area = [NSString stringWithFormat:@"%@ %@",self.locateView.proviceDictionary[@"provice"],self.locateView.proviceDictionary[@"city"]];
         }
-    }else if(actionSheet.tag == 1){
+        
+    }else if(actionSheet.tag == 2){
+        
         self.locateView = (TwoStageLocateView *)actionSheet;
         if(buttonIndex == 0) {
             NSLog(@"Cancel");
         }else {
-            NSLog(@"%@,%@",self.locateView.proviceDictionary[@"provice"],self.locateView.proviceDictionary[@"city"]);
+            self.relationView.area = [NSString stringWithFormat:@"%@ %@",self.locateView.proviceDictionary[@"provice"],self.locateView.proviceDictionary[@"city"]];
         }
-    }else{
+        
+    }else if(actionSheet.tag == 3){
+        
         self.locateView = (TwoStageLocateView *)actionSheet;
         if(buttonIndex == 0) {
             NSLog(@"Cancel");
         }else {
-            NSLog(@"%@,%@",self.locateView.proviceDictionary[@"provice"],self.locateView.proviceDictionary[@"city"]);
+            self.cooperationView.area = [NSString stringWithFormat:@"%@ %@",self.locateView.proviceDictionary[@"provice"],self.locateView.proviceDictionary[@"city"]];
         }
+        
     }
 }
 
 -(void)chooseProductBigStage:(NSString *)str catroyId:(NSString *)catroyId allClassificationArr:(NSMutableArray *)allClassification{
-    NSMutableString *string = [[NSMutableString alloc] init];
-    NSMutableString *idStr = [[NSMutableString alloc] init];
-    [allClassification enumerateObjectsUsingBlock:^(ChooseProductCellModel *cellModel, NSUInteger idx, BOOL *stop) {
-        [string appendString:[NSString stringWithFormat:@"%@、",cellModel.content]];
-        [idStr appendString:[NSString stringWithFormat:@"%@,",cellModel.aid]];
-    }];
-    if(str.length !=0){
-        //self.classifcationStr = [str substringWithRange:NSMakeRange(0,str.length-1)];
-    }
-    if(idStr.length !=0){
-        //self.classifcationIdStr = [idStr substringWithRange:NSMakeRange(0,idStr.length-1)];
-    }
-    
-    self.categoryId = catroyId;
+    self.materialView.bigCategory = str;
+    self.bigCategoryId = catroyId;
 }
 
 -(void)chooseProductSmallStage:(NSArray *)arr{
     NSMutableString *str = [[NSMutableString alloc] init];
     NSMutableString *idStr = [[NSMutableString alloc] init];
     [arr enumerateObjectsUsingBlock:^(ChooseProductCellModel *cellModel, NSUInteger idx, BOOL *stop) {
-        [str appendString:[NSString stringWithFormat:@"%@、",cellModel.content]];
-        [idStr appendString:[NSString stringWithFormat:@"%@,",cellModel.aid]];
+        [str appendString:[NSString stringWithFormat:idx==arr.count-1?@"%@":@"%@、",cellModel.content]];
+        [idStr appendString:[NSString stringWithFormat:idx==arr.count-1?@"%@":@"%@,",cellModel.aid]];
     }];
-    if(str.length !=0){
-        //self.classifcationStr = [str substringWithRange:NSMakeRange(0,str.length-1)];
-    }
-    if(idStr.length !=0){
-        //self.classifcationIdStr = [idStr substringWithRange:NSMakeRange(0,idStr.length-1)];
-    }
+    self.materialView.smallCategory = str;
+    self.smallCategoryId = idStr;
 }
 @end

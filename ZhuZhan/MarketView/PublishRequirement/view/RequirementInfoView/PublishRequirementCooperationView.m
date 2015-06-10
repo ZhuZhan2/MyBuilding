@@ -16,6 +16,8 @@
 @end
 
 @implementation PublishRequirementCooperationView
+@synthesize area = _area;
+
 + (PublishRequirementCooperationView *)cooperationView{
     PublishRequirementCooperationView* cooperationView = [[PublishRequirementCooperationView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 375)];
     [cooperationView setUp];
@@ -118,6 +120,11 @@
     }
     
     return textField;
+}
+
+- (void)setArea:(NSString *)area{
+    _area = area;
+    self.areaField.text = area;
 }
 
 - (NSString *)area{
