@@ -15,6 +15,8 @@
 @end
 
 @interface RKController : NSObject<RKBaseTableViewDelegate,UITableViewDataSource>
+@property (nonatomic, strong)UIActivityIndicatorView* indicatorView;
+
 - (instancetype)initWithNavi:(UINavigationController*)navi;
 @property(nonatomic,strong)UINavigationController* navigationController;
 

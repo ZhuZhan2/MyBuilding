@@ -26,5 +26,13 @@
 
     self.a_realName = dict[@"realName"];
     self.a_telphone = dict[@"telphone"];
+    
+    self.a_moneyMin = dict[@"moneyMin"];
+    self.a_moneyMax = dict[@"moneyMax"];
+    
+    self.a_bigTypeCn = dict[@"bigTypeCn"];
+    self.a_smallTypeCn = [dict[@"smallTypeCn"] stringByReplacingOccurrencesOfString:@"," withString:@"、"];
+
+    self.a_reqDesc = dict[@"reqDesc"];
 }
 @end

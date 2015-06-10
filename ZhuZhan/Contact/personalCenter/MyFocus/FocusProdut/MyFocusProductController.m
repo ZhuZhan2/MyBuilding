@@ -52,7 +52,6 @@
 }
 
 - (void)headerRereshing{
-    [self startLoading];
     [IsFocusedApi GetProductFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.startIndex = 0;
@@ -67,9 +66,7 @@
                 }];
             }
         }
-        [self endLoading];
     } userId:[LoginSqlite getdata:@"userId"] startIndex:0 noNetWork:^{
-        [self endLoading];
         [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
             [self headerRereshing];
         }];
@@ -77,7 +74,6 @@
 }
 
 - (void)footerRereshing{
-    [self startLoading];
     [IsFocusedApi GetProductFocusWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             self.startIndex++;
@@ -92,9 +88,7 @@
                 }];
             }
         }
-        [self endLoading];
     } userId:[LoginSqlite getdata:@"userId"] startIndex:(int)self.startIndex+1 noNetWork:^{
-        [self endLoading];
         [ErrorView errorViewWithFrame:CGRectMake(0, 50, 320, kScreenHeight-50) superView:self.view reloadBlock:^{
             [self footerRereshing];
         }];
