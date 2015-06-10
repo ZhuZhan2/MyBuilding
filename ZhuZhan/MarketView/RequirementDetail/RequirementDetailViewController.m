@@ -19,11 +19,13 @@
 #import "RequirementInfoRelationView.h"
 #import "RequirementInfoCooperationView.h"
 #import "RequirementInfoOtherView.h"
+#import "RequirementCustomerReplyView.h"
 @interface RequirementDetailViewController ()
 @property (nonatomic, strong)RequirementDetailTitleView* titleView;
 @property (nonatomic, strong)RequirementCategoryView* categoryView;
 @property (nonatomic, strong)RequirementContactsInfoView* contactsInfoView;
 @property (nonatomic, strong)UIView* requirementView;
+@property (nonatomic, strong)RequirementCustomerReplyView* customerReplyView;
 @property (nonatomic, strong)NSArray* viewArr;
 
 @property (nonatomic, copy)NSString* targetId;
@@ -65,6 +67,12 @@
     self.contactsInfoView.phoneNumber = self.model.a_telphone;
     
     self.viewArr = @[self.titleView,self.categoryView,self.contactsInfoView,self.requirementView];
+    
+    if (![self.model.a_replyContent isEqualToString:@""]) {
+        [self.customerReplyView setContent:self.model.a_replyContent time:self.model.a_replyTime];
+        self.viewArr = @[self.titleView,self.categoryView,self.contactsInfoView,self.requirementView,self.customerReplyView];
+    }
+    
     [self.tableView reloadData];
 }
 
@@ -237,5 +245,13 @@
 - (RequirementInfoOtherView*)getOtherView{
     RequirementInfoOtherView* otherView = [RequirementInfoOtherView otherViewWithRequirementDescribe:self.model.a_reqDesc];
     return otherView;
+}
+
+- (UIView *)customerReplyView{
+    if (!_customerReplyView) {
+        _customerReplyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 100)];
+        _customerReplyView.backgroundColor = [UIColor redColor];
+    }
+    return _customerReplyView;
 }
 @end

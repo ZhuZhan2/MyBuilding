@@ -32,6 +32,9 @@
 
 @property (nonatomic, copy)NSString* a_reqDesc;
 
+@property (nonatomic, copy)NSString* a_replyContent;
+@property (nonatomic, copy)NSString* a_replyTime;
+
 @property (nonatomic, strong)NSDictionary* dict;
 /*
  bigType =         {
