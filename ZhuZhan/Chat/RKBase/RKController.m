@@ -73,7 +73,7 @@
 }
 
 - (UIView *)tableViewNoDataView{
-    return [RKViewFactory noSearchResultsViewWithTop:140];
+    return [RKViewFactory noDataViewWithTop:140];
 }
 
 - (void)setViewFrame:(CGRect)frame{
