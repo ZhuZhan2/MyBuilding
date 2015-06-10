@@ -21,6 +21,7 @@
 #import "AddressBookApi.h"
 #import "MarketPopView.h"
 #import "MarketListSearchViewController.h"
+#import "RequirementDetailViewController.h"
 
 @interface MarketPublicListViewController ()<UITableViewDelegate,UITableViewDataSource,MarkListTableViewCellDelegate,LoginViewDelegate,MarketPopViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
@@ -116,6 +117,7 @@
 
 -(void)searchBtnAction{
     MarketListSearchViewController *searchView = [[MarketListSearchViewController alloc] init];
+    searchView.isSelf = NO;
     [self.navigationController pushViewController:searchView animated:YES];
 }
 

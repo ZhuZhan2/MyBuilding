@@ -26,8 +26,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         super.alwaysBounceVertical = YES;
-        UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(80.5, 148, 151, 157)];
-        [bgImage setImage:[GetImagePath getImagePath:@"search_empty"]];
+        UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(87, 148, 147, 158)];
+        [bgImage setImage:[GetImagePath getImagePath:@"search_empty2"]];
         [self addSubview:bgImage];
     }
     return self;

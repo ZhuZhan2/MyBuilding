@@ -173,6 +173,7 @@
                 [MyTableView removeFootView:self.tableView];
                 [self.tableView reloadData];
             }
+            [self.tableView footerEndRefreshing];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
