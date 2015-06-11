@@ -33,7 +33,7 @@
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *modelsArr;
 @property(nonatomic)NSInteger stageNumber;
-@property(nonatomic,strong)NSString *isOpen;
+@property(nonatomic,strong)NSString *isOpen;//00公开 01客服
 @end
 
 @implementation MyMarketViewController
@@ -163,7 +163,7 @@
         default:
             break;
     }
-    //[self loadList];
+    [self loadList];
 }
 
 /**
@@ -192,10 +192,12 @@
     switch (stageNumber) {
         case 0:
             self.isOpen = @"00";
+            self.requireType = @"";
             [self loadList];
             break;
         case 1:
             self.isOpen = @"01";
+            self.requireType = @"";
             [self loadList];
             break;
         default:
