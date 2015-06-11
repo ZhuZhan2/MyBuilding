@@ -12,7 +12,10 @@
 #import "MarketApi.h"
 #import "MarketModel.h"
 #import "MarkListTableViewCell.h"
-@interface MarketListSearchViewController ()<MarkListTableViewCellDelegate>
+#import "LoginViewController.h"
+#import "LoginSqlite.h"
+#import "RequirementDetailViewController.h"
+@interface MarketListSearchViewController ()<MarkListTableViewCellDelegate,LoginViewDelegate>
 @property(nonatomic)int startIndex;
 @property(nonatomic,strong)NSMutableArray *modelsArr;
 @property(nonatomic,strong)NSString *keyWords;
@@ -122,6 +125,27 @@
     cell.delegate = self;
     cell.indexPath = indexPath;
     return cell;
+}
+
+-(void)searchBarTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.needDelayCancel=YES;
+        loginVC.delegate = self;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }else{
+        MarketModel *model = self.modelsArr[indexPath.row];
+        RequirementDetailViewController* vc = [[RequirementDetailViewController alloc] initWithTargetId:model.a_id];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
+    [self headerRereshing];
+    if(block){
+        block();
+    }
 }
 
 #pragma mark 开始进入刷新状态

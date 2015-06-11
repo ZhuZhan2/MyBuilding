@@ -142,7 +142,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //    threeBtnsView.backgroundColor=[UIColor whiteColor];
     [_pathCover addSubview:threeBtnsView];
     
-    CGFloat width=kScreenWidth/4;
+    CGFloat width=kScreenWidth/3;
     
     UIButton *firstBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     firstBtn.frame = CGRectMake(8, 12, width-15, 25);
@@ -190,7 +190,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     fourBtn.alpha = .8;
     fourBtn.layer.masksToBounds = YES;
     fourBtn.layer.cornerRadius = 4.0;
-    [threeBtnsView addSubview:fourBtn];
+    //[threeBtnsView addSubview:fourBtn];
     
 //    for (int i=0;i<2;i++) {
 //        UIView* view=[[UIView alloc]initWithFrame:CGRectMake(width*(i+1), 10, 2, 30)];
