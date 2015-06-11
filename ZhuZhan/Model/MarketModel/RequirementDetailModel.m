@@ -37,5 +37,8 @@
     self.a_smallTypeCn = [dict[@"smallTypeCn"] stringByReplacingOccurrencesOfString:@"," withString:@"、"];
 
     self.a_reqDesc = dict[@"reqDesc"];
+    
+    self.a_replyContent = dict[@"replyContent"];
+    self.a_replyTime = dict[@"replyTime"];
 }
 @end

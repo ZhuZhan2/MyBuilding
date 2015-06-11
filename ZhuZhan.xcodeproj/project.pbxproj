@@ -903,6 +903,7 @@
 		5BA1082F1B280EF4002545BC /* PublishRequirementOtherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA108281B280EF4002545BC /* PublishRequirementOtherView.m */; };
 		5BA108301B280EF4002545BC /* PublishRequirementProjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1082A1B280EF4002545BC /* PublishRequirementProjectView.m */; };
 		5BA108311B280EF5002545BC /* PublishRequirementRelationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1082C1B280EF4002545BC /* PublishRequirementRelationView.m */; };
+		5BA108341B287222002545BC /* RequirementCustomerReplyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA108331B287222002545BC /* RequirementCustomerReplyView.m */; };
 		5BA181A61A76170500191D31 /* Shadow-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA181A41A76170500191D31 /* Shadow-top.png */; };
 		5BA181A71A76170500191D31 /* Shadow-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA181A51A76170500191D31 /* Shadow-top@2x.png */; };
 		5BA1E3F31B1EA19C002ADE58 /* 上导航阴影.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA1E3F11B1EA19C002ADE58 /* 上导航阴影.png */; };
@@ -3164,6 +3165,8 @@
 		5BA1082A1B280EF4002545BC /* PublishRequirementProjectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishRequirementProjectView.m; sourceTree = "<group>"; };
 		5BA1082B1B280EF4002545BC /* PublishRequirementRelationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishRequirementRelationView.h; sourceTree = "<group>"; };
 		5BA1082C1B280EF4002545BC /* PublishRequirementRelationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishRequirementRelationView.m; sourceTree = "<group>"; };
+		5BA108321B287222002545BC /* RequirementCustomerReplyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequirementCustomerReplyView.h; sourceTree = "<group>"; };
+		5BA108331B287222002545BC /* RequirementCustomerReplyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequirementCustomerReplyView.m; sourceTree = "<group>"; };
 		5BA181A41A76170500191D31 /* Shadow-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shadow-top.png"; sourceTree = "<group>"; };
 		5BA181A51A76170500191D31 /* Shadow-top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shadow-top@2x.png"; sourceTree = "<group>"; };
 		5BA1E3F11B1EA19C002ADE58 /* 上导航阴影.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上导航阴影.png"; sourceTree = "<group>"; };
@@ -6542,6 +6545,8 @@
 				5B9F26D71B26CEEE0022B5A8 /* RequirementCategoryView.m */,
 				5B9F26D91B26E0FD0022B5A8 /* RequirementContactsInfoView.h */,
 				5B9F26DA1B26E0FD0022B5A8 /* RequirementContactsInfoView.m */,
+				5BA108321B287222002545BC /* RequirementCustomerReplyView.h */,
+				5BA108331B287222002545BC /* RequirementCustomerReplyView.m */,
 				5B9F26DC1B26ED350022B5A8 /* RequirementInfoView */,
 			);
 			path = view;
@@ -9772,6 +9777,7 @@
 				D3D7DB2F19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m in Sources */,
 				5B9F26DB1B26E0FD0022B5A8 /* RequirementContactsInfoView.m in Sources */,
 				5B8A2CEF1AAEE0AD00C8F9DE /* ChatModel.m in Sources */,
+				5BA108341B287222002545BC /* RequirementCustomerReplyView.m in Sources */,
 				5B9238471ADB606F00281E94 /* ChatListViewController.m in Sources */,
 				042D9CFB19B40C4C00689C5D /* DKCircleButton.m in Sources */,
 				D3D747AC1AFB757000B21F02 /* SearchProjectTableViewCell.m in Sources */,

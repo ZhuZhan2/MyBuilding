@@ -20,11 +20,14 @@
 #import "RequirementInfoRelationView.h"
 #import "RequirementInfoCooperationView.h"
 #import "RequirementInfoOtherView.h"
-@interface RequirementDetailViewController ()
+#import "RequirementCustomerReplyView.h"
+#import "ChatViewController.h"
+@interface RequirementDetailViewController ()<RequirementCategoryViewDelegate>
 @property (nonatomic, strong)RequirementDetailTitleView* titleView;
 @property (nonatomic, strong)RequirementCategoryView* categoryView;
 @property (nonatomic, strong)RequirementContactsInfoView* contactsInfoView;
 @property (nonatomic, strong)UIView* requirementView;
+@property (nonatomic, strong)RequirementCustomerReplyView* customerReplyView;
 @property (nonatomic, strong)NSArray* viewArr;
 
 @property (nonatomic, copy)NSString* targetId;
@@ -66,6 +69,12 @@
     self.contactsInfoView.phoneNumber = self.model.a_telphone;
     
     self.viewArr = @[self.titleView,self.categoryView,self.contactsInfoView,self.requirementView];
+    
+    if (![self.model.a_replyContent isEqualToString:@""]) {
+        [self.customerReplyView setContent:self.model.a_replyContent time:self.model.a_replyTime];
+        self.viewArr = @[self.titleView,self.categoryView,self.contactsInfoView,self.requirementView,self.customerReplyView];
+    }
+    
     [self.tableView reloadData];
 }
 
@@ -80,6 +89,13 @@
     RequireCommentViewController *view = [[RequireCommentViewController alloc] init];
     view.paramId = self.targetId;
     [self.navigationController pushViewController:view animated:YES];
+}
+
+- (void)requirementCategoryViewAssistBtnClicked{
+    ChatViewController* vc=[[ChatViewController alloc]init];
+    vc.contactId = self.model.a_loginId;
+    vc.titleStr = self.model.a_loginName;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -115,11 +131,11 @@
         
         UIView* view = [RKShadowView seperatorLineWithHeight:10 top:0];
         [_titleView addSubview:view];
-
+        
         CGRect frame = view.frame;
         frame.origin.y = CGRectGetHeight(_titleView.frame);
         view.frame = frame;
-
+        
         frame = _titleView.frame;
         frame.size.height += CGRectGetHeight(view.frame);
         _titleView.frame = frame;
@@ -130,6 +146,7 @@
 - (RequirementCategoryView *)categoryView{
     if (!_categoryView) {
         _categoryView = [[RequirementCategoryView alloc] init];
+        _categoryView.delegate = self;
         UIView* sepe = [RKShadowView seperatorLine];
         [_categoryView addSubview:sepe];
         
@@ -197,7 +214,7 @@
     projectView.areaField.userInteractionEnabled = NO;
     projectView.minMoneyField.userInteractionEnabled = NO;
     projectView.maxMoneyField.userInteractionEnabled = NO;
-
+    
     projectView.area = [NSString stringWithFormat:@"%@ %@",self.model.a_province,self.model.a_city];
     
     BOOL hasMin = ![self.model.a_moneyMin isEqualToString:@""];
@@ -215,7 +232,7 @@
 - (RequirementInfoMateialView*)getMateialView{
     RequirementInfoMateialView* mateialView = [RequirementInfoMateialView mateialViewWithRequirementDescribe:self.model.a_reqDesc smallCategory:self.model.a_smallTypeCn];
     mateialView.bigCategoryField.userInteractionEnabled = NO;
-
+    
     mateialView.bigCategory = self.model.a_bigTypeCn;
     mateialView.smallCategory = self.model.a_smallTypeCn;
     
@@ -241,5 +258,13 @@
 - (RequirementInfoOtherView*)getOtherView{
     RequirementInfoOtherView* otherView = [RequirementInfoOtherView otherViewWithRequirementDescribe:self.model.a_reqDesc];
     return otherView;
+}
+
+- (UIView *)customerReplyView{
+    if (!_customerReplyView) {
+        _customerReplyView = [[RequirementCustomerReplyView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 0)];
+        _customerReplyView.backgroundColor = [UIColor redColor];
+    }
+    return _customerReplyView;
 }
 @end
