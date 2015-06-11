@@ -19,7 +19,7 @@
 @implementation CategoryView
 + (CategoryView *)categoryViewWithCategoryArr:(NSArray *)categoryArr{
     CategoryView* categoryView = [[CategoryView alloc] init];
-    categoryView.categoryArr= categoryArr;
+    categoryView.categoryArr = categoryArr;
     [categoryView setUp];
     return categoryView;
 }
@@ -42,20 +42,32 @@
 }
 
 - (void)singleCategoryViewClicked:(SingleCategoryView *)clickedCategoryView{
-    NSLog(@"index = %d",(int)clickedCategoryView.tag);
     [self singleCategoryViewClickedWithIndex:clickedCategoryView.tag];
 }
 
 - (void)singleCategoryViewClickedWithIndex:(NSInteger)index{
+    [self singleCategoryViewClickedWithIndex:index needDelegate:YES needChangeView:self.autoChange];
+}
+
+/**********************************************************
+ 输入参数：needDelegate只控制是否让delegate执行委托,needChangeView控制是否变界面
+ **********************************************************/
+- (void)singleCategoryViewClickedWithIndex:(NSInteger)index needDelegate:(BOOL)needDelegate needChangeView:(BOOL)needChangeView{
+    
     [self.categoryViewArr enumerateObjectsUsingBlock:^(SingleCategoryView* singleCategoryView, NSUInteger idx, BOOL *stop) {
-        singleCategoryView.isSelected = idx == index;
-        if (singleCategoryView.isSelected) {
+        
+        BOOL isSelected = idx == index;
+        
+        if (needChangeView) {
+            singleCategoryView.isSelected = isSelected;
+        }
+        
+        if (needDelegate&&isSelected) {
             if ([self.delegate respondsToSelector:@selector(categoryViewClickedWithCategory:index:)]) {
                 [self.delegate categoryViewClickedWithCategory:singleCategoryView.text index:idx];
             }
         }
     }];
-
 }
 
 - (NSMutableArray *)categoryViewArr{

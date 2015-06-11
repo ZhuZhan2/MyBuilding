@@ -24,10 +24,10 @@
 @interface PublishRequirementViewController ()<CategoryViewDelegate,PublishRequirementProjectViewDelegate,PublishRequirementMaterialViewDelegate,PublishRequirementRelationViewDelegate,PublishRequirementCooperationViewDelegate,UIActionSheetDelegate,ChooseProductBigStageDelegate,ChooseProductSmallStageDelegate,UIAlertViewDelegate>
 @property (nonatomic, strong)CategoryView* requirementCategoryView;
 @property (nonatomic, strong)PublishRequirementContactsInfoView* contactsInfoView;
-@property (nonatomic, strong)UIView* requirementInfoView;
 
 @property (nonatomic, strong)NSArray* viewArr;
 @property (nonatomic)NSInteger nowIndex;
+@property (nonatomic)NSInteger lastIndex;
 
 @property (nonatomic, strong)PublishRequirementProjectView* projectView;
 @property (nonatomic, strong)PublishRequirementMaterialView* materialView;
@@ -47,7 +47,7 @@
     [self initNavi];
     [self initTableView];
     self.tableView.backgroundColor = AllBackDeepGrayColor;
-    [self.requirementCategoryView singleCategoryViewClickedWithIndex:0];
+    [self.requirementCategoryView singleCategoryViewClickedWithIndex:0 needDelegate:NO needChangeView:YES];
     [self addKeybordNotification];
 }
 
@@ -132,7 +132,13 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    [self leftBtnClicked];
+    if (alertView.tag == 1) {
+        if (buttonIndex == 1) {
+            [self sureToChangeRequirementType];
+        }
+    }else{
+        [self leftBtnClicked];
+    }
 }
 
 - (void)showAlertWithContent:(NSString*)content{
@@ -146,7 +152,16 @@
 }
 
 - (void)categoryViewClickedWithCategory:(NSString *)category index:(NSInteger)index{
-    self.nowIndex = index;
+    self.lastIndex = index;
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"切换需求类型后，填写的数据将被清空，是否继续？" delegate:self cancelButtonTitle:nil otherButtonTitles:@"取消",@"继续", nil];
+    alertView.tag = 1;
+    [alertView show];
+}
+
+- (void)sureToChangeRequirementType{
+    [self.requirementCategoryView singleCategoryViewClickedWithIndex:self.lastIndex needDelegate:NO needChangeView:YES];
+    
+    self.nowIndex = self.lastIndex;
     self.contactsInfoView = nil;
     self.viewArr = nil;
     [self.tableView reloadData];
@@ -209,7 +224,7 @@
     return cell;
 }
 
-- (UIView *)requirementCategoryView{
+- (CategoryView *)requirementCategoryView{
     if (!_requirementCategoryView) {
         _requirementCategoryView = [CategoryView categoryViewWithCategoryArr:@[@"找项目",@"找材料",@"找关系",@"找合作",@"其他"]];
         _requirementCategoryView.bottomView = [RKShadowView seperatorLineWithHeight:10 top:0];
@@ -223,6 +238,8 @@
         _contactsInfoView = [PublishRequirementContactsInfoView infoView];
         
         _contactsInfoView.publishUserName = [LoginSqlite getdata:@"userName"];
+        BOOL isPersonal = [[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"];
+        _contactsInfoView.phoneNumber = [LoginSqlite getdata:isPersonal?@"userPhone":@"contactTel"];
         
         UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
         view.backgroundColor = AllBackDeepGrayColor;
@@ -313,7 +330,6 @@
         }else {
             self.cooperationView.area = [NSString stringWithFormat:@"%@ %@",self.locateView.proviceDictionary[@"provice"],self.locateView.proviceDictionary[@"city"]];
         }
-        
     }
 }
 
