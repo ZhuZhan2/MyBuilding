@@ -218,9 +218,9 @@
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    [cell.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     UIView* view = self.viewArr[indexPath.row];
-    [cell addSubview:view];
+    [cell.contentView addSubview:view];
     return cell;
 }
 
