@@ -11,6 +11,7 @@
 
 @protocol MapContentViewDelegate <NSObject>
 -(void)gotoLoginView;
+-(void)addFocus:(NSInteger)index isFocused:(BOOL)isFocused;
 @end
 
 @interface MapContentView : UIView
@@ -31,6 +32,7 @@
 @property(nonatomic,strong)NSString *isFocused;
 @property(nonatomic,strong)projectModel *model;
 @property(nonatomic,strong)NSString *number;
+@property(nonatomic)NSInteger index;
 @property(nonatomic,weak)id<MapContentViewDelegate>delegate;
-- (id)initWithFrame:(CGRect)frame model:(projectModel *)model number:(NSString *)number;
+- (id)initWithFrame:(CGRect)frame model:(projectModel *)model number:(NSString *)number index:(NSInteger)index;
 @end

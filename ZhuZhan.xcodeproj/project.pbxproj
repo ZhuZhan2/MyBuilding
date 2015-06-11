@@ -1734,6 +1734,7 @@
 		D3E0BECE1B27F6D2002F01CF /* RequireCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E0BECD1B27F6D2002F01CF /* RequireCommentViewController.m */; };
 		D3E0BED11B2801BF002F01CF /* RequireCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E0BED01B2801BF002F01CF /* RequireCommentTableViewCell.m */; };
 		D3E0BED51B285190002F01CF /* MyMarketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E0BED41B285190002F01CF /* MyMarketViewController.m */; };
+		D3E0BED81B287E10002F01CF /* MarketMyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E0BED71B287E10002F01CF /* MarketMyListViewController.m */; };
 		D3E0E94B1A398A3600A41D42 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3E0E94A1A398A3600A41D42 /* Settings.bundle */; };
 		D3E1AAFD1A7648FC00BFC6E1 /* Shape-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E1AAFB1A7648FC00BFC6E1 /* Shape-1.png */; };
 		D3E1AAFE1A7648FC00BFC6E1 /* Shape-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E1AAFC1A7648FC00BFC6E1 /* Shape-1@2x.png */; };
@@ -4212,6 +4213,8 @@
 		D3E0BED01B2801BF002F01CF /* RequireCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequireCommentTableViewCell.m; sourceTree = "<group>"; };
 		D3E0BED31B285190002F01CF /* MyMarketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMarketViewController.h; sourceTree = "<group>"; };
 		D3E0BED41B285190002F01CF /* MyMarketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMarketViewController.m; sourceTree = "<group>"; };
+		D3E0BED61B287E10002F01CF /* MarketMyListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketMyListViewController.h; sourceTree = "<group>"; };
+		D3E0BED71B287E10002F01CF /* MarketMyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketMyListViewController.m; sourceTree = "<group>"; };
 		D3E0E94A1A398A3600A41D42 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D3E1AAFB1A7648FC00BFC6E1 /* Shape-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shape-1.png"; sourceTree = "<group>"; };
 		D3E1AAFC1A7648FC00BFC6E1 /* Shape-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shape-1@2x.png"; sourceTree = "<group>"; };
@@ -7262,6 +7265,8 @@
 				D324B18E1B204AE000E29E07 /* MarkListTableViewCell.m */,
 				D3D7DD391B26D76A001A9577 /* MarketListSearchViewController.h */,
 				D3D7DD3A1B26D76A001A9577 /* MarketListSearchViewController.m */,
+				D3E0BED61B287E10002F01CF /* MarketMyListViewController.h */,
+				D3E0BED71B287E10002F01CF /* MarketMyListViewController.m */,
 			);
 			path = MarketListViewController;
 			sourceTree = "<group>";
@@ -9748,6 +9753,7 @@
 				0426C25719922D5A00CD8822 /* GPUImageColorMatrixFilter.m in Sources */,
 				D3F897091AD8EB2F00DE3AB4 /* MessageTableView.m in Sources */,
 				5B52C5ED1AC500550035ABB8 /* RKMuchBtns.m in Sources */,
+				D3E0BED81B287E10002F01CF /* MarketMyListViewController.m in Sources */,
 				5BA1082E1B280EF4002545BC /* PublishRequirementMaterialView.m in Sources */,
 				0426C27319922D5A00CD8822 /* GPUImageGrayscaleFilter.m in Sources */,
 				5B70CC5F1AC9420600FC8353 /* ConstractListController.m in Sources */,

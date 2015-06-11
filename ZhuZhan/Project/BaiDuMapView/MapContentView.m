@@ -15,13 +15,13 @@
 #define OTHERFONT [UIFont systemFontOfSize:14]
 @implementation MapContentView
 
-- (id)initWithFrame:(CGRect)frame model:(projectModel *)model number:(NSString *)number;
+- (id)initWithFrame:(CGRect)frame model:(projectModel *)model number:(NSString *)number index:(NSInteger)index;
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         self.model = model;
-        NSLog(@"===>%@",self.model.isFocused);
+        self.index = index;
         self.isFocused = model.isFocused;
         self.number = number;
         [self addSubview:self.backgroundImageView];
@@ -228,6 +228,9 @@
                     [alertView show];
                     self.isFocused = @"1";
                     [self.focusBtn setImage:[GetImagePath getImagePath:@"cancelfocus"] forState:UIControlStateNormal];
+                    if([self.delegate respondsToSelector:@selector(addFocus:isFocused:)]){
+                        [self.delegate addFocus:self.index isFocused:YES];
+                    }
                 }else{
                     if([ErrorCode errorCode:error] == 403){
                         [LoginAgain AddLoginView:NO];
@@ -246,6 +249,9 @@
                     [alertView show];
                     [self.focusBtn setImage:[GetImagePath getImagePath:@"addfocus"] forState:UIControlStateNormal];
                     self.isFocused = @"0";
+                    if([self.delegate respondsToSelector:@selector(addFocus:isFocused:)]){
+                        [self.delegate addFocus:self.index isFocused:NO];
+                    }
                 }else{
                     if([ErrorCode errorCode:error] == 403){
                         [LoginAgain AddLoginView:NO];

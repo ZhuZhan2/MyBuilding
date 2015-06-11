@@ -18,6 +18,9 @@
 //获取所有公开需求列表
 + (NSURLSessionDataTask *)GetAllPublicListWithBlock:(void (^)(NSMutableArray *posts,NSError *error))block startIndex:(int)startIndex requireType:(NSString *)requireType keywords:(NSString *)keywords noNetWork:(void(^)())noNetWork;
 
+//获取所有我的需求列表
++ (NSURLSessionDataTask *)GetAllMyListWithBlock:(void (^)(NSMutableArray *posts,NSError *error))block startIndex:(int)startIndex requireType:(NSString *)requireType keywords:(NSString *)keywords isOpen:(NSString *)isOpen noNetWork:(void(^)())noNetWork;
+
 //添加需求
 + (NSURLSessionDataTask *)AddRequireWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 

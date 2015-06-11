@@ -20,7 +20,8 @@
         [self addSubview:self.titleLabel];
         [self addSubview:self.typeLabel];
         [self addSubview:self.timeLabel];
-        [self addSubview:self.cutLine];
+        [self addSubview:self.cutLine1];
+        [self addSubview:self.cutLine2];
         self.backgroundColor = [UIColor whiteColor];
     }
     return self;
@@ -87,11 +88,19 @@
     return _timeLabel;
 }
 
--(UIImageView *)cutLine{
-    if(!_cutLine){
-        _cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, [MarketListTitleView titleViewHeight]-1, 320, 1)];
-        _cutLine.image = [GetImagePath getImagePath:@"project_cutline"];
+-(UIImageView *)cutLine2{
+    if(!_cutLine2){
+        _cutLine2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, [MarketListTitleView titleViewHeight]-1, 320, 1)];
+        _cutLine2.image = [GetImagePath getImagePath:@"project_cutline"];
     }
-    return _cutLine;
+    return _cutLine2;
+}
+
+-(UIImageView *)cutLine1{
+    if(!_cutLine1){
+        _cutLine1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
+        _cutLine1.image = [GetImagePath getImagePath:@"project_cutline"];
+    }
+    return _cutLine1;
 }
 @end

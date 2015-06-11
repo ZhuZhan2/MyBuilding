@@ -158,8 +158,7 @@ int j;
         [bgView addGestureRecognizer:bgViewtapGestureRecognizer];
         [self.view addSubview:bgView];
         projectModel *model = [showArr objectAtIndex:button.tag];
-        NSLog(@"===>%@",model.isFocused);
-        _MapContent = [[MapContentView alloc] initWithFrame:CGRectMake(0, kScreenHeight, 320, 190) model:model number:[numberArr objectAtIndex:button.tag]];
+        _MapContent = [[MapContentView alloc] initWithFrame:CGRectMake(0, kScreenHeight, 320, 190) model:model number:[numberArr objectAtIndex:button.tag] index:button.tag];
         _MapContent.delegate = self;
         UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gotoProgramDetailView:)];
         [_MapContent addGestureRecognizer:tap];
@@ -716,6 +715,16 @@ int j;
         self.errorView.delegate = self;
         [self.view addSubview:self.errorView];
     }
+}
+
+-(void)addFocus:(NSInteger)index isFocused:(BOOL)isFocused{
+    projectModel *model = [showArr objectAtIndex:index];
+    if(isFocused){
+        model.isFocused = @"1";
+    }else{
+        model.isFocused = @"0";
+    }
+    [showArr replaceObjectAtIndex:index withObject:model];
 }
 
 -(void)gotoLoginView{

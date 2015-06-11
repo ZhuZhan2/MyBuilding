@@ -18,6 +18,7 @@
     if (self = [super init]) {
         self.frame = CGRectMake(0, 0, kScreenWidth, [MarketListFootView footViewHeight]);
         [self addSubview:self.cutLine1];
+        [self addSubview:self.cutLine2];
         [self addSubview:self.countLabel];
         [self addSubview:self.addFriend];
         self.backgroundColor = [UIColor whiteColor];
@@ -35,7 +36,7 @@
 
 -(UIImageView *)cutLine2{
     if(!_cutLine2){
-        _cutLine2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, [MarketListFootView footViewHeight], 320, 1)];
+        _cutLine2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, [MarketListFootView footViewHeight]+4, 320, 1)];
         _cutLine2.image = [GetImagePath getImagePath:@"project_cutline"];
     }
     return _cutLine2;
