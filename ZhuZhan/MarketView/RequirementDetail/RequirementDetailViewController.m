@@ -22,6 +22,7 @@
 #import "RequirementInfoOtherView.h"
 #import "RequirementCustomerReplyView.h"
 #import "ChatViewController.h"
+#import "ProjectStage.h"
 @interface RequirementDetailViewController ()<RequirementCategoryViewDelegate>
 @property (nonatomic, strong)RequirementDetailTitleView* titleView;
 @property (nonatomic, strong)RequirementCategoryView* categoryView;
@@ -71,7 +72,9 @@
     self.viewArr = @[self.titleView,self.categoryView,self.contactsInfoView,self.requirementView];
     
     if (![self.model.a_replyContent isEqualToString:@""]) {
-        [self.customerReplyView setContent:self.model.a_replyContent time:self.model.a_replyTime];
+        NSString* time = [ProjectStage ProjectCardTimeStage:self.model.a_replyTime];
+        
+        [self.customerReplyView setContent:self.model.a_replyContent time:time];
         self.viewArr = @[self.titleView,self.categoryView,self.contactsInfoView,self.requirementView,self.customerReplyView];
     }
     
@@ -260,10 +263,9 @@
     return otherView;
 }
 
-- (UIView *)customerReplyView{
+- (RequirementCustomerReplyView *)customerReplyView{
     if (!_customerReplyView) {
-        _customerReplyView = [[RequirementCustomerReplyView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 0)];
-        _customerReplyView.backgroundColor = [UIColor redColor];
+        _customerReplyView = [[RequirementCustomerReplyView alloc] init];
     }
     return _customerReplyView;
 }
