@@ -13,6 +13,7 @@
 #import "ValidatePlatformContactModel.h"
 #import "AddressBookFriendSearchController.h"
 #import "RKViewFactory.h"
+#import "LoginSqlite.h"
 @interface AddressBookFriendViewController()<AddressBookFriendCellDelegate>
 @property (nonatomic, strong)NSMutableArray* phones;
 @property (nonatomic, strong)NSMutableArray* models;
@@ -66,15 +67,23 @@
     if (self.phones.count==0) return;
     [self startLoadingViewWithOption:0];
 
+    NSMutableArray* telArr = [NSMutableArray array];
+    [self.phones enumerateObjectsUsingBlock:^(ValidatePlatformContactModel* model, NSUInteger idx, BOOL *stop) {
+        [telArr addObject:model.a_loginTel];
+    }];
+
+    NSSet* set = [NSSet setWithArray:telArr];
+    __block NSInteger index = 0;
     __block NSString* tels=@"";
-    [self.phones enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        ValidatePlatformContactModel* model=obj;
-        tels=[tels stringByAppendingString:model.a_loginTel];
-        if (idx==self.phones.count-1) {
+    [set enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        tels = [tels stringByAppendingString:obj];
+        if (index==set.count-1) {
             return ;
         }
         tels=[tels stringByAppendingString:@","];
+        index++;
     }];
+    
     NSMutableDictionary* dic=[NSMutableDictionary dictionary];
     [dic setObject:tels forKey:@"tels"];
     [AddressBookApi ValidatePlatformContactsWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -136,7 +145,8 @@
     ValidatePlatformContactModel* dataModel=self.models[indexPath.row];
     AddressBookFriendCellModel* model=[[AddressBookFriendCellModel alloc]init];
     model.mainLabelText=dataModel.a_userPhoneName;
-    model.isPlatformUser=dataModel.a_isPlatformUser;
+    BOOL isSelf = [dataModel.a_loginId isEqualToString:[LoginSqlite getdata:@"userId"]];
+    model.isPlatformUser= !isSelf && dataModel.a_isPlatformUser;
     model.assistStyle=dataModel.a_isWaiting?2:dataModel.a_isFriend;
     [cell setModel:model indexPath:indexPath];
     
