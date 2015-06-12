@@ -92,7 +92,7 @@
     self.requirementDescribeTextView = textView;
     
     UILabel* textPlaceLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 300, 20)];
-    textPlaceLabel.text = @"请把让我们帮你的事情输入";
+    textPlaceLabel.text = @"把您的真实需求告诉我们";
     textPlaceLabel.textColor = RGBCOLOR(187, 187, 187);
     textPlaceLabel.tag = 1;
     [textView addSubview:textPlaceLabel];

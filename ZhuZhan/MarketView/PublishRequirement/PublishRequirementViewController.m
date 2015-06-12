@@ -72,6 +72,15 @@
             [dic setObject:self.projectView.maxMoney forKey:@"moneyMax"];
             [dic setObject:self.projectView.minMoney forKey:@"moneyMin"];
             [dic setObject:self.projectView.requirementDescribe forKey:@"desc"];
+            if([self.projectView.minMoney doubleValue]>999999999.99 || [self.projectView.minMoney doubleValue]<1){
+                [self showAlertWithContent:@"最低金额不能超过1000000000或者小于1"];
+                return;
+            }
+            
+            if([self.projectView.maxMoney doubleValue]>999999999.99 || [self.projectView.maxMoney doubleValue]<1){
+                [self showAlertWithContent:@"最高金额不能超过1000000000或者小于1"];
+                return;
+            }
             if ([dic[@"province"] isEqualToString:@""] || [dic[@"city"] isEqualToString:@""]) {
                 [self showAlertWithContent:@"请选择需求信息中的需求所在地"];
                 return;
