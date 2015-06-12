@@ -178,7 +178,6 @@
     if(indexPath.row == 0){
         int height = 248;
         if([self.model.a_content isEqualToString:@""]){
-            NSLog(@"a_content===>%@",self.model.a_content);
             height +=0;
         }else{
             CGRect bounds=[self.model.a_content boundingRectWithSize:CGSizeMake(288, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
@@ -276,7 +275,7 @@
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertView show];
                 model.isFocused = @"1";
-                [showArr replaceObjectAtIndex:indexPath.row withObject:model];
+                [showArr replaceObjectAtIndex:indexPath.row-2 withObject:model];
                 [self.tableView reloadData];
             }else{
                 if([ErrorCode errorCode:error] == 403){
@@ -295,7 +294,7 @@
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"取消关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertView show];
                 model.isFocused = @"0";
-                [showArr replaceObjectAtIndex:indexPath.row withObject:model];
+                [showArr replaceObjectAtIndex:indexPath.row-2 withObject:model];
                 [self.tableView reloadData];
             }else{
                 if([ErrorCode errorCode:error] == 403){

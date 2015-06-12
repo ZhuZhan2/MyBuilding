@@ -236,25 +236,22 @@
     
     for (int i = (int)self.visibleRange.location; i < self.visibleRange.location + self.visibleRange.length; i++) {
         UIView *cell = [self.inUseCells objectAtIndex:i];
-        if(i == 0){
-            cell.frame = CGRectMake(self.pageSize.width*i-self.padding, 0, self.pageSize.width, self.pageSize.height);
-        }else if (i == 2){
-            cell.frame = CGRectMake(self.pageSize.width*i+self.padding, 0, self.pageSize.width, self.pageSize.height);
-        }
-//        CGFloat origin = cell.frame.origin.x;
-//        CGFloat delta = fabs(origin - offset);
-//        NSLog(@"%f",self.pageSize.width * i);
-//        CGRect originCellFrame = CGRectMake(self.pageSize.width * i, 0, self.pageSize.width, self.pageSize.height);//如果没有缩小效果的情况下的本该的Frame
-//        
-//        if (delta < self.pageSize.width) {
-//            CGFloat inset = (self.pageSize.width * (1 - self.minimumPageScale)) * (delta / self.pageSize.width)/2.0;
-//            cell.frame = UIEdgeInsetsInsetRect(originCellFrame, UIEdgeInsetsMake(0, inset, 0, inset));
-////            NSLog(@"cell1===>%f",cell.frame.origin.x);
-//        } else {
-//            CGFloat inset = self.pageSize.width * (1 - self.minimumPageScale) / 2.0 ;
-//            cell.frame = UIEdgeInsetsInsetRect(originCellFrame, UIEdgeInsetsMake(0, inset, 0, inset));
-////            NSLog(@"cell2===>%f",cell.frame.origin.x);
+//        if(i == 0){
+//            cell.frame = CGRectMake(self.pageSize.width*i-self.padding, 0, self.pageSize.width, self.pageSize.height);
+//        }else if (i == 2){
+//            cell.frame = CGRectMake(self.pageSize.width*i+self.padding, 0, self.pageSize.width, self.pageSize.height);
 //        }
+        CGFloat origin = cell.frame.origin.x;
+        CGFloat delta = fabs(origin - offset);
+        CGRect originCellFrame = CGRectMake(self.pageSize.width * i, 0, self.pageSize.width, self.pageSize.height);//如果没有缩小效果的情况下的本该的Frame
+        
+        if (delta < self.pageSize.width) {
+            CGFloat inset = (self.pageSize.width * (1 - self.padding)) * (delta / self.pageSize.width)/2.0;
+            cell.frame = UIEdgeInsetsInsetRect(originCellFrame, UIEdgeInsetsMake(0, inset, 0, inset));
+        } else {
+            CGFloat inset = self.pageSize.width * (1 - self.padding) / 2.0 ;
+            cell.frame = UIEdgeInsetsInsetRect(originCellFrame, UIEdgeInsetsMake(0, inset, 0, inset));
+        }
     }
 }
 

@@ -110,6 +110,7 @@
     //9uNmKMAvjHLBdkWD42j21yEp 299
     //57gqKHfcRsYLwlxioZvblI5G 99
     BOOL ret = [_mapManager start:@"9uNmKMAvjHLBdkWD42j21yEp" generalDelegate:self];
+    //BOOL ret = [_mapManager start:@"57gqKHfcRsYLwlxioZvblI5G" generalDelegate:self];
     if (!ret) {
         NSLog(@"manager start failed!");
     }else{
@@ -123,7 +124,7 @@
     [MarketSearchSqlite opensql];
     
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-    if (IS_OS_8_OR_LATER) {
+   /* if (IS_OS_8_OR_LATER) {
         [[UIApplication sharedApplication] registerForRemoteNotifications];
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound) categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
@@ -132,7 +133,7 @@
          UIRemoteNotificationTypeBadge |
          UIRemoteNotificationTypeAlert |
          UIRemoteNotificationTypeSound];
-    }
+    }*/
     
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;

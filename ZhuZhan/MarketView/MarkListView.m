@@ -15,8 +15,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor colorWithPatternImage: [GetImagePath getImagePath:@"card_bg"]];
-        [self addSubview:self.cutLine];
+        self.backgroundColor = [UIColor colorWithPatternImage: [GetImagePath getImagePath:@"card_bg2"]];
+        //[self addSubview:self.cutLine];
         [self addSubview:self.headImageView];
         [self addSubview:self.nameLabel];
         [self addSubview:self.typeLabel];

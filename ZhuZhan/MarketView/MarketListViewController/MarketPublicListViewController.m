@@ -126,8 +126,12 @@
 }
 
 -(void)releaseBtnAction{
-    PublishRequirementViewController* vc = [[PublishRequirementViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        [self gotoLoginView];
+    }else{
+        PublishRequirementViewController* vc = [[PublishRequirementViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 -(void)closePopView{
@@ -220,9 +224,13 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    MarketModel *model = self.modelsArr[indexPath.row];
-    RequirementDetailViewController* vc = [[RequirementDetailViewController alloc] initWithTargetId:model.a_id];
-    [self.navigationController pushViewController:vc animated:YES];
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        [self gotoLoginView];
+    }else{
+        MarketModel *model = self.modelsArr[indexPath.row];
+        RequirementDetailViewController* vc = [[RequirementDetailViewController alloc] initWithTargetId:model.a_id];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 -(void)addFriend:(NSIndexPath *)indexPath{

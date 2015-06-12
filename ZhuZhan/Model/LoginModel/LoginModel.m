@@ -572,7 +572,7 @@
         return nil;
     }
     
-    NSString *urlStr = [NSString stringWithFormat:@"api/recommend/getUserRecommendInfo?pageSize=50&pageIndex=%d",startIndex];
+    NSString *urlStr = [NSString stringWithFormat:@"api/recommend/getUserRecommendInfo?pageSize=15&pageIndex=%d",startIndex];
     NSLog(@"=====%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);

@@ -48,7 +48,6 @@
             [self.showArr addObjectsFromArray:posts];
             [self.tableView reloadData];
             //[self removeMyLoadingView];
-            NSLog(@"showArray====%@",self.showArr);
         }
     } startIndex:0 noNetWork:^{
         [self firstNetWork];

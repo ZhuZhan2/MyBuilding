@@ -1602,6 +1602,8 @@
 		D3D686231ABAC665005D9ED6 /* 交易_删除@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D686211ABAC665005D9ED6 /* 交易_删除@2x.png */; };
 		D3D686271ABAC8C0005D9ED6 /* SearchContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D686261ABAC8C0005D9ED6 /* SearchContactViewController.m */; };
 		D3D6862A1ABACF44005D9ED6 /* SearchContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D686291ABACF44005D9ED6 /* SearchContactTableViewCell.m */; };
+		D3D690361B297B6A002BA7C8 /* card_bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D690341B297B6A002BA7C8 /* card_bg2.png */; };
+		D3D690371B297B6A002BA7C8 /* card_bg2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D690351B297B6A002BA7C8 /* card_bg2@2x.png */; };
 		D3D6B6DB1B130ED400C3DEBD /* xiaoxi.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6B6D51B130ED400C3DEBD /* xiaoxi.png */; };
 		D3D6B6DC1B130ED400C3DEBD /* xiaoxi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6B6D61B130ED400C3DEBD /* xiaoxi@2x.png */; };
 		D3D6B6DD1B130ED400C3DEBD /* xunjia.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D6B6D71B130ED400C3DEBD /* xunjia.png */; };
@@ -4050,6 +4052,8 @@
 		D3D686261ABAC8C0005D9ED6 /* SearchContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchContactViewController.m; sourceTree = "<group>"; };
 		D3D686281ABACF44005D9ED6 /* SearchContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchContactTableViewCell.h; sourceTree = "<group>"; };
 		D3D686291ABACF44005D9ED6 /* SearchContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchContactTableViewCell.m; sourceTree = "<group>"; };
+		D3D690341B297B6A002BA7C8 /* card_bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_bg2.png; sourceTree = "<group>"; };
+		D3D690351B297B6A002BA7C8 /* card_bg2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_bg2@2x.png"; sourceTree = "<group>"; };
 		D3D6B6D51B130ED400C3DEBD /* xiaoxi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiaoxi.png; sourceTree = "<group>"; };
 		D3D6B6D61B130ED400C3DEBD /* xiaoxi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xiaoxi@2x.png"; sourceTree = "<group>"; };
 		D3D6B6D71B130ED400C3DEBD /* xunjia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xunjia.png; sourceTree = "<group>"; };
@@ -8088,6 +8092,8 @@
 		D3D6EB7B1B1FF72600FB6D5A /* 卡片 */ = {
 			isa = PBXGroup;
 			children = (
+				D3D690341B297B6A002BA7C8 /* card_bg2.png */,
+				D3D690351B297B6A002BA7C8 /* card_bg2@2x.png */,
 				D3D6EB7C1B1FF72600FB6D5A /* card_bg.png */,
 				D3D6EB7D1B1FF72600FB6D5A /* card_bg@2x.png */,
 				D3D6EB7E1B1FF72600FB6D5A /* card_cut.png */,
@@ -8429,7 +8435,7 @@
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					0426BFE619922CE400CD8822 = {
-						DevelopmentTeam = M8S6DXYEZE;
+						DevelopmentTeam = AU89D3J45E;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -8583,6 +8589,7 @@
 				D3D34A311ACA8F9A004733D2 /* change@2x.png in Resources */,
 				5B7AA6D61A58D6E4000FBFF2 /* 筛选中01@2x.png in Resources */,
 				5BE08E201A3586EA00495EEB /* 020007.png in Resources */,
+				D3D690361B297B6A002BA7C8 /* card_bg2.png in Resources */,
 				5B819F781ACBC81300A1A593 /* 关--闭灰.png in Resources */,
 				5BE08DE31A3586EA00495EEB /* 010040@2x.png in Resources */,
 				5BE08DBB1A3586EA00495EEB /* 010020@2x.png in Resources */,
@@ -8797,6 +8804,7 @@
 				5BE08DDF1A3586EA00495EEB /* 010038@2x.png in Resources */,
 				D3D51BC91A80D1D400B52A04 /* loading.png in Resources */,
 				5B6C4B2D1ADFBC12003B8DA8 /* 绿色箭头@2x.png in Resources */,
+				D3D690371B297B6A002BA7C8 /* card_bg2@2x.png in Resources */,
 				04BC40FB19D7E5B3006B5C7B /* 012.png in Resources */,
 				D3D4FB331A087A830033BB34 /* 公司－账号设置_03a-05.png in Resources */,
 				04BC413119D7E5B3006B5C7B /* controls_03@2x.png in Resources */,

@@ -12,10 +12,14 @@
 #import "MarketApi.h"
 #import "MarketModel.h"
 #import "MarkListTableViewCell.h"
-@interface MarketListSearchViewController ()<MarkListTableViewCellDelegate>
+#import "LoginViewController.h"
+#import "LoginSqlite.h"
+#import "RequirementDetailViewController.h"
+@interface MarketListSearchViewController ()<MarkListTableViewCellDelegate,LoginViewDelegate>
 @property(nonatomic)int startIndex;
 @property(nonatomic,strong)NSMutableArray *modelsArr;
 @property(nonatomic,strong)NSString *keyWords;
+@property(nonatomic,strong)NSString *isOpenStr;
 @end
 
 @implementation MarketListSearchViewController
@@ -90,7 +94,12 @@
     if(self.isPublic){
         [self getPublicData];
     }else{
-        
+        if(self.isOpen){
+            self.isOpenStr = @"00";
+        }else{
+            self.isOpenStr = @"01";
+        }
+        [self getMyData];
     }
 }
 
@@ -118,13 +127,39 @@
     return cell;
 }
 
+-(void)searchBarTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.needDelayCancel=YES;
+        loginVC.delegate = self;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }else{
+        MarketModel *model = self.modelsArr[indexPath.row];
+        RequirementDetailViewController* vc = [[RequirementDetailViewController alloc] initWithTargetId:model.a_id];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
+    [self headerRereshing];
+    if(block){
+        block();
+    }
+}
+
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
     if(self.isPublic){
         [self getPublicData];
     }else{
-        
+        if(self.isOpen){
+            self.isOpenStr = @"00";
+        }else{
+            self.isOpenStr = @"01";
+        }
+        [self getMyData];
     }
 }
 
@@ -133,7 +168,12 @@
     if(self.isPublic){
         [self getPublicDataMore];
     }else{
-        
+        if(self.isOpen){
+            self.isOpenStr = @"00";
+        }else{
+            self.isOpenStr = @"01";
+        }
+        [self getMyDataMore];
     }
 }
 
@@ -198,4 +238,65 @@
     }];
 }
 
+
+-(void)getMyData{
+    self.startIndex = 0;
+    [MarketApi GetAllMyListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self.modelsArr removeAllObjects];
+            self.modelsArr = posts;
+            if(self.modelsArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self searchListWithKeyword:self.keyWords];
+                }];
+            }
+        }
+        [self.tableView headerEndRefreshing];
+    } startIndex:0 requireType:@"" keywords:self.keyWords isOpen:self.isOpenStr noNetWork:^{
+        [self.tableView headerEndRefreshing];
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self searchListWithKeyword:self.keyWords];
+        }];
+    }];
+}
+
+-(void)getMyDataMore{
+    [MarketApi GetAllMyListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.startIndex ++;
+            [self.modelsArr addObjectsFromArray:posts];
+            if(self.modelsArr.count == 0){
+                [MyTableView reloadDataWithTableView:self.tableView];
+                [MyTableView hasData:self.tableView];
+            }else{
+                [MyTableView removeFootView:self.tableView];
+                [self.tableView reloadData];
+            }
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+                    [self searchListWithKeyword:self.keyWords];
+                }];
+            }
+        }
+        [self.tableView footerEndRefreshing];
+    } startIndex:self.startIndex+1 requireType:@"" keywords:self.keyWords isOpen:self.isOpenStr noNetWork:^{
+        [self.tableView footerEndRefreshing];
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
+            [self searchListWithKeyword:self.keyWords];
+        }];
+    }];
+}
 @end

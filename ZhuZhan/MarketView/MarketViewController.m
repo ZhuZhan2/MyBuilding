@@ -16,9 +16,12 @@
 #import "MarketApi.h"
 #import "OtherSearchMaterialViewController.h"
 #import "MarketPublicListViewController.h"
+#import "RequirementDetailViewController.h"
+#import "LoginSqlite.h"
+#import "LoginViewController.h"
 
 #define contentHeight (kScreenHeight==480?431:519)
-@interface MarketViewController ()<ZWAdViewDelagate,MarketFlowViewDataSource,MarketFlowViewDelegate>
+@interface MarketViewController ()<ZWAdViewDelagate,MarketFlowViewDataSource,MarketFlowViewDelegate,LoginViewDelegate>
 @property(nonatomic,strong)UIScrollView *scrollView;
 @property(nonatomic,strong)UIImageView *headImageView;
 @property(nonatomic,strong)ZWAdView *zwAdView;
@@ -129,6 +132,8 @@
     return _zwAdView;
 }
 
+/*********************************************************************************/
+
 //-(UIView *)centerView{
 //    if(!_centerView){
 //        _centerView = [[UIView alloc] initWithFrame:CGRectMake(0, 100, 320, 234)];
@@ -152,7 +157,7 @@
 //    if(!_marketFlowView){
 //        _marketFlowView = [[MarketFlowView alloc] initWithFrame:CGRectMake(0, 30, 320, 160)];
 //        _marketFlowView.backgroundColor = RGBCOLOR(237, 237, 237);
-//        _marketFlowView.padding = 10;
+//        _marketFlowView.padding = 0.94;//间距
 //        _marketFlowView.dataSource = self;
 //        _marketFlowView.delegate =self;
 //        _marketFlowView.defaultImageView = [[UIImageView alloc] initWithImage:[GetImagePath getImagePath:@"nodata"]];
@@ -201,6 +206,8 @@
 //    return _phoneBtn;
 //}
 
+/*********************************************************************************/
+
 -(UIButton *)searchBtn{
     if(!_searchBtn){
         _searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -243,14 +250,17 @@
     }
 }
 
+//卡片大小
 -(CGSize)sizeForPageInFlowView:(MarketFlowView *)flowView{
     return CGSizeMake(272, 160);
 }
 
+//卡片个数
 - (NSInteger)numberOfPagesInFlowView:(MarketFlowView *)flowView{
     return self.modelsArr.count;
 }
 
+//卡片样式
 -(UIView *)flowView:(MarketFlowView *)flowView cellForPageAtIndex:(NSInteger)index{
     MarkListView *listView = (MarkListView *)[flowView dequeueReusableCell];
     if (!listView) {
@@ -260,24 +270,42 @@
     return listView;
 }
 
+//滚动触发
 - (void)didScrollToPage:(NSInteger)pageNumber inFlowView:(MarketFlowView *)flowView {
     //NSLog(@"Scrolled to page # %d", pageNumber);
     self.currentPage = pageNumber;
 }
 
+//重置页面触发
 - (void)didReloadData:(UIView *)cell cellForPageAtIndex:(NSInteger)index{
     MarkListView *listView = (MarkListView *)cell;
     listView.model = self.modelsArr[index];
 }
 
+//点击触发
 - (void)didSelectItemAtIndex:(NSInteger)index inFlowView:(MarketFlowView *)flowView{
-    NSLog(@"%d",(int)index);
-    
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.needDelayCancel=YES;
+        loginVC.delegate = self;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }else{
+        MarketModel *model = self.modelsArr[index];
+        RequirementDetailViewController* vc = [[RequirementDetailViewController alloc] initWithTargetId:model.a_id];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 -(void)demandListAction{
     MarketPublicListViewController *view = [[MarketPublicListViewController alloc] init];
     [self.navigationController pushViewController:view animated:YES];
+}
+
+-(void)loginCompleteWithDelayBlock:(void (^)())block{
+    if(block){
+        block();
+    }
 }
 
 -(void)loadList{
