@@ -39,7 +39,7 @@
     
     [RKViewFactory autoLabel:self.contentLabel maxWidth:CGRectGetWidth(self.contentLabel.frame)];
     CGRect frame = self.contentLabel.frame;
-    frame.origin.y = 45;
+    frame.origin.y = 50;
     self.contentLabel.frame = frame;
     
     frame = self.timeLabel.frame;
