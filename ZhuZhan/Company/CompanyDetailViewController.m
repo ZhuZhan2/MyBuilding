@@ -68,8 +68,8 @@
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    [cell.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [cell addSubview:self.views[indexPath.row]];
+    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [cell.contentView addSubview:self.views[indexPath.row]];
     return cell;
 }
 
