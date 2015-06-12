@@ -65,7 +65,7 @@
 - (void)reloadData{
     [self.titleView setUserImageUrl:self.model.a_loginImagesId title:self.model.a_loginName time:self.model.a_createdTime needRound:self.model.a_isPsersonal];
     [self.categoryView setTitle:self.model.a_requireTypeName];
-    self.categoryView.assistView.hidden = ([self.model.a_loginId isEqualToString:[LoginSqlite getdata:@"userId"]] || !self.model.a_isPsersonal);
+    self.categoryView.assistView.hidden = ([self.model.a_loginId isEqualToString:[LoginSqlite getdata:@"userId"]] || !self.model.a_isPsersonal || ![[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"]);
     self.contactsInfoView.realName = self.model.a_realName;
     self.contactsInfoView.phoneNumber = self.model.a_telphone;
     

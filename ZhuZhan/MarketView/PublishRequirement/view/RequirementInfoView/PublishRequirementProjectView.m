@@ -68,6 +68,7 @@
     frame.origin.x = 18;
     field1.frame = frame;
     [view addSubview:field1];
+    field1.keyboardType = UIKeyboardTypeDecimalPad;
     self.minMoneyField = field1;
     
     UITextField* field2 = [self fieldWithContent:nil placeholderStr:@"请输入最高金额" contentColor:RGBCOLOR(51, 51, 51) placeholderStrColor:RGBCOLOR(187, 187, 187) width:120];
@@ -75,6 +76,7 @@
     frame.origin.x = 184;
     field2.frame = frame;
     [view addSubview:field2];
+    field2.keyboardType = UIKeyboardTypeDecimalPad;
     self.maxMoneyField = field2;
     
     UIView* sepe = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 33, 1)];
