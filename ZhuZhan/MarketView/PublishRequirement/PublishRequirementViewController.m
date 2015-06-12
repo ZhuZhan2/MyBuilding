@@ -27,7 +27,9 @@
 
 @property (nonatomic, strong)NSArray* viewArr;
 @property (nonatomic)NSInteger nowIndex;
-@property (nonatomic)NSInteger lastIndex;
+@property (nonatomic)NSInteger selectedIndex;
+
+@property (nonatomic, strong)NSArray* requirementViewArr;
 
 @property (nonatomic, strong)PublishRequirementProjectView* projectView;
 @property (nonatomic, strong)PublishRequirementMaterialView* materialView;
@@ -36,8 +38,8 @@
 @property (nonatomic, strong)PublishRequirementOtherView* otherView;
 
 @property (nonatomic, strong)TwoStageLocateView *locateView;
-@property (nonatomic, strong)NSString* bigCategoryId;
-@property (nonatomic, strong)NSString* smallCategoryId;
+@property (nonatomic, copy)NSString* bigCategoryId;
+@property (nonatomic, copy)NSString* smallCategoryId;
 @end
 
 @implementation PublishRequirementViewController
@@ -94,50 +96,51 @@
             [dic setObject:self.projectView.requirementDescribe forKey:@"desc"];
         }
             break;
+        }
         case 1:{
-            [dic setObject:self.bigCategoryId forKey:@"bigType"];
-            [dic setObject:self.smallCategoryId forKey:@"smallType"];
-            [dic setObject:self.materialView.requirementDescribe forKey:@"desc"];
-            if ([dic[@"bigType"] isEqualToString:@""]) {
+            if ([self.bigCategoryId isEqualToString:@""]) {
                 [self showAlertWithContent:@"请选择需求信息中的大类"];
                 return;
             }
-            if ([dic[@"smallType"] isEqualToString:@""]) {
+            if ([self.smallCategoryId isEqualToString:@""]) {
                 [self showAlertWithContent:@"请选择需求信息中的分类"];
                 return;
             }
-        }
+            [dic setObject:self.bigCategoryId forKey:@"bigType"];
+            [dic setObject:self.smallCategoryId forKey:@"smallType"];
+            [dic setObject:self.materialView.requirementDescribe forKey:@"desc"];
             break;
+        }
         case 2:{
+            if ([self.relationView.area isEqualToString:@""]) {
+                [self showAlertWithContent:@"请选择需求信息中的需求所在地"];
+                return;
+            }
             NSArray* array = [self.relationView.area componentsSeparatedByString:@" "];
             [dic setObject:array[0] forKey:@"province"];
             [dic setObject:array[1] forKey:@"city"];
             [dic setObject:self.relationView.requirementDescribe forKey:@"desc"];
-            if ([dic[@"province"] isEqualToString:@""] || [dic[@"city"] isEqualToString:@""]) {
+            break;
+        }
+        case 3:{
+            if ([self.cooperationView.area isEqualToString:@""]) {
                 [self showAlertWithContent:@"请选择需求信息中的需求所在地"];
                 return;
             }
-        }
-            break;
-        case 3:{
             NSArray* array = [self.cooperationView.area componentsSeparatedByString:@" "];
             [dic setObject:array[0] forKey:@"province"];
             [dic setObject:array[1] forKey:@"city"];
             [dic setObject:self.cooperationView.requirementDescribe forKey:@"desc"];
-            if ([dic[@"province"] isEqualToString:@""] || [dic[@"city"] isEqualToString:@""]) {
-                [self showAlertWithContent:@"请选择需求信息中的需求所在地"];
-                return;
-            }
-        }
             break;
+        }
         case 4:{
             [dic setObject:self.otherView.requirementDescribe forKey:@"desc"];
             if ([dic[@"desc"] isEqualToString:@""]) {
                 [self showAlertWithContent:@"请输入需求信息中的需求描述信息"];
                 return;
             }
-        }
             break;
+        }
     }
 
     [MarketApi AddRequireWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -168,17 +171,24 @@
 }
 
 - (void)categoryViewClickedWithCategory:(NSString *)category index:(NSInteger)index{
-    self.lastIndex = index;
+    self.selectedIndex = index;
     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"切换需求类型后，填写的数据将被清空，是否继续？" delegate:self cancelButtonTitle:nil otherButtonTitles:@"取消",@"继续", nil];
     alertView.tag = 1;
     [alertView show];
 }
 
 - (void)sureToChangeRequirementType{
-    [self.requirementCategoryView singleCategoryViewClickedWithIndex:self.lastIndex needDelegate:NO needChangeView:YES];
+    [self.requirementCategoryView singleCategoryViewClickedWithIndex:self.selectedIndex needDelegate:NO needChangeView:YES];
     
-    self.nowIndex = self.lastIndex;
+    self.nowIndex = self.selectedIndex;
     self.contactsInfoView = nil;
+    
+    self.projectView = nil;
+    self.materialView = nil;
+    self.relationView = nil;
+    self.cooperationView = nil;
+    self.otherView = nil;
+    
     self.viewArr = nil;
     [self.tableView reloadData];
 }
@@ -199,6 +209,11 @@
 
 - (void)materialViewSmallCategoryBtnClicked{
     NSLog(@"materialViewSmallCategoryBtnClicked");
+    if ([self.bigCategoryId isEqualToString:@""]) {
+        [self showAlertWithContent:@"请选择大类后再选择分类"];
+        return;
+    }
+    
     ChooseProductSmallStage *classificationView = [[ChooseProductSmallStage alloc] init];
     classificationView.delegate = self;
     classificationView.categoryId = self.bigCategoryId;
@@ -271,11 +286,13 @@
     return _contactsInfoView;
 }
 
+- (NSArray *)requirementViewArr{
+    return @[self.projectView,self.materialView,self.relationView,self.cooperationView,self.otherView];
+}
+
 - (NSArray *)viewArr{
     if (!_viewArr) {
-        NSArray* views = @[self.projectView,self.materialView,self.relationView,self.cooperationView,self
-                           .otherView];
-        _viewArr = @[self.requirementCategoryView,self.contactsInfoView,views[self.nowIndex]];
+        _viewArr = @[self.requirementCategoryView,self.contactsInfoView,self.requirementViewArr[self.nowIndex]];
     }
     return _viewArr;
 }
@@ -363,5 +380,19 @@
     }];
     self.materialView.smallCategory = str;
     self.smallCategoryId = idStr;
+}
+
+- (NSString *)bigCategoryId{
+    if (!_bigCategoryId) {
+        _bigCategoryId = @"";
+    }
+    return _bigCategoryId;
+}
+
+- (NSString *)smallCategoryId{
+    if (!_smallCategoryId) {
+        _smallCategoryId = @"";
+    }
+    return _smallCategoryId;
 }
 @end
