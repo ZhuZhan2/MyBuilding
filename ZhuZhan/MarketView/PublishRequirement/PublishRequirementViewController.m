@@ -65,6 +65,10 @@
     
     switch (self.nowIndex) {
         case 0:{
+            if ([self.projectView.area isEqualToString:@""]) {
+                [self showAlertWithContent:@"请选择需求信息中的需求所在地"];
+                return;
+            }
             NSArray* array = [self.projectView.area componentsSeparatedByString:@" "];
             [dic setObject:array[0] forKey:@"province"];
             [dic setObject:array[1] forKey:@"city"];
@@ -72,10 +76,7 @@
             [dic setObject:self.projectView.maxMoney forKey:@"moneyMax"];
             [dic setObject:self.projectView.minMoney forKey:@"moneyMin"];
             [dic setObject:self.projectView.requirementDescribe forKey:@"desc"];
-            if ([dic[@"province"] isEqualToString:@""] || [dic[@"city"] isEqualToString:@""]) {
-                [self showAlertWithContent:@"请选择需求信息中的需求所在地"];
-                return;
-            }
+
         }
             break;
         case 1:{
