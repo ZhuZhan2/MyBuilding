@@ -29,4 +29,7 @@
 
 //获取评论列表
 + (NSURLSessionDataTask *)GetCommentListWithBlock:(void (^)(NSMutableArray *posts,NSString *total,NSError *error))block startIndex:(int)startIndex paramId:(NSString *)paramId commentType:(NSString *)commentType noNetWork:(void(^)())noNetWork;
+
+//删除需求
++ (NSURLSessionDataTask *)DelRequireWithBlock:(void (^)(NSMutableArray *posts,NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 @end

@@ -23,12 +23,13 @@
 #import "MarketListSearchViewController.h"
 #import "RequirementDetailViewController.h"
 
-@interface MarketPublicListViewController ()<UITableViewDelegate,UITableViewDataSource,MarkListTableViewCellDelegate,LoginViewDelegate,MarketPopViewDelegate>
+@interface MarketPublicListViewController ()<UITableViewDelegate,UITableViewDataSource,MarkListTableViewCellDelegate,LoginViewDelegate,MarketPopViewDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSString *requireType;
 @property(nonatomic)int startIndex;
 @property(nonatomic,strong)NSMutableArray *modelsArr;
 @property(nonatomic,strong)MarketPopView *popView;
+@property(nonatomic,strong)MarketModel *marketModel;
 @end
 
 @implementation MarketPublicListViewController
@@ -246,6 +247,23 @@
     }
 }
 
+-(void)delRequire:(NSIndexPath *)indexPath{
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        [self gotoLoginView];
+    }else{
+        MarketModel *model = self.modelsArr[indexPath.row];
+        self.marketModel = model;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"是否删除需求" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alertView show];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 1){
+        [self gotoDelete:self.marketModel];
+    }
+}
+
 -(void)gotoLoginView{
     LoginViewController *loginVC = [[LoginViewController alloc] init];
     loginVC.needDelayCancel=YES;
@@ -286,6 +304,22 @@
     if(block){
         block();
     }
+}
+
+-(void)gotoDelete:(MarketModel *)model{
+    [MarketApi DelRequireWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self loadList];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
+        }
+    } dic:[@{@"reqId":model.a_id} mutableCopy] noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(void)loadList{

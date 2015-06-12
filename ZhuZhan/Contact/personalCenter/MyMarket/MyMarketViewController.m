@@ -24,7 +24,7 @@
 #import "AddressBookApi.h"
 #import "ChatViewController.h"
 
-@interface MyMarketViewController ()<RKStageChooseViewDelegate,UITableViewDelegate,UITableViewDataSource,MarketPopViewDelegate,MarkListTableViewCellDelegate,LoginViewDelegate>
+@interface MyMarketViewController ()<RKStageChooseViewDelegate,UITableViewDelegate,UITableViewDataSource,MarketPopViewDelegate,MarkListTableViewCellDelegate,LoginViewDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)NSString *requireType;
 @property(nonatomic)int startIndex;
 @property(nonatomic,strong)MarketPopView *popView;
@@ -34,6 +34,7 @@
 @property(nonatomic,strong)NSMutableArray *modelsArr;
 @property(nonatomic)NSInteger stageNumber;
 @property(nonatomic,strong)NSString *isOpen;//00公开 01客服
+@property(nonatomic,strong)MarketModel *marketModel;
 @end
 
 @implementation MyMarketViewController
@@ -314,6 +315,39 @@
     if(block){
         block();
     }
+}
+
+-(void)delRequire:(NSIndexPath *)indexPath{
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        [self gotoLoginView];
+    }else{
+        MarketModel *model = self.modelsArr[indexPath.row];
+        self.marketModel = model;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"是否删除需求" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alertView show];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 1){
+        [self gotoDelete:self.marketModel];
+    }
+}
+
+-(void)gotoDelete:(MarketModel *)model{
+    [MarketApi DelRequireWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [self loadList];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
+        }
+    } dic:[@{@"reqId":model.a_id} mutableCopy] noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 -(void)loadList{

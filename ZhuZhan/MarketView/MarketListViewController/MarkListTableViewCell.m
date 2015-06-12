@@ -166,7 +166,7 @@
         }
     }
     
-    [self.footView setCount:marketModel.a_commentCount isSelf:marketModel.a_isSelf];
+    [self.footView setCount:marketModel.a_commentCount isSelf:marketModel.a_isSelf isPersonal:marketModel.a_needRound];
     
     CGFloat height = 0;
     CGRect frame = self.titleView.frame;
@@ -231,6 +231,12 @@
 -(void)addFriend{
     if([self.delegate respondsToSelector:@selector(addFriend:)]){
         [self.delegate addFriend:self.indexPath];
+    }
+}
+
+-(void)delRequire{
+    if([self.delegate respondsToSelector:@selector(delRequire:)]){
+        [self.delegate delRequire:self.indexPath];
     }
 }
 @end

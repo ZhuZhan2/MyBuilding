@@ -7,7 +7,7 @@
 //
 
 #import "MarketListFootView.h"
-
+#import "LoginSqlite.h"
 @implementation MarketListFootView
 
 + (CGFloat)footViewHeight{
@@ -21,6 +21,7 @@
         [self addSubview:self.cutLine2];
         [self addSubview:self.countLabel];
         [self addSubview:self.addFriend];
+        [self addSubview:self.delBtn];
         self.backgroundColor = [UIColor whiteColor];
     }
     return self;
@@ -61,18 +62,44 @@
     return _addFriend;
 }
 
--(void)setCount:(NSString *)count isSelf:(BOOL)isSelf{
+-(UIButton *)delBtn{
+    if(!_delBtn){
+        _delBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _delBtn.frame = CGRectMake(220, 5, 82, 29);
+        [_delBtn setImage:[GetImagePath getImagePath:@"card_delete"] forState:UIControlStateNormal];
+        [_delBtn addTarget:self action:@selector(delBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _delBtn;
+}
+
+-(void)setCount:(NSString *)count isSelf:(BOOL)isSelf isPersonal:(BOOL)isPersonal{
     _countLabel.text = [NSString stringWithFormat:@"评论%@条",count];
     if(isSelf){
         self.addFriend.hidden = YES;
+        self.delBtn.hidden = NO;
     }else{
-        self.addFriend.hidden = NO;
+        if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+            self.addFriend.hidden = YES;
+        }else{
+            if(isPersonal){
+                self.addFriend.hidden = NO;
+            }else{
+                self.addFriend.hidden = YES;
+            }
+        }
+        self.delBtn.hidden = YES;
     }
 }
 
 -(void)addFriendAction{
     if([self.delegate respondsToSelector:@selector(addFriend)]){
         [self.delegate addFriend];
+    }
+}
+
+-(void)delBtnAction{
+    if([self.delegate respondsToSelector:@selector(delRequire)]){
+        [self.delegate delRequire];
     }
 }
 @end
