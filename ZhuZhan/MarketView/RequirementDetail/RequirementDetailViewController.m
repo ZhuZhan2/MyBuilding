@@ -23,6 +23,7 @@
 #import "RequirementCustomerReplyView.h"
 #import "ChatViewController.h"
 #import "ProjectStage.h"
+#import "AddressBookApi.h"
 @interface RequirementDetailViewController ()<RequirementCategoryViewDelegate>
 @property (nonatomic, strong)RequirementDetailTitleView* titleView;
 @property (nonatomic, strong)RequirementCategoryView* categoryView;
@@ -95,10 +96,37 @@
 }
 
 - (void)requirementCategoryViewAssistBtnClicked{
+    if(self.model.a_isFriend){
+        [self gotoChatView];
+    }else{
+        [self gotoAddFriend];
+    }
+}
+
+-(void)gotoChatView{
     ChatViewController* vc=[[ChatViewController alloc]init];
     vc.contactId = self.model.a_loginId;
     vc.titleStr = self.model.a_loginName;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)gotoAddFriend{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:self.model.a_loginId forKey:@"userId"];
+    [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
+        }
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

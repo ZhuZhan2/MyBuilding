@@ -40,5 +40,11 @@
     
     self.a_replyContent = dict[@"replyContent"];
     self.a_replyTime = dict[@"replyTime"];
+    
+    if([dict[@"isFriend"] isEqualToString:@"0"]){
+        self.a_isFriend = NO;
+    }else{
+        self.a_isFriend = YES;
+    }
 }
 @end

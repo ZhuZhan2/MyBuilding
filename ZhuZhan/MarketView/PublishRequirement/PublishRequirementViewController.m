@@ -94,7 +94,6 @@
             [dic setObject:self.projectView.maxMoney forKey:@"moneyMax"];
             [dic setObject:self.projectView.minMoney forKey:@"moneyMin"];
             [dic setObject:self.projectView.requirementDescribe forKey:@"desc"];
-        }
             break;
         }
         case 1:{
