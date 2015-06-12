@@ -125,7 +125,7 @@
 #define AllBackLightGratColor RGBCOLOR(242,242,242)//浅灰背景
 
 //分割线
-#define AllSeperatorLineColor RGBCOLOR(211,211,211)//无渐变分割线颜色
+#define AllSeperatorLineColor RGBCOLOR(217,217,217)//无渐变分割线颜色
 
 #define AllThemeViewShadowImageName @"上导航阴影" //上导航阴影图片名
 #define AllTopShadowImageName @"大卡片阴影上" //@2x 2*2 上阴影图片名
