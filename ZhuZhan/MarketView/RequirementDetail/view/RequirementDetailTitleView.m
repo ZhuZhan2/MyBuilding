@@ -37,14 +37,14 @@
     frame.origin = CGPointMake(16, 13);
     self.userImageView.frame = frame;
     
-    [RKViewFactory autoLabel:self.titleLabel maxWidth:200 maxHeight:40];
+    [RKViewFactory autoLabel:self.titleLabel maxWidth:200 maxHeight:42];
     frame = self.titleLabel.frame;
-    frame.origin = CGPointMake(95, 20);
+    frame.origin = CGPointMake(95, 15);
     self.titleLabel.frame = frame;
     
     frame = self.timeLabel.frame;
     frame.origin.x = CGRectGetMinX(self.titleLabel.frame);
-    frame.origin.y = CGRectGetMaxY(self.titleLabel.frame)+5;
+    frame.origin.y = CGRectGetMaxY(self.titleLabel.frame)+3;
     self.timeLabel.frame = frame;
 }
 
