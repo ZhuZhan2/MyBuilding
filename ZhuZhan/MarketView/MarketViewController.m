@@ -77,6 +77,8 @@
     
 //    [self.scrollView addSubview:self.centerImageView];
 //    [self.scrollView addSubview:self.centerBtn];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadRequirementList) name:@"reloadRequirementList" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -308,6 +310,10 @@
     }
 }
 
+-(void)reloadRequirementList{
+    [self loadList];
+}
+
 -(void)loadList{
     [self startLoadingView];
     [MarketApi GetPageRequireListWithBlock:^(NSMutableArray *posts,NSString *total ,NSError *error) {
@@ -332,8 +338,8 @@
 -(UIView *)loadingView{
     if (!_loadingView) {
         _loadingView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 234)];
-        _loadingView.backgroundColor=[[UIColor alloc]initWithRed:0 green:0 blue:0 alpha:.5];
-        
+        //_loadingView.backgroundColor=[[UIColor alloc]initWithRed:0 green:0 blue:0 alpha:.5];
+        _loadingView.backgroundColor=[UIColor whiteColor];
         self.activityView.center=_loadingView.center;
         [_loadingView addSubview:self.activityView];
     }
@@ -342,7 +348,7 @@
 
 -(UIActivityIndicatorView *)activityView{
     if (!_activityView) {
-        _activityView=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        _activityView=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     }
     return _activityView;
 }
@@ -357,7 +363,9 @@
     [self.loadingView removeFromSuperview];
 }
 
-
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"reloadRequirementList" object:nil];
+}
 
 
 /***********************************************************/

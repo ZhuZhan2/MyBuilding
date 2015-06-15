@@ -65,7 +65,7 @@
     }
     
     if([dict[@"moneyMin"] isEqualToString:@""] && [dict[@"moneyMax"] isEqualToString:@""]){
-        self.a_money = @"-";
+        self.a_money = @"不限";
     }else{
         if([dict[@"moneyMin"] isEqualToString:@""]){
             self.a_money = [NSString stringWithFormat:@"不限－%@",dict[@"moneyMax"]];

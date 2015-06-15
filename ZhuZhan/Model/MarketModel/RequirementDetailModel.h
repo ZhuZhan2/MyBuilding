@@ -36,6 +36,8 @@
 @property (nonatomic, copy)NSString* a_replyContent;
 @property (nonatomic, copy)NSString* a_replyTime;
 
+@property (nonatomic)BOOL a_isFriend;
+
 @property (nonatomic, strong)NSDictionary* dict;
 /*
  bigType =         {

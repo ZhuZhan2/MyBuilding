@@ -76,6 +76,32 @@
                 [self showAlertWithContent:@"请选择需求信息中的需求所在地"];
                 return;
             }
+            
+            if(![self.projectView.minMoney isEqualToString:@""]){
+                if([self.projectView.minMoney doubleValue]>999999999.99 || [self.projectView.minMoney doubleValue]<1){
+                    [self showAlertWithContent:@"最低金额不能超过1000000000或者小于1"];
+                    return;
+                }
+                
+                if([self.projectView.minMoney doubleValue] >= [self.projectView.maxMoney doubleValue]){
+                    [self showAlertWithContent:@"最低金额不能超过或等于最高金额"];
+                    return;
+                }
+            }
+            
+            if(![self.projectView.maxMoney isEqualToString:@""]){
+                if([self.projectView.maxMoney doubleValue]>999999999.99 || [self.projectView.maxMoney doubleValue]<1){
+                    [self showAlertWithContent:@"最高金额不能超过1000000000或者小于1"];
+                    return;
+                }
+                
+                if([self.projectView.minMoney doubleValue] >= [self.projectView.maxMoney doubleValue]){
+                    [self showAlertWithContent:@"最低金额不能超过或等于最高金额"];
+                    return;
+                }
+            }
+            
+            
             NSArray* array = [self.projectView.area componentsSeparatedByString:@" "];
             [dic setObject:array[0] forKey:@"province"];
             [dic setObject:array[1] forKey:@"city"];

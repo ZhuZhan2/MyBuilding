@@ -10,6 +10,7 @@
 
 @protocol MarketListFootViewDelegate <NSObject>
 -(void)addFriend;
+-(void)delRequire;
 @end
 
 @interface MarketListFootView : UIView
@@ -17,7 +18,8 @@
 @property (nonatomic,strong)UIImageView *cutLine2;
 @property (nonatomic,strong)UILabel *countLabel;
 @property (nonatomic,strong)UIButton *addFriend;
+@property (nonatomic,strong)UIButton *delBtn;
 @property (nonatomic,weak)id<MarketListFootViewDelegate>delegate;
 + (CGFloat)footViewHeight;
--(void)setCount:(NSString *)count isSelf:(BOOL)isSelf;
+-(void)setCount:(NSString *)count isSelf:(BOOL)isSelf isPersonal:(BOOL)isPersonal;
 @end

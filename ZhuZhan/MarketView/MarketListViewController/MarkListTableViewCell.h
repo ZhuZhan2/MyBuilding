@@ -14,6 +14,7 @@
 
 @protocol MarkListTableViewCellDelegate <NSObject>
 -(void)addFriend:(NSIndexPath *)indexPath;
+-(void)delRequire:(NSIndexPath *)indexPath;
 @end
 
 @interface MarkListTableViewCell : BaseTableViewCell<MarketListFootViewDelegate>

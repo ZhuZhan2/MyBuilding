@@ -113,10 +113,45 @@
 }
 
 - (void)requirementCategoryViewAssistBtnClicked{
+    if(self.model.a_isFriend){
+        [self gotoChatView];
+    }else{
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"对方暂时不是你的好友，是否添加？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alertView show];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 1){
+        [self gotoAddFriend];
+    }
+}
+
+-(void)gotoChatView{
     ChatViewController* vc=[[ChatViewController alloc]init];
     vc.contactId = self.model.a_loginId;
     vc.titleStr = self.model.a_loginName;
+    vc.type=@"01";
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)gotoAddFriend{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:self.model.a_loginId forKey:@"userId"];
+    [AddressBookApi PostSendFriendRequestWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
+        }
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
