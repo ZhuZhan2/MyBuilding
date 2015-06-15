@@ -65,6 +65,11 @@
         return;
     }
     
+    if (![self isALLChineseAndEnglishWithStr:dic[@"realName"]]) {
+        [self showAlertWithContent:@"真实姓名必须为中文或英文"];
+        return;
+    }
+    
     switch (self.nowIndex) {
         case 0:{
             if ([self.projectView.area isEqualToString:@""]) {
@@ -133,6 +138,12 @@
     } dic:dic noNetWork:nil];
 }
 
+- (BOOL)isALLChineseAndEnglishWithStr:(NSString*)str{
+    NSRegularExpression* expression = [[NSRegularExpression alloc] initWithPattern:@"[a-zA-Z\u4E00-\u9FA5]" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger number = [expression numberOfMatchesInString:str options:0 range:NSMakeRange(0, str.length)];
+    return number == str.length;
+}
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView.tag == 1) {
         if (buttonIndex == 1) {
@@ -153,13 +164,21 @@
     [self setRightBtnWithText:@"发布"];
 }
 
+/**********************************************************
+ 函数描述：CategoryViewDelegate
+ **********************************************************/
 - (void)categoryViewClickedWithCategory:(NSString *)category index:(NSInteger)index{
+    if (self.nowIndex == index) return;
+    
     self.selectedIndex = index;
     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"切换需求类型后，填写的数据将被清空，是否继续？" delegate:self cancelButtonTitle:nil otherButtonTitles:@"取消",@"继续", nil];
     alertView.tag = 1;
     [alertView show];
 }
 
+/**********************************************************
+ 函数描述：用户确认切换需求类型
+ **********************************************************/
 - (void)sureToChangeRequirementType{
     [self.requirementCategoryView singleCategoryViewClickedWithIndex:self.selectedIndex needDelegate:NO needChangeView:YES];
     
@@ -290,6 +309,8 @@
 
 - (PublishRequirementMaterialView *)materialView{
     if (!_materialView) {
+        self.bigCategoryId = @"";
+        self.smallCategoryId = @"";
         _materialView = [PublishRequirementMaterialView materialView];
         _materialView.delegate = self;
     }

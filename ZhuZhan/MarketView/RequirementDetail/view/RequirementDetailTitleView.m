@@ -20,6 +20,9 @@
         [self addSubview:self.userImageView];
         [self addSubview:self.titleLabel];
         [self addSubview:self.timeLabel];
+        
+        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(titleViewClicked)];
+        [self addGestureRecognizer:tap];
     }
     return self;
 }
@@ -28,7 +31,7 @@
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:needRuond?@"默认图_需求详情_人头像126":@"默认图_需求详情_公司头像126"]];
     self.userImageView.layer.cornerRadius = needRuond?31.5:4;
     self.titleLabel.text = title;
-    self.timeLabel.text = title;
+    self.timeLabel.text = time;
     
     CGRect frame = self.userImageView.frame;
     frame.origin = CGPointMake(16, 13);
@@ -45,10 +48,24 @@
     self.timeLabel.frame = frame;
 }
 
+- (void)titleViewClicked{
+    if ([self.delegate respondsToSelector:@selector(requirementDetailTitleViewClicked:)]) {
+        [self.delegate requirementDetailTitleViewClicked:self];
+    }
+}
+
+- (void)userImageViewClicked:(UITapGestureRecognizer*)tap{
+    if ([self.delegate respondsToSelector:@selector(requirementDetailTitleViewUserImageClicked:imageView:)]) {
+        [self.delegate requirementDetailTitleViewUserImageClicked:self imageView:(UIImageView*)tap.view];
+    }
+}
+
 - (UIImageView *)userImageView{
     if (!_userImageView) {
         _userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 63, 63)];
         _userImageView.layer.masksToBounds = YES;
+        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userImageViewClicked:)];
+        [_userImageView addGestureRecognizer:tap];
     }
     return _userImageView;
 }

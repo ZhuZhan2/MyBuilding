@@ -27,7 +27,7 @@
 
 
 
-- (void)setContent:(NSString *)content time:(NSString *)time{
+- (void)setContent:(NSString *)content time:(NSString *)time needTime:(BOOL)needTime contentColor:(UIColor *)contentColor{
     [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
     [self addSubview:self.titleView];
@@ -35,18 +35,26 @@
     [self addSubview:self.timeLabel];
     
     self.contentLabel.text = content;
+    self.contentLabel.textColor = contentColor;
     self.timeLabel.text = time;
     
+    CGFloat height = 50;
     [RKViewFactory autoLabel:self.contentLabel maxWidth:CGRectGetWidth(self.contentLabel.frame)];
     CGRect frame = self.contentLabel.frame;
-    frame.origin.y = 50;
+    frame.origin.y = height;
     self.contentLabel.frame = frame;
+    height = CGRectGetMaxY(self.contentLabel.frame);
     
-    frame = self.timeLabel.frame;
-    frame.origin.y = CGRectGetMaxY(self.contentLabel.frame)+5;
-    self.timeLabel.frame = frame;
-    
-    self.frame = CGRectMake(0, 0, kScreenWidth, CGRectGetMaxY(self.timeLabel.frame)+10);
+    if (needTime) {
+        height += 5;
+        frame = self.timeLabel.frame;
+        frame.origin.y = height;
+        self.timeLabel.frame = frame;
+        height = CGRectGetMaxY(self.timeLabel.frame);
+    }
+
+    height += 10;
+    self.frame = CGRectMake(0, 0, kScreenWidth, height);
     
     [self addSepe];
 }
@@ -71,7 +79,6 @@
     if (!_contentLabel) {
         _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(18, 10, kScreenWidth-36, 0)];
         _contentLabel.font = [UIFont systemFontOfSize:17];
-        _contentLabel.textColor = RGBCOLOR(51, 51, 51);
     }
     return _contentLabel;
 }

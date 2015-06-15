@@ -23,7 +23,8 @@
                                @"03":@"找关系",
                                @"04":@"找合作",
                                @"05":@"其他"}[self.a_requireType];
-
+    self.a_isOpen = [dict[@"isOpen"] isEqualToString:@"01"];
+    
     self.a_realName = dict[@"realName"];
     self.a_telphone = dict[@"telphone"];
     

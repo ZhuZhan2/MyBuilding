@@ -23,7 +23,10 @@
 #import "RequirementCustomerReplyView.h"
 #import "ChatViewController.h"
 #import "ProjectStage.h"
-@interface RequirementDetailViewController ()<RequirementCategoryViewDelegate>
+#import "PersonalDetailViewController.h"
+#import "CompanyDetailViewController.h"
+
+@interface RequirementDetailViewController ()<RequirementDetailTitleViewDelegate,RequirementCategoryViewDelegate>
 @property (nonatomic, strong)RequirementDetailTitleView* titleView;
 @property (nonatomic, strong)RequirementCategoryView* categoryView;
 @property (nonatomic, strong)RequirementContactsInfoView* contactsInfoView;
@@ -63,7 +66,8 @@
 }
 
 - (void)reloadData{
-    [self.titleView setUserImageUrl:self.model.a_loginImagesId title:self.model.a_loginName time:self.model.a_createdTime needRound:self.model.a_isPsersonal];
+    NSString* createdTime = [ProjectStage ProjectCardTimeStage:self.model.a_createdTime];
+    [self.titleView setUserImageUrl:self.model.a_loginImagesId title:self.model.a_loginName time:createdTime needRound:self.model.a_isPsersonal];
     [self.categoryView setTitle:self.model.a_requireTypeName];
     self.categoryView.assistView.hidden = ([self.model.a_loginId isEqualToString:[LoginSqlite getdata:@"userId"]] || !self.model.a_isPsersonal || ![[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"]);
     self.contactsInfoView.realName = self.model.a_realName;
@@ -71,10 +75,12 @@
     
     self.viewArr = @[self.titleView,self.categoryView,self.contactsInfoView,self.requirementView];
     
-    if (![self.model.a_replyContent isEqualToString:@""]) {
+    if (self.model.a_isOpen) {
         NSString* time = [ProjectStage ProjectCardTimeStage:self.model.a_replyTime];
         
-        [self.customerReplyView setContent:self.model.a_replyContent time:time];
+        BOOL hasContent = ![self.model.a_replyContent isEqualToString:@""];
+                           
+        [self.customerReplyView setContent:hasContent?self.model.a_replyContent:@"抱歉！暂时还没有客服回应您，请耐心等待！" time:time needTime:hasContent contentColor:hasContent?RGBCOLOR(51, 51, 51):RGBCOLOR(187, 187, 187)];
         self.viewArr = @[self.titleView,self.categoryView,self.contactsInfoView,self.requirementView,self.customerReplyView];
     }
     
@@ -92,6 +98,18 @@
     RequireCommentViewController *view = [[RequireCommentViewController alloc] init];
     view.paramId = self.targetId;
     [self.navigationController pushViewController:view animated:YES];
+}
+
+- (void)requirementDetailTitleViewClicked:(RequirementDetailTitleView *)titleView{
+    if (self.model.a_isPsersonal) {
+        PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
+        personalVC.contactId = self.model.a_loginId;
+        [self.navigationController pushViewController:personalVC animated:YES];
+    }else{
+        CompanyDetailViewController* vc = [[CompanyDetailViewController alloc] init];
+        vc.companyId = self.model.a_loginId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)requirementCategoryViewAssistBtnClicked{
@@ -131,6 +149,7 @@
 - (RequirementDetailTitleView *)titleView{
     if (!_titleView) {
         _titleView = [[RequirementDetailTitleView alloc] init];
+        _titleView.delegate = self;
         
         UIView* view = [RKShadowView seperatorLineWithHeight:10 top:0];
         [_titleView addSubview:view];
