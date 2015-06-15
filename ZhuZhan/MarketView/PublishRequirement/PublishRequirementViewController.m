@@ -159,6 +159,7 @@
 
     [MarketApi AddRequireWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RequirementListReload" object:nil];
             [[[UIAlertView alloc] initWithTitle:@"提醒" message:@"发布成功" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil] show];
         }
     } dic:dic noNetWork:nil];
@@ -295,6 +296,7 @@
 - (PublishRequirementContactsInfoView *)contactsInfoView{
     if (!_contactsInfoView) {
         _contactsInfoView = [PublishRequirementContactsInfoView infoView];
+        _contactsInfoView.phoneNumberField.keyboardType = UIKeyboardTypePhonePad;
         
         _contactsInfoView.publishUserName = [LoginSqlite getdata:@"userName"];
         BOOL isPersonal = [[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"];

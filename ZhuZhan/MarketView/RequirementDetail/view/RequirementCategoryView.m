@@ -42,7 +42,6 @@
 - (UIButton *)assistView{
     if (!_assistView) {
         _assistView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 82, 29)];
-        [_assistView setBackgroundImage:[GetImagePath getImagePath:@"touchTA"] forState:UIControlStateNormal];
         _assistView.center = CGPointMake(260, 20);
         _assistView.titleLabel.font = [UIFont systemFontOfSize:17];
         [_assistView addTarget:self action:@selector(assistBtnClicked) forControlEvents:UIControlEventTouchUpInside];

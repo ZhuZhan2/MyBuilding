@@ -14,5 +14,6 @@
 @property (nonatomic, copy)NSString* phoneNumber;
 @property (nonatomic)BOOL allUserSee;
 
+@property (nonatomic, strong)UITextField* phoneNumberField;
 + (PublishRequirementContactsInfoView*)infoView;
 @end

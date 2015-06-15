@@ -25,8 +25,10 @@
 #import "ProjectStage.h"
 #import "PersonalDetailViewController.h"
 #import "CompanyDetailViewController.h"
+#import "AddressBookApi.h"
+#import "MarketModel.h"
 
-@interface RequirementDetailViewController ()<RequirementDetailTitleViewDelegate,RequirementCategoryViewDelegate>
+@interface RequirementDetailViewController ()<RequirementDetailTitleViewDelegate,RequirementCategoryViewDelegate,UIAlertViewDelegate>
 @property (nonatomic, strong)RequirementDetailTitleView* titleView;
 @property (nonatomic, strong)RequirementCategoryView* categoryView;
 @property (nonatomic, strong)RequirementContactsInfoView* contactsInfoView;
@@ -69,7 +71,17 @@
     NSString* createdTime = [ProjectStage ProjectCardTimeStage:self.model.a_createdTime];
     [self.titleView setUserImageUrl:self.model.a_loginImagesId title:self.model.a_loginName time:createdTime needRound:self.model.a_isPsersonal];
     [self.categoryView setTitle:self.model.a_requireTypeName];
-    self.categoryView.assistView.hidden = ([self.model.a_loginId isEqualToString:[LoginSqlite getdata:@"userId"]] || !self.model.a_isPsersonal || ![[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"]);
+    
+    //判断是否要有assist按钮
+    BOOL isSelf = [self.model.a_loginId isEqualToString:[LoginSqlite getdata:@"userId"]];
+    BOOL selfIsPersonal = [[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"];
+    BOOL createByIsPersonal = self.model.a_isPsersonal;
+    BOOL needShow = isSelf || (selfIsPersonal&&createByIsPersonal);
+    self.categoryView.assistView.hidden = !needShow;
+    
+    //判断按钮内容是“删除”还是“联系他”
+    [self.categoryView.assistView setBackgroundImage:[GetImagePath getImagePath:isSelf?@"card_delete":@"touchTA"] forState:UIControlStateNormal];
+
     self.contactsInfoView.realName = self.model.a_realName;
     self.contactsInfoView.phoneNumber = self.model.a_telphone;
     
@@ -113,17 +125,28 @@
 }
 
 - (void)requirementCategoryViewAssistBtnClicked{
-    if(self.model.a_isFriend){
+    BOOL isSelf = [self.model.a_loginId isEqualToString:[LoginSqlite getdata:@"userId"]];
+    if (isSelf) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请问是否确定删除？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alertView.tag = 2;
+        [alertView show];
+        
+    }else if(self.model.a_isFriend){
         [self gotoChatView];
     }else{
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"对方暂时不是你的好友，是否添加？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alertView.tag = 1;
         [alertView show];
     }
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex == 1){
+    if(alertView.tag == 1 && buttonIndex == 1){
         [self gotoAddFriend];
+    }else if (alertView.tag == 2 && buttonIndex == 1){
+        [self gotoDelete];
+    }else if (alertView.tag == 3){
+        [self leftBtnClicked];
     }
 }
 
@@ -153,6 +176,28 @@
         [ErrorCode alert];
     }];
 }
+
+-(void)gotoDelete{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:self.targetId forKey:@"reqId"];
+    [MarketApi DelRequireWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RequirementListReload" object:nil];
+            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"删除成功" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            alertView.tag = 3;
+            [alertView show];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
+        }
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.viewArr.count;
