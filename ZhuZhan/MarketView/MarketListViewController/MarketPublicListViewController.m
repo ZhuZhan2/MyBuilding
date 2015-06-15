@@ -242,7 +242,10 @@
         if(model.a_isFriend){
             [self gotoChatView:model];
         }else{
-            [self gotoAddFriend:model];
+            self.marketModel = model;
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"对方暂时不是你的好友，是否添加？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            alertView.tag = 1;
+            [alertView show];
         }
     }
 }
@@ -254,13 +257,20 @@
         MarketModel *model = self.modelsArr[indexPath.row];
         self.marketModel = model;
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"是否删除需求" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alertView.tag = 0;
         [alertView show];
     }
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex == 1){
-        [self gotoDelete:self.marketModel];
+    if(alertView.tag == 0){
+        if(buttonIndex == 1){
+            [self gotoDelete:self.marketModel];
+        }
+    }else{
+        if(buttonIndex == 1){
+            [self gotoAddFriend:self.marketModel];
+        }
     }
 }
 
@@ -310,6 +320,7 @@
     [MarketApi DelRequireWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             [self loadList];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadRequirementList" object:nil];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];

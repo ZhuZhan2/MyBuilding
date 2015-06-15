@@ -24,7 +24,7 @@
 #import "ChatViewController.h"
 #import "ProjectStage.h"
 #import "AddressBookApi.h"
-@interface RequirementDetailViewController ()<RequirementCategoryViewDelegate>
+@interface RequirementDetailViewController ()<RequirementCategoryViewDelegate,UIAlertViewDelegate>
 @property (nonatomic, strong)RequirementDetailTitleView* titleView;
 @property (nonatomic, strong)RequirementCategoryView* categoryView;
 @property (nonatomic, strong)RequirementContactsInfoView* contactsInfoView;
@@ -99,6 +99,13 @@
     if(self.model.a_isFriend){
         [self gotoChatView];
     }else{
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"对方暂时不是你的好友，是否添加？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alertView show];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 1){
         [self gotoAddFriend];
     }
 }
@@ -107,6 +114,7 @@
     ChatViewController* vc=[[ChatViewController alloc]init];
     vc.contactId = self.model.a_loginId;
     vc.titleStr = self.model.a_loginName;
+    vc.type=@"01";
     [self.navigationController pushViewController:vc animated:YES];
 }
 

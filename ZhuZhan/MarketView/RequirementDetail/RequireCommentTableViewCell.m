@@ -98,6 +98,11 @@
 -(void)setModel:(ContactCommentModel *)model{
     [self.headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:model.a_avatarUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:model.a_isPersonal?@"默认图_用户头像_卡片头像":@"默认图_公司头像_卡片头像"]];
     self.headBtn.layer.cornerRadius = model.a_isPersonal?20:3;
+    if(model.a_isSelf){
+        self.nameLabel.textColor = BlueColor;
+    }else{
+        self.nameLabel.textColor = RGBCOLOR(51, 51, 51);
+    }
     self.nameLabel.text = model.a_userName;
     self.timeLabel.text = model.a_createdTime;
     self.contentLabel.text = model.a_commentContents;

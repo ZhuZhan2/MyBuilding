@@ -77,6 +77,8 @@
     
 //    [self.scrollView addSubview:self.centerImageView];
 //    [self.scrollView addSubview:self.centerBtn];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadRequirementList) name:@"reloadRequirementList" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -308,6 +310,10 @@
     }
 }
 
+-(void)reloadRequirementList{
+    [self loadList];
+}
+
 -(void)loadList{
     [self startLoadingView];
     [MarketApi GetPageRequireListWithBlock:^(NSMutableArray *posts,NSString *total ,NSError *error) {
@@ -357,7 +363,9 @@
     [self.loadingView removeFromSuperview];
 }
 
-
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"reloadRequirementList" object:nil];
+}
 
 
 /***********************************************************/

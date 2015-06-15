@@ -65,7 +65,7 @@
 }
 
 -(void)initTitle{
-    self.title = [NSString stringWithFormat:@"评论（%@条）",self.commentCount];
+    self.title = [NSString stringWithFormat:@"评论"];
 }
 
 -(void)leftBtnClick{
@@ -144,7 +144,6 @@
     [MarketApi GetCommentListWithBlock:^(NSMutableArray *posts, NSString *total, NSError *error) {
         if(!error){
             self.commentCount = total;
-            [self initTitle];
             [self.modelsArr removeAllObjects];
             self.modelsArr = posts;
             if(self.modelsArr.count == 0){
