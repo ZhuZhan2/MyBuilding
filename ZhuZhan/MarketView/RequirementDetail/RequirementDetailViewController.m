@@ -113,6 +113,8 @@
 }
 
 - (void)requirementDetailTitleViewClicked:(RequirementDetailTitleView *)titleView{
+    if ([self.model.a_loginId isEqualToString:[LoginSqlite getdata:@"userId"]]) return;
+        
     if (self.model.a_isPsersonal) {
         PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
         personalVC.contactId = self.model.a_loginId;

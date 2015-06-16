@@ -55,9 +55,19 @@
 
 - (void)rightBtnClicked{
     NSMutableDictionary* dic = [NSMutableDictionary dictionary];
-    [dic setObject:self.contactsInfoView.realName forKey:@"realName"];
-    [dic setObject:self.contactsInfoView.phoneNumber forKey:@"tel"];
+    
+    //真实姓名
+    NSString* realName = [self.contactsInfoView.realName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    [dic setObject:realName forKey:@"realName"];
+    
+    //联系电话
+    NSString* phoneNumber = [self.contactsInfoView.phoneNumber stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    [dic setObject:phoneNumber forKey:@"tel"];
+    
+    //平台所有用户可见和客服可见
     [dic setObject:self.contactsInfoView.allUserSee?@"00":@"01" forKey:@"isOpen"];
+    
+    //需求类型，项目01，材料02，关系03，合作04，其他05
     [dic setObject:@[@"01",@"02",@"03",@"04",@"05"][self.nowIndex] forKey:@"requireType"];
     
     if ([dic[@"tel"] isEqualToString:@""]) {
@@ -65,8 +75,13 @@
         return;
     }
     
-    if (![self isALLChineseAndEnglishWithStr:dic[@"realName"]]) {
-        [self showAlertWithContent:@"真实姓名必须为中文或英文"];
+    if (![self complyPhoneNumberRuleWithStr:dic[@"tel"]]) {
+        [self showAlertWithContent:@"联系电话仅支持数字和“-”，请修改再试！"];
+        return;
+    }
+    
+    if (![self complyRealNameRuleWithStr:dic[@"realName"]]) {
+        [self showAlertWithContent:@"真实姓名仅支持中文和英文，请修改再试！"];
         return;
     }
     
@@ -165,8 +180,14 @@
     } dic:dic noNetWork:nil];
 }
 
-- (BOOL)isALLChineseAndEnglishWithStr:(NSString*)str{
-    NSRegularExpression* expression = [[NSRegularExpression alloc] initWithPattern:@"[a-zA-Z\u4E00-\u9FA5]" options:NSRegularExpressionCaseInsensitive error:nil];
+- (BOOL)complyRealNameRuleWithStr:(NSString*)str{
+    NSRegularExpression* expression = [[NSRegularExpression alloc] initWithPattern:@"[ a-zA-Z\u4E00-\u9FA5]" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger number = [expression numberOfMatchesInString:str options:0 range:NSMakeRange(0, str.length)];
+    return number == str.length;
+}
+
+- (BOOL)complyPhoneNumberRuleWithStr:(NSString*)str{
+    NSRegularExpression* expression = [[NSRegularExpression alloc] initWithPattern:@"[-0-9]" options:NSRegularExpressionCaseInsensitive error:nil];
     NSUInteger number = [expression numberOfMatchesInString:str options:0 range:NSMakeRange(0, str.length)];
     return number == str.length;
 }
@@ -296,7 +317,6 @@
 - (PublishRequirementContactsInfoView *)contactsInfoView{
     if (!_contactsInfoView) {
         _contactsInfoView = [PublishRequirementContactsInfoView infoView];
-        _contactsInfoView.phoneNumberField.keyboardType = UIKeyboardTypePhonePad;
         
         _contactsInfoView.publishUserName = [LoginSqlite getdata:@"userName"];
         BOOL isPersonal = [[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"];
