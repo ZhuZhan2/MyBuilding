@@ -17,6 +17,7 @@
 
 @property (nonatomic, copy)NSString* a_requireType;
 @property (nonatomic, copy)NSString* a_requireTypeName;
+@property (nonatomic)BOOL a_isOpen;
 
 @property (nonatomic, copy)NSString* a_realName;
 @property (nonatomic, copy)NSString* a_telphone;

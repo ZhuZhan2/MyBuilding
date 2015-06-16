@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface RequirementCustomerReplyView : UIView
-- (void)setContent:(NSString*)content time:(NSString*)time;
+- (void)setContent:(NSString *)content time:(NSString *)time needTime:(BOOL)needTime contentColor:(UIColor*)contentColor;
 @end

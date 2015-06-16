@@ -13,7 +13,6 @@
 @interface PublishRequirementContactsInfoView()
 @property (nonatomic, strong)UITextField* publishNameField;
 @property (nonatomic, strong)UITextField* realNameField;
-@property (nonatomic, strong)UITextField* phoneNumberField;
 
 @property (nonatomic, strong)UIButton* allUserBtn;
 @property (nonatomic, strong)UIButton* onlyPlatformUserBtn;
