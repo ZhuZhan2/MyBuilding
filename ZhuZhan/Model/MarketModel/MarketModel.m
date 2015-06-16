@@ -89,14 +89,14 @@
         self.a_smallTypeCn = dict[@"smallTypeCn"];
     }
     
-    self.a_commentCount = dict[@"commentsNum"];
+    if([dict[@"commentsNum"] intValue] >100){
+        self.a_commentCount = @"99";
+    }else{
+        self.a_commentCount = dict[@"commentsNum"];
+    }
     
     if([[LoginSqlite getdata:@"userId"] isEqualToString:dict[@"loginId"]]){
-        if(self.a_needRound){
-            self.a_isSelf = YES;
-        }else{
-            self.a_isSelf = NO;
-        }
+        self.a_isSelf = YES;
     }else{
         self.a_isSelf = NO;
     }

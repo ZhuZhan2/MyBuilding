@@ -162,8 +162,16 @@
         if (!error) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"RequirementListReload" object:nil];
             [[[UIAlertView alloc] initWithTitle:@"提醒" message:@"发布成功" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil] show];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
         }
-    } dic:dic noNetWork:nil];
+    } dic:dic noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 - (BOOL)isALLChineseAndEnglishWithStr:(NSString*)str{
@@ -402,6 +410,13 @@
 -(void)chooseProductBigStage:(NSString *)str catroyId:(NSString *)catroyId allClassificationArr:(NSMutableArray *)allClassification{
     self.materialView.bigCategory = str;
     self.bigCategoryId = catroyId;
+    
+    NSMutableString *idStr = [[NSMutableString alloc] init];
+    [allClassification enumerateObjectsUsingBlock:^(ChooseProductCellModel *cellModel, NSUInteger idx, BOOL *stop) {
+        [idStr appendString:[NSString stringWithFormat:idx==allClassification.count-1?@"%@":@"%@,",cellModel.aid]];
+    }];
+    self.materialView.smallCategory = @"默认全选";
+    self.smallCategoryId = idStr;
 }
 
 -(void)chooseProductSmallStage:(NSArray *)arr{

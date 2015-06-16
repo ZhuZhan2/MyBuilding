@@ -41,6 +41,11 @@
 }
 
 -(void)loadListWithKeyWords:(NSString*)keyWords{
+    if([[keyWords stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请输入搜索条件" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
     [self.models removeAllObjects];
     for (ValidatePlatformContactModel* model in self.sqliteModels) {
         if ([model.a_userPhoneName containsString:keyWords]) {
