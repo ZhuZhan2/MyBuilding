@@ -15,6 +15,9 @@
 #import "AddCommentViewController.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "CommentApi.h"
+#import "ContactCommentModel.h"
+#import "PersonalDetailViewController.h"
+#import "CompanyDetailViewController.h"
 @interface RequireCommentViewController ()<UITableViewDelegate,UITableViewDataSource,AddCommentDelegate,RequireCommentTableViewCellDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *modelsArr;
@@ -57,7 +60,7 @@
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setFrame:CGRectMake(0, 0, 50, 20)];
-    [rightButton setTitle:@"发评论" forState:UIControlStateNormal];
+    [rightButton setTitle:@"写评论" forState:UIControlStateNormal];
     rightButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
@@ -273,6 +276,21 @@
         } dic:[@{@"commentId":model.a_id,@"commentType":@"04"} mutableCopy] noNetWork:^{
             [ErrorCode alert];
         }];
+    }
+}
+
+-(void)headClick:(NSIndexPath *)indexPath{
+    ContactCommentModel *model = self.modelsArr[indexPath.row];
+    if(!model.a_isService){
+        if (model.a_isPersonal) {
+            PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
+            personalVC.contactId = model.a_loginId;
+            [self.navigationController pushViewController:personalVC animated:YES];
+        }else{
+            CompanyDetailViewController* vc = [[CompanyDetailViewController alloc] init];
+            vc.companyId = model.a_loginId;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 @end

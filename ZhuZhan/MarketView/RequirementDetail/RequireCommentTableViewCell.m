@@ -35,6 +35,7 @@
         _headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _headBtn.frame = CGRectMake(10, 10, 40, 40);
         _headBtn.layer.masksToBounds = YES;
+        [_headBtn addTarget:self action:@selector(headActiobn) forControlEvents:UIControlEventTouchUpInside];
     }
     return _headBtn;
 }
@@ -96,7 +97,17 @@
 }
 
 -(void)setModel:(ContactCommentModel *)model{
-    [self.headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:model.a_avatarUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:model.a_isPersonal?@"默认图_用户头像_卡片头像":@"默认图_公司头像_卡片头像"]];
+    UIImage *image = nil;
+    if(model.a_isService){
+        image = [GetImagePath getImagePath:@"card_ service"];
+    }else{
+        if(model.a_isPersonal){
+            image = [GetImagePath getImagePath:@"默认图_用户头像_卡片头像"];
+        }else{
+            image = [GetImagePath getImagePath:@"默认图_公司头像_卡片头像"];
+        }
+    }
+    [self.headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:model.a_avatarUrl] forState:UIControlStateNormal placeholderImage:image];
     self.headBtn.layer.cornerRadius = model.a_isPersonal?20:3;
     if(model.a_isSelf){
         self.nameLabel.textColor = BlueColor;
@@ -117,6 +128,12 @@
         self.delBtn.hidden = NO;
     }else{
         self.delBtn.hidden = YES;
+    }
+}
+
+-(void)headActiobn{
+    if([self.delegate respondsToSelector:@selector(headClick:)]){
+        [self.delegate headClick:self.indexPath];
     }
 }
 @end

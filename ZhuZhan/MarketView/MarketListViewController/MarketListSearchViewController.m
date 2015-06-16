@@ -36,6 +36,7 @@
     self.searchBar.placeholder = @"可以搜索多个关键字，空格隔开。";
     //集成刷新控件
     [self setupRefresh];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requirementListReload) name:@"RequirementListReload" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -246,7 +247,7 @@
             self.modelsArr = posts;
             if(self.modelsArr.count == 0){
                 [MyTableView reloadDataWithTableView:self.tableView];
-                [MyTableView hasData:self.tableView];
+                [MyTableView noSearchData:self.tableView];
             }else{
                 [MyTableView removeFootView:self.tableView];
                 [self.tableView reloadData];
@@ -276,7 +277,7 @@
             [self.modelsArr addObjectsFromArray:posts];
             if(self.modelsArr.count == 0){
                 [MyTableView reloadDataWithTableView:self.tableView];
-                [MyTableView hasData:self.tableView];
+                [MyTableView noSearchData:self.tableView];
             }else{
                 [MyTableView removeFootView:self.tableView];
                 [self.tableView reloadData];
@@ -389,5 +390,13 @@
     vc.titleStr = model.a_loginName;
     vc.type=@"01";
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)requirementListReload{
+    [self headerRereshing];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"requirementListReload" object:nil];
 }
 @end

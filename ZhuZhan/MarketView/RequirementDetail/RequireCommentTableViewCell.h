@@ -11,6 +11,7 @@
 
 @protocol RequireCommentTableViewCellDelegate <NSObject>
 -(void)deleteComment:(NSIndexPath *)indexPath;
+-(void)headClick:(NSIndexPath *)indexPath;
 @end
 
 @interface RequireCommentTableViewCell : UITableViewCell

@@ -20,6 +20,8 @@
 @property (nonatomic) BOOL a_isSelf;
 @property (nonatomic, copy) NSDate *a_time;
 @property (nonatomic, copy) NSString *a_createdTime;
+@property (nonatomic)BOOL a_isService;
+@property (nonatomic,copy)NSString *a_loginId;
 
 @property (nonatomic, copy) NSDictionary *dict;
 

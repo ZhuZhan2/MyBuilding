@@ -30,7 +30,7 @@
 - (void)setImageUrl:(NSString*)imageUrl title:(NSString *)title type:(NSString *)type time:(NSString *)time needRound:(BOOL)needRound{
     [self.headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:imageUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:needRound?@"默认图_用户头像_卡片头像":@"默认图_公司头像_卡片头像"]];
     self.headBtn.layer.cornerRadius = needRound?20:3;
-    self.titleLabel.text = title;
+    self.titleLabel.text = @"去问去问去问去问去问去问去问去问去问傲视";
     self.typeLabel.text = type;
     self.timeLabel.text = time;
     
@@ -63,7 +63,7 @@
 
 - (UILabel *)titleLabel{
     if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 20)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 250, 20)];
         _titleLabel.textColor = RGBCOLOR(51, 51, 51);
         _titleLabel.font = [UIFont systemFontOfSize:16];
     }
