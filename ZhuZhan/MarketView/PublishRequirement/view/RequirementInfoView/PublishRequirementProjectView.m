@@ -67,6 +67,7 @@
     CGRect frame = field1.frame;
     frame.origin.x = 18;
     field1.frame = frame;
+    field1.delegate = self;
     [view addSubview:field1];
     field1.keyboardType = UIKeyboardTypeDecimalPad;
     self.minMoneyField = field1;
@@ -75,6 +76,7 @@
     frame = field2.frame;
     frame.origin.x = 184;
     field2.frame = frame;
+    field2.delegate = self;
     [view addSubview:field2];
     field2.keyboardType = UIKeyboardTypeDecimalPad;
     self.maxMoneyField = field2;
@@ -172,5 +174,29 @@
 
 - (NSString *)area{
     return self.areaField.text;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    
+    NSMutableString * futureString = [NSMutableString stringWithString:textField.text];
+    [futureString  insertString:string atIndex:range.location];
+    
+    NSInteger flag=0;
+    const NSInteger limited = 2;
+    for (int i = (int)futureString.length-1; i>=0; i--) {
+        
+        if ([futureString characterAtIndex:i] == '.') {
+            
+            if (flag > limited) {
+                return NO;
+            }
+            
+            break;
+        }
+        flag++;
+    }
+    
+    return YES;
 }
 @end

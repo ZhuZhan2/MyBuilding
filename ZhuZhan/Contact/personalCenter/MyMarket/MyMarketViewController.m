@@ -50,6 +50,7 @@
     [self initStageChooseViewWithStages:@[@"公开需求",@"客服需求"] numbers:nil underLineIsWhole:YES normalColor:AllLightGrayColor highlightColor:BlueColor];
     //集成刷新控件
     [self setupRefresh];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requirementListReload) name:@"RequirementListReload" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -414,5 +415,13 @@
             [self loadList];
         }];
     }];
+}
+
+-(void)requirementListReload{
+    [self loadList];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"RequirementListReload" object:nil];
 }
 @end

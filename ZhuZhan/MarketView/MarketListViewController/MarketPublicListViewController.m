@@ -45,6 +45,7 @@
     self.requireType = @"";
     self.startIndex = 0;
     [self loadList];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requirementListReload) name:@"RequirementListReload" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -397,5 +398,13 @@
             [self loadList];
         }];
     }];
+}
+
+-(void)requirementListReload{
+    [self loadList];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"requirementListReload" object:nil];
 }
 @end
