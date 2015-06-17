@@ -166,6 +166,10 @@
 }
 
 +(NSString*)getPart:(NSArray*)detailStage contacts:(NSMutableArray*)contacts images:(NSMutableArray*)images{
+    if (!detailStage.count && !contacts.count && !images.count) {
+        return @"none";
+    }
+    
     NSInteger count=0;
     if (contacts) {
         count++;
@@ -216,20 +220,39 @@
     
     NSMutableArray* array=[[NSMutableArray alloc]init];
     
-    //土地规划/拍卖
-    NSArray* auctionStage=@[model.a_landName,model.a_province,model.a_city,model.a_district,model.a_landAddress,model.a_area,model.a_plotRatio,model.a_usage,model.auctionContacts,model.auctionImages];
-    //model.a_landName,model.a_province,model.a_city,model.a_district,model.a_landAddress,model.a_area ,model.a_plotRatio,model.a_usage,model.auctionContacts
-    [array addObject:[self getPart:auctionStage contacts:model.auctionContacts images:model.auctionImages] ];
+    NSMutableArray* imageArr = [NSMutableArray array];
+    [imageArr addObjectsFromArray:model.auctionImages];
+    [imageArr addObjectsFromArray:model.explorationImages];
+    [imageArr addObjectsFromArray:model.constructionImages];
+    [imageArr addObjectsFromArray:model.pileImages];
+    [imageArr addObjectsFromArray:model.mainBulidImages];
+    [imageArr addObjectsFromArray:model.decorationImages];
     
+    //土地规划/拍卖
+    //每阶段有图到只有第一个阶段有图的转换代码
+//    NSArray* auctionStage=@[model.a_landName,model.a_province,model.a_city,model.a_district,model.a_landAddress,model.a_area,model.a_plotRatio,model.a_usage,model.auctionContacts,model.auctionImages];
+    NSArray* auctionStage=@[model.a_landName,model.a_province,model.a_city,model.a_district,model.a_landAddress,model.a_area,model.a_plotRatio,model.a_usage,model.auctionContacts,imageArr];
+
+    //model.a_landName,model.a_province,model.a_city,model.a_district,model.a_landAddress,model.a_area ,model.a_plotRatio,model.a_usage,model.auctionContacts
+    //每阶段有图到只有第一个阶段有图的转换代码
+//    [array addObject:[self getPart:auctionStage contacts:model.auctionContacts images:model.auctionImages] ];
+    [array addObject:[self getPart:auctionStage contacts:model.auctionContacts images:imageArr]];
+
     //项目立项
-    NSArray* approvalStage=@[model.a_projectName,model.a_city,model.a_district,model.a_landAddress,model.a_description,model.a_exceptStartTime,model.a_storeyHeight,@"",model.a_exceptFinishTime,model.a_investment,model.a_storeyArea,model.a_ownerType,model.ownerContacts];
+    NSArray* approvalStage=@[model.a_projectName,model.a_city,model.a_district,model.a_landAddress,model.a_description,model.a_exceptStartTime,model.a_storeyHeight,model.a_foreignInvestment,model.a_exceptFinishTime,model.a_investment,model.a_storeyArea,model.a_ownerType,model.ownerContacts];
     //model.a_projectName,model.a_city,model.a_district,model.a_landAddress,model.a_description,model.a_exceptStartTime,model.a_storeyHeight,model.a_foreignInvestment,model.a_exceptFinishTime,model.a_investment,model.a_storeyArea,model.a_ownerType,model.ownerContacts
     [array addObject:[self getPart:approvalStage contacts:model.ownerContacts images:nil]];
     
     //地勘阶段
-    NSArray* explorationStage=@[model.explorationContacts,model.explorationImages];
+    //每阶段有图到只有第一个阶段有图的转换代码
+//    NSArray* explorationStage=@[model.explorationContacts,model.explorationImages];
+    NSArray* explorationStage=@[model.explorationContacts];
+
     //model.explorationContacts,model.explorationImages
-    [array addObject:[self getPart:explorationStage contacts:model.explorationContacts images:model.explorationImages]];
+    //每阶段有图到只有第一个阶段有图的转换代码
+//    [array addObject:[self getPart:explorationStage contacts:model.explorationContacts images:model.explorationImages]];
+    [array addObject:[self getPart:explorationStage contacts:model.explorationContacts images:nil]];
+
     
     //设计阶段
     NSArray* designStage=@[model.a_mainDesignStage,model.designContacts];
@@ -242,29 +265,48 @@
     [array addObject:[self getPart:pictureStage contacts:model.ownerContacts images:nil]];
    
     //地平阶段
-    NSArray* constructionStage=@[model.a_actureStartTime,model.constructionContacts,model.constructionImages];
+    //每阶段有图到只有第一个阶段有图的转换代码
+//    NSArray* constructionStage=@[model.a_actureStartTime,model.constructionContacts,model.constructionImages];
+    NSArray* constructionStage=@[model.a_actureStartTime,model.constructionContacts];
+
 //    model.constructionContacts,model.a_actureStartTime,model.constructionImages
-    [array addObject:[self getPart:constructionStage contacts:model.constructionContacts images:model.constructionImages]];
+    //每阶段有图到只有第一个阶段有图的转换代码
+//    NSArray* constructionStage=@[model.a_actureStartTime,model.constructionContacts,model.constructionImages];
+    [array addObject:[self getPart:constructionStage contacts:model.constructionContacts images:nil]];
    
     //桩基基坑
-    NSArray* pileStage=@[model.pileContacts,model.pileImages];
+    //每阶段有图到只有第一个阶段有图的转换代码
+//    NSArray* pileStage=@[model.pileContacts,model.pileImages];
+    NSArray* pileStage=@[model.pileContacts];
+
     //model.pileContacts,model.pileImages
-    [array addObject:[self getPart:pileStage contacts:model.pileContacts images:model.pileImages]];
+    //每阶段有图到只有第一个阶段有图的转换代码
+//    [array addObject:[self getPart:pileStage contacts:model.pileContacts images:model.pileImages]];
+    [array addObject:[self getPart:pileStage contacts:model.pileContacts images:nil]];
     
     //主体施工
-    NSArray* mainBulidStage=@[model.mainBulidImages];
+    //每阶段有图到只有第一个阶段有图的转换代码
+//    NSArray* mainBulidStage=@[model.mainBulidImages];
+    NSArray* mainBulidStage=@[];
+
     //model.mainBulidImages
-    [array addObject:[self getPart:mainBulidStage contacts:nil images:model.mainBulidImages]];
-    
+    //每阶段有图到只有第一个阶段有图的转换代码
+//    [array addObject:[self getPart:mainBulidStage contacts:nil images:model.mainBulidImages]];
+    [array addObject:[self getPart:mainBulidStage contacts:nil images:nil]];
+
     //消防/景观绿化
     NSArray* fireGreenStage=@[model.a_fireControl,model.a_green];
     //model.a_fireControl,model.a_green
     [array addObject:[self getPart:fireGreenStage contacts:nil images:nil]];
     
     //装修阶段
-    NSArray* decorationStage=@[model.a_electorWeakInstallation,model.a_decorationSituation,model.a_decorationProcess,model.decorationImages];
+    //每阶段有图到只有第一个阶段有图的转换代码
+//    NSArray* decorationStage=@[model.a_electorWeakInstallation,model.a_decorationSituation,model.a_decorationProcess,model.decorationImages];
+    NSArray* decorationStage=@[model.a_electorWeakInstallation,model.a_decorationSituation,model.a_decorationProcess];
+
     //model.a_electorWeakInstallation,model.a_decorationSituation,model.a_decorationProcess,model.decorationImages
-    [array addObject:[self getPart:decorationStage contacts:nil images:model.decorationImages]];
+    //每阶段有图到只有第一个阶段有图的转换代码
+    [array addObject:[self getPart:decorationStage contacts:nil images:nil]];
     
     return array;
 }

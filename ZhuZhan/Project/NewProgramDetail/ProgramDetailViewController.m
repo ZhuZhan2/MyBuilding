@@ -881,28 +881,14 @@
 #warning 考虑以下for循环是否可优化
     for (int i=1; i<=section; i++) {//土地信息阶段必存在，不用判断和操作
         [self addNewViewWithStage:i scrollView:self.contentTableView];
-        
-        //        if (!self.mainDesign&&i==1) {
-        //            //加载主体设计
-        //            self.mainDesign=[MainDesign getMainDesignWithDelegate:self part:1];
-        //            [self addNewView:self.mainDesign scrollView:self.contentTableView];
-        //
-        //        }else if(!self.mainBuild&&i==2){
-        //            //加载主体施工
-        //            self.mainBuild=[MainBuild getMainBuildWithDelegate:self part:2];
-        //            [self addNewView:self.mainBuild scrollView:self.contentTableView];
-        //        }else if(!self.decorationProject&&i==3){
-        //            //加载装修
-        //            self.decorationProject=[DecorationProject getDecorationProjectWithDelegate:self part:3];
-        //            [self addNewView:self.decorationProject scrollView:self.contentTableView];
-        //        }
     }
     //如果导致装修的界面需要被动画加载出来，则进行无动画加载装修view
-    if (!self.decorationProject&&section==2&&row==3) {//计算坐标比较复杂，直接从结果中判断是否需要加载装修页面,判断下来,当用户点击第三大阶段第四小阶段时,需要无动画加载装修
+    //if (!self.decorationProject&&section==2&&row==3) {
+        //计算坐标比较复杂，直接从结果中判断是否需要加载装修页面,判断下来,当用户点击第三大阶段第四小阶段时,需要无动画加载装修
         //[self addNewViewWithStage:3 scrollView:self.contentTableView];
         //        self.decorationProject=[DecorationProject getDecorationProjectWithDelegate:self part:3];
         //        [self addNewView:self.decorationProject scrollView:self.contentTableView];
-    }
+    //}
     NSInteger smallStageCount[4]={2,3,4,1};
     NSInteger sumSmallStage=0;
     for (int i=0; i<section; i++) {
@@ -1006,8 +992,11 @@
                 third=[self.allStages[temp[indexPath.section]+indexPath.row] isEqualToString:@"all"]?YES:NO;
             }
         }
-        
-        ProgramSelectViewCell* cell=[ProgramSelectViewCell dequeueReusableCellWithTabelView:tableView identifier:@"Cell" indexPath:indexPath firstIcon:first secondIcon:second thirdIcon:third stageLight:stageLight];
+        //图片本来是分阶段的，所以需要在参数secondIcon中传入对应的有无图片的值去判断，现在图片全部到第一个阶段了，所以不用区分图片在哪个阶段里有了，所以全部secondIcon全部传NO
+        //原代码为
+        //ProgramSelectViewCell* cell=[ProgramSelectViewCell dequeueReusableCellWithTabelView:tableView identifier:@"Cell" indexPath:indexPath firstIcon:first secondIcon:second thirdIcon:third stageLight:stageLight];
+        ProgramSelectViewCell* cell=[ProgramSelectViewCell dequeueReusableCellWithTabelView:tableView identifier:@"Cell" indexPath:indexPath firstIcon:first secondIcon:NO thirdIcon:third stageLight:stageLight];
+
         cell.delegate=self;
         return cell;
     }
@@ -1031,13 +1020,24 @@
 }
 
 -(void)chooseImageViewWithIndexPath:(MyIndexPath *)indexPath{
-    NSArray* part0=@[self.model.auctionImages];
-    NSArray* part1=@[self.model.explorationImages];
-    NSArray* part2=@[self.model.constructionImages,self.model.pileImages,self.model.mainBulidImages];
-    NSArray* part3=@[self.model.decorationImages];
-    NSArray* array=@[part0,part1,part2,part3];
+//    以下为每个阶段都有图片时的代码，关键在于temp的赋值
+//    NSArray* part0=@[self.model.auctionImages];
+//    NSArray* part1=@[self.model.explorationImages];
+//    NSArray* part2=@[self.model.constructionImages,self.model.pileImages,self.model.mainBulidImages];
+//    NSArray* part3=@[self.model.decorationImages];
+//    NSArray* array=@[part0,part1,part2,part3];
     
-    [self addScrollViewWithUrls:array[indexPath.part][indexPath.section]];
+    //以下为只有第一个阶段需要图片的代码，关键在于temp的赋值
+    NSMutableArray* array = [NSMutableArray array];
+    [array addObjectsFromArray:self.model.auctionImages];
+    [array addObjectsFromArray:self.model.explorationImages];
+    [array addObjectsFromArray:self.model.constructionImages];
+    [array addObjectsFromArray:self.model.pileImages];
+    [array addObjectsFromArray:self.model.mainBulidImages];
+    [array addObjectsFromArray:self.model.decorationImages];
+    
+    [self addScrollViewWithUrls:array];
+//    [self addScrollViewWithUrls:array[indexPath.part][indexPath.section]];
 }
 
 -(void)addScrollViewWithUrls:(NSMutableArray*)imageModels{
@@ -1072,12 +1072,23 @@
 
 //图加图的数量
 -(NSArray*)getImageViewWithImageAndCountWithIndexPath:(MyIndexPath*)indexPath{
-    NSArray* part0=@[self.model.auctionImages];
-    NSArray* part1=@[self.model.explorationImages];
-    NSArray* part2=@[self.model.constructionImages,self.model.pileImages,self.model.mainBulidImages];
-    NSArray* part3=@[self.model.decorationImages];
-    NSArray* array=@[part0,part1,part2,part3];
-    NSArray* temp=array[indexPath.part][indexPath.section];
+//以下为每个阶段都有图片时的代码，关键在于temp的赋值
+//    NSArray* part0=@[self.model.auctionImages];
+//    NSArray* part1=@[self.model.explorationImages];
+//    NSArray* part2=@[self.model.constructionImages,self.model.pileImages,self.model.mainBulidImages];
+//    NSArray* part3=@[self.model.decorationImages];
+//    NSArray* array=@[part0,part1,part2,part3];
+//    NSArray* temp=array[indexPath.part][indexPath.section];
+    
+    //以下为只有第一个阶段需要图片的代码，关键在于temp的赋值
+    NSMutableArray* temp = [NSMutableArray array];
+    [temp addObjectsFromArray:self.model.auctionImages];
+    [temp addObjectsFromArray:self.model.explorationImages];
+    [temp addObjectsFromArray:self.model.constructionImages];
+    [temp addObjectsFromArray:self.model.pileImages];
+    [temp addObjectsFromArray:self.model.mainBulidImages];
+    [temp addObjectsFromArray:self.model.decorationImages];
+    
     NSMutableArray* imageUrls=[[NSMutableArray alloc]init];
     for (int i=0; i<temp.count; i++) {
         ProjectImageModel* model=temp[i];

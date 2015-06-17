@@ -40,18 +40,22 @@
     NSArray* secondStrs=[self.delegate getTwoLinesTitleViewFirstStrsAndSecondStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     UIView* view0=[MyFactory getTwoLinesTitleViewWithTitle:@"地平阶段" titleImage:[GetImagePath getImagePath:@"icon03"] firstStrs:@[@"实际开工时间"] secondStrs:secondStrs];
     
-    NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
-    UIView* view1=[MyFactory getImageViewWithImageUrl:images.count?images[0]:@"No" count:images.count];
-    if (images.count) {
-        view1.tag=0;
-        [MyFactory addButtonToView:view1 target:self action:@selector(chooseImageView:) forControlEvents:UIControlEventTouchUpInside];
-    }
+    //每阶段有图到只有第一个阶段有图的转换代码
+//    NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
+//    UIView* view1=[MyFactory getImageViewWithImageUrl:images.count?images[0]:@"No" count:images.count];
+//    if (images.count) {
+//        view1.tag=0;
+//        [MyFactory addButtonToView:view1 target:self action:@selector(chooseImageView:) forControlEvents:UIControlEventTouchUpInside];
+//    }
     
     
     NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:0]];
     UIView* view2=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs withContactCategory:@"施工总承包单位："];
     
-    NSArray* tempAry=@[view0,view1,view2];
+    //每阶段有图到只有第一个阶段有图的转换代码
+//    NSArray* tempAry=@[view0,view1,view2];
+    NSArray* tempAry=@[view0,view2];
+
     CGFloat height=0;
     for (int i=0; i<tempAry.count; i++) {
         CGRect frame=[tempAry[i] frame];
@@ -68,18 +72,22 @@
     
     UIView* view0=[MyFactory getNoLineTitleViewWithTitle:@"桩基基坑" titleImage:[GetImagePath getImagePath:@"icon03"]];
     
-    NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
-    UIView* view1=[MyFactory getImageViewWithImageUrl:images.count?images[0]:@"No" count:images.count];
-    if (images.count) {
-        view1.tag=1;
-        [MyFactory addButtonToView:view1 target:self action:@selector(chooseImageView:) forControlEvents:UIControlEventTouchUpInside];
-    }
+    //每阶段有图到只有第一个阶段有图的转换代码
+//    NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
+//    UIView* view1=[MyFactory getImageViewWithImageUrl:images.count?images[0]:@"No" count:images.count];
+//    if (images.count) {
+//        view1.tag=1;
+//        [MyFactory addButtonToView:view1 target:self action:@selector(chooseImageView:) forControlEvents:UIControlEventTouchUpInside];
+//    }
     
     
     NSMutableArray* fiveStrs=[self.delegate getThreeContactsViewThreeTypesFiveStrsWithIndexPath:[MyIndexPath getIndexPart:self.part section:1]];
     UIView* view2=[MyFactory getThreeContactsViewThreeTypesFiveStrs:fiveStrs withContactCategory:@"桩基分包单位："];
     
-    NSArray* tempAry=@[view0,view1,view2];
+    //每阶段有图到只有第一个阶段有图的转换代码
+//    NSArray* tempAry=@[view0,view1,view2];
+    NSArray* tempAry=@[view0,view2];
+
     CGFloat height=0;
     for (int i=0; i<tempAry.count; i++) {
         CGRect frame=[tempAry[i] frame];
@@ -96,15 +104,18 @@
     
     UIView* view0=[MyFactory getNoLineTitleViewWithTitle:@"主体施工" titleImage:[GetImagePath getImagePath:@"icon03"]];
     
-    NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:2]];
-    UIView* view1=[MyFactory getImageViewWithImageUrl:images.count?images[0]:@"No" count:images.count];
-    if (images.count) {
-        view1.tag=2;
-        [MyFactory addButtonToView:view1 target:self action:@selector(chooseImageView:) forControlEvents:UIControlEventTouchUpInside];
-    }
+    //每阶段有图到只有第一个阶段有图的转换代码
+//    NSArray* images=[self.delegate getImageViewWithImageAndCountWithIndexPath:[MyIndexPath getIndexPart:self.part section:2]];
+//    UIView* view1=[MyFactory getImageViewWithImageUrl:images.count?images[0]:@"No" count:images.count];
+//    if (images.count) {
+//        view1.tag=2;
+//        [MyFactory addButtonToView:view1 target:self action:@selector(chooseImageView:) forControlEvents:UIControlEventTouchUpInside];
+//    }
     
+    //每阶段有图到只有第一个阶段有图的转换代码
+//    NSArray* tempAry=@[view0,view1];
+    NSArray* tempAry=@[view0];
     
-    NSArray* tempAry=@[view0,view1];
     CGFloat height=0;
     for (int i=0; i<tempAry.count; i++) {
         CGRect frame=[tempAry[i] frame];
