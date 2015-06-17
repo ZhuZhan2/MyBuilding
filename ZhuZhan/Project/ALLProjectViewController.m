@@ -444,6 +444,8 @@
     cell.model = model;
     cell.indexPath = indexPath;
     cell.delegate = self;
+    cell.isHiddenFocusBtn = NO;
+    cell.isHiddenApproveImageView = YES;
     cell.selectionStyle = NO;
     return cell;
 }

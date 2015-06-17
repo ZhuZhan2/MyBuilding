@@ -124,6 +124,8 @@
     cell.model = model;
     cell.selectionStyle = NO;
     cell.delegate = self;
+    cell.isHiddenFocusBtn = NO;
+    cell.isHiddenApproveImageView = YES;
     cell.indexPath = indexPath;
     return cell;
 }

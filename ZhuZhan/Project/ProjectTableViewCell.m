@@ -26,6 +26,7 @@
         [self.contentView addSubview:self.topImageView];
         [self.contentView addSubview:self.topContentImageView];
         [self.contentView addSubview:self.stageLabel];
+        [self.contentView addSubview:self.approveImageView];
         [self.contentView addSubview:self.contentImageView];
         [self.contentView addSubview:self.cutLine];
         [self.contentView addSubview:self.projectName];
@@ -38,6 +39,7 @@
         [self.contentView addSubview:self.lastUpdatedTime];
         [self.contentView addSubview:self.lastUpdatedTimeCount];
         [self.contentView addSubview:self.focusBtn];
+        [self.contentView addSubview:self.approveingImageView];
         [self.contentView addSubview:self.bottomImageView];
     }
     return self;
@@ -66,6 +68,13 @@
         _stageLabel.font = FONT;
     }
     return _stageLabel;
+}
+
+-(UIImageView *)approveImageView{
+    if(!_approveImageView){
+        _approveImageView = [[UIImageView alloc] initWithFrame:CGRectMake(130, 25, 42, 13)];
+    }
+    return _approveImageView;
 }
 
 -(UIImageView *)cutLine{
@@ -172,6 +181,14 @@
     return _focusBtn;
 }
 
+-(UIImageView *)approveingImageView{
+    if(!_approveingImageView){
+        _approveingImageView = [[UIImageView alloc] initWithFrame:CGRectMake(230, 20, 62, 25)];
+        _approveingImageView.image = [GetImagePath getImagePath:@"project_approveing"];
+    }
+    return _approveingImageView;
+}
+
 -(UIImageView *)bottomImageView{
     if(!_bottomImageView){
         _bottomImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 288, 5)];
@@ -222,6 +239,18 @@
         self.stageLabel.text = @"装修阶段";
     }else{
         self.stageLabel.text = @"土地信息阶段";
+    }
+    
+    if(model.a_isVerify){
+        self.approveImageView.image = [GetImagePath getImagePath:@"project_ approve"];
+    }else{
+        self.approveImageView.image = [GetImagePath getImagePath:@"project_noApprove"];
+    }
+    
+    if(model.a_verifyStage == 1){
+        self.approveingImageView.hidden = NO;
+    }else{
+        self.approveingImageView.hidden = YES;
     }
     
     if([model.a_projectName isEqualToString:@""]){
@@ -333,5 +362,13 @@
             [self.delegate gotoLoginView];
         }
     }
+}
+
+-(void)setIsHiddenFocusBtn:(BOOL)isHiddenFocusBtn{
+    self.focusBtn.hidden = isHiddenFocusBtn;
+}
+
+-(void)setIsHiddenApproveImageView:(BOOL)isHiddenApproveImageView{
+    self.approveingImageView.hidden = isHiddenApproveImageView;
 }
 @end

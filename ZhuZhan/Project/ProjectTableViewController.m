@@ -356,6 +356,8 @@
     }
     cell.model = model;
     cell.selectionStyle = NO;
+    cell.isHiddenFocusBtn = NO;
+    cell.isHiddenApproveImageView = YES;
     return cell;
 }
 

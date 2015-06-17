@@ -16,7 +16,7 @@
 - (id)init{
     if (self = [super init]) {
         self.frame = CGRectMake(0, 0, kScreenWidth, [MarketListTitleView titleViewHeight]);
-        [self addSubview:self.headBtn];
+        [self addSubview:self.headImage];
         [self addSubview:self.titleLabel];
         [self addSubview:self.typeLabel];
         [self addSubview:self.timeLabel];
@@ -28,17 +28,19 @@
 }
 
 - (void)setImageUrl:(NSString*)imageUrl title:(NSString *)title type:(NSString *)type time:(NSString *)time needRound:(BOOL)needRound{
-    [self.headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:imageUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:needRound?@"默认图_用户头像_卡片头像":@"默认图_公司头像_卡片头像"]];
-    self.headBtn.layer.cornerRadius = needRound?20:3;
+    //[self.headBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:imageUrl] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:needRound?@"默认图_用户头像_卡片头像":@"默认图_公司头像_卡片头像"]];
+    [self.headImage sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:needRound?@"默认图_用户头像_卡片头像":@"默认图_公司头像_卡片头像"]];
+    //self.headBtn.layer.cornerRadius = needRound?20:3;
+    self.headImage.layer.cornerRadius = needRound?20:3;
     self.titleLabel.text = title;
     self.typeLabel.text = type;
     self.timeLabel.text = time;
     
     [RKViewFactory autoLabel:self.typeLabel];
     
-    CGRect frame = self.headBtn.frame;
+    CGRect frame = self.headImage.frame;
     frame.origin = CGPointMake(10, 10);
-    self.headBtn.frame = frame;
+    self.headImage.frame = frame;
     
     frame = self.titleLabel.frame;
     frame.origin = CGPointMake(60, 12);
@@ -53,12 +55,20 @@
     self.timeLabel.frame = frame;
 }
 
-- (UIButton *)headBtn{
-    if (!_headBtn) {
-        _headBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-        _headBtn.layer.masksToBounds = YES;
+//- (UIButton *)headBtn{
+//    if (!_headBtn) {
+//        _headBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+//        _headBtn.layer.masksToBounds = YES;
+//    }
+//    return _headBtn;
+//}
+
+-(UIImageView *)headImage{
+    if(!_headImage){
+        _headImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+        _headImage.layer.masksToBounds = YES;
     }
-    return _headBtn;
+    return _headImage;
 }
 
 - (UILabel *)titleLabel{

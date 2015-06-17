@@ -112,6 +112,19 @@
 
 @property(nonatomic,strong)NSString *isFocused;
 
+@property(nonatomic,strong)NSString *a_loginId;
+
+@property(nonatomic)BOOL a_isVerify;
+
+@property(nonatomic)BOOL a_verifyApply;
+
+/**************************************
+ 0 未认证 未申请
+ 1 未认证 申请中
+ 2 认证过 
+**************************************/
+@property(nonatomic)int a_verifyStage;
+
 @property (nonatomic, strong) NSDictionary *dict;
 
 //***********************************************************************************

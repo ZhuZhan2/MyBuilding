@@ -133,6 +133,8 @@
     cell.model = model;
     cell.selectionStyle = NO;
     cell.indexPath = indexPath;
+    cell.isHiddenFocusBtn = NO;
+    cell.isHiddenApproveImageView = YES;
     cell.delegate = self;
     return cell;
 }

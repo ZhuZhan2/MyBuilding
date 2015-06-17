@@ -248,6 +248,8 @@
         cell.selectionStyle = NO;
         cell.delegate = self;
         cell.indexPath = indexPath;
+        cell.isHiddenFocusBtn = NO;
+        cell.isHiddenApproveImageView = YES;
         return cell;
     }
     return nil;
