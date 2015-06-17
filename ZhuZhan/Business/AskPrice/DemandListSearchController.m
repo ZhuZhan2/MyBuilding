@@ -52,6 +52,11 @@
 }
 
 -(void)searchListWithKeyword:(NSString*)keyword{
+    if([[keyword stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请输入搜索条件" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
     self.keyWords = keyword;
     self.startIndex = 0;
     [AskPriceApi GetAskPriceWithBlock:^(NSMutableArray *posts, NSError *error) {

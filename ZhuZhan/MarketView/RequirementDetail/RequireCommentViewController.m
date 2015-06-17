@@ -139,6 +139,7 @@
     cell.model = self.modelsArr[indexPath.row];
     cell.indexPath = indexPath;
     cell.delegate = self;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

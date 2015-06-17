@@ -168,10 +168,13 @@
     }
     
     self.loginBtn.enabled=NO;
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:_userNameTextField.text forKey:@"userNameOrCellPhone"];
     [dic setValue:[MD5 md5HexDigest:_passWordTextField.text] forKey:@"password"];
     [dic setValue:@"05" forKey:@"deviceType"];
+    [dic setValue:[userDefaults objectForKey:@"deviceTokenStr"] forKey:@"token"];
+    [dic setValue:UpdateDownloadType forKey:@"downloadType"];
     [LoginModel LoginWithBlock:^(NSMutableArray *posts, NSError *error) {
         self.loginBtn.enabled=YES;
         if(!error){

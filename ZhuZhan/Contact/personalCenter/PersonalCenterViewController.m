@@ -28,7 +28,9 @@
 #import "MyFocusViewController.h"
 #import "PersonalCenterTableViewCell.h"
 #import "MyMarketViewController.h"
-@interface PersonalCenterViewController ()
+#import "PersonalHeadView.h"
+#import "MyProjectViewController.h"
+@interface PersonalCenterViewController ()<PersonalHeadViewDelegate>
 @property(nonatomic,strong)UIView *headView;
 @property(nonatomic,strong)UIView *myFocusView;
 @property(nonatomic,strong)UILabel *myFocusViewTitle;
@@ -36,6 +38,7 @@
 @property(nonatomic,strong)UIImageView *topCutLine;
 @property(nonatomic,strong)UIImageView *bottomCutLine;
 @property(nonatomic,strong)UIImageView *arrowImageView;
+@property(nonatomic,strong)PersonalHeadView *personalHeadView;
 @end
 
 @implementation PersonalCenterViewController
@@ -81,34 +84,34 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
     self.title = @"个人中心";
-
     
-    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 200) bannerPlaceholderImageName:@"默认主图"];
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 85) bannerPlaceholderImageName:@"默认主图"];
     _pathCover.delegate = self;
     [_pathCover setBackgroundImageUrlString:[LoginSqlite getdata:@"backgroundImage"]];
     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImage"]]];
     [_pathCover hidewaterDropRefresh];
-    [_pathCover setNameFrame:CGRectMake(0, 0, 320, 20) font:[UIFont systemFontOfSize:14]];
-    [_pathCover setHeadImageFrame:CGRectMake(125, -70, 70, 70)];
+    [_pathCover setNameFrame:CGRectMake(-40, 25, 320, 20) font:[UIFont systemFontOfSize:14]];
+    [_pathCover setHeadImageFrame:CGRectMake(20, 5, 61, 61)];
     if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
         [_pathCover.headImage.layer setMasksToBounds:YES];
         [_pathCover.headImage.layer setCornerRadius:5];
     }else{
         [_pathCover.headImage.layer setMasksToBounds:YES];
-        [_pathCover.headImage.layer setCornerRadius:35];
+        [_pathCover.headImage.layer setCornerRadius:30.5];
     }
-    [_pathCover setFootViewFrame:CGRectMake(0, -120, 320, 320)];
+    [_pathCover setFootViewFrame:CGRectMake(0, -180, 320, 320)];
 
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
     
     [self.headView addSubview:self.pathCover];
-    [self.myFocusView addSubview:self.myFocusViewTitle];
-    [self.myFocusView addSubview:self.myFocusBtn];
-    [self.myFocusView addSubview:self.topCutLine];
-    [self.myFocusView addSubview:self.bottomCutLine];
-    [self.myFocusView addSubview:self.arrowImageView];
-    [self.headView addSubview:self.myFocusView];
-    [self getThreeBtn];
+    [self.headView addSubview:self.personalHeadView];
+//    [self.myFocusView addSubview:self.myFocusViewTitle];
+//    [self.myFocusView addSubview:self.myFocusBtn];
+//    [self.myFocusView addSubview:self.topCutLine];
+//    [self.myFocusView addSubview:self.bottomCutLine];
+//    [self.myFocusView addSubview:self.arrowImageView];
+//    [self.headView addSubview:self.myFocusView];
+//    [self getThreeBtn];
     
     self.tableView.tableHeaderView = self.headView;
     
@@ -469,11 +472,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)changeHeadImage{
     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImage"]]];
+    //self.personalHeadView.avatarUrl = [NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImage"]];
 }
 
 -(void)changeUserName{
-    NSLog(@"==>%@",[LoginSqlite getdata:@"userName"]);
+//    NSLog(@"==>%@",[LoginSqlite getdata:@"userName"]);
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
+    //self.personalHeadView.userName = [LoginSqlite getdata:@"userName"];
 }
 
 -(void)changeBackgroundImage{
@@ -505,8 +510,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(UIView *)headView{
     if(!_headView){
-        _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 263)];
-        _headView.backgroundColor = RGBCOLOR(239, 237, 237);
+        _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 245)];
+        //_headView.backgroundColor = RGBCOLOR(239, 237, 237);
     }
     return _headView;
 }
@@ -564,5 +569,56 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)myFocusBtnAction{
     MyFocusViewController* vc = [[MyFocusViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(PersonalHeadView *)personalHeadView{
+    if(!_personalHeadView){
+        _personalHeadView = [[PersonalHeadView alloc] initWithFrame:CGRectMake(0, 85, 320, 160)];
+        _personalHeadView.delegate = self;
+    }
+    return _personalHeadView;
+}
+
+-(void)selectBlock:(int)index{
+    switch (index) {
+        case 0:
+        {
+            AskPriceViewController *view = [[AskPriceViewController alloc] initWithOtherStr:@"0"];
+            [self.navigationController pushViewController:view animated:YES];
+        }
+            break;
+        case 1:
+        {
+            AskPriceViewController *view = [[AskPriceViewController alloc] initWithOtherStr:@"1"];
+            [self.navigationController pushViewController:view animated:YES];
+        }
+            break;
+        case 2:
+        {
+            ConstractListController *view = [[ConstractListController alloc] init];
+            [self.navigationController pushViewController:view animated:YES];
+        }
+            break;
+        case 3:
+        {
+            MyMarketViewController *view = [[MyMarketViewController alloc] init];
+            [self.navigationController pushViewController:view animated:YES];
+        }
+            break;
+        case 4:
+        {
+            MyFocusViewController* vc = [[MyFocusViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 5:
+        {
+            MyProjectViewController *view = [[MyProjectViewController alloc] init];
+            [self.navigationController pushViewController:view animated:YES];
+        }
+            break;
+        default:
+            break;
+    }
 }
 @end

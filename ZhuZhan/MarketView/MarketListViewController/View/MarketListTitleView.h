@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MarketListTitleView : UIView
-@property(nonatomic,strong)UIButton *headBtn;
+@property(nonatomic,strong)UIImageView *headImage;
 @property (nonatomic, strong)UILabel* titleLabel;
 @property (nonatomic, strong)UILabel* typeLabel;
 @property (nonatomic, strong)UILabel* timeLabel;

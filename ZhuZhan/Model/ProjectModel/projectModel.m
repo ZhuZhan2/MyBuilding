@@ -56,6 +56,29 @@
     }
     self.a_imageHeight = [ProjectStage ProjectStrStage:dict[@"imageHeight"]];
     self.a_imageWidth = [ProjectStage ProjectStrStage:dict[@"imageWidth"]];
+    
+    self.a_loginId = dict[@"loginId"];
+    if([dict[@"isVerify"] isEqualToString:@"00"]){
+        self.a_isVerify = NO;
+    }else{
+        self.a_isVerify = YES;
+    }
+    
+    if([dict[@"verifyApply"] intValue] == 0){
+        self.a_verifyApply = NO;
+    }else{
+        self.a_verifyApply = YES;
+    }
+    
+    if(self.a_isVerify){
+        self.a_verifyStage = 2;
+    }else{
+        if(self.a_verifyApply){
+            self.a_verifyStage = 1;
+        }else{
+            self.a_verifyStage = 0;
+        }
+    }
 }
 
 -(void)getContacts:(NSArray *)contacts{

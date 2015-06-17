@@ -16,12 +16,12 @@
     self.a_createdBy = [ProjectStage ProjectStrStage:dict[@"createdUser"]];
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"loginName"]];
     self.a_time = [ProjectStage ProjectDateStage:dict[@"createdTime"]];
-    
-    if([dict[@"content"] intValue] >100){
-        self.a_commentContents = @"99";
-    }else{
-        self.a_commentContents = [ProjectStage ProjectStrStage:dict[@"content"]];
-    }
+    self.a_commentContents = [ProjectStage ProjectStrStage:dict[@"content"]];
+//    if([dict[@"content"] intValue] >100){
+//        self.a_commentContents = @"99";
+//    }else{
+//        self.a_commentContents = [ProjectStage ProjectStrStage:dict[@"content"]];
+//    }
     
     if([dict[@"type"] isEqualToString:@"03"]){
         self.a_isService = YES;
