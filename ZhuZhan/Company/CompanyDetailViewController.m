@@ -147,7 +147,7 @@
         UIButton* askPriceBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth/2, 44)];
         [askPriceBtn setTitleColor:AllRedColor forState:UIControlStateNormal];
         askPriceBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-        [askPriceBtn setTitle:@"发起询价" forState:UIControlStateNormal];
+        [askPriceBtn setTitle:@"对该企业发起询价" forState:UIControlStateNormal];
         [askPriceBtn addTarget:self action:@selector(gotoAskPrice) forControlEvents:UIControlEventTouchUpInside];
         [_assistView addSubview:askPriceBtn];
         
