@@ -212,21 +212,21 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
     NSLog(@"notification ======>%@",notification.alertBody);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:notification.alertBody delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-    [alert show];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:notification.alertBody delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//    [alert show];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     NSLog(@"userInfo ====>%@",userInfo);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:userInfo[@"aps"][@"alert"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-    [alert show];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:userInfo[@"aps"][@"alert"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//    [alert show];
     application.applicationIconBadgeNumber -= 1;
 }
 
 - (void)handleRemoteNotification:(UIApplication *)application userInfo:(NSDictionary *)userInfo {
     NSLog(@"=====>%@",userInfo);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:userInfo[@"aps"][@"alert"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-    [alert show];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:userInfo[@"aps"][@"alert"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//    [alert show];
     application.applicationIconBadgeNumber -= 1;
 }
 @end
