@@ -119,7 +119,9 @@
 }
 
 -(void)setModel:(MarketModel *)model{
-    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:model.a_avatarUrl] placeholderImage:[GetImagePath getImagePath:@"默认图_用户头像_卡片头像"]];
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:model.a_avatarUrl] placeholderImage:[GetImagePath getImagePath:model.a_needRound?@"默认图_用户头像_卡片头像":@"默认图_公司头像_卡片头像"]];
+    self.headImageView.layer.cornerRadius = model.a_needRound?20:3;
+
     self.nameLabel.text = model.a_loginName;
     self.typeLabel.text = model.a_reqTypeCn;
     self.timeLabel.text = model.a_createdTime;

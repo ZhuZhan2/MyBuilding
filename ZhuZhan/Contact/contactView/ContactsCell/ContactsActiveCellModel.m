@@ -71,7 +71,7 @@
     model.indexPath = indexPath;
     
     if (category == 0) {
-        model.commentNumber = dataModel.a_commentNum;
+        model.commentNumber = MIN(dataModel.a_commentNum, 99);
         [dataModel.a_commentsArr enumerateObjectsUsingBlock:^(ContactCommentModel* commentDataModel, NSUInteger idx, BOOL *stop) {
             CommentModel* commentCellModel = [[CommentModel alloc] init];
             commentCellModel.userImageUrl = commentDataModel.a_avatarUrl;
