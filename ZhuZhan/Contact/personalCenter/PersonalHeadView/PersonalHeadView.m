@@ -94,9 +94,9 @@
     
     // 2.定义第一个表情的位置
     // 第一个表情的Y值
-    CGFloat oneY = 15;
+    CGFloat oneY = 12;
     // 第一个表情的x值
-    CGFloat oneX = margin+20;
+    CGFloat oneX = margin;
     
     // 3.创建所有的表情
     for (int i = 0; i<kInitCount; i++) {
@@ -106,9 +106,9 @@
         int row = i / columns;
         
         // 列数（col）决定了x
-        CGFloat x = oneX + col * (kImgWH + margin-20);
+        CGFloat x = oneX + col * (kImgWH + margin);
         // 行数（row）决定了y
-        CGFloat y = oneY + row * (kImgWH + margin-30);
+        CGFloat y = oneY + row * (kImgWH + margin-23);
         
         int no = i % 9; // no == [0, 8]
         NSString *imgName = [NSString stringWithFormat:@"personal_center_01%d.png", no];

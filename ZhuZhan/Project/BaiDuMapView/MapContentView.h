@@ -20,6 +20,7 @@
 @property(nonatomic,strong)UIImageView *redImageView;
 @property(nonatomic,strong)UILabel *countLabel;
 @property(nonatomic,strong)UILabel *stageLabel;
+@property(nonatomic,strong)UIImageView *approveImageView;
 @property(nonatomic,strong)UIButton *focusBtn;
 @property(nonatomic,strong)UILabel *projectName;
 @property(nonatomic,strong)UILabel *projectAddress;

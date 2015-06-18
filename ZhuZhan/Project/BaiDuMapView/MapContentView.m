@@ -29,6 +29,7 @@
         [self.backgroundImageView addSubview:self.redImageView];
         [self.redImageView addSubview:self.countLabel];
         [self.backgroundImageView addSubview:self.stageLabel];
+        [self.backgroundImageView addSubview:self.approveImageView];
         [self addSubview:self.focusBtn];
         [self.backgroundImageView addSubview:self.projectName];
         [self.backgroundImageView addSubview:self.projectAddress];
@@ -96,6 +97,18 @@
         }
     }
     return _stageLabel;
+}
+
+-(UIImageView *)approveImageView{
+    if(!_approveImageView){
+        _approveImageView = [[UIImageView alloc] initWithFrame:CGRectMake(140, 17, 42, 13)];
+        if(self.model.a_isVerify){
+            _approveImageView.image = [GetImagePath getImagePath:@"project_ approve"];
+        }else{
+            _approveImageView.image = [GetImagePath getImagePath:@"project_noApprove"];
+        }
+    }
+    return _approveImageView;
 }
 
 -(UIButton *)focusBtn{
