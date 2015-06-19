@@ -73,14 +73,19 @@
     [self.categoryView setTitle:self.model.a_requireTypeName];
     
     //判断是否要有assist按钮
-    BOOL isSelf = [self.model.a_loginId isEqualToString:[LoginSqlite getdata:@"userId"]];
-    BOOL selfIsPersonal = [[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"];
-    BOOL createByIsPersonal = self.model.a_isPsersonal;
-    BOOL needShow = isSelf || (selfIsPersonal&&createByIsPersonal);
+    BOOL needShow;
+    if (self.needAssistBtn) {
+        BOOL isSelf = [self.model.a_loginId isEqualToString:[LoginSqlite getdata:@"userId"]];
+        BOOL selfIsPersonal = [[LoginSqlite getdata:@"userType"] isEqualToString:@"Personal"];
+        BOOL createByIsPersonal = self.model.a_isPsersonal;
+        needShow = isSelf || (selfIsPersonal&&createByIsPersonal);
+        
+        //判断按钮内容是“删除”还是“联系他”
+        [self.categoryView.assistView setBackgroundImage:[GetImagePath getImagePath:isSelf?@"card_delete":@"touchTA"] forState:UIControlStateNormal];
+    }else{
+        needShow = NO;
+    }
     self.categoryView.assistView.hidden = !needShow;
-    
-    //判断按钮内容是“删除”还是“联系他”
-    [self.categoryView.assistView setBackgroundImage:[GetImagePath getImagePath:isSelf?@"card_delete":@"touchTA"] forState:UIControlStateNormal];
 
     self.contactsInfoView.realName = self.model.a_realName;
     self.contactsInfoView.phoneNumber = self.model.a_telphone;

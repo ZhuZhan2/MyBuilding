@@ -10,4 +10,5 @@
 
 @interface RequirementDetailViewController : ChatBaseViewController
 - (instancetype)initWithTargetId:(NSString*)targetId;
+@property (nonatomic)BOOL needAssistBtn;
 @end

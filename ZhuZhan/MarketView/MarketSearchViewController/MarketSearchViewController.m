@@ -18,6 +18,8 @@
 @interface MarketSearchViewController ()<SearchMenuViewDelegate>
 @property(nonatomic,strong)NSMutableArray* models;
 @property (nonatomic, strong)NSArray* menuTitles;
+@property (nonatomic, strong)SearchMenuView* menuView;
+
 @property (nonatomic, strong)id vc;
 
 @property (nonatomic, copy)NSString* searchCategory;
@@ -100,6 +102,7 @@
     SearchMenuView* menuView = [SearchMenuView searchMenuViewWithTitles:self.menuTitles originPoint:originPoint];
     menuView.delegate = self;
     [self.view addSubview:menuView];
+    self.menuView = menuView;
     NSLog(@"menuBtnClicked");
 }
 
@@ -127,7 +130,10 @@
     self.placeholderLabel.text = index == 0 ? @"请输入手机号码或者用户名":@"请输入搜索词";
 
     [self reloadSearchModelWithCategory:title type:index];
-    [self searchNewDataWithRecord:self.searchBar.text];
+    
+    if(![[self.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]){
+        [self searchNewDataWithRecord:self.searchBar.text];
+    }
 }
 
 - (void)reloadSearchModelWithCategory:(NSString*)category type:(NSInteger)type{
@@ -140,11 +146,6 @@
 }
 
 - (void)searchNewDataWithRecord:(NSString*)record{
-    if([[record stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]){
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请输入搜索条件" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
-        return;
-    }
     UITableView* oldTableView = [self.vc tableView];
     [oldTableView removeFromSuperview];
     self.vc = nil;
@@ -201,9 +202,15 @@
     frame.size.height = kScreenHeight-CGRectGetMaxY(self.searchBar.frame);
     tableView.frame = frame;
     [self.view addSubview:tableView];
+    [self.menuView removeFromSuperview];
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    if([[searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请输入搜索条件" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
     [self searchNewDataWithRecord:searchBar.text];
 }
 

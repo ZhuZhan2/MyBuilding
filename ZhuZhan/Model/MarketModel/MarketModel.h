@@ -31,6 +31,7 @@
 *************************************/
 @property(nonatomic)int a_reqType;
 @property(nonatomic)BOOL a_needRound;
+@property(nonatomic)BOOL a_needBtn;
 @property(nonatomic)BOOL a_isSelf;
 @property(nonatomic)BOOL a_isFriend;
 

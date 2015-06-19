@@ -249,7 +249,9 @@
     if(!cell){
         cell = [[MarkListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.marketModel = self.modelsArr[indexPath.row];
+    MarketModel* model = self.modelsArr[indexPath.row];
+    model.a_needBtn = YES;
+    cell.marketModel = model;
     cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
@@ -260,6 +262,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     MarketModel *model = self.modelsArr[indexPath.row];
     RequirementDetailViewController* vc = [[RequirementDetailViewController alloc] initWithTargetId:model.a_id];
+    vc.needAssistBtn = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -166,7 +166,7 @@
         }
     }
     
-    [self.footView setCount:marketModel.a_commentCount isSelf:marketModel.a_isSelf isPersonal:marketModel.a_needRound];
+    [self.footView setCount:marketModel.a_commentCount isSelf:marketModel.a_isSelf isPersonal:marketModel.a_needRound needBtn:marketModel.a_isSelf?marketModel.a_needBtn:YES];
     
     CGFloat height = 0;
     CGRect frame = self.titleView.frame;

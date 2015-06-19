@@ -72,7 +72,7 @@
     return _delBtn;
 }
 
--(void)setCount:(NSString *)count isSelf:(BOOL)isSelf isPersonal:(BOOL)isPersonal{
+-(void)setCount:(NSString *)count isSelf:(BOOL)isSelf isPersonal:(BOOL)isPersonal needBtn:(BOOL)needBtn{
     _countLabel.text = [NSString stringWithFormat:@"评论%@条",count];
     if(isSelf){
         self.addFriend.hidden = YES;
@@ -88,6 +88,10 @@
             }
         }
         self.delBtn.hidden = YES;
+    }
+    
+    if (!self.delBtn.hidden) {
+        self.delBtn.hidden = !needBtn;
     }
 }
 

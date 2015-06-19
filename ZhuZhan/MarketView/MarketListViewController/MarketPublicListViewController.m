@@ -217,7 +217,8 @@
     if(!cell){
         cell = [[MarkListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.marketModel = self.modelsArr[indexPath.row];
+    MarketModel* model = self.modelsArr[indexPath.row];
+    cell.marketModel = model;
     cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
