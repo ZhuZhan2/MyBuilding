@@ -31,7 +31,7 @@
 
 - (UIView*)requirementView{
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 210)];
-    [view addSubview:[self labelWithContent:@"需求描述" assistContent:@"必填"]];
+    [view addSubview:[self labelWithContent:@"需求描述" assistContent:nil]];
     
     UITextView* textView = [[UITextView alloc] initWithFrame:CGRectMake(18-5, 40, kScreenWidth-36+10, 160)];
     textView.font = [UIFont systemFontOfSize:17];

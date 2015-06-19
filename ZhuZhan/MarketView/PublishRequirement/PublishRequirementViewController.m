@@ -165,10 +165,6 @@
         }
         case 4:{
             [dic setObject:self.otherView.requirementDescribe forKey:@"desc"];
-            if ([dic[@"desc"] isEqualToString:@""]) {
-                [self showAlertWithContent:@"请输入需求信息中的需求描述信息"];
-                return;
-            }
             break;
         }
     }
