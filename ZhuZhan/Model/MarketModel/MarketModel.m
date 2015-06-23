@@ -89,7 +89,7 @@
         self.a_smallTypeCn = dict[@"smallTypeCn"];
     }
     
-    if([dict[@"commentsNum"] intValue] >100){
+    if([dict[@"commentsNum"] intValue] >99){
         self.a_commentCount = @"99";
     }else{
         self.a_commentCount = dict[@"commentsNum"];

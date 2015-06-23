@@ -165,10 +165,6 @@
         }
         case 4:{
             [dic setObject:self.otherView.requirementDescribe forKey:@"desc"];
-            if ([dic[@"desc"] isEqualToString:@""]) {
-                [self showAlertWithContent:@"请输入需求信息中的需求描述信息"];
-                return;
-            }
             break;
         }
     }
@@ -254,6 +250,10 @@
 
 - (void)projectViewAreaBtnClicked{
     NSLog(@"projectViewAreaBtnClicked");
+    if (self.locateView.superview) {
+        [self.locateView cancelClick];
+        return;
+    }
     self.locateView = [[TwoStageLocateView alloc] initWithTitle:CGRectMake(0, 0, 320, 260) title:nil delegate:self];
     self.locateView.tag = 0;
     [self.locateView showInView:self.view];
@@ -281,6 +281,10 @@
 
 - (void)relationViewAreaBtnClicked{
     NSLog(@"relationViewAreaBtnClicked");
+    if (self.locateView.superview) {
+        [self.locateView cancelClick];
+        return;
+    }
     self.locateView = [[TwoStageLocateView alloc] initWithTitle:CGRectMake(0, 0, 320, 260) title:nil delegate:self];
     self.locateView.tag = 2;
     [self.locateView showInView:self.view];
@@ -288,6 +292,10 @@
 
 - (void)cooperationViewAreaBtnClicked{
     NSLog(@"cooperationViewAreaBtnClicked");
+    if (self.locateView.superview) {
+        [self.locateView cancelClick];
+        return;
+    }
     self.locateView = [[TwoStageLocateView alloc] initWithTitle:CGRectMake(0, 0, 320, 260) title:nil delegate:self];
     self.locateView.tag = 3;
     [self.locateView showInView:self.view];
@@ -462,5 +470,10 @@
         _smallCategoryId = @"";
     }
     return _smallCategoryId;
+}
+
+- (void)touchesBeganInRKBaseTableView{
+    [super touchesBeganInRKBaseTableView];
+    [self.locateView cancelClick];
 }
 @end

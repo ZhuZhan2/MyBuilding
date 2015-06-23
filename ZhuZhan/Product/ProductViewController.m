@@ -308,7 +308,7 @@
     ProductModel *model = showArr[indexPath.row];
     cell.nameLabel.text=model.a_name;
     cell.titleLabel.text = model.a_content;
-    cell.commentCountLabel.text= model.a_commentNumber;
+    cell.commentCountLabel.text= [NSString stringWithFormat:@"%d",(int)MIN([model.a_commentNumber integerValue], 99)];
     cell.imageSize = [self imageAtIndexPath:indexPath];
     BOOL imageExist=model.a_imageUrl&&![model.a_imageUrl isEqualToString:@""];
     [cell.photoView sd_setImageWithURL:[NSURL URLWithString:imageExist?model.a_imageUrl:@""] placeholderImage:[GetImagePath getImagePath:@"product_ default_list"]];

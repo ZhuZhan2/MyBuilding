@@ -143,7 +143,7 @@
     //主体施工 消防/景观绿化 图片,显示在 主体施工/主体施工 阶段里
     
     NSArray* array=@[self.auctionImages,self.explorationImages,self.constructionImages,self.pileImages,self.mainBulidImages,self.decorationImages];
-    NSArray* categorys=@[@"plan",@"exploration",@"horizon",@"pileFoundation",@"mainPart",@"electroweak",@"fireControl"];
+    NSArray* categorys=@[@"plan",@"exploration",@"horizon",@"pileFoundation",@"mainPart",@"electroweak",@"fireControl",@"other"];
     
     for(int i=0;i<images.count;i++){
         ProjectImageModel* imageModel = images[i];
@@ -151,11 +151,16 @@
         NSInteger index=-1;
         for (int k=0; k<categorys.count; k++) {
             if ([imageModel.a_imageCategory isEqualToString:categorys[k]]) {
-                index=k==6?4:k;
+                if (k == 6) {
+                    index = 4;
+                }else if (k == 7){
+                    index = 0;
+                }else{
+                    index = k;
+                }
                 break;
             }
         }
-        
         //判断是否为我们已有的6个category,并且由于接口可能存在的异常,如果超过3个联系人则不再在对应联系人数组里加入联系人
         if (index!=-1) {
             [array[index] addObject:imageModel];

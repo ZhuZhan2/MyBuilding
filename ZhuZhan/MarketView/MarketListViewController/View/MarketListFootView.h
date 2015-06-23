@@ -21,5 +21,5 @@
 @property (nonatomic,strong)UIButton *delBtn;
 @property (nonatomic,weak)id<MarketListFootViewDelegate>delegate;
 + (CGFloat)footViewHeight;
--(void)setCount:(NSString *)count isSelf:(BOOL)isSelf isPersonal:(BOOL)isPersonal;
+-(void)setCount:(NSString *)count isSelf:(BOOL)isSelf isPersonal:(BOOL)isPersonal needBtn:(BOOL)needBtn;
 @end
