@@ -43,7 +43,7 @@
     });
     
     self.socket = [SocketManage sharedManager];
-    
+    application.applicationIconBadgeNumber = 0;
     [ForcedUpdateApi GetLastestReleaseWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             ForcedUpdateModel* model = posts[0];
@@ -180,6 +180,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+    application.applicationIconBadgeNumber = 0;
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
@@ -214,19 +215,20 @@
     NSLog(@"notification ======>%@",notification.alertBody);
 //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:notification.alertBody delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
 //    [alert show];
+    application.applicationIconBadgeNumber = notification.applicationIconBadgeNumber;
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     NSLog(@"userInfo ====>%@",userInfo);
 //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:userInfo[@"aps"][@"alert"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
 //    [alert show];
-    application.applicationIconBadgeNumber -= 1;
+    //application.applicationIconBadgeNumber = notification.applicationIconBadgeNumber;
 }
 
 - (void)handleRemoteNotification:(UIApplication *)application userInfo:(NSDictionary *)userInfo {
     NSLog(@"=====>%@",userInfo);
 //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:userInfo[@"aps"][@"alert"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
 //    [alert show];
-    application.applicationIconBadgeNumber -= 1;
+    application.applicationIconBadgeNumber = 0;
 }
 @end
