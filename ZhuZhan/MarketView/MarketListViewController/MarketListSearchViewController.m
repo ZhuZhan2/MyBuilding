@@ -148,6 +148,7 @@
     }else{
         MarketModel *model = self.modelsArr[indexPath.row];
         RequirementDetailViewController* vc = [[RequirementDetailViewController alloc] initWithTargetId:model.a_id];
+        vc.selfCanDelete = !self.isPublic;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
