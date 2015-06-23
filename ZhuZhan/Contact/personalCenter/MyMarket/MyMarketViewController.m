@@ -262,7 +262,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     MarketModel *model = self.modelsArr[indexPath.row];
     RequirementDetailViewController* vc = [[RequirementDetailViewController alloc] initWithTargetId:model.a_id];
-    vc.needAssistBtn = YES;
+    vc.selfCanDelete = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
