@@ -128,7 +128,13 @@
     if(!cell){
         cell = [[MarkListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.marketModel = self.modelsArr[indexPath.row];
+    MarketModel *model = self.modelsArr[indexPath.row];
+    if(self.isPublic){
+        model.a_needBtn = NO;
+    }else{
+        model.a_needBtn = YES;
+    }
+    cell.marketModel = model;
     cell.contentView.backgroundColor = AllBackLightGratColor;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
@@ -251,11 +257,11 @@
             [self.modelsArr removeAllObjects];
             self.modelsArr = posts;
             if(self.modelsArr.count == 0){
-                [MyTableView reloadDataWithTableView:self.tableView];
-                [MyTableView noSearchData:self.tableView];
+                [MyTableView reloadDataWithTableView:self.searchBarTableView];
+                [MyTableView noSearchData:self.searchBarTableView];
             }else{
-                [MyTableView removeFootView:self.tableView];
-                [self.tableView reloadData];
+                [MyTableView removeFootView:self.searchBarTableView];
+                [self.searchBarTableView reloadData];
             }
         }else{
             if([ErrorCode errorCode:error] == 403){
@@ -281,11 +287,11 @@
             self.startIndex ++;
             [self.modelsArr addObjectsFromArray:posts];
             if(self.modelsArr.count == 0){
-                [MyTableView reloadDataWithTableView:self.tableView];
-                [MyTableView noSearchData:self.tableView];
+                [MyTableView reloadDataWithTableView:self.searchBarTableView];
+                [MyTableView noSearchData:self.searchBarTableView];
             }else{
-                [MyTableView removeFootView:self.tableView];
-                [self.tableView reloadData];
+                [MyTableView removeFootView:self.searchBarTableView];
+                [self.searchBarTableView reloadData];
             }
         }else{
             if([ErrorCode errorCode:error] == 403){

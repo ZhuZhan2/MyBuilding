@@ -113,10 +113,11 @@
 -(void)searchBtnAction{
     MarketListSearchViewController *searchView = [[MarketListSearchViewController alloc] init];
     if(self.stageNumber == 0){
-        searchView.isPublic = YES;
+        searchView.isOpen = YES;
     }else{
-        searchView.isPublic = NO;
+        searchView.isOpen = NO;
     }
+    searchView.isPublic = NO;
     [self.navigationController pushViewController:searchView animated:YES];
 }
 
