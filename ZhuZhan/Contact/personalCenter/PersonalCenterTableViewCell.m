@@ -19,6 +19,8 @@
     
     if(![cellModel.a_content isEqualToString:@""]){
         height += [RKViewFactory autoLabelWithMaxWidth:280 maxHeight:40 font:[UIFont systemFontOfSize:14] content:cellModel.a_content]+10;
+    }else{
+        height +=5;
     }
     
     height +=37;
@@ -128,11 +130,9 @@
     
     if(![personalCentermodel.a_content isEqualToString:@""]){
         self.contentLabel.hidden = NO;
-        CGSize size =CGSizeMake(280,40);
-        CGSize actualsize =[personalCentermodel.a_content boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
+        [RKViewFactory autoLabel:self.contentLabel maxWidth:280 maxHeight:40];
         frame = self.contentLabel.frame;
         frame.origin.y = height;
-        frame.size.height = actualsize.height;
         self.contentLabel.frame = frame;
         height += CGRectGetHeight(self.contentLabel.frame)+5;
     }else{

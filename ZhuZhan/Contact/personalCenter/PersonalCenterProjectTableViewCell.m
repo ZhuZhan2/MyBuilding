@@ -1,14 +1,14 @@
 //
-//  PersonalCenterCompanyTableViewCell.m
+//  PersonalCenterProjectTableViewCell.m
 //  ZhuZhan
 //
-//  Created by 汪洋 on 14/12/22.
+//  Created by 汪洋 on 15/6/24.
 //
 //
 
-#import "PersonalCenterCompanyTableViewCell.h"
+#import "PersonalCenterProjectTableViewCell.h"
 
-@implementation PersonalCenterCompanyTableViewCell
+@implementation PersonalCenterProjectTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -60,7 +60,7 @@
 
 -(UILabel *)timeLabel{
     if(!_timeLabel){
-        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 25, 120, 20)];
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(170, 25, 120, 20)];
         _timeLabel.font = [UIFont systemFontOfSize:14];
         _timeLabel.textAlignment = NSTextAlignmentLeft;
         _timeLabel.textColor = AllNoDataColor;
@@ -70,11 +70,10 @@
 
 -(UILabel *)contentLabel{
     if(!_contentLabel){
-        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 25, 100, 20)];
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 25, 150, 20)];
         _contentLabel.font = [UIFont systemFontOfSize:14];
         _contentLabel.textAlignment = NSTextAlignmentLeft;
         _contentLabel.textColor = BlueColor;
-        _contentLabel.text = @"已通过企业认证";
     }
     return _contentLabel;
 }
@@ -85,5 +84,13 @@
 
 -(void)setTime:(NSString *)time{
     self.timeLabel.text = time;
+}
+
+-(void)setProjectDemo:(NSString *)projectDemo{
+    if([projectDemo isEqualToString:@"02"]){
+        self.contentLabel.text = @"该项目认证成功";
+    }else{
+        self.contentLabel.text = @"该项目认证失败";
+    }
 }
 @end

@@ -190,7 +190,7 @@
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setFrame:CGRectMake(0, 0, 50, 30)];
     rightButton.titleLabel.font = [UIFont systemFontOfSize:16];
-    [rightButton setTitle:@"继续" forState:UIControlStateNormal];
+    [rightButton setTitle:@"进入" forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
@@ -201,8 +201,9 @@
 }
 
 -(void)rightBtnClick{
-    WelcomeViewController* vc=[[WelcomeViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"registComplete" object:nil];
+//    WelcomeViewController* vc=[[WelcomeViewController alloc]init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)initMyTableView{

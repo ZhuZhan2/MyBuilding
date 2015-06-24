@@ -24,7 +24,7 @@
 
 -(void)initWelcomeLabel{
     UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 30)];
-    label.text=@"欢迎加入布丁网";
+    label.text=@"欢迎加入布丁建筑";
     label.textAlignment=NSTextAlignmentCenter;
     label.font=[UIFont boldSystemFontOfSize:25];
     label.center=CGPointMake(160, 264);

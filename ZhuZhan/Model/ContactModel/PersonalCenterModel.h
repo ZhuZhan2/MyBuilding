@@ -25,5 +25,6 @@
 @property (nonatomic, copy) NSString *a_userName;
 @property (nonatomic, copy) NSString *a_userType;
 @property (nonatomic, copy) NSString *a_address;
+@property (nonatomic, copy) NSString *a_projectDemo;//判断项目消息01是被评论，02是认证通过，03认证没通过
 @property (nonatomic, copy) NSDictionary *dict;
 @end

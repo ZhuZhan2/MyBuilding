@@ -30,6 +30,7 @@
 #import "MyMarketViewController.h"
 #import "PersonalHeadView.h"
 #import "MyProjectViewController.h"
+#import "PersonalCenterProjectTableViewCell.h"
 @interface PersonalCenterViewController ()<PersonalHeadViewDelegate>
 @property(nonatomic,strong)UIView *headView;
 @property(nonatomic,strong)UIView *myFocusView;
@@ -347,15 +348,29 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         model = showArr[indexPath.row];
     }
     if([model.a_category isEqualToString:@"Project"]){
-        NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalProjectTableViewCell"];
-        PersonalProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(!cell){
-            cell = [[PersonalProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        if([model.a_projectDemo isEqualToString:@"01"]){
+            NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalProjectTableViewCell"];
+            PersonalProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if(!cell){
+                cell = [[PersonalProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            cell.model = model;
+            cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
+            cell.selectionStyle = NO;
+            return cell;
+        }else{
+            NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalCenterProjectTableViewCell"];
+            PersonalCenterProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if(!cell){
+                cell = [[PersonalCenterProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            cell.time = model.a_time;
+            cell.companyName = model.a_entityName;
+            cell.projectDemo = model.a_projectDemo;
+            cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
+            cell.selectionStyle = NO;
+            return cell;
         }
-        cell.model = model;
-        cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
-        cell.selectionStyle = NO;
-        return cell;
     }else if([model.a_category isEqualToString:@"CompanyAgree"]){
         NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalCenterCompanyTableViewCell"];
         PersonalCenterCompanyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -442,7 +457,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if([model.a_category isEqualToString:@"CompanyAgree"]){
         return 60;
     }else if([model.a_category isEqualToString:@"Project"]){
-        return 80;
+        if([model.a_projectDemo isEqualToString:@"01"]){
+            return 80;
+        }else{
+            return 60;
+        }
     }else{
         return [PersonalCenterTableViewCell carculateCellHeightWithModel:model];
     }

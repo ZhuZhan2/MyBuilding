@@ -27,7 +27,11 @@
     }
     self.a_content = dict[@"content"];
     self.a_type = dict[@"type"];
-    self.a_msgCount = dict[@"msgCount"];
+    if([dict[@"msgCount"] intValue] >99){
+        self.a_msgCount = @"99";
+    }else{
+        self.a_msgCount = dict[@"msgCount"];
+    }
     if([dict[@"msgCount"] isEqualToString:@"0"]){
         self.a_isShow = NO;
     }else{
