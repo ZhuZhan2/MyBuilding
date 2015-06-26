@@ -236,7 +236,7 @@
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/account/logout"];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setObject:@"mobile" forKey:@"deviceType"];
+    [dic setObject:@"05" forKey:@"deviceType"];
     return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:dic success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON==>%@",JSON);
 //        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"statusCode"]]isEqualToString:@"200"]){

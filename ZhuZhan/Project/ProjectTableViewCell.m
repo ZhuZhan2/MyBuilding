@@ -309,8 +309,12 @@
         if([model.a_longitude isEqualToString:@""]&&[model.a_latitude isEqualToString:@""]){
             self.mapImageVIew.image = [GetImagePath getImagePath:@"project_default_list"];
         }else{
-            NSString *urlStr = [NSString stringWithFormat:@"http://api.map.baidu.com/staticimage?width=568&height=220&center=%@,%@&zoom=14&markers=%@,%@&markerStyles=",model.a_longitude,model.a_latitude,model.a_longitude,model.a_latitude];
-            [self.mapImageVIew sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:[GetImagePath getImagePath:@"project_default_list"]];
+            if([model.a_longitude isEqualToString:@"0.0"]&&[model.a_latitude isEqualToString:@"0.0"]){
+                self.mapImageVIew.image = [GetImagePath getImagePath:@"project_default_list"];
+            }else{
+                NSString *urlStr = [NSString stringWithFormat:@"http://api.map.baidu.com/staticimage?width=568&height=220&center=%@,%@&zoom=14&markers=%@,%@&markerStyles=",model.a_longitude,model.a_latitude,model.a_longitude,model.a_latitude];
+                [self.mapImageVIew sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:[GetImagePath getImagePath:@"project_default_list"]];
+            }
         }
     }
     

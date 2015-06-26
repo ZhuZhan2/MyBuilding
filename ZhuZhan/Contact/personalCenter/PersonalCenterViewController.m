@@ -421,10 +421,12 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
     NSLog(@"%@",model.a_category);
     if([model.a_category isEqualToString:@"Project"]){
-        PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
-        projectCommentView.projectId = model.a_entityId;
-        projectCommentView.projectName = model.a_entityName;
-        [self.navigationController pushViewController:projectCommentView animated:YES];
+        if([model.a_projectDemo isEqualToString:@"01"]){
+            PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
+            projectCommentView.projectId = model.a_entityId;
+            projectCommentView.projectName = model.a_entityName;
+            [self.navigationController pushViewController:projectCommentView animated:YES];
+        }
     }else if([model.a_category isEqualToString:@"Personal"]||[model.a_category isEqualToString:@"Company"]){
         ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithPersonalCenterModel:model];
         vc.type = @"03";

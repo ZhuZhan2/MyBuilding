@@ -66,7 +66,7 @@
     self.view.backgroundColor = AllBackLightGratColor;
     //集成刷新控件
     [self setupRefresh];
-    [self initChatToolBarWithNeedAddBtn:NO];
+    [self initChatToolBarWithNeedAddBtn:YES];
     self.chatToolBar.maxTextCountInChat = 1000;
     [self initTableViewHeaderView];
     [self addKeybordNotification];
@@ -312,7 +312,7 @@
 
 - (void)cameraWillFinishWithLowQualityImage:(UIImage *)lowQualityimage originQualityImage:(UIImage *)originQualityImage isCancel:(BOOL)isCancel{
     if(!isCancel){
-        [self addModelWithImage:lowQualityimage];
+        [self addModelWithImage:lowQualityimage bigImage:originQualityImage];
         NSData *imageData = UIImageJPEGRepresentation(originQualityImage, 1);
         NSMutableArray *imageArr = [[NSMutableArray alloc] init];
         [imageArr addObject:imageData];
@@ -343,10 +343,11 @@
     [self appearNewData];
 }
 
--(void)addModelWithImage:(UIImage *)image{
+-(void)addModelWithImage:(UIImage *)image bigImage:(UIImage *)bigImage{
     ChatMessageModel *model = [[ChatMessageModel alloc] init];
     model.a_name=[LoginSqlite getdata:@"userName"];
     model.a_localImage = image;
+    model.a_localBigImage = bigImage;
     model.a_type=chatTypeMe;
     model.a_avatarUrl=[LoginSqlite getdata:@"userImage"];
     model.a_isLocal = YES;
@@ -393,7 +394,11 @@
 -(void)gotoBigImage:(NSInteger)index{
     ChatMessageModel *model = self.models[index];
     if(!self.photoView){
-        self.photoView = [[VIPhotoView alloc] initWithFrame:self.view.frame imageUrl:model.a_bigImageUrl];
+        if(model.a_isLocal){
+            self.photoView = [[VIPhotoView alloc] initWithFrame:self.view.frame andImage:model.a_localBigImage];
+        }else{
+            self.photoView = [[VIPhotoView alloc] initWithFrame:self.view.frame imageUrl:model.a_bigImageUrl];
+        }
         self.photoView.bigImageDelegate = self;
         self.photoView.autoresizingMask = (1 << 6) -1;
         self.photoView.backgroundColor = [UIColor blackColor];

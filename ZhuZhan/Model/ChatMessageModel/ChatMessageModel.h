@@ -23,6 +23,7 @@ typedef enum {
 @property(nonatomic,strong)NSString *a_groupName;
 @property(nonatomic,strong)NSString *a_msgType;
 @property(nonatomic,strong)UIImage  *a_localImage;
+@property(nonatomic,strong)UIImage  *a_localBigImage;
 @property(nonatomic,strong)NSString *a_bigImageUrl;
 @property(nonatomic)BOOL a_isLocal;
 @property(nonatomic)CGFloat a_imageWidth;

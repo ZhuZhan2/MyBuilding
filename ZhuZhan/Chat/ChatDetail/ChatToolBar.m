@@ -31,7 +31,7 @@
 
 @implementation ChatToolBar
 +(ChatToolBar*)chatToolBar{
-    return [ChatToolBar chatToolBarWithNeedAddBtn:NO];
+    return [ChatToolBar chatToolBarWithNeedAddBtn:YES];
 }
 
 +(ChatToolBar*)chatToolBarWithNeedAddBtn:(BOOL)needAddBtn{

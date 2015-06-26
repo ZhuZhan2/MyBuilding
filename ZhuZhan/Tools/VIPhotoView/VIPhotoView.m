@@ -102,6 +102,10 @@
         // Setup other events
         [self setupGestureRecognizer];
         [self setupRotationNotification];
+        
+        self.userInteractionEnabled=YES;
+        UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onClickImage)];
+        [self addGestureRecognizer:singleTap];
     }
     
     return self;
