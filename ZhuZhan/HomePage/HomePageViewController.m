@@ -24,11 +24,14 @@
 #import "OtherContractsBaseController.h"
 #import "AskPriceMessageViewController.h"
 #import "MarketViewController.h"
+#import "SecretView.h"
 #define contentHeight (kScreenHeight==480?431:519)
-@interface HomePageViewController ()<LoginViewDelegate,MarketViewDelegate,ContactViewDelegate,ActiveViewControllerDelegate>
+@interface HomePageViewController ()<LoginViewDelegate,MarketViewDelegate,ContactViewDelegate,ActiveViewControllerDelegate,SecretViewDelegate>
 @property(nonatomic,strong)UINavigationController *navigatin;
 @property(nonatomic,strong)MarketViewController *marketView;
 @property(nonatomic)BOOL isOpenContactView;
+@property(nonatomic)int secretCount;
+@property(nonatomic,strong)SecretView *secretView;
 @end
 
 @implementation HomePageViewController
@@ -45,10 +48,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.secretCount = 0;
     self.isOpenContactView = NO;
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageView.image = [GetImagePath getImagePath:@"loading"];
     [self.view addSubview:imageView];
+    
+    UIButton *secretBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    secretBtn.frame = CGRectMake(260, 20, 50, 50);
+    secretBtn.backgroundColor = [UIColor yellowColor];
+    [secretBtn addTarget:self action:@selector(secretBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:secretBtn];
+    
     self.view.backgroundColor = RGBCOLOR(240, 240, 240);
     contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, contentHeight)];
 //    contactview = [[ContactViewController alloc] init];
@@ -141,6 +152,7 @@
             imageView.alpha = 0;
         } completion:^(BOOL finished) {
             [imageView removeFromSuperview];
+            [secretBtn removeFromSuperview];
             [self.view addSubview:contentView];
             [self.view addSubview:toolView];
             [self.view addSubview:menu];
@@ -384,5 +396,25 @@
     nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
     [contentView addSubview:nav.view];
     self.marketView = nil;
+}
+
+-(void)secretBtnAction{
+    self.secretCount +=1;
+    if(self.secretCount == 5){
+        [self.view.window addSubview:self.secretView];
+    }
+}
+
+-(SecretView *)secretView{
+    if(!_secretView){
+        _secretView = [[SecretView alloc] initWithFrame:self.view.frame];
+        _secretView.delegate = self;
+    }
+    return _secretView;
+}
+
+-(void)closeView{
+    [self.secretView removeFromSuperview];
+    self.secretView = nil;
 }
 @end

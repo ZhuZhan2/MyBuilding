@@ -1715,6 +1715,7 @@
 		D3DBCE5F1AC8E77A00C9FEDE /* StartManView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE5E1AC8E77A00C9FEDE /* StartManView.m */; };
 		D3DCB9581B0B1BFB005CC798 /* VIPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB9571B0B1BFB005CC798 /* VIPhotoView.m */; };
 		D3DCDACA1ADBA66C0029DB95 /* GetAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCDAC91ADBA66C0029DB95 /* GetAddressBook.m */; };
+		D3DD750B1B3D1EF000D08BD5 /* SecretView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DD750A1B3D1EF000D08BD5 /* SecretView.m */; };
 		D3DD83641B2ADC9700BD18DE /* card_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = D3DD83621B2ADC9700BD18DE /* card_delete.png */; };
 		D3DD83651B2ADC9700BD18DE /* card_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3DD83631B2ADC9700BD18DE /* card_delete@2x.png */; };
 		D3DDA51B1B2EDB5300FE3EF4 /* card_ service.png in Resources */ = {isa = PBXBuildFile; fileRef = D3DDA5191B2EDB5300FE3EF4 /* card_ service.png */; };
@@ -4220,6 +4221,8 @@
 		D3DCB9571B0B1BFB005CC798 /* VIPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPhotoView.m; sourceTree = "<group>"; };
 		D3DCDAC81ADBA66C0029DB95 /* GetAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAddressBook.h; sourceTree = "<group>"; };
 		D3DCDAC91ADBA66C0029DB95 /* GetAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAddressBook.m; sourceTree = "<group>"; };
+		D3DD75091B3D1EF000D08BD5 /* SecretView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecretView.h; sourceTree = "<group>"; };
+		D3DD750A1B3D1EF000D08BD5 /* SecretView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecretView.m; sourceTree = "<group>"; };
 		D3DD83621B2ADC9700BD18DE /* card_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_delete.png; sourceTree = "<group>"; };
 		D3DD83631B2ADC9700BD18DE /* card_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_delete@2x.png"; sourceTree = "<group>"; };
 		D3DDA5191B2EDB5300FE3EF4 /* card_ service.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_ service.png"; sourceTree = "<group>"; };
@@ -4538,6 +4541,7 @@
 		0426C01F19922D5900CD8822 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				D3DD75081B3D1ED400D08BD5 /* SecretView */,
 				0426C02019922D5900CD8822 /* HomePageViewController.h */,
 				D3D6B6E11B130F5000C3DEBD /* HomePageViewController.m */,
 			);
@@ -8339,6 +8343,15 @@
 			path = GetAddressBook;
 			sourceTree = "<group>";
 		};
+		D3DD75081B3D1ED400D08BD5 /* SecretView */ = {
+			isa = PBXGroup;
+			children = (
+				D3DD75091B3D1EF000D08BD5 /* SecretView.h */,
+				D3DD750A1B3D1EF000D08BD5 /* SecretView.m */,
+			);
+			path = SecretView;
+			sourceTree = "<group>";
+		};
 		D3E0BED21B285164002F01CF /* MyMarket */ = {
 			isa = PBXGroup;
 			children = (
@@ -10044,6 +10057,7 @@
 				D3EDCA551ACE90A6002AF865 /* SDWebImageManager.m in Sources */,
 				5BBA27961B20187100ADE3FC /* PublishRequirementTitleView.m in Sources */,
 				5B656CF619931275007D79A8 /* CompanyMemberViewController.m in Sources */,
+				D3DD750B1B3D1EF000D08BD5 /* SecretView.m in Sources */,
 				0426C2B219922D5A00CD8822 /* GPUImageScreenBlendFilter.m in Sources */,
 				0426C2B419922D5A00CD8822 /* GPUImageSharpenFilter.m in Sources */,
 				0426C2FB19922D5A00CD8822 /* AFNetworkActivityIndicatorManager.m in Sources */,
