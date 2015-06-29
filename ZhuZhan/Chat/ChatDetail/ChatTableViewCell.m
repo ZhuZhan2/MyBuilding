@@ -112,9 +112,24 @@
 
 - (void)longPressClicked:(UILongPressGestureRecognizer*)longPress{
     if (longPress.state != UIGestureRecognizerStateBegan) return;
-    if ([self.delegate respondsToSelector:@selector(longPressClicked:)]) {
-        [self.delegate longPressClicked:longPress];
-    }
+    
+    [self becomeFirstResponder];
+    
+    UIMenuController* menu = [UIMenuController sharedMenuController];
+    [menu setTargetRect:self.chatContentView.frame inView:self];
+    [menu setMenuVisible:YES animated:YES];
+}
+- (BOOL)canBecomeFirstResponder{
+    return YES;
+}
+//
+-(BOOL)canPerformAction:(SEL)action withSender:(id)sender{
+    return action == @selector(copy:);
+}
+
+-(void)copy:(id)sender{
+    UIPasteboard* pasteBoard = [UIPasteboard generalPasteboard];
+    pasteBoard.string = self.model.chatContent;
 }
 
 -(void)setModel:(ChatModel *)chatModel{
