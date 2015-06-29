@@ -262,6 +262,10 @@
     }
 }
 
+- (void)chatToolBarImagePasted:(UIImage *)image{
+    NSLog(@"image=%@",image);
+}
+
 -(void)chatToolSendBtnClickedWithContent:(NSString *)content{
     NSLog(@"isConnected===>%d",self.app.socket.isConnected);
     if (![ConnectionAvailable isConnectionAvailable]) {

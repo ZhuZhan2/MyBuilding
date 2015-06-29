@@ -83,6 +83,7 @@
 -(ChatContentView *)chatContentView{
     if (!_chatContentView) {
         _chatContentView=[[ChatContentView alloc]init];
+        _chatContentView.userInteractionEnabled= YES;
     }
     return _chatContentView;
 }
@@ -99,11 +100,40 @@
 
 -(void)setUp{
     self.clipsToBounds=YES;
+
+    
     [self.contentView addSubview:self.timeLine];
     [self.contentView addSubview:self.userImageBtn];
     [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.chatContentView];
     //[self.contentView addSubview:self.seperatorLine];
+    
+    UILongPressGestureRecognizer* longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressClicked:)];
+    [self.chatContentView addGestureRecognizer:longPress];
+    longPress.minimumPressDuration = 1;
+}
+
+- (void)longPressClicked:(UILongPressGestureRecognizer*)longPress{
+    if (longPress.state != UIGestureRecognizerStateBegan) return;
+    
+    [self becomeFirstResponder];
+
+    UIMenuController* menu = [UIMenuController sharedMenuController];
+    [menu setTargetRect:self.chatContentView.frame inView:self.chatContentView.superview];
+    [menu setMenuVisible:YES animated:YES];
+}
+
+- (BOOL)canBecomeFirstResponder{
+    return YES;
+}
+
+-(BOOL)canPerformAction:(SEL)action withSender:(id)sender{
+    return action == @selector(copy:);
+}
+
+-(void)copy:(id)sender{
+    UIPasteboard* pasteBoard = [UIPasteboard generalPasteboard];
+    pasteBoard.string = self.model.chatContent;
 }
 
 -(void)setModel:(ChatModel *)chatModel{
