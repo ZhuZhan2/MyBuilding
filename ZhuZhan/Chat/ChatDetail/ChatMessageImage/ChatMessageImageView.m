@@ -16,11 +16,30 @@
 
 @implementation ChatMessageImageView
 
+- (BOOL)canBecomeFirstResponder{
+    return YES;
+}
+
+-(BOOL)canPerformAction:(SEL)action withSender:(id)sender{
+    return (action == @selector(copy:));
+}
+
+-(void)copy:(id)sender{
+    UIPasteboard *pboard = [UIPasteboard generalPasteboard];
+    pboard.image = (id)self.image.CGImage;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame isSelf:(BOOL)isSelf{
     self = [super initWithFrame:frame];
     if (self) {
         self.isSelf = isSelf;
         [self setup];
+        
+        self.userInteractionEnabled = YES;  //用户交互的总开关
+        //长按压
+        UILongPressGestureRecognizer *press = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPress:)];
+        press.minimumPressDuration = 1.0;
+        [self addGestureRecognizer:press];
     }
     return self;
 }
@@ -50,5 +69,19 @@
 - (void)setImage:(UIImage *)image
 {
     _contentLayer.contents = (id)image.CGImage;
+}
+
+- (void)longPress:(UILongPressGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        //   TSTableViewCell *cell = (TSTableViewCell *)recognizer.view;
+        [self becomeFirstResponder];
+        UIMenuItem *flag = [[UIMenuItem alloc] initWithTitle:@"复制" action:@selector(copy:)];
+        
+        UIMenuController *menu = [UIMenuController sharedMenuController];
+        [menu setMenuItems:[NSArray arrayWithObjects:flag, nil]];
+        [menu setTargetRect:self.frame inView:self.superview];
+        [menu setMenuVisible:YES animated:YES];
+        NSLog(@"menuItems:%@",menu.menuItems);
+    }  
 }
 @end
