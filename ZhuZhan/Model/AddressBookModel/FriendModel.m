@@ -10,11 +10,12 @@
 #import "ProjectStage.h"
 @implementation FriendModel
 -(void)setDict:(NSDictionary *)dict{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _dict = dict;
     self.a_id = dict[@"loginId"];
     self.a_name = dict[@"loginName"];
     if(![[ProjectStage ProjectStrStage:dict[@"headImageId"]] isEqualToString:@""]){
-        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"headImageId"]], @"login", @"", @"", @"")];
+        self.a_avatarUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"headImageId"]], @"login", @"", @"", @"")];
     }else{
         self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"headImageId"]];;
     }

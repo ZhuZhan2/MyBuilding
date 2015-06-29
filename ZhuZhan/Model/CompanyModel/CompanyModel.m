@@ -10,6 +10,7 @@
 #import "ProjectStage.h"
 @implementation CompanyModel
 -(void)setDict:(NSDictionary *)dict{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _dict = dict;
     self.a_id = [ProjectStage ProjectStrStage:dict[@"companyId"]];
     self.a_companyName = [ProjectStage ProjectStrStage:dict[@"companyName"]];
@@ -18,7 +19,7 @@
     self.a_companyEmployeeNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"employeesNum"]]];
     self.a_companyDescription = [ProjectStage ProjectStrStage:dict[@"companyDesc"]];
     if(![[ProjectStage ProjectStrStage:dict[@"headImageId"]] isEqualToString:@""]){
-        self.a_companyLogo = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"headImageId"]], @"login", @"", @"", @"")];
+        self.a_companyLogo = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"headImageId"]], @"login", @"", @"", @"")];
     }else{
         self.a_companyLogo = [ProjectStage ProjectStrStage:dict[@"loginImagesId"]];
     }

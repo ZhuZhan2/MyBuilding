@@ -140,8 +140,9 @@
 
 -(void)initSocket{
     self.app = [AppDelegate instance];
-    
-    [self.app.socket connectToServer:@socketServer withPort:socketPort];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    uint16_t port = [[userDefaults objectForKey:@"socketPort"] intValue];
+    [self.app.socket connectToServer:[userDefaults objectForKey:@"socketServer"] withPort:port];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:@"event" forKey:@"msgType"];
     [dic setObject:@"login" forKey:@"event"];
@@ -270,7 +271,9 @@
             [self sendMessage:content];
             [self addModelWithContent:content];
         }else{
-            [self.app.socket connectToServer:@socketServer withPort:socketPort];
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            uint16_t port = [[userDefaults objectForKey:@"socketPort"] intValue];
+            [self.app.socket connectToServer:[userDefaults objectForKey:@"socketServer"] withPort:port];
             NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
             [dic setObject:@"event" forKey:@"msgType"];
             [dic setObject:@"login" forKey:@"event"];

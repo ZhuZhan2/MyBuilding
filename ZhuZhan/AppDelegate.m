@@ -35,6 +35,23 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSLog(@"firstLaunch==>%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"serverAddress"]);
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if(![userDefaults objectForKey:@"serverAddress"]){
+        //正式
+            [userDefaults setObject:@"http://apis.mybuilding.cn:15427/WebService" forKey:@"serverAddress"];
+            [userDefaults setObject:@"apis.mybuilding.cn" forKey:@"socketServer"];
+            [userDefaults setInteger:1428 forKey:@"socketPort"];
+            [userDefaults setObject:@"http://apis.mybuilding.cn:15428/ImService" forKey:@"socketHttp"];
+        
+        //开发
+//        [userDefaults setObject:@"http://10.1.5.104:8080/server" forKey:@"serverAddress"];
+//        [userDefaults setObject:@"10.1.5.104" forKey:@"socketServer"];
+//        [userDefaults setInteger:44455 forKey:@"socketPort"];
+//        [userDefaults setObject:@"http://10.1.5.104:8080/im" forKey:@"socketHttp"];
+//        [userDefaults synchronize];
+    }
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         PostAddressBook *postAddressBook = [[PostAddressBook alloc] init];
         [postAddressBook registerAddressBook:^(bool granted, NSError *error) {
@@ -138,7 +155,8 @@
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;
     [self.window makeKeyAndVisible];
-    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"firstLaunch"]){
+    NSLog(@"firstLaunch==>%@",[userDefaults objectForKey:@"firstLaunch"]);
+    if(![userDefaults objectForKey:@"firstLaunch"]){
         NSLog(@"第一次启动程序");
         FirstOpenAppAnimationView* firstAnimationView=[[FirstOpenAppAnimationView alloc]initWithFrame:self.window.frame];
         [self.window addSubview:firstAnimationView];
@@ -205,6 +223,7 @@
     NSLog(@"deviceTokenStr = %@",deviceTokenStr);
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
      [userDefaults setObject:deviceTokenStr forKey:@"deviceTokenStr"];
+    [userDefaults synchronize];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{

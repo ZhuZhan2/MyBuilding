@@ -10,13 +10,14 @@
 #import "ProjectStage.h"
 @implementation ChatListModel
 -(void)setDict:(NSDictionary *)dict{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _dict = dict;
     self.a_chatlogId = dict[@"chatlogId"];
     self.a_groupId = dict[@"groupId"];
     self.a_groupName = dict[@"name"];
     self.a_loginId = dict[@"loginId"];
     if(![dict[@"loginImagesId"] isEqualToString:@""]){
-        self.a_loginImageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"loginImagesId"], @"login", @"", @"", @"")];
+        self.a_loginImageUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image(dict[@"loginImagesId"], @"login", @"", @"", @"")];
     }else{
         self.a_loginImageUrl = dict[@"loginImagesId"];
     }

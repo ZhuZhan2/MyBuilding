@@ -56,7 +56,7 @@
     
     UIButton *secretBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     secretBtn.frame = CGRectMake(260, 20, 50, 50);
-    secretBtn.backgroundColor = [UIColor yellowColor];
+    //secretBtn.backgroundColor = [UIColor yellowColor];
     [secretBtn addTarget:self action:@selector(secretBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:secretBtn];
     
@@ -150,6 +150,7 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:0.5 animations:^{
             imageView.alpha = 0;
+            secretBtn.alpha = 0;
         } completion:^(BOOL finished) {
             [imageView removeFromSuperview];
             [secretBtn removeFromSuperview];

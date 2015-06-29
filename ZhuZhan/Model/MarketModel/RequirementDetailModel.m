@@ -10,9 +10,10 @@
 
 @implementation RequirementDetailModel
 - (void)setDict:(NSDictionary *)dict{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _dict = dict;
     self.a_loginId = dict[@"loginId"];
-    self.a_loginImagesId = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"loginImagesId"], @"login", @"260", @"260", @"")];
+    self.a_loginImagesId = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image(dict[@"loginImagesId"], @"login", @"260", @"260", @"")];
     self.a_loginName = dict[@"loginName"];
     self.a_createdTime = dict[@"createdTime"];
     self.a_isPsersonal = [dict[@"userType"] isEqualToString:@"01"];

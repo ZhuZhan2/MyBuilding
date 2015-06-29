@@ -18,6 +18,7 @@
 
 -(void)setDict:(NSDictionary *)dict
 {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _dict = dict;
     self.userId = [ProjectStage ProjectStrStage:_dict[@"userId"]];
     self.userName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"loginName"]]];
@@ -33,7 +34,7 @@
     self.userParticularsId = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"id"]]];
     self.password = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"password"]]];
     if(![[ProjectStage ProjectStrStage:dict[@"headImageId"]] isEqualToString:@""]){
-        self.userImage = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"headImageId"]], @"login", @"", @"", @"")];
+        self.userImage = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"headImageId"]], @"login", @"", @"", @"")];
     }else{
         self.userImage = [ProjectStage ProjectStrStage:dict[@"headImageId"]];
     }
@@ -41,7 +42,7 @@
     self.city = [ProjectStage ProjectStrStage:dict[@"landCity"]];
     self.district = [ProjectStage ProjectStrStage:dict[@"landDistrict"]];
     if(![[ProjectStage ProjectStrStage:dict[@"backgroundImageId"]] isEqualToString:@""]){
-        self.personalBackground=[NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"backgroundImageId"]], @"login", @"", @"", @"")];
+        self.personalBackground=[NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"backgroundImageId"]], @"login", @"", @"", @"")];
     }else{
         self.personalBackground=[ProjectStage ProjectStrStage:dict[@"backgroundImageId"]];
     }

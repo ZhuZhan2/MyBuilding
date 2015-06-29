@@ -57,8 +57,10 @@
     [UIView animateWithDuration:.3 animations:^{
         self.frame=frame;
     } completion:^(BOOL finished) {
-        [self removeFromSuperview];
+        NSLog(@"firstLaunch==>%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"serverAddress"]);
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self removeFromSuperview];
     }];
 }
 

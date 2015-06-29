@@ -14,6 +14,7 @@
 #import "EmployeesModel.h"
 @implementation LoginModel
 - (void)setDict:(NSDictionary *)dict{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _dict = dict;
     self.a_userId = [ProjectStage ProjectStrStage:dict[@"loginId"]];
     self.a_deviceToken = [ProjectStage ProjectStrStage:dict[@"token"]];
@@ -28,12 +29,12 @@
     self.a_contactTel = [ProjectStage ProjectStrStage:dict[@"contactTel"]];
     //self.a_loginStatus = [ProjectStage ProjectStrStage:dict[@"loginStatus"]];
     if(![[ProjectStage ProjectStrStage:dict[@"headImageId"]] isEqualToString:@""]){
-        self.a_userImage = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"headImageId"]], @"login", @"", @"", @"")];
+        self.a_userImage = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"headImageId"]], @"login", @"", @"", @"")];
     }else{
         self.a_userImage = [ProjectStage ProjectStrStage:dict[@"headImageId"]];
     }
     if(![[ProjectStage ProjectStrStage:dict[@"backgroundImageId"]] isEqualToString:@""]){
-        self.a_backgroundImage=[NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"backgroundImageId"]], @"login", @"", @"", @"")];
+        self.a_backgroundImage=[NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"backgroundImageId"]], @"login", @"", @"", @"")];
     }else{
         self.a_backgroundImage=[ProjectStage ProjectStrStage:dict[@"backgroundImageId"]];
     }
@@ -470,7 +471,8 @@
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"responseObject ==> %@",responseObject);
         if (block) {
-            block([NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%s%@",serverAddress,image(responseObject[@"data"], @"login", @"", @"", @"")], nil], nil);
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            block([NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image(responseObject[@"data"], @"login", @"", @"", @"")], nil], nil);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);
@@ -493,7 +495,8 @@
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"responseObject ==> %@",responseObject);
         if (block) {
-            block([NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%s%@",serverAddress,image(responseObject[@"data"], @"login", @"", @"", @"")], nil], nil);
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            block([NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image(responseObject[@"data"], @"login", @"", @"", @"")], nil], nil);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);
@@ -515,7 +518,8 @@
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"%@",responseObject[@"data"]);
         if (block) {
-            block([NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%s%@",serverAddress,responseObject[@"data"]], nil], nil);
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            block([NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],responseObject[@"data"]], nil], nil);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error ==> %@",error);

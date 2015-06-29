@@ -10,11 +10,12 @@
 #import "ProjectStage.h"
 @implementation EmployeesModel
 -(void)setDict:(NSDictionary *)dict{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _dict = dict;
     self.a_id = [ProjectStage ProjectStrStage:dict[@"loginId"]];
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"loginName"]];
     if(![[ProjectStage ProjectStrStage:dict[@"headImageId"]] isEqualToString:@""]){
-        self.a_userIamge = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"headImageId"]], @"login", @"", @"", @"")];
+        self.a_userIamge = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"headImageId"]], @"login", @"", @"", @"")];
     }else{
         self.a_userIamge = [ProjectStage ProjectStrStage:dict[@"headImageId"]];
     }

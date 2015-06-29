@@ -28,8 +28,8 @@
     self.webView.delegate =self;
     //self.webView.scrollView.bounces=NO;
     self.webView.scalesPageToFit = YES;
-    
-    NSString *urlstr = [NSString stringWithFormat:@"%s/api/contract/download?contractId=%@&fileType=%@",serverAddress,self.ID,self.type];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *urlstr = [NSString stringWithFormat:@"%@/api/contract/download?contractId=%@&fileType=%@",[userDefaults objectForKey:@"serverAddress"],self.ID,self.type];
     NSLog(@"%@",urlstr);
     NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)urlstr, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]",  kCFStringEncodingUTF8 ));
     NSString* htmlPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"source.bundle/web/viewer.html"];

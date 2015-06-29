@@ -12,12 +12,13 @@
 
 @implementation MarketModel
 -(void)setDict:(NSDictionary *)dict{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _dict = dict;
     self.a_id = dict[@"reqId"];
     self.a_loginId = dict[@"loginId"];
     self.a_loginName = dict[@"loginName"];
     if(![[ProjectStage ProjectStrStage:dict[@"loginImagesId"]] isEqualToString:@""]){
-        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"loginImagesId"], @"login", @"", @"", @"")];
+        self.a_avatarUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image(dict[@"loginImagesId"], @"login", @"", @"", @"")];
     }else{
         self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"loginImagesId"]];
     }

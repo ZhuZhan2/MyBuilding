@@ -12,6 +12,7 @@
 #import "ProjectImageModel.h"
 @implementation projectModel
 - (void)setDict:(NSDictionary *)dict{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _dict = dict;
     self.a_lastUpdatedTime = [ProjectStage ProjectCardTimeStage:dict[@"lastUpdatedTime"]];
     self.a_commentsNum = [ProjectStage ProjectStrStage:dict[@"commentsNum"]];
@@ -50,7 +51,7 @@
     self.isFocused = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"isFocus"]]];
     self.a_projectstage = [ProjectStage ProjectStrStage:dict[@"projectStage"]];
     if(![[ProjectStage ProjectStrStage:dict[@"projectImagesId"]] isEqualToString:@""]){
-        self.a_imageLocation = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"projectImagesId"]], @"project", @"288", @"110", @"1")];
+        self.a_imageLocation = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"projectImagesId"]], @"project", @"288", @"110", @"1")];
     }else{
         self.a_imageLocation = [ProjectStage ProjectStrStage:dict[@"projectImagesId"]];
     }

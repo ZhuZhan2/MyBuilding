@@ -12,6 +12,7 @@
 @implementation PersonalCenterModel
 
 - (void)setDict:(NSDictionary *)dict{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _dict = dict;
     self.a_id = [ProjectStage ProjectStrStage:dict[@"messageId"]];
     self.a_entityId = [ProjectStage ProjectStrStage:dict[@"messageSourceId"]];
@@ -20,8 +21,8 @@
     if([[ProjectStage ProjectStrStage:dict[@"messageType"]] isEqualToString:@"01"]){
         self.a_content = [ProjectStage ProjectStrStage:dict[@"messageData"][@"content"]];
         if(![[ProjectStage ProjectStrStage:dict[@"messageData"][@"dynamicImagesId"]] isEqualToString:@""]){
-            self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"messageData"][@"dynamicImagesId"]], @"dynamic", @"640", @"320", @"1")];
-            self.a_imageOriginalUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"messageData"][@"dynamicImagesId"]], @"dynamic", @"", @"", @"")];
+            self.a_imageUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"messageData"][@"dynamicImagesId"]], @"dynamic", @"640", @"320", @"1")];
+            self.a_imageOriginalUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"messageData"][@"dynamicImagesId"]], @"dynamic", @"", @"", @"")];
         }else{
             self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"messageData"][@"dynamicImagesId"]];
             self.a_imageOriginalUrl = [ProjectStage ProjectStrStage:dict[@"messageData"][@"dynamicImagesId"]];
@@ -35,8 +36,8 @@
         self.a_entityName = [ProjectStage ProjectStrStage:dict[@"messageData"][@"productName"]];
         self.a_content = [ProjectStage ProjectStrStage:dict[@"messageData"][@"productName"]];
         if(![[ProjectStage ProjectStrStage:dict[@"messageData"][@"productImagesId"]] isEqualToString:@""]){
-            self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"messageData"][@"productImagesId"]], @"product", @"640", @"320", @"1")];
-            self.a_imageOriginalUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"messageData"][@"productImagesId"]], @"product", @"", @"", @"")];
+            self.a_imageUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"messageData"][@"productImagesId"]], @"product", @"640", @"320", @"1")];
+            self.a_imageOriginalUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"messageData"][@"productImagesId"]], @"product", @"", @"", @"")];
         }else{
             self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"messageData"][@"productImagesId"]];
             self.a_imageOriginalUrl = [ProjectStage ProjectStrStage:dict[@"messageData"][@"productImagesId"]];
@@ -64,13 +65,13 @@
     self.a_userType=[LoginSqlite getdata:@"userType"];
     if(![self.a_category isEqualToString:@"CompanyAgree"]){
         if(![[ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginImagesId"]] isEqualToString:@""]){
-            self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginImagesId"]], @"login", @"", @"", @"")];
+            self.a_avatarUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginImagesId"]], @"login", @"", @"", @"")];
         }else{
             self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"userInfo"][@"loginImagesId"]];
         }
     }else{
         if(![[ProjectStage ProjectStrStage:dict[@"messageData"][@"loginImagesId"]] isEqualToString:@""]){
-            self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"messageData"][@"loginImagesId"]], @"login", @"", @"", @"")];
+            self.a_avatarUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"messageData"][@"loginImagesId"]], @"login", @"", @"", @"")];
         }else{
             self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"messageData"][@"loginImagesId"]];
         }

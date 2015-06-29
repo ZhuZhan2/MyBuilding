@@ -22,7 +22,7 @@
 
 #import "AFAppDotNetAPIClient.h"
 #import "LoginSqlite.h"
-static NSString * const AFAppDotNetAPIBaseURLString = @serverAddress;
+//static NSString * const AFAppDotNetAPIBaseURLString = @serverAddress;
 //static NSString * const AFAppDotNetAPIBaseURLString = @"http://192.168.222.95:801/";
 
 @implementation AFAppDotNetAPIClient
@@ -31,7 +31,9 @@ static NSString * const AFAppDotNetAPIBaseURLString = @serverAddress;
     static AFAppDotNetAPIClient *_sharedClient = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedClient = [[AFAppDotNetAPIClient alloc] initWithBaseURL:[NSURL URLWithString:AFAppDotNetAPIBaseURLString]];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSLog(@"==>%@",[userDefaults objectForKey:@"serverAddress"]);
+        _sharedClient = [[AFAppDotNetAPIClient alloc] initWithBaseURL:[NSURL URLWithString:[userDefaults objectForKey:@"serverAddress"]]];
         //_sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         _sharedClient.responseSerializer = [AFJSONResponseSerializer serializer];
     });

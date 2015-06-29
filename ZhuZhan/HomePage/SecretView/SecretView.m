@@ -11,6 +11,9 @@
 @property(nonatomic,strong)UIButton *closeBtn;
 @property(nonatomic,strong)UITextField *textFiled;
 @property(nonatomic,strong)UIButton *saveBtn;
+@property(nonatomic,strong)UIButton *testBtn;
+@property(nonatomic,strong)UIButton *productionBtn;//生产
+@property(nonatomic,strong)UIButton *predictBtn;//预生产
 @end
 
 @implementation SecretView
@@ -21,6 +24,9 @@
         [self addSubview:self.closeBtn];
         [self addSubview:self.textFiled];
         [self addSubview:self.saveBtn];
+        [self addSubview:self.testBtn];
+        [self addSubview:self.predictBtn];
+        [self addSubview:self.productionBtn];
     }
     return self;
 }
@@ -57,6 +63,39 @@
     return _closeBtn;
 }
 
+-(UIButton *)testBtn{
+    if(!_testBtn){
+        _testBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _testBtn.frame = CGRectMake(40, 140, 60, 40);
+        _testBtn.backgroundColor = [UIColor greenColor];
+        [_testBtn setTitle:@"测试" forState:UIControlStateNormal];
+        [_testBtn addTarget:self action:@selector(testBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _testBtn;
+}
+
+-(UIButton *)predictBtn{
+    if(!_predictBtn){
+        _predictBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _predictBtn.frame = CGRectMake(120, 140, 60, 40);
+        _predictBtn.backgroundColor = [UIColor greenColor];
+        [_predictBtn setTitle:@"预生产" forState:UIControlStateNormal];
+        [_predictBtn addTarget:self action:@selector(predictBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _predictBtn;
+}
+
+-(UIButton *)productionBtn{
+    if(!_productionBtn){
+        _productionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _productionBtn.frame = CGRectMake(200, 140, 60, 40);
+        _productionBtn.backgroundColor = [UIColor greenColor];
+        [_productionBtn setTitle:@"生产" forState:UIControlStateNormal];
+        [_productionBtn addTarget:self action:@selector(productionBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _productionBtn;
+}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.textFiled resignFirstResponder];
     return YES;
@@ -74,4 +113,65 @@
         exit(0);
     }
 }
+
+-(void)testBtnAction{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@"http://10.1.5.104:9090/server" forKey:@"serverAddress"];
+    [userDefaults setObject:@"10.1.5.104" forKey:@"socketServer"];
+    [userDefaults setInteger:54455 forKey:@"socketPort"];
+    [userDefaults setObject:@"http://10.1.5.104:9090/im" forKey:@"socketHttp"];
+    [userDefaults synchronize];
+    NSLog(@"%@",[userDefaults objectForKey:@"serverAddress"]);
+    exit(0);
+}
+
+-(void)predictBtnAction{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@"http://apis.shenjigroup.com:15427/WebService" forKey:@"serverAddress"];
+    [userDefaults setObject:@"apis.shenjigroup.com" forKey:@"socketServer"];
+    [userDefaults setInteger:1428 forKey:@"socketPort"];
+    [userDefaults setObject:@"http://apis.shenjigroup.com:15428/ImService" forKey:@"socketHttp"];
+    [userDefaults synchronize];
+    NSLog(@"%@",[userDefaults objectForKey:@"serverAddress"]);
+    exit(0);
+}
+
+-(void)productionBtnAction{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@"http://apis.mybuilding.cn:15427/WebService" forKey:@"serverAddress"];
+    [userDefaults setObject:@"apis.mybuilding.cn" forKey:@"socketServer"];
+    [userDefaults setInteger:1428 forKey:@"socketPort"];
+    [userDefaults setObject:@"http://apis.mybuilding.cn:15428/ImService" forKey:@"socketHttp"];
+    [userDefaults synchronize];
+    NSLog(@"%@",[userDefaults objectForKey:@"serverAddress"]);
+    exit(0);
+}
+
+//正式服务器
+//#define  serverAddress "http://apis.mybuilding.cn:15427/WebService"
+
+//预生产服务器
+//#define  serverAddress "http://apis.shenjigroup.com:15427/WebService"
+
+//测试服务器
+//#define  serverAddress "http://10.1.5.104:9090/server"
+
+//开发服务器
+#define  serverAddress "http://10.1.5.104:8080/server"
+
+//马恩伟本机
+//#define  serverAddress "http://10.1.1.140:9090/service/"
+
+//蒋慧吉本机
+//#define  serverAddress "http://10.1.1.204:9090/service"
+
+//闵杰本机
+//#define  serverAddress "http://10.1.1.179:9090/service"
+
+//一期生产服务器
+//#define  serverAddress "http://apis.mybuilding.cn:15427/WebService"
+
+//分支测试服
+//#define serverAddress "http://10.1.5.104:7070/server/"
+
 @end

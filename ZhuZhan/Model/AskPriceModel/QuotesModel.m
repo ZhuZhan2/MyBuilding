@@ -75,11 +75,12 @@
 
 @implementation ImagesModel
 -(void)setDict:(NSDictionary *)dict{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     self.a_id = dict[@"id"];
     self.a_createdBy = dict[@"createdBy"];
     if(![[ProjectStage ProjectStrStage:dict[@"location"]] isEqualToString:@""]){
-        self.a_location = [NSString stringWithFormat:@"%s/api/attachment/getAttachment?FileId=%@&Width=%@&Height=%@&Quality=%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"id"]],@"160",@"160",@"30"];
-        self.a_bigLocation = [NSString stringWithFormat:@"%s/api/attachment/getAttachment?FileId=%@&Width=%@&Height=%@&Quality=%@",serverAddress,[ProjectStage ProjectStrStage:dict[@"id"]],@"0",@"0",@"100"];
+        self.a_location = [NSString stringWithFormat:@"%@/api/attachment/getAttachment?FileId=%@&Width=%@&Height=%@&Quality=%@",[userDefaults objectForKey:@"serverAddress"],[ProjectStage ProjectStrStage:dict[@"id"]],@"160",@"160",@"30"];
+        self.a_bigLocation = [NSString stringWithFormat:@"%@/api/attachment/getAttachment?FileId=%@&Width=%@&Height=%@&Quality=%@",[userDefaults objectForKey:@"serverAddress"],[ProjectStage ProjectStrStage:dict[@"id"]],@"0",@"0",@"100"];
         self.a_isUrl = YES;
     }else{
         self.a_location = [ProjectStage ProjectStrStage:dict[@"id"]];

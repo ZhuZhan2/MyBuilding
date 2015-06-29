@@ -11,11 +11,12 @@
 #import "ContactCommentModel.h"
 @implementation ActivesModel
 - (void)setDict:(NSDictionary *)dict{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _dict = dict;
     self.a_id = [ProjectStage ProjectStrStage:dict[@"dynamicId"]];
     self.a_dynamicLoginName=[[ProjectStage ProjectStrStage:dict[@"createUser"][@"loginName"]] stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
     if(![[ProjectStage ProjectStrStage:dict[@"createUser"][@"loginImagesId"]] isEqualToString:@""]){
-        self.a_dynamicAvatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"createUser"][@"loginImagesId"], @"login", @"74", @"74", @"")];
+        self.a_dynamicAvatarUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image(dict[@"createUser"][@"loginImagesId"], @"login", @"74", @"74", @"")];
     }else{
         self.a_dynamicAvatarUrl = [ProjectStage ProjectStrStage:dict[@"createUser"][@"loginImagesId"]];
     }
@@ -38,8 +39,8 @@
         self.a_imageHeight = height;
     }
     if(![[ProjectStage ProjectStrStage:dict[@"dynamicImagesId"]] isEqualToString:@""]){
-        self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"dynamicImagesId"], @"dynamic", @"640", @"320", @"1")];
-        self.a_bigImageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"dynamicImagesId"], @"dynamic", @"640", @"", @"")];
+        self.a_imageUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image(dict[@"dynamicImagesId"], @"dynamic", @"640", @"320", @"1")];
+        self.a_bigImageUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image(dict[@"dynamicImagesId"], @"dynamic", @"640", @"", @"")];
     }else{
         self.a_imageUrl = [ProjectStage ProjectStrStage:dict[@"dynamicImagesId"]];
         self.a_bigImageUrl = [ProjectStage ProjectStrStage:dict[@"dynamicImagesId"]];
@@ -66,8 +67,8 @@
     self.a_productImageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"operationData"][@"imageWidth"]]];
     self.a_productImageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"operationData"][@"imageHeight"]]];
     if(![[ProjectStage ProjectStrStage:dict[@"operationData"][@"productImagesId"]] isEqualToString:@""]){
-        self.a_productImage = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"operationData"][@"productImagesId"], @"product", @"640", @"320", @"1")];
-        self.a_bigProductImage = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"operationData"][@"productImagesId"], @"product", @"640", @"", @"")];
+        self.a_productImage = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image(dict[@"operationData"][@"productImagesId"], @"product", @"640", @"320", @"1")];
+        self.a_bigProductImage = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image(dict[@"operationData"][@"productImagesId"], @"product", @"640", @"", @"")];
     }else{
         self.a_productImage = [ProjectStage ProjectStrStage:dict[@"operationData"][@"productImagesId"]];
         self.a_bigProductImage = [ProjectStage ProjectStrStage:dict[@"operationData"][@"productImagesId"]];

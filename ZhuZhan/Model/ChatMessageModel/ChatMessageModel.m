@@ -11,6 +11,7 @@
 #import "LoginSqlite.h"
 @implementation ChatMessageModel
 -(void)setDict:(NSDictionary *)dict{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _dict = dict;
     self.a_id = [ProjectStage ProjectStrStage:dict[@"chatlogId"]];
     if([[ProjectStage ProjectStrStage:dict[@"nickName"]] isEqualToString:@""]){
@@ -19,7 +20,7 @@
         self.a_name = [ProjectStage ProjectStrStage:dict[@"nickName"]];
     }
     if(![[ProjectStage ProjectStrStage:dict[@"senderImageId"]] isEqualToString:@""]){
-        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"senderImageId"]], @"login", @"", @"", @"")];
+        self.a_avatarUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"senderImageId"]], @"login", @"", @"", @"")];
     }else{
         self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"senderImageId"]];
     }
@@ -28,8 +29,8 @@
         self.a_message = [ProjectStage ProjectStrStage:dict[@"content"]];
     }else{
         if(![[ProjectStage ProjectStrStage:dict[@"content"]] isEqualToString:@""]){
-            self.a_message = [NSString stringWithFormat:@"%s%@",socketHttp,image([ProjectStage ProjectStrStage:dict[@"content"]], @"chatImage", @"200", @"200", @"")];
-            self.a_bigImageUrl = [NSString stringWithFormat:@"%s%@",socketHttp,image([ProjectStage ProjectStrStage:dict[@"content"]], @"chatImage", @"", @"", @"")];
+            self.a_message = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"socketHttp"],image([ProjectStage ProjectStrStage:dict[@"content"]], @"chatImage", @"200", @"200", @"")];
+            self.a_bigImageUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"socketHttp"],image([ProjectStage ProjectStrStage:dict[@"content"]], @"chatImage", @"", @"", @"")];
         }else{
             self.a_message = [ProjectStage ProjectStrStage:dict[@"content"]];
             self.a_bigImageUrl = [ProjectStage ProjectStrStage:dict[@"content"]];

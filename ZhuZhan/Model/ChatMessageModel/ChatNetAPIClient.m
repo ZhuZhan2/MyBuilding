@@ -9,13 +9,13 @@
 #import "ChatNetAPIClient.h"
 #import "LoginSqlite.h"
 @implementation ChatNetAPIClient
-static NSString * const AFAppDotNetAPIBaseURLString = @socketHttp;
+//static NSString * const AFAppDotNetAPIBaseURLString = @socketHttp;
 
 + (instancetype)sharedClient {
     static ChatNetAPIClient *_sharedClient = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedClient = [[ChatNetAPIClient alloc] initWithBaseURL:[NSURL URLWithString:AFAppDotNetAPIBaseURLString]];
+        _sharedClient = [[ChatNetAPIClient alloc] initWithBaseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] objectForKey:@"socketHttp"]]];
         //_sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         _sharedClient.responseSerializer = [AFJSONResponseSerializer serializer];
     });

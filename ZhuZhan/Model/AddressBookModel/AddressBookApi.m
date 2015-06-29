@@ -323,7 +323,8 @@
         //如果报接受类型不一致请替换一致text/html或别的
         //manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
         //你的接口地址
-        NSString *url=[NSString stringWithFormat:@"%s/api/telContacts/saveTelContacts",serverAddress];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSString *url=[NSString stringWithFormat:@"%@/api/telContacts/saveTelContacts",[userDefaults objectForKey:@"serverAddress"]];
         //发送请求
         [manager POST:url parameters:arr success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"JSON: %@", responseObject);

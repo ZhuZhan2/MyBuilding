@@ -21,11 +21,12 @@
 
 @implementation AddressBookContactModel
 -(void)setDict:(NSDictionary *)dict{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _dict = dict;
     self.a_contactId = dict[@"loginId"];
     self.a_loginName = dict[@"loginName"];
     if(![dict[@"imageId"] isEqualToString:@""]){
-        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"imageId"], @"login", @"", @"", @"")];
+        self.a_avatarUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image(dict[@"imageId"], @"login", @"", @"", @"")];
     }else{
         self.a_avatarUrl = dict[@"imageId"];
     }

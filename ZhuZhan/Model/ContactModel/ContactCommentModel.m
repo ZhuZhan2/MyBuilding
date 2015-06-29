@@ -11,6 +11,7 @@
 #import "LoginSqlite.h"
 @implementation ContactCommentModel
 -(void)setDict:(NSDictionary *)dict{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     self.a_id = [ProjectStage ProjectStrStage:dict[@"commentId"]];
     self.a_entityId = [ProjectStage ProjectStrStage:dict[@"paramId"]];
     self.a_createdBy = [ProjectStage ProjectStrStage:dict[@"createdUser"]];
@@ -30,7 +31,7 @@
     }
 
     if(![[ProjectStage ProjectStrStage:dict[@"loginImagesId"]] isEqualToString:@""]){
-        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"loginImagesId"]], @"login", @"", @"", @"")];
+        self.a_avatarUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"loginImagesId"]], @"login", @"", @"", @"")];
     }else{
         self.a_avatarUrl = [ProjectStage ProjectStrStage:dict[@"loginImagesId"]];
     }

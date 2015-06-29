@@ -19,12 +19,13 @@
  nickName = "";
  */
 -(void)setDict:(NSDictionary *)dict{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     self.a_createdTime=dict[@"createdTime"];
     self.a_createdUser=dict[@"createdUser"];
     self.a_groupId=dict[@"groupId"];
     self.a_loginId=dict[@"loginId"];
     if (![dict[@"loginImagesId"] isEqualToString:@""]) {
-        self.a_loginImagesId=[NSString stringWithFormat:@"%s%@",serverAddress,image(dict[@"loginImagesId"], @"login", @"", @"", @"")];
+        self.a_loginImagesId=[NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image(dict[@"loginImagesId"], @"login", @"", @"", @"")];
     }else{
         self.a_loginImagesId=dict[@"loginImagesId"];
     }

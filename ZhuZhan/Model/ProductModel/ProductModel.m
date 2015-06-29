@@ -12,6 +12,7 @@
 
 @implementation ProductModel
 -(void)setDict:(NSDictionary *)dict{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _dict = dict;
     self.a_id = [ProjectStage ProjectStrStage:_dict[@"productId"]];
     self.a_name = [ProjectStage ProjectStrStage:_dict[@"productName"]];
@@ -20,9 +21,9 @@
     self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"imageHeight"]]];
 
     if(![[ProjectStage ProjectStrStage:_dict[@"productImagesId"]] isEqualToString:@""]){
-        self.a_imageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"productImagesId"]], @"product", @"302", @"", @"")];
-        self.a_marketImageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"productImagesId"]], @"product", @"264", @"210", @"1")];
-        self.a_originImageUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"productImagesId"]], @"product", @"", @"", @"")];
+        self.a_imageUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"productImagesId"]], @"product", @"302", @"", @"")];
+        self.a_marketImageUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"productImagesId"]], @"product", @"264", @"210", @"1")];
+        self.a_originImageUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"productImagesId"]], @"product", @"", @"", @"")];
     }else{
         self.a_imageUrl = [ProjectStage ProjectStrStage:_dict[@"productImagesId"]];
         self.a_marketImageUrl = [ProjectStage ProjectStrStage:_dict[@"productImagesId"]];
@@ -32,7 +33,7 @@
     
     self.a_commentNumber = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"commentsNum"]]];
     if(![[ProjectStage ProjectStrStage:_dict[@"loginImagesId"]] isEqualToString:@""]){
-        self.a_avatarUrl = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"loginImagesId"]], @"login", @"", @"", @"")];
+        self.a_avatarUrl = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"loginImagesId"]], @"login", @"", @"", @"")];
     }else{
         self.a_avatarUrl = [ProjectStage ProjectStrStage:_dict[@"loginImagesId"]];
     }

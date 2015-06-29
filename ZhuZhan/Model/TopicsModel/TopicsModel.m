@@ -10,12 +10,13 @@
 #import "ProjectStage.h"
 @implementation TopicsModel
 -(void)setDict:(NSDictionary *)dict{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _dict = dict;
     self.a_id = [ProjectStage ProjectStrStage:dict[@"topicId"]];
     self.a_title = [ProjectStage ProjectStrStage:dict[@"topicName"]];
     self.a_content = [ProjectStage ProjectStrStage:dict[@"topicDesc"]];
     if(![[ProjectStage ProjectStrStage:dict[@"topicImagesId"]] isEqualToString:@""]){
-        self.a_image = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"topicImagesId"]], @"topic", @"", @"", @"")];
+        self.a_image = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"topicImagesId"]], @"topic", @"", @"", @"")];
     }else{
         self.a_image = [ProjectStage ProjectStrStage:dict[@"topicImagesId"]];
     }

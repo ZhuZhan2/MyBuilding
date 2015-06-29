@@ -10,6 +10,7 @@
 #import "ProjectStage.h"
 @implementation MyCenterModel
 -(void)setDict:(NSDictionary *)dict{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _dict = dict;
     self.a_id = [ProjectStage ProjectStrStage:dict[@"userId"]];
     self.a_company = [ProjectStage ProjectStrStage:dict[@"companyName"]];
@@ -28,7 +29,7 @@
     self.a_cellPhone = [ProjectStage ProjectStrStage:dict[@"loginTel"]];
     self.a_email = [ProjectStage ProjectStrStage:dict[@"email"]];
     if(![[ProjectStage ProjectStrStage:dict[@"headImageId"]] isEqualToString:@""]){
-        self.a_userImage = [NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"headImageId"]], @"login", @"", @"", @"")];
+        self.a_userImage = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"headImageId"]], @"login", @"", @"", @"")];
     }else{
         self.a_userImage = [ProjectStage ProjectStrStage:dict[@"headImageId"]];
     }
@@ -41,7 +42,7 @@
     self.a_district = [ProjectStage ProjectStrStage:dict[@"landDistrict"]];
     self.a_userName = [ProjectStage ProjectStrStage:dict[@"loginName"]];
     if(![[ProjectStage ProjectStrStage:dict[@"backgroundImageId"]] isEqualToString:@""]){
-        self.a_backgroundImage=[NSString stringWithFormat:@"%s%@",serverAddress,image([ProjectStage ProjectStrStage:dict[@"backgroundImageId"]], @"login", @"", @"", @"")];
+        self.a_backgroundImage=[NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image([ProjectStage ProjectStrStage:dict[@"backgroundImageId"]], @"login", @"", @"", @"")];
     }else{
         self.a_backgroundImage=[ProjectStage ProjectStrStage:dict[@"backgroundImageId"]];
     }

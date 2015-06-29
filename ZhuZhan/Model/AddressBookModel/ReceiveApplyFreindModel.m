@@ -22,12 +22,13 @@
      @property(nonatomic,copy)NSString* a_messageType;
      @property(nonatomic,copy)NSString* a_status;
      */
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     self.a_createdTime=[ProjectStage ChatMessageTimeStage:dic[@"createdTime"]];
     self.a_createdUser=dic[@"createdUser"];
     self.a_loginName=dic[@"loginName"];
     self.a_messageContent=dic[@"messageContent"];
     if(![dic[@"imageId"] isEqualToString:@""]){
-        self.a_imageId = [NSString stringWithFormat:@"%s%@",serverAddress,image(dic[@"imageId"], @"login", @"", @"", @"")];
+        self.a_imageId = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image(dic[@"imageId"], @"login", @"", @"", @"")];
     }else{
         self.a_imageId = dic[@"imageId"];
     }
