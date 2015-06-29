@@ -27,15 +27,18 @@
 
 -(void)copy:(id)sender{
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
-    pboard.image = _copyImage;
-    pboard.URL = [NSURL URLWithString:self.bigImageUrl];
+    if(self.isLocal){
+        pboard.image = self.bigLocalImage;
+    }else{
+        pboard.image = [self saveServeImage];
+    }
 }
 
 -(void)saveImage:(id)sender{
     if(self.isLocal){
         UIImageWriteToSavedPhotosAlbum(self.bigLocalImage, self, nil,nil);
     }else{
-        [self saveServeImage];
+        UIImageWriteToSavedPhotosAlbum([self saveServeImage], self, nil,nil);
     }
 }
 
@@ -44,10 +47,10 @@
 //    self.image = pboard.image;
 //}
 
--(void)saveServeImage{
+-(UIImage *)saveServeImage{
     NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.bigImageUrl]];
     UIImage *image = [UIImage imageWithData:imageData];
-    UIImageWriteToSavedPhotosAlbum(image, self, nil,nil);
+    return image;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame isSelf:(BOOL)isSelf{
