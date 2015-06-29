@@ -123,7 +123,7 @@
 -(void)saveBtnAction{
     NSLog(@"%@",self.textFiled.text);
     if(![self.textFiled.text isEqualToString:@""]){
-        exit(0);
+
     }
 }
 
@@ -135,7 +135,6 @@
     [userDefaults setObject:@"http://10.1.5.104:9090/im" forKey:@"socketHttp"];
     [userDefaults synchronize];
     NSLog(@"%@",[userDefaults objectForKey:@"serverAddress"]);
-    exit(0);
 }
 
 -(void)predictBtnAction{
@@ -146,7 +145,6 @@
     [userDefaults setObject:@"http://apis.shenjigroup.com:15428/ImService" forKey:@"socketHttp"];
     [userDefaults synchronize];
     NSLog(@"%@",[userDefaults objectForKey:@"serverAddress"]);
-    exit(0);
 }
 
 -(void)productionBtnAction{
@@ -157,7 +155,6 @@
     [userDefaults setObject:@"http://apis.mybuilding.cn:15428/ImService" forKey:@"socketHttp"];
     [userDefaults synchronize];
     NSLog(@"%@",[userDefaults objectForKey:@"serverAddress"]);
-    exit(0);
 }
 
 -(void)developerBtnAction{
@@ -167,8 +164,6 @@
     [userDefaults setInteger:44455 forKey:@"socketPort"];
     [userDefaults setObject:@"http://10.1.5.104:8080/im" forKey:@"socketHttp"];
     [userDefaults synchronize];
-    [userDefaults synchronize];
     NSLog(@"%@",[userDefaults objectForKey:@"serverAddress"]);
-    exit(0);
 }
 @end

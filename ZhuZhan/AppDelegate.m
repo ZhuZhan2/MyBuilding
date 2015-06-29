@@ -43,7 +43,7 @@
             [userDefaults setObject:@"apis.mybuilding.cn" forKey:@"socketServer"];
             [userDefaults setInteger:1428 forKey:@"socketPort"];
             [userDefaults setObject:@"http://apis.mybuilding.cn:15428/ImService" forKey:@"socketHttp"];
-        
+            [userDefaults synchronize];
         //开发
 //        [userDefaults setObject:@"http://10.1.5.104:8080/server" forKey:@"serverAddress"];
 //        [userDefaults setObject:@"10.1.5.104" forKey:@"socketServer"];
