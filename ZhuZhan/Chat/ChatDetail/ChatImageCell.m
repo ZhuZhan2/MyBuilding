@@ -90,9 +90,13 @@
     [self.contentView addSubview:self.chatMessageImageView];
     if(model.a_isLocal){
         self.chatMessageImageView.image = model.a_localImage;
+        self.chatMessageImageView.bigLocalImage = model.a_localBigImage;
     }else{
         [self.chatMessageImageView sd_setImageWithURL:[NSURL URLWithString:model.a_message] placeholderImage:[GetImagePath getImagePath:@"首页_16"]];
+        self.chatMessageImageView.imageId = model.a_fileId;
+        self.chatMessageImageView.bigImageUrl = model.a_bigImageUrl;
     }
+    self.chatMessageImageView.isLocal = model.a_isLocal;
 }
 
 -(void)setIndexPath:(NSIndexPath *)indexPath{
