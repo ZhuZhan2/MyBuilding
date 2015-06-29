@@ -52,6 +52,7 @@
     CGSize size = [ChatMessageModel getImageWidth:dict[@"imageWidth"] height:dict[@"imageHeight"]];
     self.a_imageWidth = size.width;
     self.a_imageHeight = size.height;
+    self.a_fileId = dict[@"fileId"];
 }
 
 +(CGSize)getImageWidth:(NSString *)width height:(NSString *)height{

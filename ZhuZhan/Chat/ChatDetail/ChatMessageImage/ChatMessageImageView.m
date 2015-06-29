@@ -22,17 +22,32 @@
 }
 
 -(BOOL)canPerformAction:(SEL)action withSender:(id)sender{
-    return (action == @selector(copy:) || action == @selector(paste:));
+    return (action == @selector(copy:) || action == @selector(saveImage:));
 }
 
 -(void)copy:(id)sender{
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     pboard.image = _copyImage;
+    pboard.string = self.imageId;
 }
 
--(void)paste:(id)sender{
-    UIPasteboard *pboard = [UIPasteboard generalPasteboard];
-    self.image = pboard.image;
+-(void)saveImage:(id)sender{
+    if(self.isLocal){
+        UIImageWriteToSavedPhotosAlbum(self.bigLocalImage, self, nil,nil);
+    }else{
+        [self saveServeImage];
+    }
+}
+
+//-(void)paste:(id)sender{
+//    UIPasteboard *pboard = [UIPasteboard generalPasteboard];
+//    self.image = pboard.image;
+//}
+
+-(void)saveServeImage{
+    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.bigImageUrl]];
+    UIImage *image = [UIImage imageWithData:imageData];
+    UIImageWriteToSavedPhotosAlbum(image, self, nil,nil);
 }
 
 - (instancetype)initWithFrame:(CGRect)frame isSelf:(BOOL)isSelf{
@@ -78,10 +93,26 @@
     _copyImage = image;
 }
 
+-(void)setImageId:(NSString *)imageId{
+    _imageId = imageId;
+}
+
+-(void)setBigLocalImage:(UIImage *)bigLocalImage{
+    _bigLocalImage = bigLocalImage;
+}
+
+-(void)setBigImageUrl:(NSString *)bigImageUrl{
+    _bigImageUrl = bigImageUrl;
+}
+
+-(void)setIsLocal:(BOOL)isLocal{
+    _isLocal = isLocal;
+}
+
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         [self becomeFirstResponder];
-        UIMenuItem *paste = [[UIMenuItem alloc] initWithTitle:@"黏贴" action:@selector(paste:)];
+        UIMenuItem *paste = [[UIMenuItem alloc] initWithTitle:@"收藏" action:@selector(saveImage:)];
         
         UIMenuController *menu = [UIMenuController sharedMenuController];
         [menu setMenuItems:[NSArray arrayWithObjects:paste, nil]];

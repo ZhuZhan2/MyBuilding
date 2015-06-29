@@ -25,6 +25,7 @@ typedef enum {
 @property(nonatomic,strong)UIImage  *a_localImage;
 @property(nonatomic,strong)UIImage  *a_localBigImage;
 @property(nonatomic,strong)NSString *a_bigImageUrl;
+@property(nonatomic,strong)NSString *a_fileId;
 @property(nonatomic)BOOL a_isLocal;
 @property(nonatomic)CGFloat a_imageWidth;
 @property(nonatomic)CGFloat a_imageHeight;

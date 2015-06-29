@@ -128,6 +128,8 @@
 }
 
 -(void)testBtnAction{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"切换到测试服" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"http://10.1.5.104:9090/server" forKey:@"serverAddress"];
     [userDefaults setObject:@"10.1.5.104" forKey:@"socketServer"];
@@ -138,6 +140,8 @@
 }
 
 -(void)predictBtnAction{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"切换到预生产服" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"http://apis.shenjigroup.com:15427/WebService" forKey:@"serverAddress"];
     [userDefaults setObject:@"apis.shenjigroup.com" forKey:@"socketServer"];
@@ -148,6 +152,8 @@
 }
 
 -(void)productionBtnAction{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"切换到正式服" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"http://apis.mybuilding.cn:15427/WebService" forKey:@"serverAddress"];
     [userDefaults setObject:@"apis.mybuilding.cn" forKey:@"socketServer"];
@@ -158,6 +164,8 @@
 }
 
 -(void)developerBtnAction{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"切换到开发服" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"http://10.1.5.104:8080/server" forKey:@"serverAddress"];
     [userDefaults setObject:@"10.1.5.104" forKey:@"socketServer"];
