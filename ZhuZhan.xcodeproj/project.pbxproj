@@ -1313,6 +1313,7 @@
 		5BE264DF1A78BF9500EF7D1B /* 背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE264DD1A78BF9500EF7D1B /* 背景@2x.png */; };
 		5BE264E21A78C34600EF7D1B /* mblogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE264E01A78C34600EF7D1B /* mblogo.png */; };
 		5BE264E31A78C34600EF7D1B /* mblogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE264E11A78C34600EF7D1B /* mblogo@2x.png */; };
+		5BE4B61A1B412F7100B129FC /* ChatSendImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE4B6191B412F7100B129FC /* ChatSendImageView.m */; };
 		5BE7B6C61B1D5243003467ED /* ContactsActiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE7B6C51B1D5243003467ED /* ContactsActiveCell.m */; };
 		5BE7B6C91B1D54AD003467ED /* CommentNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE7B6C81B1D54AD003467ED /* CommentNumberView.m */; };
 		5BE7B6CC1B1D5849003467ED /* 人脉_评论数框框.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE7B6CA1B1D5849003467ED /* 人脉_评论数框框.png */; };
@@ -3651,6 +3652,8 @@
 		5BE264DD1A78BF9500EF7D1B /* 背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "背景@2x.png"; sourceTree = "<group>"; };
 		5BE264E01A78C34600EF7D1B /* mblogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mblogo.png; sourceTree = "<group>"; };
 		5BE264E11A78C34600EF7D1B /* mblogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mblogo@2x.png"; sourceTree = "<group>"; };
+		5BE4B6181B412F7100B129FC /* ChatSendImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSendImageView.h; sourceTree = "<group>"; };
+		5BE4B6191B412F7100B129FC /* ChatSendImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSendImageView.m; sourceTree = "<group>"; };
 		5BE7B6C51B1D5243003467ED /* ContactsActiveCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsActiveCell.m; sourceTree = "<group>"; };
 		5BE7B6C71B1D54AD003467ED /* CommentNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentNumberView.h; sourceTree = "<group>"; };
 		5BE7B6C81B1D54AD003467ED /* CommentNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentNumberView.m; sourceTree = "<group>"; };
@@ -6461,6 +6464,8 @@
 				5B9624ED1AB2CE0C005728C5 /* ChatToolBar.m */,
 				5BC40E241B09B04A00184D1A /* ChatMoreSelectView.h */,
 				5BC40E251B09B04A00184D1A /* ChatMoreSelectView.m */,
+				5BE4B6181B412F7100B129FC /* ChatSendImageView.h */,
+				5BE4B6191B412F7100B129FC /* ChatSendImageView.m */,
 				5BF31B591AB025FD00DA87F5 /* AddGroupMember */,
 				D3F897071AD8EB2F00DE3AB4 /* MessageTableView.h */,
 				D3F897081AD8EB2F00DE3AB4 /* MessageTableView.m */,
@@ -10131,6 +10136,7 @@
 				0426C2E419922D5A00CD8822 /* FaceppDetection.m in Sources */,
 				042D9E1119B559FC00689C5D /* MainBuild.m in Sources */,
 				0426C24719922D5A00CD8822 /* GPUImageAverageColor.m in Sources */,
+				5BE4B61A1B412F7100B129FC /* ChatSendImageView.m in Sources */,
 				5BA8EACD1AA5501300996281 /* ActivePublishController.m in Sources */,
 				0426C2C919922D5A00CD8822 /* GPUImageThresholdSketchFilter.m in Sources */,
 				5B95ADEF1AB1B35B00797EA6 /* AddressBookViewController.m in Sources */,

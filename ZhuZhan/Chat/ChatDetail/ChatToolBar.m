@@ -243,14 +243,9 @@
 
 - (void)paste:(id)sender{
     UIPasteboard* pasteBoard = [UIPasteboard generalPasteboard];
-    NSLog(@"image=%@",pasteBoard.image);
-    UIImageView* imageView = [[UIImageView alloc] initWithFrame:self.window.frame];
-    imageView.image = pasteBoard.image;
-    [self.window addSubview:imageView];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [imageView removeFromSuperview];
-    });
+    if ([self.delegate respondsToSelector:@selector(chatToolBarImagePasted:)]) {
+        [self.delegate chatToolBarImagePasted:pasteBoard.image];
+    }
 }
 
 

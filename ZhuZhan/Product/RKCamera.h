@@ -43,4 +43,6 @@
  }
  */
 +(instancetype)cameraWithType:(UIImagePickerControllerSourceType)sourceType allowEdit:(BOOL)allowEdit deleate:(id<RKCameraDelegate>)delegate presentViewController:(UIViewController *)presentViewController demandSize:(CGSize)demandSize needFullImage:(BOOL)needFullImage;
+
++ (UIImage*)setUpLowQualityImageWithOriginImage:(UIImage*)originQualityImage demandSize:(CGSize)demandSize needFullImage:(BOOL)needFullImage;
 @end

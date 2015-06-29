@@ -72,10 +72,10 @@
         //原图的一半
         CGFloat originWidth=originQualityImage.size.width;
         CGFloat originHeight=originQualityImage.size.height;
-        UIView* originImageView=[self getImageViewWithImage:originQualityImage size:CGSizeMake(originWidth, originHeight)];
+        UIView* originImageView=[RKCamera getImageViewWithImage:originQualityImage size:CGSizeMake(originWidth, originHeight)];
         originQualityImage = [RKViewFactory convertViewAsImage:originImageView];
         
-        UIImage* lowQualityImage = [self setUpLowQualityImageWithOriginImage:originQualityImage];
+        UIImage* lowQualityImage = [RKCamera setUpLowQualityImageWithOriginImage:originQualityImage demandSize:self.demandSize needFullImage:self.needFullImage];
         
         if ([self.delegate respondsToSelector:@selector(cameraWillFinishWithLowQualityImage:originQualityImage:isCancel:)]) {
             [self.delegate cameraWillFinishWithLowQualityImage:lowQualityImage originQualityImage:originQualityImage isCancel:isCancel];
@@ -83,35 +83,35 @@
     }
 }
 
-- (UIImage*)setUpLowQualityImageWithOriginImage:(UIImage*)originQualityImage{
-    if (CGSizeEqualToSize(self.demandSize, CGSizeZero)) {
++ (UIImage*)setUpLowQualityImageWithOriginImage:(UIImage*)originQualityImage demandSize:(CGSize)demandSize needFullImage:(BOOL)needFullImage{
+    if (CGSizeEqualToSize(demandSize, CGSizeZero)) {
         return originQualityImage;
     }
-    if (self.needFullImage) {
-        UIImageView* lowQualityImageView=[self getImageViewWithImage:originQualityImage size:self.demandSize];
+    if (needFullImage) {
+        UIImageView* lowQualityImageView=[self getImageViewWithImage:originQualityImage size:demandSize];
         return [RKViewFactory convertViewAsImage:lowQualityImageView];
     }
     //以下为 needFullImage == NO 的情况
     CGFloat imageScale = originQualityImage.size.height / originQualityImage.size.width;
     
     BOOL isRelyHeight;
-    if (!(self.demandSize.width*self.demandSize.height)) {
-        isRelyHeight = self.demandSize.height;
-    }else if (originQualityImage.size.width <= self.demandSize.width && originQualityImage.size.height <= self.demandSize.height){
+    if (!(demandSize.width*demandSize.height)) {
+        isRelyHeight = demandSize.height;
+    }else if (originQualityImage.size.width <= demandSize.width && originQualityImage.size.height <= demandSize.height){
         return originQualityImage;
     }else{
-        CGFloat demandScale = self.demandSize.height / self.demandSize.width;
+        CGFloat demandScale = demandSize.height / demandSize.width;
         isRelyHeight = imageScale > demandScale ;
     }
     
-    CGFloat scale = isRelyHeight ? (self.demandSize.height/originQualityImage.size.height) : (self.demandSize.width/originQualityImage.size.width);
+    CGFloat scale = isRelyHeight ? (demandSize.height/originQualityImage.size.height) : (demandSize.width/originQualityImage.size.width);
     
     CGSize lowQualityImageSize = CGSizeMake(originQualityImage.size.width*scale, originQualityImage.size.height*scale);
     UIView* lowQualityImageView=[self getImageViewWithImage:originQualityImage size:lowQualityImageSize];
     return [RKViewFactory convertViewAsImage:lowQualityImageView];
 }
 
--(UIImageView*)getImageViewWithImage:(UIImage*)image size:(CGSize)size{
++ (UIImageView*)getImageViewWithImage:(UIImage*)image size:(CGSize)size{
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     imageView.image=image;
     return imageView;
