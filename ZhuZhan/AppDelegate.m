@@ -36,6 +36,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSLog(@"firstLaunch==>%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"serverAddress"]);
+    NSLog(@"firstLaunch==>%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"socketHttp"]);
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if(![userDefaults objectForKey:@"serverAddress"]){
         //正式

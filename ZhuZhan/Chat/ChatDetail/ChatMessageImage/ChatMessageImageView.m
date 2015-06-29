@@ -11,6 +11,7 @@
 {
     CALayer      *_contentLayer;
     CAShapeLayer *_maskLayer;
+    UIImage *_copyImage;
 }
 @end
 
@@ -21,12 +22,17 @@
 }
 
 -(BOOL)canPerformAction:(SEL)action withSender:(id)sender{
-    return (action == @selector(copy:));
+    return (action == @selector(copy:) || action == @selector(paste:));
 }
 
 -(void)copy:(id)sender{
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
-    pboard.image = (id)self.image.CGImage;
+    pboard.image = _copyImage;
+}
+
+-(void)paste:(id)sender{
+    UIPasteboard *pboard = [UIPasteboard generalPasteboard];
+    self.image = pboard.image;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame isSelf:(BOOL)isSelf{
@@ -69,19 +75,18 @@
 - (void)setImage:(UIImage *)image
 {
     _contentLayer.contents = (id)image.CGImage;
+    _copyImage = image;
 }
 
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
-        //   TSTableViewCell *cell = (TSTableViewCell *)recognizer.view;
         [self becomeFirstResponder];
-        UIMenuItem *flag = [[UIMenuItem alloc] initWithTitle:@"复制" action:@selector(copy:)];
+        UIMenuItem *paste = [[UIMenuItem alloc] initWithTitle:@"黏贴" action:@selector(paste:)];
         
         UIMenuController *menu = [UIMenuController sharedMenuController];
-        [menu setMenuItems:[NSArray arrayWithObjects:flag, nil]];
+        [menu setMenuItems:[NSArray arrayWithObjects:paste, nil]];
         [menu setTargetRect:self.frame inView:self.superview];
         [menu setMenuVisible:YES animated:YES];
-        NSLog(@"menuItems:%@",menu.menuItems);
-    }  
+    }
 }
 @end

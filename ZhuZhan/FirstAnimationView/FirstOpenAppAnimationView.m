@@ -52,14 +52,14 @@
 }
 
 -(void)dismis{
+    NSLog(@"firstLaunch==>%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"serverAddress"]);
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     CGRect frame=self.frame;
     frame.origin.y+=kScreenHeight;
     [UIView animateWithDuration:.3 animations:^{
         self.frame=frame;
     } completion:^(BOOL finished) {
-        NSLog(@"firstLaunch==>%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"serverAddress"]);
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
         [self removeFromSuperview];
     }];
 }
