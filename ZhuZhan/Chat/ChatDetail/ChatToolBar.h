@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @protocol ChatToolBarDelegate <NSObject>
--(void)chatToolBarSizeChangeWithHeight:(CGFloat)height;
--(void)chatToolSendBtnClickedWithContent:(NSString*)content;
--(void)chatToolBarAddBtnClicked;
+- (void)chatToolBarSizeChangeWithHeight:(CGFloat)height;
+- (void)chatToolSendBtnClickedWithContent:(NSString*)content;
+- (void)chatToolBarAddBtnClicked;
+- (void)chatToolBarImagePasted:(UIImage*)image;
 @end
 
 @interface ChatToolBar : UIView

@@ -28,7 +28,6 @@
 -(void)copy:(id)sender{
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     pboard.image = _copyImage;
-    pboard.string = self.bigImageUrl;
 }
 
 -(void)saveImage:(id)sender{
