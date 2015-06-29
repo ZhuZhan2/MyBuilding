@@ -28,7 +28,7 @@
 -(void)copy:(id)sender{
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     pboard.image = _copyImage;
-    pboard.string = self.bigImageUrl;
+    pboard.URL = [NSURL URLWithString:self.bigImageUrl];
 }
 
 -(void)saveImage:(id)sender{
@@ -54,6 +54,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.isSelf = isSelf;
+        //self.backgroundColor = RGBCOLOR(215, 215, 215);
         [self setup];
         
         self.userInteractionEnabled = YES;  //用户交互的总开关
@@ -83,6 +84,7 @@
     _contentLayer = [CALayer layer];
     _contentLayer.mask = _maskLayer;
     _contentLayer.frame = self.bounds;
+    _contentLayer.backgroundColor = RGBCOLOR(215, 215, 215).CGColor;
     [self.layer addSublayer:_contentLayer];
     
 }

@@ -11,6 +11,8 @@
 @implementation ChatImageCell
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if(self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]){
+        self.imageWidth = 100;
+        self.imageHeight = 100;
         [self.contentView addSubview:self.timeLabel];
         [self.contentView addSubview:self.userHeadBtn];
         [self.contentView addSubview:self.userNameLabel];
@@ -55,6 +57,7 @@
         _chatMessageImageView.userInteractionEnabled=YES;
         UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onClickImage)];
         [_chatMessageImageView addGestureRecognizer:singleTap];
+        _chatMessageImageView.image = [GetImagePath getImagePath:@"默认图_沙漏"];
     }
     return _chatMessageImageView;
 }
@@ -92,7 +95,7 @@
         self.chatMessageImageView.image = model.a_localImage;
         self.chatMessageImageView.bigLocalImage = model.a_localBigImage;
     }else{
-        [self.chatMessageImageView sd_setImageWithURL:[NSURL URLWithString:model.a_message] placeholderImage:[GetImagePath getImagePath:@"首页_16"]];
+        [self.chatMessageImageView sd_setImageWithURL:[NSURL URLWithString:model.a_message] placeholderImage:nil];
         self.chatMessageImageView.imageId = model.a_fileId;
         self.chatMessageImageView.bigImageUrl = model.a_bigImageUrl;
     }
