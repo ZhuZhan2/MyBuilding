@@ -11,9 +11,10 @@
 @property(nonatomic,strong)UIButton *closeBtn;
 @property(nonatomic,strong)UITextField *textFiled;
 @property(nonatomic,strong)UIButton *saveBtn;
-@property(nonatomic,strong)UIButton *testBtn;
+@property(nonatomic,strong)UIButton *testBtn;//测试
 @property(nonatomic,strong)UIButton *productionBtn;//生产
 @property(nonatomic,strong)UIButton *predictBtn;//预生产
+@property(nonatomic,strong)UIButton *developerBtn;//开发
 @end
 
 @implementation SecretView
@@ -27,6 +28,7 @@
         [self addSubview:self.testBtn];
         [self addSubview:self.predictBtn];
         [self addSubview:self.productionBtn];
+        [self addSubview:self.developerBtn];
     }
     return self;
 }
@@ -96,6 +98,17 @@
     return _productionBtn;
 }
 
+-(UIButton *)developerBtn{
+    if(!_developerBtn){
+        _developerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _developerBtn.frame = CGRectMake(40, 200, 60, 40);
+        _developerBtn.backgroundColor = [UIColor greenColor];
+        [_developerBtn setTitle:@"开发" forState:UIControlStateNormal];
+        [_developerBtn addTarget:self action:@selector(developerBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _developerBtn;
+}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.textFiled resignFirstResponder];
     return YES;
@@ -147,31 +160,15 @@
     exit(0);
 }
 
-//正式服务器
-//#define  serverAddress "http://apis.mybuilding.cn:15427/WebService"
-
-//预生产服务器
-//#define  serverAddress "http://apis.shenjigroup.com:15427/WebService"
-
-//测试服务器
-//#define  serverAddress "http://10.1.5.104:9090/server"
-
-//开发服务器
-#define  serverAddress "http://10.1.5.104:8080/server"
-
-//马恩伟本机
-//#define  serverAddress "http://10.1.1.140:9090/service/"
-
-//蒋慧吉本机
-//#define  serverAddress "http://10.1.1.204:9090/service"
-
-//闵杰本机
-//#define  serverAddress "http://10.1.1.179:9090/service"
-
-//一期生产服务器
-//#define  serverAddress "http://apis.mybuilding.cn:15427/WebService"
-
-//分支测试服
-//#define serverAddress "http://10.1.5.104:7070/server/"
-
+-(void)developerBtnAction{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@"http://10.1.5.104:8080/server" forKey:@"serverAddress"];
+    [userDefaults setObject:@"10.1.5.104" forKey:@"socketServer"];
+    [userDefaults setInteger:44455 forKey:@"socketPort"];
+    [userDefaults setObject:@"http://10.1.5.104:8080/im" forKey:@"socketHttp"];
+    [userDefaults synchronize];
+    [userDefaults synchronize];
+    NSLog(@"%@",[userDefaults objectForKey:@"serverAddress"]);
+    exit(0);
+}
 @end
