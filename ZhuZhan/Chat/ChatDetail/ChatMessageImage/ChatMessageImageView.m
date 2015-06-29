@@ -28,7 +28,7 @@
 -(void)copy:(id)sender{
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     pboard.image = _copyImage;
-    pboard.string = self.imageId;
+    pboard.string = self.bigImageUrl;
 }
 
 -(void)saveImage:(id)sender{
@@ -112,10 +112,9 @@
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         [self becomeFirstResponder];
-        UIMenuItem *paste = [[UIMenuItem alloc] initWithTitle:@"收藏" action:@selector(saveImage:)];
-        
+        UIMenuItem *saveImage = [[UIMenuItem alloc] initWithTitle:@"收藏" action:@selector(saveImage:)];
         UIMenuController *menu = [UIMenuController sharedMenuController];
-        [menu setMenuItems:[NSArray arrayWithObjects:paste, nil]];
+        [menu setMenuItems:[NSArray arrayWithObjects:saveImage, nil]];
         [menu setTargetRect:self.frame inView:self.superview];
         [menu setMenuVisible:YES animated:YES];
     }
