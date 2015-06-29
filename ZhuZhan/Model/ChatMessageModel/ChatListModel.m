@@ -26,7 +26,12 @@
     }else{
         self.a_loginName = dict[@"nickName"];
     }
-    self.a_content = dict[@"content"];
+    if([dict[@"msgType"] isEqualToString:@"01"]){
+        self.a_content = dict[@"content"];
+    }else{
+        self.a_content = @"[图片]";
+    }
+    
     self.a_type = dict[@"type"];
     if([dict[@"msgCount"] intValue] >99){
         self.a_msgCount = @"99";
