@@ -262,6 +262,10 @@
     }
 }
 
+- (void)longPressClicked:(UILongPressGestureRecognizer *)longPress{
+    NSLog(@"1111");
+}
+
 -(void)chatToolSendBtnClickedWithContent:(NSString *)content{
     NSLog(@"isConnected===>%d",self.app.socket.isConnected);
     if (![ConnectionAvailable isConnectionAvailable]) {

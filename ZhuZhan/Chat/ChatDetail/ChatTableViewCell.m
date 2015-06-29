@@ -99,11 +99,21 @@
 
 -(void)setUp{
     self.clipsToBounds=YES;
+    UILongPressGestureRecognizer* longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressClicked:)];
+    [self addGestureRecognizer:longPress];
+    longPress.minimumPressDuration = .5; 
+    
     [self.contentView addSubview:self.timeLine];
     [self.contentView addSubview:self.userImageBtn];
     [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.chatContentView];
     //[self.contentView addSubview:self.seperatorLine];
+}
+
+- (void)longPressClicked:(UILongPressGestureRecognizer*)longPress{
+    if ([self.delegate respondsToSelector:@selector(longPressClicked:)]) {
+        [self.delegate longPressClicked:longPress];
+    }
 }
 
 -(void)setModel:(ChatModel *)chatModel{

@@ -10,6 +10,7 @@
 #import "ChatModel.h"
 @protocol ChatTableViewCellDelegate <NSObject>
 -(void)gotoContactDetailView:(NSString *)contactId;
+- (void)longPressClicked:(UILongPressGestureRecognizer*)longPress;
 @end
 
 @interface ChatTableViewCell : UITableViewCell
