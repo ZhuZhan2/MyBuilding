@@ -9,25 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface PersonalCenterModel : NSObject
-//@property (nonatomic, copy) NSString *a_id;
-//@property (nonatomic, copy) NSString *a_entityId;
-//@property (nonatomic, copy) NSString *a_entityUrl;
-//@property (nonatomic, copy) NSString *a_entityName;
-//@property (nonatomic, copy) NSString *a_projectStage;
-//@property (nonatomic, copy) NSString *a_content;
-//@property (nonatomic, copy) NSString *a_imageUrl;
-//@property (nonatomic, copy) NSString *a_imageOriginalUrl;
-//@property (nonatomic, copy) NSString *a_imageWidth;
-//@property (nonatomic, copy) NSString *a_imageHeight;
-//@property (nonatomic, copy) NSString *a_time;
-//@property (nonatomic, copy) NSString *a_category;
-//@property (nonatomic, copy) NSString *a_avatarUrl;
-//@property (nonatomic, copy) NSString *a_userName;
-//@property (nonatomic, copy) NSString *a_userType;
-//@property (nonatomic, copy) NSString *a_address;
-//@property (nonatomic, copy) NSString *a_projectDemo;//判断项目消息01是被评论，02是认证通过，03认证没通过
-//@property (nonatomic, copy) NSDictionary *dict;
-
 //消息的id
 @property (nonatomic, copy) NSString *a_id;
 //消息对象的id 如是项目就是项目id 是产品就是产品id 是动态就是动态id
