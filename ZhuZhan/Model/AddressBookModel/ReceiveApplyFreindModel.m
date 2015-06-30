@@ -35,7 +35,7 @@
     self.a_messageId=dic[@"messageId"];
     self.a_messageObjectId=dic[@"messageObjectId"];
     self.a_messageType=dic[@"messageType"];
-    self.a_isFinished=[dic[@"status"] isEqualToString:@"01"];
-    self.a_status=dic[@"status"];
+    self.a_isFinished=[dic[@"operationType"] isEqualToString:@"01"];
+    self.a_status=dic[@"operationType"];
 }
 @end

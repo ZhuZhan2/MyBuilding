@@ -35,4 +35,18 @@
 -(void)homePageTabBarHide;
 -(void)homePageTabBarRestore;
 -(void)BtnClick:(UIButton *)button;
+
+@property(nonatomic)BOOL isOpenContactView;
+
+//category 1为询价 2为报价
+- (void)gotoMyAskPriceWithCategory:(NSInteger)category;
+
+//通讯录好友
+- (void)gotoAdressBookFriendList;
+
+//会话列表
+- (void)gotoChatList;
+
+//我的合同列表
+- (void)gotoContracts;
 @end
