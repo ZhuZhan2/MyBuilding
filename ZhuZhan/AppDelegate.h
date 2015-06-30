@@ -20,5 +20,6 @@
 @property(nonatomic,strong)SocketManage *socket;
 @property (nonatomic,strong)CLLocationManager *locationManager;
 @property (nonatomic, copy)NSString* updateUrl;
+@property (nonatomic)BOOL isBack;
 + (AppDelegate *)instance;
 @end

@@ -25,11 +25,12 @@
 #import "AskPriceMessageViewController.h"
 #import "MarketViewController.h"
 #import "SecretView.h"
+#import "AskPriceViewController.h"
+
 #define contentHeight (kScreenHeight==480?431:519)
 @interface HomePageViewController ()<LoginViewDelegate,MarketViewDelegate,ContactViewDelegate,ActiveViewControllerDelegate,SecretViewDelegate>
 @property(nonatomic,strong)UINavigationController *navigatin;
 @property(nonatomic,strong)MarketViewController *marketView;
-@property(nonatomic)BOOL isOpenContactView;
 @property(nonatomic)int secretCount;
 @property(nonatomic,strong)SecretView *secretView;
 @end
@@ -417,5 +418,33 @@
 -(void)closeView{
     [self.secretView removeFromSuperview];
     self.secretView = nil;
+}
+
+//category 1为询价 2为报价
+- (void)gotoMyAskPriceWithCategory:(NSInteger)category{
+    NSString* otherStr;
+    if(category == 1){
+        otherStr = @"0";
+    }else if (category == 2){
+        otherStr = @"1";
+    }else{
+        otherStr = @"-1";
+    }
+    
+    AskPriceViewController* vc = [[AskPriceViewController alloc] initWithOtherStr:otherStr];
+    [nav pushViewController:vc animated:YES];
+}
+
+- (void)gotoAdressBookFriendList{
+    [self quadCurveMenu:nil didSelectIndex:4];
+}
+
+- (void)gotoChatList{
+    [self quadCurveMenu:nil didSelectIndex:3];
+}
+
+- (void)gotoContracts{
+    ConstractListController *view = [[ConstractListController alloc] init];
+    [nav pushViewController:view animated:YES];
 }
 @end

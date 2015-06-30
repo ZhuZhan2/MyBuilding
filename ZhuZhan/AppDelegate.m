@@ -166,7 +166,8 @@
     NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     NSLog(@"launchOptions===>%@",launchOptions);
     if(userInfo) {
-        [self handleRemoteNotification:application userInfo:userInfo];
+        [self application:application didReceiveRemoteNotification:userInfo];
+//        [self handleRemoteNotification:application userInfo:userInfo];
     }
     
     return YES;
@@ -233,22 +234,64 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
     NSLog(@"notification ======>%@",notification.alertBody);
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:notification.alertBody delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-//    [alert show];
     application.applicationIconBadgeNumber = notification.applicationIconBadgeNumber;
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     NSLog(@"userInfo ====>%@",userInfo);
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:userInfo[@"aps"][@"alert"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-//    [alert show];
-    //application.applicationIconBadgeNumber = notification.applicationIconBadgeNumber;
+    application.applicationIconBadgeNumber = 0;
+    
+    if ([[LoginSqlite getdata:@"userId"] isEqualToString:@""]) return;
+    
+    NSString* type = userInfo[@"type"];
+    if ([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
+        if ([type isEqualToString:@"05"] || [type isEqualToString:@"09"]) {
+            return;
+        }
+    }
+    
+    HomePageViewController* homeVC = (HomePageViewController*)self.window.rootViewController;
+    homeVC.isOpenContactView = YES;
+    UIButton* btn=[[UIButton alloc]init];
+    btn.tag=0;
+    [homeVC BtnClick:btn];
+    
+    
+    //好友
+    if ([type isEqualToString:@"05"]) {
+        [homeVC gotoAdressBookFriendList];
+        
+    //询价
+    }else if ([type isEqualToString:@"06"]){
+        [homeVC gotoMyAskPriceWithCategory:1];
+
+    //报价
+    }else if ([type isEqualToString:@"07"]){
+        [homeVC gotoMyAskPriceWithCategory:2];
+        
+    //佣金
+    }else if ([type isEqualToString:@"08"]){
+        [homeVC gotoContracts];
+        
+    //聊天
+    }else if ([type isEqualToString:@"09"]){
+        [homeVC gotoChatList];
+    }
 }
 
-- (void)handleRemoteNotification:(UIApplication *)application userInfo:(NSDictionary *)userInfo {
-    NSLog(@"=====>%@",userInfo);
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:userInfo[@"aps"][@"alert"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-//    [alert show];
-    application.applicationIconBadgeNumber = 0;
-}
+/*
+ aps =     {
+ alert = "\U62a5\U4ef7\U63d0\U793a
+ \U60a8\U6709\U4e00\U6761\U62a5\U4ef7\U8bf7\U6c42";
+ badge = 1;
+ sound = "msg.mp3";
+ };
+ targetId = "8b7d27f9-8aee-4f2a-b7ec-4f3cfd204d80";
+ type = 07;
+ */
+
+//- (void)handleRemoteNotification:(UIApplication *)application userInfo:(NSDictionary *)userInfo {
+//    NSLog(@"=====>%@",userInfo);
+//    application.applicationIconBadgeNumber = 0;
+//}
 @end

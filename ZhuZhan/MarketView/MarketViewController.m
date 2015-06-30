@@ -150,7 +150,7 @@
         _countLabel.textAlignment = NSTextAlignmentCenter;
         _countLabel.font = [UIFont systemFontOfSize:16];
         _countLabel.textColor = RGBCOLOR(51, 51, 51);
-        _countLabel.text = @"需求总数1234条";
+        _countLabel.text = @"需求总数0条";
     }
     return _countLabel;
 }
