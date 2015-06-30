@@ -129,11 +129,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(instancetype)initWithPersonalCenterModel:(PersonalCenterModel *)personalModel{
     self=[super init];
     if (self) {
+//        self.personalModel=personalModel;
+//        if([personalModel.a_category isEqualToString:@"Product"]){
+//            self.productModel = [[ProductModel alloc] init];
+//        }
+//        [self loadMyPropertyWithImgW:personalModel.a_imageWidth imgH:personalModel.a_imageHeight imgUrl:personalModel.a_imageOriginalUrl userImgUrl:self.myImageUrl content:personalModel.a_content entityID:personalModel.a_entityId entityUrl:personalModel.a_entityUrl userName:self.myName category:personalModel.a_category createdBy:[LoginSqlite getdata:@"userId"] userType:personalModel.a_userType];
         self.personalModel=personalModel;
-        if([personalModel.a_category isEqualToString:@"Product"]){
+        if([personalModel.a_messageType isEqualToString:@"03"]){
             self.productModel = [[ProductModel alloc] init];
         }
-        [self loadMyPropertyWithImgW:personalModel.a_imageWidth imgH:personalModel.a_imageHeight imgUrl:personalModel.a_imageOriginalUrl userImgUrl:self.myImageUrl content:personalModel.a_content entityID:personalModel.a_entityId entityUrl:personalModel.a_entityUrl userName:self.myName category:personalModel.a_category createdBy:[LoginSqlite getdata:@"userId"] userType:personalModel.a_userType];
+        [self loadMyPropertyWithImgW:personalModel.a_imageWidth imgH:personalModel.a_imageHeight imgUrl:personalModel.a_imageOriginalUrl userImgUrl:self.myImageUrl content:personalModel.a_msgContent entityID:personalModel.a_messageSourceId entityUrl:@"" userName:self.myName category:personalModel.a_messageType createdBy:[LoginSqlite getdata:@"userId"] userType:personalModel.a_userType];
     }
     return self;
 }

@@ -13,7 +13,7 @@
     _dict = dict;
     self.a_id = dict[@"messageId"];
     self.a_time = [ProjectStage ChatMessageTimeStage:dict[@"createdTime"]];
-    self.a_status = dict[@"status"];
+    self.a_status = dict[@"operationType"];
     self.a_messageSourceId = dict[@"messageSourceId"];
     self.a_messageObjectId = dict[@"messageObjectId"];
     NSString *str = @"";
