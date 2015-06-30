@@ -12,10 +12,8 @@
 #import "ACTimeScroller.h"
 @interface PersonalCenterViewController : UITableViewController<ACTimeScrollerDelegate,XHPathCoverDelegate>
 {
-    NSMutableArray *_datasource;
     ACTimeScroller *_timeScroller;
     NSMutableArray *showArr;
-    NSMutableArray* contentViews;
     NSInteger startIndex;
 }
 @property (nonatomic, strong) XHPathCover *pathCover;

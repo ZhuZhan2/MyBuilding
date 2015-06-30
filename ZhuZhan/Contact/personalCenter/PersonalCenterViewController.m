@@ -126,8 +126,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self setupRefresh];
     
     showArr = [[NSMutableArray alloc] init];
-    contentViews=[[NSMutableArray alloc]init];
-    _datasource = [[NSMutableArray alloc] init];
     
     [self downLoad:nil];
     
@@ -206,22 +204,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 -(void)downLoad:(void(^)())block{
     [CommentApi PersonalActiveWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            [_datasource removeAllObjects];
-            [contentViews removeAllObjects];
             [showArr removeAllObjects];
             startIndex=0;
             showArr = posts;
-            for(int i=0;i<showArr.count;i++){
-                PersonalCenterModel *model = showArr[i];
-                [_datasource addObject:model.a_time];
-                
-                if (![model.a_category isEqualToString:@"Project"]) {
-                    UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:model.a_imageUrl content:model.a_content category:model.a_category name:model.a_entityName];
-                    [contentViews addObject:view];
-                }else{
-                    [contentViews addObject:@""];
-                }
-            }
             _timeScroller.hidden=YES;
             [MyTableView reloadDataWithTableView:self.tableView];
             if(showArr.count == 0){
@@ -259,17 +244,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         if(!error){
             startIndex ++;
             [showArr addObjectsFromArray:posts];
-            for(int i=0;i<posts.count;i++){
-                PersonalCenterModel *model = posts[i];
-                [_datasource addObject:model.a_time];
-                
-                if (![model.a_category isEqualToString:@"Project"]) {
-                    UIView* view=[PersonalCenterCellView getPersonalCenterCellViewWithImageUrl:model.a_imageUrl content:model.a_content category:model.a_category name:model.a_entityName];
-                    [contentViews addObject:view];
-                }else{
-                    [contentViews addObject:@""];
-                }
-            }
             _timeScroller.hidden=YES;
             [MyTableView reloadDataWithTableView:self.tableView];
             if(showArr.count == 0){
@@ -284,7 +258,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             }
         }
         [self.tableView footerEndRefreshing];
-    } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex+1 noNetWork:^{
+    } userId:[LoginSqlite getdata:@"userId"] startIndex:(int)startIndex+1 noNetWork:^{
         [self.tableView footerEndRefreshing];
         [ErrorCode alert];
     }];
@@ -347,53 +321,40 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if(showArr.count !=0){
         model = showArr[indexPath.row];
     }
-    if([model.a_category isEqualToString:@"Project"]){
-        if([model.a_projectDemo isEqualToString:@"01"]){
-            NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalProjectTableViewCell"];
-            PersonalProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if(!cell){
-                cell = [[PersonalProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            }
-            cell.model = model;
-            cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
-            cell.selectionStyle = NO;
-            return cell;
-        }else{
-            NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalCenterProjectTableViewCell"];
-            PersonalCenterProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if(!cell){
-                cell = [[PersonalCenterProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            }
-            cell.time = model.a_time;
-            cell.companyName = model.a_entityName;
-            cell.projectDemo = model.a_projectDemo;
-            cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
-            cell.selectionStyle = NO;
-            return cell;
-        }
-    }else if([model.a_category isEqualToString:@"CompanyAgree"]){
+    if(model.a_type == 7){
         NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalCenterCompanyTableViewCell"];
         PersonalCenterCompanyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
             cell = [[PersonalCenterCompanyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        cell.time = model.a_time;
-        cell.companyName = model.a_userName;
+        cell.time = model.a_createdTime;
+        cell.companyName = model.a_companyName;
+        cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
+        cell.selectionStyle = NO;
+        return cell;
+    }else if (model.a_type == 1 || model.a_type == 8 || model.a_type == 9){
+        NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalProjectTableViewCell"];
+        PersonalProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[PersonalProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.model = model;
+        cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
+        cell.selectionStyle = NO;
+        return cell;
+    }else if (model.a_type == 2 || model.a_type == 3){
+        NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalCenterProjectTableViewCell"];
+        PersonalCenterProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[PersonalCenterProjectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.time = model.a_createdTime;
+        cell.companyName = model.a_projectName;
+        cell.projectDemo = model.a_operationType;
         cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
         cell.selectionStyle = NO;
         return cell;
     }else{
-//        NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
-//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//        if(!cell){
-//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//        }
-//        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-//        [cell.contentView addSubview:contentViews[indexPath.row]];
-//        cell.selectionStyle = NO;
-//        cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
-//        return cell;
-        
         NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
         PersonalCenterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
@@ -419,30 +380,28 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if(showArr.count !=0){
         model = showArr[indexPath.row];
     }
-    NSLog(@"%@",model.a_category);
-    if([model.a_category isEqualToString:@"Project"]){
-        if([model.a_projectDemo isEqualToString:@"01"]){
-            PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
-            projectCommentView.projectId = model.a_entityId;
-            projectCommentView.projectName = model.a_entityName;
-            [self.navigationController pushViewController:projectCommentView animated:YES];
-        }
-    }else if([model.a_category isEqualToString:@"Personal"]||[model.a_category isEqualToString:@"Company"]){
+    
+    if(model.a_type == 1){
+        PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
+        projectCommentView.projectId = model.a_messageSourceId;
+        projectCommentView.projectName = model.a_projectName;
+        [self.navigationController pushViewController:projectCommentView animated:YES];
+    }else if (model.a_type == 0){
         ProductDetailViewController* vc=[[ProductDetailViewController alloc]initWithPersonalCenterModel:model];
         vc.type = @"03";
         [self.navigationController pushViewController:vc animated:YES];
-    }else if([model.a_category isEqualToString:@"Product"]){
+    }else if (model.a_type == 6){
         ProductModel *productModel = [[ProductModel alloc] init];
-        productModel.a_id = model.a_entityId;
-        productModel.a_name = model.a_entityName;
-        productModel.a_content = model.a_content;
+        productModel.a_id = model.a_messageSourceId;
+        productModel.a_name = model.a_productName;
+        productModel.a_content = model.a_msgContent;
         productModel.a_imageUrl = model.a_imageUrl;
         productModel.a_originImageUrl = model.a_imageOriginalUrl;
         productModel.a_createdBy = [LoginSqlite getdata:@"userId"];
         productModel.a_imageWidth = model.a_imageWidth;
         productModel.a_imageHeight = model.a_imageHeight;
         productModel.a_avatarUrl = model.a_avatarUrl;
-        productModel.a_userName = model.a_userName;
+        productModel.a_userName = model.a_loginName;
         productModel.a_userType = model.a_userType;
         ProductDetailViewController* vc=[[ProductDetailViewController alloc] initWithProductModel:productModel];
         vc.type = @"01";
@@ -456,14 +415,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if(showArr.count !=0){
         model = showArr[indexPath.row];
     }
-    if([model.a_category isEqualToString:@"CompanyAgree"]){
+    if(model.a_type == 2 || model.a_type == 3 || model.a_type == 7){
         return 60;
-    }else if([model.a_category isEqualToString:@"Project"]){
-        if([model.a_projectDemo isEqualToString:@"01"]){
-            return 80;
-        }else{
-            return 60;
-        }
+    }else if(model.a_type == 1 || model.a_type == 8 || model.a_type == 9){
+        return 80;
     }else{
         return [PersonalCenterTableViewCell carculateCellHeightWithModel:model];
     }
@@ -475,11 +430,11 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     return [self tableView];
 }
 //传入时间标签的date
-- (NSDate *)timeScroller:(ACTimeScroller *)timeScroller dateForCell:(UITableViewCell *)cell
-{
-    NSIndexPath *indexPath = [[self tableView] indexPathForCell:cell];
-    return _datasource[[indexPath row]];
-}
+//- (NSDate *)timeScroller:(ACTimeScroller *)timeScroller dateForCell:(UITableViewCell *)cell
+//{
+//    NSIndexPath *indexPath = [[self tableView] indexPathForCell:cell];
+//    return _datasource[[indexPath row]];
+//}
 
 - (void)didReceiveMemoryWarning
 {

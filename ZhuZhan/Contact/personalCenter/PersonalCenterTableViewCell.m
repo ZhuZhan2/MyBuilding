@@ -17,8 +17,8 @@
         height += 160;
     }
     
-    if(![cellModel.a_content isEqualToString:@""]){
-        height += [RKViewFactory autoLabelWithMaxWidth:280 maxHeight:40 font:[UIFont systemFontOfSize:14] content:cellModel.a_content]+10;
+    if(![cellModel.a_msgContent isEqualToString:@""]){
+        height += [RKViewFactory autoLabelWithMaxWidth:280 maxHeight:40 font:[UIFont systemFontOfSize:14] content:cellModel.a_msgContent]+10;
     }else{
         height +=5;
     }
@@ -93,7 +93,7 @@
 
 -(UILabel *)timelabel{
     if(!_timelabel){
-        _timelabel = [[UILabel alloc] initWithFrame:CGRectMake(170, 165, 140, 20)];
+        _timelabel = [[UILabel alloc] initWithFrame:CGRectMake(180, 165, 140, 20)];
         _timelabel.font = [UIFont systemFontOfSize:14];
         _timelabel.textColor = AllNoDataColor;
     }
@@ -103,15 +103,15 @@
 -(void)setPersonalCentermodel:(PersonalCenterModel *)personalCentermodel{
     [self.bigImageView sd_setImageWithURL:[NSURL URLWithString:personalCentermodel.a_imageUrl] placeholderImage:[GetImagePath getImagePath:@"默认图_动态详情"]];
     
-    self.contentLabel.text = personalCentermodel.a_content;
+    self.contentLabel.text = personalCentermodel.a_msgContent;
     
-    if([personalCentermodel.a_category isEqualToString:@"Personal"]){
+    if([personalCentermodel.a_messageType isEqualToString:@"01"]){
         self.typeLabel.text = @"我发布的动态有新评论";
     }else{
         self.typeLabel.text = @"我发布的产品有新评论";
     }
     
-    self.timelabel.text = personalCentermodel.a_time;
+    self.timelabel.text = personalCentermodel.a_createdTime;
         
     CGFloat height = 0;
     CGRect frame = self.cutline1.frame;
@@ -128,7 +128,7 @@
         height += 5;
     }
     
-    if(![personalCentermodel.a_content isEqualToString:@""]){
+    if(![personalCentermodel.a_msgContent isEqualToString:@""]){
         self.contentLabel.hidden = NO;
         [RKViewFactory autoLabel:self.contentLabel maxWidth:280 maxHeight:40];
         frame = self.contentLabel.frame;

@@ -11,8 +11,6 @@
 @implementation ChatImageCell
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if(self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]){
-        self.imageWidth = 100;
-        self.imageHeight = 100;
         [self.contentView addSubview:self.timeLabel];
         [self.contentView addSubview:self.userHeadBtn];
         [self.contentView addSubview:self.userNameLabel];
@@ -57,7 +55,7 @@
         _chatMessageImageView.userInteractionEnabled=YES;
         UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onClickImage)];
         [_chatMessageImageView addGestureRecognizer:singleTap];
-        _chatMessageImageView.image = [GetImagePath getImagePath:@"默认图_沙漏"];
+        _chatMessageImageView.image = [GetImagePath getImagePath:@""];
     }
     return _chatMessageImageView;
 }
@@ -91,11 +89,28 @@
     self.userNameLabel.text=model.a_name;
     
     [self.contentView addSubview:self.chatMessageImageView];
+    
+    __block UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.imageWidth, self.imageHeight)];
+    bgImageView.contentMode = UIViewContentModeScaleAspectFit;
+    bgImageView.image = [GetImagePath getImagePath:@"默认图_沙漏"];
+    bgImageView.backgroundColor = RGBCOLOR(215, 215, 215);
+    bgImageView.layer.masksToBounds = YES;
+    bgImageView.layer.cornerRadius = 3;
+    [self.chatMessageImageView addSubview:bgImageView];
+    
+    
     if(model.a_isLocal){
+        [bgImageView removeFromSuperview];
+        bgImageView = nil;
         self.chatMessageImageView.image = model.a_localImage;
         self.chatMessageImageView.bigLocalImage = model.a_localBigImage;
     }else{
-        [self.chatMessageImageView sd_setImageWithURL:[NSURL URLWithString:model.a_message] placeholderImage:nil];
+        [self.chatMessageImageView sd_setImageWithURL:[NSURL URLWithString:model.a_message] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if(!error){
+                [bgImageView removeFromSuperview];
+                 bgImageView = nil;
+            }
+        }];
         self.chatMessageImageView.imageId = model.a_fileId;
         self.chatMessageImageView.bigImageUrl = model.a_bigImageUrl;
     }
