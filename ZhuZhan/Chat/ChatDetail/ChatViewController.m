@@ -23,7 +23,8 @@
 #import "MBProgressHUD.h"
 #import "ChatImageCell.h"
 #import "VIPhotoView.h"
-@interface ChatViewController ()<UIAlertViewDelegate,ChatTableViewCellDelegate,ChatImageCellDelegate,VIPhotoViewDelegate>
+#import "ChatSendImageView.h"
+@interface ChatViewController ()<UIAlertViewDelegate,ChatTableViewCellDelegate,ChatImageCellDelegate,VIPhotoViewDelegate,ChatSendImageViewDelegate>
 @property (nonatomic, strong)NSMutableArray* models;
 @property(nonatomic,strong)RKBaseTableView *tableView;
 @property(nonatomic)int startIndex;
@@ -263,7 +264,17 @@
 }
 
 - (void)chatToolBarImagePasted:(UIImage *)image{
-    NSLog(@"image=%@",image);
+    ChatSendImageView* sendView = [[ChatSendImageView alloc] initWithFrame:self.view.bounds];
+    sendView.mainImageView.image = image;
+    sendView.delegate = self;
+    [self.navigationController.view addSubview:sendView];
+    
+    [self.view endEditing:YES];
+}
+
+- (void)chatSendImage:(UIImage *)image{
+    UIImage* lowQualityImage = [RKCamera setUpLowQualityImageWithOriginImage:image demandSize:CGSizeMake(200, 200) needFullImage:NO];
+    [self sendImageWithLowQualityImage:lowQualityImage originQualityImage:image];
 }
 
 -(void)chatToolSendBtnClickedWithContent:(NSString *)content{
@@ -319,18 +330,22 @@
 
 - (void)cameraWillFinishWithLowQualityImage:(UIImage *)lowQualityimage originQualityImage:(UIImage *)originQualityImage isCancel:(BOOL)isCancel{
     if(!isCancel){
-        [self addModelWithImage:lowQualityimage bigImage:originQualityImage];
-        NSData *imageData = UIImageJPEGRepresentation(originQualityImage, 1);
-        NSMutableArray *imageArr = [[NSMutableArray alloc] init];
-        [imageArr addObject:imageData];
-        [ChatMessageApi AddImageWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                [imageArr removeAllObjects];
-            }
-        } dataArr:imageArr dic:[@{@"userId":self.contactId,@"userType":self.type} mutableCopy] noNetWork:nil];
-        originQualityImage = nil;
-        lowQualityimage = nil;
+        [self sendImageWithLowQualityImage:lowQualityimage originQualityImage:originQualityImage];
     }
+}
+
+- (void)sendImageWithLowQualityImage:(UIImage*)lowQualityImage originQualityImage:(UIImage *)originQualityImage{
+    [self addModelWithImage:lowQualityImage bigImage:originQualityImage];
+    NSData *imageData = UIImageJPEGRepresentation(originQualityImage, 1);
+    NSMutableArray *imageArr = [[NSMutableArray alloc] init];
+    [imageArr addObject:imageData];
+    [ChatMessageApi AddImageWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [imageArr removeAllObjects];
+        }
+    } dataArr:imageArr dic:[@{@"userId":self.contactId,@"userType":self.type} mutableCopy] noNetWork:nil];
+    originQualityImage = nil;
+    lowQualityImage = nil;
 }
 
 -(void)addModelWithContent:(NSString*)content{
