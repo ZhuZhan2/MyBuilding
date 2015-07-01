@@ -35,8 +35,6 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSLog(@"firstLaunch==>%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"serverAddress"]);
-    NSLog(@"firstLaunch==>%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"socketHttp"]);
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if(![userDefaults objectForKey:@"serverAddress"]){
         //正式
@@ -45,12 +43,6 @@
             [userDefaults setInteger:1428 forKey:@"socketPort"];
             [userDefaults setObject:@"http://apis.mybuilding.cn:15428/ImService" forKey:@"socketHttp"];
             [userDefaults synchronize];
-        //开发
-//        [userDefaults setObject:@"http://10.1.5.104:8080/server" forKey:@"serverAddress"];
-//        [userDefaults setObject:@"10.1.5.104" forKey:@"socketServer"];
-//        [userDefaults setInteger:44455 forKey:@"socketPort"];
-//        [userDefaults setObject:@"http://10.1.5.104:8080/im" forKey:@"socketHttp"];
-//        [userDefaults synchronize];
     }
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -125,10 +117,12 @@
     
     // 要使用百度地图，请先启动BaiduMapManager
     _mapManager = [[BMKMapManager alloc]init];
+    
     //9uNmKMAvjHLBdkWD42j21yEp 299
     //57gqKHfcRsYLwlxioZvblI5G 99
     BOOL ret = [_mapManager start:@"9uNmKMAvjHLBdkWD42j21yEp" generalDelegate:self];
     //BOOL ret = [_mapManager start:@"57gqKHfcRsYLwlxioZvblI5G" generalDelegate:self];
+    
     if (!ret) {
         NSLog(@"manager start failed!");
     }else{
@@ -164,7 +158,6 @@
     }
     
     NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-    NSLog(@"launchOptions===>%@",launchOptions);
     if(userInfo) {
         [self application:application didReceiveRemoteNotification:userInfo];
 //        [self handleRemoteNotification:application userInfo:userInfo];

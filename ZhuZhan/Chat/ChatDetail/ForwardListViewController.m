@@ -11,8 +11,8 @@
 #import "ChatListViewCell.h"
 #import "MyTableView.h"
 #import "ForwardListCell.h"
-
-@interface ForwardListViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "ForwardChooseContactsController.h"
+@interface ForwardListViewController ()<UITableViewDelegate,UITableViewDataSource,ForwardChooseContactsControllerDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *modelsArr;
 @end
@@ -42,23 +42,10 @@
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
-    
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton setFrame:CGRectMake(0, 0, 50, 22)];
-    //[leftButton setBackgroundImage:[GetImagePath getImagePath:@"013"] forState:UIControlStateNormal];
-    [rightButton setTitle:@"创建" forState:UIControlStateNormal];
-    [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
-    self.navigationItem.rightBarButtonItem = rightButtonItem;
 }
 
 -(void)leftBtnClick{
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
--(void)rightBtnClick{
-    ChooseContactsViewController* vc = [[ChooseContactsViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(UITableView *)tableView{
@@ -141,7 +128,11 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if(indexPath.section == 0){
+        ForwardChooseContactsController* vc = [[ForwardChooseContactsController alloc] init];
+        vc.delegate = self;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 -(void)loadList{
