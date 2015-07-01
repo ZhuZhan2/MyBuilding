@@ -1,12 +1,12 @@
 //
-//  ChooseContactsViewController.m
+//  ForwardChooseContactsController.m
 //  ZhuZhan
 //
-//  Created by 孙元侃 on 15/3/9.
+//  Created by 孙元侃 on 15/7/1.
 //
 //
 
-#import "ChooseContactsViewController.h"
+#import "ForwardChooseContactsController.h"
 #import "ChooseContactsViewCell.h"
 #import "SearchBarCell.h"
 #import "AddressBookApi.h"
@@ -15,14 +15,14 @@
 #import "ChooseContactsSearchController.h"
 #import "ChatViewController.h"
 #import "MyTableView.h"
-@interface ChooseContactsViewController()<ChooseContactsViewCellDelegate,UIAlertViewDelegate>
+@interface ForwardChooseContactsController()<ChooseContactsViewCellDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)NSMutableArray *groupArr;
 @property (nonatomic, strong)NSMutableArray* selectedUserIds;
 @property (nonatomic, strong)NSMutableArray* nameArr;
 @property(nonatomic,strong)ChooseContactsSearchController* searchBarTableViewController;
 @end
 
-@implementation ChooseContactsViewController
+@implementation ForwardChooseContactsController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initNavi];
@@ -73,13 +73,10 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请先选择联系人" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
         [alertView show];
     }else if(self.selectedUserIds.count ==1){
-        ChatViewController* vc=[[ChatViewController alloc]init];
-        vc.contactId=self.selectedUserIds[0];
-        if(self.nameArr.count !=0){
-            vc.titleStr = self.nameArr[0];
+        if ([self.delegate respondsToSelector:@selector(forwardChooseTargetId:isGroup:targetName:)]) {
+            [self.delegate forwardChooseTargetId:self.selectedUserIds[0] isGroup:NO targetName:self.nameArr[0]];
         }
-        vc.type=@"01";
-        [self.navigationController pushViewController:vc animated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     }else{
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"群聊名称" message:nil delegate:self cancelButtonTitle:@"确认" otherButtonTitles:@"取消", nil];
         alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
@@ -113,7 +110,9 @@
         [dic setObject:userIds forKey:@"user"];
         [ChatMessageApi CreateWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                [self gotoDetailWithGroupId:posts[0] title:tf.text];
+                if ([self.delegate respondsToSelector:@selector(forwardChooseTargetId:isGroup:targetName:)]) {
+                    [self.delegate forwardChooseTargetId:posts[0] isGroup:YES targetName:tf.text];
+                }
             }else{
                 if([ErrorCode errorCode:error] == 403){
                     [LoginAgain AddLoginView:NO];
@@ -125,18 +124,6 @@
             [ErrorCode alert];
         }];
     }
-}
-/*
- @property(nonatomic,strong)NSString *contactId;
- @property(nonatomic,strong)NSString *type;
- */
--(void)gotoDetailWithGroupId:(NSString*)groupId title:(NSString *)title{
-    ChatViewController* vc=[[ChatViewController alloc]init];
-    vc.contactId=groupId;
-    vc.titleStr = title;
-    vc.type=@"02";
-    vc.fromView = @"qun";
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)sectionDidSelectWithBtn:(UIButton*)btn{
@@ -253,10 +240,9 @@
 }
 
 -(void)setUpSearchBarTableView{
-    self.searchBarTableViewController = [[ChooseContactsSearchController alloc]initWithTableViewBounds:CGRectMake(0, 0, kScreenWidth, kScreenHeight-CGRectGetMinY(self.searchBar.frame))];
-    self.searchBarTableViewController.selectedUserIds = self.selectedUserIds;
-    self.searchBarTableViewController.nameArr = self.nameArr;
-    self.searchBarTableViewController.delegate = self;
+    self.searchBarTableViewController=[[ChooseContactsSearchController alloc]initWithTableViewBounds:CGRectMake(0, 0, kScreenWidth, kScreenHeight-CGRectGetMinY(self.searchBar.frame))];
+    self.searchBarTableViewController.selectedUserIds=self.selectedUserIds;
+    self.searchBarTableViewController.delegate=self;
 }
 
 -(NSMutableArray *)selectedUserIds{

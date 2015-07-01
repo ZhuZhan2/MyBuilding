@@ -7,7 +7,7 @@
 //
 
 #import "ForwardListViewController.h"
-
+#import "ChooseContactsViewController.h"
 @interface ForwardListViewController ()
 
 @end
@@ -50,6 +50,7 @@
 }
 
 -(void)rightBtnClick{
-
+    ChooseContactsViewController* vc = [[ChooseContactsViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end
