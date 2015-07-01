@@ -1700,6 +1700,7 @@
 		D3D9C9201A13446B001D3A64 /* 主菜单04a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9181A13446B001D3A64 /* 主菜单04a.png */; };
 		D3D9C9211A13446B001D3A64 /* 主菜单04a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9191A13446B001D3A64 /* 主菜单04a@2x.png */; };
 		D3D9D5021B43AC53006980E0 /* ForwardListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9D5011B43AC53006980E0 /* ForwardListViewController.m */; };
+		D3D9D5051B43BC2E006980E0 /* ForwardListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9D5041B43BC2E006980E0 /* ForwardListCell.m */; };
 		D3D9F8C81ADE663F002BBB06 /* 新的朋友.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9F8C61ADE663F002BBB06 /* 新的朋友.png */; };
 		D3D9F8C91ADE663F002BBB06 /* 新的朋友@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9F8C71ADE663F002BBB06 /* 新的朋友@2x.png */; };
 		D3D9F8CF1ADE678B002BBB06 /* 退出本群带字.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9F8CE1ADE678B002BBB06 /* 退出本群带字.png */; };
@@ -4205,6 +4206,8 @@
 		D3D9C9191A13446B001D3A64 /* 主菜单04a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单04a@2x.png"; sourceTree = "<group>"; };
 		D3D9D5001B43AC53006980E0 /* ForwardListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardListViewController.h; sourceTree = "<group>"; };
 		D3D9D5011B43AC53006980E0 /* ForwardListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardListViewController.m; sourceTree = "<group>"; };
+		D3D9D5031B43BC2E006980E0 /* ForwardListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardListCell.h; sourceTree = "<group>"; };
+		D3D9D5041B43BC2E006980E0 /* ForwardListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardListCell.m; sourceTree = "<group>"; };
 		D3D9F8C61ADE663F002BBB06 /* 新的朋友.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "新的朋友.png"; sourceTree = "<group>"; };
 		D3D9F8C71ADE663F002BBB06 /* 新的朋友@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "新的朋友@2x.png"; sourceTree = "<group>"; };
 		D3D9F8CE1ADE678B002BBB06 /* 退出本群带字.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "退出本群带字.png"; sourceTree = "<group>"; };
@@ -6476,6 +6479,8 @@
 				D31F2B921B05E67E006BD6A8 /* ChatImageCell.m */,
 				D3D9D5001B43AC53006980E0 /* ForwardListViewController.h */,
 				D3D9D5011B43AC53006980E0 /* ForwardListViewController.m */,
+				D3D9D5031B43BC2E006980E0 /* ForwardListCell.h */,
+				D3D9D5041B43BC2E006980E0 /* ForwardListCell.m */,
 			);
 			path = ChatDetail;
 			sourceTree = "<group>";
@@ -10070,6 +10075,7 @@
 				0426C30219922D5A00CD8822 /* UIWebView+AFNetworking.m in Sources */,
 				5B70CC3C1AC92A3F00FC8353 /* BaseContractsView.m in Sources */,
 				0426C26319922D5A00CD8822 /* GPUImageDivideBlendFilter.m in Sources */,
+				D3D9D5051B43BC2E006980E0 /* ForwardListCell.m in Sources */,
 				5BA938B01A4972B200BB8A96 /* ContactTableViewCell.m in Sources */,
 				0426C25319922D5A00CD8822 /* GPUImageColorBlendFilter.m in Sources */,
 				0426C24319922D5A00CD8822 /* GPUImageAdaptiveThresholdFilter.m in Sources */,
