@@ -99,6 +99,7 @@
     [self.chatMessageImageView addSubview:bgImageView];
     
     
+    self.chatMessageImageView.messageId = model.a_id;
     if(model.a_isLocal){
         [bgImageView removeFromSuperview];
         bgImageView = nil;

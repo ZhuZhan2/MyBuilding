@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ForwardListViewController : UIViewController
-
+@property (nonatomic, copy)NSString* messageId;
 @end
