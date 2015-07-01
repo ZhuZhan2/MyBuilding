@@ -6484,6 +6484,8 @@
 				D3D9D5011B43AC53006980E0 /* ForwardListViewController.m */,
 				D3D9D5031B43BC2E006980E0 /* ForwardListCell.h */,
 				D3D9D5041B43BC2E006980E0 /* ForwardListCell.m */,
+				5BA37F791B43B85100ACCFA2 /* ForwardChooseContactsController.h */,
+				5BA37F7A1B43B85100ACCFA2 /* ForwardChooseContactsController.m */,
 			);
 			path = ChatDetail;
 			sourceTree = "<group>";
