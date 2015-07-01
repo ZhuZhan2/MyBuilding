@@ -10,5 +10,6 @@
 
 @interface ChooseContactsSearchController : SearchBarTableViewController
 @property (nonatomic, strong)NSMutableArray* selectedUserIds;
+@property (nonatomic, strong)NSMutableArray* nameArr;
 -(void)loadListWithKeyWords:(NSString*)keyWords;
 @end

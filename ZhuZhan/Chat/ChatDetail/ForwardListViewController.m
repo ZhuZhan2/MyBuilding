@@ -57,7 +57,8 @@
 }
 
 -(void)rightBtnClick{
-
+    ChooseContactsViewController* vc = [[ChooseContactsViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(UITableView *)tableView{

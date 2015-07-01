@@ -95,11 +95,20 @@
 -(void)chooseAssistBtn:(UIButton *)btn indexPath:(NSIndexPath *)indexPath{
     AddressBookContactModel *contactModel = self.models[indexPath.row];
     NSString* userId=contactModel.a_contactId;
+    NSString* name = nil;
+    if([contactModel.a_nickName isEqualToString:@""]){
+        name = contactModel.a_loginName;
+    }else{
+        name = contactModel.a_nickName;
+    }
+    
     BOOL hasUserId=[self.selectedUserIds containsObject:userId];
     if (hasUserId) {
         [self.selectedUserIds removeObject:userId];
+        [self.nameArr removeObject:name];
     }else{
         [self.selectedUserIds addObject:userId];
+        [self.nameArr addObject:name];
     }
     [self.tableView reloadData];
 }
