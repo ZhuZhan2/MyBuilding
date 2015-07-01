@@ -60,7 +60,7 @@
 @property (nonatomic, copy) NSString *a_companyName;
 
 //发布的需求的信息
-@property (nonatomic, copy) NSString *a_reqType;
+@property (nonatomic, copy) NSString *a_reqTypeStr;
 @property (nonatomic, copy) NSString *a_reqDesc;
 
 @property (nonatomic, copy) NSDictionary *dict;

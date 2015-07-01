@@ -94,11 +94,11 @@
         self.addressLabel.text = model.a_projectAddress;
     }else if(model.a_type == 8){
         self.contentLabel.text = @"我发布的需求有新评论";
-        self.titleLabel.text = model.a_reqType;
+        self.titleLabel.text = model.a_reqTypeStr;
         self.addressLabel.text = model.a_reqDesc;
     }else{
         self.contentLabel.text = @"我发布的需求有客服回复";
-        self.titleLabel.text = model.a_reqType;
+        self.titleLabel.text = model.a_reqTypeStr;
         self.addressLabel.text = model.a_reqDesc;
     }
     self.timeLabel.text = model.a_createdTime;

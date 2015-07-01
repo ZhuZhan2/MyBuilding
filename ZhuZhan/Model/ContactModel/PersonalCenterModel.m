@@ -36,7 +36,17 @@
     
     self.a_companyName = [ProjectStage ProjectStrStage:dict[@"messageData"][@"companyName"]];
     
-    self.a_reqType = [ProjectStage ProjectStrStage:dict[@"messageData"][@"reqType"]];
+    if([[ProjectStage ProjectStrStage:dict[@"messageData"][@"reqType"]] isEqualToString:@"01"]){
+        self.a_reqTypeStr = @"找项目";
+    }else if ([[ProjectStage ProjectStrStage:dict[@"messageData"][@"reqType"]] isEqualToString:@"02"]){
+        self.a_reqTypeStr = @"找材料";
+    }else if ([[ProjectStage ProjectStrStage:dict[@"messageData"][@"reqType"]] isEqualToString:@"03"]){
+        self.a_reqTypeStr = @"找关系";
+    }else if ([[ProjectStage ProjectStrStage:dict[@"messageData"][@"reqType"]] isEqualToString:@"03"]){
+        self.a_reqTypeStr = @"找合作";
+    }else{
+        self.a_reqTypeStr = @"其他";
+    }
     self.a_reqDesc = [ProjectStage ProjectStrStage:dict[@"messageData"][@"reqDesc"]];
     
     if([self.a_messageType isEqualToString:@"01"] && [self.a_operationType isEqualToString:@"01"]){

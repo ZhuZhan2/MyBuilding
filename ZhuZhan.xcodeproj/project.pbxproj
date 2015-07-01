@@ -1699,6 +1699,7 @@
 		D3D9C91F1A13446B001D3A64 /* 主菜单03a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9171A13446B001D3A64 /* 主菜单03a@2x.png */; };
 		D3D9C9201A13446B001D3A64 /* 主菜单04a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9181A13446B001D3A64 /* 主菜单04a.png */; };
 		D3D9C9211A13446B001D3A64 /* 主菜单04a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9191A13446B001D3A64 /* 主菜单04a@2x.png */; };
+		D3D9D5021B43AC53006980E0 /* ForwardListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9D5011B43AC53006980E0 /* ForwardListViewController.m */; };
 		D3D9F8C81ADE663F002BBB06 /* 新的朋友.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9F8C61ADE663F002BBB06 /* 新的朋友.png */; };
 		D3D9F8C91ADE663F002BBB06 /* 新的朋友@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9F8C71ADE663F002BBB06 /* 新的朋友@2x.png */; };
 		D3D9F8CF1ADE678B002BBB06 /* 退出本群带字.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9F8CE1ADE678B002BBB06 /* 退出本群带字.png */; };
@@ -4202,6 +4203,8 @@
 		D3D9C9171A13446B001D3A64 /* 主菜单03a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单03a@2x.png"; sourceTree = "<group>"; };
 		D3D9C9181A13446B001D3A64 /* 主菜单04a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单04a.png"; sourceTree = "<group>"; };
 		D3D9C9191A13446B001D3A64 /* 主菜单04a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单04a@2x.png"; sourceTree = "<group>"; };
+		D3D9D5001B43AC53006980E0 /* ForwardListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardListViewController.h; sourceTree = "<group>"; };
+		D3D9D5011B43AC53006980E0 /* ForwardListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardListViewController.m; sourceTree = "<group>"; };
 		D3D9F8C61ADE663F002BBB06 /* 新的朋友.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "新的朋友.png"; sourceTree = "<group>"; };
 		D3D9F8C71ADE663F002BBB06 /* 新的朋友@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "新的朋友@2x.png"; sourceTree = "<group>"; };
 		D3D9F8CE1ADE678B002BBB06 /* 退出本群带字.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "退出本群带字.png"; sourceTree = "<group>"; };
@@ -6471,6 +6474,8 @@
 				D3F897081AD8EB2F00DE3AB4 /* MessageTableView.m */,
 				D31F2B911B05E67E006BD6A8 /* ChatImageCell.h */,
 				D31F2B921B05E67E006BD6A8 /* ChatImageCell.m */,
+				D3D9D5001B43AC53006980E0 /* ForwardListViewController.h */,
+				D3D9D5011B43AC53006980E0 /* ForwardListViewController.m */,
 			);
 			path = ChatDetail;
 			sourceTree = "<group>";
@@ -10042,6 +10047,7 @@
 				D3D6EB861B20319500FB6D5A /* MarketModel.m in Sources */,
 				0426C23819922D5A00CD8822 /* AFHTTPSessionManager.m in Sources */,
 				0426C25019922D5A00CD8822 /* GPUImageChromaKeyBlendFilter.m in Sources */,
+				D3D9D5021B43AC53006980E0 /* ForwardListViewController.m in Sources */,
 				0426C2F819922D5A00CD8822 /* XHPathCover.m in Sources */,
 				D3AD609619AC56CB001FD483 /* UIScrollView+Extension.m in Sources */,
 				0426C2F019922D5A00CD8822 /* CJSONDeserializer_BlocksExtensions.m in Sources */,

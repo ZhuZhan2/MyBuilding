@@ -279,17 +279,6 @@
     }
 }
 
-/*
- aps =     {
- alert = "\U62a5\U4ef7\U63d0\U793a
- \U60a8\U6709\U4e00\U6761\U62a5\U4ef7\U8bf7\U6c42";
- badge = 1;
- sound = "msg.mp3";
- };
- targetId = "8b7d27f9-8aee-4f2a-b7ec-4f3cfd204d80";
- type = 07;
- */
-
 //- (void)handleRemoteNotification:(UIApplication *)application userInfo:(NSDictionary *)userInfo {
 //    NSLog(@"=====>%@",userInfo);
 //    application.applicationIconBadgeNumber = 0;

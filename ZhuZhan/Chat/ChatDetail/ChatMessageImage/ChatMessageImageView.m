@@ -7,6 +7,7 @@
 //
 
 #import "ChatMessageImageView.h"
+#import "ForwardListViewController.h"
 @interface ChatMessageImageView()
 {
     CALayer      *_contentLayer;
@@ -22,7 +23,7 @@
 }
 
 -(BOOL)canPerformAction:(SEL)action withSender:(id)sender{
-    return (action == @selector(copy:) || action == @selector(saveImage:));
+    return (action == @selector(copy:) || action == @selector(saveImage:) || action == @selector(forwardImage:));
 }
 
 -(void)copy:(id)sender{
@@ -40,6 +41,13 @@
     }else{
         UIImageWriteToSavedPhotosAlbum([self saveServeImage], self, nil,nil);
     }
+}
+
+-(void)forwardImage:(id)sender{
+    ForwardListViewController *view = [[ForwardListViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:view];
+    nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
+    [self.window.rootViewController presentViewController:nav animated:YES completion:nil];
 }
 
 //-(void)paste:(id)sender{
@@ -117,9 +125,10 @@
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         [self becomeFirstResponder];
-        UIMenuItem *saveImage = [[UIMenuItem alloc] initWithTitle:@"收藏" action:@selector(saveImage:)];
+        UIMenuItem *saveImage = [[UIMenuItem alloc] initWithTitle:@"保存" action:@selector(saveImage:)];
+        UIMenuItem *forwardImage = [[UIMenuItem alloc] initWithTitle:@"转发" action:@selector(forwardImage:)];
         UIMenuController *menu = [UIMenuController sharedMenuController];
-        [menu setMenuItems:[NSArray arrayWithObjects:saveImage, nil]];
+        [menu setMenuItems:[NSArray arrayWithObjects:saveImage,forwardImage, nil]];
         [menu setTargetRect:self.frame inView:self.superview];
         [menu setMenuVisible:YES animated:YES];
     }
