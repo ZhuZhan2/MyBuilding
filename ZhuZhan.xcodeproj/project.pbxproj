@@ -906,7 +906,7 @@
 		5BA181A71A76170500191D31 /* Shadow-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA181A51A76170500191D31 /* Shadow-top@2x.png */; };
 		5BA1E3F31B1EA19C002ADE58 /* 上导航阴影.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA1E3F11B1EA19C002ADE58 /* 上导航阴影.png */; };
 		5BA1E3F41B1EA19C002ADE58 /* 上导航阴影@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA1E3F21B1EA19C002ADE58 /* 上导航阴影@2x.png */; };
-		5BA37F7B1B43B85100ACCFA2 /* ForwardChooseContactsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA37F7A1B43B85100ACCFA2 /* ForwardChooseContactsController.m */; };
+		5BA37F7E1B43CB0000ACCFA2 /* ForwardChooseContactsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA37F7D1B43CB0000ACCFA2 /* ForwardChooseContactsController.m */; };
 		5BA523221AAEEB9D00F44223 /* 多人会话.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA523201AAEEB9D00F44223 /* 多人会话.png */; };
 		5BA523231AAEEB9D00F44223 /* 多人会话@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA523211AAEEB9D00F44223 /* 多人会话@2x.png */; };
 		5BA5BBDD1AD3B8A1004829AF /* AcceptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA5BBDC1AD3B8A1004829AF /* AcceptView.m */; };
@@ -3204,8 +3204,8 @@
 		5BA181A51A76170500191D31 /* Shadow-top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shadow-top@2x.png"; sourceTree = "<group>"; };
 		5BA1E3F11B1EA19C002ADE58 /* 上导航阴影.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上导航阴影.png"; sourceTree = "<group>"; };
 		5BA1E3F21B1EA19C002ADE58 /* 上导航阴影@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上导航阴影@2x.png"; sourceTree = "<group>"; };
-		5BA37F791B43B85100ACCFA2 /* ForwardChooseContactsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardChooseContactsController.h; sourceTree = "<group>"; };
-		5BA37F7A1B43B85100ACCFA2 /* ForwardChooseContactsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardChooseContactsController.m; sourceTree = "<group>"; };
+		5BA37F7C1B43CB0000ACCFA2 /* ForwardChooseContactsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardChooseContactsController.h; sourceTree = "<group>"; };
+		5BA37F7D1B43CB0000ACCFA2 /* ForwardChooseContactsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardChooseContactsController.m; sourceTree = "<group>"; };
 		5BA523201AAEEB9D00F44223 /* 多人会话.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "多人会话.png"; sourceTree = "<group>"; };
 		5BA523211AAEEB9D00F44223 /* 多人会话@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "多人会话@2x.png"; sourceTree = "<group>"; };
 		5BA5BBDB1AD3B8A1004829AF /* AcceptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptView.h; sourceTree = "<group>"; };
@@ -6484,6 +6484,8 @@
 				D3D9D5011B43AC53006980E0 /* ForwardListViewController.m */,
 				D3D9D5031B43BC2E006980E0 /* ForwardListCell.h */,
 				D3D9D5041B43BC2E006980E0 /* ForwardListCell.m */,
+				5BA37F7C1B43CB0000ACCFA2 /* ForwardChooseContactsController.h */,
+				5BA37F7D1B43CB0000ACCFA2 /* ForwardChooseContactsController.m */,
 			);
 			path = ChatDetail;
 			sourceTree = "<group>";
@@ -9894,6 +9896,7 @@
 				D351AAFD1B14406E00A299C6 /* CompanyProductController.m in Sources */,
 				0426C2B319922D5A00CD8822 /* GPUImageSepiaFilter.m in Sources */,
 				0426C2BC19922D5A00CD8822 /* GPUImageSoftLightBlendFilter.m in Sources */,
+				5BA37F7E1B43CB0000ACCFA2 /* ForwardChooseContactsController.m in Sources */,
 				D3EDCA5C1ACE90A6002AF865 /* UIImageView+WebCache.m in Sources */,
 				0426C2AB19922D5A00CD8822 /* GPUImageRGBClosingFilter.m in Sources */,
 				04D10BDD19AE016A0097C0C6 /* AccountViewController.m in Sources */,
@@ -9988,7 +9991,6 @@
 				D314A3A71B156B2B00F6A86A /* SearchContactDefaultView.m in Sources */,
 				D35E12411ABD65D8007C6726 /* AskPriceDetailViewController.m in Sources */,
 				0426C2B719922D5A00CD8822 /* GPUImageSingleComponentGaussianBlurFilter.m in Sources */,
-				5BA37F7B1B43B85100ACCFA2 /* ForwardChooseContactsController.m in Sources */,
 				D31BBB981AD3E3F500919B8B /* SWCellScrollView.m in Sources */,
 				5BBAA98C1B1C205000167496 /* CommentModel.m in Sources */,
 				D3D090271AF8964300C8AC55 /* MarketViewController.m in Sources */,
