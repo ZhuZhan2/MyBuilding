@@ -10,11 +10,13 @@
 #import "ChatModel.h"
 @protocol ChatTableViewCellDelegate <NSObject>
 -(void)gotoContactDetailView:(NSString *)contactId;
+-(void)forwardBtnClickedWithIndexPath:(NSIndexPath*)indexPath;
 @end
 
 @interface ChatTableViewCell : UITableViewCell
 @property(nonatomic,strong)ChatModel* model;
 @property(nonatomic,weak)id<ChatTableViewCellDelegate>delegate;
+@property (nonatomic, strong)NSIndexPath* indexPath;
 +(CGFloat)carculateTotalHeightWithContentStr:(NSString*)contentStr isSelf:(BOOL)isSelf;
 +(UILabel *)sendTimeLabel;
 @end

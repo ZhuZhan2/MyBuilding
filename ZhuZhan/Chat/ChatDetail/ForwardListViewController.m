@@ -12,7 +12,7 @@
 #import "MyTableView.h"
 #import "ForwardListCell.h"
 #import "ForwardChooseContactsController.h"
-@interface ForwardListViewController ()<UITableViewDelegate,UITableViewDataSource,ForwardChooseContactsControllerDelegate>
+@interface ForwardListViewController ()<UITableViewDelegate,UITableViewDataSource,ForwardChooseContactsControllerDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *modelsArr;
 @end
@@ -132,7 +132,12 @@
         ForwardChooseContactsController* vc = [[ForwardChooseContactsController alloc] init];
         vc.delegate = self;
         [self.navigationController pushViewController:vc animated:YES];
+        return;
     }
+    
+    ChatListModel* model = self.modelsArr[indexPath.row];
+    NSString* targetId = [model.a_type isEqualToString:@"01"]?model.a_loginId:model.a_groupId;
+    [self forwardMessage:self.messageId targetId:targetId];
 }
 
 -(void)loadList{
@@ -154,5 +159,23 @@
             [self loadList];
         }];
     }];
+}
+
+- (void)forwardMessage:(NSString*)messageId targetId:(NSString*)targetId{
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    [dic setObject:messageId forKey:@"chatlogIds"];
+    [dic setObject:targetId forKey:@"forword"];
+    
+    [ChatMessageApi forwardWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"转发成功" delegate:self cancelButtonTitle:nil otherButtonTitles:@"取消",@"确定", nil];
+            [alertView show];
+        }
+    } dic:dic noNetWork:nil];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex != 1) return;
+    [self leftBtnClick];
 }
 @end

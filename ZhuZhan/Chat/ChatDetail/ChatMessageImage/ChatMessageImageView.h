@@ -15,5 +15,6 @@
 @property(nonatomic,strong)UIImage *bigLocalImage;
 @property(nonatomic,strong)NSString *imageId;
 @property(nonatomic)BOOL isLocal;
+@property (nonatomic, copy)NSString* messageId;
 - (instancetype)initWithFrame:(CGRect)frame isSelf:(BOOL)isSelf;
 @end

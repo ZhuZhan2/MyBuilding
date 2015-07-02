@@ -24,6 +24,7 @@
 #import "ChatImageCell.h"
 #import "VIPhotoView.h"
 #import "ChatSendImageView.h"
+#import "ForwardListViewController.h"
 @interface ChatViewController ()<UIAlertViewDelegate,ChatTableViewCellDelegate,ChatImageCellDelegate,VIPhotoViewDelegate,ChatSendImageViewDelegate>
 @property (nonatomic, strong)NSMutableArray* models;
 @property(nonatomic,strong)RKBaseTableView *tableView;
@@ -82,7 +83,7 @@
     [dic setValue:@"02" forKey:@"deviceType"];
     [ChatMessageApi LogoutWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-             NSMutableDictionary *dic2 = [[NSMutableDictionary alloc] init];
+            NSMutableDictionary *dic2 = [[NSMutableDictionary alloc] init];
             [dic2 setObject:self.contactId forKey:@"userId"];
             [ChatMessageApi LeaveWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
@@ -225,7 +226,7 @@
     if([model.a_msgType isEqualToString:@"01"]){
         NSString* content=model.a_message;
         return [ChatTableViewCell carculateTotalHeightWithContentStr:content isSelf:model.a_type];
-
+        
     }else{
         return 65+model.a_imageHeight/2;
     }
@@ -247,6 +248,7 @@
         model.ID = dataModel.a_userId;
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         cell.model=model;
+        cell.indexPath = indexPath;
         cell.delegate = self;
         return cell;
     }else{
@@ -260,6 +262,17 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
         return cell;
+    }
+}
+
+- (void)forwardBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
+    ChatMessageModel* dataModel=self.models[indexPath.row];
+    if([dataModel.a_msgType isEqualToString:@"01"]){
+        ForwardListViewController *view = [[ForwardListViewController alloc] init];
+        view.messageId = dataModel.a_id;
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:view];
+        nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
+        [self.view.window.rootViewController presentViewController:nav animated:YES completion:nil];
     }
 }
 

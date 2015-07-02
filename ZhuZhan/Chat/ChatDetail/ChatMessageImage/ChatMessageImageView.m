@@ -45,6 +45,7 @@
 
 -(void)forwardImage:(id)sender{
     ForwardListViewController *view = [[ForwardListViewController alloc] init];
+    view.messageId = self.messageId;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:view];
     nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
     [self.window.rootViewController presentViewController:nav animated:YES completion:nil];
