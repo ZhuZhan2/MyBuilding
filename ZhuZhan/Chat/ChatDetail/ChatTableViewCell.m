@@ -118,10 +118,10 @@
     
     [self becomeFirstResponder];
     
-    UIMenuItem* item = [[UIMenuItem alloc] initWithTitle:@"转发" action:@selector(forward:)];
+//    UIMenuItem* item = [[UIMenuItem alloc] initWithTitle:@"转发" action:@selector(forward:)];
     
     UIMenuController* menu = [UIMenuController sharedMenuController];
-    [menu setMenuItems:@[item]];
+//    [menu setMenuItems:@[item]];
     [menu setTargetRect:self.chatContentView.frame inView:self.chatContentView.superview];
     [menu setMenuVisible:YES animated:YES];
 }
@@ -131,14 +131,14 @@
 }
 
 -(BOOL)canPerformAction:(SEL)action withSender:(id)sender{
-    return action == @selector(copy:) || action == @selector(forward:);
+    return action == @selector(copy:) ;//|| action == @selector(forward:);
 }
 
-- (void)forward:(id)sender{
-    if ([self.delegate respondsToSelector:@selector(forwardBtnClickedWithIndexPath:)]) {
-        [self.delegate forwardBtnClickedWithIndexPath:self.indexPath];
-    }
-}
+//- (void)forward:(id)sender{
+//    if ([self.delegate respondsToSelector:@selector(forwardBtnClickedWithIndexPath:)]) {
+//        [self.delegate forwardBtnClickedWithIndexPath:self.indexPath];
+//    }
+//}
 
 -(void)copy:(id)sender{
     UIPasteboard* pasteBoard = [UIPasteboard generalPasteboard];
