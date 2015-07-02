@@ -1702,6 +1702,8 @@
 		D3D9C9211A13446B001D3A64 /* 主菜单04a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9191A13446B001D3A64 /* 主菜单04a@2x.png */; };
 		D3D9D5021B43AC53006980E0 /* ForwardListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9D5011B43AC53006980E0 /* ForwardListViewController.m */; };
 		D3D9D5051B43BC2E006980E0 /* ForwardListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9D5041B43BC2E006980E0 /* ForwardListCell.m */; };
+		D3D9D5081B43DFF8006980E0 /* BannerImagesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9D5071B43DFF8006980E0 /* BannerImagesModel.m */; };
+		D3D9D50B1B43EB00006980E0 /* MarketWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9D50A1B43EB00006980E0 /* MarketWebViewController.m */; };
 		D3D9F8C81ADE663F002BBB06 /* 新的朋友.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9F8C61ADE663F002BBB06 /* 新的朋友.png */; };
 		D3D9F8C91ADE663F002BBB06 /* 新的朋友@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9F8C71ADE663F002BBB06 /* 新的朋友@2x.png */; };
 		D3D9F8CF1ADE678B002BBB06 /* 退出本群带字.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9F8CE1ADE678B002BBB06 /* 退出本群带字.png */; };
@@ -4211,6 +4213,10 @@
 		D3D9D5011B43AC53006980E0 /* ForwardListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardListViewController.m; sourceTree = "<group>"; };
 		D3D9D5031B43BC2E006980E0 /* ForwardListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardListCell.h; sourceTree = "<group>"; };
 		D3D9D5041B43BC2E006980E0 /* ForwardListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardListCell.m; sourceTree = "<group>"; };
+		D3D9D5061B43DFF8006980E0 /* BannerImagesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerImagesModel.h; sourceTree = "<group>"; };
+		D3D9D5071B43DFF8006980E0 /* BannerImagesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerImagesModel.m; sourceTree = "<group>"; };
+		D3D9D5091B43EB00006980E0 /* MarketWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketWebViewController.h; sourceTree = "<group>"; };
+		D3D9D50A1B43EB00006980E0 /* MarketWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketWebViewController.m; sourceTree = "<group>"; };
 		D3D9F8C61ADE663F002BBB06 /* 新的朋友.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "新的朋友.png"; sourceTree = "<group>"; };
 		D3D9F8C71ADE663F002BBB06 /* 新的朋友@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "新的朋友@2x.png"; sourceTree = "<group>"; };
 		D3D9F8CE1ADE678B002BBB06 /* 退出本群带字.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "退出本群带字.png"; sourceTree = "<group>"; };
@@ -7884,6 +7890,8 @@
 				D3D090261AF8964300C8AC55 /* MarketViewController.m */,
 				D3D6EB781B1FF6B200FB6D5A /* MarkListView.h */,
 				D3D6EB791B1FF6B200FB6D5A /* MarkListView.m */,
+				D3D9D5091B43EB00006980E0 /* MarketWebViewController.h */,
+				D3D9D50A1B43EB00006980E0 /* MarketWebViewController.m */,
 			);
 			path = MarketView;
 			sourceTree = "<group>";
@@ -7971,6 +7979,8 @@
 				D3D6EB851B20319500FB6D5A /* MarketModel.m */,
 				5B9F26CB1B26C57F0022B5A8 /* RequirementDetailModel.h */,
 				5B9F26CC1B26C57F0022B5A8 /* RequirementDetailModel.m */,
+				D3D9D5061B43DFF8006980E0 /* BannerImagesModel.h */,
+				D3D9D5071B43DFF8006980E0 /* BannerImagesModel.m */,
 			);
 			path = MarketModel;
 			sourceTree = "<group>";
@@ -9987,6 +9997,7 @@
 				0426C2B119922D5A00CD8822 /* GPUImageSaturationFilter.m in Sources */,
 				04BF13B419C4162A002E02C9 /* AFAppDotNetAPIClient.m in Sources */,
 				0426C2BE19922D5A00CD8822 /* GPUImageSourceOverBlendFilter.m in Sources */,
+				D3D9D5081B43DFF8006980E0 /* BannerImagesModel.m in Sources */,
 				D314A3A71B156B2B00F6A86A /* SearchContactDefaultView.m in Sources */,
 				D35E12411ABD65D8007C6726 /* AskPriceDetailViewController.m in Sources */,
 				0426C2B719922D5A00CD8822 /* GPUImageSingleComponentGaussianBlurFilter.m in Sources */,
@@ -10023,6 +10034,7 @@
 				D3F727511AD660E200B52A66 /* RecommendFriendViewController.m in Sources */,
 				D3D5B42B1AB12CB800E8EB04 /* ChatSqlite.m in Sources */,
 				0426C2F119922D5A00CD8822 /* CJSONSerialization.m in Sources */,
+				D3D9D50B1B43EB00006980E0 /* MarketWebViewController.m in Sources */,
 				0426C2EF19922D5A00CD8822 /* CFilteringJSONSerializer.m in Sources */,
 				5B0A00A519B587CD00500C05 /* TMQuiltViewController.m in Sources */,
 				5B90E0FF1ADE325000436CED /* ContractsTradeCodeView.m in Sources */,

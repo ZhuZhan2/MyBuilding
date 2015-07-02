@@ -126,9 +126,9 @@
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         [self becomeFirstResponder];
         UIMenuItem *saveImage = [[UIMenuItem alloc] initWithTitle:@"保存" action:@selector(saveImage:)];
-        UIMenuItem *forwardImage = [[UIMenuItem alloc] initWithTitle:@"转发" action:@selector(forwardImage:)];
+        //UIMenuItem *forwardImage = [[UIMenuItem alloc] initWithTitle:@"转发" action:@selector(forwardImage:)];
         UIMenuController *menu = [UIMenuController sharedMenuController];
-        [menu setMenuItems:[NSArray arrayWithObjects:saveImage,forwardImage, nil]];
+        [menu setMenuItems:[NSArray arrayWithObjects:saveImage, nil]];
         [menu setTargetRect:self.frame inView:self.superview];
         [menu setMenuVisible:YES animated:YES];
     }

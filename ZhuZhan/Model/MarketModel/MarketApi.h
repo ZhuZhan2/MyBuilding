@@ -32,4 +32,7 @@
 
 //删除需求
 + (NSURLSessionDataTask *)DelRequireWithBlock:(void (^)(NSMutableArray *posts,NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
+
+//获取banner图
++ (NSURLSessionDataTask *)GetBannerImagesWithBlock:(void (^)(NSMutableArray *posts,NSError *error))block noNetWork:(void(^)())noNetWork;
 @end

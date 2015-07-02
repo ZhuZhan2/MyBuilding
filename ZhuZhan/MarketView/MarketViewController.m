@@ -19,6 +19,8 @@
 #import "RequirementDetailViewController.h"
 #import "LoginSqlite.h"
 #import "LoginViewController.h"
+#import "BannerImagesModel.h"
+#import "MarketWebViewController.h"
 
 #define contentHeight (kScreenHeight==480?431:519)
 @interface MarketViewController ()<ZWAdViewDelagate,MarketFlowViewDataSource,MarketFlowViewDelegate,LoginViewDelegate>
@@ -38,6 +40,7 @@
 @property(nonatomic,strong)UIView* loadingView;
 @property(nonatomic,strong)UIActivityIndicatorView* activityView;
 @property(nonatomic,strong)NSMutableArray *modelsArr;
+@property(nonatomic,strong)NSMutableArray *bannerImagesArr;
 
 @property(nonatomic,strong)UIImageView *centerImageView;
 @property(nonatomic,strong)UIButton *centerBtn;
@@ -74,6 +77,7 @@
     [self.scrollView addSubview:self.phoneImageView];
     [self.scrollView addSubview:self.phoneBtn];
     [self loadList];
+    [self loadBannerImages];
     
 //    [self.scrollView addSubview:self.centerImageView];
 //    [self.scrollView addSubview:self.centerBtn];
@@ -91,6 +95,13 @@
         _modelsArr = [NSMutableArray array];
     }
     return _modelsArr;
+}
+
+-(NSMutableArray *)bannerImagesArr{
+    if(!_bannerImagesArr){
+        _bannerImagesArr = [NSMutableArray array];
+    }
+    return _bannerImagesArr;
 }
 
 -(UIScrollView *)scrollView{
@@ -122,14 +133,14 @@
         _zwAdView=[[ZWAdView alloc]initWithFrame:CGRectMake(0, 0,320 , 100)];
         _zwAdView.delegate=self;
         /**广告链接*/
-        AdDataModel * dataModel = [AdDataModel adDataModelWithImageName];
-        _zwAdView.adDataArray=[NSMutableArray arrayWithArray:dataModel.imageNameArray];
-        _zwAdView.pageControlPosition=ZWPageControlPosition_BottomCenter;/**设置圆点的位置*/
-        _zwAdView.hidePageControl=NO;/**设置圆点是否隐藏*/
+        //AdDataModel * dataModel = [AdDataModel adDataModelWithImageName];
+        //_zwAdView.adDataArray=[NSMutableArray arrayWithArray:dataModel.imageNameArray];
+        //_zwAdView.pageControlPosition=ZWPageControlPosition_BottomCenter;/**设置圆点的位置*/
+        //_zwAdView.hidePageControl=NO;/**设置圆点是否隐藏*/
         _zwAdView.adAutoplay=YES;/**自动播放*/
         _zwAdView.adPeriodTime=4.0;/**时间间隔*/
         _zwAdView.placeImageSource=@"banner1";/**设置默认广告*/
-        [_zwAdView loadAdDataThenStart];
+        //[_zwAdView loadAdDataThenStart];
     }
     return _zwAdView;
 }
@@ -335,6 +346,26 @@
     }];
 }
 
+-(void)loadBannerImages{
+    [MarketApi GetBannerImagesWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            self.bannerImagesArr = posts;
+            self.zwAdView.adDataArray= self.bannerImagesArr;
+            self.zwAdView.pageControlPosition=ZWPageControlPosition_BottomCenter;/**设置圆点的位置*/
+            self.zwAdView.hidePageControl=NO;/**设置圆点是否隐藏*/
+            [self.zwAdView loadAdDataThenStart];
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
+        }
+    } noNetWork:^{
+        [ErrorCode alert];
+    }];
+}
+
 -(UIView *)loadingView{
     if (!_loadingView) {
         _loadingView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 234)];
@@ -367,6 +398,12 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"reloadRequirementList" object:nil];
 }
 
+-(void)adView:(ZWAdView *)adView didDeselectAdAtNum:(NSInteger)num{
+    BannerImagesModel *model = self.bannerImagesArr[num];
+    MarketWebViewController *view = [[MarketWebViewController alloc] init];
+    view.webUrl = model.a_webUrl;
+    [self.navigationController pushViewController:view animated:YES];
+}
 
 /***********************************************************/
 //-(UIImageView *)centerImageView{
