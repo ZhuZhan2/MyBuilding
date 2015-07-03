@@ -141,6 +141,7 @@
 }
 
 -(void)initSocket{
+    NSLog(@"asdfasdfsadf");
     self.app = [AppDelegate instance];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     uint16_t port = [[userDefaults objectForKey:@"socketPort"] intValue];
