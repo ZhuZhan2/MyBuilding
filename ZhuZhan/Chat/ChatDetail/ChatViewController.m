@@ -297,12 +297,14 @@
 
 -(void)chatToolSendBtnClickedWithContent:(NSString *)content{
     NSLog(@"isConnected===>%d",self.app.socket.isConnected);
-    if ([ConnectionAvailable isConnectionAvailable]) {
+    if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
     }else{
+        NSString *timeId = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]] ;
+        NSLog(@"tmeId==>%@",timeId);
         if(self.app.socket.isConnected){
-            [self sendMessage:content];
-            [self addModelWithContent:content];
+            [self sendMessage:content timestamp:timeId];
+            [self addModelWithContent:content timestamp:timeId];
         }else{
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             uint16_t port = [[userDefaults objectForKey:@"socketPort"] intValue];
@@ -316,13 +318,13 @@
             [self.app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
             [self.app.socket readDataWithTimeout:-1 tag:0];
             
-            [self sendMessage:content];
-            [self addModelWithContent:content];
+            [self sendMessage:content timestamp:timeId];
+            [self addModelWithContent:content timestamp:timeId];
         }
     }
 }
 
--(void)sendMessage:(NSString*)content{
+-(void)sendMessage:(NSString*)content timestamp:(NSString *)timestamp{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     if([self.type isEqualToString:@"01"]){
         [dic setObject:@"user" forKey:@"msgType"];
@@ -333,6 +335,7 @@
     [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
     [dic setObject:self.contactId forKey:@"toUserId"];
     [dic setObject:content forKey:@"content"];
+    [dic setObject:timestamp forKey:@"id"];
     NSLog(@"%@",dic);
     NSString *str = [dic JSONString];
     str = [NSString stringWithFormat:@"%@\r\n",str];
@@ -353,7 +356,8 @@
 }
 
 - (void)sendImageWithLowQualityImage:(UIImage*)lowQualityImage originQualityImage:(UIImage *)originQualityImage{
-    [self addModelWithImage:lowQualityImage bigImage:originQualityImage];
+    NSString *timeId = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
+    [self addModelWithImage:lowQualityImage bigImage:originQualityImage timestamp:timeId];
     NSData *imageData = UIImageJPEGRepresentation(originQualityImage, 1);
     NSMutableArray *imageArr = [[NSMutableArray alloc] init];
     [imageArr addObject:imageData];
@@ -361,18 +365,19 @@
         if(!error){
             [imageArr removeAllObjects];
         }
-    } dataArr:imageArr dic:[@{@"userId":self.contactId,@"userType":self.type} mutableCopy] noNetWork:nil];
+    } dataArr:imageArr dic:[@{@"userId":self.contactId,@"userType":self.type,@"id":timeId} mutableCopy] noNetWork:nil];
     originQualityImage = nil;
     lowQualityImage = nil;
 }
 
--(void)addModelWithContent:(NSString*)content{
+-(void)addModelWithContent:(NSString*)content timestamp:(NSString *)timestamp{
     ChatMessageModel* model=[[ChatMessageModel alloc]init];
     model.a_name=[LoginSqlite getdata:@"userName"];
     model.a_message=content;
     model.a_type=chatTypeMe;
     model.a_avatarUrl=[LoginSqlite getdata:@"userImage"];
     model.a_msgType = @"01";
+    model.a_localId = timestamp;
     NSDate* date=[NSDate date];
     NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
     formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";
@@ -383,7 +388,7 @@
     [self appearNewData];
 }
 
--(void)addModelWithImage:(UIImage *)image bigImage:(UIImage *)bigImage{
+-(void)addModelWithImage:(UIImage *)image bigImage:(UIImage *)bigImage timestamp:(NSString *)timestamp{
     ChatMessageModel *model = [[ChatMessageModel alloc] init];
     model.a_name=[LoginSqlite getdata:@"userName"];
     model.a_localImage = image;
@@ -391,6 +396,8 @@
     model.a_type=chatTypeMe;
     model.a_avatarUrl=[LoginSqlite getdata:@"userImage"];
     model.a_isLocal = YES;
+    model.messageStatus = ChatMessageStatusProcess;
+    model.a_localId = timestamp;
     NSDate* date=[NSDate date];
     NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
     formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";

@@ -13,6 +13,7 @@
 @protocol ChatImageCellDelegate <NSObject>
 -(void)gotoBigImage:(NSInteger)index;
 -(void)forwardBtnClickedWithIndexPath:(NSIndexPath*)indexPath;
+- (void)failBtnClicked:(UIButton*)btn;
 @end
 
 @interface ChatImageCell : TableViewHeightCell
@@ -28,4 +29,7 @@
 @property(nonatomic)BOOL isSelf;
 @property(nonatomic,strong)ChatMessageModel *model;
 @property(nonatomic,weak)id<ChatImageCellDelegate>delegate;
+
+@property (nonatomic, strong)UIActivityIndicatorView* activityView;
+@property (nonatomic, strong)UIButton* failedBtn;
 @end

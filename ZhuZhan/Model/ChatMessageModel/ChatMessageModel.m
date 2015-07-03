@@ -53,6 +53,7 @@
     self.a_imageWidth = size.width;
     self.a_imageHeight = size.height;
     self.a_fileId = dict[@"fileId"];
+    self.messageStatus = ChatMessageStatusSucess;
 }
 
 +(CGSize)getImageWidth:(NSString *)width height:(NSString *)height{
