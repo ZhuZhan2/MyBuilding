@@ -62,6 +62,8 @@
 //发布的需求的信息
 @property (nonatomic, copy) NSString *a_reqTypeStr;
 @property (nonatomic, copy) NSString *a_reqDesc;
+@property (nonatomic) BOOL a_isPubilc;
+@property (nonatomic, copy) NSString *a_reqId;
 
 @property (nonatomic, copy) NSDictionary *dict;
 @end

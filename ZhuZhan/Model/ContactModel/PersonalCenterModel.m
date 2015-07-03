@@ -103,5 +103,13 @@
     
     self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"messageData"][@"imageWidth"]]];
     self.a_imageHeight = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"messageData"][@"imageHeight"]]];
+    
+    if([dict[@"messageData"][@"isOpen"] isEqualToString:@"00"]){
+        self.a_isPubilc = YES;
+    }else{
+        self.a_isPubilc = NO;
+    }
+    
+    self.a_reqId = dict[@"messageData"][@"reqId"];
 }
 @end

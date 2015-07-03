@@ -31,6 +31,7 @@
 #import "PersonalHeadView.h"
 #import "MyProjectViewController.h"
 #import "PersonalCenterProjectTableViewCell.h"
+#import "RequirementDetailViewController.h"
 @interface PersonalCenterViewController ()<PersonalHeadViewDelegate>
 @property(nonatomic,strong)UIView *headView;
 @property(nonatomic,strong)UIView *myFocusView;
@@ -354,7 +355,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
         cell.selectionStyle = NO;
         return cell;
-    }else{
+    }else if(model.a_type == 0 || model.a_type == 6){
         NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
         PersonalCenterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
@@ -363,6 +364,13 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
         cell.selectionStyle = NO;
         cell.personalCentermodel = model;
+        return cell;
+    }else{
+        NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
         return cell;
     }
 }
@@ -380,7 +388,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if(showArr.count !=0){
         model = showArr[indexPath.row];
     }
-    
     if(model.a_type == 1){
         PorjectCommentTableViewController *projectCommentView = [[PorjectCommentTableViewController alloc] init];
         projectCommentView.projectId = model.a_messageSourceId;
@@ -406,6 +413,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         ProductDetailViewController* vc=[[ProductDetailViewController alloc] initWithProductModel:productModel];
         vc.type = @"01";
         [self.navigationController pushViewController:vc animated:YES];
+    }else if (model.a_type == 8 || model.a_type == 9){
+        RequirementDetailViewController* vc = [[RequirementDetailViewController alloc] initWithTargetId:model.a_reqId];
+        vc.selfCanDelete = !model.a_isPubilc;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -419,8 +430,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         return 60;
     }else if(model.a_type == 1 || model.a_type == 8 || model.a_type == 9){
         return 80;
-    }else{
+    }else if(model.a_type == 0 || model.a_type == 6){
         return [PersonalCenterTableViewCell carculateCellHeightWithModel:model];
+    }else{
+        return 0;
     }
 }
 
