@@ -139,7 +139,7 @@
         //_zwAdView.hidePageControl=NO;/**设置圆点是否隐藏*/
         _zwAdView.adAutoplay=YES;/**自动播放*/
         _zwAdView.adPeriodTime=4.0;/**时间间隔*/
-        _zwAdView.placeImageSource=@"banner1";/**设置默认广告*/
+        _zwAdView.placeImageSource=@"banner_mobile_3";/**设置默认广告*/
         //[_zwAdView loadAdDataThenStart];
     }
     return _zwAdView;
@@ -353,6 +353,11 @@
             self.zwAdView.adDataArray= self.bannerImagesArr;
             self.zwAdView.pageControlPosition=ZWPageControlPosition_BottomCenter;/**设置圆点的位置*/
             self.zwAdView.hidePageControl=NO;/**设置圆点是否隐藏*/
+            if(self.bannerImagesArr.count == 0){
+                self.zwAdView.adScrollView.scrollEnabled = NO;
+            }else{
+                self.zwAdView.adScrollView.scrollEnabled = YES;
+            }
             [self.zwAdView loadAdDataThenStart];
         }else{
             if([ErrorCode errorCode:error] == 403){

@@ -292,7 +292,7 @@
 
 -(void)chatToolSendBtnClickedWithContent:(NSString *)content{
     NSLog(@"isConnected===>%d",self.app.socket.isConnected);
-    if (![ConnectionAvailable isConnectionAvailable]) {
+    if ([ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
     }else{
         if(self.app.socket.isConnected){
@@ -308,7 +308,7 @@
             [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
             NSString *str = [dic JSONString];
             str = [NSString stringWithFormat:@"%@\r\n",str];
-            [self.app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
+            [self.app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:20 tag:0];
             [self.app.socket readDataWithTimeout:-1 tag:0];
             
             [self sendMessage:content];
@@ -333,7 +333,7 @@
     str = [NSString stringWithFormat:@"%@\r\n",str];
     
     AppDelegate *app = [AppDelegate instance];
-    [app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
+    [app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:20 tag:0];
     [app.socket readDataWithTimeout:-1 tag:0];
 }
 

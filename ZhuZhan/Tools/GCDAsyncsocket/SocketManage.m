@@ -50,7 +50,7 @@
 }
 
 - (void)readDataWithTimeout:(NSTimeInterval)timeout tag:(long)tag{
-    [self.socket readDataWithTimeout:-1 tag:0];
+    [self.socket readDataWithTimeout:timeout tag:0];
 }
 
 - (void)socketDidSecure:(GCDAsyncSocket *)sock{

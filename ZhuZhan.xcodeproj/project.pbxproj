@@ -1746,6 +1746,8 @@
 		D3DF8DDF1B16DACF00B7CF35 /* contact_default_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3DF8DDD1B16DACF00B7CF35 /* contact_default_list@2x.png */; };
 		D3DF8DE21B16DE8F00B7CF35 /* company_default_list.png in Resources */ = {isa = PBXBuildFile; fileRef = D3DF8DE01B16DE8F00B7CF35 /* company_default_list.png */; };
 		D3DF8DE31B16DE8F00B7CF35 /* company_default_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3DF8DE11B16DE8F00B7CF35 /* company_default_list@2x.png */; };
+		D3DFD1311B4539C300598527 /* banner_default.png in Resources */ = {isa = PBXBuildFile; fileRef = D3DFD12F1B4539C300598527 /* banner_default.png */; };
+		D3DFD1321B4539C300598527 /* banner_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3DFD1301B4539C300598527 /* banner_default@2x.png */; };
 		D3E0BECA1B27E25C002F01CF /* search_empty2.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E0BEC81B27E25C002F01CF /* search_empty2.png */; };
 		D3E0BECB1B27E25C002F01CF /* search_empty2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E0BEC91B27E25C002F01CF /* search_empty2@2x.png */; };
 		D3E0BECE1B27F6D2002F01CF /* RequireCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E0BECD1B27F6D2002F01CF /* RequireCommentViewController.m */; };
@@ -4269,6 +4271,8 @@
 		D3DF8DDD1B16DACF00B7CF35 /* contact_default_list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contact_default_list@2x.png"; sourceTree = "<group>"; };
 		D3DF8DE01B16DE8F00B7CF35 /* company_default_list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = company_default_list.png; sourceTree = "<group>"; };
 		D3DF8DE11B16DE8F00B7CF35 /* company_default_list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "company_default_list@2x.png"; sourceTree = "<group>"; };
+		D3DFD12F1B4539C300598527 /* banner_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banner_default.png; sourceTree = "<group>"; };
+		D3DFD1301B4539C300598527 /* banner_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_default@2x.png"; sourceTree = "<group>"; };
 		D3E0BEC81B27E25C002F01CF /* search_empty2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_empty2.png; sourceTree = "<group>"; };
 		D3E0BEC91B27E25C002F01CF /* search_empty2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_empty2@2x.png"; sourceTree = "<group>"; };
 		D3E0BECC1B27F6D2002F01CF /* RequireCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequireCommentViewController.h; sourceTree = "<group>"; };
@@ -7947,6 +7951,8 @@
 		D3D090181AF86E2A00C8AC55 /* 滚动广告 */ = {
 			isa = PBXGroup;
 			children = (
+				D3DFD12F1B4539C300598527 /* banner_default.png */,
+				D3DFD1301B4539C300598527 /* banner_default@2x.png */,
 				D3D75E201B01E3D900754C1A /* banner_mobile_1.png */,
 				D3D75E211B01E3D900754C1A /* banner_mobile_1@2x.png */,
 				D3D75E221B01E3D900754C1A /* banner_mobile_2.png */,
@@ -8827,6 +8833,7 @@
 				5BE08EB01A3586EA00495EEB /* 040022.png in Resources */,
 				04BC42AB19D7E5B3006B5C7B /* 面部识别登录_03@2x.png in Resources */,
 				5BE08DFF1A3586EA00495EEB /* 010054@2x.png in Resources */,
+				D3DFD1321B4539C300598527 /* banner_default@2x.png in Resources */,
 				D3D090141AF86DF400C8AC55 /* index_need.png in Resources */,
 				04BC414A19D7E5B3006B5C7B /* mapsearch-1.png in Resources */,
 				04BC423119D7E5B3006B5C7B /* 地图搜索1_09.png in Resources */,
@@ -9016,6 +9023,7 @@
 				D3D5D9AD1A66919B0077C8C9 /* 公司详情图标01@2x.png in Resources */,
 				5BDDA1EB1B25292A00F4AABB /* 默认图_产品关注列表.png in Resources */,
 				5B75F4F91AFA04AB0091162C /* find_findbutton@2x.png in Resources */,
+				D3DFD1311B4539C300598527 /* banner_default.png in Resources */,
 				D3A85BBE1B0C577400333F56 /* proiect_content.png in Resources */,
 				5BE08DE81A3586EA00495EEB /* 010043.png in Resources */,
 				5B90E1121ADE59B600436CED /* 流程点_未开始.png in Resources */,

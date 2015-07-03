@@ -62,6 +62,7 @@
 -(void)loadAdDataThenStart{
     [self.adScrollView setContentSize:CGSizeMake(self.adScrollView.bounds.size.width*(self.adDataArray.count+2), self.adScrollView.bounds.size.height)];
     self.pageControl.numberOfPages=self.adDataArray.count;
+    
     for (int i=0; i<self.adDataArray.count; i++) {
         BannerImagesModel *model = self.adDataArray[i];
         NSLog(@"%@",model.a_imageUrl);
@@ -70,23 +71,33 @@
         adImageView.userInteractionEnabled=YES;
         adImageView.contentMode = UIViewContentModeScaleToFill;
         //adImageView.image = [GetImagePath getImagePath:self.adDataArray[i]];
-        [adImageView sd_setImageWithURL:[NSURL URLWithString:model.a_imageUrl] placeholderImage:[UIImage imageNamed:self.placeImageSource]];
+        [adImageView sd_setImageWithURL:[NSURL URLWithString:model.a_imageUrl] placeholderImage:[GetImagePath getImagePath:@"banner_default"]];
         [adImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(adImgClick)]];
         [self.adScrollView addSubview:adImageView];
     }
     
-    BannerImagesModel *lastModel = self.adDataArray[self.adDataArray.count-1];
-    UIImageView *lastAdImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.adScrollView.bounds.size.width, self.adScrollView.bounds.size.height)];
-    //lastAdImageView.image = [GetImagePath getImagePath:self.adDataArray[self.adDataArray.count-1]];
-    [lastAdImageView sd_setImageWithURL:[NSURL URLWithString:lastModel.a_imageUrl] placeholderImage:[UIImage imageNamed:self.placeImageSource]];
-    [self.adScrollView addSubview:lastAdImageView];
-    
-    
-    BannerImagesModel *firstModel = self.adDataArray[0];
-    UIImageView *firstAdImageView=[[UIImageView alloc]initWithFrame:CGRectMake((self.adDataArray.count+1)*self.adScrollView.bounds.size.width, 0, self.adScrollView.bounds.size.width, self.adScrollView.bounds.size.height)];
-    //firstAdImageView.image = [GetImagePath getImagePath:self.adDataArray[0]];
-    [firstAdImageView sd_setImageWithURL:[NSURL URLWithString:firstModel.a_imageUrl] placeholderImage:[UIImage imageNamed:self.placeImageSource]];
-    [self.adScrollView addSubview:firstAdImageView];
+    if(self.adDataArray.count !=0){
+        BannerImagesModel *lastModel = self.adDataArray[self.adDataArray.count-1];
+        UIImageView *lastAdImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.adScrollView.bounds.size.width, self.adScrollView.bounds.size.height)];
+        //lastAdImageView.image = [GetImagePath getImagePath:self.adDataArray[self.adDataArray.count-1]];
+        [lastAdImageView sd_setImageWithURL:[NSURL URLWithString:lastModel.a_imageUrl] placeholderImage:[GetImagePath getImagePath:@"banner_default"]];
+        [self.adScrollView addSubview:lastAdImageView];
+        
+        
+        BannerImagesModel *firstModel = self.adDataArray[0];
+        UIImageView *firstAdImageView=[[UIImageView alloc]initWithFrame:CGRectMake((self.adDataArray.count+1)*self.adScrollView.bounds.size.width, 0, self.adScrollView.bounds.size.width, self.adScrollView.bounds.size.height)];
+        //firstAdImageView.image = [GetImagePath getImagePath:self.adDataArray[0]];
+        [firstAdImageView sd_setImageWithURL:[NSURL URLWithString:firstModel.a_imageUrl] placeholderImage:[GetImagePath getImagePath:@"banner_default"]];
+        [self.adScrollView addSubview:firstAdImageView];
+    }else{
+        UIImageView *lastAdImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.adScrollView.bounds.size.width, self.adScrollView.bounds.size.height)];
+        lastAdImageView.image = [GetImagePath getImagePath:self.placeImageSource];
+        [self.adScrollView addSubview:lastAdImageView];
+        
+        UIImageView *firstAdImageView=[[UIImageView alloc]initWithFrame:CGRectMake((self.adDataArray.count+1)*self.adScrollView.bounds.size.width, 0, self.adScrollView.bounds.size.width, self.adScrollView.bounds.size.height)];
+        firstAdImageView.image = [GetImagePath getImagePath:self.placeImageSource];
+        [self.adScrollView addSubview:firstAdImageView];
+    }
     
     
     
