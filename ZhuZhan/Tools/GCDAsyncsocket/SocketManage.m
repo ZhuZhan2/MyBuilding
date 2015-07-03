@@ -87,6 +87,8 @@
         }else{
             [self alertError:dic[@"event"]];
         }
+    }else if ([dic[@"msgType"] isEqualToString:@"success"]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"sendMessageResult" object:nil userInfo:@{@"message":dic}];
     }else if([dic[@"msgType"] isEqualToString:@"error"]){
         [self alertError:dic[@"event"]];
     }

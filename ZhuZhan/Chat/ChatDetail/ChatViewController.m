@@ -74,6 +74,7 @@
     [self addKeybordNotification];
     [self firstNetWork];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(newMessage:) name:@"newMessage" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(sendMessageResult:) name:@"sendMessageResult" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(errorMessage) name:@"errorMessage" object:nil];
 }
 
@@ -172,6 +173,10 @@
 
 -(void)errorMessage{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)sendMessageResult:(NSNotification*)noti{
+    NSLog(@"%@",noti.userInfo[@"message"]);
 }
 
 -(void)appearNewData{
