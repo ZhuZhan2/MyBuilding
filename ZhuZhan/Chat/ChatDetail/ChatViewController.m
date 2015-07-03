@@ -176,7 +176,23 @@
 }
 
 -(void)sendMessageResult:(NSNotification*)noti{
-    NSLog(@"%@",noti.userInfo[@"message"]);
+    NSLog(@"message=%@",noti.userInfo[@"message"]);
+    NSDictionary* messageDic = noti.userInfo[@"message"];
+    ChatMessageModel* model = [self findModelWithLocalId:messageDic[@"tempId"]];
+    model.messageStatus = [messageDic[@"msgType"] isEqualToString:@"success"]?ChatMessageStatusSucess:ChatMessageStatusFail;
+    [self.tableView reloadData];
+}
+
+- (ChatMessageModel*)findModelWithLocalId:(NSString*)localId{
+    __block ChatMessageModel* dataModel;
+    [self.models enumerateObjectsUsingBlock:^(ChatMessageModel* model, NSUInteger idx, BOOL *stop) {
+        BOOL isSame = [model.a_localId isEqualToString:localId];
+        if (isSame){
+            dataModel = model;
+            *stop = YES;
+        }
+    }];
+    return dataModel;
 }
 
 -(void)appearNewData{
@@ -248,7 +264,7 @@
         model.userNameStr=dataModel.a_name;
         model.chatContent=dataModel.a_message;
         model.isSelf=dataModel.a_type;
-        model.messageStatus = ChatMessageStatusFail;
+        model.messageStatus = dataModel.messageStatus;
         model.time=dataModel.a_time;
         model.userImageStr=dataModel.a_avatarUrl;
         model.ID = dataModel.a_userId;
@@ -383,6 +399,7 @@
     model.a_avatarUrl=[LoginSqlite getdata:@"userImage"];
     model.a_msgType = @"01";
     model.a_localId = timestamp;
+    model.messageStatus = ChatMessageStatusProcess;
     NSDate* date=[NSDate date];
     NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
     formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";

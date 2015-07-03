@@ -156,6 +156,7 @@
     self.timeLine.text=chatModel.time;
     [self.userImageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:chatModel.userImageStr] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"默认图_用户头像_会话头像"]];
     self.nameLabel.text=chatModel.userNameStr;
+    NSLog(@"status=%d",chatModel.messageStatus);
     [self.chatContentView setText:chatModel.chatContent isSelf:chatModel.isSelf];
     self.activityView.alpha = chatModel.messageStatus == ChatMessageStatusProcess;
     self.failedBtn.hidden = chatModel.messageStatus != ChatMessageStatusFail;
