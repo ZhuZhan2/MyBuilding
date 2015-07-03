@@ -243,6 +243,7 @@
         model.userNameStr=dataModel.a_name;
         model.chatContent=dataModel.a_message;
         model.isSelf=dataModel.a_type;
+        model.messageStatus = ChatMessageStatusFail;
         model.time=dataModel.a_time;
         model.userImageStr=dataModel.a_avatarUrl;
         model.ID = dataModel.a_userId;
@@ -263,6 +264,10 @@
         cell.delegate = self;
         return cell;
     }
+}
+
+- (void)failBtnClicked:(UIButton *)btn{
+    NSLog(@"failBtnClicked");
 }
 
 - (void)forwardBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
