@@ -141,7 +141,6 @@
 }
 
 -(void)initSocket{
-    NSLog(@"asdfasdfsadf");
     self.app = [AppDelegate instance];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     uint16_t port = [[userDefaults objectForKey:@"socketPort"] intValue];
@@ -309,7 +308,7 @@
             [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
             NSString *str = [dic JSONString];
             str = [NSString stringWithFormat:@"%@\r\n",str];
-            [self.app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:20 tag:0];
+            [self.app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
             [self.app.socket readDataWithTimeout:-1 tag:0];
             
             [self sendMessage:content];
@@ -334,7 +333,7 @@
     str = [NSString stringWithFormat:@"%@\r\n",str];
     
     AppDelegate *app = [AppDelegate instance];
-    [app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:20 tag:0];
+    [app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
     [app.socket readDataWithTimeout:-1 tag:0];
 }
 
