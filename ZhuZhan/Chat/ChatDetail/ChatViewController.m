@@ -351,6 +351,15 @@
     }
 }
 
+-(void)gotoForwardListView:(NSString *)messageId{
+    ForwardListViewController *view = [[ForwardListViewController alloc] init];
+    view.messageId = messageId;
+    view.delegate = self;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:view];
+    nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
+    [self.view.window.rootViewController presentViewController:nav animated:YES completion:nil];
+}
+
 - (void)chatToolBarImagePasted:(UIImage *)image{
     ChatSendImageView* sendView = [[ChatSendImageView alloc] initWithFrame:self.view.bounds];
     sendView.mainImageView.image = image;

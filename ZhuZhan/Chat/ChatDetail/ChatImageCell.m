@@ -54,6 +54,7 @@
 -(ChatMessageImageView *)chatMessageImageView{
     if(!_chatMessageImageView){
         _chatMessageImageView = [[ChatMessageImageView alloc] initWithFrame:CGRectMake(self.chatContentViceCenterX, self.chatContentViceCenterY, self.imageWidth, self.imageHeight) isSelf:self.isSelf];
+        _chatMessageImageView.delegate = self;
         _chatMessageImageView.userInteractionEnabled=YES;
         UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onClickImage)];
         [_chatMessageImageView addGestureRecognizer:singleTap];
@@ -161,6 +162,12 @@
 - (void)failBtnClicked:(UIButton*)btn{
     if ([self.delegate respondsToSelector:@selector(failBtnClicked:indexPath:)]) {
         [self.delegate failBtnClicked:btn indexPath:self.indexPath];
+    }
+}
+
+-(void)gotoForwardListView:(NSString *)messageId{
+    if ([self.delegate respondsToSelector:@selector(gotoForwardListView:)]) {
+        [self.delegate gotoForwardListView:messageId];
     }
 }
 @end

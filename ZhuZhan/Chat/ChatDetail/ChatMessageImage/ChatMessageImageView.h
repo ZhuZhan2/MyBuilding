@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "ChatModel.h"
 
+@protocol ChatMessageImageViewDelegate <NSObject>
+-(void)gotoForwardListView:(NSString *)messageId;
+@end
+
 @interface ChatMessageImageView : UIImageView
 @property(nonatomic)BOOL isSelf;
 @property(nonatomic,strong)NSString *bigImageUrl;
@@ -17,5 +21,6 @@
 @property(nonatomic)BOOL isLocal;
 @property (nonatomic, strong)NSString* messageId;
 @property(nonatomic)ChatMessageStatus messageStatus;
+@property(nonatomic,weak)id<ChatMessageImageViewDelegate>delegate;
 - (instancetype)initWithFrame:(CGRect)frame isSelf:(BOOL)isSelf;
 @end

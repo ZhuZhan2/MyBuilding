@@ -14,9 +14,10 @@
 -(void)gotoBigImage:(NSInteger)index;
 -(void)forwardBtnClickedWithIndexPath:(NSIndexPath*)indexPath;
 - (void)failBtnClicked:(UIButton*)btn indexPath:(NSIndexPath*)indexPath;
+-(void)gotoForwardListView:(NSString *)messageId;
 @end
 
-@interface ChatImageCell : TableViewHeightCell
+@interface ChatImageCell : TableViewHeightCell<ChatMessageImageViewDelegate>
 @property(nonatomic,strong)NSIndexPath *indexPath;
 @property(nonatomic,strong)UILabel *timeLabel;
 @property(nonatomic,strong)UIButton *userHeadBtn;
