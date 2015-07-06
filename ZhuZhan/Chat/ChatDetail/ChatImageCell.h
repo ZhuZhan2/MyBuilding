@@ -13,7 +13,7 @@
 @protocol ChatImageCellDelegate <NSObject>
 -(void)gotoBigImage:(NSInteger)index;
 -(void)forwardBtnClickedWithIndexPath:(NSIndexPath*)indexPath;
-- (void)failBtnClicked:(UIButton*)btn;
+- (void)failBtnClicked:(UIButton*)btn indexPath:(NSIndexPath*)indexPath;
 @end
 
 @interface ChatImageCell : TableViewHeightCell

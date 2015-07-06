@@ -28,19 +28,24 @@
 
 -(void)copy:(id)sender{
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
-    if(self.isLocal){
-        pboard.image = self.bigLocalImage;
-    }else{
-        pboard.image = [self saveServeImage];
-    }
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        if(self.isLocal){
+            NSLog(@"==>%@",self.bigLocalImage);
+            pboard.image = self.bigLocalImage;
+        }else{
+            pboard.image = [self saveServeImage];
+        }
+    });
 }
 
 -(void)saveImage:(id)sender{
-    if(self.isLocal){
-        UIImageWriteToSavedPhotosAlbum(self.bigLocalImage, self, nil,nil);
-    }else{
-        UIImageWriteToSavedPhotosAlbum([self saveServeImage], self, nil,nil);
-    }
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        if(self.isLocal){
+            UIImageWriteToSavedPhotosAlbum(self.bigLocalImage, self, nil,nil);
+        }else{
+            UIImageWriteToSavedPhotosAlbum([self saveServeImage], self, nil,nil);
+        }
+    });
 }
 
 -(void)forwardImage:(id)sender{
@@ -123,13 +128,21 @@
     _isLocal = isLocal;
 }
 
+-(void)setMessageStatus:(ChatMessageStatus)messageStatus{
+    _messageStatus = messageStatus;
+}
+
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         [self becomeFirstResponder];
         UIMenuItem *saveImage = [[UIMenuItem alloc] initWithTitle:@"保存" action:@selector(saveImage:)];
-        //UIMenuItem *forwardImage = [[UIMenuItem alloc] initWithTitle:@"转发" action:@selector(forwardImage:)];
+        UIMenuItem *forwardImage = [[UIMenuItem alloc] initWithTitle:@"转发" action:@selector(forwardImage:)];
         UIMenuController *menu = [UIMenuController sharedMenuController];
-        [menu setMenuItems:[NSArray arrayWithObjects:saveImage, nil]];
+        if(self.messageStatus == ChatMessageStatusSucess){
+            [menu setMenuItems:[NSArray arrayWithObjects:saveImage,forwardImage, nil]];
+        }else{
+            [menu setMenuItems:[NSArray arrayWithObjects:saveImage, nil]];
+        }
         [menu setTargetRect:self.frame inView:self.superview];
         [menu setMenuVisible:YES animated:YES];
     }

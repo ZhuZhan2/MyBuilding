@@ -128,7 +128,9 @@
         [bgImageView removeFromSuperview];
         bgImageView = nil;
         self.chatMessageImageView.image = model.a_localImage;
-        self.chatMessageImageView.bigLocalImage = model.a_localBigImage;
+        NSLog(@"==>%@",model.a_localBigImageUrl);
+        UIImage *img = [UIImage imageWithContentsOfFile:model.a_localBigImageUrl];
+        self.chatMessageImageView.bigLocalImage = img;
     }else{
         [self.chatMessageImageView sd_setImageWithURL:[NSURL URLWithString:model.a_message] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if(!error){
@@ -140,6 +142,7 @@
         self.chatMessageImageView.bigImageUrl = model.a_bigImageUrl;
     }
     self.chatMessageImageView.isLocal = model.a_isLocal;
+    self.chatMessageImageView.messageStatus = model.messageStatus;
     
     self.activityView.alpha = model.messageStatus == ChatMessageStatusProcess;
     self.failedBtn.hidden = model.messageStatus != ChatMessageStatusFail;
@@ -156,8 +159,8 @@
 }
 
 - (void)failBtnClicked:(UIButton*)btn{
-    if ([self.delegate respondsToSelector:@selector(failBtnClicked:)]) {
-        [self.delegate failBtnClicked:btn];
+    if ([self.delegate respondsToSelector:@selector(failBtnClicked:indexPath:)]) {
+        [self.delegate failBtnClicked:btn indexPath:self.indexPath];
     }
 }
 @end
