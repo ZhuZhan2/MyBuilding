@@ -93,7 +93,7 @@
 
 -(UILabel *)timelabel{
     if(!_timelabel){
-        _timelabel = [[UILabel alloc] initWithFrame:CGRectMake(180, 165, 140, 20)];
+        _timelabel = [[UILabel alloc] initWithFrame:CGRectMake(190, 165, 140, 20)];
         _timelabel.font = [UIFont systemFontOfSize:14];
         _timelabel.textColor = AllNoDataColor;
     }

@@ -342,7 +342,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
         cell.selectionStyle = NO;
         return cell;
-    }else if (model.a_type == 2 || model.a_type == 3){
+    }else if (model.a_type == 2 || model.a_type == 3 || model.a_type == 4 || model.a_type == 5){
         NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalCenterProjectTableViewCell"];
         PersonalCenterProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
@@ -415,7 +415,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     if(showArr.count !=0){
         model = showArr[indexPath.row];
     }
-    if(model.a_type == 2 || model.a_type == 3 || model.a_type == 7){
+    if(model.a_type == 2 || model.a_type == 3 || model.a_type == 4 || model.a_type == 5 || model.a_type == 7){
         return 60;
     }else if(model.a_type == 1 || model.a_type == 8 || model.a_type == 9){
         return 80;
