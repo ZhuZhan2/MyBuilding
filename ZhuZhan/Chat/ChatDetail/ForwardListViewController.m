@@ -15,6 +15,8 @@
 @interface ForwardListViewController ()<UITableViewDelegate,UITableViewDataSource,ForwardChooseContactsControllerDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *modelsArr;
+
+@property (nonatomic, copy)NSString* targetId;
 @end
 
 @implementation ForwardListViewController
@@ -137,7 +139,8 @@
     
     ChatListModel* model = self.modelsArr[indexPath.row];
     NSString* targetId = [model.a_type isEqualToString:@"01"]?model.a_loginId:model.a_groupId;
-    [self forwardMessage:self.messageId targetId:targetId];
+    NSString* targetName = [model.a_type isEqualToString:@"01"]?model.a_loginName:model.a_groupName;
+    [self forwardMessageToTargetId:targetId targetName:targetName];
 }
 
 -(void)loadList{
@@ -161,21 +164,36 @@
     }];
 }
 
-- (void)forwardMessage:(NSString*)messageId targetId:(NSString*)targetId{
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
-    [dic setObject:messageId forKey:@"chatlogIds"];
-    [dic setObject:targetId forKey:@"forword"];
-    
-    [ChatMessageApi forwardWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"转发成功" delegate:self cancelButtonTitle:nil otherButtonTitles:@"取消",@"确定", nil];
-            [alertView show];
-        }
-    } dic:dic noNetWork:nil];
+- (void)forwardChooseTargetId:(NSString *)targetId isGroup:(BOOL)isGroup targetName:(NSString *)targetName{
+    [self forwardMessageToTargetId:targetId targetName:targetName];
+}
+
+- (void)forwardMessageToTargetId:(NSString*)targetId targetName:(NSString*)targetName{
+    self.targetId = targetId;
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"确定发送给：" message:targetName delegate:self cancelButtonTitle:nil otherButtonTitles:@"取消",@"确定", nil];
+    alertView.tag = 1;
+    [alertView show];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex != 1) return;
-    [self leftBtnClick];
+    if (alertView.tag == 1) {
+        if (buttonIndex != 1) return;
+        NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+        [dic setObject:self.messageId forKey:@"chatlogIds"];
+        [dic setObject:self.targetId forKey:@"forword"];
+        
+        [ChatMessageApi forwardWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"转发成功" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                alertView.tag = 2;
+                [alertView show];
+                if ([self.delegate respondsToSelector:@selector(forwardMessageIdSuccess:targetId:)]) {
+                    [self.delegate forwardMessageIdSuccess:self.messageId targetId:self.targetId];
+                }
+            }
+        } dic:dic noNetWork:nil];
+    }else if (alertView.tag == 2){
+        [self leftBtnClick];
+    }
 }
 @end

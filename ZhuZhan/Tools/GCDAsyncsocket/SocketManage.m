@@ -87,13 +87,15 @@
         }else{
             [self alertError:dic[@"event"]];
         }
+    }else if ([dic[@"msgType"] isEqualToString:@"success"]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"sendMessageResult" object:nil userInfo:@{@"message":dic}];
     }else if([dic[@"msgType"] isEqualToString:@"error"]){
         [self alertError:dic[@"event"]];
     }
 }
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err{
-    NSLog(@"%@",err);
+    NSLog(@"err====>%@",err);
 }
 
 -(void)snedUserMessage:(NSDictionary *)dic{

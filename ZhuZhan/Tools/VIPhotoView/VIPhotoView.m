@@ -64,7 +64,7 @@
 @implementation VIPhotoView
 
 
-- (instancetype)initWithFrame:(CGRect)frame andImage:(UIImage *)image
+- (instancetype)initWithFrame:(CGRect)frame andImageUrl:(NSString *)imageUrl
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -77,8 +77,11 @@
         [self addSubview:containerView];
         _containerView = containerView;
         
+        
+        NSLog(@"%@",imageUrl);
+        UIImage *img = [UIImage imageWithContentsOfFile:imageUrl];
         // Add image view
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
         imageView.frame = containerView.bounds;
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         [containerView addSubview:imageView];

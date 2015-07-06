@@ -60,7 +60,7 @@
 
 -(UILabel *)timeLabel{
     if(!_timeLabel){
-        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(180, 25, 120, 20)];
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(190, 25, 120, 20)];
         _timeLabel.font = [UIFont systemFontOfSize:14];
         _timeLabel.textAlignment = NSTextAlignmentLeft;
         _timeLabel.textColor = AllNoDataColor;
@@ -70,7 +70,7 @@
 
 -(UILabel *)contentLabel{
     if(!_contentLabel){
-        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 25, 150, 20)];
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 25, 170, 20)];
         _contentLabel.font = [UIFont systemFontOfSize:14];
         _contentLabel.textAlignment = NSTextAlignmentLeft;
         _contentLabel.textColor = BlueColor;
@@ -89,8 +89,12 @@
 -(void)setProjectDemo:(NSString *)projectDemo{
     if([projectDemo isEqualToString:@"02"]){
         self.contentLabel.text = @"该项目认证成功";
-    }else{
+    }else if([projectDemo isEqualToString:@"03"]){
         self.contentLabel.text = @"该项目认证失败";
+    }else if ([projectDemo isEqualToString:@"04"]){
+        self.contentLabel.text = @"项目信息征集令活动通过";
+    }else{
+        self.contentLabel.text = @"项目信息征集令活动未通过";
     }
 }
 @end
