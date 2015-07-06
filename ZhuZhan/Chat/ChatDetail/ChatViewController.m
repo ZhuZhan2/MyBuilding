@@ -25,7 +25,7 @@
 #import "VIPhotoView.h"
 #import "ChatSendImageView.h"
 #import "ForwardListViewController.h"
-@interface ChatViewController ()<UIAlertViewDelegate,ChatTableViewCellDelegate,ChatImageCellDelegate,VIPhotoViewDelegate,ChatSendImageViewDelegate>
+@interface ChatViewController ()<UIAlertViewDelegate,ChatTableViewCellDelegate,ChatImageCellDelegate,VIPhotoViewDelegate,ChatSendImageViewDelegate,ForwardListViewControllerDelegate>
 @property (nonatomic, strong)NSMutableArray* models;
 @property(nonatomic,strong)RKBaseTableView *tableView;
 @property(nonatomic)int startIndex;
@@ -196,6 +196,18 @@
     return dataModel;
 }
 
+- (ChatMessageModel*)findModelWithServerId:(NSString*)serverId{
+    __block ChatMessageModel* dataModel;
+    [self.models enumerateObjectsUsingBlock:^(ChatMessageModel* model, NSUInteger idx, BOOL *stop) {
+        BOOL isSame = [model.a_id isEqualToString:serverId];
+        if (isSame){
+            dataModel = model;
+            *stop = YES;
+        }
+    }];
+    return dataModel;
+}
+
 -(void)appearNewData{
     [self.tableView reloadData];
     if(self.models.count !=0){
@@ -296,6 +308,7 @@
     ChatMessageModel* dataModel=self.models[indexPath.row];
     if([dataModel.a_msgType isEqualToString:@"01"]){
         ForwardListViewController *view = [[ForwardListViewController alloc] init];
+        view.delegate = self;
         view.messageId = dataModel.a_id;
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:view];
         nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
@@ -436,6 +449,22 @@
     [self.models addObject:model];
     [self appearNewData];
     [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(sendMessageTimeOut:) userInfo:@{@"timesId":timestamp} repeats:NO];
+}
+
+- (void)forwardMessageIdSuccess:(NSString *)messageId targetId:(NSString *)targetId{
+    if (![self.contactId isEqualToString:targetId]) return;
+    ChatMessageModel* model = [self findModelWithServerId:messageId];
+    ChatMessageModel* newModel = [[ChatMessageModel alloc] init];
+    newModel.dict = model.dict;
+    
+    NSDate* date=[NSDate date];
+    NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
+    formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";
+    NSString* time=[formatter stringFromDate:date];
+    newModel.a_time=[ProjectStage ChatMessageTimeStage:time];
+    
+    [self.models addObject:newModel];
+    [self appearNewData];
 }
 
 -(void)initTableViewHeaderView{

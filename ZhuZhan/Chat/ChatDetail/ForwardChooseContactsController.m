@@ -76,7 +76,7 @@
         if ([self.delegate respondsToSelector:@selector(forwardChooseTargetId:isGroup:targetName:)]) {
             [self.delegate forwardChooseTargetId:self.selectedUserIds[0] isGroup:NO targetName:self.nameArr[0]];
         }
-        [self.navigationController popViewControllerAnimated:YES];
+        [self leftBtnClicked];
     }else{
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"群聊名称" message:nil delegate:self cancelButtonTitle:@"确认" otherButtonTitles:@"取消", nil];
         alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
@@ -113,6 +113,7 @@
                 if ([self.delegate respondsToSelector:@selector(forwardChooseTargetId:isGroup:targetName:)]) {
                     [self.delegate forwardChooseTargetId:posts[0] isGroup:YES targetName:tf.text];
                 }
+                [self leftBtnClicked];
             }else{
                 if([ErrorCode errorCode:error] == 403){
                     [LoginAgain AddLoginView:NO];
