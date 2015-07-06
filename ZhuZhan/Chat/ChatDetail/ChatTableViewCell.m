@@ -212,8 +212,8 @@
 }
 
 - (void)failBtnClicked:(UIButton*)btn{
-    if ([self.delegate respondsToSelector:@selector(failBtnClicked:)]) {
-        [self.delegate failBtnClicked:btn];
+    if ([self.delegate respondsToSelector:@selector(failBtnClicked:indexPath:)]) {
+        [self.delegate failBtnClicked:btn indexPath:self.indexPath];
     }
 }
 @end

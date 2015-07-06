@@ -287,7 +287,7 @@
     }
 }
 
-- (void)failBtnClicked:(UIButton *)btn{
+- (void)failBtnClicked:(UIButton *)btn indexPath:(NSIndexPath *)indexPath{
     NSLog(@"failBtnClicked");
 }
 
