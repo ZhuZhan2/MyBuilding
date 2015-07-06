@@ -14,6 +14,8 @@
         [self.contentView addSubview:self.timeLabel];
         [self.contentView addSubview:self.userHeadBtn];
         [self.contentView addSubview:self.userNameLabel];
+        [self.contentView addSubview:self.activityView];
+        [self.contentView addSubview:self.failedBtn];
     }
     return self;
 }
@@ -60,6 +62,23 @@
     return _chatMessageImageView;
 }
 
+- (UIActivityIndicatorView *)activityView{
+    if (!_activityView) {
+        _activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [_activityView startAnimating];
+    }
+    return _activityView;
+}
+
+- (UIButton *)failedBtn{
+    if (!_failedBtn) {
+        _failedBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [_failedBtn addTarget:self action:@selector(failBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [_failedBtn setBackgroundImage:[GetImagePath getImagePath:@" icon_exclamation_mark"] forState:UIControlStateNormal];
+    }
+    return _failedBtn;
+}
+
 
 -(void)setModel:(ChatMessageModel *)model{
     [self.chatMessageImageView removeFromSuperview];
@@ -90,6 +109,11 @@
     
     [self.contentView addSubview:self.chatMessageImageView];
     
+    CGPoint center = self.chatMessageImageView.center;
+    center.x += (self.isSelf?-1:1)*(CGRectGetWidth(self.chatMessageImageView.frame)/2+15);
+    self.activityView.center = center;
+    self.failedBtn.center = center;
+    
     __block UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.imageWidth, self.imageHeight)];
     bgImageView.contentMode = UIViewContentModeScaleAspectFit;
     bgImageView.image = [GetImagePath getImagePath:@"默认图_沙漏"];
@@ -104,7 +128,9 @@
         [bgImageView removeFromSuperview];
         bgImageView = nil;
         self.chatMessageImageView.image = model.a_localImage;
-        self.chatMessageImageView.bigLocalImage = model.a_localBigImage;
+        NSLog(@"==>%@",model.a_localBigImageUrl);
+        UIImage *img = [UIImage imageWithContentsOfFile:model.a_localBigImageUrl];
+        self.chatMessageImageView.bigLocalImage = img;
     }else{
         [self.chatMessageImageView sd_setImageWithURL:[NSURL URLWithString:model.a_message] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if(!error){
@@ -116,6 +142,10 @@
         self.chatMessageImageView.bigImageUrl = model.a_bigImageUrl;
     }
     self.chatMessageImageView.isLocal = model.a_isLocal;
+    self.chatMessageImageView.messageStatus = model.messageStatus;
+    
+    self.activityView.alpha = model.messageStatus == ChatMessageStatusProcess;
+    self.failedBtn.hidden = model.messageStatus != ChatMessageStatusFail;
 }
 
 -(void)setIndexPath:(NSIndexPath *)indexPath{
@@ -125,6 +155,12 @@
 -(void)onClickImage{
     if([self.delegate respondsToSelector:@selector(gotoBigImage:)]){
         [self.delegate gotoBigImage:self.indexPath.row];
+    }
+}
+
+- (void)failBtnClicked:(UIButton*)btn{
+    if ([self.delegate respondsToSelector:@selector(failBtnClicked:indexPath:)]) {
+        [self.delegate failBtnClicked:btn indexPath:self.indexPath];
     }
 }
 @end

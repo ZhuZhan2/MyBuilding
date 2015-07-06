@@ -997,6 +997,8 @@
 		5BC40E321B09BAA000184D1A /* 会话－加号@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC40E301B09BAA000184D1A /* 会话－加号@2x.png */; };
 		5BC9E9BD1B16B3F30051A26F /* 首页_搜索分类.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC9E9BB1B16B3F30051A26F /* 首页_搜索分类.png */; };
 		5BC9E9BE1B16B3F30051A26F /* 首页_搜索分类@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC9E9BC1B16B3F30051A26F /* 首页_搜索分类@2x.png */; };
+		5BCC410D1B46303F00E32688 /*  icon_exclamation_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BCC410B1B46303F00E32688 /*  icon_exclamation_mark.png */; };
+		5BCC410E1B46303F00E32688 /*  icon_exclamation_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BCC410C1B46303F00E32688 /*  icon_exclamation_mark@2x.png */; };
 		5BD9DE801AF88C3A007BF9B5 /* MarketSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD9DE7F1AF88C3A007BF9B5 /* MarketSearchViewController.m */; };
 		5BD9DE831AF89533007BF9B5 /* SearchMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD9DE821AF89533007BF9B5 /* SearchMenuView.m */; };
 		5BDDA1EB1B25292A00F4AABB /* 默认图_产品关注列表.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDDA1E91B25292A00F4AABB /* 默认图_产品关注列表.png */; };
@@ -3336,6 +3338,8 @@
 		5BC40E301B09BAA000184D1A /* 会话－加号@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "会话－加号@2x.png"; sourceTree = "<group>"; };
 		5BC9E9BB1B16B3F30051A26F /* 首页_搜索分类.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页_搜索分类.png"; sourceTree = "<group>"; };
 		5BC9E9BC1B16B3F30051A26F /* 首页_搜索分类@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页_搜索分类@2x.png"; sourceTree = "<group>"; };
+		5BCC410B1B46303F00E32688 /*  icon_exclamation_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = " icon_exclamation_mark.png"; sourceTree = "<group>"; };
+		5BCC410C1B46303F00E32688 /*  icon_exclamation_mark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = " icon_exclamation_mark@2x.png"; sourceTree = "<group>"; };
 		5BD9DE7E1AF88C3A007BF9B5 /* MarketSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketSearchViewController.h; sourceTree = "<group>"; };
 		5BD9DE7F1AF88C3A007BF9B5 /* MarketSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketSearchViewController.m; sourceTree = "<group>"; };
 		5BD9DE811AF89533007BF9B5 /* SearchMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMenuView.h; sourceTree = "<group>"; };
@@ -5933,6 +5937,8 @@
 		5B3B5D461AAD935E002FB444 /* 二期新图片 */ = {
 			isa = PBXGroup;
 			children = (
+				5BCC410B1B46303F00E32688 /*  icon_exclamation_mark.png */,
+				5BCC410C1B46303F00E32688 /*  icon_exclamation_mark@2x.png */,
 				D314A3A81B15977F00F6A86A /* addComment.png */,
 				D314A3A91B15977F00F6A86A /* addComment@2x.png */,
 				5BA8F5041B1321B800E8656D /* 佣金_提交成功按钮_我的询价列表.png */,
@@ -8950,6 +8956,7 @@
 				D3A85BC41B0C885A00333F56 /* addfocus.png in Resources */,
 				D35163E31A67903F000051F4 /* 产品－列表_10a@2x.png in Resources */,
 				5BE08E251A3586EA00495EEB /* 020009@2x.png in Resources */,
+				5BCC410E1B46303F00E32688 /*  icon_exclamation_mark@2x.png in Resources */,
 				5BA938A61A4935FF00BB8A96 /* 密码找回_03.png in Resources */,
 				5B70CC531AC9394700FC8353 /* small同--意.png in Resources */,
 				04BC434819D7E5B3006B5C7B /* 项目－高级搜索－2_11a.png in Resources */,
@@ -9757,6 +9764,7 @@
 				5BE08E0B1A3586EA00495EEB /* 010060@2x.png in Resources */,
 				5BE08DA91A3586EA00495EEB /* 010011@2x.png in Resources */,
 				04BC416119D7E5B3006B5C7B /* 产品－列表_06a.png in Resources */,
+				5BCC410D1B46303F00E32688 /*  icon_exclamation_mark.png in Resources */,
 				D3D34A291ACA896C004733D2 /* close@2x.png in Resources */,
 				D3DF8DCF1B16B68600B7CF35 /* product_default_detail@2x.png in Resources */,
 				5B6C4B001ADF8ADE003B8DA8 /* 不同意带字.png in Resources */,

@@ -295,7 +295,7 @@
     
     NSData *data = UIImageJPEGRepresentation(originQualityImage, 1);
     if((double)data.length/(1024*1024)>5){
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"图片大于5M" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"图片不能大于5M" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
         return;
     }

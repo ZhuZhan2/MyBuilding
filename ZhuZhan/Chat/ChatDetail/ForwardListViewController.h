@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ForwardListViewControllerDelegate <NSObject>
+- (void)forwardMessageIdSuccess:(NSString*)messageId targetId:(NSString*)targetId;
+@end
+
 @interface ForwardListViewController : UIViewController
 @property (nonatomic, copy)NSString* messageId;
+@property (nonatomic, weak)id<ForwardListViewControllerDelegate> delegate;
 @end

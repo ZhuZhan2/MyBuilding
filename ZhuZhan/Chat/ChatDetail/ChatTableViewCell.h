@@ -11,6 +11,7 @@
 @protocol ChatTableViewCellDelegate <NSObject>
 -(void)gotoContactDetailView:(NSString *)contactId;
 -(void)forwardBtnClickedWithIndexPath:(NSIndexPath*)indexPath;
+- (void)failBtnClicked:(UIButton*)btn indexPath:(NSIndexPath*)indexPath;
 @end
 
 @interface ChatTableViewCell : UITableViewCell

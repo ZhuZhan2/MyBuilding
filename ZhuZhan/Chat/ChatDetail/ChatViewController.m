@@ -25,7 +25,7 @@
 #import "VIPhotoView.h"
 #import "ChatSendImageView.h"
 #import "ForwardListViewController.h"
-@interface ChatViewController ()<UIAlertViewDelegate,ChatTableViewCellDelegate,ChatImageCellDelegate,VIPhotoViewDelegate,ChatSendImageViewDelegate>
+@interface ChatViewController ()<UIAlertViewDelegate,ChatTableViewCellDelegate,ChatImageCellDelegate,VIPhotoViewDelegate,ChatSendImageViewDelegate,ForwardListViewControllerDelegate>
 @property (nonatomic, strong)NSMutableArray* models;
 @property(nonatomic,strong)RKBaseTableView *tableView;
 @property(nonatomic)int startIndex;
@@ -56,6 +56,14 @@
             [self.delegate reloadList];
         }
     }
+    
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSString *pathDocuments = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *createPath = [NSString stringWithFormat:@"%@/Image", pathDocuments];
+    // 判断文件夹是否存在
+    if ([[NSFileManager defaultManager] fileExistsAtPath:createPath]) {
+        [fileManager removeItemAtPath:createPath error:nil];
+    }
 }
 
 - (void)viewDidLoad {
@@ -74,6 +82,7 @@
     [self addKeybordNotification];
     [self firstNetWork];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(newMessage:) name:@"newMessage" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(sendMessageResult:) name:@"sendMessageResult" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(errorMessage) name:@"errorMessage" object:nil];
 }
 
@@ -151,8 +160,8 @@
     [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
     NSString *str = [dic JSONString];
     str = [NSString stringWithFormat:@"%@\r\n",str];
-    [self.app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
     [self.app.socket readDataWithTimeout:-1 tag:0];
+    [self.app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
 }
 
 -(void)newMessage:(NSNotification*)noti{
@@ -172,6 +181,39 @@
 
 -(void)errorMessage{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)sendMessageResult:(NSNotification*)noti{
+    NSLog(@"message=%@",noti.userInfo[@"message"]);
+    NSDictionary* messageDic = noti.userInfo[@"message"];
+    ChatMessageModel* model = [self findModelWithLocalId:messageDic[@"tempId"]];
+    model.messageStatus = [messageDic[@"msgType"] isEqualToString:@"success"]?ChatMessageStatusSucess:ChatMessageStatusFail;
+    model.a_id = messageDic[@"fromId"];
+    [self.tableView reloadData];
+}
+
+- (ChatMessageModel*)findModelWithLocalId:(NSString*)localId{
+    __block ChatMessageModel* dataModel;
+    [self.models enumerateObjectsUsingBlock:^(ChatMessageModel* model, NSUInteger idx, BOOL *stop) {
+        BOOL isSame = [model.a_localId isEqualToString:localId];
+        if (isSame){
+            dataModel = model;
+            *stop = YES;
+        }
+    }];
+    return dataModel;
+}
+
+- (ChatMessageModel*)findModelWithServerId:(NSString*)serverId{
+    __block ChatMessageModel* dataModel;
+    [self.models enumerateObjectsUsingBlock:^(ChatMessageModel* model, NSUInteger idx, BOOL *stop) {
+        BOOL isSame = [model.a_id isEqualToString:serverId];
+        if (isSame){
+            dataModel = model;
+            *stop = YES;
+        }
+    }];
+    return dataModel;
 }
 
 -(void)appearNewData{
@@ -243,6 +285,7 @@
         model.userNameStr=dataModel.a_name;
         model.chatContent=dataModel.a_message;
         model.isSelf=dataModel.a_type;
+        model.messageStatus = dataModel.messageStatus;
         model.time=dataModel.a_time;
         model.userImageStr=dataModel.a_avatarUrl;
         model.ID = dataModel.a_userId;
@@ -265,10 +308,42 @@
     }
 }
 
+- (void)failBtnClicked:(UIButton *)btn indexPath:(NSIndexPath *)indexPath{
+    ChatMessageModel *model = self.models[indexPath.row];
+    if([model.a_msgType isEqualToString:@"01"]){
+        [self sendMessage:model.a_message timestamp:model.a_localId];
+    }else{
+        UIImage *img = [UIImage imageWithContentsOfFile:model.a_localBigImageUrl];
+        NSData *imageData = UIImageJPEGRepresentation(img, 1);
+        NSMutableArray *imageArr = [[NSMutableArray alloc] init];
+        [imageArr addObject:imageData];
+        [ChatMessageApi AddImageWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                [imageArr removeAllObjects];
+                NSDictionary* messageDic = posts[0][@"data"];
+                ChatMessageModel* model = [self findModelWithLocalId:messageDic[@"tempId"]];
+                model.messageStatus = ChatMessageStatusSucess;
+                model.a_id = messageDic[@"chatlogId"];
+                [self.tableView reloadData];
+            }else{
+                ChatMessageModel* model = [self findModelWithLocalId:model.a_localId];
+                model.messageStatus = ChatMessageStatusFail;
+                [self.tableView reloadData];
+            }
+        } dataArr:imageArr dic:[@{@"userId":self.contactId,@"userType":self.type,@"id":model.a_localId} mutableCopy] noNetWork:^{
+            ChatMessageModel* model = [self findModelWithLocalId:model.a_localId];
+            model.messageStatus = ChatMessageStatusFail;
+            [self.tableView reloadData];
+        }];
+    }
+    [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(sendMessageTimeOut:) userInfo:@{@"timesId":model.a_localId} repeats:NO];
+}
+
 - (void)forwardBtnClickedWithIndexPath:(NSIndexPath *)indexPath{
     ChatMessageModel* dataModel=self.models[indexPath.row];
     if([dataModel.a_msgType isEqualToString:@"01"]){
         ForwardListViewController *view = [[ForwardListViewController alloc] init];
+        view.delegate = self;
         view.messageId = dataModel.a_id;
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:view];
         nav.navigationBar.barTintColor = RGBCOLOR(85, 103, 166);
@@ -292,12 +367,15 @@
 
 -(void)chatToolSendBtnClickedWithContent:(NSString *)content{
     NSLog(@"isConnected===>%d",self.app.socket.isConnected);
-    if ([ConnectionAvailable isConnectionAvailable]) {
+    if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
     }else{
+        UInt64 recordTime = [[NSDate date] timeIntervalSince1970]*1000;
+        NSString *timeId = [NSString stringWithFormat:@"%llu", recordTime];
+        NSLog(@"tmeId==>%@",timeId);
         if(self.app.socket.isConnected){
-            [self sendMessage:content];
-            [self addModelWithContent:content];
+            [self sendMessage:content timestamp:timeId];
+            [self addModelWithContent:content timestamp:timeId];
         }else{
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             uint16_t port = [[userDefaults objectForKey:@"socketPort"] intValue];
@@ -308,16 +386,16 @@
             [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
             NSString *str = [dic JSONString];
             str = [NSString stringWithFormat:@"%@\r\n",str];
-            [self.app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
             [self.app.socket readDataWithTimeout:-1 tag:0];
+            [self.app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
             
-            [self sendMessage:content];
-            [self addModelWithContent:content];
+            [self sendMessage:content timestamp:timeId];
+            [self addModelWithContent:content timestamp:timeId];
         }
     }
 }
 
--(void)sendMessage:(NSString*)content{
+-(void)sendMessage:(NSString*)content timestamp:(NSString *)timestamp{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     if([self.type isEqualToString:@"01"]){
         [dic setObject:@"user" forKey:@"msgType"];
@@ -328,13 +406,14 @@
     [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
     [dic setObject:self.contactId forKey:@"toUserId"];
     [dic setObject:content forKey:@"content"];
+    [dic setObject:timestamp forKey:@"id"];
     NSLog(@"%@",dic);
     NSString *str = [dic JSONString];
     str = [NSString stringWithFormat:@"%@\r\n",str];
     
     AppDelegate *app = [AppDelegate instance];
-    [app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
     [app.socket readDataWithTimeout:-1 tag:0];
+    [app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
 }
 
 - (void)chatMoreSelectViewClickedWithIndex:(NSInteger)index{
@@ -348,26 +427,65 @@
 }
 
 - (void)sendImageWithLowQualityImage:(UIImage*)lowQualityImage originQualityImage:(UIImage *)originQualityImage{
-    [self addModelWithImage:lowQualityImage bigImage:originQualityImage];
+    UInt64 recordTime = [[NSDate date] timeIntervalSince1970]*1000;
+    NSString *timeId = [NSString stringWithFormat:@"%llu", recordTime];
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSString *pathDocuments = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *createPath = [NSString stringWithFormat:@"%@/Image", pathDocuments];
+    // 判断文件夹是否存在，如果不存在，则创建
+    if (![[NSFileManager defaultManager] fileExistsAtPath:createPath]) {
+        [fileManager createDirectoryAtPath:createPath withIntermediateDirectories:YES attributes:nil error:nil];
+    } else {
+        NSLog(@"FileDir is exists.");
+    }
+    NSLog(@"%@",createPath);
+    NSString *filePath = [createPath stringByAppendingPathComponent:[NSString stringWithFormat:@"pic_%@.png", timeId]];   // 保存文件的名称
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [UIImagePNGRepresentation(originQualityImage)writeToFile: filePath    atomically:YES];
+        NSLog(@"%@",filePath);
+        [self.tableView reloadData];
+    });
+    
+    [self addModelWithImage:lowQualityImage bigImageUrl:filePath timestamp:timeId];
+    
     NSData *imageData = UIImageJPEGRepresentation(originQualityImage, 1);
+    if((double)imageData.length/(1024*1024)>5){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"图片不能大于5M" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
     NSMutableArray *imageArr = [[NSMutableArray alloc] init];
     [imageArr addObject:imageData];
     [ChatMessageApi AddImageWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
             [imageArr removeAllObjects];
+            //NSLog(@"%@",posts[0][@"data"]);
+            NSDictionary* messageDic = posts[0][@"data"];
+            ChatMessageModel* model = [self findModelWithLocalId:messageDic[@"tempId"]];
+            model.messageStatus = ChatMessageStatusSucess;
+            model.a_id = messageDic[@"chatlogId"];
+            [self.tableView reloadData];
+        }else{
+            ChatMessageModel* model = [self findModelWithLocalId:timeId];
+            model.messageStatus = ChatMessageStatusFail;
+            [self.tableView reloadData];
         }
-    } dataArr:imageArr dic:[@{@"userId":self.contactId,@"userType":self.type} mutableCopy] noNetWork:nil];
-    originQualityImage = nil;
-    lowQualityImage = nil;
+    } dataArr:imageArr dic:[@{@"userId":self.contactId,@"userType":self.type,@"id":timeId} mutableCopy] noNetWork:^{
+        ChatMessageModel* model = [self findModelWithLocalId:timeId];
+        model.messageStatus = ChatMessageStatusFail;
+        [self.tableView reloadData];
+    }];
 }
 
--(void)addModelWithContent:(NSString*)content{
+-(void)addModelWithContent:(NSString*)content timestamp:(NSString *)timestamp{
     ChatMessageModel* model=[[ChatMessageModel alloc]init];
     model.a_name=[LoginSqlite getdata:@"userName"];
     model.a_message=content;
     model.a_type=chatTypeMe;
     model.a_avatarUrl=[LoginSqlite getdata:@"userImage"];
     model.a_msgType = @"01";
+    model.a_localId = timestamp;
+    model.messageStatus = ChatMessageStatusProcess;
     NSDate* date=[NSDate date];
     NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
     formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";
@@ -376,16 +494,19 @@
     
     [self.models addObject:model];
     [self appearNewData];
+    [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(sendMessageTimeOut:) userInfo:@{@"timesId":timestamp} repeats:NO];
 }
 
--(void)addModelWithImage:(UIImage *)image bigImage:(UIImage *)bigImage{
+-(void)addModelWithImage:(UIImage *)image bigImageUrl:(NSString *)bigImageUrl timestamp:(NSString *)timestamp{
     ChatMessageModel *model = [[ChatMessageModel alloc] init];
     model.a_name=[LoginSqlite getdata:@"userName"];
     model.a_localImage = image;
-    model.a_localBigImage = bigImage;
+    model.a_localBigImageUrl = bigImageUrl;
     model.a_type=chatTypeMe;
     model.a_avatarUrl=[LoginSqlite getdata:@"userImage"];
     model.a_isLocal = YES;
+    model.messageStatus = ChatMessageStatusProcess;
+    model.a_localId = timestamp;
     NSDate* date=[NSDate date];
     NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
     formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";
@@ -396,6 +517,23 @@
     model.a_imageHeight = image.size.height;
     model.a_msgType = @"02";
     [self.models addObject:model];
+    [self appearNewData];
+    [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(sendMessageTimeOut:) userInfo:@{@"timesId":timestamp} repeats:NO];
+}
+
+- (void)forwardMessageIdSuccess:(NSString *)messageId targetId:(NSString *)targetId{
+    if (![self.contactId isEqualToString:targetId]) return;
+    ChatMessageModel* model = [self findModelWithServerId:messageId];
+    ChatMessageModel* newModel = [[ChatMessageModel alloc] init];
+    newModel.dict = model.dict;
+    
+    NSDate* date=[NSDate date];
+    NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
+    formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";
+    NSString* time=[formatter stringFromDate:date];
+    newModel.a_time=[ProjectStage ChatMessageTimeStage:time];
+    
+    [self.models addObject:newModel];
     [self appearNewData];
 }
 
@@ -430,7 +568,7 @@
     ChatMessageModel *model = self.models[index];
     if(!self.photoView){
         if(model.a_isLocal){
-            self.photoView = [[VIPhotoView alloc] initWithFrame:self.view.frame andImage:model.a_localBigImage];
+            self.photoView = [[VIPhotoView alloc] initWithFrame:self.view.frame andImageUrl:model.a_localBigImageUrl];
         }else{
             self.photoView = [[VIPhotoView alloc] initWithFrame:self.view.frame imageUrl:model.a_bigImageUrl];
         }
@@ -446,5 +584,17 @@
     [self.photoView removeFromSuperview];
     self.photoView = nil;
     self.navigationController.navigationBarHidden = NO;
+}
+
+-(void)sendMessageTimeOut:(NSTimer *)timer{
+    NSLog(@"sendMessageTimeOut");
+    NSString *localId = [timer userInfo][@"timesId"];
+    NSLog(@"%@",localId);
+    ChatMessageModel *model = [self findModelWithLocalId:localId];
+    NSLog(@"%u",model.messageStatus);
+    if(model.messageStatus != ChatMessageStatusSucess){
+        model.messageStatus = ChatMessageStatusFail;
+        [self.tableView reloadData];
+    }
 }
 @end

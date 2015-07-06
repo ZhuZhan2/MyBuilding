@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ChatModel.h"
 
 @interface ChatMessageImageView : UIImageView
 @property(nonatomic)BOOL isSelf;
@@ -15,6 +15,7 @@
 @property(nonatomic,strong)UIImage *bigLocalImage;
 @property(nonatomic,strong)NSString *imageId;
 @property(nonatomic)BOOL isLocal;
-@property (nonatomic, copy)NSString* messageId;
+@property (nonatomic, strong)NSString* messageId;
+@property(nonatomic)ChatMessageStatus messageStatus;
 - (instancetype)initWithFrame:(CGRect)frame isSelf:(BOOL)isSelf;
 @end

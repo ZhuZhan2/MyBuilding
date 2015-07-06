@@ -16,6 +16,9 @@
 @property(nonatomic,strong)UIView* seperatorLine;
 @property(nonatomic,strong)ChatContentView* chatContentView;
 @property(nonatomic)BOOL isSelf;
+
+@property (nonatomic, strong)UIActivityIndicatorView* activityView;
+@property (nonatomic, strong)UIButton* failedBtn;
 @end
 
 
@@ -106,6 +109,8 @@
     [self.contentView addSubview:self.userImageBtn];
     [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.chatContentView];
+    [self.contentView addSubview:self.activityView];
+    [self.contentView addSubview:self.failedBtn];
     //[self.contentView addSubview:self.seperatorLine];
     
     UILongPressGestureRecognizer* longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressClicked:)];
@@ -118,10 +123,10 @@
     
     [self becomeFirstResponder];
     
-//    UIMenuItem* item = [[UIMenuItem alloc] initWithTitle:@"转发" action:@selector(forward:)];
+    UIMenuItem* item = [[UIMenuItem alloc] initWithTitle:@"转发" action:@selector(forward:)];
     
     UIMenuController* menu = [UIMenuController sharedMenuController];
-//    [menu setMenuItems:@[item]];
+    [menu setMenuItems:@[item]];
     [menu setTargetRect:self.chatContentView.frame inView:self.chatContentView.superview];
     [menu setMenuVisible:YES animated:YES];
 }
@@ -131,14 +136,15 @@
 }
 
 -(BOOL)canPerformAction:(SEL)action withSender:(id)sender{
-    return action == @selector(copy:) ;//|| action == @selector(forward:);
+    BOOL canForward = self.model.messageStatus == ChatMessageStatusSucess && action == @selector(forward:);
+    return action == @selector(copy:) || canForward;
 }
 
-//- (void)forward:(id)sender{
-//    if ([self.delegate respondsToSelector:@selector(forwardBtnClickedWithIndexPath:)]) {
-//        [self.delegate forwardBtnClickedWithIndexPath:self.indexPath];
-//    }
-//}
+- (void)forward:(id)sender{
+    if ([self.delegate respondsToSelector:@selector(forwardBtnClickedWithIndexPath:)]) {
+        [self.delegate forwardBtnClickedWithIndexPath:self.indexPath];
+    }
+}
 
 -(void)copy:(id)sender{
     UIPasteboard* pasteBoard = [UIPasteboard generalPasteboard];
@@ -151,7 +157,10 @@
     self.timeLine.text=chatModel.time;
     [self.userImageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:chatModel.userImageStr] forState:UIControlStateNormal placeholderImage:[GetImagePath getImagePath:@"默认图_用户头像_会话头像"]];
     self.nameLabel.text=chatModel.userNameStr;
+    NSLog(@"status=%d",chatModel.messageStatus);
     [self.chatContentView setText:chatModel.chatContent isSelf:chatModel.isSelf];
+    self.activityView.alpha = chatModel.messageStatus == ChatMessageStatusProcess;
+    self.failedBtn.hidden = chatModel.messageStatus != ChatMessageStatusFail;
     self.isSelf=chatModel.isSelf;
 }
 
@@ -170,6 +179,11 @@
     CGFloat chatContentViceCenterY=topDistance+(self.nameLabel.alpha?8+CGRectGetHeight(self.nameLabel.frame):0)+self.chatContentView.frame.size.height*.5;
     self.chatContentView.center=CGPointMake(chatContentViceCenterX, chatContentViceCenterY);
     
+    CGPoint center = self.chatContentView.center;
+    center.x += (self.isSelf?-1:1)*(CGRectGetWidth(self.chatContentView.frame)/2+15);
+    self.activityView.center = center;
+    self.failedBtn.center = center;
+    
     self.seperatorLine.frame=CGRectMake(0, self.frame.size.height-1, kScreenWidth, 1);
 }
 
@@ -178,6 +192,29 @@
         if([self.delegate respondsToSelector:@selector(gotoContactDetailView:)]){
             [self.delegate gotoContactDetailView:self.model.ID];
         }
+    }
+}
+
+- (UIActivityIndicatorView *)activityView{
+    if (!_activityView) {
+        _activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [_activityView startAnimating];
+    }
+    return _activityView;
+}
+
+- (UIButton *)failedBtn{
+    if (!_failedBtn) {
+        _failedBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [_failedBtn addTarget:self action:@selector(failBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [_failedBtn setBackgroundImage:[GetImagePath getImagePath:@" icon_exclamation_mark"] forState:UIControlStateNormal];
+    }
+    return _failedBtn;
+}
+
+- (void)failBtnClicked:(UIButton*)btn{
+    if ([self.delegate respondsToSelector:@selector(failBtnClicked:indexPath:)]) {
+        [self.delegate failBtnClicked:btn indexPath:self.indexPath];
     }
 }
 @end
