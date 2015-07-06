@@ -180,6 +180,7 @@
     NSDictionary* messageDic = noti.userInfo[@"message"];
     ChatMessageModel* model = [self findModelWithLocalId:messageDic[@"tempId"]];
     model.messageStatus = [messageDic[@"msgType"] isEqualToString:@"success"]?ChatMessageStatusSucess:ChatMessageStatusFail;
+    model.a_id = messageDic[@"fromId"];
     [self.tableView reloadData];
 }
 
@@ -434,6 +435,7 @@
     model.a_msgType = @"02";
     [self.models addObject:model];
     [self appearNewData];
+    [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(sendMessageTimeOut:) userInfo:@{@"timesId":timestamp} repeats:NO];
 }
 
 -(void)initTableViewHeaderView{
@@ -489,5 +491,11 @@
     NSLog(@"sendMessageTimeOut");
     NSString *localId = [timer userInfo][@"timesId"];
     NSLog(@"%@",localId);
+    ChatMessageModel *model = [self findModelWithLocalId:localId];
+    NSLog(@"%u",model.messageStatus);
+    if(model.messageStatus != ChatMessageStatusSucess){
+        model.messageStatus = ChatMessageStatusFail;
+        [self.tableView reloadData];
+    }
 }
 @end
