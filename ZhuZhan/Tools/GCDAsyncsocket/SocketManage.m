@@ -95,7 +95,7 @@
 }
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err{
-    NSLog(@"%@",err);
+    NSLog(@"err====>%@",err);
 }
 
 -(void)snedUserMessage:(NSDictionary *)dic{

@@ -152,8 +152,8 @@
     [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
     NSString *str = [dic JSONString];
     str = [NSString stringWithFormat:@"%@\r\n",str];
-    [self.app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
     [self.app.socket readDataWithTimeout:-1 tag:0];
+    [self.app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
 }
 
 -(void)newMessage:(NSNotification*)noti{
@@ -248,7 +248,7 @@
         model.userNameStr=dataModel.a_name;
         model.chatContent=dataModel.a_message;
         model.isSelf=dataModel.a_type;
-        model.messageStatus = ChatMessageStatusFail;
+        model.messageStatus = dataModel.messageStatus;
         model.time=dataModel.a_time;
         model.userImageStr=dataModel.a_avatarUrl;
         model.ID = dataModel.a_userId;
@@ -305,7 +305,8 @@
     if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
     }else{
-        NSString *timeId = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]] ;
+        UInt64 recordTime = [[NSDate date] timeIntervalSince1970]*1000;
+        NSString *timeId = [NSString stringWithFormat:@"%llu", recordTime];
         NSLog(@"tmeId==>%@",timeId);
         if(self.app.socket.isConnected){
             [self sendMessage:content timestamp:timeId];
@@ -320,8 +321,8 @@
             [dic setObject:[NSString stringWithFormat:@"%@:%@",[LoginSqlite getdata:@"userId"],[LoginSqlite getdata:@"token"]] forKey:@"fromUserId"];
             NSString *str = [dic JSONString];
             str = [NSString stringWithFormat:@"%@\r\n",str];
-            [self.app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
             [self.app.socket readDataWithTimeout:-1 tag:0];
+            [self.app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
             
             [self sendMessage:content timestamp:timeId];
             [self addModelWithContent:content timestamp:timeId];
@@ -346,8 +347,8 @@
     str = [NSString stringWithFormat:@"%@\r\n",str];
     
     AppDelegate *app = [AppDelegate instance];
-    [app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
     [app.socket readDataWithTimeout:-1 tag:0];
+    [app.socket writeData:[str dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
 }
 
 - (void)chatMoreSelectViewClickedWithIndex:(NSInteger)index{
@@ -361,7 +362,8 @@
 }
 
 - (void)sendImageWithLowQualityImage:(UIImage*)lowQualityImage originQualityImage:(UIImage *)originQualityImage{
-    NSString *timeId = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
+    UInt64 recordTime = [[NSDate date] timeIntervalSince1970]*1000;
+    NSString *timeId = [NSString stringWithFormat:@"%llu", recordTime];
     [self addModelWithImage:lowQualityImage bigImage:originQualityImage timestamp:timeId];
     NSData *imageData = UIImageJPEGRepresentation(originQualityImage, 1);
     NSMutableArray *imageArr = [[NSMutableArray alloc] init];
@@ -383,6 +385,7 @@
     model.a_avatarUrl=[LoginSqlite getdata:@"userImage"];
     model.a_msgType = @"01";
     model.a_localId = timestamp;
+    model.messageStatus = ChatMessageStatusProcess;
     NSDate* date=[NSDate date];
     NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
     formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";
@@ -391,6 +394,7 @@
     
     [self.models addObject:model];
     [self appearNewData];
+    [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(sendMessageTimeOut:) userInfo:@{@"timesId":timestamp} repeats:NO];
 }
 
 -(void)addModelWithImage:(UIImage *)image bigImage:(UIImage *)bigImage timestamp:(NSString *)timestamp{
@@ -463,5 +467,11 @@
     [self.photoView removeFromSuperview];
     self.photoView = nil;
     self.navigationController.navigationBarHidden = NO;
+}
+
+-(void)sendMessageTimeOut:(NSTimer *)timer{
+    NSLog(@"sendMessageTimeOut");
+    NSString *localId = [timer userInfo][@"timesId"];
+    NSLog(@"%@",localId);
 }
 @end
