@@ -534,6 +534,7 @@
     if (![self.contactId isEqualToString:targetId]) return;
     ChatMessageModel* model = [self findModelWithServerId:messageId];
     ChatMessageModel* newModel = [[ChatMessageModel alloc] init];
+    newModel.a_type = chatTypeMe;
     newModel.dict = model.dict;
     
     NSDate* date=[NSDate date];
