@@ -89,4 +89,7 @@
 
 //获取手机号
 + (NSURLSessionDataTask *)GetPhoneWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userName:(NSString*)userName noNetWork:(void(^)())noNetWork;
+
+//注册通知
++ (NSURLSessionDataTask *)RegNotificationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary*)dic noNetWork:(void(^)())noNetWork;
 @end

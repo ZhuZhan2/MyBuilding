@@ -221,6 +221,7 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
      [userDefaults setObject:deviceTokenStr forKey:@"deviceTokenStr"];
     [userDefaults synchronize];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"registNotification" object:nil];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
