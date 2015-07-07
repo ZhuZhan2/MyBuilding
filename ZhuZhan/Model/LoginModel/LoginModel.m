@@ -698,4 +698,27 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)RegNotificationWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary*)dic noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    
+    NSString *urlStr = [NSString stringWithFormat:@"api/push/reg"];
+    NSLog(@"urlStr==%@",urlStr);
+    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if (block) {
+            block([NSMutableArray arrayWithObjects:JSON,nil],nil);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
 @end

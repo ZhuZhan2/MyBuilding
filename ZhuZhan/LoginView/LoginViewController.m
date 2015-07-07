@@ -17,6 +17,7 @@
 #import "MBProgressHUD.h"
 @interface LoginViewController ()
 @property(nonatomic,strong)UIButton* loginBtn;
+@property(nonatomic)int notificationCount;
 @end
 
 @implementation LoginViewController
@@ -32,6 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.notificationCount = 0;
     self.navigationController.navigationBar.hidden = YES;
     //self.view.backgroundColor = RGBCOLOR(85, 103, 166);
     UIImageView* bgImageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"背景"]];
@@ -120,6 +122,8 @@
     [self.view addSubview:findPassWordBtn];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(registComplete) name:@"registComplete" object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(registNotification) name:@"registNotification" object:nil];
 }
 
 -(void)forgetPassword{
@@ -206,6 +210,22 @@
             }
         }
     } dic:dic noNetWork:nil];
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        if([userDefaults objectForKey:@"deviceTokenStr"]){
+#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+            if (IS_OS_8_OR_LATER) {
+                [[UIApplication sharedApplication] registerForRemoteNotifications];
+                UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound) categories:nil];
+                [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+            } else {
+                [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+                 UIRemoteNotificationTypeBadge |
+                 UIRemoteNotificationTypeAlert |
+                 UIRemoteNotificationTypeSound];
+            }
+        }
+    });
 }
 
 -(void)registComplete{
@@ -228,4 +248,33 @@
 //    return YES;
 //}
 
+-(void)registNotification{
+    self.notificationCount ++;
+    NSLog(@"===> %d",self.notificationCount);
+    if(self.notificationCount >= 4){
+        return;
+    }
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if(![userDefaults objectForKey:@"deviceTokenStr"]){
+#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+        if (IS_OS_8_OR_LATER) {
+            [[UIApplication sharedApplication] registerForRemoteNotifications];
+            UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound) categories:nil];
+            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        } else {
+            [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+             UIRemoteNotificationTypeBadge |
+             UIRemoteNotificationTypeAlert |
+             UIRemoteNotificationTypeSound];
+        }
+    }else{
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:[userDefaults objectForKey:@"deviceTokenStr"] forKey:@"token"];
+        [dic setObject:@"05" forKey:@"deviceType"];
+        [dic setObject:UpdateDownloadType forKey:@"downloadType"];
+        [LoginModel RegNotificationWithBlock:^(NSMutableArray *posts, NSError *error) {
+            
+        } dic:dic noNetWork:nil];
+    }
+}
 @end
