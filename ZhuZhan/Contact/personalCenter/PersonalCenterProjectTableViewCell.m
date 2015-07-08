@@ -91,9 +91,9 @@
         self.contentLabel.text = @"该项目认证成功";
     }else if([projectDemo isEqualToString:@"03"]){
         self.contentLabel.text = @"该项目认证失败";
-    }else if ([projectDemo isEqualToString:@"04"]){
+    }else if ([projectDemo isEqualToString:@"05"]){
         self.contentLabel.text = @"项目信息征集令活动通过";
-    }else{
+    }else if([projectDemo isEqualToString:@"06"]){
         self.contentLabel.text = @"项目信息征集令活动未通过";
     }
 }
