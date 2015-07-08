@@ -7,28 +7,16 @@
 //
 
 #import "UnderstandViewController.h"
-#import <QuartzCore/QuartzCore.h>
-#import "iflyMSC/IFlyContact.h"
-#import "iflyMSC/IFlyDataUploader.h"
 #import "Definition.h"
-#import "iflyMSC/IFlyUserWords.h"
-#import "RecognizerFactory.h"
 #import "UIPlaceHolderTextView.h"
-#import "iflyMSC/IFlySpeechUtility.h"
-#import "iflyMSC/IFlySpeechUnderstander.h"
 #import "PopupView.h"
 #import "ResultsTableViewController.h"
+#import "RecordSqlite.h"
+#import <iflyMSC/iflyMSC.h>
+#import "ISRDataHelper.h"
+#import <AVFoundation/AVAudioSession.h>
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
-#import "JSONKit.h"
-#import "RecordSqlite.h"
-#import <AVFoundation/AVAudioSession.h>
-#import <iflyMSC/iflyMSC.h>
-
-@interface UnderstandViewController ()
-@property (nonatomic)NSInteger timeCount;
-@property (nonatomic)BOOL canListen;
-@end
 
 @implementation UnderstandViewController
 - (void)viewDidLoad
@@ -53,7 +41,6 @@
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
     self.title = @"语音搜索";
-    
     
     UIPlaceHolderTextView *resultView = [[UIPlaceHolderTextView alloc] initWithFrame:
                                          CGRectMake(Margin*2, Margin*2+3.5, self.view.frame.size.width-Margin*4, 300)];
@@ -91,18 +78,18 @@
     self.speechUnderstander = [IFlySpeechRecognizer sharedInstance]; //设置听写模式
     //2.设置听写参数
     [self.speechUnderstander setParameter:@"iat" forKey:[IFlySpeechConstant IFLY_DOMAIN]];
+    [self.speechUnderstander setParameter:@"0" forKey:[IFlySpeechConstant ASR_PTT]];
+    
     //asr_audio_path是录音文件名,设置value为nil或者为空取消保存,默认保存目录在 Library/cache下。
     [self.speechUnderstander setParameter:nil forKey:[IFlySpeechConstant ASR_AUDIO_PATH]];
-//    //3.启动识别服务
-//    [self.speechUnderstander startListening];
+    self.speechUnderstander.delegate = self;
     
     if ([[AVAudioSession sharedInstance] respondsToSelector:@selector(requestRecordPermission:)]) {
         [[AVAudioSession sharedInstance] performSelector:@selector(requestRecordPermission:) withObject:^(BOOL granted) {
             if (granted) {
                 [self startListening];
                 button.enabled = YES;
-            }
-            else {
+            }else {
                 label.text =@"请打开麦克风";
                 button.enabled = NO;                
             }
@@ -114,51 +101,38 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated{
     AppDelegate* app=[AppDelegate instance];
     HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
     [homeVC homePageTabBarHide];
 }
 
--(void)viewWillDisappear:(BOOL)animated
-{
+-(void)viewWillDisappear:(BOOL)animated{
     AppDelegate* app=[AppDelegate instance];
     HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
     [homeVC homePageTabBarRestore];
-//    [_iFlySpeechUnderstander cancel];
-//    _iFlySpeechUnderstander.delegate = nil;
-    self.canListen = YES;
-    [timer invalidate];
-//    [_iFlySpeechUnderstander stopListening];
-    timer =nil;
-    self.timeCount =0;
-    //设置回非语义识别
-//    [_iFlySpeechUnderstander destroy];
+    [self stopListening];
 }
 
 - (void)startListening{
-    if (!self.canListen) return;
+    if (self.speechUnderstander.isListening) return;
     self.textView.text = @"";
-    BOOL ret = [self.speechUnderstander startListening];
-    if (ret) {
+    if ([self.speechUnderstander startListening]) {
         timer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(circleBtn) userInfo:nil repeats:YES];
-        self.canListen = NO;
         label.hidden = NO;
         label.text = @"正在接收中...";
     }
-//    else{
-//        [_popView setText:@"启动识别服务失败，请稍后重试"];//可能是上次请求未结束
-//        [self.view addSubview:_popView];
-//        self.canListen = NO;
-//    }
+}
+
+- (void)stopListening{
+    [self.speechUnderstander stopListening];
+    [timer invalidate];
+    timer =nil;
 }
 
 -(void)circleBtn{
     [button blink];
 }
-
 
 - (void)rightAction{
     if(![[ _textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]){
@@ -172,56 +146,28 @@
         
         ResultsTableViewController *resultVC = [[ResultsTableViewController alloc] init];
         resultVC.searchStr = _textView.text;
-        NSLog(@"***resultVC.searchStr****%@",_textView.text);
         [self.navigationController pushViewController:resultVC animated:YES];
+    }else{
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"未识别出语音，请重试！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alertView show];
     }
 }
 
-
-
-
-#pragma mark - IFlySpeechRecognizerDelegate
-
-
-- (void) onResults:(NSArray *) results isLast:(BOOL)isLast
-{
-//    [_iFlySpeechUnderstander stopListening];
+- (void) onResults:(NSArray *) results isLast:(BOOL)isLast{
     [timer invalidate];
     label.hidden =YES;
-    self.timeCount++;
-    if (self.timeCount==2) {
-        self.timeCount=0;
-        return;
-    }
-    self.canListen = YES;
+    
     NSMutableString *resultString = [[NSMutableString alloc] init];
-    NSDictionary *dic = results [0];
-    NSString *jsonStr=nil;
+    NSDictionary *dic = results[0];
     for (NSString *key in dic) {
-        jsonStr =[NSString stringWithFormat:@"%@",key];
-        NSData *data = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary *tempResult  = [data objectFromJSONData];
-        NSArray *array = [tempResult objectForKey:@"ws"];
-        
-        for (NSDictionary *tempDic in array) {
-            NSString *tempStr =[[[tempDic objectForKey:@"cw"] objectAtIndex:0] objectForKey:@"w"];
-            [resultString appendString:tempStr];
-            NSLog(@"听写wwwwwww结果：%@",resultString);
-        }
-        
+        [resultString appendFormat:@"%@",key];
     }
-    NSString  *str =  [resultString stringByReplacingOccurrencesOfString:@" (置信度:100)\n" withString:@""];
-    str =  [str stringByReplacingOccurrencesOfString:@"。" withString:@""];
-    str =  [str stringByReplacingOccurrencesOfString:@"！" withString:@""];
-    str =  [str stringByReplacingOccurrencesOfString:@"？" withString:@""];
-    str =  [str stringByReplacingOccurrencesOfString:@"，" withString:@""];
-    if (![str isEqualToString:@""]) {
-        _textView.text =str;
-    }
+    _result =[NSString stringWithFormat:@"%@%@", _textView.text,resultString];
+    NSString * resultFromJson =  [ISRDataHelper stringFromJson:resultString];
+    self.textView.text = [NSString stringWithFormat:@"%@%@", _textView.text,resultFromJson];
 }
 
 - (void) onError:(IFlySpeechError *) errorCode{
-    NSLog(@"***%@",errorCode);
+    NSLog(@"***%@",errorCode.errorDesc);
 }
-
 @end

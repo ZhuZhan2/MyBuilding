@@ -580,6 +580,7 @@
 		5B3B5D4E1AAD935E002FB444 /* 自己会话框最小@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3B5D4A1AAD935E002FB444 /* 自己会话框最小@2x.png */; };
 		5B45E61F1A00AE7800B790FB /* 全部项目_17.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B45E61D1A00AE7800B790FB /* 全部项目_17.png */; };
 		5B45E6201A00AE7800B790FB /* 全部项目_17@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B45E61E1A00AE7800B790FB /* 全部项目_17@2x.png */; };
+		5B4810EB1B4D00A000C436DB /* ISRDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4810EA1B4D00A000C436DB /* ISRDataHelper.m */; };
 		5B4C197119FA444800C6C57D /* 注册_05.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4C196D19FA444800C6C57D /* 注册_05.png */; };
 		5B4C197219FA444800C6C57D /* 注册_05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4C196E19FA444800C6C57D /* 注册_05@2x.png */; };
 		5B4C197319FA444800C6C57D /* 注册_07.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4C196F19FA444800C6C57D /* 注册_07.png */; };
@@ -2711,6 +2712,8 @@
 		5B3B5D4A1AAD935E002FB444 /* 自己会话框最小@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "自己会话框最小@2x.png"; sourceTree = "<group>"; };
 		5B45E61D1A00AE7800B790FB /* 全部项目_17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "全部项目_17.png"; sourceTree = "<group>"; };
 		5B45E61E1A00AE7800B790FB /* 全部项目_17@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "全部项目_17@2x.png"; sourceTree = "<group>"; };
+		5B4810E91B4D00A000C436DB /* ISRDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISRDataHelper.h; sourceTree = "<group>"; };
+		5B4810EA1B4D00A000C436DB /* ISRDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISRDataHelper.m; sourceTree = "<group>"; };
 		5B4C196D19FA444800C6C57D /* 注册_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_05.png"; sourceTree = "<group>"; };
 		5B4C196E19FA444800C6C57D /* 注册_05@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_05@2x.png"; sourceTree = "<group>"; };
 		5B4C196F19FA444800C6C57D /* 注册_07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_07.png"; sourceTree = "<group>"; };
@@ -6495,6 +6498,8 @@
 		5B998CDD1B4BC7BB00569A56 /* IFly */ = {
 			isa = PBXGroup;
 			children = (
+				5B4810E91B4D00A000C436DB /* ISRDataHelper.h */,
+				5B4810EA1B4D00A000C436DB /* ISRDataHelper.m */,
 				5B998CDE1B4BC7BB00569A56 /* lib */,
 			);
 			path = IFly;
@@ -10132,6 +10137,7 @@
 				04D10BE019AE016A0097C0C6 /* PersonalCenterViewController.m in Sources */,
 				0426C2AF19922D5A00CD8822 /* GPUImageRGBOpeningFilter.m in Sources */,
 				0426C2ED19922D5A00CD8822 /* FaceppResult.m in Sources */,
+				5B4810EB1B4D00A000C436DB /* ISRDataHelper.m in Sources */,
 				0426C28F19922D5A00CD8822 /* GPUImageMaskFilter.m in Sources */,
 				0426C25919922D5A00CD8822 /* GPUImageContrastFilter.m in Sources */,
 				D3AD609219AC56CB001FD483 /* MJRefreshBaseView.m in Sources */,
