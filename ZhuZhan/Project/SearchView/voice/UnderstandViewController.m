@@ -23,28 +23,14 @@
 #import "JSONKit.h"
 #import "RecordSqlite.h"
 #import <AVFoundation/AVAudioSession.h>
+#import <iflyMSC/iflyMSC.h>
+
+@interface UnderstandViewController ()
+@property (nonatomic)NSInteger timeCount;
+@property (nonatomic)BOOL canListen;
+@end
 
 @implementation UnderstandViewController
-
-static int timeCount =0;
-static bool startListen =YES;
-- (instancetype) init
-{
-    self = [super init];
-    if (self) {
-
-    }
-    return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -78,48 +64,47 @@ static bool startListen =YES;
     resultView.layer.borderWidth = 0;
     _textView = resultView;
     _textView.text =@"";
+    
     label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 160, 40)];
     label.font = [UIFont systemFontOfSize:25.0f];
     label.textColor = [UIColor colorWithRed:(151/255.0)  green:(151/255.0)  blue:(151/255.0)  alpha:1.0];
     [resultView addSubview:label];
+    
     UIImage *image = [GetImagePath getImagePath:@"语音搜索_04"];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(90, kScreenHeight-149, 149, 149)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(85, kScreenHeight-149, 149, 149)];
     imageView.image = image;
     [self.view addSubview:imageView];
+    
     button = [[DKCircleButton alloc] initWithFrame:CGRectMake(0, 0, 140, 140)];
     button.center = imageView.center;
     button.titleLabel.font = [UIFont systemFontOfSize:22];
     [button setBorderColor:[UIColor clearColor]];
-    
-    
-    
     [button setBackgroundImage:[GetImagePath getImagePath:@"语音搜索1_05"] forState:UIControlStateNormal];
     [button setBackgroundImage:[GetImagePath getImagePath:@"语音搜索1_05"] forState:UIControlStateSelected];
     [button setBackgroundImage:[GetImagePath getImagePath:@"语音搜索1_05"] forState:UIControlStateHighlighted];
-    
-    [button addTarget:self action:@selector(startListening1) forControlEvents:UIControlEventTouchUpInside];
-    
+    [button addTarget:self action:@selector(startListening) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
     [resultView setNeedsDisplay];
     
-    _iFlySpeechUnderstander = [IFlySpeechUnderstander sharedInstance];
-    _iFlySpeechUnderstander.delegate = self;
+    //1.创建语音听写对象
+    self.speechUnderstander = [IFlySpeechRecognizer sharedInstance]; //设置听写模式
+    //2.设置听写参数
+    [self.speechUnderstander setParameter:@"iat" forKey:[IFlySpeechConstant IFLY_DOMAIN]];
+    //asr_audio_path是录音文件名,设置value为nil或者为空取消保存,默认保存目录在 Library/cache下。
+    [self.speechUnderstander setParameter:nil forKey:[IFlySpeechConstant ASR_AUDIO_PATH]];
+//    //3.启动识别服务
+//    [self.speechUnderstander startListening];
+    
     if ([[AVAudioSession sharedInstance] respondsToSelector:@selector(requestRecordPermission:)]) {
         [[AVAudioSession sharedInstance] performSelector:@selector(requestRecordPermission:) withObject:^(BOOL granted) {
             if (granted) {
-                // Microphone enabled code
-                NSLog(@"Microphone is enabled..");
-                [self startListening1];
+                [self startListening];
                 button.enabled = YES;
             }
             else {
-                // Microphone disabled code
-                NSLog(@"Microphone is disabled..");
                 label.text =@"请打开麦克风";
-                button.enabled = NO;
-                // We're in a background thread here, so jump to main thread to do UI work.
-                
+                button.enabled = NO;                
             }
         }];
     };
@@ -142,46 +127,35 @@ static bool startListen =YES;
     AppDelegate* app=[AppDelegate instance];
     HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
     [homeVC homePageTabBarRestore];
-    [_iFlySpeechUnderstander cancel];
-    _iFlySpeechUnderstander.delegate = nil;
-        startListen = YES;
+//    [_iFlySpeechUnderstander cancel];
+//    _iFlySpeechUnderstander.delegate = nil;
+    self.canListen = YES;
     [timer invalidate];
-    [_iFlySpeechUnderstander stopListening];
+//    [_iFlySpeechUnderstander stopListening];
     timer =nil;
-    timeCount =0;
+    self.timeCount =0;
     //设置回非语义识别
-    [_iFlySpeechUnderstander destroy];
+//    [_iFlySpeechUnderstander destroy];
 }
 
-- (void)startListening1
-{
-    
-    NSLog(@"nnn******%u",startListen);
-    if (startListen ==YES) {
-        _textView.text =@"";
-        bool ret = [_iFlySpeechUnderstander startListening];
-        NSLog(@"==>%d",ret);
-        if (ret) {
-            timer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(circleBtn) userInfo:nil repeats:YES];
-            startListen =NO;
-            label.hidden =NO;
-            label.text =@"正在接收中...";
-        }
-        else
-        {
-            [_popView setText: @"启动识别服务失败，请稍后重试"];//可能是上次请求未结束
-            [self.view addSubview:_popView];
-            startListen =NO;
-        }
-        
-        
+- (void)startListening{
+    if (!self.canListen) return;
+    self.textView.text = @"";
+    BOOL ret = [self.speechUnderstander startListening];
+    if (ret) {
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(circleBtn) userInfo:nil repeats:YES];
+        self.canListen = NO;
+        label.hidden = NO;
+        label.text = @"正在接收中...";
     }
-    
+//    else{
+//        [_popView setText:@"启动识别服务失败，请稍后重试"];//可能是上次请求未结束
+//        [self.view addSubview:_popView];
+//        self.canListen = NO;
+//    }
 }
 
--(void)circleBtn
-{
-    
+-(void)circleBtn{
     [button blink];
 }
 
@@ -211,15 +185,15 @@ static bool startListen =YES;
 
 - (void) onResults:(NSArray *) results isLast:(BOOL)isLast
 {
-    [_iFlySpeechUnderstander stopListening];
+//    [_iFlySpeechUnderstander stopListening];
     [timer invalidate];
     label.hidden =YES;
-    timeCount++;
-    if (timeCount==2) {
-        timeCount=0;
+    self.timeCount++;
+    if (self.timeCount==2) {
+        self.timeCount=0;
         return;
     }
-    startListen = YES;
+    self.canListen = YES;
     NSMutableString *resultString = [[NSMutableString alloc] init];
     NSDictionary *dic = results [0];
     NSString *jsonStr=nil;
@@ -244,9 +218,6 @@ static bool startListen =YES;
     if (![str isEqualToString:@""]) {
         _textView.text =str;
     }
-    
-    
-    
 }
 
 - (void) onError:(IFlySpeechError *) errorCode{
