@@ -7,6 +7,7 @@
 //
 
 #import "ChatImageCell.h"
+#import "ChatImageSqlite.h"
 
 @implementation ChatImageCell
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -129,8 +130,9 @@
         [bgImageView removeFromSuperview];
         bgImageView = nil;
         self.chatMessageImageView.image = model.a_localImage;
-        NSLog(@"==>%@",model.a_localBigImageUrl);
-        UIImage *img = [UIImage imageWithContentsOfFile:model.a_localBigImageUrl];
+        //UIImage *img = [UIImage imageWithContentsOfFile:model.a_localBigImageUrl];
+        NSData *imageData = [ChatImageSqlite loadList:model.a_localId];
+        UIImage *img = [UIImage imageWithData:imageData];
         self.chatMessageImageView.bigLocalImage = img;
     }else{
         [self.chatMessageImageView sd_setImageWithURL:[NSURL URLWithString:model.a_message] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -154,6 +156,7 @@
 }
 
 -(void)onClickImage{
+    NSLog(@"onClickImage");
     if([self.delegate respondsToSelector:@selector(gotoBigImage:)]){
         [self.delegate gotoBigImage:self.indexPath.row];
     }

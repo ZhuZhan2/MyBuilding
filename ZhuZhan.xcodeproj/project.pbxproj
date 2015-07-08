@@ -1495,6 +1495,8 @@
 		D3AD61AC19AEF80B001FD483 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61A719AEF80B001FD483 /* MJPopupBackgroundView.m */; };
 		D3AD61AD19AEF80B001FD483 /* NIDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61A919AEF80B001FD483 /* NIDropDown.m */; };
 		D3AD61AE19AEF80B001FD483 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61AB19AEF80B001FD483 /* UIViewController+MJPopupViewController.m */; };
+		D3B05A731B4CF6EE00B34FD6 /* ChatImageSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B05A721B4CF6EE00B34FD6 /* ChatImageSqlite.m */; };
+		D3B05A761B4CF7E600B34FD6 /* ChatImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B05A751B4CF7E600B34FD6 /* ChatImageModel.m */; };
 		D3B1C28319D155CC00E6D89F /* ContactCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B1C28219D155CC00E6D89F /* ContactCommentTableViewCell.m */; };
 		D3B51BC41ABA96A600C7D57A /* AddMarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B51BC31ABA96A600C7D57A /* AddMarkView.m */; };
 		D3B8F53F19D92716008F6164 /* RecognizerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B8F53E19D92716008F6164 /* RecognizerFactory.m */; };
@@ -3942,6 +3944,10 @@
 		D3AD61A919AEF80B001FD483 /* NIDropDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIDropDown.m; sourceTree = "<group>"; };
 		D3AD61AA19AEF80B001FD483 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
 		D3AD61AB19AEF80B001FD483 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
+		D3B05A711B4CF6EE00B34FD6 /* ChatImageSqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatImageSqlite.h; sourceTree = "<group>"; };
+		D3B05A721B4CF6EE00B34FD6 /* ChatImageSqlite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImageSqlite.m; sourceTree = "<group>"; };
+		D3B05A741B4CF7E600B34FD6 /* ChatImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatImageModel.h; sourceTree = "<group>"; };
+		D3B05A751B4CF7E600B34FD6 /* ChatImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImageModel.m; sourceTree = "<group>"; };
 		D3B1C28119D155CC00E6D89F /* ContactCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCommentTableViewCell.h; sourceTree = "<group>"; };
 		D3B1C28219D155CC00E6D89F /* ContactCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCommentTableViewCell.m; sourceTree = "<group>"; };
 		D3B51BC21ABA96A600C7D57A /* AddMarkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMarkView.h; sourceTree = "<group>"; };
@@ -7813,6 +7819,10 @@
 				D3D538491ADD1FC8003727C1 /* ImageModel.m */,
 				5B75F4DD1AF9A2B60091162C /* MarketSearchSqlite.h */,
 				5B75F4DE1AF9A2B60091162C /* MarketSearchSqlite.m */,
+				D3B05A711B4CF6EE00B34FD6 /* ChatImageSqlite.h */,
+				D3B05A721B4CF6EE00B34FD6 /* ChatImageSqlite.m */,
+				D3B05A741B4CF7E600B34FD6 /* ChatImageModel.h */,
+				D3B05A751B4CF7E600B34FD6 /* ChatImageModel.m */,
 			);
 			path = Sqlite3;
 			sourceTree = "<group>";
@@ -10014,6 +10024,7 @@
 				0426C2B119922D5A00CD8822 /* GPUImageSaturationFilter.m in Sources */,
 				04BF13B419C4162A002E02C9 /* AFAppDotNetAPIClient.m in Sources */,
 				0426C2BE19922D5A00CD8822 /* GPUImageSourceOverBlendFilter.m in Sources */,
+				D3B05A761B4CF7E600B34FD6 /* ChatImageModel.m in Sources */,
 				D3D9D5081B43DFF8006980E0 /* BannerImagesModel.m in Sources */,
 				D314A3A71B156B2B00F6A86A /* SearchContactDefaultView.m in Sources */,
 				D35E12411ABD65D8007C6726 /* AskPriceDetailViewController.m in Sources */,
@@ -10150,6 +10161,7 @@
 				5B8A2CE91AAEE0AD00C8F9DE /* AddFriendCell.m in Sources */,
 				5B90E1051ADE491F00436CED /* MainContractsBaseController.m in Sources */,
 				D3AD616B19ADB9F7001FD483 /* RecordModel.m in Sources */,
+				D3B05A731B4CF6EE00B34FD6 /* ChatImageSqlite.m in Sources */,
 				5BAE1C761B0F3090004A4B3E /* PersonalInfoController.m in Sources */,
 				5B7E59061ABBD9B90063B400 /* ProvidePriceInfoController.m in Sources */,
 				5BE7B6C61B1D5243003467ED /* ContactsActiveCell.m in Sources */,

@@ -25,6 +25,8 @@
 #import "VIPhotoView.h"
 #import "ChatSendImageView.h"
 #import "ForwardListViewController.h"
+#import "ChatImageSqlite.h"
+
 @interface ChatViewController ()<UIAlertViewDelegate,ChatTableViewCellDelegate,ChatImageCellDelegate,VIPhotoViewDelegate,ChatSendImageViewDelegate,ForwardListViewControllerDelegate>
 @property (nonatomic, strong)NSMutableArray* models;
 @property(nonatomic,strong)RKBaseTableView *tableView;
@@ -56,14 +58,7 @@
             [self.delegate reloadList];
         }
     }
-    
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSString *pathDocuments = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *createPath = [NSString stringWithFormat:@"%@/Image", pathDocuments];
-    // 判断文件夹是否存在
-    if ([[NSFileManager defaultManager] fileExistsAtPath:createPath]) {
-        [fileManager removeItemAtPath:createPath error:nil];
-    }
+    [ChatImageSqlite delAll];
 }
 
 - (void)viewDidLoad {
@@ -313,8 +308,9 @@
     if([model.a_msgType isEqualToString:@"01"]){
         [self sendMessage:model.a_message timestamp:model.a_localId];
     }else{
-        UIImage *img = [UIImage imageWithContentsOfFile:model.a_localBigImageUrl];
-        NSData *imageData = UIImageJPEGRepresentation(img, 1);
+        //UIImage *img = [UIImage imageWithContentsOfFile:model.a_localBigImageUrl];
+        //NSData *imageData = UIImageJPEGRepresentation(img, 1);
+        NSData *imageData = [ChatImageSqlite loadList:model.a_localId];
         NSMutableArray *imageArr = [[NSMutableArray alloc] init];
         [imageArr addObject:imageData];
         [ChatMessageApi AddImageWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -438,31 +434,14 @@
 - (void)sendImageWithLowQualityImage:(UIImage*)lowQualityImage originQualityImage:(UIImage *)originQualityImage{
     UInt64 recordTime = [[NSDate date] timeIntervalSince1970]*1000;
     NSString *timeId = [NSString stringWithFormat:@"%llu", recordTime];
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSString *pathDocuments = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *createPath = [NSString stringWithFormat:@"%@/Image", pathDocuments];
-    // 判断文件夹是否存在，如果不存在，则创建
-    if (![[NSFileManager defaultManager] fileExistsAtPath:createPath]) {
-        [fileManager createDirectoryAtPath:createPath withIntermediateDirectories:YES attributes:nil error:nil];
-    } else {
-        NSLog(@"FileDir is exists.");
-    }
-    NSLog(@"%@",createPath);
-    NSString *filePath = [createPath stringByAppendingPathComponent:[NSString stringWithFormat:@"pic_%@.png", timeId]];   // 保存文件的名称
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [UIImagePNGRepresentation(originQualityImage)writeToFile: filePath    atomically:YES];
-        NSLog(@"%@",filePath);
-        [self.tableView reloadData];
-    });
-    
-    [self addModelWithImage:lowQualityImage bigImageUrl:filePath timestamp:timeId];
-    
     NSData *imageData = UIImageJPEGRepresentation(originQualityImage, 1);
     if((double)imageData.length/(1024*1024)>5){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"图片不能大于5M" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
         return;
     }
+    [ChatImageSqlite InsertData:imageData imageId:timeId];
+    [self addModelWithImage:lowQualityImage bigImageUrl:nil timestamp:timeId];
     NSMutableArray *imageArr = [[NSMutableArray alloc] init];
     [imageArr addObject:imageData];
     [ChatMessageApi AddImageWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -510,7 +489,7 @@
     ChatMessageModel *model = [[ChatMessageModel alloc] init];
     model.a_name=[LoginSqlite getdata:@"userName"];
     model.a_localImage = image;
-    model.a_localBigImageUrl = bigImageUrl;
+    //model.a_localBigImageUrl = bigImageUrl;
     model.a_type=chatTypeMe;
     model.a_avatarUrl=[LoginSqlite getdata:@"userImage"];
     model.a_isLocal = YES;
@@ -575,10 +554,12 @@
 }
 
 -(void)gotoBigImage:(NSInteger)index{
+    NSLog(@"gotoBigImage");
     ChatMessageModel *model = self.models[index];
     if(!self.photoView){
         if(model.a_isLocal){
-            self.photoView = [[VIPhotoView alloc] initWithFrame:self.view.frame andImageUrl:model.a_localBigImageUrl];
+            NSData *imageData = [ChatImageSqlite loadList:model.a_localId];
+            self.photoView = [[VIPhotoView alloc] initWithFrame:self.view.frame andImageData:imageData];
         }else{
             self.photoView = [[VIPhotoView alloc] initWithFrame:self.view.frame imageUrl:model.a_bigImageUrl];
         }

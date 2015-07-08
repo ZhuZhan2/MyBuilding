@@ -359,12 +359,6 @@
                 self.zwAdView.adScrollView.scrollEnabled = YES;
             }
             [self.zwAdView loadAdDataThenStart];
-        }else{
-            if([ErrorCode errorCode:error] == 403){
-                [LoginAgain AddLoginView:NO];
-            }else{
-                [ErrorCode alert];
-            }
         }
     } noNetWork:^{
         [ErrorCode alert];

@@ -64,7 +64,7 @@
 @implementation VIPhotoView
 
 
-- (instancetype)initWithFrame:(CGRect)frame andImageUrl:(NSString *)imageUrl
+- (instancetype)initWithFrame:(CGRect)frame andImageData:(NSData *)imageData
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -78,8 +78,7 @@
         _containerView = containerView;
         
         
-        NSLog(@"%@",imageUrl);
-        UIImage *img = [UIImage imageWithContentsOfFile:imageUrl];
+        UIImage *img = [UIImage imageWithData:imageData];
         // Add image view
         UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
         imageView.frame = containerView.bounds;
@@ -130,6 +129,7 @@
         // Add image view
         [self addSubview:self.activityIndicatorView];
         [self.activityIndicatorView startAnimating];
+        
         UIImageView *imageView = [[UIImageView alloc] init];
         
         [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -280,7 +280,7 @@
 
 - (UIActivityIndicatorView *)activityIndicatorView {
     if (!_activityIndicatorView) {
-        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         _activityIndicatorView.hidesWhenStopped = YES;
         _activityIndicatorView.center = CGPointMake(CGRectGetWidth(self.bounds) / 2.0, CGRectGetHeight(self.bounds) / 2.0);
     }
