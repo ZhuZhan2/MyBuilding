@@ -9,6 +9,7 @@
 #import "SearchViewController.h"
 #import "RecordSqlite.h"
 #import "RecordModel.h"
+#import "MapSearchViewController.h"
 #define keyBoardHeight (kScreenHeight==480?376:464)
 @interface SearchViewController ()
 
@@ -245,7 +246,10 @@ int startIndex;
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请先打开定位功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
         }else{
-            BaiDuMapViewController *baiduMapView = [[BaiDuMapViewController alloc] init];
+//            BaiDuMapViewController *baiduMapView = [[BaiDuMapViewController alloc] init];
+//            [self.navigationController pushViewController:baiduMapView animated:YES];
+            
+            MapSearchViewController *baiduMapView = [[MapSearchViewController alloc] init];
             [self.navigationController pushViewController:baiduMapView animated:YES];
         }
     }
