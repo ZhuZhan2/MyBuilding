@@ -16,12 +16,12 @@
 #import "HomePageViewController.h"
 #import "AppDelegate.h"
 #import "ProgramDetailViewController.h"
-@interface BaiDuMapViewController ()<LocationErrorViewDelegate,MapContentViewDelegate,LoginViewDelegate>
+@interface BaiDuMapViewController ()<MapContentViewDelegate,LoginViewDelegate>
 @property(nonatomic)BOOL isSelect;
 @property(nonatomic,strong)UIButton* nextBtn;
 @property(nonatomic,strong)UIButton* lastBtn;
 @property(nonatomic)NSInteger pageCount;
-@property(nonatomic,strong)LocationErrorView *errorView;
+//@property(nonatomic,strong)LocationErrorView *errorView;
 @property(nonatomic)int tempStartIndex;
 @property(nonatomic)BOOL isNext;
 @end
@@ -704,17 +704,17 @@ int j;
         [self addErrorView];
     }else{
         NSLog(@"打开");
-        [self.errorView removeFromSuperview];
-        self.errorView = nil;
+//        [self.errorView removeFromSuperview];
+//        self.errorView = nil;
     }
 }
 
 -(void)addErrorView{
-    if(self.errorView == nil){
-        self.errorView = [[LocationErrorView alloc] initWithFrame:self.view.frame];
-        self.errorView.delegate = self;
-        [self.view addSubview:self.errorView];
-    }
+//    if(self.errorView == nil){
+//        self.errorView = [[LocationErrorView alloc] initWithFrame:self.view.frame];
+//        self.errorView.delegate = self;
+//        [self.view addSubview:self.errorView];
+//    }
 }
 
 -(void)addFocus:(NSInteger)index isFocused:(BOOL)isFocused{
@@ -818,31 +818,31 @@ int j;
 @end
 
 //没有定位的页面
-@implementation LocationErrorView
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.backgroundColor = RGBCOLOR(245, 245, 245);
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(73, 154, 173, 206)];
-        imageView.image = [GetImagePath getImagePath:@"Shape-1"];
-        [self addSubview:imageView];
-        
-        UIImageView *btnImage = [[UIImageView alloc] initWithFrame:CGRectMake(107, 384, 105, 34)];
-        btnImage.image = [GetImagePath getImagePath:@"重新加载"];
-        [self addSubview:btnImage];
-        
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(107, 384, 105, 34);
-        [button addTarget:self action:@selector(reloadMap) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:button];
-    }
-    return self;
-}
-
--(void)reloadMap{
-    if([self.delegate respondsToSelector:@selector(reloadMap)]){
-        [self.delegate reloadMap];
-    }
-}
-@end
+//@implementation LocationErrorView
+//- (id)initWithFrame:(CGRect)frame
+//{
+//    self = [super initWithFrame:frame];
+//    if (self) {
+//        self.backgroundColor = RGBCOLOR(245, 245, 245);
+//        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(73, 154, 173, 206)];
+//        imageView.image = [GetImagePath getImagePath:@"Shape-1"];
+//        [self addSubview:imageView];
+//        
+//        UIImageView *btnImage = [[UIImageView alloc] initWithFrame:CGRectMake(107, 384, 105, 34)];
+//        btnImage.image = [GetImagePath getImagePath:@"重新加载"];
+//        [self addSubview:btnImage];
+//        
+//        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//        button.frame = CGRectMake(107, 384, 105, 34);
+//        [button addTarget:self action:@selector(reloadMap) forControlEvents:UIControlEventTouchUpInside];
+//        [self addSubview:button];
+//    }
+//    return self;
+//}
+//
+//-(void)reloadMap{
+//    if([self.delegate respondsToSelector:@selector(reloadMap)]){
+//        [self.delegate reloadMap];
+//    }
+//}
+//@end

@@ -1361,6 +1361,7 @@
 		D30106C01B41187900E683A2 /* chat_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D30106BE1B41187900E683A2 /* chat_default@2x.png */; };
 		D30106C31B411CF500E683A2 /* 默认图_沙漏.png in Resources */ = {isa = PBXBuildFile; fileRef = D30106C11B411CF500E683A2 /* 默认图_沙漏.png */; };
 		D30106C41B411CF500E683A2 /* 默认图_沙漏@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D30106C21B411CF500E683A2 /* 默认图_沙漏@2x.png */; };
+		D30366141B4BBE22009DD967 /* MapSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D30366131B4BBE22009DD967 /* MapSearchViewController.m */; };
 		D3049A681A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3049A671A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m */; };
 		D30E1B231B1BF843009F6B51 /* AllDynamicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D30E1B221B1BF843009F6B51 /* AllDynamicListViewController.m */; };
 		D30E1B261B1BFD81009F6B51 /* MyDynamicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D30E1B251B1BFD81009F6B51 /* MyDynamicListViewController.m */; };
@@ -3661,6 +3662,8 @@
 		D30106BE1B41187900E683A2 /* chat_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_default@2x.png"; sourceTree = "<group>"; };
 		D30106C11B411CF500E683A2 /* 默认图_沙漏.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_沙漏.png"; sourceTree = "<group>"; };
 		D30106C21B411CF500E683A2 /* 默认图_沙漏@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_沙漏@2x.png"; sourceTree = "<group>"; };
+		D30366121B4BBE22009DD967 /* MapSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapSearchViewController.h; sourceTree = "<group>"; };
+		D30366131B4BBE22009DD967 /* MapSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapSearchViewController.m; sourceTree = "<group>"; };
 		D3049A661A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterCompanyTableViewCell.h; sourceTree = "<group>"; };
 		D3049A671A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterCompanyTableViewCell.m; sourceTree = "<group>"; };
 		D30E1B211B1BF843009F6B51 /* AllDynamicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllDynamicListViewController.h; sourceTree = "<group>"; };
@@ -5173,6 +5176,8 @@
 				042D9DCD19B559FC00689C5D /* BaiDuMapViewController.m */,
 				5B51212D1A0781F900A77997 /* MapContentView.h */,
 				5B51212E1A0781F900A77997 /* MapContentView.m */,
+				D30366121B4BBE22009DD967 /* MapSearchViewController.h */,
+				D30366131B4BBE22009DD967 /* MapSearchViewController.m */,
 			);
 			path = BaiDuMapView;
 			sourceTree = "<group>";
@@ -10121,6 +10126,7 @@
 				D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */,
 				5BAE1C5C1B0EF60B004A4B3E /* MyFocusCompanyController.m in Sources */,
 				5BBA27901B1FE9AB00ADE3FC /* SingleCategoryView.m in Sources */,
+				D30366141B4BBE22009DD967 /* MapSearchViewController.m in Sources */,
 				5BAE1C5F1B0EFB9C004A4B3E /* RKController.m in Sources */,
 				5B6FF7011AE4EC4B00F3A3E0 /* SalerContractsController.m in Sources */,
 				5B55D57E1A3EB63200CAEF8B /* ForgetPasswordSecondController.m in Sources */,
