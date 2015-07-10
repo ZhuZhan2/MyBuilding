@@ -467,13 +467,15 @@
 
 -(void)addModelWithContent:(NSString*)content timestamp:(NSString *)timestamp{
     ChatMessageModel* model=[[ChatMessageModel alloc]init];
+    model.a_type=chatTypeMe;
+    model.messageStatus = ChatMessageStatusProcess;
+    
     model.a_name=[LoginSqlite getdata:@"userName"];
     model.a_message=content;
-    model.a_type=chatTypeMe;
     model.a_avatarUrl=[LoginSqlite getdata:@"userImage"];
     model.a_msgType = @"01";
     model.a_localId = timestamp;
-    model.messageStatus = ChatMessageStatusProcess;
+    
     NSDate* date=[NSDate date];
     NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
     formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";
@@ -514,7 +516,19 @@
     ChatMessageModel* model = [self findModelWithServerId:messageId];
     ChatMessageModel* newModel = [[ChatMessageModel alloc] init];
     newModel.a_type = chatTypeMe;
-    newModel.dict = model.dict;
+    newModel.a_name = [LoginSqlite getdata:@"userName"];
+    newModel.a_avatarUrl = [LoginSqlite getdata:@"userImage"];
+    newModel.messageStatus = ChatMessageStatusSucess;
+    
+    newModel.a_id = model.a_id;
+    newModel.a_message = model.a_message;
+    newModel.a_msgType = model.a_msgType;
+    newModel.a_localId = model.a_localId;
+    newModel.a_localImage = model.a_localImage;
+    newModel.a_isLocal = model.a_isLocal;
+    newModel.a_imageWidth = model.a_imageWidth;
+    newModel.a_imageHeight = model.a_imageHeight;
+    newModel.a_bigImageUrl = model.a_bigImageUrl;
     
     NSDate* date=[NSDate date];
     NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
