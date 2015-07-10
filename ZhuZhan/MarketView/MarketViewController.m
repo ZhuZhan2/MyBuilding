@@ -355,8 +355,10 @@
             self.zwAdView.hidePageControl=NO;/**设置圆点是否隐藏*/
             if(self.bannerImagesArr.count == 0 || self.bannerImagesArr.count == 1){
                 self.zwAdView.adScrollView.scrollEnabled = NO;
+                self.zwAdView.adAutoplay=NO;/**自动播放*/
             }else{
                 self.zwAdView.adScrollView.scrollEnabled = YES;
+                self.zwAdView.adAutoplay=YES;/**自动播放*/
             }
             [self.zwAdView loadAdDataThenStart];
         }
