@@ -47,6 +47,7 @@
 
 @property(nonatomic,strong)RKBaseTableView* tableView;
 @property(nonatomic,strong)UIView* tableViewNoDataView;
+@property(nonatomic)CGFloat tableViewOriginYFromNavi;
 -(void)initTableView;
 
 @property(nonatomic,strong)UISearchBar* searchBar;

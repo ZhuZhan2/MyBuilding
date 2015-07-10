@@ -399,7 +399,7 @@
 
     CGRect frame = self.tableView.frame;
     CGFloat changeHeight = CGRectGetHeight(self.chatToolBar.frame)-[ChatToolBar orginChatToolBarHeight];
-    frame.size.height = kScreenHeight-CGRectGetHeight(self.chatToolBar.frame)-64;
+    frame.size.height = kScreenHeight-CGRectGetHeight(self.chatToolBar.frame)-64-self.tableViewOriginYFromNavi;
     frame.origin.y = CGRectGetMinY(self.chatToolBar.frame)-CGRectGetHeight(frame);
     self.tableView.frame = frame;
     
