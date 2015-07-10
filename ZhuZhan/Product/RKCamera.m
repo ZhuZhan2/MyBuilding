@@ -84,6 +84,7 @@
 }
 
 + (UIImage*)setUpLowQualityImageWithOriginImage:(UIImage*)originQualityImage demandSize:(CGSize)demandSize needFullImage:(BOOL)needFullImage{
+
     if (CGSizeEqualToSize(demandSize, CGSizeZero)) {
         return originQualityImage;
     }

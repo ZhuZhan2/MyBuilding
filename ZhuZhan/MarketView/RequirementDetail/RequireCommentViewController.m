@@ -283,14 +283,16 @@
 -(void)headClick:(NSIndexPath *)indexPath{
     ContactCommentModel *model = self.modelsArr[indexPath.row];
     if(!model.a_isService){
-        if (model.a_isPersonal) {
-            PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
-            personalVC.contactId = model.a_loginId;
-            [self.navigationController pushViewController:personalVC animated:YES];
-        }else{
-            CompanyDetailViewController* vc = [[CompanyDetailViewController alloc] init];
-            vc.companyId = model.a_loginId;
-            [self.navigationController pushViewController:vc animated:YES];
+        if(!model.a_isSelf){
+            if (model.a_isPersonal) {
+                PersonalDetailViewController *personalVC = [[PersonalDetailViewController alloc] init];
+                personalVC.contactId = model.a_loginId;
+                [self.navigationController pushViewController:personalVC animated:YES];
+            }else{
+                CompanyDetailViewController* vc = [[CompanyDetailViewController alloc] init];
+                vc.companyId = model.a_loginId;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }
     }
 }

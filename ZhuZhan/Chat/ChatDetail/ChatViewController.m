@@ -434,7 +434,8 @@
 - (void)sendImageWithLowQualityImage:(UIImage*)lowQualityImage originQualityImage:(UIImage *)originQualityImage{
     UInt64 recordTime = [[NSDate date] timeIntervalSince1970]*1000;
     NSString *timeId = [NSString stringWithFormat:@"%llu", recordTime];
-    NSData *imageData = UIImageJPEGRepresentation(originQualityImage, 1);
+    NSData *imageData = UIImageJPEGRepresentation(originQualityImage, 0.5);
+    NSLog(@"%f",(double)imageData.length/(1024*1024));
     if((double)imageData.length/(1024*1024)>5){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"图片不能大于5M" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
