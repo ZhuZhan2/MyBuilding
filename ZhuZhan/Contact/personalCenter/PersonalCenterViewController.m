@@ -127,7 +127,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self setupRefresh];
     
     showArr = [[NSMutableArray alloc] init];
-    
+
     [self downLoad:nil];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -137,6 +137,34 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changName" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeBackgroundImage) name:@"changBackground" object:nil];
     
+    //我的积分按钮
+    UIButton* myPointBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    myPointBtn.frame = CGRectMake(0, 200, 100, 100);
+    [myPointBtn setTitle:@"我的积分" forState:UIControlStateNormal];
+    [myPointBtn addTarget:self action:@selector(myPointBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    //签到按钮
+    UIButton* signBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    signBtn.frame = CGRectMake(0, 400, 100, 100);
+    [signBtn setTitle:@"签到" forState:UIControlStateNormal];
+    [signBtn addTarget:self action:@selector(signBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+
+    [self.navigationController.view addSubview:myPointBtn];
+    [self.navigationController.view addSubview:signBtn];
+}
+
+/**
+ *  我的积分按钮被点击
+ */
+- (void)myPointBtnClicked{
+    NSLog(@"我的积分按钮被点击");
+}
+
+/**
+ *  签到按钮被点击
+ */
+- (void)signBtnClicked{
+    NSLog(@"签到按钮被点击");
 }
 
 -(void)getThreeBtn{
@@ -195,6 +223,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     fourBtn.layer.cornerRadius = 4.0;
     [threeBtnsView addSubview:fourBtn];
     
+
 //    for (int i=0;i<2;i++) {
 //        UIView* view=[[UIView alloc]initWithFrame:CGRectMake(width*(i+1), 10, 2, 30)];
 //        view.backgroundColor=AllSeperatorLineColor;

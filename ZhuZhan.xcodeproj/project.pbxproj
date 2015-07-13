@@ -956,6 +956,9 @@
 		5BAF1D1B1B1567FE009C47BD /* 默认图_公司详情@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BAF1D191B1567FE009C47BD /* 默认图_公司详情@2x.png */; };
 		5BAF1D1E1B1568CE009C47BD /* 箭头001.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BAF1D1C1B1568CE009C47BD /* 箭头001.png */; };
 		5BAF1D1F1B1568CE009C47BD /* 箭头001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BAF1D1D1B1568CE009C47BD /* 箭头001@2x.png */; };
+		5BB740861B5355CE00F2095C /* MyPointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740851B5355CE00F2095C /* MyPointViewController.m */; };
+		5BB7408A1B5356EF00F2095C /* MyPointDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740891B5356EF00F2095C /* MyPointDetailViewController.m */; };
+		5BB7408E1B53585B00F2095C /* MyPointApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7408D1B53585B00F2095C /* MyPointApi.m */; };
 		5BB9A53A1AB6EE4300B5B2D8 /* RKStageChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9A5391AB6EE4300B5B2D8 /* RKStageChooseView.m */; };
 		5BB9A53D1AB6F84300B5B2D8 /* AskPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9A53C1AB6F84300B5B2D8 /* AskPriceViewController.m */; };
 		5BBA27891B1FE45200ADE3FC /* PublishRequirementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA27881B1FE45200ADE3FC /* PublishRequirementViewController.m */; };
@@ -3285,6 +3288,12 @@
 		5BAF1D191B1567FE009C47BD /* 默认图_公司详情@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认图_公司详情@2x.png"; sourceTree = "<group>"; };
 		5BAF1D1C1B1568CE009C47BD /* 箭头001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "箭头001.png"; sourceTree = "<group>"; };
 		5BAF1D1D1B1568CE009C47BD /* 箭头001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "箭头001@2x.png"; sourceTree = "<group>"; };
+		5BB740841B5355CE00F2095C /* MyPointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPointViewController.h; sourceTree = "<group>"; };
+		5BB740851B5355CE00F2095C /* MyPointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPointViewController.m; sourceTree = "<group>"; };
+		5BB740881B5356EF00F2095C /* MyPointDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPointDetailViewController.h; sourceTree = "<group>"; };
+		5BB740891B5356EF00F2095C /* MyPointDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPointDetailViewController.m; sourceTree = "<group>"; };
+		5BB7408C1B53585B00F2095C /* MyPointApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPointApi.h; sourceTree = "<group>"; };
+		5BB7408D1B53585B00F2095C /* MyPointApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPointApi.m; sourceTree = "<group>"; };
 		5BB9A5381AB6EE4300B5B2D8 /* RKStageChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKStageChooseView.h; sourceTree = "<group>"; };
 		5BB9A5391AB6EE4300B5B2D8 /* RKStageChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKStageChooseView.m; sourceTree = "<group>"; };
 		5BB9A53B1AB6F84300B5B2D8 /* AskPriceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceViewController.h; sourceTree = "<group>"; };
@@ -5782,6 +5791,8 @@
 		04D10BB619AE016A0097C0C6 /* personalCenter */ = {
 			isa = PBXGroup;
 			children = (
+				5BB740831B53559800F2095C /* Sign */,
+				5BB740821B53559200F2095C /* MyPoint */,
 				D3F455A11B312F9400EE20A5 /* MyProject */,
 				D3F455811B3117AF00EE20A5 /* PersonalHeadView */,
 				D3E0BED21B285164002F01CF /* MyMarket */,
@@ -6822,6 +6833,41 @@
 			path = PersonalProject;
 			sourceTree = "<group>";
 		};
+		5BB740821B53559200F2095C /* MyPoint */ = {
+			isa = PBXGroup;
+			children = (
+				5BB740841B5355CE00F2095C /* MyPointViewController.h */,
+				5BB740851B5355CE00F2095C /* MyPointViewController.m */,
+				5BB740871B5356CF00F2095C /* MyPointDetail */,
+			);
+			path = MyPoint;
+			sourceTree = "<group>";
+		};
+		5BB740831B53559800F2095C /* Sign */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sign;
+			sourceTree = "<group>";
+		};
+		5BB740871B5356CF00F2095C /* MyPointDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5BB740881B5356EF00F2095C /* MyPointDetailViewController.h */,
+				5BB740891B5356EF00F2095C /* MyPointDetailViewController.m */,
+			);
+			path = MyPointDetail;
+			sourceTree = "<group>";
+		};
+		5BB7408B1B53583700F2095C /* MyPoint */ = {
+			isa = PBXGroup;
+			children = (
+				5BB7408C1B53585B00F2095C /* MyPointApi.h */,
+				5BB7408D1B53585B00F2095C /* MyPointApi.m */,
+			);
+			path = MyPoint;
+			sourceTree = "<group>";
+		};
 		5BB9A5341AB6EC3100B5B2D8 /* Business */ = {
 			isa = PBXGroup;
 			children = (
@@ -7618,6 +7664,7 @@
 		D3AC618B19B6BF930015B62F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5BB7408B1B53583700F2095C /* MyPoint */,
 				5BFC82901B058D3400CD9ED6 /* ForcedUpdate */,
 				D3D090401AF8C3CC00C8AC55 /* MarketModel */,
 				D3D484031ADFCE8B004AF972 /* AskPriceMessageModel */,
@@ -10030,6 +10077,7 @@
 				D35E12411ABD65D8007C6726 /* AskPriceDetailViewController.m in Sources */,
 				0426C2B719922D5A00CD8822 /* GPUImageSingleComponentGaussianBlurFilter.m in Sources */,
 				D31BBB981AD3E3F500919B8B /* SWCellScrollView.m in Sources */,
+				5BB740861B5355CE00F2095C /* MyPointViewController.m in Sources */,
 				5BBAA98C1B1C205000167496 /* CommentModel.m in Sources */,
 				D3D090271AF8964300C8AC55 /* MarketViewController.m in Sources */,
 				5B5773EB1AC19E8700C17DBF /* RKImageModel.m in Sources */,
@@ -10164,6 +10212,7 @@
 				D3B05A731B4CF6EE00B34FD6 /* ChatImageSqlite.m in Sources */,
 				5BAE1C761B0F3090004A4B3E /* PersonalInfoController.m in Sources */,
 				5B7E59061ABBD9B90063B400 /* ProvidePriceInfoController.m in Sources */,
+				5BB7408A1B5356EF00F2095C /* MyPointDetailViewController.m in Sources */,
 				5BE7B6C61B1D5243003467ED /* ContactsActiveCell.m in Sources */,
 				0426C27919922D5A00CD8822 /* GPUImageHighPassFilter.m in Sources */,
 				0426C2E919922D5A00CD8822 /* FaceppPerson.m in Sources */,
@@ -10293,6 +10342,7 @@
 				042D9DC719B4A1C600689C5D /* JSONKit.m in Sources */,
 				5BF31B6A1AB025FD00DA87F5 /* DiscussionGroupView.m in Sources */,
 				D32C88CF19D79E0900D1BA1D /* PersonalCenterModel.m in Sources */,
+				5BB7408E1B53585B00F2095C /* MyPointApi.m in Sources */,
 				5BAE1C5C1B0EF60B004A4B3E /* MyFocusCompanyController.m in Sources */,
 				5BBA27901B1FE9AB00ADE3FC /* SingleCategoryView.m in Sources */,
 				5BAE1C5F1B0EFB9C004A4B3E /* RKController.m in Sources */,
