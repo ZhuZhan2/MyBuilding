@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BMapKit.h"
+#import <BaiduMapAPI/BMapKit.h>
 #import "SocketManage.h"
 #import "GCDAsyncSocket.h"
 #define KAPI_KEY @"25d987b4f4f915bf02aaecde055db243"//face++

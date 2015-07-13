@@ -9,24 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "iflyMSC/IFlySpeechRecognizerDelegate.h"
 #import "DKCircleButton.h"
-//forward declare
 @class PopupView;
-@class IFlyDataUploader;
-@class IFlySpeechUnderstander;
+@class IFlySpeechRecognizer;
 
-/**
- 语音理解demo
- */
 @interface UnderstandViewController : UIViewController<IFlySpeechRecognizerDelegate>
 {
     UILabel *label;
     DKCircleButton *button;
     NSTimer *timer;
 }
-@property (nonatomic,strong) IFlySpeechUnderstander *iFlySpeechUnderstander;
-@property (nonatomic,strong) PopupView          * popView;
-@property (nonatomic,weak)   UITextView         * textView;
-@property (nonatomic,strong) NSString               *result;
-@property (nonatomic)         BOOL                  isCanceled;
-
+@property (nonatomic,strong) IFlySpeechRecognizer *speechUnderstander;
+@property (nonatomic,strong) PopupView* popView;
+@property (nonatomic,weak)   UITextView* textView;
+@property (nonatomic,copy) NSString* result;
 @end
