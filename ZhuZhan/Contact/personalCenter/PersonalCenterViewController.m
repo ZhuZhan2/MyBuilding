@@ -138,37 +138,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeHeadImage) name:@"changHead" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changName" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeBackgroundImage) name:@"changBackground" object:nil];
-    
-    //我的积分按钮
-    UIButton* myPointBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    myPointBtn.frame = CGRectMake(0, 200, 100, 100);
-    [myPointBtn setTitle:@"我的积分" forState:UIControlStateNormal];
-    [myPointBtn addTarget:self action:@selector(myPointBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    
-    //签到按钮
-    UIButton* signBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    signBtn.frame = CGRectMake(0, 400, 100, 100);
-    [signBtn setTitle:@"签到" forState:UIControlStateNormal];
-    [signBtn addTarget:self action:@selector(signBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-
-    [self.navigationController.view addSubview:myPointBtn];
-    [self.navigationController.view addSubview:signBtn];
-}
-
-/**
- *  我的积分按钮被点击
- */
-- (void)myPointBtnClicked{
-    NSLog(@"我的积分按钮被点击");
-    MyPointViewController* vc = [[MyPointViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-/**
- *  签到按钮被点击
- */
-- (void)signBtnClicked{
-    NSLog(@"签到按钮被点击");
 }
 
 -(void)getThreeBtn{
