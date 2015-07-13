@@ -92,7 +92,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setBackgroundImageUrlString:[LoginSqlite getdata:@"backgroundImage"]];
     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImage"]]];
     [_pathCover hidewaterDropRefresh];
-    [_pathCover setNameFrame:CGRectMake(-40, 25, 320, 20) font:[UIFont systemFontOfSize:14]];
+    [_pathCover setNameFrame:CGRectMake(-40, 15, 320, 20) font:[UIFont systemFontOfSize:14]];
+    [_pathCover setBirthdayFrame:CGRectMake(93, 35, 320, 20) font:[UIFont systemFontOfSize:14]];
     [_pathCover setHeadImageFrame:CGRectMake(20, 5, 61, 61)];
     if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
         [_pathCover.headImage.layer setMasksToBounds:YES];
@@ -103,7 +104,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
     [_pathCover setFootViewFrame:CGRectMake(0, -180, 320, 320)];
 
-    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
+    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, @"可用积分：10000",XHBirthdayKey,nil]];
     
     [self.headView addSubview:self.pathCover];
     [self.headView addSubview:self.personalHeadView];

@@ -10,7 +10,7 @@
 #import "PersonalBlockView.h"
 #import "RKShadowView.h"
 #define kImgWH 60
-#define kInitCount 6
+#define kInitCount 8
 @interface PersonalHeadView()<PersonalBlockViewDelegate>
 @property(nonatomic,strong)NSMutableArray *titlesArr;
 @property(nonatomic,strong)UIImageView *bgImageView;
@@ -28,7 +28,7 @@
         [self addSubview:self.bottomImageView];
 //        [self addSubview:self.headImageView];
 //        [self addSubview:self.nameLabel];
-        [self adjustImagePosWithColumns:3];
+        [self adjustImagePosWithColumns:4];
     }
     return self;
 }
@@ -77,7 +77,7 @@
 
 -(NSMutableArray *)titlesArr{
     if(!_titlesArr){
-        _titlesArr = [[NSMutableArray alloc] initWithObjects:@"我的询价",@"我的报价",@"我的合同",@"我的需求",@"我的关注",@"我的项目", nil];
+        _titlesArr = [[NSMutableArray alloc] initWithObjects:@"我的询价",@"我的报价",@"我的合同",@"我的需求",@"我的关注",@"我的项目",@"我的积分",@"签到", nil];
     }
     return _titlesArr;
 }
@@ -108,7 +108,7 @@
         // 列数（col）决定了x
         CGFloat x = oneX + col * (kImgWH + margin);
         // 行数（row）决定了y
-        CGFloat y = oneY + row * (kImgWH + margin-23);
+        CGFloat y = oneY + row * (kImgWH + margin);
         
         int no = i % 9; // no == [0, 8]
         NSString *imgName = [NSString stringWithFormat:@"personal_center_01%d.png", no];

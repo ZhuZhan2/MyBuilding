@@ -72,6 +72,7 @@ extern NSString *const XHTitkeKey;
 -(void)setHeadTaget;
 //设置名字位置
 -(void)setNameFrame:(CGRect)newFrame font:(UIFont *)font;
+-(void)setBirthdayFrame:(CGRect)newFrame font:(UIFont *)font;
 //设置黑色背景位置
 -(void)setFootViewFrame:(CGRect)newFrame;
 
