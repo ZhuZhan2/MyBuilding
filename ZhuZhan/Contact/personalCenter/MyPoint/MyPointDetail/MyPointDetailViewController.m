@@ -12,6 +12,7 @@
 #import "RKShadowView.h"
 #import "MyPointDetailCell.h"
 #import "RKViewFactory.h"
+#import "PointDetailModel.h"
 
 @interface MyPointDetailViewController ()
 @property (nonatomic, strong)MyPointDetailView* myPointDetailView;
@@ -26,6 +27,7 @@
  */
 @property (nonatomic)NSInteger startIndex;
 @property (nonatomic, strong)UIView* noneDataView;
+@property (nonatomic, strong)PointDetailModel* pointModel;
 @end
 
 @implementation MyPointDetailViewController
@@ -36,6 +38,7 @@
     [self initStageChooseViewWithStages:@[@"今天",@"昨天",@"全部"] numbers:nil underLineIsWhole:YES normalColor:AllLightGrayColor highlightColor:BlueColor];
     [self initTableView];
     [self setUpRefreshWithNeedHeaderRefresh:YES needFooterRefresh:YES];
+    [self firstNetWork];
 }
 
 
@@ -154,7 +157,13 @@
  *  进界面的第一个网络请求
  */
 - (void)firstNetWork{
-    
+    [MyPointApi GetPointDetailWithBlock:^(PointDetailModel *model, NSError *error) {
+        if (!error) {
+            self.pointModel = model;
+            self.myPointDetailView = nil;
+            [self.tableView reloadData];
+        }
+    } noNetWork:nil];
 }
 
 /**
@@ -167,7 +176,8 @@
 
 - (MyPointDetailView *)myPointDetailView{
     if (!_myPointDetailView) {
-        _myPointDetailView = [MyPointDetailView myPointDetailViewWithMainTitle:@"我的积分" subTitle:@"123456789"];
+        NSString* subTitle = [NSString stringWithFormat:@"%d",self.pointModel.a_points];
+        _myPointDetailView = [MyPointDetailView myPointDetailViewWithMainTitle:@"我的积分" subTitle:subTitle];
         UIView* sepe = [RKShadowView seperatorLineDoubleWithHeight:10 top:0];
         _myPointDetailView.bottomView = sepe;
     }

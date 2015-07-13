@@ -10,6 +10,7 @@
 #import "PointDetailModel.h"
 
 @interface MyPointApi : NSObject
+//历史积分详情
 + (NSURLSessionDataTask *)GetPointsLogWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary*)dic startIndex:(NSInteger)startIndex noNetWork:(void(^)())noNetWork;
 
 //获取积分详情
