@@ -188,6 +188,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
  */
 - (void)myPointBtnClicked{
     NSLog(@"我的积分按钮被点击");
+    MyPointViewController* vc = [[MyPointViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**

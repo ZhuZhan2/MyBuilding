@@ -7,7 +7,7 @@
 //
 
 #import "MyPointViewController.h"
-
+#import "MyPointDetailViewController.h"
 @interface MyPointViewController ()
 
 @end
@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    [self initNavi];
 }
 
 /**
@@ -32,6 +32,7 @@
  *  右按钮被点击
  */
 - (void)rightBtnClicked{
-    
+    MyPointDetailViewController* vc = [[MyPointDetailViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end
