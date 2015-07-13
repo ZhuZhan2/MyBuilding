@@ -45,6 +45,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+/**
+ *  初始化nav
+ */
 -(void)initNav{
     self.title = @"签到";
     //LeftButton设置属性
@@ -56,6 +59,9 @@
     self.navigationItem.leftBarButtonItem = leftButtonItem;
 }
 
+/**
+ *  返回按钮点击事件
+ */
 -(void)leftBtnClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -76,6 +82,9 @@
     [homeVC homePageTabBarHide];
 }
 
+/**
+ *  获取积分详情
+ */
 -(void)getMyPoint{
     [MyPointApi GetPointDetailWithBlock:^(PointDetailModel *model, NSError *error) {
         if(!error){

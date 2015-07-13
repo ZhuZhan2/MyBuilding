@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyPointTopView : UIView
+@protocol MyPointTopViewDelegate <NSObject>
+-(void)gotoPointDetailView:(NSInteger)tag;
+@end
 
+@interface MyPointTopView : UIView
+@property(nonatomic,weak)id<MyPointTopViewDelegate>delegate;
+-(void)setPoint:(NSString *)point;
 @end
