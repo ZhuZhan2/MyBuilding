@@ -964,6 +964,7 @@
 		5BB740911B537C4A00F2095C /* MyPointDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740901B537C4A00F2095C /* MyPointDetailView.m */; };
 		5BB740971B538F3C00F2095C /* MyPointDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740961B538F3C00F2095C /* MyPointDetailCell.m */; };
 		5BB7409A1B53930300F2095C /* MyPointHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740991B53930300F2095C /* MyPointHistoryModel.m */; };
+		5BB7409E1B53C30D00F2095C /* PointRuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7409D1B53C30D00F2095C /* PointRuleViewController.m */; };
 		5BB9A53A1AB6EE4300B5B2D8 /* RKStageChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9A5391AB6EE4300B5B2D8 /* RKStageChooseView.m */; };
 		5BB9A53D1AB6F84300B5B2D8 /* AskPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9A53C1AB6F84300B5B2D8 /* AskPriceViewController.m */; };
 		5BBA27891B1FE45200ADE3FC /* PublishRequirementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA27881B1FE45200ADE3FC /* PublishRequirementViewController.m */; };
@@ -3267,6 +3268,8 @@
 		5BB740961B538F3C00F2095C /* MyPointDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPointDetailCell.m; sourceTree = "<group>"; };
 		5BB740981B53930300F2095C /* MyPointHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPointHistoryModel.h; sourceTree = "<group>"; };
 		5BB740991B53930300F2095C /* MyPointHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPointHistoryModel.m; sourceTree = "<group>"; };
+		5BB7409C1B53C30D00F2095C /* PointRuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointRuleViewController.h; sourceTree = "<group>"; };
+		5BB7409D1B53C30D00F2095C /* PointRuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointRuleViewController.m; sourceTree = "<group>"; };
 		5BB9A5381AB6EE4300B5B2D8 /* RKStageChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKStageChooseView.h; sourceTree = "<group>"; };
 		5BB9A5391AB6EE4300B5B2D8 /* RKStageChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKStageChooseView.m; sourceTree = "<group>"; };
 		5BB9A53B1AB6F84300B5B2D8 /* AskPriceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceViewController.h; sourceTree = "<group>"; };
@@ -6784,6 +6787,7 @@
 				5BB740841B5355CE00F2095C /* MyPointViewController.h */,
 				5BB740851B5355CE00F2095C /* MyPointViewController.m */,
 				5BB740871B5356CF00F2095C /* MyPointDetail */,
+				5BB7409B1B53C2E700F2095C /* PointRule */,
 				D31FACFC1B5399F400B32661 /* MyPointTopView.h */,
 				D31FACFD1B5399F400B32661 /* MyPointTopView.m */,
 			);
@@ -6823,6 +6827,15 @@
 				5BB740991B53930300F2095C /* MyPointHistoryModel.m */,
 			);
 			path = MyPoint;
+			sourceTree = "<group>";
+		};
+		5BB7409B1B53C2E700F2095C /* PointRule */ = {
+			isa = PBXGroup;
+			children = (
+				5BB7409C1B53C30D00F2095C /* PointRuleViewController.h */,
+				5BB7409D1B53C30D00F2095C /* PointRuleViewController.m */,
+			);
+			path = PointRule;
 			sourceTree = "<group>";
 		};
 		5BB9A5341AB6EC3100B5B2D8 /* Business */ = {
@@ -9987,6 +10000,7 @@
 				5BD9DE831AF89533007BF9B5 /* SearchMenuView.m in Sources */,
 				042D9ECD19B81BE400689C5D /* ContactCell.m in Sources */,
 				D3A4283B19C94E5E00BAB6C7 /* ActivesModel.m in Sources */,
+				5BB7409E1B53C30D00F2095C /* PointRuleViewController.m in Sources */,
 				5B5894F119FF9D24001CC09E /* EndEditingGesture.m in Sources */,
 				D3C021921AE0A4EF000F1742 /* ContractsListSingleModel.m in Sources */,
 				D3D6B7451AD6A63500C8BF91 /* ChatMessageApi.m in Sources */,

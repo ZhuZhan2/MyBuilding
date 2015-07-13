@@ -510,4 +510,12 @@
 - (void)footerRereshing{
     
 }
+
+- (void)endHeaderRefreshing{
+    [self.tableView headerEndRefreshing];
+}
+
+- (void)endFooterRefreshing{
+    [self.tableView footerEndRefreshing];
+}
 @end

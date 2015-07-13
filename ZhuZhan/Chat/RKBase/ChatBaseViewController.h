@@ -79,6 +79,9 @@
 - (void)setUpRefreshWithNeedHeaderRefresh:(BOOL)needHeaderRefresh needFooterRefresh:(BOOL)needFooterRefresh;
 - (void)headerRereshing;
 - (void)footerRereshing;
+- (void)endHeaderRefreshing;
+- (void)endFooterRefreshing;
+
 
 //0为白背景，1为黑透明背景
 -(void)startLoadingViewWithOption:(NSInteger)option;

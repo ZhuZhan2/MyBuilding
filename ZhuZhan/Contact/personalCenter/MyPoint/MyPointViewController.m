@@ -11,7 +11,7 @@
 #import "MyPointTopView.h"
 #import "MyPointApi.h"
 #import "PointDetailModel.h"
-
+#import "PointRuleViewController.h"
 @interface MyPointViewController ()<MyPointTopViewDelegate>
 @property(nonatomic,strong)UIScrollView *scrollView;
 @property(nonatomic,strong)MyPointTopView *myPointTopView;
@@ -81,7 +81,11 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-            
+        case 1:{
+            PointRuleViewController* vc = [[PointRuleViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
         default:
             break;
     }
