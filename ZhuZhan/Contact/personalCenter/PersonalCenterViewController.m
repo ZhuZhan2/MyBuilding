@@ -33,6 +33,8 @@
 #import "PersonalCenterProjectTableViewCell.h"
 #import "RequirementDetailViewController.h"
 #import "MyPointViewController.h"
+#import "SignViewController.h"
+#import "MyPointApi.h"
 @interface PersonalCenterViewController ()<PersonalHeadViewDelegate>
 @property(nonatomic,strong)UIView *headView;
 @property(nonatomic,strong)UIView *myFocusView;
@@ -105,7 +107,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
     [_pathCover setFootViewFrame:CGRectMake(0, -180, 320, 320)];
 
-    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, @"可用积分：10000",XHBirthdayKey,nil]];
+    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, @"",XHBirthdayKey,nil]];
     
     [self.headView addSubview:self.pathCover];
     [self.headView addSubview:self.personalHeadView];
@@ -138,6 +140,9 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeHeadImage) name:@"changHead" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changName" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeBackgroundImage) name:@"changBackground" object:nil];
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (newPoint) name:@"newPoint" object:nil];
+    
+    [self getMyPoint];
     
     //我的积分按钮
     UIButton* myPointBtn = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -153,6 +158,29 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
     [self.navigationController.view addSubview:myPointBtn];
     [self.navigationController.view addSubview:signBtn];
+}
+
+/*
+ points	string	积分总数
+ days	string	连续签到天数
+ toDayGet	string	今日可领积分数
+ hasSign	string	今日签到状态
+ status	string	积分账户状态
+ */
+-(void)getMyPoint{
+    [MyPointApi GetPointDetailWithBlock:^(NSMutableDictionary *dict, NSError *error) {
+        if(!error){
+            NSLog(@"dict==>%@",dict[@"loginId"]);
+        }else{
+            if([ErrorCode errorCode:error] == 403){
+                [LoginAgain AddLoginView:NO];
+            }else{
+                [ErrorCode alert];
+            }
+        }
+    } noNetWork:^{
+        [ErrorCode alert];
+    }];
 }
 
 /**
@@ -505,6 +533,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setBackgroundImageUrlString:[LoginSqlite getdata:@"backgroundImage"]];
 }
 
+-(void)newPoint{
+    
+}
+
 -(void)gotoAskPrice:(UIButton *)button{
     NSString* otherStr;
     if(button.tag == 1){
@@ -645,7 +677,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             break;
         case 7:
         {
-            MyPointViewController *view = [[MyPointViewController alloc] init];
+            SignViewController *view = [[SignViewController alloc] init];
             [self.navigationController pushViewController:view animated:YES];
         }
             break;
