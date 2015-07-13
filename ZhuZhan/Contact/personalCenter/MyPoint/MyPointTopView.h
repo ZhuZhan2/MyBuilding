@@ -15,4 +15,5 @@
 @interface MyPointTopView : UIView
 @property(nonatomic,weak)id<MyPointTopViewDelegate>delegate;
 -(void)setPoint:(NSString *)point;
+-(void)setStatus:(NSString *)status;
 @end
