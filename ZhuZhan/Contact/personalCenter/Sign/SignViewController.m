@@ -95,7 +95,7 @@
             }
             self.pointLabel.text = [NSString stringWithFormat:@"%d",self.pointModel.a_points];
             self.signDayLabel.text = [NSString stringWithFormat:@"你已连续签到%@天",self.pointModel.a_signDays];
-            self.signPointLabel.text = [NSString stringWithFormat:@"今天签到可获得%@积分",self.pointModel.a_toDayGet];
+            self.signPointLabel.text = [NSString stringWithFormat:@"%@",self.pointModel.a_toDayGet];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];

@@ -6819,6 +6819,8 @@
 				5BB7408D1B53585B00F2095C /* MyPointApi.m */,
 				D31FACF51B53840200B32661 /* PointDetailModel.h */,
 				D31FACF61B53840200B32661 /* PointDetailModel.m */,
+				5BB740981B53930300F2095C /* MyPointHistoryModel.h */,
+				5BB740991B53930300F2095C /* MyPointHistoryModel.m */,
 			);
 			path = MyPoint;
 			sourceTree = "<group>";
