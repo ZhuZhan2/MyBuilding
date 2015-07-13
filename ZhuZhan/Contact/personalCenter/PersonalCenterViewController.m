@@ -35,6 +35,8 @@
 #import "MyPointViewController.h"
 #import "SignViewController.h"
 #import "MyPointApi.h"
+#import "PointDetailModel.h"
+
 @interface PersonalCenterViewController ()<PersonalHeadViewDelegate>
 @property(nonatomic,strong)UIView *headView;
 @property(nonatomic,strong)UIView *myFocusView;
@@ -143,21 +145,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (newPoint) name:@"newPoint" object:nil];
     
     [self getMyPoint];
-    
-    //我的积分按钮
-    UIButton* myPointBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    myPointBtn.frame = CGRectMake(0, 200, 100, 100);
-    [myPointBtn setTitle:@"我的积分" forState:UIControlStateNormal];
-    [myPointBtn addTarget:self action:@selector(myPointBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    
-    //签到按钮
-    UIButton* signBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    signBtn.frame = CGRectMake(0, 400, 100, 100);
-    [signBtn setTitle:@"签到" forState:UIControlStateNormal];
-    [signBtn addTarget:self action:@selector(signBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-
-    [self.navigationController.view addSubview:myPointBtn];
-    [self.navigationController.view addSubview:signBtn];
 }
 
 /*
@@ -168,9 +155,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
  status	string	积分账户状态
  */
 -(void)getMyPoint{
-    [MyPointApi GetPointDetailWithBlock:^(NSMutableDictionary *dict, NSError *error) {
+    [MyPointApi GetPointDetailWithBlock:^(PointDetailModel *model, NSError *error) {
         if(!error){
-            NSLog(@"dict==>%@",dict[@"loginId"]);
+            PointDetailModel *pointmModel = model;
+            [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"我的积分：%d",pointmModel.a_points],XHBirthdayKey,nil]];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -181,22 +169,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     } noNetWork:^{
         [ErrorCode alert];
     }];
-}
-
-/**
- *  我的积分按钮被点击
- */
-- (void)myPointBtnClicked{
-    NSLog(@"我的积分按钮被点击");
-    MyPointViewController* vc = [[MyPointViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-/**
- *  签到按钮被点击
- */
-- (void)signBtnClicked{
-    NSLog(@"签到按钮被点击");
 }
 
 -(void)getThreeBtn{
@@ -536,7 +508,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)newPoint{
-    
+    [self getMyPoint];
 }
 
 -(void)gotoAskPrice:(UIButton *)button{

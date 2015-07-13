@@ -1398,6 +1398,10 @@
 		D31FACF01B5362AA00B32661 /* personal_center_017.png in Resources */ = {isa = PBXBuildFile; fileRef = D31FACEC1B5362AA00B32661 /* personal_center_017.png */; };
 		D31FACF11B5362AA00B32661 /* personal_center_017@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D31FACED1B5362AA00B32661 /* personal_center_017@2x.png */; };
 		D31FACF41B53779900B32661 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FACF31B53779900B32661 /* SignViewController.m */; };
+		D31FACF71B53840200B32661 /* PointDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FACF61B53840200B32661 /* PointDetailModel.m */; };
+		D31FACFA1B538FE200B32661 /* poing_signEnd.png in Resources */ = {isa = PBXBuildFile; fileRef = D31FACF81B538FE200B32661 /* poing_signEnd.png */; };
+		D31FACFB1B538FE200B32661 /* poing_signEnd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D31FACF91B538FE200B32661 /* poing_signEnd@2x.png */; };
+		D31FACFE1B5399F400B32661 /* MyPointTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FACFD1B5399F400B32661 /* MyPointTopView.m */; };
 		D324B1861B2038F400E29E07 /* MarketPublicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B1851B2038F400E29E07 /* MarketPublicListViewController.m */; };
 		D324B1891B203B2300E29E07 /* OtherSearchMaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B1881B203B2300E29E07 /* OtherSearchMaterialViewController.m */; };
 		D324B18F1B204AE000E29E07 /* MarkListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B18E1B204AE000E29E07 /* MarkListTableViewCell.m */; };
@@ -3741,6 +3745,12 @@
 		D31FACED1B5362AA00B32661 /* personal_center_017@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "personal_center_017@2x.png"; sourceTree = "<group>"; };
 		D31FACF21B53779900B32661 /* SignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignViewController.h; sourceTree = "<group>"; };
 		D31FACF31B53779900B32661 /* SignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignViewController.m; sourceTree = "<group>"; };
+		D31FACF51B53840200B32661 /* PointDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointDetailModel.h; sourceTree = "<group>"; };
+		D31FACF61B53840200B32661 /* PointDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointDetailModel.m; sourceTree = "<group>"; };
+		D31FACF81B538FE200B32661 /* poing_signEnd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poing_signEnd.png; sourceTree = "<group>"; };
+		D31FACF91B538FE200B32661 /* poing_signEnd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poing_signEnd@2x.png"; sourceTree = "<group>"; };
+		D31FACFC1B5399F400B32661 /* MyPointTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPointTopView.h; sourceTree = "<group>"; };
+		D31FACFD1B5399F400B32661 /* MyPointTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPointTopView.m; sourceTree = "<group>"; };
 		D324B1841B2038F400E29E07 /* MarketPublicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketPublicListViewController.h; sourceTree = "<group>"; };
 		D324B1851B2038F400E29E07 /* MarketPublicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketPublicListViewController.m; sourceTree = "<group>"; };
 		D324B1871B203B2300E29E07 /* OtherSearchMaterialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherSearchMaterialViewController.h; sourceTree = "<group>"; };
@@ -6765,6 +6775,8 @@
 				5BB740841B5355CE00F2095C /* MyPointViewController.h */,
 				5BB740851B5355CE00F2095C /* MyPointViewController.m */,
 				5BB740871B5356CF00F2095C /* MyPointDetail */,
+				D31FACFC1B5399F400B32661 /* MyPointTopView.h */,
+				D31FACFD1B5399F400B32661 /* MyPointTopView.m */,
 			);
 			path = MyPoint;
 			sourceTree = "<group>";
@@ -6792,6 +6804,8 @@
 			children = (
 				5BB7408C1B53585B00F2095C /* MyPointApi.h */,
 				5BB7408D1B53585B00F2095C /* MyPointApi.m */,
+				D31FACF51B53840200B32661 /* PointDetailModel.h */,
+				D31FACF61B53840200B32661 /* PointDetailModel.m */,
 			);
 			path = MyPoint;
 			sourceTree = "<group>";
@@ -7350,6 +7364,8 @@
 		D31FACD51B53625600B32661 /* 我的积分 */ = {
 			isa = PBXGroup;
 			children = (
+				D31FACF81B538FE200B32661 /* poing_signEnd.png */,
+				D31FACF91B538FE200B32661 /* poing_signEnd@2x.png */,
 				D31FACD61B53625600B32661 /* point_detail.png */,
 				D31FACD71B53625600B32661 /* point_detail@2x.png */,
 				D31FACD81B53625600B32661 /* point_exclamationMark.png */,
@@ -9646,6 +9662,7 @@
 				04BC425019D7E5B3006B5C7B /* 搜索_03@2x.png in Resources */,
 				5BE08E131A3586EA00495EEB /* 010064@2x.png in Resources */,
 				5B4C198719FA543C00C6C57D /* 用户条款_05@2x.png in Resources */,
+				D31FACFA1B538FE200B32661 /* poing_signEnd.png in Resources */,
 				5BE08E441A3586EA00495EEB /* 020025.png in Resources */,
 				D3E1AAFD1A7648FC00BFC6E1 /* Shape-1.png in Resources */,
 				D3F455A01B31189000EE20A5 /* personal_center_015@2x.png in Resources */,
@@ -9661,6 +9678,7 @@
 				04BC420219D7E5B3006B5C7B /* 公司认证员工_03a@2x.png in Resources */,
 				5BE08DBD1A3586EA00495EEB /* 010021@2x.png in Resources */,
 				5B90E1161ADE59B600436CED /* 流程点_已完成.png in Resources */,
+				D31FACFB1B538FE200B32661 /* poing_signEnd@2x.png in Resources */,
 				5B9F26D31B26CA350022B5A8 /* 默认图_需求详情_公司头像126@2x.png in Resources */,
 				D3D9F8DF1ADE7FBE002BBB06 /* 加好友带字@2x.png in Resources */,
 				5BE08E0A1A3586EA00495EEB /* 010060.png in Resources */,
@@ -9868,6 +9886,7 @@
 				0426C27D19922D5A00CD8822 /* GPUImageHSBFilter.m in Sources */,
 				5BA108301B280EF4002545BC /* PublishRequirementProjectView.m in Sources */,
 				5B8A2CF21AAEE0AD00C8F9DE /* ChatListViewCell.m in Sources */,
+				D31FACFE1B5399F400B32661 /* MyPointTopView.m in Sources */,
 				5BD9DE801AF88C3A007BF9B5 /* MarketSearchViewController.m in Sources */,
 				5B9F26EB1B26EEDF0022B5A8 /* RequirementInfoOtherView.m in Sources */,
 				0426C2DC19922D5A00CD8822 /* GPUImageMovieWriter.m in Sources */,
@@ -10409,6 +10428,7 @@
 				0426C28419922D5A00CD8822 /* GPUImageLaplacianFilter.m in Sources */,
 				5B6FF6F81AE49DC000F3A3E0 /* ContractsMainClauseModel.m in Sources */,
 				0426BFF719922CE400CD8822 /* main.m in Sources */,
+				D31FACF71B53840200B32661 /* PointDetailModel.m in Sources */,
 				0426C2C619922D5A00CD8822 /* GPUImageThreeInputFilter.m in Sources */,
 				0426C2CC19922D5A00CD8822 /* GPUImageToonFilter.m in Sources */,
 				D3F455841B3117F900EE20A5 /* PersonalBlockView.m in Sources */,

@@ -7,10 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PointDetailModel.h"
 
 @interface MyPointApi : NSObject
 + (NSURLSessionDataTask *)GetPointsLogWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary*)dic noNetWork:(void(^)())noNetWork;
 
 //获取积分详情
-+ (NSURLSessionDataTask *)GetPointDetailWithBlock:(void (^)(NSMutableDictionary *dict, NSError *error))block  noNetWork:(void(^)())noNetWork;
++ (NSURLSessionDataTask *)GetPointDetailWithBlock:(void (^)(PointDetailModel *model, NSError *error))block  noNetWork:(void(^)())noNetWork;
+
+//签到
++ (NSURLSessionDataTask *)SignWithBlock:(void (^)(int todayPoint, NSError *error))block  noNetWork:(void(^)())noNetWork;
 @end
