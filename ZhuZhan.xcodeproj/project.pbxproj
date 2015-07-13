@@ -1393,6 +1393,10 @@
 		D31FACE71B53625600B32661 /* point_sign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D31FACDD1B53625600B32661 /* point_sign@2x.png */; };
 		D31FACE81B53625600B32661 /* point_signPig.png in Resources */ = {isa = PBXBuildFile; fileRef = D31FACDE1B53625600B32661 /* point_signPig.png */; };
 		D31FACE91B53625600B32661 /* point_signPig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D31FACDF1B53625600B32661 /* point_signPig@2x.png */; };
+		D31FACEE1B5362AA00B32661 /* personal_center_016.png in Resources */ = {isa = PBXBuildFile; fileRef = D31FACEA1B5362AA00B32661 /* personal_center_016.png */; };
+		D31FACEF1B5362AA00B32661 /* personal_center_016@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D31FACEB1B5362AA00B32661 /* personal_center_016@2x.png */; };
+		D31FACF01B5362AA00B32661 /* personal_center_017.png in Resources */ = {isa = PBXBuildFile; fileRef = D31FACEC1B5362AA00B32661 /* personal_center_017.png */; };
+		D31FACF11B5362AA00B32661 /* personal_center_017@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D31FACED1B5362AA00B32661 /* personal_center_017@2x.png */; };
 		D324B1861B2038F400E29E07 /* MarketPublicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B1851B2038F400E29E07 /* MarketPublicListViewController.m */; };
 		D324B1891B203B2300E29E07 /* OtherSearchMaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B1881B203B2300E29E07 /* OtherSearchMaterialViewController.m */; };
 		D324B18F1B204AE000E29E07 /* MarkListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B18E1B204AE000E29E07 /* MarkListTableViewCell.m */; };
@@ -3730,6 +3734,10 @@
 		D31FACDD1B53625600B32661 /* point_sign@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_sign@2x.png"; sourceTree = "<group>"; };
 		D31FACDE1B53625600B32661 /* point_signPig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point_signPig.png; sourceTree = "<group>"; };
 		D31FACDF1B53625600B32661 /* point_signPig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_signPig@2x.png"; sourceTree = "<group>"; };
+		D31FACEA1B5362AA00B32661 /* personal_center_016.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personal_center_016.png; sourceTree = "<group>"; };
+		D31FACEB1B5362AA00B32661 /* personal_center_016@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "personal_center_016@2x.png"; sourceTree = "<group>"; };
+		D31FACEC1B5362AA00B32661 /* personal_center_017.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personal_center_017.png; sourceTree = "<group>"; };
+		D31FACED1B5362AA00B32661 /* personal_center_017@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "personal_center_017@2x.png"; sourceTree = "<group>"; };
 		D324B1841B2038F400E29E07 /* MarketPublicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketPublicListViewController.h; sourceTree = "<group>"; };
 		D324B1851B2038F400E29E07 /* MarketPublicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketPublicListViewController.m; sourceTree = "<group>"; };
 		D324B1871B203B2300E29E07 /* OtherSearchMaterialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherSearchMaterialViewController.h; sourceTree = "<group>"; };
@@ -8474,6 +8482,10 @@
 		D3F455881B31189000EE20A5 /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
+				D31FACEA1B5362AA00B32661 /* personal_center_016.png */,
+				D31FACEB1B5362AA00B32661 /* personal_center_016@2x.png */,
+				D31FACEC1B5362AA00B32661 /* personal_center_017.png */,
+				D31FACED1B5362AA00B32661 /* personal_center_017@2x.png */,
 				D3F455891B31189000EE20A5 /* personal_center_010.png */,
 				D3F4558A1B31189000EE20A5 /* personal_center_010@2x.png */,
 				D3F4558B1B31189000EE20A5 /* personal_center_011.png */,
@@ -8647,6 +8659,7 @@
 				5B7E59161ABC0C7E0063B400 /* 交易_上传报价.png in Resources */,
 				04BC428C19D7E5B3006B5C7B /* 登录_11.png in Resources */,
 				5BE08E871A3586EA00495EEB /* 040001@2x.png in Resources */,
+				D31FACEF1B5362AA00B32661 /* personal_center_016@2x.png in Resources */,
 				D3D9F8D41ADE67AF002BBB06 /* 解散本群带字.png in Resources */,
 				D3D483EC1ADF41FF004AF972 /* 等待验证.png in Resources */,
 				5BE08E031A3586EA00495EEB /* 010056@2x.png in Resources */,
@@ -8942,6 +8955,7 @@
 				04BC40FE19D7E5B3006B5C7B /* 013@2x.png in Resources */,
 				D314A3AA1B15977F00F6A86A /* addComment.png in Resources */,
 				04BC420319D7E5B3006B5C7B /* 公司认证员工_05a.png in Resources */,
+				D31FACF11B5362AA00B32661 /* personal_center_017@2x.png in Resources */,
 				D31FACE01B53625600B32661 /* point_detail.png in Resources */,
 				5BC9E9BE1B16B3F30051A26F /* 首页_搜索分类@2x.png in Resources */,
 				D3E2F4711A11E4D500CF2785 /* 注册_08@2x.png in Resources */,
@@ -8997,6 +9011,7 @@
 				5BE08E1E1A3586EA00495EEB /* 020006.png in Resources */,
 				5BE08D9E1A3586EA00495EEB /* 010006.png in Resources */,
 				04BC40E419D7E5B3006B5C7B /* +人脉2_05a.png in Resources */,
+				D31FACEE1B5362AA00B32661 /* personal_center_016.png in Resources */,
 				5B6699371AB975A800C4B54F /* 大卡片阴影上.png in Resources */,
 				5BE08DCD1A3586EA00495EEB /* 010029@2x.png in Resources */,
 				5B3B5D4D1AAD935E002FB444 /* 自己会话框最小.png in Resources */,
@@ -9700,6 +9715,7 @@
 				04BC419C19D7E5B3006B5C7B /* 人脉_74a@2x.png in Resources */,
 				04BC40F819D7E5B3006B5C7B /* 010@2x.png in Resources */,
 				04BC435D19D7E5B3006B5C7B /* 高级搜索-多选_09a@2x.png in Resources */,
+				D31FACF01B5362AA00B32661 /* personal_center_017.png in Resources */,
 				D39937D91A42B539007081C1 /* 推荐页面05a@2x.png in Resources */,
 				04BC41D719D7E5B3006B5C7B /* 人脉－发布动态_11a.png in Resources */,
 				5BBAA98F1B1C353A00167496 /* 人脉_写评论ios.png in Resources */,
