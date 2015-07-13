@@ -40,7 +40,6 @@
 -(UILabel *)pointTitleLabel{
     if(!_pointTitleLabel){
         _pointTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 25, 320, 20)];
-        _pointTitleLabel.text = @"可用积分（异常）";
         _pointTitleLabel.font = [UIFont systemFontOfSize:15];
         _pointTitleLabel.textColor = RGBCOLOR(51, 51, 51);
         _pointTitleLabel.textAlignment = NSTextAlignmentCenter;
@@ -89,5 +88,17 @@
 
 -(void)setPoint:(NSString *)point{
     self.pointLabel.text = point;
+}
+
+-(void)setStatus:(NSString *)status{
+    if([status isEqualToString:@"00"]){
+        self.pointTitleLabel.text = @"可用积分";
+    }else if([status isEqualToString:@"01"]){
+        NSMutableAttributedString* attStr=[[NSMutableAttributedString alloc]initWithString:@"可用积分(异常)"];
+        [attStr addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(207, 72, 31) range:NSMakeRange(4, 4)];
+         self.pointTitleLabel.attributedText = attStr;
+    }else{
+        self.pointTitleLabel.text = @"";
+    }
 }
 @end

@@ -45,7 +45,7 @@
         if(!error){
             self.pointModel = model;
             [self.myPointTopView setPoint:[NSString stringWithFormat:@"%d",self.pointModel.a_points]];
-            
+            [self.myPointTopView setStatus:self.pointModel.a_status];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
