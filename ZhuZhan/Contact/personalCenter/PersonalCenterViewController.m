@@ -639,6 +639,18 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             [self.navigationController pushViewController:view animated:YES];
         }
             break;
+        case 6:
+        {
+            MyPointViewController *view = [[MyPointViewController alloc] init];
+            [self.navigationController pushViewController:view animated:YES];
+        }
+            break;
+        case 7:
+        {
+            MyPointViewController *view = [[MyPointViewController alloc] init];
+            [self.navigationController pushViewController:view animated:YES];
+        }
+            break;
         default:
             break;
     }
