@@ -961,6 +961,9 @@
 		5BB740861B5355CE00F2095C /* MyPointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740851B5355CE00F2095C /* MyPointViewController.m */; };
 		5BB7408A1B5356EF00F2095C /* MyPointDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740891B5356EF00F2095C /* MyPointDetailViewController.m */; };
 		5BB7408E1B53585B00F2095C /* MyPointApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7408D1B53585B00F2095C /* MyPointApi.m */; };
+		5BB740911B537C4A00F2095C /* MyPointDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740901B537C4A00F2095C /* MyPointDetailView.m */; };
+		5BB740971B538F3C00F2095C /* MyPointDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740961B538F3C00F2095C /* MyPointDetailCell.m */; };
+		5BB7409A1B53930300F2095C /* MyPointHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740991B53930300F2095C /* MyPointHistoryModel.m */; };
 		5BB9A53A1AB6EE4300B5B2D8 /* RKStageChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9A5391AB6EE4300B5B2D8 /* RKStageChooseView.m */; };
 		5BB9A53D1AB6F84300B5B2D8 /* AskPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9A53C1AB6F84300B5B2D8 /* AskPriceViewController.m */; };
 		5BBA27891B1FE45200ADE3FC /* PublishRequirementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA27881B1FE45200ADE3FC /* PublishRequirementViewController.m */; };
@@ -3258,6 +3261,12 @@
 		5BB740891B5356EF00F2095C /* MyPointDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPointDetailViewController.m; sourceTree = "<group>"; };
 		5BB7408C1B53585B00F2095C /* MyPointApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPointApi.h; sourceTree = "<group>"; };
 		5BB7408D1B53585B00F2095C /* MyPointApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPointApi.m; sourceTree = "<group>"; };
+		5BB7408F1B537C4A00F2095C /* MyPointDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPointDetailView.h; sourceTree = "<group>"; };
+		5BB740901B537C4A00F2095C /* MyPointDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPointDetailView.m; sourceTree = "<group>"; };
+		5BB740951B538F3C00F2095C /* MyPointDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPointDetailCell.h; sourceTree = "<group>"; };
+		5BB740961B538F3C00F2095C /* MyPointDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPointDetailCell.m; sourceTree = "<group>"; };
+		5BB740981B53930300F2095C /* MyPointHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPointHistoryModel.h; sourceTree = "<group>"; };
+		5BB740991B53930300F2095C /* MyPointHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPointHistoryModel.m; sourceTree = "<group>"; };
 		5BB9A5381AB6EE4300B5B2D8 /* RKStageChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKStageChooseView.h; sourceTree = "<group>"; };
 		5BB9A5391AB6EE4300B5B2D8 /* RKStageChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKStageChooseView.m; sourceTree = "<group>"; };
 		5BB9A53B1AB6F84300B5B2D8 /* AskPriceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceViewController.h; sourceTree = "<group>"; };
@@ -6795,6 +6804,10 @@
 			children = (
 				5BB740881B5356EF00F2095C /* MyPointDetailViewController.h */,
 				5BB740891B5356EF00F2095C /* MyPointDetailViewController.m */,
+				5BB740951B538F3C00F2095C /* MyPointDetailCell.h */,
+				5BB740961B538F3C00F2095C /* MyPointDetailCell.m */,
+				5BB7408F1B537C4A00F2095C /* MyPointDetailView.h */,
+				5BB740901B537C4A00F2095C /* MyPointDetailView.m */,
 			);
 			path = MyPointDetail;
 			sourceTree = "<group>";
@@ -9882,6 +9895,7 @@
 				D3D4A2E21AAE98390071B3EA /* ChatMessageModel.m in Sources */,
 				0426C2A919922D5A00CD8822 /* GPUImageRawDataInput.m in Sources */,
 				0426C28B19922D5A00CD8822 /* GPUImageLowPassFilter.m in Sources */,
+				5BB7409A1B53930300F2095C /* MyPointHistoryModel.m in Sources */,
 				0426C23719922D5A00CD8822 /* AFHTTPRequestOperationManager.m in Sources */,
 				0426C27D19922D5A00CD8822 /* GPUImageHSBFilter.m in Sources */,
 				5BA108301B280EF4002545BC /* PublishRequirementProjectView.m in Sources */,
@@ -10399,6 +10413,7 @@
 				0426C27E19922D5A00CD8822 /* GPUImageHueBlendFilter.m in Sources */,
 				D3EDCA531ACE90A6002AF865 /* SDWebImageDownloader.m in Sources */,
 				5B6373651ABA5E97007CF1F8 /* RKShadowView.m in Sources */,
+				5BB740971B538F3C00F2095C /* MyPointDetailCell.m in Sources */,
 				0426C2F219922D5A00CD8822 /* CJSONSerializedData.m in Sources */,
 				D3D2BFE81AC94478003BB779 /* MoneyView.m in Sources */,
 				D3B8F53F19D92716008F6164 /* RecognizerFactory.m in Sources */,
@@ -10470,6 +10485,7 @@
 				0426C29019922D5A00CD8822 /* GPUImageMedianFilter.m in Sources */,
 				0426C27519922D5A00CD8822 /* GPUImageHardLightBlendFilter.m in Sources */,
 				5B2D232B19D93373007C2C29 /* NBLabel.m in Sources */,
+				5BB740911B537C4A00F2095C /* MyPointDetailView.m in Sources */,
 				D3AD609719AC56CB001FD483 /* UIScrollView+MJRefresh.m in Sources */,
 				0426C2BB19922D5A00CD8822 /* GPUImageSoftEleganceFilter.m in Sources */,
 				5B6289E31AB806AB00F30059 /* AskPriceCellHeader.m in Sources */,

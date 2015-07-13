@@ -17,7 +17,7 @@
         }
         return nil;
     }
-    NSString *urlStr = [NSString stringWithFormat:@"api/require/pageRequire?pageSize=20&pageIndex=0"];
+    NSString *urlStr = [NSString stringWithFormat:@"api/points/getPointsLog"];
     NSLog(@"=====%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON==>%@",JSON);
