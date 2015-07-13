@@ -33,6 +33,8 @@
 #import "PersonalCenterProjectTableViewCell.h"
 #import "RequirementDetailViewController.h"
 #import "MyPointViewController.h"
+#import "SignViewController.h"
+#import "MyPointApi.h"
 @interface PersonalCenterViewController ()<PersonalHeadViewDelegate>
 @property(nonatomic,strong)UIView *headView;
 @property(nonatomic,strong)UIView *myFocusView;
@@ -105,7 +107,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     }
     [_pathCover setFootViewFrame:CGRectMake(0, -180, 320, 320)];
 
-    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, @"可用积分：10000",XHBirthdayKey,nil]];
+    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, @"",XHBirthdayKey,nil]];
     
     [self.headView addSubview:self.pathCover];
     [self.headView addSubview:self.personalHeadView];
@@ -476,6 +478,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setBackgroundImageUrlString:[LoginSqlite getdata:@"backgroundImage"]];
 }
 
+-(void)newPoint{
+    
+}
+
 -(void)gotoAskPrice:(UIButton *)button{
     NSString* otherStr;
     if(button.tag == 1){
@@ -616,7 +622,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             break;
         case 7:
         {
-            MyPointViewController *view = [[MyPointViewController alloc] init];
+            SignViewController *view = [[SignViewController alloc] init];
             [self.navigationController pushViewController:view animated:YES];
         }
             break;

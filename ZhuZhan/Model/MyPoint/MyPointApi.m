@@ -43,4 +43,28 @@
 //        }
     }];
 }
+
++ (NSURLSessionDataTask *)GetPointDetailWithBlock:(void (^)(NSMutableDictionary *dict, NSError *error))block  noNetWork:(void(^)())noNetWork{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        if (noNetWork) {
+            noNetWork();
+        }
+        return nil;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"api/points/getPoints"];
+    NSLog(@"=====%@",urlStr);
+    return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON==>%@",JSON);
+        if ([JSON[@"status"][@"statusCode"] isEqualToString:@"200"]) {
+            if (block) {
+                block(JSON[@"data"] ,nil);
+            }
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
 @end

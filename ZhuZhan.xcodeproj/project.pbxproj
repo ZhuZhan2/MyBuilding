@@ -1400,6 +1400,7 @@
 		D31FACEF1B5362AA00B32661 /* personal_center_016@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D31FACEB1B5362AA00B32661 /* personal_center_016@2x.png */; };
 		D31FACF01B5362AA00B32661 /* personal_center_017.png in Resources */ = {isa = PBXBuildFile; fileRef = D31FACEC1B5362AA00B32661 /* personal_center_017.png */; };
 		D31FACF11B5362AA00B32661 /* personal_center_017@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D31FACED1B5362AA00B32661 /* personal_center_017@2x.png */; };
+		D31FACF41B53779900B32661 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FACF31B53779900B32661 /* SignViewController.m */; };
 		D324B1861B2038F400E29E07 /* MarketPublicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B1851B2038F400E29E07 /* MarketPublicListViewController.m */; };
 		D324B1891B203B2300E29E07 /* OtherSearchMaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B1881B203B2300E29E07 /* OtherSearchMaterialViewController.m */; };
 		D324B18F1B204AE000E29E07 /* MarkListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B18E1B204AE000E29E07 /* MarkListTableViewCell.m */; };
@@ -3747,6 +3748,8 @@
 		D31FACEB1B5362AA00B32661 /* personal_center_016@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "personal_center_016@2x.png"; sourceTree = "<group>"; };
 		D31FACEC1B5362AA00B32661 /* personal_center_017.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personal_center_017.png; sourceTree = "<group>"; };
 		D31FACED1B5362AA00B32661 /* personal_center_017@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "personal_center_017@2x.png"; sourceTree = "<group>"; };
+		D31FACF21B53779900B32661 /* SignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignViewController.h; sourceTree = "<group>"; };
+		D31FACF31B53779900B32661 /* SignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignViewController.m; sourceTree = "<group>"; };
 		D324B1841B2038F400E29E07 /* MarketPublicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketPublicListViewController.h; sourceTree = "<group>"; };
 		D324B1851B2038F400E29E07 /* MarketPublicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketPublicListViewController.m; sourceTree = "<group>"; };
 		D324B1871B203B2300E29E07 /* OtherSearchMaterialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherSearchMaterialViewController.h; sourceTree = "<group>"; };
@@ -6778,6 +6781,8 @@
 		5BB740831B53559800F2095C /* Sign */ = {
 			isa = PBXGroup;
 			children = (
+				D31FACF21B53779900B32661 /* SignViewController.h */,
+				D31FACF31B53779900B32661 /* SignViewController.m */,
 			);
 			path = Sign;
 			sourceTree = "<group>";
@@ -10359,6 +10364,7 @@
 				D3EDCA541ACE90A6002AF865 /* SDWebImageDownloaderOperation.m in Sources */,
 				D3A4281B19C1A2E700BAB6C7 /* GTMBase64.m in Sources */,
 				5B76706B1AB6BDB800E154C5 /* RemindListViewController.m in Sources */,
+				D31FACF41B53779900B32661 /* SignViewController.m in Sources */,
 				5BF31B6B1AB025FD00DA87F5 /* ImageAndLabelView.m in Sources */,
 				0426C26219922D5A00CD8822 /* GPUImageDissolveBlendFilter.m in Sources */,
 				5B6373921ABAA7A8007CF1F8 /* RKDemandDetailController.m in Sources */,
