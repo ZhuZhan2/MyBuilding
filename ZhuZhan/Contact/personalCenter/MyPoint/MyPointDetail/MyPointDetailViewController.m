@@ -11,36 +11,50 @@
 #import "MyPointDetailView.h"
 #import "RKShadowView.h"
 #import "MyPointDetailCell.h"
+#import "RKViewFactory.h"
+
 @interface MyPointDetailViewController ()
 @property (nonatomic, strong)MyPointDetailView* myPointDetailView;
+@property (nonatomic, strong)NSMutableArray* modelArr;
+/**
+ *  用于接口的查询条件,今天，昨天，全部
+ */
+@property (nonatomic, copy)NSString* timeStr;
+
+/**
+ *  分页计数变量
+ */
+@property (nonatomic)NSInteger startIndex;
+@property (nonatomic, strong)UIView* noneDataView;
 @end
 
 @implementation MyPointDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = AllBackLightGratColor;
     [self initNavi];
     [self initStageChooseViewWithStages:@[@"今天",@"昨天",@"全部"] numbers:nil underLineIsWhole:YES normalColor:AllLightGrayColor highlightColor:BlueColor];
     [self initTableView];
-    [self firestNetWork];
+    [self setUpRefreshWithNeedHeaderRefresh:YES needFooterRefresh:YES];
 }
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return section?CGRectGetHeight(self.stageChooseView.frame):CGRectGetHeight(self.myPointDetailView.frame);
+    CGFloat heights[3] = {CGRectGetHeight(self.myPointDetailView.frame),CGRectGetHeight(self.stageChooseView.frame),self.modelArr.count?0:CGRectGetHeight(self.noneDataView.frame)};
+    return heights[section];
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    return section?self.stageChooseView:self.myPointDetailView;
+    return @[self.myPointDetailView,self.stageChooseView,self.noneDataView][section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return section?10:0;
+    NSInteger count[3] = {0,self.modelArr.count,0};
+    return count[section];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -53,7 +67,7 @@
         cell=[[MyPointDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    MyPointHistoryModel* model;
+    MyPointHistoryModel* model = self.modelArr[indexPath.row];
     cell.model = model;
     return cell;
 }
@@ -68,6 +82,7 @@
     self.tableView.rowHeight = 60;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     self.tableView.noDataView = self.tableViewNoDataView;
+    self.tableView.backgroundColor = AllBackLightGratColor;
     [self.view addSubview:self.tableView];
 }
 
@@ -79,19 +94,67 @@
                           stages numbers:numbers delegate:self underLineIsWhole:underLineIsWhole normalColor:normalColor highlightColor:highlightColor];
 }
 
-/**
- *  进入页面后第一次网络请求
- */
-- (void)firestNetWork{
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+- (void)stageBtnClickedWithNumber:(NSInteger)stageNumber{
+    NSDate* todayDate = [NSDate date];
+    NSDate* yestodayDate = [todayDate dateByAddingTimeInterval:-24*3600];
     
-    [MyPointApi GetPointsLogWithBlock:^(NSMutableArray *posts, NSError *error) {
-        
-    } dic:nil noNetWork:nil];
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
+    
+    NSString* todayDateStr = [dateFormatter stringFromDate:todayDate];
+    NSString* yestodayDateStr = [dateFormatter stringFromDate:yestodayDate];
+
+    NSArray* timeArr = @[todayDateStr,yestodayDateStr,@""];
+    self.timeStr = timeArr[stageNumber];
+    
+    self.startIndex = 0;
+    [self.modelArr removeAllObjects];
+    [self.tableView reloadData];
+    [self netWorkGetPointsWithTimeStr:self.timeStr finishBlock:nil startIndex:0];
 }
 
-- (void)secondNetWork{
+- (void)headerRereshing{
+    [self netWorkGetPointsWithTimeStr:self.timeStr finishBlock:^{
+        self.startIndex = 0;
+        [self.modelArr removeAllObjects];
+    } startIndex:0];
+}
 
+- (void)footerRereshing{
+    [self netWorkGetPointsWithTimeStr:self.timeStr finishBlock:^{
+        self.startIndex ++;
+    } startIndex:self.startIndex+1];
+}
+
+/**
+ *  请求历史记录
+ *
+ *  @param timeStr    目标时间，精确到日
+ *  @param block      完结时会调用的block
+ *  @param startIndex 记录分页的变量
+ */
+- (void)netWorkGetPointsWithTimeStr:(NSString*)timeStr finishBlock:(void(^)())block startIndex:(NSInteger)startIndex{
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    [dic setObject:timeStr forKey:@"datetime"];
+    
+    [MyPointApi GetPointsLogWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            if (block) {
+                block();
+            }
+            [self.modelArr addObjectsFromArray:posts];
+            [self.tableView reloadData];
+            [self endHeaderRefreshing];
+            [self endFooterRefreshing];
+        }
+    } dic:dic startIndex:startIndex noNetWork:nil];
+}
+
+/**
+ *  进界面的第一个网络请求
+ */
+- (void)firstNetWork{
+    
 }
 
 /**
@@ -105,9 +168,25 @@
 - (MyPointDetailView *)myPointDetailView{
     if (!_myPointDetailView) {
         _myPointDetailView = [MyPointDetailView myPointDetailViewWithMainTitle:@"我的积分" subTitle:@"123456789"];
-        UIView* sepe = [RKShadowView seperatorLineDoubleWithHeight:14 top:0];
+        UIView* sepe = [RKShadowView seperatorLineDoubleWithHeight:10 top:0];
         _myPointDetailView.bottomView = sepe;
     }
     return _myPointDetailView;
+}
+
+- (NSMutableArray *)modelArr{
+    if (!_modelArr) {
+        _modelArr = [NSMutableArray array];
+    }
+    return _modelArr;
+}
+
+- (UIView *)noneDataView{
+    if (!_noneDataView) {
+        _noneDataView = [RKViewFactory noDataViewWithTop:80];
+        _noneDataView.backgroundColor = [UIColor clearColor];
+        _noneDataView.frame = CGRectMake(0, 0, kScreenWidth, 300);
+    }
+    return _noneDataView;
 }
 @end

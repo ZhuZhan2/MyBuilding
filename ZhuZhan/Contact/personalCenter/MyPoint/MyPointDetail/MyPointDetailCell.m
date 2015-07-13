@@ -36,16 +36,20 @@
 
 - (void)setModel:(MyPointHistoryModel *)model{
     _model = model;
-    self.mainTitleLabel.text = @"首次上传头像";
-    self.mainSubTitleLabel.text = @"2015-12-23 12：23";
-    self.assistMainTitleLabel.text = @"+50";
-    self.assistSubTitleLabel.text = @"客服添加";
+    self.mainTitleLabel.text = model.a_sourceCn;
+    NSString* time = model.a_createdTime;
+    NSString* formatTime = [time substringToIndex:time.length-3];
+    self.mainSubTitleLabel.text = formatTime;
+    BOOL isAdd = [model.a_action isEqualToString:@"00"];
+    self.assistMainTitleLabel.text = [NSString stringWithFormat:isAdd?@"+%@":@"-%@",model.a_points];
+    self.assistMainTitleLabel.textColor = isAdd?RGBCOLOR(226, 116, 36):RGBCOLOR(161, 161, 161);
+    self.assistSubTitleLabel.text = model.a_reason;
 }
 
 - (UILabel *)mainTitleLabel{
     if (!_mainTitleLabel) {
         UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 225, 20)];
-        label.font = [UIFont systemFontOfSize:15];
+        label.font = [UIFont systemFontOfSize:16];
         label.textColor = RGBCOLOR(51, 51, 51);
         
         _mainTitleLabel = label;
@@ -55,8 +59,8 @@
 
 - (UILabel *)mainSubTitleLabel{
     if (!_mainSubTitleLabel) {
-        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 34, 225, 20)];
-        label.font = [UIFont systemFontOfSize:12];
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 32, 225, 20)];
+        label.font = [UIFont systemFontOfSize:13];
         label.textColor = RGBCOLOR(187, 187, 187);
         
         _mainSubTitleLabel = label;
@@ -66,8 +70,9 @@
 
 - (UILabel *)assistMainTitleLabel{
     if (!_assistMainTitleLabel) {
-        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(264, 8, 225, 25)];
-        label.font = [UIFont systemFontOfSize:20];
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(205, 8, 100, 25)];
+        label.textAlignment = NSTextAlignmentRight;
+        label.font = [UIFont systemFontOfSize:21];
         label.textColor = RGBCOLOR(226, 116, 36);
         
         _assistMainTitleLabel = label;
@@ -77,8 +82,9 @@
 
 - (UILabel *)assistSubTitleLabel{
     if (!_assistSubTitleLabel) {
-        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(264, 31, 225, 20)];
-        label.font = [UIFont systemFontOfSize:12];
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(205, 33, 100, 20)];
+        label.font = [UIFont systemFontOfSize:13];
+        label.textAlignment = NSTextAlignmentRight;
         label.textColor = RGBCOLOR(187, 187, 187);
         
         _assistSubTitleLabel = label;

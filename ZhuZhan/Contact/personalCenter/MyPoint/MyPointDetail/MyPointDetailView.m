@@ -23,6 +23,7 @@
 }
 
 - (void)setUp{
+    self.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.mainTitleLabel];
     [self addSubview:self.subTitleLabel];
     
@@ -38,7 +39,7 @@
 - (UILabel *)mainTitleLabel{
     if (!_mainTitleLabel) {
         _mainTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-        _mainTitleLabel.font = [UIFont systemFontOfSize:15];
+        _mainTitleLabel.font = [UIFont systemFontOfSize:16];
         _mainTitleLabel.textColor = RGBCOLOR(51, 51, 51);
         _mainTitleLabel.text = self.mainTitle;
     }
@@ -50,7 +51,7 @@
         _subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
         _subTitleLabel.text = self.subTitle;
         _subTitleLabel.textAlignment = NSTextAlignmentRight;
-        _subTitleLabel.font = [UIFont systemFontOfSize:25];
+        _subTitleLabel.font = [UIFont systemFontOfSize:26];
         _subTitleLabel.textColor = RGBCOLOR(226, 116, 36);
     }
     return _subTitleLabel;
