@@ -32,6 +32,7 @@
 #import "MyProjectViewController.h"
 #import "PersonalCenterProjectTableViewCell.h"
 #import "RequirementDetailViewController.h"
+#import "MyPointViewController.h"
 @interface PersonalCenterViewController ()<PersonalHeadViewDelegate>
 @property(nonatomic,strong)UIView *headView;
 @property(nonatomic,strong)UIView *myFocusView;
@@ -159,6 +160,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
  */
 - (void)myPointBtnClicked{
     NSLog(@"我的积分按钮被点击");
+    MyPointViewController* vc = [[MyPointViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**
