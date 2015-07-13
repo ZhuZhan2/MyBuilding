@@ -12,6 +12,7 @@
 @property (nonatomic, strong)UIView* backView;
 @property (nonatomic, strong)UIButton* cancelBtn;
 @property (nonatomic, strong)UIButton* sureBtn;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 @end
 
 @implementation ChatSendImageView
@@ -22,6 +23,7 @@
         [self.backView addSubview:self.mainImageView];
         [self.backView addSubview:self.cancelBtn];
         [self.backView addSubview:self.sureBtn];
+        [self addSubview:self.activityIndicatorView];
         
         self.backView.center = CGPointMake(CGRectGetWidth(self.frame)*.5, CGRectGetHeight(self.frame)*.5);
 
@@ -52,15 +54,19 @@
     [UIView animateWithDuration:.5 animations:^{
         self.alpha = 0;
     } completion:^(BOOL finished) {
+        [self.activityIndicatorView stopAnimating];
         [self removeFromSuperview];
     }];
 }
 
 - (void)sureBtnCilcked{
-    if ([self.delegate respondsToSelector:@selector(chatSendImage:)]) {
-        [self.delegate chatSendImage:self.mainImageView.image];
-    }
-    [self cancelBtnClicked];
+    [self.activityIndicatorView startAnimating];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self cancelBtnClicked];
+        if ([self.delegate respondsToSelector:@selector(chatSendImage:)]) {
+            [self.delegate chatSendImage:self.mainImageView.image];
+        }
+    });
 }
 
 - (UIView *)backView{
@@ -103,5 +109,14 @@
         [_sureBtn addTarget:self action:@selector(sureBtnCilcked) forControlEvents:UIControlEventTouchUpInside];
     }
     return _sureBtn;
+}
+
+- (UIActivityIndicatorView *)activityIndicatorView {
+    if (!_activityIndicatorView) {
+        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        _activityIndicatorView.hidesWhenStopped = YES;
+        _activityIndicatorView.center = CGPointMake(CGRectGetWidth(self.bounds) / 2.0, CGRectGetHeight(self.bounds) / 2.0);
+    }
+    return _activityIndicatorView;
 }
 @end

@@ -28,8 +28,10 @@
     }
     if([dict[@"msgType"] isEqualToString:@"01"]){
         self.a_content = dict[@"content"];
-    }else{
+    }else if([dict[@"msgType"] isEqualToString:@"02"]){
         self.a_content = @"[图片]";
+    }else{
+        self.a_content = @"";
     }
     
     self.a_type = dict[@"type"];

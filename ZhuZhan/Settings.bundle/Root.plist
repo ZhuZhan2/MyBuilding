@@ -31,14 +31,14 @@
 			</array>
 			<key>Titles</key>
 			<array>
-				<string>34</string>
+				<string>17.1</string>
 			</array>
 			<key>DefaultValue</key>
 			<string>VERSION</string>
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>Title</key>
-			<string>Pilot</string>
+			<string>RC</string>
 			<key>Key</key>
 			<string>VERSION_INFO_LABEL</string>
 		</dict>

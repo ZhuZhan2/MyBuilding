@@ -28,6 +28,8 @@
 #import "MarketSearchSqlite.h"
 #import "ForcedUpdateApi.h"
 #import "ForcedUpdateModel.h"
+#import "ChatImageSqlite.h"
+
 @implementation AppDelegate
 
 + (AppDelegate *)instance {
@@ -134,6 +136,7 @@
     [ProjectSqlite opensql];
     [ImageSqlite opensql];
     [MarketSearchSqlite opensql];
+    [ChatImageSqlite opensql];
     
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
     if (IS_OS_8_OR_LATER) {

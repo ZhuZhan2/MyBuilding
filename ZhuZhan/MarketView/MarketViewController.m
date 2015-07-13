@@ -353,18 +353,14 @@
             self.zwAdView.adDataArray= self.bannerImagesArr;
             self.zwAdView.pageControlPosition=ZWPageControlPosition_BottomCenter;/**设置圆点的位置*/
             self.zwAdView.hidePageControl=NO;/**设置圆点是否隐藏*/
-            if(self.bannerImagesArr.count == 0){
+            if(self.bannerImagesArr.count == 0 || self.bannerImagesArr.count == 1){
                 self.zwAdView.adScrollView.scrollEnabled = NO;
+                self.zwAdView.adAutoplay=NO;/**自动播放*/
             }else{
                 self.zwAdView.adScrollView.scrollEnabled = YES;
+                self.zwAdView.adAutoplay=YES;/**自动播放*/
             }
             [self.zwAdView loadAdDataThenStart];
-        }else{
-            if([ErrorCode errorCode:error] == 403){
-                [LoginAgain AddLoginView:NO];
-            }else{
-                [ErrorCode alert];
-            }
         }
     } noNetWork:^{
         [ErrorCode alert];
@@ -405,9 +401,11 @@
 
 -(void)adView:(ZWAdView *)adView didDeselectAdAtNum:(NSInteger)num{
     BannerImagesModel *model = self.bannerImagesArr[num];
-    MarketWebViewController *view = [[MarketWebViewController alloc] init];
-    view.webUrl = model.a_webUrl;
-    [self.navigationController pushViewController:view animated:YES];
+    if(![model.a_webUrl isEqualToString:@""]){
+        MarketWebViewController *view = [[MarketWebViewController alloc] init];
+        view.webUrl = model.a_webUrl;
+        [self.navigationController pushViewController:view animated:YES];
+    }
 }
 
 /***********************************************************/

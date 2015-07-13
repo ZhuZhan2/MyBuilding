@@ -28,14 +28,11 @@
 
 -(void)copy:(id)sender{
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        if(self.isLocal){
-            NSLog(@"==>%@",self.bigLocalImage);
-            pboard.image = self.bigLocalImage;
-        }else{
-            pboard.image = [self saveServeImage];
-        }
-    });
+    if(self.isLocal){
+        pboard.image = self.bigLocalImage;
+    }else{
+        pboard.image = [self saveServeImage];
+    }
 }
 
 -(void)saveImage:(id)sender{

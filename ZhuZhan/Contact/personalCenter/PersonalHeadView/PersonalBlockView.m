@@ -35,7 +35,7 @@
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 40, 60, 20)];
         _titleLabel.font = [UIFont systemFontOfSize:14];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.textColor = RGBCOLOR(51, 51, 51);
+        _titleLabel.textColor = RGBCOLOR(132, 132, 132);
     }
     return _titleLabel;
 }

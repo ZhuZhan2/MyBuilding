@@ -31,6 +31,7 @@
     self.tableView=[[RKBaseTableView alloc]initWithFrame:CGRectMake(0, y, kScreenWidth, height) style:UITableViewStylePlain];
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
+    self.tableViewOriginYFromNavi = 46;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     self.tableView.backgroundColor=AllBackDeepGrayColor;

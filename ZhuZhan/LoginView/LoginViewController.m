@@ -212,7 +212,7 @@
     } dic:dic noNetWork:nil];
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        if([userDefaults objectForKey:@"deviceTokenStr"]){
+        if(![userDefaults objectForKey:@"deviceTokenStr"]){
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
             if (IS_OS_8_OR_LATER) {
                 [[UIApplication sharedApplication] registerForRemoteNotifications];

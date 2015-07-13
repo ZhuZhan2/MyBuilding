@@ -14,7 +14,7 @@
 
 @interface VIPhotoView : UIScrollView
 @property(nonatomic,weak)id<VIPhotoViewDelegate> bigImageDelegate;
-- (instancetype)initWithFrame:(CGRect)frame andImageUrl:(NSString *)imageUrl;
+- (instancetype)initWithFrame:(CGRect)frame andImageData:(NSData *)imageData;
 - (instancetype)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl;
 @end
 // 版权属于原作者
