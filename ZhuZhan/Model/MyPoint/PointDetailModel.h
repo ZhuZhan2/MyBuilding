@@ -18,7 +18,7 @@
 //连续签到天数
 @property(nonatomic,strong)NSString *a_signDays;
 //今日可领积分数
-@property(nonatomic,strong)NSString *a_toDayGet;
+@property(nonatomic,strong)NSString *a_todayGet;
 //积分账户状态 00正常 01不正常
 @property(nonatomic,strong)NSString *a_status;
 //最后签到时间
