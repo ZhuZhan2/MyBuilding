@@ -58,11 +58,6 @@
             PointDetailModel *model = [[PointDetailModel alloc] init];
             [model setDict:JSON[@"data"]];
             
-            //给app进行积分详情的刷新
-            NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
-            [userInfo setObject:model forKey:@"newPoint"];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"newPoint" object:nil userInfo:userInfo];
-            
             if (block) {
                 block(model ,nil);
             }
