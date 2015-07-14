@@ -60,6 +60,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self getMyPoint];
     //    //隐藏tabBar
     AppDelegate* app=[AppDelegate instance];
     HomePageViewController* homeVC=(HomePageViewController*)app.window.rootViewController;
@@ -142,9 +143,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeHeadImage) name:@"changHead" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeUserName) name:@"changName" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeBackgroundImage) name:@"changBackground" object:nil];
-    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (newPoint) name:@"newPoint" object:nil];
     
-    [self getMyPoint];
 }
 
 /*
@@ -505,10 +504,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)changeBackgroundImage{
     [_pathCover setBackgroundImageUrlString:[LoginSqlite getdata:@"backgroundImage"]];
-}
-
--(void)newPoint{
-    [self getMyPoint];
 }
 
 -(void)gotoAskPrice:(UIButton *)button{
