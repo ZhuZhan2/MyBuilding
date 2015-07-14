@@ -192,7 +192,6 @@
         if(!error){
             NSLog(@"todayPoint===> %d",todayPoint);
             [self getMyPoint];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"newPoint" object:nil];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
