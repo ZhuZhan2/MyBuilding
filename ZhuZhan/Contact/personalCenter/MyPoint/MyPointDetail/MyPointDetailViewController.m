@@ -154,7 +154,7 @@
 }
 
 /**
- *  进界面的第一个网络请求
+ *  积分详情接口
  */
 - (void)firstNetWork{
     [MyPointApi GetPointDetailWithBlock:^(PointDetailModel *model, NSError *error) {
