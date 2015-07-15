@@ -79,6 +79,9 @@
     }else if([self.a_messageType isEqualToString:@"10"] && [self.a_operationType isEqualToString:@"04"]){
         //需求有回复
         self.a_type = 9;
+    }else if ([self.a_messageType isEqualToString:@"11"] && [self.a_operationType isEqualToString:@"07"]){
+        //积分被关闭
+        self.a_type = 10;
     }
     
     if([self.a_messageType isEqualToString:@"01"]){
@@ -99,6 +102,8 @@
             self.a_imageOriginalUrl = [ProjectStage ProjectStrStage:dict[@"messageData"][@"productImagesId"]];
         }
         self.a_msgContent = [ProjectStage ProjectStrStage:dict[@"messageData"][@"productName"]];
+    }else if([self.a_messageType isEqualToString:@"11"]){
+        self.a_msgContent = [ProjectStage ProjectStrStage:dict[@"messageContent"]];
     }
     
     self.a_imageWidth = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",dict[@"messageData"][@"imageWidth"]]];

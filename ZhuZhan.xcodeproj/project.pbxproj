@@ -1433,6 +1433,7 @@
 		D351AAF81B143FC600A299C6 /* RKCompanyController.m in Sources */ = {isa = PBXBuildFile; fileRef = D351AAF71B143FC600A299C6 /* RKCompanyController.m */; };
 		D351AAFD1B14406E00A299C6 /* CompanyProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = D351AAFC1B14406E00A299C6 /* CompanyProductController.m */; };
 		D351AB001B14407E00A299C6 /* CompanyProjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = D351AAFF1B14407E00A299C6 /* CompanyProjectController.m */; };
+		D35AD4071B55FCEB00AD8DA5 /* PersonalCenterPointTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D35AD4061B55FCEB00AD8DA5 /* PersonalCenterPointTableViewCell.m */; };
 		D35E12411ABD65D8007C6726 /* AskPriceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D35E12401ABD65D8007C6726 /* AskPriceDetailViewController.m */; };
 		D35E12441ABD68B5007C6726 /* CatoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D35E12431ABD68B5007C6726 /* CatoryTableViewCell.m */; };
 		D36040E619F51E8600E9727D /* CompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D36040E519F51E8600E9727D /* CompanyModel.m */; };
@@ -3801,6 +3802,8 @@
 		D351AAFC1B14406E00A299C6 /* CompanyProductController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyProductController.m; sourceTree = "<group>"; };
 		D351AAFE1B14407E00A299C6 /* CompanyProjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyProjectController.h; sourceTree = "<group>"; };
 		D351AAFF1B14407E00A299C6 /* CompanyProjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyProjectController.m; sourceTree = "<group>"; };
+		D35AD4051B55FCEB00AD8DA5 /* PersonalCenterPointTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterPointTableViewCell.h; sourceTree = "<group>"; };
+		D35AD4061B55FCEB00AD8DA5 /* PersonalCenterPointTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterPointTableViewCell.m; sourceTree = "<group>"; };
 		D35E123F1ABD65D8007C6726 /* AskPriceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPriceDetailViewController.h; sourceTree = "<group>"; };
 		D35E12401ABD65D8007C6726 /* AskPriceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPriceDetailViewController.m; sourceTree = "<group>"; };
 		D35E12421ABD68B5007C6726 /* CatoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatoryTableViewCell.h; sourceTree = "<group>"; };
@@ -5823,6 +5826,8 @@
 				5BAE1C431B0EF28A004A4B3E /* MyFocus */,
 				D3D60D271B3A452600CE86BE /* PersonalCenterProjectTableViewCell.h */,
 				D3D60D281B3A452600CE86BE /* PersonalCenterProjectTableViewCell.m */,
+				D35AD4051B55FCEB00AD8DA5 /* PersonalCenterPointTableViewCell.h */,
+				D35AD4061B55FCEB00AD8DA5 /* PersonalCenterPointTableViewCell.m */,
 			);
 			path = personalCenter;
 			sourceTree = "<group>";
@@ -10275,6 +10280,7 @@
 				D3D7DD241B267ECC001A9577 /* MarketListTitleView.m in Sources */,
 				0426C2FE19922D5A00CD8822 /* UIButton+AFNetworking.m in Sources */,
 				D3F455A41B312FA300EE20A5 /* MyProjectViewController.m in Sources */,
+				D35AD4071B55FCEB00AD8DA5 /* PersonalCenterPointTableViewCell.m in Sources */,
 				5B7670641AB6B92B00E154C5 /* SearchBarCell.m in Sources */,
 				5B55D5381AA93C4C006501D8 /* RKCamera.m in Sources */,
 				0426C26E19922D5A00CD8822 /* GPUImageGammaFilter.m in Sources */,

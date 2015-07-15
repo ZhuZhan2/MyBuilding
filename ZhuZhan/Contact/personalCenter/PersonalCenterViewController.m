@@ -36,6 +36,7 @@
 #import "SignViewController.h"
 #import "MyPointApi.h"
 #import "PointDetailModel.h"
+#import "PersonalCenterPointTableViewCell.h"
 
 @interface PersonalCenterViewController ()<PersonalHeadViewDelegate>
 @property(nonatomic,strong)UIView *headView;
@@ -98,7 +99,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setBackgroundImageUrlString:[LoginSqlite getdata:@"backgroundImage"]];
     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImage"]]];
     [_pathCover hidewaterDropRefresh];
-    [_pathCover setNameFrame:CGRectMake(-40, 15, 320, 20) font:[UIFont systemFontOfSize:14]];
+    [_pathCover setNameFrame:CGRectMake(93, 15, 320, 20) font:[UIFont systemFontOfSize:14]];
     [_pathCover setBirthdayFrame:CGRectMake(93, 35, 320, 20) font:[UIFont systemFontOfSize:14]];
     [_pathCover setHeadImageFrame:CGRectMake(20, 5, 61, 61)];
     if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
@@ -388,7 +389,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         cell.selectionStyle = NO;
         return cell;
     }else if(model.a_type == 0 || model.a_type == 6){
-        NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
+        NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalCenterTableViewCell"];
         PersonalCenterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
             cell = [[PersonalCenterTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -396,6 +397,16 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
         cell.selectionStyle = NO;
         cell.personalCentermodel = model;
+        return cell;
+    }else if (model.a_type == 10){
+        NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalCenterPointTableViewCell"];
+        PersonalCenterPointTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[PersonalCenterPointTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
+        cell.selectionStyle = NO;
+        cell.model = model;
         return cell;
     }else{
         NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
@@ -462,7 +473,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         return 60;
     }else if(model.a_type == 1 || model.a_type == 8 || model.a_type == 9){
         return 80;
-    }else if(model.a_type == 0 || model.a_type == 6){
+    }else if(model.a_type == 0 || model.a_type == 6 || model.a_type == 10){
         return [PersonalCenterTableViewCell carculateCellHeightWithModel:model];
     }else{
         return 0;

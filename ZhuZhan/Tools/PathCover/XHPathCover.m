@@ -496,7 +496,7 @@ NSString *const XHTitkeKey = @"XHTitkeKey";
 -(void)setNameFrame:(CGRect)newFrame font:(UIFont *)font{
     [_userNameLabel setFrame:newFrame];
     _userNameLabel.font = font;
-    _userNameLabel.textAlignment = NSTextAlignmentCenter;
+    _userNameLabel.textAlignment = NSTextAlignmentLeft;
 }
 
 -(void)setBirthdayFrame:(CGRect)newFrame font:(UIFont *)font{

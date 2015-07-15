@@ -19,7 +19,7 @@
         self.a_hasSign = YES;
         self.a_todayGet = [NSString stringWithFormat:@"明天签到可获得%@积分",dict[@"tomorrowGet"]];
     }
-    self.a_signDays = dict[@"signdays"];
+    self.a_signDays = dict[@"signDays"];
     self.a_status = dict[@"status"];
     self.a_lastSignTime = dict[@"lastSignTime"];
 }
