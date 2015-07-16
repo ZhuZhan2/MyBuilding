@@ -79,7 +79,7 @@ static int count =0;//记录生日textField 的时间被触发的次数
     [_pathCover setFootViewFrame:CGRectMake(0, -120, 320, 320)];
     [_pathCover.headImage.layer setMasksToBounds:YES];
     [_pathCover.headImage.layer setCornerRadius:35];
-    [_pathCover setNameFrame:CGRectMake(0, 0, 320, 20) font:[UIFont systemFontOfSize:14]];
+    [_pathCover setNameFrame:CGRectMake(112, 0, 320, 20) font:[UIFont systemFontOfSize:14]];
     
     [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[LoginSqlite getdata:@"userName"], XHUserNameKey, nil]];
     self.tableView.tableHeaderView = self.pathCover;
