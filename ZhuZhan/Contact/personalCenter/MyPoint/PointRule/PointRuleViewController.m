@@ -30,11 +30,22 @@
     if (!_webView1) {
         _webView1 = [[UIWebView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.stageChooseView.frame), kScreenWidth, kScreenHeight-CGRectGetMaxY(self.stageChooseView.frame))];
         
-        NSURL* url = [NSURL URLWithString:@"http://www.baidu.com"];
+        NSURL* url = [NSURL URLWithString:@"http://121.40.127.189:8090/wechat/integralAccess.html"];
         NSURLRequest* request = [NSURLRequest requestWithURL:url];
         [_webView1 loadRequest:request];
     }
     return _webView1;
+}
+
+- (UIWebView *)webView2{
+    if (!_webView2) {
+        _webView2 = [[UIWebView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.stageChooseView.frame), kScreenWidth, kScreenHeight-CGRectGetMaxY(self.stageChooseView.frame))];
+        
+        NSURL* url = [NSURL URLWithString:@"http://121.40.127.189:8090/wechat/integralNote.html"];
+        NSURLRequest* request = [NSURLRequest requestWithURL:url];
+        [_webView2 loadRequest:request];
+    }
+    return _webView2;
 }
 
 /**
