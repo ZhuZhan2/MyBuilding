@@ -9,8 +9,7 @@
 #import "PointRuleViewController.h"
 
 @interface PointRuleViewController ()
-@property (nonatomic, strong)UIWebView* webView1;
-@property (nonatomic, strong)UIWebView* webView2;
+@property (nonatomic, strong)UIWebView* webView;
 @end
 
 @implementation PointRuleViewController
@@ -19,11 +18,14 @@
     [super viewDidLoad];
     [self initNavi];
     [self initStageChooseViewWithStages:@[@"获得途径",@"注意事项"] numbers:nil underLineIsWhole:YES normalColor:AllLightGrayColor highlightColor:BlueColor];
-    [self.view insertSubview:self.webView1 atIndex:0];
+    [self.view insertSubview:self.webView atIndex:0];
+    [self stageBtnClickedWithNumber:0];
 }
 
 - (void)stageBtnClickedWithNumber:(NSInteger)stageNumber{
-    
+    NSURL* url = [NSURL URLWithString:@[@"http://121.40.127.189:8090/wechat/integralAccess.html",@"http://121.40.127.189:8090/wechat/integralNote.html"][stageNumber]];
+    NSURLRequest* request = [NSURLRequest requestWithURL:url];
+    [_webView loadRequest:request];
 }
 
 - (UIWebView *)webView1{
@@ -34,7 +36,7 @@
         NSURLRequest* request = [NSURLRequest requestWithURL:url];
         [_webView1 loadRequest:request];
     }
-    return _webView1;
+    return _webView;
 }
 
 - (UIWebView *)webView2{
