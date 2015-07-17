@@ -10,4 +10,5 @@
 #import "MyPointHistoryModel.h"
 @interface MyPointDetailCell : UITableViewCell
 @property (nonatomic, strong)MyPointHistoryModel* model;
++ (CGFloat)carculateModel:(MyPointHistoryModel*)model;
 @end

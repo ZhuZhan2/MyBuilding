@@ -95,6 +95,9 @@
  返回值：需要的高度
  **********************************************************/
 + (CGFloat)autoLabelWithMaxWidth:(CGFloat)maxWidth font:(UIFont*)font content:(NSString*)content{
+    if (!content||[content isEqualToString:@""]) {
+        return 0;
+    }
     CGRect bounds = [content boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil];
     return CGRectGetHeight(bounds);
 }

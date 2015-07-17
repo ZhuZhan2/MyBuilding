@@ -8,15 +8,30 @@
 
 #import "MyPointDetailCell.h"
 #import "RKShadowView.h"
-
+#import "RKViewFactory.h"
 @interface MyPointDetailCell ()
 @property (nonatomic, strong)UILabel* mainTitleLabel;
 @property (nonatomic, strong)UILabel* mainSubTitleLabel;
 @property (nonatomic, strong)UILabel* assistMainTitleLabel;
 @property (nonatomic, strong)UILabel* assistSubTitleLabel;
+
+@property (nonatomic, strong)UIView* sepaLine;
 @end
 
 @implementation MyPointDetailCell
+
++ (CGFloat)carculateModel:(MyPointHistoryModel*)model{
+    CGFloat height = 35;
+    if (![model.a_reason isEqualToString:@""]) {
+        height += [RKViewFactory autoLabelWithMaxWidth:290 font:[UIFont systemFontOfSize:13] content:model.a_reason];
+        height += 3;
+    }
+    
+    height += 17;
+    height += 5;
+    height += 1;
+    return height;
+}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -25,11 +40,8 @@
         [self.contentView addSubview:self.assistMainTitleLabel];
         [self.contentView addSubview:self.assistSubTitleLabel];
         
-        UIView* sepe = [RKShadowView seperatorLine];
-        CGRect frame = sepe.frame;
-        frame.origin.y = 59;
-        sepe.frame = frame;
-        [self.contentView addSubview:sepe];
+        self.sepaLine = [RKShadowView seperatorLine];
+        [self.contentView addSubview:self.sepaLine];
     }
     return self;
 }
@@ -44,6 +56,21 @@
     self.assistMainTitleLabel.text = [NSString stringWithFormat:isAdd?@"+%@":@"-%@",model.a_points];
     self.assistMainTitleLabel.textColor = isAdd?RGBCOLOR(226, 116, 36):RGBCOLOR(161, 161, 161);
     self.assistSubTitleLabel.text = model.a_reason;
+    
+    [self reloadView];
+}
+
+- (void)reloadView{
+    [RKViewFactory autoLabel:self.assistSubTitleLabel maxWidth:290];
+
+    CGRect frame = self.mainSubTitleLabel.frame;
+    CGFloat extraHeight = [self.model.a_reason isEqualToString:@""]?0:3;
+    frame.origin.y = CGRectGetMaxY(self.assistSubTitleLabel.frame) + extraHeight;
+    self.mainSubTitleLabel.frame = frame;
+    
+    frame = self.sepaLine.frame;
+    frame.origin.y = CGRectGetMaxY(self.mainSubTitleLabel.frame) + 5;
+    self.sepaLine.frame = frame;
 }
 
 - (UILabel *)mainTitleLabel{
@@ -59,7 +86,7 @@
 
 - (UILabel *)mainSubTitleLabel{
     if (!_mainSubTitleLabel) {
-        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 32, 225, 20)];
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 35, 225, 17)];
         label.font = [UIFont systemFontOfSize:13];
         label.textColor = RGBCOLOR(187, 187, 187);
         
@@ -82,9 +109,8 @@
 
 - (UILabel *)assistSubTitleLabel{
     if (!_assistSubTitleLabel) {
-        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(205, 33, 100, 20)];
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 35, 0, 0)];
         label.font = [UIFont systemFontOfSize:13];
-        label.textAlignment = NSTextAlignmentRight;
         label.textColor = RGBCOLOR(187, 187, 187);
         
         _assistSubTitleLabel = label;

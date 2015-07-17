@@ -61,7 +61,8 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
+    MyPointHistoryModel* model = self.modelArr[indexPath.row];
+    return [MyPointDetailCell carculateModel:model];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -69,6 +70,7 @@
     if (!cell) {
         cell=[[MyPointDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.clipsToBounds = YES;
     }
     MyPointHistoryModel* model = self.modelArr[indexPath.row];
     cell.model = model;
