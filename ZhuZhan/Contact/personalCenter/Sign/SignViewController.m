@@ -105,7 +105,7 @@
                 [_signBtn setImage:[GetImagePath getImagePath:@"point_noSign"] forState:
                  UIControlStateNormal];
                 self.signBtn.enabled = NO;
-                NSMutableAttributedString* attStr=[[NSMutableAttributedString alloc]initWithString:@"可用积分(异常)"];
+                NSMutableAttributedString* attStr=[[NSMutableAttributedString alloc]initWithString:@"我的积分(异常)"];
                 [attStr addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(207, 72, 31) range:NSMakeRange(4, 4)];
                 self.pointTitleLabel.attributedText = attStr;
                 self.pointLabel.text = [NSString stringWithFormat:@"%d",self.pointModel.a_points];

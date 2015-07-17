@@ -1,16 +1,17 @@
 //
-//  PersonalCenterPointTableViewCell.m
+//  PersonalCenterPointNotiTableViewCell.m
 //  ZhuZhan
 //
-//  Created by 汪洋 on 15/7/15.
+//  Created by 汪洋 on 15/7/17.
 //
 //
 
-#import "PersonalCenterPointTableViewCell.h"
+#import "PersonalCenterPointNotiTableViewCell.h"
 #import "RKViewFactory.h"
 #import "RKShadowView.h"
 
-@implementation PersonalCenterPointTableViewCell
+@implementation PersonalCenterPointNotiTableViewCell
+
 + (CGFloat)carculateCellHeightWithModel:(PersonalCenterModel *)cellModel{
     CGFloat height = 0;
     if(![cellModel.a_msgContent isEqualToString:@""]){
@@ -29,7 +30,6 @@
         [self.bgView addSubview:self.cutline1];
         [self.bgView addSubview:self.cutline2];
         [self.bgView addSubview:self.titleLabel];
-        [self.bgView addSubview:self.contentLabel];
         [self.bgView addSubview:self.timeLabel];
     }
     return self;
@@ -69,18 +69,9 @@
     return _titleLabel;
 }
 
--(UILabel *)contentLabel{
-    if(!_contentLabel){
-        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,40,140,20)];
-        _contentLabel.font = [UIFont systemFontOfSize:14];
-        _contentLabel.textColor = BlueColor;
-    }
-    return _contentLabel;
-}
-
 -(UILabel *)timeLabel{
     if(!_timeLabel){
-        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(190, 40, 140, 20)];
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 40, 140, 20)];
         _timeLabel.font = [UIFont systemFontOfSize:14];
         _timeLabel.textColor = AllNoDataColor;
     }
@@ -89,7 +80,6 @@
 
 -(void)setPersonalCenterModel:(PersonalCenterModel *)personalCenterModel{
     self.titleLabel.text = personalCenterModel.a_msgContent;
-    self.contentLabel.text = @"积分功能被关闭";
     self.timeLabel.text = personalCenterModel.a_createdTime;
     CGFloat height = 0;
     CGRect frame = self.cutline1.frame;
@@ -106,15 +96,11 @@
         self.titleLabel.hidden = YES;
     }
     
-    frame = self.contentLabel.frame;
-    frame.origin.y = height;
-    self.contentLabel.frame = frame;
-    
     frame = self.timeLabel.frame;
     frame.origin.y = height;
     self.timeLabel.frame = frame;
     
-    height += CGRectGetHeight(self.contentLabel.frame)+5;
+    height += CGRectGetHeight(self.timeLabel.frame)+5;
     
     
     

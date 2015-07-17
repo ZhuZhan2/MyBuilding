@@ -82,6 +82,9 @@
     }else if ([self.a_messageType isEqualToString:@"11"] && [self.a_operationType isEqualToString:@"07"]){
         //积分被关闭
         self.a_type = 10;
+    }else if([self.a_messageType isEqualToString:@"11"] && [self.a_operationType isEqualToString:@"08"]){
+        //注册送100积分
+        self.a_type = 11;
     }
     
     if([self.a_messageType isEqualToString:@"01"]){

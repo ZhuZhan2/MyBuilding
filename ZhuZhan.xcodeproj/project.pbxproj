@@ -1718,6 +1718,7 @@
 		D3D8F8BD1B5889C600ABF500 /* MyPointContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8F8BC1B5889C600ABF500 /* MyPointContentView.m */; };
 		D3D8F8C01B588CA800ABF500 /* 我的积分_介绍图.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D8F8BE1B588CA800ABF500 /* 我的积分_介绍图.png */; };
 		D3D8F8C11B588CA800ABF500 /* 我的积分_介绍图@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D8F8BF1B588CA800ABF500 /* 我的积分_介绍图@2x.png */; };
+		D3D8F8C91B58A9AF00ABF500 /* PersonalCenterPointNotiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8F8C81B58A9AF00ABF500 /* PersonalCenterPointNotiTableViewCell.m */; };
 		D3D8FEAD1ABD489E0096B7FD /* QuotesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8FEAC1ABD489E0096B7FD /* QuotesModel.m */; };
 		D3D946A91A6CDD33003A68D5 /* YLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D946A81A6CDD33003A68D5 /* YLLabel.m */; };
 		D3D9C90A1A1343CF001D3A64 /* 主菜单01b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9021A1343CE001D3A64 /* 主菜单01b.png */; };
@@ -4222,6 +4223,8 @@
 		D3D8F8BC1B5889C600ABF500 /* MyPointContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPointContentView.m; sourceTree = "<group>"; };
 		D3D8F8BE1B588CA800ABF500 /* 我的积分_介绍图.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的积分_介绍图.png"; sourceTree = "<group>"; };
 		D3D8F8BF1B588CA800ABF500 /* 我的积分_介绍图@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的积分_介绍图@2x.png"; sourceTree = "<group>"; };
+		D3D8F8C71B58A9AF00ABF500 /* PersonalCenterPointNotiTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterPointNotiTableViewCell.h; sourceTree = "<group>"; };
+		D3D8F8C81B58A9AF00ABF500 /* PersonalCenterPointNotiTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterPointNotiTableViewCell.m; sourceTree = "<group>"; };
 		D3D8FEAB1ABD489E0096B7FD /* QuotesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuotesModel.h; sourceTree = "<group>"; };
 		D3D8FEAC1ABD489E0096B7FD /* QuotesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuotesModel.m; sourceTree = "<group>"; };
 		D3D946A71A6CDD33003A68D5 /* YLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLLabel.h; sourceTree = "<group>"; };
@@ -5841,6 +5844,8 @@
 				D3D60D281B3A452600CE86BE /* PersonalCenterProjectTableViewCell.m */,
 				D35AD4051B55FCEB00AD8DA5 /* PersonalCenterPointTableViewCell.h */,
 				D35AD4061B55FCEB00AD8DA5 /* PersonalCenterPointTableViewCell.m */,
+				D3D8F8C71B58A9AF00ABF500 /* PersonalCenterPointNotiTableViewCell.h */,
+				D3D8F8C81B58A9AF00ABF500 /* PersonalCenterPointNotiTableViewCell.m */,
 			);
 			path = personalCenter;
 			sourceTree = "<group>";
@@ -9912,6 +9917,7 @@
 				0426C23319922D5A00CD8822 /* PanViewController.m in Sources */,
 				5B9401D31ACA89FF000C3C99 /* ContractsListSearchController.m in Sources */,
 				0426C28E19922D5A00CD8822 /* GPUImageLuminosityBlendFilter.m in Sources */,
+				D3D8F8C91B58A9AF00ABF500 /* PersonalCenterPointNotiTableViewCell.m in Sources */,
 				5B5CB9B91AC01855000CF505 /* DemandListSearchController.m in Sources */,
 				0426C23019922D5A00CD8822 /* LoginViewController.m in Sources */,
 				0426C2F719922D5A00CD8822 /* CJSONSerializer.m in Sources */,

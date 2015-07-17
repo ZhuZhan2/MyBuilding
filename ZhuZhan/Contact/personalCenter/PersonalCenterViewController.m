@@ -37,6 +37,7 @@
 #import "MyPointApi.h"
 #import "PointDetailModel.h"
 #import "PersonalCenterPointTableViewCell.h"
+#import "PersonalCenterPointNotiTableViewCell.h"
 
 @interface PersonalCenterViewController ()<PersonalHeadViewDelegate>
 @property(nonatomic,strong)UIView *headView;
@@ -407,7 +408,17 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         }
         cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
         cell.selectionStyle = NO;
-        cell.model = model;
+        cell.personalCenterModel = model;
+        return cell;
+    }else if (model.a_type == 11){
+        NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalCenterPointNotiTableViewCell"];
+        PersonalCenterPointNotiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell){
+            cell = [[PersonalCenterPointNotiTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.contentView.backgroundColor = RGBCOLOR(239, 237, 237);
+        cell.selectionStyle = NO;
+        cell.personalCenterModel = model;
         return cell;
     }else{
         NSString *CellIdentifier = [NSString stringWithFormat:@"Cell"];
@@ -478,6 +489,8 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         return [PersonalCenterTableViewCell carculateCellHeightWithModel:model];
     }else if(model.a_type == 10){
         return [PersonalCenterPointTableViewCell carculateCellHeightWithModel:model];
+    }else if (model.a_type == 11){
+        return [PersonalCenterPointNotiTableViewCell carculateCellHeightWithModel:model];
     }else{
         return 0;
     }

@@ -210,7 +210,7 @@ int j;
         _topBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 64.5, 320,40)];
         [_topBgView setBackgroundColor:[UIColor grayColor]];
         _topBgView.alpha = 0.5;
-        UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 69.5, 160, 30)];
+        UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 10, 160, 30)];
         countLabel.text = [NSString stringWithFormat:@"%d条结果",self.topCount];
         countLabel.textColor = [UIColor blackColor];
         countLabel.textAlignment = NSTextAlignmentCenter;
@@ -363,6 +363,7 @@ int j;
 {
     if ([overlay isKindOfClass:[BMKPolygon class]])
     {
+        NSLog(@"viewForOverlay");
         BMKPolygonView* polygonView = [[BMKPolygonView alloc] initWithOverlay:overlay];
         polygonView.strokeColor = [[UIColor redColor] colorWithAlphaComponent:1];
         polygonView.fillColor = [[UIColor cyanColor] colorWithAlphaComponent:0.2];
@@ -472,7 +473,6 @@ int j;
         self.isDrawing = NO;
         [self.imageView removeFromSuperview];
         self.imageView = nil;
-        [self.view addSubview:self.topBgView];
     }
 }
 
