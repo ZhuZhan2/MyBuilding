@@ -48,10 +48,10 @@
 
 - (UILabel *)mainTitleLabel{
     if (!_mainTitleLabel) {
-        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 225, 20)];
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 140, 20)];
         label.font = [UIFont systemFontOfSize:16];
         label.textColor = RGBCOLOR(51, 51, 51);
-        
+
         _mainTitleLabel = label;
     }
     return _mainTitleLabel;
@@ -70,7 +70,7 @@
 
 - (UILabel *)assistMainTitleLabel{
     if (!_assistMainTitleLabel) {
-        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(205, 8, 100, 25)];
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(155, 8, 150, 25)];
         label.textAlignment = NSTextAlignmentRight;
         label.font = [UIFont systemFontOfSize:21];
         label.textColor = RGBCOLOR(226, 116, 36);
