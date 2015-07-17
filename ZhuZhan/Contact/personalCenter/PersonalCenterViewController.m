@@ -158,7 +158,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [MyPointApi GetPointDetailWithBlock:^(PointDetailModel *model, NSError *error) {
         if(!error){
             PointDetailModel *pointmModel = model;
-            [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"我的积分：%d",pointmModel.a_points],XHBirthdayKey,nil]];
+            [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"可用积分：%d",pointmModel.a_points],XHBirthdayKey,nil]];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];
@@ -333,6 +333,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 - (void)_refreshing {
     // refresh your data sources
+    [self getMyPoint];
     [self downLoad:^{
         __weak PersonalCenterViewController *wself = self;
         [wself.pathCover stopRefresh];
@@ -473,8 +474,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         return 60;
     }else if(model.a_type == 1 || model.a_type == 8 || model.a_type == 9){
         return 80;
-    }else if(model.a_type == 0 || model.a_type == 6 || model.a_type == 10){
+    }else if(model.a_type == 0 || model.a_type == 6){
         return [PersonalCenterTableViewCell carculateCellHeightWithModel:model];
+    }else if(model.a_type == 10){
+        return [PersonalCenterPointTableViewCell carculateCellHeightWithModel:model];
     }else{
         return 0;
     }

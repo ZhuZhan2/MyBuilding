@@ -1715,6 +1715,9 @@
 		D3D7F94E1B0DAC9500DEB513 /* map_projectBackgroud@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7F94C1B0DAC9500DEB513 /* map_projectBackgroud@2x.png */; };
 		D3D7F9511B0DAFA600DEB513 /* map_project_red.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7F94F1B0DAFA600DEB513 /* map_project_red.png */; };
 		D3D7F9521B0DAFA600DEB513 /* map_project_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D7F9501B0DAFA600DEB513 /* map_project_red@2x.png */; };
+		D3D8F8BD1B5889C600ABF500 /* MyPointContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8F8BC1B5889C600ABF500 /* MyPointContentView.m */; };
+		D3D8F8C01B588CA800ABF500 /* 我的积分_介绍图.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D8F8BE1B588CA800ABF500 /* 我的积分_介绍图.png */; };
+		D3D8F8C11B588CA800ABF500 /* 我的积分_介绍图@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D8F8BF1B588CA800ABF500 /* 我的积分_介绍图@2x.png */; };
 		D3D8FEAD1ABD489E0096B7FD /* QuotesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8FEAC1ABD489E0096B7FD /* QuotesModel.m */; };
 		D3D946A91A6CDD33003A68D5 /* YLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D946A81A6CDD33003A68D5 /* YLLabel.m */; };
 		D3D9C90A1A1343CF001D3A64 /* 主菜单01b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9021A1343CE001D3A64 /* 主菜单01b.png */; };
@@ -1758,6 +1761,9 @@
 		D3DBCE5F1AC8E77A00C9FEDE /* StartManView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE5E1AC8E77A00C9FEDE /* StartManView.m */; };
 		D3DCB9581B0B1BFB005CC798 /* VIPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB9571B0B1BFB005CC798 /* VIPhotoView.m */; };
 		D3DCDACA1ADBA66C0029DB95 /* GetAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCDAC91ADBA66C0029DB95 /* GetAddressBook.m */; };
+		D3DD6BA11B579D7500A75351 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3DD6BA01B579D7500A75351 /* mapapi.bundle */; };
+		D3DD6BA71B57BC8400A75351 /* point_noSign.png in Resources */ = {isa = PBXBuildFile; fileRef = D3DD6BA51B57BC8400A75351 /* point_noSign.png */; };
+		D3DD6BA81B57BC8400A75351 /* point_noSign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3DD6BA61B57BC8400A75351 /* point_noSign@2x.png */; };
 		D3DD750B1B3D1EF000D08BD5 /* SecretView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DD750A1B3D1EF000D08BD5 /* SecretView.m */; };
 		D3DD83641B2ADC9700BD18DE /* card_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = D3DD83621B2ADC9700BD18DE /* card_delete.png */; };
 		D3DD83651B2ADC9700BD18DE /* card_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3DD83631B2ADC9700BD18DE /* card_delete@2x.png */; };
@@ -4212,6 +4218,10 @@
 		D3D7F94C1B0DAC9500DEB513 /* map_projectBackgroud@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_projectBackgroud@2x.png"; sourceTree = "<group>"; };
 		D3D7F94F1B0DAFA600DEB513 /* map_project_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_project_red.png; sourceTree = "<group>"; };
 		D3D7F9501B0DAFA600DEB513 /* map_project_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_project_red@2x.png"; sourceTree = "<group>"; };
+		D3D8F8BB1B5889C600ABF500 /* MyPointContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPointContentView.h; sourceTree = "<group>"; };
+		D3D8F8BC1B5889C600ABF500 /* MyPointContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPointContentView.m; sourceTree = "<group>"; };
+		D3D8F8BE1B588CA800ABF500 /* 我的积分_介绍图.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的积分_介绍图.png"; sourceTree = "<group>"; };
+		D3D8F8BF1B588CA800ABF500 /* 我的积分_介绍图@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的积分_介绍图@2x.png"; sourceTree = "<group>"; };
 		D3D8FEAB1ABD489E0096B7FD /* QuotesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuotesModel.h; sourceTree = "<group>"; };
 		D3D8FEAC1ABD489E0096B7FD /* QuotesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuotesModel.m; sourceTree = "<group>"; };
 		D3D946A71A6CDD33003A68D5 /* YLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLLabel.h; sourceTree = "<group>"; };
@@ -4270,6 +4280,9 @@
 		D3DCB9571B0B1BFB005CC798 /* VIPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPhotoView.m; sourceTree = "<group>"; };
 		D3DCDAC81ADBA66C0029DB95 /* GetAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAddressBook.h; sourceTree = "<group>"; };
 		D3DCDAC91ADBA66C0029DB95 /* GetAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAddressBook.m; sourceTree = "<group>"; };
+		D3DD6BA01B579D7500A75351 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
+		D3DD6BA51B57BC8400A75351 /* point_noSign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point_noSign.png; sourceTree = "<group>"; };
+		D3DD6BA61B57BC8400A75351 /* point_noSign@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_noSign@2x.png"; sourceTree = "<group>"; };
 		D3DD75091B3D1EF000D08BD5 /* SecretView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecretView.h; sourceTree = "<group>"; };
 		D3DD750A1B3D1EF000D08BD5 /* SecretView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecretView.m; sourceTree = "<group>"; };
 		D3DD83621B2ADC9700BD18DE /* card_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_delete.png; sourceTree = "<group>"; };
@@ -6795,6 +6808,8 @@
 				5BB7409B1B53C2E700F2095C /* PointRule */,
 				D31FACFC1B5399F400B32661 /* MyPointTopView.h */,
 				D31FACFD1B5399F400B32661 /* MyPointTopView.m */,
+				D3D8F8BB1B5889C600ABF500 /* MyPointContentView.h */,
+				D3D8F8BC1B5889C600ABF500 /* MyPointContentView.m */,
 			);
 			path = MyPoint;
 			sourceTree = "<group>";
@@ -7397,6 +7412,10 @@
 		D31FACD51B53625600B32661 /* 我的积分 */ = {
 			isa = PBXGroup;
 			children = (
+				D3D8F8BE1B588CA800ABF500 /* 我的积分_介绍图.png */,
+				D3D8F8BF1B588CA800ABF500 /* 我的积分_介绍图@2x.png */,
+				D3DD6BA51B57BC8400A75351 /* point_noSign.png */,
+				D3DD6BA61B57BC8400A75351 /* point_noSign@2x.png */,
 				D31FACF81B538FE200B32661 /* poing_signEnd.png */,
 				D31FACF91B538FE200B32661 /* poing_signEnd@2x.png */,
 				D31FACD61B53625600B32661 /* point_detail.png */,
@@ -7821,6 +7840,7 @@
 		D3AD611019ADA105001FD483 /* BaiduMap */ = {
 			isa = PBXGroup;
 			children = (
+				D3DD6B9F1B579D7500A75351 /* Resources */,
 				5B998CCB1B4B73D400569A56 /* BaiduMapAPI.framework */,
 			);
 			path = BaiduMap;
@@ -8437,6 +8457,15 @@
 			path = GetAddressBook;
 			sourceTree = "<group>";
 		};
+		D3DD6B9F1B579D7500A75351 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D3DD6BA01B579D7500A75351 /* mapapi.bundle */,
+			);
+			name = Resources;
+			path = BaiduMapAPI.framework/Resources;
+			sourceTree = "<group>";
+		};
 		D3DD75081B3D1ED400D08BD5 /* SecretView */ = {
 			isa = PBXGroup;
 			children = (
@@ -8922,6 +8951,7 @@
 				D30106BF1B41187900E683A2 /* chat_default.png in Resources */,
 				04BC425419D7E5B3006B5C7B /* 搜索_07@2x.png in Resources */,
 				5B9624EB1AB2853A005728C5 /* Rectangle-3-copy@2x.png in Resources */,
+				D3DD6BA71B57BC8400A75351 /* point_noSign.png in Resources */,
 				D3D75E2B1B01E3D900754C1A /* banner_mobile_3@2x.png in Resources */,
 				5BE08E731A3586EA00495EEB /* 030018@2x.png in Resources */,
 				5BC40E2C1B09B64800184D1A /* 会话－拍摄@2x.png in Resources */,
@@ -9108,6 +9138,7 @@
 				04BC436219D7E5B3006B5C7B /* ＋项目－项目专题_11a.png in Resources */,
 				D35163E71A67903F000051F4 /* 人脉_74a2@2x.png in Resources */,
 				5BE08D991A3586EA00495EEB /* 010003@2x.png in Resources */,
+				D3DD6BA11B579D7500A75351 /* mapapi.bundle in Resources */,
 				5B71323E1AA44F7E0043E37D /* ＋@2x.png in Resources */,
 				5B86504A1ABFAF370096BEF0 /* DemandStageSelected.png in Resources */,
 				04BC425619D7E5B3006B5C7B /* 搜索_10@2x.png in Resources */,
@@ -9402,6 +9433,7 @@
 				D3D3212F1A3ED4340009AEEA /* 注册_03@2x.png in Resources */,
 				D3BAA7B41A58CB9A008E613F /* 人的详情88-02.png in Resources */,
 				5BE08E581A3586EA00495EEB /* 030005.png in Resources */,
+				D3DD6BA81B57BC8400A75351 /* point_noSign@2x.png in Resources */,
 				D3D74EC019FA308000ED8B62 /* 密码找回_15.png in Resources */,
 				5B6C4B181ADF8AF1003B8DA8 /* 同意小带字.png in Resources */,
 				5B75F4FC1AFA04AB0091162C /* find_insetbox2.png in Resources */,
@@ -9439,6 +9471,7 @@
 				04BC436019D7E5B3006B5C7B /* ＋人脉－个人中心2_30a.png in Resources */,
 				D39937DB1A42B539007081C1 /* 推荐页面06a@2x.png in Resources */,
 				04BC419319D7E5B3006B5C7B /* 人脉_61a.png in Resources */,
+				D3D8F8C11B588CA800ABF500 /* 我的积分_介绍图@2x.png in Resources */,
 				04BC410D19D7E5B3006B5C7B /* 020.png in Resources */,
 				04BC415919D7E5B3006B5C7B /* timescroll_pointer.png in Resources */,
 				04BC436319D7E5B3006B5C7B /* ＋项目－项目专题_11a@2x.png in Resources */,
@@ -9708,6 +9741,7 @@
 				D3D090071AF86D3F00C8AC55 /* AdDataPlist.plist in Resources */,
 				5BE08DE11A3586EA00495EEB /* 010039@2x.png in Resources */,
 				D3D75E281B01E3D900754C1A /* banner_mobile_2.png in Resources */,
+				D3D8F8C01B588CA800ABF500 /* 我的积分_介绍图.png in Resources */,
 				04BC420219D7E5B3006B5C7B /* 公司认证员工_03a@2x.png in Resources */,
 				5BE08DBD1A3586EA00495EEB /* 010021@2x.png in Resources */,
 				5B90E1161ADE59B600436CED /* 流程点_已完成.png in Resources */,
@@ -10445,6 +10479,7 @@
 				5BAE1C791B0F33F8004A4B3E /* RKPersonalController.m in Sources */,
 				0426C29C19922D5A00CD8822 /* GPUImageOpeningFilter.m in Sources */,
 				5B7670621AB6B92B00E154C5 /* ChatBaseViewController.m in Sources */,
+				D3D8F8BD1B5889C600ABF500 /* MyPointContentView.m in Sources */,
 				0426C2C819922D5A00CD8822 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
 				5B6FF7041AE50F9500F3A3E0 /* ContractsSalerModel.m in Sources */,
 				0426C2FC19922D5A00CD8822 /* UIActivityIndicatorView+AFNetworking.m in Sources */,

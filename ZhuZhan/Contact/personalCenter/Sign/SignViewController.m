@@ -89,6 +89,7 @@
     [MyPointApi GetPointDetailWithBlock:^(PointDetailModel *model, NSError *error) {
         if(!error){
             self.pointModel = model;
+            NSLog(@"%@",self.pointModel.a_status);
             if([self.pointModel.a_status isEqualToString:@"00"]){
                 if(self.pointModel.a_hasSign){
                     [_signBtn setImage:[GetImagePath getImagePath:@"poing_signEnd"] forState:UIControlStateNormal];
@@ -97,14 +98,20 @@
                     [_signBtn setImage:[GetImagePath getImagePath:@"point_sign"] forState:UIControlStateNormal];
                     self.signBtn.enabled = YES;
                 }
+                self.pointLabel.text = [NSString stringWithFormat:@"%d",self.pointModel.a_points];
+                self.signDayLabel.text = [NSString stringWithFormat:@"你已连续签到%@天",self.pointModel.a_signDays];
+                self.signPointLabel.text = [NSString stringWithFormat:@"%@",self.pointModel.a_todayGet];
             }else{
                 [_signBtn setImage:[GetImagePath getImagePath:@"point_noSign"] forState:
                  UIControlStateNormal];
                 self.signBtn.enabled = NO;
+                NSMutableAttributedString* attStr=[[NSMutableAttributedString alloc]initWithString:@"可用积分(异常)"];
+                [attStr addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(207, 72, 31) range:NSMakeRange(4, 4)];
+                self.pointTitleLabel.attributedText = attStr;
+                self.pointLabel.text = [NSString stringWithFormat:@"%d",self.pointModel.a_points];
+                self.signDayLabel.text = @"您的积分状态异常";
+                self.signPointLabel.text = @"无法签到";
             }
-            self.pointLabel.text = [NSString stringWithFormat:@"%d",self.pointModel.a_points];
-            self.signDayLabel.text = [NSString stringWithFormat:@"你已连续签到%@天",self.pointModel.a_signDays];
-            self.signPointLabel.text = [NSString stringWithFormat:@"%@",self.pointModel.a_todayGet];
         }else{
             if([ErrorCode errorCode:error] == 403){
                 [LoginAgain AddLoginView:NO];

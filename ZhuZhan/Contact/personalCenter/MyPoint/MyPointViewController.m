@@ -12,10 +12,13 @@
 #import "MyPointApi.h"
 #import "PointDetailModel.h"
 #import "PointRuleViewController.h"
+#import "MyPointContentView.h"
+
 @interface MyPointViewController ()<MyPointTopViewDelegate>
 @property(nonatomic,strong)UIScrollView *scrollView;
 @property(nonatomic,strong)MyPointTopView *myPointTopView;
 @property(nonatomic,strong)PointDetailModel *pointModel;
+@property(nonatomic,strong)MyPointContentView *myPointContentView;
 @end
 
 @implementation MyPointViewController
@@ -27,6 +30,7 @@
     [self getMyPoint];
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.myPointTopView];
+    [self.scrollView addSubview:self.myPointContentView];
 }
 
 /**
@@ -72,6 +76,13 @@
         _myPointTopView.delegate = self;
     }
     return _myPointTopView;
+}
+
+-(MyPointContentView *)myPointContentView{
+    if(!_myPointContentView){
+        _myPointContentView = [[MyPointContentView alloc] initWithFrame:CGRectMake(0, 224, 320, 200)];
+    }
+    return _myPointContentView;
 }
 
 -(void)gotoPointDetailView:(NSInteger)tag{
