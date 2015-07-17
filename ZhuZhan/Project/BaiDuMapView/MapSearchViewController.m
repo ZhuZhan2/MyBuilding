@@ -367,7 +367,7 @@ int j;
         polygonView.strokeColor = [[UIColor redColor] colorWithAlphaComponent:1];
         polygonView.fillColor = [[UIColor cyanColor] colorWithAlphaComponent:0.2];
         polygonView.lineWidth =3.5;
-        polygonView.lineDash = (overlay == self.polygon);
+        //polygonView.lineDash = (overlay == self.polygon);
         return polygonView;
     }
     return nil;
