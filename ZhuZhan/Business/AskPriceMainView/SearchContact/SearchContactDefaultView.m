@@ -205,13 +205,19 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section == 0){
-        if([self.delegate respondsToSelector:@selector(selectContact:)]){
-            [self.delegate selectContact:self.friendArr[indexPath.row]];
-        }
-    }else{
+    if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
         if([self.delegate respondsToSelector:@selector(selectContact:)]){
             [self.delegate selectContact:self.companyArr[indexPath.row]];
+        }
+    }else{
+        if(indexPath.section == 0){
+            if([self.delegate respondsToSelector:@selector(selectContact:)]){
+                [self.delegate selectContact:self.friendArr[indexPath.row]];
+            }
+        }else{
+            if([self.delegate respondsToSelector:@selector(selectContact:)]){
+                [self.delegate selectContact:self.companyArr[indexPath.row]];
+            }
         }
     }
 }

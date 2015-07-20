@@ -27,10 +27,10 @@
     self.a_createdUser=dic[@"createdUser"];
     self.a_loginName=dic[@"loginName"];
     self.a_messageContent=dic[@"messageContent"];
-    if(![dic[@"imageId"] isEqualToString:@""]){
-        self.a_imageId = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image(dic[@"imageId"], @"login", @"", @"", @"")];
+    if(![dic[@"loginImagesId"] isEqualToString:@""]){
+        self.a_imageId = [NSString stringWithFormat:@"%@%@",[userDefaults objectForKey:@"serverAddress"],image(dic[@"loginImagesId"], @"login", @"", @"", @"")];
     }else{
-        self.a_imageId = dic[@"imageId"];
+        self.a_imageId = dic[@"loginImagesId"];
     }
     self.a_messageId=dic[@"messageId"];
     self.a_messageObjectId=dic[@"messageObjectId"];

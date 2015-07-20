@@ -493,10 +493,10 @@ NSString *const XHTitkeKey = @"XHTitkeKey";
     [_avatarButton addTarget:self action:@selector(avatarClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
--(void)setNameFrame:(CGRect)newFrame font:(UIFont *)font{
+-(void)setNameFrame:(CGRect)newFrame font:(UIFont *)font textAlignment:(NSTextAlignment)textAlignment{
     [_userNameLabel setFrame:newFrame];
     _userNameLabel.font = font;
-    _userNameLabel.textAlignment = NSTextAlignmentLeft;
+    _userNameLabel.textAlignment = textAlignment;
 }
 
 -(void)setBirthdayFrame:(CGRect)newFrame font:(UIFont *)font{

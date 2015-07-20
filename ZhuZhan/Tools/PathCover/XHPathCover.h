@@ -71,7 +71,7 @@ extern NSString *const XHTitkeKey;
 //设置头像点击时间
 -(void)setHeadTaget;
 //设置名字位置
--(void)setNameFrame:(CGRect)newFrame font:(UIFont *)font;
+-(void)setNameFrame:(CGRect)newFrame font:(UIFont *)font textAlignment:(NSTextAlignment)textAlignment;
 -(void)setBirthdayFrame:(CGRect)newFrame font:(UIFont *)font;
 //设置黑色背景位置
 -(void)setFootViewFrame:(CGRect)newFrame;

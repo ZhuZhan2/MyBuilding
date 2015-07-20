@@ -100,7 +100,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [_pathCover setBackgroundImageUrlString:[LoginSqlite getdata:@"backgroundImage"]];
     [_pathCover setHeadImageUrl:[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userImage"]]];
     [_pathCover hidewaterDropRefresh];
-    [_pathCover setNameFrame:CGRectMake(93, 15, 320, 20) font:[UIFont systemFontOfSize:14]];
+    [_pathCover setNameFrame:CGRectMake(93, 15, 320, 20) font:[UIFont systemFontOfSize:14] textAlignment:NSTextAlignmentLeft];
     [_pathCover setBirthdayFrame:CGRectMake(93, 35, 320, 20) font:[UIFont systemFontOfSize:14]];
     [_pathCover setHeadImageFrame:CGRectMake(20, 5, 61, 61)];
     if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){

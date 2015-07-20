@@ -56,8 +56,7 @@
     [_pathCover setFootViewFrame:CGRectMake(0, -105, 320, 320)];
     _pathCover.headImage.layer.cornerRadius =35;
     _pathCover.headImage.layer.masksToBounds =YES;
-    [_pathCover setNameFrame:CGRectMake(105, 10, 100, 20) font:[UIFont systemFontOfSize:14]];
-    _pathCover.userNameLabel.textAlignment = NSTextAlignmentCenter;
+    [_pathCover setNameFrame:CGRectMake(105, 10, 100, 20) font:[UIFont systemFontOfSize:14] textAlignment:NSTextAlignmentCenter];
     [self getThreeBtn];
 
     self.tableView.tableHeaderView = self.pathCover;
