@@ -60,7 +60,7 @@
 
 -(UILabel *)timeLabel{
     if(!_timeLabel){
-        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 25, 120, 20)];
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(190, 25, 120, 20)];
         _timeLabel.font = [UIFont systemFontOfSize:14];
         _timeLabel.textAlignment = NSTextAlignmentLeft;
         _timeLabel.textColor = AllNoDataColor;

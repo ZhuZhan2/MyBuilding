@@ -116,7 +116,6 @@
 }
 
 -(void)paste:(id)sender{
-    [super paste:sender];
     if (self.textView.text.length > kCommentLimitNumber) {
         self.textView.text = [self.textView.text substringToIndex:kCommentLimitNumber];
     }

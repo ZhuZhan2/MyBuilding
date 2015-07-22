@@ -25,7 +25,7 @@
 #import "ErrorCode.h"
 #endif
 
-#define UserClientVersion @"Pilot42" //版本号
+#define UserClientVersion @"Pilot43" //版本号
 
 //#define UpdateDownloadType @"01" //苹果商城
 #define UpdateDownloadType @"02" //官网安装
