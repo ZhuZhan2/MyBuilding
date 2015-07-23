@@ -79,6 +79,7 @@
 }
 
 -(void)setPersonalCenterModel:(PersonalCenterModel *)personalCenterModel{
+    NSLog(@"%@",personalCenterModel.a_msgContent);
     self.titleLabel.text = personalCenterModel.a_msgContent;
     self.timeLabel.text = personalCenterModel.a_createdTime;
     CGFloat height = 0;

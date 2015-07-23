@@ -85,6 +85,9 @@
     }else if([self.a_messageType isEqualToString:@"11"] && [self.a_operationType isEqualToString:@"08"]){
         //注册送100积分
         self.a_type = 11;
+    }else if ([self.a_messageType isEqualToString:@"11"] && [self.a_operationType isEqualToString:@"09"]){
+        //积分兑换成功
+        self.a_type = 12;
     }
     
     if([self.a_messageType isEqualToString:@"01"]){

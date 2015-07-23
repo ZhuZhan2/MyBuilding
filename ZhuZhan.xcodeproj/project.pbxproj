@@ -1721,6 +1721,9 @@
 		D3D8F8C91B58A9AF00ABF500 /* PersonalCenterPointNotiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8F8C81B58A9AF00ABF500 /* PersonalCenterPointNotiTableViewCell.m */; };
 		D3D8FEAD1ABD489E0096B7FD /* QuotesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8FEAC1ABD489E0096B7FD /* QuotesModel.m */; };
 		D3D946A91A6CDD33003A68D5 /* YLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D946A81A6CDD33003A68D5 /* YLLabel.m */; };
+		D3D94E181B608D000026B422 /* MyPointApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7408D1B53585B00F2095C /* MyPointApi.m */; };
+		D3D94E191B608D040026B422 /* PointDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FACF61B53840200B32661 /* PointDetailModel.m */; };
+		D3D94E1A1B608D070026B422 /* MyPointHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740991B53930300F2095C /* MyPointHistoryModel.m */; };
 		D3D9C90A1A1343CF001D3A64 /* 主菜单01b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9021A1343CE001D3A64 /* 主菜单01b.png */; };
 		D3D9C90B1A1343CF001D3A64 /* 主菜单01b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9031A1343CE001D3A64 /* 主菜单01b@2x.png */; };
 		D3D9C90C1A1343CF001D3A64 /* 主菜单02b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9041A1343CF001D3A64 /* 主菜单02b.png */; };
@@ -10567,7 +10570,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3D94E191B608D040026B422 /* PointDetailModel.m in Sources */,
 				0426C01019922CE400CD8822 /* ZhuZhanTests.m in Sources */,
+				D3D94E181B608D000026B422 /* MyPointApi.m in Sources */,
+				D3D94E1A1B608D070026B422 /* MyPointHistoryModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

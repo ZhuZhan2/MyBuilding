@@ -23,7 +23,7 @@
 
 //messageType : 01动态 02项目 03产品 04公司认证 10需求 11积分
 @property (nonatomic, copy) NSString *a_messageType;
-//operationType : 01被评论 02认证通过 03认证不通过 04有回复 05申请付款通过 06申请付款不通过 07被关闭 08首次注册送积分
+//operationType : 01被评论 02认证通过 03认证不通过 04有回复 05申请付款通过 06申请付款不通过 07被关闭 08首次注册送积分 09积分兑换成功
 @property (nonatomic, copy) NSString *a_operationType;
 
 /**********************************
@@ -39,6 +39,7 @@
  9 需求有回复
  10 积分被关闭
  11 首次注册送积分
+ 12 积分兑换成功
  **********************************/
 @property (nonatomic)NSInteger a_type;
 

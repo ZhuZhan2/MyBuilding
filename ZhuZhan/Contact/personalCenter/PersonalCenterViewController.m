@@ -410,7 +410,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         cell.selectionStyle = NO;
         cell.personalCenterModel = model;
         return cell;
-    }else if (model.a_type == 11){
+    }else if (model.a_type == 11 || model.a_type == 12){
         NSString *CellIdentifier = [NSString stringWithFormat:@"PersonalCenterPointNotiTableViewCell"];
         PersonalCenterPointNotiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell){
@@ -489,7 +489,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         return [PersonalCenterTableViewCell carculateCellHeightWithModel:model];
     }else if(model.a_type == 10){
         return [PersonalCenterPointTableViewCell carculateCellHeightWithModel:model];
-    }else if (model.a_type == 11){
+    }else if (model.a_type == 11 || model.a_type == 12){
         return [PersonalCenterPointNotiTableViewCell carculateCellHeightWithModel:model];
     }else{
         return 0;
