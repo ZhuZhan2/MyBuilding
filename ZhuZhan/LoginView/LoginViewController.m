@@ -159,16 +159,16 @@
     [self.navigationController pushViewController:registView animated:YES];
 }
 
--(void)gotoLogin{
+-(BOOL)gotoLogin{
     if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
-        return;
+        return NO;
     }
     
     if([_userNameTextField.text isEqualToString:@""]){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"用户名不能为空" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
-        return;
+        return NO;
     }
     
     self.loginBtn.enabled=NO;
@@ -226,6 +226,8 @@
             }
         }
     });
+    
+    return YES;
 }
 
 -(void)registComplete{

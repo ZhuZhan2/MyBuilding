@@ -1341,12 +1341,14 @@
 		5BEBAC711A79DB6100E29ADA /* 点-copy-3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BEBAC6F1A79DB6100E29ADA /* 点-copy-3@2x.png */; };
 		5BF08A3A19B86C5D00782976 /* MoreCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */; };
 		5BF08A3D19B8779D00782976 /* MoreCompanyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */; };
-		5BF0CE5B1B608FCB00B91F75 /* UpdataPassWordViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE521B608FCB00B91F75 /* UpdataPassWordViewControllerTests.m */; };
-		5BF0CE5C1B608FCB00B91F75 /* ProjectStageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE531B608FCB00B91F75 /* ProjectStageTests.m */; };
-		5BF0CE5D1B608FCB00B91F75 /* RKStageChooseViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE541B608FCB00B91F75 /* RKStageChooseViewTests.m */; };
-		5BF0CE5E1B608FCB00B91F75 /* FakeUpdataPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE561B608FCB00B91F75 /* FakeUpdataPassWordViewController.m */; };
-		5BF0CE5F1B608FCB00B91F75 /* FakeProjectStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE581B608FCB00B91F75 /* FakeProjectStage.m */; };
-		5BF0CE601B608FCB00B91F75 /* FakeStageChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE5A1B608FCB00B91F75 /* FakeStageChooseView.m */; };
+		5BF0CE671B60976200B91F75 /* FakeUpdataPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE641B60976200B91F75 /* FakeUpdataPassWordViewController.m */; };
+		5BF0CE681B60976200B91F75 /* UpdataPassWordViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE661B60976200B91F75 /* UpdataPassWordViewControllerTests.m */; };
+		5BF0CE6F1B60976A00B91F75 /* FakeProjectStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE6C1B60976A00B91F75 /* FakeProjectStage.m */; };
+		5BF0CE701B60976A00B91F75 /* ProjectStageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE6E1B60976A00B91F75 /* ProjectStageTests.m */; };
+		5BF0CE771B60977500B91F75 /* FakeStageChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE741B60977500B91F75 /* FakeStageChooseView.m */; };
+		5BF0CE781B60977500B91F75 /* RKStageChooseViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE761B60977500B91F75 /* RKStageChooseViewTests.m */; };
+		5BF0CE7B1B60AFB200B91F75 /* FakeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE7A1B60AFB200B91F75 /* FakeLoginViewController.m */; };
+		5BF0CE7D1B60AFFF00B91F75 /* LoginViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE7C1B60AFFF00B91F75 /* LoginViewControllerTests.m */; };
 		5BF31B541AB0162D00DA87F5 /* 添加联系人入群.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF31B521AB0162D00DA87F5 /* 添加联系人入群.png */; };
 		5BF31B551AB0162D00DA87F5 /* 添加联系人入群@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF31B531AB0162D00DA87F5 /* 添加联系人入群@2x.png */; };
 		5BF31B661AB025FD00DA87F5 /* AddGroupMemberController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B5B1AB025FD00DA87F5 /* AddGroupMemberController.m */; };
@@ -4075,15 +4077,18 @@
 		5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCompanyViewController.m; sourceTree = "<group>"; };
 		5BF08A3B19B8779D00782976 /* MoreCompanyViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCompanyViewCell.h; sourceTree = "<group>"; };
 		5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCompanyViewCell.m; sourceTree = "<group>"; };
-		5BF0CE521B608FCB00B91F75 /* UpdataPassWordViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdataPassWordViewControllerTests.m; sourceTree = "<group>"; };
-		5BF0CE531B608FCB00B91F75 /* ProjectStageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectStageTests.m; sourceTree = "<group>"; };
-		5BF0CE541B608FCB00B91F75 /* RKStageChooseViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKStageChooseViewTests.m; sourceTree = "<group>"; };
-		5BF0CE551B608FCB00B91F75 /* FakeUpdataPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeUpdataPassWordViewController.h; sourceTree = "<group>"; };
-		5BF0CE561B608FCB00B91F75 /* FakeUpdataPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeUpdataPassWordViewController.m; sourceTree = "<group>"; };
-		5BF0CE571B608FCB00B91F75 /* FakeProjectStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeProjectStage.h; sourceTree = "<group>"; };
-		5BF0CE581B608FCB00B91F75 /* FakeProjectStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeProjectStage.m; sourceTree = "<group>"; };
-		5BF0CE591B608FCB00B91F75 /* FakeStageChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeStageChooseView.h; sourceTree = "<group>"; };
-		5BF0CE5A1B608FCB00B91F75 /* FakeStageChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeStageChooseView.m; sourceTree = "<group>"; };
+		5BF0CE631B60976200B91F75 /* FakeUpdataPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeUpdataPassWordViewController.h; sourceTree = "<group>"; };
+		5BF0CE641B60976200B91F75 /* FakeUpdataPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeUpdataPassWordViewController.m; sourceTree = "<group>"; };
+		5BF0CE661B60976200B91F75 /* UpdataPassWordViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdataPassWordViewControllerTests.m; sourceTree = "<group>"; };
+		5BF0CE6B1B60976A00B91F75 /* FakeProjectStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeProjectStage.h; sourceTree = "<group>"; };
+		5BF0CE6C1B60976A00B91F75 /* FakeProjectStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeProjectStage.m; sourceTree = "<group>"; };
+		5BF0CE6E1B60976A00B91F75 /* ProjectStageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectStageTests.m; sourceTree = "<group>"; };
+		5BF0CE731B60977500B91F75 /* FakeStageChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeStageChooseView.h; sourceTree = "<group>"; };
+		5BF0CE741B60977500B91F75 /* FakeStageChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeStageChooseView.m; sourceTree = "<group>"; };
+		5BF0CE761B60977500B91F75 /* RKStageChooseViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKStageChooseViewTests.m; sourceTree = "<group>"; };
+		5BF0CE791B60AFB200B91F75 /* FakeLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeLoginViewController.h; sourceTree = "<group>"; };
+		5BF0CE7A1B60AFB200B91F75 /* FakeLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeLoginViewController.m; sourceTree = "<group>"; };
+		5BF0CE7C1B60AFFF00B91F75 /* LoginViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewControllerTests.m; sourceTree = "<group>"; };
 		5BF31B521AB0162D00DA87F5 /* 添加联系人入群.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "添加联系人入群.png"; sourceTree = "<group>"; };
 		5BF31B531AB0162D00DA87F5 /* 添加联系人入群@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "添加联系人入群@2x.png"; sourceTree = "<group>"; };
 		5BF31B5A1AB025FD00DA87F5 /* AddGroupMemberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddGroupMemberController.h; sourceTree = "<group>"; };
@@ -4982,15 +4987,9 @@
 				D3D94F9D1B6095190026B422 /* XCTest+GCovFlush.h */,
 				D3D94F9E1B6095190026B422 /* XCTest+GCovFlush.m */,
 				0426C00F19922CE400CD8822 /* ZhuZhanTests.m */,
-				5BF0CE521B608FCB00B91F75 /* UpdataPassWordViewControllerTests.m */,
-				5BF0CE531B608FCB00B91F75 /* ProjectStageTests.m */,
-				5BF0CE541B608FCB00B91F75 /* RKStageChooseViewTests.m */,
-				5BF0CE551B608FCB00B91F75 /* FakeUpdataPassWordViewController.h */,
-				5BF0CE561B608FCB00B91F75 /* FakeUpdataPassWordViewController.m */,
-				5BF0CE571B608FCB00B91F75 /* FakeProjectStage.h */,
-				5BF0CE581B608FCB00B91F75 /* FakeProjectStage.m */,
-				5BF0CE591B608FCB00B91F75 /* FakeStageChooseView.h */,
-				5BF0CE5A1B608FCB00B91F75 /* FakeStageChooseView.m */,
+				5BF0CE691B60976A00B91F75 /* Model */,
+				5BF0CE711B60977500B91F75 /* View */,
+				5BF0CE611B60976200B91F75 /* Controller */,
 				0426C00A19922CE400CD8822 /* Supporting Files */,
 			);
 			path = ZhuZhanTests;
@@ -7770,6 +7769,87 @@
 				5BE180EE1AFC9C1100251113 /* 申请认证@2x.png */,
 			);
 			path = Rock;
+			sourceTree = "<group>";
+		};
+		5BF0CE611B60976200B91F75 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0CE621B60976200B91F75 /* Fake */,
+				5BF0CE651B60976200B91F75 /* Tests */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5BF0CE621B60976200B91F75 /* Fake */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0CE631B60976200B91F75 /* FakeUpdataPassWordViewController.h */,
+				5BF0CE641B60976200B91F75 /* FakeUpdataPassWordViewController.m */,
+				5BF0CE791B60AFB200B91F75 /* FakeLoginViewController.h */,
+				5BF0CE7A1B60AFB200B91F75 /* FakeLoginViewController.m */,
+			);
+			path = Fake;
+			sourceTree = "<group>";
+		};
+		5BF0CE651B60976200B91F75 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0CE661B60976200B91F75 /* UpdataPassWordViewControllerTests.m */,
+				5BF0CE7C1B60AFFF00B91F75 /* LoginViewControllerTests.m */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		5BF0CE691B60976A00B91F75 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0CE6A1B60976A00B91F75 /* Fake */,
+				5BF0CE6D1B60976A00B91F75 /* Tests */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5BF0CE6A1B60976A00B91F75 /* Fake */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0CE6B1B60976A00B91F75 /* FakeProjectStage.h */,
+				5BF0CE6C1B60976A00B91F75 /* FakeProjectStage.m */,
+			);
+			path = Fake;
+			sourceTree = "<group>";
+		};
+		5BF0CE6D1B60976A00B91F75 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0CE6E1B60976A00B91F75 /* ProjectStageTests.m */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		5BF0CE711B60977500B91F75 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0CE721B60977500B91F75 /* Fake */,
+				5BF0CE751B60977500B91F75 /* Tests */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5BF0CE721B60977500B91F75 /* Fake */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0CE731B60977500B91F75 /* FakeStageChooseView.h */,
+				5BF0CE741B60977500B91F75 /* FakeStageChooseView.m */,
+			);
+			path = Fake;
+			sourceTree = "<group>";
+		};
+		5BF0CE751B60977500B91F75 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0CE761B60977500B91F75 /* RKStageChooseViewTests.m */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		5BF31B591AB025FD00DA87F5 /* AddGroupMember */ = {
@@ -11102,312 +11182,16 @@
 				D3D94F0A1B60914B0026B422 /* AddressBookViewCell.m in Sources */,
 				D3D94F171B6091770026B422 /* ChatTableViewCell.m in Sources */,
 				0426C01019922CE400CD8822 /* ZhuZhanTests.m in Sources */,
-				D3D94F311B6091CF0026B422 /* AcceptViewController.m in Sources */,
-				D3D94F331B6091D90026B422 /* DemandProvidePriceDetailController.m in Sources */,
-				D3D94F141B6091690026B422 /* RecommendFriendCell.m in Sources */,
-				D3D94F801B60936F0026B422 /* Camera.m in Sources */,
-				D3D94F051B6091360026B422 /* SearchBarTableViewController.m in Sources */,
-				D3D94F891B6093960026B422 /* TwoStageLocateView.m in Sources */,
-				D3D94F521B6092510026B422 /* RKTwoView.m in Sources */,
-				D3D94EF41B6090F60026B422 /* PanViewController.m in Sources */,
-				D3D94EF51B6090F90026B422 /* RegistViewController.m in Sources */,
-				D3D94F4F1B6092420026B422 /* ChooseProductSmallStage.m in Sources */,
-				D3D94F231B60919B0026B422 /* ForwardListViewController.m in Sources */,
-				D3D94EBB1B6090160026B422 /* CompanyMemberViewController.m in Sources */,
-				D3D94E2F1B608DD30026B422 /* ChoseContactModel.m in Sources */,
-				D3D94F001B6091280026B422 /* ChatBaseViewController.m in Sources */,
-				D3D94EEA1B6090D40026B422 /* ForgetPasswordFirstController.m in Sources */,
-				D3D94E5B1B608E700026B422 /* MyIndexPath.m in Sources */,
-				D3D94F841B6093870026B422 /* MChoiceTableViewCell.m in Sources */,
-				D3D94F3A1B6091F20026B422 /* RKDemandChatController.m in Sources */,
-				D3D94F5A1B60926D0026B422 /* DemandStageChooseController.m in Sources */,
-				D3D94E331B608DE00026B422 /* ChatMessageApi.m in Sources */,
-				D3D94EB81B60900E0026B422 /* MoreCompanyViewController.m in Sources */,
-				D3D94E8A1B608F1A0026B422 /* MyPointContentView.m in Sources */,
-				D3D94E431B608E160026B422 /* ProjectImageModel.m in Sources */,
-				D3D94E201B608DA00026B422 /* BannerImagesModel.m in Sources */,
-				D3D94F5C1B6092890026B422 /* ConstractListController.m in Sources */,
-				D3D94F1D1B6091890026B422 /* AddGroupMemberController.m in Sources */,
-				D3D94EFC1B6091190026B422 /* FirstAnimationView.m in Sources */,
-				D3D94E941B608F3D0026B422 /* PersonalCenterCellView.m in Sources */,
-				D3D94F421B6092130026B422 /* SearchContactTableViewCell.m in Sources */,
-				D3D94EB71B60900B0026B422 /* CompanyViewController.m in Sources */,
-				D3D94EEF1B6090E60026B422 /* RecommendProjectTableViewCell.m in Sources */,
-				D3D94F501B60924C0026B422 /* RKStageChooseView.m in Sources */,
-				D3D94E471B608E290026B422 /* ContactModel.m in Sources */,
-				D3D94F081B6091440026B422 /* RemindListViewController.m in Sources */,
-				D3D94E371B608DED0026B422 /* ReceiveApplyFreindModel.m in Sources */,
-				D3D94E861B608F0D0026B422 /* MyPointDetailCell.m in Sources */,
-				D3D94EB51B6090000026B422 /* CompanyProductController.m in Sources */,
-				D3D94E6F1B608EB30026B422 /* TopicsTableViewController.m in Sources */,
-				D3D94E921B608F370026B422 /* AccountCell.m in Sources */,
-				D3D94E891B608F170026B422 /* MyPointTopView.m in Sources */,
-				D3D94E711B608EC10026B422 /* AllDynamicListViewController.m in Sources */,
-				D3D94EE01B6090A00026B422 /* MarketSearchProductController.m in Sources */,
-				D3D94EAF1B608F9A0026B422 /* PersonalInfoController.m in Sources */,
-				D3D94ECF1B6090600026B422 /* MarketListSearchViewController.m in Sources */,
-				D3D94F4C1B6092380026B422 /* ChooseProductBigCell.m in Sources */,
-				D3D94F341B6091DC0026B422 /* DemandProvidePriceChatController.m in Sources */,
-				D3D94F491B6092250026B422 /* AddMarkView.m in Sources */,
-				D3D94F751B60930B0026B422 /* ErrorCode.m in Sources */,
-				D3D94F581B6092640026B422 /* AskPriceCellHeader.m in Sources */,
-				D3D94F3E1B6092070026B422 /* ClassificationView.m in Sources */,
-				D3D94E761B608ED10026B422 /* ContactProjectTableViewCell.m in Sources */,
-				D3D94F181B6091790026B422 /* ChatModel.m in Sources */,
-				D3D94EA81B608F7F0026B422 /* CorrelateCell.m in Sources */,
-				D3D94E391B608DF20026B422 /* ValidatePlatformContactModel.m in Sources */,
-				D3D94F7B1B60933C0026B422 /* MD5.m in Sources */,
-				D3D94F681B6092C90026B422 /* ReceiveView.m in Sources */,
-				D3D94F6E1B6092DF0026B422 /* AskPriceMessageViewController.m in Sources */,
-				D3D94F931B6093B50026B422 /* MarketSearchSqlite.m in Sources */,
-				D3D94F511B60924F0026B422 /* RKStageAndNumberView.m in Sources */,
-				D3D94E8C1B608F250026B422 /* PersonalBlockView.m in Sources */,
-				D3D94EA41B608F6D0026B422 /* PersonalCenterPointNotiTableViewCell.m in Sources */,
-				D3D94F701B6092F20026B422 /* VIPhotoView.m in Sources */,
-				D3D94E9F1B608F600026B422 /* MyFocusProductCell.m in Sources */,
-				D3D94E1F1B608D9E0026B422 /* RequirementDetailModel.m in Sources */,
-				D3D94E9B1B608F510026B422 /* MyFocusProjectController.m in Sources */,
-				D3D94E3B1B608DF90026B422 /* IsFocusedApi.m in Sources */,
-				D3D94EC71B6090410026B422 /* RequirementInfoOtherView.m in Sources */,
-				D3D94F8E1B6093A80026B422 /* ProjectSqlite.m in Sources */,
-				D3D94F2E1B6091C70026B422 /* DemandAskPriceDetailController.m in Sources */,
-				D3D94EDC1B60908E0026B422 /* OtherSearchMaterialViewController.m in Sources */,
-				D3D94F7E1B6093570026B422 /* BirthDay.m in Sources */,
-				D3D94F671B6092C50026B422 /* StartManView.m in Sources */,
-				D3D94F4E1B60923F0026B422 /* ChooseProductSmallCell.m in Sources */,
-				D3D94EEC1B6090D90026B422 /* ForgetPasswordThirdController.m in Sources */,
-				D3D94F2A1B6091B30026B422 /* ChooseContactsSearchController.m in Sources */,
-				D3D94F261B6091A70026B422 /* ChatListViewController.m in Sources */,
-				D3D94ED51B6090760026B422 /* PublishRequirementTitleView.m in Sources */,
-				D3D94F101B6091600026B422 /* AddFriendViewController.m in Sources */,
-				D3D94F821B60937C0026B422 /* NIDropDown.m in Sources */,
-				D3D94F771B6093170026B422 /* GetAddressBook.m in Sources */,
-				D3D94F091B6091480026B422 /* AddressBookViewController.m in Sources */,
-				D3D94EE91B6090D10026B422 /* LoginViewController.m in Sources */,
-				D3D94EA31B608F6A0026B422 /* PersonalCenterPointTableViewCell.m in Sources */,
-				D3D94F8D1B6093A40026B422 /* SqliteHelper.m in Sources */,
-				D3D94ED91B6090810026B422 /* PublishRequirementCooperationView.m in Sources */,
-				D3D94EC51B60903C0026B422 /* RequirementInfoRelationView.m in Sources */,
-				D3D94EDD1B6090940026B422 /* MarketSearchViewController.m in Sources */,
-				D3D94E971B608F440026B422 /* CompanyCenterViewController.m in Sources */,
+				5BF0CE6F1B60976A00B91F75 /* FakeProjectStage.m in Sources */,
+				5BF0CE771B60977500B91F75 /* FakeStageChooseView.m in Sources */,
+				5BF0CE7D1B60AFFF00B91F75 /* LoginViewControllerTests.m in Sources */,
+				5BF0CE671B60976200B91F75 /* FakeUpdataPassWordViewController.m in Sources */,
+				5BF0CE7B1B60AFB200B91F75 /* FakeLoginViewController.m in Sources */,
+				5BF0CE781B60977500B91F75 /* RKStageChooseViewTests.m in Sources */,
+				5BF0CE701B60976A00B91F75 /* ProjectStageTests.m in Sources */,
 				D3D94E181B608D000026B422 /* MyPointApi.m in Sources */,
-				D3D94EA21B608F680026B422 /* PersonalCenterProjectTableViewCell.m in Sources */,
-				D3D94F8C1B6093A10026B422 /* RecordSqlite.m in Sources */,
-				D3D94E361B608DEA0026B422 /* AddressBookModel.m in Sources */,
-				D3D94E521B608E570026B422 /* BaiDuMapViewController.m in Sources */,
-				D3D94F431B6092150026B422 /* SearchContactDefaultView.m in Sources */,
-				D3D94F9F1B6095190026B422 /* XCTest+GCovFlush.m in Sources */,
-				D3D94EE61B6090C20026B422 /* HomePageViewController.m in Sources */,
-				D3D94F901B6093AC0026B422 /* ChatSqlite.m in Sources */,
-				D3D94EDA1B6090830026B422 /* PublishRequirementOtherView.m in Sources */,
-				D3D94ED31B6090700026B422 /* SingleCategoryView.m in Sources */,
-				D3D94F041B6091330026B422 /* SearchBarCell.m in Sources */,
-				D3D94F621B6092A50026B422 /* ProviderContractsController.m in Sources */,
-				D3D94F611B6092A10026B422 /* OtherContractsBaseController.m in Sources */,
-				D3D94F2D1B6091C40026B422 /* DemandDetailAskPriceController.m in Sources */,
-				D3D94EAA1B608F840026B422 /* ContactBackgroundView.m in Sources */,
-				D3D94F351B6091E30026B422 /* RKDemandDetailController.m in Sources */,
-				D3D94E4E1B608E430026B422 /* ParticularsModel.m in Sources */,
-				D3D94EBE1B6090240026B422 /* RequirementDetailViewController.m in Sources */,
-				D3D94E261B608DB60026B422 /* ContractsSalerModel.m in Sources */,
-				D3D94EC21B60902F0026B422 /* RequirementCustomerReplyView.m in Sources */,
-				D3D94EE51B6090BD0026B422 /* SecretView.m in Sources */,
-				D3D94E8F1B608F2F0026B422 /* PersonalCenterTableViewCell.m in Sources */,
-				D3D94F831B60937F0026B422 /* UIViewController+MJPopupViewController.m in Sources */,
-				D3D94E6A1B608EA20026B422 /* SearchViewController.m in Sources */,
-				D3D94E981B608F460026B422 /* CompanyTableViewCell.m in Sources */,
-				D3D94ED01B6090620026B422 /* MarketMyListViewController.m in Sources */,
-				D3D94E1C1B608D390026B422 /* ForcedUpdateModel.m in Sources */,
-				D3D94F481B6092230026B422 /* AddClassificationView.m in Sources */,
-				D3D94E271B608DB80026B422 /* ContractsRepealModel.m in Sources */,
-				D3D94EC91B6090490026B422 /* RequireCommentTableViewCell.m in Sources */,
-				D3D94F531B6092540026B422 /* RKUpAndDownView.m in Sources */,
-				D3D94F0B1B60914D0026B422 /* AddressBookSearchBarCell.m in Sources */,
-				D3D94EB01B608FA00026B422 /* PublishViewController.m in Sources */,
-				D3D94ED71B60907B0026B422 /* PublishRequirementMaterialView.m in Sources */,
-				D3D94E8E1B608F2C0026B422 /* MyMarketViewController.m in Sources */,
-				D3D94E491B608E300026B422 /* ContactCommentModel.m in Sources */,
-				D3D94EBF1B6090270026B422 /* RequirementDetailTitleView.m in Sources */,
-				D3D94F3D1B6092040026B422 /* CatoryTableViewCell.m in Sources */,
-				D3D94F941B6093B70026B422 /* ChatImageSqlite.m in Sources */,
-				D3D94E5C1B608E730026B422 /* MyView.m in Sources */,
-				D3D94E841B608F070026B422 /* MyPointViewController.m in Sources */,
-				D3D94E1E1B608D9B0026B422 /* MarketModel.m in Sources */,
-				D3D94E571B608E660026B422 /* MainDesign.m in Sources */,
-				D3D94F0D1B6091570026B422 /* AddressBookFriendCell.m in Sources */,
-				D3D94EDF1B60909E0026B422 /* MarketSearchProductCell.m in Sources */,
-				D3D94F451B60921C0026B422 /* TopView.m in Sources */,
-				D3D94E6D1B608EAD0026B422 /* TopicsDetailTableViewController.m in Sources */,
-				D3D94E751B608ECE0026B422 /* ShowViewController.m in Sources */,
-				D3D94EF01B6090E90026B422 /* RecommendContactViewController.m in Sources */,
-				D3D94ED11B6090690026B422 /* PublishRequirementViewController.m in Sources */,
-				D3D94E3F1B608E090026B422 /* ProductModel.m in Sources */,
-				D3D94E1B1B608D370026B422 /* ForcedUpdateApi.m in Sources */,
-				D3D94E301B608DD60026B422 /* ChoseContctApi.m in Sources */,
-				D3D94F551B6092590026B422 /* RKShadowView.m in Sources */,
-				D3D94F4A1B60922A0026B422 /* BusinessSucessCreateController.m in Sources */,
-				D3D94E551B608E610026B422 /* ProgramDetailViewController.m in Sources */,
-				D3D94E681B608E9D0026B422 /* ResultsTableViewController.m in Sources */,
-				D3D94E2B1B608DC70026B422 /* UserOrCompanyModel.m in Sources */,
-				D3D94F921B6093B10026B422 /* ImageModel.m in Sources */,
-				D3D94E6C1B608EAB0026B422 /* TopicsDetailTableViewCell.m in Sources */,
-				D3D94E3A1B608DF50026B422 /* FriendModel.m in Sources */,
-				D3D94EC61B60903F0026B422 /* RequirementInfoCooperationView.m in Sources */,
-				D3D94E531B608E5A0026B422 /* MapContentView.m in Sources */,
-				D3D94EC81B6090450026B422 /* RequireCommentViewController.m in Sources */,
-				D3D94EE71B6090CC0026B422 /* FaceLoginViewController.m in Sources */,
-				D3D94F691B6092CD0026B422 /* OtherView.m in Sources */,
-				D3D94EF81B60910C0026B422 /* TMPhotoQuiltViewCell.m in Sources */,
-				D3D94F911B6093AF0026B422 /* ImageSqlite.m in Sources */,
-				D3D94F121B6091650026B422 /* RecommendFriendViewController.m in Sources */,
-				D3D94F7F1B6093680026B422 /* ErrorView.m in Sources */,
-				D3D94EF21B6090EE0026B422 /* WelcomeViewController.m in Sources */,
-				D3D94F031B6091310026B422 /* RKBaseTableView.m in Sources */,
-				D3D94F661B6092BD0026B422 /* ProvisionalViewController.m in Sources */,
-				D3D94EBA1B6090140026B422 /* CompanyDetailViewController.m in Sources */,
-				D3D94E241B608DB10026B422 /* ContractsMainClauseModel.m in Sources */,
-				D3D94E661B608E980026B422 /* ConditionsView.m in Sources */,
-				D3D94F201B6091900026B422 /* DiscussionGroupView.m in Sources */,
-				D3D94EA71B608F7D0026B422 /* ContactCell.m in Sources */,
-				D3D94E691B608EA00026B422 /* SaveConditionsViewController.m in Sources */,
-				D3D94EF91B60910E0026B422 /* ProductPublishController.m in Sources */,
+				5BF0CE681B60976200B91F75 /* UpdataPassWordViewControllerTests.m in Sources */,
 				D3D94E1A1B608D070026B422 /* MyPointHistoryModel.m in Sources */,
-				D3D94F211B6091940026B422 /* MessageTableView.m in Sources */,
-				D3D94E2E1B608DCF0026B422 /* AccpetUserModel.m in Sources */,
-				D3D94E671B608E9B0026B422 /* PopupView.m in Sources */,
-				D3D94ED41B6090730026B422 /* PublishRequirementContactsInfoView.m in Sources */,
-				D3D94E441B608E190026B422 /* projectModel.m in Sources */,
-				D3D94EFE1B60911E0026B422 /* ThirdAnimationView.m in Sources */,
-				D3D94F0C1B60914F0026B422 /* AddressBookNickNameViewController.m in Sources */,
-				D3D94F161B6091740026B422 /* ChatViewController.m in Sources */,
-				D3D94E641B608E930026B422 /* AdvancedSearchConditionsTableViewCell.m in Sources */,
-				D3D94EF71B6091090026B422 /* ProductViewController.m in Sources */,
-				D3D94E631B608E8D0026B422 /* UnderstandViewController.m in Sources */,
-				D3D94E4A1B608E330026B422 /* ActivesModel.m in Sources */,
-				D3D94EBD1B60901B0026B422 /* EndEditingGesture.m in Sources */,
-				D3D94EAC1B608F8F0026B422 /* RKPersonalController.m in Sources */,
-				D3D94E901B608F320026B422 /* UpdataPassWordViewController.m in Sources */,
-				D3D94EA11B608F650026B422 /* MyFocusCompanyController.m in Sources */,
-				D3D94E481B608E2D0026B422 /* CommentApi.m in Sources */,
-				D3D94F791B6093320026B422 /* RemindView.m in Sources */,
-				D3D94E801B608EF30026B422 /* ManyCommentsView.m in Sources */,
-				D3D94E651B608E950026B422 /* AdvancedSearchViewController.m in Sources */,
-				D3D94E281B608DC00026B422 /* AskPriceApi.m in Sources */,
-				D3D94E581B608E690026B422 /* MainBuild.m in Sources */,
-				D3D94EB31B608FC10026B422 /* RKCompanyController.m in Sources */,
-				D3D94EB61B6090060026B422 /* CompanyTotalViewController.m in Sources */,
-				D3D94E7B1B608EE00026B422 /* ContactsActiveCell.m in Sources */,
-				D3D94EF31B6090F30026B422 /* FaceViewController.m in Sources */,
-				D3D94E3C1B608DFE0026B422 /* CompanyModel.m in Sources */,
-				D3D94F861B60938F0026B422 /* DatePickerView.m in Sources */,
-				D3D94E831B608F030026B422 /* SignViewController.m in Sources */,
-				D3D94E791B608ED80026B422 /* ContactEGOView.m in Sources */,
-				D3D94EA51B608F780026B422 /* PersonalDetailViewController.m in Sources */,
-				D3D94EE41B6090AE0026B422 /* MarketWebViewController.m in Sources */,
-				D3D94EED1B6090DC0026B422 /* LoginAgain.m in Sources */,
-				D3D94F8F1B6093AA0026B422 /* LocalProjectModel.m in Sources */,
-				D3D94EDE1B6090960026B422 /* SearchMenuView.m in Sources */,
-				D3D94ECC1B6090580026B422 /* MarketListFootView.m in Sources */,
-				D3D94F1A1B60917F0026B422 /* ChatToolBar.m in Sources */,
-				D3D94F1B1B6091810026B422 /* ChatMoreSelectView.m in Sources */,
-				D3D94E721B608EC40026B422 /* MyDynamicListViewController.m in Sources */,
-				D3D94F781B60931A0026B422 /* PostAddressBook.m in Sources */,
-				D3D94F6A1B6092CF0026B422 /* MessageTextView.m in Sources */,
-				D3D94F4D1B60923B0026B422 /* ChooseProductBigStage.m in Sources */,
-				D3D94F3B1B6091F40026B422 /* DemandChatViewCell.m in Sources */,
-				D3D94E9D1B608F580026B422 /* MyFocusUserTableViewCell.m in Sources */,
-				D3D94E351B608DE50026B422 /* ChatGroupMemberModel.m in Sources */,
-				D3D94EBC1B6090190026B422 /* CompanyMemberCell.m in Sources */,
-				D3D94F871B6093910026B422 /* LocateView.m in Sources */,
-				D3D94F731B6093030026B422 /* MarketFlowView.m in Sources */,
-				D3D94F591B6092670026B422 /* DemandListSearchController.m in Sources */,
-				D3D94F2F1B6091C90026B422 /* DemandAskPriceChatController.m in Sources */,
-				D3D94F1E1B60918B0026B422 /* AddImageView.m in Sources */,
-				D3D94EFF1B6091220026B422 /* FourthAnimationView.m in Sources */,
-				D3D94E8B1B608F200026B422 /* MyProjectViewController.m in Sources */,
-				D3D94EA61B608F7A0026B422 /* CompanyCell.m in Sources */,
-				D3D94E5D1B608E750026B422 /* ProgramSelectViewCell.m in Sources */,
-				D3D94E911B608F340026B422 /* AccountViewController.m in Sources */,
-				D3D94F071B60913F0026B422 /* RecommendListViewController.m in Sources */,
-				D3D94F851B6093890026B422 /* MultipleChoiceViewController.m in Sources */,
-				D3D94ED81B60907E0026B422 /* PublishRequirementRelationView.m in Sources */,
-				D3D94ED21B60906D0026B422 /* CategoryView.m in Sources */,
-				D3D94F321B6091D70026B422 /* DemandDetailProvidePriceController.m in Sources */,
-				D3D94F461B60921F0026B422 /* AskPriceMainViewController.m in Sources */,
-				D3D94F371B6091E70026B422 /* RKMuchImageViews.m in Sources */,
-				D3D94E561B608E640026B422 /* LandInfo.m in Sources */,
-				D3D94EFB1B6091160026B422 /* FirstOpenAppAnimationView.m in Sources */,
-				D3D94F1F1B60918E0026B422 /* ImageAndLabelView.m in Sources */,
-				D3D94ECD1B60905A0026B422 /* MarketPublicListViewController.m in Sources */,
-				D3D94EE81B6090CE0026B422 /* LoginEvent.m in Sources */,
-				D3D94E5F1B608E7F0026B422 /* ProjectTableViewController.m in Sources */,
-				D3D94E401B608E0E0026B422 /* AFAppDotNetAPIClient.m in Sources */,
-				D3D94EC01B60902A0026B422 /* RequirementCategoryView.m in Sources */,
-				D3D94E7D1B608EE60026B422 /* CommentModel.m in Sources */,
-				D3D94E7E1B608EEE0026B422 /* ContactsActiveTitleView.m in Sources */,
-				D3D94EB41B608FC70026B422 /* CompanyProjectController.m in Sources */,
-				D3D94E451B608E1C0026B422 /* ProjectStage.m in Sources */,
-				D3D94F2C1B6091C00026B422 /* DemanDetailViewController.m in Sources */,
-				D3D94E541B608E5C0026B422 /* MapSearchViewController.m in Sources */,
-				D3D94E931B608F3A0026B422 /* PersonalCenterViewController.m in Sources */,
-				D3D94F3C1B6092020026B422 /* AskPriceDetailViewController.m in Sources */,
-				D3D94E4F1B608E480026B422 /* TopicsModel.m in Sources */,
-				D3D94E9A1B608F4E0026B422 /* MyFocusViewController.m in Sources */,
-				D3D94E851B608F0B0026B422 /* MyPointDetailViewController.m in Sources */,
-				D3D94F441B60921A0026B422 /* AddContactView.m in Sources */,
-				D3D94F151B6091710026B422 /* ChatMessageImageView.m in Sources */,
-				D3D94ECB1B6090550026B422 /* MarketListTitleView.m in Sources */,
-				D3D94F471B6092210026B422 /* AddCategoriesView.m in Sources */,
-				D3D94EFD1B60911C0026B422 /* SecondAnimationView.m in Sources */,
-				D3D94E991B608F490026B422 /* PersonalCenterCompanyTableViewCell.m in Sources */,
-				D3D94E4B1B608E360026B422 /* PersonalCenterModel.m in Sources */,
-				D3D94F571B6092610026B422 /* AskPriceViewCell.m in Sources */,
-				D3D94F391B6091EC0026B422 /* RKPointKit.m in Sources */,
-				D3D94F301B6091CC0026B422 /* AcceptView.m in Sources */,
-				D3D94F6D1B6092DA0026B422 /* PDFViewController.m in Sources */,
-				D3D94EA91B608F820026B422 /* ContactBackgroundTableViewCell.m in Sources */,
-				D3D94E421B608E130026B422 /* ProjectContactModel.m in Sources */,
-				D3D94F271B6091A90026B422 /* ChatListViewCell.m in Sources */,
-				D3D94EB21B608FBF0026B422 /* CompanyActivesViewController.m in Sources */,
-				D3D94F811B6093790026B422 /* MJPopupBackgroundView.m in Sources */,
-				D3D94F5E1B60928F0026B422 /* ContractsListSearchController.m in Sources */,
-				D3D94F6C1B6092D50026B422 /* ContractView.m in Sources */,
-				D3D94F8B1B60939E0026B422 /* RecordModel.m in Sources */,
-				D3D94E2A1B608DC50026B422 /* QuotesModel.m in Sources */,
-				D3D94EC41B6090390026B422 /* RequirementInfoMateialView.m in Sources */,
-				D3D94E381B608DEF0026B422 /* AddressBookApi.m in Sources */,
-				D3D94E781B608ED60026B422 /* ContactTableViewCell.m in Sources */,
-				D3D94E4D1B608E410026B422 /* MyCenterModel.m in Sources */,
-				D3D94F561B60925E0026B422 /* AskPriceViewController.m in Sources */,
-				D3D94F651B6092B90026B422 /* CommissionBaseViewController.m in Sources */,
-				D3D94E321B608DDD0026B422 /* ChatNetAPIClient.m in Sources */,
-				D3D94F011B60912C0026B422 /* BaseTableViewCell.m in Sources */,
-				D3D94E3D1B608E000026B422 /* CompanyApi.m in Sources */,
-				D3D94F5D1B60928C0026B422 /* ContractListCell.m in Sources */,
-				D3D94EB11B608FA30026B422 /* ActivePublishController.m in Sources */,
-				D3D94E231B608DAF0026B422 /* ContractsListSingleModel.m in Sources */,
-				D3D94E701B608EBC0026B422 /* RecommendLetterViewController.m in Sources */,
-				D3D94F641B6092AD0026B422 /* RepealContractsController.m in Sources */,
-				D3D94E881B608F140026B422 /* PointRuleViewController.m in Sources */,
-				D3D94E501B608E4F0026B422 /* PorjectCommentTableViewController.m in Sources */,
-				D3D94E7F1B608EF10026B422 /* ContactsTitleView.m in Sources */,
-				D3D94F381B6091EA0026B422 /* RKSingleImageView.m in Sources */,
-				D3D94F131B6091670026B422 /* RecommendFriendSearchController.m in Sources */,
-				D3D94E741B608ECB0026B422 /* ContactViewController.m in Sources */,
-				D3D94EF11B6090EB0026B422 /* RecommendContactTableViewCell.m in Sources */,
-				D3D94F291B6091B10026B422 /* ChooseContactsViewCell.m in Sources */,
-				D3D94EC11B60902D0026B422 /* RequirementContactsInfoView.m in Sources */,
-				D3D94F401B60920B0026B422 /* QuotesDetailViewController.m in Sources */,
-				D3D94E311B608DDA0026B422 /* ChatMessageModel.m in Sources */,
-				D3D94E3E1B608E040026B422 /* EmployeesModel.m in Sources */,
-				D3D94EE31B6090AC0026B422 /* MarkListView.m in Sources */,
-				D3D94E731B608EC90026B422 /* ContactCommentTableViewCell.m in Sources */,
-				D3D94F021B60912F0026B422 /* BaseTableViewCellModel.m in Sources */,
-				D3D94E621B608E8A0026B422 /* UIPlaceHolderTextView.m in Sources */,
-				D3D94E871B608F0F0026B422 /* MyPointDetailView.m in Sources */,
-				D3D94E9C1B608F550026B422 /* MyFocusUserController.m in Sources */,
-				D3D94F721B6093000026B422 /* AdDataModel.m in Sources */,
-				D3D94F411B6092100026B422 /* SearchContactViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
