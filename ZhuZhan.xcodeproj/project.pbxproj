@@ -1341,12 +1341,14 @@
 		5BEBAC711A79DB6100E29ADA /* 点-copy-3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BEBAC6F1A79DB6100E29ADA /* 点-copy-3@2x.png */; };
 		5BF08A3A19B86C5D00782976 /* MoreCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */; };
 		5BF08A3D19B8779D00782976 /* MoreCompanyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */; };
-		5BF0CE5B1B608FCB00B91F75 /* UpdataPassWordViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE521B608FCB00B91F75 /* UpdataPassWordViewControllerTests.m */; };
-		5BF0CE5C1B608FCB00B91F75 /* ProjectStageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE531B608FCB00B91F75 /* ProjectStageTests.m */; };
-		5BF0CE5D1B608FCB00B91F75 /* RKStageChooseViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE541B608FCB00B91F75 /* RKStageChooseViewTests.m */; };
-		5BF0CE5E1B608FCB00B91F75 /* FakeUpdataPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE561B608FCB00B91F75 /* FakeUpdataPassWordViewController.m */; };
-		5BF0CE5F1B608FCB00B91F75 /* FakeProjectStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE581B608FCB00B91F75 /* FakeProjectStage.m */; };
-		5BF0CE601B608FCB00B91F75 /* FakeStageChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE5A1B608FCB00B91F75 /* FakeStageChooseView.m */; };
+		5BF0CE671B60976200B91F75 /* FakeUpdataPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE641B60976200B91F75 /* FakeUpdataPassWordViewController.m */; };
+		5BF0CE681B60976200B91F75 /* UpdataPassWordViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE661B60976200B91F75 /* UpdataPassWordViewControllerTests.m */; };
+		5BF0CE6F1B60976A00B91F75 /* FakeProjectStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE6C1B60976A00B91F75 /* FakeProjectStage.m */; };
+		5BF0CE701B60976A00B91F75 /* ProjectStageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE6E1B60976A00B91F75 /* ProjectStageTests.m */; };
+		5BF0CE771B60977500B91F75 /* FakeStageChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE741B60977500B91F75 /* FakeStageChooseView.m */; };
+		5BF0CE781B60977500B91F75 /* RKStageChooseViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE761B60977500B91F75 /* RKStageChooseViewTests.m */; };
+		5BF0CE7B1B60AFB200B91F75 /* FakeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE7A1B60AFB200B91F75 /* FakeLoginViewController.m */; };
+		5BF0CE7D1B60AFFF00B91F75 /* LoginViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE7C1B60AFFF00B91F75 /* LoginViewControllerTests.m */; };
 		5BF31B541AB0162D00DA87F5 /* 添加联系人入群.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF31B521AB0162D00DA87F5 /* 添加联系人入群.png */; };
 		5BF31B551AB0162D00DA87F5 /* 添加联系人入群@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF31B531AB0162D00DA87F5 /* 添加联系人入群@2x.png */; };
 		5BF31B661AB025FD00DA87F5 /* AddGroupMemberController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B5B1AB025FD00DA87F5 /* AddGroupMemberController.m */; };
@@ -3692,15 +3694,18 @@
 		5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCompanyViewController.m; sourceTree = "<group>"; };
 		5BF08A3B19B8779D00782976 /* MoreCompanyViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCompanyViewCell.h; sourceTree = "<group>"; };
 		5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCompanyViewCell.m; sourceTree = "<group>"; };
-		5BF0CE521B608FCB00B91F75 /* UpdataPassWordViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdataPassWordViewControllerTests.m; sourceTree = "<group>"; };
-		5BF0CE531B608FCB00B91F75 /* ProjectStageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectStageTests.m; sourceTree = "<group>"; };
-		5BF0CE541B608FCB00B91F75 /* RKStageChooseViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKStageChooseViewTests.m; sourceTree = "<group>"; };
-		5BF0CE551B608FCB00B91F75 /* FakeUpdataPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeUpdataPassWordViewController.h; sourceTree = "<group>"; };
-		5BF0CE561B608FCB00B91F75 /* FakeUpdataPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeUpdataPassWordViewController.m; sourceTree = "<group>"; };
-		5BF0CE571B608FCB00B91F75 /* FakeProjectStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeProjectStage.h; sourceTree = "<group>"; };
-		5BF0CE581B608FCB00B91F75 /* FakeProjectStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeProjectStage.m; sourceTree = "<group>"; };
-		5BF0CE591B608FCB00B91F75 /* FakeStageChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeStageChooseView.h; sourceTree = "<group>"; };
-		5BF0CE5A1B608FCB00B91F75 /* FakeStageChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeStageChooseView.m; sourceTree = "<group>"; };
+		5BF0CE631B60976200B91F75 /* FakeUpdataPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeUpdataPassWordViewController.h; sourceTree = "<group>"; };
+		5BF0CE641B60976200B91F75 /* FakeUpdataPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeUpdataPassWordViewController.m; sourceTree = "<group>"; };
+		5BF0CE661B60976200B91F75 /* UpdataPassWordViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdataPassWordViewControllerTests.m; sourceTree = "<group>"; };
+		5BF0CE6B1B60976A00B91F75 /* FakeProjectStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeProjectStage.h; sourceTree = "<group>"; };
+		5BF0CE6C1B60976A00B91F75 /* FakeProjectStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeProjectStage.m; sourceTree = "<group>"; };
+		5BF0CE6E1B60976A00B91F75 /* ProjectStageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectStageTests.m; sourceTree = "<group>"; };
+		5BF0CE731B60977500B91F75 /* FakeStageChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeStageChooseView.h; sourceTree = "<group>"; };
+		5BF0CE741B60977500B91F75 /* FakeStageChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeStageChooseView.m; sourceTree = "<group>"; };
+		5BF0CE761B60977500B91F75 /* RKStageChooseViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKStageChooseViewTests.m; sourceTree = "<group>"; };
+		5BF0CE791B60AFB200B91F75 /* FakeLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeLoginViewController.h; sourceTree = "<group>"; };
+		5BF0CE7A1B60AFB200B91F75 /* FakeLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeLoginViewController.m; sourceTree = "<group>"; };
+		5BF0CE7C1B60AFFF00B91F75 /* LoginViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewControllerTests.m; sourceTree = "<group>"; };
 		5BF31B521AB0162D00DA87F5 /* 添加联系人入群.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "添加联系人入群.png"; sourceTree = "<group>"; };
 		5BF31B531AB0162D00DA87F5 /* 添加联系人入群@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "添加联系人入群@2x.png"; sourceTree = "<group>"; };
 		5BF31B5A1AB025FD00DA87F5 /* AddGroupMemberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddGroupMemberController.h; sourceTree = "<group>"; };
@@ -4586,15 +4591,9 @@
 			isa = PBXGroup;
 			children = (
 				0426C00F19922CE400CD8822 /* ZhuZhanTests.m */,
-				5BF0CE521B608FCB00B91F75 /* UpdataPassWordViewControllerTests.m */,
-				5BF0CE531B608FCB00B91F75 /* ProjectStageTests.m */,
-				5BF0CE541B608FCB00B91F75 /* RKStageChooseViewTests.m */,
-				5BF0CE551B608FCB00B91F75 /* FakeUpdataPassWordViewController.h */,
-				5BF0CE561B608FCB00B91F75 /* FakeUpdataPassWordViewController.m */,
-				5BF0CE571B608FCB00B91F75 /* FakeProjectStage.h */,
-				5BF0CE581B608FCB00B91F75 /* FakeProjectStage.m */,
-				5BF0CE591B608FCB00B91F75 /* FakeStageChooseView.h */,
-				5BF0CE5A1B608FCB00B91F75 /* FakeStageChooseView.m */,
+				5BF0CE691B60976A00B91F75 /* Model */,
+				5BF0CE711B60977500B91F75 /* View */,
+				5BF0CE611B60976200B91F75 /* Controller */,
 				0426C00A19922CE400CD8822 /* Supporting Files */,
 			);
 			path = ZhuZhanTests;
@@ -7374,6 +7373,87 @@
 				5BE180EE1AFC9C1100251113 /* 申请认证@2x.png */,
 			);
 			path = Rock;
+			sourceTree = "<group>";
+		};
+		5BF0CE611B60976200B91F75 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0CE621B60976200B91F75 /* Fake */,
+				5BF0CE651B60976200B91F75 /* Tests */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5BF0CE621B60976200B91F75 /* Fake */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0CE631B60976200B91F75 /* FakeUpdataPassWordViewController.h */,
+				5BF0CE641B60976200B91F75 /* FakeUpdataPassWordViewController.m */,
+				5BF0CE791B60AFB200B91F75 /* FakeLoginViewController.h */,
+				5BF0CE7A1B60AFB200B91F75 /* FakeLoginViewController.m */,
+			);
+			path = Fake;
+			sourceTree = "<group>";
+		};
+		5BF0CE651B60976200B91F75 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0CE661B60976200B91F75 /* UpdataPassWordViewControllerTests.m */,
+				5BF0CE7C1B60AFFF00B91F75 /* LoginViewControllerTests.m */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		5BF0CE691B60976A00B91F75 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0CE6A1B60976A00B91F75 /* Fake */,
+				5BF0CE6D1B60976A00B91F75 /* Tests */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5BF0CE6A1B60976A00B91F75 /* Fake */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0CE6B1B60976A00B91F75 /* FakeProjectStage.h */,
+				5BF0CE6C1B60976A00B91F75 /* FakeProjectStage.m */,
+			);
+			path = Fake;
+			sourceTree = "<group>";
+		};
+		5BF0CE6D1B60976A00B91F75 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0CE6E1B60976A00B91F75 /* ProjectStageTests.m */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		5BF0CE711B60977500B91F75 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0CE721B60977500B91F75 /* Fake */,
+				5BF0CE751B60977500B91F75 /* Tests */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5BF0CE721B60977500B91F75 /* Fake */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0CE731B60977500B91F75 /* FakeStageChooseView.h */,
+				5BF0CE741B60977500B91F75 /* FakeStageChooseView.m */,
+			);
+			path = Fake;
+			sourceTree = "<group>";
+		};
+		5BF0CE751B60977500B91F75 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0CE761B60977500B91F75 /* RKStageChooseViewTests.m */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		5BF31B591AB025FD00DA87F5 /* AddGroupMember */ = {
@@ -10594,16 +10674,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BF0CE5D1B608FCB00B91F75 /* RKStageChooseViewTests.m in Sources */,
-				5BF0CE601B608FCB00B91F75 /* FakeStageChooseView.m in Sources */,
-				5BF0CE5E1B608FCB00B91F75 /* FakeUpdataPassWordViewController.m in Sources */,
 				D3D94E191B608D040026B422 /* PointDetailModel.m in Sources */,
 				0426C01019922CE400CD8822 /* ZhuZhanTests.m in Sources */,
+				5BF0CE6F1B60976A00B91F75 /* FakeProjectStage.m in Sources */,
+				5BF0CE771B60977500B91F75 /* FakeStageChooseView.m in Sources */,
+				5BF0CE7D1B60AFFF00B91F75 /* LoginViewControllerTests.m in Sources */,
+				5BF0CE671B60976200B91F75 /* FakeUpdataPassWordViewController.m in Sources */,
+				5BF0CE7B1B60AFB200B91F75 /* FakeLoginViewController.m in Sources */,
+				5BF0CE781B60977500B91F75 /* RKStageChooseViewTests.m in Sources */,
+				5BF0CE701B60976A00B91F75 /* ProjectStageTests.m in Sources */,
 				D3D94E181B608D000026B422 /* MyPointApi.m in Sources */,
-				5BF0CE5F1B608FCB00B91F75 /* FakeProjectStage.m in Sources */,
+				5BF0CE681B60976200B91F75 /* UpdataPassWordViewControllerTests.m in Sources */,
 				D3D94E1A1B608D070026B422 /* MyPointHistoryModel.m in Sources */,
-				5BF0CE5C1B608FCB00B91F75 /* ProjectStageTests.m in Sources */,
-				5BF0CE5B1B608FCB00B91F75 /* UpdataPassWordViewControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
