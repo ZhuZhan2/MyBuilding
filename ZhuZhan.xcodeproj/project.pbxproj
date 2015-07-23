@@ -1732,6 +1732,389 @@
 		D3D94E181B608D000026B422 /* MyPointApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7408D1B53585B00F2095C /* MyPointApi.m */; };
 		D3D94E191B608D040026B422 /* PointDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FACF61B53840200B32661 /* PointDetailModel.m */; };
 		D3D94E1A1B608D070026B422 /* MyPointHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740991B53930300F2095C /* MyPointHistoryModel.m */; };
+		D3D94E1B1B608D370026B422 /* ForcedUpdateApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFC82921B058D5B00CD9ED6 /* ForcedUpdateApi.m */; };
+		D3D94E1C1B608D390026B422 /* ForcedUpdateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDDA2021B25868800F4AABB /* ForcedUpdateModel.m */; };
+		D3D94E1D1B608D990026B422 /* MarketApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D090421AF8C3DE00C8AC55 /* MarketApi.m */; };
+		D3D94E1E1B608D9B0026B422 /* MarketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6EB851B20319500FB6D5A /* MarketModel.m */; };
+		D3D94E1F1B608D9E0026B422 /* RequirementDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26CC1B26C57F0022B5A8 /* RequirementDetailModel.m */; };
+		D3D94E201B608DA00026B422 /* BannerImagesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9D5071B43DFF8006980E0 /* BannerImagesModel.m */; };
+		D3D94E211B608DA80026B422 /* AskPriceMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D484051ADFCEA1004AF972 /* AskPriceMessageModel.m */; };
+		D3D94E221B608DAA0026B422 /* AskPriceMessageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C021941AE0F9EE000F1742 /* AskPriceMessageApi.m */; };
+		D3D94E231B608DAF0026B422 /* ContractsListSingleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C021911AE0A4EF000F1742 /* ContractsListSingleModel.m */; };
+		D3D94E241B608DB10026B422 /* ContractsMainClauseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FF6F71AE49DC000F3A3E0 /* ContractsMainClauseModel.m */; };
+		D3D94E251B608DB40026B422 /* ContractsApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D483F41ADF884A004AF972 /* ContractsApi.m */; };
+		D3D94E261B608DB60026B422 /* ContractsSalerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FF7031AE50F9500F3A3E0 /* ContractsSalerModel.m */; };
+		D3D94E271B608DB80026B422 /* ContractsRepealModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4F6AD71AE75B78005CD38A /* ContractsRepealModel.m */; };
+		D3D94E281B608DC00026B422 /* AskPriceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DA3D2D1ABBBA8A001D1EEA /* AskPriceApi.m */; };
+		D3D94E291B608DC20026B422 /* AskPriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DA3D301ABBECAC001D1EEA /* AskPriceModel.m */; };
+		D3D94E2A1B608DC50026B422 /* QuotesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8FEAC1ABD489E0096B7FD /* QuotesModel.m */; };
+		D3D94E2B1B608DC70026B422 /* UserOrCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376CFA1AC2549C00738B5F /* UserOrCompanyModel.m */; };
+		D3D94E2C1B608DC90026B422 /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376CFD1AC25D6100738B5F /* CategoryModel.m */; };
+		D3D94E2D1B608DCC0026B422 /* AskPriceComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D3929F3D1AC538740017E93D /* AskPriceComment.m */; };
+		D3D94E2E1B608DCF0026B422 /* AccpetUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D710381AD505CB00E43124 /* AccpetUserModel.m */; };
+		D3D94E2F1B608DD30026B422 /* ChoseContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FF3E801AAEC916005195CC /* ChoseContactModel.m */; };
+		D3D94E301B608DD60026B422 /* ChoseContctApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FF3E931AAEEFB4005195CC /* ChoseContctApi.m */; };
+		D3D94E311B608DDA0026B422 /* ChatMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4A2E11AAE98390071B3EA /* ChatMessageModel.m */; };
+		D3D94E321B608DDD0026B422 /* ChatNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6B7411AD6A51500C8BF91 /* ChatNetAPIClient.m */; };
+		D3D94E331B608DE00026B422 /* ChatMessageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6B7441AD6A63500C8BF91 /* ChatMessageApi.m */; };
+		D3D94E341B608DE20026B422 /* ChatListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F8970B1AD8F68F00DE3AB4 /* ChatListModel.m */; };
+		D3D94E351B608DE50026B422 /* ChatGroupMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCE5C01ADBABB00049F009 /* ChatGroupMemberModel.m */; };
+		D3D94E361B608DEA0026B422 /* AddressBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787461AADA40300ED754B /* AddressBookModel.m */; };
+		D3D94E371B608DED0026B422 /* ReceiveApplyFreindModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B86504D1ABFE4830096BEF0 /* ReceiveApplyFreindModel.m */; };
+		D3D94E381B608DEF0026B422 /* AddressBookApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787491AADAD3800ED754B /* AddressBookApi.m */; };
+		D3D94E391B608DF20026B422 /* ValidatePlatformContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B78D68D1ADCB40900E08C4A /* ValidatePlatformContactModel.m */; };
+		D3D94E3A1B608DF50026B422 /* FriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F727561AD68FC400B52A66 /* FriendModel.m */; };
+		D3D94E3B1B608DF90026B422 /* IsFocusedApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D29B7C1A0DB9CA00CAB1EB /* IsFocusedApi.m */; };
+		D3D94E3C1B608DFE0026B422 /* CompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D36040E519F51E8600E9727D /* CompanyModel.m */; };
+		D3D94E3D1B608E000026B422 /* CompanyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D36040E819F51E9F00E9727D /* CompanyApi.m */; };
+		D3D94E3E1B608E040026B422 /* EmployeesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2E60019F7A79500908D8B /* EmployeesModel.m */; };
+		D3D94E3F1B608E090026B422 /* ProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04248B0419C67C1D000FB8A9 /* ProductModel.m */; };
+		D3D94E401B608E0E0026B422 /* AFAppDotNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13A719C4162A002E02C9 /* AFAppDotNetAPIClient.m */; };
+		D3D94E411B608E110026B422 /* ProjectApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13A919C4162A002E02C9 /* ProjectApi.m */; };
+		D3D94E421B608E130026B422 /* ProjectContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13AD19C4162A002E02C9 /* ProjectContactModel.m */; };
+		D3D94E431B608E160026B422 /* ProjectImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13AF19C4162A002E02C9 /* ProjectImageModel.m */; };
+		D3D94E441B608E190026B422 /* projectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13B119C4162A002E02C9 /* projectModel.m */; };
+		D3D94E451B608E1C0026B422 /* ProjectStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13B319C4162A002E02C9 /* ProjectStage.m */; };
+		D3D94E461B608E220026B422 /* ConditionsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC618E19B6BF930015B62F /* ConditionsModel.m */; };
+		D3D94E471B608E290026B422 /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC619119B6BF930015B62F /* ContactModel.m */; };
+		D3D94E481B608E2D0026B422 /* CommentApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61BA19B6D5D20015B62F /* CommentApi.m */; };
+		D3D94E491B608E300026B422 /* ContactCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61E319B882050015B62F /* ContactCommentModel.m */; };
+		D3D94E4A1B608E330026B422 /* ActivesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4283A19C94E5E00BAB6C7 /* ActivesModel.m */; };
+		D3D94E4B1B608E360026B422 /* PersonalCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C88CE19D79E0900D1BA1D /* PersonalCenterModel.m */; };
+		D3D94E4C1B608E3C0026B422 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC619419B6BF930015B62F /* LoginModel.m */; };
+		D3D94E4D1B608E410026B422 /* MyCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC619719B6BF930015B62F /* MyCenterModel.m */; };
+		D3D94E4E1B608E430026B422 /* ParticularsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DB3119FFAD1700AE5765 /* ParticularsModel.m */; };
+		D3D94E4F1B608E480026B422 /* TopicsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61A719B6BF930015B62F /* TopicsModel.m */; };
+		D3D94E501B608E4F0026B422 /* PorjectCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61CF19B849920015B62F /* PorjectCommentTableViewController.m */; };
+		D3D94E511B608E520026B422 /* ProjectCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61DE19B85CA50015B62F /* ProjectCommentView.m */; };
+		D3D94E521B608E570026B422 /* BaiDuMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DCD19B559FC00689C5D /* BaiDuMapViewController.m */; };
+		D3D94E531B608E5A0026B422 /* MapContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B51212E1A0781F900A77997 /* MapContentView.m */; };
+		D3D94E541B608E5C0026B422 /* MapSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D30366131B4BBE22009DD967 /* MapSearchViewController.m */; };
+		D3D94E551B608E610026B422 /* ProgramDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DDE19B559FC00689C5D /* ProgramDetailViewController.m */; };
+		D3D94E561B608E640026B422 /* LandInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DD219B559FC00689C5D /* LandInfo.m */; };
+		D3D94E571B608E660026B422 /* MainDesign.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DD619B559FC00689C5D /* MainDesign.m */; };
+		D3D94E581B608E690026B422 /* MainBuild.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DD419B559FC00689C5D /* MainBuild.m */; };
+		D3D94E591B608E6B0026B422 /* DecorationProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DD019B559FC00689C5D /* DecorationProject.m */; };
+		D3D94E5A1B608E6E0026B422 /* MyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DD819B559FC00689C5D /* MyFactory.m */; };
+		D3D94E5B1B608E700026B422 /* MyIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DDA19B559FC00689C5D /* MyIndexPath.m */; };
+		D3D94E5C1B608E730026B422 /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DDC19B559FC00689C5D /* MyView.m */; };
+		D3D94E5D1B608E750026B422 /* ProgramSelectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DE019B559FC00689C5D /* ProgramSelectViewCell.m */; };
+		D3D94E5E1B608E7C0026B422 /* ProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DE519B559FC00689C5D /* ProjectTableViewCell.m */; };
+		D3D94E5F1B608E7F0026B422 /* ProjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DE719B559FC00689C5D /* ProjectTableViewController.m */; };
+		D3D94E601B608E810026B422 /* ALLProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D300621E1AEF65E4009E35C8 /* ALLProjectViewController.m */; };
+		D3D94E611B608E870026B422 /* RecognizerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B8F53E19D92716008F6164 /* RecognizerFactory.m */; };
+		D3D94E621B608E8A0026B422 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E3119B55AB800689C5D /* UIPlaceHolderTextView.m */; };
+		D3D94E631B608E8D0026B422 /* UnderstandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E3319B55AB800689C5D /* UnderstandViewController.m */; };
+		D3D94E641B608E930026B422 /* AdvancedSearchConditionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DEA19B559FC00689C5D /* AdvancedSearchConditionsTableViewCell.m */; };
+		D3D94E651B608E950026B422 /* AdvancedSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DEC19B559FC00689C5D /* AdvancedSearchViewController.m */; };
+		D3D94E661B608E980026B422 /* ConditionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DF019B559FC00689C5D /* ConditionsView.m */; };
+		D3D94E671B608E9B0026B422 /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DF419B559FC00689C5D /* PopupView.m */; };
+		D3D94E681B608E9D0026B422 /* ResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DF819B559FC00689C5D /* ResultsTableViewController.m */; };
+		D3D94E691B608EA00026B422 /* SaveConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DFA19B559FC00689C5D /* SaveConditionsViewController.m */; };
+		D3D94E6A1B608EA20026B422 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DFC19B559FC00689C5D /* SearchViewController.m */; };
+		D3D94E6B1B608EA50026B422 /* toolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DFE19B559FC00689C5D /* toolBarView.m */; };
+		D3D94E6C1B608EAB0026B422 /* TopicsDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E0719B559FC00689C5D /* TopicsDetailTableViewCell.m */; };
+		D3D94E6D1B608EAD0026B422 /* TopicsDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E0919B559FC00689C5D /* TopicsDetailTableViewController.m */; };
+		D3D94E6E1B608EB10026B422 /* TopicsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E0B19B559FC00689C5D /* TopicsTableViewCell.m */; };
+		D3D94E6F1B608EB30026B422 /* TopicsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E0D19B559FC00689C5D /* TopicsTableViewController.m */; };
+		D3D94E701B608EBC0026B422 /* RecommendLetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10C7619B074C70097C0C6 /* RecommendLetterViewController.m */; };
+		D3D94E711B608EC10026B422 /* AllDynamicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D30E1B221B1BF843009F6B51 /* AllDynamicListViewController.m */; };
+		D3D94E721B608EC40026B422 /* MyDynamicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D30E1B251B1BFD81009F6B51 /* MyDynamicListViewController.m */; };
+		D3D94E731B608EC90026B422 /* ContactCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B1C28219D155CC00E6D89F /* ContactCommentTableViewCell.m */; };
+		D3D94E741B608ECB0026B422 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BB219AE016A0097C0C6 /* ContactViewController.m */; };
+		D3D94E751B608ECE0026B422 /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10C2F19AF3C120097C0C6 /* ShowViewController.m */; };
+		D3D94E761B608ED10026B422 /* ContactProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC612A19B5C7D10015B62F /* ContactProjectTableViewCell.m */; };
+		D3D94E771B608ED30026B422 /* ContactProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA938AC1A49720300BB8A96 /* ContactProductView.m */; };
+		D3D94E781B608ED60026B422 /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA938AF1A4972B200BB8A96 /* ContactTableViewCell.m */; };
+		D3D94E791B608ED80026B422 /* ContactEGOView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A1D691A4A67170072B916 /* ContactEGOView.m */; };
+		D3D94E7A1B608EDA0026B422 /* ActiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66993C1AB9878600C4B54F /* ActiveViewController.m */; };
+		D3D94E7B1B608EE00026B422 /* ContactsActiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE7B6C51B1D5243003467ED /* ContactsActiveCell.m */; };
+		D3D94E7C1B608EE30026B422 /* ContactsActiveCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA9851B1C059900167496 /* ContactsActiveCellModel.m */; };
+		D3D94E7D1B608EE60026B422 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA98B1B1C205000167496 /* CommentModel.m */; };
+		D3D94E7E1B608EEE0026B422 /* ContactsActiveTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA99B1B1C6A9900167496 /* ContactsActiveTitleView.m */; };
+		D3D94E7F1B608EF10026B422 /* ContactsTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE7B6CF1B1D9C4A003467ED /* ContactsTitleView.m */; };
+		D3D94E801B608EF30026B422 /* ManyCommentsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA99D1B1C6A9900167496 /* ManyCommentsView.m */; };
+		D3D94E811B608EF50026B422 /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA9991B1C6A9900167496 /* CommentView.m */; };
+		D3D94E821B608EF80026B422 /* CommentNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE7B6C81B1D54AD003467ED /* CommentNumberView.m */; };
+		D3D94E831B608F030026B422 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FACF31B53779900B32661 /* SignViewController.m */; };
+		D3D94E841B608F070026B422 /* MyPointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740851B5355CE00F2095C /* MyPointViewController.m */; };
+		D3D94E851B608F0B0026B422 /* MyPointDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740891B5356EF00F2095C /* MyPointDetailViewController.m */; };
+		D3D94E861B608F0D0026B422 /* MyPointDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740961B538F3C00F2095C /* MyPointDetailCell.m */; };
+		D3D94E871B608F0F0026B422 /* MyPointDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740901B537C4A00F2095C /* MyPointDetailView.m */; };
+		D3D94E881B608F140026B422 /* PointRuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7409D1B53C30D00F2095C /* PointRuleViewController.m */; };
+		D3D94E891B608F170026B422 /* MyPointTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FACFD1B5399F400B32661 /* MyPointTopView.m */; };
+		D3D94E8A1B608F1A0026B422 /* MyPointContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8F8BC1B5889C600ABF500 /* MyPointContentView.m */; };
+		D3D94E8B1B608F200026B422 /* MyProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F455A31B312FA300EE20A5 /* MyProjectViewController.m */; };
+		D3D94E8C1B608F250026B422 /* PersonalBlockView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F455831B3117F900EE20A5 /* PersonalBlockView.m */; };
+		D3D94E8D1B608F270026B422 /* PersonalHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F455861B31183100EE20A5 /* PersonalHeadView.m */; };
+		D3D94E8E1B608F2C0026B422 /* MyMarketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E0BED41B285190002F01CF /* MyMarketViewController.m */; };
+		D3D94E8F1B608F2F0026B422 /* PersonalCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B1911B20572700E29E07 /* PersonalCenterTableViewCell.m */; };
+		D3D94E901B608F320026B422 /* UpdataPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4FB391A08C0C90033BB34 /* UpdataPassWordViewController.m */; };
+		D3D94E911B608F340026B422 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BBA19AE016A0097C0C6 /* AccountViewController.m */; };
+		D3D94E921B608F370026B422 /* AccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9EE419B8671900689C5D /* AccountCell.m */; };
+		D3D94E931B608F3A0026B422 /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BC019AE016A0097C0C6 /* PersonalCenterViewController.m */; };
+		D3D94E941B608F3D0026B422 /* PersonalCenterCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C8AA519D79E550058C0EE /* PersonalCenterCellView.m */; };
+		D3D94E951B608F400026B422 /* PersonalProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C8AA819D7ABA30058C0EE /* PersonalProjectTableViewCell.m */; };
+		D3D94E971B608F440026B422 /* CompanyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4FB2F1A0872770033BB34 /* CompanyCenterViewController.m */; };
+		D3D94E981B608F460026B422 /* CompanyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4FB361A087BBD0033BB34 /* CompanyTableViewCell.m */; };
+		D3D94E991B608F490026B422 /* PersonalCenterCompanyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3049A671A4824F900065CD8 /* PersonalCenterCompanyTableViewCell.m */; };
+		D3D94E9A1B608F4E0026B422 /* MyFocusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C451B0EF2AD004A4B3E /* MyFocusViewController.m */; };
+		D3D94E9B1B608F510026B422 /* MyFocusProjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C521B0EF5D3004A4B3E /* MyFocusProjectController.m */; };
+		D3D94E9C1B608F550026B422 /* MyFocusUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C551B0EF5E6004A4B3E /* MyFocusUserController.m */; };
+		D3D94E9D1B608F580026B422 /* MyFocusUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EE48581B0F24D100439ED9 /* MyFocusUserTableViewCell.m */; };
+		D3D94E9E1B608F5D0026B422 /* MyFocusProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C581B0EF5F9004A4B3E /* MyFocusProductController.m */; };
+		D3D94E9F1B608F600026B422 /* MyFocusProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C611B0F152D004A4B3E /* MyFocusProductCell.m */; };
+		D3D94EA01B608F620026B422 /* MyFocusProductCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C641B0F1ACF004A4B3E /* MyFocusProductCellModel.m */; };
+		D3D94EA11B608F650026B422 /* MyFocusCompanyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C5B1B0EF60B004A4B3E /* MyFocusCompanyController.m */; };
+		D3D94EA21B608F680026B422 /* PersonalCenterProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D60D281B3A452600CE86BE /* PersonalCenterProjectTableViewCell.m */; };
+		D3D94EA31B608F6A0026B422 /* PersonalCenterPointTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D35AD4061B55FCEB00AD8DA5 /* PersonalCenterPointTableViewCell.m */; };
+		D3D94EA41B608F6D0026B422 /* PersonalCenterPointNotiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8F8C81B58A9AF00ABF500 /* PersonalCenterPointNotiTableViewCell.m */; };
+		D3D94EA51B608F780026B422 /* PersonalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BC819AE016A0097C0C6 /* PersonalDetailViewController.m */; };
+		D3D94EA61B608F7A0026B422 /* CompanyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9EC919B81B2C00689C5D /* CompanyCell.m */; };
+		D3D94EA71B608F7D0026B422 /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9ECC19B81BE400689C5D /* ContactCell.m */; };
+		D3D94EA81B608F7F0026B422 /* CorrelateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9EBD19B7FB6700689C5D /* CorrelateCell.m */; };
+		D3D94EA91B608F820026B422 /* ContactBackgroundTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DB2E19FF8CFF00AE5765 /* ContactBackgroundTableViewCell.m */; };
+		D3D94EAA1B608F840026B422 /* ContactBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF27891A008EFF00DDA30D /* ContactBackgroundView.m */; };
+		D3D94EAB1B608F8C0026B422 /* PersonalActivesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C691B0F2F3F004A4B3E /* PersonalActivesViewController.m */; };
+		D3D94EAC1B608F8F0026B422 /* RKPersonalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C781B0F33F8004A4B3E /* RKPersonalController.m */; };
+		D3D94EAD1B608F920026B422 /* PersonalProjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C6F1B0F306D004A4B3E /* PersonalProjectController.m */; };
+		D3D94EAE1B608F970026B422 /* PersonalProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C721B0F3080004A4B3E /* PersonalProductController.m */; };
+		D3D94EAF1B608F9A0026B422 /* PersonalInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C751B0F3090004A4B3E /* PersonalInfoController.m */; };
+		D3D94EB01B608FA00026B422 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BD019AE016A0097C0C6 /* PublishViewController.m */; };
+		D3D94EB11B608FA30026B422 /* ActivePublishController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA8EACC1AA5501300996281 /* ActivePublishController.m */; };
+		D3D94EB21B608FBF0026B422 /* CompanyActivesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D351AAF41B143F3700A299C6 /* CompanyActivesViewController.m */; };
+		D3D94EB31B608FC10026B422 /* RKCompanyController.m in Sources */ = {isa = PBXBuildFile; fileRef = D351AAF71B143FC600A299C6 /* RKCompanyController.m */; };
+		D3D94EB41B608FC70026B422 /* CompanyProjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = D351AAFF1B14407E00A299C6 /* CompanyProjectController.m */; };
+		D3D94EB51B6090000026B422 /* CompanyProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = D351AAFC1B14406E00A299C6 /* CompanyProductController.m */; };
+		D3D94EB61B6090060026B422 /* CompanyTotalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E8A5719F8EA9800EA9AFF /* CompanyTotalViewController.m */; };
+		D3D94EB71B60900B0026B422 /* CompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C01B19922D5900CD8822 /* CompanyViewController.m */; };
+		D3D94EB81B60900E0026B422 /* MoreCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3919B86C5D00782976 /* MoreCompanyViewController.m */; };
+		D3D94EB91B6090110026B422 /* MoreCompanyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */; };
+		D3D94EBA1B6090140026B422 /* CompanyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */; };
+		D3D94EBB1B6090160026B422 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
+		D3D94EBC1B6090190026B422 /* CompanyMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3AD9E319F7CA7B008132B2 /* CompanyMemberCell.m */; };
+		D3D94EBD1B60901B0026B422 /* EndEditingGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5894F019FF9D24001CC09E /* EndEditingGesture.m */; };
+		D3D94EBE1B6090240026B422 /* RequirementDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26C51B26AECD0022B5A8 /* RequirementDetailViewController.m */; };
+		D3D94EBF1B6090270026B422 /* RequirementDetailTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26C91B26B5DF0022B5A8 /* RequirementDetailTitleView.m */; };
+		D3D94EC01B60902A0026B422 /* RequirementCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26D71B26CEEE0022B5A8 /* RequirementCategoryView.m */; };
+		D3D94EC11B60902D0026B422 /* RequirementContactsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26DA1B26E0FD0022B5A8 /* RequirementContactsInfoView.m */; };
+		D3D94EC21B60902F0026B422 /* RequirementCustomerReplyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA108331B287222002545BC /* RequirementCustomerReplyView.m */; };
+		D3D94EC31B6090370026B422 /* RequirementInfoPorjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26DE1B26EE220022B5A8 /* RequirementInfoPorjectView.m */; };
+		D3D94EC41B6090390026B422 /* RequirementInfoMateialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26E11B26EE750022B5A8 /* RequirementInfoMateialView.m */; };
+		D3D94EC51B60903C0026B422 /* RequirementInfoRelationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26E41B26EE860022B5A8 /* RequirementInfoRelationView.m */; };
+		D3D94EC61B60903F0026B422 /* RequirementInfoCooperationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26E71B26EECF0022B5A8 /* RequirementInfoCooperationView.m */; };
+		D3D94EC71B6090410026B422 /* RequirementInfoOtherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26EA1B26EEDF0022B5A8 /* RequirementInfoOtherView.m */; };
+		D3D94EC81B6090450026B422 /* RequireCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E0BECD1B27F6D2002F01CF /* RequireCommentViewController.m */; };
+		D3D94EC91B6090490026B422 /* RequireCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E0BED01B2801BF002F01CF /* RequireCommentTableViewCell.m */; };
+		D3D94ECA1B6090530026B422 /* MarketPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DD371B26C71C001A9577 /* MarketPopView.m */; };
+		D3D94ECB1B6090550026B422 /* MarketListTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DD231B267ECC001A9577 /* MarketListTitleView.m */; };
+		D3D94ECC1B6090580026B422 /* MarketListFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DD291B26B0C4001A9577 /* MarketListFootView.m */; };
+		D3D94ECD1B60905A0026B422 /* MarketPublicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B1851B2038F400E29E07 /* MarketPublicListViewController.m */; };
+		D3D94ECE1B60905D0026B422 /* MarkListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B18E1B204AE000E29E07 /* MarkListTableViewCell.m */; };
+		D3D94ECF1B6090600026B422 /* MarketListSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DD3A1B26D76A001A9577 /* MarketListSearchViewController.m */; };
+		D3D94ED01B6090620026B422 /* MarketMyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E0BED71B287E10002F01CF /* MarketMyListViewController.m */; };
+		D3D94ED11B6090690026B422 /* PublishRequirementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA27881B1FE45200ADE3FC /* PublishRequirementViewController.m */; };
+		D3D94ED21B60906D0026B422 /* CategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA278C1B1FE85D00ADE3FC /* CategoryView.m */; };
+		D3D94ED31B6090700026B422 /* SingleCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA278F1B1FE9AB00ADE3FC /* SingleCategoryView.m */; };
+		D3D94ED41B6090730026B422 /* PublishRequirementContactsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA27921B2015F900ADE3FC /* PublishRequirementContactsInfoView.m */; };
+		D3D94ED51B6090760026B422 /* PublishRequirementTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA27951B20187100ADE3FC /* PublishRequirementTitleView.m */; };
+		D3D94ED61B6090790026B422 /* PublishRequirementProjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1082A1B280EF4002545BC /* PublishRequirementProjectView.m */; };
+		D3D94ED71B60907B0026B422 /* PublishRequirementMaterialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA108261B280EF4002545BC /* PublishRequirementMaterialView.m */; };
+		D3D94ED81B60907E0026B422 /* PublishRequirementRelationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1082C1B280EF4002545BC /* PublishRequirementRelationView.m */; };
+		D3D94ED91B6090810026B422 /* PublishRequirementCooperationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA108241B280EF4002545BC /* PublishRequirementCooperationView.m */; };
+		D3D94EDA1B6090830026B422 /* PublishRequirementOtherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA108281B280EF4002545BC /* PublishRequirementOtherView.m */; };
+		D3D94EDB1B60908B0026B422 /* SearchMaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D0902E1AF89FD500C8AC55 /* SearchMaterialViewController.m */; };
+		D3D94EDC1B60908E0026B422 /* OtherSearchMaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B1881B203B2300E29E07 /* OtherSearchMaterialViewController.m */; };
+		D3D94EDD1B6090940026B422 /* MarketSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD9DE7F1AF88C3A007BF9B5 /* MarketSearchViewController.m */; };
+		D3D94EDE1B6090960026B422 /* SearchMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD9DE821AF89533007BF9B5 /* SearchMenuView.m */; };
+		D3D94EDF1B60909E0026B422 /* MarketSearchProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B63B5381AFB741000638078 /* MarketSearchProductCell.m */; };
+		D3D94EE01B6090A00026B422 /* MarketSearchProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B63B53A1AFB741000638078 /* MarketSearchProductController.m */; };
+		D3D94EE11B6090A40026B422 /* SearchProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D747AB1AFB757000B21F02 /* SearchProjectTableViewCell.m */; };
+		D3D94EE21B6090A90026B422 /* MarketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D090261AF8964300C8AC55 /* MarketViewController.m */; };
+		D3D94EE31B6090AC0026B422 /* MarkListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6EB791B1FF6B200FB6D5A /* MarkListView.m */; };
+		D3D94EE41B6090AE0026B422 /* MarketWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9D50A1B43EB00006980E0 /* MarketWebViewController.m */; };
+		D3D94EE51B6090BD0026B422 /* SecretView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DD750A1B3D1EF000D08BD5 /* SecretView.m */; };
+		D3D94EE61B6090C20026B422 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6B6E11B130F5000C3DEBD /* HomePageViewController.m */; };
+		D3D94EE71B6090CC0026B422 /* FaceLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C04619922D5900CD8822 /* FaceLoginViewController.m */; };
+		D3D94EE81B6090CE0026B422 /* LoginEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C04819922D5900CD8822 /* LoginEvent.m */; };
+		D3D94EE91B6090D10026B422 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C04A19922D5900CD8822 /* LoginViewController.m */; };
+		D3D94EEA1B6090D40026B422 /* ForgetPasswordFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D57A1A3EB5FD00CAEF8B /* ForgetPasswordFirstController.m */; };
+		D3D94EEB1B6090D60026B422 /* ForgetPasswordSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D57D1A3EB63200CAEF8B /* ForgetPasswordSecondController.m */; };
+		D3D94EEC1B6090D90026B422 /* ForgetPasswordThirdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D5801A3EB64C00CAEF8B /* ForgetPasswordThirdController.m */; };
+		D3D94EED1B6090DC0026B422 /* LoginAgain.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A871391A5E7A1600C0B83C /* LoginAgain.m */; };
+		D3D94EEE1B6090E40026B422 /* RecommendProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937BD1A42B428007081C1 /* RecommendProjectViewController.m */; };
+		D3D94EEF1B6090E60026B422 /* RecommendProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937C31A42B470007081C1 /* RecommendProjectTableViewCell.m */; };
+		D3D94EF01B6090E90026B422 /* RecommendContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937C01A42B453007081C1 /* RecommendContactViewController.m */; };
+		D3D94EF11B6090EB0026B422 /* RecommendContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937C61A42B481007081C1 /* RecommendContactTableViewCell.m */; };
+		D3D94EF21B6090EE0026B422 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937C91A42B49A007081C1 /* WelcomeViewController.m */; };
+		D3D94EF31B6090F30026B422 /* FaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C05019922D5900CD8822 /* FaceViewController.m */; };
+		D3D94EF41B6090F60026B422 /* PanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C05219922D5900CD8822 /* PanViewController.m */; };
+		D3D94EF51B6090F90026B422 /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C05419922D5900CD8822 /* RegistViewController.m */; };
+		D3D94EF61B6090FB0026B422 /* ClauseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4C198219FA518800C6C57D /* ClauseViewController.m */; };
+		D3D94EF71B6091090026B422 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A006519B5641900500C05 /* ProductViewController.m */; };
+		D3D94EF81B60910C0026B422 /* TMPhotoQuiltViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A006A19B5874500500C05 /* TMPhotoQuiltViewCell.m */; };
+		D3D94EF91B60910E0026B422 /* ProductPublishController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7132401AA458D90043E37D /* ProductPublishController.m */; };
+		D3D94EFA1B6091100026B422 /* RKCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D5371AA93C4C006501D8 /* RKCamera.m */; };
+		D3D94EFB1B6091160026B422 /* FirstOpenAppAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5173A11A368F8E0009E0AE /* FirstOpenAppAnimationView.m */; };
+		D3D94EFC1B6091190026B422 /* FirstAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE08EC91A35900000495EEB /* FirstAnimationView.m */; };
+		D3D94EFD1B60911C0026B422 /* SecondAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE08ECF1A35900000495EEB /* SecondAnimationView.m */; };
+		D3D94EFE1B60911E0026B422 /* ThirdAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE08ED11A35900000495EEB /* ThirdAnimationView.m */; };
+		D3D94EFF1B6091220026B422 /* FourthAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE08ECD1A35900000495EEB /* FourthAnimationView.m */; };
+		D3D94F001B6091280026B422 /* ChatBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B76705B1AB6B92B00E154C5 /* ChatBaseViewController.m */; };
+		D3D94F011B60912C0026B422 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE82BC61B182CF300603F8A /* BaseTableViewCell.m */; };
+		D3D94F021B60912F0026B422 /* BaseTableViewCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE82BC91B182D2400603F8A /* BaseTableViewCellModel.m */; };
+		D3D94F031B6091310026B422 /* RKBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B76705D1AB6B92B00E154C5 /* RKBaseTableView.m */; };
+		D3D94F041B6091330026B422 /* SearchBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B76705F1AB6B92B00E154C5 /* SearchBarCell.m */; };
+		D3D94F051B6091360026B422 /* SearchBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7670611AB6B92B00E154C5 /* SearchBarTableViewController.m */; };
+		D3D94F061B6091390026B422 /* RKController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C5E1B0EFB9C004A4B3E /* RKController.m */; };
+		D3D94F071B60913F0026B422 /* RecommendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7670671AB6BD8100E154C5 /* RecommendListViewController.m */; };
+		D3D94F081B6091440026B422 /* RemindListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B76706A1AB6BDB800E154C5 /* RemindListViewController.m */; };
+		D3D94F091B6091480026B422 /* AddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B95ADEE1AB1B35B00797EA6 /* AddressBookViewController.m */; };
+		D3D94F0A1B60914B0026B422 /* AddressBookViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B95ADF11AB1B37E00797EA6 /* AddressBookViewCell.m */; };
+		D3D94F0B1B60914D0026B422 /* AddressBookSearchBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7103B1AD54A9C00E43124 /* AddressBookSearchBarCell.m */; };
+		D3D94F0C1B60914F0026B422 /* AddressBookNickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F7274A1AD6570C00B52A66 /* AddressBookNickNameViewController.m */; };
+		D3D94F0D1B6091570026B422 /* AddressBookFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CCD1AAEE0AD00C8F9DE /* AddressBookFriendCell.m */; };
+		D3D94F0E1B6091590026B422 /* AddressBookFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CCF1AAEE0AD00C8F9DE /* AddressBookFriendViewController.m */; };
+		D3D94F0F1B60915B0026B422 /* AddressBookFriendSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B78D6901ADCDF5A00E08C4A /* AddressBookFriendSearchController.m */; };
+		D3D94F101B6091600026B422 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CCA1AAEE0AD00C8F9DE /* AddFriendViewController.m */; };
+		D3D94F111B6091620026B422 /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CC81AAEE0AD00C8F9DE /* AddFriendCell.m */; };
+		D3D94F121B6091650026B422 /* RecommendFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F727501AD660E200B52A66 /* RecommendFriendViewController.m */; };
+		D3D94F131B6091670026B422 /* RecommendFriendSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5836D61AD771AF00F8E7C3 /* RecommendFriendSearchController.m */; };
+		D3D94F141B6091690026B422 /* RecommendFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F727591AD6941900B52A66 /* RecommendFriendCell.m */; };
+		D3D94F151B6091710026B422 /* ChatMessageImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D31C0DFA1B0984E30014A5E4 /* ChatMessageImageView.m */; };
+		D3D94F161B6091740026B422 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CDA1AAEE0AD00C8F9DE /* ChatViewController.m */; };
+		D3D94F171B6091770026B422 /* ChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CD81AAEE0AD00C8F9DE /* ChatTableViewCell.m */; };
+		D3D94F181B6091790026B422 /* ChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CD61AAEE0AD00C8F9DE /* ChatModel.m */; };
+		D3D94F191B60917C0026B422 /* ChatContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CD41AAEE0AD00C8F9DE /* ChatContentView.m */; };
+		D3D94F1A1B60917F0026B422 /* ChatToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9624ED1AB2CE0C005728C5 /* ChatToolBar.m */; };
+		D3D94F1B1B6091810026B422 /* ChatMoreSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC40E251B09B04A00184D1A /* ChatMoreSelectView.m */; };
+		D3D94F1C1B6091840026B422 /* ChatSendImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE4B6191B412F7100B129FC /* ChatSendImageView.m */; };
+		D3D94F1D1B6091890026B422 /* AddGroupMemberController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B5B1AB025FD00DA87F5 /* AddGroupMemberController.m */; };
+		D3D94F1E1B60918B0026B422 /* AddImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B5D1AB025FD00DA87F5 /* AddImageView.m */; };
+		D3D94F1F1B60918E0026B422 /* ImageAndLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B651AB025FD00DA87F5 /* ImageAndLabelView.m */; };
+		D3D94F201B6091900026B422 /* DiscussionGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B631AB025FD00DA87F5 /* DiscussionGroupView.m */; };
+		D3D94F211B6091940026B422 /* MessageTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F897081AD8EB2F00DE3AB4 /* MessageTableView.m */; };
+		D3D94F221B6091960026B422 /* ChatImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D31F2B921B05E67E006BD6A8 /* ChatImageCell.m */; };
+		D3D94F231B60919B0026B422 /* ForwardListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9D5011B43AC53006980E0 /* ForwardListViewController.m */; };
+		D3D94F241B60919D0026B422 /* ForwardListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9D5041B43BC2E006980E0 /* ForwardListCell.m */; };
+		D3D94F251B6091A00026B422 /* ForwardChooseContactsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA37F7D1B43CB0000ACCFA2 /* ForwardChooseContactsController.m */; };
+		D3D94F261B6091A70026B422 /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CDF1AAEE0AD00C8F9DE /* ChatListViewController.m */; };
+		D3D94F271B6091A90026B422 /* ChatListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CDD1AAEE0AD00C8F9DE /* ChatListViewCell.m */; };
+		D3D94F281B6091AE0026B422 /* ChooseContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CE61AAEE0AD00C8F9DE /* ChooseContactsViewController.m */; };
+		D3D94F291B6091B10026B422 /* ChooseContactsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CE41AAEE0AD00C8F9DE /* ChooseContactsViewCell.m */; };
+		D3D94F2A1B6091B30026B422 /* ChooseContactsSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9238491ADB6C2D00281E94 /* ChooseContactsSearchController.m */; };
+		D3D94F2B1B6091BC0026B422 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDC9F01ACE5959002AF865 /* WebViewController.m */; };
+		D3D94F2C1B6091C00026B422 /* DemanDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6699281AB9490600C4B54F /* DemanDetailViewController.m */; };
+		D3D94F2D1B6091C40026B422 /* DemandDetailAskPriceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773D71AC1320400C17DBF /* DemandDetailAskPriceController.m */; };
+		D3D94F2E1B6091C70026B422 /* DemandAskPriceDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773DE1AC1335C00C17DBF /* DemandAskPriceDetailController.m */; };
+		D3D94F2F1B6091C90026B422 /* DemandAskPriceChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773E11AC1338000C17DBF /* DemandAskPriceChatController.m */; };
+		D3D94F301B6091CC0026B422 /* AcceptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA5BBDC1AD3B8A1004829AF /* AcceptView.m */; };
+		D3D94F311B6091CF0026B422 /* AcceptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D710321AD4EC5400E43124 /* AcceptViewController.m */; };
+		D3D94F321B6091D70026B422 /* DemandDetailProvidePriceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773DA1AC1320400C17DBF /* DemandDetailProvidePriceController.m */; };
+		D3D94F331B6091D90026B422 /* DemandProvidePriceDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773E41AC133BA00C17DBF /* DemandProvidePriceDetailController.m */; };
+		D3D94F341B6091DC0026B422 /* DemandProvidePriceChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773E71AC133E400C17DBF /* DemandProvidePriceChatController.m */; };
+		D3D94F351B6091E30026B422 /* RKDemandDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373911ABAA7A8007CF1F8 /* RKDemandDetailController.m */; };
+		D3D94F361B6091E50026B422 /* DemandDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B63737E1ABA796D007CF1F8 /* DemandDetailViewCell.m */; };
+		D3D94F371B6091E70026B422 /* RKMuchImageViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373801ABA796D007CF1F8 /* RKMuchImageViews.m */; };
+		D3D94F381B6091EA0026B422 /* RKSingleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373821ABA796D007CF1F8 /* RKSingleImageView.m */; };
+		D3D94F391B6091EC0026B422 /* RKPointKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E59211ABC33E70063B400 /* RKPointKit.m */; };
+		D3D94F3A1B6091F20026B422 /* RKDemandChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373941ABAA7B0007CF1F8 /* RKDemandChatController.m */; };
+		D3D94F3B1B6091F40026B422 /* DemandChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B63737B1ABA796D007CF1F8 /* DemandChatViewCell.m */; };
+		D3D94F3C1B6092020026B422 /* AskPriceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D35E12401ABD65D8007C6726 /* AskPriceDetailViewController.m */; };
+		D3D94F3D1B6092040026B422 /* CatoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D35E12431ABD68B5007C6726 /* CatoryTableViewCell.m */; };
+		D3D94F3E1B6092070026B422 /* ClassificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D368092A1ABFAB3200AFA097 /* ClassificationView.m */; };
+		D3D94F3F1B6092090026B422 /* RemarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D368092D1ABFD70500AFA097 /* RemarkViewController.m */; };
+		D3D94F401B60920B0026B422 /* QuotesDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D36809301ABFDCB900AFA097 /* QuotesDetailViewController.m */; };
+		D3D94F411B6092100026B422 /* SearchContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D686261ABAC8C0005D9ED6 /* SearchContactViewController.m */; };
+		D3D94F421B6092130026B422 /* SearchContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D686291ABACF44005D9ED6 /* SearchContactTableViewCell.m */; };
+		D3D94F431B6092150026B422 /* SearchContactDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = D314A3A61B156B2B00F6A86A /* SearchContactDefaultView.m */; };
+		D3D94F441B60921A0026B422 /* AddContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF0D891AB81A7800D71CEB /* AddContactView.m */; };
+		D3D94F451B60921C0026B422 /* TopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF0D8B1AB81A7800D71CEB /* TopView.m */; };
+		D3D94F461B60921F0026B422 /* AskPriceMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF0D861AB81A4C00D71CEB /* AskPriceMainViewController.m */; };
+		D3D94F471B6092210026B422 /* AddCategoriesView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBBC711AB914E20070DB98 /* AddCategoriesView.m */; };
+		D3D94F481B6092230026B422 /* AddClassificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBBC741AB91E110070DB98 /* AddClassificationView.m */; };
+		D3D94F491B6092250026B422 /* AddMarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B51BC31ABA96A600C7D57A /* AddMarkView.m */; };
+		D3D94F4A1B60922A0026B422 /* BusinessSucessCreateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA8F5021B131EF400E8656D /* BusinessSucessCreateController.m */; };
+		D3D94F4B1B6092330026B422 /* ChooseProductCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B628A0B1AB826AA00F30059 /* ChooseProductCellModel.m */; };
+		D3D94F4C1B6092380026B422 /* ChooseProductBigCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373A31ABAE32A007CF1F8 /* ChooseProductBigCell.m */; };
+		D3D94F4D1B60923B0026B422 /* ChooseProductBigStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373A51ABAE32A007CF1F8 /* ChooseProductBigStage.m */; };
+		D3D94F4E1B60923F0026B422 /* ChooseProductSmallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373A81ABAE32A007CF1F8 /* ChooseProductSmallCell.m */; };
+		D3D94F4F1B6092420026B422 /* ChooseProductSmallStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373AA1ABAE32A007CF1F8 /* ChooseProductSmallStage.m */; };
+		D3D94F501B60924C0026B422 /* RKStageChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9A5391AB6EE4300B5B2D8 /* RKStageChooseView.m */; };
+		D3D94F511B60924F0026B422 /* RKStageAndNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B63739F1ABAD30B007CF1F8 /* RKStageAndNumberView.m */; };
+		D3D94F521B6092510026B422 /* RKTwoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6289DC1AB7C10000F30059 /* RKTwoView.m */; };
+		D3D94F531B6092540026B422 /* RKUpAndDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E59081ABBEAD20063B400 /* RKUpAndDownView.m */; };
+		D3D94F541B6092560026B422 /* RKLeftAndRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E590B1ABBFD760063B400 /* RKLeftAndRightView.m */; };
+		D3D94F551B6092590026B422 /* RKShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373641ABA5E97007CF1F8 /* RKShadowView.m */; };
+		D3D94F561B60925E0026B422 /* AskPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9A53C1AB6F84300B5B2D8 /* AskPriceViewController.m */; };
+		D3D94F571B6092610026B422 /* AskPriceViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6289DF1AB7CC5A00F30059 /* AskPriceViewCell.m */; };
+		D3D94F581B6092640026B422 /* AskPriceCellHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6289E21AB806AB00F30059 /* AskPriceCellHeader.m */; };
+		D3D94F591B6092670026B422 /* DemandListSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CB9B81AC01855000CF505 /* DemandListSearchController.m */; };
+		D3D94F5A1B60926D0026B422 /* DemandStageChooseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8650431ABFA16F0096BEF0 /* DemandStageChooseController.m */; };
+		D3D94F5B1B60927A0026B422 /* DemandStageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8650461ABFA1B90096BEF0 /* DemandStageCell.m */; };
+		D3D94F5C1B6092890026B422 /* ConstractListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B70CC5E1AC9420600FC8353 /* ConstractListController.m */; };
+		D3D94F5D1B60928C0026B422 /* ContractListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B70CC611AC947F100FC8353 /* ContractListCell.m */; };
+		D3D94F5E1B60928F0026B422 /* ContractsListSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9401D21ACA89FF000C3C99 /* ContractsListSearchController.m */; };
+		D3D94F5F1B6092930026B422 /* ContractsBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5837021AD7CE0900F8E7C3 /* ContractsBaseViewController.m */; };
+		D3D94F601B60929C0026B422 /* MainContractsBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B90E1041ADE491F00436CED /* MainContractsBaseController.m */; };
+		D3D94F611B6092A10026B422 /* OtherContractsBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5837091AD7CFD900F8E7C3 /* OtherContractsBaseController.m */; };
+		D3D94F621B6092A50026B422 /* ProviderContractsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FF6FD1AE4EC3300F3A3E0 /* ProviderContractsController.m */; };
+		D3D94F631B6092A90026B422 /* SalerContractsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FF7001AE4EC4B00F3A3E0 /* SalerContractsController.m */; };
+		D3D94F641B6092AD0026B422 /* RepealContractsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4F98131AE63ADC009E0F78 /* RepealContractsController.m */; };
+		D3D94F651B6092B90026B422 /* CommissionBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE581AC8DF0C00C9FEDE /* CommissionBaseViewController.m */; };
+		D3D94F661B6092BD0026B422 /* ProvisionalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE5B1AC8E1A400C9FEDE /* ProvisionalViewController.m */; };
+		D3D94F671B6092C50026B422 /* StartManView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE5E1AC8E77A00C9FEDE /* StartManView.m */; };
+		D3D94F681B6092C90026B422 /* ReceiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = D374BCA91AC8F1E2002A7D58 /* ReceiveView.m */; };
+		D3D94F691B6092CD0026B422 /* OtherView.m in Sources */ = {isa = PBXBuildFile; fileRef = D374BCAC1AC8F84A002A7D58 /* OtherView.m */; };
+		D3D94F6A1B6092CF0026B422 /* MessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D374BCAF1AC91C82002A7D58 /* MessageTextView.m */; };
+		D3D94F6B1B6092D20026B422 /* MoneyView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2BFE71AC94478003BB779 /* MoneyView.m */; };
+		D3D94F6C1B6092D50026B422 /* ContractView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2BFEA1AC9497B003BB779 /* ContractView.m */; };
+		D3D94F6D1B6092DA0026B422 /* PDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4E7491AE7418E001BF0A9 /* PDFViewController.m */; };
+		D3D94F6E1B6092DF0026B422 /* AskPriceMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D483F81ADFBB08004AF972 /* AskPriceMessageViewController.m */; };
+		D3D94F6F1B6092E10026B422 /* AskPriceMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D483FE1ADFC4E8004AF972 /* AskPriceMessageCell.m */; };
+		D3D94F701B6092F20026B422 /* VIPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB9571B0B1BFB005CC798 /* VIPhotoView.m */; };
+		D3D94F711B6092F70026B422 /* ZWAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D75E2D1B0201A500754C1A /* ZWAdView.m */; };
+		D3D94F721B6093000026B422 /* AdDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D090011AF86CC900C8AC55 /* AdDataModel.m */; };
+		D3D94F731B6093030026B422 /* MarketFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6EB761B1FE42F00FB6D5A /* MarketFlowView.m */; };
+		D3D94F741B6093060026B422 /* AdDataPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3D090061AF86D3E00C8AC55 /* AdDataPlist.plist */; };
+		D3D94F751B60930B0026B422 /* ErrorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4E7421AE62B96001BF0A9 /* ErrorCode.m */; };
+		D3D94F761B6093120026B422 /* TableViewHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C0218E1AE09520000F1742 /* TableViewHeightCell.m */; };
+		D3D94F771B6093170026B422 /* GetAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCDAC91ADBA66C0029DB95 /* GetAddressBook.m */; };
+		D3D94F781B60931A0026B422 /* PostAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D747A81AFB2C4200B21F02 /* PostAddressBook.m */; };
+		D3D94F791B6093320026B422 /* RemindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3209FD1A11E78600D19279 /* RemindView.m */; };
+		D3D94F7A1B6093370026B422 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D798671A0B1DFE00194FF8 /* LoadingView.m */; };
+		D3D94F7B1B60933C0026B422 /* MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAA14D519EE35AC00C7ECD9 /* MD5.m */; };
+		D3D94F7C1B6093430026B422 /* NBLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D232A19D93373007C2C29 /* NBLabel.m */; };
+		D3D94F7D1B6093490026B422 /* GetImagePath.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC86AA19CBD3E30009673C /* GetImagePath.m */; };
+		D3D94F7E1B6093570026B422 /* BirthDay.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281419C19A3E00BAB6C7 /* BirthDay.m */; };
+		D3D94F7F1B6093680026B422 /* ErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4280F19C1749E00BAB6C7 /* ErrorView.m */; };
+		D3D94F801B60936F0026B422 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9EEE19B8855100689C5D /* Camera.m */; };
+		D3D94F811B6093790026B422 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61A719AEF80B001FD483 /* MJPopupBackgroundView.m */; };
+		D3D94F821B60937C0026B422 /* NIDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61A919AEF80B001FD483 /* NIDropDown.m */; };
+		D3D94F831B60937F0026B422 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61AB19AEF80B001FD483 /* UIViewController+MJPopupViewController.m */; };
+		D3D94F841B6093870026B422 /* MChoiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61A019AEF0A2001FD483 /* MChoiceTableViewCell.m */; };
+		D3D94F851B6093890026B422 /* MultipleChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD61A219AEF0A2001FD483 /* MultipleChoiceViewController.m */; };
+		D3D94F861B60938F0026B422 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD619619AEEE30001FD483 /* DatePickerView.m */; };
+		D3D94F871B6093910026B422 /* LocateView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD619819AEEE30001FD483 /* LocateView.m */; };
+		D3D94F881B6093930026B422 /* SinglePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD619A19AEEE30001FD483 /* SinglePickerView.m */; };
+		D3D94F891B6093960026B422 /* TwoStageLocateView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DD301B26BF99001A9577 /* TwoStageLocateView.m */; };
+		D3D94F8A1B60939B0026B422 /* LoginSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4283719C9401C00BAB6C7 /* LoginSqlite.m */; };
+		D3D94F8B1B60939E0026B422 /* RecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD616819ADB9F7001FD483 /* RecordModel.m */; };
+		D3D94F8C1B6093A10026B422 /* RecordSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD616A19ADB9F7001FD483 /* RecordSqlite.m */; };
+		D3D94F8D1B6093A40026B422 /* SqliteHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD616319ADB918001FD483 /* SqliteHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D3D94F8E1B6093A80026B422 /* ProjectSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D21EB01A36F77C00ADD653 /* ProjectSqlite.m */; };
+		D3D94F8F1B6093AA0026B422 /* LocalProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D21EB61A36F9C700ADD653 /* LocalProjectModel.m */; };
+		D3D94F901B6093AC0026B422 /* ChatSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D5B42A1AB12CB800E8EB04 /* ChatSqlite.m */; };
+		D3D94F911B6093AF0026B422 /* ImageSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D538461ADD1D3C003727C1 /* ImageSqlite.m */; };
+		D3D94F921B6093B10026B422 /* ImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D538491ADD1FC8003727C1 /* ImageModel.m */; };
+		D3D94F931B6093B50026B422 /* MarketSearchSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B75F4DE1AF9A2B60091162C /* MarketSearchSqlite.m */; };
+		D3D94F941B6093B70026B422 /* ChatImageSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B05A721B4CF6EE00B34FD6 /* ChatImageSqlite.m */; };
+		D3D94F951B6093BA0026B422 /* ChatImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B05A751B4CF7E600B34FD6 /* ChatImageModel.m */; };
+		D3D94F961B6093F70026B422 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B998CCB1B4B73D400569A56 /* BaiduMapAPI.framework */; };
+		D3D94F971B6094160026B422 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B998CDF1B4BC7BB00569A56 /* iflyMSC.framework */; };
+		D3D94F981B6094420026B422 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD616519ADB981001FD483 /* libsqlite3.0.dylib */; };
+		D3D94F9C1B60950A0026B422 /* UIApplication+GCovFlush.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D94F9B1B60950A0026B422 /* UIApplication+GCovFlush.m */; };
+		D3D94F9F1B6095190026B422 /* XCTest+GCovFlush.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D94F9E1B6095190026B422 /* XCTest+GCovFlush.m */; };
 		D3D9C90A1A1343CF001D3A64 /* 主菜单01b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9021A1343CE001D3A64 /* 主菜单01b.png */; };
 		D3D9C90B1A1343CF001D3A64 /* 主菜单01b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9031A1343CE001D3A64 /* 主菜单01b@2x.png */; };
 		D3D9C90C1A1343CF001D3A64 /* 主菜单02b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9041A1343CF001D3A64 /* 主菜单02b.png */; };
@@ -4252,6 +4635,11 @@
 		D3D8FEAC1ABD489E0096B7FD /* QuotesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuotesModel.m; sourceTree = "<group>"; };
 		D3D946A71A6CDD33003A68D5 /* YLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLLabel.h; sourceTree = "<group>"; };
 		D3D946A81A6CDD33003A68D5 /* YLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLLabel.m; sourceTree = "<group>"; };
+		D3D94F991B60950A0026B422 /* GcovExtern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GcovExtern.h; sourceTree = "<group>"; };
+		D3D94F9A1B60950A0026B422 /* UIApplication+GCovFlush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+GCovFlush.h"; sourceTree = "<group>"; };
+		D3D94F9B1B60950A0026B422 /* UIApplication+GCovFlush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+GCovFlush.m"; sourceTree = "<group>"; };
+		D3D94F9D1B6095190026B422 /* XCTest+GCovFlush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTest+GCovFlush.h"; sourceTree = "<group>"; };
+		D3D94F9E1B6095190026B422 /* XCTest+GCovFlush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTest+GCovFlush.m"; sourceTree = "<group>"; };
 		D3D9C9021A1343CE001D3A64 /* 主菜单01b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单01b.png"; sourceTree = "<group>"; };
 		D3D9C9031A1343CE001D3A64 /* 主菜单01b@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单01b@2x.png"; sourceTree = "<group>"; };
 		D3D9C9041A1343CF001D3A64 /* 主菜单02b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单02b.png"; sourceTree = "<group>"; };
@@ -4475,6 +4863,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3D94F981B6094420026B422 /* libsqlite3.0.dylib in Frameworks */,
+				D3D94F971B6094160026B422 /* iflyMSC.framework in Frameworks */,
+				D3D94F961B6093F70026B422 /* BaiduMapAPI.framework in Frameworks */,
 				0426C00419922CE400CD8822 /* XCTest.framework in Frameworks */,
 				0426C00619922CE400CD8822 /* UIKit.framework in Frameworks */,
 				0426C00519922CE400CD8822 /* Foundation.framework in Frameworks */,
@@ -4574,6 +4965,9 @@
 		0426BFF119922CE400CD8822 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D3D94F991B60950A0026B422 /* GcovExtern.h */,
+				D3D94F9A1B60950A0026B422 /* UIApplication+GCovFlush.h */,
+				D3D94F9B1B60950A0026B422 /* UIApplication+GCovFlush.m */,
 				D3D538431ADCBD82003727C1 /* source.bundle */,
 				D3E621E51A10AC3000EF8A90 /* area.plist */,
 				04BC3E5D19D7E5B0006B5C7B /* Images */,
@@ -4590,6 +4984,8 @@
 		0426C00919922CE400CD8822 /* ZhuZhanTests */ = {
 			isa = PBXGroup;
 			children = (
+				D3D94F9D1B6095190026B422 /* XCTest+GCovFlush.h */,
+				D3D94F9E1B6095190026B422 /* XCTest+GCovFlush.m */,
 				0426C00F19922CE400CD8822 /* ZhuZhanTests.m */,
 				5BF0CE691B60976A00B91F75 /* Model */,
 				5BF0CE711B60977500B91F75 /* View */,
@@ -8754,6 +9150,7 @@
 				0426BFE419922CE400CD8822 /* Frameworks */,
 				0426BFE519922CE400CD8822 /* Resources */,
 				04BC436619D7E651006B5C7B /* CopyFiles */,
+				D3D94FA41B60AAC50026B422 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -8771,6 +9168,7 @@
 				0426BFFE19922CE400CD8822 /* Sources */,
 				0426BFFF19922CE400CD8822 /* Frameworks */,
 				0426C00019922CE400CD8822 /* Resources */,
+				D3D94FA01B6096E30026B422 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -9999,11 +10397,41 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3D94F741B6093060026B422 /* AdDataPlist.plist in Resources */,
 				0426C00E19922CE400CD8822 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D3D94FA01B6096E30026B422 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = XcodeCoverage/exportenv.sh;
+		};
+		D3D94FA41B60AAC50026B422 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" == \"Coverage\" ]\nthen\nXcodeCoverage/exportenv.sh\nelse\necho \"ignore coverage\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0426BFE319922CE400CD8822 /* Sources */ = {
@@ -10424,6 +10852,7 @@
 				5B5837031AD7CE0900F8E7C3 /* ContractsBaseViewController.m in Sources */,
 				0426C2A719922D5A00CD8822 /* GPUImagePosterizeFilter.m in Sources */,
 				5B6373951ABAA7B0007CF1F8 /* RKDemandChatController.m in Sources */,
+				D3D94F9C1B60950A0026B422 /* UIApplication+GCovFlush.m in Sources */,
 				D3D7DD241B267ECC001A9577 /* MarketListTitleView.m in Sources */,
 				0426C2FE19922D5A00CD8822 /* UIButton+AFNetworking.m in Sources */,
 				D3F455A41B312FA300EE20A5 /* MyProjectViewController.m in Sources */,
@@ -10675,6 +11104,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3D94E191B608D040026B422 /* PointDetailModel.m in Sources */,
+				D3D94E5A1B608E6E0026B422 /* MyFactory.m in Sources */,
+				D3D94F0F1B60915B0026B422 /* AddressBookFriendSearchController.m in Sources */,
+				D3D94F281B6091AE0026B422 /* ChooseContactsViewController.m in Sources */,
+				D3D94E511B608E520026B422 /* ProjectCommentView.m in Sources */,
+				D3D94ECE1B60905D0026B422 /* MarkListTableViewCell.m in Sources */,
+				D3D94E461B608E220026B422 /* ConditionsModel.m in Sources */,
+				D3D94F761B6093120026B422 /* TableViewHeightCell.m in Sources */,
+				D3D94E611B608E870026B422 /* RecognizerFactory.m in Sources */,
+				D3D94E951B608F400026B422 /* PersonalProjectTableViewCell.m in Sources */,
+				D3D94F4B1B6092330026B422 /* ChooseProductCellModel.m in Sources */,
+				D3D94E5E1B608E7C0026B422 /* ProjectTableViewCell.m in Sources */,
+				D3D94E251B608DB40026B422 /* ContractsApi.m in Sources */,
+				D3D94EEE1B6090E40026B422 /* RecommendProjectViewController.m in Sources */,
+				D3D94EC31B6090370026B422 /* RequirementInfoPorjectView.m in Sources */,
+				D3D94F221B6091960026B422 /* ChatImageCell.m in Sources */,
+				D3D94E211B608DA80026B422 /* AskPriceMessageModel.m in Sources */,
+				D3D94F361B6091E50026B422 /* DemandDetailViewCell.m in Sources */,
+				D3D94E411B608E110026B422 /* ProjectApi.m in Sources */,
+				D3D94F191B60917C0026B422 /* ChatContentView.m in Sources */,
+				D3D94F711B6092F70026B422 /* ZWAdView.m in Sources */,
+				D3D94E4C1B608E3C0026B422 /* LoginModel.m in Sources */,
+				D3D94F8A1B60939B0026B422 /* LoginSqlite.m in Sources */,
+				D3D94EFA1B6091100026B422 /* RKCamera.m in Sources */,
+				D3D94F601B60929C0026B422 /* MainContractsBaseController.m in Sources */,
+				D3D94F0A1B60914B0026B422 /* AddressBookViewCell.m in Sources */,
+				D3D94F171B6091770026B422 /* ChatTableViewCell.m in Sources */,
 				0426C01019922CE400CD8822 /* ZhuZhanTests.m in Sources */,
 				5BF0CE6F1B60976A00B91F75 /* FakeProjectStage.m in Sources */,
 				5BF0CE771B60977500B91F75 /* FakeStageChooseView.m in Sources */,
@@ -10742,6 +11197,8 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -10868,6 +11325,8 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)/ZhuZhan/Tools/BaiduMap",
+					"$(PROJECT_DIR)/ZhuZhan/Tools/IFly/lib",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZhuZhan/ZhuZhan-Prefix.pch";
@@ -10893,6 +11352,8 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)/ZhuZhan/Tools/BaiduMap",
+					"$(PROJECT_DIR)/ZhuZhan/Tools/IFly/lib",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZhuZhan/ZhuZhan-Prefix.pch";
@@ -10904,6 +11365,107 @@
 			};
 			name = Release;
 		};
+		D3D94FA11B60AA890026B422 /* Coverage */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: hua ye (JG3N8X8YM7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: hua ye (JG3N8X8YM7)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "d8ebbbb0-b642-4928-a269-22f59d5e7c38";
+				SDKROOT = iphoneos;
+			};
+			name = Coverage;
+		};
+		D3D94FA21B60AA890026B422 /* Coverage */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ZhuZhan/Tools/BaiduMap",
+					"$(PROJECT_DIR)/ZhuZhan/Tools/IFly/lib",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ZhuZhan/ZhuZhan-Prefix.pch";
+				INFOPLIST_FILE = "ZhuZhan/ZhuZhan-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ZhuZhan/Tools/BaiduMap/libs/Release$(EFFECTIVE_PLATFORM_NAME)",
+					"$(PROJECT_DIR)/ZhuZhan/Tools/BaiduMap/libs/Release-iphoneos",
+					"$(PROJECT_DIR)/ZhuZhan/Tools/BaiduMap/libs/Release-iphonesimulator",
+					"$(PROJECT_DIR)/ZhuZhan/Tools/IFly/lib/sunflower",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = "armv7 armv7s arm64";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Coverage;
+		};
+		D3D94FA31B60AA890026B422 /* Coverage */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ZhuZhan.app/ZhuZhan";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)/ZhuZhan/Tools/BaiduMap",
+					"$(PROJECT_DIR)/ZhuZhan/Tools/IFly/lib",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ZhuZhan/ZhuZhan-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ZhuZhanTests/ZhuZhanTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Coverage;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -10911,6 +11473,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0426C01119922CE400CD8822 /* Debug */,
+				D3D94FA11B60AA890026B422 /* Coverage */,
 				0426C01219922CE400CD8822 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -10920,6 +11483,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0426C01419922CE400CD8822 /* Debug */,
+				D3D94FA21B60AA890026B422 /* Coverage */,
 				0426C01519922CE400CD8822 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -10929,6 +11493,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0426C01719922CE400CD8822 /* Debug */,
+				D3D94FA31B60AA890026B422 /* Coverage */,
 				0426C01819922CE400CD8822 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
