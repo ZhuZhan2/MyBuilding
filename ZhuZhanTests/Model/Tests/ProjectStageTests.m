@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-#import "FakeProjectStage.h"
+//#import "FakeProjectStage.h"
+#import "ProjectStage.h"
+
 @interface ProjectStageTests : XCTestCase
 @property (nonatomic, strong)NSMutableArray* allContent;
 @property (nonatomic, strong)NSMutableArray* contacts;
@@ -232,7 +234,8 @@
 
 - (void)testDetailStage1Contacts1Images1ReturnPart{
     [self setDetailStageCount:1 contactsCount:1 imagesCount:1];
-    NSString* returnStr = [FakeProjectStage getPart:self.allContent contacts:self.contacts images:self.images];
+    //NSString* returnStr = [FakeProjectStage getPart:self.allContent contacts:self.contacts images:self.images];
+    NSString* returnStr = [ProjectStage getPart:self.allContent contacts:self.contacts images:self.images];
     XCTAssertTrue([returnStr isEqualToString:@"part"]);
 }
 
@@ -251,7 +254,8 @@
 
 - (void)testDetailStage1Contacts3Images1ReturnAll{
     [self setDetailStageCount:1 contactsCount:3 imagesCount:1];
-    NSString* returnStr = [FakeProjectStage getPart:self.allContent contacts:self.contacts images:self.images];
+    //NSString* returnStr = [FakeProjectStage getPart:self.allContent contacts:self.contacts images:self.images];
+    NSString* returnStr = [ProjectStage getPart:self.allContent contacts:self.contacts images:self.images];
     XCTAssertTrue([returnStr isEqualToString:@"all"]);
 }
 
@@ -305,6 +309,7 @@
 }
 
 - (NSString*)getReturnStr{
-    return [FakeProjectStage getPart:self.allContent contacts:self.contacts images:self.images];
+    //return [FakeProjectStage getPart:self.allContent contacts:self.contacts images:self.images];
+    return [ProjectStage getPart:self.allContent contacts:self.contacts images:self.images];
 }
 @end
