@@ -40,4 +40,6 @@
 
 //判断业主类型
 //+(NSString *)JudgeOwenType:(NSString *)str;
+
++(NSString*)getPart:(NSArray*)detailStage contacts:(NSMutableArray*)contacts images:(NSMutableArray*)images;
 @end
