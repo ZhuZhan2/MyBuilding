@@ -21,34 +21,33 @@
     [super setUp];
     self.loginVC = [[FakeLoginViewController alloc] init];
     [self.loginVC viewDidLoad];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    self.loginVC = nil;
     [super tearDown];
 }
 
+/**
+ *  测试登陆框账号处必须有内容的限制
+ */
 - (void)testUserNameShouldHasContent{
-    self.loginVC.fakeUserNameTextField.text = @"";
-    BOOL success = [[self.loginVC performSelector:@selector(gotoLogin)] boolValue];
+    UITextField* userNameTextField = [self.loginVC valueForKey:@"_userNameTextField"];
+    userNameTextField.text = @"";
+    BOOL success = [self.loginVC gotoLogin];
+
     XCTAssertTrue(!success);
 }
 
+/**
+ *  测试正确情况下可以正常发出登陆请求
+ */
 - (void)testCanPostLoginApi{
-    self.loginVC.fakeUserNameTextField.text = @"123";
-    self.loginVC.fakePassWordTextField.text = @"123";
-//    self.loginVC.fakePassWordTextField = [NSObject new];
-//    BOOL success = [[self.loginVC performSelector:@selector(gotoLogin)] boolValue];
-    XCTAssertTrue(YES);
-}
+    UITextField* userNameTextField = [self.loginVC valueForKey:@"_userNameTextField"];
+    UITextField* passWordTextField = [self.loginVC valueForKey:@"_passWordTextField"];
+    userNameTextField.text = @"123";
+    passWordTextField.text = @"123";
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+    BOOL success = [self.loginVC gotoLogin];
+    XCTAssertTrue(success);
 }
-
 @end

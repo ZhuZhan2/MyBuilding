@@ -550,6 +550,7 @@
 		04D10BEA19AE016A0097C0C6 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BD019AE016A0097C0C6 /* PublishViewController.m */; };
 		04D10C3019AF3C120097C0C6 /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10C2F19AF3C120097C0C6 /* ShowViewController.m */; };
 		04D10C7719B074C70097C0C6 /* RecommendLetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10C7619B074C70097C0C6 /* RecommendLetterViewController.m */; };
+		5B03ACAA1B62004D00A4DCFA /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C05419922D5900CD8822 /* RegistViewController.m */; };
 		5B0A006619B5641900500C05 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A006519B5641900500C05 /* ProductViewController.m */; };
 		5B0A006C19B5874500500C05 /* TMPhotoQuiltViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A006A19B5874500500C05 /* TMPhotoQuiltViewCell.m */; };
 		5B0A008A19B587B200500C05 /* EGORefreshTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A008619B587B200500C05 /* EGORefreshTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -570,6 +571,12 @@
 		5B1AC4B019BEE4DC006CA4F4 /* CompanyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */; };
 		5B2A42EB1A0A0D7000C04DFA /* 人脉－个人中心_10a.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BC3F2519D7E5B0006B5C7B /* 人脉－个人中心_10a.png */; };
 		5B2D232B19D93373007C2C29 /* NBLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D232A19D93373007C2C29 /* NBLabel.m */; };
+		5B309BE51B60E6D400242DA3 /* RKStageChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9A5391AB6EE4300B5B2D8 /* RKStageChooseView.m */; };
+		5B309BE61B60E6E400242DA3 /* UpdataPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4FB391A08C0C90033BB34 /* UpdataPassWordViewController.m */; };
+		5B309BE71B60E6EF00242DA3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426BFFA19922CE400CD8822 /* AppDelegate.m */; };
+		5B309BE81B60E6FE00242DA3 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6B6E11B130F5000C3DEBD /* HomePageViewController.m */; };
+		5B309BE91B60E71B00242DA3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C04A19922D5900CD8822 /* LoginViewController.m */; };
+		5B309BEC1B60F22900242DA3 /* FakeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309BEB1B60F22900242DA3 /* FakeLoginViewController.m */; };
 		5B3209F91A11CD8900D19279 /* 公司－我的公司_11a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3209F71A11CD8900D19279 /* 公司－我的公司_11a.png */; };
 		5B3209FA1A11CD8900D19279 /* 公司－我的公司_11a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3209F81A11CD8900D19279 /* 公司－我的公司_11a@2x.png */; };
 		5B3209FE1A11E78600D19279 /* RemindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3209FD1A11E78600D19279 /* RemindView.m */; };
@@ -989,6 +996,8 @@
 		5BBAA99E1B1C6A9900167496 /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA9991B1C6A9900167496 /* CommentView.m */; };
 		5BBAA99F1B1C6A9900167496 /* ContactsActiveTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA99B1B1C6A9900167496 /* ContactsActiveTitleView.m */; };
 		5BBAA9A01B1C6A9900167496 /* ManyCommentsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA99D1B1C6A9900167496 /* ManyCommentsView.m */; };
+		5BC02B911B60D75200FE4D63 /* XCTest+GCovFlush.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D94F9E1B6095190026B422 /* XCTest+GCovFlush.m */; };
+		5BC02B921B60D8F900FE4D63 /* ProjectStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13B319C4162A002E02C9 /* ProjectStage.m */; };
 		5BC234461AA81D7400312D9D /* 05.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC234421AA81D7400312D9D /* 05.png */; };
 		5BC234471AA81D7400312D9D /* 05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC234431AA81D7400312D9D /* 05@2x.png */; };
 		5BC234481AA81D7400312D9D /* 06.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC234441AA81D7400312D9D /* 06.png */; };
@@ -1347,8 +1356,9 @@
 		5BF0CE701B60976A00B91F75 /* ProjectStageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE6E1B60976A00B91F75 /* ProjectStageTests.m */; };
 		5BF0CE771B60977500B91F75 /* FakeStageChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE741B60977500B91F75 /* FakeStageChooseView.m */; };
 		5BF0CE781B60977500B91F75 /* RKStageChooseViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE761B60977500B91F75 /* RKStageChooseViewTests.m */; };
-		5BF0CE7B1B60AFB200B91F75 /* FakeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE7A1B60AFB200B91F75 /* FakeLoginViewController.m */; };
 		5BF0CE7D1B60AFFF00B91F75 /* LoginViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE7C1B60AFFF00B91F75 /* LoginViewControllerTests.m */; };
+		5BF0D1A61B61CE61004212CE /* FakeRegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0D1A51B61CE61004212CE /* FakeRegistViewController.m */; };
+		5BF0D1A81B61D33E004212CE /* RegistViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0D1A71B61D33E004212CE /* RegistViewControllerTests.m */; };
 		5BF31B541AB0162D00DA87F5 /* 添加联系人入群.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF31B521AB0162D00DA87F5 /* 添加联系人入群.png */; };
 		5BF31B551AB0162D00DA87F5 /* 添加联系人入群@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF31B531AB0162D00DA87F5 /* 添加联系人入群@2x.png */; };
 		5BF31B661AB025FD00DA87F5 /* AddGroupMemberController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B5B1AB025FD00DA87F5 /* AddGroupMemberController.m */; };
@@ -1732,81 +1742,33 @@
 		D3D94E181B608D000026B422 /* MyPointApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7408D1B53585B00F2095C /* MyPointApi.m */; };
 		D3D94E191B608D040026B422 /* PointDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FACF61B53840200B32661 /* PointDetailModel.m */; };
 		D3D94E1A1B608D070026B422 /* MyPointHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740991B53930300F2095C /* MyPointHistoryModel.m */; };
-		D3D94E1D1B608D990026B422 /* MarketApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D090421AF8C3DE00C8AC55 /* MarketApi.m */; };
 		D3D94E211B608DA80026B422 /* AskPriceMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D484051ADFCEA1004AF972 /* AskPriceMessageModel.m */; };
-		D3D94E221B608DAA0026B422 /* AskPriceMessageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C021941AE0F9EE000F1742 /* AskPriceMessageApi.m */; };
 		D3D94E251B608DB40026B422 /* ContractsApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D483F41ADF884A004AF972 /* ContractsApi.m */; };
-		D3D94E291B608DC20026B422 /* AskPriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DA3D301ABBECAC001D1EEA /* AskPriceModel.m */; };
-		D3D94E2C1B608DC90026B422 /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376CFD1AC25D6100738B5F /* CategoryModel.m */; };
-		D3D94E2D1B608DCC0026B422 /* AskPriceComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D3929F3D1AC538740017E93D /* AskPriceComment.m */; };
-		D3D94E341B608DE20026B422 /* ChatListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F8970B1AD8F68F00DE3AB4 /* ChatListModel.m */; };
 		D3D94E411B608E110026B422 /* ProjectApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13A919C4162A002E02C9 /* ProjectApi.m */; };
 		D3D94E461B608E220026B422 /* ConditionsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC618E19B6BF930015B62F /* ConditionsModel.m */; };
 		D3D94E4C1B608E3C0026B422 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC619419B6BF930015B62F /* LoginModel.m */; };
 		D3D94E511B608E520026B422 /* ProjectCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61DE19B85CA50015B62F /* ProjectCommentView.m */; };
-		D3D94E591B608E6B0026B422 /* DecorationProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DD019B559FC00689C5D /* DecorationProject.m */; };
 		D3D94E5A1B608E6E0026B422 /* MyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DD819B559FC00689C5D /* MyFactory.m */; };
 		D3D94E5E1B608E7C0026B422 /* ProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DE519B559FC00689C5D /* ProjectTableViewCell.m */; };
-		D3D94E601B608E810026B422 /* ALLProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D300621E1AEF65E4009E35C8 /* ALLProjectViewController.m */; };
 		D3D94E611B608E870026B422 /* RecognizerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B8F53E19D92716008F6164 /* RecognizerFactory.m */; };
-		D3D94E6B1B608EA50026B422 /* toolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DFE19B559FC00689C5D /* toolBarView.m */; };
-		D3D94E6E1B608EB10026B422 /* TopicsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E0B19B559FC00689C5D /* TopicsTableViewCell.m */; };
-		D3D94E771B608ED30026B422 /* ContactProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA938AC1A49720300BB8A96 /* ContactProductView.m */; };
-		D3D94E7A1B608EDA0026B422 /* ActiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66993C1AB9878600C4B54F /* ActiveViewController.m */; };
-		D3D94E7C1B608EE30026B422 /* ContactsActiveCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA9851B1C059900167496 /* ContactsActiveCellModel.m */; };
-		D3D94E811B608EF50026B422 /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA9991B1C6A9900167496 /* CommentView.m */; };
-		D3D94E821B608EF80026B422 /* CommentNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE7B6C81B1D54AD003467ED /* CommentNumberView.m */; };
-		D3D94E8D1B608F270026B422 /* PersonalHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F455861B31183100EE20A5 /* PersonalHeadView.m */; };
 		D3D94E951B608F400026B422 /* PersonalProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C8AA819D7ABA30058C0EE /* PersonalProjectTableViewCell.m */; };
-		D3D94E9E1B608F5D0026B422 /* MyFocusProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C581B0EF5F9004A4B3E /* MyFocusProductController.m */; };
-		D3D94EA01B608F620026B422 /* MyFocusProductCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C641B0F1ACF004A4B3E /* MyFocusProductCellModel.m */; };
-		D3D94EAB1B608F8C0026B422 /* PersonalActivesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C691B0F2F3F004A4B3E /* PersonalActivesViewController.m */; };
-		D3D94EAD1B608F920026B422 /* PersonalProjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C6F1B0F306D004A4B3E /* PersonalProjectController.m */; };
-		D3D94EAE1B608F970026B422 /* PersonalProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C721B0F3080004A4B3E /* PersonalProductController.m */; };
-		D3D94EB91B6090110026B422 /* MoreCompanyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF08A3C19B8779D00782976 /* MoreCompanyViewCell.m */; };
 		D3D94EC31B6090370026B422 /* RequirementInfoPorjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26DE1B26EE220022B5A8 /* RequirementInfoPorjectView.m */; };
-		D3D94ECA1B6090530026B422 /* MarketPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DD371B26C71C001A9577 /* MarketPopView.m */; };
 		D3D94ECE1B60905D0026B422 /* MarkListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D324B18E1B204AE000E29E07 /* MarkListTableViewCell.m */; };
-		D3D94ED61B6090790026B422 /* PublishRequirementProjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1082A1B280EF4002545BC /* PublishRequirementProjectView.m */; };
-		D3D94EDB1B60908B0026B422 /* SearchMaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D0902E1AF89FD500C8AC55 /* SearchMaterialViewController.m */; };
-		D3D94EE11B6090A40026B422 /* SearchProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D747AB1AFB757000B21F02 /* SearchProjectTableViewCell.m */; };
-		D3D94EE21B6090A90026B422 /* MarketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D090261AF8964300C8AC55 /* MarketViewController.m */; };
-		D3D94EEB1B6090D60026B422 /* ForgetPasswordSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D57D1A3EB63200CAEF8B /* ForgetPasswordSecondController.m */; };
 		D3D94EEE1B6090E40026B422 /* RecommendProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937BD1A42B428007081C1 /* RecommendProjectViewController.m */; };
-		D3D94EF61B6090FB0026B422 /* ClauseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4C198219FA518800C6C57D /* ClauseViewController.m */; };
 		D3D94EFA1B6091100026B422 /* RKCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D5371AA93C4C006501D8 /* RKCamera.m */; };
-		D3D94F061B6091390026B422 /* RKController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C5E1B0EFB9C004A4B3E /* RKController.m */; };
 		D3D94F0A1B60914B0026B422 /* AddressBookViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B95ADF11AB1B37E00797EA6 /* AddressBookViewCell.m */; };
-		D3D94F0E1B6091590026B422 /* AddressBookFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CCF1AAEE0AD00C8F9DE /* AddressBookFriendViewController.m */; };
 		D3D94F0F1B60915B0026B422 /* AddressBookFriendSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B78D6901ADCDF5A00E08C4A /* AddressBookFriendSearchController.m */; };
-		D3D94F111B6091620026B422 /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CC81AAEE0AD00C8F9DE /* AddFriendCell.m */; };
 		D3D94F171B6091770026B422 /* ChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CD81AAEE0AD00C8F9DE /* ChatTableViewCell.m */; };
 		D3D94F191B60917C0026B422 /* ChatContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CD41AAEE0AD00C8F9DE /* ChatContentView.m */; };
-		D3D94F1C1B6091840026B422 /* ChatSendImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE4B6191B412F7100B129FC /* ChatSendImageView.m */; };
 		D3D94F221B6091960026B422 /* ChatImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D31F2B921B05E67E006BD6A8 /* ChatImageCell.m */; };
-		D3D94F241B60919D0026B422 /* ForwardListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9D5041B43BC2E006980E0 /* ForwardListCell.m */; };
-		D3D94F251B6091A00026B422 /* ForwardChooseContactsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA37F7D1B43CB0000ACCFA2 /* ForwardChooseContactsController.m */; };
 		D3D94F281B6091AE0026B422 /* ChooseContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CE61AAEE0AD00C8F9DE /* ChooseContactsViewController.m */; };
-		D3D94F2B1B6091BC0026B422 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDC9F01ACE5959002AF865 /* WebViewController.m */; };
 		D3D94F361B6091E50026B422 /* DemandDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B63737E1ABA796D007CF1F8 /* DemandDetailViewCell.m */; };
-		D3D94F3F1B6092090026B422 /* RemarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D368092D1ABFD70500AFA097 /* RemarkViewController.m */; };
 		D3D94F4B1B6092330026B422 /* ChooseProductCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B628A0B1AB826AA00F30059 /* ChooseProductCellModel.m */; };
-		D3D94F541B6092560026B422 /* RKLeftAndRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E590B1ABBFD760063B400 /* RKLeftAndRightView.m */; };
-		D3D94F5B1B60927A0026B422 /* DemandStageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8650461ABFA1B90096BEF0 /* DemandStageCell.m */; };
-		D3D94F5F1B6092930026B422 /* ContractsBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5837021AD7CE0900F8E7C3 /* ContractsBaseViewController.m */; };
 		D3D94F601B60929C0026B422 /* MainContractsBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B90E1041ADE491F00436CED /* MainContractsBaseController.m */; };
-		D3D94F631B6092A90026B422 /* SalerContractsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FF7001AE4EC4B00F3A3E0 /* SalerContractsController.m */; };
-		D3D94F6B1B6092D20026B422 /* MoneyView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2BFE71AC94478003BB779 /* MoneyView.m */; };
-		D3D94F6F1B6092E10026B422 /* AskPriceMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D483FE1ADFC4E8004AF972 /* AskPriceMessageCell.m */; };
 		D3D94F711B6092F70026B422 /* ZWAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D75E2D1B0201A500754C1A /* ZWAdView.m */; };
 		D3D94F741B6093060026B422 /* AdDataPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3D090061AF86D3E00C8AC55 /* AdDataPlist.plist */; };
 		D3D94F761B6093120026B422 /* TableViewHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C0218E1AE09520000F1742 /* TableViewHeightCell.m */; };
-		D3D94F7A1B6093370026B422 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D798671A0B1DFE00194FF8 /* LoadingView.m */; };
-		D3D94F7C1B6093430026B422 /* NBLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D232A19D93373007C2C29 /* NBLabel.m */; };
-		D3D94F7D1B6093490026B422 /* GetImagePath.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC86AA19CBD3E30009673C /* GetImagePath.m */; };
-		D3D94F881B6093930026B422 /* SinglePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD619A19AEEE30001FD483 /* SinglePickerView.m */; };
 		D3D94F8A1B60939B0026B422 /* LoginSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4283719C9401C00BAB6C7 /* LoginSqlite.m */; };
-		D3D94F951B6093BA0026B422 /* ChatImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B05A751B4CF7E600B34FD6 /* ChatImageModel.m */; };
 		D3D94F961B6093F70026B422 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B998CCB1B4B73D400569A56 /* BaiduMapAPI.framework */; };
 		D3D94F971B6094160026B422 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B998CDF1B4BC7BB00569A56 /* iflyMSC.framework */; };
 		D3D94F981B6094420026B422 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD616519ADB981001FD483 /* libsqlite3.0.dylib */; };
@@ -2960,6 +2922,8 @@
 		5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyDetailViewController.m; sourceTree = "<group>"; };
 		5B2D232919D93373007C2C29 /* NBLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBLabel.h; path = NBLabel/NBLabel.h; sourceTree = "<group>"; };
 		5B2D232A19D93373007C2C29 /* NBLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBLabel.m; path = NBLabel/NBLabel.m; sourceTree = "<group>"; };
+		5B309BEA1B60F22900242DA3 /* FakeLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeLoginViewController.h; sourceTree = "<group>"; };
+		5B309BEB1B60F22900242DA3 /* FakeLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeLoginViewController.m; sourceTree = "<group>"; };
 		5B3209F71A11CD8900D19279 /* 公司－我的公司_11a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_11a.png"; sourceTree = "<group>"; };
 		5B3209F81A11CD8900D19279 /* 公司－我的公司_11a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_11a@2x.png"; sourceTree = "<group>"; };
 		5B3209FC1A11E78600D19279 /* RemindView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindView.h; sourceTree = "<group>"; };
@@ -3916,9 +3880,10 @@
 		5BF0CE731B60977500B91F75 /* FakeStageChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeStageChooseView.h; sourceTree = "<group>"; };
 		5BF0CE741B60977500B91F75 /* FakeStageChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeStageChooseView.m; sourceTree = "<group>"; };
 		5BF0CE761B60977500B91F75 /* RKStageChooseViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKStageChooseViewTests.m; sourceTree = "<group>"; };
-		5BF0CE791B60AFB200B91F75 /* FakeLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeLoginViewController.h; sourceTree = "<group>"; };
-		5BF0CE7A1B60AFB200B91F75 /* FakeLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeLoginViewController.m; sourceTree = "<group>"; };
 		5BF0CE7C1B60AFFF00B91F75 /* LoginViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewControllerTests.m; sourceTree = "<group>"; };
+		5BF0D1A41B61CE61004212CE /* FakeRegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeRegistViewController.h; sourceTree = "<group>"; };
+		5BF0D1A51B61CE61004212CE /* FakeRegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeRegistViewController.m; sourceTree = "<group>"; };
+		5BF0D1A71B61D33E004212CE /* RegistViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistViewControllerTests.m; sourceTree = "<group>"; };
 		5BF31B521AB0162D00DA87F5 /* 添加联系人入群.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "添加联系人入群.png"; sourceTree = "<group>"; };
 		5BF31B531AB0162D00DA87F5 /* 添加联系人入群@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "添加联系人入群@2x.png"; sourceTree = "<group>"; };
 		5BF31B5A1AB025FD00DA87F5 /* AddGroupMemberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddGroupMemberController.h; sourceTree = "<group>"; };
@@ -11075,6 +11040,7 @@
 				D3D94F951B6093BA0026B422 /* ChatImageModel.m in Sources */,
 				D3D94FEC1B60C69D0026B422 /* ShowViewController.m in Sources */,
 				D3D94E191B608D040026B422 /* PointDetailModel.m in Sources */,
+				5BC02B911B60D75200FE4D63 /* XCTest+GCovFlush.m in Sources */,
 				D3D94E5A1B608E6E0026B422 /* MyFactory.m in Sources */,
 				D3DC95861B61E02E00902ACA /* FakeForgetPasswordFirstControllerViewController.m in Sources */,
 				D3D9500D1B60C7680026B422 /* MyFocusProductCell.m in Sources */,
@@ -11082,88 +11048,49 @@
 				D3D94FB11B60C3930026B422 /* ContractsSalerModel.m in Sources */,
 				D3D94F0F1B60915B0026B422 /* AddressBookFriendSearchController.m in Sources */,
 				D3D94F281B6091AE0026B422 /* ChooseContactsViewController.m in Sources */,
-				D3D94FFF1B60C71F0026B422 /* MyMarketViewController.m in Sources */,
-				D3D94FDB1B60C6240026B422 /* UIPlaceHolderTextView.m in Sources */,
-				D3D950011B60C73B0026B422 /* UpdataPassWordViewController.m in Sources */,
 				D3D94E511B608E520026B422 /* ProjectCommentView.m in Sources */,
-				D3D950141B60C7890026B422 /* ContactCell.m in Sources */,
 				D3D94ECE1B60905D0026B422 /* MarkListTableViewCell.m in Sources */,
-				D3D94FD81B60C6100026B422 /* MyView.m in Sources */,
-				D3D94FBD1B60C5580026B422 /* AddressBookModel.m in Sources */,
-				D3D950181B60C7990026B422 /* RKPersonalController.m in Sources */,
 				D3D94E461B608E220026B422 /* ConditionsModel.m in Sources */,
-				D3D94FF41B60C6BF0026B422 /* ManyCommentsView.m in Sources */,
 				D3D94F761B6093120026B422 /* TableViewHeightCell.m in Sources */,
 				D3D94E611B608E870026B422 /* RecognizerFactory.m in Sources */,
+				5B309BE61B60E6E400242DA3 /* UpdataPassWordViewController.m in Sources */,
 				D3D94E951B608F400026B422 /* PersonalProjectTableViewCell.m in Sources */,
-				D3D950071B60C74C0026B422 /* CompanyTableViewCell.m in Sources */,
-				D3D94FC91B60C5B90026B422 /* ContactCommentModel.m in Sources */,
-				D3D94FE11B60C6350026B422 /* ResultsTableViewController.m in Sources */,
-				D3D94FEB1B60C69B0026B422 /* ContactViewController.m in Sources */,
-				D3D94FBA1B60C4F20026B422 /* ChatNetAPIClient.m in Sources */,
 				D3D94F4B1B6092330026B422 /* ChooseProductCellModel.m in Sources */,
+				5BC02B921B60D8F900FE4D63 /* ProjectStage.m in Sources */,
+				5B03ACAA1B62004D00A4DCFA /* RegistViewController.m in Sources */,
+				5B309BE91B60E71B00242DA3 /* LoginViewController.m in Sources */,
 				D3D94E5E1B608E7C0026B422 /* ProjectTableViewCell.m in Sources */,
-				D3D950191B60C8F10026B422 /* PersonalInfoController.m in Sources */,
+				5B309BE51B60E6D400242DA3 /* RKStageChooseView.m in Sources */,
+				5B309BEC1B60F22900242DA3 /* FakeLoginViewController.m in Sources */,
 				D3D94E251B608DB40026B422 /* ContractsApi.m in Sources */,
-				D3D950001B60C7230026B422 /* PersonalCenterTableViewCell.m in Sources */,
 				D3D94EEE1B6090E40026B422 /* RecommendProjectViewController.m in Sources */,
-				D3D950051B60C7450026B422 /* PersonalCenterCellView.m in Sources */,
-				D3D94FBB1B60C4F50026B422 /* ChatMessageApi.m in Sources */,
-				D3D950221B60C95C0026B422 /* MoreCompanyViewController.m in Sources */,
-				D3D94FD71B60C60D0026B422 /* MyIndexPath.m in Sources */,
-				D3D94FB31B60C3990026B422 /* AskPriceApi.m in Sources */,
 				D3D94EC31B6090370026B422 /* RequirementInfoPorjectView.m in Sources */,
 				D3DC95891B62065F00902ACA /* FakeForgetPasswordSecondViewController.m in Sources */,
 				D3D94F221B6091960026B422 /* ChatImageCell.m in Sources */,
-				D3D94FF01B60C6AF0026B422 /* ContactsActiveCell.m in Sources */,
-				D3D94FDC1B60C6260026B422 /* UnderstandViewController.m in Sources */,
 				D3D94E211B608DA80026B422 /* AskPriceMessageModel.m in Sources */,
 				D3D94F361B6091E50026B422 /* DemandDetailViewCell.m in Sources */,
 				D3D94E411B608E110026B422 /* ProjectApi.m in Sources */,
+				5B309BE71B60E6EF00242DA3 /* AppDelegate.m in Sources */,
+				5B309BE81B60E6FE00242DA3 /* HomePageViewController.m in Sources */,
 				D3D94F191B60917C0026B422 /* ChatContentView.m in Sources */,
-				D3D94FCA1B60C5BB0026B422 /* ActivesModel.m in Sources */,
-				D3D94FC01B60C57D0026B422 /* ValidatePlatformContactModel.m in Sources */,
 				D3D94F711B6092F70026B422 /* ZWAdView.m in Sources */,
 				D3D94E4C1B608E3C0026B422 /* LoginModel.m in Sources */,
 				D3D94F8A1B60939B0026B422 /* LoginSqlite.m in Sources */,
-				D3D94FF61B60C6F40026B422 /* MyPointViewController.m in Sources */,
-				D3D94FB51B60C3A00026B422 /* UserOrCompanyModel.m in Sources */,
+				5BF0D1A81B61D33E004212CE /* RegistViewControllerTests.m in Sources */,
 				D3D94EFA1B6091100026B422 /* RKCamera.m in Sources */,
-				D3D94FD31B60C5FF0026B422 /* ProgramDetailViewController.m in Sources */,
-				D3D94FED1B60C6A00026B422 /* ContactProjectTableViewCell.m in Sources */,
-				D3D9500A1B60C75A0026B422 /* MyFocusProjectController.m in Sources */,
 				D3D94F601B60929C0026B422 /* MainContractsBaseController.m in Sources */,
+				5BF0D1A61B61CE61004212CE /* FakeRegistViewController.m in Sources */,
 				D3D94F0A1B60914B0026B422 /* AddressBookViewCell.m in Sources */,
 				D3D94F171B6091770026B422 /* ChatTableViewCell.m in Sources */,
-				D3D94FF81B60C6FB0026B422 /* MyPointDetailCell.m in Sources */,
 				0426C01019922CE400CD8822 /* ZhuZhanTests.m in Sources */,
-				D3D950081B60C74F0026B422 /* PersonalCenterCompanyTableViewCell.m in Sources */,
-				D3D950131B60C7860026B422 /* CompanyCell.m in Sources */,
-				D3D94FF31B60C6BD0026B422 /* ContactsTitleView.m in Sources */,
-				D3D950021B60C73E0026B422 /* AccountViewController.m in Sources */,
-				D3D9501D1B60C94B0026B422 /* RKCompanyController.m in Sources */,
 				5BF0CE6F1B60976A00B91F75 /* FakeProjectStage.m in Sources */,
-				D3D94FEF1B60C6A70026B422 /* ContactEGOView.m in Sources */,
-				D3D94FE91B60C6940026B422 /* MyDynamicListViewController.m in Sources */,
-				D3D94FAC1B60C37D0026B422 /* MarketModel.m in Sources */,
-				D3D94FDF1B60C6300026B422 /* ConditionsView.m in Sources */,
-				D3D94FAF1B60C38C0026B422 /* ContractsListSingleModel.m in Sources */,
 				5BF0CE771B60977500B91F75 /* FakeStageChooseView.m in Sources */,
-				D3D94FC21B60C5840026B422 /* IsFocusedApi.m in Sources */,
-				D3D950161B60C78E0026B422 /* ContactBackgroundTableViewCell.m in Sources */,
-				D3D94FF21B60C6BA0026B422 /* ContactsActiveTitleView.m in Sources */,
-				D3D94FBC1B60C4F90026B422 /* ChatGroupMemberModel.m in Sources */,
 				5BF0CE7D1B60AFFF00B91F75 /* LoginViewControllerTests.m in Sources */,
 				5BF0CE671B60976200B91F75 /* FakeUpdataPassWordViewController.m in Sources */,
-				5BF0CE7B1B60AFB200B91F75 /* FakeLoginViewController.m in Sources */,
-				D3D94FFA1B60C7010026B422 /* PointRuleViewController.m in Sources */,
-				D3D94FA91B60C36C0026B422 /* ProjectStage.m in Sources */,
-				D3D94FB71B60C4E80026B422 /* ChoseContactModel.m in Sources */,
 				5BF0CE781B60977500B91F75 /* RKStageChooseViewTests.m in Sources */,
 				5BF0CE701B60976A00B91F75 /* ProjectStageTests.m in Sources */,
 				D3D94E181B608D000026B422 /* MyPointApi.m in Sources */,
 				5BF0CE681B60976200B91F75 /* UpdataPassWordViewControllerTests.m in Sources */,
-				D3D94FCB1B60C5BE0026B422 /* PersonalCenterModel.m in Sources */,
 				D3D94E1A1B608D070026B422 /* MyPointHistoryModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -11390,7 +11317,7 @@
 			};
 			name = Release;
 		};
-		D3D94FA11B60AA890026B422 /* Coverage */ = {
+		5B309BE21B60E31800242DA3 /* Coverage */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -11433,7 +11360,7 @@
 			};
 			name = Coverage;
 		};
-		D3D94FA21B60AA890026B422 /* Coverage */ = {
+		5B309BE31B60E31800242DA3 /* Coverage */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -11464,7 +11391,7 @@
 			};
 			name = Coverage;
 		};
-		D3D94FA31B60AA890026B422 /* Coverage */ = {
+		5B309BE41B60E31800242DA3 /* Coverage */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ZhuZhan.app/ZhuZhan";
@@ -11498,7 +11425,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0426C01119922CE400CD8822 /* Debug */,
-				D3D94FA11B60AA890026B422 /* Coverage */,
+				5B309BE21B60E31800242DA3 /* Coverage */,
 				0426C01219922CE400CD8822 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -11508,7 +11435,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0426C01419922CE400CD8822 /* Debug */,
-				D3D94FA21B60AA890026B422 /* Coverage */,
+				5B309BE31B60E31800242DA3 /* Coverage */,
 				0426C01519922CE400CD8822 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -11518,7 +11445,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0426C01719922CE400CD8822 /* Debug */,
-				D3D94FA31B60AA890026B422 /* Coverage */,
+				5B309BE41B60E31800242DA3 /* Coverage */,
 				0426C01819922CE400CD8822 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

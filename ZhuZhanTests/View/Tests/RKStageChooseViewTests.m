@@ -27,11 +27,17 @@
     [super tearDown];
 }
 
+/**
+ *  测试模拟点击第二个按钮之后可以正常将值切换
+ */
 - (void)testStageLabelClickedWithSequence{
     [self.stageChooseView stageLabelClickedWithSequence:1];
     XCTAssertEqual(self.stageChooseView.nowStageNumber, 1);
 }
 
+/**
+ *  测试FakeStageChooseView可以正常初始化
+ */
 - (void)testInit{
     XCTAssertNotNil(self.stageChooseView);
 }

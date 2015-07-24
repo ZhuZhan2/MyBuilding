@@ -37,9 +37,16 @@
     [super tearDown];
 }
 
+/**
+ * 测试各个情况的输入下是否能正确
+ */
+
 #pragma nil nil x
 //不测，实际不发生，并且情况太特殊，不关注结果
 //- (void)testAllContentNilContactsNilImagesNilReturnNone{}
+/**
+ *  测试无非图非联系人字段 无联系人字段 有0张图片字段的情况
+ */
 - (void)testAllContentNilContactsNilImages0ReturnNone{
     [self setDetailStageCount:-1 contactsCount:-1 imagesCount:0];
     NSString* returnStr = [self getReturnStr];

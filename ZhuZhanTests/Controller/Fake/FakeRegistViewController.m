@@ -1,18 +1,18 @@
 //
-//  FakeLoginViewController.m
+//  FakeRegistViewController.m
 //  ZhuZhan
 //
-//  Created by 孙元侃 on 15/7/23.
+//  Created by 孙元侃 on 15/7/24.
 //
 //
 
-#import "FakeLoginViewController.h"
+#import "FakeRegistViewController.h"
 
-@interface FakeLoginViewController ()
+@interface FakeRegistViewController ()
 
 @end
 
-@implementation FakeLoginViewController
+@implementation FakeRegistViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

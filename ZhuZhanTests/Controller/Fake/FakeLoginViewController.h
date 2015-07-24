@@ -9,6 +9,5 @@
 #import "LoginViewController.h"
 
 @interface FakeLoginViewController : LoginViewController
-@property (nonatomic, strong)UITextField* fakeUserNameTextField;
-@property (nonatomic, strong)UITextField* fakePassWordTextField;
+- (BOOL)gotoLogin;
 @end
