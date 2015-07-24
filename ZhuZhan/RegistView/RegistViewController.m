@@ -221,7 +221,8 @@
     return YES;
 }
 
--(void)getVerifitionCode:(UIButton*)btn{
+
+-(BOOL)getVerifitionCode:(UIButton*)btn{
     NSLog(@"用户申请发送验证码");
     [self.view endEditing:YES];
 
