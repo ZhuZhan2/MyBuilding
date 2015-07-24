@@ -53,8 +53,6 @@
     [self addKeybordNotification];
 }
 
-
-
 - (void)rightBtnClicked{
     [self publishRequirement];
 }
@@ -122,7 +120,6 @@
                     return NO;
                 }
             }
-            
             
             NSArray* array = [self.projectView.area componentsSeparatedByString:@" "];
             [dic setObject:array[0] forKey:@"province"];
