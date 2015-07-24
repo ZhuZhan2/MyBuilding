@@ -551,6 +551,9 @@
 		04D10C3019AF3C120097C0C6 /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10C2F19AF3C120097C0C6 /* ShowViewController.m */; };
 		04D10C7719B074C70097C0C6 /* RecommendLetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10C7619B074C70097C0C6 /* RecommendLetterViewController.m */; };
 		5B03ACAA1B62004D00A4DCFA /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C05419922D5900CD8822 /* RegistViewController.m */; };
+		5B03ACAD1B621B7900A4DCFA /* FakePublishRequirementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B03ACAC1B621B7900A4DCFA /* FakePublishRequirementViewController.m */; };
+		5B03ACAF1B62206100A4DCFA /* PublishRequirementViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B03ACAE1B62206100A4DCFA /* PublishRequirementViewTests.m */; };
+		5B03ACB01B62375300A4DCFA /* PublishRequirementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA27881B1FE45200ADE3FC /* PublishRequirementViewController.m */; };
 		5B0A006619B5641900500C05 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A006519B5641900500C05 /* ProductViewController.m */; };
 		5B0A006C19B5874500500C05 /* TMPhotoQuiltViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A006A19B5874500500C05 /* TMPhotoQuiltViewCell.m */; };
 		5B0A008A19B587B200500C05 /* EGORefreshTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A008619B587B200500C05 /* EGORefreshTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -2842,6 +2845,9 @@
 		04D10C2F19AF3C120097C0C6 /* ShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowViewController.m; sourceTree = "<group>"; };
 		04D10C7519B074C70097C0C6 /* RecommendLetterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendLetterViewController.h; sourceTree = "<group>"; };
 		04D10C7619B074C70097C0C6 /* RecommendLetterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendLetterViewController.m; sourceTree = "<group>"; };
+		5B03ACAB1B621B7900A4DCFA /* FakePublishRequirementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakePublishRequirementViewController.h; sourceTree = "<group>"; };
+		5B03ACAC1B621B7900A4DCFA /* FakePublishRequirementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakePublishRequirementViewController.m; sourceTree = "<group>"; };
+		5B03ACAE1B62206100A4DCFA /* PublishRequirementViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishRequirementViewTests.m; sourceTree = "<group>"; };
 		5B0A006419B5641900500C05 /* ProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductViewController.h; sourceTree = "<group>"; };
 		5B0A006519B5641900500C05 /* ProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductViewController.m; sourceTree = "<group>"; };
 		5B0A006919B5874500500C05 /* TMPhotoQuiltViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMPhotoQuiltViewCell.h; sourceTree = "<group>"; };
@@ -10979,6 +10985,7 @@
 				5BC02B921B60D8F900FE4D63 /* ProjectStage.m in Sources */,
 				5B03ACAA1B62004D00A4DCFA /* RegistViewController.m in Sources */,
 				5B309BE91B60E71B00242DA3 /* LoginViewController.m in Sources */,
+				5B03ACAF1B62206100A4DCFA /* PublishRequirementViewTests.m in Sources */,
 				D3D94E5E1B608E7C0026B422 /* ProjectTableViewCell.m in Sources */,
 				5B309BE51B60E6D400242DA3 /* RKStageChooseView.m in Sources */,
 				D3D94E251B608DB40026B422 /* ContractsApi.m in Sources */,
@@ -10990,6 +10997,8 @@
 				D3D94F221B6091960026B422 /* ChatImageCell.m in Sources */,
 				D3D94E211B608DA80026B422 /* AskPriceMessageModel.m in Sources */,
 				D3D94F361B6091E50026B422 /* DemandDetailViewCell.m in Sources */,
+				5B03ACAD1B621B7900A4DCFA /* FakePublishRequirementViewController.m in Sources */,
+				5B03ACB01B62375300A4DCFA /* PublishRequirementViewController.m in Sources */,
 				D3D94E411B608E110026B422 /* ProjectApi.m in Sources */,
 				5B309BE71B60E6EF00242DA3 /* AppDelegate.m in Sources */,
 				5B309BE81B60E6FE00242DA3 /* HomePageViewController.m in Sources */,
