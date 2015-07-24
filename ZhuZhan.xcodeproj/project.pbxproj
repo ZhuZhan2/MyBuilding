@@ -1810,7 +1810,6 @@
 		D3D94F961B6093F70026B422 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B998CCB1B4B73D400569A56 /* BaiduMapAPI.framework */; };
 		D3D94F971B6094160026B422 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B998CDF1B4BC7BB00569A56 /* iflyMSC.framework */; };
 		D3D94F981B6094420026B422 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD616519ADB981001FD483 /* libsqlite3.0.dylib */; };
-		D3D94F9C1B60950A0026B422 /* UIApplication+GCovFlush.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D94F9B1B60950A0026B422 /* UIApplication+GCovFlush.m */; };
 		D3D94FA51B60C3600026B422 /* AFAppDotNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13A719C4162A002E02C9 /* AFAppDotNetAPIClient.m */; };
 		D3D94FA61B60C3650026B422 /* ProjectContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13AD19C4162A002E02C9 /* ProjectContactModel.m */; };
 		D3D94FA71B60C3670026B422 /* ProjectImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13AF19C4162A002E02C9 /* ProjectImageModel.m */; };
@@ -1940,6 +1939,9 @@
 		D3D950241B60C9620026B422 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
 		D3D950251B60C9650026B422 /* CompanyMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3AD9E319F7CA7B008132B2 /* CompanyMemberCell.m */; };
 		D3D950261B60C9680026B422 /* EndEditingGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5894F019FF9D24001CC09E /* EndEditingGesture.m */; };
+		D3D9502A1B60D5CA0026B422 /* XCTest+GCovFlush.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D94F9E1B6095190026B422 /* XCTest+GCovFlush.m */; };
+		D3D9502D1B60D5D90026B422 /* UIApplication+GCovFlush.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9502C1B60D5D90026B422 /* UIApplication+GCovFlush.m */; };
+		D3D9502F1B60E91D0026B422 /* ForgetPasswordFirstControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9502E1B60E91D0026B422 /* ForgetPasswordFirstControllerTests.m */; };
 		D3D9C90A1A1343CF001D3A64 /* 主菜单01b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9021A1343CE001D3A64 /* 主菜单01b.png */; };
 		D3D9C90B1A1343CF001D3A64 /* 主菜单01b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9031A1343CE001D3A64 /* 主菜单01b@2x.png */; };
 		D3D9C90C1A1343CF001D3A64 /* 主菜单02b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9041A1343CF001D3A64 /* 主菜单02b.png */; };
@@ -1979,6 +1981,9 @@
 		D3DBCE591AC8DF0C00C9FEDE /* CommissionBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE581AC8DF0C00C9FEDE /* CommissionBaseViewController.m */; };
 		D3DBCE5C1AC8E1A400C9FEDE /* ProvisionalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE5B1AC8E1A400C9FEDE /* ProvisionalViewController.m */; };
 		D3DBCE5F1AC8E77A00C9FEDE /* StartManView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE5E1AC8E77A00C9FEDE /* StartManView.m */; };
+		D3DC95861B61E02E00902ACA /* FakeForgetPasswordFirstControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC95851B61E02E00902ACA /* FakeForgetPasswordFirstControllerViewController.m */; };
+		D3DC95891B62065F00902ACA /* FakeForgetPasswordSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC95881B62065F00902ACA /* FakeForgetPasswordSecondViewController.m */; };
+		D3DC958B1B62071B00902ACA /* ForgetPasswordSecondControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC958A1B62071B00902ACA /* ForgetPasswordSecondControllerTests.m */; };
 		D3DCB9581B0B1BFB005CC798 /* VIPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB9571B0B1BFB005CC798 /* VIPhotoView.m */; };
 		D3DCDACA1ADBA66C0029DB95 /* GetAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCDAC91ADBA66C0029DB95 /* GetAddressBook.m */; };
 		D3DD6BA11B579D7500A75351 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3DD6BA01B579D7500A75351 /* mapapi.bundle */; };
@@ -4461,10 +4466,11 @@
 		D3D946A71A6CDD33003A68D5 /* YLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLLabel.h; sourceTree = "<group>"; };
 		D3D946A81A6CDD33003A68D5 /* YLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLLabel.m; sourceTree = "<group>"; };
 		D3D94F991B60950A0026B422 /* GcovExtern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GcovExtern.h; sourceTree = "<group>"; };
-		D3D94F9A1B60950A0026B422 /* UIApplication+GCovFlush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+GCovFlush.h"; sourceTree = "<group>"; };
-		D3D94F9B1B60950A0026B422 /* UIApplication+GCovFlush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+GCovFlush.m"; sourceTree = "<group>"; };
 		D3D94F9D1B6095190026B422 /* XCTest+GCovFlush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTest+GCovFlush.h"; sourceTree = "<group>"; };
 		D3D94F9E1B6095190026B422 /* XCTest+GCovFlush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTest+GCovFlush.m"; sourceTree = "<group>"; };
+		D3D9502B1B60D5D90026B422 /* UIApplication+GCovFlush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+GCovFlush.h"; sourceTree = "<group>"; };
+		D3D9502C1B60D5D90026B422 /* UIApplication+GCovFlush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+GCovFlush.m"; sourceTree = "<group>"; };
+		D3D9502E1B60E91D0026B422 /* ForgetPasswordFirstControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordFirstControllerTests.m; sourceTree = "<group>"; };
 		D3D9C9021A1343CE001D3A64 /* 主菜单01b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单01b.png"; sourceTree = "<group>"; };
 		D3D9C9031A1343CE001D3A64 /* 主菜单01b@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单01b@2x.png"; sourceTree = "<group>"; };
 		D3D9C9041A1343CF001D3A64 /* 主菜单02b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单02b.png"; sourceTree = "<group>"; };
@@ -4515,6 +4521,11 @@
 		D3DBCE5B1AC8E1A400C9FEDE /* ProvisionalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvisionalViewController.m; sourceTree = "<group>"; };
 		D3DBCE5D1AC8E77A00C9FEDE /* StartManView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartManView.h; sourceTree = "<group>"; };
 		D3DBCE5E1AC8E77A00C9FEDE /* StartManView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartManView.m; sourceTree = "<group>"; };
+		D3DC95841B61E02E00902ACA /* FakeForgetPasswordFirstControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeForgetPasswordFirstControllerViewController.h; sourceTree = "<group>"; };
+		D3DC95851B61E02E00902ACA /* FakeForgetPasswordFirstControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeForgetPasswordFirstControllerViewController.m; sourceTree = "<group>"; };
+		D3DC95871B62065F00902ACA /* FakeForgetPasswordSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeForgetPasswordSecondViewController.h; sourceTree = "<group>"; };
+		D3DC95881B62065F00902ACA /* FakeForgetPasswordSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeForgetPasswordSecondViewController.m; sourceTree = "<group>"; };
+		D3DC958A1B62071B00902ACA /* ForgetPasswordSecondControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordSecondControllerTests.m; sourceTree = "<group>"; };
 		D3DCB9561B0B1BFB005CC798 /* VIPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPhotoView.h; sourceTree = "<group>"; };
 		D3DCB9571B0B1BFB005CC798 /* VIPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPhotoView.m; sourceTree = "<group>"; };
 		D3DCDAC81ADBA66C0029DB95 /* GetAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAddressBook.h; sourceTree = "<group>"; };
@@ -4790,9 +4801,9 @@
 		0426BFF119922CE400CD8822 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D3D9502B1B60D5D90026B422 /* UIApplication+GCovFlush.h */,
+				D3D9502C1B60D5D90026B422 /* UIApplication+GCovFlush.m */,
 				D3D94F991B60950A0026B422 /* GcovExtern.h */,
-				D3D94F9A1B60950A0026B422 /* UIApplication+GCovFlush.h */,
-				D3D94F9B1B60950A0026B422 /* UIApplication+GCovFlush.m */,
 				D3D538431ADCBD82003727C1 /* source.bundle */,
 				D3E621E51A10AC3000EF8A90 /* area.plist */,
 				04BC3E5D19D7E5B0006B5C7B /* Images */,
@@ -7612,6 +7623,10 @@
 				5BF0CE641B60976200B91F75 /* FakeUpdataPassWordViewController.m */,
 				5BF0CE791B60AFB200B91F75 /* FakeLoginViewController.h */,
 				5BF0CE7A1B60AFB200B91F75 /* FakeLoginViewController.m */,
+				D3DC95841B61E02E00902ACA /* FakeForgetPasswordFirstControllerViewController.h */,
+				D3DC95851B61E02E00902ACA /* FakeForgetPasswordFirstControllerViewController.m */,
+				D3DC95871B62065F00902ACA /* FakeForgetPasswordSecondViewController.h */,
+				D3DC95881B62065F00902ACA /* FakeForgetPasswordSecondViewController.m */,
 			);
 			path = Fake;
 			sourceTree = "<group>";
@@ -7621,6 +7636,8 @@
 			children = (
 				5BF0CE661B60976200B91F75 /* UpdataPassWordViewControllerTests.m */,
 				5BF0CE7C1B60AFFF00B91F75 /* LoginViewControllerTests.m */,
+				D3D9502E1B60E91D0026B422 /* ForgetPasswordFirstControllerTests.m */,
+				D3DC958A1B62071B00902ACA /* ForgetPasswordSecondControllerTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -10677,7 +10694,7 @@
 				5B5837031AD7CE0900F8E7C3 /* ContractsBaseViewController.m in Sources */,
 				0426C2A719922D5A00CD8822 /* GPUImagePosterizeFilter.m in Sources */,
 				5B6373951ABAA7B0007CF1F8 /* RKDemandChatController.m in Sources */,
-				D3D94F9C1B60950A0026B422 /* UIApplication+GCovFlush.m in Sources */,
+				D3D9502D1B60D5D90026B422 /* UIApplication+GCovFlush.m in Sources */,
 				D3D7DD241B267ECC001A9577 /* MarketListTitleView.m in Sources */,
 				0426C2FE19922D5A00CD8822 /* UIButton+AFNetworking.m in Sources */,
 				D3F455A41B312FA300EE20A5 /* MyProjectViewController.m in Sources */,
@@ -10932,6 +10949,7 @@
 				D3D950171B60C7900026B422 /* ContactBackgroundView.m in Sources */,
 				D3D94EAB1B608F8C0026B422 /* PersonalActivesViewController.m in Sources */,
 				D3D94E811B608EF50026B422 /* CommentView.m in Sources */,
+				D3D9502A1B60D5CA0026B422 /* XCTest+GCovFlush.m in Sources */,
 				D3D94E601B608E810026B422 /* ALLProjectViewController.m in Sources */,
 				D3D94EB91B6090110026B422 /* MoreCompanyViewCell.m in Sources */,
 				D3D9501E1B60C94F0026B422 /* CompanyProjectController.m in Sources */,
@@ -10939,6 +10957,7 @@
 				D3D94FF91B60C6FE0026B422 /* MyPointDetailView.m in Sources */,
 				D3D94FD61B60C6070026B422 /* MainBuild.m in Sources */,
 				D3D94FAD1B60C3800026B422 /* RequirementDetailModel.m in Sources */,
+				D3D9502F1B60E91D0026B422 /* ForgetPasswordFirstControllerTests.m in Sources */,
 				D3D950111B60C7780026B422 /* PersonalCenterPointNotiTableViewCell.m in Sources */,
 				D3D94F631B6092A90026B422 /* SalerContractsController.m in Sources */,
 				D3D94FC51B60C59B0026B422 /* EmployeesModel.m in Sources */,
@@ -10951,6 +10970,7 @@
 				D3D94FDE1B60C62D0026B422 /* AdvancedSearchViewController.m in Sources */,
 				D3D94FE31B60C63A0026B422 /* SearchViewController.m in Sources */,
 				D3D94F111B6091620026B422 /* AddFriendCell.m in Sources */,
+				D3DC958B1B62071B00902ACA /* ForgetPasswordSecondControllerTests.m in Sources */,
 				D3D94FB01B60C38F0026B422 /* ContractsMainClauseModel.m in Sources */,
 				D3D94FD91B60C6130026B422 /* ProgramSelectViewCell.m in Sources */,
 				D3D94FA71B60C3670026B422 /* ProjectImageModel.m in Sources */,
@@ -11056,6 +11076,7 @@
 				D3D94FEC1B60C69D0026B422 /* ShowViewController.m in Sources */,
 				D3D94E191B608D040026B422 /* PointDetailModel.m in Sources */,
 				D3D94E5A1B608E6E0026B422 /* MyFactory.m in Sources */,
+				D3DC95861B61E02E00902ACA /* FakeForgetPasswordFirstControllerViewController.m in Sources */,
 				D3D9500D1B60C7680026B422 /* MyFocusProductCell.m in Sources */,
 				D3D94FE51B60C6460026B422 /* TopicsDetailTableViewController.m in Sources */,
 				D3D94FB11B60C3930026B422 /* ContractsSalerModel.m in Sources */,
@@ -11092,6 +11113,7 @@
 				D3D94FD71B60C60D0026B422 /* MyIndexPath.m in Sources */,
 				D3D94FB31B60C3990026B422 /* AskPriceApi.m in Sources */,
 				D3D94EC31B6090370026B422 /* RequirementInfoPorjectView.m in Sources */,
+				D3DC95891B62065F00902ACA /* FakeForgetPasswordSecondViewController.m in Sources */,
 				D3D94F221B6091960026B422 /* ChatImageCell.m in Sources */,
 				D3D94FF01B60C6AF0026B422 /* ContactsActiveCell.m in Sources */,
 				D3D94FDC1B60C6260026B422 /* UnderstandViewController.m in Sources */,
@@ -11310,6 +11332,7 @@
 					"$(PROJECT_DIR)/ZhuZhan/Tools/BaiduMap/libs/Release-iphonesimulator",
 					"$(PROJECT_DIR)/ZhuZhan/Tools/IFly/lib/sunflower",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s arm64";

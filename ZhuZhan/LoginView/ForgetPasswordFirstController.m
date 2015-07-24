@@ -15,7 +15,7 @@
 @interface ForgetPasswordFirstController ()<UITextFieldDelegate>
 @property(nonatomic,strong)UIFont* font;
 @property(nonatomic,strong)UIButton* registerBtn;
-@property (nonatomic, retain) PooCodeView *codeView;
+@property (nonatomic, strong) PooCodeView *codeView;
 @end
 
 @implementation ForgetPasswordFirstController
@@ -245,6 +245,10 @@
             return NO;
         }
     }
+    return YES;
+}
+
+-(BOOL)textsting{
     return YES;
 }
 @end
