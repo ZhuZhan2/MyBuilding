@@ -222,12 +222,12 @@
 }
 
 
--(void)getVerifitionCode:(UIButton*)btn{
+-(BOOL)getVerifitionCode:(UIButton*)btn{
     NSLog(@"用户申请发送验证码");
     [self.view endEditing:YES];
 
     if (![self phoneNoErr:_phoneNumberTextField.text]) {
-        return;
+        return NO;
     }
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:_phoneNumberTextField.text forKey:@"cellPhone"];
@@ -255,7 +255,7 @@
     } userName:_phoneNumberTextField.text noNetWork:^{
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
     }];
-   
+    return YES;
 }
 
 -(void)countDownTime:(NSTimer*)timer{
@@ -285,7 +285,7 @@
     [RemindView remindViewWithContent:content superView:self.view centerY:375];
 }
 
-- (void)commomRegister//账号密码的注册
+- (BOOL)commomRegister//账号密码的注册
 {
     NSLog(@"共同注册部分");
 //    RecommendProjectViewController *recProjectView = [[RecommendProjectViewController alloc] init];
@@ -293,55 +293,55 @@
 //    return;
     if (![ConnectionAvailable isConnectionAvailable]) {
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
-        return;
+        return NO;
     }
     
     if (![self phoneNoErr:_phoneNumberTextField.text]) {
-        return;
+        return NO;
     }
     
     if([_yzmTextField.text isEqualToString:@""]){
         [self remindErrorView:@"请输入验证码！"];
-        return;
+        return NO;
     }
     
     if (!accountField.text.length) {
         [self remindErrorView:@"请输入用户名"];
-        return;
+        return NO;
     }
     
     NSLog(@"%d",(int)accountField.text.length);
     
     if (accountField.text.length<1||accountField.text.length>20) {
         [self remindErrorView:@"用户名1-20位"];
-        return;
+        return NO;
     }
     
     NSRange accountFieldRange = [accountField.text rangeOfString:@" "];
     if (accountFieldRange.location != NSNotFound) {
         //有空格
         [self remindErrorView:@"用户名不能包含空格"];
-        return;
+        return NO;
     }
     
     
     if ([self isAllNumber:accountField.text]) {
-        return;
+        return NO;
     }
     
     if([self isContainsEmoji:accountField.text]){
         [self remindErrorView:@"用户名不能有表情"];
-        return;
+        return NO;
     }
     
     if (![self isRule2:accountField.text]) {
         [self remindErrorView:@"用户名不能有特殊字符"];
-        return;
+        return NO;
     }
     
     if(passWordField.text.length<6||passWordField.text.length>20){
         [self remindErrorView:@"密码需要在6-20位之间"];
-        return;
+        return NO;
     }
     
 //    NSRange passWordFieldRange = [passWordField.text rangeOfString:@" "];
@@ -354,12 +354,12 @@
     if([passWordField.text isEqualToString:@""]||[_phoneNumberTextField.text isEqualToString:@""]||[verifyPassWordField.text isEqualToString:@""])
     {
         [self remindErrorView:@"输入不完整请检查你的输入！"];
-        return;
+        return NO;
     }
     
     if (![passWordField.text isEqualToString:verifyPassWordField.text]) {
         [self remindErrorView:@"密码输入不一致，请重新输入"];
-        return;
+        return NO;
     }
     
     
@@ -388,6 +388,8 @@
     } dic:parameters noNetWork:^{
         [MBProgressHUD myShowHUDAddedTo:self.view animated:YES];
     }];
+    
+    return YES;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -463,7 +465,7 @@
     return YES;
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if(textField == passWordField){
         NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
