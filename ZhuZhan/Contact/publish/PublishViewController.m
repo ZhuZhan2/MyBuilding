@@ -383,14 +383,4 @@ static BOOL isFirst;
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:content options:0 range:NSMakeRange(0, [content length])];
     return numberOfMatches==content.length;
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(void)dealloc{
-    NSLog(@"dealloc");
-}
 @end
