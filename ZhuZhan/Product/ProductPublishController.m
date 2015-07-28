@@ -211,11 +211,11 @@
     }
 }
 
--(void)goToPublish{
+-(BOOL)goToPublish{
     if([[self.titleTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请填写产品名字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
-        return;
+        return NO;
     }
     NSString* tempStr;
     if (self.titleTextView.text.length>kProductTitleNumber) {
@@ -244,6 +244,7 @@
     } dic:@{@"productName":tempStr,@"productDesc":tempStr2} imgData:UIImageJPEGRepresentation(self.cameraImage, 0.3) noNetWork:^{
         [ErrorCode alert];
     }];
+    return YES;
 }
 
 -(void)textViewDidChange:(UITextView *)textView{

@@ -924,6 +924,9 @@
 		5BA3777A1B65FB8F00AA7654 /* FakePublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA377791B65FB8F00AA7654 /* FakePublishViewController.m */; };
 		5BA3777C1B65FE2700AA7654 /* PublishViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA3777B1B65FE2700AA7654 /* PublishViewControllerTests.m */; };
 		5BA3777D1B66016300AA7654 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BD019AE016A0097C0C6 /* PublishViewController.m */; };
+		5BA3777F1B671BC600AA7654 /* ProductPublishControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA3777E1B671BC600AA7654 /* ProductPublishControllerTests.m */; };
+		5BA377821B671C7500AA7654 /* FakeProductPublishController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA377811B671C7500AA7654 /* FakeProductPublishController.m */; };
+		5BA377831B67243E00AA7654 /* ProductPublishController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7132401AA458D90043E37D /* ProductPublishController.m */; };
 		5BA37F7E1B43CB0000ACCFA2 /* ForwardChooseContactsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA37F7D1B43CB0000ACCFA2 /* ForwardChooseContactsController.m */; };
 		5BA523221AAEEB9D00F44223 /* 多人会话.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA523201AAEEB9D00F44223 /* 多人会话.png */; };
 		5BA523231AAEEB9D00F44223 /* 多人会话@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA523211AAEEB9D00F44223 /* 多人会话@2x.png */; };
@@ -3263,6 +3266,9 @@
 		5BA377781B65FB8F00AA7654 /* FakePublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakePublishViewController.h; sourceTree = "<group>"; };
 		5BA377791B65FB8F00AA7654 /* FakePublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakePublishViewController.m; sourceTree = "<group>"; };
 		5BA3777B1B65FE2700AA7654 /* PublishViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewControllerTests.m; sourceTree = "<group>"; };
+		5BA3777E1B671BC600AA7654 /* ProductPublishControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductPublishControllerTests.m; sourceTree = "<group>"; };
+		5BA377801B671C7500AA7654 /* FakeProductPublishController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeProductPublishController.h; sourceTree = "<group>"; };
+		5BA377811B671C7500AA7654 /* FakeProductPublishController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeProductPublishController.m; sourceTree = "<group>"; };
 		5BA37F7C1B43CB0000ACCFA2 /* ForwardChooseContactsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardChooseContactsController.h; sourceTree = "<group>"; };
 		5BA37F7D1B43CB0000ACCFA2 /* ForwardChooseContactsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardChooseContactsController.m; sourceTree = "<group>"; };
 		5BA523201AAEEB9D00F44223 /* 多人会话.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "多人会话.png"; sourceTree = "<group>"; };
@@ -7474,6 +7480,8 @@
 				5BA377731B65ECF900AA7654 /* FakeAddCommentViewController.m */,
 				5BA377781B65FB8F00AA7654 /* FakePublishViewController.h */,
 				5BA377791B65FB8F00AA7654 /* FakePublishViewController.m */,
+				5BA377801B671C7500AA7654 /* FakeProductPublishController.h */,
+				5BA377811B671C7500AA7654 /* FakeProductPublishController.m */,
 			);
 			path = Fake;
 			sourceTree = "<group>";
@@ -7487,6 +7495,7 @@
 				5B03ACAE1B62206100A4DCFA /* PublishRequirementViewTests.m */,
 				5BA377751B65ED7C00AA7654 /* AddCommentViewControllerTests.m */,
 				5BA3777B1B65FE2700AA7654 /* PublishViewControllerTests.m */,
+				5BA3777E1B671BC600AA7654 /* ProductPublishControllerTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -10807,6 +10816,8 @@
 				D3D94F761B6093120026B422 /* TableViewHeightCell.m in Sources */,
 				D3D94E611B608E870026B422 /* RecognizerFactory.m in Sources */,
 				5BA3777A1B65FB8F00AA7654 /* FakePublishViewController.m in Sources */,
+				5BA377821B671C7500AA7654 /* FakeProductPublishController.m in Sources */,
+				5BA3777F1B671BC600AA7654 /* ProductPublishControllerTests.m in Sources */,
 				5B309BE61B60E6E400242DA3 /* UpdataPassWordViewController.m in Sources */,
 				D3D94E951B608F400026B422 /* PersonalProjectTableViewCell.m in Sources */,
 				D3D94F4B1B6092330026B422 /* ChooseProductCellModel.m in Sources */,
@@ -10825,6 +10836,7 @@
 				D3D94EC31B6090370026B422 /* RequirementInfoPorjectView.m in Sources */,
 				D3D94F221B6091960026B422 /* ChatImageCell.m in Sources */,
 				D3D94E211B608DA80026B422 /* AskPriceMessageModel.m in Sources */,
+				5BA377831B67243E00AA7654 /* ProductPublishController.m in Sources */,
 				D3D94F361B6091E50026B422 /* DemandDetailViewCell.m in Sources */,
 				5B03ACAD1B621B7900A4DCFA /* FakePublishRequirementViewController.m in Sources */,
 				5B03ACB01B62375300A4DCFA /* PublishRequirementViewController.m in Sources */,
