@@ -36,6 +36,7 @@
         _sharedClient = [[AFAppDotNetAPIClient alloc] initWithBaseURL:[NSURL URLWithString:[userDefaults objectForKey:@"serverAddress"]]];
         //_sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         _sharedClient.responseSerializer = [AFJSONResponseSerializer serializer];
+        //_sharedClient.requestSerializer.timeoutInterval = 60;
     });
     [_sharedClient.requestSerializer setValue:@"" forHTTPHeaderField:@"Authorization"];
     return _sharedClient;

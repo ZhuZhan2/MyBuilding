@@ -551,8 +551,6 @@
 		04D10C3019AF3C120097C0C6 /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10C2F19AF3C120097C0C6 /* ShowViewController.m */; };
 		04D10C7719B074C70097C0C6 /* RecommendLetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10C7619B074C70097C0C6 /* RecommendLetterViewController.m */; };
 		5B03ACAA1B62004D00A4DCFA /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C05419922D5900CD8822 /* RegistViewController.m */; };
-		5B03ACAD1B621B7900A4DCFA /* FakePublishRequirementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B03ACAC1B621B7900A4DCFA /* FakePublishRequirementViewController.m */; };
-		5B03ACAF1B62206100A4DCFA /* PublishRequirementViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B03ACAE1B62206100A4DCFA /* PublishRequirementViewTests.m */; };
 		5B03ACB01B62375300A4DCFA /* PublishRequirementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA27881B1FE45200ADE3FC /* PublishRequirementViewController.m */; };
 		5B0A006619B5641900500C05 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A006519B5641900500C05 /* ProductViewController.m */; };
 		5B0A006C19B5874500500C05 /* TMPhotoQuiltViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A006A19B5874500500C05 /* TMPhotoQuiltViewCell.m */; };
@@ -579,7 +577,6 @@
 		5B309BE71B60E6EF00242DA3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426BFFA19922CE400CD8822 /* AppDelegate.m */; };
 		5B309BE81B60E6FE00242DA3 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6B6E11B130F5000C3DEBD /* HomePageViewController.m */; };
 		5B309BE91B60E71B00242DA3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C04A19922D5900CD8822 /* LoginViewController.m */; };
-		5B309BEC1B60F22900242DA3 /* FakeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309BEB1B60F22900242DA3 /* FakeLoginViewController.m */; };
 		5B3209F91A11CD8900D19279 /* 公司－我的公司_11a.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3209F71A11CD8900D19279 /* 公司－我的公司_11a.png */; };
 		5B3209FA1A11CD8900D19279 /* 公司－我的公司_11a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3209F81A11CD8900D19279 /* 公司－我的公司_11a@2x.png */; };
 		5B3209FE1A11E78600D19279 /* RemindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3209FD1A11E78600D19279 /* RemindView.m */; };
@@ -1369,8 +1366,6 @@
 		5BF0CE771B60977500B91F75 /* FakeStageChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE741B60977500B91F75 /* FakeStageChooseView.m */; };
 		5BF0CE781B60977500B91F75 /* RKStageChooseViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE761B60977500B91F75 /* RKStageChooseViewTests.m */; };
 		5BF0CE7D1B60AFFF00B91F75 /* LoginViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0CE7C1B60AFFF00B91F75 /* LoginViewControllerTests.m */; };
-		5BF0D1A61B61CE61004212CE /* FakeRegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0D1A51B61CE61004212CE /* FakeRegistViewController.m */; };
-		5BF0D1A81B61D33E004212CE /* RegistViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0D1A71B61D33E004212CE /* RegistViewControllerTests.m */; };
 		5BF31B541AB0162D00DA87F5 /* 添加联系人入群.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF31B521AB0162D00DA87F5 /* 添加联系人入群.png */; };
 		5BF31B551AB0162D00DA87F5 /* 添加联系人入群@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF31B531AB0162D00DA87F5 /* 添加联系人入群@2x.png */; };
 		5BF31B661AB025FD00DA87F5 /* AddGroupMemberController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B5B1AB025FD00DA87F5 /* AddGroupMemberController.m */; };
@@ -1784,7 +1779,90 @@
 		D3D94F961B6093F70026B422 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B998CCB1B4B73D400569A56 /* BaiduMapAPI.framework */; };
 		D3D94F971B6094160026B422 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B998CDF1B4BC7BB00569A56 /* iflyMSC.framework */; };
 		D3D94F981B6094420026B422 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AD616519ADB981001FD483 /* libsqlite3.0.dylib */; };
-		D3D94F9C1B60950A0026B422 /* UIApplication+GCovFlush.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D94F9B1B60950A0026B422 /* UIApplication+GCovFlush.m */; };
+		D3D94FA51B60C3600026B422 /* AFAppDotNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13A719C4162A002E02C9 /* AFAppDotNetAPIClient.m */; };
+		D3D94FA61B60C3650026B422 /* ProjectContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13AD19C4162A002E02C9 /* ProjectContactModel.m */; };
+		D3D94FA71B60C3670026B422 /* ProjectImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13AF19C4162A002E02C9 /* ProjectImageModel.m */; };
+		D3D94FA81B60C36A0026B422 /* projectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF13B119C4162A002E02C9 /* projectModel.m */; };
+		D3D94FAA1B60C3730026B422 /* ForcedUpdateApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFC82921B058D5B00CD9ED6 /* ForcedUpdateApi.m */; };
+		D3D94FAB1B60C3760026B422 /* ForcedUpdateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDDA2021B25868800F4AABB /* ForcedUpdateModel.m */; };
+		D3D94FAD1B60C3800026B422 /* RequirementDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F26CC1B26C57F0022B5A8 /* RequirementDetailModel.m */; };
+		D3D94FAE1B60C3820026B422 /* BannerImagesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9D5071B43DFF8006980E0 /* BannerImagesModel.m */; };
+		D3D94FB01B60C38F0026B422 /* ContractsMainClauseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FF6F71AE49DC000F3A3E0 /* ContractsMainClauseModel.m */; };
+		D3D94FB11B60C3930026B422 /* ContractsSalerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FF7031AE50F9500F3A3E0 /* ContractsSalerModel.m */; };
+		D3D94FB21B60C3950026B422 /* ContractsRepealModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4F6AD71AE75B78005CD38A /* ContractsRepealModel.m */; };
+		D3D94FB41B60C39D0026B422 /* QuotesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8FEAC1ABD489E0096B7FD /* QuotesModel.m */; };
+		D3D94FB61B60C3A60026B422 /* AccpetUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D710381AD505CB00E43124 /* AccpetUserModel.m */; };
+		D3D94FB81B60C4EB0026B422 /* ChoseContctApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FF3E931AAEEFB4005195CC /* ChoseContctApi.m */; };
+		D3D94FB91B60C4F00026B422 /* ChatMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4A2E11AAE98390071B3EA /* ChatMessageModel.m */; };
+		D3D94FBE1B60C55B0026B422 /* ReceiveApplyFreindModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B86504D1ABFE4830096BEF0 /* ReceiveApplyFreindModel.m */; };
+		D3D94FBF1B60C57B0026B422 /* AddressBookApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F787491AADAD3800ED754B /* AddressBookApi.m */; };
+		D3D94FC11B60C57F0026B422 /* FriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F727561AD68FC400B52A66 /* FriendModel.m */; };
+		D3D94FC31B60C58A0026B422 /* CompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D36040E519F51E8600E9727D /* CompanyModel.m */; };
+		D3D94FC41B60C58F0026B422 /* CompanyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D36040E819F51E9F00E9727D /* CompanyApi.m */; };
+		D3D94FC51B60C59B0026B422 /* EmployeesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2E60019F7A79500908D8B /* EmployeesModel.m */; };
+		D3D94FC61B60C5A80026B422 /* ProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04248B0419C67C1D000FB8A9 /* ProductModel.m */; };
+		D3D94FC71B60C5B40026B422 /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC619119B6BF930015B62F /* ContactModel.m */; };
+		D3D94FC81B60C5B60026B422 /* CommentApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61BA19B6D5D20015B62F /* CommentApi.m */; };
+		D3D94FCC1B60C5C70026B422 /* MyCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC619719B6BF930015B62F /* MyCenterModel.m */; };
+		D3D94FCD1B60C5C90026B422 /* ParticularsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7DB3119FFAD1700AE5765 /* ParticularsModel.m */; };
+		D3D94FCE1B60C5CD0026B422 /* TopicsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61A719B6BF930015B62F /* TopicsModel.m */; };
+		D3D94FCF1B60C5EB0026B422 /* PorjectCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC61CF19B849920015B62F /* PorjectCommentTableViewController.m */; };
+		D3D94FD11B60C5F70026B422 /* MapContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B51212E1A0781F900A77997 /* MapContentView.m */; };
+		D3D94FD21B60C5FA0026B422 /* MapSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D30366131B4BBE22009DD967 /* MapSearchViewController.m */; };
+		D3D94FD41B60C6020026B422 /* LandInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DD219B559FC00689C5D /* LandInfo.m */; };
+		D3D94FD51B60C6040026B422 /* MainDesign.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DD619B559FC00689C5D /* MainDesign.m */; };
+		D3D94FD61B60C6070026B422 /* MainBuild.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DD419B559FC00689C5D /* MainBuild.m */; };
+		D3D94FD91B60C6130026B422 /* ProgramSelectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DE019B559FC00689C5D /* ProgramSelectViewCell.m */; };
+		D3D94FDA1B60C61A0026B422 /* ProjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DE719B559FC00689C5D /* ProjectTableViewController.m */; };
+		D3D94FDD1B60C62A0026B422 /* AdvancedSearchConditionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DEA19B559FC00689C5D /* AdvancedSearchConditionsTableViewCell.m */; };
+		D3D94FDE1B60C62D0026B422 /* AdvancedSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DEC19B559FC00689C5D /* AdvancedSearchViewController.m */; };
+		D3D94FE01B60C6330026B422 /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DF419B559FC00689C5D /* PopupView.m */; };
+		D3D94FE21B60C6370026B422 /* SaveConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DFA19B559FC00689C5D /* SaveConditionsViewController.m */; };
+		D3D94FE31B60C63A0026B422 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9DFC19B559FC00689C5D /* SearchViewController.m */; };
+		D3D94FE41B60C6440026B422 /* TopicsDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E0719B559FC00689C5D /* TopicsDetailTableViewCell.m */; };
+		D3D94FE51B60C6460026B422 /* TopicsDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E0919B559FC00689C5D /* TopicsDetailTableViewController.m */; };
+		D3D94FE61B60C64A0026B422 /* TopicsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9E0D19B559FC00689C5D /* TopicsTableViewController.m */; };
+		D3D94FE71B60C68A0026B422 /* RecommendLetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10C7619B074C70097C0C6 /* RecommendLetterViewController.m */; };
+		D3D94FE81B60C6910026B422 /* AllDynamicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D30E1B221B1BF843009F6B51 /* AllDynamicListViewController.m */; };
+		D3D94FEA1B60C6980026B422 /* ContactCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B1C28219D155CC00E6D89F /* ContactCommentTableViewCell.m */; };
+		D3D94FEC1B60C69D0026B422 /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10C2F19AF3C120097C0C6 /* ShowViewController.m */; };
+		D3D94FEE1B60C6A40026B422 /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA938AF1A4972B200BB8A96 /* ContactTableViewCell.m */; };
+		D3D94FF11B60C6B30026B422 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA98B1B1C205000167496 /* CommentModel.m */; };
+		D3D94FF51B60C6F00026B422 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FACF31B53779900B32661 /* SignViewController.m */; };
+		D3D94FF71B60C6F80026B422 /* MyPointDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740891B5356EF00F2095C /* MyPointDetailViewController.m */; };
+		D3D94FF91B60C6FE0026B422 /* MyPointDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB740901B537C4A00F2095C /* MyPointDetailView.m */; };
+		D3D94FFB1B60C7040026B422 /* MyPointTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FACFD1B5399F400B32661 /* MyPointTopView.m */; };
+		D3D94FFC1B60C7060026B422 /* MyPointContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8F8BC1B5889C600ABF500 /* MyPointContentView.m */; };
+		D3D94FFD1B60C7110026B422 /* MyProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F455A31B312FA300EE20A5 /* MyProjectViewController.m */; };
+		D3D94FFE1B60C7170026B422 /* PersonalBlockView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F455831B3117F900EE20A5 /* PersonalBlockView.m */; };
+		D3D950031B60C7400026B422 /* AccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9EE419B8671900689C5D /* AccountCell.m */; };
+		D3D950041B60C7430026B422 /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BC019AE016A0097C0C6 /* PersonalCenterViewController.m */; };
+		D3D950061B60C74A0026B422 /* CompanyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4FB2F1A0872770033BB34 /* CompanyCenterViewController.m */; };
+		D3D950091B60C7570026B422 /* MyFocusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C451B0EF2AD004A4B3E /* MyFocusViewController.m */; };
+		D3D9500B1B60C75F0026B422 /* MyFocusUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C551B0EF5E6004A4B3E /* MyFocusUserController.m */; };
+		D3D9500C1B60C7610026B422 /* MyFocusUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EE48581B0F24D100439ED9 /* MyFocusUserTableViewCell.m */; };
+		D3D9500D1B60C7680026B422 /* MyFocusProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C611B0F152D004A4B3E /* MyFocusProductCell.m */; };
+		D3D9500E1B60C76E0026B422 /* MyFocusCompanyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C5B1B0EF60B004A4B3E /* MyFocusCompanyController.m */; };
+		D3D9500F1B60C7730026B422 /* PersonalCenterProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D60D281B3A452600CE86BE /* PersonalCenterProjectTableViewCell.m */; };
+		D3D950101B60C7750026B422 /* PersonalCenterPointTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D35AD4061B55FCEB00AD8DA5 /* PersonalCenterPointTableViewCell.m */; };
+		D3D950111B60C7780026B422 /* PersonalCenterPointNotiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8F8C81B58A9AF00ABF500 /* PersonalCenterPointNotiTableViewCell.m */; };
+		D3D950121B60C7830026B422 /* PersonalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BC819AE016A0097C0C6 /* PersonalDetailViewController.m */; };
+		D3D950151B60C78B0026B422 /* CorrelateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042D9EBD19B7FB6700689C5D /* CorrelateCell.m */; };
+		D3D950171B60C7900026B422 /* ContactBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF27891A008EFF00DDA30D /* ContactBackgroundView.m */; };
+		D3D9501A1B60C8FB0026B422 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BD019AE016A0097C0C6 /* PublishViewController.m */; };
+		D3D9501B1B60C8FE0026B422 /* ActivePublishController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA8EACC1AA5501300996281 /* ActivePublishController.m */; };
+		D3D9501C1B60C9490026B422 /* CompanyActivesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D351AAF41B143F3700A299C6 /* CompanyActivesViewController.m */; };
+		D3D9501E1B60C94F0026B422 /* CompanyProjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = D351AAFF1B14407E00A299C6 /* CompanyProjectController.m */; };
+		D3D9501F1B60C9530026B422 /* CompanyProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = D351AAFC1B14406E00A299C6 /* CompanyProductController.m */; };
+		D3D950201B60C9560026B422 /* CompanyTotalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E8A5719F8EA9800EA9AFF /* CompanyTotalViewController.m */; };
+		D3D950211B60C9590026B422 /* CompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C01B19922D5900CD8822 /* CompanyViewController.m */; };
+		D3D950231B60C9600026B422 /* CompanyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */; };
+		D3D950241B60C9620026B422 /* CompanyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B656CF519931275007D79A8 /* CompanyMemberViewController.m */; };
+		D3D950251B60C9650026B422 /* CompanyMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3AD9E319F7CA7B008132B2 /* CompanyMemberCell.m */; };
+		D3D950261B60C9680026B422 /* EndEditingGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5894F019FF9D24001CC09E /* EndEditingGesture.m */; };
+		D3D9502A1B60D5CA0026B422 /* XCTest+GCovFlush.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D94F9E1B6095190026B422 /* XCTest+GCovFlush.m */; };
+		D3D9502D1B60D5D90026B422 /* UIApplication+GCovFlush.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9502C1B60D5D90026B422 /* UIApplication+GCovFlush.m */; };
+		D3D9502F1B60E91D0026B422 /* ForgetPasswordFirstControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9502E1B60E91D0026B422 /* ForgetPasswordFirstControllerTests.m */; };
 		D3D9C90A1A1343CF001D3A64 /* 主菜单01b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9021A1343CE001D3A64 /* 主菜单01b.png */; };
 		D3D9C90B1A1343CF001D3A64 /* 主菜单01b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9031A1343CE001D3A64 /* 主菜单01b@2x.png */; };
 		D3D9C90C1A1343CF001D3A64 /* 主菜单02b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9041A1343CF001D3A64 /* 主菜单02b.png */; };
@@ -1824,6 +1902,166 @@
 		D3DBCE591AC8DF0C00C9FEDE /* CommissionBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE581AC8DF0C00C9FEDE /* CommissionBaseViewController.m */; };
 		D3DBCE5C1AC8E1A400C9FEDE /* ProvisionalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE5B1AC8E1A400C9FEDE /* ProvisionalViewController.m */; };
 		D3DBCE5F1AC8E77A00C9FEDE /* StartManView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE5E1AC8E77A00C9FEDE /* StartManView.m */; };
+		D3DC95861B61E02E00902ACA /* FakeForgetPasswordFirstControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC95851B61E02E00902ACA /* FakeForgetPasswordFirstControllerViewController.m */; };
+		D3DC95891B62065F00902ACA /* FakeForgetPasswordSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC95881B62065F00902ACA /* FakeForgetPasswordSecondViewController.m */; };
+		D3DC958B1B62071B00902ACA /* ForgetPasswordSecondControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC958A1B62071B00902ACA /* ForgetPasswordSecondControllerTests.m */; };
+		D3DC95901B6209A300902ACA /* FakeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC958D1B6209A300902ACA /* FakeLoginViewController.m */; };
+		D3DC95911B6209A300902ACA /* FakeRegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC958F1B6209A300902ACA /* FakeRegistViewController.m */; };
+		D3DC95941B62386100902ACA /* FakeForgetPasswordThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC95931B62386100902ACA /* FakeForgetPasswordThirdViewController.m */; };
+		D3DC95961B62388000902ACA /* ForgetPasswordThirdControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC95951B62388000902ACA /* ForgetPasswordThirdControllerTests.m */; };
+		D3DC95971B623CFB00902ACA /* ForgetPasswordThirdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D5801A3EB64C00CAEF8B /* ForgetPasswordThirdController.m */; };
+		D3DC95981B623CFE00902ACA /* ForgetPasswordSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D57D1A3EB63200CAEF8B /* ForgetPasswordSecondController.m */; };
+		D3DC95991B623D0100902ACA /* ForgetPasswordFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B55D57A1A3EB5FD00CAEF8B /* ForgetPasswordFirstController.m */; };
+		D3DC959C1B6242D500902ACA /* FakePublishRequirementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC959B1B6242D500902ACA /* FakePublishRequirementViewController.m */; };
+		D3DC959F1B6242E000902ACA /* PublishRequirementViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC959D1B6242E000902ACA /* PublishRequirementViewTests.m */; };
+		D3DC95A01B6242E000902ACA /* RegistViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC959E1B6242E000902ACA /* RegistViewControllerTests.m */; };
+		D3DC95A21B62432800902ACA /* LoginEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426C04819922D5900CD8822 /* LoginEvent.m */; };
+		D3DC95A31B62433000902ACA /* LoginAgain.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A871391A5E7A1600C0B83C /* LoginAgain.m */; };
+		D3DC95A41B62434200902ACA /* RecommendProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937C31A42B470007081C1 /* RecommendProjectTableViewCell.m */; };
+		D3DC95A51B62434400902ACA /* RecommendContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937C01A42B453007081C1 /* RecommendContactViewController.m */; };
+		D3DC95A61B62434600902ACA /* RecommendContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937C61A42B481007081C1 /* RecommendContactTableViewCell.m */; };
+		D3DC95A71B62434900902ACA /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39937C91A42B49A007081C1 /* WelcomeViewController.m */; };
+		D3DC95AA1B62435700902ACA /* ClauseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4C198219FA518800C6C57D /* ClauseViewController.m */; };
+		D3DC95AB1B62436600902ACA /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A006519B5641900500C05 /* ProductViewController.m */; };
+		D3DC95AC1B62436800902ACA /* TMPhotoQuiltViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A006A19B5874500500C05 /* TMPhotoQuiltViewCell.m */; };
+		D3DC95AD1B62436A00902ACA /* ProductPublishController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7132401AA458D90043E37D /* ProductPublishController.m */; };
+		D3DC95AE1B62437700902ACA /* AddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C71819B70699008EA7A0 /* AddCommentViewController.m */; };
+		D3DC95AF1B62437A00902ACA /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C6FF19B6AB0C008EA7A0 /* ProductDetailViewController.m */; };
+		D3DC95B01B62437D00902ACA /* ProductCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C70819B6E53A008EA7A0 /* ProductCommentView.m */; };
+		D3DC95B11B62438000902ACA /* MyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B553BF21A2EE97C00527E45 /* MyTableView.m */; };
+		D3DC95B21B62438200902ACA /* NoProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D511AE1A70923E000104E9 /* NoProductView.m */; };
+		D3DC95B31B62438A00902ACA /* FirstOpenAppAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5173A11A368F8E0009E0AE /* FirstOpenAppAnimationView.m */; };
+		D3DC95B41B62438C00902ACA /* FirstAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE08EC91A35900000495EEB /* FirstAnimationView.m */; };
+		D3DC95B51B62438F00902ACA /* SecondAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE08ECF1A35900000495EEB /* SecondAnimationView.m */; };
+		D3DC95B61B62439100902ACA /* ThirdAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE08ED11A35900000495EEB /* ThirdAnimationView.m */; };
+		D3DC95B71B62439400902ACA /* FourthAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE08ECD1A35900000495EEB /* FourthAnimationView.m */; };
+		D3DC95B81B62439A00902ACA /* ChatBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B76705B1AB6B92B00E154C5 /* ChatBaseViewController.m */; };
+		D3DC95B91B62439E00902ACA /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE82BC61B182CF300603F8A /* BaseTableViewCell.m */; };
+		D3DC95BA1B6243A000902ACA /* BaseTableViewCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE82BC91B182D2400603F8A /* BaseTableViewCellModel.m */; };
+		D3DC95BB1B6243A300902ACA /* RKBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B76705D1AB6B92B00E154C5 /* RKBaseTableView.m */; };
+		D3DC95BC1B6243A500902ACA /* SearchBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B76705F1AB6B92B00E154C5 /* SearchBarCell.m */; };
+		D3DC95BD1B6243A800902ACA /* SearchBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7670611AB6B92B00E154C5 /* SearchBarTableViewController.m */; };
+		D3DC95BE1B6243AA00902ACA /* RKController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE1C5E1B0EFB9C004A4B3E /* RKController.m */; };
+		D3DC95BF1B6243AF00902ACA /* RecommendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7670671AB6BD8100E154C5 /* RecommendListViewController.m */; };
+		D3DC95C01B6243B500902ACA /* RemindListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B76706A1AB6BDB800E154C5 /* RemindListViewController.m */; };
+		D3DC95C11B6243BA00902ACA /* AddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B95ADEE1AB1B35B00797EA6 /* AddressBookViewController.m */; };
+		D3DC95C21B6243BE00902ACA /* AddressBookSearchBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D7103B1AD54A9C00E43124 /* AddressBookSearchBarCell.m */; };
+		D3DC95C31B6243C100902ACA /* AddressBookNickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F7274A1AD6570C00B52A66 /* AddressBookNickNameViewController.m */; };
+		D3DC95C41B6243CA00902ACA /* AddressBookFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CCD1AAEE0AD00C8F9DE /* AddressBookFriendCell.m */; };
+		D3DC95C51B6243CD00902ACA /* AddressBookFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CCF1AAEE0AD00C8F9DE /* AddressBookFriendViewController.m */; };
+		D3DC95C61B6243DA00902ACA /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CCA1AAEE0AD00C8F9DE /* AddFriendViewController.m */; };
+		D3DC95C71B6243DC00902ACA /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CC81AAEE0AD00C8F9DE /* AddFriendCell.m */; };
+		D3DC95C81B6243DF00902ACA /* RecommendFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F727501AD660E200B52A66 /* RecommendFriendViewController.m */; };
+		D3DC95C91B6243E100902ACA /* RecommendFriendSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5836D61AD771AF00F8E7C3 /* RecommendFriendSearchController.m */; };
+		D3DC95CA1B6243E400902ACA /* RecommendFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F727591AD6941900B52A66 /* RecommendFriendCell.m */; };
+		D3DC95CB1B6243ED00902ACA /* ChatMessageImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D31C0DFA1B0984E30014A5E4 /* ChatMessageImageView.m */; };
+		D3DC95CC1B6243EF00902ACA /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CDA1AAEE0AD00C8F9DE /* ChatViewController.m */; };
+		D3DC95CD1B6243F400902ACA /* ChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CD61AAEE0AD00C8F9DE /* ChatModel.m */; };
+		D3DC95CE1B6243F900902ACA /* ChatToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9624ED1AB2CE0C005728C5 /* ChatToolBar.m */; };
+		D3DC95CF1B6243FC00902ACA /* ChatMoreSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC40E251B09B04A00184D1A /* ChatMoreSelectView.m */; };
+		D3DC95D01B6243FF00902ACA /* ChatSendImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE4B6191B412F7100B129FC /* ChatSendImageView.m */; };
+		D3DC95D11B62440B00902ACA /* AddGroupMemberController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B5B1AB025FD00DA87F5 /* AddGroupMemberController.m */; };
+		D3DC95D21B62441600902ACA /* AddImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B5D1AB025FD00DA87F5 /* AddImageView.m */; };
+		D3DC95D31B62441900902ACA /* ImageAndLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B651AB025FD00DA87F5 /* ImageAndLabelView.m */; };
+		D3DC95D41B62441C00902ACA /* DiscussionGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31B631AB025FD00DA87F5 /* DiscussionGroupView.m */; };
+		D3DC95D51B62443700902ACA /* MessageTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F897081AD8EB2F00DE3AB4 /* MessageTableView.m */; };
+		D3DC95D61B62443B00902ACA /* ForwardListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9D5011B43AC53006980E0 /* ForwardListViewController.m */; };
+		D3DC95D71B62443D00902ACA /* ForwardListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D9D5041B43BC2E006980E0 /* ForwardListCell.m */; };
+		D3DC95D81B62444000902ACA /* ForwardChooseContactsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA37F7D1B43CB0000ACCFA2 /* ForwardChooseContactsController.m */; };
+		D3DC95D91B62444500902ACA /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CDF1AAEE0AD00C8F9DE /* ChatListViewController.m */; };
+		D3DC95DA1B62444700902ACA /* ChatListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CDD1AAEE0AD00C8F9DE /* ChatListViewCell.m */; };
+		D3DC95DB1B62444E00902ACA /* ChooseContactsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A2CE41AAEE0AD00C8F9DE /* ChooseContactsViewCell.m */; };
+		D3DC95DC1B62445000902ACA /* ChooseContactsSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9238491ADB6C2D00281E94 /* ChooseContactsSearchController.m */; };
+		D3DC95DD1B62446700902ACA /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDC9F01ACE5959002AF865 /* WebViewController.m */; };
+		D3DC95DE1B62446E00902ACA /* DemanDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6699281AB9490600C4B54F /* DemanDetailViewController.m */; };
+		D3DC95DF1B62447200902ACA /* DemandDetailAskPriceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773D71AC1320400C17DBF /* DemandDetailAskPriceController.m */; };
+		D3DC95E01B62447400902ACA /* DemandAskPriceDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773DE1AC1335C00C17DBF /* DemandAskPriceDetailController.m */; };
+		D3DC95E11B62447900902ACA /* DemandAskPriceChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773E11AC1338000C17DBF /* DemandAskPriceChatController.m */; };
+		D3DC95E21B62447C00902ACA /* AcceptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA5BBDC1AD3B8A1004829AF /* AcceptView.m */; };
+		D3DC95E31B62447F00902ACA /* AcceptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D710321AD4EC5400E43124 /* AcceptViewController.m */; };
+		D3DC95E41B62448700902ACA /* DemandDetailProvidePriceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773DA1AC1320400C17DBF /* DemandDetailProvidePriceController.m */; };
+		D3DC95E51B62448900902ACA /* DemandProvidePriceDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773E41AC133BA00C17DBF /* DemandProvidePriceDetailController.m */; };
+		D3DC95E61B62448B00902ACA /* DemandProvidePriceChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5773E71AC133E400C17DBF /* DemandProvidePriceChatController.m */; };
+		D3DC95E71B62449000902ACA /* RKDemandDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373911ABAA7A8007CF1F8 /* RKDemandDetailController.m */; };
+		D3DC95E81B62449400902ACA /* RKMuchImageViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373801ABA796D007CF1F8 /* RKMuchImageViews.m */; };
+		D3DC95E91B62449600902ACA /* RKSingleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373821ABA796D007CF1F8 /* RKSingleImageView.m */; };
+		D3DC95EA1B62449900902ACA /* RKPointKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E59211ABC33E70063B400 /* RKPointKit.m */; };
+		D3DC95EB1B62449D00902ACA /* RKDemandChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373941ABAA7B0007CF1F8 /* RKDemandChatController.m */; };
+		D3DC95EC1B62449F00902ACA /* DemandChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B63737B1ABA796D007CF1F8 /* DemandChatViewCell.m */; };
+		D3DC95ED1B6244A700902ACA /* AskPriceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D35E12401ABD65D8007C6726 /* AskPriceDetailViewController.m */; };
+		D3DC95EE1B6244A900902ACA /* CatoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D35E12431ABD68B5007C6726 /* CatoryTableViewCell.m */; };
+		D3DC95EF1B6244AB00902ACA /* ClassificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D368092A1ABFAB3200AFA097 /* ClassificationView.m */; };
+		D3DC95F01B6244AE00902ACA /* RemarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D368092D1ABFD70500AFA097 /* RemarkViewController.m */; };
+		D3DC95F11B6244B100902ACA /* QuotesDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D36809301ABFDCB900AFA097 /* QuotesDetailViewController.m */; };
+		D3DC95F21B6244B500902ACA /* SearchContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D686261ABAC8C0005D9ED6 /* SearchContactViewController.m */; };
+		D3DC95F31B6244B700902ACA /* SearchContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D686291ABACF44005D9ED6 /* SearchContactTableViewCell.m */; };
+		D3DC95F41B6244BA00902ACA /* SearchContactDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = D314A3A61B156B2B00F6A86A /* SearchContactDefaultView.m */; };
+		D3DC95F51B6244BF00902ACA /* AddContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF0D891AB81A7800D71CEB /* AddContactView.m */; };
+		D3DC95F61B6244C100902ACA /* TopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF0D8B1AB81A7800D71CEB /* TopView.m */; };
+		D3DC95F71B6244C400902ACA /* AskPriceMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF0D861AB81A4C00D71CEB /* AskPriceMainViewController.m */; };
+		D3DC95F81B6244C600902ACA /* AddCategoriesView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBBC711AB914E20070DB98 /* AddCategoriesView.m */; };
+		D3DC95F91B6244C900902ACA /* AddClassificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBBC741AB91E110070DB98 /* AddClassificationView.m */; };
+		D3DC95FA1B6244CB00902ACA /* AddMarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B51BC31ABA96A600C7D57A /* AddMarkView.m */; };
+		D3DC95FB1B6244D200902ACA /* BusinessSucessCreateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA8F5021B131EF400E8656D /* BusinessSucessCreateController.m */; };
+		D3DC95FC1B6244DC00902ACA /* ChooseProductBigCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373A31ABAE32A007CF1F8 /* ChooseProductBigCell.m */; };
+		D3DC95FD1B6244DE00902ACA /* ChooseProductBigStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373A51ABAE32A007CF1F8 /* ChooseProductBigStage.m */; };
+		D3DC95FE1B6244E300902ACA /* ChooseProductSmallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373A81ABAE32A007CF1F8 /* ChooseProductSmallCell.m */; };
+		D3DC95FF1B6244E600902ACA /* ChooseProductSmallStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373AA1ABAE32A007CF1F8 /* ChooseProductSmallStage.m */; };
+		D3DC96001B6244ED00902ACA /* RKStageAndNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B63739F1ABAD30B007CF1F8 /* RKStageAndNumberView.m */; };
+		D3DC96011B6244EF00902ACA /* RKTwoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6289DC1AB7C10000F30059 /* RKTwoView.m */; };
+		D3DC96021B6244F400902ACA /* RKUpAndDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E59081ABBEAD20063B400 /* RKUpAndDownView.m */; };
+		D3DC96031B6244F900902ACA /* RKLeftAndRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E590B1ABBFD760063B400 /* RKLeftAndRightView.m */; };
+		D3DC96041B6244FC00902ACA /* RKShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6373641ABA5E97007CF1F8 /* RKShadowView.m */; };
+		D3DC96051B62450100902ACA /* AskPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9A53C1AB6F84300B5B2D8 /* AskPriceViewController.m */; };
+		D3DC96061B62450600902ACA /* AskPriceViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6289DF1AB7CC5A00F30059 /* AskPriceViewCell.m */; };
+		D3DC96071B62450900902ACA /* AskPriceCellHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6289E21AB806AB00F30059 /* AskPriceCellHeader.m */; };
+		D3DC96081B62450C00902ACA /* DemandListSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CB9B81AC01855000CF505 /* DemandListSearchController.m */; };
+		D3DC96091B62451400902ACA /* DemandStageChooseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8650431ABFA16F0096BEF0 /* DemandStageChooseController.m */; };
+		D3DC960A1B62451700902ACA /* DemandStageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8650461ABFA1B90096BEF0 /* DemandStageCell.m */; };
+		D3DC960B1B62452000902ACA /* ConstractListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B70CC5E1AC9420600FC8353 /* ConstractListController.m */; };
+		D3DC960C1B62452300902ACA /* ContractListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B70CC611AC947F100FC8353 /* ContractListCell.m */; };
+		D3DC960D1B62452600902ACA /* ContractsListSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9401D21ACA89FF000C3C99 /* ContractsListSearchController.m */; };
+		D3DC960E1B62452A00902ACA /* ContractsBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5837021AD7CE0900F8E7C3 /* ContractsBaseViewController.m */; };
+		D3DC960F1B62453400902ACA /* OtherContractsBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5837091AD7CFD900F8E7C3 /* OtherContractsBaseController.m */; };
+		D3DC96101B62453700902ACA /* ProviderContractsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FF6FD1AE4EC3300F3A3E0 /* ProviderContractsController.m */; };
+		D3DC96111B62453A00902ACA /* SalerContractsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FF7001AE4EC4B00F3A3E0 /* SalerContractsController.m */; };
+		D3DC96121B62453D00902ACA /* RepealContractsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4F98131AE63ADC009E0F78 /* RepealContractsController.m */; };
+		D3DC96131B62454600902ACA /* CommissionBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE581AC8DF0C00C9FEDE /* CommissionBaseViewController.m */; };
+		D3DC96141B62454A00902ACA /* ProvisionalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE5B1AC8E1A400C9FEDE /* ProvisionalViewController.m */; };
+		D3DC96151B62454D00902ACA /* StartManView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DBCE5E1AC8E77A00C9FEDE /* StartManView.m */; };
+		D3DC96161B62455000902ACA /* ReceiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = D374BCA91AC8F1E2002A7D58 /* ReceiveView.m */; };
+		D3DC96171B62455300902ACA /* OtherView.m in Sources */ = {isa = PBXBuildFile; fileRef = D374BCAC1AC8F84A002A7D58 /* OtherView.m */; };
+		D3DC96181B62455600902ACA /* MessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D374BCAF1AC91C82002A7D58 /* MessageTextView.m */; };
+		D3DC96191B62455900902ACA /* MoneyView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2BFE71AC94478003BB779 /* MoneyView.m */; };
+		D3DC961A1B62455C00902ACA /* ContractView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2BFEA1AC9497B003BB779 /* ContractView.m */; };
+		D3DC961B1B62456400902ACA /* ContractSucessCreateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA8F4EE1B1311C800E8656D /* ContractSucessCreateController.m */; };
+		D3DC961C1B62456B00902ACA /* RKViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5266361AC3B63400EF8185 /* RKViewFactory.m */; };
+		D3DC961D1B62456D00902ACA /* RKMuchBtns.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B52C5EC1AC500550035ABB8 /* RKMuchBtns.m */; };
+		D3DC961E1B62457000902ACA /* RKMuchBtnAssistView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B70CC381AC8EF7300FC8353 /* RKMuchBtnAssistView.m */; };
+		D3DC961F1B62457300902ACA /* BaseContractsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B70CC3B1AC92A3F00FC8353 /* BaseContractsView.m */; };
+		D3DC96201B62457500902ACA /* RKContractsStagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA6E7CE1AD60EA50035A97D /* RKContractsStagesView.m */; };
+		D3DC96211B62458200902ACA /* ContractsTradeCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B90E0FE1ADE325000436CED /* ContractsTradeCodeView.m */; };
+		D3DC96221B62458500902ACA /* ContractsUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B90E1011ADE3ABB00436CED /* ContractsUserView.m */; };
+		D3DC96231B62458800902ACA /* ContractsMainClauseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B90E10A1ADE539F00436CED /* ContractsMainClauseView.m */; };
+		D3DC96241B62458B00902ACA /* ContractsBtnToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6C4AF41ADF5EE7003B8DA8 /* ContractsBtnToolBar.m */; };
+		D3DC96251B62458E00902ACA /* PDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4E7491AE7418E001BF0A9 /* PDFViewController.m */; };
+		D3DC96261B62459300902ACA /* AskPriceMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D483F81ADFBB08004AF972 /* AskPriceMessageViewController.m */; };
+		D3DC96271B62459600902ACA /* AskPriceMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D483FE1ADFC4E8004AF972 /* AskPriceMessageCell.m */; };
+		D3DC96281B6245A300902ACA /* VIPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB9571B0B1BFB005CC798 /* VIPhotoView.m */; };
+		D3DC96291B6245AB00902ACA /* AdDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D090011AF86CC900C8AC55 /* AdDataModel.m */; };
+		D3DC962A1B6245AD00902ACA /* MarketFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6EB761B1FE42F00FB6D5A /* MarketFlowView.m */; };
+		D3DC962B1B6245B200902ACA /* ErrorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D4E7421AE62B96001BF0A9 /* ErrorCode.m */; };
+		D3DC962C1B6245BB00902ACA /* GetAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCDAC91ADBA66C0029DB95 /* GetAddressBook.m */; };
+		D3DC962D1B6245BD00902ACA /* PostAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D747A81AFB2C4200B21F02 /* PostAddressBook.m */; };
+		D3DC962E1B6245C500902ACA /* YLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D946A81A6CDD33003A68D5 /* YLLabel.m */; };
+		D3DC962F1B6245CF00902ACA /* PooCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D321261A3EAE2E0009AEEA /* PooCodeView.m */; };
+		D3DC96301B6245E500902ACA /* RemindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3209FD1A11E78600D19279 /* RemindView.m */; };
+		D3DC96311B6245EC00902ACA /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D798671A0B1DFE00194FF8 /* LoadingView.m */; };
+		D3DC96321B6245F300902ACA /* MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAA14D519EE35AC00C7ECD9 /* MD5.m */; };
+		D3DC96331B6245F700902ACA /* NBLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D232A19D93373007C2C29 /* NBLabel.m */; };
+		D3DC96341B6245FB00902ACA /* GetImagePath.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AC86AA19CBD3E30009673C /* GetImagePath.m */; };
+		D3DC96351B62460300902ACA /* BirthDay.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4281419C19A3E00BAB6C7 /* BirthDay.m */; };
+		D3DC96361B62460900902ACA /* ErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A4280F19C1749E00BAB6C7 /* ErrorView.m */; };
 		D3DCB9581B0B1BFB005CC798 /* VIPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB9571B0B1BFB005CC798 /* VIPhotoView.m */; };
 		D3DCDACA1ADBA66C0029DB95 /* GetAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCDAC91ADBA66C0029DB95 /* GetAddressBook.m */; };
 		D3DD6BA11B579D7500A75351 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3DD6BA01B579D7500A75351 /* mapapi.bundle */; };
@@ -1866,6 +2104,10 @@
 		D3E2F4701A11E4D500CF2785 /* 注册_08.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E2F46E1A11E4D500CF2785 /* 注册_08.png */; };
 		D3E2F4711A11E4D500CF2785 /* 注册_08@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E2F46F1A11E4D500CF2785 /* 注册_08@2x.png */; };
 		D3E621E61A10AC3000EF8A90 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3E621E51A10AC3000EF8A90 /* area.plist */; };
+		D3EA231D1B67138E00FE46F4 /* FakeAddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EA231A1B67138E00FE46F4 /* FakeAddCommentViewController.m */; };
+		D3EA231E1B67138E00FE46F4 /* FakePublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EA231C1B67138E00FE46F4 /* FakePublishViewController.m */; };
+		D3EA23211B6713A500FE46F4 /* AddCommentViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EA231F1B6713A500FE46F4 /* AddCommentViewControllerTests.m */; };
+		D3EA23221B6713A500FE46F4 /* PublishViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EA23201B6713A500FE46F4 /* PublishViewControllerTests.m */; };
 		D3EDC9F11ACE5959002AF865 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDC9F01ACE5959002AF865 /* WebViewController.m */; };
 		D3EDC9F41ACE6538002AF865 /* xlsx.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EDC9F21ACE6538002AF865 /* xlsx.png */; };
 		D3EDC9F51ACE6538002AF865 /* xlsx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EDC9F31ACE6538002AF865 /* xlsx@2x.png */; };
@@ -2764,9 +3006,6 @@
 		04D10C2F19AF3C120097C0C6 /* ShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowViewController.m; sourceTree = "<group>"; };
 		04D10C7519B074C70097C0C6 /* RecommendLetterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendLetterViewController.h; sourceTree = "<group>"; };
 		04D10C7619B074C70097C0C6 /* RecommendLetterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendLetterViewController.m; sourceTree = "<group>"; };
-		5B03ACAB1B621B7900A4DCFA /* FakePublishRequirementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakePublishRequirementViewController.h; sourceTree = "<group>"; };
-		5B03ACAC1B621B7900A4DCFA /* FakePublishRequirementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakePublishRequirementViewController.m; sourceTree = "<group>"; };
-		5B03ACAE1B62206100A4DCFA /* PublishRequirementViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishRequirementViewTests.m; sourceTree = "<group>"; };
 		5B0A006419B5641900500C05 /* ProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductViewController.h; sourceTree = "<group>"; };
 		5B0A006519B5641900500C05 /* ProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductViewController.m; sourceTree = "<group>"; };
 		5B0A006919B5874500500C05 /* TMPhotoQuiltViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMPhotoQuiltViewCell.h; sourceTree = "<group>"; };
@@ -2803,8 +3042,6 @@
 		5B1AC4AF19BEE4DC006CA4F4 /* CompanyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyDetailViewController.m; sourceTree = "<group>"; };
 		5B2D232919D93373007C2C29 /* NBLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBLabel.h; path = NBLabel/NBLabel.h; sourceTree = "<group>"; };
 		5B2D232A19D93373007C2C29 /* NBLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBLabel.m; path = NBLabel/NBLabel.m; sourceTree = "<group>"; };
-		5B309BEA1B60F22900242DA3 /* FakeLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeLoginViewController.h; sourceTree = "<group>"; };
-		5B309BEB1B60F22900242DA3 /* FakeLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeLoginViewController.m; sourceTree = "<group>"; };
 		5B3209F71A11CD8900D19279 /* 公司－我的公司_11a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_11a.png"; sourceTree = "<group>"; };
 		5B3209F81A11CD8900D19279 /* 公司－我的公司_11a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_11a@2x.png"; sourceTree = "<group>"; };
 		5B3209FC1A11E78600D19279 /* RemindView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindView.h; sourceTree = "<group>"; };
@@ -3771,9 +4008,6 @@
 		5BF0CE741B60977500B91F75 /* FakeStageChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeStageChooseView.m; sourceTree = "<group>"; };
 		5BF0CE761B60977500B91F75 /* RKStageChooseViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKStageChooseViewTests.m; sourceTree = "<group>"; };
 		5BF0CE7C1B60AFFF00B91F75 /* LoginViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewControllerTests.m; sourceTree = "<group>"; };
-		5BF0D1A41B61CE61004212CE /* FakeRegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeRegistViewController.h; sourceTree = "<group>"; };
-		5BF0D1A51B61CE61004212CE /* FakeRegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeRegistViewController.m; sourceTree = "<group>"; };
-		5BF0D1A71B61D33E004212CE /* RegistViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistViewControllerTests.m; sourceTree = "<group>"; };
 		5BF31B521AB0162D00DA87F5 /* 添加联系人入群.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "添加联系人入群.png"; sourceTree = "<group>"; };
 		5BF31B531AB0162D00DA87F5 /* 添加联系人入群@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "添加联系人入群@2x.png"; sourceTree = "<group>"; };
 		5BF31B5A1AB025FD00DA87F5 /* AddGroupMemberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddGroupMemberController.h; sourceTree = "<group>"; };
@@ -4321,10 +4555,11 @@
 		D3D946A71A6CDD33003A68D5 /* YLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLLabel.h; sourceTree = "<group>"; };
 		D3D946A81A6CDD33003A68D5 /* YLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLLabel.m; sourceTree = "<group>"; };
 		D3D94F991B60950A0026B422 /* GcovExtern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GcovExtern.h; sourceTree = "<group>"; };
-		D3D94F9A1B60950A0026B422 /* UIApplication+GCovFlush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+GCovFlush.h"; sourceTree = "<group>"; };
-		D3D94F9B1B60950A0026B422 /* UIApplication+GCovFlush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+GCovFlush.m"; sourceTree = "<group>"; };
 		D3D94F9D1B6095190026B422 /* XCTest+GCovFlush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTest+GCovFlush.h"; sourceTree = "<group>"; };
 		D3D94F9E1B6095190026B422 /* XCTest+GCovFlush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTest+GCovFlush.m"; sourceTree = "<group>"; };
+		D3D9502B1B60D5D90026B422 /* UIApplication+GCovFlush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+GCovFlush.h"; sourceTree = "<group>"; };
+		D3D9502C1B60D5D90026B422 /* UIApplication+GCovFlush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+GCovFlush.m"; sourceTree = "<group>"; };
+		D3D9502E1B60E91D0026B422 /* ForgetPasswordFirstControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordFirstControllerTests.m; sourceTree = "<group>"; };
 		D3D9C9021A1343CE001D3A64 /* 主菜单01b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单01b.png"; sourceTree = "<group>"; };
 		D3D9C9031A1343CE001D3A64 /* 主菜单01b@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单01b@2x.png"; sourceTree = "<group>"; };
 		D3D9C9041A1343CF001D3A64 /* 主菜单02b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单02b.png"; sourceTree = "<group>"; };
@@ -4375,6 +4610,22 @@
 		D3DBCE5B1AC8E1A400C9FEDE /* ProvisionalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvisionalViewController.m; sourceTree = "<group>"; };
 		D3DBCE5D1AC8E77A00C9FEDE /* StartManView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartManView.h; sourceTree = "<group>"; };
 		D3DBCE5E1AC8E77A00C9FEDE /* StartManView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartManView.m; sourceTree = "<group>"; };
+		D3DC95841B61E02E00902ACA /* FakeForgetPasswordFirstControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeForgetPasswordFirstControllerViewController.h; sourceTree = "<group>"; };
+		D3DC95851B61E02E00902ACA /* FakeForgetPasswordFirstControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeForgetPasswordFirstControllerViewController.m; sourceTree = "<group>"; };
+		D3DC95871B62065F00902ACA /* FakeForgetPasswordSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeForgetPasswordSecondViewController.h; sourceTree = "<group>"; };
+		D3DC95881B62065F00902ACA /* FakeForgetPasswordSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeForgetPasswordSecondViewController.m; sourceTree = "<group>"; };
+		D3DC958A1B62071B00902ACA /* ForgetPasswordSecondControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordSecondControllerTests.m; sourceTree = "<group>"; };
+		D3DC958C1B6209A300902ACA /* FakeLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeLoginViewController.h; sourceTree = "<group>"; };
+		D3DC958D1B6209A300902ACA /* FakeLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeLoginViewController.m; sourceTree = "<group>"; };
+		D3DC958E1B6209A300902ACA /* FakeRegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeRegistViewController.h; sourceTree = "<group>"; };
+		D3DC958F1B6209A300902ACA /* FakeRegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeRegistViewController.m; sourceTree = "<group>"; };
+		D3DC95921B62386100902ACA /* FakeForgetPasswordThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeForgetPasswordThirdViewController.h; sourceTree = "<group>"; };
+		D3DC95931B62386100902ACA /* FakeForgetPasswordThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeForgetPasswordThirdViewController.m; sourceTree = "<group>"; };
+		D3DC95951B62388000902ACA /* ForgetPasswordThirdControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordThirdControllerTests.m; sourceTree = "<group>"; };
+		D3DC959A1B6242D500902ACA /* FakePublishRequirementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakePublishRequirementViewController.h; sourceTree = "<group>"; };
+		D3DC959B1B6242D500902ACA /* FakePublishRequirementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakePublishRequirementViewController.m; sourceTree = "<group>"; };
+		D3DC959D1B6242E000902ACA /* PublishRequirementViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishRequirementViewTests.m; sourceTree = "<group>"; };
+		D3DC959E1B6242E000902ACA /* RegistViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistViewControllerTests.m; sourceTree = "<group>"; };
 		D3DCB9561B0B1BFB005CC798 /* VIPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPhotoView.h; sourceTree = "<group>"; };
 		D3DCB9571B0B1BFB005CC798 /* VIPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPhotoView.m; sourceTree = "<group>"; };
 		D3DCDAC81ADBA66C0029DB95 /* GetAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAddressBook.h; sourceTree = "<group>"; };
@@ -4424,6 +4675,12 @@
 		D3E2F46E1A11E4D500CF2785 /* 注册_08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_08.png"; sourceTree = "<group>"; };
 		D3E2F46F1A11E4D500CF2785 /* 注册_08@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_08@2x.png"; sourceTree = "<group>"; };
 		D3E621E51A10AC3000EF8A90 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		D3EA23191B67138E00FE46F4 /* FakeAddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeAddCommentViewController.h; sourceTree = "<group>"; };
+		D3EA231A1B67138E00FE46F4 /* FakeAddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeAddCommentViewController.m; sourceTree = "<group>"; };
+		D3EA231B1B67138E00FE46F4 /* FakePublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakePublishViewController.h; sourceTree = "<group>"; };
+		D3EA231C1B67138E00FE46F4 /* FakePublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakePublishViewController.m; sourceTree = "<group>"; };
+		D3EA231F1B6713A500FE46F4 /* AddCommentViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCommentViewControllerTests.m; sourceTree = "<group>"; };
+		D3EA23201B6713A500FE46F4 /* PublishViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewControllerTests.m; sourceTree = "<group>"; };
 		D3EDC9EF1ACE5959002AF865 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		D3EDC9F01ACE5959002AF865 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		D3EDC9F21ACE6538002AF865 /* xlsx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xlsx.png; sourceTree = "<group>"; };
@@ -4650,9 +4907,9 @@
 		0426BFF119922CE400CD8822 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D3D9502B1B60D5D90026B422 /* UIApplication+GCovFlush.h */,
+				D3D9502C1B60D5D90026B422 /* UIApplication+GCovFlush.m */,
 				D3D94F991B60950A0026B422 /* GcovExtern.h */,
-				D3D94F9A1B60950A0026B422 /* UIApplication+GCovFlush.h */,
-				D3D94F9B1B60950A0026B422 /* UIApplication+GCovFlush.m */,
 				D3D538431ADCBD82003727C1 /* source.bundle */,
 				D3E621E51A10AC3000EF8A90 /* area.plist */,
 				04BC3E5D19D7E5B0006B5C7B /* Images */,
@@ -7468,6 +7725,16 @@
 		5BF0CE621B60976200B91F75 /* Fake */ = {
 			isa = PBXGroup;
 			children = (
+				D3EA23191B67138E00FE46F4 /* FakeAddCommentViewController.h */,
+				D3EA231A1B67138E00FE46F4 /* FakeAddCommentViewController.m */,
+				D3EA231B1B67138E00FE46F4 /* FakePublishViewController.h */,
+				D3EA231C1B67138E00FE46F4 /* FakePublishViewController.m */,
+				D3DC959A1B6242D500902ACA /* FakePublishRequirementViewController.h */,
+				D3DC959B1B6242D500902ACA /* FakePublishRequirementViewController.m */,
+				D3DC958C1B6209A300902ACA /* FakeLoginViewController.h */,
+				D3DC958D1B6209A300902ACA /* FakeLoginViewController.m */,
+				D3DC958E1B6209A300902ACA /* FakeRegistViewController.h */,
+				D3DC958F1B6209A300902ACA /* FakeRegistViewController.m */,
 				5BF0CE631B60976200B91F75 /* FakeUpdataPassWordViewController.h */,
 				5BF0CE641B60976200B91F75 /* FakeUpdataPassWordViewController.m */,
 				5B309BEA1B60F22900242DA3 /* FakeLoginViewController.h */,
@@ -7489,6 +7756,10 @@
 		5BF0CE651B60976200B91F75 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				D3EA231F1B6713A500FE46F4 /* AddCommentViewControllerTests.m */,
+				D3EA23201B6713A500FE46F4 /* PublishViewControllerTests.m */,
+				D3DC959D1B6242E000902ACA /* PublishRequirementViewTests.m */,
+				D3DC959E1B6242E000902ACA /* RegistViewControllerTests.m */,
 				5BF0CE661B60976200B91F75 /* UpdataPassWordViewControllerTests.m */,
 				5BF0CE7C1B60AFFF00B91F75 /* LoginViewControllerTests.m */,
 				5BF0D1A71B61D33E004212CE /* RegistViewControllerTests.m */,
@@ -10552,7 +10823,7 @@
 				5B5837031AD7CE0900F8E7C3 /* ContractsBaseViewController.m in Sources */,
 				0426C2A719922D5A00CD8822 /* GPUImagePosterizeFilter.m in Sources */,
 				5B6373951ABAA7B0007CF1F8 /* RKDemandChatController.m in Sources */,
-				D3D94F9C1B60950A0026B422 /* UIApplication+GCovFlush.m in Sources */,
+				D3D9502D1B60D5D90026B422 /* UIApplication+GCovFlush.m in Sources */,
 				D3D7DD241B267ECC001A9577 /* MarketListTitleView.m in Sources */,
 				0426C2FE19922D5A00CD8822 /* UIButton+AFNetworking.m in Sources */,
 				D3F455A41B312FA300EE20A5 /* MyProjectViewController.m in Sources */,
@@ -10803,65 +11074,300 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3DC95991B623D0100902ACA /* ForgetPasswordFirstController.m in Sources */,
+				D3D94FE81B60C6910026B422 /* AllDynamicListViewController.m in Sources */,
+				D3D950171B60C7900026B422 /* ContactBackgroundView.m in Sources */,
+				D3DC96141B62454A00902ACA /* ProvisionalViewController.m in Sources */,
+				D3DC95C71B6243DC00902ACA /* AddFriendCell.m in Sources */,
+				D3D9502A1B60D5CA0026B422 /* XCTest+GCovFlush.m in Sources */,
+				D3D9501E1B60C94F0026B422 /* CompanyProjectController.m in Sources */,
+				D3EA231D1B67138E00FE46F4 /* FakeAddCommentViewController.m in Sources */,
+				D3DC96251B62458E00902ACA /* PDFViewController.m in Sources */,
+				D3DC95F91B6244C900902ACA /* AddClassificationView.m in Sources */,
+				D3D94FF91B60C6FE0026B422 /* MyPointDetailView.m in Sources */,
+				D3D94FD61B60C6070026B422 /* MainBuild.m in Sources */,
+				D3DC96231B62458800902ACA /* ContractsMainClauseView.m in Sources */,
+				D3DC96291B6245AB00902ACA /* AdDataModel.m in Sources */,
+				D3D94FAD1B60C3800026B422 /* RequirementDetailModel.m in Sources */,
+				D3D9502F1B60E91D0026B422 /* ForgetPasswordFirstControllerTests.m in Sources */,
+				D3DC95B41B62438C00902ACA /* FirstAnimationView.m in Sources */,
+				D3D950111B60C7780026B422 /* PersonalCenterPointNotiTableViewCell.m in Sources */,
+				D3DC96311B6245EC00902ACA /* LoadingView.m in Sources */,
+				D3DC95E11B62447900902ACA /* DemandAskPriceChatController.m in Sources */,
+				D3DC95911B6209A300902ACA /* FakeRegistViewController.m in Sources */,
+				D3D94FC51B60C59B0026B422 /* EmployeesModel.m in Sources */,
+				D3D94FEE1B60C6A40026B422 /* ContactTableViewCell.m in Sources */,
+				D3DC95CD1B6243F400902ACA /* ChatModel.m in Sources */,
+				D3DC95F71B6244C400902ACA /* AskPriceMainViewController.m in Sources */,
+				D3D950241B60C9620026B422 /* CompanyMemberViewController.m in Sources */,
+				D3DC962F1B6245CF00902ACA /* PooCodeView.m in Sources */,
+				D3D94FCE1B60C5CD0026B422 /* TopicsModel.m in Sources */,
+				D3D94FDE1B60C62D0026B422 /* AdvancedSearchViewController.m in Sources */,
+				D3DC96301B6245E500902ACA /* RemindView.m in Sources */,
+				D3D94FE31B60C63A0026B422 /* SearchViewController.m in Sources */,
+				D3DC958B1B62071B00902ACA /* ForgetPasswordSecondControllerTests.m in Sources */,
+				D3DC96201B62457500902ACA /* RKContractsStagesView.m in Sources */,
+				D3DC961C1B62456B00902ACA /* RKViewFactory.m in Sources */,
+				D3DC95CC1B6243EF00902ACA /* ChatViewController.m in Sources */,
+				D3D94FB01B60C38F0026B422 /* ContractsMainClauseModel.m in Sources */,
+				D3DC96171B62455300902ACA /* OtherView.m in Sources */,
+				D3DC96161B62455000902ACA /* ReceiveView.m in Sources */,
+				D3DC96001B6244ED00902ACA /* RKStageAndNumberView.m in Sources */,
+				D3DC962D1B6245BD00902ACA /* PostAddressBook.m in Sources */,
+				D3D94FD91B60C6130026B422 /* ProgramSelectViewCell.m in Sources */,
+				D3D94FA71B60C3670026B422 /* ProjectImageModel.m in Sources */,
+				D3DC95CF1B6243FC00902ACA /* ChatMoreSelectView.m in Sources */,
+				D3DC96321B6245F300902ACA /* MD5.m in Sources */,
+				D3DC962E1B6245C500902ACA /* YLLabel.m in Sources */,
+				D3D950261B60C9680026B422 /* EndEditingGesture.m in Sources */,
+				D3DC96031B6244F900902ACA /* RKLeftAndRightView.m in Sources */,
+				D3DC95CB1B6243ED00902ACA /* ChatMessageImageView.m in Sources */,
+				D3DC95C91B6243E100902ACA /* RecommendFriendSearchController.m in Sources */,
+				D3D94FE01B60C6330026B422 /* PopupView.m in Sources */,
+				D3D94FE41B60C6440026B422 /* TopicsDetailTableViewCell.m in Sources */,
+				D3DC95B71B62439400902ACA /* FourthAnimationView.m in Sources */,
+				D3DC96061B62450600902ACA /* AskPriceViewCell.m in Sources */,
+				D3DC95B31B62438A00902ACA /* FirstOpenAppAnimationView.m in Sources */,
+				D3DC95BE1B6243AA00902ACA /* RKController.m in Sources */,
+				D3D950211B60C9590026B422 /* CompanyViewController.m in Sources */,
+				D3DC95EF1B6244AB00902ACA /* ClassificationView.m in Sources */,
+				D3D950041B60C7430026B422 /* PersonalCenterViewController.m in Sources */,
+				D3DC960E1B62452A00902ACA /* ContractsBaseViewController.m in Sources */,
+				D3DC960B1B62452000902ACA /* ConstractListController.m in Sources */,
+				D3DC95EE1B6244A900902ACA /* CatoryTableViewCell.m in Sources */,
+				D3D94FC71B60C5B40026B422 /* ContactModel.m in Sources */,
+				D3D950231B60C9600026B422 /* CompanyDetailViewController.m in Sources */,
+				D3D94FDD1B60C62A0026B422 /* AdvancedSearchConditionsTableViewCell.m in Sources */,
+				D3DC95A31B62433000902ACA /* LoginAgain.m in Sources */,
+				D3D94FCD1B60C5C90026B422 /* ParticularsModel.m in Sources */,
+				D3DC96181B62455600902ACA /* MessageTextView.m in Sources */,
+				D3DC95A61B62434600902ACA /* RecommendContactTableViewCell.m in Sources */,
+				D3DC95E51B62448900902ACA /* DemandProvidePriceDetailController.m in Sources */,
+				D3D94FCC1B60C5C70026B422 /* MyCenterModel.m in Sources */,
+				D3DC96261B62459300902ACA /* AskPriceMessageViewController.m in Sources */,
+				D3D94FBE1B60C55B0026B422 /* ReceiveApplyFreindModel.m in Sources */,
+				D3DC96051B62450100902ACA /* AskPriceViewController.m in Sources */,
+				D3DC95C81B6243DF00902ACA /* RecommendFriendViewController.m in Sources */,
+				D3D94FE71B60C68A0026B422 /* RecommendLetterViewController.m in Sources */,
+				D3D950151B60C78B0026B422 /* CorrelateCell.m in Sources */,
+				D3D950201B60C9560026B422 /* CompanyTotalViewController.m in Sources */,
+				D3DC96221B62458500902ACA /* ContractsUserView.m in Sources */,
+				D3D950101B60C7750026B422 /* PersonalCenterPointTableViewCell.m in Sources */,
+				D3DC962A1B6245AD00902ACA /* MarketFlowView.m in Sources */,
+				D3D94FAB1B60C3760026B422 /* ForcedUpdateModel.m in Sources */,
+				D3DC95AF1B62437A00902ACA /* ProductDetailViewController.m in Sources */,
+				D3DC95CA1B6243E400902ACA /* RecommendFriendCell.m in Sources */,
+				D3DC95FD1B6244DE00902ACA /* ChooseProductBigStage.m in Sources */,
+				D3DC96361B62460900902ACA /* ErrorView.m in Sources */,
+				D3D94FDA1B60C61A0026B422 /* ProjectTableViewController.m in Sources */,
+				D3D94FF71B60C6F80026B422 /* MyPointDetailViewController.m in Sources */,
+				D3DC961D1B62456D00902ACA /* RKMuchBtns.m in Sources */,
+				D3DC95AD1B62436A00902ACA /* ProductPublishController.m in Sources */,
+				D3DC95A51B62434400902ACA /* RecommendContactViewController.m in Sources */,
+				D3DC95AB1B62436600902ACA /* ProductViewController.m in Sources */,
+				D3D9500B1B60C75F0026B422 /* MyFocusUserController.m in Sources */,
+				D3DC95C11B6243BA00902ACA /* AddressBookViewController.m in Sources */,
+				D3DC95D31B62441900902ACA /* ImageAndLabelView.m in Sources */,
+				D3D94FB61B60C3A60026B422 /* AccpetUserModel.m in Sources */,
+				D3D94FA81B60C36A0026B422 /* projectModel.m in Sources */,
+				D3D950031B60C7400026B422 /* AccountCell.m in Sources */,
+				D3D950251B60C9650026B422 /* CompanyMemberCell.m in Sources */,
+				D3D94FA51B60C3600026B422 /* AFAppDotNetAPIClient.m in Sources */,
+				D3D94FFD1B60C7110026B422 /* MyProjectViewController.m in Sources */,
+				D3DC95A01B6242E000902ACA /* RegistViewControllerTests.m in Sources */,
+				D3DC96041B6244FC00902ACA /* RKShadowView.m in Sources */,
+				D3D950121B60C7830026B422 /* PersonalDetailViewController.m in Sources */,
+				D3D9501B1B60C8FE0026B422 /* ActivePublishController.m in Sources */,
+				D3D94FAA1B60C3730026B422 /* ForcedUpdateApi.m in Sources */,
+				D3DC95BD1B6243A800902ACA /* SearchBarTableViewController.m in Sources */,
+				D3DC95F81B6244C600902ACA /* AddCategoriesView.m in Sources */,
+				D3D94FB41B60C39D0026B422 /* QuotesModel.m in Sources */,
+				D3D9501A1B60C8FB0026B422 /* PublishViewController.m in Sources */,
+				D3D94FE21B60C6370026B422 /* SaveConditionsViewController.m in Sources */,
+				D3DC95971B623CFB00902ACA /* ForgetPasswordThirdController.m in Sources */,
+				D3DC95B01B62437D00902ACA /* ProductCommentView.m in Sources */,
+				D3D94FD41B60C6020026B422 /* LandInfo.m in Sources */,
+				D3DC95D71B62443D00902ACA /* ForwardListCell.m in Sources */,
+				D3D950091B60C7570026B422 /* MyFocusViewController.m in Sources */,
+				D3DC95B81B62439A00902ACA /* ChatBaseViewController.m in Sources */,
+				D3DC95EC1B62449F00902ACA /* DemandChatViewCell.m in Sources */,
+				D3D94FCF1B60C5EB0026B422 /* PorjectCommentTableViewController.m in Sources */,
+				D3DC96101B62453700902ACA /* ProviderContractsController.m in Sources */,
+				D3DC95C41B6243CA00902ACA /* AddressBookFriendCell.m in Sources */,
+				D3D94FD11B60C5F70026B422 /* MapContentView.m in Sources */,
+				D3DC95F21B6244B500902ACA /* SearchContactViewController.m in Sources */,
+				D3DC962C1B6245BB00902ACA /* GetAddressBook.m in Sources */,
+				D3DC95A71B62434900902ACA /* WelcomeViewController.m in Sources */,
+				D3D94FEA1B60C6980026B422 /* ContactCommentTableViewCell.m in Sources */,
+				D3DC95F51B6244BF00902ACA /* AddContactView.m in Sources */,
+				D3DC96351B62460300902ACA /* BirthDay.m in Sources */,
+				D3DC95F11B6244B100902ACA /* QuotesDetailViewController.m in Sources */,
+				D3D94FB81B60C4EB0026B422 /* ChoseContctApi.m in Sources */,
+				D3DC96271B62459600902ACA /* AskPriceMessageCell.m in Sources */,
+				D3DC96281B6245A300902ACA /* VIPhotoView.m in Sources */,
+				D3DC95C51B6243CD00902ACA /* AddressBookFriendViewController.m in Sources */,
+				D3DC95F31B6244B700902ACA /* SearchContactTableViewCell.m in Sources */,
+				D3D94FB91B60C4F00026B422 /* ChatMessageModel.m in Sources */,
+				D3DC96151B62454D00902ACA /* StartManView.m in Sources */,
+				D3DC95F41B6244BA00902ACA /* SearchContactDefaultView.m in Sources */,
+				D3DC95B51B62438F00902ACA /* SecondAnimationView.m in Sources */,
+				D3DC95AE1B62437700902ACA /* AddCommentViewController.m in Sources */,
+				D3DC95C31B6243C100902ACA /* AddressBookNickNameViewController.m in Sources */,
+				D3D9500E1B60C76E0026B422 /* MyFocusCompanyController.m in Sources */,
+				D3DC95EA1B62449900902ACA /* RKPointKit.m in Sources */,
+				D3D9501F1B60C9530026B422 /* CompanyProductController.m in Sources */,
+				D3D94FFC1B60C7060026B422 /* MyPointContentView.m in Sources */,
+				D3D94FC11B60C57F0026B422 /* FriendModel.m in Sources */,
+				D3D94FA61B60C3650026B422 /* ProjectContactModel.m in Sources */,
+				D3DC95901B6209A300902ACA /* FakeLoginViewController.m in Sources */,
+				D3D94FAE1B60C3820026B422 /* BannerImagesModel.m in Sources */,
+				D3DC95DE1B62446E00902ACA /* DemanDetailViewController.m in Sources */,
+				D3D94FC81B60C5B60026B422 /* CommentApi.m in Sources */,
+				D3D950061B60C74A0026B422 /* CompanyCenterViewController.m in Sources */,
+				D3D94FFB1B60C7040026B422 /* MyPointTopView.m in Sources */,
+				D3D94FF11B60C6B30026B422 /* CommentModel.m in Sources */,
+				D3D94FB21B60C3950026B422 /* ContractsRepealModel.m in Sources */,
+				D3DC95BF1B6243AF00902ACA /* RecommendListViewController.m in Sources */,
+				D3D94FBF1B60C57B0026B422 /* AddressBookApi.m in Sources */,
+				D3DC961E1B62457000902ACA /* RKMuchBtnAssistView.m in Sources */,
+				D3DC95E71B62449000902ACA /* RKDemandDetailController.m in Sources */,
+				D3D94FC41B60C58F0026B422 /* CompanyApi.m in Sources */,
+				D3D94FE61B60C64A0026B422 /* TopicsTableViewController.m in Sources */,
+				D3D9500F1B60C7730026B422 /* PersonalCenterProjectTableViewCell.m in Sources */,
+				D3DC96091B62451400902ACA /* DemandStageChooseController.m in Sources */,
+				D3DC95E61B62448B00902ACA /* DemandProvidePriceChatController.m in Sources */,
+				D3D94FFE1B60C7170026B422 /* PersonalBlockView.m in Sources */,
+				D3DC95DA1B62444700902ACA /* ChatListViewCell.m in Sources */,
+				D3DC96211B62458200902ACA /* ContractsTradeCodeView.m in Sources */,
+				D3D9500C1B60C7610026B422 /* MyFocusUserTableViewCell.m in Sources */,
+				D3D94FF51B60C6F00026B422 /* SignViewController.m in Sources */,
+				D3D9501C1B60C9490026B422 /* CompanyActivesViewController.m in Sources */,
+				D3DC96081B62450C00902ACA /* DemandListSearchController.m in Sources */,
+				D3DC95D21B62441600902ACA /* AddImageView.m in Sources */,
+				D3DC95A41B62434200902ACA /* RecommendProjectTableViewCell.m in Sources */,
+				D3D94FC31B60C58A0026B422 /* CompanyModel.m in Sources */,
+				D3D94FD51B60C6040026B422 /* MainDesign.m in Sources */,
+				D3DC95E21B62447C00902ACA /* AcceptView.m in Sources */,
+				D3DC95B21B62438200902ACA /* NoProductView.m in Sources */,
+				D3DC95E41B62448700902ACA /* DemandDetailProvidePriceController.m in Sources */,
+				D3D94FD21B60C5FA0026B422 /* MapSearchViewController.m in Sources */,
+				D3D94FC61B60C5A80026B422 /* ProductModel.m in Sources */,
+				D3D94FEC1B60C69D0026B422 /* ShowViewController.m in Sources */,
 				D3D94E191B608D040026B422 /* PointDetailModel.m in Sources */,
 				5BC02B911B60D75200FE4D63 /* XCTest+GCovFlush.m in Sources */,
+				D3DC95BC1B6243A500902ACA /* SearchBarCell.m in Sources */,
+				D3DC96341B6245FB00902ACA /* GetImagePath.m in Sources */,
+				D3DC95E91B62449600902ACA /* RKSingleImageView.m in Sources */,
+				D3DC960D1B62452600902ACA /* ContractsListSearchController.m in Sources */,
+				D3DC95FF1B6244E600902ACA /* ChooseProductSmallStage.m in Sources */,
+				D3DC95F61B6244C100902ACA /* TopView.m in Sources */,
+				D3DC95961B62388000902ACA /* ForgetPasswordThirdControllerTests.m in Sources */,
 				D3D94E5A1B608E6E0026B422 /* MyFactory.m in Sources */,
+				D3DC95F01B6244AE00902ACA /* RemarkViewController.m in Sources */,
+				D3DC95861B61E02E00902ACA /* FakeForgetPasswordFirstControllerViewController.m in Sources */,
+				D3DC95CE1B6243F900902ACA /* ChatToolBar.m in Sources */,
+				D3D9500D1B60C7680026B422 /* MyFocusProductCell.m in Sources */,
+				D3D94FE51B60C6460026B422 /* TopicsDetailTableViewController.m in Sources */,
+				D3D94FB11B60C3930026B422 /* ContractsSalerModel.m in Sources */,
+				D3DC95D11B62440B00902ACA /* AddGroupMemberController.m in Sources */,
 				D3D94F0F1B60915B0026B422 /* AddressBookFriendSearchController.m in Sources */,
-				5BA377771B65F64600AA7654 /* AddCommentViewController.m in Sources */,
-				5BA3777D1B66016300AA7654 /* PublishViewController.m in Sources */,
+				D3DC960F1B62453400902ACA /* OtherContractsBaseController.m in Sources */,
 				D3D94F281B6091AE0026B422 /* ChooseContactsViewController.m in Sources */,
 				D3D94E511B608E520026B422 /* ProjectCommentView.m in Sources */,
 				D3D94ECE1B60905D0026B422 /* MarkListTableViewCell.m in Sources */,
 				D3D94E461B608E220026B422 /* ConditionsModel.m in Sources */,
+				D3DC96111B62453A00902ACA /* SalerContractsController.m in Sources */,
 				D3D94F761B6093120026B422 /* TableViewHeightCell.m in Sources */,
+				D3DC95B61B62439100902ACA /* ThirdAnimationView.m in Sources */,
 				D3D94E611B608E870026B422 /* RecognizerFactory.m in Sources */,
 				5BA3777A1B65FB8F00AA7654 /* FakePublishViewController.m in Sources */,
 				5BA377821B671C7500AA7654 /* FakeProductPublishController.m in Sources */,
 				5BA3777F1B671BC600AA7654 /* ProductPublishControllerTests.m in Sources */,
 				5B309BE61B60E6E400242DA3 /* UpdataPassWordViewController.m in Sources */,
+				D3DC95E31B62447F00902ACA /* AcceptViewController.m in Sources */,
+				D3DC961F1B62457300902ACA /* BaseContractsView.m in Sources */,
 				D3D94E951B608F400026B422 /* PersonalProjectTableViewCell.m in Sources */,
 				D3D94F4B1B6092330026B422 /* ChooseProductCellModel.m in Sources */,
 				5BC02B921B60D8F900FE4D63 /* ProjectStage.m in Sources */,
-				5BA3777C1B65FE2700AA7654 /* PublishViewControllerTests.m in Sources */,
+				D3DC95DC1B62445000902ACA /* ChooseContactsSearchController.m in Sources */,
 				5B03ACAA1B62004D00A4DCFA /* RegistViewController.m in Sources */,
-				5BA377741B65ECF900AA7654 /* FakeAddCommentViewController.m in Sources */,
+				D3DC95D61B62443B00902ACA /* ForwardListViewController.m in Sources */,
+				D3DC95BB1B6243A300902ACA /* RKBaseTableView.m in Sources */,
 				5B309BE91B60E71B00242DA3 /* LoginViewController.m in Sources */,
-				5B03ACAF1B62206100A4DCFA /* PublishRequirementViewTests.m in Sources */,
-				5BA377761B65ED7C00AA7654 /* AddCommentViewControllerTests.m in Sources */,
+				D3DC960C1B62452300902ACA /* ContractListCell.m in Sources */,
 				D3D94E5E1B608E7C0026B422 /* ProjectTableViewCell.m in Sources */,
 				5B309BE51B60E6D400242DA3 /* RKStageChooseView.m in Sources */,
-				5B309BEC1B60F22900242DA3 /* FakeLoginViewController.m in Sources */,
+				D3DC95D01B6243FF00902ACA /* ChatSendImageView.m in Sources */,
 				D3D94E251B608DB40026B422 /* ContractsApi.m in Sources */,
+				D3DC961A1B62455C00902ACA /* ContractView.m in Sources */,
 				D3D94EEE1B6090E40026B422 /* RecommendProjectViewController.m in Sources */,
+				D3DC96241B62458B00902ACA /* ContractsBtnToolBar.m in Sources */,
+				D3DC95941B62386100902ACA /* FakeForgetPasswordThirdViewController.m in Sources */,
 				D3D94EC31B6090370026B422 /* RequirementInfoPorjectView.m in Sources */,
+				D3DC95A21B62432800902ACA /* LoginEvent.m in Sources */,
+				D3DC96131B62454600902ACA /* CommissionBaseViewController.m in Sources */,
+				D3DC95891B62065F00902ACA /* FakeForgetPasswordSecondViewController.m in Sources */,
+				D3DC95FA1B6244CB00902ACA /* AddMarkView.m in Sources */,
+				D3DC95B11B62438000902ACA /* MyTableView.m in Sources */,
+				D3DC95D41B62441C00902ACA /* DiscussionGroupView.m in Sources */,
+				D3DC95D91B62444500902ACA /* ChatListViewController.m in Sources */,
+				D3DC95981B623CFE00902ACA /* ForgetPasswordSecondController.m in Sources */,
+				D3DC95D81B62444000902ACA /* ForwardChooseContactsController.m in Sources */,
 				D3D94F221B6091960026B422 /* ChatImageCell.m in Sources */,
 				D3D94E211B608DA80026B422 /* AskPriceMessageModel.m in Sources */,
 				5BA377831B67243E00AA7654 /* ProductPublishController.m in Sources */,
 				D3D94F361B6091E50026B422 /* DemandDetailViewCell.m in Sources */,
-				5B03ACAD1B621B7900A4DCFA /* FakePublishRequirementViewController.m in Sources */,
 				5B03ACB01B62375300A4DCFA /* PublishRequirementViewController.m in Sources */,
+				D3DC96121B62453D00902ACA /* RepealContractsController.m in Sources */,
 				D3D94E411B608E110026B422 /* ProjectApi.m in Sources */,
 				5B309BE71B60E6EF00242DA3 /* AppDelegate.m in Sources */,
+				D3DC959F1B6242E000902ACA /* PublishRequirementViewTests.m in Sources */,
+				D3DC95DD1B62446700902ACA /* WebViewController.m in Sources */,
+				D3DC96011B6244EF00902ACA /* RKTwoView.m in Sources */,
 				5B309BE81B60E6FE00242DA3 /* HomePageViewController.m in Sources */,
 				D3D94F191B60917C0026B422 /* ChatContentView.m in Sources */,
+				D3EA231E1B67138E00FE46F4 /* FakePublishViewController.m in Sources */,
+				D3DC961B1B62456400902ACA /* ContractSucessCreateController.m in Sources */,
+				D3EA23221B6713A500FE46F4 /* PublishViewControllerTests.m in Sources */,
+				D3DC95AA1B62435700902ACA /* ClauseViewController.m in Sources */,
 				D3D94F711B6092F70026B422 /* ZWAdView.m in Sources */,
+				D3DC95C21B6243BE00902ACA /* AddressBookSearchBarCell.m in Sources */,
+				D3DC959C1B6242D500902ACA /* FakePublishRequirementViewController.m in Sources */,
 				D3D94E4C1B608E3C0026B422 /* LoginModel.m in Sources */,
 				D3D94F8A1B60939B0026B422 /* LoginSqlite.m in Sources */,
-				5BF0D1A81B61D33E004212CE /* RegistViewControllerTests.m in Sources */,
 				D3D94EFA1B6091100026B422 /* RKCamera.m in Sources */,
 				D3D94F601B60929C0026B422 /* MainContractsBaseController.m in Sources */,
-				5BF0D1A61B61CE61004212CE /* FakeRegistViewController.m in Sources */,
+				D3DC960A1B62451700902ACA /* DemandStageCell.m in Sources */,
+				D3DC95EB1B62449D00902ACA /* RKDemandChatController.m in Sources */,
+				D3DC96191B62455900902ACA /* MoneyView.m in Sources */,
+				D3DC95E01B62447400902ACA /* DemandAskPriceDetailController.m in Sources */,
+				D3DC95AC1B62436800902ACA /* TMPhotoQuiltViewCell.m in Sources */,
 				D3D94F0A1B60914B0026B422 /* AddressBookViewCell.m in Sources */,
+				D3DC95C01B6243B500902ACA /* RemindListViewController.m in Sources */,
+				D3DC96071B62450900902ACA /* AskPriceCellHeader.m in Sources */,
 				D3D94F171B6091770026B422 /* ChatTableViewCell.m in Sources */,
+				D3DC962B1B6245B200902ACA /* ErrorCode.m in Sources */,
 				0426C01019922CE400CD8822 /* ZhuZhanTests.m in Sources */,
+				D3DC95DF1B62447200902ACA /* DemandDetailAskPriceController.m in Sources */,
 				5BF0CE6F1B60976A00B91F75 /* FakeProjectStage.m in Sources */,
+				D3DC95FE1B6244E300902ACA /* ChooseProductSmallCell.m in Sources */,
 				5BF0CE771B60977500B91F75 /* FakeStageChooseView.m in Sources */,
+				D3DC95D51B62443700902ACA /* MessageTableView.m in Sources */,
+				D3EA23211B6713A500FE46F4 /* AddCommentViewControllerTests.m in Sources */,
+				D3DC95FB1B6244D200902ACA /* BusinessSucessCreateController.m in Sources */,
 				5BF0CE7D1B60AFFF00B91F75 /* LoginViewControllerTests.m in Sources */,
 				5BF0CE671B60976200B91F75 /* FakeUpdataPassWordViewController.m in Sources */,
 				5BF0CE781B60977500B91F75 /* RKStageChooseViewTests.m in Sources */,
 				5BF0CE701B60976A00B91F75 /* ProjectStageTests.m in Sources */,
+				D3DC95B91B62439E00902ACA /* BaseTableViewCell.m in Sources */,
+				D3DC95BA1B6243A000902ACA /* BaseTableViewCellModel.m in Sources */,
 				D3D94E181B608D000026B422 /* MyPointApi.m in Sources */,
 				5BF0CE681B60976200B91F75 /* UpdataPassWordViewControllerTests.m in Sources */,
+				D3DC95ED1B6244A700902ACA /* AskPriceDetailViewController.m in Sources */,
+				D3DC95C61B6243DA00902ACA /* AddFriendViewController.m in Sources */,
+				D3DC95FC1B6244DC00902ACA /* ChooseProductBigCell.m in Sources */,
+				D3DC96021B6244F400902ACA /* RKUpAndDownView.m in Sources */,
+				D3DC96331B6245F700902ACA /* NBLabel.m in Sources */,
 				D3D94E1A1B608D070026B422 /* MyPointHistoryModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -11030,6 +11536,7 @@
 					"$(PROJECT_DIR)/ZhuZhan/Tools/BaiduMap/libs/Release-iphonesimulator",
 					"$(PROJECT_DIR)/ZhuZhan/Tools/IFly/lib/sunflower",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s arm64";

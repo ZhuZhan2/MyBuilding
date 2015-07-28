@@ -202,8 +202,8 @@
 
 -(void)rightBtnClick{
     [[NSNotificationCenter defaultCenter]postNotificationName:@"registComplete" object:nil];
-//    WelcomeViewController* vc=[[WelcomeViewController alloc]init];
-//    [self.navigationController pushViewController:vc animated:YES];
+    WelcomeViewController* vc=[[WelcomeViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)initMyTableView{
