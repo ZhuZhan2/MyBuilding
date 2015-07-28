@@ -915,12 +915,6 @@
 		5BA181A71A76170500191D31 /* Shadow-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA181A51A76170500191D31 /* Shadow-top@2x.png */; };
 		5BA1E3F31B1EA19C002ADE58 /* 上导航阴影.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA1E3F11B1EA19C002ADE58 /* 上导航阴影.png */; };
 		5BA1E3F41B1EA19C002ADE58 /* 上导航阴影@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA1E3F21B1EA19C002ADE58 /* 上导航阴影@2x.png */; };
-		5BA377741B65ECF900AA7654 /* FakeAddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA377731B65ECF900AA7654 /* FakeAddCommentViewController.m */; };
-		5BA377761B65ED7C00AA7654 /* AddCommentViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA377751B65ED7C00AA7654 /* AddCommentViewControllerTests.m */; };
-		5BA377771B65F64600AA7654 /* AddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13C71819B70699008EA7A0 /* AddCommentViewController.m */; };
-		5BA3777A1B65FB8F00AA7654 /* FakePublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA377791B65FB8F00AA7654 /* FakePublishViewController.m */; };
-		5BA3777C1B65FE2700AA7654 /* PublishViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA3777B1B65FE2700AA7654 /* PublishViewControllerTests.m */; };
-		5BA3777D1B66016300AA7654 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D10BD019AE016A0097C0C6 /* PublishViewController.m */; };
 		5BA37F7E1B43CB0000ACCFA2 /* ForwardChooseContactsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA37F7D1B43CB0000ACCFA2 /* ForwardChooseContactsController.m */; };
 		5BA523221AAEEB9D00F44223 /* 多人会话.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA523201AAEEB9D00F44223 /* 多人会话.png */; };
 		5BA523231AAEEB9D00F44223 /* 多人会话@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA523211AAEEB9D00F44223 /* 多人会话@2x.png */; };
@@ -2101,6 +2095,10 @@
 		D3E2F4701A11E4D500CF2785 /* 注册_08.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E2F46E1A11E4D500CF2785 /* 注册_08.png */; };
 		D3E2F4711A11E4D500CF2785 /* 注册_08@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E2F46F1A11E4D500CF2785 /* 注册_08@2x.png */; };
 		D3E621E61A10AC3000EF8A90 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3E621E51A10AC3000EF8A90 /* area.plist */; };
+		D3EA231D1B67138E00FE46F4 /* FakeAddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EA231A1B67138E00FE46F4 /* FakeAddCommentViewController.m */; };
+		D3EA231E1B67138E00FE46F4 /* FakePublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EA231C1B67138E00FE46F4 /* FakePublishViewController.m */; };
+		D3EA23211B6713A500FE46F4 /* AddCommentViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EA231F1B6713A500FE46F4 /* AddCommentViewControllerTests.m */; };
+		D3EA23221B6713A500FE46F4 /* PublishViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EA23201B6713A500FE46F4 /* PublishViewControllerTests.m */; };
 		D3EDC9F11ACE5959002AF865 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDC9F01ACE5959002AF865 /* WebViewController.m */; };
 		D3EDC9F41ACE6538002AF865 /* xlsx.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EDC9F21ACE6538002AF865 /* xlsx.png */; };
 		D3EDC9F51ACE6538002AF865 /* xlsx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EDC9F31ACE6538002AF865 /* xlsx@2x.png */; };
@@ -3490,12 +3488,6 @@
 		5BA181A51A76170500191D31 /* Shadow-top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shadow-top@2x.png"; sourceTree = "<group>"; };
 		5BA1E3F11B1EA19C002ADE58 /* 上导航阴影.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上导航阴影.png"; sourceTree = "<group>"; };
 		5BA1E3F21B1EA19C002ADE58 /* 上导航阴影@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上导航阴影@2x.png"; sourceTree = "<group>"; };
-		5BA377721B65ECF900AA7654 /* FakeAddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeAddCommentViewController.h; sourceTree = "<group>"; };
-		5BA377731B65ECF900AA7654 /* FakeAddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeAddCommentViewController.m; sourceTree = "<group>"; };
-		5BA377751B65ED7C00AA7654 /* AddCommentViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCommentViewControllerTests.m; sourceTree = "<group>"; };
-		5BA377781B65FB8F00AA7654 /* FakePublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakePublishViewController.h; sourceTree = "<group>"; };
-		5BA377791B65FB8F00AA7654 /* FakePublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakePublishViewController.m; sourceTree = "<group>"; };
-		5BA3777B1B65FE2700AA7654 /* PublishViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewControllerTests.m; sourceTree = "<group>"; };
 		5BA37F7C1B43CB0000ACCFA2 /* ForwardChooseContactsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardChooseContactsController.h; sourceTree = "<group>"; };
 		5BA37F7D1B43CB0000ACCFA2 /* ForwardChooseContactsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardChooseContactsController.m; sourceTree = "<group>"; };
 		5BA523201AAEEB9D00F44223 /* 多人会话.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "多人会话.png"; sourceTree = "<group>"; };
@@ -4665,6 +4657,12 @@
 		D3E2F46E1A11E4D500CF2785 /* 注册_08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_08.png"; sourceTree = "<group>"; };
 		D3E2F46F1A11E4D500CF2785 /* 注册_08@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册_08@2x.png"; sourceTree = "<group>"; };
 		D3E621E51A10AC3000EF8A90 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		D3EA23191B67138E00FE46F4 /* FakeAddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeAddCommentViewController.h; sourceTree = "<group>"; };
+		D3EA231A1B67138E00FE46F4 /* FakeAddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeAddCommentViewController.m; sourceTree = "<group>"; };
+		D3EA231B1B67138E00FE46F4 /* FakePublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakePublishViewController.h; sourceTree = "<group>"; };
+		D3EA231C1B67138E00FE46F4 /* FakePublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakePublishViewController.m; sourceTree = "<group>"; };
+		D3EA231F1B6713A500FE46F4 /* AddCommentViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCommentViewControllerTests.m; sourceTree = "<group>"; };
+		D3EA23201B6713A500FE46F4 /* PublishViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewControllerTests.m; sourceTree = "<group>"; };
 		D3EDC9EF1ACE5959002AF865 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		D3EDC9F01ACE5959002AF865 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		D3EDC9F21ACE6538002AF865 /* xlsx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xlsx.png; sourceTree = "<group>"; };
@@ -7709,6 +7707,10 @@
 		5BF0CE621B60976200B91F75 /* Fake */ = {
 			isa = PBXGroup;
 			children = (
+				D3EA23191B67138E00FE46F4 /* FakeAddCommentViewController.h */,
+				D3EA231A1B67138E00FE46F4 /* FakeAddCommentViewController.m */,
+				D3EA231B1B67138E00FE46F4 /* FakePublishViewController.h */,
+				D3EA231C1B67138E00FE46F4 /* FakePublishViewController.m */,
 				D3DC959A1B6242D500902ACA /* FakePublishRequirementViewController.h */,
 				D3DC959B1B6242D500902ACA /* FakePublishRequirementViewController.m */,
 				D3DC958C1B6209A300902ACA /* FakeLoginViewController.h */,
@@ -7730,6 +7732,8 @@
 		5BF0CE651B60976200B91F75 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				D3EA231F1B6713A500FE46F4 /* AddCommentViewControllerTests.m */,
+				D3EA23201B6713A500FE46F4 /* PublishViewControllerTests.m */,
 				D3DC959D1B6242E000902ACA /* PublishRequirementViewTests.m */,
 				D3DC959E1B6242E000902ACA /* RegistViewControllerTests.m */,
 				5BF0CE661B60976200B91F75 /* UpdataPassWordViewControllerTests.m */,
@@ -11051,6 +11055,7 @@
 				D3DC95C71B6243DC00902ACA /* AddFriendCell.m in Sources */,
 				D3D9502A1B60D5CA0026B422 /* XCTest+GCovFlush.m in Sources */,
 				D3D9501E1B60C94F0026B422 /* CompanyProjectController.m in Sources */,
+				D3EA231D1B67138E00FE46F4 /* FakeAddCommentViewController.m in Sources */,
 				D3DC96251B62458E00902ACA /* PDFViewController.m in Sources */,
 				D3DC95F91B6244C900902ACA /* AddClassificationView.m in Sources */,
 				D3D94FF91B60C6FE0026B422 /* MyPointDetailView.m in Sources */,
@@ -11249,7 +11254,6 @@
 				D3D94F761B6093120026B422 /* TableViewHeightCell.m in Sources */,
 				D3DC95B61B62439100902ACA /* ThirdAnimationView.m in Sources */,
 				D3D94E611B608E870026B422 /* RecognizerFactory.m in Sources */,
-				5BA3777A1B65FB8F00AA7654 /* FakePublishViewController.m in Sources */,
 				5B309BE61B60E6E400242DA3 /* UpdataPassWordViewController.m in Sources */,
 				D3DC95E31B62447F00902ACA /* AcceptViewController.m in Sources */,
 				D3DC961F1B62457300902ACA /* BaseContractsView.m in Sources */,
@@ -11294,7 +11298,9 @@
 				D3DC96011B6244EF00902ACA /* RKTwoView.m in Sources */,
 				5B309BE81B60E6FE00242DA3 /* HomePageViewController.m in Sources */,
 				D3D94F191B60917C0026B422 /* ChatContentView.m in Sources */,
+				D3EA231E1B67138E00FE46F4 /* FakePublishViewController.m in Sources */,
 				D3DC961B1B62456400902ACA /* ContractSucessCreateController.m in Sources */,
+				D3EA23221B6713A500FE46F4 /* PublishViewControllerTests.m in Sources */,
 				D3DC95AA1B62435700902ACA /* ClauseViewController.m in Sources */,
 				D3D94F711B6092F70026B422 /* ZWAdView.m in Sources */,
 				D3DC95C21B6243BE00902ACA /* AddressBookSearchBarCell.m in Sources */,
@@ -11319,6 +11325,7 @@
 				D3DC95FE1B6244E300902ACA /* ChooseProductSmallCell.m in Sources */,
 				5BF0CE771B60977500B91F75 /* FakeStageChooseView.m in Sources */,
 				D3DC95D51B62443700902ACA /* MessageTableView.m in Sources */,
+				D3EA23211B6713A500FE46F4 /* AddCommentViewControllerTests.m in Sources */,
 				D3DC95FB1B6244D200902ACA /* BusinessSucessCreateController.m in Sources */,
 				5BF0CE7D1B60AFFF00B91F75 /* LoginViewControllerTests.m in Sources */,
 				5BF0CE671B60976200B91F75 /* FakeUpdataPassWordViewController.m in Sources */,
