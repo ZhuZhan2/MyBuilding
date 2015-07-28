@@ -138,25 +138,25 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
--(NSInteger)searchBarTableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
-}
-
--(CGFloat)searchBarTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 45;
-}
-
--(UITableViewCell *)searchBarTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    SearchBarCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell=[[SearchBarCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
-    SearchBarCellModel* model=[[SearchBarCellModel alloc]init];
-    model.mainLabelText=@"用户名显示";
-    
-    [cell setModel:model];
-    return cell;
-}
+//-(NSInteger)searchBarTableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    return 6;
+//}
+//
+//-(CGFloat)searchBarTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 45;
+//}
+//
+//-(UITableViewCell *)searchBarTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    SearchBarCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
+//    if (!cell) {
+//        cell=[[SearchBarCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+//    }
+//    SearchBarCellModel* model=[[SearchBarCellModel alloc]init];
+//    model.mainLabelText=@"用户名显示";
+//    
+//    [cell setModel:model];
+//    return cell;
+//}
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     return YES;

@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
     [self initNavi];
     [self initStageChooseViewWithStages:@[@"获得途径",@"注意事项"] numbers:nil underLineIsWhole:YES normalColor:AllLightGrayColor highlightColor:BlueColor];
     [self.view insertSubview:self.webView atIndex:0];

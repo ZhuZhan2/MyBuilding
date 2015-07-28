@@ -44,8 +44,6 @@
 //    self.aboveMaxLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 140, 20)];
 //    self.aboveMaxLabel.center=CGPointMake(167, self.view.frame.size.height-20);
 //    [self.view addSubview:self.aboveMaxLabel];
-    
-    
 }
 
 -(void)initTextViewPart{
@@ -206,10 +204,5 @@
 
 -(void)finishNetWork{
     self.sureBtn.enabled=YES;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 @end
