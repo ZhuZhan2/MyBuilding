@@ -48,8 +48,8 @@
  *  测试清空方法可以情况imageData的数据
  */
 - (void)testClearAll{
-    self.publishVC.imageData = [[NSData alloc] init];
+    [self.publishVC setValue:[NSData new] forKey:@"_imageData"];
     [self.publishVC clearAll];
-    XCTAssertFalse(self.publishVC.imageData);
+    XCTAssertFalse([self.publishVC valueForKey:@"_imageData"]);
 }
 @end
